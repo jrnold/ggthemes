@@ -1,0 +1,5 @@
+export(economist_colors)
+export(economist_pal)
+export(scale_colour_economist)
+export(scale_fill_economist)
+export(theme_economist)
