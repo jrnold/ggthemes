@@ -52,7 +52,7 @@ COLORS_SOLARIZED <-
 ##' Creates the base colors for a light or dark solarized theme. See
 ##' \url{http://ethanschoonover.com/solarized}. The idea for this
 ##' function comes from the CSS style example.
-.solarized_rebase <- function(light=TRUE) {
+solarized_rebase <- function(light=TRUE) {
     if (light) {
         rebase <- COLORS_SOLARIZED[c('base3', 'base2', 'base1', 'base0',
                                    'base00', 'base01', 'base02', 'base03')]
@@ -62,5 +62,86 @@ COLORS_SOLARIZED <-
     }
     names(rebase) <- paste('rebase', c('03', '02', '01', '00', 0:3), sep="")
     rebase
+}
+
+##' Solarized color palette (discrete)
+##'
+##' Solarized accents palette from
+##' \url{http://ethanschoonover.com/solarized}.
+##'
+##' @param colors \code{character} vector of the names of Solarized
+##' colors to use and their order.
+##' @export
+##' @examples
+##' show_col(solarized_pal())
+solarized_pal <- function(colors=NULL) {
+    colorsall <- COLORS_SOLARIZED[!grepl("^base", names(COLORS_SOLARIZED))]
+    if (is.null(colors)) {
+        colors <- names(colorsall)
+    }
+    colorlist <- c(colorsall[colors],
+                   colorsall[setdiff(colors, names(colorsall))])
+    manual_pal(unname(colorlist))
+}
+
+##' Solarized color scales
+##'
+##' Accent color theme for Solarized.
+##' Primarily for use with
+##' \code{\link{theme_solarized}}.
+##'
+##' @inheritParams ggplot2::scale_colour_hue
+##' @inheritParams solarized_pal
+##' @family colour scales
+##' @rdname scale_solarized
+##' @export
+##' @examples
+##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
+##'                + theme_solarized()
+##'                + scale_colour_solarized() )
+scale_fill_solarized <- function(colors=NULL, ...) {
+    discrete_scale("fill", "solarized", solarized_pal(colors), ...)
+}
+
+#' @export
+#' @rdname scale_solarized
+scale_colour_solarized <- function(colors=NULL, ...) {
+    discrete_scale("colour", "solarized", solarized_pal(colors), ...)
+}
+
+##' ggplot color theme based on the Solarized palette
+##'
+##' See \url{http://ethanschoonover.com/solarized} for a
+##' description of the Solarized palette.
+##'
+##' @param base_size base font size
+##' @param base_family base font family
+##' @param light \code{logical}. Light or dark theme?
+##' @export
+##' @family themes
+##' @examples
+##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
+##'                + theme_economist()
+##'                + scale_colour_economist() )
+theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
+    rebase <- solarized_rebase(light)
+    ret <- (theme_bw(base_size=base_size, base_family=base_family) +
+            theme(text = element_text(colour=rebase['rebase0']),
+                  title = element_text(color=rebase['rebase1']),
+                  line = element_line(color=rebase['rebase0']),
+                  rect = element_rect(fill=rebase['rebase03'], color=rebase['rebase0']),
+                  axis.ticks = element_line(color=rebase['rebase0']),
+                  legend.background = element_rect(fill=NULL, color=NA),
+                  legend.key = element_rect(fill=NULL, color=rebase['rebase01']),
+                  panel.background = element_rect(fill=rebase['rebase03'], color=rebase['rebase01']),
+                  panel.grid = element_line(color=rebase['rebase01']),
+                  panel.grid.major = element_line(color=rebase['rebase01']),
+                  panel.grid.minor = element_line(color=rebase['rebase01']),
+                  panel.border = element_rect(color=rebase['rebase01']),
+                  strip.background = element_rect(fill=rebase['rebase02'])
+            ))
+    ret
 }
 

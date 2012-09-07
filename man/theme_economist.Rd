@@ -25,7 +25,6 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + scale_colour_economist() )
 }
 \seealso{
-  Other res: \code{\link{scale_colour_economist}},
-  \code{\link{scale_fill_economist}}
+  Other themes: \code{\link{theme_solarized}}
 }
 
