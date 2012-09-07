@@ -109,6 +109,9 @@ scale_fill_solarized <- function(colors=NULL, ...) {
 scale_colour_solarized <- function(colors=NULL, ...) {
     discrete_scale("colour", "solarized", solarized_pal(colors), ...)
 }
+#' @export
+#' @rdname scale_solarized
+scale_color_solarized <- scale_colour_solarized
 
 ##' ggplot color theme based on the Solarized palette
 ##'

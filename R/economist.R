@@ -50,6 +50,9 @@ economist_pal <- manual_pal(unname(economist_colors[3:length(economist_colors)])
 ##'                + scale_colour_economist() )
 scale_colour_economist <- function(...) discrete_scale("colour", "economist",
                                                        economist_pal, ...)
+#' @export
+#' @rdname scale_economist
+scale_color_economist <- scale_colour_economist
 
 #' @export
 #' @rdname scale_economist
