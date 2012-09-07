@@ -4,19 +4,18 @@
 \alias{scale_fill_solarized}
 \title{Solarized color scales}
 \usage{
-  scale_fill_solarized(colors = NULL, ...)
+  scale_fill_solarized(accent = "blue", ...)
 
-  scale_colour_solarized(colors = NULL, ...)
+  scale_colour_solarized(accent = "blue", ...)
 
-  scale_color_solarized(colors = NULL, ...)
+  scale_color_solarized(accent = "blue", ...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
   \code{\link{discrete_scale}} to control name, limits,
   breaks, labels and so forth.}
 
-  \item{colors}{\code{character} vector of the names of
-  Solarized colors to use and their order.}
+  \item{accent}{\code{character} Primary accent color.}
 }
 \description{
   Accent color theme for Solarized. Primarily for use with

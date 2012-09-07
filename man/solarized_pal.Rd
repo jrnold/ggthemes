@@ -2,17 +2,21 @@
 \alias{solarized_pal}
 \title{Solarized color palette (discrete)}
 \usage{
-  solarized_pal(colors = NULL)
+  solarized_pal(accent = "blue")
 }
 \arguments{
-  \item{colors}{\code{character} vector of the names of
-  Solarized colors to use and their order.}
+  \item{accent}{\code{character} Primary accent color.}
 }
 \description{
   Solarized accents palette from
-  \url{http://ethanschoonover.com/solarized}.
+  \url{http://ethanschoonover.com/solarized}. The colors
+  chosen are the combination of colors that maximize the
+  total Euclidean distance between colors in L*a*b space,
+  given a primary accent.
 }
 \examples{
-show_col(solarized_pal())
+show_col(solarized_pal()(2))
+show_col(solarized_pal()(3))
+show_col(solarized_pal("red")(4))
 }
 
