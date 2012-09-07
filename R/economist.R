@@ -2,7 +2,6 @@
 ##'
 ##' @format \code{character} vector of the hex RGB values of the
 ##' colors used by The Economist.
-##' @usage economist_colors
 ##' @seealso economist_pal
 ##' @export
 economist_colors <-
@@ -46,7 +45,7 @@ economist_pal <- manual_pal(unname(economist_colors[3:length(economist_colors)])
 ##' @export
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (d <- qplot(carat, price, data=dsamp, colour=clarity) +
+##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
 ##'                + theme_economist()
 ##'                + scale_colour_economist() )
 scale_colour_economist <- function(...) discrete_scale("colour", "economist",
@@ -63,15 +62,17 @@ scale_fill_economist <- function(...) discrete_scale("colour", "economist",
 ##'
 ##' @param base_size base font size
 ##' @param base_family base font family
+##' @param horizontal \code{logical}. Horizontal axis lines?
+##' @param dkplot \code{logical} Darker background for plot region?
 ##' @export
 ##' @family themes
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (d <- qplot(carat, price, data=dsamp, colour=clarity) +
+##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
 ##'                + theme_economist()
 ##'                + scale_colour_economist() )
 theme_economist <- function(base_size = 12, base_family="",
-                            horizontal=TRUE, inner=FALSE) {
+                            horizontal=TRUE, dkplot=FALSE) {
     palette_economist_bg <- c(ebg = "#C6D3DF",
                               edkbg = "#B2BFCB")
     ret <-
@@ -95,12 +96,12 @@ theme_economist <- function(base_size = 12, base_family="",
               axis.ticks.y = element_blank(),
               axis.title.x = element_text(),
               axis.title.y = element_text(angle = 90),
-              axis.ticks.length = unit(-0.2 , "cm"),
-              axis.ticks.margin = unit(0.6, "cm"),
+              axis.ticks.length = grid::unit(-0.2 , "cm"),
+              axis.ticks.margin = grid::unit(0.6, "cm"),
               legend.background = element_rect(linetype=0),
-              legend.margin = unit(0.2, "cm"),
+              legend.margin = grid::unit(0.2, "cm"),
               legend.key = element_rect(linetype=0),
-              legend.key.size = unit(1.2, "lines"),
+              legend.key.size = grid::unit(1.2, "lines"),
               legend.key.height = NULL,
               legend.key.width = NULL,
               legend.text = element_text(size = rel(0.8)),
@@ -117,7 +118,7 @@ theme_economist <- function(base_size = 12, base_family="",
               panel.border = element_blank(),
               panel.grid.major = element_line(colour = "white", size=rel(2)),
               panel.grid.minor = element_blank(),
-              panel.margin = unit(0.25, "lines"),
+              panel.margin = grid::unit(0.25, "lines"),
               strip.background = element_rect(fill = palette_economist_bg['edkbg'],
               colour = NA, linetype=0),
               strip.text = element_text(size = rel(0.8)),
@@ -125,14 +126,14 @@ theme_economist <- function(base_size = 12, base_family="",
               strip.text.y = element_text(angle = -90),
               plot.background = element_rect(fill = palette_economist_bg['ebg'], colour=NA),
               plot.title = element_text(size = rel(1.2), hjust=0),
-              plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
+              plot.margin = grid::unit(c(1, 1, 0.5, 0.5), "lines"),
               complete = TRUE)
     if (horizontal) {
         ret <- ret + theme(panel.grid.major.x = element_blank())
     } else {
         ret <- ret + theme(panel.grid.major.y = element_blank())
     }
-    if (inner==TRUE) {
+    if (dkplot==TRUE) {
         ret <- ret + theme(panel.background=element_rect(fill = palette_economist_bg['edkbg']))
     }
     ret

@@ -4,6 +4,9 @@
 \title{Economist colors}
 \format{\code{character} vector of the hex RGB values of the
 colors used by The Economist.}
+\usage{
+  economist_colors
+}
 \description{
   Economist colors
 }

@@ -19,7 +19,7 @@
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-(d <- qplot(carat, price, data=dsamp, colour=clarity) +
+(d <- qplot(carat, price, data=dsamp, colour=clarity)
                + theme_economist()
                + scale_colour_economist() )
 }

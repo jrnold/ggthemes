@@ -1,5 +1,7 @@
+export(cleveland_shape_pal)
 export(economist_colors)
 export(economist_pal)
 export(scale_colour_economist)
 export(scale_fill_economist)
+export(scale_shape_cleveland)
 export(theme_economist)
