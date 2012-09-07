@@ -1,5 +1,9 @@
 # ggplotJrnold
 
 Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
-including a theme and color/fill scales to make plots resembling those
-in the Economist.
+
+- The Economist theme and scales
+- (Solarized)[http://ethanschoonover.com/solarized] theme and scales
+- Themes and scales based on Stata graph schemes
+- Shape scales from William S. Cleveland's *Visualizing Data*
+
