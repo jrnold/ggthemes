@@ -28,22 +28,25 @@
 ##' RGB values.
 ##' @export
 COLORS_SOLARIZED <-
- c(base03 = "#002b36",
-   base02 = "#073642",
-   base01 = "#586e75",
-   base00 = "#657b83",
-   base0 = "#839496",
-   base1 = "#93a1a1",
-   base2 = "#eee8d5",
-   base3 = "#fdf6e3",
-   yellow = "#b58900",
-   orange = "#cb4b16",
-   red = "#dc322f",
-   magenta = "#d33682",
-   violet = "#6c71c4",
-   blue = "#268bd2",
-   cyan = "#2aa198",
-   green = "#859900")
+    list(
+        base =
+        c(base03 = "#002b36",
+          base02 = "#073642",
+          base01 = "#586e75",
+          base00 = "#657b83",
+          base0 = "#839496",
+          base1 = "#93a1a1",
+          base2 = "#eee8d5",
+          base3 = "#fdf6e3"),
+        accents =
+        c(yellow = "#b58900",
+          orange = "#cb4b16",
+          red = "#dc322f",
+          magenta = "#d33682",
+          violet = "#6c71c4",
+          blue = "#268bd2",
+          cyan = "#2aa198",
+          green = "#859900"))
 
 ##' Base colors for Solarized light and dark themes
 ##'
@@ -54,34 +57,56 @@ COLORS_SOLARIZED <-
 ##' function comes from the CSS style example.
 solarized_rebase <- function(light=TRUE) {
     if (light) {
-        rebase <- COLORS_SOLARIZED[c('base3', 'base2', 'base1', 'base0',
-                                   'base00', 'base01', 'base02', 'base03')]
+        rebase <- COLORS_SOLARIZED$base[c(paste('base', 3:0, sep=''),
+                                          paste('base0', 0:3, sep=''))]
     } else {
-        rebase <- COLORS_SOLARIZED[c('base03', 'base02', 'base01', 'base00',
-                                     'base0', 'base1', 'base2', 'base3')]
+        rebase <- COLORS_SOLARIZED$base[c(paste('base0', 3:0, sep=''),
+                                          paste('base', 0:3, sep=''))]
     }
-    names(rebase) <- paste('rebase', c('03', '02', '01', '00', 0:3), sep="")
+    names(rebase) <- paste('rebase', c(paste('0', 3:0, sep=''), 0:3), sep='')
     rebase
 }
 
 ##' Solarized color palette (discrete)
 ##'
 ##' Solarized accents palette from
-##' \url{http://ethanschoonover.com/solarized}.
+##' \url{http://ethanschoonover.com/solarized}. The colors chosen are
+##' the combination of colors that maximize the total Euclidean
+##' distance between colors in L*a*b space, given a primary accent.
 ##'
-##' @param colors \code{character} vector of the names of Solarized
-##' colors to use and their order.
+##'
+##' @param accent \code{character} Primary accent color.
 ##' @export
 ##' @examples
-##' show_col(solarized_pal())
-solarized_pal <- function(colors=NULL) {
-    colorsall <- COLORS_SOLARIZED[!grepl("^base", names(COLORS_SOLARIZED))]
-    if (is.null(colors)) {
-        colors <- names(colorsall)
+##' show_col(solarized_pal()(2))
+##' show_col(solarized_pal()(3))
+##' show_col(solarized_pal("red")(4))
+solarized_pal <- function(accent="blue") {
+    best_colors <- function(color, n=1) {
+        allcolors <- names(COLORS_SOLARIZED$accents)
+        othercolors <- setdiff(allcolors, color)
+        solarized <- as(as(hex2RGB(COLORS_SOLARIZED$accents), "LAB")@coords, "matrix")
+        rownames(solarized) <- names(COLORS_SOLARIZED$accents)
+        solarized_dist <- as.matrix(dist(solarized, method="euclidean"))
+        total_dist <- function(i) {
+            sum(solarized_dist[i, i][lower.tri(diag(length(i)))])
+        }
+        if (n == 1) {
+            colorlist <- color
+        } else if (n >= length(allcolors)) {
+            colorlist <- c(color, othercolors)
+        } else {
+            othercolors <- setdiff(allcolors, color)
+            combinations <- combn(othercolors, n - 1)
+            maxdist <- which.max(apply(combinations, 2, function(x) total_dist(c(color, x))))
+            colorlist <- c(color, combinations[ , maxdist])
+        }
+        unname(COLORS_SOLARIZED$accents[colorlist])
     }
-    colorlist <- c(colorsall[colors],
-                   colorsall[setdiff(colors, names(colorsall))])
-    manual_pal(unname(colorlist))
+    function(n) {
+        best_colors(accent, n)
+    }
+
 }
 
 ##' Solarized color scales
@@ -100,14 +125,14 @@ solarized_pal <- function(colors=NULL) {
 ##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
 ##'                + theme_solarized()
 ##'                + scale_colour_solarized() )
-scale_fill_solarized <- function(colors=NULL, ...) {
-    discrete_scale("fill", "solarized", solarized_pal(colors), ...)
+scale_fill_solarized <- function(accent="blue", ...) {
+    discrete_scale("fill", "solarized", solarized_pal(accent), ...)
 }
 
 #' @export
 #' @rdname scale_solarized
-scale_colour_solarized <- function(colors=NULL, ...) {
-    discrete_scale("colour", "solarized", solarized_pal(colors), ...)
+scale_colour_solarized <- function(accent="blue", ...) {
+    discrete_scale("colour", "solarized", solarized_pal(accent), ...)
 }
 #' @export
 #' @rdname scale_solarized
