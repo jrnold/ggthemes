@@ -19,3 +19,4 @@ BugReports: http://github.com/jrnold/ggplot-jrnold
 Collate:
     'economist.R'
     'shapes.R'
+    'stata.R'
