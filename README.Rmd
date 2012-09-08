@@ -7,6 +7,7 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - Themes and scales based on Stata graph schemes
 - Theme and scales based on the classic ugly Excel 2003 charts (for fun only)
 - Shape scales from William S. Cleveland's *Elements of Graphing Data*
+- Minimal-ink Tufte theme and a new geom, **geom_range_line**.
 
 # Install 
 
@@ -28,6 +29,14 @@ install_github('ggplotJrnold', 'jrnold')
 library(ggplot2)
 library(ggplotJrnold)
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+```
+
+## Tufte theme and geom_range_line
+
+```{r}
+(ggplot(mtcars, aes(wt, mpg))
+  + geom_point() + geom_range_frame()
+  + theme_tufte())
 ```
 
 ## Economist theme

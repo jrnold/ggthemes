@@ -7,6 +7,7 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - Themes and scales based on Stata graph schemes
 - Theme and scales based on the classic ugly Excel 2003 charts (for fun only)
 - Shape scales from William S. Cleveland's *Elements of Graphing Data*
+- Minimal-ink Tufte theme and a new geom, **geom_range_line**.
 
 # Install 
 
@@ -30,6 +31,17 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
 
+## Tufte theme and geom_range_line
+
+
+```r
+(ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_range_frame() + 
+    theme_tufte())
+```
+
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/0TFzJ.png) 
+
+
 ## Economist theme
 
 A theme that approximates the style of plots in The Economist
@@ -41,7 +53,7 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/AJowo.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/96TlB.png) 
 
 
 ## Solarized theme
@@ -56,7 +68,7 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/mbsEP.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/SVePV.png) 
 
 
 A dark theme with yellow accents.
@@ -67,7 +79,7 @@ A dark theme with yellow accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/QOKRf.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/o2sYp.png) 
 
 
 ## Stata theme 
@@ -80,7 +92,7 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/3mqkX.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/uOlia.png) 
 
 
 ## Excel 2003 theme
@@ -94,7 +106,7 @@ and pies not included.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/kMFo9.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/l3Dq8.png) 
 
 
 
@@ -103,7 +115,7 @@ and pies not included.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/n6son.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/ET7r4.png) 
 
 
 Please never use this theme.

@@ -10,7 +10,8 @@ Depends:
     R (>= 2.15.0),
     ggplot2 (>= 0.9.2),
     scales (>= 0.2.2),
-    colorspace
+    colorspace,
+    proto
 Imports:
     grid
 Description: Some extra themes and scales for ggplot.
@@ -23,3 +24,4 @@ Collate:
     'stata.R'
     'solarized.R'
     'excel.R'
+    'tufte.R'
