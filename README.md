@@ -71,7 +71,7 @@ A light theme with blue accents.
 ![plot of chunk unnamed-chunk-5](http://i.imgur.com/SVePV.png) 
 
 
-A dark theme with yellow accents.
+A dark theme with red accents.
 
 
 ```r

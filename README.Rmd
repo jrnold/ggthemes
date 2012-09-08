@@ -54,7 +54,7 @@ magazine.
 
 A theme and color and fill scales based on the Solarized palette.
 
-A light theme with blue accents.
+A light theme with blue accents. 
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
@@ -62,7 +62,7 @@ A light theme with blue accents.
                              + scale_colour_solarized("blue"))
 ```
 
-A dark theme with yellow accents.
+A dark theme with red accents.
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
