@@ -11,12 +11,10 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 
 It is probably easiest to use the **devtools** package to install the latest version:
 
-
-```r
+```{r}
 opts_knit$set(upload.fun = imgur_upload)
 opts_chunk$set(fig.width = 5, fig.height = 5)
 ```
-
 
 ```r
 library(devtools)
@@ -34,25 +32,19 @@ A theme and color and fill scales based on the Solarized palette.
 
 A light theme with blue accents.
 
-
-```r
+```{r}
 library(ggplot2)
 library(ggplotJrnold)
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-(qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + 
-    scale_colour_solarized("blue"))
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized()
+                             + scale_colour_solarized("blue"))
 ```
-
-![plot of chunk unnamed-chunk-2](http://i.imgur.com/6SyGn.png) 
-
 
 A dark theme with yellow accents.
 
-
-```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_solarized(light = FALSE) + 
-    scale_colour_solarized("red"))
+```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized(light=FALSE)
+                             + scale_colour_solarized("red"))
 ```
-
-![plot of chunk plot-solarized-dark.png](http://i.imgur.com/xVX4d.png) 
-
