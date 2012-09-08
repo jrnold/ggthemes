@@ -23,6 +23,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + scale_colour_economist() )
 }
 \seealso{
-  Other themes: \code{\link{theme_economist}}
+  Other themes: \code{\link{theme_economist}},
+  \code{\link{theme_stata}}
 }
 

@@ -49,7 +49,7 @@ stata_pal <- function(scheme="s2color") {
 ##' @inheritParams stata_pal
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @family colour scales
-##' @rdname scale_economist
+##' @rdname scale_stata
 ##' @export
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -59,12 +59,140 @@ stata_pal <- function(scheme="s2color") {
 ##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
 ##'                + theme_bw()
 ##'                + scale_color_stata("s1color"))
-scale_colour_stata <- function(scheme="s2", ...) discrete_scale("colour", "stata", stata_pal(scheme), ...)
+scale_colour_stata <- function(scheme="s2color", ...) discrete_scale("colour", "stata", stata_pal(scheme), ...)
 
 #' @export
-#' @rdname scale_economist
-scale_fill_stata <- function(scheme="", ...) discrete_scale("fill", "stata", stata_pal(scheme), ...)
+#' @rdname scale_stata
+scale_fill_stata <- function(scheme="s2color", ...) discrete_scale("fill", "stata", stata_pal(scheme), ...)
 
 #' @export
-#' @rdname scale_economist
+#' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
+
+##' ggplot theme based on Stata graph schemes
+##'
+##' Theme which replicate Stata graph schemes.
+##'
+##' @param scheme "s2color" or "s1color"
+##' @param base_size base font size
+##' @param base_family base font family
+##' @export
+##' @family themes
+##' @examples
+##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' (qplot(carat, price, data=dsamp, colour=clarity)
+##'                + theme_stata()
+##'                + scale_colour_stata("s2color"))
+##' (qplot(carat, price, data=dsamp, colour=clarity)
+##'                + theme_stata("s1color")
+##'                + scale_colour_stata("s1color"))
+theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
+    if (scheme == "s2color") {
+        theme(# Basic
+              line = element_line(colour = "black", size = 0.5,
+              linetype = 1, lineend = "butt"),
+              rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
+              text = element_text(family = base_family, face = "plain",
+              colour = "black",
+              size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+              lineheight = 0.9),
+              title = element_text(colour = stata_colors['dknavy']),
+              ## Axis
+              axis.text = element_text(),
+              axis.line = element_line(),
+              axis.text.x = element_text(vjust=0),
+              axis.text.y = element_text(angle=90, vjust=0),
+              ## I cannot figure out how to get ggplot to do 2 levels of ticks
+              axis.ticks = element_line(),
+              axis.title = element_text(colour="black", size=rel(1.2)),
+              axis.title.x = element_text(),
+              axis.title.y = element_text(angle = 90, vjust=0.1),
+              axis.ticks.length = grid::unit(0.30, "cm"),
+              axis.ticks.margin = grid::unit(0.05, "cm"),
+              legend.background = element_rect(linetype=1),
+              legend.margin = grid::unit(0.2, "cm"),
+              legend.key = element_rect(fill="white", linetype=0),
+              legend.key.size = grid::unit(1.2, "lines"),
+              legend.key.height = NULL,
+              legend.key.width = NULL,
+              legend.text = element_text(size = rel(0.8)),
+              legend.text.align = NULL,
+              legend.title = element_text(size = rel(0.8), face = "bold",
+              hjust = 0),
+              legend.title.align = 0.5,
+              legend.position = "bottom",
+              legend.direction = NULL,
+              legend.justification = "center",
+              legend.box = "vertical",
+              ## plotregion
+              panel.background = element_rect(fill="white", colour="white", linetype=1),
+              panel.border = element_blank(),
+              panel.grid.major = element_line(colour = stata_colors['ltbluishgray']),
+              # panel.grid.minor = element_line(colour = stata_colors['gs5'], size=0.25),
+              panel.grid.minor = element_blank(),
+              panel.grid.major.x = element_blank(),
+              panel.margin = grid::unit(0.25, "lines"),
+              strip.background = element_rect(fill = stata_colors['bluishgray'], linetype=0),
+              strip.text = element_text(size = rel(0.8)),
+              strip.text.x = element_text(vjust=0.5),
+              strip.text.y = element_text(angle = -90),
+              plot.background = element_rect(fill = stata_colors['ltbluishgray'], colour=NA),
+              plot.title = element_text(size = rel(2), hjust=0.5, vjust=0.5),
+              plot.margin = grid::unit(c(1, 1, 0.5, 0.5), "lines"),
+              complete=TRUE)
+    } else if (scheme == "s1color") {
+        theme(# Basic
+              line = element_line(colour = "black", size = 0.5,
+              linetype = 1, lineend = "butt"),
+              rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
+              text = element_text(family = base_family, face = "plain",
+              colour = "black",
+              size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+              lineheight = 0.9),
+              ## Axis
+              axis.text = element_text(),
+              axis.line = element_line(),
+              axis.text.x = element_text(vjust=0),
+              axis.text.y = element_text(angle=90, vjust=0),
+              ## I cannot figure out how to get ggplot to do 2 levels of ticks
+              axis.ticks = element_line(),
+              axis.title = element_text(colour="black", size=rel(1.2)),
+              axis.title.x = element_text(),
+              axis.title.y = element_text(angle = 90, vjust=0.1),
+              axis.ticks.length = grid::unit(0.30, "cm"),
+              axis.ticks.margin = grid::unit(0.05, "cm"),
+              legend.background = element_rect(linetype=1),
+              legend.margin = grid::unit(0.2, "cm"),
+              legend.key = element_rect(fill="white", linetype=0),
+              legend.key.size = grid::unit(1.2, "lines"),
+              legend.key.height = NULL,
+              legend.key.width = NULL,
+              legend.text = element_text(size = rel(0.8)),
+              legend.text.align = NULL,
+              legend.title = element_text(size = rel(0.8), face = "bold", hjust = 0),
+              legend.title.align = 0.5,
+              legend.position = "bottom",
+              legend.direction = NULL,
+              legend.justification = "center",
+              legend.box = "vertical",
+              ## plotregion
+              panel.background = element_rect(fill="white", colour="white", linetype=1),
+              # panel.border = element_rect(),
+              panel.grid = element_blank(),
+              # Sometimes stata uses lines
+              #panel.grid.major = element_line(colour=stata_colors['gs14']),
+              #panel.grid.major.x = element_blank(),
+              #panel.grid.minor = element_blank(),
+              # panel.grid.minor = element_line(colour=stata_colors['gs5']),
+              panel.margin = grid::unit(0.25, "lines"),
+              strip.background = element_rect(linetype=1, fill=stata_colors['ltkhaki']),
+              strip.text = element_text(size = rel(0.8)),
+              strip.text.x = element_text(vjust=0.5),
+              strip.text.y = element_text(angle = -90),
+              plot.background = element_rect(colour=NA),
+              plot.title = element_text(size = rel(2), hjust=0.5, vjust=0.5),
+              plot.margin = grid::unit(c(1, 1, 0.5, 0.5), "lines"),
+              complete=TRUE)
+    }
+}
+

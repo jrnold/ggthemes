@@ -28,7 +28,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + scale_colour_solarized() )
 }
 \seealso{
-  Other colour scales: \code{\link{scale_color_economist}},
+  Other colour.scales: \code{\link{scale_color_economist}},
   \code{\link{scale_color_stata}},
   \code{\link{scale_colour_economist}},
   \code{\link{scale_colour_stata}},
