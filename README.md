@@ -40,7 +40,7 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/5SjwN.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/fhV1e.png) 
 
 
 ## Solarized theme
@@ -55,7 +55,7 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/hAhPP.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/1pgQo.png) 
 
 
 A dark theme with yellow accents.
@@ -66,7 +66,7 @@ A dark theme with yellow accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/7mpRj.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/9lKk5.png) 
 
 
 ## Stata theme 
@@ -79,7 +79,7 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/U7QNM.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/QlLBk.png) 
 
 
 

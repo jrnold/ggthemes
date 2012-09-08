@@ -13,7 +13,7 @@ It is probably easiest to use the **devtools** package to install the latest ver
 
 ```{r echo=FALSE,results='hide'}
 opts_knit$set(upload.fun = imgur_upload)
-opts_chunk$set(fig.width = 9, fig.height = 3, cache=FALSE)
+opts_chunk$set(fig.width = 5.25, fig.height = 3.75, cache=FALSE)
 ```
 
 ```r
