@@ -7,7 +7,7 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - Themes and scales based on Stata graph schemes
 - Theme and scales based on the classic ugly Excel 2003 charts (for fun only)
 - Shape scales from William S. Cleveland's *Elements of Graphing Data*
-- Minimal-ink Tufte theme and a new geom, **geom_range_line**.
+- Minimal-ink Tufte theme and a new geom, **geom_range_frame**.
 
 # Install 
 
@@ -31,7 +31,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
 
-## Tufte theme and geom_range_line
+## Tufte theme and geom_range_frame
 
 
 ```r
