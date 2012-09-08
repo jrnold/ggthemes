@@ -23,8 +23,22 @@ install_github('ggplotJrnold', 'jrnold')
 
 # Examples
 
+```{r}
+library(ggplot2)
+library(ggplotJrnold)
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+```
+
 ## Economist theme
 
+A theme that approximates the style of plots in The Economist
+magazine.
+
+```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_economist()
+                             + scale_colour_economist())
+```
 
 ## Solarized theme
 
@@ -33,9 +47,6 @@ A theme and color and fill scales based on the Solarized palette.
 A light theme with blue accents.
 
 ```{r}
-library(ggplot2)
-library(ggplotJrnold)
-dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (qplot(carat, price, data=dsamp, colour=cut)
                              + theme_solarized()
                              + scale_colour_solarized("blue"))
@@ -48,3 +59,15 @@ A dark theme with yellow accents.
                              + theme_solarized(light=FALSE)
                              + scale_colour_solarized("red"))
 ```
+
+## Stata theme 
+
+A theme and color/fill scales based on the graphs in Stata.
+
+```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_stata()
+                             + scale_colour_stata())
+```
+
+

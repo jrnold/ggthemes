@@ -25,7 +25,26 @@ install_github('ggplotJrnold', 'jrnold')
 
 # Examples
 
+
+```r
+library(ggplot2)
+library(ggplotJrnold)
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+```
+
+
 ## Economist theme
+
+A theme that approximates the style of plots in The Economist
+magazine.
+
+
+```r
+(qplot(carat, price, data = dsamp, colour = cut) + theme_economist() + 
+    scale_colour_economist())
+```
+
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/PMK0X.png) 
 
 
 ## Solarized theme
@@ -36,14 +55,11 @@ A light theme with blue accents.
 
 
 ```r
-library(ggplot2)
-library(ggplotJrnold)
-dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + 
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-2](http://i.imgur.com/6SyGn.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/pO0KN.png) 
 
 
 A dark theme with yellow accents.
@@ -54,5 +70,20 @@ A dark theme with yellow accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk plot-solarized-dark.png](http://i.imgur.com/xVX4d.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/gPBud.png) 
+
+
+## Stata theme 
+
+A theme and color/fill scales based on the graphs in Stata.
+
+
+```r
+(qplot(carat, price, data = dsamp, colour = cut) + theme_stata() + 
+    scale_colour_stata())
+```
+
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/FTYvI.png) 
+
+
 
