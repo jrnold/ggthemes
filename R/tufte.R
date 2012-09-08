@@ -54,8 +54,8 @@ theme_tufte <- function(ticks=TRUE) {
 ##' @param sides A string that controls which sides of the plot the frames appear on.
 ##'   It can be set to a string containing any of \code{"trbl"}, for top, right,
 ##'   bottom, and left.
-##' @param fun.ymin Function used to calculate the minimum of the range frame line.
-##' @param fun.ymin Function used to calculate the maximum of the range frame line.
+##' @param fun_max Function used to calculate the minimum of the range frame line.
+##' @param fun_min Function used to calculate the maximum of the range frame line.
 ##' @export
 ##'
 ##' @references Tufte, Edward R. (2001) The Visual Display of

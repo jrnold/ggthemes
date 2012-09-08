@@ -4,13 +4,19 @@
 \usage{
   geom_range_frame(mapping = NULL, data = NULL,
     stat = "identity", position = "identity", sides = "bl",
-    ...)
+    fun_min = min, fun_max = max, ...)
 }
 \arguments{
   \item{sides}{A string that controls which sides of the
   plot the frames appear on.  It can be set to a string
   containing any of \code{"trbl"}, for top, right, bottom,
   and left.}
+
+  \item{fun_max}{Function used to calculate the minimum of
+  the range frame line.}
+
+  \item{fun_min}{Function used to calculate the maximum of
+  the range frame line.}
 
   \item{mapping}{The aesthetic mapping, usually constructed
   with \code{\link{aes}} or \code{\link{aes_string}}. Only
