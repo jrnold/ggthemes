@@ -161,13 +161,14 @@ theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
                   line = element_line(color=rebase['rebase0']),
                   rect = element_rect(fill=rebase['rebase03'], color=rebase['rebase0']),
                   axis.ticks = element_line(color=rebase['rebase0']),
+                  axis.line = element_line(color=rebase['reabase01'], linetype=1),
                   legend.background = element_rect(fill=NULL, color=NA),
                   legend.key = element_rect(fill=NULL, linetype=0),
-                  panel.background = element_rect(fill=rebase['rebase03'], color=rebase['rebase01']),
+                  panel.background = element_rect(fill=rebase['rebase03'], colour=rebase['rebase01']),
+                  panel.border = element_blank(),
                   panel.grid = element_line(color=rebase['rebase02']),
                   panel.grid.major = element_line(color=rebase['rebase02']),
                   panel.grid.minor = element_line(color=rebase['rebase02']),
-                  panel.border = element_rect(color=rebase['rebase01']),
                   strip.background = element_rect(fill=rebase['rebase02'])
             ))
     ret
