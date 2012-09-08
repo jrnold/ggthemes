@@ -12,7 +12,7 @@ economist_colors <-
       edkblue = rgb(62,100,125, max=255),
       emidblue = rgb(123,146,168, max=255),
       eltblue = rgb(130,192,233, max=255),
-      gs6 = rgb(96, 96, 96, max=255),
+      # gs6 = rgb(96, 96, 96, max=255),
       emerald = rgb(45,109,102, max=255),
       erose = rgb(191,161,156, max=255),
       ebblue = rgb(0,139,188, max=255),
