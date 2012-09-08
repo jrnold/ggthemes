@@ -1,9 +1,9 @@
-\name{theme_economist}
-\alias{theme_economist}
-\title{ggplot color theme based on the Economist}
+\name{theme_excel2003}
+\alias{theme_excel2003}
+\title{ggplot color theme based on Excel 2003 plots}
 \usage{
-  theme_economist(base_size = 12, base_family = "",
-    horizontal = TRUE, dkplot = FALSE)
+  theme_excel2003(horizontal = TRUE, base_size = 12,
+    base_family = "")
 }
 \arguments{
   \item{base_size}{base font size}
@@ -11,12 +11,11 @@
   \item{base_family}{base font family}
 
   \item{horizontal}{\code{logical}. Horizontal axis lines?}
-
-  \item{dkplot}{\code{logical} Darker background for plot
-  region?}
 }
 \description{
-  Style plots similar to those in The Economist.
+  Theme to replicate the ugly monstrosity that was the
+  Excel 2003 chart. Please never use this for anything
+  other than irony.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -25,7 +24,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + scale_colour_economist() )
 }
 \seealso{
-  Other themes: \code{\link{theme_excel2003}},
+  Other themes: \code{\link{theme_economist}},
   \code{\link{theme_solarized}}, \code{\link{theme_stata}}
 }
 

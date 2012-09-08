@@ -32,10 +32,13 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 }
 \seealso{
   Other colour.scales: \code{\link{scale_color_economist}},
+  \code{\link{scale_color_excel2003}},
   \code{\link{scale_color_solarized}},
   \code{\link{scale_colour_economist}},
+  \code{\link{scale_colour_excel2003}},
   \code{\link{scale_colour_solarized}},
   \code{\link{scale_fill_economist}},
+  \code{\link{scale_fill_excel2003}},
   \code{\link{scale_fill_solarized}}
 }
 

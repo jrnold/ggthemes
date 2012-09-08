@@ -1,4 +1,3 @@
-
 ##' Excel 2003 color palette (discrete)
 ##'
 ##' Color palettes from Excel 2003. For ironical purposes only.
@@ -26,7 +25,7 @@ excel2003_pal <- function(fill=FALSE) {
 ##' @inheritParams excel2003_pal
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @family colour scales
-##' @rdname scale_economist
+##' @rdname scale_excel2003
 ##' @export
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -47,7 +46,22 @@ scale_colour_excel2003 <- function(fill=FALSE, ...) {
 #' @rdname scale_excel2003
 scale_color_excel2003 <- scale_colour_excel2003
 
-theme_excel2003 <- function(horizontal=TRUE) {
+##' ggplot color theme based on Excel 2003 plots
+##'
+##' Theme to replicate the ugly monstrosity that was the Excel 2003
+##' chart. Please never use this for anything other than irony.
+##'
+##' @param base_size base font size
+##' @param base_family base font family
+##' @param horizontal \code{logical}. Horizontal axis lines?
+##' @export
+##' @family themes
+##' @examples
+##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
+##'                + theme_economist()
+##'                + scale_colour_economist() )
+theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
     gray <- "#C0C0C0"
     ret <- (theme_bw()
             + theme(
@@ -66,8 +80,4 @@ theme_excel2003 <- function(horizontal=TRUE) {
     }
     ret
 }
-
-## (qplot(carat, price, data = dsamp, colour = cut) + theme_excel2003() + scale_colour_excel2003())
-## (ggplot(dsamp, aes(x=carat, y=price)) + facet_wrap(~ cut) + geom_point() + theme_excel2003() + ggtitle("FOO"))
-
 

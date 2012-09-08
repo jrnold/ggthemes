@@ -26,6 +26,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 }
 \seealso{
   Other themes: \code{\link{theme_economist}},
+  \code{\link{theme_excel2003}},
   \code{\link{theme_solarized}}
 }
 
