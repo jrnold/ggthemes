@@ -165,8 +165,8 @@ theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
                   legend.key = element_rect(fill=NULL, color=rebase['rebase01']),
                   panel.background = element_rect(fill=rebase['rebase03'], color=rebase['rebase01']),
                   panel.grid = element_line(color=rebase['rebase02']),
-                  ## panel.grid.major = element_line(color=rebase['rebase02']),
-                  ## panel.grid.minor = element_line(color=rebase['rebase02']),
+                  panel.grid.major = element_line(color=rebase['rebase02']),
+                  panel.grid.minor = element_line(color=rebase['rebase02']),
                   panel.border = element_rect(color=rebase['rebase01']),
                   strip.background = element_rect(fill=rebase['rebase02'])
             ))
