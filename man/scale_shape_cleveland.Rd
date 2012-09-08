@@ -18,6 +18,7 @@
 }
 \references{
   Cleveland WS. The Elements of Graphing Data. Revised
-  Edition. Hobart Press, Summit, NJ, 1994.
+  Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164,
+  234-239.
 }
 
