@@ -11,9 +11,9 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 
 It is probably easiest to use the **devtools** package to install the latest version:
 
-```{r}
+```{r echo=FALSE,results='hide'}
 opts_knit$set(upload.fun = imgur_upload)
-opts_chunk$set(fig.width = 5, fig.height = 5)
+opts_chunk$set(fig.width = 6, fig.height = 2, cache=TRUE)
 ```
 
 ```r
@@ -66,8 +66,9 @@ A theme and color/fill scales based on the graphs in Stata.
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
-                             + theme_stata()
-                             + scale_colour_stata())
+                             + theme_stata() 
+                             + scale_colour_stata()
+                             + ggtitle("Plot Title"))
 ```
 
 
