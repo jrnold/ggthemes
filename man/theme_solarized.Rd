@@ -19,8 +19,8 @@
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (d <- qplot(carat, price, data=dsamp, colour=clarity)
-               + theme_economist()
-               + scale_colour_economist() )
+               + theme_solarized()
+               + scale_colour_solarized("blue"))
 }
 \seealso{
   Other themes: \code{\link{theme_economist}},
