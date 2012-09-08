@@ -5,7 +5,8 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - The Economist theme and scales
 - [Solarized](http://ethanschoonover.com/solarized) theme and scales
 - Themes and scales based on Stata graph schemes
-- Shape scales from William S. Cleveland's *Visualizing Data*
+- Theme and scales based on the classic ugly Excel 2003 charts (for fun only)
+- Shape scales from William S. Cleveland's *Elements of Graphing Data*
 
 # Install 
 
@@ -40,7 +41,7 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/l1CtD.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/AJowo.png) 
 
 
 ## Solarized theme
@@ -55,7 +56,7 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/wfVpU.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/mbsEP.png) 
 
 
 A dark theme with yellow accents.
@@ -66,7 +67,7 @@ A dark theme with yellow accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/ENm3x.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/QOKRf.png) 
 
 
 ## Stata theme 
@@ -79,7 +80,7 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/aZvga.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/3mqkX.png) 
 
 
 ## Excel 2003 theme
@@ -93,7 +94,7 @@ and pies not included.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/RXsYa.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/kMFo9.png) 
 
 
 
@@ -102,7 +103,7 @@ and pies not included.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/ifTMH.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/n6son.png) 
 
 
 Please never use this theme.
