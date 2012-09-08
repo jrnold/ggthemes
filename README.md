@@ -64,7 +64,7 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/5cjLr.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/7bfln.png) 
 
 
 A dark theme with yellow accents.
@@ -76,7 +76,7 @@ A dark theme with yellow accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/pbUyk.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/Y89sF.png) 
 
 
 ## Stata theme 
@@ -90,7 +90,7 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/gkvkr.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/wObY6.png) 
 
 
 
