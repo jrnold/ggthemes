@@ -19,23 +19,23 @@ opts_chunk$set(fig.width = 5.25, fig.height = 3.75, cache=FALSE)
 ```
 
 ```r
-library(devtools)
+library('devtools')
 install_github('ggplotJrnold', 'jrnold')
 ```
 
 # Examples
 
 ```{r}
-library(ggplot2)
-library(ggplotJrnold)
+library('ggplot2')
+library('ggplotJrnold')
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
-## Tufte theme and geom_range_frame
+## Tufte theme and geom_rangeframe
 
 ```{r}
 (ggplot(mtcars, aes(wt, mpg))
-  + geom_point() + geom_range_frame()
+  + geom_point() + geom_rangeframe()
   + theme_tufte())
 ```
 

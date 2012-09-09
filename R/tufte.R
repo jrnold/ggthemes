@@ -4,7 +4,7 @@
 ##' Design" of Edward Tufte *The Visual Display of Quantitative
 ##' Information*. No border, no axis lines, no grids. This theme works
 ##' best in combination with \code{\link{geom_rug}} or
-##' \code{\link{geom_range_frame}}.
+##' \code{\link{geom_rangeframe}}.
 ##'
 ##' @param ticks \code{logical} Show axis ticks?
 ##'
@@ -14,7 +14,7 @@
 ##' @examples
 ##' # with ticks and range frames
 ##' (ggplot(mtcars, aes(wt, mpg))
-##'  + geom_point() + geom_range_frame()
+##'  + geom_point() + geom_rangeframe()
 ##'  + theme_tufte())
 ##' # with geom_rug
 ##' (ggplot(mtcars, aes(wt, mpg))
@@ -63,16 +63,16 @@ theme_tufte <- function(ticks=TRUE) {
 ##'
 ##' @examples
 ##' (ggplot(mtcars, aes(wt, mpg))
-##'  + geom_point() + geom_range_frame()
+##'  + geom_point() + geom_rangeframe()
 ##'  + theme_tufte())
-geom_range_frame <- function (mapping = NULL, data = NULL, stat = "identity", position = "identity", sides = "bl",fun_min = min, fun_max = max, ...) {
-  GeomRangeFrame$new(mapping = mapping, data = data, stat = stat, position = position,
+geom_rangeframe <- function (mapping = NULL, data = NULL, stat = "identity", position = "identity", sides = "bl",fun_min = min, fun_max = max, ...) {
+  GeomRangeframe$new(mapping = mapping, data = data, stat = stat, position = position,
                      sides = sides,
                      fun_min = match.fun(fun_min), fun_max = match.fun(fun_max),
                      ...)
 }
 
-GeomRangeFrame <- proto(ggplot2:::Geom, {
+GeomRangeframe <- proto(ggplot2:::Geom, {
     objname <- "rangeframe"
 
     draw <- function(., data, scales, coordinates, sides, fun_min, fun_max, ...) {

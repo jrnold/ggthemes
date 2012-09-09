@@ -17,7 +17,7 @@ It is probably easiest to use the **devtools** package to install the latest ver
 
 
 ```r
-library(devtools)
+library('devtools')
 install_github('ggplotJrnold', 'jrnold')
 ```
 
@@ -25,21 +25,21 @@ install_github('ggplotJrnold', 'jrnold')
 
 
 ```r
-library(ggplot2)
-library(ggplotJrnold)
+library('ggplot2')
+library('ggplotJrnold')
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
 
-## Tufte theme and geom_range_frame
+## Tufte theme and geom_rangeframe
 
 
 ```r
-(ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_range_frame() + 
+(ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rangeframe() + 
     theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/0TFzJ.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/FO2wD.png) 
 
 
 ## Economist theme
@@ -53,14 +53,14 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/96TlB.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/j2Ngl.png) 
 
 
 ## Solarized theme
 
 A theme and color and fill scales based on the Solarized palette.
 
-A light theme with blue accents.
+A light theme with blue accents. 
 
 
 ```r
@@ -68,7 +68,7 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/SVePV.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/DxQCi.png) 
 
 
 A dark theme with red accents.
@@ -79,7 +79,7 @@ A dark theme with red accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/o2sYp.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/Lgk1H.png) 
 
 
 ## Stata theme 
@@ -92,7 +92,7 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/uOlia.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/8MVWE.png) 
 
 
 ## Excel 2003 theme
@@ -106,7 +106,7 @@ and pies not included.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/l3Dq8.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/mXCBi.png) 
 
 
 
@@ -115,7 +115,7 @@ and pies not included.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/ET7r4.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/E3KZu.png) 
 
 
 Please never use this theme.
