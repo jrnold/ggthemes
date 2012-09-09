@@ -249,3 +249,174 @@ theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
     }
 }
 
+##' Mapping from Stata Symbol Names to R shape numbers
+##'
+##' Character vector of the hex RGB values of the named colors in
+##' Stata. Useful for translating Stata schemes to ggplot themes. This
+##' mapping does not distinguish between small and large symbols. E.g.
+##' both "circle" and "smcircle" correspond to the R symbol 16.
+##'
+##'
+##' @format Named \code{character} vector with the names corresponding
+##' to a Stata symbol name, and the values corresponding to an R
+##' shape.
+##' @references \url{http://www.stata.com/help.cgi?symbolstyle}
+##' @export
+stata_symbols <- {
+    x <- c()
+    for (i in c("O", "o", "circle", "smcircle")) {
+        x[i] <- 16
+    }
+    for (i in c("D", "d", "diamond", "smdiamond")) {
+        x[i] <- 18
+    }
+    for (i in c("T", "t", "triangle", "smtriangle")) {
+        x[i] <- 17
+    }
+    for (i in c("S", "s", "square", "smsquare")) {
+        x[i] <- 15
+    }
+    for (i in c("+", "plus", "smplus")) {
+        x[i] <- 3
+    }
+    for (i in c("X", "x", "smx")) {
+        x[i] <- 4
+    }
+    for (i in c("Oh", "oh", "circle_hollow", "smcircle_hollow")) {
+        x[i] <- 1
+    }
+    for (i in c("Dh", "dh", "diamond_hollow", "smdiamond_hollow")) {
+        x[i] <- 5
+    }
+    for (i in c("Th", "th", "triangle_hollow", "smtriangle_hollow")) {
+        x[i] <- 2
+    }
+    for (i in c("Sh", "sh", "square_hollow", "smsquare_hollow")) {
+        x[i] <- 15
+    }
+    ## Point
+    for (i in c(".", "p")) {
+        x[i] <- -0x2218
+    }
+    ## Invisible
+    x['i'] <- NA
+    x
+}
+
+##' Stata shape palette (discrete)
+##'
+##' Shape palette based on the symbol palette in Stata,
+##' specifically the scheme s1mono.
+##'
+##' @export
+##' @seealso See \code{\link{scale_shape_stata}} for examples.
+stata_shape_pal <- function() {
+    ## From s1mono, ignore small shapes
+    manual_pal(unname(stata_symbols[c('circle', 'diamond', 'square',
+                                      'triangle', 'x', 'plus',
+                                      'circle_hollow', 'diamond_hollow',
+                                      'square_hollow', 'triangle_hollow')]))
+}
+
+##' Stata shape scale
+##'
+##' Shape scale palette based on the symbol palette in Stata,
+##' specifically the one in scheme s1mono.
+##'
+##' @export
+##' @examples
+##' dsmall <- diamonds[sample(nrow(diamonds), 100), ]
+##' (d <- qplot(carat, price, data=dsmall, shape=cut))
+scale_shape_stata <- function (...) {
+    discrete_scale("shape_stata", "shape_d", stata_shape_pal(), ...)
+}
+
+
+## From s1mono and s2mono
+## help linepatternstyle
+## linepattern p1line  solid
+## linepattern p2line  dash
+## linepattern p3line  vshortdash
+## linepattern p4line  longdash_dot
+## linepattern p5line  longdash
+## linepattern p6line  dash_dot
+## linepattern p7line  dot
+## linepattern p8line  shortdash_dot
+## linepattern p9line  tight_dot
+## linepattern p10line dash_dot_dot
+## linepattern p11line longdash_shortdash
+## linepattern p12line dash_3dot
+## linepattern p13line longdash_dot_dot
+## linepattern p14line shortdash_dot_dot
+## linepattern p15line longdash_3dot
+##
+## Conversion between Stata decimals and R hex
+## Range of stata dash lengths is 4 to 0.1
+## x <- ceiling(seq(.1, 1, by=0.1) / (4/15))
+## names(x) <- seq(.1, 1, by=0.1)
+## 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9   1
+##   1   1   2   2   2   3   3   3   4   4
+## 2 = 8
+## 4 = F
+
+##' Stata linetype palette (discrete)
+##'
+##' Linetype palette based on the linepattern scheme in Stata.
+##'
+##' @export
+##' @seealso \code{\link{scale_linetype_stata}}
+stata_linetype_pal <- function() {
+    types <-
+        c(
+            ## solid
+            "solid",
+            ## dash = "2 1"
+            "84",
+            ## vshortdash = ".5 .7",
+            "23",
+            ## longdash_dot = "4 1 .1 1",
+            "F414",
+            ## longdash = "4 1",
+            "F4",
+            ## dash_dot = "2 .9 .1 .9",
+            "8414",
+            ## dot = ".1 .7",
+            "13",
+            ## shortdash_dot = ".8 .8 .1 .8"
+            "3313",
+            ## tight_dot = ".1 .4"
+            "12",
+            ## dash_dot_dot = "2 .9 .1 .9 .1 .9"
+            "841414",
+            ## longdash_shortdash = "4 1 .8 1 .8 1 .8"
+            "F434343",
+            ## dash_3dot "2 .9 .1 .9 .1 .9 .1 .9"
+            "84141414",
+            ## longdash_dot_dot "4 1 .1 1 .1 1"
+            "F41414",
+            ## shortdash_dot_dot ".8 .8 .1 .8 .1 .8"
+            "331313",
+            ## longdash_3dot "4 1 .1 1 .1 1 .1 1",
+            "F4141414"
+            )
+    function(n) {
+        types[seq_len(n)]
+    }
+}
+
+##' Stata linetype palette (discrete)
+##'
+##' Linetype scale based on the linepatterns used in Stata.
+##'
+##' @export
+##' @examples
+##' library(reshape2) # for melt
+##' library(plyr) # for ddply
+##' ecm <- melt(economics, id = "date")
+##' rescale01 <- function(x) (x - min(x)) / diff(range(x))
+##' ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
+##' qplot(date, value, data=ecm, geom="line", linetype=variable) + scale_linetype_stata()
+scale_linetype_stata <- function (...)  {
+    discrete_scale("linetype_stata", "linetype_d", stata_linetype_pal(), ...)
+}
+
