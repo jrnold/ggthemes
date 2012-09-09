@@ -306,7 +306,7 @@ stata_symbols <- {
 ##' Stata shape palette (discrete)
 ##'
 ##' Shape palette based on the symbol palette in Stata,
-##' specifically the scheme s1mono.
+##' specifically the scheme s2mono.
 ##'
 ##' @export
 ##' @seealso See \code{\link{scale_shape_stata}} for examples.
@@ -323,6 +323,7 @@ stata_shape_pal <- function() {
 ##' Shape scale palette based on the symbol palette in Stata,
 ##' specifically the one in scheme s1mono.
 ##'
+##' @inheritParams ggplot2::scale_x_discrete
 ##' @export
 ##' @examples
 ##' dsmall <- diamonds[sample(nrow(diamonds), 100), ]
@@ -408,6 +409,7 @@ stata_linetype_pal <- function() {
 ##'
 ##' Linetype scale based on the linepatterns used in Stata.
 ##'
+##' @inheritParams ggplot2::scale_x_discrete
 ##' @export
 ##' @examples
 ##' library(reshape2) # for melt
