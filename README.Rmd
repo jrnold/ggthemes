@@ -19,15 +19,15 @@ opts_chunk$set(fig.width = 5.25, fig.height = 3.75, cache=FALSE)
 ```
 
 ```r
-library('devtools')
-install_github('ggplotJrnold', 'jrnold')
+library("devtools")
+install_github("ggplotJrnold", "jrnold")
 ```
 
 # Examples
 
 ```{r}
-library('ggplot2')
-library('ggplotJrnold')
+library("ggplot2")
+library("ggplotJrnold")
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
@@ -84,7 +84,7 @@ A theme and color/fill scales based on the graphs in Stata.
 ## Excel 2003 theme
 
 For that classic ugly look and feel. For ironic purposes only. 3D bars
-and pies not included.
+and pies not included. Please never use this theme.
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
@@ -96,10 +96,10 @@ and pies not included.
 ```{r}
 (ggplot(diamonds, aes(clarity, fill=cut)) 
  + geom_bar()
- + scale_fill_excel2003(fill=TRUE)
+ + scale_fill_excel2003()
  + theme_excel2003())
 
 ```
 
-Please never use this theme.
+
 

@@ -4,7 +4,7 @@
 \alias{scale_fill_excel2003}
 \title{Excel 2003 color scales}
 \usage{
-  scale_fill_excel2003(fill = FALSE, ...)
+  scale_fill_excel2003(fill = TRUE, ...)
 
   scale_colour_excel2003(fill = FALSE, ...)
 

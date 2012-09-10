@@ -17,16 +17,31 @@ It is probably easiest to use the **devtools** package to install the latest ver
 
 
 ```r
-library('devtools')
-install_github('ggplotJrnold', 'jrnold')
+library("devtools")
+install_github("ggplotJrnold", "jrnold")
 ```
 
 # Examples
 
 
 ```r
-library('ggplot2')
-library('ggplotJrnold')
+library("ggplot2")
+library("ggplotJrnold")
+```
+
+```
+## Loading required package: scales
+```
+
+```
+## Loading required package: colorspace
+```
+
+```
+## Loading required package: proto
+```
+
+```r
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
@@ -39,7 +54,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
     theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/FO2wD.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/W168X.png) 
 
 
 ## Economist theme
@@ -53,7 +68,7 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/j2Ngl.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/kdclL.png) 
 
 
 ## Solarized theme
@@ -68,7 +83,7 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/DxQCi.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/pKeHm.png) 
 
 
 A dark theme with red accents.
@@ -79,7 +94,7 @@ A dark theme with red accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/Lgk1H.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/ExSJQ.png) 
 
 
 ## Stata theme 
@@ -92,13 +107,13 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/8MVWE.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/Bg9a0.png) 
 
 
 ## Excel 2003 theme
 
 For that classic ugly look and feel. For ironic purposes only. 3D bars
-and pies not included.
+and pies not included. Please never use this theme.
 
 
 ```r
@@ -106,17 +121,17 @@ and pies not included.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/mXCBi.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/KpXar.png) 
 
 
 
 ```r
-(ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() + scale_fill_excel2003(fill = TRUE) + 
+(ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() + scale_fill_excel2003() + 
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/E3KZu.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/4Iglm.png) 
 
 
-Please never use this theme.
+
 

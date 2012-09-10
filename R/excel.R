@@ -32,7 +32,7 @@ excel2003_pal <- function(fill=FALSE) {
 ##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
 ##'                + theme_economist()
 ##'                + scale_colour_economist() )
-scale_fill_excel2003 <- function(fill=FALSE, ...) {
+scale_fill_excel2003 <- function(fill=TRUE, ...) {
     discrete_scale("fill", "excel2003", excel2003_pal(fill), ...)
 }
 
