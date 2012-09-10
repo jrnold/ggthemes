@@ -349,6 +349,7 @@ scale_shape_stata <- function (...) {
 ## linepattern p13line longdash_dot_dot
 ## linepattern p14line shortdash_dot_dot
 ## linepattern p15line longdash_3dot
+## styles described in ado/base/style/linepattern-*.style
 ##
 ## Conversion between Stata decimals and R hex
 ## Range of stata dash lengths is 4 to 0.1
@@ -445,3 +446,18 @@ scale_linetype_stata <- function (...)  {
 ## zero 0
 
 
+## Line width styles ado/base/style/linewidth-*.style
+## see stata help linewidth
+## unsure of the scale.
+## medium .3
+## medthick .45
+## medthin .25
+## none 0
+## thick .8
+## thin .2
+## vthick 1.4
+## thin .15
+## vvthick 2.6
+## vvthin .01
+## vvvthick 4.2
+## vvvthin .000001
