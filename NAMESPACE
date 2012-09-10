@@ -1,6 +1,6 @@
+export(COLORS_SOLARIZED)
 export(circlefill_shape_pal)
 export(cleveland_shape_pal)
-export(COLORS_SOLARIZED)
 export(economist_colors)
 export(economist_pal)
 export(excel2003_pal)
