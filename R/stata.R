@@ -421,3 +421,27 @@ scale_linetype_stata <- function (...)  {
     discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }
 
+## Text sizes (from style definitions ado/base/style/gsize-*.style)
+## default 4.166
+## full 100
+## half 50
+## half_tiny 0.6944 (2 pt in 4 in high graph)
+## huge 6.9444 (20 pt)
+## large 4.8611 (14 pt)
+## medium 3.8194 (11 pt)
+## medlarge 4.1667 (12 pt)
+## medsmall 3.4722 (10 pt)
+## miniscule 0.3472 (1 pt in 1 in high graph)
+## quarter 25
+## quarter_tiny 0.34722 (1 pt in 4 in high graph)
+## small 2.777 (8 pt)
+## tenth 10
+## third 33.33333333333
+## third_tiny 0.46296 (1.33 pt)
+## gsize_tiny (4 pt)
+## vhuge 0.7222 (28 pt)
+## vlarge 5.5556 (16 pt)
+## vsmall 2.0833 (6 pt)
+## zero 0
+
+
