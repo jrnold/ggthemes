@@ -4,19 +4,17 @@
 ##' Design" of Edward Tufte *The Visual Display of Quantitative
 ##' Information*. No border, no axis lines, no grids. This theme works
 ##' best in combination with \code{\link{geom_rug}} or
-##' \code{\link{geom_range_frame}}.
+##' \code{\link{geom_rangeframe}}.
 ##'
 ##' @param ticks \code{logical} Show axis ticks?
 ##'
 ##' @references Tufte, Edward R. (2001) The Visual Display of
 ##' Quantitative Information, Chapter 6.
 ##'
-##' @seealso \code{\link{theme_minimal}} is a slightly less minimal
-##' default theme.
 ##' @examples
 ##' # with ticks and range frames
 ##' (ggplot(mtcars, aes(wt, mpg))
-##'  + geom_point() + geom_range_frame()
+##'  + geom_point() + geom_rangeframe()
 ##'  + theme_tufte())
 ##' # with geom_rug
 ##' (ggplot(mtcars, aes(wt, mpg))

@@ -25,9 +25,9 @@
 ##'
 ##' @examples
 ##' (ggplot(mtcars, aes(wt, mpg))
-##'  + geom_point() + geom_range_frame()
+##'  + geom_point() + geom_rangeframe()
 ##'  + theme_tufte())
-geom_range_frame <- function (mapping = NULL, data = NULL, stat = "identity", position = "identity", sides = "bl",fun_min = min, fun_max = max, ...) {
+geom_rangeframe <- function (mapping = NULL, data = NULL, stat = "identity", position = "identity", sides = "bl",fun_min = min, fun_max = max, ...) {
   GeomRangeFrame$new(mapping = mapping, data = data, stat = stat, position = position,
                      sides = sides,
                      fun_min = match.fun(fun_min), fun_max = match.fun(fun_max),

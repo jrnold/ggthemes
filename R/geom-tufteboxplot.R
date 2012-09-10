@@ -4,16 +4,17 @@
 ##' replaces it with a single middle point.
 ##'
 ##' @section Aesthetics:
-##' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "tufteboxplot")}
+##' \Sexpr[results=rd,stage=build]{ggplotJrnold:::rd_aesthetics("geom_tufteboxplot", ggplotJrnold:::GeomTufteboxplot)}
 ##'
 ##' @references Tufte, Edward R. (2001) The Visual Display of
 ##' Quantitative Information, Chapter 6.
 ##'
 ##' @seealso \code{\link{geom_boxplot}}
-##' @inheritParams geom_point
+##' @inheritParams ggplot2::geom_point
 ##' @param outlier.colour colour for outlying points
 ##' @param outlier.shape shape of outlying points
 ##' @param outlier.size size of outlying points
+##' @param fatten a multiplicative factor to fatten the point by
 ##' @export
 ##'
 ##' @examples
@@ -25,13 +26,13 @@ geom_tufteboxplot <- function (mapping = NULL, data = NULL, stat = "boxplot",
                                position = "dodge",
                                outlier.colour = "black", outlier.shape = 16,
                                outlier.size = 2, fatten=4, ...) {
-    GeomTufteBoxplot$new(mapping = mapping, data = data, stat = stat,
+    GeomTufteboxplot$new(mapping = mapping, data = data, stat = stat,
                          position = position, outlier.colour = outlier.colour,
                          outlier.shape = outlier.shape,
                          outlier.size = outlier.size, fatten=fatten, ...)
 }
 
-GeomTufteBoxplot <- proto(ggplot2:::Geom, {
+GeomTufteboxplot <- proto(ggplot2:::Geom, {
   objname <- "tufteboxplot"
 
   reparameterise <- function(., df, params) {
@@ -96,11 +97,6 @@ GeomTufteBoxplot <- proto(ggplot2:::Geom, {
   required_aes <- c("x", "lower", "upper", "middle", "ymin", "ymax")
 
 })
-
-ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot()
-ggplot(mtcars, aes(factor(cyl), mpg, colour=factor(cyl)))  + geom_tufteboxplot()
-ggplot(mtcars, aes(factor(cyl), mpg, colour=factor(cyl)))  + geom_tufteboxplot(stat="fivenumber")
-
 
 geom_pointrange <- function (mapping = NULL, data = NULL, stat = "identity", position = "identity", point.size=2, ...) {
   GeomPointrange$new(mapping = mapping, data = data, stat = stat, position = position, point.size=point.size, ...)

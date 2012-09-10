@@ -4,10 +4,11 @@
 ##' median, third quartile, and maximum.
 ##'
 ##' @section Aesthetics:
+##' \Sexpr[results=rd,stage=build]{ggplotJrnold:::rd_aesthetics("stat_fivenumber", ggplotJrnold:::StatFivenumber)}
 ##'
 ##' @param na.rm If \code{FALSE} (the default), removes missing values with
 ##'    a warning.  If \code{TRUE} silently removes missing values.
-##' @inheritParams stat_identity
+##' @inheritParams ggplot2::stat_identity
 ##' @return A data frame with additional columns:
 ##'   \item{width}{width of boxplot}
 ##'   \item{ymin}{minimum}

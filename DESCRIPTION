@@ -28,3 +28,7 @@ Collate:
     'solarized.R'
     'excel.R'
     'tufte.R'
+    'geom-rangeframe.R'
+    'geom-tufteboxplot.R'
+    'stat-fivenumber.R'
+    'utils.R'
