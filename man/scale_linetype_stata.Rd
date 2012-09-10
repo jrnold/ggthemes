@@ -1,0 +1,24 @@
+\name{scale_linetype_stata}
+\alias{scale_linetype_stata}
+\title{Stata linetype palette (discrete)}
+\usage{
+  scale_linetype_stata(...)
+}
+\arguments{
+  \item{...}{common discrete scale parameters: \code{name},
+  \code{breaks}, \code{labels}, \code{na.value},
+  \code{limits} and \code{guide}.  See
+  \code{\link{discrete_scale}} for more details}
+}
+\description{
+  Linetype scale based on the linepatterns used in Stata.
+}
+\examples{
+library(reshape2) # for melt
+library(plyr) # for ddply
+ecm <- melt(economics, id = "date")
+rescale01 <- function(x) (x - min(x)) / diff(range(x))
+ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
+qplot(date, value, data=ecm, geom="line", linetype=variable) + scale_linetype_stata()
+}
+

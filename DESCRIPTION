@@ -14,6 +14,9 @@ Depends:
     proto
 Imports:
     grid
+Suggests:
+    reshape2,
+    plyr
 Description: Some extra themes and scales for ggplot.
 License: GPL-3
 URL: http://github.com/jrnold/ggplot-jrnold

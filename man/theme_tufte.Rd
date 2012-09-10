@@ -12,12 +12,12 @@
   Graphical Design" of Edward Tufte *The Visual Display of
   Quantitative Information*. No border, no axis lines, no
   grids. This theme works best in combination with
-  \code{\link{geom_rug}} or \code{\link{geom_range_frame}}.
+  \code{\link{geom_rug}} or \code{\link{geom_rangeframe}}.
 }
 \examples{
 # with ticks and range frames
 (ggplot(mtcars, aes(wt, mpg))
- + geom_point() + geom_range_frame()
+ + geom_point() + geom_rangeframe()
  + theme_tufte())
 # with geom_rug
 (ggplot(mtcars, aes(wt, mpg))

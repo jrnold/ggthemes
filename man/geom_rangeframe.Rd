@@ -1,8 +1,8 @@
-\name{geom_range_frame}
-\alias{geom_range_frame}
+\name{geom_rangeframe}
+\alias{geom_rangeframe}
 \title{Range Frames}
 \usage{
-  geom_range_frame(mapping = NULL, data = NULL,
+  geom_rangeframe(mapping = NULL, data = NULL,
     stat = "identity", position = "identity", sides = "bl",
     fun_min = min, fun_max = max, ...)
 }
@@ -50,7 +50,7 @@
 }
 \examples{
 (ggplot(mtcars, aes(wt, mpg))
- + geom_point() + geom_range_frame()
+ + geom_point() + geom_rangeframe()
  + theme_tufte())
 }
 \references{
