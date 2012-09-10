@@ -21,13 +21,9 @@
   Color scales from Excel 2003. For ironical purposes only.
   Supports both the fill and line palettes.
 }
-\examples{
-dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-(d <- qplot(carat, price, data=dsamp, colour=clarity)
-               + theme_economist()
-               + scale_colour_economist() )
-}
 \seealso{
+  See \code{\link{theme_excel2003}} for examples.
+
   Other colour.scales: \code{\link{scale_color_economist}},
   \code{\link{scale_color_solarized}},
   \code{\link{scale_color_stata}},

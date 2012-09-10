@@ -19,9 +19,13 @@
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-(d <- qplot(carat, price, data=dsamp, colour=clarity)
-               + theme_economist()
-               + scale_colour_economist() )
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_excel2003()
+ + scale_colour_excel2003() )
+(ggplot(diamonds, aes(clarity, fill=cut))
++ geom_bar()
++ scale_fill_excel2003()
++ theme_excel2003())
 }
 \seealso{
   Other themes: \code{\link{theme_economist}},
