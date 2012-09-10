@@ -444,6 +444,17 @@ scale_linetype_stata <- function (...)  {
 ## vlarge 5.5556 (16 pt)
 ## vsmall 2.0833 (6 pt)
 ## zero 0
+## which means
+##
+## text medium
+## body medsmall
+## heading large
+## axis title medsmall
+## label medsmall
+## tick tiny
+## tick_label medsmall
+## tick_biglabel medium
+## key_label medsmall
 
 
 ## Line width styles ado/base/style/linewidth-*.style
@@ -461,3 +472,5 @@ scale_linetype_stata <- function (...)  {
 ## vvthin .01
 ## vvvthick 4.2
 ## vvvthin .000001
+
+### TODO: marginstyles
