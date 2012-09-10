@@ -1,0 +1,37 @@
+\name{scale_shape_tremmel}
+\alias{scale_shape_tremmel}
+\title{Shape scales from Tremmel (1995)}
+\usage{
+  scale_shape_tremmel(overlap = FALSE, n3alt = TRUE, ...)
+}
+\arguments{
+  \item{...}{common discrete scale parameters: \code{name},
+  \code{breaks}, \code{labels}, \code{na.value},
+  \code{limits} and \code{guide}.  See
+  \code{\link{discrete_scale}} for more details}
+
+  \item{overlap}{use an empty circle instead of a solid
+  circle when \code{n == 2}.}
+
+  \item{n3alt}{If \code{TRUE} then use a solid circle, plus
+  sign and empty triangle, else use a solid circle, empty
+  circle, and empty triangle.}
+}
+\description{
+  Shape scales from Tremmel (1995)
+}
+\examples{
+(ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
+ + geom_point() + scale_shape_tremmel())
+(ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
+ + geom_point() + scale_shape_tremmel(n3alt=FALSE))
+(ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(am)))
+ + geom_point() + scale_shape_tremmel())
+(ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(am)))
+ + geom_point() + scale_shape_tremmel(overlap=TRUE))
+}
+\seealso{
+  \code{\link{tremmel_shape_pal}} for a description of the
+  palette.
+}
+

@@ -25,6 +25,9 @@
   does not exist a unicode symbol for a circle with a
   vertical line. If someone can improve this palette,
   please let me know.
+
+  Following Tremmel (1995), I replace the cirlce with a
+  vertical line with an encircled plus sign.
 }
 \examples{
 # xoverlapping symbol palette
@@ -39,5 +42,10 @@ dsamp <- diamonds[sample(nrow(diamonds), 100), ]
   Cleveland WS. The Elements of Graphing Data. Revised
   Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164,
   234-239.
+
+  Tremmel, Lothar, (1995) "The Visual Separability of
+  Plotting Symbols in Scatterplots" Journal of
+  Computational and Graphical Statistics,
+  \url{http://www.jstor.org/stable/1390760}
 }
 

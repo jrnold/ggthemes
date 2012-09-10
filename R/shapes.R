@@ -109,10 +109,16 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 ##' solid, hollow, half-filled, with two additional fill amounts:
 ##' three-quarters, and one-quarter.
 ##'
-##' @references Lewandowsky, Stephan and Ian Spence (1989)
+##' @export
+##'
+##' @references
+##' Lewandowsky, Stephan and Ian Spence (1989)
 ##' "Discriminating Strata in Scatterplots", Journal of
 ##' the American Statistical Assocation, \url{http://www.jstor.org/stable/2289649}
-circle_fill_pal <- function() {
+##' @examples
+##' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
+##'  + geom_point() + scale_shape_tremmel())
+circlefill_shape_pal <- function() {
     maxshapes <- 5
     types <- c(16, 1, -0x25D3, -0x25D5, -0x25D4)
     function (n) {
@@ -130,10 +136,14 @@ circle_fill_pal <- function() {
 
 ##' Filled Circle Shape palette (discrete)
 ##'
-##' @inheritParams ggplot2::discrete_x_scale
-##' @seealso \code{\link{circle_fill_pal}} for a description of the palette.
-scale_shape_fill <- function(...) {
-    discrete_scale("shape", "fill", circle_fill_pal(), ...)
+##' @export
+##'
+##' @inheritParams ggplot2::scale_x_discrete
+##' @inheritParams circlefill_shape_pal
+##' @seealso
+##' \code{\link{circlefill_shape_pal}} for a description of the palette.
+scale_shape_circlefill <- function(...) {
+    discrete_scale("shape", "circlefill", circlefill_shape_pal(), ...)
 }
 
 ##' Shape palette from Tremmel (1995) (discrete)
@@ -152,12 +162,14 @@ scale_shape_fill <- function(...) {
 ##' If more than three groups of data, then separate the groups into
 ##' different plots.
 ##'
+##' @export
 ##' @param overlap use an empty circle instead of a solid circle when
 ##' \code{n == 2}.
 ##' @param n3alt If \code{TRUE} then use a solid circle, plus sign and
 ##' empty triangle, else use a solid circle, empty circle, and empty
 ##' triangle.
-##' @references Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
+##' @references
+##' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
 ##' Journal of Computational and Graphical Statistics,
 ##' \url{http://www.jstor.org/stable/1390760}
 tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
@@ -189,7 +201,6 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
     }
 }
 
-
 ##' Shape scales from Tremmel (1995)
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
@@ -205,7 +216,7 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
 ##' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(am)))
 ##'  + geom_point() + scale_shape_tremmel())
 ##' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(am)))
-##'  + geom_point() scale_shape_tremmel(overlap=TRUE))
+##'  + geom_point() + scale_shape_tremmel(overlap=TRUE))
 scale_shape_tremmel <- function(overlap=FALSE, n3alt=TRUE, ...) {
     discrete_scale("shape", "tremmel", tremmel_shape_pal(overlap=overlap, n3alt=n3alt), ...)
 }

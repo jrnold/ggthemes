@@ -256,12 +256,11 @@ theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
 ##' mapping does not distinguish between small and large symbols. E.g.
 ##' both "circle" and "smcircle" correspond to the R symbol 16.
 ##'
-##'
+##' @export
 ##' @format Named \code{character} vector with the names corresponding
 ##' to a Stata symbol name, and the values corresponding to an R
 ##' shape.
 ##' @references \url{http://www.stata.com/help.cgi?symbolstyle}
-##' @export
 stata_symbols <- {
     x <- c()
     for (i in c("O", "o", "circle", "smcircle")) {
@@ -329,7 +328,7 @@ stata_shape_pal <- function() {
 ##' dsmall <- diamonds[sample(nrow(diamonds), 100), ]
 ##' (d <- qplot(carat, price, data=dsmall, shape=cut))
 scale_shape_stata <- function (...) {
-    discrete_scale("shape_stata", "shape_d", stata_shape_pal(), ...)
+    discrete_scale("shape", "stata", stata_shape_pal(), ...)
 }
 
 
@@ -419,6 +418,6 @@ stata_linetype_pal <- function() {
 ##' ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
 ##' qplot(date, value, data=ecm, geom="line", linetype=variable) + scale_linetype_stata()
 scale_linetype_stata <- function (...)  {
-    discrete_scale("linetype_stata", "linetype_d", stata_linetype_pal(), ...)
+    discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }
 
