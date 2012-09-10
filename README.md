@@ -27,21 +27,6 @@ install_github("ggplotJrnold", "jrnold")
 ```r
 library("ggplot2")
 library("ggplotJrnold")
-```
-
-```
-## Loading required package: scales
-```
-
-```
-## Loading required package: colorspace
-```
-
-```
-## Loading required package: proto
-```
-
-```r
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
@@ -54,7 +39,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
     theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/W168X.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/z2q0X.png) 
 
 
 ## Economist theme
@@ -68,7 +53,7 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/kdclL.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/gX9aV.png) 
 
 
 ## Solarized theme
@@ -83,7 +68,7 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/pKeHm.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/KIG4l.png) 
 
 
 A dark theme with red accents.
@@ -94,7 +79,7 @@ A dark theme with red accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/ExSJQ.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/YIEFe.png) 
 
 
 ## Stata theme 
@@ -107,7 +92,7 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/Bg9a0.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/fpLHP.png) 
 
 
 ## Excel 2003 theme
@@ -121,7 +106,7 @@ and pies not included. Please never use this theme.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/KpXar.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/GDa0e.png) 
 
 
 
@@ -130,7 +115,7 @@ and pies not included. Please never use this theme.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/4Iglm.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/tRUPV.png) 
 
 
 
