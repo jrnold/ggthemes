@@ -98,7 +98,6 @@ and pies not included. Please never use this theme.
  + geom_bar()
  + scale_fill_excel2003()
  + theme_excel2003())
-
 ```
 
 

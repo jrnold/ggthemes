@@ -27,11 +27,7 @@ excel2003_pal <- function(fill=FALSE) {
 ##' @family colour scales
 ##' @rdname scale_excel2003
 ##' @export
-##' @examples
-##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-##'                + theme_economist()
-##'                + scale_colour_economist() )
+##' @seealso See \code{\link{theme_excel2003}} for examples.
 scale_fill_excel2003 <- function(fill=TRUE, ...) {
     discrete_scale("fill", "excel2003", excel2003_pal(fill), ...)
 }
@@ -58,9 +54,13 @@ scale_color_excel2003 <- scale_colour_excel2003
 ##' @family themes
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-##'                + theme_economist()
-##'                + scale_colour_economist() )
+##' (qplot(carat, price, data=dsamp, colour=clarity)
+##'  + theme_excel2003()
+##'  + scale_colour_excel2003() )
+##' (ggplot(diamonds, aes(clarity, fill=cut))
+##' + geom_bar()
+##' + scale_fill_excel2003()
+##' + theme_excel2003())
 theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
     gray <- "#C0C0C0"
     ret <- (theme_bw()
