@@ -32,3 +32,4 @@ Collate:
     'geom-tufteboxplot.R'
     'stat-fivenumber.R'
     'utils.R'
+    'tableau.R'
