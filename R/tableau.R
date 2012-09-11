@@ -1,3 +1,4 @@
+## HEX values agree with those at http://vis.stanford.edu/color-names/analyzer/
 tableau_palettes <- list()
 tableau_palettes$colors <-
     list(
