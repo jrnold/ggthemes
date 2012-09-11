@@ -142,8 +142,13 @@ theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
                   axis.title = element_text(colour="black", size=rel(1.2)),
                   axis.title.x = element_text(),
                   axis.title.y = element_text(angle = 90, vjust=0.1),
-                  axis.ticks.length = grid::unit(0.30, "cm"),
-                  axis.ticks.margin = grid::unit(0.05, "cm"),
+                  ## gsize label tiny
+                  axis.ticks.length = grid::unit(0.013888, "npc"),
+                  ## gsize tickgap half_tiny added distance between a
+                  ## tick and its label gsize notickgap tiny added
+                  ## distance between axis line and labels for axis
+                  ## styles that do not draw ticks
+                  axis.ticks.margin = grid::unit(0.06944, "npc"),
                   legend.background = element_rect(linetype=1),
                   legend.margin = grid::unit(0.2, "cm"),
                   legend.key = element_rect(fill="white", linetype=0),
@@ -439,7 +444,7 @@ scale_linetype_stata <- function (...)  {
 ## tenth 10
 ## third 33.33333333333
 ## third_tiny 0.46296 (1.33 pt)
-## gsize_tiny (4 pt)
+## tiny 1.3888 (4 pt)
 ## vhuge 0.7222 (28 pt)
 ## vlarge 5.5556 (16 pt)
 ## vsmall 2.0833 (6 pt)
@@ -451,7 +456,7 @@ scale_linetype_stata <- function (...)  {
 ## heading large
 ## axis title medsmall
 ## label medsmall
-## tick tiny
+## tick tiny =
 ## tick_label medsmall
 ## tick_biglabel medium
 ## key_label medsmall
