@@ -25,7 +25,7 @@
   (qplot(carat, price, data=dsamp, colour=clarity) +
   scale_colour_excel10() )
 
-  Other colour scales: \code{\link{scale_color_economist}},
+  Other colour.scales: \code{\link{scale_color_economist}},
   \code{\link{scale_color_excel2003}},
   \code{\link{scale_color_solarized}},
   \code{\link{scale_color_stata}},
