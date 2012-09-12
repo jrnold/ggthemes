@@ -9,11 +9,9 @@
 ##' show_col(excel2003_pal(fill=TRUE)(8))
 excel2003_pal <- function(fill=FALSE) {
     if (!fill) {
-        manual_pal(c("#FF00FF", "#FFFF00", "#00FFFF", "#800080",
-                     "#800000", "#008080", "#0000FF"))
+        manual_pal(ggplotJrnoldPalettes$excel$excel2003)
     } else {
-        manual_pal(c("#993366", "#FFFFCC", "#CCFFFF", "#660066",
-                     "#FF8080", "#0066CC", "#CCCCFF"))
+        manual_pal(ggplotJrnoldPalettes$excel$excel2003fill)
     }
 }
 
@@ -89,11 +87,10 @@ theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
 ##' @seealso \code{\link{excel2003_pal}} for an uglier color palette,
 ##' and \code{\link{scale_colour_excel10}} for examples.
 ##' @export
+##' @examples
+##' show_col(excel10_pal()(10))
 excel10_pal <- function() {
-    excel10_colors <-
-        c("#365e96", "#983334", "#77973d", "#5d437c", "#36869f",
-          "#d1702f", "#8197c5", "#c47f80", "#acc484", "#9887b0")
-    manual_pal(excel10_colors)
+    manual_pal(ggplotJrnoldPalettes$excel$excel10)
 }
 
 ##' Excel color scales

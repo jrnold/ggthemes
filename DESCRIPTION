@@ -33,3 +33,4 @@ Collate:
     'stat-fivenumber.R'
     'utils.R'
     'igray.R'
+    'ggplotJrnoldPalettes.R'
