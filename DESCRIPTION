@@ -34,3 +34,4 @@ Collate:
     'utils.R'
     'igray.R'
     'ggplotJrnoldPalettes.R'
+    'misc.R'

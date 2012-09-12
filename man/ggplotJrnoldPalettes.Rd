@@ -28,6 +28,7 @@ Colors, shapes, and linetypes used by Stata
 \code{shapes} R shape values of of all Stata symbol types.
 \code{linetype} Equivalent R linepattern for all Stata linepattern sytles. \url{http://www.stata.com/help.cgi?symbolstyle}.
 }
+\item{few}{Qualitative color palettes from Stephen Few, \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}. He suggests using \code{medium}, except for thin lines and small points, for which use \code{dark}.}
 }}
 \usage{
   ggplotJrnoldPalettes

@@ -29,6 +29,7 @@
 ##' \code{shapes} R shape values of of all Stata symbol types.
 ##' \code{linetype} Equivalent R linepattern for all Stata linepattern sytles. \url{http://www.stata.com/help.cgi?symbolstyle}.
 ##' }
+##' \item{few}{Qualitative color palettes from Stephen Few, \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}. He suggests using \code{medium}, except for thin lines and small points, for which use \code{dark}.}
 ##' }
 ##'
 ##' @export
@@ -244,10 +245,40 @@ ggplotJrnoldPalettes <- {
                  "F4141414"
                  )
              )
+
+    ## Stephen Few
+    x$few <-
+        list(medium=
+             c(gray="#737373",
+               red="#F15A60",
+               green="#7AC36A",
+               blue="#5A9BD4",
+               orange="#FAA75B",
+               purple="#9E67AB",
+               maroon="#CE7058",
+               magenta="#D77FB4"),
+             dark=
+             c(black="#010202",
+               red="#EE2E2F",
+               green="#008C48",
+               blue="#185AA9",
+               orange="#F47D23",
+               purple="#662C91",
+               maroon="#A21D21",
+               magenta="#B43894"),
+             light=
+             c(gray="#CCCCCC",
+               red="#F2AFAD",
+               green="#D9E4AA",
+               blue="#B8D2EC",
+               orange="#F3D1B0",
+               purple="#D5B2D4",
+               maroon="#DDB9A9",
+               magenta="#EBC0DA"))
+
     ## Return
     x
 }
-
 
 
 ## }

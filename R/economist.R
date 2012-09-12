@@ -21,16 +21,20 @@ economist_pal <- function() {
 ##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
 ##'                + theme_economist()
 ##'                + scale_colour_economist() )
-scale_colour_economist <- function(...) discrete_scale("colour", "economist",
-                                                       economist_pal(), ...)
+scale_colour_economist <- function(...) {
+    discrete_scale("colour", "economist", economist_pal(), ...)
+}
+
 #' @export
 #' @rdname scale_economist
 scale_color_economist <- scale_colour_economist
 
 #' @export
 #' @rdname scale_economist
-scale_fill_economist <- function(...) discrete_scale("colour", "economist",
-                                                     economist_pal(), ...)
+scale_fill_economist <- function(...) {
+    discrete_scale("fill", "economist", economist_pal(), ...)
+}
+
 
 ##' ggplot color theme based on the Economist
 ##'
