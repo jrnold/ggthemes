@@ -100,9 +100,17 @@ scale_color_solarized <- scale_colour_solarized
 ##' @family themes
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-##'                + theme_solarized()
-##'                + scale_colour_solarized("blue"))
+##' (qplot(carat, price, data=dsamp, colour=clarity)
+##'  + theme_solarized()
+##'  + scale_colour_solarized("blue"))
+##' ## Dark version
+##' (qplot(carat, price, data=dsamp, colour=clarity)
+##'  + theme_solarized(light=FALSE)
+##'  + scale_colour_solarized("blue"))
+##' ## With panels
+##' (qplot(carat, price, data=dsamp) + facet_wrap(~ clarity)
+##'  + theme_solarized()
+##'  + scale_colour_solarized("blue"))
 theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
     rebase <- solarized_rebase(light)
     ret <- (theme_bw(base_size=base_size, base_family=base_family) +
@@ -119,7 +127,8 @@ theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
                   panel.grid = element_line(color=rebase['rebase02']),
                   panel.grid.major = element_line(color=rebase['rebase02']),
                   panel.grid.minor = element_line(color=rebase['rebase02']),
-                  strip.background = element_rect(fill=rebase['rebase02'])
+                  strip.background = element_rect(fill=rebase['rebase02'], colour=rebase['rebase01']),
+                  plot.background = element_rect(colour=NA, linetype=0)
             ))
     ret
 }

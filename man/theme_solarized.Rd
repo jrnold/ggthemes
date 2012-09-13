@@ -18,9 +18,17 @@
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-(d <- qplot(carat, price, data=dsamp, colour=clarity)
-               + theme_solarized()
-               + scale_colour_solarized("blue"))
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_solarized()
+ + scale_colour_solarized("blue"))
+## Dark version
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_solarized(light=FALSE)
+ + scale_colour_solarized("blue"))
+## With panels
+(qplot(carat, price, data=dsamp) + facet_wrap(~ clarity)
+ + theme_solarized()
+ + scale_colour_solarized("blue"))
 }
 \seealso{
   Other themes: \code{\link{theme_economist}},
