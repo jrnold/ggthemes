@@ -8,7 +8,7 @@
 
   scale_color_few(palette = "medium", ...)
 
-  scale_fill_few(...)
+  scale_fill_few(palette = "light", ...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -25,11 +25,14 @@
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (qplot(carat, price, data=dsamp, colour=clarity)
- + scale_colour_few())
++ theme_bw()
++ scale_colour_few())
 (qplot(carat, price, data=dsamp, colour=clarity)
++ theme_bw()
 + scale_colour_few("dark"))
 (ggplot(diamonds, aes(clarity, fill=cut))
 + geom_bar()
++ theme_bw()
 + scale_fill_few("light"))
 }
 \seealso{
