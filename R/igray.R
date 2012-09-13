@@ -3,9 +3,9 @@
 ##' Inverts the colors in the \code{\link{theme_gray}}, a white panel
 ##' and a light gray area around it. This keeps a white background,
 ##' but with more gray, it keeps the plot closer to the typographical
-##' color of the document, which was the motivation of using gray in
-##' \code{theme_gray}. This is also the style of plots in Stata and
-##' Tableau.
+##' color of the document, which was the motivation for using a gray
+##' background in \code{theme_gray}. This is also the style of plots
+##' in Stata and Tableau.
 ##'
 ##' @param base_size base font size
 ##' @param base_family base font family
