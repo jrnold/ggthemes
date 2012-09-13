@@ -93,6 +93,10 @@ scale_color_solarized <- scale_colour_solarized
 ##' See \url{http://ethanschoonover.com/solarized} for a
 ##' description of the Solarized palette.
 ##'
+##' Plots made with this theme integrate seamlessly with the Solarized
+##' Beamer color theme.
+##' \url{https://github.com/jrnold/beamercolorthemesolarized}.
+##'
 ##' @param base_size base font size
 ##' @param base_family base font family
 ##' @param light \code{logical}. Light or dark theme?

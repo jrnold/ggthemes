@@ -16,6 +16,11 @@
   See \url{http://ethanschoonover.com/solarized} for a
   description of the Solarized palette.
 }
+\details{
+  Plots made with this theme integrate seamlessly with the
+  Solarized Beamer color theme.
+  \url{https://github.com/jrnold/beamercolorthemesolarized}.
+}
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (qplot(carat, price, data=dsamp, colour=clarity)
