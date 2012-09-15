@@ -10,7 +10,7 @@ economist_pal <- function() {
 ##' Economist color scales
 ##'
 ##' Color scales using the colors in the Economist graphics. These scales use
-##' RGB values and ordering of the colors in the State economist scheme.
+##' RGB values and ordering of the colors in the Stata economist scheme.
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @family colour scales
