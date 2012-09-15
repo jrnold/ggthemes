@@ -94,13 +94,14 @@ GeomTufteboxplot <- proto(ggplot2:::Geom, {
     if (usebox) {
         convexcomb <- function(a, x1, x2) {a * x1 + (1 - a) * x2}
 
-        boxdata <- data.frame(
-            xmin = convexcomb(boxwidth, data$xmin, data$x),
-            xmax = convexcomb(boxwidth, data$xmax, data$x),
-            ymin = data$notchlower,
-            ymax = data$notchupper,
-            alpha = data$alpha,
-            common)
+        boxdata <-
+            data.frame(
+                xmin = convexcomb(boxwidth, data$xmin, data$x),
+                xmax = convexcomb(boxwidth, data$xmax, data$x),
+                ymin = data$notchlower,
+                ymax = data$notchupper,
+                alpha = data$alpha,
+                common)
         box_grob <- GeomRect$draw(boxdata, ...)
         middle_grob <- GeomSegment$draw(transform(data,
                                                   x=xmin, xend=xmax,
@@ -138,7 +139,7 @@ GeomTufteboxplot <- proto(ggplot2:::Geom, {
   guide_geom <- function(.) "pointrange"
   default_stat <- function(.) StatBoxplot
   default_pos <- function(.) PositionDodge
-  default_aes <- function(.) aes(colour = "black", size=0.5, linetype=1, shape=16, fill="white", alpha = NA)
+  default_aes <- function(.) aes(colour = "black", size=0.5, linetype=1, shape=16, fill="gray20", alpha = NA)
   required_aes <- c("x", "lower", "upper", "middle", "ymin", "ymax")
 
 })
