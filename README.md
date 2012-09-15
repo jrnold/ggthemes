@@ -7,6 +7,14 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - Tufte range frame
 - Tufte box plot
 
+## Themes 
+
+- Tufte minimal ink theme
+- [Solarized](http://ethanschoonover.com/solarized)
+- Stata themes 
+- The Economist
+- Excel (the ugly gray background one)
+
 ## Scales
 
 - [Solarized](http://ethanschoonover.com/solarized) colors
@@ -16,14 +24,6 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - Tableau colors and shapes
 - Shape scales from William S. Cleveland's *Elements of Graphing Data*,
   Tremmel (1995), and Lewandowsky and Spence (1989).
-
-## Themes 
-
-- Tufte minimal ink theme
-- [Solarized](http://ethanschoonover.com/solarized)
-- Stata
-- The Economist
-- Excel (the ugly gray background one)
 
 # Install 
 
@@ -58,7 +58,7 @@ Quantitative Information*.
     theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/ZGA6y.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/38YrW.png) 
 
 
 The Tufte minimal boxplot.
@@ -73,7 +73,7 @@ The Tufte minimal boxplot.
 ## [1] 0.75 0.75 0.75
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/deGFC.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/qRSvB.png) 
 
 
 ## Economist theme
@@ -87,7 +87,7 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/ThvE5.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/9tfDX.png) 
 
 
 ## Solarized theme
@@ -102,7 +102,7 @@ The light theme.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/8DlyY.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/SIl8p.png) 
 
 
 The dark theme.
@@ -113,7 +113,7 @@ The dark theme.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/vyY65.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/UNXzy.png) 
 
 
 ## Stata theme 
@@ -127,7 +127,7 @@ schemes in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/z0v0N.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/wNUQK.png) 
 
 
 ## Excel 2003 theme
@@ -141,7 +141,7 @@ and pies not included. Please never use this theme.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/LTjYF.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/QHsOg.png) 
 
 
 
@@ -150,7 +150,7 @@ and pies not included. Please never use this theme.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-10](http://i.imgur.com/xtxMh.png) 
+![plot of chunk unnamed-chunk-10](http://i.imgur.com/BRFfq.png) 
 
 
 ## Tableau Scales

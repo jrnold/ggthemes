@@ -54,8 +54,6 @@ GeomTufteboxplot <- proto(ggplot2:::Geom, {
     df$width <- (df$width %||%
                  params$width %||%
                  (resolution(df$x, FALSE) * 0.1))
-    print(df$width)
-
     if (!is.null(df$outliers)) {
       suppressWarnings({
         out_min <- vapply(df$outliers, min, numeric(1))
