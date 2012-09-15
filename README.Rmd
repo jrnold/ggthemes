@@ -11,8 +11,8 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 
 - Tufte minimal ink theme
 - [Solarized](http://ethanschoonover.com/solarized)
-- Stata themes 
-- The Economist
+- [Stata](http://stata.com/) themes 
+- [The Economist](http://www.economist.com/)
 - Excel (the ugly gray background one)
 
 ## Scales
@@ -21,9 +21,10 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - The Economist colors.
 - Stata colors, shapes, and linetypes
 - Excel colors (old and new)
-- Tableau colors and shapes
+- [Tableau](http://www.tableausoftware.com/) colors and shapes
 - Shape scales from William S. Cleveland's *Elements of Graphing Data*,
   Tremmel (1995), and Lewandowsky and Spence (1989).
+- Color scale from Stephen Few *Practical Rules for Using Color in Charts*
 
 # Install 
 
@@ -128,11 +129,41 @@ and pies not included. Please never use this theme.
  + theme_excel2003())
 ```
 
+## Inverse Gray Theme
+
+Inverse of `theme_gray`, i.e. white plot area and gray background.
+
+```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray())
+```
+
+
 ## Tableau Scales
 
 Color, fill, and shape scales based on those used in the Tableau softare.
 
 ```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray()
+ + scale_colour_tableau())
 ```
+
+```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray()
+ + scale_colour_tableau("colorblind10"))
+```
+
+## Stephen Few's Color Palette
+
+Color palette suggested by Stephen few in "Practical Rules fo Using Color in Charts".
+
+```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray()
+ + scale_colour_few())
+```
+
 
 
