@@ -5,7 +5,8 @@
   geom_tufteboxplot(mapping = NULL, data = NULL,
     stat = "boxplot", position = "dodge",
     outlier.colour = "black", outlier.shape = 16,
-    outlier.size = 2, fatten = 4, ...)
+    outlier.size = 2, fatten = 4, usebox = FALSE,
+    boxwidth = 0.25, ...)
 }
 \arguments{
   \item{outlier.colour}{colour for outlying points}
@@ -14,8 +15,15 @@
 
   \item{outlier.size}{size of outlying points}
 
-  \item{fatten}{a multiplicative factor to fatten the point
-  by}
+  \item{fatten}{a multiplicative factor to fatten the
+  middle point (or line) by}
+
+  \item{usebox}{use a box to represent the standard error
+  of the median; the same thing as the notch does in a
+  standard boxplot.}
+
+  \item{boxwidth}{a number between 0 and 1 which represents
+  the relative width of the box to the middle line.}
 
   \item{mapping}{The aesthetic mapping, usually constructed
   with \code{\link{aes}} or \code{\link{aes_string}}. Only
@@ -38,7 +46,9 @@
 }
 \description{
   Edward Tufte's revision of the box plot erases the box
-  and replaces it with a single middle point.
+  and replaces it with a single middle point. What is
+  usually represented by notches in a standard box plot is
+  represented by a box with a line for the median.
 }
 \section{Aesthetics}{
   \Sexpr[results=rd,stage=build]{ggplotJrnold:::rd_aesthetics("geom_tufteboxplot",
@@ -46,12 +56,18 @@
 }
 \examples{
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
-
+## with only a point
 p + geom_tufteboxplot()
+## with a middle box
+p + geom_tufteboxplot(usebox=TRUE, fatten=1)
 }
 \references{
   Tufte, Edward R. (2001) The Visual Display of
   Quantitative Information, Chapter 6.
+
+  McGill, R., Tukey, J. W. and Larsen, W. A. (1978)
+  Variations of box plots. The American Statistician 32,
+  12-16.
 }
 \seealso{
   \code{\link{geom_boxplot}}
