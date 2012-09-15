@@ -9,11 +9,9 @@
 ##' show_col(excel2003_pal(fill=TRUE)(8))
 excel2003_pal <- function(fill=FALSE) {
     if (!fill) {
-        manual_pal(c("#FF00FF", "#FFFF00", "#00FFFF", "#800080",
-                     "#800000", "#008080", "#0000FF"))
+        manual_pal(ggplotJrnoldPalettes$excel$excel2003)
     } else {
-        manual_pal(c("#993366", "#FFFFCC", "#CCFFFF", "#660066",
-                     "#FF8080", "#0066CC", "#CCCCFF"))
+        manual_pal(ggplotJrnoldPalettes$excel$excel2003fill)
     }
 }
 
@@ -81,3 +79,51 @@ theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
     ret
 }
 
+##' Excel Colors
+##'
+##' Current Excel color palette. Color RGB values from
+##' \url{http://vis.stanford.edu/color-names/analyzer/}.
+##'
+##' @seealso \code{\link{excel2003_pal}} for an uglier color palette,
+##' and \code{\link{scale_colour_excel10}} for examples.
+##' @export
+##' @examples
+##' show_col(excel10_pal()(10))
+excel10_pal <- function() {
+    manual_pal(ggplotJrnoldPalettes$excel$excel10)
+}
+
+##' Excel color scales
+##'
+##' Color scales from recent versions of Excel. See
+##' \code{\link{scale_fill_excel2003}} for the classic ugly colors.
+##'
+##' @inheritParams excel10_pal
+##' @inheritParams ggplot2::scale_colour_hue
+##' @family colour scales
+##' @rdname scale_excel10
+##' @export
+##' @seealso
+##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' (qplot(carat, price, data=dsamp, colour=clarity)
+##'  + scale_colour_excel10() )
+scale_fill_excel10 <- function(...) {
+    discrete_scale("fill", "excel10", excel10_pal(), ...)
+}
+
+#' @export
+#' @rdname scale_excel10
+scale_colour_excel10 <- function(...) {
+    discrete_scale("colour", "excel10", excel10_pal(), ...)
+}
+
+#' @export
+#' @rdname scale_excel10
+scale_color_excel10 <- scale_colour_excel10
+
+##' Color palette used by
+##' \href{http://www-958.ibm.com/software/data/cognos/manyeyes/0}{Many
+##' Eyes}. Colors values of the palette from
+##' \href{http://vis.stanford.edu/color-names/analyzer/}
+## many_eyes_colors <-
+##     c("#9c9ede", "#7375b5", "#4a5584", "#cedb9c", "#b5cf6b", "#8ca252", "#637939", "#e7cb94", "#e7ba52", "#bd9e39", "#8c6d31", "#e7969c", "#d6616b", "#ad494a", "#843c39", "#de9ed6", "#ce6dbd", "#a55194", "#7b4173")

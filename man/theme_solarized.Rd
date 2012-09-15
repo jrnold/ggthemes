@@ -16,14 +16,28 @@
   See \url{http://ethanschoonover.com/solarized} for a
   description of the Solarized palette.
 }
+\details{
+  Plots made with this theme integrate seamlessly with the
+  Solarized Beamer color theme.
+  \url{https://github.com/jrnold/beamercolorthemesolarized}.
+}
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-(d <- qplot(carat, price, data=dsamp, colour=clarity)
-               + theme_solarized()
-               + scale_colour_solarized("blue"))
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_solarized()
+ + scale_colour_solarized("blue"))
+## Dark version
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_solarized(light=FALSE)
+ + scale_colour_solarized("blue"))
+## With panels
+(qplot(carat, price, data=dsamp) + facet_wrap(~ clarity)
+ + theme_solarized()
+ + scale_colour_solarized("blue"))
 }
 \seealso{
   Other themes: \code{\link{theme_economist}},
-  \code{\link{theme_excel2003}}, \code{\link{theme_stata}}
+  \code{\link{theme_excel2003}}, \code{\link{theme_igray}},
+  \code{\link{theme_stata}}
 }
 

@@ -1,0 +1,25 @@
+\name{few_pal}
+\alias{few_pal}
+\title{Palletes from Stephen Few (discrete)}
+\usage{
+  few_pal(palette = "medium")
+}
+\arguments{
+  \item{palette}{One of "medium", "dark", or "light"}
+}
+\description{
+  Qualitative color palettes from Stephen Few,
+  \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical
+  Rules for Using Color in Charts"}.
+}
+\details{
+  He suggests the following \itemize{ \item For bars, use
+  medium. \item For lines and points use dark if small or
+  thin, and medium otherwise. }
+}
+\examples{
+show_col(few_pal()(7))
+show_col(few_pal("dark")(7))
+show_col(few_pal("light")(7))
+}
+

@@ -1,38 +1,11 @@
-##' Economist colors
-##'
-##' @format \code{character} vector of the hex RGB values of the
-##' colors used by The Economist.
-##' @seealso economist_pal
-##' @export
-economist_colors <-
-    c(## Background
-      ebg = rgb(198,211,223, max=255),
-      edkbg = rgb(178,191,203, max=255),
-      ## Symbols
-      edkblue = rgb(62,100,125, max=255),
-      emidblue = rgb(123,146,168, max=255),
-      eltblue = rgb(130,192,233, max=255),
-      # gs6 = rgb(96, 96, 96, max=255),
-      emerald = rgb(45,109,102, max=255),
-      erose = rgb(191,161,156, max=255),
-      ebblue = rgb(0,139,188, max=255),
-      eltgreen = rgb(151,182,176, max=255),
-      stone = rgb(215,210,158, max=255),
-      navy = rgb(26,71,111, max=255),
-      maroon = rgb(144,53,59, max=255),
-      brown = rgb(156,136,71, max=255),
-      lavender = rgb(147,141,210, max=255),
-      teal = rgb(110,142,132, max=255),
-      cranberry=rgb(193, 5, 52, max=255),
-      khaki = rgb(202,194, 126, max=255))
-
 ##' Economist color palette (discrete)
 ##'
-##' @param n \code{integer}. Number of values.
 ##' @export
 ##' @examples
-##' show_col(economist_pal(16))
-economist_pal <- manual_pal(unname(economist_colors[3:length(economist_colors)]))
+##' show_col(economist_pal()(16))
+economist_pal <- function() {
+    manual_pal(unname(ggplotJrnoldPalettes$economist$fg))
+}
 
 ##' Economist color scales
 ##'
@@ -48,16 +21,20 @@ economist_pal <- manual_pal(unname(economist_colors[3:length(economist_colors)])
 ##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
 ##'                + theme_economist()
 ##'                + scale_colour_economist() )
-scale_colour_economist <- function(...) discrete_scale("colour", "economist",
-                                                       economist_pal, ...)
+scale_colour_economist <- function(...) {
+    discrete_scale("colour", "economist", economist_pal(), ...)
+}
+
 #' @export
 #' @rdname scale_economist
 scale_color_economist <- scale_colour_economist
 
 #' @export
 #' @rdname scale_economist
-scale_fill_economist <- function(...) discrete_scale("colour", "economist",
-                                                     economist_pal, ...)
+scale_fill_economist <- function(...) {
+    discrete_scale("fill", "economist", economist_pal(), ...)
+}
+
 
 ##' ggplot color theme based on the Economist
 ##'
@@ -76,17 +53,16 @@ scale_fill_economist <- function(...) discrete_scale("colour", "economist",
 ##'                + scale_colour_economist() )
 theme_economist <- function(base_size = 12, base_family="",
                             horizontal=TRUE, dkplot=FALSE) {
-    palette_economist_bg <- c(ebg = "#C6D3DF",
-                              edkbg = "#B2BFCB")
+    bgcolors <- ggplotJrnoldPalettes$economist$bg
     ret <-
         theme(# Basic
               line = element_line(colour = "black", size = 0.5,
               linetype = 1, lineend = "butt"),
-              rect = element_rect(fill = palette_economist_bg['ebg'],
+              rect = element_rect(fill = bgcolors['ebg'],
               colour = NA, size = 0.5, linetype = 1),
               text = element_text(family = base_family, face = "plain",
-              colour = "black", size = base_size, hjust = 0.5, vjust = 0.5, angle = 0,
-              lineheight = 0.9),
+              colour = "black", size = base_size, hjust = 0.5, vjust = 0.5,
+              angle = 0, lineheight = 0.9),
               ## Axis
               axis.text = element_text(size = rel(0.8)),
               axis.line = element_line(size = rel(0.8)),
@@ -121,12 +97,12 @@ theme_economist <- function(base_size = 12, base_family="",
               panel.grid.major = element_line(colour = "white", size=rel(2)),
               panel.grid.minor = element_blank(),
               panel.margin = grid::unit(0.25, "lines"),
-              strip.background = element_rect(fill = palette_economist_bg['edkbg'],
+              strip.background = element_rect(fill = bgcolors['edkbg'],
               colour = NA, linetype=0),
               strip.text = element_text(size = rel(0.8)),
               strip.text.x = element_text(),
               strip.text.y = element_text(angle = -90),
-              plot.background = element_rect(fill = palette_economist_bg['ebg'], colour=NA),
+              plot.background = element_rect(fill = bgcolors['ebg'], colour=NA),
               plot.title = element_text(size = rel(1.2), hjust=0),
               plot.margin = grid::unit(c(1, 1, 0.5, 0.5), "lines"),
               complete = TRUE)
@@ -136,7 +112,7 @@ theme_economist <- function(base_size = 12, base_family="",
         ret <- ret + theme(panel.grid.major.y = element_blank())
     }
     if (dkplot==TRUE) {
-        ret <- ret + theme(panel.background=element_rect(fill = palette_economist_bg['edkbg']))
+        ret <- ret + theme(panel.background=element_rect(fill = bgcolors['edkbg']))
     }
     ret
 }
