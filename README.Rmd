@@ -2,12 +2,28 @@
 
 Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 
-- The Economist theme and scales
-- [Solarized](http://ethanschoonover.com/solarized) theme and scales
-- Themes and scales based on Stata graph schemes
-- Theme and scales based on the classic ugly Excel 2003 charts (for fun only)
-- Shape scales from William S. Cleveland's *Elements of Graphing Data*
-- Minimal-ink Tufte theme and a new geom, **geom_range_frame**.
+## Geoms
+
+- Tufte range frame
+- Tufte box plot
+
+## Scales
+
+- [Solarized](http://ethanschoonover.com/solarized) colors
+- The Economist colors
+- Stata colors, shapes, and linetypes
+- Excel colors
+- Tableau colors
+- Shape scales from William S. Cleveland's *Elements of Graphing Data*,
+  Tremmel, and ?.
+
+## Themes 
+
+- Tufte minimal ink theme
+- [Solarized](http://ethanschoonover.com/solarized)
+- Stata
+- The Economist
+- Excel (the ugly gray background one)
 
 # Install 
 
@@ -33,11 +49,22 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 
 ## Tufte theme and geom_rangeframe
 
+Minimal theme and geoms based on plots in *The Visual Display of
+Quantitative Information*.
+
 ```{r}
 (ggplot(mtcars, aes(wt, mpg))
   + geom_point() + geom_rangeframe()
   + theme_tufte())
 ```
+
+```{r}
+(ggplot(mtcars, aes(factor(cyl), mpg))
+  + theme_tufte() + geom_tufteboxplot())
+
+```
+
+
 
 ## Economist theme
 
