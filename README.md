@@ -69,10 +69,6 @@ The Tufte minimal boxplot.
     geom_tufteboxplot())
 ```
 
-```
-## [1] 0.75 0.75 0.75
-```
-
 ![plot of chunk unnamed-chunk-4](http://i.imgur.com/qRSvB.png) 
 
 
