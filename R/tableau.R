@@ -27,7 +27,7 @@
 ##' show_col(tableau_color_pal("bluered12")(12))
 ##' show_col(tableau_color_pal("greenorange12")(12))
 ##'
-tableau_color_pal <- function(palette = "tableau10dark") {
+tableau_color_pal <- function(palette = "tableau10") {
     palettelist <- ggplotJrnoldPalettes$tableau$colors
     if (! palette %in%
         c(names(palettelist), "tableau10", "tableau10light",
