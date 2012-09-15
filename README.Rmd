@@ -7,23 +7,23 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - Tufte range frame
 - Tufte box plot
 
-## Scales
-
-- [Solarized](http://ethanschoonover.com/solarized) colors
-- The Economist colors
-- Stata colors, shapes, and linetypes
-- Excel colors
-- Tableau colors
-- Shape scales from William S. Cleveland's *Elements of Graphing Data*,
-  Tremmel, and ?.
-
 ## Themes 
 
 - Tufte minimal ink theme
 - [Solarized](http://ethanschoonover.com/solarized)
-- Stata
+- Stata themes 
 - The Economist
 - Excel (the ugly gray background one)
+
+## Scales
+
+- [Solarized](http://ethanschoonover.com/solarized) colors
+- The Economist colors.
+- Stata colors, shapes, and linetypes
+- Excel colors (old and new)
+- Tableau colors and shapes
+- Shape scales from William S. Cleveland's *Elements of Graphing Data*,
+  Tremmel (1995), and Lewandowsky and Spence (1989).
 
 # Install 
 
@@ -47,7 +47,7 @@ library("ggplotJrnold")
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
-## Tufte theme and geom_rangeframe
+## Tufte theme and geoms
 
 Minimal theme and geoms based on plots in *The Visual Display of
 Quantitative Information*.
@@ -58,13 +58,13 @@ Quantitative Information*.
   + theme_tufte())
 ```
 
+The Tufte minimal boxplot.
+
 ```{r}
-(ggplot(mtcars, aes(factor(cyl), mpg))
-  + theme_tufte() + geom_tufteboxplot())
-
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot())
 ```
-
-
 
 ## Economist theme
 
@@ -81,7 +81,7 @@ magazine.
 
 A theme and color and fill scales based on the Solarized palette.
 
-A light theme with blue accents. 
+The light theme.
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
@@ -89,7 +89,7 @@ A light theme with blue accents.
                              + scale_colour_solarized("blue"))
 ```
 
-A dark theme with red accents.
+The dark theme.
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
@@ -99,7 +99,8 @@ A dark theme with red accents.
 
 ## Stata theme 
 
-A theme and color/fill scales based on the graphs in Stata.
+Themes and scales (color, fill, linetype, shapes) based on the graph
+schemes in Stata.
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
@@ -127,5 +128,11 @@ and pies not included. Please never use this theme.
  + theme_excel2003())
 ```
 
+## Tableau Scales
+
+Color, fill, and shape scales based on those used in the Tableau softare.
+
+```{r}
+```
 
 

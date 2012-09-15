@@ -2,12 +2,28 @@
 
 Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 
-- The Economist theme and scales
-- [Solarized](http://ethanschoonover.com/solarized) theme and scales
-- Themes and scales based on Stata graph schemes
-- Theme and scales based on the classic ugly Excel 2003 charts (for fun only)
-- Shape scales from William S. Cleveland's *Elements of Graphing Data*
-- Minimal-ink Tufte theme and a new geom, **geom_range_frame**.
+## Geoms
+
+- Tufte range frame
+- Tufte box plot
+
+## Scales
+
+- [Solarized](http://ethanschoonover.com/solarized) colors
+- The Economist colors.
+- Stata colors, shapes, and linetypes
+- Excel colors (old and new)
+- Tableau colors and shapes
+- Shape scales from William S. Cleveland's *Elements of Graphing Data*,
+  Tremmel (1995), and Lewandowsky and Spence (1989).
+
+## Themes 
+
+- Tufte minimal ink theme
+- [Solarized](http://ethanschoonover.com/solarized)
+- Stata
+- The Economist
+- Excel (the ugly gray background one)
 
 # Install 
 
@@ -31,7 +47,10 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
 
-## Tufte theme and geom_rangeframe
+## Tufte theme and geoms
+
+Minimal theme and geoms based on plots in *The Visual Display of
+Quantitative Information*.
 
 
 ```r
@@ -39,7 +58,22 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
     theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/GMa5A.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/ZGA6y.png) 
+
+
+The Tufte minimal boxplot.
+
+
+```r
+(ggplot(mtcars, aes(factor(cyl), mpg)) + theme_tufte(ticks = FALSE) + 
+    geom_tufteboxplot())
+```
+
+```
+## [1] 0.75 0.75 0.75
+```
+
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/deGFC.png) 
 
 
 ## Economist theme
@@ -53,14 +87,14 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/QAaXd.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/ThvE5.png) 
 
 
 ## Solarized theme
 
 A theme and color and fill scales based on the Solarized palette.
 
-A light theme with blue accents. 
+The light theme.
 
 
 ```r
@@ -68,10 +102,10 @@ A light theme with blue accents.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/7fV9m.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/8DlyY.png) 
 
 
-A dark theme with red accents.
+The dark theme.
 
 
 ```r
@@ -79,12 +113,13 @@ A dark theme with red accents.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/q47aE.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/vyY65.png) 
 
 
 ## Stata theme 
 
-A theme and color/fill scales based on the graphs in Stata.
+Themes and scales (color, fill, linetype, shapes) based on the graph
+schemes in Stata.
 
 
 ```r
@@ -92,7 +127,7 @@ A theme and color/fill scales based on the graphs in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/kUWfs.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/z0v0N.png) 
 
 
 ## Excel 2003 theme
@@ -106,7 +141,7 @@ and pies not included. Please never use this theme.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/XAeIC.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/LTjYF.png) 
 
 
 
@@ -115,7 +150,13 @@ and pies not included. Please never use this theme.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/3bfUz.png) 
+![plot of chunk unnamed-chunk-10](http://i.imgur.com/xtxMh.png) 
+
+
+## Tableau Scales
+
+Color, fill, and shape scales based on those used in the Tableau softare.
+
 
 
 
