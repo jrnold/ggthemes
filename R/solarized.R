@@ -132,7 +132,6 @@ theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
                   panel.grid.major = element_line(color=rebase['rebase02']),
                   panel.grid.minor = element_line(color=rebase['rebase02']),
                   plot.background = element_rect(fill=NULL, colour=NA, linetype=0)
-                  plot.background = element_rect(colour=NA, linetype=0)
             ))
     ret
 }
