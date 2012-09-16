@@ -24,7 +24,7 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 - [Tableau](http://www.tableausoftware.com/) colors and shapes
 - Shape scales from William S. Cleveland's *Elements of Graphing Data*,
   Tremmel (1995), and Lewandowsky and Spence (1989).
-- Color scale from Stephen Few *Practical Rules for Using Color in Charts*
+- Color scale based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 # Install 
 
@@ -157,7 +157,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 
 ## Stephen Few's Color Palette
 
-Color palette suggested by Stephen few in "Practical Rules fo Using Color in Charts".
+Color palette suggested by Stephen Few in ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
