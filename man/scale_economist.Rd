@@ -18,7 +18,7 @@
 \description{
   Color scales using the colors in the Economist graphics.
   These scales use RGB values and ordering of the colors in
-  the State economist scheme.
+  the Stata economist scheme.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -32,15 +32,18 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
   \code{\link{scale_color_few}},
   \code{\link{scale_color_solarized}},
   \code{\link{scale_color_stata}},
+  \code{\link{scale_color_tableau}},
   \code{\link{scale_colour_excel10}},
   \code{\link{scale_colour_excel2003}},
   \code{\link{scale_colour_few}},
   \code{\link{scale_colour_solarized}},
   \code{\link{scale_colour_stata}},
+  \code{\link{scale_colour_tableau}},
   \code{\link{scale_fill_excel10}},
   \code{\link{scale_fill_excel2003}},
   \code{\link{scale_fill_few}},
   \code{\link{scale_fill_solarized}},
-  \code{\link{scale_fill_stata}}
+  \code{\link{scale_fill_stata}},
+  \code{\link{scale_fill_tableau}}
 }
 

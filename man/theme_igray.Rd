@@ -14,8 +14,9 @@
   white panel and a light gray area around it. This keeps a
   white background, but with more gray, it keeps the plot
   closer to the typographical color of the document, which
-  was the motivation of using gray in \code{theme_gray}.
-  This is also the style of plots in Stata and Tableau.
+  was the motivation for using a gray background in
+  \code{theme_gray}. This is also the style of plots in
+  Stata and Tableau.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -24,7 +25,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 }
 \seealso{
   Other themes: \code{\link{theme_economist}},
-  \code{\link{theme_excel2003}},
+  \code{\link{theme_excel2003}}, \code{\link{theme_few}},
   \code{\link{theme_solarized}}, \code{\link{theme_stata}}
 }
 

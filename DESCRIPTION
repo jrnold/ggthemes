@@ -32,6 +32,7 @@ Collate:
     'geom-tufteboxplot.R'
     'stat-fivenumber.R'
     'utils.R'
+    'tableau.R'
     'igray.R'
     'ggplotJrnoldPalettes.R'
-    'misc.R'
+    'few.R'
