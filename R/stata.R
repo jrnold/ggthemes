@@ -96,7 +96,12 @@ scale_color_stata <- scale_colour_stata
 ##' (qplot(carat, price, data=dsamp, colour=clarity)
 ##' + theme_stata("s1mono")
 ##' + scale_colour_stata("mono"))
-theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
+theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
+
+    ## Sizes
+    relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
+    names(relsz) <- names(stata_gsize)
+
     stata_colors <- ggplotJrnoldPalettes$stata$colors
     ## S2color
     if (scheme %in% c("s2color", "s2mono")) {
@@ -119,9 +124,8 @@ theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
                   linetype = 1, lineend = "butt"),
                   rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
                   text = element_text(family = base_family, face = "plain",
-                  colour = "black",
-                  size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-                  lineheight = 0.9),
+                  colour = "black", size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+                  lineheight = 1),
                   title = element_text(colour = stata_colors['dknavy']),
                   ## Axis
                   axis.text = element_text(),
@@ -130,26 +134,21 @@ theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
                   axis.text.y = element_text(angle=90, vjust=0),
                   ## I cannot figure out how to get ggplot to do 2 levels of ticks
                   axis.ticks = element_line(),
-                  axis.title = element_text(colour="black", size=rel(1.2)),
+                  axis.title = element_text(colour="black", size=rel(relsz['medsmall'])),
                   axis.title.x = element_text(),
                   axis.title.y = element_text(angle = 90, vjust=0.1),
-                  ## gsize label tiny
-                  axis.ticks.length = grid::unit(0.013888, "npc"),
-                  ## gsize tickgap half_tiny added distance between a
-                  ## tick and its label gsize notickgap tiny added
-                  ## distance between axis line and labels for axis
-                  ## styles that do not draw ticks
-                  axis.ticks.margin = grid::unit(0.06944, "npc"),
+                  axis.ticks.length = grid::unit(stata_gsize['tiny'], "npc"),
+                  axis.ticks.margin = grid::unit(stata_gsize['half_tiny'], "npc"),
                   legend.background = element_rect(linetype=1),
-                  legend.margin = grid::unit(0.2, "cm"),
+                  legend.margin = grid::unit(stata_margins$small / 100, "npc"),
                   legend.key = element_rect(fill="white", linetype=0),
                   legend.key.size = grid::unit(1.2, "lines"),
                   legend.key.height = NULL,
                   legend.key.width = NULL,
-                  legend.text = element_text(size = rel(0.8)),
+                  legend.text = element_text(size = rel(relsz['medsmall'])),
                   legend.text.align = NULL,
-                  legend.title = element_text(size = rel(0.8), face = "bold",
-                  hjust = 0),
+                  # See textboxstyle leg_title
+                  legend.title = element_text(size = rel(relsz['large']), hjust = 0),
                   legend.title.align = 0.5,
                   legend.position = "bottom",
                   legend.direction = NULL,
@@ -168,8 +167,8 @@ theme_stata <- function(scheme="s2color", base_size=12, base_family="") {
                   strip.text.x = element_text(vjust=0.5),
                   strip.text.y = element_text(angle = -90),
                   plot.background = element_rect(fill = bgcolor, colour=NA),
-                  plot.title = element_text(size = rel(2), hjust=0.5, vjust=0.5),
-                  plot.margin = grid::unit(c(1, 1, 0.5, 0.5), "lines"),
+                  plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
+                  plot.margin = grid::unit(stata_margins$medsmall / 100, "npc"),
                   complete=TRUE)
     } else if (scheme %in% c("s1color", "s1rcolor", "s1mono")) {
         if (scheme == "s1color") {
@@ -341,7 +340,7 @@ scale_linetype_stata <- function (...)  {
 ## tick_biglabel medium
 ## key_label medsmall
 stata_gsize <-
-    lapply(c(default = 4.166,
+    lapply(c(default = 4.1667,
              full = 100,
              half = 50,
              half_tiny = 0.6944,
@@ -381,4 +380,32 @@ stata_linewidth <-
       vvthin = 0.01,
       vvvthick = 4.2,
       vvvthin = .000001)
+
+## Stata margin styles
+## Units are npc * 100
+## Left, right, top, bottom
+## ggplot margins go top, right, bottom, left.
+## From ado/base/style/margin-*.style
+stata_margins <-
+    list(bargraph = c(3.5, 3.5, 3.5, 0),
+         bottom = c(0, 0, 0, 3),
+         ebargraph = c(1.5, 1.5, 1.5, 0),
+         esubhead = c(2.2, 2.2, 0, 4),
+         horiz_bargraph = c(0, 3.5, 3.5, 3.5),
+         large = c(8, 8, 8, 8),
+         left = c(3, 0, 0, 0),
+         medium = c(3.5, 3.5, 3.5, 3.5),
+         medlarge = c(5, 5, 5, 5),
+         medsmall = c(2.2, 2.2, 2.2, 2.2),
+         right = c(0, 3, 0, 0),
+         sides = c(3.5, 3.5, 0, 0),
+         small = rep(1.2, 4),
+         tiny = rep(0.3, 4),
+         top_bottom = c(0, 0, 3.5, 3.5),
+         top = c(0, 0, 3, 0),
+         vlarge = rep(12, 4),
+         vsmall = rep(0.6, 4),
+         zero = rep(0, 4))
+
+
 
