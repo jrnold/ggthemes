@@ -71,12 +71,11 @@ scale_fill_few <- function(palette="light", ...) {
 ##' @export
 ##'
 ##' @seealso \code{\link{scale_colour_few}} for exaples.
-theme_few <- function(...) {
+theme_few <- function(base_size=12, base_family="") {
     colors <- ggplotJrnoldPalettes$few
     gray <- colors$medium['gray']
     black <- colors$dark['black']
-    print(c(gray, black))
-    theme_bw(...) +
+    theme_bw(base_size=base_size, base_family=base_family) +
         theme(
             line = element_line(colour = gray),
             rect = element_rect(fill = "white", colour = NA),
@@ -90,5 +89,3 @@ theme_few <- function(...) {
             )
 }
 
-(qplot(carat, price, data = dsamp, colour = cut) + theme_few() +
-    scale_colour_few())

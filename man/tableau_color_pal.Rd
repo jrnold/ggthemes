@@ -2,7 +2,7 @@
 \alias{tableau_color_pal}
 \title{Tabaleau Color Palettes (discrete)}
 \usage{
-  tableau_color_pal(palette = "tableau10dark")
+  tableau_color_pal(palette = "tableau10")
 }
 \arguments{
   \item{palette}{Palette name}
@@ -16,6 +16,8 @@ show_col(tableau_color_pal("tableau20")(20))
 show_col(tableau_color_pal("tableau10")(10))
 show_col(tableau_color_pal("tableau10medium")(10))
 show_col(tableau_color_pal("tableau10light")(10))
+show_col(tableau_color_pal("colorblind10")(10))
+show_col(tableau_color_pal("trafficlight")(10))
 show_col(tableau_color_pal("purplegray12")(12))
 show_col(tableau_color_pal("bluered12")(12))
 show_col(tableau_color_pal("greenorange12")(12))

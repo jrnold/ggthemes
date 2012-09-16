@@ -155,13 +155,13 @@ Color, fill, and shape scales based on those used in the Tableau softare.
  + scale_colour_tableau("colorblind10"))
 ```
 
-## Stephen Few's Color Palette
+## Stephen Few's Practical Rules for Using Color ...
 
-Color palette suggested by Stephen Few in ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+Color palette and theme based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
- + theme_igray()
+ + theme_few()
  + scale_colour_few())
 ```
 

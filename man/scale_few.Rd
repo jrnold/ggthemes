@@ -25,14 +25,14 @@
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (qplot(carat, price, data=dsamp, colour=clarity)
-+ theme_bw()
++ theme_few()
 + scale_colour_few())
 (qplot(carat, price, data=dsamp, colour=clarity)
-+ theme_bw()
++ theme_few()
 + scale_colour_few("dark"))
 (ggplot(diamonds, aes(clarity, fill=cut))
 + geom_bar()
-+ theme_bw()
++ theme_few()
 + scale_fill_few("light"))
 }
 \seealso{
