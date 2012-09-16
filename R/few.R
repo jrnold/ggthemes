@@ -60,7 +60,7 @@ scale_fill_few <- function(palette="light", ...) {
     discrete_scale("fill", "few", few_pal(palette), ...)
 }
 
-##' Few "Practical Rules for Using Color in Charts" theme
+##' Theme based on Stephen Few's "Practical Rules for Using Color in Charts"
 ##'
 ##' Theme based on the rules and examples in
 ##' \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical
