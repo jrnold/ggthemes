@@ -23,6 +23,8 @@
 ##' show_col(tableau_color_pal("tableau10")(10))
 ##' show_col(tableau_color_pal("tableau10medium")(10))
 ##' show_col(tableau_color_pal("tableau10light")(10))
+##' show_col(tableau_color_pal("colorblind10")(10))
+##' show_col(tableau_color_pal("trafficlight")(10))
 ##' show_col(tableau_color_pal("purplegray12")(12))
 ##' show_col(tableau_color_pal("bluered12")(12))
 ##' show_col(tableau_color_pal("greenorange12")(12))
@@ -65,18 +67,24 @@ tableau_color_pal <- function(palette = "tableau10") {
 ##' @seealso \code{\link{tableau_color_pal}} for references.
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_bw()
+##' p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_igray()
 ##' p + scale_colour_tableau()
 ##' p + scale_colour_tableau("tableau20")
 ##' p + scale_colour_tableau("tableau10medium")
+##' p + scale_colour_tableau("tableau10light")
+##' p + scale_colour_tableau("colorblind10")
+##' p + scale_colour_tableau("trafficlight")
 ##' p + scale_colour_tableau("purplegray12")
-scale_colour_tableau <- function (..., palette = "tableau10") {
+##' p + scale_colour_tableau("bluered12")
+##' p + scale_colour_tableau("greenorange12")
+##'
+scale_colour_tableau <- function (palette = "tableau10", ...) {
     discrete_scale("colour", "tableau", tableau_color_pal(palette), ...)
 }
 
 #' @export
 #' @rdname scale_color_tableau
-scale_fill_tableau <- function (..., palette = "tableau10") {
+scale_fill_tableau <- function (palette = "tableau10", ...) {
     discrete_scale("fill", "tableau", tableau_color_pal(palette), ...)
 }
 
@@ -97,7 +105,7 @@ tableau_shape_pal <- function(palette="default") {
     manual_pal(unname(ggplotJrnoldPalettes$tableau$shapes[[palette]]))
 }
 
-##' Tableau color scales
+##' Tableau shape scales
 ##'
 ##' Shape scales used by
 ##' \href{http://www.tableausoftware.com/}{Trableau}.
@@ -105,8 +113,11 @@ tableau_shape_pal <- function(palette="default") {
 ##' @export
 ##' @inheritParams tableau_shape_pal
 ##' @inheritParams ggplot2::scale_x_discrete
-##'
-scale_shape_tableau <- function (..., palette = "default") {
+##' @examples
+##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' p <- qplot(carat, price, data=dsamp, shape=clarity)
+##' p + scale_shape_tableau()
+scale_shape_tableau <- function (palette = "default", ...) {
     discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
 
