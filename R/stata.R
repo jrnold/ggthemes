@@ -306,6 +306,7 @@ scale_linetype_stata <- function (...)  {
     discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }
 
+
 ## Text sizes (from style definitions ado/base/style/gsize-*.style)
 ## default 4.166
 ## full 100
@@ -324,7 +325,7 @@ scale_linetype_stata <- function (...)  {
 ## third 33.33333333333
 ## third_tiny 0.46296 (1.33 pt)
 ## tiny 1.3888 (4 pt)
-## vhuge 0.7222 (28 pt)
+## vhuge 9.7222 (28 pt)
 ## vlarge 5.5556 (16 pt)
 ## vsmall 2.0833 (6 pt)
 ## zero 0
@@ -339,21 +340,45 @@ scale_linetype_stata <- function (...)  {
 ## tick_label medsmall
 ## tick_biglabel medium
 ## key_label medsmall
-
+stata_gsize <-
+    lapply(c(default = 4.166,
+             full = 100,
+             half = 50,
+             half_tiny = 0.6944,
+             huge = 6.944,
+             large = 4.8611,
+             medium = 3.8194,
+             medlarge = 4.1667,
+             medsmall = 3.4722,
+             miniscule = 0.3472,
+             quarter = 25,
+             quarter_tiny = 0.34722,
+             small = 2.777,
+             tenth = 10,
+             third = 33.33333333333,
+             third_tiny = 0.46296,
+             tiny = 1.3888,
+             vhuge = 9.7222,
+             vlarge = 5.5556,
+             vsmall = 2.0833,
+             zero = 0) / 100,
+           unit,
+           units = "npc")
 
 ## Line width styles ado/base/style/linewidth-*.style
 ## see stata help linewidth
-## unsure of the scale.
-## medium .3
-## medthick .45
-## medthin .25
-## none 0
-## thick .8
-## thin .2
-## vthick 1.4
-## thin .15
-## vvthick 2.6
-## vvthin .01
-## vvvthick 4.2
-## vvvthin .000001
+## unsure of the scale. likely npc * 100
+stata_linewidth <-
+    c(medium  = 0.3,
+      medthick = 0.45,
+      medthin = 0.25,
+      none = 0,
+      thick = 0.8,
+      thin = 0.2,
+      vthick = 1.4,
+      thin = 0.15,
+      vvthick = 2.6,
+      vvthin = 0.01,
+      vvvthick = 4.2,
+      vvvthin = .000001)
 
