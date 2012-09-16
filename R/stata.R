@@ -59,6 +59,77 @@ scale_fill_stata <- function(scheme="s2color", ...) {
 #' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
 
+
+theme_stata_s2color <- function(base_size = 11, base_family = "") {
+    ## Sizes
+    relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
+    names(relsz) <- names(stata_gsize)
+
+    stata_colors <- ggplotJrnoldPalettes$stata$colors
+    ## S2color
+    if (scheme %in% c("s2color", "s2mono")) {
+        if (scheme == "s2color") {
+            bgcolor <- stata_colors['ltbluishgray']
+            color_grid <- stata_colors['ltbluishgray']
+            color_grid_major <- stata_colors['ltbluishgray']
+            color_grid_minor <- stata_colors['gs5']
+            color_strip <- stata_colors['bluishgray']
+    ret <-
+        theme(# Basic
+              line = element_line(colour = "black", size = 0.5,
+              linetype = 1, lineend = "butt"),
+              rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
+              text = element_text(family = base_family, face = "plain",
+              colour = "black", size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+              lineheight = 1),
+              title = element_text(colour = stata_colors['dknavy']),
+              ## Axis
+              axis.text = element_text(),
+              axis.line = element_line(),
+              axis.text.x = element_text(vjust=0),
+              axis.text.y = element_text(angle=90, vjust=0),
+              ## I cannot figure out how to get ggplot to do 2 levels of ticks
+              axis.ticks = element_line(),
+              axis.title = element_text(colour="black", size=rel(relsz['medsmall'])),
+              axis.title.x = element_text(),
+              axis.title.y = element_text(angle = 90, vjust=0.1),
+              axis.ticks.length = grid::unit(stata_gsize['tiny'], "npc"),
+              axis.ticks.margin = grid::unit(stata_gsize['half_tiny'], "npc"),
+              legend.background = element_rect(linetype=1),
+              legend.margin = grid::unit(stata_margins$small / 100, "npc"),
+              legend.key = element_rect(fill="white", linetype=0),
+              legend.key.size = grid::unit(1.2, "lines"),
+              legend.key.height = NULL,
+              legend.key.width = NULL,
+              legend.text = element_text(size = rel(relsz['medsmall'])),
+              legend.text.align = NULL,
+              ## See textboxstyle leg_title
+              legend.title = element_text(size = rel(relsz['large']), hjust = 0),
+              legend.title.align = 0.5,
+              legend.position = "bottom",
+              legend.direction = NULL,
+              legend.justification = "center",
+              legend.box = "vertical",
+              ## plotregion
+              panel.background = element_rect(fill="white", colour="white", linetype=1),
+              panel.border = element_blank(),
+              panel.grid.major = element_line(colour = color_grid_major),
+              ## panel.grid.minor = element_line(colour = stata_colors['gs5'], size=0.25),
+              panel.grid.minor = element_blank(),
+              panel.grid.major.x = element_blank(),
+              panel.margin = grid::unit(0.25, "lines"),
+              ## textboxstyle bytitle      bytitle
+              strip.background = element_rect(fill = color_strip, linetype=0),
+              strip.text = element_text(size = rel(0.8)),
+              strip.text.x = element_text(vjust=0.5),
+              strip.text.y = element_text(angle = -90),
+              plot.background = element_rect(fill = bgcolor, colour=NA),
+              plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
+              plot.margin = grid::unit(stata_margins$medsmall / 100, "npc"),
+              complete=TRUE)
+
+}
+
 ##' ggplot theme based on Stata graph schemes
 ##'
 ##' Themes which replicate Stata graph schemes.
@@ -162,6 +233,7 @@ theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
                   panel.grid.minor = element_blank(),
                   panel.grid.major.x = element_blank(),
                   panel.margin = grid::unit(0.25, "lines"),
+                  # textboxstyle bytitle      bytitle
                   strip.background = element_rect(fill = color_strip, linetype=0),
                   strip.text = element_text(size = rel(0.8)),
                   strip.text.x = element_text(vjust=0.5),
