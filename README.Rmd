@@ -165,5 +165,3 @@ Color palette suggested by Stephen few in "Practical Rules fo Using Color in Cha
  + scale_colour_few())
 ```
 
-
-
