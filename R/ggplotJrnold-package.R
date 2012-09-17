@@ -5,4 +5,5 @@
 ##'
 ##' @name ggplotJrnold
 ##' @docType package
+##' @import colorspace grid proto
 NULL
