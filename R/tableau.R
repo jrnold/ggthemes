@@ -19,6 +19,7 @@
 ##' \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 ##'
 ##' @examples
+##' library(scales)
 ##' show_col(tableau_color_pal("tableau20")(20))
 ##' show_col(tableau_color_pal("tableau10")(10))
 ##' show_col(tableau_color_pal("tableau10medium")(10))

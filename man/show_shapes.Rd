@@ -12,9 +12,11 @@
   A quick and dirty way to show shapes for a palette.
 }
 \examples{
+library(scales)
 show_shapes(shape_pal()(5))
 }
 \seealso{
-  \code{\link{show_col}}, \code{\link{show_linetypes}}
+  \code{\link[scales]{show_col}},
+  \code{\link{show_linetypes}}
 }
 

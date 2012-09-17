@@ -8,6 +8,7 @@
   Economist color palette (discrete)
 }
 \examples{
+library(scales)
 show_col(economist_pal()(16))
 }
 

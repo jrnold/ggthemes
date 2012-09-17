@@ -5,6 +5,7 @@
 ##' @param fill \code{logical} Use the fill palette?
 ##' @export
 ##' @examples
+##' library(scales)
 ##' show_col(excel2003_pal()(8))
 ##' show_col(excel2003_pal(fill=TRUE)(8))
 excel2003_pal <- function(fill=FALSE) {
@@ -88,6 +89,7 @@ theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
 ##' and \code{\link{scale_colour_excel10}} for examples.
 ##' @export
 ##' @examples
+##' library(scales)
 ##' show_col(excel10_pal()(10))
 excel10_pal <- function() {
     manual_pal(ggplotJrnoldPalettes$excel$excel10)

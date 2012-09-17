@@ -12,6 +12,7 @@
   only.
 }
 \examples{
+library(scales)
 show_col(excel2003_pal()(8))
 show_col(excel2003_pal(fill=TRUE)(8))
 }

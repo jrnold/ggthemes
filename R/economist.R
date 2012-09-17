@@ -2,6 +2,7 @@
 ##'
 ##' @export
 ##' @examples
+##' library(scales)
 ##' show_col(economist_pal()(16))
 economist_pal <- function() {
     manual_pal(unname(ggplotJrnoldPalettes$economist$fg))

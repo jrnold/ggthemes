@@ -5,5 +5,5 @@
 ##'
 ##' @name ggplotJrnold
 ##' @docType package
-##' @import colorspace grid proto
+##' @import colorspace grid proto scales
 NULL
