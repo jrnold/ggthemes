@@ -1,12 +1,45 @@
 ##' Economist color palette (discrete)
 ##'
+##' Lines or points
+##'
+##' \itemize{
+##' \item 1 Dark blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/2012/09/articles/body/20120915_FNC063.png}.
+##' \item 2 Mid blue, Dark red \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_INC086.png}. (this appears to be an alternative)
+##' \item 2 Dark blue, Mid blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120818_AMC820.png}.
+##' \item 3 Dark blue, mid blue, light blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120901_FBC879.png}.
+##' \item 4 Dark blue, mid blue, light blue, dark red \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120901_FBC863.png}.
+##' \item 5 Dark blue, mid blue, light blue, dark red, gray \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/2012/08/articles/body/20120818_EUC807.png}.
+##' }
+##'
+##' Bar plots
+##' \itemize{
+##' \item 1 Dark blue
+##' \item 2 Dark blue, mid blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_USC091.png}
+##' \item 3 \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_IRC092.png}.
+##' \item 4
+##' \item 5 Dark blue, mid blue, blue gray, light blue, gray \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_USC091.png}.
+##' \item 9 \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_EUC094.png}.
+##' }
+##'
+##'
+##' @param stata Use the palette in the Stata economist scheme.
 ##' @export
 ##' @examples
 ##' library(scales)
 ##' show_col(economist_pal()(16))
-economist_pal <- function() {
-    manual_pal(unname(ggplotJrnoldPalettes$economist$fg))
+economist_pal <- function(stata=FALSE) {
+    if (stata) {
+        manual_pal(unname(ggplotJrnoldPalettes$economist$stata))
+    } else {
+        colors <- ggplotJrnoldPalettes$economist$fg
+        function(n) {
+            unname(colors[c("blue_dark", "blue_mid", "blue_light",
+                            "dark_red", "gray", "green_dark", "green_light",
+                            "red_dark", "red_light")])[seq_len(n)]
+        }
+    }
 }
+
 
 ##' Economist color scales
 ##'

@@ -1,6 +1,6 @@
 ##' Show shapes
 ##'
-##' A quick and dirty way to show shapes for a palette.
+##' A quick and dirty way to show shapes.
 ##'
 ##' @export
 ##' @param shapes A numeric or character vector of shapes. See
@@ -29,7 +29,7 @@ show_shapes <- function(shapes) {
 
 ##' Show linetypes
 ##'
-##' A quick and dirty way to show linetypes for a palette.
+##' A quick and dirty way to show linetypes.
 ##'
 ##' @export
 ##' @param linetypes A character vector of linetypes. See
