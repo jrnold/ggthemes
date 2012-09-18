@@ -49,20 +49,19 @@ ggplotJrnoldPalettes <- {
 
     ## Economist colors
     x$economist <- list()
-    x$economist$bg <- c(## Background
-                        ebg = rgb(198,211,223, max=255),
-                        edkbg = rgb(178,191,203, max=255))
     ## Colors from http://vis.stanford.edu/color-names/analyzer/
-    x$economist$fg <-
-        c(red_dark="#621e15", read_light="#e59076",
-          blue_mid="#128dcd", blue_dark="#083c52", blue_mid="#64c5f2",
-          green_light="#61afaf", green_dark="#0f7369", gray="#9c9da1",
-          # From color picker of png
-          blue_gray="#6794a7")
+    ## x$economist$fg <-
+    ##     c(red_dark="#621e15", read_light="#e59076",
+    ##       blue_mid="#128dcd", blue_dark="#083c52", blue_mid="#64c5f2",
+    ##       green_light="#61afaf", green_dark="#0f7369", gray="#9c9da1",
+    ##       # From color picker of png
+    ##       blue_gray="#6794a7")
 
+    ## Colors picked from pngs
     ## bg : d5e4eb
     ## bgdk : c3d6df
-
+    x$economist$bg <-
+        c(ebg = "#d5e4eb", edkbg = "#c3d6df")
     ## From png 20120818_AMC820.png
     ## blue_gray = 6794a7
     ## blue_dark = 014d64
@@ -71,7 +70,6 @@ ggplotJrnoldPalettes <- {
     ## blue_light = 7ad2f6
     ## green_dark = 00887d
     ## gray = adadad
-    ##
     ## 20120915_EUC094.png
     ## blue_light: 7bd3f6
     ## red_dark = 7c260b
@@ -80,24 +78,40 @@ ggplotJrnoldPalettes <- {
     ## Colors from Stata economist scheme
     ## 20120915_woc77.png
     ## brown a18376
-
+    x$economist$fg <-
+        c(blue_gray = "#6794a7",
+          blue_dark = "#014d64",
+          green_light = "#76c0c1",
+          blue_mid = "#01a2d9",
+          blue_light = "#7ad2f6",
+          green_dark = "#00887d",
+          gray = "#adadad",
+          blue_light = "#7bd3f6",
+          red_dark = "#7c260b",
+          red_light = "#ee8f71",
+          green_light = "#76c0c1",
+          brown = "#a18376")
     x$economist$stata <-
-        c(
-            edkblue = rgb(62,100,125, max=255),
-            emidblue = rgb(123,146,168, max=255),
-            eltblue = rgb(130,192,233, max=255),
-            emerald = rgb(45,109,102, max=255),
-            erose = rgb(191,161,156, max=255),
-            ebblue = rgb(0,139,188, max=255),
-            eltgreen = rgb(151,182,176, max=255),
-            stone = rgb(215,210,158, max=255),
-            navy = rgb(26,71,111, max=255),
-            maroon = rgb(144,53,59, max=255),
-            brown = rgb(156,136,71, max=255),
-            lavender = rgb(147,141,210, max=255),
-            teal = rgb(110,142,132, max=255),
-            cranberry=rgb(193, 5, 52, max=255),
-            khaki = rgb(202,194, 126, max=255))
+        list(bg=
+             c(## Background
+               ebg = rgb(198,211,223, max=255),
+               edkbg = rgb(178,191,203, max=255)),
+             fg=
+             c(edkblue = rgb(62,100,125, max=255),
+               emidblue = rgb(123,146,168, max=255),
+               eltblue = rgb(130,192,233, max=255),
+               emerald = rgb(45,109,102, max=255),
+               erose = rgb(191,161,156, max=255),
+               ebblue = rgb(0,139,188, max=255),
+               eltgreen = rgb(151,182,176, max=255),
+               stone = rgb(215,210,158, max=255),
+               navy = rgb(26,71,111, max=255),
+               maroon = rgb(144,53,59, max=255),
+               brown = rgb(156,136,71, max=255),
+               lavender = rgb(147,141,210, max=255),
+               teal = rgb(110,142,132, max=255),
+               cranberry=rgb(193, 5, 52, max=255),
+               khaki = rgb(202,194, 126, max=255)))
 
     ## Excel Colors
     x$excel <-

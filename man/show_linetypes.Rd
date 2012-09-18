@@ -9,7 +9,7 @@
   \code{\link{par}}.}
 }
 \description{
-  A quick and dirty way to show linetypes for a palette.
+  A quick and dirty way to show linetypes.
 }
 \examples{
 library(scales)

@@ -9,7 +9,7 @@
   See \code{\link{par}}.}
 }
 \description{
-  A quick and dirty way to show shapes for a palette.
+  A quick and dirty way to show shapes.
 }
 \examples{
 library(scales)
