@@ -4,13 +4,14 @@ FORTY_FIVE <- 45 * pi / 180
 slopes <- function(x, y, cull=FALSE) {
     dx <- diff(x)
     dy <- diff(y)
-    s <- dx / dy
-    attr(s, "lengths") <- sqrt(dx^2 + dy^2)
+    s <- dy / dx
+    w <- sqrt(dx^2 + dy^2)
     if (cull) {
         touse <- abs(s) > 0 & abs(s) < Inf
         s <- s[touse]
-        attr(s, "lengths") <- sqrt(dx^2 + dy^2)[touse]
+        w <- s[touse]
     }
+    attr(s, "lengths") <- w
     s
 }
 
