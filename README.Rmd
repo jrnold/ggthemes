@@ -74,8 +74,9 @@ magazine.
 
 ```{r}
 (qplot(carat, price, data=dsamp, colour=cut)
-                             + theme_economist()
-                             + scale_colour_economist())
+ + theme_economist()
+ + scale_colour_economist()
+ + ggtitle("Diamonds Are Forever"))
 ```
 
 ## Solarized theme

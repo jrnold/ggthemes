@@ -144,14 +144,21 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
 ##' ## Change axis lines to vertical
 ##' (q + theme_economist(horizontal=FALSE)
-##'  + scale_colour_economist() + coord_flip())
-theme_economist <- function(base_size = 12, base_family="",
+##'  + scale_colour_economist() + coord_flip()
+##'  + ggtitle("Diamonds Are Forever"))
+theme_economist <- function(base_size = 10, base_family="",
                             horizontal=TRUE, dkpanel=FALSE, stata=FALSE) {
     if (stata) {
         bgcolors <- ggplotJrnoldPalettes$economist$stata$bg
     } else {
         bgcolors <- ggplotJrnoldPalettes$economist$bg
     }
+    ## From measurements
+    ## Ticks = 1/32 in, with margin about 1.5/32
+    ## Title = 3/32 in (6 pt)
+    ## Legend Labels = 2.5/32 in (5pt)
+    ## Axis Labels = 2
+    ## Axis Titles and other text ~ 2
     ret <-
         theme(# Basic
               line = element_line(colour = "black", size = 0.5,
@@ -162,7 +169,7 @@ theme_economist <- function(base_size = 12, base_family="",
               colour = "black", size = base_size, hjust = 0.5, vjust = 0.5,
               angle = 0, lineheight = 0.9),
               ## Axis
-              axis.text = element_text(size = rel(0.8)),
+              axis.text = element_text(size = rel(1)),
               axis.line = element_line(size = rel(0.8)),
               axis.line.y = element_blank(),
               axis.text.x = element_text(vjust = 1),
@@ -170,19 +177,22 @@ theme_economist <- function(base_size = 12, base_family="",
               ## I cannot figure out how to get ggplot to do 2 levels of ticks
               axis.ticks = element_line(),
               axis.ticks.y = element_blank(),
+              axis.title = element_text(size = rel(1)),
               axis.title.x = element_text(),
               axis.title.y = element_text(angle = 90),
-              axis.ticks.length = unit(-0.2 , "cm"),
-              axis.ticks.margin = unit(0.6, "cm"),
+              # axis.ticks.length = unit(-1/32, "in"),
+              axis.ticks.length = unit(-base_size * 0.5 , "points"),
+              # axis.ticks.margin = unit(3/72, "in"),
+              axis.ticks.margin = unit(base_size * 1.25, "points"),
               legend.background = element_rect(linetype=0),
-              legend.margin = unit(0.2, "cm"),
+              legend.margin = unit(base_size * 1.5, "points"),
               legend.key = element_rect(linetype=0),
               legend.key.size = unit(1.2, "lines"),
               legend.key.height = NULL,
               legend.key.width = NULL,
-              legend.text = element_text(size = rel(0.8)),
+              legend.text = element_text(size = rel(1.25)),
               legend.text.align = NULL,
-              legend.title = element_text(size = rel(0.8),  hjust = 0),
+              legend.title = element_text(size = rel(1),  hjust = 0),
               legend.title.align = NULL,
               legend.position = "top",
               legend.direction = NULL,
@@ -191,7 +201,7 @@ theme_economist <- function(base_size = 12, base_family="",
               ## Economist only uses vertical lines
               panel.background = element_rect(linetype=0),
               panel.border = element_blank(),
-              panel.grid.major = element_line(colour = "white", size=rel(2)),
+              panel.grid.major = element_line(colour = "white", size=rel(1.75)),
               panel.grid.minor = element_blank(),
               panel.margin = unit(0.25, "lines"),
               strip.background = element_rect(fill = bgcolors['edkbg'],
@@ -200,7 +210,7 @@ theme_economist <- function(base_size = 12, base_family="",
               strip.text.x = element_text(),
               strip.text.y = element_text(angle = -90),
               plot.background = element_rect(fill = bgcolors['ebg'], colour=NA),
-              plot.title = element_text(size = rel(1.2), hjust=0),
+              plot.title = element_text(size = rel(1.5), hjust=0, face="bold"),
               plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
               complete = TRUE)
     if (horizontal) {
