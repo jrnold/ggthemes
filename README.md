@@ -59,7 +59,7 @@ Quantitative Information*.
     theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/2K83Y.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/grViW.png) 
 
 
 The Tufte minimal boxplot.
@@ -70,7 +70,7 @@ The Tufte minimal boxplot.
     geom_tufteboxplot())
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/460sG.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/KocF3.png) 
 
 
 ## Economist theme
@@ -84,7 +84,7 @@ magazine.
     scale_colour_economist())
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/Yorps.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/bluMM.png) 
 
 
 ## Solarized theme
@@ -99,7 +99,7 @@ The light theme.
     scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/bwI4L.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/IUbr8.png) 
 
 
 The dark theme.
@@ -110,7 +110,7 @@ The dark theme.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/Zz3DL.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/NoG4l.png) 
 
 
 ## Stata theme 
@@ -124,7 +124,7 @@ schemes in Stata.
     scale_colour_stata() + ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/ZU0oZ.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/fh3CJ.png) 
 
 
 ## Excel 2003 theme
@@ -138,7 +138,7 @@ and pies not included. Please never use this theme.
     scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/RJokH.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/tWy4J.png) 
 
 
 
@@ -147,7 +147,7 @@ and pies not included. Please never use this theme.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-10](http://i.imgur.com/Io0DB.png) 
+![plot of chunk unnamed-chunk-10](http://i.imgur.com/CJ63g.png) 
 
 
 ## Inverse Gray Theme
@@ -159,7 +159,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray())
 ```
 
-![plot of chunk unnamed-chunk-11](http://i.imgur.com/aauyt.png) 
+![plot of chunk unnamed-chunk-11](http://i.imgur.com/WjMpm.png) 
 
 
 
@@ -173,7 +173,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
     scale_colour_tableau())
 ```
 
-![plot of chunk unnamed-chunk-12](http://i.imgur.com/rNLDn.png) 
+![plot of chunk unnamed-chunk-12](http://i.imgur.com/StDfu.png) 
 
 
 
@@ -182,7 +182,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
     scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk unnamed-chunk-13](http://i.imgur.com/LLkK8.png) 
+![plot of chunk unnamed-chunk-13](http://i.imgur.com/90mQN.png) 
 
 
 ## Stephen Few's Practical Rules for Using Color ...
@@ -195,6 +195,6 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
     scale_colour_few())
 ```
 
-![plot of chunk unnamed-chunk-14](http://i.imgur.com/DHR6P.png) 
+![plot of chunk unnamed-chunk-14](http://i.imgur.com/S3nIr.png) 
 
 
