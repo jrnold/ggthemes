@@ -21,7 +21,6 @@ show_shapes <- function(shapes) {
          type="n", xlab="", ylab="", axes=FALSE)
     for (i in seq_len(ncol(shapes))) {
         for (j in seq_len(nrow(shapes))) {
-            print(c(i, j))
             points(i, j, pch=shapes[j, i])
         }
     }
