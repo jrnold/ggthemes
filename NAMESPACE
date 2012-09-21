@@ -1,3 +1,4 @@
+export(bank_slopes)
 export(circlefill_shape_pal)
 export(cleveland_shape_pal)
 export(economist_pal)
