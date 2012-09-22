@@ -22,22 +22,74 @@
 
 ##' Economist color palette (discrete)
 ##'
+##' The primary colors are blues, grays, and greens. Red is not
+##' included (early) in these palettes and should be used to indicate
+##' important data.
+##'
+##'
 ##' @param stata Use the palette in the Stata economist scheme.
+##' @param fill Use the fill palette.
+##'
 ##' @export
 ##' @examples
 ##' library(scales)
-##' show_col(economist_pal()(10))
+##' show_col(economist_pal()(6))
+##' ## fill palette
+##' show_col(economist_pal(fill=TRUE)(6))
 ##' ## RGB values from Stata's economist scheme
 ##' show_col(economist_pal(stata=TRUE)(16))
-economist_pal <- function(stata=FALSE) {
+economist_pal <- function(stata=FALSE, fill=TRUE) {
     if (stata) {
         manual_pal(unname(ggplotJrnoldPalettes$economist$stata$fg))
     } else {
         colors <- ggplotJrnoldPalettes$economist$fg
-        function(n) {
-            unname(colors[c("blue_dark", "blue_mid", "blue_light",
-                            "green_dark", "green_light",
-                            "red_dark", "red_light", "gray", "brown")])[seq_len(n)]
+        if (fill) {
+            function(n) {
+                if (n == 1) {
+                    i <- "blue_dark"
+                } else if (n == 2) {
+                    i <- c("blue_mid", "blue_dark")
+                } else if (n == 3) {
+                    i <- c("blue_gray", "blue_dark", "blue_mid")
+                } else if (n == 4) {
+                    i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
+                } else if (n %in% 5:6) {
+                    ## 20120901_woc904
+                    i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
+                           "green_light", "green_dark")
+                } else if (n == 7) {
+                    # 20120818_AMC820
+                    i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+                          "green_dark", "green_light", "gray")
+                } else if (n >= 8) {
+                    # 20120915_EUC094
+                    i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+                          "green_dark", "green_light", "red_dark", "red_light",
+                          "gray")
+                }
+                unname(colors[i][seq_len(n)])
+            }
+        } else {
+            function(n) {
+                if (n <= 3) {
+                    # 20120818_AMC20
+                    # 20120901_FBC897
+                    i <- c("blue_dark", "blue_mid", "blue_light")
+                } else if (n %in% 4:5) {
+                    # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
+                    i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
+                } else if (n == 6) {
+                    # 20120825_IRC829
+                    i <- c("green_light", "green_dark", "gray",
+                           "blue_gray", "blue_light", "blue_dark")
+                } else if (n > 6) {
+                    # 20120825_IRC829
+                    i <- c("green_light", "green_dark", "gray",
+                           "blue_gray", "blue_light", "blue_dark", "red_dark", "red_light",
+                           "brown")
+                }
+                unname(colors[i][seq_len(n)])
+            }
         }
     }
 }
@@ -92,14 +144,22 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
 ##' ## Change axis lines to vertical
 ##' (q + theme_economist(horizontal=FALSE)
-##'  + scale_colour_economist() + coord_flip())
-theme_economist <- function(base_size = 12, base_family="",
+##'  + scale_colour_economist() + coord_flip()
+##'  + ggtitle("Diamonds Are Forever"))
+theme_economist <- function(base_size = 10, base_family="",
                             horizontal=TRUE, dkpanel=FALSE, stata=FALSE) {
     if (stata) {
         bgcolors <- ggplotJrnoldPalettes$economist$stata$bg
     } else {
         bgcolors <- ggplotJrnoldPalettes$economist$bg
     }
+    ## From measurements
+    ## Ticks = 1/32 in, with margin about 1.5/32
+    ## Title = 3/32 in (6 pt)
+    ## Legend Labels = 2.5/32 in (5pt)
+    ## Axis Labels = 2
+    ## Axis Titles and other text ~ 2
+    ## Margins: Top/Bottom = 6/32, sides = 5/32
     ret <-
         theme(# Basic
               line = element_line(colour = "black", size = 0.5,
@@ -108,9 +168,9 @@ theme_economist <- function(base_size = 12, base_family="",
               colour = NA, size = 0.5, linetype = 1),
               text = element_text(family = base_family, face = "plain",
               colour = "black", size = base_size, hjust = 0.5, vjust = 0.5,
-              angle = 0, lineheight = 0.9),
+              angle = 0, lineheight = 1),
               ## Axis
-              axis.text = element_text(size = rel(0.8)),
+              axis.text = element_text(size = rel(1)),
               axis.line = element_line(size = rel(0.8)),
               axis.line.y = element_blank(),
               axis.text.x = element_text(vjust = 1),
@@ -118,39 +178,41 @@ theme_economist <- function(base_size = 12, base_family="",
               ## I cannot figure out how to get ggplot to do 2 levels of ticks
               axis.ticks = element_line(),
               axis.ticks.y = element_blank(),
+              axis.title = element_text(size = rel(1)),
               axis.title.x = element_text(),
               axis.title.y = element_text(angle = 90),
-              axis.ticks.length = unit(-0.2 , "cm"),
-              axis.ticks.margin = unit(0.6, "cm"),
+              # axis.ticks.length = unit(-1/32, "in"),
+              axis.ticks.length = unit(-base_size * 0.5 , "points"),
+              # axis.ticks.margin = unit(3/72, "in"),
+              axis.ticks.margin = unit(base_size * 1.25, "points"),
               legend.background = element_rect(linetype=0),
-              legend.margin = unit(0.2, "cm"),
+              legend.margin = unit(base_size * 1.5, "points"),
               legend.key = element_rect(linetype=0),
               legend.key.size = unit(1.2, "lines"),
               legend.key.height = NULL,
               legend.key.width = NULL,
-              legend.text = element_text(size = rel(0.8)),
+              legend.text = element_text(size = rel(1.25)),
               legend.text.align = NULL,
-              legend.title = element_text(size = rel(0.8), face = "bold",
-              hjust = 0),
+              legend.title = element_text(size = rel(1),  hjust = 0),
               legend.title.align = NULL,
-              legend.position = "right",
+              legend.position = "top",
               legend.direction = NULL,
               legend.justification = "center",
               ## legend.box = element_rect(fill = palette_economist['bgdk'], colour=NA, linetype=0),
               ## Economist only uses vertical lines
               panel.background = element_rect(linetype=0),
               panel.border = element_blank(),
-              panel.grid.major = element_line(colour = "white", size=rel(2)),
+              panel.grid.major = element_line(colour = "white", size=rel(1.75)),
               panel.grid.minor = element_blank(),
               panel.margin = unit(0.25, "lines"),
               strip.background = element_rect(fill = bgcolors['edkbg'],
               colour = NA, linetype=0),
-              strip.text = element_text(size = rel(0.8)),
+              strip.text = element_text(size = rel(1.25)),
               strip.text.x = element_text(),
               strip.text.y = element_text(angle = -90),
               plot.background = element_rect(fill = bgcolors['ebg'], colour=NA),
-              plot.title = element_text(size = rel(1.2), hjust=0),
-              plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
+              plot.title = element_text(size = rel(1.5), hjust=0, face="bold"),
+              plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
               complete = TRUE)
     if (horizontal) {
         ret <- ret + theme(panel.grid.major.x = element_blank())

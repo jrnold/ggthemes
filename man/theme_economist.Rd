@@ -2,7 +2,7 @@
 \alias{theme_economist}
 \title{ggplot color theme based on the Economist}
 \usage{
-  theme_economist(base_size = 12, base_family = "",
+  theme_economist(base_size = 10, base_family = "",
     horizontal = TRUE, dkpanel = FALSE, stata = FALSE)
 }
 \arguments{
@@ -32,11 +32,12 @@ q + theme_economist(stata=TRUE) + scale_colour_economist(stata=TRUE)
 q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
 ## Change axis lines to vertical
 (q + theme_economist(horizontal=FALSE)
- + scale_colour_economist() + coord_flip())
+ + scale_colour_economist() + coord_flip()
+ + ggtitle("Diamonds Are Forever"))
 }
 \seealso{
   Other themes: \code{\link{theme_excel2003}},
   \code{\link{theme_few}}, \code{\link{theme_igray}},
-  \code{\link{theme_solarized}}, \code{\link{theme_stata}}
+  \code{\link{theme_solarized}}
 }
 

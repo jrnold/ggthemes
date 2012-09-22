@@ -2,3 +2,5 @@
 roxygen
 README.*
 figure
+.Rhistory
+stata/
