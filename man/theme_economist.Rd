@@ -38,6 +38,6 @@ q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
 \seealso{
   Other themes: \code{\link{theme_excel2003}},
   \code{\link{theme_few}}, \code{\link{theme_igray}},
-  \code{\link{theme_solarized}}, \code{\link{theme_stata}}
+  \code{\link{theme_solarized}}
 }
 

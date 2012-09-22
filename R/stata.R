@@ -35,7 +35,7 @@ stata_pal <- function(scheme="s2color") {
 ##'
 ##' @inheritParams stata_pal
 ##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour scales
+##' @family colour scales stata
 ##' @rdname scale_stata
 ##' @export
 ##' @examples
@@ -60,285 +60,182 @@ scale_fill_stata <- function(scheme="s2color", ...) {
 #' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
 
-theme_stata_size <- function(base_size = 11, base_family = "") {
+theme_stata_base <- function(base_size = 11, base_family = "") {
     ## Sizes
     relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
     names(relsz) <- names(stata_gsize)
-    ret <-
-        theme(# Basic
-              line = element_line(size = 0.5, linetype = 1, lineend = "butt"),
-              rect = element_rect(size = 0.5, linetype = 1),
-              text = element_text(family = base_family, face = "plain",
-              size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-              lineheight = 1),
-              title = element_text(),
-              ## Axis
-              axis.text = element_text(),
-              axis.line = element_line(),
-              axis.text = element_text(size=rel(relsz['medsmall'])),
-              axis.text.x = element_text(vjust=1),
-              axis.text.y = element_text(angle=90, vjust=0.5),
-              ## I cannot figure out how to get ggplot to do 2 levels of ticks
-              axis.ticks = element_line(),
-              axis.title = element_text(size=rel(relsz['medsmall'])),
-              axis.title.x = element_text(),
-              axis.title.y = element_text(angle = 90, vjust=0),
-              # axis.ticks.length = stata_gsize$tiny,
-              # axis.ticks.margin = stata_gsize$half_tiny,
-              axis.ticks.length = unit((4/11) * base_size, "points"),
-              axis.ticks.margin = unit((2/11) * base_size, "points"),
-              legend.background = element_rect(linetype=1),
-              # legend.margin = unit(stata_margins$small / 100, "npc"),
-              legend.margin = unit(1.2 / 100, "npc"),
-              legend.key = element_rect(linetype=0),
-              legend.key.size = unit(1.2, "lines"),
-              legend.key.height = NULL,
-              legend.key.width = NULL,
-              legend.text = element_text(size = rel(relsz['medsmall'])),
-              legend.text.align = NULL,
-              ## See textboxstyle leg_title
-              legend.title = element_text(size = rel(relsz['large']), hjust = 0),
-              legend.title.align = 0.5,
-              legend.position = "bottom",
-              legend.direction = NULL,
-              legend.justification = "center",
-              legend.box = "vertical",
-              ## plotregion
-              panel.background = element_rect(),
-              panel.border = element_blank(),
-              panel.grid.major = element_line(),
-              panel.grid.minor = element_blank(),
-              panel.grid.major.x = element_blank(),
-              panel.margin = unit(0.25, "lines"),
-              ## textboxstyle bytitle      bytitle
-              strip.background = element_rect(linetype=0),
-              strip.text = element_text(size = rel(relsz['medlarge'])),
-              strip.text.x = element_text(vjust=0.5),
-              strip.text.y = element_text(angle = -90),
-              plot.background = element_rect(),
-              plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
-              plot.margin = unit(rep(stata_margins$medsmall / 100, 4), "npc"),
-              complete=TRUE)
+    theme(line = element_line(size = 0.5, linetype = 1, lineend = "butt", colour="black"),
+          rect = element_rect(size = 0.5, linetype = 1, fill="white", colour="black"),
+          text = element_text(family = base_family, face = "plain", colour="black",
+          size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+          lineheight = 1),
+          title = element_text(),
+          ## Axis
+          axis.line = element_line(),
+          axis.text = element_text(size=rel(relsz['medsmall'])),
+          axis.text.x = element_text(vjust=1),
+          axis.text.y = element_text(angle=90, vjust=0.5),
+          ## I cannot figure out how to get ggplot to do 2 levels of ticks
+          axis.ticks = element_line(),
+          axis.title = element_text(size=rel(relsz['medsmall'])),
+          axis.title.x = element_text(),
+          axis.title.y = element_text(angle = 90, vjust=0),
+                                        # axis.ticks.length = stata_gsize$tiny,
+                                        # axis.ticks.margin = stata_gsize$half_tiny,
+          axis.ticks.length = unit(4/11, "lines"),
+          axis.ticks.margin = unit(2/11, "lines"),
+          legend.background = element_rect(linetype=1),
+          legend.margin = unit(1.2 / 100, "npc"),
+          legend.key = element_rect(linetype=0),
+          legend.key.size = unit(1.2, "lines"),
+          legend.key.height = NULL,
+          legend.key.width = NULL,
+          legend.text = element_text(size = rel(relsz['medsmall'])),
+          legend.text.align = NULL,
+          ## See textboxstyle leg_title
+          legend.title = element_text(size = rel(relsz['large']), hjust = 0),
+          legend.title.align = 0.5,
+          legend.position = "bottom",
+          legend.direction = NULL,
+          legend.justification = "center",
+          legend.box = "vertical",
+          ## plotregion
+          panel.background = element_rect(),
+          panel.border = element_blank(),
+          panel.grid.major = element_line(),
+          panel.grid.minor = element_blank(),
+          panel.grid.major.x = element_blank(),
+          panel.margin = unit(0.25, "lines"),
+          ## textboxstyle bytitle      bytitle
+          strip.background = element_rect(linetype=0),
+          strip.text = element_text(size = rel(relsz['medlarge'])),
+          strip.text.x = element_text(vjust=0.5),
+          strip.text.y = element_text(angle = -90),
+          plot.background = element_rect(),
+          plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=1),
+          plot.margin = unit(rep(0.035, 4), "npc"),
+          complete=TRUE)
 }
 
 theme_stata_colors <- function(scheme="s2color") {
     stata_colors <- ggplotJrnoldPalettes$stata$colors
-    color_plot <- stata_colors['ltbluishgray']
-    color_bg <- "white"
-    color_fg <- "black"
-    color_grid <- stata_colors['ltbluishgray']
-    color_grid_major <- stata_colors['ltbluishgray']
-    color_grid_minor <- stata_colors['gs5']
-    color_strip <- stata_colors['bluishgray']
-    color_title <- stata_colors['dknavy']
+    if (scheme == "s2color") {
+        color_plot <- stata_colors['ltbluishgray']
+        color_bg <- "white"
+        color_fg <- "black"
+        color_grid <- stata_colors['ltbluishgray']
+        color_grid_major <- stata_colors['ltbluishgray']
+        fill_strip <- stata_colors['bluishgray']
+        color_strip <- NA
+        color_title <- stata_colors['dknavy']
+        color_border <- NA
+    } else if (scheme %in% c("s2mono", "s2manual", "sj")) {
+        color_plot <- stata_colors['gs15']
+        color_bg <- "white"
+        color_fg <- "black"
+        color_grid <- stata_colors['dimgray']
+        color_grid_major <- stata_colors['dimgray']
+        fill_strip <- stata_colors['gs13']
+        color_strip <- NA
+        color_title <- "black"
+        color_border <- NA
+    } else if (scheme == "s1color") {
+        color_plot <- "white"
+        color_bg <- "white"
+        color_fg <- "black"
+        color_grid <- stata_colors['gs14']
+        fill_strip <- stata_colors['ltkhaki']
+        color_strip <- "black"
+        color_title <- "black"
+        color_border <- "black"
+    } else if (scheme == "s1rcolor") {
+        color_plot <- "black"
+        color_bg <- "black"
+        color_fg <- "white"
+        color_grid <- stata_colors['gs5']
+        fill_strip <- stata_colors['maroon']
+        color_strip <- "white"
+        color_title <- "white"
+        color_border <- "white"
+    } else if (scheme %in% c("s1mono", "s1manual")) {
+        color_plot <- "white"
+        color_bg <- "white"
+        color_fg <- "black"
+        color_grid <- stata_colors['gs14']
+        fill_strip <- stata_colors['gs13']
+        color_strip <- "black"
+        color_title <- "black"
+        color_border <- "black"
+    }
     theme(line = element_line(colour = color_fg, linetype=1),
           rect = element_rect(fill = color_bg, colour = color_fg, linetype=1),
           text = element_text(colour = color_fg),
           title = element_text(colour = color_title),
           axis.title = element_text(colour=color_fg),
-          legend.key = element_rect(fill=color_bg, linetype=0),
-          panel.background = element_rect(fill=color_bg, colour=color_bg, linetype=1),
-          panel.grid.major = element_line(colour = color_grid_major),
-          strip.background = element_rect(fill = color_strip, linetype=0),
-          plot.background = element_rect(fill = color_plot, colour=NA))
+          axis.ticks.x = element_line(colour=color_fg),
+          axis.ticks.y = element_line(colour=color_fg),
+          axis.text.x = element_text(colour=color_fg),
+          axis.text.y = element_text(colour=color_fg),
+          legend.key = element_rect(fill=color_bg, colour=NA, linetype=0),
+          legend.background = element_rect(linetype=1),
+          panel.background = element_rect(fill=color_bg, colour=color_border, linetype=1),
+          panel.grid.major = element_line(colour = color_grid),
+          strip.background = element_rect(fill=fill_strip, colour=color_strip, linetype=1),
+          plot.background = element_rect(fill = color_plot))
 }
 
 ##' ggplot theme based on Stata graph schemes
 ##'
 ##' Themes which replicate Stata graph schemes.
 ##'
-##' @param scheme One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono"
+##' @param scheme One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono", "s2manual",
+##' "s1manual", or "sj"
 ##' @param base_size base font size
 ##' @param base_family base font family
 ##' @export
-##' @family themes
+##' @family themes stata
 ##'
-##' @note Stata graph schemes
-##' include what ggplot seperates into themes and scales, as well as
-##' defaults specific to different graph types (which ggplot does not
-##' support). The theme "s2color" corresponds to Stata schemes
-##' "s2color" and "s2gcolor"; "s2mono" corresponds to Stata schemes
-##' "s2mono", "s2gmanual", and "sj"; "s1rcolor" to "s1rcolor";
-##' "s1color" to "s1color"; "s1mono" to "s1mono" and "s1manual".
+##' @note Stata graph schemes include what ggplot seperates into
+##' themes and scales, as well as defaults specific to different graph
+##' types (which ggplot does not support). These themes should be used
+##' in conjunction with \code{\link{stata_colour_scale}}, see the examples.
+##'
 ##'
 ##' @references \url{http://www.stata.com/help.cgi?schemes}
 ##'
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ##' q1 <- (qplot(carat, price, data=dsamp, colour=clarity)
-##'        + ggtitle("Diamonds")
+##'        + ggtitle("Diamonds"))
 ##' q2 <- (qplot(carat, price, data=dsamp)
 ##'        + facet_wrap(~ clarity)
 ##'        + ggtitle("Diamonds"))
+##' q1mono <- (qplot(carat, price, shape=clarity, color=clarity,
+##'            data=dsamp)
+##'            + scale_shape_stata()
+##'            + ggtitle("Diamonds"))
 ##' ## s2color
 ##' (q1 + theme_stata() + scale_colour_stata("s2color"))
 ##' (q2 + theme_stata())
 ##' ## s2mono
-##' (q1 + theme_stata("s2mono") + scale_colour_stata("mono"))
+##' (q1mono + theme_stata("s2mono") + scale_colour_stata("mono"))
 ##' (q2 + theme_stata("s2mono"))
 ##' ## s1color
 ##' (q1 + theme_stata("s1color") + scale_colour_stata("s1color"))
 ##' (q2 + theme_stata("s1color"))
 ##' ## s1rcolor
 ##' (q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
-##' (q2 + theme_stata("s1rcolor"))
+##' (qplot(carat, price, colour="white", data=dsamp)
+##'  + facet_wrap(~ clarity)
+##'  + ggtitle("Diamonds"))
 ##' ## s1mono
-##' (q1 + theme_stata("s1mono") + scale_colour_stata("mono"))
+##' (q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
 ##' (q2 + theme_stata("s1mono"))
-theme_stata <- function(base_size = 11, base_family = "", scheme="s2color") {
+theme_stata <- function(scheme="s2color", base_size = 11, base_family = "") {
     ## Sizes
-    (theme_stata_size(base_size=base_size, base_family=base_family)
-     + theme_stata_colors(scheme))
+    (theme_stata_base(base_size=eval(base_size), base_family=base_family)
+     + theme_stata_colors(scheme=scheme))
 }
-
-## theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
-
-##     ## Sizes
-##     relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
-##     names(relsz) <- names(stata_gsize)
-
-##     stata_colors <- ggplotJrnoldPalettes$stata$colors
-##     ## S2color
-##     if (scheme %in% c("s2color", "s2mono")) {
-##         if (scheme == "s2color") {
-##             bgcolor <- stata_colors['ltbluishgray']
-##             color_grid <- stata_colors['ltbluishgray']
-##             color_grid_major <- stata_colors['ltbluishgray']
-##             color_grid_minor <- stata_colors['gs5']
-##             color_strip <- stata_colors['bluishgray']
-##         } else {  # scheme == s2mono
-##             bgcolor <- stata_colors['gs15']
-##             color_grid <- stata_colors['dimgray']
-##             color_grid_major <- stata_colors['dimgray']
-##             color_grid_minor <- stata_colors['gs5']
-##             color_strip <- stata_colors['gs13']
-##         }
-##         ret <-
-##             theme(# Basic
-##                   line = element_line(colour = "black", size = 0.5,
-##                   linetype = 1, lineend = "butt"),
-##                   rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
-##                   text = element_text(family = base_family, face = "plain",
-##                   colour = "black", size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-##                   lineheight = 1),
-##                   title = element_text(colour = stata_colors['dknavy']),
-##                   ## Axis
-##                   axis.text = element_text(),
-##                   axis.line = element_line(),
-##                   axis.text.x = element_text(vjust=0),
-##                   axis.text.y = element_text(angle=90, vjust=0),
-##                   ## I cannot figure out how to get ggplot to do 2 levels of ticks
-##                   axis.ticks = element_line(),
-##                   axis.title = element_text(colour="black", size=rel(relsz['medsmall'])),
-##                   axis.title.x = element_text(),
-##                   axis.title.y = element_text(angle = 90, vjust=0.1),
-##                   axis.ticks.length = grid::unit(stata_gsize['tiny'], "npc"),
-##                   axis.ticks.margin = grid::unit(stata_gsize['half_tiny'], "npc"),
-##                   legend.background = element_rect(linetype=1),
-##                   legend.margin = grid::unit(stata_margins$small / 100, "npc"),
-##                   legend.key = element_rect(fill="white", linetype=0),
-##                   legend.key.size = unit(1.2, "lines"),
-##                   legend.key.height = NULL,
-##                   legend.key.width = NULL,
-##                   legend.text = element_text(size = rel(relsz['medsmall'])),
-##                   legend.text.align = NULL,
-##                   # See textboxstyle leg_title
-##                   legend.title = element_text(size = rel(relsz['large']), hjust = 0),
-##                   legend.title.align = 0.5,
-##                   legend.position = "bottom",
-##                   legend.direction = NULL,
-##                   legend.justification = "center",
-##                   legend.box = "vertical",
-##                   ## plotregion
-##                   panel.background = element_rect(fill="white", colour="white", linetype=1),
-##                   panel.border = element_blank(),
-##                   panel.grid.major = element_line(colour = color_grid_major),
-##                   ## panel.grid.minor = element_line(colour = stata_colors['gs5'], size=0.25),
-##                   panel.grid.minor = element_blank(),
-##                   panel.grid.major.x = element_blank(),
-##                   panel.margin = grid::unit(0.25, "lines"),
-##                   # textboxstyle bytitle      bytitle
-##                   strip.background = element_rect(fill = color_strip, linetype=0),
-##                   strip.text = element_text(size = rel(0.8)),
-##                   strip.text.x = element_text(vjust=0.5),
-##                   strip.text.y = element_text(angle = -90),
-##                   plot.background = element_rect(fill = bgcolor, colour=NA),
-##                   plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
-##                   plot.margin = grid::unit(stata_margins$medsmall / 100, "npc"),
-##                   complete=TRUE)
-##     } else if (scheme %in% c("s1color", "s1rcolor", "s1mono")) {
-##         if (scheme == "s1color") {
-##             bgcolor <- "white"
-##             fgcolor <- "black"
-##             color_strip <- stata_colors['ltkhaki']
-##             color_grid <- stata_colors['gs14']
-##             color_grid <- stata_colors['gs5']
-##         } else if (scheme == "s1rcolor") {
-##             bgcolor <- "black"
-##             fgcolor <- "white"
-##             color_strip <- stata_colors['maroon']
-##             color_grid_major <- stata_colors['gs5']
-##             color_grid_minor <- stata_colors['gs8']
-##         } else { # scheme == "s1mono"
-##             bgcolor <- "white"
-##             fgcolor <- "black"
-##             color_strip <- stata_colors['gs13']
-##             color_grid <- stata_colors['gs14']
-##             color_grid <- stata_colors['gs5']
-##         }
-##         ret <-
-##             theme(# Basic
-##               line = element_line(colour = fgcolor, size = 0.5,
-##               linetype = 1, lineend = "butt"),
-##                   rect = element_rect(fill = bgcolor, colour = fgcolor, size = 0.5, linetype = 1),
-##                   text = element_text(family = base_family, face = "plain",
-##                   colour = fgcolor,
-##                   size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-##                   lineheight = 0.9),
-##                   ## Axis
-##                   axis.text = element_text(),
-##                   axis.line = element_line(),
-##                   axis.text.x = element_text(vjust=0),
-##                   axis.text.y = element_text(angle=90, vjust=0),
-##                   axis.ticks = element_line(),
-##                   axis.title = element_text(colour=fgcolor, size=rel(1.2)),
-##                   axis.title.x = element_text(),
-##                   axis.title.y = element_text(angle = 90, vjust=0.1),
-##                   axis.ticks.length = unit(0.30, "cm"),
-##                   axis.ticks.margin = unit(0.05, "cm"),
-##                   legend.background = element_rect(linetype=1),
-##                   legend.margin = unit(0.2, "cm"),
-##                   legend.key = element_rect(fill=bgcolor, linetype=0),
-##                   legend.key.size = unit(1.2, "lines"),
-##                   legend.key.height = NULL,
-##                   legend.key.width = NULL,
-##                   legend.text = element_text(size = rel(0.8)),
-##                   legend.text.align = NULL,
-##                   legend.title = element_text(size = rel(0.8), face = "bold", hjust = 0),
-##                   legend.title.align = 0.5,
-##                   legend.position = "bottom",
-##                   legend.direction = NULL,
-##                   legend.justification = "center",
-##                   legend.box = "vertical",
-##                   ## plotregion
-##                   panel.background = element_rect(fill=bgcolor, colour=bgcolor, linetype=1),
-##                   panel.border = element_rect(fill=NA, linetype=1, colour=fgcolor),
-##                   ## Sometimes stata uses lines, but not always
-##                   panel.grid.major = element_line(colour=stata_colors['gs14']),
-##                   panel.grid.major.x = element_blank(),
-##                   panel.grid.minor = element_blank(),
-##                   ## panel.grid.minor = element_line(colour=stata_colors['gs5']),
-##                   panel.margin = unit(0.25, "lines"),
-##                   strip.background = element_rect(linetype=1, fill=color_strip),
-##                   strip.text = element_text(size = rel(0.8)),
-##                   strip.text.x = element_text(vjust=0.5),
-##                   strip.text.y = element_text(angle = -90),
-##                   plot.background = element_rect(colour=NA),
-##                   plot.title = element_text(size = rel(2), hjust=0.5, vjust=0.5),
-##                   plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
-##                   complete=TRUE)
-##     }
-## }
 
 ##' Stata shape palette (discrete)
 ##'
@@ -354,7 +251,7 @@ stata_shape_pal <- function() {
                     'circle_hollow', 'diamond_hollow',
                     'square_hollow', 'triangle_hollow')
     values <- ggplotJrnoldPalettes$stata$shapes[shapenames]
-    manual_pal(unname(shapenames))
+    manual_pal(unname(values))
 }
 
 ##' Stata shape scale
@@ -363,6 +260,7 @@ stata_shape_pal <- function() {
 ##' specifically the one in scheme s1mono.
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
+##' @family shape scales stata
 ##' @export
 ##' @examples
 ##' dsmall <- diamonds[sample(nrow(diamonds), 100), ]
@@ -389,6 +287,7 @@ stata_linetype_pal <- function() {
 ##' Linetype scale based on the linepatterns used in Stata.
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
+##' @family linetype scales stata
 ##' @export
 ##' @examples
 ##' library(reshape2) # for melt
@@ -463,45 +362,45 @@ stata_gsize <-
 ## Line width styles ado/base/style/linewidth-*.style
 ## see stata help linewidth
 ## unsure of the scale. likely npc * 100
-stata_linewidth <-
-    c(medium  = 0.3,
-      medthick = 0.45,
-      medthin = 0.25,
-      none = 0,
-      thick = 0.8,
-      thin = 0.2,
-      vthick = 1.4,
-      thin = 0.15,
-      vvthick = 2.6,
-      vvthin = 0.01,
-      vvvthick = 4.2,
-      vvvthin = .000001)
+## stata_linewidth <-
+##     c(medium  = 0.3,
+##       medthick = 0.45,
+##       medthin = 0.25,
+##       none = 0,
+##       thick = 0.8,
+##       thin = 0.2,
+##       vthick = 1.4,
+##       thin = 0.15,
+##       vvthick = 2.6,
+##       vvthin = 0.01,
+##       vvvthick = 4.2,
+##       vvvthin = .000001)
 
 ## Stata margin styles
 ## Units are npc * 100
 ## Left, right, top, bottom
 ## ggplot margins go top, right, bottom, left.
 ## From ado/base/style/margin-*.style
-stata_margins <-
-    list(bargraph = c(3.5, 3.5, 3.5, 0),
-         bottom = c(0, 0, 0, 3),
-         ebargraph = c(1.5, 1.5, 1.5, 0),
-         esubhead = c(2.2, 2.2, 0, 4),
-         horiz_bargraph = c(0, 3.5, 3.5, 3.5),
-         large = c(8, 8, 8, 8),
-         left = c(3, 0, 0, 0),
-         medium = c(3.5, 3.5, 3.5, 3.5),
-         medlarge = c(5, 5, 5, 5),
-         medsmall = c(2.2, 2.2, 2.2, 2.2),
-         right = c(0, 3, 0, 0),
-         sides = c(3.5, 3.5, 0, 0),
-         small = rep(1.2, 4),
-         tiny = rep(0.3, 4),
-         top_bottom = c(0, 0, 3.5, 3.5),
-         top = c(0, 0, 3, 0),
-         vlarge = rep(12, 4),
-         vsmall = rep(0.6, 4),
-         zero = rep(0, 4))
+## stata_margins <-
+##     list(bargraph = c(3.5, 3.5, 3.5, 0),
+##          bottom = c(0, 0, 0, 3),
+##          ebargraph = c(1.5, 1.5, 1.5, 0),
+##          esubhead = c(2.2, 2.2, 0, 4),
+##          horiz_bargraph = c(0, 3.5, 3.5, 3.5),
+##          large = c(8, 8, 8, 8),
+##          left = c(3, 0, 0, 0),
+##          medium = c(3.5, 3.5, 3.5, 3.5),
+##          medlarge = c(5, 5, 5, 5),
+##          medsmall = c(2.2, 2.2, 2.2, 2.2),
+##          right = c(0, 3, 0, 0),
+##          sides = c(3.5, 3.5, 0, 0),
+##          small = rep(1.2, 4),
+##          tiny = rep(0.3, 4),
+##          top_bottom = c(0, 0, 3.5, 3.5),
+##          top = c(0, 0, 3, 0),
+##          vlarge = rep(12, 4),
+##          vsmall = rep(0.6, 4),
+##          zero = rep(0, 4))
 
 
 
