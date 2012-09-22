@@ -59,7 +59,6 @@ scale_fill_stata <- function(scheme="s2color", ...) {
 #' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
 
-
 theme_stata_s2color <- function(base_size = 11, base_family = "") {
     ## Sizes
     relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
@@ -74,6 +73,8 @@ theme_stata_s2color <- function(base_size = 11, base_family = "") {
             color_grid_major <- stata_colors['ltbluishgray']
             color_grid_minor <- stata_colors['gs5']
             color_strip <- stata_colors['bluishgray']
+        }
+    }
     ret <-
         theme(# Basic
               line = element_line(colour = "black", size = 0.5,
@@ -93,12 +94,12 @@ theme_stata_s2color <- function(base_size = 11, base_family = "") {
               axis.title = element_text(colour="black", size=rel(relsz['medsmall'])),
               axis.title.x = element_text(),
               axis.title.y = element_text(angle = 90, vjust=0.1),
-              axis.ticks.length = grid::unit(stata_gsize['tiny'], "npc"),
-              axis.ticks.margin = grid::unit(stata_gsize['half_tiny'], "npc"),
+              axis.ticks.length = unit(stata_gsize['tiny'], "npc"),
+              axis.ticks.margin = unit(stata_gsize['half_tiny'], "npc"),
               legend.background = element_rect(linetype=1),
               legend.margin = grid::unit(stata_margins$small / 100, "npc"),
               legend.key = element_rect(fill="white", linetype=0),
-              legend.key.size = grid::unit(1.2, "lines"),
+              legend.key.size = unit(1.2, "lines"),
               legend.key.height = NULL,
               legend.key.width = NULL,
               legend.text = element_text(size = rel(relsz['medsmall'])),
@@ -117,17 +118,16 @@ theme_stata_s2color <- function(base_size = 11, base_family = "") {
               ## panel.grid.minor = element_line(colour = stata_colors['gs5'], size=0.25),
               panel.grid.minor = element_blank(),
               panel.grid.major.x = element_blank(),
-              panel.margin = grid::unit(0.25, "lines"),
+              panel.margin = unit(0.25, "lines"),
               ## textboxstyle bytitle      bytitle
               strip.background = element_rect(fill = color_strip, linetype=0),
-              strip.text = element_text(size = rel(0.8)),
+              strip.text = element_text(size = rel(relsz['medlarge'])),
               strip.text.x = element_text(vjust=0.5),
               strip.text.y = element_text(angle = -90),
               plot.background = element_rect(fill = bgcolor, colour=NA),
               plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
-              plot.margin = grid::unit(stata_margins$medsmall / 100, "npc"),
+              plot.margin = unit(stata_margins$medsmall / 100, "npc"),
               complete=TRUE)
-
 }
 
 ##' ggplot theme based on Stata graph schemes
