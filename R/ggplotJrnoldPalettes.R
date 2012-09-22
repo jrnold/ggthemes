@@ -63,7 +63,7 @@ ggplotJrnoldPalettes <- {
     x$economist$bg <-
         c(ebg = "#d5e4eb", # Bluish gray
           edkbg = "#c3d6df", # Darker bluish-gray
-          red = "#ed111a", # Bright red rectangle and highlights)
+          red = "#ed111a") # Bright red rectangle and highlights)
     ## From png 20120818_AMC820.png
     ## blue_gray = 6794a7
     ## blue_dark = 014d64
