@@ -1,9 +1,9 @@
 ## altered from same function from ggplot2
-rd_aesthetics <- function(name, geom)
+rd_aesthetics <- function(name, geom) {
     aes <- ggplot2:::aesthetics(geom)
     paste("\\code{", name, "} ", "understands the following aesthetics (required aesthetics are in bold):\n\n",
-        "\\itemize{\n", paste("  \\item \\code{", aes, "}", collapse = "\n",
-            sep = ""), "\n}\n", sep = "")
+          "\\itemize{\n", paste("  \\item \\code{", aes, "}", collapse = "\n",
+                                sep = ""), "\n}\n", sep = "")
 }
 
 cpaste <- function(..., sep=", ", collapse=NULL, and=TRUE) {
