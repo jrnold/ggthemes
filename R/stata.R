@@ -228,8 +228,8 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' (q2 + theme_stata("s1color"))
 ##' ## s1rcolor
 ##' (q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
-##' (qplot(carat, price, colour="white", data=dsamp)
-##'  + facet_wrap(~ clarity)
+##' (ggplot(dsamp, aes(x=carat, y=price)) + geom_point(colour="white")
+##'  + facet_wrap(~ clarity) + scale_colour_stata("s1rcolor")
 ##'  + ggtitle("Diamonds"))
 ##' ## s1mono
 ##' (q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
