@@ -3,4 +3,4 @@ roxygen
 README.*
 figure
 .Rhistory
-stata
+stata/
