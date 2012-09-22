@@ -5,6 +5,7 @@
 ##' @param scheme \code{character}. One of "s2color", "s1rcolor", "s1color", or "mono".
 ##' @export
 ##' @examples
+##' library(scales)
 ##' show_col(stata_pal("s2color")(15))
 ##' show_col(stata_pal("s1rcolor")(15))
 ##' show_col(stata_pal("s1color")(15))
@@ -213,7 +214,7 @@ theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
                   legend.background = element_rect(linetype=1),
                   legend.margin = grid::unit(stata_margins$small / 100, "npc"),
                   legend.key = element_rect(fill="white", linetype=0),
-                  legend.key.size = grid::unit(1.2, "lines"),
+                  legend.key.size = unit(1.2, "lines"),
                   legend.key.height = NULL,
                   legend.key.width = NULL,
                   legend.text = element_text(size = rel(relsz['medsmall'])),
@@ -280,12 +281,12 @@ theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
                   axis.title = element_text(colour=fgcolor, size=rel(1.2)),
                   axis.title.x = element_text(),
                   axis.title.y = element_text(angle = 90, vjust=0.1),
-                  axis.ticks.length = grid::unit(0.30, "cm"),
-                  axis.ticks.margin = grid::unit(0.05, "cm"),
+                  axis.ticks.length = unit(0.30, "cm"),
+                  axis.ticks.margin = unit(0.05, "cm"),
                   legend.background = element_rect(linetype=1),
-                  legend.margin = grid::unit(0.2, "cm"),
+                  legend.margin = unit(0.2, "cm"),
                   legend.key = element_rect(fill=bgcolor, linetype=0),
-                  legend.key.size = grid::unit(1.2, "lines"),
+                  legend.key.size = unit(1.2, "lines"),
                   legend.key.height = NULL,
                   legend.key.width = NULL,
                   legend.text = element_text(size = rel(0.8)),
@@ -304,14 +305,14 @@ theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
                   panel.grid.major.x = element_blank(),
                   panel.grid.minor = element_blank(),
                   ## panel.grid.minor = element_line(colour=stata_colors['gs5']),
-                  panel.margin = grid::unit(0.25, "lines"),
+                  panel.margin = unit(0.25, "lines"),
                   strip.background = element_rect(linetype=1, fill=color_strip),
                   strip.text = element_text(size = rel(0.8)),
                   strip.text.x = element_text(vjust=0.5),
                   strip.text.y = element_text(angle = -90),
                   plot.background = element_rect(colour=NA),
                   plot.title = element_text(size = rel(2), hjust=0.5, vjust=0.5),
-                  plot.margin = grid::unit(c(1, 1, 0.5, 0.5), "lines"),
+                  plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
                   complete=TRUE)
     }
 }

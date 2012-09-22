@@ -9,6 +9,7 @@
   \url{http://vis.stanford.edu/color-names/analyzer/}.
 }
 \examples{
+library(scales)
 show_col(excel10_pal()(10))
 }
 \seealso{

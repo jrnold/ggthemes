@@ -1,6 +1,6 @@
 Package: ggplotJrnold
-Version: 0.0.1
-Date: 2012-9-6
+Version: 0.1.1
+Date: 2012-9-16
 Title: ggplot related stuff
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"))
@@ -8,17 +8,17 @@ Author: Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
 Maintainer: Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
 Depends:
     R (>= 2.15.0),
-    ggplot2 (>= 0.9.2),
-    scales (>= 0.2.2),
-    colorspace,
-    proto
+    ggplot2 (>= 0.9.2)
 Imports:
-    grid
+    colorspace,
+    grid,
+    proto,
+    scales (>= 0.2.2)
 Suggests:
-    reshape2,
-    plyr
+    plyr,
+    reshape2
 Description: Some extra themes and scales for ggplot.
-License: GPL-3
+License: GPL-2
 URL: http://github.com/jrnold/ggplot-jrnold
 BugReports: http://github.com/jrnold/ggplot-jrnold
 Collate:
@@ -36,3 +36,4 @@ Collate:
     'igray.R'
     'ggplotJrnoldPalettes.R'
     'few.R'
+    'ggplotJrnold-package.R'

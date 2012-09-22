@@ -22,14 +22,15 @@ cpaste <- function(..., sep=", ", collapse=NULL, and=TRUE) {
 
 ##' Show shapes
 ##'
-##' A quick and dirty way to show shapes for a palette.
+##' A quick and dirty way to show shapes.
 ##'
 ##' @export
 ##' @param shapes A numeric or character vector of shapes. See
 ##' \code{\link{par}}.
-##' @seealso \code{\link{show_col}}, \code{\link{show_linetypes}}
+##' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 ##'
 ##' @examples
+##' library(scales)
 ##' show_shapes(shape_pal()(5))
 show_shapes <- function(shapes) {
     n <- length(shapes)
@@ -50,14 +51,15 @@ show_shapes <- function(shapes) {
 
 ##' Show linetypes
 ##'
-##' A quick and dirty way to show linetypes for a palette.
+##' A quick and dirty way to show linetypes.
 ##'
 ##' @export
 ##' @param linetypes A character vector of linetypes. See
 ##' \code{\link{par}}.
-##' @seealso \code{\link{show_col}}, \code{\link{show_linetypes}}
+##' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 ##'
 ##' @examples
+##' library(scales)
 ##' show_shapes(linetype_pal()(3))
 show_linetypes <- function(linetypes) {
     n <- length(linetypes)

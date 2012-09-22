@@ -9,12 +9,14 @@
   See \code{\link{par}}.}
 }
 \description{
-  A quick and dirty way to show shapes for a palette.
+  A quick and dirty way to show shapes.
 }
 \examples{
+library(scales)
 show_shapes(shape_pal()(5))
 }
 \seealso{
-  \code{\link{show_col}}, \code{\link{show_linetypes}}
+  \code{\link[scales]{show_col}},
+  \code{\link{show_linetypes}}
 }
 
