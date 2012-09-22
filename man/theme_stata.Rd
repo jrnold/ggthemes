@@ -21,7 +21,7 @@
   themes and scales, as well as defaults specific to
   different graph types (which ggplot does not support).
   These themes should be used in conjunction with
-  \code{\link{stata_colour_scale}}, see the examples.
+  \code{\link{scale_colour_stata}}, see the examples.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -45,7 +45,9 @@ q1mono <- (qplot(carat, price, shape=clarity, color=clarity,
 (q2 + theme_stata("s1color"))
 ## s1rcolor
 (q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
-(q2 + theme_stata("s1rcolor"))
+(qplot(carat, price, colour="white", data=dsamp)
+ + facet_wrap(~ clarity)
+ + ggtitle("Diamonds"))
 ## s1mono
 (q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
 (q2 + theme_stata("s1mono"))

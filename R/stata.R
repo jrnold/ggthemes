@@ -198,7 +198,7 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' @note Stata graph schemes include what ggplot seperates into
 ##' themes and scales, as well as defaults specific to different graph
 ##' types (which ggplot does not support). These themes should be used
-##' in conjunction with \code{\link{stata_colour_scale}}, see the examples.
+##' in conjunction with \code{\link{scale_colour_stata}}, see the examples.
 ##'
 ##'
 ##' @references \url{http://www.stata.com/help.cgi?schemes}
