@@ -60,46 +60,37 @@ scale_fill_stata <- function(scheme="s2color", ...) {
 #' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
 
-theme_stata_s2color <- function(base_size = 11, base_family = "") {
+theme_stata_size <- function(base_size = 11, base_family = "") {
     ## Sizes
     relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
     names(relsz) <- names(stata_gsize)
-
-    stata_colors <- ggplotJrnoldPalettes$stata$colors
-    ## S2color
-    if (scheme %in% c("s2color", "s2mono")) {
-        if (scheme == "s2color") {
-            bgcolor <- stata_colors['ltbluishgray']
-            color_grid <- stata_colors['ltbluishgray']
-            color_grid_major <- stata_colors['ltbluishgray']
-            color_grid_minor <- stata_colors['gs5']
-            color_strip <- stata_colors['bluishgray']
-        }
-    }
     ret <-
         theme(# Basic
-              line = element_line(colour = "black", size = 0.5,
-              linetype = 1, lineend = "butt"),
-              rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
+              line = element_line(size = 0.5, linetype = 1, lineend = "butt"),
+              rect = element_rect(size = 0.5, linetype = 1),
               text = element_text(family = base_family, face = "plain",
-              colour = "black", size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+              size = base_size, hjust = 0.5, vjust = 1, angle = 0,
               lineheight = 1),
-              title = element_text(colour = stata_colors['dknavy']),
+              title = element_text(),
               ## Axis
               axis.text = element_text(),
               axis.line = element_line(),
-              axis.text.x = element_text(vjust=0),
-              axis.text.y = element_text(angle=90, vjust=0),
+              axis.text = element_text(size=rel(relsz['medsmall'])),
+              axis.text.x = element_text(vjust=1),
+              axis.text.y = element_text(angle=90, vjust=0.5),
               ## I cannot figure out how to get ggplot to do 2 levels of ticks
               axis.ticks = element_line(),
-              axis.title = element_text(colour="black", size=rel(relsz['medsmall'])),
+              axis.title = element_text(size=rel(relsz['medsmall'])),
               axis.title.x = element_text(),
-              axis.title.y = element_text(angle = 90, vjust=0.1),
-              axis.ticks.length = unit(stata_gsize['tiny'], "npc"),
-              axis.ticks.margin = unit(stata_gsize['half_tiny'], "npc"),
+              axis.title.y = element_text(angle = 90, vjust=0),
+              # axis.ticks.length = stata_gsize$tiny,
+              # axis.ticks.margin = stata_gsize$half_tiny,
+              axis.ticks.length = unit((4/11) * base_size, "points"),
+              axis.ticks.margin = unit((2/11) * base_size, "points"),
               legend.background = element_rect(linetype=1),
-              legend.margin = grid::unit(stata_margins$small / 100, "npc"),
-              legend.key = element_rect(fill="white", linetype=0),
+              # legend.margin = unit(stata_margins$small / 100, "npc"),
+              legend.margin = unit(1.2 / 100, "npc"),
+              legend.key = element_rect(linetype=0),
               legend.key.size = unit(1.2, "lines"),
               legend.key.height = NULL,
               legend.key.width = NULL,
@@ -113,22 +104,43 @@ theme_stata_s2color <- function(base_size = 11, base_family = "") {
               legend.justification = "center",
               legend.box = "vertical",
               ## plotregion
-              panel.background = element_rect(fill="white", colour="white", linetype=1),
+              panel.background = element_rect(),
               panel.border = element_blank(),
-              panel.grid.major = element_line(colour = color_grid_major),
-              ## panel.grid.minor = element_line(colour = stata_colors['gs5'], size=0.25),
+              panel.grid.major = element_line(),
               panel.grid.minor = element_blank(),
               panel.grid.major.x = element_blank(),
               panel.margin = unit(0.25, "lines"),
               ## textboxstyle bytitle      bytitle
-              strip.background = element_rect(fill = color_strip, linetype=0),
+              strip.background = element_rect(linetype=0),
               strip.text = element_text(size = rel(relsz['medlarge'])),
               strip.text.x = element_text(vjust=0.5),
               strip.text.y = element_text(angle = -90),
-              plot.background = element_rect(fill = bgcolor, colour=NA),
+              plot.background = element_rect(),
               plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
-              plot.margin = unit(stata_margins$medsmall / 100, "npc"),
+              plot.margin = unit(rep(stata_margins$medsmall / 100, 4), "npc"),
               complete=TRUE)
+}
+
+theme_stata_colors <- function(scheme="s2color") {
+    stata_colors <- ggplotJrnoldPalettes$stata$colors
+    color_plot <- stata_colors['ltbluishgray']
+    color_bg <- "white"
+    color_fg <- "black"
+    color_grid <- stata_colors['ltbluishgray']
+    color_grid_major <- stata_colors['ltbluishgray']
+    color_grid_minor <- stata_colors['gs5']
+    color_strip <- stata_colors['bluishgray']
+    color_title <- stata_colors['dknavy']
+    theme(line = element_line(colour = color_fg, linetype=1),
+          rect = element_rect(fill = color_bg, colour = color_fg, linetype=1),
+          text = element_text(colour = color_fg),
+          title = element_text(colour = color_title),
+          axis.title = element_text(colour=color_fg),
+          legend.key = element_rect(fill=color_bg, linetype=0),
+          panel.background = element_rect(fill=color_bg, colour=color_bg, linetype=1),
+          panel.grid.major = element_line(colour = color_grid_major),
+          strip.background = element_rect(fill = color_strip, linetype=0),
+          plot.background = element_rect(fill = color_plot, colour=NA))
 }
 
 ##' ggplot theme based on Stata graph schemes
@@ -168,154 +180,160 @@ theme_stata_s2color <- function(base_size = 11, base_family = "") {
 ##' (qplot(carat, price, data=dsamp, colour=clarity)
 ##' + theme_stata("s1mono")
 ##' + scale_colour_stata("mono"))
-theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
-
+theme_stata <- function(base_size = 11, base_family = "", scheme="s2color") {
     ## Sizes
-    relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
-    names(relsz) <- names(stata_gsize)
-
-    stata_colors <- ggplotJrnoldPalettes$stata$colors
-    ## S2color
-    if (scheme %in% c("s2color", "s2mono")) {
-        if (scheme == "s2color") {
-            bgcolor <- stata_colors['ltbluishgray']
-            color_grid <- stata_colors['ltbluishgray']
-            color_grid_major <- stata_colors['ltbluishgray']
-            color_grid_minor <- stata_colors['gs5']
-            color_strip <- stata_colors['bluishgray']
-        } else {  # scheme == s2mono
-            bgcolor <- stata_colors['gs15']
-            color_grid <- stata_colors['dimgray']
-            color_grid_major <- stata_colors['dimgray']
-            color_grid_minor <- stata_colors['gs5']
-            color_strip <- stata_colors['gs13']
-        }
-        ret <-
-            theme(# Basic
-                  line = element_line(colour = "black", size = 0.5,
-                  linetype = 1, lineend = "butt"),
-                  rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
-                  text = element_text(family = base_family, face = "plain",
-                  colour = "black", size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-                  lineheight = 1),
-                  title = element_text(colour = stata_colors['dknavy']),
-                  ## Axis
-                  axis.text = element_text(),
-                  axis.line = element_line(),
-                  axis.text.x = element_text(vjust=0),
-                  axis.text.y = element_text(angle=90, vjust=0),
-                  ## I cannot figure out how to get ggplot to do 2 levels of ticks
-                  axis.ticks = element_line(),
-                  axis.title = element_text(colour="black", size=rel(relsz['medsmall'])),
-                  axis.title.x = element_text(),
-                  axis.title.y = element_text(angle = 90, vjust=0.1),
-                  axis.ticks.length = grid::unit(stata_gsize['tiny'], "npc"),
-                  axis.ticks.margin = grid::unit(stata_gsize['half_tiny'], "npc"),
-                  legend.background = element_rect(linetype=1),
-                  legend.margin = grid::unit(stata_margins$small / 100, "npc"),
-                  legend.key = element_rect(fill="white", linetype=0),
-                  legend.key.size = unit(1.2, "lines"),
-                  legend.key.height = NULL,
-                  legend.key.width = NULL,
-                  legend.text = element_text(size = rel(relsz['medsmall'])),
-                  legend.text.align = NULL,
-                  # See textboxstyle leg_title
-                  legend.title = element_text(size = rel(relsz['large']), hjust = 0),
-                  legend.title.align = 0.5,
-                  legend.position = "bottom",
-                  legend.direction = NULL,
-                  legend.justification = "center",
-                  legend.box = "vertical",
-                  ## plotregion
-                  panel.background = element_rect(fill="white", colour="white", linetype=1),
-                  panel.border = element_blank(),
-                  panel.grid.major = element_line(colour = color_grid_major),
-                  ## panel.grid.minor = element_line(colour = stata_colors['gs5'], size=0.25),
-                  panel.grid.minor = element_blank(),
-                  panel.grid.major.x = element_blank(),
-                  panel.margin = grid::unit(0.25, "lines"),
-                  # textboxstyle bytitle      bytitle
-                  strip.background = element_rect(fill = color_strip, linetype=0),
-                  strip.text = element_text(size = rel(0.8)),
-                  strip.text.x = element_text(vjust=0.5),
-                  strip.text.y = element_text(angle = -90),
-                  plot.background = element_rect(fill = bgcolor, colour=NA),
-                  plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
-                  plot.margin = grid::unit(stata_margins$medsmall / 100, "npc"),
-                  complete=TRUE)
-    } else if (scheme %in% c("s1color", "s1rcolor", "s1mono")) {
-        if (scheme == "s1color") {
-            bgcolor <- "white"
-            fgcolor <- "black"
-            color_strip <- stata_colors['ltkhaki']
-            color_grid <- stata_colors['gs14']
-            color_grid <- stata_colors['gs5']
-        } else if (scheme == "s1rcolor") {
-            bgcolor <- "black"
-            fgcolor <- "white"
-            color_strip <- stata_colors['maroon']
-            color_grid_major <- stata_colors['gs5']
-            color_grid_minor <- stata_colors['gs8']
-        } else { # scheme == "s1mono"
-            bgcolor <- "white"
-            fgcolor <- "black"
-            color_strip <- stata_colors['gs13']
-            color_grid <- stata_colors['gs14']
-            color_grid <- stata_colors['gs5']
-        }
-        ret <-
-            theme(# Basic
-              line = element_line(colour = fgcolor, size = 0.5,
-              linetype = 1, lineend = "butt"),
-                  rect = element_rect(fill = bgcolor, colour = fgcolor, size = 0.5, linetype = 1),
-                  text = element_text(family = base_family, face = "plain",
-                  colour = fgcolor,
-                  size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-                  lineheight = 0.9),
-                  ## Axis
-                  axis.text = element_text(),
-                  axis.line = element_line(),
-                  axis.text.x = element_text(vjust=0),
-                  axis.text.y = element_text(angle=90, vjust=0),
-                  axis.ticks = element_line(),
-                  axis.title = element_text(colour=fgcolor, size=rel(1.2)),
-                  axis.title.x = element_text(),
-                  axis.title.y = element_text(angle = 90, vjust=0.1),
-                  axis.ticks.length = unit(0.30, "cm"),
-                  axis.ticks.margin = unit(0.05, "cm"),
-                  legend.background = element_rect(linetype=1),
-                  legend.margin = unit(0.2, "cm"),
-                  legend.key = element_rect(fill=bgcolor, linetype=0),
-                  legend.key.size = unit(1.2, "lines"),
-                  legend.key.height = NULL,
-                  legend.key.width = NULL,
-                  legend.text = element_text(size = rel(0.8)),
-                  legend.text.align = NULL,
-                  legend.title = element_text(size = rel(0.8), face = "bold", hjust = 0),
-                  legend.title.align = 0.5,
-                  legend.position = "bottom",
-                  legend.direction = NULL,
-                  legend.justification = "center",
-                  legend.box = "vertical",
-                  ## plotregion
-                  panel.background = element_rect(fill=bgcolor, colour=bgcolor, linetype=1),
-                  panel.border = element_rect(fill=NA, linetype=1, colour=fgcolor),
-                  ## Sometimes stata uses lines, but not always
-                  panel.grid.major = element_line(colour=stata_colors['gs14']),
-                  panel.grid.major.x = element_blank(),
-                  panel.grid.minor = element_blank(),
-                  ## panel.grid.minor = element_line(colour=stata_colors['gs5']),
-                  panel.margin = unit(0.25, "lines"),
-                  strip.background = element_rect(linetype=1, fill=color_strip),
-                  strip.text = element_text(size = rel(0.8)),
-                  strip.text.x = element_text(vjust=0.5),
-                  strip.text.y = element_text(angle = -90),
-                  plot.background = element_rect(colour=NA),
-                  plot.title = element_text(size = rel(2), hjust=0.5, vjust=0.5),
-                  plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
-                  complete=TRUE)
-    }
+    (theme_stata_size(base_size=base_size, base_family=base_family)
+     + theme_stata_colors(scheme))
 }
+
+## theme_stata <- function(scheme="s2color", base_size=11, base_family="") {
+
+##     ## Sizes
+##     relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
+##     names(relsz) <- names(stata_gsize)
+
+##     stata_colors <- ggplotJrnoldPalettes$stata$colors
+##     ## S2color
+##     if (scheme %in% c("s2color", "s2mono")) {
+##         if (scheme == "s2color") {
+##             bgcolor <- stata_colors['ltbluishgray']
+##             color_grid <- stata_colors['ltbluishgray']
+##             color_grid_major <- stata_colors['ltbluishgray']
+##             color_grid_minor <- stata_colors['gs5']
+##             color_strip <- stata_colors['bluishgray']
+##         } else {  # scheme == s2mono
+##             bgcolor <- stata_colors['gs15']
+##             color_grid <- stata_colors['dimgray']
+##             color_grid_major <- stata_colors['dimgray']
+##             color_grid_minor <- stata_colors['gs5']
+##             color_strip <- stata_colors['gs13']
+##         }
+##         ret <-
+##             theme(# Basic
+##                   line = element_line(colour = "black", size = 0.5,
+##                   linetype = 1, lineend = "butt"),
+##                   rect = element_rect(fill = "white", colour = "black", size = 0.5, linetype = 1),
+##                   text = element_text(family = base_family, face = "plain",
+##                   colour = "black", size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+##                   lineheight = 1),
+##                   title = element_text(colour = stata_colors['dknavy']),
+##                   ## Axis
+##                   axis.text = element_text(),
+##                   axis.line = element_line(),
+##                   axis.text.x = element_text(vjust=0),
+##                   axis.text.y = element_text(angle=90, vjust=0),
+##                   ## I cannot figure out how to get ggplot to do 2 levels of ticks
+##                   axis.ticks = element_line(),
+##                   axis.title = element_text(colour="black", size=rel(relsz['medsmall'])),
+##                   axis.title.x = element_text(),
+##                   axis.title.y = element_text(angle = 90, vjust=0.1),
+##                   axis.ticks.length = grid::unit(stata_gsize['tiny'], "npc"),
+##                   axis.ticks.margin = grid::unit(stata_gsize['half_tiny'], "npc"),
+##                   legend.background = element_rect(linetype=1),
+##                   legend.margin = grid::unit(stata_margins$small / 100, "npc"),
+##                   legend.key = element_rect(fill="white", linetype=0),
+##                   legend.key.size = unit(1.2, "lines"),
+##                   legend.key.height = NULL,
+##                   legend.key.width = NULL,
+##                   legend.text = element_text(size = rel(relsz['medsmall'])),
+##                   legend.text.align = NULL,
+##                   # See textboxstyle leg_title
+##                   legend.title = element_text(size = rel(relsz['large']), hjust = 0),
+##                   legend.title.align = 0.5,
+##                   legend.position = "bottom",
+##                   legend.direction = NULL,
+##                   legend.justification = "center",
+##                   legend.box = "vertical",
+##                   ## plotregion
+##                   panel.background = element_rect(fill="white", colour="white", linetype=1),
+##                   panel.border = element_blank(),
+##                   panel.grid.major = element_line(colour = color_grid_major),
+##                   ## panel.grid.minor = element_line(colour = stata_colors['gs5'], size=0.25),
+##                   panel.grid.minor = element_blank(),
+##                   panel.grid.major.x = element_blank(),
+##                   panel.margin = grid::unit(0.25, "lines"),
+##                   # textboxstyle bytitle      bytitle
+##                   strip.background = element_rect(fill = color_strip, linetype=0),
+##                   strip.text = element_text(size = rel(0.8)),
+##                   strip.text.x = element_text(vjust=0.5),
+##                   strip.text.y = element_text(angle = -90),
+##                   plot.background = element_rect(fill = bgcolor, colour=NA),
+##                   plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=0.5),
+##                   plot.margin = grid::unit(stata_margins$medsmall / 100, "npc"),
+##                   complete=TRUE)
+##     } else if (scheme %in% c("s1color", "s1rcolor", "s1mono")) {
+##         if (scheme == "s1color") {
+##             bgcolor <- "white"
+##             fgcolor <- "black"
+##             color_strip <- stata_colors['ltkhaki']
+##             color_grid <- stata_colors['gs14']
+##             color_grid <- stata_colors['gs5']
+##         } else if (scheme == "s1rcolor") {
+##             bgcolor <- "black"
+##             fgcolor <- "white"
+##             color_strip <- stata_colors['maroon']
+##             color_grid_major <- stata_colors['gs5']
+##             color_grid_minor <- stata_colors['gs8']
+##         } else { # scheme == "s1mono"
+##             bgcolor <- "white"
+##             fgcolor <- "black"
+##             color_strip <- stata_colors['gs13']
+##             color_grid <- stata_colors['gs14']
+##             color_grid <- stata_colors['gs5']
+##         }
+##         ret <-
+##             theme(# Basic
+##               line = element_line(colour = fgcolor, size = 0.5,
+##               linetype = 1, lineend = "butt"),
+##                   rect = element_rect(fill = bgcolor, colour = fgcolor, size = 0.5, linetype = 1),
+##                   text = element_text(family = base_family, face = "plain",
+##                   colour = fgcolor,
+##                   size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+##                   lineheight = 0.9),
+##                   ## Axis
+##                   axis.text = element_text(),
+##                   axis.line = element_line(),
+##                   axis.text.x = element_text(vjust=0),
+##                   axis.text.y = element_text(angle=90, vjust=0),
+##                   axis.ticks = element_line(),
+##                   axis.title = element_text(colour=fgcolor, size=rel(1.2)),
+##                   axis.title.x = element_text(),
+##                   axis.title.y = element_text(angle = 90, vjust=0.1),
+##                   axis.ticks.length = unit(0.30, "cm"),
+##                   axis.ticks.margin = unit(0.05, "cm"),
+##                   legend.background = element_rect(linetype=1),
+##                   legend.margin = unit(0.2, "cm"),
+##                   legend.key = element_rect(fill=bgcolor, linetype=0),
+##                   legend.key.size = unit(1.2, "lines"),
+##                   legend.key.height = NULL,
+##                   legend.key.width = NULL,
+##                   legend.text = element_text(size = rel(0.8)),
+##                   legend.text.align = NULL,
+##                   legend.title = element_text(size = rel(0.8), face = "bold", hjust = 0),
+##                   legend.title.align = 0.5,
+##                   legend.position = "bottom",
+##                   legend.direction = NULL,
+##                   legend.justification = "center",
+##                   legend.box = "vertical",
+##                   ## plotregion
+##                   panel.background = element_rect(fill=bgcolor, colour=bgcolor, linetype=1),
+##                   panel.border = element_rect(fill=NA, linetype=1, colour=fgcolor),
+##                   ## Sometimes stata uses lines, but not always
+##                   panel.grid.major = element_line(colour=stata_colors['gs14']),
+##                   panel.grid.major.x = element_blank(),
+##                   panel.grid.minor = element_blank(),
+##                   ## panel.grid.minor = element_line(colour=stata_colors['gs5']),
+##                   panel.margin = unit(0.25, "lines"),
+##                   strip.background = element_rect(linetype=1, fill=color_strip),
+##                   strip.text = element_text(size = rel(0.8)),
+##                   strip.text.x = element_text(vjust=0.5),
+##                   strip.text.y = element_text(angle = -90),
+##                   plot.background = element_rect(colour=NA),
+##                   plot.title = element_text(size = rel(2), hjust=0.5, vjust=0.5),
+##                   plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
+##                   complete=TRUE)
+##     }
+## }
 
 ##' Stata shape palette (discrete)
 ##'

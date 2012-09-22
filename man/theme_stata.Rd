@@ -2,8 +2,8 @@
 \alias{theme_stata}
 \title{ggplot theme based on Stata graph schemes}
 \usage{
-  theme_stata(scheme = "s2color", base_size = 12,
-    base_family = "")
+  theme_stata(base_size = 11, base_family = "",
+    scheme = "s2color")
 }
 \arguments{
   \item{scheme}{One of "s2color", "s2mono", "s1color",
