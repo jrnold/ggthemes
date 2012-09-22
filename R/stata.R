@@ -111,7 +111,7 @@ theme_stata_base <- function(base_size = 11, base_family = "") {
           strip.text = element_text(size = rel(relsz['medlarge'])),
           strip.text.x = element_text(vjust=0.5),
           strip.text.y = element_text(angle = -90),
-          plot.background = element_rect(),
+          plot.background = element_rect(linetype=0, colour=NA),
           plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=1),
           plot.margin = unit(rep(0.035, 4), "npc"),
           complete=TRUE)
@@ -166,7 +166,10 @@ theme_stata_colors <- function(scheme="s2color") {
         color_strip <- "black"
         color_title <- "black"
         color_border <- "black"
+    } else {
+        stop(sprintf("'%s' is not a valid value for scheme.", scheme))
     }
+
     theme(line = element_line(colour = color_fg, linetype=1),
           rect = element_rect(fill = color_bg, colour = color_fg, linetype=1),
           text = element_text(colour = color_fg),
