@@ -165,21 +165,26 @@ theme_stata_colors <- function(scheme="s2color") {
 ##'
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (qplot(carat, price, data=dsamp, colour=clarity)
-##'                + theme_stata()
-##'                + scale_colour_stata("s2color"))
-##' (qplot(carat, price, data=dsamp, colour=clarity)
-##'                + theme_stata("s1color")
-##'                + scale_colour_stata("s1color"))
-##' (qplot(carat, price, data=dsamp, colour=clarity)
-##'                + theme_stata("s1rcolor")
-##'                + scale_colour_stata("s1rcolor"))
-##' (qplot(carat, price, data=dsamp, colour=clarity)
-##' + theme_stata("s2mono")
-##' + scale_colour_stata("mono"))
-##' (qplot(carat, price, data=dsamp, colour=clarity)
-##' + theme_stata("s1mono")
-##' + scale_colour_stata("mono"))
+##' q1 <- (qplot(carat, price, data=dsamp, colour=clarity)
+##'        + ggtitle("Diamonds")
+##' q2 <- (qplot(carat, price, data=dsamp)
+##'        + facet_wrap(~ clarity)
+##'        + ggtitle("Diamonds"))
+##' ## s2color
+##' (q1 + theme_stata() + scale_colour_stata("s2color"))
+##' (q2 + theme_stata())
+##' ## s2mono
+##' (q1 + theme_stata("s2mono") + scale_colour_stata("mono"))
+##' (q2 + theme_stata("s2mono"))
+##' ## s1color
+##' (q1 + theme_stata("s1color") + scale_colour_stata("s1color"))
+##' (q2 + theme_stata("s1color"))
+##' ## s1rcolor
+##' (q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
+##' (q2 + theme_stata("s1rcolor"))
+##' ## s1mono
+##' (q1 + theme_stata("s1mono") + scale_colour_stata("mono"))
+##' (q2 + theme_stata("s1mono"))
 theme_stata <- function(base_size = 11, base_family = "", scheme="s2color") {
     ## Sizes
     (theme_stata_size(base_size=base_size, base_family=base_family)
