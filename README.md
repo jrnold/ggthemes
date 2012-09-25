@@ -165,7 +165,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 
 ## Tableau Scales
 
-Color, fill, and shape scales based on those used in the Tableau softare.
+Color, fill, and shape scales based on those used in the Tableau software.
 
 
 ```r
