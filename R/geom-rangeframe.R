@@ -50,7 +50,7 @@ GeomRangeFrame <- proto(ggplot2:::Geom, {
             }
 
             if(grepl("t", sides)) {
-                rugs$x_b <- segmentsGrob(
+                rugs$x_t <- segmentsGrob(
                     x0 = unit(fun_min(data$x), "native"), x1 = unit(fun_max(data$x), "native"),
                     y0 = unit(1, "npc"), y1 = unit(1, "npc"),
                     gp = gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size * .pt)
