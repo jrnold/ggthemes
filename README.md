@@ -1,4 +1,4 @@
-# ggplotJrnold
+# ggthemes
 
 Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 
@@ -35,7 +35,7 @@ It is probably easiest to use the **devtools** package to install the latest ver
 
 ```r
 library("devtools")
-install_github("ggplotJrnold", "jrnold")
+install_github("ggthemes", "jrnold")
 ```
 
 # Examples
@@ -43,7 +43,7 @@ install_github("ggplotJrnold", "jrnold")
 
 ```r
 library("ggplot2")
-library("ggplotJrnold")
+library("ggthemes")
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ```
 
