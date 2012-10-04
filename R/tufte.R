@@ -43,7 +43,7 @@
 ##' @export
 theme_tufte <- function(ticks=TRUE, base_family="serif", base_size=11) {
     ## TODO: start with theme_minimal
-    ret <- theme_bw() +
+    ret <- theme_bw(base_family=base_family, base_size=base_size) +
         theme(
             legend.background = element_blank(),
             legend.key        = element_blank(),
