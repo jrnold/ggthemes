@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 0.1.1
+Version: 1.0.0
 Date: 2012-9-16
 Title: ggplot related stuff
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
