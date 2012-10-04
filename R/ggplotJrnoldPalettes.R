@@ -51,7 +51,7 @@ ggplotJrnoldPalettes <- {
     x$economist <- list()
     ## Colors from http://vis.stanford.edu/color-names/analyzer/
     ## x$economist$fg <-
-    ##     c(red_dark="#621e15", read_light="#e59076",
+    ##     c(red_dark="#621e15", red_light="#e59076",
     ##       blue_mid="#128dcd", blue_dark="#083c52", blue_mid="#64c5f2",
     ##       green_light="#61afaf", green_dark="#0f7369", gray="#9c9da1",
     ##       # From color picker of png
@@ -63,7 +63,10 @@ ggplotJrnoldPalettes <- {
     x$economist$bg <-
         c(ebg = "#d5e4eb", # Bluish gray
           edkbg = "#c3d6df", # Darker bluish-gray
-          red = "#ed111a") # Bright red rectangle and highlights)
+          red = "#ed111a",
+          ltgray = "#ebebeb", # gray bg for graphics blog
+          dkgray = "#c9c9c9" # gray grid line for graphics blog
+          ) # Bright red rectangle and highlights)
     ## From png 20120818_AMC820.png
     ## blue_gray = 6794a7
     ## blue_dark = 014d64
