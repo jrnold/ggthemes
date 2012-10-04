@@ -60,7 +60,7 @@ scale_fill_stata <- function(scheme="s2color", ...) {
 #' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
 
-theme_stata_base <- function(base_size = 11, base_family = "") {
+theme_stata_base <- function(base_size = 11, base_family = "sans") {
     ## Sizes
     relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
     names(relsz) <- names(stata_gsize)
@@ -203,7 +203,6 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' types (which ggplot does not support). These themes should be used
 ##' in conjunction with \code{\link{scale_colour_stata}}, see the examples.
 ##'
-##'
 ##' @references \url{http://www.stata.com/help.cgi?schemes}
 ##'
 ##' @examples
@@ -234,7 +233,7 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' ## s1mono
 ##' (q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
 ##' (q2 + theme_stata("s1mono"))
-theme_stata <- function(scheme="s2color", base_size = 11, base_family = "") {
+theme_stata <- function(scheme="s2color", base_size = 11, base_family = "sans") {
     ## Sizes
     (theme_stata_base(base_size=eval(base_size), base_family=base_family)
      + theme_stata_colors(scheme=scheme))

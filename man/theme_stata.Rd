@@ -3,7 +3,7 @@
 \title{ggplot theme based on Stata graph schemes}
 \usage{
   theme_stata(scheme = "s2color", base_size = 11,
-    base_family = "")
+    base_family = "sans")
 }
 \arguments{
   \item{scheme}{One of "s2color", "s2mono", "s1color",

@@ -2,7 +2,7 @@
 \alias{theme_economist}
 \title{ggplot color theme based on the Economist}
 \usage{
-  theme_economist(base_size = 10, base_family = "",
+  theme_economist(base_size = 10, base_family = "sans",
     horizontal = TRUE, dkpanel = FALSE, stata = FALSE)
 }
 \arguments{

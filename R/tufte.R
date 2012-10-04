@@ -6,7 +6,16 @@
 ##' best in combination with \code{\link{geom_rug}} or
 ##' \code{\link{geom_rangeframe}}.
 ##'
+##' The default font family is set to "serif" as he uses serif fonts
+##' for labels in "The Visual Display of Quantitative Information".
+##' The serif font used by Tufte in his books is a variant of Bembo,
+##' while the sans serif font is Gill Sans. If these fonts are
+##' installed on your system, then you can use them with the package
+##' \bold{extrafont}.
+##'
 ##' @param ticks \code{logical} Show axis ticks?
+##' @param base_size Base font size
+##' @param base_family Base font family
 ##'
 ##' @references Tufte, Edward R. (2001) The Visual Display of
 ##' Quantitative Information, Chapter 6.
@@ -20,8 +29,19 @@
 ##' (ggplot(mtcars, aes(wt, mpg))
 ##'  + geom_point() + geom_rug()
 ##'  + theme_tufte(ticks=FALSE))
+##' \dontrun{
+##' ## Using the Bembo serif family
+##' library(extrafont)
+##' (ggplot(mtcars, aes(wt, mpg))
+##'  + geom_point() + geom_rangeframe()
+##'  + theme_tufte(base_family="BemboStd"))
+##' ## Using the Gill Sans sans serif family
+##' (ggplot(mtcars, aes(wt, mpg))
+##'  + geom_point() + geom_rangeframe()
+##'  + theme_tufte(base_family="GillSans"))
+##' }
 ##' @export
-theme_tufte <- function(ticks=TRUE) {
+theme_tufte <- function(ticks=TRUE, base_family="serif", base_size=11) {
     ## TODO: start with theme_minimal
     ret <- theme_bw() +
         theme(

@@ -166,7 +166,7 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' (q + theme_economist(base_family="Verdana")
 ##' + scale_colour_economist())
 ##' }
-theme_economist <- function(base_size = 10, base_family="",
+theme_economist <- function(base_size = 10, base_family="sans",
                             horizontal=TRUE, dkpanel=FALSE, stata=FALSE) {
     if (stata) {
         bgcolors <- ggplotJrnoldPalettes$economist$stata$bg
