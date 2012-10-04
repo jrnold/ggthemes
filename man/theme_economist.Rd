@@ -57,7 +57,7 @@ q + theme_economist(stata=TRUE) + scale_colour_economist(stata=TRUE)
 q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
 
 ## Darker plot region is best for for facets
-dkblue <- ggplotJrnoldPalettes$economist$fg['blue_dark']
+dkblue <- ggthemes_data$economist$fg['blue_dark']
 (ggplot(data=dsamp, aes(x=carat, y=price))
  + geom_point(colour=dkblue)
  + facet_grid(. ~ cut )
@@ -72,7 +72,7 @@ dkblue <- ggplotJrnoldPalettes$economist$fg['blue_dark']
  + scale_colour_economist())
 
 ## All white variant
-(q + theme_economist_white()
+(q + theme_economist_white(gray_bg=FALSE)
  + scale_colour_economist())
 \dontrun{
 ## The Economist uses ITC Officina Sans

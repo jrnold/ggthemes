@@ -26,7 +26,7 @@ stata_pal <- function(scheme="s2color") {
              mono = c("gs6", "gs10", "gs8", "gs4", "black", "gs14", "gs2", "gs7",
              "gs9", "gs11", "gs13", "gs15", "gs3", "gs12", "gs5") #black
              )
-    manual_pal(unname(ggplotJrnoldPalettes$stata$colors[colorlists[[scheme]]]))
+    manual_pal(unname(ggthemes_data$stata$colors[colorlists[[scheme]]]))
 }
 
 ##' Stata color scales
@@ -118,7 +118,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 }
 
 theme_stata_colors <- function(scheme="s2color") {
-    stata_colors <- ggplotJrnoldPalettes$stata$colors
+    stata_colors <- ggthemes_data$stata$colors
     if (scheme == "s2color") {
         color_plot <- stata_colors['ltbluishgray']
         color_bg <- "white"
@@ -252,7 +252,7 @@ stata_shape_pal <- function() {
                     'triangle', 'x', 'plus',
                     'circle_hollow', 'diamond_hollow',
                     'square_hollow', 'triangle_hollow')
-    values <- ggplotJrnoldPalettes$stata$shapes[shapenames]
+    values <- ggthemes_data$stata$shapes[shapenames]
     manual_pal(unname(values))
 }
 
@@ -278,7 +278,7 @@ scale_shape_stata <- function (...) {
 ##' @export
 ##' @seealso \code{\link{scale_linetype_stata}}
 stata_linetype_pal <- function() {
-    values <- ggplotJrnoldPalettes$stata$linetypes
+    values <- ggthemes_data$stata$linetypes
     function(n) {
         values[seq_len(n)]
     }

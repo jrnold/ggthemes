@@ -1,4 +1,4 @@
-Package: ggplotJrnold
+Package: ggthemes
 Version: 0.1.1
 Date: 2012-9-16
 Title: ggplot related stuff
@@ -18,7 +18,7 @@ Suggests:
     plyr,
     reshape2,
     extrafont
-Description: Some extra themes and scales for ggplot.
+Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
 URL: http://github.com/jrnold/ggplot-jrnold
 BugReports: http://github.com/jrnold/ggplot-jrnold

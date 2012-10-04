@@ -4,7 +4,7 @@
 ##' median, third quartile, and maximum.
 ##'
 ##' @section Aesthetics:
-##' \Sexpr[results=rd,stage=build]{ggplotJrnold:::rd_aesthetics("stat_fivenumber", ggplotJrnold:::StatFivenumber)}
+##' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("stat_fivenumber", ggthemes:::StatFivenumber)}
 ##'
 ##' @param na.rm If \code{FALSE} (the default), removes missing values with
 ##'    a warning.  If \code{TRUE} silently removes missing values.

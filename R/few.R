@@ -19,7 +19,7 @@
 ##' show_col(few_pal("light")(7))
 few_pal <- function(palette="medium") {
     ## The first value, gray, is used for non-data parts.
-    values <- ggplotJrnoldPalettes$few[[palette]]
+    values <- ggthemes_data$few[[palette]]
     n <- length(values)
     manual_pal(unname(values[2:n]))
 }
@@ -73,7 +73,7 @@ scale_fill_few <- function(palette="light", ...) {
 ##'
 ##' @seealso \code{\link{scale_colour_few}} for exaples.
 theme_few <- function(base_size=12, base_family="") {
-    colors <- ggplotJrnoldPalettes$few
+    colors <- ggthemes_data$few
     gray <- colors$medium['gray']
     black <- colors$dark['black']
     theme_bw(base_size=base_size, base_family=base_family) +

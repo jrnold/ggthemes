@@ -1,6 +1,6 @@
-##' Palette data for ggplotJrnold package
+##' Palette data for ggthemes package
 ##'
-##' List with the data used by palettes in the ggplotJrnold package.
+##' List with the data used by palettes in the ggthemes package.
 ##'
 ##' @docType data
 ##' @format A \code{list}.
@@ -43,7 +43,7 @@
 ##'
 ##'
 ##' @export
-ggplotJrnoldPalettes <- {
+ggthemes_data <- {
     ## x to hold value of list as I create it
     x <- list()
 

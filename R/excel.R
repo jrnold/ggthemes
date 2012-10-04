@@ -10,9 +10,9 @@
 ##' show_col(excel2003_pal(fill=TRUE)(8))
 excel2003_pal <- function(fill=FALSE) {
     if (!fill) {
-        manual_pal(ggplotJrnoldPalettes$excel$excel2003)
+        manual_pal(ggthemes_data$excel$excel2003)
     } else {
-        manual_pal(ggplotJrnoldPalettes$excel$excel2003fill)
+        manual_pal(ggthemes_data$excel$excel2003fill)
     }
 }
 
@@ -92,7 +92,7 @@ theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
 ##' library(scales)
 ##' show_col(excel10_pal()(10))
 excel10_pal <- function() {
-    manual_pal(ggplotJrnoldPalettes$excel$excel10)
+    manual_pal(ggthemes_data$excel$excel10)
 }
 
 ##' Excel color scales

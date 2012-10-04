@@ -51,8 +51,8 @@
   represented by a box with a line for the median.
 }
 \section{Aesthetics}{
-  \Sexpr[results=rd,stage=build]{ggplotJrnold:::rd_aesthetics("geom_tufteboxplot",
-  ggplotJrnold:::GeomTufteboxplot)}
+  \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("geom_tufteboxplot",
+  ggthemes:::GeomTufteboxplot)}
 }
 \examples{
 p <- ggplot(mtcars, aes(factor(cyl), mpg))

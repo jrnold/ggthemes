@@ -6,7 +6,7 @@
 ##' box with a line for the median.
 ##'
 ##' @section Aesthetics:
-##' \Sexpr[results=rd,stage=build]{ggplotJrnold:::rd_aesthetics("geom_tufteboxplot", ggplotJrnold:::GeomTufteboxplot)}
+##' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("geom_tufteboxplot", ggthemes:::GeomTufteboxplot)}
 ##'
 ##' @references Tufte, Edward R. (2001) The Visual Display of
 ##' Quantitative Information, Chapter 6.

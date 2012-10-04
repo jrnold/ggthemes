@@ -40,9 +40,9 @@
 ##' show_col(economist_pal(stata=TRUE)(16))
 economist_pal <- function(stata=FALSE, fill=TRUE) {
     if (stata) {
-        manual_pal(unname(ggplotJrnoldPalettes$economist$stata$fg))
+        manual_pal(unname(ggthemes_data$economist$stata$fg))
     } else {
-        colors <- ggplotJrnoldPalettes$economist$fg
+        colors <- ggthemes_data$economist$fg
         if (fill) {
             function(n) {
                 if (n == 1) {
@@ -171,7 +171,7 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
 ##'
 ##' ## Darker plot region is best for for facets
-##' dkblue <- ggplotJrnoldPalettes$economist$fg['blue_dark']
+##' dkblue <- ggthemes_data$economist$fg['blue_dark']
 ##' (ggplot(data=dsamp, aes(x=carat, y=price))
 ##'  + geom_point(colour=dkblue)
 ##'  + facet_grid(. ~ cut )
@@ -201,9 +201,9 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 theme_economist <- function(base_size = 10, base_family="sans",
                             horizontal=TRUE, dkpanel=FALSE, stata=FALSE) {
     if (stata) {
-        bgcolors <- ggplotJrnoldPalettes$economist$stata$bg
+        bgcolors <- ggthemes_data$economist$stata$bg
     } else {
-        bgcolors <- ggplotJrnoldPalettes$economist$bg
+        bgcolors <- ggthemes_data$economist$bg
     }
     ## From measurements
     ## Ticks = 1/32 in, with margin about 1.5/32
@@ -283,7 +283,7 @@ theme_economist <- function(base_size = 10, base_family="sans",
 theme_economist_white <- function(gray_bg=TRUE, base_family="sans",
                                   base_size=11, horizontal=TRUE) {
     if (gray_bg) {
-        bgcolor <- ggplotJrnoldPalettes$economist$bg['ltgray']
+        bgcolor <- ggthemes_data$economist$bg['ltgray']
     } else {
         bgcolor <- "white"
     }
@@ -291,7 +291,7 @@ theme_economist_white <- function(gray_bg=TRUE, base_family="sans",
      + theme(rect = element_rect(fill = bgcolor),
              plot.background = element_rect(fill = bgcolor),
              panel.background = element_rect(fill = "white"),
-             panel.grid.major = element_line(colour=ggplotJrnoldPalettes$economist$bg['dkgray']),
+             panel.grid.major = element_line(colour=ggthemes_data$economist$bg['dkgray']),
              strip.background = element_rect(fill = "white")))
 }
 

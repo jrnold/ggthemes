@@ -31,7 +31,7 @@
 ##' show_col(tableau_color_pal("greenorange12")(12))
 ##'
 tableau_color_pal <- function(palette = "tableau10") {
-    palettelist <- ggplotJrnoldPalettes$tableau$colors
+    palettelist <- ggthemes_data$tableau$colors
     if (! palette %in%
         c(names(palettelist), "tableau10", "tableau10light",
           "purplegray6", "bluered6", "greenorange6")) {
@@ -103,7 +103,7 @@ scale_color_tableau <- scale_colour_tableau
 ##' @examples
 ##' show_shapes(tableau_shape_pal()(5))
 tableau_shape_pal <- function(palette="default") {
-    manual_pal(unname(ggplotJrnoldPalettes$tableau$shapes[[palette]]))
+    manual_pal(unname(ggthemes_data$tableau$shapes[[palette]]))
 }
 
 ##' Tableau shape scales

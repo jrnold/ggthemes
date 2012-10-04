@@ -1,7 +1,7 @@
 \docType{data}
-\name{ggplotJrnoldPalettes}
-\alias{ggplotJrnoldPalettes}
-\title{Palette data for ggplotJrnold package}
+\name{ggthemes_data}
+\alias{ggthemes_data}
+\title{Palette data for ggthemes package}
 \format{A \code{list}.
 \describe{
 \item{economist}{
@@ -40,10 +40,10 @@ values from \url{http://vis.stanford.edu/color-names/analyzer/}.
 }
 }}
 \usage{
-  ggplotJrnoldPalettes
+  ggthemes_data
 }
 \description{
-  List with the data used by palettes in the ggplotJrnold
+  List with the data used by palettes in the ggthemes
   package.
 }
 \keyword{datasets}

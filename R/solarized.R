@@ -7,10 +7,10 @@
 ##' function comes from the CSS style example.
 solarized_rebase <- function(light=TRUE) {
     if (light) {
-        rebase <- ggplotJrnoldPalettes$solarized$base[c(paste('base', 3:0, sep=''),
+        rebase <- ggthemes_data$solarized$base[c(paste('base', 3:0, sep=''),
                                                       paste('base0', 0:3, sep=''))]
     } else {
-        rebase <- ggplotJrnoldPalettes$solarized$base[c(paste('base0', 3:0, sep=''),
+        rebase <- ggthemes_data$solarized$base[c(paste('base0', 3:0, sep=''),
                                                       paste('base', 0:3, sep=''))]
     }
     names(rebase) <- paste('rebase', c(paste('0', 3:0, sep=''), 0:3), sep='')
@@ -34,10 +34,10 @@ solarized_rebase <- function(light=TRUE) {
 ##' show_col(solarized_pal("red")(4))
 solarized_pal <- function(accent="blue") {
     best_colors <- function(color, n=1) {
-        allcolors <- names(ggplotJrnoldPalettes$solarized$accents)
+        allcolors <- names(ggthemes_data$solarized$accents)
         othercolors <- setdiff(allcolors, color)
-        solarized <- as(as(hex2RGB(ggplotJrnoldPalettes$solarized$accents), "LAB")@coords, "matrix")
-        rownames(solarized) <- names(ggplotJrnoldPalettes$solarized$accents)
+        solarized <- as(as(hex2RGB(ggthemes_data$solarized$accents), "LAB")@coords, "matrix")
+        rownames(solarized) <- names(ggthemes_data$solarized$accents)
         solarized_dist <- as.matrix(dist(solarized, method="euclidean"))
         total_dist <- function(i) {
             sum(solarized_dist[i, i][lower.tri(diag(length(i)))])
@@ -52,7 +52,7 @@ solarized_pal <- function(accent="blue") {
             maxdist <- which.max(apply(combinations, 2, function(x) total_dist(c(color, x))))
             colorlist <- c(color, combinations[ , maxdist])
         }
-        unname(ggplotJrnoldPalettes$solarized$accents[colorlist])
+        unname(ggthemes_data$solarized$accents[colorlist])
     }
     function(n) {
         best_colors(accent, n)
