@@ -125,6 +125,10 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##'
 ##' Style plots similar to those in The Economist.
 ##'
+##' The Economist uses "ITC Officina Sans" as its font for graphs. If
+##' you have access to this font, you can use it with the
+##' \bold{extrafont} package. "Verdana" is a good substitute.
+##'
 ##' @param base_size base font size
 ##' @param base_family base font family
 ##' @param horizontal \code{logical}. Horizontal axis lines?
@@ -133,6 +137,13 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' economist scheme.
 ##' @export
 ##' @family themes
+##'
+##' @references
+##' \itemize{
+##' \item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
+##' \item \url{http://www.economist.com/help/about-us}
+##' }
+##'
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ##' q <- qplot(carat, price, data=dsamp, colour=clarity)
@@ -146,6 +157,15 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' (q + theme_economist(horizontal=FALSE)
 ##'  + scale_colour_economist() + coord_flip()
 ##'  + ggtitle("Diamonds Are Forever"))
+##' \dontrun{
+##' ## The Economist uses ITC Officina Sans
+##' library(extrafont)
+##' (q + theme_economist(base_family="ITC Officina Sans")
+##' + scale_colour_economist())
+##' ## Verdana is a widely available substitute
+##' (q + theme_economist(base_family="Verdana")
+##' + scale_colour_economist())
+##' }
 theme_economist <- function(base_size = 10, base_family="",
                             horizontal=TRUE, dkpanel=FALSE, stata=FALSE) {
     if (stata) {

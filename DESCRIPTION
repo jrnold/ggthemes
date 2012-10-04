@@ -16,7 +16,8 @@ Imports:
     scales (>= 0.2.2)
 Suggests:
     plyr,
-    reshape2
+    reshape2,
+    extrafont
 Description: Some extra themes and scales for ggplot.
 License: GPL-2
 URL: http://github.com/jrnold/ggplot-jrnold
