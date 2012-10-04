@@ -35,6 +35,6 @@ Collate:
     'utils.R'
     'tableau.R'
     'igray.R'
-    'ggplotJrnoldPalettes.R'
     'few.R'
-    'ggplotJrnold-package.R'
+    'ggthemes-data.R'
+    'ggthemes-package.R'
