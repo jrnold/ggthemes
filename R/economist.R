@@ -123,7 +123,14 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 
 ##' ggplot color theme based on the Economist
 ##'
-##' Style plots similar to those in The Economist.
+##' Style plots similar to those in \emph{The Economist}.
+##'
+##' \code{theme_economist} implements the standard bluish-gray
+##' background theme in the print \emph{The Economist} and
+##' \href{http://economist.com}{economist.com}.
+##' \code{theme_economist_white} implements a variant with a while
+##' panel and light gray (or white) background used by \emph{The Economist}
+##' blog "Graphic Detail".
 ##'
 ##' The Economist uses "ITC Officina Sans" as its font for graphs. If
 ##' you have access to this font, you can use it with the
@@ -134,7 +141,9 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' @param horizontal \code{logical}. Horizontal axis lines?
 ##' @param dkpanel \code{logical} Darker background for panel region?
 ##' @param stata \code{logical} Use RGB values from Stata's
-##' economist scheme.
+##' ##' economist scheme.
+##' @param gray_bg For the white
+##'
 ##' @export
 ##' @family themes
 ##'
@@ -144,24 +153,47 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' \item \url{http://www.economist.com/help/about-us}
 ##' }
 ##'
+##' @seealso \code{\link[latticeExtra]{theEconomist.theme}} for an Economist
+##' theme for lattice plots.
+##'
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' q <- qplot(carat, price, data=dsamp, colour=clarity)
+##' q <- (qplot(carat, price, data=dsamp, colour=clarity)
+##'       + ggtitle("Diamonds Are Forever"))
+##'
 ##' ## Standard
 ##' q + theme_economist() + scale_colour_economist()
+##'
 ##' ## Stata colors
 ##' q + theme_economist(stata=TRUE) + scale_colour_economist(stata=TRUE)
+##'
 ##' ## Darker plot region
 ##' q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
-##' ## Change axis lines to vertical
+##'
+##' ## Darker plot region is best for for facets
+##' dkblue <- ggplotJrnoldPalettes$economist$fg['blue_dark']
+##' (ggplot(data=dsamp, aes(x=carat, y=price))
+##'  + geom_point(colour=dkblue)
+##'  + facet_grid(. ~ cut )
+##'  + theme_economist(dkpanel=TRUE))
+##'
+##' ##' ## Change axis lines to vertical
 ##' (q + theme_economist(horizontal=FALSE)
-##'  + scale_colour_economist() + coord_flip()
-##'  + ggtitle("Diamonds Are Forever"))
+##'  + scale_colour_economist() + coord_flip())
+##'
+##' ## White panel/light gray background
+##' (q + theme_economist_white()
+##'  + scale_colour_economist())
+##'
+##' ## All white variant
+##' (q + theme_economist_white(gray_bg=FALSE)
+##'  + scale_colour_economist())
 ##' \dontrun{
 ##' ## The Economist uses ITC Officina Sans
 ##' library(extrafont)
 ##' (q + theme_economist(base_family="ITC Officina Sans")
 ##' + scale_colour_economist())
+##'
 ##' ## Verdana is a widely available substitute
 ##' (q + theme_economist(base_family="Verdana")
 ##' + scale_colour_economist())
@@ -225,7 +257,7 @@ theme_economist <- function(base_size = 10, base_family="sans",
               panel.grid.major = element_line(colour = "white", size=rel(1.75)),
               panel.grid.minor = element_blank(),
               panel.margin = unit(0.25, "lines"),
-              strip.background = element_rect(fill = bgcolors['edkbg'],
+              strip.background = element_rect(fill = bgcolors['ebg'],
               colour = NA, linetype=0),
               strip.text = element_text(size = rel(1.25)),
               strip.text.x = element_text(),
@@ -240,12 +272,14 @@ theme_economist <- function(base_size = 10, base_family="sans",
         ret <- ret + theme(panel.grid.major.y = element_blank())
     }
     if (dkpanel==TRUE) {
-        ret <- ret + theme(panel.background=element_rect(fill = bgcolors['edkbg']))
+        ret <- ret + theme(panel.background=element_rect(fill = bgcolors['edkbg']),
+                           strip.background=element_rect(fill = bgcolors['edkbg']))
     }
     ret
 }
 
-## White with gray background version
+##' @rdname theme_economist
+##' @export
 theme_economist_white <- function(gray_bg=TRUE, base_family="sans",
                                   base_size=11, horizontal=TRUE) {
     if (gray_bg) {
@@ -258,11 +292,8 @@ theme_economist_white <- function(gray_bg=TRUE, base_family="sans",
              plot.background = element_rect(fill = bgcolor),
              panel.background = element_rect(fill = "white"),
              panel.grid.major = element_line(colour=ggplotJrnoldPalettes$economist$bg['dkgray']),
-             strip.background = element_rect(fill = bgcolor)))
+             strip.background = element_rect(fill = "white")))
 }
-## TODO:
-## - white background http://junkcharts.typepad.com/.shared/image.html?/photos/uncategorized/2008/04/18/econ_anglosaxon.gif
-## - white and gray http://www.economist.com/blogs/graphicdetail/2012/09/daily-chart-3
 
 ## Palette
 ## 3 color http://www.economist.com/blogs/graphicdetail/2012/08/daily-chart-olympics-4 (blue, red, lt red)
