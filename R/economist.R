@@ -244,6 +244,22 @@ theme_economist <- function(base_size = 10, base_family="sans",
     }
     ret
 }
+
+## White with gray background version
+theme_economist_white <- function(gray_bg=TRUE, base_family="sans",
+                                  base_size=11, horizontal=TRUE) {
+    if (gray_bg) {
+        bgcolor <- ggplotJrnoldPalettes$economist$bg['ltgray']
+    } else {
+        bgcolor <- "white"
+    }
+    (theme_economist(base_family=base_family, base_size=base_size, horizontal=horizontal)
+     + theme(rect = element_rect(fill = bgcolor),
+             plot.background = element_rect(fill = bgcolor),
+             panel.background = element_rect(fill = "white"),
+             panel.grid.major = element_line(colour=ggplotJrnoldPalettes$economist$bg['dkgray']),
+             strip.background = element_rect(fill = bgcolor)))
+}
 ## TODO:
 ## - white background http://junkcharts.typepad.com/.shared/image.html?/photos/uncategorized/2008/04/18/econ_anglosaxon.gif
 ## - white and gray http://www.economist.com/blogs/graphicdetail/2012/09/daily-chart-3
