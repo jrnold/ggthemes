@@ -75,8 +75,10 @@ The Tufte minimal boxplot.
 
 ## Economist theme
 
-A theme that approximates the style of plots in The Economist
-magazine.
+A theme that approximates the style of plots in *The Economist*
+magazine. This only approximates the style of *The Economist*, because
+the y-axis labels are on the left instead of the right, something which ggplot
+does not currently allow. 
 
 
 ```r
