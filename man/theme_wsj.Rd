@@ -2,14 +2,15 @@
 \alias{theme_wsj}
 \title{Wall Street Journal theme}
 \usage{
-  theme_wsj(base_size = 12, bgcolor = "brown",
-    base_family = "sans", title_family = "serif")
+  theme_wsj(base_size = 12, color = "gray",
+    base_family = "sans", title_family = "Courier")
 }
 \arguments{
   \item{base_size}{Base font size.}
 
-  \item{bgcolor}{One of \code{"brown", "gray", "green",
-  "blue"}. The background color of the plot.}
+  \item{color}{The background color of plot. One of
+  \code{"brown", "gray", "green", "blue"}, the names of
+  values in \code{ggthemes_data$wsj$bg}.}
 
   \item{title_family}{Plot title font family.}
 
@@ -33,5 +34,8 @@
 \examples{
 (qplot(hp, mpg, data=mtcars, geom="point")
  + theme_wsj())
+## Use a gray background instead
+(qplot(hp, mpg, data=mtcars, geom="point")
+ + theme_wsj(color="brown"))
 }
 

@@ -61,8 +61,8 @@ theme_base0 <- function(base_size=12, base_family="") {
             legend.justification = "center",
             legend.box = NULL,
             ## Must have colour=NA or covers the plot
-            panel.background = element_rect(colour = NA),
-            panel.border = element_rect(),
+            panel.background = element_rect(),
+            panel.border = element_rect(fill=NA),
             panel.margin = unit(0.25, "lines"),
             panel.grid = element_line(),
             panel.grid.major = element_line(),

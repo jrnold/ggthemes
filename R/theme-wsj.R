@@ -13,22 +13,25 @@
 ##' wiki} for suitable palettes.
 ##'
 ##' @param base_size Base font size.
-##' @param bgcolor The background color of plot. One of \code{"brown",
+##' @param color The background color of plot. One of \code{"brown",
 ##' "gray", "green", "blue"}, the names of values in
 ##' \code{ggthemes_data$wsj$bg}.
 ##' @param title_family Plot title font family.
 ##' @param base_family Plot text font family.
-##'
+##' 
 ##' @examples
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
 ##'  + theme_wsj())
-theme_wsj <- function(base_size=12, bgcolor="brown", base_family="sans", title_family="serif") {
-
-    bgcolorhex <- ggthemes_data$wsj$bg[bgcolor]
+##' ## Use a gray background instead
+##' (qplot(hp, mpg, data=mtcars, geom="point")
+##'  + theme_wsj(color="brown"))
+##' @export
+theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_family="Courier") {
+    colorhex <- ggthemes_data$wsj$bg[color]
     (theme_base()
      + theme(
          line=element_line(linetype=1, colour="black"),
-         rect=element_rect(fill=bgcolor, linetype=0, colour=NA),
+         rect=element_rect(fill=colorhex, linetype=0, colour=NA),
          text=element_text(colour="black", family=base_family),
          title=element_text(family=title_family, size=rel(2)),
          axis.title=element_blank(),
