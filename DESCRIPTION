@@ -13,11 +13,11 @@ Imports:
     colorspace,
     grid,
     proto,
-    scales
+    scales,
+    extrafont
 Suggests:
     plyr,
     reshape2,
-    extrafont
 Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
 URL: http://github.com/jrnold/ggplot-jrnold
