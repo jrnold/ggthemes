@@ -38,3 +38,5 @@ Collate:
     'few.R'
     'ggthemes-data.R'
     'ggthemes-package.R'
+    'theme-base.R'
+    'theme-wsj.R'

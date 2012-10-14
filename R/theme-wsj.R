@@ -1,16 +1,33 @@
 ##' Wall Street Journal theme
 ##'
-##' Theme based on the
+##' Theme based on the plots in \emph{The Wall Street Journal}.
+##' Colloections of these plots can be found on the WSJ Graphics
+##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
+##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 ##'
-##' @param base_family
-##' @param base_size
+##' \pkg{ggthemes} does not currently have corresponding color and
+##' fill scales for this theme. See the
+##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
+##' page or the
+##' \href{https://github.com/jrnold/ggthemes/wiki/theme_wsj}{Github
+##' wiki} for suitable palettes.
+##'
+##' @param base_size Base font size.
+##' @param bgcolor One of \code{"brown", "gray", "green", "blue"}. The background color of
+##' the plot.
+##' @param title_family Plot title font family.
+##' @param base_family Plot text font family.
 ##'
 ##' @examples
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
 ##'  + theme_wsj())
+theme_wsj <- function(base_size=12, bgcolor="brown", base_family="sans", title_family="serif") {
 
-theme_wsj <- function(base_size=12, base_family="sans", title_family="serif") {
-    bgcolor <- "#F8F2E4" ## Brownish
+    bgcolorhex <- switch(bgcolor,
+                         gray="#efefef",
+                         green="#e9f3ea",
+                         blue="#d4dee7",
+                         brown="#f8f2e4") 
     (theme_base()
      + theme(
          line=element_line(linetype=1, colour="black"),

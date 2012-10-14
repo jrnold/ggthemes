@@ -109,7 +109,7 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 ##' solid, hollow, half-filled, with two additional fill amounts:
 ##' three-quarters, and one-quarter.
 ##'
-##' @export
+##' 
 ##'
 ##' @references
 ##' Lewandowsky, Stephan and Ian Spence (1989)
@@ -118,6 +118,7 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 ##' @examples
 ##' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
 ##'  + geom_point() + scale_shape_tremmel())
+##' @export
 circlefill_shape_pal <- function() {
     maxshapes <- 5
     types <- c(16, 1, -0x25D3, -0x25D5, -0x25D4)
