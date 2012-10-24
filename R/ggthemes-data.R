@@ -514,8 +514,12 @@ ggthemes_data <- {
     x$wsj$fg <-
         c(green="#098255",
           orange="#f88431",
+          blue="#005591",
+          gold="#bfa52e",
           orange_light="#fcac67",
-          green_light="#adcbaf")
+          green_light="#adcbaf",
+          gold_light="#e8ddaf",
+          blue_light="#d3dae0")
 
     ## Return
     x

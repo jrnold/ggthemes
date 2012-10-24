@@ -56,3 +56,12 @@ theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_fami
          strip.background=element_rect()))
 }
 
+scale_wsj <- function() {
+    wsjcolors <- function(colors) {
+        sapply(colors, `[`, i=ggthemes_data$wsj$fg)
+               
+    }
+    blue_gold <- wsjcolors(c("blue", "gold", "light_blue", "light_gold"))
+    green_orange <- wsjcolors(c("green", "orange", "light_green", "light_orange"))
+    
+}
