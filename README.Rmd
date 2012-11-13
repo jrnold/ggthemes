@@ -1,5 +1,5 @@
 ```{r echo=FALSE,results='hide'}
-opts_knit$set(upload.fun = image_uri)
+opts_knit$set(upload.fun = imgur_upload)
 opts_chunk$set(fig.width = 5.25, fig.height = 3.75, cache=FALSE)
 ```
 
