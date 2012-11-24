@@ -28,7 +28,7 @@
 ##' @export
 theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_family="Courier") {
     colorhex <- ggthemes_data$wsj$bg[color]
-    (theme_base()
+    (theme_foundation()
      + theme(
          line=element_line(linetype=1, colour="black"),
          rect=element_rect(fill=colorhex, linetype=0, colour=NA),
