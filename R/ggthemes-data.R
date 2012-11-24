@@ -39,6 +39,9 @@
 ##' Color palette from \href{http://www-958.ibm.com/software/data/cognos/manyeyes/}{IBM Many Eyes};
 ##' values from \url{http://vis.stanford.edu/color-names/analyzer/}.
 ##' }
+##' \item{wsj}{
+##' Colors used in \code{\link{theme_wsj}} and \code{\link{scale_colour_wsj}}.
+##' }
 ##' }
 ##'
 ##'
@@ -511,18 +514,32 @@ ggthemes_data <- {
                   green="#e9f3ea",
                   blue="#d4dee7",
                   brown="#f8f2e4")
-    x$wsj$fg <-
-        c(green="#098255",
-          orange="#f88431",
-          blue="#005591",
-          gold="#bfa52e",
-          orange_light="#fcac67",
-          green_light="#adcbaf",
-          gold_light="#e8ddaf",
-          blue_light="#d3dae0")
+    x$wsj$palettes <- list()
+    x$wsj$palettes$rgby <-
+        c(yellow="#d3ba68",
+          red="#d5695d",
+          blue="#5d8ca8",
+          green="#65a479")
+    x$wsj$palettes$red_green <-
+        c(green = "#088158",
+          red = "#ba2f2a")
+    x$wsj$palettes$black_green <-
+        c(black="#000000",
+          gray="#595959",
+          ltgreen="#59a77f",
+          green="#008856")
+    x$wsj$palettes$dem_rep <-
+        c(blue="#006a8e",
+          red="#b1283a",
+          gray="#a8a6a7")
+    x$wsj$palettes$colors6 <-
+        c(red = "#c72e29",
+          blue = "#016392",
+          gold = "#be9c2e",
+          green = "#098154",
+          orange = "#fb832d",
+          black = "#000000")
 
     ## Return
     x
-
 }
-

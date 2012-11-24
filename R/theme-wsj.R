@@ -5,20 +5,13 @@
 ##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
 ##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 ##'
-##' \pkg{ggthemes} does not currently have corresponding color and
-##' fill scales for this theme. See the
-##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
-##' page or the
-##' \href{https://github.com/jrnold/ggthemes/wiki/theme_wsj}{Github
-##' wiki} for suitable palettes.
-##'
 ##' @param base_size Base font size.
 ##' @param color The background color of plot. One of \code{"brown",
 ##' "gray", "green", "blue"}, the names of values in
 ##' \code{ggthemes_data$wsj$bg}.
 ##' @param title_family Plot title font family.
 ##' @param base_family Plot text font family.
-##' 
+##' @family themes wsj
 ##' @examples
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
 ##'  + theme_wsj())
@@ -56,12 +49,63 @@ theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_fami
          strip.background=element_rect()))
 }
 
-scale_wsj <- function() {
-    wsjcolors <- function(colors) {
-        sapply(colors, `[`, i=ggthemes_data$wsj$fg)
-               
+##' Wall Street Journal color palette (discrete)
+##'
+##' The Wall Street Journal uses many different color palettes in its
+##' plots. This collects a few of them, but is by no means an
+##' exhaustive collection. See the WSJ Graphics
+##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
+##' and 
+##'
+##' @section Palettes:
+##'
+##' The following palettes are defined.
+##'
+##' \describe{
+##' \item{rgby}{Red/Green/Blue/Yellow theme. Examples: \url{http://twitpic.com/b2e3v2}.}
+##' \item{green_red}{Green/red two-color scale for good/bad. Examples: \url{http://twitpic.com/b1avj6}, \url{http://twitpic.com/a4kxcl}.}
+##' \item{green_black}{Black-green 4-color scale for "Very negative", "Somewhat negative", "somewhat positive", "very positive". Examples: \url{http://twitpic.com/awbua0}.}
+##' \item{dem_rep}{Democrat/Republican/Undecided blue/red/gray scale. Examples: \url{http://twitpic.com/awbua0}.}
+##' \item{colors6}{Red,blue,gold,green,orange, and black palette. Examples: \url{http://twitpic.com/9gfg5q}.}
+##' }
+##'
+##' @param palette \code{character} The color palette to use. This
+##' must be a name in
+##' \code{\link[=ggthemes_data]{ggthemes_data$wsj$palettes}}.
+##'
+##' @family palettes wsj
+##' @export
+wsj_pal <- function(palette) {
+    if (palette %in% names(ggthemes_data$wsj$palettes)) {
+        manual_pal(ggthemes_data$wsj$palettes[[palette]])
+    } else {
+        stop(sprintf("palette %s not a valid palette."))
     }
-    blue_gold <- wsjcolors(c("blue", "gold", "light_blue", "light_gold"))
-    green_orange <- wsjcolors(c("green", "orange", "light_green", "light_orange"))
-    
 }
+
+##' Wall Street Journal color and fill scales
+##'
+##' Colour and fill scales which use the palettes in
+##' \code{\link{wsj_pal}} and are meant for use with
+##' \code{\link{theme_wsj}}.
+##' 
+##' @inheritParams ggplot2::scale_colour_hue
+##' @inheritParams wsj_pal
+##' @family colour scales wsj
+##' @rdname scale_wsj
+##' @export
+scale_colour_wsj <- function(palette, ...) {
+    discrete_scale("colour", "wsj", wsj_pal(palette), ...)
+}
+
+##' @rdname scale_wsj
+##' @export
+scale_color_wsj <- scale_colour_wsj
+
+##' @rdname scale_wsj
+##' @export
+scale_fill_wsj <- function(palette, ...) {
+    discrete_scale("fill", "wsj", wsj_pal(palette), ...)
+}
+
+

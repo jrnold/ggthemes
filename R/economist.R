@@ -1,25 +1,3 @@
-### Lines or points
-###
-### \itemize{
-### \item 1 Dark blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/2012/09/articles/body/20120915_FNC063.png}.
-### \item 2 Mid blue, Dark red \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_INC086.png}. (this appears to be an alternative)
-### \item 2 Dark blue, Mid blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120818_AMC820.png}.
-### \item 3 Dark blue, mid blue, light blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120901_FBC879.png}.
-### \item 4 Dark blue, mid blue, light blue, dark red \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120901_FBC863.png}.
-### \item 5 Dark blue, mid blue, light blue, dark red, gray \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/2012/08/articles/body/20120818_EUC807.png}.
-### }
-###
-### Bar plots
-### \itemize{
-### \item 1 Dark blue
-### \item 2 Dark blue, mid blue \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_USC091.png}
-### \item 3 \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_IRC092.png}.
-### \item 4
-### \item 5 Dark blue, mid blue, blue gray, light blue, gray \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_USC091.png}.
-### \item 9 \url{http://media.economist.com/sites/default/files/imagecache/290-width/images/print-edition/20120915_EUC094.png}.
-### }
-###
-
 ##' Economist color palette (discrete)
 ##'
 ##' The primary colors are blues, grays, and greens. Red is not
@@ -29,7 +7,7 @@
 ##'
 ##' @param stata Use the palette in the Stata economist scheme.
 ##' @param fill Use the fill palette.
-##'
+##' @family palettes economist
 ##' @export
 ##' @examples
 ##' library(scales)
@@ -102,7 +80,7 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams economist_pal
-##' @family colour scales
+##' @family colour scales economist
 ##' @rdname scale_economist
 ##' @seealso \code{\link{theme_economist}} for examples.
 ##' @export
@@ -110,12 +88,12 @@ scale_colour_economist <- function(stata=FALSE, ...) {
     discrete_scale("colour", "economist", economist_pal(stata=stata), ...)
 }
 
-#' @export
-#' @rdname scale_economist
+##' @rdname scale_economist
+##' @export
 scale_color_economist <- scale_colour_economist
 
-#' @export
-#' @rdname scale_economist
+##' @rdname scale_economist
+##' @export
 scale_fill_economist <- function(stata=FALSE, ...) {
     discrete_scale("fill", "economist", economist_pal(stata=stata), ...)
 }
@@ -145,7 +123,7 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' @param gray_bg For the white
 ##'
 ##' @export
-##' @family themes
+##' @family themes economist
 ##'
 ##' @references
 ##' \itemize{
@@ -294,15 +272,3 @@ theme_economist_white <- function(gray_bg=TRUE, base_family="sans",
              panel.grid.major = element_line(colour=ggthemes_data$economist$bg['dkgray']),
              strip.background = element_rect(fill = "white")))
 }
-
-## Palette
-## 3 color http://www.economist.com/blogs/graphicdetail/2012/08/daily-chart-olympics-4 (blue, red, lt red)
-## 3 and 4 colors http://www.economist.com/node/21561909
-## 5 colors http://www.economist.com/node/21560601, http://www.economist.com/blogs/graphicdetail/2012/08/daily-chart-6
-## 1 color http://www.economist.com/node/21561883
-## 2 color http://www.economist.com/node/21560572
-## 3 color http://www.economist.com/node/21560582
-## 4 color http://www.economist.com/blogs/graphicdetail/2012/09/focus
-## 6 color http://junkcharts.typepad.com/.a/6a00d8341e992c53ef01538e032bd5970b-pi
-## 7 color
-

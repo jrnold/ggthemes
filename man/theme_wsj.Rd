@@ -23,14 +23,6 @@
   \href{https://twitter.com/WSJGraphics}{Twitter} feed and
   \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 }
-\details{
-  \pkg{ggthemes} does not currently have corresponding
-  color and fill scales for this theme. See the
-  \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
-  page or the
-  \href{https://github.com/jrnold/ggthemes/wiki/theme_wsj}{Github
-  wiki} for suitable palettes.
-}
 \examples{
 (qplot(hp, mpg, data=mtcars, geom="point")
  + theme_wsj())

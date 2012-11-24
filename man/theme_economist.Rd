@@ -94,9 +94,5 @@ library(extrafont)
 \seealso{
   \code{\link[latticeExtra]{theEconomist.theme}} for an
   Economist theme for lattice plots.
-
-  Other themes: \code{\link{theme_excel2003}},
-  \code{\link{theme_few}}, \code{\link{theme_igray}},
-  \code{\link{theme_solarized}}
 }
 
