@@ -1,3 +1,0 @@
-#!/usr/bin/env Rscript
-library(roxygen2)
-roxygenize(".", ".", overwrite=TRUE, unlink.target=TRUE)
