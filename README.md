@@ -1,6 +1,9 @@
+
+
+
 # ggthemes
 
-Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
+Some extra geoms, scales, and themes for [ggplot](http://had.co.nz/ggplot2/),
 
 ## Geoms
 
@@ -28,15 +31,27 @@ Some extra themes and scales for [ggplot](http://had.co.nz/ggplot2/),
 
 # Install 
 
-It is probably easiest to use the **devtools** package to install the latest version:
-
-
-
+To install the newest version use 
 
 ```r
 library("devtools")
 install_github("ggthemes", "jrnold")
 ```
+
+Make sure that you have installed the *newest* version of
+**devtools**. Windows users also must first install
+[Rtools](http://www.murdoch-sutherland.com/Rtools/).
+
+Or download the file
+[ggthemes_1.0.1.tar.gz](https://github.com/downloads/jrnold/ggthemes/ggthemes_1.0.1.tar.gz),
+and install it from **R**,
+
+```r
+install.packages("/path/to/downloaded/ggthemes_1.0.1.tar.gz")
+```
+
+Or download the [zip ball](https://github.com/jrnold/ggthemes/zipball/master) or [tar ball](https://github.com/jrnold/ggthemes/tarball/master), decompress and run `R CMD INSTALL` on it.
+
 
 # Examples
 
@@ -55,22 +70,20 @@ Quantitative Information*.
 
 
 ```r
-(ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rangeframe() + 
-    theme_tufte())
+(ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rangeframe() + theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/RyjWN.png) 
+![plot of chunk unnamed-chunk-3](http://i.imgur.com/4TRMY.png) 
 
 
 The Tufte minimal boxplot.
 
 
 ```r
-(ggplot(mtcars, aes(factor(cyl), mpg)) + theme_tufte(ticks = FALSE) + 
-    geom_tufteboxplot())
+(ggplot(mtcars, aes(factor(cyl), mpg)) + theme_tufte(ticks = FALSE) + geom_tufteboxplot())
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/6Hh4x.png) 
+![plot of chunk unnamed-chunk-4](http://i.imgur.com/FDngJ.png) 
 
 
 ## Economist theme
@@ -80,11 +93,11 @@ magazine.
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_economist() + 
-    scale_colour_economist() + ggtitle("Diamonds Are Forever"))
+(qplot(carat, price, data = dsamp, colour = cut) + theme_economist() + scale_colour_economist() + 
+    ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/LlBTa.png) 
+![plot of chunk unnamed-chunk-5](http://i.imgur.com/qnR3j.png) 
 
 
 ## Solarized theme
@@ -95,11 +108,10 @@ The light theme.
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + 
-    scale_colour_solarized("blue"))
+(qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/5tIBx.png) 
+![plot of chunk unnamed-chunk-6](http://i.imgur.com/GwwQy.png) 
 
 
 The dark theme.
@@ -110,7 +122,7 @@ The dark theme.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/GFQ9r.png) 
+![plot of chunk unnamed-chunk-7](http://i.imgur.com/AAKgW.png) 
 
 
 ## Stata theme 
@@ -120,11 +132,11 @@ schemes in Stata.
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_stata() + 
-    scale_colour_stata() + ggtitle("Plot Title"))
+(qplot(carat, price, data = dsamp, colour = cut) + theme_stata() + scale_colour_stata() + 
+    ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/qlFJl.png) 
+![plot of chunk unnamed-chunk-8](http://i.imgur.com/Ky3DM.png) 
 
 
 ## Excel 2003 theme
@@ -134,11 +146,10 @@ and pies not included. Please never use this theme.
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_excel2003() + 
-    scale_colour_excel2003())
+(qplot(carat, price, data = dsamp, colour = cut) + theme_excel2003() + scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/7E3H0.png) 
+![plot of chunk unnamed-chunk-9](http://i.imgur.com/KaCev.png) 
 
 
 
@@ -147,7 +158,7 @@ and pies not included. Please never use this theme.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-10](http://i.imgur.com/O1fpa.png) 
+![plot of chunk unnamed-chunk-10](http://i.imgur.com/hjVQ5.png) 
 
 
 ## Inverse Gray Theme
@@ -159,30 +170,28 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray())
 ```
 
-![plot of chunk unnamed-chunk-11](http://i.imgur.com/wYjqA.png) 
+![plot of chunk unnamed-chunk-11](http://i.imgur.com/VJvO1.png) 
 
 
 
 ## Tableau Scales
 
-Color, fill, and shape scales based on those used in the Tableau software.
+Color, fill, and shape scales based on those used in the Tableau softare.
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + 
-    scale_colour_tableau())
+(qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau())
 ```
 
-![plot of chunk unnamed-chunk-12](http://i.imgur.com/NnsLm.png) 
+![plot of chunk unnamed-chunk-12](http://i.imgur.com/XOlHY.png) 
 
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + 
-    scale_colour_tableau("colorblind10"))
+(qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk unnamed-chunk-13](http://i.imgur.com/nmsgY.png) 
+![plot of chunk unnamed-chunk-13](http://i.imgur.com/RIhku.png) 
 
 
 ## Stephen Few's Practical Rules for Using Color ...
@@ -191,10 +200,9 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut) + theme_few() + 
-    scale_colour_few())
+(qplot(carat, price, data = dsamp, colour = cut) + theme_few() + scale_colour_few())
 ```
 
-![plot of chunk unnamed-chunk-14](http://i.imgur.com/ku7B0.png) 
+![plot of chunk unnamed-chunk-14](http://i.imgur.com/eDQLK.png) 
 
 

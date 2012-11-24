@@ -294,8 +294,9 @@ stata_linetype_pal <- function() {
 ##' @examples
 ##' library(reshape2) # for melt
 ##' library(plyr) # for ddply
+##' library(ggplot2)
 ##' ecm <- melt(economics, id = "date")
-##' rescale01 <- function(x) (x - min(x)) / diff(range(x))
+##' rescale01 <- function(x) {(x - min(x)) / diff(range(x))}
 ##' ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
 ##' qplot(date, value, data=ecm, geom="line", linetype=variable) + scale_linetype_stata()
 scale_linetype_stata <- function (...)  {
