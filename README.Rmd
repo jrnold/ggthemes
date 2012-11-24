@@ -40,8 +40,9 @@ library("devtools")
 install_github("ggthemes", "jrnold")
 ```
 
-Windows users have to first install [Rtools](http://www.murdoch-sutherland.com/Rtools/).
-Even then, they may get an error using ``install_github``. If so, use the next method.
+Make sure that you have installed the *newest* version of
+**devtools**. Windows users also must first install
+[Rtools](http://www.murdoch-sutherland.com/Rtools/).
 
 Or download the file
 [ggthemes_1.0.1.tar.gz](https://github.com/downloads/jrnold/ggthemes/ggthemes_1.0.1.tar.gz),
@@ -50,6 +51,9 @@ and install it from **R**,
 ```r
 install.packages("/path/to/downloaded/ggthemes_1.0.1.tar.gz")
 ```
+
+Or download the [zip ball](https://github.com/jrnold/ggthemes/zipball/master) or [tar ball](https://github.com/jrnold/ggthemes/tarball/master), decompress and run `R CMD INSTALL` on it.
+
 
 # Examples
 
