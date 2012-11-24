@@ -5,7 +5,8 @@ opts_chunk$set(fig.width = 5.25, fig.height = 3.75, cache=FALSE)
 
 # ggthemes
 
-Some extra geoms, scales, and themes for [ggplot](http://had.co.nz/ggplot2/),
+Some extra geoms, scales, and themes for
+[ggplot](http://had.co.nz/ggplot2/), including
 
 ## Geoms
 
@@ -19,6 +20,7 @@ Some extra geoms, scales, and themes for [ggplot](http://had.co.nz/ggplot2/),
 - [Stata](http://stata.com/) themes 
 - [The Economist](http://www.economist.com/)
 - Excel (the ugly gray background one)
+- Wall Street Journal
 
 ## Scales
 
@@ -30,6 +32,7 @@ Some extra geoms, scales, and themes for [ggplot](http://had.co.nz/ggplot2/),
 - Shape scales from William S. Cleveland's *Elements of Graphing Data*,
   Tremmel (1995), and Lewandowsky and Spence (1989).
 - Color scale based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- Wall Street Journal
 
 # Install 
 
@@ -181,3 +184,13 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
  + scale_colour_few())
 ```
 
+## Wall Street Journal
+
+Theme and some color palettes based on plots in the *The Wall Street Journal*.
+
+```{r}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_wsj()
+ + scale_colour_wsj("color6")
+ + ggtitle("Diamond Prices"))             
+```
