@@ -17,9 +17,9 @@
 ##'  + theme_wsj())
 ##' ## Use a gray background instead
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
-##'  + theme_wsj(color="brown"))
+##'  + theme_wsj(color="gray"))
 ##' @export
-theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_family="Courier") {
+theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_family="Courier") {
     colorhex <- ggthemes_data$wsj$bg[color]
     (theme_foundation()
      + theme(
@@ -77,7 +77,7 @@ theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_fami
 ##' @export
 wsj_pal <- function(palette) {
     if (palette %in% names(ggthemes_data$wsj$palettes)) {
-        manual_pal(ggthemes_data$wsj$palettes[[palette]])
+        manual_pal(unname(ggthemes_data$wsj$palettes[[palette]]))
     } else {
         stop(sprintf("palette %s not a valid palette.", palette))
     }
