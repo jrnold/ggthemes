@@ -55,7 +55,7 @@ theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_fami
 ##' plots. This collects a few of them, but is by no means an
 ##' exhaustive collection. See the WSJ Graphics
 ##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
-##' and 
+##' and
 ##'
 ##' @section Palettes:
 ##'
@@ -79,7 +79,7 @@ wsj_pal <- function(palette) {
     if (palette %in% names(ggthemes_data$wsj$palettes)) {
         manual_pal(ggthemes_data$wsj$palettes[[palette]])
     } else {
-        stop(sprintf("palette %s not a valid palette."))
+        stop(sprintf("palette %s not a valid palette.", palette))
     }
 }
 
@@ -88,7 +88,7 @@ wsj_pal <- function(palette) {
 ##' Colour and fill scales which use the palettes in
 ##' \code{\link{wsj_pal}} and are meant for use with
 ##' \code{\link{theme_wsj}}.
-##' 
+##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams wsj_pal
 ##' @family colour scales wsj
