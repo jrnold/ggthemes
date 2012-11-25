@@ -17,9 +17,7 @@
 \seealso{
   \code{\link{scale_colour_few}} for exaples.
 
-  Other themes: \code{\link{theme_economist}},
-  \code{\link{theme_economist_white}},
-  \code{\link{theme_excel2003}}, \code{\link{theme_igray}},
-  \code{\link{theme_solarized}}
+  Other themes: \code{\link{theme_excel2003}},
+  \code{\link{theme_igray}}, \code{\link{theme_solarized}}
 }
 

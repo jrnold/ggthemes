@@ -38,6 +38,9 @@ He suggests using \code{medium}, except for thin lines and small points, for whi
 Color palette from \href{http://www-958.ibm.com/software/data/cognos/manyeyes/}{IBM Many Eyes};
 values from \url{http://vis.stanford.edu/color-names/analyzer/}.
 }
+\item{wsj}{
+Colors used in \code{\link{theme_wsj}} and \code{\link{scale_colour_wsj}}.
+}
 }}
 \usage{
   ggthemes_data

@@ -3,31 +3,34 @@
 
 # ggthemes
 
-Some extra geoms, scales, and themes for [ggplot](http://had.co.nz/ggplot2/),
+Some extra geoms, scales, and themes for
+[ggplot](http://had.co.nz/ggplot2/), including
 
 ## Geoms
 
-- Tufte range frame
-- Tufte box plot
+- ``geom_tufterangeframe`` : Tufte's range frame
+- ``geom_tufteboxplot``: Tufte's box plot
 
 ## Themes 
 
-- Tufte minimal ink theme
-- [Solarized](http://ethanschoonover.com/solarized)
-- [Stata](http://stata.com/) themes 
-- [The Economist](http://www.economist.com/)
-- Excel (the ugly gray background one)
+- ``theme_tufte``: a minimal ink based on Tufte's *The Visual Display of
+Quantitative Information*.
+- ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
+- ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
+- ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+- ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
+- ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 
 ## Scales
 
-- [Solarized](http://ethanschoonover.com/solarized) colors
-- The Economist colors.
-- Stata colors, shapes, and linetypes
-- Excel colors (old and new)
-- [Tableau](http://www.tableausoftware.com/) colors and shapes
-- Shape scales from William S. Cleveland's *Elements of Graphing Data*,
+- ``scale_color_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
+- ``scale_color_economist``: colors used in plots in plots in *The Economist*.
+- ``scale_color_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
+- ``scale_color_excel10``, scale_color_excel2003``: colors from new and old Excel.
+- ``scale_color_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
+- ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception, Cleveland, 
   Tremmel (1995), and Lewandowsky and Spence (1989).
-- Color scale based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 # Install 
 
@@ -73,7 +76,7 @@ Quantitative Information*.
 (ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rangeframe() + theme_tufte())
 ```
 
-![plot of chunk unnamed-chunk-3](http://i.imgur.com/4TRMY.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/9rNRt.png) 
 
 
 The Tufte minimal boxplot.
@@ -83,7 +86,7 @@ The Tufte minimal boxplot.
 (ggplot(mtcars, aes(factor(cyl), mpg)) + theme_tufte(ticks = FALSE) + geom_tufteboxplot())
 ```
 
-![plot of chunk unnamed-chunk-4](http://i.imgur.com/FDngJ.png) 
+![plot of chunk tufteboxplot](http://i.imgur.com/u3w7y.png) 
 
 
 ## Economist theme
@@ -97,7 +100,7 @@ magazine.
     ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk unnamed-chunk-5](http://i.imgur.com/qnR3j.png) 
+![plot of chunk economist](http://i.imgur.com/E2unf.png) 
 
 
 ## Solarized theme
@@ -111,7 +114,7 @@ The light theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk unnamed-chunk-6](http://i.imgur.com/GwwQy.png) 
+![plot of chunk solarized-light](http://i.imgur.com/tITMK.png) 
 
 
 The dark theme.
@@ -122,7 +125,7 @@ The dark theme.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk unnamed-chunk-7](http://i.imgur.com/AAKgW.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/XUKFy.png) 
 
 
 ## Stata theme 
@@ -136,7 +139,7 @@ schemes in Stata.
     ggtitle("Plot Title"))
 ```
 
-![plot of chunk unnamed-chunk-8](http://i.imgur.com/Ky3DM.png) 
+![plot of chunk stata](http://i.imgur.com/0MxxF.png) 
 
 
 ## Excel 2003 theme
@@ -149,7 +152,7 @@ and pies not included. Please never use this theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_excel2003() + scale_colour_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-9](http://i.imgur.com/KaCev.png) 
+![plot of chunk excel1](http://i.imgur.com/yasRZ.png) 
 
 
 
@@ -158,7 +161,7 @@ and pies not included. Please never use this theme.
     theme_excel2003())
 ```
 
-![plot of chunk unnamed-chunk-10](http://i.imgur.com/hjVQ5.png) 
+![plot of chunk excel2](http://i.imgur.com/dvPr9.png) 
 
 
 ## Inverse Gray Theme
@@ -170,7 +173,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray())
 ```
 
-![plot of chunk unnamed-chunk-11](http://i.imgur.com/VJvO1.png) 
+![plot of chunk igray](http://i.imgur.com/sC4eD.png) 
 
 
 
@@ -183,7 +186,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau())
 ```
 
-![plot of chunk unnamed-chunk-12](http://i.imgur.com/XOlHY.png) 
+![plot of chunk tableau](http://i.imgur.com/fn3JP.png) 
 
 
 
@@ -191,7 +194,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk unnamed-chunk-13](http://i.imgur.com/RIhku.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/jJ45h.png) 
 
 
 ## Stephen Few's Practical Rules for Using Color ...
@@ -203,6 +206,18 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 (qplot(carat, price, data = dsamp, colour = cut) + theme_few() + scale_colour_few())
 ```
 
-![plot of chunk unnamed-chunk-14](http://i.imgur.com/eDQLK.png) 
+![plot of chunk few](http://i.imgur.com/Knzov.png) 
 
+
+## Wall Street Journal
+
+Theme and some color palettes based on plots in the *The Wall Street Journal*.
+
+
+```r
+(qplot(carat, price, data = dsamp, colour = cut) + theme_wsj() + scale_colour_wsj("colors6", 
+    "") + ggtitle("Diamond Prices"))
+```
+
+![plot of chunk wsj](http://i.imgur.com/UVWYL.png) 
 
