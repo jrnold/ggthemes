@@ -1,7 +1,7 @@
 ##' Wall Street Journal theme
 ##'
 ##' Theme based on the plots in \emph{The Wall Street Journal}.
-##' Colloections of these plots can be found on the WSJ Graphics
+##' Collections of these plots can be found on the WSJ Graphics
 ##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
 ##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 ##'
@@ -14,12 +14,16 @@
 ##' @family themes wsj
 ##' @examples
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
-##'  + theme_wsj())
+##' + scale_colour_wsj("colors6", "")
+##' + ggtitle("Diamond Prices")
+##' + theme_wsj())
 ##' ## Use a gray background instead
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
-##'  + theme_wsj(color="brown"))
+##'  + scale_colour_wsj("colors6", "")
+##'  + ggtitle("Diamond Prices")
+##'  + theme_wsj(color="gray"))
 ##' @export
-theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_family="Courier") {
+theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_family="Courier") {
     colorhex <- ggthemes_data$wsj$bg[color]
     (theme_foundation()
      + theme(
@@ -52,14 +56,14 @@ theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_fami
 ##' Wall Street Journal color palette (discrete)
 ##'
 ##' The Wall Street Journal uses many different color palettes in its
-##' plots. This collects a few of them, but is by no means an
-##' exhaustive collection. See the WSJ Graphics
-##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
-##' and 
+##' plots. This collects a few of them, but is by no means exhaustive.
+##' Collections of these plots can be found on the WSJ Graphics
+##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
+##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 ##'
 ##' @section Palettes:
 ##'
-##' The following palettes are defined.
+##' The following palettes are defined,
 ##'
 ##' \describe{
 ##' \item{rgby}{Red/Green/Blue/Yellow theme. Examples: \url{http://twitpic.com/b2e3v2}.}
@@ -77,9 +81,9 @@ theme_wsj <- function(base_size=12, color="gray", base_family="sans", title_fami
 ##' @export
 wsj_pal <- function(palette) {
     if (palette %in% names(ggthemes_data$wsj$palettes)) {
-        manual_pal(ggthemes_data$wsj$palettes[[palette]])
+        manual_pal(unname(ggthemes_data$wsj$palettes[[palette]]))
     } else {
-        stop(sprintf("palette %s not a valid palette."))
+        stop(sprintf("palette %s not a valid palette.", palette))
     }
 }
 
@@ -88,7 +92,7 @@ wsj_pal <- function(palette) {
 ##' Colour and fill scales which use the palettes in
 ##' \code{\link{wsj_pal}} and are meant for use with
 ##' \code{\link{theme_wsj}}.
-##' 
+##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams wsj_pal
 ##' @family colour scales wsj
