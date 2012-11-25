@@ -1,7 +1,7 @@
 ## 45 degrees in radians
 FORTY_FIVE <- 45 * pi / 180
 
-slopes <- function(x, y, cull=FALSE) {
+calc_slopes <- function(x, y, cull=FALSE) {
     dx <- diff(x)
     dy <- diff(y)
     s <- dy / dx
@@ -9,7 +9,7 @@ slopes <- function(x, y, cull=FALSE) {
     if (cull) {
         touse <- abs(s) > 0 & abs(s) < Inf
         s <- s[touse]
-        w <- s[touse]
+        w <- w[touse]
     }
     list(s = s, lengths = w,
          range_x = range(x),
@@ -37,7 +37,7 @@ slopes <- function(x, y, cull=FALSE) {
 ##' @note
 ##'
 ##' This function calculates the optimal aspect ratio for a line plot
-##' using any of the methods described in Herr and Argwala (200?),
+##' using any of the methods described in Herr and Argwala (2006),
 ##' many of which were developed by W.S. Cleveland. In their review of
 ##' the methods they suggest using median absolute slope banking
 ##' ("ms"), which produces aspect ratios which are generally the
@@ -155,7 +155,7 @@ slopes <- function(x, y, cull=FALSE) {
 ##' bank_slopes(x, y, method="lor", cull=TRUE)
 bank_slopes <- function(x, y, cull=FALSE, method="ms", weight=TRUE, ...) {
     FUN <- get(sprintf("bank_slopes_%s", method))
-    FUN(slopes(x, y, cull=TRUE), weight=weight, ...)
+    FUN(calc_slopes(x, y, cull=cull), weight=weight, ...)
 }
 
 bank_slopes_ms <- function(slopes, ...) {
@@ -174,15 +174,15 @@ bank_slopes_ao <- function(slopes, weight=TRUE, ...) {
     s <- slopes$s
     alpha0 <- bank_slopes_ms(slopes)
     if (weight) {
-        f <- function(alpha) {
-            (weighted.mean(abs(atan(s / alpha)), slopes$length) - FORTY_FIVE)^2
+        f <- function(alpha, slopes) {
+            (weighted.mean(abs(atan(slopes$s / alpha)), slopes$length) - FORTY_FIVE)^2
         }
     } else {
-        f <- function(alpha) {
-            (mean(abs(atan(s / alpha))) - FORTY_FIVE)^2
+        f <- function(alpha, slopes) {
+            (mean(abs(atan(slopes$s / alpha))) - FORTY_FIVE)^2
         }
     }
-    nlm(f, alpha0, fscale=0)$estimate
+    nlm(f, alpha0, slopes=slopes)$estimate
 }
 
 bank_slopes_gor <- function(slopes, ...) {
