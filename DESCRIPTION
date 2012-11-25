@@ -40,3 +40,4 @@ Collate:
     'ggthemes-package.R'
     'theme-base.R'
     'theme-wsj.R'
+    'banking.R'
