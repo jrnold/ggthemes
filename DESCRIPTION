@@ -38,6 +38,6 @@ Collate:
     'few.R'
     'ggthemes-data.R'
     'ggthemes-package.R'
-    'theme-base.R'
-    'theme-wsj.R'
     'banking.R'
+    'theme-foundation.R'
+    'wsj.R'

@@ -36,7 +36,7 @@
 \note{
   This function calculates the optimal aspect ratio for a
   line plot using any of the methods described in Herr and
-  Argwala (200?), many of which were developed by W.S.
+  Argwala (2006), many of which were developed by W.S.
   Cleveland. In their review of the methods they suggest
   using median absolute slope banking ("ms"), which
   produces aspect ratios which are generally the median of
@@ -44,10 +44,10 @@
 
   Median Absolute Slope Banking
 
-  Let the aspect ratio be \eqn{\alpha = \frac{w}{h}}{alpha
-  = w/h}. then the median absolute slop banking is the
-  \eqn{\alpha}{alpha} such that, \deqn{ median \left|
-  \frac{s_i}{\alpha} \right| = 1 }{ median |s_i / alpha| }
+  Let the aspect ratio be \eqn{\alpha = \frac{w}{h}} then
+  the median absolute slop banking is the \eqn{\alpha} such
+  that, \deqn{ median \left| \frac{s_i}{\alpha} \right| = 1
+  }{ median |s_i / alpha| }
 
   Let \eqn{R_z = z_{max} - z_{min}} for \eqn{z = x, y}, and
   \eqn{M = median \| s_i \|}. Then, \deqn{ \alpha = M R_x /
