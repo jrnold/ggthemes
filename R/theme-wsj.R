@@ -14,9 +14,13 @@
 ##' @family themes wsj
 ##' @examples
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
-##'  + theme_wsj())
+##' + scale_colour_wsj("colors6", "")
+##' + ggtitle("Diamond Prices")
+##' + theme_wsj())
 ##' ## Use a gray background instead
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
+##'  + scale_colour_wsj("colors6", "")
+##'  + ggtitle("Diamond Prices")
 ##'  + theme_wsj(color="gray"))
 ##' @export
 theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_family="Courier") {
