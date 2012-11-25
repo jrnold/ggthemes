@@ -500,12 +500,29 @@ ggthemes_data <- {
            -0x2602L, # umbrella
            -0x2603L # snowman
          ))
-    ## Return
     x$manyeyes <-
         c("#9c9ede", "#7375b5", "#4a5584", "#cedb9c", "#b5cf6b",
           "#8ca252", "#637939", "#e7cb94", "#e7ba52", "#bd9e39",
           "#8c6d31", "#e7969c", "#d6616b", "#ad494a", "#843c39",
           "#de9ed6", "#ce6dbd", "#a55194", "#7b4173")
+
+    x$wsj <- list()
+    x$wsj$bg <- c(gray="#efefef",
+                  green="#e9f3ea",
+                  blue="#d4dee7",
+                  brown="#f8f2e4")
+    x$wsj$fg <-
+        c(green="#098255",
+          orange="#f88431",
+          blue="#005591",
+          gold="#bfa52e",
+          orange_light="#fcac67",
+          green_light="#adcbaf",
+          gold_light="#e8ddaf",
+          blue_light="#d3dae0")
+
+    ## Return
     x
+
 }
 
