@@ -1,4 +1,4 @@
-```{r echo=FALSE,results='hide'}
+```{r header,echo=FALSE,results='hide'}
 opts_knit$set(upload.fun = imgur_upload)
 opts_chunk$set(fig.width = 5.25, fig.height = 3.75, cache=FALSE)
 ```
@@ -60,7 +60,7 @@ Or download the [zip ball](https://github.com/jrnold/ggthemes/zipball/master) or
 
 # Examples
 
-```{r}
+```{r dsamp}
 library("ggplot2")
 library("ggthemes")
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -71,7 +71,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 Minimal theme and geoms based on plots in *The Visual Display of
 Quantitative Information*.
 
-```{r}
+```{r tufte-rangeframe}
 (ggplot(mtcars, aes(wt, mpg))
   + geom_point() + geom_rangeframe()
   + theme_tufte())
@@ -79,7 +79,7 @@ Quantitative Information*.
 
 The Tufte minimal boxplot.
 
-```{r}
+```{r tufteboxplot}
 (ggplot(mtcars, aes(factor(cyl), mpg)) 
  + theme_tufte(ticks=FALSE)
  + geom_tufteboxplot())
@@ -90,7 +90,7 @@ The Tufte minimal boxplot.
 A theme that approximates the style of plots in The Economist
 magazine.
 
-```{r}
+```{r economist}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_economist()
  + scale_colour_economist()
@@ -103,7 +103,7 @@ A theme and color and fill scales based on the Solarized palette.
 
 The light theme.
 
-```{r}
+```{r solarized-light}
 (qplot(carat, price, data=dsamp, colour=cut)
                              + theme_solarized()
                              + scale_colour_solarized("blue"))
@@ -111,7 +111,7 @@ The light theme.
 
 The dark theme.
 
-```{r}
+```{r solarized-dark}
 (qplot(carat, price, data=dsamp, colour=cut)
                              + theme_solarized(light=FALSE)
                              + scale_colour_solarized("red"))
@@ -122,7 +122,7 @@ The dark theme.
 Themes and scales (color, fill, linetype, shapes) based on the graph
 schemes in Stata.
 
-```{r}
+```{r stata}
 (qplot(carat, price, data=dsamp, colour=cut)
                              + theme_stata() 
                              + scale_colour_stata()
@@ -134,14 +134,14 @@ schemes in Stata.
 For that classic ugly look and feel. For ironic purposes only. 3D bars
 and pies not included. Please never use this theme.
 
-```{r}
+```{r excel1}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_excel2003() 
  + scale_colour_excel2003())
 
 ```
 
-```{r}
+```{r excel2}
 (ggplot(diamonds, aes(clarity, fill=cut)) 
  + geom_bar()
  + scale_fill_excel2003()
@@ -152,7 +152,7 @@ and pies not included. Please never use this theme.
 
 Inverse of `theme_gray`, i.e. white plot area and gray background.
 
-```{r}
+```{r igray}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_igray())
 ```
@@ -162,13 +162,13 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 
 Color, fill, and shape scales based on those used in the Tableau softare.
 
-```{r}
+```{r tableau}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_igray()
  + scale_colour_tableau())
 ```
 
-```{r}
+```{r tableau-colorbind10}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_igray()
  + scale_colour_tableau("colorblind10"))
@@ -178,7 +178,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 
 Color palette and theme based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
-```{r}
+```{r few}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_few()
  + scale_colour_few())
@@ -188,7 +188,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 
 Theme and some color palettes based on plots in the *The Wall Street Journal*.
 
-```{r}
+```{r wsj}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_wsj()
  + scale_colour_wsj("color6")
