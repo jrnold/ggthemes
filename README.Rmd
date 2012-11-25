@@ -10,29 +10,29 @@ Some extra geoms, scales, and themes for
 
 ## Geoms
 
-- Tufte range frame
-- Tufte box plot
+- ``geom_tufterangeframe`` : Tufte's range frame
+- ``geom_tufteboxplot``: Tufte's box plot
 
 ## Themes 
 
-- Tufte minimal ink theme
-- [Solarized](http://ethanschoonover.com/solarized)
-- [Stata](http://stata.com/) themes 
-- [The Economist](http://www.economist.com/)
-- Excel (the ugly gray background one)
-- Wall Street Journal
+- ``theme_tufte``: a minimal ink based on Tufte's *The Visual Display of
+Quantitative Information*.
+- ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
+- ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
+- ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+- ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
+- ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 
 ## Scales
 
-- [Solarized](http://ethanschoonover.com/solarized) colors
-- The Economist colors.
-- Stata colors, shapes, and linetypes
-- Excel colors (old and new)
-- [Tableau](http://www.tableausoftware.com/) colors and shapes
-- Shape scales from William S. Cleveland's *Elements of Graphing Data*,
+- ``scale_color_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
+- ``scale_color_economist``: colors used in plots in plots in *The Economist*.
+- ``scale_color_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
+- ``scale_color_excel10``, scale_color_excel2003``: colors from new and old Excel.
+- ``scale_color_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
+- ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception, Cleveland, 
   Tremmel (1995), and Lewandowsky and Spence (1989).
-- Color scale based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
-- Wall Street Journal
+- ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 # Install 
 
@@ -191,6 +191,6 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
 ```{r wsj}
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_wsj()
- + scale_colour_wsj("color6")
- + ggtitle("Diamond Prices"))             
+ + scale_colour_wsj("colors6", "")
+ + ggtitle("Diamond Prices"))            
 ```
