@@ -1,0 +1,9 @@
+ggthemes 1.1.0
+------------------------
+
+* added Wall Street Journal themes, palettes, scales: `theme_wsj`, `wsj_pal`, 
+  `scale_colour_wsj`, and `scale_fill_wsj`.
+* added function `bank_slopes` : methods for determining the optimal slope
+  ratio.
+* added `theme-foundation`: a theme designed to be easy to extend into new 
+  themes.
