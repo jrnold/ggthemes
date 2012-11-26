@@ -1,6 +1,5 @@
 
 
-
 # ggthemes
 
 Some extra geoms, scales, and themes for
@@ -47,11 +46,11 @@ Make sure that you have installed the *newest* version of
 [Rtools](http://www.murdoch-sutherland.com/Rtools/).
 
 Or download the file
-[ggthemes_1.0.1.tar.gz](https://github.com/downloads/jrnold/ggthemes/ggthemes_1.0.1.tar.gz),
+[ggthemes_1.1.0.tar.gz](https://github.com/downloads/jrnold/ggthemes/ggthemes_1.1.0.tar.gz),
 and install it from **R**,
 
 ```r
-install.packages("/path/to/downloaded/ggthemes_1.0.1.tar.gz")
+install.packages("/path/to/downloaded/ggthemes_1.1.0.tar.gz")
 ```
 
 Or download the [zip ball](https://github.com/jrnold/ggthemes/zipball/master) or [tar ball](https://github.com/jrnold/ggthemes/tarball/master), decompress and run `R CMD INSTALL` on it.
