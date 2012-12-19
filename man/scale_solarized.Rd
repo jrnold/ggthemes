@@ -28,6 +28,10 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + scale_colour_solarized() )
 }
 \seealso{
+  Other colour scales: \code{\link{scale_color_excel}},
+  \code{\link{scale_colour_excel}},
+  \code{\link{scale_fill_excel}}
+
   Other solarized colour: \code{\link{solarized_pal}}
 }
 

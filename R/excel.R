@@ -1,67 +1,82 @@
-##' Excel 2003 color palette (discrete)
+##' Excel color palette (discrete)
 ##'
-##' Color palettes from Excel 2003. For ironical purposes only.
+##' Color palettes from Excel, both current and the pre-2007 ugly
+##' palettes.
 ##'
-##' @param fill \code{logical} Use the fill palette?
+##' The color palettes are
+##' \describe{
+##' \item{line}{Excel 2003 default color palette.}
+##' \item{fill}{Excel 2003 bar chart color palette.}
+##' \item{new}{Color palette from newer Excel versions.}
+##' }
+##'
+##' @param palette One of "old", "fill", or "new".
 ##' @export
-##' @family colour excel
 ##' @examples
 ##' library(scales)
-##' show_col(excel2003_pal()(8))
-##' show_col(excel2003_pal(fill=TRUE)(8))
-excel2003_pal <- function(fill=FALSE) {
-    if (!fill) {
-        manual_pal(ggthemes_data$excel$excel2003)
+##' show_col(excel_pal()(8))
+##' show_col(excel_pal("fill")(8))
+##' show_col(excel_pal("new")(10))
+excel_pal <- function(palette="line") {
+    if (palette == "new") {
+        manual_pal(ggthemes_data$excel$new)
+    } else if (palette == "fill") {
+        manual_pal(ggthemes_data$excel$fill)
     } else {
-        manual_pal(ggthemes_data$excel$excel2003fill)
+        manual_pal(ggthemes_data$excel$line)
     }
 }
 
-##' Excel 2003 color scales
+##' Excel color scales
 ##'
-##' Color scales from Excel 2003. For ironical purposes only. Supports
-##' both the fill and line palettes.
-##'
-##' @inheritParams excel2003_pal
+##' @inheritParams excel_pal
 ##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour excel
-##' @rdname scale_excel2003
+##' @family colour scales
+##' @rdname scale_excel
 ##' @export
-##' @seealso See \code{\link{theme_excel2003}} for examples.
-scale_fill_excel2003 <- function(fill=TRUE, ...) {
-    discrete_scale("fill", "excel2003", excel2003_pal(fill), ...)
+##' @seealso See \code{\link{theme_excel}} for examples.
+##' @examples
+##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' (qplot(carat, price, data=dsamp, colour=clarity)
+##'  + theme_igray()
+##'  + scale_colour_excel("new"))
+scale_fill_excel <- function(palette="line", ...) {
+    discrete_scale("fill", "excel", excel_pal(palette), ...)
 }
 
 #' @export
-#' @rdname scale_excel2003
-scale_colour_excel2003 <- function(fill=FALSE, ...) {
-    discrete_scale("colour", "excel2003", excel2003_pal(fill), ...)
+#' @rdname scale_excel
+scale_colour_excel <- function(palette="fill", ...) {
+    discrete_scale("colour", "excel", excel_pal(palette), ...)
 }
 
 #' @export
-#' @rdname scale_excel2003
-scale_color_excel2003 <- scale_colour_excel2003
+#' @rdname scale_excel
+scale_color_excel <- scale_colour_excel
 
-##' ggplot color theme based on Excel 2003 plots
+##' ggplot color theme based on old Excel plots
 ##'
 ##' Theme to replicate the ugly monstrosity that was the Excel 2003
-##' chart. Please never use this for anything other than irony.
+##' chart. Please never use this.
 ##'
 ##' @param base_size base font size
 ##' @param base_family base font family
 ##' @param horizontal \code{logical}. Horizontal axis lines?
 ##' @export
-##' @family themes excel
+##' @family themes
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+##' # Old line color palette
 ##' (qplot(carat, price, data=dsamp, colour=clarity)
-##'  + theme_excel2003()
-##'  + scale_colour_excel2003() )
+##'  + theme_excel()
+##'  + scale_colour_excel() )
+##' # Old fill color palette
 ##' (ggplot(diamonds, aes(clarity, fill=cut))
 ##' + geom_bar()
-##' + scale_fill_excel2003()
-##' + theme_excel2003())
-theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
+##' + scale_fill_excel("fill")
+##' + theme_excel())
+##'
+theme_excel <- function(horizontal=TRUE, base_size=12, base_family="") {
     gray <- "#C0C0C0"
     ret <- (theme_bw()
             + theme(
@@ -80,47 +95,3 @@ theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
     }
     ret
 }
-
-##' Excel Colors
-##'
-##' Current Excel color palette. Color RGB values from
-##' \url{http://vis.stanford.edu/color-names/analyzer/}.
-##'
-##' @seealso \code{\link{excel2003_pal}} for an uglier color palette,
-##' and \code{\link{scale_colour_excel10}} for examples.
-##' @export
-##' @family colour excel
-##' @examples
-##' library(scales)
-##' show_col(excel10_pal()(10))
-excel10_pal <- function() {
-    manual_pal(ggthemes_data$excel$excel10)
-}
-
-##' Excel color scales
-##'
-##' Color scales from recent versions of Excel. See
-##' \code{\link{scale_fill_excel2003}} for the classic ugly colors.
-##'
-##' @inheritParams excel10_pal
-##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour excel
-##' @rdname scale_excel10
-##' @export
-##' @seealso
-##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (qplot(carat, price, data=dsamp, colour=clarity)
-##'  + scale_colour_excel10() )
-scale_fill_excel10 <- function(...) {
-    discrete_scale("fill", "excel10", excel10_pal(), ...)
-}
-
-#' @export
-#' @rdname scale_excel10
-scale_colour_excel10 <- function(...) {
-    discrete_scale("colour", "excel10", excel10_pal(), ...)
-}
-
-#' @export
-#' @rdname scale_excel10
-scale_color_excel10 <- scale_colour_excel10

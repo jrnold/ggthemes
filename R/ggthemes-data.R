@@ -12,9 +12,9 @@
 ##' }
 ##' \item{excel}{
 ##' \code{list} Various Excel color palettes.
-##' \code{excel2003} The Excel 2003 line color palette.
-##' \code{excel2003fill} The Excel 2003 bar chart color palette.
-##' \code{excel10} Color palette from more recent versions of Excel.
+##' \code{line} The Excel 2003 line color palette.
+##' \code{fill} The Excel 2003 bar chart color palette.
+##' \code{new} Color palette from more recent versions of Excel.
 ##' Color RGB values from \url{http://vis.stanford.edu/color-names/analyzer/}.
 ##' }
 ##' \item{solarized}{
@@ -123,13 +123,13 @@ ggthemes_data <- {
 
     ## Excel Colors
     x$excel <-
-        list(excel2003 =
+        list(line =
              c("#FF00FF", "#FFFF00", "#00FFFF", "#800080",
                "#800000", "#008080", "#0000FF"),
-             excel2003fill =
+             fill =
              c("#993366", "#FFFFCC", "#CCFFFF", "#660066",
                "#FF8080", "#0066CC", "#CCCCFF"),
-             excel10 =
+             new =
              c("#365e96", "#983334", "#77973d", "#5d437c", "#36869f",
                "#d1702f", "#8197c5", "#c47f80", "#acc484", "#9887b0"))
 

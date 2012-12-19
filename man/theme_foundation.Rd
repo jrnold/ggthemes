@@ -27,6 +27,7 @@
   hierarchy.
 }
 \seealso{
-  Other themes: \code{\link{theme_igray}}
+  Other themes: \code{\link{theme_excel}},
+  \code{\link{theme_igray}}
 }
 

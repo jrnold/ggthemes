@@ -24,6 +24,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + theme_igray())
 }
 \seealso{
-  Other themes: \code{\link{theme_foundation}}
+  Other themes: \code{\link{theme_excel}},
+  \code{\link{theme_foundation}}
 }
 
