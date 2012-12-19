@@ -226,6 +226,7 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' ## s1color
 ##' (q1 + theme_stata("s1color") + scale_colour_stata("s1color"))
 ##' (q2 + theme_stata("s1color"))
+##' \dontrun{
 ##' ## s1rcolor
 ##' (q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
 ##' (ggplot(dsamp, aes(x=carat, y=price)) + geom_point(colour="white")
@@ -234,6 +235,7 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' ## s1mono
 ##' (q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
 ##' (q2 + theme_stata("s1mono"))
+##' }
 theme_stata <- function(scheme="s2color", base_size = 11, base_family = "sans") {
     ## Sizes
     (theme_stata_base(base_size=eval(base_size), base_family=base_family)

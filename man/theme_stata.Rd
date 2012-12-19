@@ -43,6 +43,7 @@ q1mono <- (qplot(carat, price, shape=clarity, color=clarity,
 ## s1color
 (q1 + theme_stata("s1color") + scale_colour_stata("s1color"))
 (q2 + theme_stata("s1color"))
+\dontrun{
 ## s1rcolor
 (q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
 (ggplot(dsamp, aes(x=carat, y=price)) + geom_point(colour="white")
@@ -51,6 +52,7 @@ q1mono <- (qplot(carat, price, shape=clarity, color=clarity,
 ## s1mono
 (q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
 (q2 + theme_stata("s1mono"))
+}
 }
 \references{
   \url{http://www.stata.com/help.cgi?schemes}
