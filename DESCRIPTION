@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 1.0.1
+Version: 1.1.0
 Date: 2012-9-16
 Title: ggplot related stuff
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
@@ -38,5 +38,7 @@ Collate:
     'few.R'
     'ggthemes-data.R'
     'ggthemes-package.R'
-    'theme-wsj.R'
     'theme-foundation.R'
+    'banking.R'
+    'theme-foundation.R'
+    'wsj.R'

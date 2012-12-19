@@ -1,7 +1,7 @@
 ##' Wall Street Journal theme
 ##'
 ##' Theme based on the plots in \emph{The Wall Street Journal}.
-##' Colloections of these plots can be found on the WSJ Graphics
+##' Collections of these plots can be found on the WSJ Graphics
 ##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
 ##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 ##'
@@ -56,14 +56,14 @@ theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_fam
 ##' Wall Street Journal color palette (discrete)
 ##'
 ##' The Wall Street Journal uses many different color palettes in its
-##' plots. This collects a few of them, but is by no means an
-##' exhaustive collection. See the WSJ Graphics
-##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
-##' and
+##' plots. This collects a few of them, but is by no means exhaustive.
+##' Collections of these plots can be found on the WSJ Graphics
+##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
+##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 ##'
 ##' @section Palettes:
 ##'
-##' The following palettes are defined.
+##' The following palettes are defined,
 ##'
 ##' \describe{
 ##' \item{rgby}{Red/Green/Blue/Yellow theme. Examples: \url{http://twitpic.com/b2e3v2}.}

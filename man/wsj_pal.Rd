@@ -12,13 +12,13 @@
 \description{
   The Wall Street Journal uses many different color
   palettes in its plots. This collects a few of them, but
-  is by no means an exhaustive collection. See the WSJ
-  Graphics
-  \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}
-  and
+  is by no means exhaustive. Collections of these plots can
+  be found on the WSJ Graphics
+  \href{https://twitter.com/WSJGraphics}{Twitter} feed and
+  \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 }
 \section{Palettes}{
-  The following palettes are defined.
+  The following palettes are defined,
 
   \describe{ \item{rgby}{Red/Green/Blue/Yellow theme.
   Examples: \url{http://twitpic.com/b2e3v2}.}

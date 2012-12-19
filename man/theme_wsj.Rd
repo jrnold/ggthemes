@@ -18,7 +18,7 @@
 }
 \description{
   Theme based on the plots in \emph{The Wall Street
-  Journal}. Colloections of these plots can be found on the
+  Journal}. Collections of these plots can be found on the
   WSJ Graphics
   \href{https://twitter.com/WSJGraphics}{Twitter} feed and
   \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
