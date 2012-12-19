@@ -16,8 +16,5 @@
 }
 \seealso{
   \code{\link{scale_colour_few}} for exaples.
-
-  Other themes: \code{\link{theme_excel2003}},
-  \code{\link{theme_igray}}, \code{\link{theme_solarized}}
 }
 

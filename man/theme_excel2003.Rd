@@ -27,8 +27,4 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 + scale_fill_excel2003()
 + theme_excel2003())
 }
-\seealso{
-  Other themes: \code{\link{theme_few}},
-  \code{\link{theme_igray}}, \code{\link{theme_solarized}}
-}
 

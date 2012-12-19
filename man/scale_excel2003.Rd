@@ -24,17 +24,10 @@
 \seealso{
   See \code{\link{theme_excel2003}} for examples.
 
-  Other colour scales: \code{\link{scale_color_excel10}},
-  \code{\link{scale_color_few}},
-  \code{\link{scale_color_solarized}},
-  \code{\link{scale_color_tableau}},
+  Other colour excel: \code{\link{excel10_pal}},
+  \code{\link{excel2003_pal}},
+  \code{\link{scale_color_excel10}},
   \code{\link{scale_colour_excel10}},
-  \code{\link{scale_colour_few}},
-  \code{\link{scale_colour_solarized}},
-  \code{\link{scale_colour_tableau}},
-  \code{\link{scale_fill_excel10}},
-  \code{\link{scale_fill_few}},
-  \code{\link{scale_fill_solarized}},
-  \code{\link{scale_fill_tableau}}
+  \code{\link{scale_fill_excel10}}
 }
 

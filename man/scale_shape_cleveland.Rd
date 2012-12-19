@@ -24,5 +24,11 @@
 \seealso{
   \code{\link{cleveland_shape_pal}} for a description of
   the palette.
+
+  Other shapes: \code{\link{circlefill_shape_pal}},
+  \code{\link{cleveland_shape_pal}},
+  \code{\link{scale_shape_circlefill}},
+  \code{\link{scale_shape_tremmel}},
+  \code{\link{tremmel_shape_pal}}
 }
 

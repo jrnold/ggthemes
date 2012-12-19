@@ -1,7 +1,6 @@
 ##' Shape palette from Cleveland "Elements of Graphing Data" (discrete).
 ##'
 ##' @param overlap \code{logical} Use the scale for overlapping points?
-##' @export
 ##'
 ##' @note In the Elements of Graphing Data, Cleveland suggests two
 ##' shapes palettes for scatter plots: one for overlapping data and
@@ -33,6 +32,8 @@
 ##' Journal of Computational and Graphical Statistics,
 ##' \url{http://www.jstor.org/stable/1390760}
 ##'
+##' @family shapes
+##' @export
 cleveland_shape_pal <- function(overlap=TRUE) {
     function(n) {
         maxshapes <- 5
@@ -68,6 +69,7 @@ cleveland_shape_pal <- function(overlap=TRUE) {
 ##' @inheritParams cleveland_shape_pal
 ##' @export
 ##'
+##' @family shapes
 ##' @seealso \code{\link{cleveland_shape_pal}} for a description of the palette.
 ##' @references
 ##' Cleveland WS. The Elements of Graphing Data. Revised Edition. Hobart Press, Summit, NJ, 1994,
@@ -109,7 +111,7 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 ##' solid, hollow, half-filled, with two additional fill amounts:
 ##' three-quarters, and one-quarter.
 ##'
-##' 
+##'
 ##'
 ##' @references
 ##' Lewandowsky, Stephan and Ian Spence (1989)
@@ -118,6 +120,7 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 ##' @examples
 ##' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
 ##'  + geom_point() + scale_shape_tremmel())
+##' @family shapes
 ##' @export
 circlefill_shape_pal <- function() {
     maxshapes <- 5
@@ -141,6 +144,7 @@ circlefill_shape_pal <- function() {
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
 ##' @inheritParams circlefill_shape_pal
+##' @family shapes
 ##' @seealso
 ##' \code{\link{circlefill_shape_pal}} for a description of the palette.
 scale_shape_circlefill <- function(...) {
@@ -163,16 +167,17 @@ scale_shape_circlefill <- function(...) {
 ##' If more than three groups of data, then separate the groups into
 ##' different plots.
 ##'
-##' @export
 ##' @param overlap use an empty circle instead of a solid circle when
 ##' \code{n == 2}.
 ##' @param n3alt If \code{TRUE} then use a solid circle, plus sign and
 ##' empty triangle, else use a solid circle, empty circle, and empty
 ##' triangle.
+##' @family shapes
 ##' @references
 ##' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
 ##' Journal of Computational and Graphical Statistics,
 ##' \url{http://www.jstor.org/stable/1390760}
+##' @export
 tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
     maxshapes <- 3
     function (n) {
@@ -206,7 +211,7 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
 ##' @inheritParams tremmel_shape_pal
-##' @export
+##'
 ##'
 ##' @seealso \code{\link{tremmel_shape_pal}} for a description of the palette.
 ##' @examples
@@ -218,6 +223,8 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
 ##'  + geom_point() + scale_shape_tremmel())
 ##' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(am)))
 ##'  + geom_point() + scale_shape_tremmel(overlap=TRUE))
+##' @family shapes
+##' @export
 scale_shape_tremmel <- function(overlap=FALSE, n3alt=TRUE, ...) {
     discrete_scale("shape", "tremmel", tremmel_shape_pal(overlap=overlap, n3alt=n3alt), ...)
 }

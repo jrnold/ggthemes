@@ -71,5 +71,7 @@ p + geom_tufteboxplot(usebox=TRUE, fatten=1)
 }
 \seealso{
   \code{\link{geom_boxplot}}
+
+  Other geom tufte: \code{\link{geom_rangeframe}}
 }
 

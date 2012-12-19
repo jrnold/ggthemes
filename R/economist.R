@@ -7,7 +7,7 @@
 ##'
 ##' @param stata Use the palette in the Stata economist scheme.
 ##' @param fill Use the fill palette.
-##' @family palettes economist
+##' @family colour economist
 ##' @export
 ##' @examples
 ##' library(scales)
@@ -80,7 +80,7 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams economist_pal
-##' @family colour scales economist
+##' @family colour economist
 ##' @rdname scale_economist
 ##' @seealso \code{\link{theme_economist}} for examples.
 ##' @export

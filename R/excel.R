@@ -4,6 +4,7 @@
 ##'
 ##' @param fill \code{logical} Use the fill palette?
 ##' @export
+##' @family colour excel
 ##' @examples
 ##' library(scales)
 ##' show_col(excel2003_pal()(8))
@@ -23,7 +24,7 @@ excel2003_pal <- function(fill=FALSE) {
 ##'
 ##' @inheritParams excel2003_pal
 ##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour scales
+##' @family colour excel
 ##' @rdname scale_excel2003
 ##' @export
 ##' @seealso See \code{\link{theme_excel2003}} for examples.
@@ -50,7 +51,7 @@ scale_color_excel2003 <- scale_colour_excel2003
 ##' @param base_family base font family
 ##' @param horizontal \code{logical}. Horizontal axis lines?
 ##' @export
-##' @family themes
+##' @family themes excel
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ##' (qplot(carat, price, data=dsamp, colour=clarity)
@@ -88,6 +89,7 @@ theme_excel2003 <- function(horizontal=TRUE, base_size=12, base_family="") {
 ##' @seealso \code{\link{excel2003_pal}} for an uglier color palette,
 ##' and \code{\link{scale_colour_excel10}} for examples.
 ##' @export
+##' @family colour excel
 ##' @examples
 ##' library(scales)
 ##' show_col(excel10_pal()(10))
@@ -102,7 +104,7 @@ excel10_pal <- function() {
 ##'
 ##' @inheritParams excel10_pal
 ##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour scales
+##' @family colour excel
 ##' @rdname scale_excel10
 ##' @export
 ##' @seealso
@@ -122,10 +124,3 @@ scale_colour_excel10 <- function(...) {
 #' @export
 #' @rdname scale_excel10
 scale_color_excel10 <- scale_colour_excel10
-
-##' Color palette used by
-##' \href{http://www-958.ibm.com/software/data/cognos/manyeyes/0}{Many
-##' Eyes}. Colors values of the palette from
-##' \href{http://vis.stanford.edu/color-names/analyzer/}
-## many_eyes_colors <-
-##     c("#9c9ede", "#7375b5", "#4a5584", "#cedb9c", "#b5cf6b", "#8ca252", "#637939", "#e7cb94", "#e7ba52", "#bd9e39", "#8c6d31", "#e7969c", "#d6616b", "#ad494a", "#843c39", "#de9ed6", "#ce6dbd", "#a55194", "#7b4173")

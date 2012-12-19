@@ -16,4 +16,13 @@ library(scales)
 show_col(excel2003_pal()(8))
 show_col(excel2003_pal(fill=TRUE)(8))
 }
+\seealso{
+  Other colour excel: \code{\link{excel10_pal}},
+  \code{\link{scale_color_excel10}},
+  \code{\link{scale_color_excel2003}},
+  \code{\link{scale_colour_excel10}},
+  \code{\link{scale_colour_excel2003}},
+  \code{\link{scale_fill_excel10}},
+  \code{\link{scale_fill_excel2003}}
+}
 

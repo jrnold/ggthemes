@@ -23,4 +23,10 @@ show_col(economist_pal(fill=TRUE)(6))
 ## RGB values from Stata's economist scheme
 show_col(economist_pal(stata=TRUE)(16))
 }
+\seealso{
+  Other colour economist:
+  \code{\link{scale_color_economist}},
+  \code{\link{scale_colour_economist}},
+  \code{\link{scale_fill_economist}}
+}
 

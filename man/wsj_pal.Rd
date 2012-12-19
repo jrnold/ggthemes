@@ -35,4 +35,9 @@
   \item{colors6}{Red,blue,gold,green,orange, and black
   palette. Examples: \url{http://twitpic.com/9gfg5q}.} }
 }
+\seealso{
+  Other colour wsj: \code{\link{scale_color_wsj}},
+  \code{\link{scale_colour_wsj}},
+  \code{\link{scale_fill_wsj}}
+}
 

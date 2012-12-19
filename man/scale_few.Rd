@@ -36,17 +36,6 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 + scale_fill_few("light"))
 }
 \seealso{
-  Other colour scales: \code{\link{scale_color_excel10}},
-  \code{\link{scale_color_excel2003}},
-  \code{\link{scale_color_solarized}},
-  \code{\link{scale_color_tableau}},
-  \code{\link{scale_colour_excel10}},
-  \code{\link{scale_colour_excel2003}},
-  \code{\link{scale_colour_solarized}},
-  \code{\link{scale_colour_tableau}},
-  \code{\link{scale_fill_excel10}},
-  \code{\link{scale_fill_excel2003}},
-  \code{\link{scale_fill_solarized}},
-  \code{\link{scale_fill_tableau}}
+  Other colour few: \code{\link{few_pal}}
 }
 

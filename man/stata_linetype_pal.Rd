@@ -10,5 +10,7 @@
 }
 \seealso{
   \code{\link{scale_linetype_stata}}
+
+  Other linetype stata: \code{\link{scale_linetype_stata}}
 }
 

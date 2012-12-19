@@ -35,8 +35,4 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
  + theme_solarized()
  + scale_colour_solarized("blue"))
 }
-\seealso{
-  Other themes: \code{\link{theme_excel2003}},
-  \code{\link{theme_few}}, \code{\link{theme_igray}}
-}
 

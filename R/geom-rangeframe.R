@@ -23,6 +23,7 @@
 ##' @references Tufte, Edward R. (2001) The Visual Display of
 ##' Quantitative Information, Chapter 6.
 ##'
+##' @family geom tufte
 ##' @examples
 ##' (ggplot(mtcars, aes(wt, mpg))
 ##'  + geom_point() + geom_rangeframe()

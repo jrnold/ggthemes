@@ -1,4 +1,4 @@
-##' Tabaleau Color Palettes (discrete)
+##' Tableau Color Palettes (discrete)
 ##'
 ##' Color palettes used by
 ##' \href{http://www.tableausoftware.com/}{Trableau}.
@@ -18,6 +18,7 @@
 ##' Factors in Computing Systems (CHI)
 ##' \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 ##'
+##' @family colour tableau
 ##' @examples
 ##' library(scales)
 ##' show_col(tableau_color_pal("tableau20")(20))
@@ -62,7 +63,7 @@ tableau_color_pal <- function(palette = "tableau10") {
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams tableau_color_pal
-##' @family colour scales
+##' @family colour tableau
 ##' @rdname scale_color_tableau
 ##' @export
 ##' @seealso \code{\link{tableau_color_pal}} for references.
@@ -100,6 +101,7 @@ scale_color_tableau <- scale_colour_tableau
 ##'
 ##' @export
 ##' @param palette Palette name
+##' @family shape tableau
 ##' @examples
 ##' show_shapes(tableau_shape_pal()(5))
 tableau_shape_pal <- function(palette="default") {
@@ -114,6 +116,7 @@ tableau_shape_pal <- function(palette="default") {
 ##' @export
 ##' @inheritParams tableau_shape_pal
 ##' @inheritParams ggplot2::scale_x_discrete
+##' @family shape tableau
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ##' p <- qplot(carat, price, data=dsamp, shape=clarity)

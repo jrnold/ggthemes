@@ -25,5 +25,7 @@
 }
 \seealso{
   \code{\link{theme_economist}} for examples.
+
+  Other colour economist: \code{\link{economist_pal}}
 }
 

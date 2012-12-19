@@ -27,6 +27,7 @@ solarized_rebase <- function(light=TRUE) {
 ##'
 ##' @param accent \code{character} Primary accent color.
 ##' @export
+##' @family solarized colour
 ##' @examples
 ##' library(scales)
 ##' show_col(solarized_pal()(2))
@@ -70,6 +71,7 @@ solarized_pal <- function(accent="blue") {
 ##' @inheritParams solarized_pal
 ##' @family colour scales
 ##' @rdname scale_solarized
+##' @family solarized colour
 ##' @export
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -102,7 +104,7 @@ scale_color_solarized <- scale_colour_solarized
 ##' @param base_family base font family
 ##' @param light \code{logical}. Light or dark theme?
 ##' @export
-##' @family themes
+##' @family themes solarized
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ##' (qplot(carat, price, data=dsamp, colour=clarity)

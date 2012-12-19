@@ -4,6 +4,7 @@
 ##'
 ##' @param scheme \code{character}. One of "s2color", "s1rcolor", "s1color", or "mono".
 ##' @export
+##' @family stata colour
 ##' @examples
 ##' library(scales)
 ##' show_col(stata_pal("s2color")(15))
@@ -35,7 +36,7 @@ stata_pal <- function(scheme="s2color") {
 ##'
 ##' @inheritParams stata_pal
 ##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour scales stata
+##' @family colour stata
 ##' @rdname scale_stata
 ##' @export
 ##' @examples
@@ -245,6 +246,7 @@ theme_stata <- function(scheme="s2color", base_size = 11, base_family = "sans") 
 ##' specifically the scheme s2mono.
 ##'
 ##' @export
+##' @family shapes stata
 ##' @seealso See \code{\link{scale_shape_stata}} for examples.
 stata_shape_pal <- function() {
     ## From s1mono, ignore small shapes
@@ -262,7 +264,7 @@ stata_shape_pal <- function() {
 ##' specifically the one in scheme s1mono.
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
-##' @family shape scales stata
+##' @family shape stata
 ##' @export
 ##' @examples
 ##' dsmall <- diamonds[sample(nrow(diamonds), 100), ]
@@ -275,6 +277,7 @@ scale_shape_stata <- function (...) {
 ##'
 ##' Linetype palette based on the linepattern scheme in Stata.
 ##'
+##' @family linetype stata
 ##' @export
 ##' @seealso \code{\link{scale_linetype_stata}}
 stata_linetype_pal <- function() {
@@ -289,7 +292,7 @@ stata_linetype_pal <- function() {
 ##' Linetype scale based on the linepatterns used in Stata.
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
-##' @family linetype scales stata
+##' @family linetype stata
 ##' @export
 ##' @examples
 ##' library(reshape2) # for melt
@@ -404,6 +407,3 @@ stata_gsize <-
 ##          vlarge = rep(12, 4),
 ##          vsmall = rep(0.6, 4),
 ##          zero = rep(0, 4))
-
-
-

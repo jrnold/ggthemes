@@ -24,4 +24,7 @@
   \code{\link{wsj_pal}} and are meant for use with
   \code{\link{theme_wsj}}.
 }
+\seealso{
+  Other colour wsj: \code{\link{wsj_pal}}
+}
 
