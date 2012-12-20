@@ -41,3 +41,4 @@ Collate:
     'banking.R'
     'theme-foundation.R'
     'wsj.R'
+    'colorblind.R'
