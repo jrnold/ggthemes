@@ -41,6 +41,9 @@ values from \url{http://vis.stanford.edu/color-names/analyzer/}.
 \item{wsj}{
 Colors used in \code{\link{theme_wsj}} and \code{\link{scale_colour_wsj}}.
 }
+\item{colorblind}{
+Colorblind palette from \url{http://jfly.iam.u-tokyo.ac.jp/color/}
+}
 }}
 \usage{
   ggthemes_data

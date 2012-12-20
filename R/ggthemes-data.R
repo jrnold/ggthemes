@@ -42,6 +42,9 @@
 ##' \item{wsj}{
 ##' Colors used in \code{\link{theme_wsj}} and \code{\link{scale_colour_wsj}}.
 ##' }
+##' \item{colorblind}{
+##' Colorblind palette from \url{http://jfly.iam.u-tokyo.ac.jp/color/}
+##' }
 ##' }
 ##'
 ##'
@@ -540,6 +543,16 @@ ggthemes_data <- {
           orange = "#fb832d",
           black = "#000000")
 
+    ## 
+    x$colorblind <- c(black="#000000",
+                      orange="#E69F00",
+                      sky_blue="#56B4E9",
+                      bluish_green="#009E73",
+                      yellow="#F0E442",
+                      blue="#0072B2",
+                      vermillion="#D55E00",
+                      reddish_purple="#CC79A7")
+    
     ## Return
     x
 }

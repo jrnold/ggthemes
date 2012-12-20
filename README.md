@@ -32,7 +32,9 @@ Quantitative Information*.
 - ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, 
   Tremmel (1995), and Lewandowsky and Spence (1989).
 - ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
-
+- ``scale_color_colorblind``: Colorblind safe palette from
+  http://jfly.iam.u-tokyo.ac.jp/color/.
+  
 # Install 
 
 To install the newest version use 
@@ -82,7 +84,7 @@ Quantitative Information*.
 (ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rangeframe() + theme_tufte())
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/VklX1.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/tiJ4p.png) 
 
 
 The Tufte minimal boxplot.
@@ -92,7 +94,7 @@ The Tufte minimal boxplot.
 (ggplot(mtcars, aes(factor(cyl), mpg)) + theme_tufte(ticks = FALSE) + geom_tufteboxplot())
 ```
 
-![plot of chunk tufteboxplot](http://i.imgur.com/rGzgr.png) 
+![plot of chunk tufteboxplot](http://i.imgur.com/Jtaci.png) 
 
 
 ## Economist theme
@@ -106,7 +108,7 @@ magazine.
     ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk economist](http://i.imgur.com/ViXAI.png) 
+![plot of chunk economist](http://i.imgur.com/itonH.png) 
 
 
 ## Solarized theme
@@ -120,7 +122,7 @@ The light theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/V4OZL.png) 
+![plot of chunk solarized-light](http://i.imgur.com/aenrJ.png) 
 
 
 The dark theme.
@@ -131,7 +133,7 @@ The dark theme.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/BuWew.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/rVHYq.png) 
 
 
 ## Stata theme 
@@ -145,7 +147,7 @@ schemes in Stata.
     ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/BlD1Q.png) 
+![plot of chunk stata](http://i.imgur.com/Z2Hbe.png) 
 
 
 ## Excel 2003 theme
@@ -158,7 +160,7 @@ and pies not included. Please never use this theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_excel2003() + scale_colour_excel2003())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/FmC4D.png) 
+![plot of chunk excel1](http://i.imgur.com/45m9x.png) 
 
 
 
@@ -167,7 +169,7 @@ and pies not included. Please never use this theme.
     theme_excel2003())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/4MmXY.png) 
+![plot of chunk excel2](http://i.imgur.com/n9OPs.png) 
 
 
 ## Inverse Gray Theme
@@ -179,7 +181,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/YRsnN.png) 
+![plot of chunk igray](http://i.imgur.com/C6MF9.png) 
 
 
 
@@ -192,7 +194,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/ftBGW.png) 
+![plot of chunk tableau](http://i.imgur.com/5Mswj.png) 
 
 
 
@@ -200,7 +202,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/uDvlY.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/p3Hve.png) 
 
 
 ## Stephen Few's Practical Rules for Using Color ...
@@ -212,7 +214,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 (qplot(carat, price, data = dsamp, colour = cut) + theme_few() + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/DbCzO.png) 
+![plot of chunk few](http://i.imgur.com/YFqAC.png) 
 
 
 ## Wall Street Journal
@@ -225,5 +227,5 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
     "") + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/EgJ8Y.png) 
+![plot of chunk wsj](http://i.imgur.com/hkeHW.png) 
 
