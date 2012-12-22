@@ -1,7 +1,7 @@
 Package: ggthemes
 Version: 1.3.0
 Date: 2012-9-16
-Title: ggplot related stuff
+Title: Extra themes, scales and geoms for ggplot
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"))
 Author: Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
