@@ -20,4 +20,10 @@ show_col(solarized_pal()(2))
 show_col(solarized_pal()(3))
 show_col(solarized_pal("red")(4))
 }
+\seealso{
+  Other solarized colour:
+  \code{\link{scale_color_solarized}},
+  \code{\link{scale_colour_solarized}},
+  \code{\link{scale_fill_solarized}}
+}
 

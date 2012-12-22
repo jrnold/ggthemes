@@ -20,6 +20,7 @@
 ##' @references Tufte, Edward R. (2001) The Visual Display of
 ##' Quantitative Information, Chapter 6.
 ##'
+##' @family themes tufte
 ##' @examples
 ##' # with ticks and range frames
 ##' (ggplot(mtcars, aes(wt, mpg))
@@ -58,4 +59,3 @@ theme_tufte <- function(ticks=TRUE, base_family="serif", base_size=11) {
     }
     ret
 }
-

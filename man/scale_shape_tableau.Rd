@@ -21,4 +21,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 p <- qplot(carat, price, data=dsamp, shape=clarity)
 p + scale_shape_tableau()
 }
+\seealso{
+  Other shape tableau: \code{\link{tableau_shape_pal}}
+}
 

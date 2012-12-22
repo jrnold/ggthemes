@@ -66,7 +66,7 @@ theme_foundation_sizes <- function() {
         axis.text = element_text(size = rel(0.8)),
         axis.text.x = element_text(vjust = 1),
         legend.text = element_text(size = rel(0.8)),
-        legend.title = element_text(size = rel(0.8), hjust = 0),  
+        legend.title = element_text(size = rel(0.8), hjust = 0),
         panel.grid.minor = element_line(size = 0.25),
         plot.title = element_text(size = rel(1.2)),
         strip.text.y = element_text(angle = -90)
@@ -79,17 +79,17 @@ theme_foundation_sizes <- function() {
 ##' This theme is designed to be a foundation from which to build new
 ##' themes, and not meant to be used directly. \code{theme_foundation}
 ##' is a complete theme with only minimal number of elements defined.
-##' 
+##'
 ##' It is easier to create new themes by extending this one rather
 ##' than \code{theme_gray} or \code{theme_bw}, because those themes
 ##' those themes define elements deep in the hierarchy.
-##' 
+##'
 ##' @param base_size Base font size.
 ##' @param base_family Base font family.
 ##' @param use_sizes If \code{TRUE}, then define sizes and locations
 ##' with reasonable defaults taken from \code{\link{theme_gray}}.
 ##'
-##' @rdname theme_foundation
+##' @family themes
 ##' @export
 theme_foundation <- function(base_size=12, base_family="", use_sizes=TRUE) {
     thm <- theme_foundation_null(base_size=base_size, base_family=base_family)

@@ -22,4 +22,7 @@ rescale01 <- function(x) {(x - min(x)) / diff(range(x))}
 ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
 qplot(date, value, data=ecm, geom="line", linetype=variable) + scale_linetype_stata()
 }
+\seealso{
+  Other linetype stata: \code{\link{stata_linetype_pal}}
+}
 

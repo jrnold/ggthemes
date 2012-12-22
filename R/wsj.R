@@ -77,7 +77,7 @@ theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_fam
 ##' must be a name in
 ##' \code{\link[=ggthemes_data]{ggthemes_data$wsj$palettes}}.
 ##'
-##' @family palettes wsj
+##' @family colour wsj
 ##' @export
 wsj_pal <- function(palette) {
     if (palette %in% names(ggthemes_data$wsj$palettes)) {
@@ -95,7 +95,7 @@ wsj_pal <- function(palette) {
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams wsj_pal
-##' @family colour scales wsj
+##' @family colour wsj
 ##' @rdname scale_wsj
 ##' @export
 scale_colour_wsj <- function(palette, ...) {

@@ -1,8 +1,8 @@
-\name{theme_excel2003}
-\alias{theme_excel2003}
-\title{ggplot color theme based on Excel 2003 plots}
+\name{theme_excel}
+\alias{theme_excel}
+\title{ggplot color theme based on old Excel plots}
 \usage{
-  theme_excel2003(horizontal = TRUE, base_size = 12,
+  theme_excel(horizontal = TRUE, base_size = 12,
     base_family = "")
 }
 \arguments{
@@ -14,21 +14,22 @@
 }
 \description{
   Theme to replicate the ugly monstrosity that was the
-  Excel 2003 chart. Please never use this for anything
-  other than irony.
+  Excel 2003 chart. Please never use this.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+# Old line color palette
 (qplot(carat, price, data=dsamp, colour=clarity)
- + theme_excel2003()
- + scale_colour_excel2003() )
+ + theme_excel()
+ + scale_colour_excel() )
+# Old fill color palette
 (ggplot(diamonds, aes(clarity, fill=cut))
 + geom_bar()
-+ scale_fill_excel2003()
-+ theme_excel2003())
++ scale_fill_excel("fill")
++ theme_excel())
 }
 \seealso{
-  Other themes: \code{\link{theme_few}},
-  \code{\link{theme_igray}}, \code{\link{theme_solarized}}
+  Other themes: \code{\link{theme_foundation}},
+  \code{\link{theme_igray}}
 }
 

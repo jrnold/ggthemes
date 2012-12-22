@@ -25,6 +25,7 @@
 ##' the same thing as the notch does in a standard boxplot.
 ##' @param boxwidth a number between 0 and 1 which represents the
 ##' relative width of the box to the middle line.
+##' @family geom tufte
 ##' @export
 ##'
 ##' @examples

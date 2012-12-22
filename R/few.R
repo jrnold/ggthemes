@@ -12,6 +12,7 @@
 ##'
 ##' @export
 ##' @param palette One of "medium", "dark", or "light"
+##' @family colour few
 ##' @examples
 ##' library(scales)
 ##' show_col(few_pal()(7))
@@ -32,7 +33,7 @@ few_pal <- function(palette="medium") {
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams few_pal
-##' @family colour scales
+##' @family colour few
 ##' @rdname scale_few
 ##' @export
 ##' @examples
@@ -68,7 +69,7 @@ scale_fill_few <- function(palette="light", ...) {
 ##' Rules for Using Color in Charts"}.
 ##'
 ##' @inheritParams ggplot2::theme_bw
-##' @family themes
+##' @family themes few
 ##' @export
 ##'
 ##' @seealso \code{\link{scale_colour_few}} for exaples.

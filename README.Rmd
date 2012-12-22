@@ -29,7 +29,7 @@ Quantitative Information*.
 - ``scale_color_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
 - ``scale_color_economist``: colors used in plots in plots in *The Economist*.
 - ``scale_color_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
-- ``scale_color_excel10``, ``scale_color_excel2003``: colors from new and old Excel.
+- ``scale_color_excel10``: colors from new and old Excel.
 - ``scale_color_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
 - ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, 
   Tremmel (1995), and Lewandowsky and Spence (1989).
@@ -144,16 +144,16 @@ and pies not included. Please never use this theme.
 
 ```{r excel1}
 (qplot(carat, price, data=dsamp, colour=cut)
- + theme_excel2003() 
- + scale_colour_excel2003())
+ + theme_excel() 
+ + scale_colour_excel())
 
 ```
 
 ```{r excel2}
 (ggplot(diamonds, aes(clarity, fill=cut)) 
  + geom_bar()
- + scale_fill_excel2003()
- + theme_excel2003())
+ + scale_fill_excel()
+ + theme_excel())
 ```
 
 ## Inverse Gray Theme

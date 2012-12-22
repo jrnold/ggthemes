@@ -23,4 +23,9 @@ show_col(few_pal()(7))
 show_col(few_pal("dark")(7))
 show_col(few_pal("light")(7))
 }
+\seealso{
+  Other colour few: \code{\link{scale_color_few}},
+  \code{\link{scale_colour_few}},
+  \code{\link{scale_fill_few}}
+}
 

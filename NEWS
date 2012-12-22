@@ -1,7 +1,17 @@
+ggthemes 1.3.0 
+------------------------
+
+* renamed `theme_excel2003` to `theme_excel`
+* replace `scale_fill_excel2003` and `scale_fill_excel10` with `scale_fill_excel`
+* replaced `scale_colour_excel2003` and `scale_colour_excel10` with `scale_colour_excel`
+* replaced `excel2003_pal` and `excel10_pal` with `excel_pal`
+* renamed `theme_base` to `theme_foundation`
+
 ggthemes 1.2.0
 ------------------------
 
 * added colorblind scales: `colorblind_pal`, `scale_*_colorblind`.
+
 
 ggthemes 1.1.0
 ------------------------

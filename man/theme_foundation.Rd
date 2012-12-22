@@ -26,4 +26,8 @@
   those themes those themes define elements deep in the
   hierarchy.
 }
+\seealso{
+  Other themes: \code{\link{theme_excel}},
+  \code{\link{theme_igray}}
+}
 

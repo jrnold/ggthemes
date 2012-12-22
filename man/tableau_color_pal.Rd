@@ -1,6 +1,6 @@
 \name{tableau_color_pal}
 \alias{tableau_color_pal}
-\title{Tabaleau Color Palettes (discrete)}
+\title{Tableau Color Palettes (discrete)}
 \usage{
   tableau_color_pal(palette = "tableau10")
 }
@@ -36,5 +36,10 @@ show_col(tableau_color_pal("greenorange12")(12))
   Models for Color Selection, Image Editing and Palette
   Design", ACM Human Factors in Computing Systems (CHI)
   \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
+}
+\seealso{
+  Other colour tableau: \code{\link{scale_color_tableau}},
+  \code{\link{scale_colour_tableau}},
+  \code{\link{scale_fill_tableau}}
 }
 
