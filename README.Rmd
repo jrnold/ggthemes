@@ -49,16 +49,6 @@ install_github("ggthemes", "jrnold")
 Make sure that you have installed the *newest* version of
 **devtools**. 
 
-Or download the source package
-[ggthemes_1.1.0.tar.gz](https://github.com/downloads/jrnold/ggthemes/ggthemes_1.1.0.tar.gz),
-and install it from **R**,
-
-```r
-install.packages("/path/to/downloaded/ggthemes_1.1.0.tar.gz")
-```
-
-Or download the [zip ball](https://github.com/jrnold/ggthemes/zipball/master) or [tar ball](https://github.com/jrnold/ggthemes/tarball/master), decompress and run `R CMD INSTALL` on it.
-
 Windows users also must first install [Rtools](http://cran.rstudio.com/bin/windows/Rtools/).
 
 # Contribute

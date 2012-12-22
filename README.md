@@ -47,16 +47,6 @@ install_github("ggthemes", "jrnold")
 Make sure that you have installed the *newest* version of
 **devtools**. 
 
-Or download the source package
-[ggthemes_1.1.0.tar.gz](https://github.com/downloads/jrnold/ggthemes/ggthemes_1.1.0.tar.gz),
-and install it from **R**,
-
-```r
-install.packages("/path/to/downloaded/ggthemes_1.1.0.tar.gz")
-```
-
-Or download the [zip ball](https://github.com/jrnold/ggthemes/zipball/master) or [tar ball](https://github.com/jrnold/ggthemes/tarball/master), decompress and run `R CMD INSTALL` on it.
-
 Windows users also must first install [Rtools](http://cran.rstudio.com/bin/windows/Rtools/).
 
 # Contribute
@@ -84,7 +74,7 @@ Quantitative Information*.
 (ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rangeframe() + theme_tufte())
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/Nd4NL.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/EPSjs.png) 
 
 
 The Tufte minimal boxplot.
@@ -94,7 +84,7 @@ The Tufte minimal boxplot.
 (ggplot(mtcars, aes(factor(cyl), mpg)) + theme_tufte(ticks = FALSE) + geom_tufteboxplot())
 ```
 
-![plot of chunk tufteboxplot](http://i.imgur.com/cP2re.png) 
+![plot of chunk tufteboxplot](http://i.imgur.com/9mHqa.png) 
 
 
 ## Economist theme
@@ -108,7 +98,7 @@ magazine.
     ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk economist](http://i.imgur.com/VbJ2j.png) 
+![plot of chunk economist](http://i.imgur.com/tp7UT.png) 
 
 
 ## Solarized theme
@@ -122,7 +112,7 @@ The light theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/5Q0r9.png) 
+![plot of chunk solarized-light](http://i.imgur.com/ijAlx.png) 
 
 
 The dark theme.
@@ -133,7 +123,7 @@ The dark theme.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/7xxKm.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/OjfUA.png) 
 
 
 ## Stata theme 
@@ -147,7 +137,7 @@ schemes in Stata.
     ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/Gziqn.png) 
+![plot of chunk stata](http://i.imgur.com/luC8T.png) 
 
 
 ## Excel 2003 theme
@@ -160,7 +150,7 @@ and pies not included. Please never use this theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_excel() + scale_colour_excel())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/GgLnz.png) 
+![plot of chunk excel1](http://i.imgur.com/3tJYU.png) 
 
 
 
@@ -169,7 +159,7 @@ and pies not included. Please never use this theme.
     theme_excel())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/MAO7f.png) 
+![plot of chunk excel2](http://i.imgur.com/FFQRb.png) 
 
 
 ## Inverse Gray Theme
@@ -181,7 +171,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/gZOhU.png) 
+![plot of chunk igray](http://i.imgur.com/PejnS.png) 
 
 
 
@@ -194,7 +184,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/nXcv7.png) 
+![plot of chunk tableau](http://i.imgur.com/X32IA.png) 
 
 
 
@@ -202,7 +192,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/wBTnd.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/3IyL9.png) 
 
 
 ## Stephen Few's Practical Rules for Using Color ...
@@ -214,7 +204,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 (qplot(carat, price, data = dsamp, colour = cut) + theme_few() + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/20iab.png) 
+![plot of chunk few](http://i.imgur.com/v5wmf.png) 
 
 
 ## Wall Street Journal
@@ -227,5 +217,5 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
     "") + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/hQhVq.png) 
+![plot of chunk wsj](http://i.imgur.com/6lewG.png) 
 
