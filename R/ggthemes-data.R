@@ -39,6 +39,12 @@
 ##' Color palette from \href{http://www-958.ibm.com/software/data/cognos/manyeyes/}{IBM Many Eyes};
 ##' values from \url{http://vis.stanford.edu/color-names/analyzer/}.
 ##' }
+##' \item{wsj}{
+##' Colors used in \code{\link{theme_wsj}} and \code{\link{scale_colour_wsj}}.
+##' }
+##' \item{colorblind}{
+##' Colorblind palette from \url{http://jfly.iam.u-tokyo.ac.jp/color/}
+##' }
 ##' }
 ##'
 ##'
@@ -500,12 +506,53 @@ ggthemes_data <- {
            -0x2602L, # umbrella
            -0x2603L # snowman
          ))
-    ## Return
     x$manyeyes <-
         c("#9c9ede", "#7375b5", "#4a5584", "#cedb9c", "#b5cf6b",
           "#8ca252", "#637939", "#e7cb94", "#e7ba52", "#bd9e39",
           "#8c6d31", "#e7969c", "#d6616b", "#ad494a", "#843c39",
           "#de9ed6", "#ce6dbd", "#a55194", "#7b4173")
+
+    x$wsj <- list()
+    x$wsj$bg <- c(gray="#efefef",
+                  green="#e9f3ea",
+                  blue="#d4dee7",
+                  brown="#f8f2e4")
+    x$wsj$palettes <- list()
+    x$wsj$palettes$rgby <-
+        c(yellow="#d3ba68",
+          red="#d5695d",
+          blue="#5d8ca8",
+          green="#65a479")
+    x$wsj$palettes$red_green <-
+        c(green = "#088158",
+          red = "#ba2f2a")
+    x$wsj$palettes$black_green <-
+        c(black="#000000",
+          gray="#595959",
+          ltgreen="#59a77f",
+          green="#008856")
+    x$wsj$palettes$dem_rep <-
+        c(blue="#006a8e",
+          red="#b1283a",
+          gray="#a8a6a7")
+    x$wsj$palettes$colors6 <-
+        c(red = "#c72e29",
+          blue = "#016392",
+          gold = "#be9c2e",
+          green = "#098154",
+          orange = "#fb832d",
+          black = "#000000")
+
+    ## 
+    x$colorblind <- c(black="#000000",
+                      orange="#E69F00",
+                      sky_blue="#56B4E9",
+                      bluish_green="#009E73",
+                      yellow="#F0E442",
+                      blue="#0072B2",
+                      vermillion="#D55E00",
+                      reddish_purple="#CC79A7")
+    
+    ## Return
     x
 }
-

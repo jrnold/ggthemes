@@ -1,0 +1,40 @@
+\name{colorblind_pal}
+\alias{colorblind_pal}
+\alias{scale_color_colorblind}
+\alias{scale_colour_colorblind}
+\alias{scale_fill_colorblind}
+\title{Colorblind Color Palette (Discrete) and Scales}
+\usage{
+  colorblind_pal()
+
+  scale_colour_colorblind(...)
+
+  scale_color_colorblind(...)
+
+  scale_fill_colorblind(...)
+}
+\arguments{
+  \item{...}{Other arguments passed on to
+  \code{\link{discrete_scale}} to control name, limits,
+  breaks, labels and so forth.}
+}
+\description{
+  8-Color Colorblind palette from
+  \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
+  \href{http://wiki.stdout.org/rcookbook/Graphs/Colors\%20(ggplot2)}{R
+  Cookbook}/
+}
+\examples{
+library(scales)
+show_col(colorblind_pal()(8))
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_igray()
+p + scale_colour_colorblind()
+}
+\seealso{
+  The \pkg{dichromat} package,
+  \code{\link[scales]{dichromat_pal}}, and
+  \code{\link{scale_color_tableau}} for other colorblind
+  palettes.
+}
+
