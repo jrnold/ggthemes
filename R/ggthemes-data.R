@@ -1,52 +1,6 @@
 ##' Palette data for ggthemes package
 ##'
-##' List with the data used by palettes in the ggthemes package.
-##'
-##' @docType data
-##' @format A \code{list}.
-##' \describe{
-##' \item{economist}{
-##' Colors from The Economist magazine. RGB values taken from
-##' the economist scheme in Stata. \code{bg} are background
-##' colors, \code{fg} are foreground colors.
-##' }
-##' \item{excel}{
-##' \code{list} Various Excel color palettes.
-##' \code{line} The Excel 2003 line color palette.
-##' \code{fill} The Excel 2003 bar chart color palette.
-##' \code{new} Color palette from more recent versions of Excel.
-##' Color RGB values from \url{http://vis.stanford.edu/color-names/analyzer/}.
-##' }
-##' \item{solarized}{
-##' Names and RGB values of the Solarized palette.
-##' \url{http://ethanschoonover.com/solarized}.
-##' \code{base} Base colors.
-##' \code{accent} Accent colors.
-##' }
-##' \item{stata}{
-##' Colors, shapes, and linetypes used by Stata
-##' \code{colors} RBG values of of all Stata colors.
-##' \code{shapes} R shape values of of all Stata symbol types.
-##' \code{linetype} Equivalent R linepattern for all Stata linepattern sytles. \url{http://www.stata.com/help.cgi?symbolstyle}.
-##' }
-##' \item{few}{
-##' Qualitative color palettes from Stephen Few,
-##' \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
-##' He suggests using \code{medium}, except for thin lines and small points, for which use \code{dark}.
-##' }
-##' \item{tableau}{Color and shapes used by Tableau}
-##' \item{manyeyes}{
-##' Color palette from \href{http://www-958.ibm.com/software/data/cognos/manyeyes/}{IBM Many Eyes};
-##' values from \url{http://vis.stanford.edu/color-names/analyzer/}.
-##' }
-##' \item{wsj}{
-##' Colors used in \code{\link{theme_wsj}} and \code{\link{scale_colour_wsj}}.
-##' }
-##' \item{colorblind}{
-##' Colorblind palette from \url{http://jfly.iam.u-tokyo.ac.jp/color/}
-##' }
-##' }
-##'
+##' List with the data used by the palettes in the ggthemes package.
 ##'
 ##' @export
 ggthemes_data <- {
@@ -543,7 +497,7 @@ ggthemes_data <- {
           orange = "#fb832d",
           black = "#000000")
 
-    ## 
+    ##
     x$colorblind <- c(black="#000000",
                       orange="#E69F00",
                       sky_blue="#56B4E9",
@@ -552,7 +506,7 @@ ggthemes_data <- {
                       blue="#0072B2",
                       vermillion="#D55E00",
                       reddish_purple="#CC79A7")
-    
+
     ## Return
     x
 }

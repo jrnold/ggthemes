@@ -1,6 +1,6 @@
 \name{tableau_color_pal}
 \alias{tableau_color_pal}
-\title{Tableau Color Palettes (discrete)}
+\title{Color Palettes based on Tableau (discrete)}
 \usage{
   tableau_color_pal(palette = "tableau10")
 }
@@ -8,8 +8,8 @@
   \item{palette}{Palette name}
 }
 \description{
-  Color palettes used by
-  \href{http://www.tableausoftware.com/}{Trableau}.
+  Color palettes used in
+  \href{http://www.tableausoftware.com/}{Tableau}.
 }
 \examples{
 library(scales)

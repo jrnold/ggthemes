@@ -1,4 +1,4 @@
-##' Tufte Data-Ink Maximized Theme
+##' Tufte Maximal Data, Minimal Ink Theme
 ##'
 ##' Theme based on Chapter 6 "Data-Ink Maximization and Graphical
 ##' Design" of Edward Tufte *The Visual Display of Quantitative
@@ -6,6 +6,7 @@
 ##' best in combination with \code{\link{geom_rug}} or
 ##' \code{\link{geom_rangeframe}}.
 ##'
+##' @note
 ##' The default font family is set to "serif" as he uses serif fonts
 ##' for labels in "The Visual Display of Quantitative Information".
 ##' The serif font used by Tufte in his books is a variant of Bembo,

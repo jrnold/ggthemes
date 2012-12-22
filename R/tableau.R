@@ -1,7 +1,7 @@
-##' Tableau Color Palettes (discrete)
+##' Color Palettes based on Tableau (discrete)
 ##'
-##' Color palettes used by
-##' \href{http://www.tableausoftware.com/}{Trableau}.
+##' Color palettes used in
+##' \href{http://www.tableausoftware.com/}{Tableau}.
 ##'
 ##' @export
 ##' @param palette Palette name
@@ -58,8 +58,7 @@ tableau_color_pal <- function(palette = "tableau10") {
 
 ##' Tableau color scales.
 ##'
-##' Color scales used by
-##' \href{http://www.tableausoftware.com/}{Trableau}.
+##' See \code{\link{tableau_color_pal}} for details.
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams tableau_color_pal
@@ -94,10 +93,10 @@ scale_fill_tableau <- function (palette = "tableau10", ...) {
 #' @rdname scale_color_tableau
 scale_color_tableau <- scale_colour_tableau
 
-##' Tabaleau Shape Palettes (discrete)
+##' Tableau Shape Palettes (discrete)
 ##'
 ##' Shape palettes used by
-##' \href{http://www.tableausoftware.com/}{Trableau}.
+##' \href{http://www.tableausoftware.com/}{Tableau}.
 ##'
 ##' @export
 ##' @param palette Palette name
@@ -110,8 +109,7 @@ tableau_shape_pal <- function(palette="default") {
 
 ##' Tableau shape scales
 ##'
-##' Shape scales used by
-##' \href{http://www.tableausoftware.com/}{Trableau}.
+##' See \code{\link{tableau_shape_pal}} for details.
 ##'
 ##' @export
 ##' @inheritParams tableau_shape_pal
@@ -124,5 +122,3 @@ tableau_shape_pal <- function(palette="default") {
 scale_shape_tableau <- function (palette = "default", ...) {
     discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
-
-

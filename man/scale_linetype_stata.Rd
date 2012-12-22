@@ -11,7 +11,7 @@
   \code{\link{discrete_scale}} for more details}
 }
 \description{
-  Linetype scale based on the linepatterns used in Stata.
+  See \code{\link{stata_linetype_pal}} for details.
 }
 \examples{
 library(reshape2) # for melt

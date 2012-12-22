@@ -11,15 +11,15 @@
   scale_color_stata(scheme = "s2color", ...)
 }
 \arguments{
-  \item{scheme}{\code{character}. One of "s2color",
-  "s1rcolor", "s1color", or "mono".}
+  \item{scheme}{\code{character}. One of \code{"s2color"},
+  \code{"s1rcolor"}, \code{"s1color"}, or \code{"mono"}.}
 
   \item{...}{Other arguments passed on to
   \code{\link{discrete_scale}} to control name, limits,
   breaks, labels and so forth.}
 }
 \description{
-  Color scales using the color palettes from Stata.
+  See \code{\link{stata_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

@@ -6,7 +6,7 @@
 }
 \description{
   Shape palette based on the symbol palette in Stata,
-  specifically the scheme s2mono.
+  specifically that for the scheme s2mono.
 }
 \seealso{
   See \code{\link{scale_shape_stata}} for examples.

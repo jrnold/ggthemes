@@ -1,8 +1,11 @@
 ##' Stata color palettes (discrete)
 ##'
-##' Stata color palettes.  See Stata documentation for schemes: \url{http://www.stata.com/help.cgi?schemes}
+##' Stata color palettes. See Stata documentation for a description of
+##' the schemes, \url{http://www.stata.com/help.cgi?schemes}.
 ##'
-##' @param scheme \code{character}. One of "s2color", "s1rcolor", "s1color", or "mono".
+##' @param scheme \code{character}. One of \code{"s2color"},
+##' \code{"s1rcolor"}, \code{"s1color"}, or \code{"mono"}.
+##'
 ##' @export
 ##' @family stata colour
 ##' @examples
@@ -32,7 +35,7 @@ stata_pal <- function(scheme="s2color") {
 
 ##' Stata color scales
 ##'
-##' Color scales using the color palettes from Stata.
+##' See \code{\link{stata_pal}} for details.
 ##'
 ##' @inheritParams stata_pal
 ##' @inheritParams ggplot2::scale_colour_hue
@@ -188,9 +191,7 @@ theme_stata_colors <- function(scheme="s2color") {
           plot.background = element_rect(fill = color_plot))
 }
 
-##' ggplot theme based on Stata graph schemes
-##'
-##' Themes which replicate Stata graph schemes.
+##' Themes based on Stata graph schemes
 ##'
 ##' @param scheme One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono", "s2manual",
 ##' "s1manual", or "sj"
@@ -199,10 +200,9 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' @export
 ##' @family themes stata
 ##'
-##' @note Stata graph schemes include what ggplot seperates into
-##' themes and scales, as well as defaults specific to different graph
-##' types (which ggplot does not support). These themes should be used
-##' in conjunction with \code{\link{scale_colour_stata}}, see the examples.
+##' @note Stata graph schemes include what \pkg{ggplot2} seperates
+##' into themes and scales, as well as defaults specific to different
+##' graph types (which ggplot does not support).
 ##'
 ##' @references \url{http://www.stata.com/help.cgi?schemes}
 ##'
@@ -244,8 +244,8 @@ theme_stata <- function(scheme="s2color", base_size = 11, base_family = "sans") 
 
 ##' Stata shape palette (discrete)
 ##'
-##' Shape palette based on the symbol palette in Stata,
-##' specifically the scheme s2mono.
+##' Shape palette based on the symbol palette in Stata, specifically
+##' that for the scheme s2mono.
 ##'
 ##' @export
 ##' @family shapes stata
@@ -262,8 +262,7 @@ stata_shape_pal <- function() {
 
 ##' Stata shape scale
 ##'
-##' Shape scale palette based on the symbol palette in Stata,
-##' specifically the one in scheme s1mono.
+##' See \code{\link{stata_shape_pal}} for details.
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
 ##' @family shape stata
@@ -291,7 +290,7 @@ stata_linetype_pal <- function() {
 
 ##' Stata linetype palette (discrete)
 ##'
-##' Linetype scale based on the linepatterns used in Stata.
+##' See \code{\link{stata_linetype_pal}} for details.
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
 ##' @family linetype stata

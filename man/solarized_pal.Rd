@@ -5,14 +5,19 @@
   solarized_pal(accent = "blue")
 }
 \arguments{
-  \item{accent}{\code{character} Primary accent color.}
+  \item{accent}{\code{character} Starting color. One of
+  \Sexpr[results=rd,stage=build]{ggthemes:::solarized_accent_list()}}
 }
 \description{
-  Solarized accents palette from
-  \url{http://ethanschoonover.com/solarized}. The colors
-  chosen are the combination of colors that maximize the
-  total Euclidean distance between colors in L*a*b space,
-  given a primary accent.
+  Qualitative color palate based on the Ethan Schoonover's
+  Solarized palette,
+  \url{http://ethanschoonover.com/solarized}.
+}
+\note{
+  For a given starting color and number of colors in the
+  palette, the other colors are the combination of colors
+  that maximizes the total Euclidean distance between
+  colors in L*a*b space.
 }
 \examples{
 library(scales)

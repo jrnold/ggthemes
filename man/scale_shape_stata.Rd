@@ -11,8 +11,7 @@
   \code{\link{discrete_scale}} for more details}
 }
 \description{
-  Shape scale palette based on the symbol palette in Stata,
-  specifically the one in scheme s1mono.
+  See \code{\link{stata_shape_pal}} for details.
 }
 \examples{
 dsmall <- diamonds[sample(nrow(diamonds), 100), ]

@@ -1,16 +1,9 @@
 ##' Range Frames
 ##'
-##' Axis lines which show the  maximum and minimum of the data plotted.
+##' Axis lines which extend to the maximum and minimum of the plotted data.
 ##'
 ##' @section Aesthetics:
-##' \code{geom_RangeFrame} understands the following aesthetics (required aesthetics are in bold):
-##'
-##' \itemize{
-##'   \item \code{alpha}
-##'   \item \code{colour}
-##'   \item \code{linetype}
-##'   \item \code{size}
-##' }
+##' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("geom_tufteboxplot", ggthemes:::GeomRangeFrame)}
 ##'
 ##' @inheritParams ggplot2::geom_point
 ##' @param sides A string that controls which sides of the plot the frames appear on.

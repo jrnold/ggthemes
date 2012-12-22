@@ -5,7 +5,8 @@
   excel_pal(palette = "line")
 }
 \arguments{
-  \item{palette}{One of "old", "fill", or "new".}
+  \item{palette}{One of \code{"old"}, \code{"fill"}, or
+  \code{"new"}.}
 }
 \description{
   Color palettes from Excel, both current and the pre-2007
@@ -22,5 +23,10 @@ library(scales)
 show_col(excel_pal()(8))
 show_col(excel_pal("fill")(8))
 show_col(excel_pal("new")(10))
+}
+\seealso{
+  Other colour excel: \code{\link{scale_color_excel}},
+  \code{\link{scale_colour_excel}},
+  \code{\link{scale_fill_excel}}
 }
 

@@ -1,9 +1,8 @@
 ##' Economist color palette (discrete)
 ##'
-##' The primary colors are blues, grays, and greens. Red is not
-##' included (early) in these palettes and should be used to indicate
+##' The hues in the palette are blues, grays, and greens. Red is not
+##' included in these palettes and should be used to indicate
 ##' important data.
-##'
 ##'
 ##' @param stata Use the palette in the Stata economist scheme.
 ##' @param fill Use the fill palette.
@@ -75,8 +74,7 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 
 ##' Economist color scales
 ##'
-##' Color scales using the colors in the Economist graphics. These scales use
-##' RGB values and ordering of the colors in the Stata economist scheme.
+##' Color scales using the colors in the Economist graphics.
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams economist_pal
@@ -98,7 +96,6 @@ scale_fill_economist <- function(stata=FALSE, ...) {
     discrete_scale("fill", "economist", economist_pal(stata=stata), ...)
 }
 
-
 ##' ggplot color theme based on the Economist
 ##'
 ##' Style plots similar to those in \emph{The Economist}.
@@ -108,25 +105,29 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' \href{http://economist.com}{economist.com}.
 ##' \code{theme_economist_white} implements a variant with a while
 ##' panel and light gray (or white) background used by \emph{The Economist}
-##' blog "Graphic Detail".
+##' blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
 ##'
-##' The Economist uses "ITC Officina Sans" as its font for graphs. If
+##' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
 ##' you have access to this font, you can use it with the
-##' \bold{extrafont} package. "Verdana" is a good substitute.
+##' \pkg{extrafont} package. "Verdana" is a good substitute.
 ##'
-##' @param base_size base font size
-##' @param base_family base font family
+##' @param base_size \code{numeric} base font size
+##' @param base_family \code{character} base font family
 ##' @param horizontal \code{logical}. Horizontal axis lines?
 ##' @param dkpanel \code{logical} Darker background for panel region?
 ##' @param stata \code{logical} Use RGB values from Stata's
-##' ##' economist scheme.
-##' @param gray_bg For the white
+##' economist scheme.
+##' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else use white
+##' background.
+##'
+##' @return An object of class \code{\link{theme}}.
 ##'
 ##' @export
 ##' @family themes economist
 ##'
 ##' @references
 ##' \itemize{
+##' \item \href{http://economist.com}{The Economist}
 ##' \item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 ##' \item \url{http://www.economist.com/help/about-us}
 ##' }

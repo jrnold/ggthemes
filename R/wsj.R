@@ -1,9 +1,12 @@
 ##' Wall Street Journal theme
 ##'
 ##' Theme based on the plots in \emph{The Wall Street Journal}.
-##' Collections of these plots can be found on the WSJ Graphics
-##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
-##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
+##'
+##' @references
+##'
+##' \url{https://twitter.com/WSJGraphics}
+##'
+##' \url{http://pinterest.com/wsjgraphics/wsj-graphics/}
 ##'
 ##' @param base_size Base font size.
 ##' @param color The background color of plot. One of \code{"brown",

@@ -2,54 +2,22 @@
 \name{ggthemes_data}
 \alias{ggthemes_data}
 \title{Palette data for ggthemes package}
-\format{A \code{list}.
-\describe{
-\item{economist}{
-Colors from The Economist magazine. RGB values taken from
-the economist scheme in Stata. \code{bg} are background
-colors, \code{fg} are foreground colors.
-}
-\item{excel}{
-\code{list} Various Excel color palettes.
-\code{line} The Excel 2003 line color palette.
-\code{fill} The Excel 2003 bar chart color palette.
-\code{new} Color palette from more recent versions of Excel.
-Color RGB values from \url{http://vis.stanford.edu/color-names/analyzer/}.
-}
-\item{solarized}{
-Names and RGB values of the Solarized palette.
-\url{http://ethanschoonover.com/solarized}.
-\code{base} Base colors.
-\code{accent} Accent colors.
-}
-\item{stata}{
-Colors, shapes, and linetypes used by Stata
-\code{colors} RBG values of of all Stata colors.
-\code{shapes} R shape values of of all Stata symbol types.
-\code{linetype} Equivalent R linepattern for all Stata linepattern sytles. \url{http://www.stata.com/help.cgi?symbolstyle}.
-}
-\item{few}{
-Qualitative color palettes from Stephen Few,
-\href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
-He suggests using \code{medium}, except for thin lines and small points, for which use \code{dark}.
-}
-\item{tableau}{Color and shapes used by Tableau}
-\item{manyeyes}{
-Color palette from \href{http://www-958.ibm.com/software/data/cognos/manyeyes/}{IBM Many Eyes};
-values from \url{http://vis.stanford.edu/color-names/analyzer/}.
-}
-\item{wsj}{
-Colors used in \code{\link{theme_wsj}} and \code{\link{scale_colour_wsj}}.
-}
-\item{colorblind}{
-Colorblind palette from \url{http://jfly.iam.u-tokyo.ac.jp/color/}
-}
-}}
+\format{List of 9
+ $ economist :List of 3
+ $ excel     :List of 3
+ $ solarized :List of 2
+ $ stata     :List of 3
+ $ few       :List of 3
+ $ tableau   :List of 2
+ $ manyeyes  : chr [1:19] "#9c9ede" "#7375b5" "#4a5584" "#cedb9c" ...
+ $ wsj       :List of 2
+ $ colorblind: Named chr [1:8] "#000000" "#E69F00" "#56B4E9" "#009E73" ...
+  ..- attr(*, "names")= chr [1:8] "black" "orange" "sky_blue" "bluish_green" ...}
 \usage{
   ggthemes_data
 }
 \description{
-  List with the data used by palettes in the ggthemes
+  List with the data used by the palettes in the ggthemes
   package.
 }
 \keyword{datasets}

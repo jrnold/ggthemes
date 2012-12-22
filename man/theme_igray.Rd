@@ -10,13 +10,17 @@
   \item{base_family}{base font family}
 }
 \description{
-  Inverts the colors in the \code{\link{theme_gray}}, a
-  white panel and a light gray area around it. This keeps a
-  white background, but with more gray, it keeps the plot
-  closer to the typographical color of the document, which
-  was the motivation for using a gray background in
-  \code{theme_gray}. This is also the style of plots in
-  Stata and Tableau.
+  Theme with white panel and gray background.
+}
+\section{Details}{
+  This theme inverts the colors in the
+  \code{\link{theme_gray}}, a white panel and a light gray
+  area around it. This keeps a white background for the
+  color scales like \code{\link{theme_bw}}. But by using a
+  gray background, the plot is closer to the typographical
+  color of the document, which is the motivation for using
+  a gray panel in \code{\link{theme_gray}}. This is similar
+  to the style of plots in Stata and Tableau.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -24,7 +28,8 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + theme_igray())
 }
 \seealso{
-  Other themes: \code{\link{theme_excel}},
-  \code{\link{theme_foundation}}
+  \code{\link{theme_gray}}, \code{\link{theme_bw}}
+
+  Other themes: \code{\link{theme_foundation}}
 }
 

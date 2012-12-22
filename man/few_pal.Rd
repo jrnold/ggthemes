@@ -1,6 +1,6 @@
 \name{few_pal}
 \alias{few_pal}
-\title{Palletes from Stephen Few (discrete)}
+\title{Color Palletes from Few "Practical Rules for Using Color in Charts"}
 \usage{
   few_pal(palette = "medium")
 }

@@ -1,9 +1,7 @@
 ##' Tufte's Box Blot
 ##'
 ##' Edward Tufte's revision of the box plot erases the box and
-##' replaces it with a single middle point. What is usually
-##' represented by notches in a standard box plot is represented by a
-##' box with a line for the median.
+##' replaces it with a single point and the whiskers.
 ##'
 ##' @section Aesthetics:
 ##' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("geom_tufteboxplot", ggthemes:::GeomTufteboxplot)}

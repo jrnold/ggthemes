@@ -11,9 +11,9 @@
   \item{fill}{Use the fill palette.}
 }
 \description{
-  The primary colors are blues, grays, and greens. Red is
-  not included (early) in these palettes and should be used
-  to indicate important data.
+  The hues in the palette are blues, grays, and greens. Red
+  is not included in these palettes and should be used to
+  indicate important data.
 }
 \examples{
 library(scales)

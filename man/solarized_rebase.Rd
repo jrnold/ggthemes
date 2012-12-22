@@ -9,10 +9,10 @@
 
   Creates the base colors for a light or dark solarized
   theme. See \url{http://ethanschoonover.com/solarized}.
-  The idea for this function comes from the CSS style
-  example.}
+  This function is a port of the CSS style example.}
 }
 \description{
   Base colors for Solarized light and dark themes
 }
+\keyword{internal}
 

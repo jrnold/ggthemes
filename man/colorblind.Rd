@@ -19,10 +19,10 @@
   breaks, labels and so forth.}
 }
 \description{
-  8-Color Colorblind palette from
-  \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
-  \href{http://wiki.stdout.org/rcookbook/Graphs/Colors\%20(ggplot2)}{R
-  Cookbook}/
+  An 8-color colorblind safe qualitative discrete palette
+  from \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
+  \href{http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)/#a-colorblind-friendly-palette}{Cookbook
+  for R}.
 }
 \examples{
 library(scales)

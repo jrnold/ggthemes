@@ -20,8 +20,6 @@
 }
 \description{
   Color scales using the colors in the Economist graphics.
-  These scales use RGB values and ordering of the colors in
-  the Stata economist scheme.
 }
 \seealso{
   \code{\link{theme_economist}} for examples.

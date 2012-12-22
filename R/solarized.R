@@ -3,8 +3,10 @@
 ##' @param light \code{logical} Light theme?
 ##'
 ##' Creates the base colors for a light or dark solarized theme. See
-##' \url{http://ethanschoonover.com/solarized}. The idea for this
-##' function comes from the CSS style example.
+##' \url{http://ethanschoonover.com/solarized}. This function is a port
+##' of the CSS style example.
+##'
+##' @keywords internal
 solarized_rebase <- function(light=TRUE) {
     if (light) {
         rebase <- ggthemes_data$solarized$base[c(paste('base', 3:0, sep=''),
@@ -17,15 +19,24 @@ solarized_rebase <- function(light=TRUE) {
     rebase
 }
 
+solarized_accent_list <- function() {
+    paste0("\\code{\"", names(ggthemes_data$solarized$accents), "\"}",
+          collapse=",")
+}
+
 ##' Solarized color palette (discrete)
 ##'
-##' Solarized accents palette from
-##' \url{http://ethanschoonover.com/solarized}. The colors chosen are
-##' the combination of colors that maximize the total Euclidean
-##' distance between colors in L*a*b space, given a primary accent.
+##' Qualitative color palate based on the Ethan Schoonover's Solarized
+##' palette, \url{http://ethanschoonover.com/solarized}.
 ##'
+##' @note
 ##'
-##' @param accent \code{character} Primary accent color.
+##' For a given starting color and number of colors in the palette,
+##' the other colors are the combination of colors that maximizes the
+##' total Euclidean distance between colors in L*a*b space.
+##'
+##' @param accent \code{character} Starting color. One of
+##' \Sexpr[results=rd,stage=build]{ggthemes:::solarized_accent_list()}
 ##' @export
 ##' @family solarized colour
 ##' @examples
@@ -63,9 +74,7 @@ solarized_pal <- function(accent="blue") {
 
 ##' Solarized color scales
 ##'
-##' Accent color theme for Solarized.
-##' Primarily for use with
-##' \code{\link{theme_solarized}}.
+##' See \code{\link{solarized_pal}} for details.
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams solarized_pal

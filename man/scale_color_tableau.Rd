@@ -18,8 +18,7 @@
   \item{palette}{Palette name}
 }
 \description{
-  Color scales used by
-  \href{http://www.tableausoftware.com/}{Trableau}.
+  See \code{\link{tableau_color_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

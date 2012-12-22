@@ -11,9 +11,9 @@
     horizontal = TRUE)
 }
 \arguments{
-  \item{base_size}{base font size}
+  \item{base_size}{\code{numeric} base font size}
 
-  \item{base_family}{base font family}
+  \item{base_family}{\code{character} base font family}
 
   \item{horizontal}{\code{logical}. Horizontal axis lines?}
 
@@ -21,9 +21,13 @@
   region?}
 
   \item{stata}{\code{logical} Use RGB values from Stata's
-  ##' economist scheme.}
+  economist scheme.}
 
-  \item{gray_bg}{For the white}
+  \item{gray_bg}{\code{logical} If \code{TRUE}, use gray
+  background, else use white background.}
+}
+\value{
+  An object of class \code{\link{theme}}.
 }
 \description{
   Style plots similar to those in \emph{The Economist}.
@@ -35,11 +39,13 @@
   \href{http://economist.com}{economist.com}.
   \code{theme_economist_white} implements a variant with a
   while panel and light gray (or white) background used by
-  \emph{The Economist} blog "Graphic Detail".
+  \emph{The Economist} blog
+  \href{http://www.economist.com/blogs/graphicdetail}{Graphic
+  Detail}.
 
-  The Economist uses "ITC Officina Sans" as its font for
-  graphs. If you have access to this font, you can use it
-  with the \bold{extrafont} package. "Verdana" is a good
+  \emph{The Economist} uses "ITC Officina Sans" as its font
+  for graphs. If you have access to this font, you can use
+  it with the \pkg{extrafont} package. "Verdana" is a good
   substitute.
 }
 \examples{
@@ -86,7 +92,8 @@ library(extrafont)
 }
 }
 \references{
-  \itemize{ \item
+  \itemize{ \item \href{http://economist.com}{The
+  Economist} \item
   \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog,
   "ITC Officina Display", January 1, 2007.} \item
   \url{http://www.economist.com/help/about-us} }

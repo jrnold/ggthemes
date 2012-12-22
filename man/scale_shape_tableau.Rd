@@ -13,8 +13,7 @@
   \code{\link{discrete_scale}} for more details}
 }
 \description{
-  Shape scales used by
-  \href{http://www.tableausoftware.com/}{Trableau}.
+  See \code{\link{tableau_shape_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

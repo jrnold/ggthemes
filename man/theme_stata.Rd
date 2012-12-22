@@ -1,6 +1,6 @@
 \name{theme_stata}
 \alias{theme_stata}
-\title{ggplot theme based on Stata graph schemes}
+\title{Themes based on Stata graph schemes}
 \usage{
   theme_stata(scheme = "s2color", base_size = 11,
     base_family = "sans")
@@ -14,14 +14,12 @@
   \item{base_family}{base font family}
 }
 \description{
-  Themes which replicate Stata graph schemes.
+  Themes based on Stata graph schemes
 }
 \note{
-  Stata graph schemes include what ggplot seperates into
-  themes and scales, as well as defaults specific to
+  Stata graph schemes include what \pkg{ggplot2} seperates
+  into themes and scales, as well as defaults specific to
   different graph types (which ggplot does not support).
-  These themes should be used in conjunction with
-  \code{\link{scale_colour_stata}}, see the examples.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

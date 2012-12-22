@@ -11,14 +11,15 @@
   scale_color_excel(palette = "fill", ...)
 }
 \arguments{
-  \item{palette}{One of "old", "fill", or "new".}
+  \item{palette}{One of \code{"old"}, \code{"fill"}, or
+  \code{"new"}.}
 
   \item{...}{Other arguments passed on to
   \code{\link{discrete_scale}} to control name, limits,
   breaks, labels and so forth.}
 }
 \description{
-  Excel color scales
+  Color scales from both old and new Excel.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -29,8 +30,6 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 \seealso{
   See \code{\link{theme_excel}} for examples.
 
-  Other colour scales: \code{\link{scale_color_solarized}},
-  \code{\link{scale_colour_solarized}},
-  \code{\link{scale_fill_solarized}}
+  Other colour excel: \code{\link{excel_pal}}
 }
 

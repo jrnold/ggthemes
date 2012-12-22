@@ -10,7 +10,8 @@
 ##' \item{new}{Color palette from newer Excel versions.}
 ##' }
 ##'
-##' @param palette One of "old", "fill", or "new".
+##' @param palette One of \code{"old"}, \code{"fill"}, or \code{"new"}.
+##' @family colour excel
 ##' @export
 ##' @examples
 ##' library(scales)
@@ -29,9 +30,11 @@ excel_pal <- function(palette="line") {
 
 ##' Excel color scales
 ##'
+##' Color scales from both old and new Excel.
+##'
 ##' @inheritParams excel_pal
 ##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour scales
+##' @family colour excel
 ##' @rdname scale_excel
 ##' @export
 ##' @seealso See \code{\link{theme_excel}} for examples.
@@ -56,14 +59,15 @@ scale_color_excel <- scale_colour_excel
 
 ##' ggplot color theme based on old Excel plots
 ##'
-##' Theme to replicate the ugly monstrosity that was the Excel 2003
-##' chart. Please never use this.
+##' Theme to replicate the ugly monstrosity that was the old
+##' gray-background Excel chart. Please never use this.
 ##'
-##' @param base_size base font size
-##' @param base_family base font family
+##' @param base_size \code{numeric} base font size
+##' @param base_family \code{character} base font family
 ##' @param horizontal \code{logical}. Horizontal axis lines?
+##' @return An object of class \code{\link{theme}}.
 ##' @export
-##' @family themes
+##' @family themes excel
 ##' @examples
 ##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ##' # Old line color palette

@@ -5,12 +5,13 @@
   stata_pal(scheme = "s2color")
 }
 \arguments{
-  \item{scheme}{\code{character}. One of "s2color",
-  "s1rcolor", "s1color", or "mono".}
+  \item{scheme}{\code{character}. One of \code{"s2color"},
+  \code{"s1rcolor"}, \code{"s1color"}, or \code{"mono"}.}
 }
 \description{
-  Stata color palettes.  See Stata documentation for
-  schemes: \url{http://www.stata.com/help.cgi?schemes}
+  Stata color palettes. See Stata documentation for a
+  description of the schemes,
+  \url{http://www.stata.com/help.cgi?schemes}.
 }
 \examples{
 library(scales)

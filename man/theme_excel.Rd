@@ -6,15 +6,18 @@
     base_family = "")
 }
 \arguments{
-  \item{base_size}{base font size}
+  \item{base_size}{\code{numeric} base font size}
 
-  \item{base_family}{base font family}
+  \item{base_family}{\code{character} base font family}
 
   \item{horizontal}{\code{logical}. Horizontal axis lines?}
 }
+\value{
+  An object of class \code{\link{theme}}.
+}
 \description{
-  Theme to replicate the ugly monstrosity that was the
-  Excel 2003 chart. Please never use this.
+  Theme to replicate the ugly monstrosity that was the old
+  gray-background Excel chart. Please never use this.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -27,9 +30,5 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 + geom_bar()
 + scale_fill_excel("fill")
 + theme_excel())
-}
-\seealso{
-  Other themes: \code{\link{theme_foundation}},
-  \code{\link{theme_igray}}
 }
 

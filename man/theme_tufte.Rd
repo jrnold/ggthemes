@@ -1,6 +1,6 @@
 \name{theme_tufte}
 \alias{theme_tufte}
-\title{Tufte Data-Ink Maximized Theme}
+\title{Tufte Maximal Data, Minimal Ink Theme}
 \usage{
   theme_tufte(ticks = TRUE, base_family = "serif",
     base_size = 11)
@@ -19,7 +19,7 @@
   grids. This theme works best in combination with
   \code{\link{geom_rug}} or \code{\link{geom_rangeframe}}.
 }
-\details{
+\note{
   The default font family is set to "serif" as he uses
   serif fonts for labels in "The Visual Display of
   Quantitative Information". The serif font used by Tufte

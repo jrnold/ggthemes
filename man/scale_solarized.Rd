@@ -15,11 +15,11 @@
   \code{\link{discrete_scale}} to control name, limits,
   breaks, labels and so forth.}
 
-  \item{accent}{\code{character} Primary accent color.}
+  \item{accent}{\code{character} Starting color. One of
+  \Sexpr[results=rd,stage=build]{ggthemes:::solarized_accent_list()}}
 }
 \description{
-  Accent color theme for Solarized. Primarily for use with
-  \code{\link{theme_solarized}}.
+  See \code{\link{solarized_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -28,10 +28,6 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + scale_colour_solarized() )
 }
 \seealso{
-  Other colour scales: \code{\link{scale_color_excel}},
-  \code{\link{scale_colour_excel}},
-  \code{\link{scale_fill_excel}}
-
   Other solarized colour: \code{\link{solarized_pal}}
 }
 

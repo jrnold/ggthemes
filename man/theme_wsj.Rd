@@ -18,10 +18,7 @@
 }
 \description{
   Theme based on the plots in \emph{The Wall Street
-  Journal}. Collections of these plots can be found on the
-  WSJ Graphics
-  \href{https://twitter.com/WSJGraphics}{Twitter} feed and
-  \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
+  Journal}.
 }
 \examples{
 (qplot(hp, mpg, data=mtcars, geom="point")
@@ -33,5 +30,10 @@
  + scale_colour_wsj("colors6", "")
  + ggtitle("Diamond Prices")
  + theme_wsj(color="gray"))
+}
+\references{
+  \url{https://twitter.com/WSJGraphics}
+
+  \url{http://pinterest.com/wsjgraphics/wsj-graphics/}
 }
 

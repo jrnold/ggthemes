@@ -68,7 +68,7 @@ calc_slopes <- function(x, y, cull=FALSE) {
 ##' This method finds the aspect ratio by setting the average
 ##' orientation to 45 degrees. For an aspect ratio
 ##' \eqn{\alpha}{alpha}, let the orientation of a line segment be
-##' \eqn{\theta_i(\alpha) = \atan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / alpha)}.
+##' \eqn{\theta_i(\alpha) = \arctan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / alpha)}.
 ##'
 ##' \deqn{
 ##' \frac{ \sum_i \theta_i(\alpha) l_i}{\sum_i l_i} = \frac{\pi}{4} rad
@@ -104,7 +104,7 @@ calc_slopes <- function(x, y, cull=FALSE) {
 ##' The angle between line segments i and j is \eqn{r_{i,j} =
 ##' \|\theta_i(\alpha) - \theta_j(\alpha)\|}{r_{i,j} = |
 ##' theta_i(alpha) - theta_j(alpha)|}, where \eqn{\theta_i(\alpha) =
-##' \atan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / \alpha)} and
+##' \arctan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / \alpha)} and
 ##' \eqn{s_i} is the slope of line segment i. This function finds the
 ##' \eqn{\alpha} that maximizes the sum of the angles between all
 ##' pairs of line segments.
