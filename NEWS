@@ -1,3 +1,9 @@
+ggthemes 1.3.1
+------------------------
+
+* bank_slopes returns y/x aspect ratio to be compatible with coord_fixed
+* improved documentation
+
 ggthemes 1.3.0 
 ------------------------
 

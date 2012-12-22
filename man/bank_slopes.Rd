@@ -18,55 +18,61 @@
 
   \item{method}{One of "ms" (Median Absolute Slope), "as"
   (Average Absolute Slope), "ao" (Average Orientation),
-  "lor" (Local Orientation Resolution), "gor" (Local
+  "lor" (Local Orientation Resolution), "gor" (Global
   Orientation Resolution).}
 
-  \item{...}{Passed to \code{\link{nlm}} in methods "so",
+  \item{...}{Passed to \code{\link{nlm}} in methods "ao",
   "lor" and "gor".}
 }
 \value{
-  \code{numeric} The aspect ratio.
+  \code{numeric} The aspect ratio (x , y).
 }
 \description{
   Calculate the optimal aspect ratio of a line graph by
   banking the slopes to 45 degrees as suggested by W.S.
   Cleveland. This maximizes the ability to visually
-  differentiate differences in slope.
+  differentiate differences in slope. This function will
+  calculate the optimal aspect ratio for a line plot using
+  any of the methods described in Herr and Argwala (2006).
+  In their review of the methods they suggest using median
+  absolute slope banking ("ms"), which produces aspect
+  ratios which are generally the median of the various
+  methods provided here.
 }
-\note{
-  This function calculates the optimal aspect ratio for a
-  line plot using any of the methods described in Herr and
-  Argwala (2006), many of which were developed by W.S.
-  Cleveland. In their review of the methods they suggest
-  using median absolute slope banking ("ms"), which
-  produces aspect ratios which are generally the median of
-  the various methods.
+\section{Methods}{
+  As written, all of these methods calculate the aspect
+  ratio (x /y), but \code{bank_slopes} will return (y / x)
+  to be compatible with \code{link[ggplot2]{coord_fixed}}.
 
-  Median Absolute Slope Banking
+  \strong{Median Absolute Slopes Banking}
 
-  Let the aspect ratio be \eqn{\alpha = \frac{w}{h}} then
-  the median absolute slop banking is the \eqn{\alpha} such
-  that, \deqn{ median \left| \frac{s_i}{\alpha} \right| = 1
-  }{ median |s_i / alpha| }
+  Let the aspect ratio be \eqn{\alpha = \frac{w}{h}}{alpha
+  = w / h} then the median absolute slop banking is the
+  \eqn{\alpha}{alpha} such that, \deqn{ median \left|
+  \frac{s_i}{\alpha} \right| = 1 }{ median |s_i / alpha| }
 
-  Let \eqn{R_z = z_{max} - z_{min}} for \eqn{z = x, y}, and
-  \eqn{M = median \| s_i \|}. Then, \deqn{ \alpha = M R_x /
-  R_y }
+  Let \eqn{R_z = z_{max} - z_{min}}{R_z = z_max - z_min}
+  for \eqn{z = x, y}, and \eqn{M = median \| s_i \|}{M =
+  median | s_i |}. Then, \deqn{ \alpha = M \frac{R_x}{R_y}
+  }{ alpha = M R_x / R_y }
 
-  Average-Absolute-Orientation Banking
+  \strong{Average-Absolute-Orientation Banking}
 
-  Find the aspect ratio by setting the average orientation
-  to 45 degrees. For aspect ratio \eqn{\alpha}{alpha}, let
-  the orientation of a line segment be
-  \eqn{\theta_i(\alpha) = atan(s_i / \alpha)}.
+  This method finds the aspect ratio by setting the average
+  orientation to 45 degrees. For an aspect ratio
+  \eqn{\alpha}{alpha}, let the orientation of a line
+  segment be \eqn{\theta_i(\alpha) = \atan(s_i /
+  \alpha)}{theta_i(alpha) = atan(s_i / alpha)}.
 
   \deqn{ \frac{ \sum_i \theta_i(\alpha) l_i}{\sum_i l_i} =
-  \frac{\pi}{4} rad } where \eqn{l_i = 1} if unweighted,
-  and \eqn{l_i = \sqrt{x_i^2 + y_i^2}} (length of the line
-  segment), if weighted. The value of \eqn{\alpha} is found
-  with \code{\link{nlm}}.
+  \frac{\pi}{4} rad }{ ((\sum_i theta_i(alpha) l_i) /
+  (\sum_i l_i)) = (pi / 4 ) rad } where \eqn{l_i = 1} if
+  unweighted, and \eqn{l_i = \sqrt{x_i^2 + y_i^2}}{l_i =
+  sqrt(x_i^2 + y_i^2)} (length of the line segment), if
+  weighted. The value of \eqn{\alpha} is found with
+  \code{\link{nlm}}.
 
-  Average Absolute Slope Banking
+  \strong{Average Absolute Slope Banking}
 
   Let the aspect ratio be \eqn{\alpha = \frac{w}{h}}{alpha
   = w/h}. then the mean absolute slope banking is the
@@ -76,32 +82,43 @@
 
   Let \eqn{R_z = z_{max} - z_{min}} for \eqn{z = x, y}, and
   \eqn{M = mean \| s_i \|}. Then, \deqn{ \alpha = M R_x /
-  R_y }
+  R_y }{ alpha = M R_x / R_y }
 
-  Banking by Optimizing Orientation Resolution
+  \strong{Banking by Optimizing Orientation Resolution}
 
   The angle between line segments i and j is \eqn{r_{i,j} =
-  \|\theta_i(\alpha) - \theta_j(\alpha)\|}
-
-  where \eqn{\theta_i(\alpha) = atan(s_i / \alpha)} and
+  \|\theta_i(\alpha) - \theta_j(\alpha)\|}{r_{i,j} = |
+  theta_i(alpha) - theta_j(alpha)|}, where
+  \eqn{\theta_i(\alpha) = \atan(s_i /
+  \alpha)}{theta_i(alpha) = atan(s_i / \alpha)} and
   \eqn{s_i} is the slope of line segment i. This function
   finds the \eqn{\alpha} that maximizes the sum of the
   angles between all pairs of line segments.
 
-  \deqn{ \max_{\alpha} \sum_i \sum_{j: j < 1} r_{i,j} }
+  \deqn{ \max_{\alpha} \sum_i \sum_{j: j < 1} r_{i,j} }{
+  max_{alpha} sum_i sum_{j: j < 1} r_{i,j} }
 
   The local optimization only includes line-segments that
   are next to each other. Suppose there are n line
   segments, then the local orientation orientation has the
   following objective function.
 
-  \deqn{ \max_{\alpha} \sum_{i=2}^{n} r_{i,i-1} }
+  \deqn{ \max_{\alpha} \sum_{i=2}^{n} r_{i,i-1} }{
+  max_{\alpha} sum_{i=2}^{n} r_{i,i-1} }
 }
 \examples{
+# Use the classic sunspot data from Cleveland's orig paper
 x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
+# Without banking
+m <- qplot(x, y, geom="line")
+m
+
 ## Using the default method, Median Absolute Slope
-bank_slopes(x, y)
+ratio <- bank_slopes(x, y)
+m + coord_fixed(ratio = ratio)
+
+## Alternative methods to calculate the banking
 bank_slopes(x, y, method="ms")
 ## Using culling
 bank_slopes(x, y, method="ms", cull=TRUE)
@@ -136,5 +153,8 @@ bank_slopes(x, y, method="lor", cull=TRUE)
 
   Cleveland, W. S. 1994. The Elements of Graphing Data,
   Revised Edition.
+}
+\seealso{
+  \code{\link[lattice]{banking}}
 }
 
