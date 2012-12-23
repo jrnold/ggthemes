@@ -37,17 +37,24 @@ Quantitative Information*.
   
 # Install 
 
-To install the newest version use 
+To install the stable version from CRAN,
+
+```r
+install.packages('ggthemes', dependencies = TRUE)
+```
+
+Or, to install the development version from github, use the
+**devtools** package,
 
 ```r
 library("devtools")
 install_github("ggthemes", "jrnold")
+# or Development branch
+# install_github("ggthemes", "jrnold", ref="dev")
 ```
 
-Make sure that you have installed the *newest* version of
-**devtools**. 
-
-Windows users also must first install [Rtools](http://cran.rstudio.com/bin/windows/Rtools/).
+Windows users also must first install
+[Rtools](http://cran.rstudio.com/bin/windows/Rtools/).
 
 # Contribute
 
