@@ -49,8 +49,6 @@ Or, to install the development version from github, use the
 ```r
 library("devtools")
 install_github("ggthemes", "jrnold")
-# or Development branch
-# install_github("ggthemes", "jrnold", ref="dev")
 ```
 
 Windows users also must first install
