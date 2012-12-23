@@ -20,8 +20,8 @@ Suggests:
     reshape2,
 Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
-URL: http://github.com/jrnold/ggplot-jrnold
-BugReports: http://github.com/jrnold/ggplot-jrnold
+URL: http://github.com/jrnold/ggthemes
+BugReports: http://github.com/jrnold/ggthemes
 Collate:
     'economist.R'
     'shapes.R'
