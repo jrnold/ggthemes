@@ -1,6 +1,5 @@
 
 
-
 # ggthemes
 
 Some extra geoms, scales, and themes for
@@ -19,7 +18,7 @@ Quantitative Information*.
 - ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
 - ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 - ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
-- ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+- ``theme_wsj``: a theme based on the plots in the [The Wall Street Journal](http://www.wsj.com/) newspaper.
 - ``theme_few``: theme from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 ## Scales
