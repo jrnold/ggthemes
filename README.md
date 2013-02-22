@@ -7,7 +7,7 @@ Some extra geoms, scales, and themes for
 
 ## Geoms
 
-- ``geom_tufterangeframe`` : Tufte's range frame
+- ``geom_rangeframe`` : Tufte's range frame
 - ``geom_tufteboxplot``: Tufte's box plot
 
 ## Themes 
