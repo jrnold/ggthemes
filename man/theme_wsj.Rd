@@ -3,7 +3,7 @@
 \title{Wall Street Journal theme}
 \usage{
   theme_wsj(base_size = 12, color = "brown",
-    base_family = "sans", title_family = "Courier")
+    base_family = "sans", title_family = "mono")
 }
 \arguments{
   \item{base_size}{Base font size.}
