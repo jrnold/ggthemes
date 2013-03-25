@@ -26,7 +26,7 @@
 ##'  + ggtitle("Diamond Prices")
 ##'  + theme_wsj(color="gray"))
 ##' @export
-theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_family="Courier") {
+theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_family="mono") {
     colorhex <- ggthemes_data$wsj$bg[color]
     (theme_foundation()
      + theme(
