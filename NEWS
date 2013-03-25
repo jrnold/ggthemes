@@ -1,7 +1,7 @@
 ggthemes 1.3.3
 ------------------------
 
-* fix issue #11: error with fonts and theme_wsg in Windows
+* fix issue #11: font errors with `theme_wsj` in Windows
 
 ggthemes 1.3.1
 ------------------------
