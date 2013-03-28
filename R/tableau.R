@@ -123,3 +123,46 @@ tableau_shape_pal <- function(palette="default") {
 scale_shape_tableau <- function (palette = "default", ...) {
     discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
+
+#' Tableau sequential colour gradient palette (continuous)
+#'
+#' @param palette Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes::charopts(names(ggthemes_data$tableau$sequential))}.
+#' @param space Colour space in which to calculate gradient.
+#' @family colour tableau
+#'
+#' @examples
+#' x <- seq(0, 1, length = 25)
+#' show_col(tableau_seq_gradient_pal("Red")(x))
+#' show_col(tableau_seq_gradient_pal("Blue")(x))
+#' show_col(tableau_seq_gradient_pal("Purple Sequential")(x))
+tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
+    pal <- ggthemes_data[["tableau"]][["sequential"]][[palette]]
+    seq_gradient_pal(low = pal['low'], high = pal['high'])
+}
+
+
+#' Tableau sequential colour scale (continuous)
+#' 
+#' @export
+#' @inheritParams tableau_seq_gradient_pal
+#' @inheritParams ggplot2::scale_x_continuous
+#' @family colour tableau
+#' @rdname scale_colour_gradient_tableau
+#' @examples
+#' dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
+#' d + scale_colour_gradient_tableau("Red", limits=c(3, 4))
+#' d + scale_colour_gradient_tableau("Blue", limits=c(3, 4))
+#' d + scale_colour_gradient_tableau("Green", limits=c(3, 4))
+scale_colour_gradient_tableau <- function (palette = "Red", ..., space = "Lab", 
+    na.value = "grey50", guide = "colourbar") {
+    continuous_scale("colour", "tableau",
+                     tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
+}
+
+#' @export
+#' @rdname scale_colour_gradient_tableau
+scale_fill_gradient_tableau <- function (palette = "Red", ..., space = "Lab", 
+    na.value = "grey50", guide = "colourbar") {
+    continuous_scale("fill", "tableau",
+                     tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
+}

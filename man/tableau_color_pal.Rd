@@ -5,10 +5,10 @@
   tableau_color_pal(palette = "tableau10")
 }
 \arguments{
-  \item{palette}{Palette name:
+  \item{palette}{Palette name. One of
   \Sexpr[results=rd,stage=build]{ggthemes::charopts(c(names(ggthemes_data$tableau$colors),
   c("tableau10", "tableau10light", "purplegray6",
-  "bluered6", "greenorange6")))}}
+  "bluered6", "greenorange6")))}.}
 }
 \description{
   Color palettes used in
@@ -43,7 +43,10 @@ show_col(tableau_color_pal("cyclic")(20))
 }
 \seealso{
   Other colour tableau: \code{\link{scale_color_tableau}},
+  \code{\link{scale_colour_gradient_tableau}},
   \code{\link{scale_colour_tableau}},
-  \code{\link{scale_fill_tableau}}
+  \code{\link{scale_fill_gradient_tableau}},
+  \code{\link{scale_fill_tableau}},
+  \code{\link{tableau_seq_gradient_pal}}
 }
 

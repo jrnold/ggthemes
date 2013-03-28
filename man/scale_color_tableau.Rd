@@ -15,10 +15,10 @@
   \code{\link{discrete_scale}} to control name, limits,
   breaks, labels and so forth.}
 
-  \item{palette}{Palette name:
+  \item{palette}{Palette name. One of
   \Sexpr[results=rd,stage=build]{ggthemes::charopts(c(names(ggthemes_data$tableau$colors),
   c("tableau10", "tableau10light", "purplegray6",
-  "bluered6", "greenorange6")))}}
+  "bluered6", "greenorange6")))}.}
 }
 \description{
   See \code{\link{tableau_color_pal}} for details.
@@ -40,6 +40,10 @@ p + scale_colour_tableau("cyclic")
 \seealso{
   \code{\link{tableau_color_pal}} for references.
 
-  Other colour tableau: \code{\link{tableau_color_pal}}
+  Other colour tableau:
+  \code{\link{scale_colour_gradient_tableau}},
+  \code{\link{scale_fill_gradient_tableau}},
+  \code{\link{tableau_color_pal}},
+  \code{\link{tableau_seq_gradient_pal}}
 }
 
