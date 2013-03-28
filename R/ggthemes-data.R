@@ -585,6 +585,20 @@ ggthemes_data <- {
           rgb(85, 116, 166, max = 255),
           rgb(59, 62, 172, max = 255))
 
+    x$calc <-
+        c(`Chart 1` = "#004586",
+          `Chart 2` = "#FF420E",
+          `Chart 3` = "#FFD320",
+          `Chart 4` = "#579D1C",
+          `Chart 5` = "#7E0021",
+          `Chart 6` = "#83CAFF",
+          `Chart 7` = "#83CAFF",
+          `Chart 8` = "#AECF00",
+          `Chart 9` = "#4B1F6F",
+          `Chart 10` = "#4B1F6F",
+          `Chart 11` = "#C5000B",
+          `Chart 12` = "#0084D1")
+    
     ## Return
     x
 
