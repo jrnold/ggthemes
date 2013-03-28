@@ -397,64 +397,64 @@ ggthemes_data <- {
           "#39737C",
           "#86B4A9",
           "#82853B",
-          "#CCC94D")
+          "#CCC94D"),
         ## greenorange6 is odd
         cyclic =
-        c("1F83B4"
-          "1696AC"
-          "18A188"
-          "29A03C"
-          "54A338"
-          "82A93F"
-          "ADB828"
-          "D8BD35"
-          "FFBD4C"
-          "FFB022"
-          "FF9C0E"
-          "FF810E"
-          "E75727"
-          "D23E4E"
-          "C94D8C"
-          "C04AA7"
-          "B446B3"
-          "9658B1"
-          "8061B4"
+        c("1F83B4",
+          "1696AC",
+          "18A188",
+          "29A03C",
+          "54A338",
+          "82A93F",
+          "ADB828",
+          "D8BD35",
+          "FFBD4C",
+          "FFB022",
+          "FF9C0E",
+          "FF810E",
+          "E75727",
+          "D23E4E",
+          "C94D8C",
+          "C04AA7",
+          "B446B3",
+          "9658B1",
+          "8061B4",
           "6F63BB")
         )
     x$tableau$sequential <-
-        list("Red" = c("BCCFB4", "9C0824"),
-             "Green" = c("BCCFB4", "09622A"),
-             "Blue" = c("B4D4DA", "26456E"),
-             "Orange" = c("F0C294", "7B3014"),
-             "Gray" = c("C3C3C3", "1E1E1E"),
-             "Red Light" = c("E5E5E5", "FFB2B6"),
-             "Green Light" = c("E5E5E5", "B7E6A7"),
-             "Blue Light" = c("E5E5E5", "C4D8F3"),
-             "Orange Light" = ("E5E5E5", "FFCC9E"),
-             "Area Red" = c("F5CAC7", "BD1100"),
-             "Area Green" = c("DBE8B4", "3C8200"),
-             "Area Brown" = c("F3E0C2", "BB5137"),
-             "Blue-Green Sequential" = c("FEFFD9", "41B7C4"),
-             "Brown Sequential" = c("F7E4C6", "BB5137"),
-             "Purple Sequential" = c("EFEDF5", "807DBA"),
-             "Grey Sequential" = c("F0F0F0", "737373"))
+        list(`Red` = c(low = "BCCFB4", high = "9C0824"),
+             `Green` = c(low = "BCCFB4", high = "09622A"),
+             `Blue` = c(low = "B4D4DA", high = "26456E"),
+             `Orange` = c(low = "F0C294", high = "7B3014"),
+             `Gray` = c(low = "C3C3C3", high = "1E1E1E"),
+             `Red Light` = c(low = "E5E5E5", high = "FFB2B6"),
+             `Green Light` = c(low = "E5E5E5", high = "B7E6A7"),
+             `Blue Light` = c(low = "E5E5E5", high = "C4D8F3"),
+             `Orange Light` = c(low = "E5E5E5", high = "FFCC9E"),
+             `Area Red` = c(low = "F5CAC7", high = "BD1100"),
+             `Area Green` = c(low = "DBE8B4", high = "3C8200"),
+             `Area Brown` = c(low = "F3E0C2", high = "BB5137"),
+             `Blue-Green Sequential` = c(low = "FEFFD9", high = "41B7C4"),
+             `Brown Sequential` = c(low = "F7E4C6", high = "BB5137"),
+             `Purple Sequential` = c(low = "EFEDF5", high = "807DBA"),
+             `Grey Sequential` = c(low = "F0F0F0", high = "737373"))
     x$tableau$diverging <-
-        .        list("Red-Blue" = c(low="9C0824", mid="CACACA", high="26456E"),
-                      "Red-Green" = c(low="9C0824", mid="CACACA", high="09622A"),
-                      "Red-White-Green" = c(low="9C0824", mid="FFFFFF", high="09622A"),
-                      "Red-Black" = c(low="9C0824", mid="CACACA", high="1E1E1E"),
-                      "Red-White-Black" = c(low="9C0824", mid="FFFFFF", high="1E1E1E"),
-                      "Green-Blue" = c(low="09622A", mid="CACACA", high="26456E"),
-                      "Orange-Blue" = c(low="7B3014", mid="CACACA", high="26456E"),
-                      "Orange-White-Blue" = c(low="7B3014", mid="FFFFFF", high="26456E"),
-                      "Red-Green Light" = c(low="FFB2B6", mid="E5E5E5", high="B7E6A7"),
-                      "Red-White-Green Light" = c(low="FFB2B6", mid="FFFFFF", high="B7E6A7"),
-                      "Red-White-Black Light" = c(low="FFB2B6", mid="FFFFFF", high="C6C6C6"),
-                      "Orange-Blue Light" = c(low="FFCC9E", mid="E5E5E5", high="C4D8F3"),
-                      "Orange-White-Blue Light" = c(low="FFCC9E", mid="FFFFFF", high="C4D8F3"),
-                      "Orange-Blue" = c(low="E0AD30", mid="E4E4E2", high="7492AA"),
-                      "Light Red-Green" = c(low="EDA389", mid="CDE1D3", high="5C8B70"),
-                      "Temperature" = c(low="529985", mid="DBCF47", high="C26B51"))
+        list(`Red-Blue` = c(low="9C0824", mid="CACACA", high="26456E"),
+             `Red-Green` = c(low="9C0824", mid="CACACA", high="09622A"),
+             `Red-White-Green` = c(low="9C0824", mid="FFFFFF", high="09622A"),
+             `Red-Black` = c(low="9C0824", mid="CACACA", high="1E1E1E"),
+             `Red-White-Black` = c(low="9C0824", mid="FFFFFF", high="1E1E1E"),
+             `Green-Blue` = c(low="09622A", mid="CACACA", high="26456E"),
+             `Orange-Blue` = c(low="7B3014", mid="CACACA", high="26456E"),
+             `Orange-White-Blue` = c(low="7B3014", mid="FFFFFF", high="26456E"),
+             `Red-Green Light` = c(low="FFB2B6", mid="E5E5E5", high="B7E6A7"),
+             `Red-White-Green Light` = c(low="FFB2B6", mid="FFFFFF", high="B7E6A7"),
+             `Red-White-Black Light` = c(low="FFB2B6", mid="FFFFFF", high="C6C6C6"),
+             `Orange-Blue Light` = c(low="FFCC9E", mid="E5E5E5", high="C4D8F3"),
+             `Orange-White-Blue Light` = c(low="FFCC9E", mid="FFFFFF", high="C4D8F3"),
+             `Orange-Blue` = c(low="E0AD30", mid="E4E4E2", high="7492AA"),
+             `Light Red-Green` = c(low="EDA389", mid="CDE1D3", high="5C8B70"),
+             `Temperature` = c(low="529985", mid="DBCF47", high="C26B51"))
     x$tableau$shapes <-
     list(proportions = c(#
          -0x25CBL, # White circle
