@@ -6,7 +6,7 @@
 }
 \arguments{
   \item{palette}{Palette name. One of
-  \Sexpr[results=rd,stage=build]{ggthemes::charopts(names(ggthemes_data$tableau$shapes))}.}
+  \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$shapes))}.}
 }
 \description{
   Shape palettes used by

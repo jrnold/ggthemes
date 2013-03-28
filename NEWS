@@ -2,6 +2,7 @@ ggthemes 1.3.4
 ------------------------
 
 * added Tableau sequential colour palettes: `tableau_seq_gradient_pal`, `scale_colour_gradient_tableau`, `scale_fill_gradient_tableau`.
+* added Tableau diverging colour palettes: `tableau_div_gradient_pal`, `scale_colour_gradient2_tableau`, `scale_fill_gradient2_tableau`.
 * `tableau_colour_pal`: added palette "cyclical
 
 

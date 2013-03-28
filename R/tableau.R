@@ -4,7 +4,7 @@
 ##' \href{http://www.tableausoftware.com/}{Tableau}.
 ##'
 ##' @export
-##' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes::charopts(c(names(ggthemes_data$tableau$colors), c("tableau10", "tableau10light", "purplegray6", "bluered6", "greenorange6")))}.
+##' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(c(names(ggthemes::ggthemes_data$tableau$colors), c("tableau10", "tableau10light", "purplegray6", "bluered6", "greenorange6")))}.
 ##'
 ##' @references
 ##' \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -100,7 +100,7 @@ scale_color_tableau <- scale_colour_tableau
 ##' \href{http://www.tableausoftware.com/}{Tableau}.
 ##'
 ##' @export
-##' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes::charopts(names(ggthemes_data$tableau$shapes))}.
+##' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$shapes))}.
 ##' @family shape tableau
 ##' @examples
 ##' show_shapes(tableau_shape_pal()(5))
@@ -124,13 +124,17 @@ scale_shape_tableau <- function (palette = "default", ...) {
     discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
 
-#' Tableau sequential colour gradient palette (continuous)
+
+
+#' Tableau sequential colour gradient palettes (continuous)
 #'
-#' @param palette Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes::charopts(names(ggthemes_data$tableau$sequential))}.
+#' @param palette Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$sequential))}.
 #' @param space Colour space in which to calculate gradient.
 #' @family colour tableau
 #'
+#' @export
 #' @examples
+#' library(scales)
 #' x <- seq(0, 1, length = 25)
 #' show_col(tableau_seq_gradient_pal("Red")(x))
 #' show_col(tableau_seq_gradient_pal("Blue")(x))
@@ -145,11 +149,14 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #' 
 #' @export
 #' @inheritParams tableau_seq_gradient_pal
-#' @inheritParams ggplot2::scale_x_continuous
+#' @inheritParams ggplot2::scale_colour_hue
+#' @param guide Type of legend. Use \code{"colourbar"} for continuous
+#'   colour bar, or \code{"legend"} for discrete colour legend.
 #' @family colour tableau
 #' @rdname scale_colour_gradient_tableau
 #' @examples
 #' dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
+#' d <- qplot(x, y, data=dsub, colour=z)
 #' d + scale_colour_gradient_tableau("Red", limits=c(3, 4))
 #' d + scale_colour_gradient_tableau("Blue", limits=c(3, 4))
 #' d + scale_colour_gradient_tableau("Green", limits=c(3, 4))
@@ -166,3 +173,65 @@ scale_fill_gradient_tableau <- function (palette = "Red", ..., space = "Lab",
     continuous_scale("fill", "tableau",
                      tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
 }
+
+#' @export
+#' @rdname scale_colour_gradient_tableau
+scale_color_gradient_tableau <- scale_colour_gradient_tableau
+
+#' @export
+#' @rdname scale_colour_gradient_tableau
+scale_color_continuous_tableau <- scale_colour_gradient_tableau
+
+
+#' Tableau diverging colour gradient palettes (continuous)
+#'
+#' @param palette Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$divergent))}.
+#' @param space Colour space in which to calculate gradient.
+#' @family colour tableau
+#'
+#' @export
+#' @examples
+#' x <- seq(-1, 1, length = 100)
+#' r <- sqrt(outer(x^2, x^2, "+"))
+#' image(r, col = tableau_div_gradient_pal()(seq(0, 1, length = 12)))
+#' image(r, col = tableau_div_gradient_pal("Orange-Blue")(seq(0, 1, length = 12)))
+#' image(r, col = tableau_div_gradient_pal("Temperature")(seq(0, 1, length = 12)))
+tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
+    pal <- ggthemes_data[["tableau"]][["diverging"]][[palette]]
+    div_gradient_pal(low = pal['low'], mid = pal['mid'], high = pal['high'],
+                     space = space)
+}
+
+#' Tableau diverging colour scales (continuous)
+#' 
+#' @inheritParams tableau_div_gradient_pal
+#' @inheritParams ggplot2::scale_colour_hue
+#' @param guide Type of legend. Use \code{"colourbar"} for continuous
+#'   colour bar, or \code{"legend"} for discrete colour legend.
+#' @family colour tableau
+#' @export
+#' @rdname scale_colour_gradient2_tableau
+#' @examples
+#' dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
+#' dsub$diff <- with(dsub, sqrt(abs(x-y))* sign(x-y))
+#' d <- qplot(x, y, data=dsub, colour=diff)
+#' d + scale_colour_gradient2_tableau()
+#' d + scale_colour_gradient2_tableau("Orange-Blue")
+#' d + scale_colour_gradient2_tableau("Temperature")
+scale_colour_gradient2_tableau <- function (palette = "Red-Blue", ..., space = "rgb", 
+    na.value = "grey50", guide = "colourbar") {
+    continuous_scale("colour", "tableau2",
+                     tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
+}
+
+#' @export
+#' @rdname scale_colour_gradient2_tableau
+scale_fill_gradient2_tableau <- function (palette = "Red-Blue", ..., space = "rgb", 
+    na.value = "grey50", guide = "colourbar") {
+    continuous_scale("fill", "tableau2",
+                     tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
+}
+
+#' @export
+#' @rdname scale_colour_gradient2_tableau
+scale_color_gradient2_tableau <- scale_colour_gradient2_tableau
