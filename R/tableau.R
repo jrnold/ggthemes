@@ -4,7 +4,8 @@
 ##' \href{http://www.tableausoftware.com/}{Tableau}.
 ##'
 ##' @export
-##' @param palette Palette name
+##' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes::charopts(c(names(ggthemes_data$tableau$colors), c("tableau10", "tableau10light", "purplegray6", "bluered6", "greenorange6")))}.
+##'
 ##' @references
 ##' \url{http://vis.stanford.edu/color-names/analyzer/}
 ##'
@@ -30,7 +31,7 @@
 ##' show_col(tableau_color_pal("purplegray12")(12))
 ##' show_col(tableau_color_pal("bluered12")(12))
 ##' show_col(tableau_color_pal("greenorange12")(12))
-##'
+##' show_col(tableau_color_pal("cyclic")(20))
 tableau_color_pal <- function(palette = "tableau10") {
     palettelist <- ggthemes_data$tableau$colors
     if (! palette %in%
@@ -78,7 +79,7 @@ tableau_color_pal <- function(palette = "tableau10") {
 ##' p + scale_colour_tableau("purplegray12")
 ##' p + scale_colour_tableau("bluered12")
 ##' p + scale_colour_tableau("greenorange12")
-##'
+##' p + scale_colour_tableau("cyclic")
 scale_colour_tableau <- function (palette = "tableau10", ...) {
     discrete_scale("colour", "tableau", tableau_color_pal(palette), ...)
 }
@@ -99,7 +100,7 @@ scale_color_tableau <- scale_colour_tableau
 ##' \href{http://www.tableausoftware.com/}{Tableau}.
 ##'
 ##' @export
-##' @param palette Palette name
+##' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes::charopts(names(ggthemes_data$tableau$shapes))}.
 ##' @family shape tableau
 ##' @examples
 ##' show_shapes(tableau_shape_pal()(5))

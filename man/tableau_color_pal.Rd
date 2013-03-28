@@ -5,7 +5,10 @@
   tableau_color_pal(palette = "tableau10")
 }
 \arguments{
-  \item{palette}{Palette name}
+  \item{palette}{Palette name:
+  \Sexpr[results=rd,stage=build]{ggthemes::charopts(c(names(ggthemes_data$tableau$colors),
+  c("tableau10", "tableau10light", "purplegray6",
+  "bluered6", "greenorange6")))}}
 }
 \description{
   Color palettes used in
@@ -22,6 +25,7 @@ show_col(tableau_color_pal("trafficlight")(10))
 show_col(tableau_color_pal("purplegray12")(12))
 show_col(tableau_color_pal("bluered12")(12))
 show_col(tableau_color_pal("greenorange12")(12))
+show_col(tableau_color_pal("cyclic")(20))
 }
 \references{
   \url{http://vis.stanford.edu/color-names/analyzer/}

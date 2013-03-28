@@ -15,7 +15,10 @@
   \code{\link{discrete_scale}} to control name, limits,
   breaks, labels and so forth.}
 
-  \item{palette}{Palette name}
+  \item{palette}{Palette name:
+  \Sexpr[results=rd,stage=build]{ggthemes::charopts(c(names(ggthemes_data$tableau$colors),
+  c("tableau10", "tableau10light", "purplegray6",
+  "bluered6", "greenorange6")))}}
 }
 \description{
   See \code{\link{tableau_color_pal}} for details.
@@ -32,6 +35,7 @@ p + scale_colour_tableau("trafficlight")
 p + scale_colour_tableau("purplegray12")
 p + scale_colour_tableau("bluered12")
 p + scale_colour_tableau("greenorange12")
+p + scale_colour_tableau("cyclic")
 }
 \seealso{
   \code{\link{tableau_color_pal}} for references.
