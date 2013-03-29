@@ -566,7 +566,7 @@ ggthemes_data <- {
     x$googledocs <-
         c(rgb(51, 102, 204, max = 255),
           rgb(220, 57, 18, max = 255),
-          rgb(255, 153, 0)
+          rgb(255, 153, 0, max = 255),
           rgb(16, 150, 24, max = 255),
           rgb(153, 0, 153, max = 255),
           rgb(0, 153, 198, max = 255),
@@ -614,7 +614,7 @@ ggthemes_data <- {
              3L, # plus (0x2b)
              0x2217, # asterisk operator
              0x2796, # heavy minus sign
-             0x2759, # medium vertical bar)
+             0x2759 # medium vertical bar)
              ))
     
     ## Return
