@@ -42,3 +42,4 @@ Collate:
     'banking.R'
     'wsj.R'
     'colorblind.R'
+    'calc.R'
