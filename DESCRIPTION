@@ -43,3 +43,4 @@ Collate:
     'wsj.R'
     'colorblind.R'
     'calc.R'
+    'gdocs.R'
