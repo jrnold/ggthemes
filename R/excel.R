@@ -43,13 +43,13 @@ excel_pal <- function(palette="line") {
 ##' (qplot(carat, price, data=dsamp, colour=clarity)
 ##'  + theme_igray()
 ##'  + scale_colour_excel("new"))
-scale_fill_excel <- function(palette="line", ...) {
+scale_fill_excel <- function(palette="fill", ...) {
     discrete_scale("fill", "excel", excel_pal(palette), ...)
 }
 
 #' @export
 #' @rdname scale_excel
-scale_colour_excel <- function(palette="fill", ...) {
+scale_colour_excel <- function(palette="line", ...) {
     discrete_scale("colour", "excel", excel_pal(palette), ...)
 }
 

@@ -1,0 +1,40 @@
+\name{tableau_div_gradient_pal}
+\alias{tableau_div_gradient_pal}
+\title{Tableau diverging colour gradient palettes (continuous)}
+\usage{
+  tableau_div_gradient_pal(palette = "Red-Blue",
+    space = "Lab")
+}
+\arguments{
+  \item{palette}{Palette name: One of
+  \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$divergent))}.}
+
+  \item{space}{Colour space in which to calculate
+  gradient.}
+}
+\description{
+  Tableau diverging colour gradient palettes (continuous)
+}
+\examples{
+x <- seq(-1, 1, length = 100)
+r <- sqrt(outer(x^2, x^2, "+"))
+image(r, col = tableau_div_gradient_pal()(seq(0, 1, length = 12)))
+image(r, col = tableau_div_gradient_pal("Orange-Blue")(seq(0, 1, length = 12)))
+image(r, col = tableau_div_gradient_pal("Temperature")(seq(0, 1, length = 12)))
+}
+\seealso{
+  Other colour tableau:
+  \code{\link{scale_color_continuous_tableau}},
+  \code{\link{scale_color_gradient2_tableau}},
+  \code{\link{scale_color_gradient_tableau}},
+  \code{\link{scale_color_tableau}},
+  \code{\link{scale_colour_gradient2_tableau}},
+  \code{\link{scale_colour_gradient_tableau}},
+  \code{\link{scale_colour_tableau}},
+  \code{\link{scale_fill_gradient2_tableau}},
+  \code{\link{scale_fill_gradient_tableau}},
+  \code{\link{scale_fill_tableau}},
+  \code{\link{tableau_color_pal}},
+  \code{\link{tableau_seq_gradient_pal}}
+}
+

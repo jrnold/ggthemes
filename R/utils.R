@@ -83,3 +83,8 @@ show_linetypes <- function(linetypes, labels=TRUE) {
     }
 }
 
+
+charopts <- function(x) {
+  paste(sprintf("\\code{\"%s\"}", x), collapse=", ")
+}
+

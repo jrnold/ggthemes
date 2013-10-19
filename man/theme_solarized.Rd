@@ -1,8 +1,12 @@
 \name{theme_solarized}
 \alias{theme_solarized}
-\title{ggplot color theme based on the Solarized palette}
+\alias{theme_solarized_2}
+\title{ggplot color themes based on the Solarized palette}
 \usage{
   theme_solarized(base_size = 12, base_family = "",
+    light = TRUE)
+
+  theme_solarized_2(base_size = 12, base_family = "",
     light = TRUE)
 }
 \arguments{
@@ -20,6 +24,10 @@
   Plots made with this theme integrate seamlessly with the
   Solarized Beamer color theme.
   \url{https://github.com/jrnold/beamercolorthemesolarized}.
+  There are two variations: \code{theme_solarized} is
+  similar to to \code{\link{theme_bw}}, while
+  \code{theme_solarized_2} is similar to
+  \code{\link{theme_gray}}.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -31,8 +39,13 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
  + theme_solarized(light=FALSE)
  + scale_colour_solarized("blue"))
 ## With panels
-(qplot(carat, price, data=dsamp) + facet_wrap(~ clarity)
- + theme_solarized()
- + scale_colour_solarized("blue"))
+ (ggplot(dsamp, aes(x = carat, y = price))
+  + geom_point(color = ggthemes_data$solarized$base['base00'])
+  + facet_wrap(~ clarity)
+  + theme_solarized())
+## Alternative version
+ (qplot(carat, price, data=dsamp, color=clarity)
+  + theme_solarized_2(light=FALSE)
+  + scale_colour_solarized("blue"))
 }
 

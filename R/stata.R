@@ -269,7 +269,8 @@ stata_shape_pal <- function() {
 ##' @export
 ##' @examples
 ##' dsmall <- diamonds[sample(nrow(diamonds), 100), ]
-##' (d <- qplot(carat, price, data=dsmall, shape=cut))
+##' (d <- qplot(carat, price, data=dsmall, shape=cut)
+##'  + scale_shape_stata())
 scale_shape_stata <- function (...) {
     discrete_scale("shape", "stata", stata_shape_pal(), ...)
 }

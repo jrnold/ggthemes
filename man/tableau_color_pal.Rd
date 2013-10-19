@@ -5,7 +5,10 @@
   tableau_color_pal(palette = "tableau10")
 }
 \arguments{
-  \item{palette}{Palette name}
+  \item{palette}{Palette name. One of
+  \Sexpr[results=rd,stage=build]{ggthemes:::charopts(c(names(ggthemes::ggthemes_data$tableau$colors),
+  c("tableau10", "tableau10light", "purplegray6",
+  "bluered6", "greenorange6")))}.}
 }
 \description{
   Color palettes used in
@@ -22,6 +25,7 @@ show_col(tableau_color_pal("trafficlight")(10))
 show_col(tableau_color_pal("purplegray12")(12))
 show_col(tableau_color_pal("bluered12")(12))
 show_col(tableau_color_pal("greenorange12")(12))
+show_col(tableau_color_pal("cyclic")(20))
 }
 \references{
   \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -38,8 +42,18 @@ show_col(tableau_color_pal("greenorange12")(12))
   \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 }
 \seealso{
-  Other colour tableau: \code{\link{scale_color_tableau}},
+  Other colour tableau:
+  \code{\link{scale_color_continuous_tableau}},
+  \code{\link{scale_color_gradient2_tableau}},
+  \code{\link{scale_color_gradient_tableau}},
+  \code{\link{scale_color_tableau}},
+  \code{\link{scale_colour_gradient2_tableau}},
+  \code{\link{scale_colour_gradient_tableau}},
   \code{\link{scale_colour_tableau}},
-  \code{\link{scale_fill_tableau}}
+  \code{\link{scale_fill_gradient2_tableau}},
+  \code{\link{scale_fill_gradient_tableau}},
+  \code{\link{scale_fill_tableau}},
+  \code{\link{tableau_div_gradient_pal}},
+  \code{\link{tableau_seq_gradient_pal}}
 }
 

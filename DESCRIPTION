@@ -1,6 +1,6 @@
 Package: ggthemes
-Version: 1.3.3
-Date: 2013-3-24
+Version: 1.5.0
+Date: 2013-10-19
 Title: Extra themes, scales and geoms for ggplot
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"))
@@ -14,10 +14,10 @@ Imports:
     grid,
     proto,
     scales,
-    extrafont
 Suggests:
     plyr,
     reshape2,
+    extrafont
 Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
@@ -42,3 +42,5 @@ Collate:
     'banking.R'
     'wsj.R'
     'colorblind.R'
+    'calc.R'
+    'gdocs.R'

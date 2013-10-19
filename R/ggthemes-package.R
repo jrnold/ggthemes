@@ -8,5 +8,5 @@
 ##'
 ##' @name ggthemes
 ##' @docType package
-##' @import colorspace grid proto scales
+##' @import colorspace grid proto scales ggplot2
 NULL

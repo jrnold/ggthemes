@@ -1,0 +1,23 @@
+\name{theme_gdocs}
+\alias{theme_gdocs}
+\title{Theme with Google Docs Chart defaults}
+\usage{
+  theme_gdocs(base_size = 12, base_family = "sans")
+}
+\arguments{
+  \item{base_size}{base font size}
+
+  \item{base_family}{base font family}
+}
+\description{
+  Theme similar to the default look of charts in Google
+  Docs.
+}
+\examples{
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+(d <- qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_gdocs()
+ + ggtitle("Diamonds")
+ + scale_color_gdocs())
+}
+

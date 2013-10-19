@@ -1,0 +1,26 @@
+\name{scale_fill_gdocs}
+\alias{scale_color_gdocs}
+\alias{scale_colour_gdocs}
+\alias{scale_fill_gdocs}
+\title{Google Docs color scales}
+\usage{
+  scale_fill_gdocs(...)
+
+  scale_colour_gdocs(...)
+
+  scale_color_gdocs(...)
+}
+\arguments{
+  \item{...}{Other arguments passed on to
+  \code{\link{discrete_scale}} to control name, limits,
+  breaks, labels and so forth.}
+}
+\description{
+  Color scales from Google Docs.
+}
+\seealso{
+  See \code{\link{theme_gdocs}} for examples.
+
+  Other colour gdocs: \code{\link{gdocs_pal}}
+}
+

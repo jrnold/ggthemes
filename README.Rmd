@@ -22,20 +22,23 @@ Quantitative Information*.
 - ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 - ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
 - ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
-- ``theme_few``: theme from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``theme_few``: theme from Stephen Few's
+  ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``theme_calc``: a theme based on LibreOffice Calc.
+- ``theme_gdocs``: a theme based on Google Docs.
 
 ## Scales
 
 - ``scale_color_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
 - ``scale_color_economist``: colors used in plots in plots in *The Economist*.
 - ``scale_color_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
-- ``scale_color_excel10``: colors from new and old Excel.
+- ``scale_color_excel``: colors from new and old Excel.
 - ``scale_color_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
-- ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, 
-  Tremmel (1995), and Lewandowsky and Spence (1989).
+- ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, Tremmel (1995), and Lewandowsky and Spence (1989).
 - ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
-- ``scale_color_colorblind``: Colorblind safe palette from
-  http://jfly.iam.u-tokyo.ac.jp/color/.
+- ``scale_color_colorblind``: Colorblind safe palette from <http://jfly.iam.u-tokyo.ac.jp/color/>.
+- ``scale_color_gdocs``: color palette from Google Docs.
+- ``scale_color_calc``, ``scale_shape_calc``: color and shape palettes from LibreOffice Calc.
   
 # Install 
 
@@ -120,6 +123,15 @@ The dark theme.
                              + scale_colour_solarized("red"))
 ```
 
+An alternative theme.
+
+```{r solarized-alt}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized_2()
+                             + scale_colour_solarized("blue"))
+```
+
+
 ## Stata theme 
 
 Themes and scales (color, fill, linetype, shapes) based on the graph
@@ -195,5 +207,27 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
 (qplot(carat, price, data=dsamp, colour=cut)
  + theme_wsj()
  + scale_colour_wsj("colors6", "")
- + ggtitle("Diamond Prices"))            
+ + ggtitle("Diamond Prices"))
+```
+
+## GDocs Theme
+
+Theme and color palettes based on the defaults in Google Docs.
+
+```{r gdocs}
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_gdocs()
+ + ggtitle("Diamonds")
+ + scale_color_gdocs())
+```
+
+## Calc Theme
+
+Theme and color and shape palettes based on the defaults in LibreOffice Calc.
+
+```{r calc}
+(qplot(carat, price, data=dsmall, colour=clarity)
+ + theme_calc()
+ + ggtitle("Diamonds")
+ + scale_color_calc())
 ```

@@ -1,0 +1,26 @@
+\name{scale_fill_calc}
+\alias{scale_color_calc}
+\alias{scale_colour_calc}
+\alias{scale_fill_calc}
+\title{LibreOffice Calc color scales}
+\usage{
+  scale_fill_calc(...)
+
+  scale_colour_calc(...)
+
+  scale_color_calc(...)
+}
+\arguments{
+  \item{...}{Other arguments passed on to
+  \code{\link{discrete_scale}} to control name, limits,
+  breaks, labels and so forth.}
+}
+\description{
+  Color scales from LibreOffice Calc.
+}
+\seealso{
+  See \code{\link{theme_calc}} for examples.
+
+  Other colour calc: \code{\link{calc_pal}}
+}
+

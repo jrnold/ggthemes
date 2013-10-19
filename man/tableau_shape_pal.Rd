@@ -5,7 +5,8 @@
   tableau_shape_pal(palette = "default")
 }
 \arguments{
-  \item{palette}{Palette name}
+  \item{palette}{Palette name. One of
+  \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$shapes))}.}
 }
 \description{
   Shape palettes used by
