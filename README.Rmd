@@ -38,7 +38,7 @@ Quantitative Information*.
 - ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 - ``scale_color_colorblind``: Colorblind safe palette from <http://jfly.iam.u-tokyo.ac.jp/color/>.
 - ``scale_color_gdocs``: color palette from Google Docs.
-- ``scale_color_calc``, ``scale_shape_calc``: color and shape palette from LibreOffice Calc.
+- ``scale_color_calc``, ``scale_shape_calc``: color and shape palettes from LibreOffice Calc.
   
 # Install 
 
@@ -228,5 +228,5 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 ```{r calc}
 (qplot(carat, price, data=dsmall, shape=cut)
  + theme_calc()
- + scale_shape_calc())
+ + scale_color_calc())
 ```
