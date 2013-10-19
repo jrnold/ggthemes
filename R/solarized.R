@@ -163,7 +163,7 @@ theme_solarized_2 <- function(base_size = 12, base_family="", light=TRUE) {
     rebase <- solarized_rebase(light)
     ret <- (theme_foundation(base_size = base_size, base_family = base_family) +
             theme(text = element_text(color=rebase['rebase01']),
-                  title = element_text(color=rebase['rebase01']),
+                  title = element_text(color=rebase['rebase0']),
                   line = element_line(color=rebase['rebase01']),
                   rect = element_rect(fill=rebase['rebase03'], color=NA),
                   axis.ticks = element_line(color=rebase['rebase01']),
