@@ -1,3 +1,8 @@
+ggthemes 1.5.1
+------------------------
+
+* fix failures in R CMD check
+
 ggthemes 1.5.0
 ------------------------
 
