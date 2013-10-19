@@ -226,7 +226,8 @@ Theme and color palettes based on the defaults in Google Docs.
 Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 
 ```{r calc}
-(qplot(carat, price, data=dsmall, shape=cut)
+(qplot(carat, price, data=dsmall, colour=cut)
  + theme_calc()
+ + ggtitle("Diamonds")
  + scale_color_calc())
 ```

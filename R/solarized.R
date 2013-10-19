@@ -139,12 +139,12 @@ scale_color_solarized <- scale_colour_solarized
 theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
     rebase <- solarized_rebase(light)
     ret <- (theme_bw(base_size=base_size, base_family=base_family) +
-            theme(text = element_text(colour=rebase['rebase0']),
-                  title = element_text(color=rebase['rebase1']),
-                  line = element_line(color=rebase['rebase0']),
-                  rect = element_rect(fill=rebase['rebase03'], color=rebase['rebase0']),
-                  axis.ticks = element_line(color=rebase['rebase0']),
-                  axis.line = element_line(color=rebase['reabase01'], linetype=1),
+            theme(text = element_text(colour=rebase['rebase01']),
+                  title = element_text(color=rebase['rebase0']),
+                  line = element_line(color=rebase['rebase01']),
+                  rect = element_rect(fill=rebase['rebase03'], color=rebase['rebase01']),
+                  axis.ticks = element_line(color=rebase['rebase01']),
+                  axis.line = element_line(color=rebase['rebase01'], linetype=1),
                   legend.background = element_rect(fill=NULL, color=NA),
                   legend.key = element_rect(fill=NULL, colour=NULL, linetype=0),
                   panel.background = element_rect(fill=rebase['rebase03'], colour=rebase['rebase01']),
