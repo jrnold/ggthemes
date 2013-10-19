@@ -4,11 +4,11 @@
 \alias{scale_fill_excel}
 \title{Excel color scales}
 \usage{
-  scale_fill_excel(palette = "line", ...)
+  scale_fill_excel(palette = "fill", ...)
 
-  scale_colour_excel(palette = "fill", ...)
+  scale_colour_excel(palette = "line", ...)
 
-  scale_color_excel(palette = "fill", ...)
+  scale_color_excel(palette = "line", ...)
 }
 \arguments{
   \item{palette}{One of \code{"old"}, \code{"fill"}, or
