@@ -15,6 +15,7 @@
 }
 \examples{
 dsmall <- diamonds[sample(nrow(diamonds), 100), ]
-(d <- qplot(carat, price, data=dsmall, shape=cut))
+(d <- qplot(carat, price, data=dsmall, shape=cut)
+ + scale_shape_stata())
 }
 

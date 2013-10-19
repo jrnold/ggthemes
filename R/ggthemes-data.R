@@ -563,7 +563,7 @@ ggthemes_data <- {
                       reddish_purple="#CC79A7")
 
     ## 
-    x$googledocs <-
+    x$gdocs <-
         c(rgb(51, 102, 204, max = 255),
           rgb(220, 57, 18, max = 255),
           rgb(255, 153, 0, max = 255),
@@ -593,28 +593,28 @@ ggthemes_data <- {
              `Chart 4` = "#579D1C",
              `Chart 5` = "#7E0021",
              `Chart 6` = "#83CAFF",
-             `Chart 7` = "#83CAFF",
+             `Chart 7` = "#314004",
              `Chart 8` = "#AECF00",
              `Chart 9` = "#4B1F6F",
-             `Chart 10` = "#4B1F6F",
+             `Chart 10` = "#FF950E",
              `Chart 11` = "#C5000B",
              `Chart 12` = "#0084D1"),
            shapes =
            c(15L, # filled square
              18L, # filled diamond
-             0x25bc, # black down-pointing triangle
-             0x25b2, # black up-pointing triangle
-             0x25b6, # black right-pointing triangle
-             0x25c0, # black left-pointing triangle
-             0x29d3, # black bowtie
-             0x29d7, # black hourglass
+             -0x25bc, # black down-pointing triangle
+             -0x25b2, # black up-pointing triangle
+             -0x25b6, # black right-pointing triangle
+             -0x25c0, # black left-pointing triangle
+             -0x29d3, # black bowtie
+             -0x29d7, # black hourglass
              19L, # circle
-             0x2726, # black four pointed star
+             -0x2726, # black four pointed star
              4L, # x (0xd7)
              3L, # plus (0x2b)
-             0x2217, # asterisk operator
-             0x2796, # heavy minus sign
-             0x2759 # medium vertical bar)
+             -0x2217, # asterisk operator
+             -0x2796, # heavy minus sign
+             -0x2759 # medium vertical bar)
              ))
     
     ## Return

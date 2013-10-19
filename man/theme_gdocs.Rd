@@ -16,6 +16,8 @@
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (d <- qplot(carat, price, data=dsamp, colour=clarity)
-            + theme_gdocs() + ggtitle("Diamonds"))
+ + theme_gdocs()
+ + ggtitle("Diamonds")
+ + scale_color_gdocs())
 }
 

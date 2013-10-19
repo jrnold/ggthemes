@@ -1,3 +1,11 @@
+ggthemes 1.5.0
+------------------------
+
+* added alternative Solarized theme: `theme_solarized_2`
+* added LibreOffic Calc themes and palettes: `theme_calc`, `calc_pal`, `scale_fill_calc`, `scale_colour_calc`, `cacl_shape_pal`, `scale_shape_calc`
+* added Google Docs themes and palettes: `theme_gdocs`, `gdocs_pal`, `scale_fill_gdocs`, `scale_colour_gdocs`
+* fixed some examples
+
 ggthemes 1.4.0
 ------------------------
 

@@ -100,7 +100,7 @@ scale_colour_solarized <- function(accent="blue", ...) {
 #' @rdname scale_solarized
 scale_color_solarized <- scale_colour_solarized
 
-##' ggplot color theme based on the Solarized palette
+##' ggplot color themes based on the Solarized palette
 ##'
 ##' See \url{http://ethanschoonover.com/solarized} for a
 ##' description of the Solarized palette.
@@ -108,7 +108,11 @@ scale_color_solarized <- scale_colour_solarized
 ##' Plots made with this theme integrate seamlessly with the Solarized
 ##' Beamer color theme.
 ##' \url{https://github.com/jrnold/beamercolorthemesolarized}.
+##' There are two variations: \code{theme_solarized} is similar to
+##' to \code{\link{theme_bw}}, while \code{theme_solarized_2} is similar to
+##' \code{\link{theme_gray}}.
 ##'
+##' @rdname theme_solarized
 ##' @param base_size base font size
 ##' @param base_family base font family
 ##' @param light \code{logical}. Light or dark theme?
@@ -124,9 +128,14 @@ scale_color_solarized <- scale_colour_solarized
 ##'  + theme_solarized(light=FALSE)
 ##'  + scale_colour_solarized("blue"))
 ##' ## With panels
-##' (qplot(carat, price, data=dsamp) + facet_wrap(~ clarity)
-##'  + theme_solarized()
-##'  + scale_colour_solarized("blue"))
+##'  (ggplot(dsamp, aes(x = carat, y = price))
+##'   + geom_point(color = ggthemes_data$solarized$base['base00'])
+##'   + facet_wrap(~ clarity)
+##'   + theme_solarized())
+##' ## Alternative version
+##'  (qplot(carat, price, data=dsamp, color=clarity)
+##'   + theme_solarized_2(light=FALSE)
+##'   + scale_colour_solarized("blue"))
 theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
     rebase <- solarized_rebase(light)
     ret <- (theme_bw(base_size=base_size, base_family=base_family) +
@@ -148,3 +157,26 @@ theme_solarized <- function(base_size = 12, base_family="", light=TRUE) {
     ret
 }
 
+##' @rdname theme_solarized
+##' @export
+theme_solarized_2 <- function(base_size = 12, base_family="", light=TRUE) {
+    rebase <- solarized_rebase(light)
+    ret <- (theme_foundation(base_size = base_size, base_family = base_family) +
+            theme(text = element_text(color=rebase['rebase01']),
+                  title = element_text(color=rebase['rebase01']),
+                  line = element_line(color=rebase['rebase01']),
+                  rect = element_rect(fill=rebase['rebase03'], color=NA),
+                  axis.ticks = element_line(color=rebase['rebase01']),
+                  axis.line = element_line(color=rebase['reabase01'], linetype=1),
+                  axis.title.y = element_text(angle = 90),
+                  legend.background = element_rect(fill=NULL, color=NA),
+                  legend.key = element_rect(fill=NULL, colour=NULL, linetype=0),
+                  panel.background = element_rect(fill=rebase['rebase02'], colour=NA),
+                  panel.border = element_blank(),
+                  panel.grid = element_line(color=rebase['rebase03']),
+                  panel.grid.major = element_line(color=rebase['rebase03']),
+                  panel.grid.minor = element_line(color=rebase['rebase03'], size=0.25),
+                  plot.background = element_rect(fill=NULL, colour=NULL, linetype=0)
+            ))
+    ret
+}

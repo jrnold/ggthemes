@@ -1,0 +1,17 @@
+\name{calc_shape_pal}
+\alias{calc_shape_pal}
+\title{Calc shape palette (discrete)}
+\usage{
+  calc_shape_pal()
+}
+\description{
+  Shape palette based on the shapes used in LibreOffice
+  Calc.
+}
+\examples{
+show_shapes(calc_shape_pal()(15))
+}
+\seealso{
+  Other shapes calc: \code{\link{scale_shape_calc}}
+}
+

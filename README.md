@@ -1,5 +1,6 @@
 
 
+
 # ggthemes
 
 Some extra geoms, scales, and themes for
@@ -18,8 +19,11 @@ Quantitative Information*.
 - ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
 - ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 - ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
-- ``theme_wsj``: a theme based on the plots in the [The Wall Street Journal](http://www.wsj.com/) newspaper.
-- ``theme_few``: theme from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+- ``theme_few``: theme from Stephen Few's
+  ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``theme_calc``: a theme based on LibreOffice Calc.
+- ``theme_gdocs``: a theme based on Google Docs.
 
 ## Scales
 
@@ -28,11 +32,11 @@ Quantitative Information*.
 - ``scale_color_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
 - ``scale_color_excel10``: colors from new and old Excel.
 - ``scale_color_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
-- ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, 
-  Tremmel (1995), and Lewandowsky and Spence (1989).
+- ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, Tremmel (1995), and Lewandowsky and Spence (1989).
 - ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
-- ``scale_color_colorblind``: Colorblind safe palette from
-  http://jfly.iam.u-tokyo.ac.jp/color/.
+- ``scale_color_colorblind``: Colorblind safe palette from <http://jfly.iam.u-tokyo.ac.jp/color/>.
+- ``scale_color_gdocs``: color palette from Google Docs.
+- ``scale_color_calc``, ``scale_shape_calc``: color and shape palette from LibreOffice Calc.
   
 # Install 
 
@@ -78,7 +82,7 @@ Quantitative Information*.
 (ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rangeframe() + theme_tufte())
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/EPSjs.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/BGG1kO2.png) 
 
 
 The Tufte minimal boxplot.
@@ -88,7 +92,7 @@ The Tufte minimal boxplot.
 (ggplot(mtcars, aes(factor(cyl), mpg)) + theme_tufte(ticks = FALSE) + geom_tufteboxplot())
 ```
 
-![plot of chunk tufteboxplot](http://i.imgur.com/9mHqa.png) 
+![plot of chunk tufteboxplot](http://i.imgur.com/XD9Jl3s.png) 
 
 
 ## Economist theme
@@ -102,7 +106,7 @@ magazine.
     ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk economist](http://i.imgur.com/tp7UT.png) 
+![plot of chunk economist](http://i.imgur.com/LeTPTUN.png) 
 
 
 ## Solarized theme
@@ -116,7 +120,7 @@ The light theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_solarized() + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/ijAlx.png) 
+![plot of chunk solarized-light](http://i.imgur.com/FXMirdQ.png) 
 
 
 The dark theme.
@@ -127,7 +131,18 @@ The dark theme.
     scale_colour_solarized("red"))
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/OjfUA.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/sSoQqAW.png) 
+
+
+An alternative theme.
+
+
+```r
+(qplot(carat, price, data = dsamp, colour = cut) + theme_solarized_2() + scale_colour_solarized("blue"))
+```
+
+![plot of chunk solarized-alt](http://i.imgur.com/neKuLcE.png) 
+
 
 
 ## Stata theme 
@@ -141,7 +156,7 @@ schemes in Stata.
     ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/luC8T.png) 
+![plot of chunk stata](http://i.imgur.com/Ic8xOYj.png) 
 
 
 ## Excel 2003 theme
@@ -154,7 +169,7 @@ and pies not included. Please never use this theme.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_excel() + scale_colour_excel())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/3tJYU.png) 
+![plot of chunk excel1](http://i.imgur.com/bxqYMLI.png) 
 
 
 
@@ -163,7 +178,7 @@ and pies not included. Please never use this theme.
     theme_excel())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/FFQRb.png) 
+![plot of chunk excel2](http://i.imgur.com/iBAlQ9K.png) 
 
 
 ## Inverse Gray Theme
@@ -175,7 +190,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/PejnS.png) 
+![plot of chunk igray](http://i.imgur.com/bmfbY7K.png) 
 
 
 
@@ -188,7 +203,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/X32IA.png) 
+![plot of chunk tableau](http://i.imgur.com/oB4Bc7C.png) 
 
 
 
@@ -196,7 +211,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
 (qplot(carat, price, data = dsamp, colour = cut) + theme_igray() + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/3IyL9.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/jLLBJwT.png) 
 
 
 ## Stephen Few's Practical Rules for Using Color ...
@@ -208,7 +223,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 (qplot(carat, price, data = dsamp, colour = cut) + theme_few() + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/v5wmf.png) 
+![plot of chunk few](http://i.imgur.com/Y7kg8Ww.png) 
 
 
 ## Wall Street Journal
@@ -221,5 +236,402 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
     "") + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/6lewG.png) 
+![plot of chunk wsj](http://i.imgur.com/I0KKlME.png) 
+
+
+## GDocs Theme
+
+Theme and color palettes based on the defaults in Google Docs.
+
+
+```r
+(qplot(carat, price, data = dsamp, colour = clarity) + theme_gdocs() + ggtitle("Diamonds") + 
+    scale_color_gdocs())
+```
+
+![plot of chunk gdocs](http://i.imgur.com/W7f5hK8.png) 
+
+
+## Calc Theme
+
+Theme and color and shape palettes based on the defaults in LibreOffice Calc.
+
+
+```r
+(qplot(carat, price, data = dsmall, shape = cut) + theme_calc() + scale_shape_calc())
+```
+
+```
+## Warning: conversion failure on '▶' in 'mbcsToSbcs': dot substituted for
+## <e2> Warning: conversion failure on '▶' in 'mbcsToSbcs': dot substituted
+## for <96> Warning: conversion failure on '▶' in 'mbcsToSbcs': dot
+## substituted for <b6> Warning: font metrics unknown for Unicode character
+## U+25b6 Warning: conversion failure on '▶' in 'mbcsToSbcs': dot substituted
+## for <e2> Warning: conversion failure on '▶' in 'mbcsToSbcs': dot
+## substituted for <96> Warning: conversion failure on '▶' in 'mbcsToSbcs':
+## dot substituted for <b6> Warning: font metrics unknown for Unicode
+## character U+25b6 Warning: conversion failure on '▶' in 'mbcsToSbcs': dot
+## substituted for <e2> Warning: conversion failure on '▶' in 'mbcsToSbcs':
+## dot substituted for <96> Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics unknown for
+## Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▼' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▼'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▼' in 'mbcsToSbcs': dot substituted for <bc> Warning: font metrics
+## unknown for Unicode character U+25bc Warning: conversion failure on '▲' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▲'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▲' in 'mbcsToSbcs': dot substituted for <b2> Warning: font metrics
+## unknown for Unicode character U+25b2 Warning: conversion failure on '▶' in
+## 'mbcsToSbcs': dot substituted for <e2> Warning: conversion failure on '▶'
+## in 'mbcsToSbcs': dot substituted for <96> Warning: conversion failure on
+## '▶' in 'mbcsToSbcs': dot substituted for <b6> Warning: font metrics
+## unknown for Unicode character U+25b6
+```
+
+![plot of chunk calc](http://i.imgur.com/0J3KCbm.png) 
 

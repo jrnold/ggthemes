@@ -16,6 +16,10 @@
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (d <- qplot(carat, price, data=dsamp, colour=clarity)
-  + theme_calc())
+  + theme_calc()
+  + scale_color_calc())
+(d <- qplot(carat, price, data=dsamp, shape=cut)
+ + theme_calc()
+ + scale_shape_calc())
 }
 

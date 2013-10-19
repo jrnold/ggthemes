@@ -1,0 +1,19 @@
+\name{calc_pal}
+\alias{calc_pal}
+\title{Calc color palette (discrete)}
+\usage{
+  calc_pal()
+}
+\description{
+  Color palettes from LibreOffice Calc.
+}
+\examples{
+library(scales)
+show_col(calc_pal()(12))
+}
+\seealso{
+  Other colour calc: \code{\link{scale_color_calc}},
+  \code{\link{scale_colour_calc}},
+  \code{\link{scale_fill_calc}}
+}
+
