@@ -2,20 +2,20 @@
 \alias{few_pal}
 \title{Color Palletes from Few "Practical Rules for Using Color in Charts"}
 \usage{
-  few_pal(palette = "medium")
+few_pal(palette = "medium")
 }
 \arguments{
   \item{palette}{One of "medium", "dark", or "light"}
 }
 \description{
-  Qualitative color palettes from Stephen Few,
-  \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical
-  Rules for Using Color in Charts"}.
+Qualitative color palettes from Stephen Few,
+\href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical
+Rules for Using Color in Charts"}.
 }
 \details{
-  He suggests the following \itemize{ \item For bars, use
-  medium. \item For lines and points use dark if small or
-  thin, and medium otherwise. }
+He suggests the following \itemize{ \item For bars, use
+medium. \item For lines and points use dark if small or
+thin, and medium otherwise. }
 }
 \examples{
 library(scales)
@@ -24,8 +24,8 @@ show_col(few_pal("dark")(7))
 show_col(few_pal("light")(7))
 }
 \seealso{
-  Other colour few: \code{\link{scale_color_few}},
-  \code{\link{scale_colour_few}},
-  \code{\link{scale_fill_few}}
+Other colour few: \code{\link{scale_color_few}},
+\code{\link{scale_colour_few}},
+\code{\link{scale_fill_few}}
 }
 

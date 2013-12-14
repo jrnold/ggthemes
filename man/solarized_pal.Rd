@@ -2,22 +2,22 @@
 \alias{solarized_pal}
 \title{Solarized color palette (discrete)}
 \usage{
-  solarized_pal(accent = "blue")
+solarized_pal(accent = "blue")
 }
 \arguments{
   \item{accent}{\code{character} Starting color. One of
   \Sexpr[results=rd,stage=build]{ggthemes:::solarized_accent_list()}}
 }
 \description{
-  Qualitative color palate based on the Ethan Schoonover's
-  Solarized palette,
-  \url{http://ethanschoonover.com/solarized}.
+Qualitative color palate based on the Ethan Schoonover's
+Solarized palette,
+\url{http://ethanschoonover.com/solarized}.
 }
 \note{
-  For a given starting color and number of colors in the
-  palette, the other colors are the combination of colors
-  that maximizes the total Euclidean distance between
-  colors in L*a*b space.
+For a given starting color and number of colors in the
+palette, the other colors are the combination of colors
+that maximizes the total Euclidean distance between colors
+in L*a*b space.
 }
 \examples{
 library(scales)
@@ -26,9 +26,9 @@ show_col(solarized_pal()(3))
 show_col(solarized_pal("red")(4))
 }
 \seealso{
-  Other solarized colour:
-  \code{\link{scale_color_solarized}},
-  \code{\link{scale_colour_solarized}},
-  \code{\link{scale_fill_solarized}}
+Other solarized colour:
+\code{\link{scale_color_solarized}},
+\code{\link{scale_colour_solarized}},
+\code{\link{scale_fill_solarized}}
 }
 

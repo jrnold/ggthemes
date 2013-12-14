@@ -2,7 +2,7 @@
 \alias{scale_shape_cleveland}
 \title{Shape scales from Cleveland "Elements of Graphing Data"}
 \usage{
-  scale_shape_cleveland(overlap = TRUE, ...)
+scale_shape_cleveland(overlap = TRUE, ...)
 }
 \arguments{
   \item{...}{common discrete scale parameters: \code{name},
@@ -14,21 +14,21 @@
   overlapping points?}
 }
 \description{
-  Shape scales from Cleveland "Elements of Graphing Data"
+Shape scales from Cleveland "Elements of Graphing Data"
 }
 \references{
-  Cleveland WS. The Elements of Graphing Data. Revised
-  Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164,
-  234-239.
+Cleveland WS. The Elements of Graphing Data. Revised
+Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164,
+234-239.
 }
 \seealso{
-  \code{\link{cleveland_shape_pal}} for a description of
-  the palette.
+\code{\link{cleveland_shape_pal}} for a description of the
+palette.
 
-  Other shapes: \code{\link{circlefill_shape_pal}},
-  \code{\link{cleveland_shape_pal}},
-  \code{\link{scale_shape_circlefill}},
-  \code{\link{scale_shape_tremmel}},
-  \code{\link{tremmel_shape_pal}}
+Other shapes: \code{\link{circlefill_shape_pal}};
+\code{\link{cleveland_shape_pal}};
+\code{\link{scale_shape_circlefill}};
+\code{\link{scale_shape_tremmel}};
+\code{\link{tremmel_shape_pal}}
 }
 

@@ -2,8 +2,7 @@
 \alias{theme_foundation}
 \title{Foundation Theme}
 \usage{
-  theme_foundation(base_size = 12, base_family = "",
-    use_sizes = TRUE)
+theme_foundation(base_size = 12, base_family = "", use_sizes = TRUE)
 }
 \arguments{
   \item{base_size}{Base font size.}
@@ -15,18 +14,19 @@
   \code{\link{theme_gray}}.}
 }
 \description{
-  This theme is designed to be a foundation from which to
-  build new themes, and not meant to be used directly.
-  \code{theme_foundation} is a complete theme with only
-  minimal number of elements defined.
+This theme is designed to be a foundation from which to
+build new themes, and not meant to be used directly.
+\code{theme_foundation} is a complete theme with only
+minimal number of elements defined.
 }
 \details{
-  It is easier to create new themes by extending this one
-  rather than \code{theme_gray} or \code{theme_bw}, because
-  those themes those themes define elements deep in the
-  hierarchy.
+It is easier to create new themes by extending this one
+rather than \code{theme_gray} or \code{theme_bw}, because
+those themes those themes define elements deep in the
+hierarchy.
 }
 \seealso{
-  Other themes: \code{\link{theme_igray}}
+Other themes: \code{\link{theme_igray}};
+\code{\link{theme_solid}}
 }
 

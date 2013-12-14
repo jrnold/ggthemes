@@ -3,12 +3,11 @@
 \alias{theme_economist_white}
 \title{ggplot color theme based on the Economist}
 \usage{
-  theme_economist(base_size = 10, base_family = "sans",
-    horizontal = TRUE, dkpanel = FALSE, stata = FALSE)
+theme_economist(base_size = 10, base_family = "sans", horizontal = TRUE,
+  dkpanel = FALSE, stata = FALSE)
 
-  theme_economist_white(gray_bg = TRUE,
-    base_family = "sans", base_size = 11,
-    horizontal = TRUE)
+theme_economist_white(gray_bg = TRUE, base_family = "sans",
+  base_size = 11, horizontal = TRUE)
 }
 \arguments{
   \item{base_size}{\code{numeric} base font size}
@@ -27,26 +26,25 @@
   background, else use white background.}
 }
 \value{
-  An object of class \code{\link{theme}}.
+An object of class \code{\link{theme}}.
 }
 \description{
-  Style plots similar to those in \emph{The Economist}.
+Style plots similar to those in \emph{The Economist}.
 }
 \details{
-  \code{theme_economist} implements the standard
-  bluish-gray background theme in the print \emph{The
-  Economist} and
-  \href{http://economist.com}{economist.com}.
-  \code{theme_economist_white} implements a variant with a
-  while panel and light gray (or white) background used by
-  \emph{The Economist} blog
-  \href{http://www.economist.com/blogs/graphicdetail}{Graphic
-  Detail}.
+\code{theme_economist} implements the standard bluish-gray
+background theme in the print \emph{The Economist} and
+\href{http://economist.com}{economist.com}.
+\code{theme_economist_white} implements a variant with a
+while panel and light gray (or white) background used by
+\emph{The Economist} blog
+\href{http://www.economist.com/blogs/graphicdetail}{Graphic
+Detail}.
 
-  \emph{The Economist} uses "ITC Officina Sans" as its font
-  for graphs. If you have access to this font, you can use
-  it with the \pkg{extrafont} package. "Verdana" is a good
-  substitute.
+\emph{The Economist} uses "ITC Officina Sans" as its font
+for graphs. If you have access to this font, you can use it
+with the \pkg{extrafont} package. "Verdana" is a good
+substitute.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -92,14 +90,14 @@ library(extrafont)
 }
 }
 \references{
-  \itemize{ \item \href{http://economist.com}{The
-  Economist} \item
-  \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog,
-  "ITC Officina Display", January 1, 2007.} \item
-  \url{http://www.economist.com/help/about-us} }
+\itemize{ \item \href{http://economist.com}{The Economist}
+\item
+\href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog,
+"ITC Officina Display", January 1, 2007.} \item
+\url{http://www.economist.com/help/about-us} }
 }
 \seealso{
-  \code{\link[latticeExtra]{theEconomist.theme}} for an
-  Economist theme for lattice plots.
+\code{\link[latticeExtra]{theEconomist.theme}} for an
+Economist theme for lattice plots.
 }
 

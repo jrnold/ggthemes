@@ -2,7 +2,7 @@
 \alias{wsj_pal}
 \title{Wall Street Journal color palette (discrete)}
 \usage{
-  wsj_pal(palette)
+wsj_pal(palette)
 }
 \arguments{
   \item{palette}{\code{character} The color palette to use.
@@ -10,12 +10,12 @@
   \code{\link[=ggthemes_data]{ggthemes_data$wsj$palettes}}.}
 }
 \description{
-  The Wall Street Journal uses many different color
-  palettes in its plots. This collects a few of them, but
-  is by no means exhaustive. Collections of these plots can
-  be found on the WSJ Graphics
-  \href{https://twitter.com/WSJGraphics}{Twitter} feed and
-  \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
+The Wall Street Journal uses many different color palettes
+in its plots. This collects a few of them, but is by no
+means exhaustive. Collections of these plots can be found
+on the WSJ Graphics
+\href{https://twitter.com/WSJGraphics}{Twitter} feed and
+\href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 }
 \section{Palettes}{
   The following palettes are defined,
@@ -36,8 +36,8 @@
   palette. Examples: \url{http://twitpic.com/9gfg5q}.} }
 }
 \seealso{
-  Other colour wsj: \code{\link{scale_color_wsj}},
-  \code{\link{scale_colour_wsj}},
-  \code{\link{scale_fill_wsj}}
+Other colour wsj: \code{\link{scale_color_wsj}},
+\code{\link{scale_colour_wsj}},
+\code{\link{scale_fill_wsj}}
 }
 

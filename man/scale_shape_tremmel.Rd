@@ -2,7 +2,7 @@
 \alias{scale_shape_tremmel}
 \title{Shape scales from Tremmel (1995)}
 \usage{
-  scale_shape_tremmel(overlap = FALSE, n3alt = TRUE, ...)
+scale_shape_tremmel(overlap = FALSE, n3alt = TRUE, ...)
 }
 \arguments{
   \item{...}{common discrete scale parameters: \code{name},
@@ -18,7 +18,7 @@
   circle, and empty triangle.}
 }
 \description{
-  Shape scales from Tremmel (1995)
+Shape scales from Tremmel (1995)
 }
 \examples{
 (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
@@ -31,13 +31,13 @@
  + geom_point() + scale_shape_tremmel(overlap=TRUE))
 }
 \seealso{
-  \code{\link{tremmel_shape_pal}} for a description of the
-  palette.
+\code{\link{tremmel_shape_pal}} for a description of the
+palette.
 
-  Other shapes: \code{\link{circlefill_shape_pal}},
-  \code{\link{cleveland_shape_pal}},
-  \code{\link{scale_shape_circlefill}},
-  \code{\link{scale_shape_cleveland}},
-  \code{\link{tremmel_shape_pal}}
+Other shapes: \code{\link{circlefill_shape_pal}};
+\code{\link{cleveland_shape_pal}};
+\code{\link{scale_shape_circlefill}};
+\code{\link{scale_shape_cleveland}};
+\code{\link{tremmel_shape_pal}}
 }
 

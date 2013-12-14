@@ -2,18 +2,18 @@
 \alias{gdocs_pal}
 \title{Google Docs color palette (discrete)}
 \usage{
-  gdocs_pal()
+gdocs_pal()
 }
 \description{
-  Color palettes from Google Docs.
+Color palettes from Google Docs.
 }
 \examples{
 library(scales)
 show_col(gdocs_pal()(20))
 }
 \seealso{
-  Other colour gdocs: \code{\link{scale_color_gdocs}},
-  \code{\link{scale_colour_gdocs}},
-  \code{\link{scale_fill_gdocs}}
+Other colour gdocs: \code{\link{scale_color_gdocs}},
+\code{\link{scale_colour_gdocs}},
+\code{\link{scale_fill_gdocs}}
 }
 

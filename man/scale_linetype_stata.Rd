@@ -2,7 +2,7 @@
 \alias{scale_linetype_stata}
 \title{Stata linetype palette (discrete)}
 \usage{
-  scale_linetype_stata(...)
+scale_linetype_stata(...)
 }
 \arguments{
   \item{...}{common discrete scale parameters: \code{name},
@@ -11,7 +11,7 @@
   \code{\link{discrete_scale}} for more details}
 }
 \description{
-  See \code{\link{stata_linetype_pal}} for details.
+See \code{\link{stata_linetype_pal}} for details.
 }
 \examples{
 library(reshape2) # for melt
@@ -23,6 +23,6 @@ ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
 qplot(date, value, data=ecm, geom="line", linetype=variable) + scale_linetype_stata()
 }
 \seealso{
-  Other linetype stata: \code{\link{stata_linetype_pal}}
+Other linetype stata: \code{\link{stata_linetype_pal}}
 }
 

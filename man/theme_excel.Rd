@@ -2,8 +2,7 @@
 \alias{theme_excel}
 \title{ggplot color theme based on old Excel plots}
 \usage{
-  theme_excel(horizontal = TRUE, base_size = 12,
-    base_family = "")
+theme_excel(horizontal = TRUE, base_size = 12, base_family = "")
 }
 \arguments{
   \item{base_size}{\code{numeric} base font size}
@@ -13,11 +12,11 @@
   \item{horizontal}{\code{logical}. Horizontal axis lines?}
 }
 \value{
-  An object of class \code{\link{theme}}.
+An object of class \code{\link{theme}}.
 }
 \description{
-  Theme to replicate the ugly monstrosity that was the old
-  gray-background Excel chart. Please never use this.
+Theme to replicate the ugly monstrosity that was the old
+gray-background Excel chart. Please never use this.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

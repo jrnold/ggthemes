@@ -2,7 +2,7 @@
 \alias{scale_shape_tableau}
 \title{Tableau shape scales}
 \usage{
-  scale_shape_tableau(palette = "default", ...)
+scale_shape_tableau(palette = "default", ...)
 }
 \arguments{
   \item{palette}{Palette name. One of
@@ -14,7 +14,7 @@
   \code{\link{discrete_scale}} for more details}
 }
 \description{
-  See \code{\link{tableau_shape_pal}} for details.
+See \code{\link{tableau_shape_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -22,6 +22,6 @@ p <- qplot(carat, price, data=dsamp, shape=clarity)
 p + scale_shape_tableau()
 }
 \seealso{
-  Other shape tableau: \code{\link{tableau_shape_pal}}
+Other shape tableau: \code{\link{tableau_shape_pal}}
 }
 

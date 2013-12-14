@@ -4,11 +4,11 @@
 \alias{scale_fill_few}
 \title{Color scales from Few "Practical Rules for Using Color in Charts"}
 \usage{
-  scale_colour_few(palette = "medium", ...)
+scale_colour_few(palette = "medium", ...)
 
-  scale_color_few(palette = "medium", ...)
+scale_color_few(palette = "medium", ...)
 
-  scale_fill_few(palette = "light", ...)
+scale_fill_few(palette = "light", ...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -18,9 +18,9 @@
   \item{palette}{One of "medium", "dark", or "light"}
 }
 \description{
-  See \code{\link{few_pal}}.
+See \code{\link{few_pal}}.
 }
 \seealso{
-  Other colour few: \code{\link{few_pal}}
+Other colour few: \code{\link{few_pal}}
 }
 

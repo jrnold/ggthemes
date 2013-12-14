@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 1.5.1
+Version: 1.6.0
 Date: 2013-10-19
 Title: Extra themes, scales and geoms for ggplot
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
@@ -20,25 +20,3 @@ Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
-Collate:
-    'economist.R'
-    'shapes.R'
-    'stata.R'
-    'solarized.R'
-    'excel.R'
-    'tufte.R'
-    'geom-rangeframe.R'
-    'geom-tufteboxplot.R'
-    'stat-fivenumber.R'
-    'utils.R'
-    'tableau.R'
-    'igray.R'
-    'few.R'
-    'ggthemes-data.R'
-    'ggthemes-package.R'
-    'theme-foundation.R'
-    'banking.R'
-    'wsj.R'
-    'colorblind.R'
-    'calc.R'
-    'gdocs.R'

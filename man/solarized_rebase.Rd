@@ -2,7 +2,7 @@
 \alias{solarized_rebase}
 \title{Base colors for Solarized light and dark themes}
 \usage{
-  solarized_rebase(light = TRUE)
+solarized_rebase(light = TRUE)
 }
 \arguments{
   \item{light}{\code{logical} Light theme?
@@ -12,7 +12,7 @@
   This function is a port of the CSS style example.}
 }
 \description{
-  Base colors for Solarized light and dark themes
+Base colors for Solarized light and dark themes
 }
 \keyword{internal}
 

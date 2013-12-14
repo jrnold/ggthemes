@@ -4,11 +4,11 @@
 \alias{scale_fill_tableau}
 \title{Tableau color scales.}
 \usage{
-  scale_colour_tableau(palette = "tableau10", ...)
+scale_colour_tableau(palette = "tableau10", ...)
 
-  scale_fill_tableau(palette = "tableau10", ...)
+scale_fill_tableau(palette = "tableau10", ...)
 
-  scale_color_tableau(palette = "tableau10", ...)
+scale_color_tableau(palette = "tableau10", ...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -21,7 +21,7 @@
   "bluered6", "greenorange6")))}.}
 }
 \description{
-  See \code{\link{tableau_color_pal}} for details.
+See \code{\link{tableau_color_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -38,18 +38,18 @@ p + scale_colour_tableau("greenorange12")
 p + scale_colour_tableau("cyclic")
 }
 \seealso{
-  \code{\link{tableau_color_pal}} for references.
+\code{\link{tableau_color_pal}} for references.
 
-  Other colour tableau:
-  \code{\link{scale_color_continuous_tableau}},
-  \code{\link{scale_color_gradient2_tableau}},
-  \code{\link{scale_color_gradient_tableau}},
-  \code{\link{scale_colour_gradient2_tableau}},
-  \code{\link{scale_colour_gradient_tableau}},
-  \code{\link{scale_fill_gradient2_tableau}},
-  \code{\link{scale_fill_gradient_tableau}},
-  \code{\link{tableau_color_pal}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+Other colour tableau:
+\code{\link{scale_color_continuous_tableau}},
+\code{\link{scale_color_gradient_tableau}},
+\code{\link{scale_colour_gradient_tableau}},
+\code{\link{scale_fill_gradient_tableau}};
+\code{\link{scale_color_gradient2_tableau}},
+\code{\link{scale_colour_gradient2_tableau}},
+\code{\link{scale_fill_gradient2_tableau}};
+\code{\link{tableau_color_pal}};
+\code{\link{tableau_div_gradient_pal}};
+\code{\link{tableau_seq_gradient_pal}}
 }
 

@@ -4,17 +4,14 @@
 \alias{scale_fill_gradient2_tableau}
 \title{Tableau diverging colour scales (continuous)}
 \usage{
-  scale_colour_gradient2_tableau(palette = "Red-Blue", ...,
-    space = "rgb", na.value = "grey50",
-    guide = "colourbar")
+scale_colour_gradient2_tableau(palette = "Red-Blue", ..., space = "rgb",
+  na.value = "grey50", guide = "colourbar")
 
-  scale_fill_gradient2_tableau(palette = "Red-Blue", ...,
-    space = "rgb", na.value = "grey50",
-    guide = "colourbar")
+scale_fill_gradient2_tableau(palette = "Red-Blue", ..., space = "rgb",
+  na.value = "grey50", guide = "colourbar")
 
-  scale_color_gradient2_tableau(palette = "Red-Blue", ...,
-    space = "rgb", na.value = "grey50",
-    guide = "colourbar")
+scale_color_gradient2_tableau(palette = "Red-Blue", ..., space = "rgb",
+  na.value = "grey50", guide = "colourbar")
 }
 \arguments{
   \item{guide}{Type of legend. Use \code{"colourbar"} for
@@ -34,7 +31,7 @@
   \item{na.value}{Colour to use for missing values}
 }
 \description{
-  Tableau diverging colour scales (continuous)
+Tableau diverging colour scales (continuous)
 }
 \examples{
 dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
@@ -45,16 +42,16 @@ d + scale_colour_gradient2_tableau("Orange-Blue")
 d + scale_colour_gradient2_tableau("Temperature")
 }
 \seealso{
-  Other colour tableau:
-  \code{\link{scale_color_continuous_tableau}},
-  \code{\link{scale_color_gradient_tableau}},
-  \code{\link{scale_color_tableau}},
-  \code{\link{scale_colour_gradient_tableau}},
-  \code{\link{scale_colour_tableau}},
-  \code{\link{scale_fill_gradient_tableau}},
-  \code{\link{scale_fill_tableau}},
-  \code{\link{tableau_color_pal}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+Other colour tableau:
+\code{\link{scale_color_continuous_tableau}},
+\code{\link{scale_color_gradient_tableau}},
+\code{\link{scale_colour_gradient_tableau}},
+\code{\link{scale_fill_gradient_tableau}};
+\code{\link{scale_color_tableau}},
+\code{\link{scale_colour_tableau}},
+\code{\link{scale_fill_tableau}};
+\code{\link{tableau_color_pal}};
+\code{\link{tableau_div_gradient_pal}};
+\code{\link{tableau_seq_gradient_pal}}
 }
 

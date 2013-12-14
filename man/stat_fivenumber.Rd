@@ -2,9 +2,8 @@
 \alias{stat_fivenumber}
 \title{Calculate components of a five-number summary}
 \usage{
-  stat_fivenumber(mapping = NULL, data = NULL,
-    geom = "boxplot", position = "dodge", na.rm = FALSE,
-    ...)
+stat_fivenumber(mapping = NULL, data = NULL, geom = "boxplot",
+  position = "dodge", na.rm = FALSE, ...)
 }
 \arguments{
   \item{na.rm}{If \code{FALSE} (the default), removes
@@ -30,24 +29,23 @@
   for more details.}
 }
 \value{
-  A data frame with additional columns: \item{width}{width
-  of boxplot} \item{ymin}{minimum} \item{lower}{lower
-  hinge, 25\% quantile} \item{notchlower}{lower edge of
-  notch = median - 1.58 * IQR / sqrt(n)}
-  \item{middle}{median, 50\% quantile}
-  \item{notchupper}{upper edge of notch = median + 1.58 *
-  IQR / sqrt(n)} \item{upper}{upper hinge, 75\% quantile}
-  \item{ymax}{maximum}
+A data frame with additional columns: \item{width}{width of
+boxplot} \item{ymin}{minimum} \item{lower}{lower hinge,
+25\% quantile} \item{notchlower}{lower edge of notch =
+median - 1.58 * IQR / sqrt(n)} \item{middle}{median, 50\%
+quantile} \item{notchupper}{upper edge of notch = median +
+1.58 * IQR / sqrt(n)} \item{upper}{upper hinge, 75\%
+quantile} \item{ymax}{maximum}
 }
 \description{
-  The five number summary of a sample is the minimum, first
-  quartile, median, third quartile, and maximum.
+The five number summary of a sample is the minimum, first
+quartile, median, third quartile, and maximum.
 }
 \section{Aesthetics}{
   \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("stat_fivenumber",
   ggthemes:::StatFivenumber)}
 }
 \seealso{
-  \code{\link{stat_boxplot}}
+\code{\link{stat_boxplot}}
 }
 

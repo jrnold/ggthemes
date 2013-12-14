@@ -2,11 +2,9 @@
 \alias{geom_tufteboxplot}
 \title{Tufte's Box Blot}
 \usage{
-  geom_tufteboxplot(mapping = NULL, data = NULL,
-    stat = "boxplot", position = "dodge",
-    outlier.colour = "black", outlier.shape = 16,
-    outlier.size = 2, fatten = 4, usebox = FALSE,
-    boxwidth = 0.25, ...)
+geom_tufteboxplot(mapping = NULL, data = NULL, stat = "boxplot",
+  position = "dodge", outlier.colour = "black", outlier.shape = 16,
+  outlier.size = 2, fatten = 4, usebox = FALSE, boxwidth = 0.25, ...)
 }
 \arguments{
   \item{outlier.colour}{colour for outlying points}
@@ -45,8 +43,8 @@
   for more details.}
 }
 \description{
-  Edward Tufte's revision of the box plot erases the box
-  and replaces it with a single point and the whiskers.
+Edward Tufte's revision of the box plot erases the box and
+replaces it with a single point and the whiskers.
 }
 \section{Aesthetics}{
   \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("geom_tufteboxplot",
@@ -60,16 +58,16 @@ p + geom_tufteboxplot()
 p + geom_tufteboxplot(usebox=TRUE, fatten=1)
 }
 \references{
-  Tufte, Edward R. (2001) The Visual Display of
-  Quantitative Information, Chapter 6.
+Tufte, Edward R. (2001) The Visual Display of Quantitative
+Information, Chapter 6.
 
-  McGill, R., Tukey, J. W. and Larsen, W. A. (1978)
-  Variations of box plots. The American Statistician 32,
-  12-16.
+McGill, R., Tukey, J. W. and Larsen, W. A. (1978)
+Variations of box plots. The American Statistician 32,
+12-16.
 }
 \seealso{
-  \code{\link{geom_boxplot}}
+\code{\link{geom_boxplot}}
 
-  Other geom tufte: \code{\link{geom_rangeframe}}
+Other geom tufte: \code{\link{geom_rangeframe}}
 }
 

@@ -4,11 +4,11 @@
 \alias{scale_fill_gdocs}
 \title{Google Docs color scales}
 \usage{
-  scale_fill_gdocs(...)
+scale_fill_gdocs(...)
 
-  scale_colour_gdocs(...)
+scale_colour_gdocs(...)
 
-  scale_color_gdocs(...)
+scale_color_gdocs(...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -16,11 +16,11 @@
   breaks, labels and so forth.}
 }
 \description{
-  Color scales from Google Docs.
+Color scales from Google Docs.
 }
 \seealso{
-  See \code{\link{theme_gdocs}} for examples.
+See \code{\link{theme_gdocs}} for examples.
 
-  Other colour gdocs: \code{\link{gdocs_pal}}
+Other colour gdocs: \code{\link{gdocs_pal}}
 }
 

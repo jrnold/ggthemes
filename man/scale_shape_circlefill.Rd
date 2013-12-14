@@ -2,7 +2,7 @@
 \alias{scale_shape_circlefill}
 \title{Filled Circle Shape palette (discrete)}
 \usage{
-  scale_shape_circlefill(...)
+scale_shape_circlefill(...)
 }
 \arguments{
   \item{...}{common discrete scale parameters: \code{name},
@@ -11,16 +11,16 @@
   \code{\link{discrete_scale}} for more details}
 }
 \description{
-  Filled Circle Shape palette (discrete)
+Filled Circle Shape palette (discrete)
 }
 \seealso{
-  \code{\link{circlefill_shape_pal}} for a description of
-  the palette.
+\code{\link{circlefill_shape_pal}} for a description of the
+palette.
 
-  Other shapes: \code{\link{circlefill_shape_pal}},
-  \code{\link{cleveland_shape_pal}},
-  \code{\link{scale_shape_cleveland}},
-  \code{\link{scale_shape_tremmel}},
-  \code{\link{tremmel_shape_pal}}
+Other shapes: \code{\link{circlefill_shape_pal}};
+\code{\link{cleveland_shape_pal}};
+\code{\link{scale_shape_cleveland}};
+\code{\link{scale_shape_tremmel}};
+\code{\link{tremmel_shape_pal}}
 }
 

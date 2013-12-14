@@ -2,8 +2,8 @@
 \alias{theme_wsj}
 \title{Wall Street Journal theme}
 \usage{
-  theme_wsj(base_size = 12, color = "brown",
-    base_family = "sans", title_family = "mono")
+theme_wsj(base_size = 12, color = "brown", base_family = "sans",
+  title_family = "mono")
 }
 \arguments{
   \item{base_size}{Base font size.}
@@ -17,8 +17,7 @@
   \item{base_family}{Plot text font family.}
 }
 \description{
-  Theme based on the plots in \emph{The Wall Street
-  Journal}.
+Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \examples{
 (qplot(hp, mpg, data=mtcars, geom="point")
@@ -32,8 +31,8 @@
  + theme_wsj(color="gray"))
 }
 \references{
-  \url{https://twitter.com/WSJGraphics}
+\url{https://twitter.com/WSJGraphics}
 
-  \url{http://pinterest.com/wsjgraphics/wsj-graphics/}
+\url{http://pinterest.com/wsjgraphics/wsj-graphics/}
 }
 

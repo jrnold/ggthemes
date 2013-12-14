@@ -147,7 +147,6 @@ circlefill_shape_pal <- function() {
 ##' @export
 ##'
 ##' @inheritParams ggplot2::scale_x_discrete
-##' @inheritParams circlefill_shape_pal
 ##' @family shapes
 ##' @seealso
 ##' \code{\link{circlefill_shape_pal}} for a description of the palette.

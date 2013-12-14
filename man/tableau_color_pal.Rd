@@ -2,7 +2,7 @@
 \alias{tableau_color_pal}
 \title{Color Palettes based on Tableau (discrete)}
 \usage{
-  tableau_color_pal(palette = "tableau10")
+tableau_color_pal(palette = "tableau10")
 }
 \arguments{
   \item{palette}{Palette name. One of
@@ -11,8 +11,8 @@
   "bluered6", "greenorange6")))}.}
 }
 \description{
-  Color palettes used in
-  \href{http://www.tableausoftware.com/}{Tableau}.
+Color palettes used in
+\href{http://www.tableausoftware.com/}{Tableau}.
 }
 \examples{
 library(scales)
@@ -28,32 +28,32 @@ show_col(tableau_color_pal("greenorange12")(12))
 show_col(tableau_color_pal("cyclic")(20))
 }
 \references{
-  \url{http://vis.stanford.edu/color-names/analyzer/}
+\url{http://vis.stanford.edu/color-names/analyzer/}
 
-  Maureen Stone, "Designing Colors for Data" (slides), at
-  the International Symposium on Computational Aesthetics
-  in Graphics, Visualization, and Imaging, Banff, AB,
-  Canada, June 22, 2007
-  \url{http://www.stonesc.com/slides/CompAe\%202007.pdf}.
+Maureen Stone, "Designing Colors for Data" (slides), at the
+International Symposium on Computational Aesthetics in
+Graphics, Visualization, and Imaging, Banff, AB, Canada,
+June 22, 2007
+\url{http://www.stonesc.com/slides/CompAe\%202007.pdf}.
 
-  Heer, Jeffrey and Maureen Stone, 2012 "Color Naming
-  Models for Color Selection, Image Editing and Palette
-  Design", ACM Human Factors in Computing Systems (CHI)
-  \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
+Heer, Jeffrey and Maureen Stone, 2012 "Color Naming Models
+for Color Selection, Image Editing and Palette Design", ACM
+Human Factors in Computing Systems (CHI)
+\url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 }
 \seealso{
-  Other colour tableau:
-  \code{\link{scale_color_continuous_tableau}},
-  \code{\link{scale_color_gradient2_tableau}},
-  \code{\link{scale_color_gradient_tableau}},
-  \code{\link{scale_color_tableau}},
-  \code{\link{scale_colour_gradient2_tableau}},
-  \code{\link{scale_colour_gradient_tableau}},
-  \code{\link{scale_colour_tableau}},
-  \code{\link{scale_fill_gradient2_tableau}},
-  \code{\link{scale_fill_gradient_tableau}},
-  \code{\link{scale_fill_tableau}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+Other colour tableau:
+\code{\link{scale_color_continuous_tableau}},
+\code{\link{scale_color_gradient_tableau}},
+\code{\link{scale_colour_gradient_tableau}},
+\code{\link{scale_fill_gradient_tableau}};
+\code{\link{scale_color_gradient2_tableau}},
+\code{\link{scale_colour_gradient2_tableau}},
+\code{\link{scale_fill_gradient2_tableau}};
+\code{\link{scale_color_tableau}},
+\code{\link{scale_colour_tableau}},
+\code{\link{scale_fill_tableau}};
+\code{\link{tableau_div_gradient_pal}};
+\code{\link{tableau_seq_gradient_pal}}
 }
 
