@@ -48,7 +48,6 @@ calc_pal <- function() {
 ##'
 ##' Color scales from LibreOffice Calc.
 ##'
-##' @inheritParams calc_pal
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @family colour calc
 ##' @rdname scale_calc

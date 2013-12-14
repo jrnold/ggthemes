@@ -47,7 +47,6 @@ gdocs_pal <- function() {
 ##'
 ##' Color scales from Google Docs.
 ##'
-##' @inheritParams gdocs_pal
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @family colour gdocs
 ##' @rdname scale_gdocs
