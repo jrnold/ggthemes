@@ -2,9 +2,9 @@
 \alias{geom_rangeframe}
 \title{Range Frames}
 \usage{
-  geom_rangeframe(mapping = NULL, data = NULL,
-    stat = "identity", position = "identity", sides = "bl",
-    fun_min = min, fun_max = max, ...)
+geom_rangeframe(mapping = NULL, data = NULL, stat = "identity",
+  position = "identity", sides = "bl", fun_min = min, fun_max = max,
+  ...)
 }
 \arguments{
   \item{sides}{A string that controls which sides of the
@@ -38,8 +38,8 @@
   for more details.}
 }
 \description{
-  Axis lines which extend to the maximum and minimum of the
-  plotted data.
+Axis lines which extend to the maximum and minimum of the
+plotted data.
 }
 \section{Aesthetics}{
   \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("geom_tufteboxplot",
@@ -51,10 +51,10 @@
  + theme_tufte())
 }
 \references{
-  Tufte, Edward R. (2001) The Visual Display of
-  Quantitative Information, Chapter 6.
+Tufte, Edward R. (2001) The Visual Display of Quantitative
+Information, Chapter 6.
 }
 \seealso{
-  Other geom tufte: \code{\link{geom_tufteboxplot}}
+Other geom tufte: \code{\link{geom_tufteboxplot}}
 }
 

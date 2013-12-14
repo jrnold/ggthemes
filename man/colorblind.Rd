@@ -5,13 +5,13 @@
 \alias{scale_fill_colorblind}
 \title{Colorblind Color Palette (Discrete) and Scales}
 \usage{
-  colorblind_pal()
+colorblind_pal()
 
-  scale_colour_colorblind(...)
+scale_colour_colorblind(...)
 
-  scale_color_colorblind(...)
+scale_color_colorblind(...)
 
-  scale_fill_colorblind(...)
+scale_fill_colorblind(...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -19,10 +19,10 @@
   breaks, labels and so forth.}
 }
 \description{
-  An 8-color colorblind safe qualitative discrete palette
-  from \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
-  \href{http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)/#a-colorblind-friendly-palette}{Cookbook
-  for R}.
+An 8-color colorblind safe qualitative discrete palette
+from \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
+\href{http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)/#a-colorblind-friendly-palette}{Cookbook
+for R}.
 }
 \examples{
 library(scales)
@@ -32,9 +32,9 @@ p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_igray()
 p + scale_colour_colorblind()
 }
 \seealso{
-  The \pkg{dichromat} package,
-  \code{\link[scales]{dichromat_pal}}, and
-  \code{\link{scale_color_tableau}} for other colorblind
-  palettes.
+The \pkg{dichromat} package,
+\code{\link[scales]{dichromat_pal}}, and
+\code{\link{scale_color_tableau}} for other colorblind
+palettes.
 }
 

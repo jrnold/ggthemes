@@ -2,7 +2,7 @@
 \alias{tremmel_shape_pal}
 \title{Shape palette from Tremmel (1995) (discrete)}
 \usage{
-  tremmel_shape_pal(overlap = FALSE, n3alt = TRUE)
+tremmel_shape_pal(overlap = FALSE, n3alt = TRUE)
 }
 \arguments{
   \item{overlap}{use an empty circle instead of a solid
@@ -13,34 +13,34 @@
   circle, and empty triangle.}
 }
 \description{
-  Based on experiments Tremmel (1995) suggests the
-  following shape palettes:
+Based on experiments Tremmel (1995) suggests the following
+shape palettes:
 }
 \details{
-  If two symbols, then use a solid circle and plus sign.
+If two symbols, then use a solid circle and plus sign.
 
-  If three symbols, then use a solid circle, empty circle,
-  and an empty triangle. However, that set of symbols does
-  not satisfy the requirement that each symbol should
-  differ from the other symbols in the same feature
-  dimension. A set of three symbols that satisfies this is
-  a cicle (curvature), plus sign (number of terminators),
-  triangle (line orientation).
+If three symbols, then use a solid circle, empty circle,
+and an empty triangle. However, that set of symbols does
+not satisfy the requirement that each symbol should differ
+from the other symbols in the same feature dimension. A set
+of three symbols that satisfies this is a cicle
+(curvature), plus sign (number of terminators), triangle
+(line orientation).
 
-  If more than three groups of data, then separate the
-  groups into different plots.
+If more than three groups of data, then separate the groups
+into different plots.
 }
 \references{
-  Tremmel, Lothar, (1995) "The Visual Separability of
-  Plotting Symbols in Scatterplots" Journal of
-  Computational and Graphical Statistics,
-  \url{http://www.jstor.org/stable/1390760}
+Tremmel, Lothar, (1995) "The Visual Separability of
+Plotting Symbols in Scatterplots" Journal of Computational
+and Graphical Statistics,
+\url{http://www.jstor.org/stable/1390760}
 }
 \seealso{
-  Other shapes: \code{\link{circlefill_shape_pal}},
-  \code{\link{cleveland_shape_pal}},
-  \code{\link{scale_shape_circlefill}},
-  \code{\link{scale_shape_cleveland}},
-  \code{\link{scale_shape_tremmel}}
+Other shapes: \code{\link{circlefill_shape_pal}};
+\code{\link{cleveland_shape_pal}};
+\code{\link{scale_shape_circlefill}};
+\code{\link{scale_shape_cleveland}};
+\code{\link{scale_shape_tremmel}}
 }
 

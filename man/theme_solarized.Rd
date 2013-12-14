@@ -3,11 +3,9 @@
 \alias{theme_solarized_2}
 \title{ggplot color themes based on the Solarized palette}
 \usage{
-  theme_solarized(base_size = 12, base_family = "",
-    light = TRUE)
+theme_solarized(base_size = 12, base_family = "", light = TRUE)
 
-  theme_solarized_2(base_size = 12, base_family = "",
-    light = TRUE)
+theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 }
 \arguments{
   \item{base_size}{base font size}
@@ -17,17 +15,17 @@
   \item{light}{\code{logical}. Light or dark theme?}
 }
 \description{
-  See \url{http://ethanschoonover.com/solarized} for a
-  description of the Solarized palette.
+See \url{http://ethanschoonover.com/solarized} for a
+description of the Solarized palette.
 }
 \details{
-  Plots made with this theme integrate seamlessly with the
-  Solarized Beamer color theme.
-  \url{https://github.com/jrnold/beamercolorthemesolarized}.
-  There are two variations: \code{theme_solarized} is
-  similar to to \code{\link{theme_bw}}, while
-  \code{theme_solarized_2} is similar to
-  \code{\link{theme_gray}}.
+Plots made with this theme integrate seamlessly with the
+Solarized Beamer color theme.
+\url{https://github.com/jrnold/beamercolorthemesolarized}.
+There are two variations: \code{theme_solarized} is similar
+to to \code{\link{theme_bw}}, while
+\code{theme_solarized_2} is similar to
+\code{\link{theme_gray}}.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

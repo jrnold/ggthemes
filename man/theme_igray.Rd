@@ -2,7 +2,7 @@
 \alias{theme_igray}
 \title{Inverse gray theme}
 \usage{
-  theme_igray(base_size = 12, base_family = "")
+theme_igray(base_size = 12, base_family = "")
 }
 \arguments{
   \item{base_size}{base font size}
@@ -10,7 +10,7 @@
   \item{base_family}{base font family}
 }
 \description{
-  Theme with white panel and gray background.
+Theme with white panel and gray background.
 }
 \section{Details}{
   This theme inverts the colors in the
@@ -28,8 +28,9 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + theme_igray())
 }
 \seealso{
-  \code{\link{theme_gray}}, \code{\link{theme_bw}}
+\code{\link{theme_gray}}, \code{\link{theme_bw}}
 
-  Other themes: \code{\link{theme_foundation}}
+Other themes: \code{\link{theme_foundation}};
+\code{\link{theme_solid}}
 }
 

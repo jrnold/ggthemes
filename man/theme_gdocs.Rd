@@ -2,7 +2,7 @@
 \alias{theme_gdocs}
 \title{Theme with Google Docs Chart defaults}
 \usage{
-  theme_gdocs(base_size = 12, base_family = "sans")
+theme_gdocs(base_size = 12, base_family = "sans")
 }
 \arguments{
   \item{base_size}{base font size}
@@ -10,8 +10,7 @@
   \item{base_family}{base font family}
 }
 \description{
-  Theme similar to the default look of charts in Google
-  Docs.
+Theme similar to the default look of charts in Google Docs.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]

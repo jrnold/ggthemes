@@ -2,7 +2,7 @@
 \alias{show_shapes}
 \title{Show shapes}
 \usage{
-  show_shapes(shapes, labels = TRUE)
+show_shapes(shapes, labels = TRUE)
 }
 \arguments{
   \item{shapes}{A numeric or character vector of shapes.
@@ -12,7 +12,7 @@
   symbol.}
 }
 \description{
-  A quick and dirty way to show shapes.
+A quick and dirty way to show shapes.
 }
 \examples{
 library(scales)
@@ -20,7 +20,7 @@ show_shapes(shape_pal()(5))
 show_shapes(shape_pal()(3), labels=TRUE)
 }
 \seealso{
-  \code{\link[scales]{show_col}},
-  \code{\link{show_linetypes}}
+\code{\link[scales]{show_col}},
+\code{\link{show_linetypes}}
 }
 

@@ -4,11 +4,11 @@
 \alias{scale_fill_solarized}
 \title{Solarized color scales}
 \usage{
-  scale_fill_solarized(accent = "blue", ...)
+scale_fill_solarized(accent = "blue", ...)
 
-  scale_colour_solarized(accent = "blue", ...)
+scale_colour_solarized(accent = "blue", ...)
 
-  scale_color_solarized(accent = "blue", ...)
+scale_color_solarized(accent = "blue", ...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -19,7 +19,7 @@
   \Sexpr[results=rd,stage=build]{ggthemes:::solarized_accent_list()}}
 }
 \description{
-  See \code{\link{solarized_pal}} for details.
+See \code{\link{solarized_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -28,6 +28,6 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
                + scale_colour_solarized() )
 }
 \seealso{
-  Other solarized colour: \code{\link{solarized_pal}}
+Other solarized colour: \code{\link{solarized_pal}}
 }
 

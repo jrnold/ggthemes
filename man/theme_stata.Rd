@@ -2,8 +2,7 @@
 \alias{theme_stata}
 \title{Themes based on Stata graph schemes}
 \usage{
-  theme_stata(scheme = "s2color", base_size = 11,
-    base_family = "sans")
+theme_stata(scheme = "s2color", base_size = 11, base_family = "sans")
 }
 \arguments{
   \item{scheme}{One of "s2color", "s2mono", "s1color",
@@ -14,12 +13,12 @@
   \item{base_family}{base font family}
 }
 \description{
-  Themes based on Stata graph schemes
+Themes based on Stata graph schemes
 }
 \note{
-  Stata graph schemes include what \pkg{ggplot2} seperates
-  into themes and scales, as well as defaults specific to
-  different graph types (which ggplot does not support).
+Stata graph schemes include what \pkg{ggplot2} seperates
+into themes and scales, as well as defaults specific to
+different graph types (which ggplot does not support).
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -53,6 +52,6 @@ q1mono <- (qplot(carat, price, shape=clarity, color=clarity,
 }
 }
 \references{
-  \url{http://www.stata.com/help.cgi?schemes}
+\url{http://www.stata.com/help.cgi?schemes}
 }
 

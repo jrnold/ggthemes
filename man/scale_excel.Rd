@@ -4,11 +4,11 @@
 \alias{scale_fill_excel}
 \title{Excel color scales}
 \usage{
-  scale_fill_excel(palette = "fill", ...)
+scale_fill_excel(palette = "fill", ...)
 
-  scale_colour_excel(palette = "line", ...)
+scale_colour_excel(palette = "line", ...)
 
-  scale_color_excel(palette = "line", ...)
+scale_color_excel(palette = "line", ...)
 }
 \arguments{
   \item{palette}{One of \code{"old"}, \code{"fill"}, or
@@ -19,7 +19,7 @@
   breaks, labels and so forth.}
 }
 \description{
-  Color scales from both old and new Excel.
+Color scales from both old and new Excel.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -28,8 +28,8 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
  + scale_colour_excel("new"))
 }
 \seealso{
-  See \code{\link{theme_excel}} for examples.
+See \code{\link{theme_excel}} for examples.
 
-  Other colour excel: \code{\link{excel_pal}}
+Other colour excel: \code{\link{excel_pal}}
 }
 

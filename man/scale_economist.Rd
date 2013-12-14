@@ -4,11 +4,11 @@
 \alias{scale_fill_economist}
 \title{Economist color scales}
 \usage{
-  scale_colour_economist(stata = FALSE, ...)
+scale_colour_economist(stata = FALSE, ...)
 
-  scale_color_economist(stata = FALSE, ...)
+scale_color_economist(stata = FALSE, ...)
 
-  scale_fill_economist(stata = FALSE, ...)
+scale_fill_economist(stata = FALSE, ...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -19,11 +19,11 @@
   scheme.}
 }
 \description{
-  Color scales using the colors in the Economist graphics.
+Color scales using the colors in the Economist graphics.
 }
 \seealso{
-  \code{\link{theme_economist}} for examples.
+\code{\link{theme_economist}} for examples.
 
-  Other colour economist: \code{\link{economist_pal}}
+Other colour economist: \code{\link{economist_pal}}
 }
 

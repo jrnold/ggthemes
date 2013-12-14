@@ -2,8 +2,7 @@
 \alias{bank_slopes}
 \title{Bank Slopes to 45 degrees}
 \usage{
-  bank_slopes(x, y, cull = FALSE, method = "ms",
-    weight = TRUE, ...)
+bank_slopes(x, y, cull = FALSE, method = "ms", weight = TRUE, ...)
 }
 \arguments{
   \item{x}{x values}
@@ -25,19 +24,19 @@
   "lor" and "gor".}
 }
 \value{
-  \code{numeric} The aspect ratio (x , y).
+\code{numeric} The aspect ratio (x , y).
 }
 \description{
-  Calculate the optimal aspect ratio of a line graph by
-  banking the slopes to 45 degrees as suggested by W.S.
-  Cleveland. This maximizes the ability to visually
-  differentiate differences in slope. This function will
-  calculate the optimal aspect ratio for a line plot using
-  any of the methods described in Herr and Argwala (2006).
-  In their review of the methods they suggest using median
-  absolute slope banking ("ms"), which produces aspect
-  ratios which are generally the median of the various
-  methods provided here.
+Calculate the optimal aspect ratio of a line graph by
+banking the slopes to 45 degrees as suggested by W.S.
+Cleveland. This maximizes the ability to visually
+differentiate differences in slope. This function will
+calculate the optimal aspect ratio for a line plot using
+any of the methods described in Herr and Argwala (2006). In
+their review of the methods they suggest using median
+absolute slope banking ("ms"), which produces aspect ratios
+which are generally the median of the various methods
+provided here.
 }
 \section{Methods}{
   As written, all of these methods calculate the aspect
@@ -139,22 +138,22 @@ bank_slopes(x, y, method="lor")
 bank_slopes(x, y, method="lor", cull=TRUE)
 }
 \references{
-  Cleveland, W. S., M. E. McGill, and R. McGill. The Shape
-  Parameter of a Two-Variable Graph.  Journal of the
-  American Statistical Association, 83:289-300, 1988
+Cleveland, W. S., M. E. McGill, and R. McGill. The Shape
+Parameter of a Two-Variable Graph.  Journal of the American
+Statistical Association, 83:289-300, 1988
 
-  Heer, Jeffrey and Maneesh Agrawala, 2006. "Multi-Scale
-  Banking to 45" IEEE Transactions On Visualization And
-  Computer Graphics.
+Heer, Jeffrey and Maneesh Agrawala, 2006. "Multi-Scale
+Banking to 45" IEEE Transactions On Visualization And
+Computer Graphics.
 
-  Cleveland, W. S. 1993. "A Model for Studying Display
-  Methods of Statistical Graphs." Journal of Computational
-  and Statistical Graphics.
+Cleveland, W. S. 1993. "A Model for Studying Display
+Methods of Statistical Graphs." Journal of Computational
+and Statistical Graphics.
 
-  Cleveland, W. S. 1994. The Elements of Graphing Data,
-  Revised Edition.
+Cleveland, W. S. 1994. The Elements of Graphing Data,
+Revised Edition.
 }
 \seealso{
-  \code{\link[lattice]{banking}}
+\code{\link[lattice]{banking}}
 }
 

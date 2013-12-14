@@ -2,32 +2,31 @@
 \alias{cleveland_shape_pal}
 \title{Shape palette from Cleveland "Elements of Graphing Data" (discrete).}
 \usage{
-  cleveland_shape_pal(overlap = TRUE)
+cleveland_shape_pal(overlap = TRUE)
 }
 \arguments{
   \item{overlap}{\code{logical} Use the scale for
   overlapping points?}
 }
 \description{
-  Shape palettes for overlapping and non-overlapping
-  points.
+Shape palettes for overlapping and non-overlapping points.
 }
 \note{
-  In the \emph{Elements of Graphing Data}, W.S. Cleveland
-  suggests two shape palettes for scatter plots: one for
-  overlapping data and another for non-overlapping data.
-  The symbols for overlapping data relies on pattern
-  discrimination, while the symbols for non-overlapping
-  data vary the amount of fill. This palatte attempts to
-  create these palettes. However, I found that these were
-  hard to replicate. Using the R shapes and unicode fonts:
-  the symbols can vary in size, they are dependent of the
-  fonts used, and there does not exist a unicode symbol for
-  a circle with a vertical line. If someone can improve
-  this palette, please let me know.
+In the \emph{Elements of Graphing Data}, W.S. Cleveland
+suggests two shape palettes for scatter plots: one for
+overlapping data and another for non-overlapping data. The
+symbols for overlapping data relies on pattern
+discrimination, while the symbols for non-overlapping data
+vary the amount of fill. This palatte attempts to create
+these palettes. However, I found that these were hard to
+replicate. Using the R shapes and unicode fonts: the
+symbols can vary in size, they are dependent of the fonts
+used, and there does not exist a unicode symbol for a
+circle with a vertical line. If someone can improve this
+palette, please let me know.
 
-  Following Tremmel (1995), I replace the circle with a
-  vertical line with an encircled plus sign.
+Following Tremmel (1995), I replace the circle with a
+vertical line with an encircled plus sign.
 }
 \examples{
 # overlapping symbol palette
@@ -39,20 +38,20 @@ dsamp <- diamonds[sample(nrow(diamonds), 100), ]
 + theme_bw() + scale_shape_cleveland(overlap=FALSE))
 }
 \references{
-  Cleveland WS. \emph{The Elements of Graphing Data}.
-  Revised Edition. Hobart Press, Summit, NJ, 1994, pp.
-  154-164, 234-239.
+Cleveland WS. \emph{The Elements of Graphing Data}. Revised
+Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164,
+234-239.
 
-  Tremmel, Lothar, (1995) "The Visual Separability of
-  Plotting Symbols in Scatterplots", \emph{Journal of
-  Computational and Graphical Statistics},
-  \url{http://www.jstor.org/stable/1390760}
+Tremmel, Lothar, (1995) "The Visual Separability of
+Plotting Symbols in Scatterplots", \emph{Journal of
+Computational and Graphical Statistics},
+\url{http://www.jstor.org/stable/1390760}
 }
 \seealso{
-  Other shapes: \code{\link{circlefill_shape_pal}},
-  \code{\link{scale_shape_circlefill}},
-  \code{\link{scale_shape_cleveland}},
-  \code{\link{scale_shape_tremmel}},
-  \code{\link{tremmel_shape_pal}}
+Other shapes: \code{\link{circlefill_shape_pal}};
+\code{\link{scale_shape_circlefill}};
+\code{\link{scale_shape_cleveland}};
+\code{\link{scale_shape_tremmel}};
+\code{\link{tremmel_shape_pal}}
 }
 

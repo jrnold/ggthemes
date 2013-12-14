@@ -2,7 +2,7 @@
 \alias{scale_shape_stata}
 \title{Stata shape scale}
 \usage{
-  scale_shape_stata(...)
+scale_shape_stata(...)
 }
 \arguments{
   \item{...}{common discrete scale parameters: \code{name},
@@ -11,7 +11,7 @@
   \code{\link{discrete_scale}} for more details}
 }
 \description{
-  See \code{\link{stata_shape_pal}} for details.
+See \code{\link{stata_shape_pal}} for details.
 }
 \examples{
 dsmall <- diamonds[sample(nrow(diamonds), 100), ]

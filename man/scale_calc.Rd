@@ -4,11 +4,11 @@
 \alias{scale_fill_calc}
 \title{LibreOffice Calc color scales}
 \usage{
-  scale_fill_calc(...)
+scale_fill_calc(...)
 
-  scale_colour_calc(...)
+scale_colour_calc(...)
 
-  scale_color_calc(...)
+scale_color_calc(...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -16,11 +16,11 @@
   breaks, labels and so forth.}
 }
 \description{
-  Color scales from LibreOffice Calc.
+Color scales from LibreOffice Calc.
 }
 \seealso{
-  See \code{\link{theme_calc}} for examples.
+See \code{\link{theme_calc}} for examples.
 
-  Other colour calc: \code{\link{calc_pal}}
+Other colour calc: \code{\link{calc_pal}}
 }
 

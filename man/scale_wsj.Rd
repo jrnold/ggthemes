@@ -4,11 +4,11 @@
 \alias{scale_fill_wsj}
 \title{Wall Street Journal color and fill scales}
 \usage{
-  scale_colour_wsj(palette, ...)
+scale_colour_wsj(palette, ...)
 
-  scale_color_wsj(palette, ...)
+scale_color_wsj(palette, ...)
 
-  scale_fill_wsj(palette, ...)
+scale_fill_wsj(palette, ...)
 }
 \arguments{
   \item{...}{Other arguments passed on to
@@ -20,11 +20,11 @@
   \code{\link[=ggthemes_data]{ggthemes_data$wsj$palettes}}.}
 }
 \description{
-  Colour and fill scales which use the palettes in
-  \code{\link{wsj_pal}} and are meant for use with
-  \code{\link{theme_wsj}}.
+Colour and fill scales which use the palettes in
+\code{\link{wsj_pal}} and are meant for use with
+\code{\link{theme_wsj}}.
 }
 \seealso{
-  Other colour wsj: \code{\link{wsj_pal}}
+Other colour wsj: \code{\link{wsj_pal}}
 }
 

@@ -4,11 +4,11 @@
 \alias{scale_fill_stata}
 \title{Stata color scales}
 \usage{
-  scale_colour_stata(scheme = "s2color", ...)
+scale_colour_stata(scheme = "s2color", ...)
 
-  scale_fill_stata(scheme = "s2color", ...)
+scale_fill_stata(scheme = "s2color", ...)
 
-  scale_color_stata(scheme = "s2color", ...)
+scale_color_stata(scheme = "s2color", ...)
 }
 \arguments{
   \item{scheme}{\code{character}. One of \code{"s2color"},
@@ -19,7 +19,7 @@
   breaks, labels and so forth.}
 }
 \description{
-  See \code{\link{stata_pal}} for details.
+See \code{\link{stata_pal}} for details.
 }
 \examples{
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
