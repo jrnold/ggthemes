@@ -28,11 +28,11 @@
 ##' @export
 theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_family="mono") {
     colorhex <- ggthemes_data$wsj$bg[color]
-    (theme_foundation()
+    (theme_foundation(base_size = base_size, base_family = base_family)
      + theme(
          line=element_line(linetype=1, colour="black"),
          rect=element_rect(fill=colorhex, linetype=0, colour=NA),
-         text=element_text(colour="black", family=base_family),
+         text=element_text(colour="black"),
          title=element_text(family=title_family, size=rel(2)),
          axis.title=element_blank(),
          axis.text=element_text(face="bold", size=rel(1)),
