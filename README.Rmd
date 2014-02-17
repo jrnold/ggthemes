@@ -80,7 +80,11 @@ Quantitative Information*.
 ```{r tufte-rangeframe}
 (ggplot(mtcars, aes(wt, mpg))
   + geom_point() + geom_rangeframe()
-  + theme_tufte())
+  + theme_tufte()
+  + scale_x_continuous(breaks=tufte_breaks(mtcars$wt), labels=as.character(tufte_breaks(mtcars$wt)))
+  + scale_y_continuous(breaks=tufte_breaks(mtcars$mpg), labels=as.character(tufte_breaks(mtcars$mpg)))
+ )
+
 ```
 
 The Tufte minimal boxplot.
@@ -102,7 +106,7 @@ magazine.
  + scale_colour_economist()
  + ggtitle("Diamonds Are Forever"))
 ```
-
+==================
 ## Solarized theme
 
 A theme and color and fill scales based on the Solarized palette.
@@ -226,8 +230,9 @@ Theme and color palettes based on the defaults in Google Docs.
 Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 
 ```{r calc}
-(qplot(carat, price, data=dsmall, colour=clarity)
+(qplot(carat, price, data=dsamp, colour=clarity)
  + theme_calc()
  + ggtitle("Diamonds")
  + scale_color_calc())
 ```
+
