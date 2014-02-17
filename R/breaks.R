@@ -1,4 +1,4 @@
-tufte_breaks <- function(data, defaultbreaks=pretty, max_density=0.5) {
+tufte_breaks <- function(data, defaultbreaks=pretty, max_density=0.2) {
     minmax <- c(min(data), max(data))
     def <- defaultbreaks(minmax)
     if (def[1] < minmax[1]) {
