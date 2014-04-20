@@ -62,14 +62,13 @@
 
 ##' Pretty axis breaks inclusive of extreme values
 ##' 
-##' This function returns pretty axis breaks that always include the extreme 
-##' values of the data.
+##' This function returns pretty axis breaks that always include the extreme  values of the data.
 ##' This works by calling the extended Wilkinson alogorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
 ##' Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
 ##' 
 ##' @param dmin minimum of the data range
 ##' @param dmax maximum of the data range
-##' @param m desired number of axis labels
+##' @param n desired number of breaks
 ##' @param Q set of nice numbers
 ##' @param w weights applied to the four optimization components (simplicity, coverage, density, and legibility)
 ##' @return For \code{extended_range}, the vector of axis label locations.
@@ -80,9 +79,9 @@
 ##' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, baptise \email{baptiste.auguie@@gmail.com}
 ##' @rdname range_breaks
 ##' @export
-extended_range <- function(dmin, dmax, m,
-                           Q = c(1, 5, 2, 2.5, 4, 3),
-                           w = c(0.25, 0.2, 0.5, 0.05)) {
+extended_range_break <- function(dmin, dmax, n = 5,
+                                  Q = c(1, 5, 2, 2.5, 4, 3),
+                                  w = c(0.25, 0.2, 0.5, 0.05)) {
   eps <- .Machine$double.eps * 100
   
   if(dmin > dmax) {
@@ -94,7 +93,7 @@ extended_range <- function(dmin, dmax, m,
   if(dmax - dmin < eps) {
     #if the range is near the floating point limit,
     #let seq generate some equally spaced steps.
-    return(seq(from=dmin, to=dmax, length.out=m))
+    return(seq(from=dmin, to=dmax, length.out=n))
   }
 
   n <- length(Q)
@@ -118,7 +117,7 @@ extended_range <- function(dmin, dmax, m,
       k <- 2
       while(k < Inf)                          # loop over tick counts
       {    
-        dm <- .density.max(k, m)
+        dm <- .density.max(k, n)
 
         if((w[1]*sm+w[2]+w[3]*dm+w[4]) < best$score)
           break
@@ -152,7 +151,7 @@ extended_range <- function(dmin, dmax, m,
 
             s <- .simplicity(q, Q, j, lmin, lmax, lstep)
             c <- .coverage(dmin, dmax, lmin, lmax)            
-            g <- .density(k, m, dmin, dmax, lmin, lmax)
+            g <- .density(k, n, dmin, dmax, lmin, lmax)
             l <- .legibility(lmin, lmax, lstep)            
 
             score <- w[1]*s + w[2]*c + w[3]*g + w[4]*l
@@ -182,17 +181,16 @@ extended_range <- function(dmin, dmax, m,
 }
 
 ##' @rdname range_breaks
-##' @param expand see \code{\link{scale_x_continuous}}
-##' @param n desired number of breaks
+##' @param expand see \code{\link{scale_x_continuous}}.
 ##' @param ... other arguments passed to \code{extended_range}
 ##' @export
-range_breaks <- function (n = 5, expand = c(0, 0), ...)  {
+extended_range_breaks <- function (n = 5, expand = c(0, 0), ...)  {
     function(x) {
         spread <- range(x)
         m <- matrix(c(1+expand[1], expand[1], expand[1], 1+expand[1]), 
                     ncol=2, byrow=TRUE)
         limits <- m %*% (spread + c(1,-1)*expand[2]) / (1+2*expand[1])
-        extended_range(limits[1], limits[2], n, ...)
+        extended_range_breaks(limits[1], limits[2], n, ...)
     }
 }
 
@@ -208,7 +206,7 @@ range_breaks <- function (n = 5, expand = c(0, 0), ...)  {
 ##' @param ... additional parameters passed to \code{\link{continuous_scale}}
 ##' @family tufte
 ##' @seealso range_breaks
-##' @author Baptise Auguie \email{baptiste.auguie@@gmail.com}
+##' @author Baptise Auguie
 ##' @rdname scale_tufte
 ##' @examples
 ##' (ggplot(mtcars, aes(wt, mpg)) 
