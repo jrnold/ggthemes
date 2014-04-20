@@ -3,9 +3,7 @@ Version: 1.6.1
 Date: 2013-12-28
 Title: Extra themes, scales and geoms for ggplot
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
-    email = "jeffrey.arnold@gmail.com"),
-    person(person("Justin", "Talbot", role = c("cph"),
-    email = "jtalbot@stanford.edu")))
+    email = "jeffrey.arnold@gmail.com"))
 Depends:
     R (>= 2.14),
     ggplot2 (>= 0.9.2)

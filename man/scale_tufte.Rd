@@ -3,16 +3,14 @@
 \alias{scale_y_tufte}
 \title{Axis breaks inclusive of extreme values}
 \usage{
-scale_x_tufte(breaks = range_breaks(5, expand), ..., labels = as.character,
+scale_x_tufte(breaks = scales_extended_range_breaks(expand), ...,
   expand = c(0.04, 0))
 
-scale_y_tufte(breaks = range_breaks(5, expand), ..., labels = as.character,
+scale_y_tufte(breaks = scales_extended_range_breaks(expand), ...,
   expand = c(0.04, 0))
 }
 \arguments{
   \item{breaks}{see \code{\link{scale_x_continuous}}}
-
-  \item{labels}{see \code{\link{scale_x_continuous}}}
 
   \item{expand}{see \code{\link{scale_x_continuous}}}
 
@@ -24,7 +22,7 @@ These scales draw pretty axis breaks that always include
 the extreme values of the data.
 }
 \examples{
-(ggplot(mtcars, aes(wt, mpg))
+(ggplot(mtcars, aes(x = wt + runif(1), y = mpg))
  + geom_point()
  + geom_rangeframe()
  + theme_tufte()
@@ -33,7 +31,7 @@ the extreme values of the data.
  )
 }
 \author{
-Baptise Auguie \email{baptiste.auguie@gmail.com}
+Baptise Auguie
 }
 \seealso{
 range_breaks
