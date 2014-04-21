@@ -1,7 +1,8 @@
 ggthemes 1.7.0
 ------------------------
 
-* added new breaks algorithm: `scales_extended_range_breaks`, `extended_range_breaks`
+* added a new breaks algorithm: `scales_extended_range_breaks`, `extended_range_breaks`
+* added scales which implement the breaks algorith: `scale_x_tufte`, `scale_y_tufte`
 * added new label format: `smart_digits`, `smart_digits_format`
 
 ggthemes 1.6.1

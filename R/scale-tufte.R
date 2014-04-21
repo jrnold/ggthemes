@@ -249,7 +249,8 @@ scale_y_tufte <-  function(breaks = scales_extended_range_breaks(expand), ...,
 ##' @author Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold
 ##' @return \code{smart_digits} returns a character vector.
 ##' \code{smart_digits_format} returns a function with a single argument \code{x}, a numeric vector, that returns a charactger vector.
-##' 
+##'
+##' @rdname smart_digits
 ##' @export
 smart_digits <- function(x, ...) {
     x <- sort(x)
@@ -257,6 +258,7 @@ smart_digits <- function(x, ...) {
     format(x, digits = digits, ...)
 }
 
+##' @rdname smart_digits
 ##' @export
 smart_digits_format <- function(x, ...) {
     function(x) smart_digits(x, ...)

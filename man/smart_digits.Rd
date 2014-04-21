@@ -1,0 +1,31 @@
+\name{smart_digits}
+\alias{smart_digits}
+\alias{smart_digits_format}
+\title{Format numbers with automatic number of digits}
+\usage{
+smart_digits(x, ...)
+
+smart_digits_format(x, ...)
+}
+\arguments{
+  \item{x}{A numeric vector to format}
+
+  \item{...}{Parameters passed to \code{\link{format}}}
+}
+\value{
+\code{smart_digits} returns a character vector.
+\code{smart_digits_format} returns a function with a single
+argument \code{x}, a numeric vector, that returns a
+charactger vector.
+}
+\description{
+Format numbers with automatic number of digits
+}
+\author{
+Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold
+}
+\references{
+Josh O'Brien,
+\url{http://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
+}
+
