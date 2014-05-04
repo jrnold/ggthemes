@@ -3,3 +3,4 @@
 ^figure$
 ^\.Rhistory$
 ^stata$
+^Makefile$
