@@ -230,4 +230,15 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
  + theme_calc()
  + ggtitle("Diamonds")
  + scale_color_calc())
+ ```
+
+## Fivethirtyeight theme
+
+Theme and color palette based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
+
+```{r fivethirtyeight}
+(qplot(hp, mpg, data= subset(mtcars, cyl != 5), geom="point", color = factor(cyl))
+ + geom_smooth(method = "lm", se = FALSE)
+ + scale_color_fivethirtyeight()
+ + theme_fivethirtyeight())
 ```

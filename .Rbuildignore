@@ -1,6 +1,5 @@
-.gitignore
-roxygen
-README.*
-figure
-.Rhistory
-stata/
+^\.gitignore$
+^README.R?md$
+^figure$
+^\.Rhistory$
+^stata$

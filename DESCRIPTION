@@ -21,3 +21,28 @@ License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
 Roxygen: list(wrap = FALSE)
+Collate:
+    'banking.R'
+    'calc.R'
+    'colorblind.R'
+    'economist.R'
+    'excel.R'
+    'few.R'
+    'ggthemes-package.R'
+    'ggthemes-data.R'
+    'fivethirtyeight.R'
+    'gdocs.R'
+    'geom-rangeframe.R'
+    'geom-tufteboxplot.R'
+    'igray.R'
+    'scale-tufte.R'
+    'shapes.R'
+    'solarized.R'
+    'stat-fivenumber.R'
+    'stata.R'
+    'tableau.R'
+    'theme-foundation.R'
+    'theme-solid.R'
+    'tufte.R'
+    'utils.R'
+    'wsj.R'

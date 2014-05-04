@@ -8,18 +8,16 @@ theme_fivethirtyeight(base_size = 12, base_family = "sans")
 \arguments{
 \item{base_size}{Base font size.}
 
-\item{color}{The background color of plot. One of \code{"brown",
-"gray", "green", "blue"}, the names of values in
-\code{ggthemes_data$wsj$bg}.}
-
-\item{title_family}{Plot title font family.}
-
 \item{base_family}{Plot text font family.}
 }
 \description{
-Theme inspired by fivethirtyeight.com plots
+Theme inspired by the plots on \href{fivethirtyeight.com}{http://fivethirtyeight.com}.
 }
-\seealso{
-Other themes wsj: \code{\link{theme_wsj}}
+\examples{
+(qplot(hp, mpg, data= subset(mtcars, cyl != 5), geom="point", color = factor(cyl))
+ + ggtitle("Horsepower, mpg and cylinders")
+ + geom_smooth(method = "lm", se = FALSE)
+ + scale_color_fivethirtyeight()
+ + theme_fivethirtyeight())
 }
 

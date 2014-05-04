@@ -1,3 +1,8 @@
+ggthemes 1.8.0
+------------------------
+
+* added themes and color scale from fivethirtyeight.com: `theme_fivethirtyeight`, `fivethirtyeight_pal`, `scale_color_fivethirtyeight`
+
 ggthemes 1.7.0
 ------------------------
 

@@ -36,7 +36,4 @@ Theme based on the plots in \emph{The Wall Street Journal}.
 
 \url{http://pinterest.com/wsjgraphics/wsj-graphics/}
 }
-\seealso{
-Other themes wsj: \code{\link{theme_fivethirtyeight}}
-}
 
