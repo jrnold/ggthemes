@@ -616,6 +616,14 @@ ggthemes_data <- {
              -0x2796, # heavy minus sign
              -0x2759 # medium vertical bar)
              ))
+
+    x$fivethirtyeight <-
+        list(dkgray = rgb(60, 60, 60, max = 255),
+             medgray = rgb(210, 210, 210, max = 255),
+             ltgray = rgb(240, 240, 240, max = 255),
+             red = rgb(255, 39, 0, max = 255),
+             blue = rgb(0, 143, 213, max = 255),
+             green = rgb(119, 171, 67, max = 255))
     
     ## Return
     x
