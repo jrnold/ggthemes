@@ -1,6 +1,5 @@
 Package: ggthemes
-Version: 1.7.0
-Date: 2014-04-21
+Version: 1.8.0
 Title: Extra themes, scales and geoms for ggplot
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"))
