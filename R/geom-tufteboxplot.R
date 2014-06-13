@@ -130,9 +130,9 @@ GeomTufteboxplot <- proto(ggplot2:::Geom, {
       
       # scale the offset by the size parameter
       x0_offset <- c(rep(offset * common$size, 2),
-                     rep(offset * common$size * 1.3, 2)) 
+                     rep(offset * common$size * 1.2, 2))
       x1_offset <- c(rep(offset * common$size, 2), 
-                     rep(offset * common$size / -2.5, 2))
+                     rep(offset * common$size / -5, 2))
       
       # shift the points at the median so there will be whitespace
       y_offset <- c(1.5 * offset, -1.5 * offset, 0, 0)
