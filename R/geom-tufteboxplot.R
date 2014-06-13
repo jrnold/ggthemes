@@ -19,8 +19,10 @@
 ##' @param outlier.size size of outlying points
 ##' @param fatten a multiplicative factor to fatten the middle point
 ##' (or line) by
-##' @param usebox use a box to represent the standard error of the median;
+##' @param median.type="point" use whitespace to represent the central quartiles and a point at the median
+##' @param median.type="box" use a box to represent the standard error of the median;
 ##' the same thing as the notch does in a standard boxplot.
+##' @param median.type="line" use offset lines to represent the central quartile and whitespace at the median
 ##' @param boxwidth a number between 0 and 1 which represents the
 ##' relative width of the box to the middle line.
 ##' @family geom tufte
@@ -31,18 +33,22 @@
 ##' ## with only a point
 ##' p + geom_tufteboxplot()
 ##' ## with a middle box
-##' p + geom_tufteboxplot(usebox=TRUE, fatten=1)
-##'
+##' p + geom_tufteboxplot(median.type="box", fatten=1)
+##' ## using lines
+##' p + geom_tufteboxplot(median.type="line")
+##' 
 geom_tufteboxplot <- function (mapping = NULL, data = NULL, stat = "boxplot",
                                position = "dodge",
                                outlier.colour = "black", outlier.shape = 16,
                                outlier.size = 2, fatten=4,
-                               usebox=FALSE, boxwidth=0.25, ...) {
+                               median.type=c("point", "box", "line"), 
+                               boxwidth=0.25, ...) {
+    median.type <- match.arg(median.type)
     GeomTufteboxplot$new(mapping = mapping, data = data, stat = stat,
                          position = position, outlier.colour = outlier.colour,
                          outlier.shape = outlier.shape,
                          outlier.size = outlier.size, fatten=fatten,
-                         usebox=usebox, boxwidth=boxwidth,
+                         median.type=median.type, boxwidth=boxwidth,
                          ...)
 }
 
@@ -70,7 +76,9 @@ GeomTufteboxplot <- proto(ggplot2:::Geom, {
   }
 
   draw <- function(., data, ..., outlier.colour = NULL,
-                   outlier.shape = NULL, outlier.size = 2, fatten=4, usebox=FALSE, boxwidth=0.05) {
+                   outlier.shape = NULL, outlier.size = 2, fatten=4, 
+                   median.type=c("point", "box", "line"), boxwidth=0.05) {
+    median.type <- match.arg(median.type)
     common <- data.frame(
         colour = data$colour,
         size = data$size,
@@ -88,7 +96,7 @@ GeomTufteboxplot <- proto(ggplot2:::Geom, {
       alpha = NA,
       common)
 
-    if (usebox) {
+    if (median.type == "box") {
         convexcomb <- function(a, x1, x2) {a * x1 + (1 - a) * x2}
 
         boxdata <-
@@ -104,6 +112,36 @@ GeomTufteboxplot <- proto(ggplot2:::Geom, {
                                                   x=xmin, xend=xmax,
                                                   y=middle, yend=middle,
                                                   size=size * fatten), ...)
+    } else if (median.type == "line") {
+      # draw two vertical lines for the central quartiles and two short 
+      # horizontal lines to connect them back to the whiskers
+      boxdata <- data.frame(
+        x = data$x,
+        xend = data$x,
+        y = c(data$upper, data$lower, data$upper, data$lower),
+        yend = c(data$middle, data$middle, data$upper, data$lower),
+        alpha = NA,
+        common)
+      box_grob <- GeomSegment$draw(boxdata, ...)
+      
+      # this offset seems to work nicely for a variety of sizes,
+      # but it's totally a magic number
+      offset <- 0.004
+      
+      # scale the offset by the size parameter
+      x0_offset <- c(rep(offset * common$size, 2),
+                     rep(offset * common$size * 1.3, 2)) 
+      x1_offset <- c(rep(offset * common$size, 2), 
+                     rep(offset * common$size / -2.5, 2))
+      
+      # shift the points at the median so there will be whitespace
+      y_offset <- c(1.5 * offset, -1.5 * offset, 0, 0)
+      box_grob$x0 <- box_grob$x0 + unit(x0_offset, "npc")
+      box_grob$x1 <- box_grob$x1 + unit(x1_offset, "npc")
+      box_grob$y1 <- box_grob$y1 + unit(y_offset, "npc")
+      
+      # no point at the median
+      middle_grob <- NULL
     } else {
         box_grob <- NULL
         middle_grob <- GeomPoint$draw(transform(data, y=middle,
