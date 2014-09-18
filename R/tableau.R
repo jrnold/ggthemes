@@ -146,7 +146,7 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 
 
 #' Tableau sequential colour scale (continuous)
-#' 
+#'
 #' @export
 #' @inheritParams tableau_seq_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
@@ -160,7 +160,7 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #' d + scale_colour_gradient_tableau("Red", limits=c(3, 4))
 #' d + scale_colour_gradient_tableau("Blue", limits=c(3, 4))
 #' d + scale_colour_gradient_tableau("Green", limits=c(3, 4))
-scale_colour_gradient_tableau <- function (palette = "Red", ..., space = "Lab", 
+scale_colour_gradient_tableau <- function (palette = "Red", ..., space = "Lab",
     na.value = "grey50", guide = "colourbar") {
     continuous_scale("colour", "tableau",
                      tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
@@ -168,7 +168,7 @@ scale_colour_gradient_tableau <- function (palette = "Red", ..., space = "Lab",
 
 #' @export
 #' @rdname scale_colour_gradient_tableau
-scale_fill_gradient_tableau <- function (palette = "Red", ..., space = "Lab", 
+scale_fill_gradient_tableau <- function (palette = "Red", ..., space = "Lab",
     na.value = "grey50", guide = "colourbar") {
     continuous_scale("fill", "tableau",
                      tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
@@ -181,6 +181,10 @@ scale_color_gradient_tableau <- scale_colour_gradient_tableau
 #' @export
 #' @rdname scale_colour_gradient_tableau
 scale_color_continuous_tableau <- scale_colour_gradient_tableau
+
+#' @export
+#' @rdname scale_colour_gradient_tableau
+scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 
 
 #' Tableau diverging colour gradient palettes (continuous)
@@ -203,7 +207,7 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 }
 
 #' Tableau diverging colour scales (continuous)
-#' 
+#'
 #' @inheritParams tableau_div_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
 #' @param guide Type of legend. Use \code{"colourbar"} for continuous
@@ -218,7 +222,7 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 #' d + scale_colour_gradient2_tableau()
 #' d + scale_colour_gradient2_tableau("Orange-Blue")
 #' d + scale_colour_gradient2_tableau("Temperature")
-scale_colour_gradient2_tableau <- function (palette = "Red-Blue", ..., space = "rgb", 
+scale_colour_gradient2_tableau <- function (palette = "Red-Blue", ..., space = "rgb",
     na.value = "grey50", guide = "colourbar") {
     continuous_scale("colour", "tableau2",
                      tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
@@ -226,7 +230,7 @@ scale_colour_gradient2_tableau <- function (palette = "Red-Blue", ..., space = "
 
 #' @export
 #' @rdname scale_colour_gradient2_tableau
-scale_fill_gradient2_tableau <- function (palette = "Red-Blue", ..., space = "rgb", 
+scale_fill_gradient2_tableau <- function (palette = "Red-Blue", ..., space = "rgb",
     na.value = "grey50", guide = "colourbar") {
     continuous_scale("fill", "tableau2",
                      tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
