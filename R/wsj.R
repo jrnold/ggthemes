@@ -82,7 +82,7 @@ theme_wsj <- function(base_size=12, color="brown", base_family="sans", title_fam
 ##'
 ##' @family colour wsj
 ##' @export
-wsj_pal <- function(palette) {
+wsj_pal <- function(palette = "colors6") {
     if (palette %in% names(ggthemes_data$wsj$palettes)) {
         manual_pal(unname(ggthemes_data$wsj$palettes[[palette]]))
     } else {
@@ -101,7 +101,7 @@ wsj_pal <- function(palette) {
 ##' @family colour wsj
 ##' @rdname scale_wsj
 ##' @export
-scale_colour_wsj <- function(palette, ...) {
+scale_colour_wsj <- function(palette = "colors6", ...) {
     discrete_scale("colour", "wsj", wsj_pal(palette), ...)
 }
 
@@ -111,7 +111,7 @@ scale_color_wsj <- scale_colour_wsj
 
 ##' @rdname scale_wsj
 ##' @export
-scale_fill_wsj <- function(palette, ...) {
+scale_fill_wsj <- function(palette = "colors6", ...) {
     discrete_scale("fill", "wsj", wsj_pal(palette), ...)
 }
 
