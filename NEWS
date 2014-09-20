@@ -1,3 +1,8 @@
+ggthemes 1.9.0
+------------------------
+
+* added `scale_fill_fivethirtyeight`, `scale_colour_gradient_tableau`, `scale_fill_gradient_tableau`, `scale_fill_continuous_tableau`, `scale_colour_gradient2_tableau`, `scale_fill_gradient2_tableau`. Thanks bowerth.
+
 ggthemes 1.8.0
 ------------------------
 
