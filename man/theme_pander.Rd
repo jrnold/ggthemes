@@ -4,7 +4,8 @@
 \title{A ggplot theme originated from the pander package}
 \usage{
 theme_pander(nomargin = TRUE, ff = "sans", fc = "black", fs = 12,
-  gM = TRUE, gm = TRUE, gc = "grey", gl = "dashed")
+  gM = TRUE, gm = TRUE, gc = "grey", gl = "dashed", boxes = FALSE,
+  bc = "white", pc = "transparent")
 }
 \arguments{
 \item{nomargin}{suppress the white space around the plot (boolean)}
@@ -22,6 +23,12 @@ theme_pander(nomargin = TRUE, ff = "sans", fc = "black", fs = 12,
 \item{gc}{grid color (name or hexa code)}
 
 \item{gl}{grid line type (\code{lty})}
+
+\item{boxes}{to render a border around the plot or not}
+
+\item{bc}{background color (name or hexa code)}
+
+\item{pc}{panel background color (name or hexa code)}
 }
 \description{
 The \pkg{pander} ships with a default theme when the "unify plots" option is enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals}, \code{eval.msgs} or \code{Pandoc.brew}.

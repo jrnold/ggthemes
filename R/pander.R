@@ -9,6 +9,9 @@
 #' @param gm minor grid (boolean)
 #' @param gc grid color (name or hexa code)
 #' @param gl grid line type (\code{lty})
+#' @param boxes to render a border around the plot or not
+#' @param bc background color (name or hexa code)
+#' @param pc panel background color (name or hexa code)
 #' @export
 #' @importFrom pander panderOptions
 #' @examples \dontrun{
@@ -17,12 +20,18 @@
 #' panderOptions('graph.grid.color', 'red')
 #' p + theme_pander()
 #' }
-theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed') {
+theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent') {
 
     ## load currently stored values from `panderOptions` if available
     if (require(pander)) {
         if (missing(nomargin))
             nomargin <- panderOptions('graph.nomargin')
+        if (missing(ff))
+            ff <- panderOptions('graph.fontfamily')
+        if (missing(fc))
+            fc <- panderOptions('graph.fontcolor')
+        if (missing(fs))
+            fs <- panderOptions('graph.fontsize')
         if (missing(gM))
             gM <- panderOptions('graph.grid')
         if (missing(gm))
@@ -31,13 +40,24 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
             gc <- panderOptions('graph.grid.color')
         if (missing(gl))
             gl <- panderOptions('graph.grid.lty')
+        if (missing(boxes))
+            boxes <- panderOptions('graph.boxes')
+        if (missing(bc))
+            bc <- panderOptions('graph.background')
+        if (missing(pc))
+            pc <- panderOptions('graph.panel.background')
     }
+
+    ## DRY
+    tc <- ifelse(pc == 'transparent', bc, pc) # "transparent" color
 
     ## default colors and font
     res <- theme(
+        plot.background  = element_rect(fill = bc, colour = NA),
         panel.grid       = element_line(colour = gc, size = 0.2, linetype = gl),
         panel.grid.major = element_line(colour = gc, size = 0.2, linetype = gl),
         panel.grid.minor = element_line(colour = gc, size = 0.1, linetype = gl),
+        axis.ticks       = element_line(colour = gc, size = 0.2),
         plot.title       = element_text(colour = fc, family = ff, face = "bold", size = fs * 1.2),
         axis.text        = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8),
         axis.text.x      = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8),
@@ -47,8 +67,22 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
         axis.title.x     = element_text(colour = fc, family = ff, face = 'plain', size = fs),
         strip.text.x     = element_text(colour = fc, family = ff, face = 'plain', size = fs),
         axis.title.y     = element_text(colour = fc, family = ff, face = 'plain', size = fs, angle = 90),
-        strip.text.y     = element_text(colour = fc, family = ff, face = 'plain', size = fs, angle = -90)
+        strip.text.y     = element_text(colour = fc, family = ff, face = 'plain', size = fs, angle = -90),
+        legend.key       = element_rect(colour = gc, fill = 'transparent'),
+        strip.background = element_rect(colour = gc, fill = 'transparent'),
+        panel.border     = element_rect(fill = NA, colour = gc),
+        panel.background = element_rect(fill = pc, colour = gc)
     )
+
+    ## disable box(es) around the plot
+    if (!isTRUE(boxes)) {
+        res <- res + theme(
+            legend.key       = element_rect(colour = 'transparent', fill = 'transparent'),
+            strip.background = element_rect(colour = 'transparent', fill = 'transparent'),
+            panel.border     = element_rect(fill = NA, colour = tc),
+            panel.background = element_rect(fill = pc, colour = tc)
+        )
+    }
 
     ## disable grid
     if (!isTRUE(gM)) {
@@ -71,3 +105,4 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
     res
 
 }
+
