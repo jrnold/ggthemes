@@ -3,11 +3,17 @@
 \alias{theme_pander}
 \title{A ggplot theme originated from the pander package}
 \usage{
-theme_pander(nomargin = TRUE, gM = TRUE, gm = TRUE, gc = "grey",
-  gl = "dashed")
+theme_pander(nomargin = TRUE, ff = "sans", fc = "black", fs = 12,
+  gM = TRUE, gm = TRUE, gc = "grey", gl = "dashed")
 }
 \arguments{
 \item{nomargin}{suppress the white space around the plot (boolean)}
+
+\item{ff}{font family, like \code{sans}}
+
+\item{fc}{font color (name or hexa code)}
+
+\item{fs}{font size (integer)}
 
 \item{gM}{major grid (boolean)}
 
