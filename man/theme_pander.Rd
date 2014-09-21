@@ -3,9 +3,12 @@
 \alias{theme_pander}
 \title{A ggplot theme originated from the pander package}
 \usage{
-theme_pander(gM = TRUE, gm = TRUE, gc = "grey", gl = "dashed")
+theme_pander(nomargin = TRUE, gM = TRUE, gm = TRUE, gc = "grey",
+  gl = "dashed")
 }
 \arguments{
+\item{nomargin}{suppress the white space around the plot (boolean)}
+
 \item{gM}{major grid (boolean)}
 
 \item{gm}{minor grid (boolean)}
