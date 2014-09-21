@@ -41,8 +41,16 @@ The \pkg{pander} ships with a default theme when the "unify plots" option is ena
 \dontrun{
 p <- qplot(mpg, wt, data = mtcars)
 p + theme_pander()
+
 panderOptions('graph.grid.color', 'red')
 p + theme_pander()
+
+p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) + geom_point()
+p + theme_pander() + scale_color_pander()
+
+## standard examples of the ggtheme package
+qplot(carat, price, data = diamonds, colour = cut) + theme_pander() + scale_colour_pander()
+ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() + scale_fill_pander() + theme_pander()
 }
 }
 

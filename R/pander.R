@@ -19,8 +19,16 @@
 #' @examples \dontrun{
 #' p <- qplot(mpg, wt, data = mtcars)
 #' p + theme_pander()
+#'
 #' panderOptions('graph.grid.color', 'red')
 #' p + theme_pander()
+#'
+#' p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) + geom_point()
+#' p + theme_pander() + scale_color_pander()
+#'
+#' ## standard examples of the ggtheme package
+#' qplot(carat, price, data = diamonds, colour = cut) + theme_pander() + scale_colour_pander()
+#' ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() + scale_fill_pander() + theme_pander()
 #' }
 theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent', lp = 'right', axis = 1) {
 
@@ -124,3 +132,56 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
 
 }
 
+
+#' Color palette from the pander package
+#'
+#' The \pkg{pander} ships with a default colorblind and printer-friendly color palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
+#' @param n number of colors
+#' @param random_order if the palette should be reordered randomly before rendering each plot to get colorful images
+#' @export
+#' @family colour pander
+#' @examples \dontrun{
+#' palette_pander(TRUE)
+#' }
+palette_pander <- function(n, random_order = FALSE) {
+
+    ## default (colorblind and printer-friendly) colors
+    cols <- c("#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999", "#E69F00")
+
+    ## override if pander is loaded
+    if (require(pander))
+        cols <- panderOptions('graph.colors')
+
+    if (isTRUE(random_order))
+        cols <- sample(cols)
+
+    if (length(cols) < n)
+        cols <- rep(cols, length.out = n)
+
+    cols[1:n]
+
+}
+
+
+#' Color scale from the pander package
+#'
+#' The \pkg{pander} ships with a default colorblind and printer-friendly color palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
+#' @inheritParams ggplot2::scale_colour_hue
+#' @inheritParams palette_pander
+#' @family colour pander
+#' @rdname scale_pander
+#' @seealso \code{\link{theme_pander}}
+#' @export
+scale_color_pander <- function(...)
+    discrete_scale('colour', 'pander', palette_pander, ...)
+
+
+#' @rdname scale_pander
+#' @export
+scale_colour_pander <- scale_color_pander
+
+
+#' @rdname scale_pander
+#' @export
+scale_fill_pander <- function(...)
+    discrete_scale('fill', 'pander', palette_pander, ...)
