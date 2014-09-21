@@ -12,6 +12,7 @@
 #' @param boxes to render a border around the plot or not
 #' @param bc background color (name or hexa code)
 #' @param pc panel background color (name or hexa code)
+#' @param lp legend position
 #' @export
 #' @importFrom pander panderOptions
 #' @examples \dontrun{
@@ -20,7 +21,7 @@
 #' panderOptions('graph.grid.color', 'red')
 #' p + theme_pander()
 #' }
-theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent') {
+theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent', lp = 'right') {
 
     ## load currently stored values from `panderOptions` if available
     if (require(pander)) {
@@ -46,12 +47,14 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
             bc <- panderOptions('graph.background')
         if (missing(pc))
             pc <- panderOptions('graph.panel.background')
+        if (missing(lp))
+            lp <- panderOptions('graph.legend.position')
     }
 
     ## DRY
     tc <- ifelse(pc == 'transparent', bc, pc) # "transparent" color
 
-    ## default colors and font
+    ## default colors, font and legend position
     res <- theme(
         plot.background  = element_rect(fill = bc, colour = NA),
         panel.grid       = element_line(colour = gc, size = 0.2, linetype = gl),
@@ -71,7 +74,8 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
         legend.key       = element_rect(colour = gc, fill = 'transparent'),
         strip.background = element_rect(colour = gc, fill = 'transparent'),
         panel.border     = element_rect(fill = NA, colour = gc),
-        panel.background = element_rect(fill = pc, colour = gc)
+        panel.background = element_rect(fill = pc, colour = gc),
+        legend.position  = lp
     )
 
     ## disable box(es) around the plot
