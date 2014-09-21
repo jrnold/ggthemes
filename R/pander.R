@@ -4,6 +4,7 @@
 #' @param gM major grid (boolean)
 #' @param gm minor grid (boolean)
 #' @param gc grid color (name or hexa code)
+#' @param gl grid line type (\code{lty})
 #' @export
 #' @importFrom pander panderOptions
 #' @examples \dontrun{
@@ -12,7 +13,7 @@
 #' panderOptions('graph.grid.color', 'red')
 #' p + theme_pander()
 #' }
-theme_pander <- function(gM = TRUE, gm = TRUE, gc = 'grey') {
+theme_pander <- function(gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed') {
 
     ## load currently stored values from `panderOptions` if available
     if (require(pander)) {
@@ -22,13 +23,15 @@ theme_pander <- function(gM = TRUE, gm = TRUE, gc = 'grey') {
             gm <- panderOptions('graph.grid.minor')
         if (missing(gc))
             gc <- panderOptions('graph.grid.color')
+        if (missing(gl))
+            gl <- panderOptions('graph.grid.lty')
     }
 
     ## default colors
     res <- theme(
-        panel.grid       = element_line(colour = gc),
-        panel.grid.major = element_line(colour = gc),
-        panel.grid.minor = element_line(colour = gc)
+        panel.grid       = element_line(colour = gc, size = 0.2, linetype = gl),
+        panel.grid.major = element_line(colour = gc, size = 0.2, linetype = gl),
+        panel.grid.minor = element_line(colour = gc, size = 0.1, linetype = gl)
     )
 
     ## disable grid

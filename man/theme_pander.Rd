@@ -3,7 +3,7 @@
 \alias{theme_pander}
 \title{A ggplot theme originated from the pander package}
 \usage{
-theme_pander(gM = TRUE, gm = TRUE, gc = "grey")
+theme_pander(gM = TRUE, gm = TRUE, gc = "grey", gl = "dashed")
 }
 \arguments{
 \item{gM}{major grid (boolean)}
@@ -11,6 +11,8 @@ theme_pander(gM = TRUE, gm = TRUE, gc = "grey")
 \item{gm}{minor grid (boolean)}
 
 \item{gc}{grid color (name or hexa code)}
+
+\item{gl}{grid line type (\code{lty})}
 }
 \description{
 The \pkg{pander} ships with a default theme when the "unify plots" option is enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals}, \code{eval.msgs} or \code{Pandoc.brew}.
