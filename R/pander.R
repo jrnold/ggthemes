@@ -13,6 +13,7 @@
 #' @param bc background color (name or hexa code)
 #' @param pc panel background color (name or hexa code)
 #' @param lp legend position
+#' @param axis axis angle as defined in \code{par(les)}
 #' @export
 #' @importFrom pander panderOptions
 #' @examples \dontrun{
@@ -21,7 +22,7 @@
 #' panderOptions('graph.grid.color', 'red')
 #' p + theme_pander()
 #' }
-theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent', lp = 'right') {
+theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent', lp = 'right', axis = 1) {
 
     ## load currently stored values from `panderOptions` if available
     if (require(pander)) {
@@ -49,6 +50,8 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
             pc <- panderOptions('graph.panel.background')
         if (missing(lp))
             lp <- panderOptions('graph.legend.position')
+        if (missing(axis))
+            axis <- panderOptions('graph.axis.angle')
     }
 
     ## DRY
@@ -105,6 +108,17 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
     ## margin
     if (nomargin)
         res <- res + theme(plot.margin = unit(c(0.1, 0.1, 0.1, 0), "lines"))
+
+    ## axis angle (TODO: DRY with ifelse in the default color etc. section)
+    if (axis == 0)
+        res <- res + theme(axis.text.y = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90))
+    if (axis == 2)
+        res <- res + theme(axis.text.x = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90, hjust = 1))
+    if (axis == 3)
+        res <- res + theme(
+            axis.text.y = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90),
+            axis.text.x = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90, hjust = 1)
+        )
 
     res
 
