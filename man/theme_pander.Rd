@@ -3,9 +3,13 @@
 \alias{theme_pander}
 \title{A ggplot theme originated from the pander package}
 \usage{
-theme_pander(gc = "grey")
+theme_pander(gM = TRUE, gm = TRUE, gc = "grey")
 }
 \arguments{
+\item{gM}{major grid (boolean)}
+
+\item{gm}{minor grid (boolean)}
+
 \item{gc}{grid color (name or hexa code)}
 }
 \description{
