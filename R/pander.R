@@ -15,7 +15,6 @@
 #' @param lp legend position
 #' @param axis axis angle as defined in \code{par(les)}
 #' @export
-#' @importFrom pander panderOptions
 #' @examples \dontrun{
 #' p <- qplot(mpg, wt, data = mtcars)
 #' p + theme_pander()
