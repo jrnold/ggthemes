@@ -1,0 +1,17 @@
+<!--
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Introduction to ggthemes}
+-->
+
+```{r header,echo=FALSE,results='hide'}
+library("knitr")
+opts_chunk$set(fig.width = 5.25, fig.height = 3.75, cache=FALSE)
+```
+
+# ggthemes Package
+
+```{r child='children/intro.Rmd'}
+```
+
+```{r child='children/examples.Rmd'}
+```

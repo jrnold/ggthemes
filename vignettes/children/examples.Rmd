@@ -1,0 +1,193 @@
+## Examples
+
+```{r dsamp}
+library("ggplot2")
+library("ggthemes")
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+```
+
+### Tufte theme and geoms
+
+Minimal theme and geoms based on plots in *The Visual Display of
+Quantitative Information*.
+
+```{r tufte-rangeframe}
+(ggplot(mtcars, aes(wt, mpg))
+  + geom_point() + geom_rangeframe()
+  + theme_tufte())
+```
+
+The Tufte minimal boxplot.
+
+```{r tufteboxplot}
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot())
+```
+
+### Economist theme
+
+A theme that approximates the style of plots in The Economist
+magazine.
+
+```{r economist}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_economist()
+ + scale_colour_economist()
+ + ggtitle("Diamonds Are Forever"))
+```
+
+### Solarized theme
+
+A theme and color and fill scales based on the Solarized palette.
+
+The light theme.
+
+```{r solarized-light}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized()
+                             + scale_colour_solarized("blue"))
+```
+
+The dark theme.
+
+```{r solarized-dark}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized(light=FALSE)
+                             + scale_colour_solarized("red"))
+```
+
+An alternative theme.
+
+```{r solarized-alt}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized_2()
+                             + scale_colour_solarized("blue"))
+```
+
+
+### Stata theme 
+
+Themes and scales (color, fill, linetype, shapes) based on the graph
+schemes in Stata.
+
+```{r stata}
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_stata() 
+                             + scale_colour_stata()
+                             + ggtitle("Plot Title"))
+```
+
+### Excel 2003 theme
+
+For that classic ugly look and feel. For ironic purposes only. 3D bars
+and pies not included. Please never use this theme.
+
+```{r excel1}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_excel() 
+ + scale_colour_excel())
+
+```
+
+```{r excel2}
+(ggplot(diamonds, aes(clarity, fill=cut)) 
+ + geom_bar()
+ + scale_fill_excel()
+ + theme_excel())
+```
+
+### Inverse Gray Theme
+
+Inverse of `theme_gray`, i.e. white plot area and gray background.
+
+```{r igray}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray())
+```
+
+### Fivethirtyeight theme
+
+Theme and color palette based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
+
+```{r fivethirtyeight}
+(qplot(hp, mpg, data= subset(mtcars, cyl != 5), geom="point", color = factor(cyl))
+ + geom_smooth(method = "lm", se = FALSE)
+ + scale_color_fivethirtyeight()
+ + theme_fivethirtyeight())
+```
+
+### Tableau Scales
+
+Color, fill, and shape scales based on those used in the Tableau softare.
+
+```{r tableau}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray()
+ + scale_colour_tableau())
+```
+
+```{r tableau-colorbind10}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray()
+ + scale_colour_tableau("colorblind10"))
+```
+
+### Stephen Few's Practical Rules for Using Color ...
+
+Color palette and theme based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+
+```{r few}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_few()
+ + scale_colour_few())
+```
+
+### Wall Street Journal
+
+Theme and some color palettes based on plots in the *The Wall Street Journal*.
+
+```{r wsj}
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_wsj()
+ + scale_colour_wsj("colors6", "")
+ + ggtitle("Diamond Prices"))
+```
+
+### GDocs Theme
+
+Theme and color palettes based on the defaults in Google Docs.
+
+```{r gdocs}
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_gdocs()
+ + ggtitle("Diamonds")
+ + scale_color_gdocs())
+```
+
+### Calc Theme
+
+Theme and color and shape palettes based on the defaults in LibreOffice Calc.
+
+```{r calc}
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_calc()
+ + ggtitle("Diamonds")
+ + scale_color_calc())
+```
+
+### Pander Theme
+
+Theme and color palettes based on the [pander package](http://rapporter.github.io/pander/).
+
+```{r pander-scatterplot}
+(qplot(carat, price, data = dsamp, colour = clarity)
+ + theme_pander()
+ + scale_colour_pander())
+```
+
+```{r pander-barplot}
+(ggplot(dsamp, aes(clarity, fill = cut)) + geom_bar()
+  + theme_pander()
+  + scale_fill_pander())
+```

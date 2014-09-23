@@ -6,7 +6,7 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     person("Gergely", "Daroczi", role = "ctb"),
     person("Bo", "Werth", role = "ctb"))
 Depends:
-    R (>= 2.14),
+    R (>= 3.0.0),
     ggplot2 (>= 0.9.2)
 Imports:
     colorspace,
@@ -14,10 +14,12 @@ Imports:
     proto,
     scales,
 Suggests:
+    knitr,
     plyr,
     reshape2,
     extrafont,
     pander
+VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes

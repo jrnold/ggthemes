@@ -1,0 +1,4 @@
+## Contribute
+
+Contributions are welcome! If you would like to add a theme, scales,
+etc., fork the repository, add your theme, and submit a pull request.

@@ -1,0 +1,35 @@
+## Overview
+
+Some extra geoms, scales, and themes for
+[ggplot](http://had.co.nz/ggplot2/), including:
+
+### Geoms
+
+- ``geom_rangeframe`` : Tufte's range frame
+- ``geom_tufteboxplot``: Tufte's box plot
+
+### Themes 
+
+- ``theme_calc``: a theme based on LibreOffice Calc.
+- ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+- ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
+- ``theme_few``: theme from Stephen Few's  ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``theme_fivethirtyeight``: a theme based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
+- ``theme_gdocs``: a theme based on Google Docs.
+- ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
+- ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
+- ``theme_tufte``: a minimal ink based on Tufte's *The Visual Display of Quantitative Information*.
+- ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+
+### Scales
+
+- ``scale_color_calc``, ``scale_shape_calc``: color and shape palettes from LibreOffice Calc.
+- ``scale_color_colorblind``: Colorblind safe palette from <http://jfly.iam.u-tokyo.ac.jp/color/>.
+- ``scale_color_economist``: colors used in plots in plots in *The Economist*.
+- ``scale_color_excel``: colors from new and old Excel.
+- ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``scale_color_gdocs``: color palette from Google Docs.
+- ``scale_color_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
+- ``scale_color_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
+- ``scale_color_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
+- ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, Tremmel (1995), and Lewandowsky and Spence (1989).
