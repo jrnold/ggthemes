@@ -4,3 +4,4 @@
 ^\.Rhistory$
 ^stata$
 ^Makefile$
+^make-README.R$
