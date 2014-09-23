@@ -71,3 +71,9 @@ scale_colour_fivethirtyeight <- function(...) {
 #' @rdname scale_fivethirtyeight
 #' @export
 scale_color_fivethirtyeight <- scale_colour_fivethirtyeight
+
+##' @rdname scale_fivethirtyeight
+##' @export
+scale_fill_fivethirtyeight <- function(...) {
+    discrete_scale("fill", "economist", fivethirtyeight_pal(), ...)
+}
