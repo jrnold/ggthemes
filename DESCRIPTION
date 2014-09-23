@@ -2,7 +2,9 @@ Package: ggthemes
 Version: 1.9.0
 Title: Extra themes, scales and geoms for ggplot
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
-    email = "jeffrey.arnold@gmail.com"))
+    email = "jeffrey.arnold@gmail.com"),
+    person("Gergely", "Daroczi", role = "ctb"),
+    person("Bo", "Werth", role = "ctb"))
 Depends:
     R (>= 2.14),
     ggplot2 (>= 0.9.2)
