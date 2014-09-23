@@ -14,7 +14,8 @@ Imports:
 Suggests:
     plyr,
     reshape2,
-    extrafont
+    extrafont,
+    pander
 Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
@@ -34,6 +35,7 @@ Collate:
     'geom-rangeframe.R'
     'geom-tufteboxplot.R'
     'igray.R'
+    'pander.R'
     'scale-tufte.R'
     'shapes.R'
     'solarized.R'

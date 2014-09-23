@@ -235,9 +235,24 @@ Theme and color palettes based on the defaults in Google Docs.
 Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 
 ```{r calc}
-(qplot(carat, price, data=dsmall, colour=clarity)
+(qplot(carat, price, data=dsamp, colour=clarity)
  + theme_calc()
  + ggtitle("Diamonds")
  + scale_color_calc())
 ```
 
+## Pander Theme
+
+Theme and color palettes based on the [pander package](http://rapporter.github.io/pander/).
+
+```{r pander-scatterplot}
+(qplot(carat, price, data = diamonds, colour = clarity)
+ + theme_pander()
+ + scale_colour_pander())
+```
+
+```{r pander-barplot}
+(ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar()
+  + theme_pander()
+  + scale_fill_pander())
+```
