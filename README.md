@@ -53,7 +53,7 @@ Or, to install the development version from github, use the
 
 ```r
 library("devtools")
-install_github("ggthemes", "jrnold")
+install_github("jrnold/ggthemes")
 ```
 
 Windows users also must first install
