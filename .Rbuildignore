@@ -4,4 +4,5 @@
 ^\.Rhistory$
 ^stata$
 ^Makefile$
-^make-README.R$
+^make-README\.R$
+^cran-comments\.md$
