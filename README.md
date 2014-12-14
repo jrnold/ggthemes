@@ -1,3 +1,5 @@
+<!-- DO NOT EDIT README.md. It is created by README.Rmd -->
+
 
 
 # ggthemes
@@ -87,7 +89,7 @@ Quantitative Information*.
   + theme_tufte())
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/xolHAJG.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/eChvi6r.png) 
 
 The Tufte minimal boxplot.
 
@@ -98,7 +100,7 @@ The Tufte minimal boxplot.
  + geom_tufteboxplot())
 ```
 
-![plot of chunk tufteboxplot](http://i.imgur.com/cDN3N9X.png) 
+![plot of chunk tufteboxplot](http://i.imgur.com/iIUaKcx.png) 
 
 ### Economist theme
 
@@ -113,7 +115,7 @@ magazine.
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk economist](http://i.imgur.com/PQcs4NE.png) 
+![plot of chunk economist](http://i.imgur.com/SmGMvtM.png) 
 
 ### Solarized theme
 
@@ -128,7 +130,7 @@ The light theme.
                              + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/IL6eaw4.png) 
+![plot of chunk solarized-light](http://i.imgur.com/CHZTtct.png) 
 
 The dark theme.
 
@@ -139,7 +141,7 @@ The dark theme.
                              + scale_colour_solarized("red"))
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/JZ6dqQW.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/pzSZ55l.png) 
 
 An alternative theme.
 
@@ -150,7 +152,7 @@ An alternative theme.
                              + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-alt](http://i.imgur.com/JjVFF7Q.png) 
+![plot of chunk solarized-alt](http://i.imgur.com/DynwZ5n.png) 
 
 
 ### Stata theme 
@@ -166,7 +168,7 @@ schemes in Stata.
                              + ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/cFB2KPv.png) 
+![plot of chunk stata](http://i.imgur.com/5Rq82fF.png) 
 
 ### Excel 2003 theme
 
@@ -180,7 +182,7 @@ and pies not included. Please never use this theme.
  + scale_colour_excel())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/0udg3uM.png) 
+![plot of chunk excel1](http://i.imgur.com/CIPUy79.png) 
 
 
 ```r
@@ -190,7 +192,7 @@ and pies not included. Please never use this theme.
  + theme_excel())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/nccxhrh.png) 
+![plot of chunk excel2](http://i.imgur.com/RzqpzAb.png) 
 
 ### Inverse Gray Theme
 
@@ -202,7 +204,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
  + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/JXHRDa8.png) 
+![plot of chunk igray](http://i.imgur.com/MgDzNC5.png) 
 
 ### Fivethirtyeight theme
 
@@ -216,7 +218,7 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
  + theme_fivethirtyeight())
 ```
 
-![plot of chunk fivethirtyeight](http://i.imgur.com/XNuny7E.png) 
+![plot of chunk fivethirtyeight](http://i.imgur.com/nJXdOwN.png) 
 
 ### Tableau Scales
 
@@ -229,7 +231,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
  + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/bQ5J6aI.png) 
+![plot of chunk tableau](http://i.imgur.com/jTuPrdQ.png) 
 
 
 ```r
@@ -238,7 +240,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
  + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/yzLvp28.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/jeokHVl.png) 
 
 ### Stephen Few's Practical Rules for Using Color ...
 
@@ -251,7 +253,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
  + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/i5oS1aV.png) 
+![plot of chunk few](http://i.imgur.com/CCDL8iI.png) 
 
 ### Wall Street Journal
 
@@ -265,7 +267,7 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
  + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/6V8xCTN.png) 
+![plot of chunk wsj](http://i.imgur.com/kVz27nS.png) 
 
 ### GDocs Theme
 
@@ -279,7 +281,7 @@ Theme and color palettes based on the defaults in Google Docs.
  + scale_color_gdocs())
 ```
 
-![plot of chunk gdocs](http://i.imgur.com/lp8GnI6.png) 
+![plot of chunk gdocs](http://i.imgur.com/ANVHHSe.png) 
 
 ### Calc Theme
 
@@ -293,7 +295,7 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
  + scale_color_calc())
 ```
 
-![plot of chunk calc](http://i.imgur.com/FwZDyVt.png) 
+![plot of chunk calc](http://i.imgur.com/k2H51qt.png) 
 
 ### Pander Theme
 
@@ -310,7 +312,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
 ## Loading required package: pander
 ```
 
-![plot of chunk pander-scatterplot](http://i.imgur.com/BErl9z9.png) 
+![plot of chunk pander-scatterplot](http://i.imgur.com/ajgAZBI.png) 
 
 
 ```r
@@ -319,4 +321,4 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
   + scale_fill_pander())
 ```
 
-![plot of chunk pander-barplot](http://i.imgur.com/YyqJ3Az.png) 
+![plot of chunk pander-barplot](http://i.imgur.com/ln2GDfk.png) 
