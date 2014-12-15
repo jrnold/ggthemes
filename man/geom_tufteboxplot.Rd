@@ -5,7 +5,8 @@
 \usage{
 geom_tufteboxplot(mapping = NULL, data = NULL, stat = "boxplot",
   position = "dodge", outlier.colour = "black", outlier.shape = 16,
-  outlier.size = 2, fatten = 4, usebox = FALSE, boxwidth = 0.25, ...)
+  outlier.size = 2, fatten = 4, median.type = "point", boxwidth = 0.25,
+  ...)
 }
 \arguments{
 \item{mapping}{The aesthetic mapping, usually constructed with
@@ -30,8 +31,12 @@ on this layer}
 \item{fatten}{a multiplicative factor to fatten the middle point
 (or line) by}
 
-\item{usebox}{use a box to represent the standard error of the median;
-the same thing as the notch does in a standard boxplot.}
+\item{median.type}{One of \code{"box"}, \code{"line"}, or \code{"box"}. If \code{median.type="point"},
+then use whitespace to represent the central quartiles and a point at the median.
+If \code{median.type="box"}, then use a box to represent the standard error of the median. This
+is similar to what the \code{notch} option does in a standard boxplot.
+the same thing as the notch does in a standard boxplot.
+If \code{median.type="line"}, the use offset lines to represent the central quartile and whitespace at the median}
 
 \item{boxwidth}{a number between 0 and 1 which represents the
 relative width of the box to the middle line.}
@@ -53,7 +58,9 @@ p <- ggplot(mtcars, aes(factor(cyl), mpg))
 ## with only a point
 p + geom_tufteboxplot()
 ## with a middle box
-p + geom_tufteboxplot(usebox=TRUE, fatten=1)
+p + geom_tufteboxplot(median.type="box", fatten=1)
+## using lines
+p + geom_tufteboxplot(median.type="line")
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of
