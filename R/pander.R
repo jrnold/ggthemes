@@ -33,6 +33,8 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
 
     ## load currently stored values from `panderOptions` if available
     if (require(pander)) {
+        panderOptions <- getFromNamespace("panderOptions", "pander")
+        # needed to avoid R CMD check note
         if (missing(nomargin))
             nomargin <- panderOptions('graph.nomargin')
         if (missing(ff))
@@ -149,7 +151,7 @@ palette_pander <- function(n, random_order = FALSE) {
 
     ## override if pander is loaded
     if (require(pander))
-        cols <- panderOptions('graph.colors')
+        cols <- getFromNamespace("panderOptions", "pander")('graph.colors')
 
     if (isTRUE(random_order))
         cols <- sample(cols)
