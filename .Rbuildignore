@@ -6,3 +6,5 @@
 ^Makefile$
 ^make-README\.R$
 ^cran-comments\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
