@@ -8,7 +8,7 @@
 ##' @examples
 ##' (ggplot(mtcars, aes(wt, mpg))
 ##'  + geom_point()
-##'  + theme_solid("white"))
+##'  + theme_solid(fill = "white"))
 ##' @export
 theme_solid <- function(fill = NA) {
     base_size <- 12

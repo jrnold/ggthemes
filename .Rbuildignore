@@ -8,3 +8,4 @@
 ^cran-comments\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.travis\.yml$
