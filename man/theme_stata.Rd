@@ -3,15 +3,15 @@
 \alias{theme_stata}
 \title{Themes based on Stata graph schemes}
 \usage{
-theme_stata(scheme = "s2color", base_size = 11, base_family = "sans")
+theme_stata(base_size = 11, base_family = "sans", scheme = "s2color")
 }
 \arguments{
-\item{scheme}{One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono", "s2manual",
-"s1manual", or "sj"}
-
 \item{base_size}{base font size}
 
 \item{base_family}{base font family}
+
+\item{scheme}{One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono", "s2manual",
+"s1manual", or "sj"}
 }
 \description{
 Themes based on Stata graph schemes
@@ -33,24 +33,22 @@ q1mono <- (qplot(carat, price, shape=clarity, color=clarity,
            + scale_shape_stata()
            + ggtitle("Diamonds"))
 ## s2color
-(q1 + theme_stata() + scale_colour_stata("s2color"))
+(q1 + theme_stata() + scale_colour_stata(scheme = "s2color"))
 (q2 + theme_stata())
 ## s2mono
-(q1mono + theme_stata("s2mono") + scale_colour_stata("mono"))
-(q2 + theme_stata("s2mono"))
+(q1mono + theme_stata(scheme = "s2mono") + scale_colour_stata("mono"))
+(q2 + theme_stata(scheme = "s2mono"))
 ## s1color
-(q1 + theme_stata("s1color") + scale_colour_stata("s1color"))
-(q2 + theme_stata("s1color"))
-\dontrun{
+(q1 + theme_stata(scheme = "s1color") + scale_colour_stata("s1color"))
+(q2 + theme_stata(scheme = "s1color"))
 ## s1rcolor
-(q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
+(q1 + theme_stata(scheme = "s1rcolor") + scale_colour_stata("s1rcolor"))
 (ggplot(dsamp, aes(x=carat, y=price)) + geom_point(colour="white")
  + facet_wrap(~ clarity) + scale_colour_stata("s1rcolor")
  + ggtitle("Diamonds"))
 ## s1mono
-(q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
-(q2 + theme_stata("s1mono"))
-}
+(q1mono + theme_stata(scheme = "s1mono") + scale_colour_stata("mono"))
+(q2 + theme_stata(scheme = "s1mono"))
 }
 \references{
 \url{http://www.stata.com/help.cgi?schemes}

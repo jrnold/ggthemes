@@ -218,25 +218,24 @@ theme_stata_colors <- function(scheme="s2color") {
 ##'            + scale_shape_stata()
 ##'            + ggtitle("Diamonds"))
 ##' ## s2color
-##' (q1 + theme_stata() + scale_colour_stata("s2color"))
+##' (q1 + theme_stata() + scale_colour_stata(scheme = "s2color"))
 ##' (q2 + theme_stata())
 ##' ## s2mono
-##' (q1mono + theme_stata("s2mono") + scale_colour_stata("mono"))
-##' (q2 + theme_stata("s2mono"))
+##' (q1mono + theme_stata(scheme = "s2mono") + scale_colour_stata("mono"))
+##' (q2 + theme_stata(scheme = "s2mono"))
 ##' ## s1color
-##' (q1 + theme_stata("s1color") + scale_colour_stata("s1color"))
-##' (q2 + theme_stata("s1color"))
-##' \dontrun{
+##' (q1 + theme_stata(scheme = "s1color") + scale_colour_stata("s1color"))
+##' (q2 + theme_stata(scheme = "s1color"))
 ##' ## s1rcolor
-##' (q1 + theme_stata("s1rcolor") + scale_colour_stata("s1rcolor"))
+##' (q1 + theme_stata(scheme = "s1rcolor") + scale_colour_stata("s1rcolor"))
 ##' (ggplot(dsamp, aes(x=carat, y=price)) + geom_point(colour="white")
 ##'  + facet_wrap(~ clarity) + scale_colour_stata("s1rcolor")
 ##'  + ggtitle("Diamonds"))
 ##' ## s1mono
-##' (q1mono + theme_stata("s1mono") + scale_colour_stata("mono"))
-##' (q2 + theme_stata("s1mono"))
-##' }
-theme_stata <- function(scheme="s2color", base_size = 11, base_family = "sans") {
+##' (q1mono + theme_stata(scheme = "s1mono") + scale_colour_stata("mono"))
+##' (q2 + theme_stata(scheme = "s1mono"))
+##' 
+theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") {
     ## Sizes
     (theme_stata_base(base_size=eval(base_size), base_family=base_family)
      + theme_stata_colors(scheme=scheme))
