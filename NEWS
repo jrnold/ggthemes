@@ -2,7 +2,7 @@ ggthemes 2.0.0
 ------------------------
 
 * New options for `geom_tufteboxplot`. `median.type` takes values "point", "box", or "line". Option `usebox` is no longer supported, and equivalent to `median.type="box"`. Thanks weitzner! Issue #13, PR #19.
-* All theme functions have `base_size` and `base_family` as first two arguments. This affects `theme_economist_white`, `theme_excel`, `theme_pander`, and `theme_solid`. Thanks ptoche! Issue #25.
+* All theme functions have `base_size` and `base_family` as first two arguments. This affects `theme_economist_white`, `theme_excel`, `theme_pander`, `theme_solid`, and `theme_tufte`. Thanks ptoche! Issue #25.
 * `theme_pander`: Options `ff` and `fs`; use `base_family` and `base_size` options instead, respectively.
 
 ggthemes 1.9.0

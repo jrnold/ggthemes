@@ -3,14 +3,14 @@
 \alias{theme_tufte}
 \title{Tufte Maximal Data, Minimal Ink Theme}
 \usage{
-theme_tufte(ticks = TRUE, base_family = "serif", base_size = 11)
+theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 }
 \arguments{
-\item{ticks}{\code{logical} Show axis ticks?}
+\item{base_size}{Base font size}
 
 \item{base_family}{Base font family}
 
-\item{base_size}{Base font size}
+\item{ticks}{\code{logical} Show axis ticks?}
 }
 \description{
 Theme based on Chapter 6 "Data-Ink Maximization and Graphical

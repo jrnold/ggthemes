@@ -43,7 +43,7 @@
 ##'  + theme_tufte(base_family="GillSans"))
 ##' }
 ##' @export
-theme_tufte <- function(ticks=TRUE, base_family="serif", base_size=11) {
+theme_tufte <- function(base_size = 11, base_family = "serif", ticks = TRUE) {
     ## TODO: start with theme_minimal
     ret <- theme_bw(base_family=base_family, base_size=base_size) +
         theme(
