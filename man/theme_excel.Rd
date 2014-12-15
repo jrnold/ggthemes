@@ -3,14 +3,14 @@
 \alias{theme_excel}
 \title{ggplot color theme based on old Excel plots}
 \usage{
-theme_excel(horizontal = TRUE, base_size = 12, base_family = "")
+theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 }
 \arguments{
-\item{horizontal}{\code{logical}. Horizontal axis lines?}
-
 \item{base_size}{\code{numeric} base font size}
 
 \item{base_family}{\code{character} base font family}
+
+\item{horizontal}{\code{logical}. Horizontal axis lines?}
 }
 \value{
 An object of class \code{\link{theme}}.

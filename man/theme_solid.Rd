@@ -3,12 +3,12 @@
 \alias{theme_solid}
 \title{Theme with nothing other than a background color}
 \usage{
-theme_solid(base_size = 12, font_family = "", fill = NA)
+theme_solid(base_size = 12, base_family = "", fill = NA)
 }
 \arguments{
 \item{base_size}{Base font size.}
 
-\item{font_family}{Ignored, kept for consistency with \code{theme}.}
+\item{base_family}{Ignored, kept for consistency with \code{theme}.}
 
 \item{fill}{Background color of the plot.}
 }

@@ -7,8 +7,8 @@
 theme_economist(base_size = 10, base_family = "sans", horizontal = TRUE,
   dkpanel = FALSE, stata = FALSE)
 
-theme_economist_white(gray_bg = TRUE, base_family = "sans",
-  base_size = 11, horizontal = TRUE)
+theme_economist_white(base_size = 11, base_family = "sans",
+  gray_bg = TRUE, horizontal = TRUE)
 }
 \arguments{
 \item{base_size}{\code{numeric} base font size}

@@ -80,7 +80,7 @@ scale_color_excel <- scale_colour_excel
 ##' + scale_fill_excel("fill")
 ##' + theme_excel())
 ##'
-theme_excel <- function(horizontal=TRUE, base_size=12, base_family="") {
+theme_excel <- function(base_size=12, base_family="", horizontal=TRUE) {
     gray <- "#C0C0C0"
     ret <- (theme_bw()
             + theme(

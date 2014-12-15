@@ -1,10 +1,11 @@
 #' A ggplot theme originated from the pander package
 #'
 #' The \pkg{pander} ships with a default theme when the "unify plots" option is enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals}, \code{eval.msgs} or \code{Pandoc.brew}.
+#' @inheritParams ggplot2::theme_bw
 #' @param nomargin suppress the white space around the plot (boolean)
-#' @param ff font family, like \code{sans}
+#' @param ff font family, like \code{sans}. Deprecated: use \code{base_family} instead.
 #' @param fc font color (name or hexa code)
-#' @param fs font size (integer)
+#' @param fs font size (integer). Deprecated: use \code{base_size} instead.
 #' @param gM major grid (boolean)
 #' @param gm minor grid (boolean)
 #' @param gc grid color (name or hexa code)
@@ -29,7 +30,16 @@
 #' qplot(carat, price, data = diamonds, colour = cut) + theme_pander() + scale_colour_pander()
 #' ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() + scale_fill_pander() + theme_pander()
 #' }
-theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent', lp = 'right', axis = 1) {
+theme_pander <- function(base_size = 12, base_family = 'sans', nomargin = TRUE, ff = NULL, fc = 'black', fs = NULL, gM = TRUE, gm = TRUE, gc = 'grey', gl = 'dashed', boxes = FALSE, bc = 'white', pc = 'transparent', lp = 'right', axis = 1) {
+
+    if (hasArg(ff)) {
+        font_family <- ff
+        warning("Argument `ff` deprecated. Use `base_family` instead.")
+    }
+    if (hasArg(fs)) {
+        base_size <- fs
+        warning("Argument `fs` deprecated. Use `base_size` instead.")
+    }
 
     ## load currently stored values from `panderOptions` if available
     if (require(pander)) {
@@ -37,12 +47,12 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
         # needed to avoid R CMD check note
         if (missing(nomargin))
             nomargin <- panderOptions('graph.nomargin')
-        if (missing(ff))
-            ff <- panderOptions('graph.fontfamily')
+        if (missing(base_family))
+            base_family <- panderOptions('graph.fontfamily')
         if (missing(fc))
             fc <- panderOptions('graph.fontcolor')
-        if (missing(fs))
-            fs <- panderOptions('graph.fontsize')
+        if (missing(base_size))
+            base_size <- panderOptions('graph.fontsize')
         if (missing(gM))
             gM <- panderOptions('graph.grid')
         if (missing(gm))
@@ -73,16 +83,16 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
         panel.grid.major = element_line(colour = gc, size = 0.2, linetype = gl),
         panel.grid.minor = element_line(colour = gc, size = 0.1, linetype = gl),
         axis.ticks       = element_line(colour = gc, size = 0.2),
-        plot.title       = element_text(colour = fc, family = ff, face = "bold", size = fs * 1.2),
-        axis.text        = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8),
-        axis.text.x      = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8),
-        axis.text.y      = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8),
-        legend.text      = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8),
-        legend.title     = element_text(colour = fc, family = ff, face = 'italic', size = fs),
-        axis.title.x     = element_text(colour = fc, family = ff, face = 'plain', size = fs),
-        strip.text.x     = element_text(colour = fc, family = ff, face = 'plain', size = fs),
-        axis.title.y     = element_text(colour = fc, family = ff, face = 'plain', size = fs, angle = 90),
-        strip.text.y     = element_text(colour = fc, family = ff, face = 'plain', size = fs, angle = -90),
+        plot.title       = element_text(colour = fc, family = base_family, face = "bold", size = base_size * 1.2),
+        axis.text        = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8),
+        axis.text.x      = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8),
+        axis.text.y      = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8),
+        legend.text      = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8),
+        legend.title     = element_text(colour = fc, family = base_family, face = 'italic', size = base_size),
+        axis.title.x     = element_text(colour = fc, family = base_family, face = 'plain', size = base_size),
+        strip.text.x     = element_text(colour = fc, family = base_family, face = 'plain', size = base_size),
+        axis.title.y     = element_text(colour = fc, family = base_family, face = 'plain', size = base_size, angle = 90),
+        strip.text.y     = element_text(colour = fc, family = base_family, face = 'plain', size = base_size, angle = -90),
         legend.key       = element_rect(colour = gc, fill = 'transparent'),
         strip.background = element_rect(colour = gc, fill = 'transparent'),
         panel.border     = element_rect(fill = NA, colour = gc),
@@ -120,13 +130,13 @@ theme_pander <- function(nomargin = TRUE, ff = 'sans', fc = 'black', fs = 12, gM
 
     ## axis angle (TODO: DRY with ifelse in the default color etc. section)
     if (axis == 0)
-        res <- res + theme(axis.text.y = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90))
+        res <- res + theme(axis.text.y = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8, angle = 90))
     if (axis == 2)
-        res <- res + theme(axis.text.x = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90, hjust = 1))
+        res <- res + theme(axis.text.x = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8, angle = 90, hjust = 1))
     if (axis == 3)
         res <- res + theme(
-            axis.text.y = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90),
-            axis.text.x = element_text(colour = fc, family = ff, face = 'plain', size = fs * 0.8, angle = 90, hjust = 1)
+            axis.text.y = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8, angle = 90),
+            axis.text.x = element_text(colour = fc, family = base_family, face = 'plain', size = base_size * 0.8, angle = 90, hjust = 1)
         )
 
     res

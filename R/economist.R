@@ -259,8 +259,8 @@ theme_economist <- function(base_size = 10, base_family="sans",
 
 ##' @rdname theme_economist
 ##' @export
-theme_economist_white <- function(gray_bg=TRUE, base_family="sans",
-                                  base_size=11, horizontal=TRUE) {
+theme_economist_white <- function(base_size = 11, base_family = "sans",
+                                  gray_bg = TRUE, horizontal = TRUE) {
     if (gray_bg) {
         bgcolor <- ggthemes_data$economist$bg['ltgray']
     } else {
