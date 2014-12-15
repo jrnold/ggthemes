@@ -3,9 +3,13 @@
 \alias{theme_solid}
 \title{Theme with nothing other than a background color}
 \usage{
-theme_solid(fill = NA)
+theme_solid(base_size = 12, font_family = "", fill = NA)
 }
 \arguments{
+\item{base_size}{Base font size.}
+
+\item{font_family}{Ignored, kept for consistency with \code{theme}.}
+
 \item{fill}{Background color of the plot.}
 }
 \description{
@@ -15,7 +19,7 @@ This theme is when only the geometric objects are desired.
 \examples{
 (ggplot(mtcars, aes(wt, mpg))
  + geom_point()
- + theme_solid("white"))
+ + theme_solid(fill = "white"))
 }
 \seealso{
 Other themes: \code{\link{theme_foundation}};
