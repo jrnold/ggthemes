@@ -2,6 +2,7 @@ ggthemes 2.0.0
 ------------------------
 
 * New options for `geom_tufteboxplot`. `median.type` takes values "point", "box", or "line". Option `usebox` is no longer supported, and equivalent to `median.type="box"`. Thanks weitzner!
+* changed order of options in `theme_stata`. Thanks ptoche!
 
 ggthemes 1.9.0
 ------------------------
