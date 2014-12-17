@@ -1,4 +1,4 @@
-##' Wall Street Journal theme
+##' Highcharts JS theme
 ##'
 ##' Theme based on the plots in \emph{Highcharts JS}.
 ##'
