@@ -1,6 +1,6 @@
 ##' Wall Street Journal theme
 ##'
-##' Theme based on the plots in \emph{Highcharts }.
+##' Theme based on the plots in \emph{Highcharts JS}.
 ##'
 ##' @references
 ##'
@@ -9,22 +9,19 @@
 ##' \url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
 ##'
 ##' @param base_size Base font size.
-##' @param color The background color of plot. One of \code{"brown",
-##' "gray", "green", "blue"}, the names of values in
-##' \code{ggthemes_data$wsj$bg}.
-##' @param title_family Plot title font family.
-##' @param base_family Plot text font family.
-##' @family themes wsj
+##' @param theme The background color of plot. One of \code{"default",
+##' "darkunica"}, the names of values in
+##' \code{ggthemes_data$hc$bg}.
 ##' @examples
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
-##' + scale_colour_wsj("colors6", "")
+##' + scale_colour_hc()
 ##' + ggtitle("Diamond Prices")
-##' + theme_wsj())
-##' ## Use a gray background instead
+##' + theme_hc())
+##' ## Use a Dark-Unica theme
 ##' (qplot(hp, mpg, data=mtcars, geom="point")
-##'  + scale_colour_wsj("colors6", "")
-##'  + ggtitle("Diamond Prices")
-##'  + theme_wsj(color="gray"))
+##' + scale_colour_hc("darkunica")
+##' + ggtitle("Diamond Prices")
+##' + theme_hc("darkunica"))
 ##' @export
 
 
@@ -57,38 +54,32 @@ theme_hc <- function(theme="default", base_size=12) {
     title               = element_text(colour = "#FFFFFF"), 
     axis.title.x        = element_text(colour = "#A0A0A3"),
     axis.title.y        = element_text(colour = "#A0A0A3"),
-    panel.grid.major.y  = element_line(color='gray'),
+    panel.grid.major.y  = element_line(color="gray"),
     legend.title        = element_text(colour = "#A0A0A3"))
   
   themes[theme]
 }
 
 
-##' Wall Street Journal color palette (discrete)
+##' Highcharts JS color palette (discrete)
 ##'
-##' The Wall Street Journal uses many different color palettes in its
-##' plots. This collects a few of them, but is by no means exhaustive.
-##' Collections of these plots can be found on the WSJ Graphics
-##' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
-##' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
+##' The Highcharts JS uses many different color palettes in its
+##' plots. This collects a few of them.
 ##'
 ##' @section Palettes:
 ##'
 ##' The following palettes are defined,
 ##'
 ##' \describe{
-##' \item{rgby}{Red/Green/Blue/Yellow theme. Examples: \url{http://twitpic.com/b2e3v2}.}
-##' \item{green_red}{Green/red two-color scale for good/bad. Examples: \url{http://twitpic.com/b1avj6}, \url{http://twitpic.com/a4kxcl}.}
-##' \item{green_black}{Black-green 4-color scale for "Very negative", "Somewhat negative", "somewhat positive", "very positive". Examples: \url{http://twitpic.com/awbua0}.}
-##' \item{dem_rep}{Democrat/Republican/Undecided blue/red/gray scale. Examples: \url{http://twitpic.com/awbua0}.}
-##' \item{colors6}{Red,blue,gold,green,orange, and black palette. Examples: \url{http://twitpic.com/9gfg5q}.}
+##' \item{default}{#7cb5ec, #434348, #90ed7d, #f7a35c, #8085e9, #f15c80", #e4d354, #8085e8, #8d4653, #91e8e1 theme. Examples: \url{http://www.highcharts.com/demo}.}
+##' \item{darkunica}{#2b908f, #90ee7e, #f45b5b, #7798BF, #aaeeee, #ff0066, #eeaaee, #55BF3B, #DF5353, #7798BF, #aaeeee". Examples: \url{http://www.highcharts.com/demo/line-basic/dark-unica}.}
 ##' }
 ##'
 ##' @param palette \code{character} The color palette to use. This
 ##' must be a name in
 ##' \code{\link[=ggthemes_data]{ggthemes_data$hc$palettes}}.
 ##'
-##' @family colour wsj
+##' @family colour hc
 ##' @export
 hc_pal <- function(palette = "default") {
     if (palette %in% names(ggthemes_data$hc$palettes)) {
@@ -101,12 +92,12 @@ hc_pal <- function(palette = "default") {
 ##' Highcharts color and fill scales
 ##'
 ##' Colour and fill scales which use the palettes in
-##' \code{\link{wsj_hc}} and are meant for use with
+##' \code{\link{hc_pal}} and are meant for use with
 ##' \code{\link{theme_hc}}.
 ##'
 ##' @inheritParams ggplot2::scale_colour_hue
 ##' @inheritParams hc_pal
-##' @family colour hc
+##' @family colour_hc
 ##' @rdname scale_hc
 ##' @export
 scale_colour_hc <- function(palette = "default", ...) {
