@@ -14,7 +14,7 @@ Imports:
     colorspace,
     grid,
     proto,
-    scales,
+    scales
 Suggests:
     knitr,
     plyr,
