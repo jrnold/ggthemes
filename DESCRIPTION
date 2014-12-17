@@ -5,7 +5,8 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"),
     person("Gergely", "Daroczi", role = "ctb"),
     person("Bo", "Werth", role = "ctb"),
-    person("Brian", "Weitzner", role = "ctb"))
+    person("Brian", "Weitzner", role = "ctb"),
+    person("Joshua", "Kunst", role = "ctb"))
 Depends:
     R (>= 3.0.0),
     ggplot2 (>= 0.9.2)
@@ -38,6 +39,7 @@ Collate:
     'gdocs.R'
     'geom-rangeframe.R'
     'geom-tufteboxplot.R'
+    'hc.R'
     'igray.R'
     'pander.R'
     'scale-tufte.R'
@@ -51,4 +53,3 @@ Collate:
     'tufte.R'
     'utils.R'
     'wsj.R'
-	'hc.R'

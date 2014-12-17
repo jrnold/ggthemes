@@ -1,3 +1,8 @@
+ggthemes 2.1.0 
+------------------------
+
+* New theme and scale based on Highcharts JS: `scale_*_hc`, `theme_hc`. Thanks jbkunst!
+
 ggthemes 2.0.0
 ------------------------
 
