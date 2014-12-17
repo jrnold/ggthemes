@@ -8,56 +8,56 @@
 ##'
 ##' \url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
 ##'
-##' @param base_size Base font size.
-##' @param theme The background color of plot. One of \code{"default",
+##' @inheritParams ggplot2::theme_bw
+##' @param bgcolor The background color of plot. One of \code{"default",
 ##' "darkunica"}, the names of values in
 ##' \code{ggthemes_data$hc$bg}.
 ##' @examples
-##' (qplot(hp, mpg, data=mtcars, geom="point")
+##' (qplot(hp, mpg, data = mtcars, geom = "point")
 ##' + scale_colour_hc()
 ##' + ggtitle("Diamond Prices")
 ##' + theme_hc())
 ##' ## Use a Dark-Unica theme
-##' (qplot(hp, mpg, data=mtcars, geom="point")
+##' (qplot(hp, mpg, data = mtcars, geom = "point")
 ##' + scale_colour_hc("darkunica")
 ##' + ggtitle("Diamond Prices")
-##' + theme_hc("darkunica"))
+##' + theme_hc(bgcolor = "darkunica"))
 ##' @export
 
 
-theme_hc <- function(theme="default", base_size=12) {
-  
-  bgcol <- ggthemes_data$hc$bg[theme]
-  
-  themes <- list()
-  
-  t <-  theme(
-    rect                = element_rect(fill=bgcol, linetype=0, colour=NA),
-    text                = element_text(size=base_size),
-    title               = element_text(hjust=.5), 
-    axis.title.x        = element_text(hjust=.5),
-    axis.title.y        = element_text(hjust=.5),
-    panel.grid.major.y  = element_line(color='gray'),
+theme_hc <- function(base_size = 12, base_family = "sans",
+                     bgcolor = "default") {
+
+  bgcol <- ggthemes_data$hc$bg[bgcolor]
+
+  ret <- theme(
+    rect                = element_rect(fill = bgcol, linetype = 0, colour = NA),
+    text                = element_text(size = base_size, family = base_family),
+    title               = element_text(hjust = .5),
+    axis.title.x        = element_text(hjust = .5),
+    axis.title.y        = element_text(hjust = .5),
+    panel.grid.major.y  = element_line(color = 'gray'),
     panel.grid.minor.y  = element_blank(),
     panel.grid.major.x  = element_blank(),
     panel.grid.minor.x  = element_blank(),
     panel.border        = element_blank(),
     panel.background    = element_blank(),
     legend.position     = "bottom",
-    legend.key   = element_rect(fill="#FFFFFF00"))
-  
-  themes$default <- t
-  
-  themes$darkunica <- t + theme(
-    rect                = element_rect(fill=bgcol),
-    text                = element_text(colour = "#A0A0A3"),
-    title               = element_text(colour = "#FFFFFF"), 
-    axis.title.x        = element_text(colour = "#A0A0A3"),
-    axis.title.y        = element_text(colour = "#A0A0A3"),
-    panel.grid.major.y  = element_line(color="gray"),
-    legend.title        = element_text(colour = "#A0A0A3"))
-  
-  themes[theme]
+    legend.key   = element_rect(fill = "#FFFFFF00"))
+
+  if (bgcolor == "darkunica") {
+    ret <-
+      (ret + theme(
+                   rect = element_rect(fill=bgcol),
+                   text = element_text(colour = "#A0A0A3"),
+                   title = element_text(colour = "#FFFFFF"),
+                   axis.title.x = element_text(colour = "#A0A0A3"),
+                   axis.title.y = element_text(colour = "#A0A0A3"),
+                   panel.grid.major.y = element_line(color = "gray"),
+                   legend.title = element_text(colour = "#A0A0A3"))
+      )
+  }
+  ret
 }
 
 
