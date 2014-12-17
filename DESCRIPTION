@@ -51,3 +51,4 @@ Collate:
     'tufte.R'
     'utils.R'
     'wsj.R'
+	'hc.R'
