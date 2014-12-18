@@ -25,23 +25,43 @@ Some extra geoms, scales, and themes for
 - ``theme_few``: theme from Stephen Few's  ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 - ``theme_fivethirtyeight``: a theme based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
 - ``theme_gdocs``: a theme based on Google Docs.
+- ``theme_hc``: a theme based on [Highcharts JS](http://www.highcharts.com).
+- ``theme_pander``: a theme to use with the [pander](http://rapporter.github.io/pander/) package.
 - ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
 - ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
-- ``theme_tufte``: a minimal ink based on Tufte's *The Visual Display of Quantitative Information*.
+- ``theme_tufte``: a minimal ink theme based on Tufte's *The Visual Display of Quantitative Information*.
 - ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 
 ### Scales
 
-- ``scale_color_calc``, ``scale_shape_calc``: color and shape palettes from LibreOffice Calc.
-- ``scale_color_colorblind``: Colorblind safe palette from <http://jfly.iam.u-tokyo.ac.jp/color/>.
-- ``scale_color_economist``: colors used in plots in plots in *The Economist*.
-- ``scale_color_excel``: colors from new and old Excel.
-- ``scale_color_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
-- ``scale_color_gdocs``: color palette from Google Docs.
-- ``scale_color_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
-- ``scale_color_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
-- ``scale_color_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
+- ``scale_colour_calc``, ``scale_shape_calc``: color and shape palettes from LibreOffice Calc.
+- ``scale_colour_colorblind``: Colorblind safe palette from <http://jfly.iam.u-tokyo.ac.jp/color/>.
+- ``scale_colour_economist``: colors used in plots in plots in *The Economist*.
+- ``scale_colour_excel``: colors from new and old Excel.
+- ``scale_colour_few``: color palettes from Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+- ``scale_colour_gdocs``: color palette from Google Docs.
+- ``scale_colour_hc``: a theme based on [Highcharts JS](http://www.highcharts.com).
+- ``scale_colour_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
+- ``scale_colour_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
+- ``scale_colour_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
+- ``scale_colour_pander``, ``scale_fill_pander``: scales to use with the [pander](http://rapporter.github.io/pander/) package.
 - ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, Tremmel (1995), and Lewandowsky and Spence (1989).
+- ``scale_x_tufte``, ``scale_y_tufte``: x and y scales with pretty labels that also include the min and max values.
+
+Most of these scales also have associates palettes, as used  in the *scales* package.
+
+### Miscellaneous
+
+- `bank_slopes`: Find the optimal aspect ratio to bank slopes to 45 degrees
+
+<!--  LocalWords:  geoms ggplot rangeframe Tufte's tufteboxplot calc
+ -->
+<!--  LocalWords:  LibreOffice Calc Few's fivethirtyeight gdocs hc JS
+ -->
+<!--  LocalWords:  Highcharts solarized stata Stata tufte wsj colour
+ -->
+<!--  LocalWords:  linetype cleveland tremmel circlefill Lewandowsky
+ -->
 
 
 ## Install 
@@ -62,6 +82,11 @@ install_github("jrnold/ggthemes")
 
 Windows users also must first install
 [Rtools](http://cran.rstudio.com/bin/windows/Rtools/).
+
+<!--  LocalWords:  CRAN 'ggthemes' github devtools jrnold ggthemes
+ -->
+<!--  LocalWords:  Rtools
+ -->
 
 
 ## Contribute
@@ -91,7 +116,7 @@ Quantitative Information*.
   + theme_tufte())
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/XHbyit8.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/jEV6Xw6.png) 
 
 The Tufte minimal boxplot.
 
@@ -102,7 +127,7 @@ The Tufte minimal boxplot.
  + geom_tufteboxplot())
 ```
 
-![plot of chunk tufteboxplot](http://i.imgur.com/UgyIMdr.png) 
+![plot of chunk tufteboxplot](http://i.imgur.com/zN6zXDZ.png) 
 
 ### Economist theme
 
@@ -117,7 +142,7 @@ magazine.
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk economist](http://i.imgur.com/5a9rwTU.png) 
+![plot of chunk economist](http://i.imgur.com/AKQ0oi9.png) 
 
 ### Solarized theme
 
@@ -132,7 +157,7 @@ The light theme.
                              + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/vTU8Hxv.png) 
+![plot of chunk solarized-light](http://i.imgur.com/Oiip56J.png) 
 
 The dark theme.
 
@@ -143,7 +168,7 @@ The dark theme.
                              + scale_colour_solarized("red"))
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/Rio7ysU.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/j0Aapqw.png) 
 
 An alternative theme.
 
@@ -154,7 +179,7 @@ An alternative theme.
                              + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-alt](http://i.imgur.com/6IYYde3.png) 
+![plot of chunk solarized-alt](http://i.imgur.com/xZsjxwn.png) 
 
 
 ### Stata theme 
@@ -170,7 +195,7 @@ schemes in Stata.
                              + ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/nBMAkWF.png) 
+![plot of chunk stata](http://i.imgur.com/S9ODazV.png) 
 
 ### Excel 2003 theme
 
@@ -184,7 +209,7 @@ and pies not included. Please never use this theme.
  + scale_colour_excel())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/ppjkbgJ.png) 
+![plot of chunk excel1](http://i.imgur.com/aXTWOMT.png) 
 
 
 ```r
@@ -194,7 +219,7 @@ and pies not included. Please never use this theme.
  + theme_excel())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/0ghlR9q.png) 
+![plot of chunk excel2](http://i.imgur.com/mr5ctkW.png) 
 
 ### Inverse Gray Theme
 
@@ -206,7 +231,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
  + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/QbEdA8F.png) 
+![plot of chunk igray](http://i.imgur.com/NOBZzwO.png) 
 
 ### Fivethirtyeight theme
 
@@ -220,11 +245,11 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
  + theme_fivethirtyeight())
 ```
 
-![plot of chunk fivethirtyeight](http://i.imgur.com/aplWcKT.png) 
+![plot of chunk fivethirtyeight](http://i.imgur.com/cFhZJJ2.png) 
 
 ### Tableau Scales
 
-Color, fill, and shape scales based on those used in the Tableau softare.
+Color, fill, and shape scales based on those used in the Tableau software.
 
 
 ```r
@@ -233,7 +258,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
  + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/OfZgM2J.png) 
+![plot of chunk tableau](http://i.imgur.com/mZnNPV6.png) 
 
 
 ```r
@@ -242,7 +267,7 @@ Color, fill, and shape scales based on those used in the Tableau softare.
  + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/ijf8f22.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/TnVytht.png) 
 
 ### Stephen Few's Practical Rules for Using Color ...
 
@@ -255,7 +280,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
  + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/mPQu0t2.png) 
+![plot of chunk few](http://i.imgur.com/2Jd09hm.png) 
 
 ### Wall Street Journal
 
@@ -269,7 +294,7 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
  + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/oyiGZsT.png) 
+![plot of chunk wsj](http://i.imgur.com/8hSbUmj.png) 
 
 ### GDocs Theme
 
@@ -283,7 +308,7 @@ Theme and color palettes based on the defaults in Google Docs.
  + scale_color_gdocs())
 ```
 
-![plot of chunk gdocs](http://i.imgur.com/jAkukqr.png) 
+![plot of chunk gdocs](http://i.imgur.com/GFBSOd2.png) 
 
 ### Calc Theme
 
@@ -297,7 +322,7 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
  + scale_color_calc())
 ```
 
-![plot of chunk calc](http://i.imgur.com/rRhfNce.png) 
+![plot of chunk calc](http://i.imgur.com/H0HDQqX.png) 
 
 ### Pander Theme
 
@@ -314,7 +339,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
 ## Loading required package: pander
 ```
 
-![plot of chunk pander-scatterplot](http://i.imgur.com/FVdo3g7.png) 
+![plot of chunk pander-scatterplot](http://i.imgur.com/olXuk1K.png) 
 
 
 ```r
@@ -323,7 +348,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
   + scale_fill_pander())
 ```
 
-![plot of chunk pander-barplot](http://i.imgur.com/JRTomZU.png) 
+![plot of chunk pander-barplot](http://i.imgur.com/B8roMpZ.png) 
 
 ### Highcharts  theme
 
@@ -337,7 +362,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-default](http://i.imgur.com/48QiU6k.png) 
+![plot of chunk hc-default](http://i.imgur.com/GlqEMEj.png) 
 
 ```r
 (qplot(carat, price, data = dsamp, colour = cut)
@@ -346,7 +371,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-darkunica](http://i.imgur.com/1i89YQj.png) 
+![plot of chunk hc-darkunica](http://i.imgur.com/JiKNe7x.png) 
 
 
 ```r
@@ -367,7 +392,7 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_colour_hc()
 ```
 
-![plot of chunk hc-default-line](http://i.imgur.com/qjdRcZ9.png) 
+![plot of chunk hc-default-line](http://i.imgur.com/GblPUjB.png) 
 
 
 ```r
@@ -378,5 +403,22 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_fill_hc("darkunica")
 ```
 
-![plot of chunk hc-darkunica-line](http://i.imgur.com/HU9lYdc.png) 
+![plot of chunk hc-darkunica-line](http://i.imgur.com/A6PmmFH.png) 
 
+
+<!--  LocalWords:  dsamp ggplot2 ggthemes nrow Tufte geoms tufte aes
+ -->
+<!--  LocalWords:  rangeframe ggplot mtcars boxplot tufteboxplot cyl
+ -->
+<!--  LocalWords:  qplot colour ggtitle Solarized solarized Stata 3D
+ -->
+<!--  LocalWords:  linetype stata excel1 excel2 igray Fivethirtyeight
+ -->
+<!--  LocalWords:  fivethirtyeight lm se colorbind10 colorblind10 wsj
+ -->
+<!--  LocalWords:  Few's colors6 GDocs gdocs Calc LibreOffice calc JS
+ -->
+<!--  LocalWords:  scatterplot barplot Highcharts hc darkunica dtemp
+ -->
+<!--  LocalWords:  bgcolor substr
+ -->

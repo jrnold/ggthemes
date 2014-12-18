@@ -16,3 +16,8 @@ install_github("jrnold/ggthemes")
 
 Windows users also must first install
 [Rtools](http://cran.rstudio.com/bin/windows/Rtools/).
+
+<!--  LocalWords:  CRAN 'ggthemes' github devtools jrnold ggthemes
+ -->
+<!--  LocalWords:  Rtools
+ -->

@@ -119,7 +119,7 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
 
 ### Tableau Scales
 
-Color, fill, and shape scales based on those used in the Tableau softare.
+Color, fill, and shape scales based on those used in the Tableau software.
 
 ```{r tableau}
 (qplot(carat, price, data=dsamp, colour=cut)
@@ -234,3 +234,20 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_fill_hc("darkunica")
 ```
 
+
+<!--  LocalWords:  dsamp ggplot2 ggthemes nrow Tufte geoms tufte aes
+ -->
+<!--  LocalWords:  rangeframe ggplot mtcars boxplot tufteboxplot cyl
+ -->
+<!--  LocalWords:  qplot colour ggtitle Solarized solarized Stata 3D
+ -->
+<!--  LocalWords:  linetype stata excel1 excel2 igray Fivethirtyeight
+ -->
+<!--  LocalWords:  fivethirtyeight lm se colorbind10 colorblind10 wsj
+ -->
+<!--  LocalWords:  Few's colors6 GDocs gdocs Calc LibreOffice calc JS
+ -->
+<!--  LocalWords:  scatterplot barplot Highcharts hc darkunica dtemp
+ -->
+<!--  LocalWords:  bgcolor substr
+ -->
