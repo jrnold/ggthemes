@@ -1,6 +1,6 @@
 Package: ggthemes
 Version: 2.1.0
-Title: Extra themes, scales and geoms for ggplot
+Title: Extra Themes, Scales and Geoms for ggplot
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"),
     person("Gergely", "Daroczi", role = "ctb"),
@@ -25,7 +25,7 @@ Suggests:
     extrafont,
     pander
 VignetteBuilder: knitr
-Description: Some Extra Themes, Geoms, and Scales for ggplot2
+Description: Some extra themes, geoms, and scales for ggplot2.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
