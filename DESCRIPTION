@@ -21,7 +21,7 @@ Suggests:
     extrafont,
     pander
 VignetteBuilder: knitr
-Description: Some extra themes, geoms, and scales for ggplot2.
+Description: Some Extra Themes, Geoms, and Scales for ggplot2
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
