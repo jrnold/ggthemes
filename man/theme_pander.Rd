@@ -41,7 +41,8 @@ theme_pander(base_size = 12, base_family = "sans", nomargin = TRUE,
 \item{axis}{axis angle as defined in \code{par(les)}}
 }
 \description{
-The \pkg{pander} ships with a default theme when the "unify plots" option is enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals}, \code{eval.msgs} or \code{Pandoc.brew}.
+The \pkg{pander} ships with a default theme when the "unify plots" option is
+enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals}, \code{eval.msgs} or \code{Pandoc.brew}.
 }
 \examples{
 \dontrun{
@@ -55,8 +56,13 @@ p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) + geom_point()
 p + theme_pander() + scale_color_pander()
 
 ## standard examples of the ggtheme package
-qplot(carat, price, data = diamonds, colour = cut) + theme_pander() + scale_colour_pander()
-ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() + scale_fill_pander() + theme_pander()
+qplot(carat, price, data = diamonds, colour = cut) +
+  theme_pander() +
+  scale_colour_pander()
+ggplot(diamonds, aes(clarity, fill = cut)) +
+  geom_bar() +
+  scale_fill_pander() +
+  theme_pander()
 }
 }
 

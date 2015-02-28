@@ -9,10 +9,12 @@ palette_pander(n, random_order = FALSE)
 \arguments{
 \item{n}{number of colors}
 
-\item{random_order}{if the palette should be reordered randomly before rendering each plot to get colorful images}
+\item{random_order}{if the palette should be reordered randomly before
+rendering each plot to get colorful images}
 }
 \description{
-The \pkg{pander} ships with a default colorblind and printer-friendly color palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
+The \pkg{pander} ships with a default colorblind and printer-friendly
+color palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 \examples{
 \dontrun{
