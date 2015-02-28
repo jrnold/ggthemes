@@ -60,8 +60,8 @@ cleveland_shape_pal <- function(overlap=TRUE) {
             c(1, ## empty circle
               19, ## solid circle
               10, ## encircled plus sign
-              -0x2299, ## ⊙ 2299
-              -0x229A ## ⊚ 229A
+              -0x2299, ##
+              -0x229A ##
               )[seq_len(n)]
         }
     }
