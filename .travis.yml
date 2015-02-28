@@ -4,6 +4,9 @@ warnings_are_errors: true
 
 r_check_revdep: true
 
+r_packages:
+  - latticeExtras
+
 r_github_packages:
   - hadley/devtools
 
