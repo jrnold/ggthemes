@@ -24,7 +24,7 @@ colorblind_pal <- function() {
 ##' @rdname colorblind
 ##' @export
 scale_colour_colorblind <- function(...) {
-    discrete_scale("colour", "economist", colorblind_pal(), ...)
+    discrete_scale("colour", "colorblind", colorblind_pal(), ...)
 }
 
 ##' @rdname colorblind
