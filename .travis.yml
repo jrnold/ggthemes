@@ -2,6 +2,8 @@ language: r
 
 warnings_are_errors: true
 
+r_check_revdep: true
+
 notifications:
   email:
     on_success: change
