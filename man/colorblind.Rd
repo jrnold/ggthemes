@@ -22,7 +22,7 @@ to control name, limits, breaks, labels and so forth.}
 \description{
 An 8-color colorblind safe qualitative discrete palette from
 \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
-\href{http://wiki.stdout.org/rcookbook/Graphs/Colors_%28ggplot2%29/#a-colorblind-friendly-palette}{Cookbook
+\href{http://wiki.stdout.org/rcookbook/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook
 for R}.
 }
 \examples{
@@ -33,7 +33,7 @@ p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_igray()
 p + scale_colour_colorblind()
 }
 \seealso{
-The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}}, and \code{\link{scale_color_tableau}} for other
-colorblind palettes.
+The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}},
+ and \code{\link{scale_color_tableau}} for other colorblind palettes.
 }
 
