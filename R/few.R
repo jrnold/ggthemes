@@ -1,4 +1,4 @@
-##' Color Palletes from Few "Practical Rules for Using Color in Charts"
+##' Color Palletes from Few's "Practical Rules for Using Color in Charts"
 ##'
 ##' Qualitative color palettes from Stephen Few,
 ##' \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical
@@ -25,7 +25,7 @@ few_pal <- function(palette="medium") {
     manual_pal(unname(values[2:n]))
 }
 
-##' Color scales from Few "Practical Rules for Using Color in Charts"
+##' Color scales from Few's "Practical Rules for Using Color in Charts"
 ##'
 ##' See \code{\link{few_pal}}.
 ##'
@@ -51,8 +51,10 @@ scale_fill_few <- function(palette="light", ...) {
 ##' Theme based on Few's "Practical Rules for Using Color in Charts"
 ##'
 ##' Theme based on the rules and examples in
-##' \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical
-##' Rules for Using Color in Charts"}.
+##' Stephen Few, "Practical Rules for Using Color in Charts"
+##'
+##' @references Stephen Few, "Practical Rules for Using Color in Charts",
+##' \url{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}.
 ##'
 ##' @inheritParams ggplot2::theme_bw
 ##' @family themes few
