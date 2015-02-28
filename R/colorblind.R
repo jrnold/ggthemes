@@ -2,7 +2,7 @@
 ##'
 ##' An 8-color colorblind safe qualitative discrete palette from
 ##' \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
-##' \href{http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)/#a-colorblind-friendly-palette}{Cookbook
+##' \href{http://wiki.stdout.org/rcookbook/Graphs/Colors_%28ggplot2%29/#a-colorblind-friendly-palette}{Cookbook
 ##' for R}.
 ##'
 ##' @rdname colorblind
