@@ -1,3 +1,12 @@
+ggthemes 2.1.1
+------------------------
+
+* bugfix: use title case in package title; refer to ggplot2 in title
+* bugfix: fix non-escaped URLs in colorblind.R
+* bugfix: fix broken URL in few.R
+* bugfix: remove non-ascii characters in shapes.R
+* bugfix: use requireNamespace() instead of require()
+
 ggthemes 2.1.0 
 ------------------------
 
