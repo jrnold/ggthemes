@@ -1,3 +1,8 @@
+ggthemes 2.1.2
+------------------------
+
+* fix bugs that weren't successfully fixed in previous release
+
 ggthemes 2.1.1
 ------------------------
 
@@ -7,7 +12,7 @@ ggthemes 2.1.1
 * bugfix: remove non-ascii characters in shapes.R
 * bugfix: use requireNamespace() instead of require()
 
-ggthemes 2.1.0 
+ggthemes 2.1.0
 ------------------------
 
 * New theme and scale based on Highcharts JS: `scale_*_hc`, `theme_hc`. Thanks jbkunst!
@@ -86,7 +91,7 @@ ggthemes 1.3.1
 * bank_slopes returns y/x aspect ratio to be compatible with coord_fixed
 * improved documentation
 
-ggthemes 1.3.0 
+ggthemes 1.3.0
 ------------------------
 
 * renamed `theme_excel2003` to `theme_excel`
@@ -104,10 +109,10 @@ ggthemes 1.2.0
 ggthemes 1.1.0
 ------------------------
 
-* added Wall Street Journal themes, palettes, scales: `theme_wsj`, `wsj_pal`, 
+* added Wall Street Journal themes, palettes, scales: `theme_wsj`, `wsj_pal`,
   `scale_colour_wsj`, and `scale_fill_wsj`.
 * added function `bank_slopes` : methods for determining the optimal slope
   ratio.
-* added `theme-foundation`: a theme designed to be easy to extend into new 
+* added `theme-foundation`: a theme designed to be easy to extend into new
   themes.
 

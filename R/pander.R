@@ -192,8 +192,8 @@ theme_pander <- function(base_size = 12, base_family = 'sans', nomargin = TRUE,
 palette_pander <- function(n, random_order = FALSE) {
 
     ## default (colorblind and printer-friendly) colors
-    cols <- c("#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7",
-              "#999999", "#E69F00")
+    cols <- c("#56B4E9", "#009E73", "#F0E442", "#0072B2",
+              "#D55E00", "#CC79A7", "#999999", "#E69F00")
 
     panderOptions <- try(getFromNamespace("panderOptions", "pander"),
                          silent = TRUE)
