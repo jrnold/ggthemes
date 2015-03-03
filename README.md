@@ -30,7 +30,7 @@ Some extra geoms, scales, and themes for
 - ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
 - ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
 - ``theme_tufte``: a minimal ink theme based on Tufte's *The Visual Display of Quantitative Information*.
-- ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+- ``theme_wsj``: a theme based on the plots in the [The Wall Street Journal](www.wsj.com).
 
 ### Scales
 
