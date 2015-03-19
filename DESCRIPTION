@@ -52,6 +52,7 @@ Collate:
     'stata.R'
     'tableau.R'
     'theme-foundation.R'
+    'theme-map.R'
     'theme-solid.R'
     'tufte.R'
     'utils.R'
