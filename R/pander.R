@@ -52,36 +52,34 @@ theme_pander <- function(base_size = 12, base_family = 'sans', nomargin = TRUE,
         warning("Argument `fs` deprecated. Use `base_size` instead.")
     }
 
-    ## load currently stored values from `panderOptions` if available
-    panderOptions <- try(getFromNamespace("panderOptions", "pander"),
-                         silent = TRUE)
-    if (! inherits(panderOptions, "try-error")) {
+
+    if (requireNamespace("pander", quietly = TRUE)) {
       if (missing(nomargin))
-        nomargin <- panderOptions('graph.nomargin')
+        nomargin <- pander::panderOptions('graph.nomargin')
       if (missing(base_family))
-        base_family <- panderOptions('graph.fontfamily')
+        base_family <- pander::panderOptions('graph.fontfamily')
       if (missing(fc))
-        fc <- panderOptions('graph.fontcolor')
+        fc <- pander::panderOptions('graph.fontcolor')
       if (missing(base_size))
-        base_size <- panderOptions('graph.fontsize')
+        base_size <- pander::panderOptions('graph.fontsize')
       if (missing(gM))
-        gM <- panderOptions('graph.grid')
+        gM <- pander::panderOptions('graph.grid')
       if (missing(gm))
-        gm <- panderOptions('graph.grid.minor')
+        gm <- pander::panderOptions('graph.grid.minor')
       if (missing(gc))
-        gc <- panderOptions('graph.grid.color')
+        gc <- pander::panderOptions('graph.grid.color')
       if (missing(gl))
-        gl <- panderOptions('graph.grid.lty')
+        gl <- pander::panderOptions('graph.grid.lty')
       if (missing(boxes))
-        boxes <- panderOptions('graph.boxes')
+        boxes <- pander::panderOptions('graph.boxes')
       if (missing(bc))
-        bc <- panderOptions('graph.background')
+        bc <- pander::panderOptions('graph.background')
       if (missing(pc))
-        pc <- panderOptions('graph.panel.background')
+        pc <- pander::panderOptions('graph.panel.background')
       if (missing(lp))
-        lp <- panderOptions('graph.legend.position')
+        lp <- pander::panderOptions('graph.legend.position')
       if (missing(axis))
-        axis <- panderOptions('graph.axis.angle')
+        axis <- pander::panderOptions('graph.axis.angle')
     }
 
     ## DRY
@@ -195,10 +193,8 @@ palette_pander <- function(n, random_order = FALSE) {
     cols <- c("#56B4E9", "#009E73", "#F0E442", "#0072B2",
               "#D55E00", "#CC79A7", "#999999", "#E69F00")
 
-    panderOptions <- try(getFromNamespace("panderOptions", "pander"),
-                         silent = TRUE)
-    if (! inherits(panderOptions, "try-error")) {
-      cols <- panderOptions('graph.colors')
+    if (requireNamespace("pander", quietly = TRUE)) {
+      cols <- pander::panderOptions('graph.colors')
     }
 
     if (isTRUE(random_order))
