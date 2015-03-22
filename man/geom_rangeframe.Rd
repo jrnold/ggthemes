@@ -23,7 +23,7 @@ layer.}
 on this layer}
 
 \item{sides}{A string that controls which sides of the plot the frames appear on.
-It can be set to a string containing any of \code{"trbl"}, for top, right,
+It can be set to a string containing any of \code{'trbl'}, for top, right,
 bottom, and left.}
 
 \item{fun_min}{Function used to calculate the maximum of the range frame line.}
@@ -39,7 +39,7 @@ Axis lines which extend to the maximum and minimum of the plotted data.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("geom_tufteboxplot", ggthemes:::GeomRangeFrame)}
+\Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('geom_tufteboxplot', ggthemes:::GeomRangeFrame)}
 }
 \examples{
 (ggplot(mtcars, aes(wt, mpg))

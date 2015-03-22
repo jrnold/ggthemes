@@ -44,7 +44,7 @@ median, third quartile, and maximum.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics("stat_fivenumber", ggthemes:::StatFivenumber)}
+\Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('stat_fivenumber', ggthemes:::StatFivenumber)}
 }
 \seealso{
 \code{\link{stat_boxplot}}

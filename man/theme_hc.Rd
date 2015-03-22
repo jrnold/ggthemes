@@ -11,23 +11,23 @@ theme_hc(base_size = 12, base_family = "sans", bgcolor = "default")
 
 \item{base_family}{base font family}
 
-\item{bgcolor}{The background color of plot. One of \code{"default",
-"darkunica"}, the names of values in
+\item{bgcolor}{The background color of plot. One of \code{'default',
+'darkunica'}, the names of values in
 \code{ggthemes_data$hc$bg}.}
 }
 \description{
 Theme based on the plots in \emph{Highcharts JS}.
 }
 \examples{
-(qplot(hp, mpg, data = mtcars, geom = "point")
+(qplot(hp, mpg, data = mtcars, geom = 'point')
 + scale_colour_hc()
-+ ggtitle("Diamond Prices")
++ ggtitle('Diamond Prices')
 + theme_hc())
 ## Use a Dark-Unica theme
-(qplot(hp, mpg, data = mtcars, geom = "point")
-+ scale_colour_hc("darkunica")
-+ ggtitle("Diamond Prices")
-+ theme_hc(bgcolor = "darkunica"))
+(qplot(hp, mpg, data = mtcars, geom = 'point')
++ scale_colour_hc('darkunica')
++ ggtitle('Diamond Prices')
++ theme_hc(bgcolor = 'darkunica'))
 }
 \references{
 \url{http://www.highcharts.com/demo/line-basic}

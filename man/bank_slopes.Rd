@@ -13,15 +13,15 @@ bank_slopes(x, y, cull = FALSE, method = "ms", weight = TRUE, ...)
 
 \item{cull}{\code{logical}. Remove all slopes of 0 or \code{Inf}.}
 
-\item{method}{One of "ms" (Median Absolute Slope), "as" (Average
-Absolute Slope), "ao" (Average Orientation), "lor" (Local
-Orientation Resolution), "gor" (Global Orientation Resolution).}
+\item{method}{One of 'ms' (Median Absolute Slope), 'as' (Average
+Absolute Slope), 'ao' (Average Orientation), 'lor' (Local
+Orientation Resolution), 'gor' (Global Orientation Resolution).}
 
 \item{weight}{\code{logical}. Weight line segments by their
-length. Only used when \code{method="ao"}.}
+length. Only used when \code{method='ao'}.}
 
-\item{...}{Passed to \code{\link{nlm}} in methods "ao", "lor" and
-"gor".}
+\item{...}{Passed to \code{\link{nlm}} in methods 'ao', 'lor' and
+'gor'.}
 }
 \value{
 \code{numeric} The aspect ratio (x , y).
@@ -33,7 +33,7 @@ maximizes the ability to visually differentiate differences in
 slope. This function will calculate the optimal aspect ratio for
 a line plot using any of the methods described in Herr and Argwala
 (2006). In their review of the methods they suggest using median
-absolute slope banking ("ms"), which produces aspect ratios which
+absolute slope banking ('ms'), which produces aspect ratios which
 are generally the median of the various methods provided here.
 }
 \section{Methods}{
@@ -130,7 +130,7 @@ has the following objective function.
 x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
 # Without banking
-m <- qplot(x, y, geom="line")
+m <- qplot(x, y, geom='line')
 m
 
 ## Using the default method, Median Absolute Slope
@@ -138,35 +138,35 @@ ratio <- bank_slopes(x, y)
 m + coord_fixed(ratio = ratio)
 
 ## Alternative methods to calculate the banking
-bank_slopes(x, y, method="ms")
+bank_slopes(x, y, method='ms')
 ## Using culling
-bank_slopes(x, y, method="ms", cull=TRUE)
+bank_slopes(x, y, method='ms', cull=TRUE)
 ## Average Absolute Slope
-bank_slopes(x, y, method="as")
-bank_slopes(x, y, method="as", cull=TRUE)
+bank_slopes(x, y, method='as')
+bank_slopes(x, y, method='as', cull=TRUE)
 ## Average Orientation
-bank_slopes(x, y, method="ao")
-bank_slopes(x, y, method="ao", cull=TRUE)
+bank_slopes(x, y, method='ao')
+bank_slopes(x, y, method='ao', cull=TRUE)
 ## Average Orientation (Weighted)
-bank_slopes(x, y, method="ao", weight=TRUE)
-bank_slopes(x, y, method="ao", cull=TRUE, weight=TRUE)
+bank_slopes(x, y, method='ao', weight=TRUE)
+bank_slopes(x, y, method='ao', cull=TRUE, weight=TRUE)
 ## Global Orientation Resolution
-bank_slopes(x, y, method="gor")
-bank_slopes(x, y, method="gor", cull=TRUE)
+bank_slopes(x, y, method='gor')
+bank_slopes(x, y, method='gor', cull=TRUE)
 ## Local Orientation Resolution
-bank_slopes(x, y, method="lor")
-bank_slopes(x, y, method="lor", cull=TRUE)
+bank_slopes(x, y, method='lor')
+bank_slopes(x, y, method='lor', cull=TRUE)
 }
 \references{
 Cleveland, W. S., M. E. McGill, and R. McGill. The Shape Parameter
 of a Two-Variable Graph.  Journal of the American Statistical
 Association, 83:289-300, 1988
 
-Heer, Jeffrey and Maneesh Agrawala, 2006. "Multi-Scale Banking to 45"
+Heer, Jeffrey and Maneesh Agrawala, 2006. 'Multi-Scale Banking to 45'
 IEEE Transactions On Visualization And Computer Graphics.
 
-Cleveland, W. S. 1993. "A Model for Studying Display Methods of Statistical
-Graphs." Journal of Computational and Statistical Graphics.
+Cleveland, W. S. 1993. 'A Model for Studying Display Methods of Statistical
+Graphs.' Journal of Computational and Statistical Graphics.
 
 Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 }

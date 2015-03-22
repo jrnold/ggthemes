@@ -32,11 +32,11 @@ to \code{\link{theme_bw}}, while \code{theme_solarized_2} is similar to
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 (qplot(carat, price, data=dsamp, colour=clarity)
  + theme_solarized()
- + scale_colour_solarized("blue"))
+ + scale_colour_solarized('blue'))
 ## Dark version
 (qplot(carat, price, data=dsamp, colour=clarity)
  + theme_solarized(light=FALSE)
- + scale_colour_solarized("blue"))
+ + scale_colour_solarized('blue'))
 ## With panels
  (ggplot(dsamp, aes(x = carat, y = price))
   + geom_point(color = ggthemes_data$solarized$base['base00'])
@@ -45,6 +45,6 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 ## Alternative version
  (qplot(carat, price, data=dsamp, color=clarity)
   + theme_solarized_2(light=FALSE)
-  + scale_colour_solarized("blue"))
+  + scale_colour_solarized('blue'))
 }
 

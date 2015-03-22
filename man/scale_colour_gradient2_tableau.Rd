@@ -25,8 +25,8 @@ to control name, limits, breaks, labels and so forth.}
 
 \item{na.value}{Colour to use for missing values}
 
-\item{guide}{Type of legend. Use \code{"colourbar"} for continuous
-colour bar, or \code{"legend"} for discrete colour legend.}
+\item{guide}{Type of legend. Use \code{'colourbar'} for continuous
+colour bar, or \code{'legend'} for discrete colour legend.}
 }
 \description{
 Tableau diverging colour scales (continuous)
@@ -36,8 +36,8 @@ dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
 dsub$diff <- with(dsub, sqrt(abs(x-y))* sign(x-y))
 d <- qplot(x, y, data=dsub, colour=diff)
 d + scale_colour_gradient2_tableau()
-d + scale_colour_gradient2_tableau("Orange-Blue")
-d + scale_colour_gradient2_tableau("Temperature")
+d + scale_colour_gradient2_tableau('Orange-Blue')
+d + scale_colour_gradient2_tableau('Temperature')
 }
 \seealso{
 Other colour tableau: \code{\link{scale_color_continuous_tableau}},

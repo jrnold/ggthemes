@@ -29,7 +29,7 @@ dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 # Old fill color palette
 (ggplot(diamonds, aes(clarity, fill=cut))
 + geom_bar()
-+ scale_fill_excel("fill")
++ scale_fill_excel('fill')
 + theme_excel())
 }
 

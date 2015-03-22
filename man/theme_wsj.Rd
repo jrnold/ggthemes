@@ -10,8 +10,8 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 \arguments{
 \item{base_size}{base font size}
 
-\item{color}{The background color of plot. One of \code{"brown",
-"gray", "green", "blue"}, the names of values in
+\item{color}{The background color of plot. One of \code{'brown',
+'gray', 'green', 'blue'}, the names of values in
 \code{ggthemes_data$wsj$bg}.}
 
 \item{base_family}{base font family}
@@ -22,15 +22,15 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \examples{
-(qplot(hp, mpg, data=mtcars, geom="point")
-+ scale_colour_wsj("colors6", "")
-+ ggtitle("Diamond Prices")
+(qplot(hp, mpg, data=mtcars, geom='point')
++ scale_colour_wsj('colors6', '')
++ ggtitle('Diamond Prices')
 + theme_wsj())
 ## Use a gray background instead
-(qplot(hp, mpg, data=mtcars, geom="point")
- + scale_colour_wsj("colors6", "")
- + ggtitle("Diamond Prices")
- + theme_wsj(color="gray"))
+(qplot(hp, mpg, data=mtcars, geom='point')
+ + scale_colour_wsj('colors6', '')
+ + ggtitle('Diamond Prices')
+ + theme_wsj(color='gray'))
 }
 \references{
 \url{https://twitter.com/WSJGraphics}

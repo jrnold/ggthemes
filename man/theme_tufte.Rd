@@ -14,15 +14,15 @@ theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 \item{ticks}{\code{logical} Show axis ticks?}
 }
 \description{
-Theme based on Chapter 6 "Data-Ink Maximization and Graphical
-Design" of Edward Tufte *The Visual Display of Quantitative
+Theme based on Chapter 6 'Data-Ink Maximization and Graphical
+Design' of Edward Tufte *The Visual Display of Quantitative
 Information*. No border, no axis lines, no grids. This theme works
 best in combination with \code{\link{geom_rug}} or
 \code{\link{geom_rangeframe}}.
 }
 \note{
-The default font family is set to "serif" as he uses serif fonts
-for labels in "The Visual Display of Quantitative Information".
+The default font family is set to 'serif' as he uses serif fonts
+for labels in 'The Visual Display of Quantitative Information'.
 The serif font used by Tufte in his books is a variant of Bembo,
 while the sans serif font is Gill Sans. If these fonts are
 installed on your system, then you can use them with the package
@@ -42,11 +42,11 @@ installed on your system, then you can use them with the package
 library(extrafont)
 (ggplot(mtcars, aes(wt, mpg))
  + geom_point() + geom_rangeframe()
- + theme_tufte(base_family="BemboStd"))
+ + theme_tufte(base_family='BemboStd'))
 ## Using the Gill Sans sans serif family
 (ggplot(mtcars, aes(wt, mpg))
  + geom_point() + geom_rangeframe()
- + theme_tufte(base_family="GillSans"))
+ + theme_tufte(base_family='GillSans'))
 }
 }
 \references{

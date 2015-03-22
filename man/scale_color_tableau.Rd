@@ -13,7 +13,7 @@ scale_fill_tableau(palette = "tableau10", ...)
 scale_color_tableau(palette = "tableau10", ...)
 }
 \arguments{
-\item{palette}{Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(c(names(ggthemes::ggthemes_data$tableau$colors), c("tableau10", "tableau10light", "purplegray6", "bluered6", "greenorange6")))}.}
+\item{palette}{Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(c(names(ggthemes::ggthemes_data$tableau$colors), c('tableau10', 'tableau10light', 'purplegray6', 'bluered6', 'greenorange6')))}.}
 
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}
@@ -25,15 +25,15 @@ See \code{\link{tableau_color_pal}} for details.
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_igray()
 p + scale_colour_tableau()
-p + scale_colour_tableau("tableau20")
-p + scale_colour_tableau("tableau10medium")
-p + scale_colour_tableau("tableau10light")
-p + scale_colour_tableau("colorblind10")
-p + scale_colour_tableau("trafficlight")
-p + scale_colour_tableau("purplegray12")
-p + scale_colour_tableau("bluered12")
-p + scale_colour_tableau("greenorange12")
-p + scale_colour_tableau("cyclic")
+p + scale_colour_tableau('tableau20')
+p + scale_colour_tableau('tableau10medium')
+p + scale_colour_tableau('tableau10light')
+p + scale_colour_tableau('colorblind10')
+p + scale_colour_tableau('trafficlight')
+p + scale_colour_tableau('purplegray12')
+p + scale_colour_tableau('bluered12')
+p + scale_colour_tableau('greenorange12')
+p + scale_colour_tableau('cyclic')
 }
 \seealso{
 \code{\link{tableau_color_pal}} for references.

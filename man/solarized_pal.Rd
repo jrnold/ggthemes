@@ -23,7 +23,7 @@ total Euclidean distance between colors in L*a*b space.
 library(scales)
 show_col(solarized_pal()(2))
 show_col(solarized_pal()(3))
-show_col(solarized_pal("red")(4))
+show_col(solarized_pal('red')(4))
 }
 \seealso{
 Other solarized colour: \code{\link{scale_color_solarized}},
