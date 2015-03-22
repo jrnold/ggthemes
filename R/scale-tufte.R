@@ -60,28 +60,28 @@
 }
 
 
-##' Pretty axis breaks inclusive of extreme values
-##' 
-##' This function returns pretty axis breaks that always include the extreme  values of the data.
-##' This works by calling the extended Wilkinson alogorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
-##' Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
-##'
-##' \code{extended_range_breaks} implements the algorithm and returns the break values.
-##' \code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
-##' 
-##' @param dmin minimum of the data range
-##' @param dmax maximum of the data range
-##' @param n desired number of breaks
-##' @param Q set of nice numbers
-##' @param w weights applied to the four optimization components (simplicity, coverage, density, and legibility)
-##' @return For \code{extended_range_breaks}, the vector of axis label locations.
-##' For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns the vector of axis label locations.
-##' @seealso \code{\link{scale_y_tufte}}, \code{\link{scale_x_tufte}}
-##' @references
-##' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm for Positioning Tick Labels on Axes, InfoVis 2010.
-##' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
-##' @rdname range_breaks
-##' @export
+#' Pretty axis breaks inclusive of extreme values
+#' 
+#' This function returns pretty axis breaks that always include the extreme  values of the data.
+#' This works by calling the extended Wilkinson alogorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
+#' Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
+#'
+#' \code{extended_range_breaks} implements the algorithm and returns the break values.
+#' \code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
+#' 
+#' @param dmin minimum of the data range
+#' @param dmax maximum of the data range
+#' @param n desired number of breaks
+#' @param Q set of nice numbers
+#' @param w weights applied to the four optimization components (simplicity, coverage, density, and legibility)
+#' @return For \code{extended_range_breaks}, the vector of axis label locations.
+#' For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns the vector of axis label locations.
+#' @seealso \code{\link{scale_y_tufte}}, \code{\link{scale_x_tufte}}
+#' @references
+#' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm for Positioning Tick Labels on Axes, InfoVis 2010.
+#' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
+#' @rdname range_breaks
+#' @export
 extended_range_breaks <- function(dmin, dmax, n = 5,
                                   Q = c(1, 5, 2, 2.5, 4, 3),
                                   w = c(0.25, 0.2, 0.5, 0.05)) {
@@ -183,10 +183,10 @@ extended_range_breaks <- function(dmin, dmax, n = 5,
   breaks
 }
 
-##' @rdname range_breaks
-##' @param expand see \code{\link{scale_x_continuous}}.
-##' @param ... other arguments passed to \code{extended_range_breaks}
-##' @export
+#' @rdname range_breaks
+#' @param expand see \code{\link{scale_x_continuous}}.
+#' @param ... other arguments passed to \code{extended_range_breaks}
+#' @export
 scales_extended_range_breaks <- function (expand = c(0, 0), ...)  {
     function(x) {
         spread <- range(x)
@@ -197,28 +197,28 @@ scales_extended_range_breaks <- function (expand = c(0, 0), ...)  {
     }
 }
 
-##' Axis breaks inclusive of extreme values
-##'
-##' These scales draw pretty axis breaks that always include the extreme 
-##' values of the data.
-##' 
-##' @aliases scale_x_tufte scale_y_tufte
-##' @param breaks see \code{\link{scale_x_continuous}}
-##' @param expand see \code{\link{scale_x_continuous}}
-##' @param ... additional parameters passed to \code{\link{continuous_scale}}
-##' @family tufte
-##' @seealso range_breaks
-##' @author Baptise Auguie
-##' @rdname scale_tufte
-##' @examples
-##' (ggplot(mtcars, aes(x = wt + runif(1), y = mpg)) 
-##'  + geom_point()
-##'  + geom_rangeframe()
-##'  + theme_tufte()
-##'  + scale_x_tufte()
-##'  + scale_y_tufte()
-##'  )
-##' @export
+#' Axis breaks inclusive of extreme values
+#'
+#' These scales draw pretty axis breaks that always include the extreme 
+#' values of the data.
+#' 
+#' @aliases scale_x_tufte scale_y_tufte
+#' @param breaks see \code{\link{scale_x_continuous}}
+#' @param expand see \code{\link{scale_x_continuous}}
+#' @param ... additional parameters passed to \code{\link{continuous_scale}}
+#' @family tufte
+#' @seealso range_breaks
+#' @author Baptise Auguie
+#' @rdname scale_tufte
+#' @examples
+#' (ggplot(mtcars, aes(x = wt + runif(1), y = mpg)) 
+#'  + geom_point()
+#'  + geom_rangeframe()
+#'  + theme_tufte()
+#'  + scale_x_tufte()
+#'  + scale_y_tufte()
+#'  )
+#' @export
 scale_x_tufte <-  function(breaks = scales_extended_range_breaks(expand), ...,
                            expand = c(0.04, 0)) {
   continuous_scale(c("x", "xmin", "xmax", "xend", "xintercept"),
@@ -228,8 +228,8 @@ scale_x_tufte <-  function(breaks = scales_extended_range_breaks(expand), ...,
                    guide = "none")
 }
 
-##' @rdname scale_tufte
-##' @export
+#' @rdname scale_tufte
+#' @export
 scale_y_tufte <-  function(breaks = scales_extended_range_breaks(expand), ..., 
                            expand = c(0.04, 0)) {
   continuous_scale(c("y", "ymin", "ymay", "yend", "yintercept"),
@@ -240,26 +240,26 @@ scale_y_tufte <-  function(breaks = scales_extended_range_breaks(expand), ...,
 }
 
 
-##' Format numbers with automatic number of digits
-##'
-##' @param x A numeric vector to format
-##' @param ... Parameters passed to \code{\link{format}}
-##'
-##' @references Josh O'Brien, \url{http://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
-##' @author Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold
-##' @return \code{smart_digits} returns a character vector.
-##' \code{smart_digits_format} returns a function with a single argument \code{x}, a numeric vector, that returns a charactger vector.
-##'
-##' @rdname smart_digits
-##' @export
+#' Format numbers with automatic number of digits
+#'
+#' @param x A numeric vector to format
+#' @param ... Parameters passed to \code{\link{format}}
+#'
+#' @references Josh O'Brien, \url{http://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
+#' @author Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold
+#' @return \code{smart_digits} returns a character vector.
+#' \code{smart_digits_format} returns a function with a single argument \code{x}, a numeric vector, that returns a charactger vector.
+#'
+#' @rdname smart_digits
+#' @export
 smart_digits <- function(x, ...) {
     x <- sort(x)
     digits <- floor(log10(abs(diff(range(x)))))
     format(x, digits = digits, ...)
 }
 
-##' @rdname smart_digits
-##' @export
+#' @rdname smart_digits
+#' @export
 smart_digits_format <- function(x, ...) {
     function(x) smart_digits(x, ...)
 }

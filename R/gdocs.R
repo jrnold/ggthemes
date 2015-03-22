@@ -1,24 +1,27 @@
-##' Theme with Google Docs Chart defaults
-##'
-##' Theme similar to the default look of charts in Google Docs.
-##'
-##' @inheritParams ggplot2::theme_grey
-##' @export
-##' @family themes gdocs
-##' @examples
-##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-##'  + theme_gdocs()
-##'  + ggtitle("Diamonds")
-##'  + scale_color_gdocs())
+#' Theme with Google Docs Chart defaults
+#'
+#' Theme similar to the default look of charts in Google Docs.
+#'
+#' @inheritParams ggplot2::theme_grey
+#' @export
+#' @family themes gdocs
+#' @examples
+#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+#' (d <- qplot(carat, price, data=dsamp, colour=clarity)
+#'  + theme_gdocs()
+#'  + ggtitle("Diamonds")
+#'  + scale_color_gdocs())
 theme_gdocs <- function(base_size=12, base_family="sans") {
   (theme_foundation(base_size=base_size, base_family=base_family)
    + theme(plot.title = element_text(face = "bold",
-             size = rel(1.33), hjust = 0), # 16 pt, bold, align left
+                                     # 16 pt, bold, align left
+                                     size = rel(1.33), hjust = 0),
            panel.background = element_rect(colour = NA),
            panel.border = element_rect(colour = NA),
-           axis.title = element_text(face = "italic"), # 12 pt
-           axis.text = element_text(), # 12 pt
+           # 12 pt
+           axis.title = element_text(face = "italic"),
+           # 12 pt
+           axis.text = element_text(),
            axis.line = element_line(colour="black"),
            axis.ticks = element_blank(),
            panel.grid.major = element_line(colour = "#CCCCCC"),
@@ -28,37 +31,37 @@ theme_gdocs <- function(base_size=12, base_family="sans") {
            legend.direction = "vertical"))
 }
 
-##' Google Docs color palette (discrete)
-##'
-##' Color palettes from Google Docs.
-##'
-##' @family colour gdocs
-##' @export
-##' @examples
-##' library(scales)
-##' show_col(gdocs_pal()(20))
+#' Google Docs color palette (discrete)
+#'
+#' Color palettes from Google Docs.
+#'
+#' @family colour gdocs
+#' @export
+#' @examples
+#' library(scales)
+#' show_col(gdocs_pal()(20))
 gdocs_pal <- function() {
-    manual_pal(unname(ggthemes_data$gdocs))
+  manual_pal(unname(ggthemes_data$gdocs))
 }
 
 
-##' Google Docs color scales
-##'
-##' Color scales from Google Docs.
-##'
-##' @inheritParams ggplot2::scale_colour_hue
-##' @family colour gdocs
-##' @rdname scale_gdocs
-##' @export
-##' @seealso See \code{\link{theme_gdocs}} for examples.
+#' Google Docs color scales
+#'
+#' Color scales from Google Docs.
+#'
+#' @inheritParams ggplot2::scale_colour_hue
+#' @family colour gdocs
+#' @rdname scale_gdocs
+#' @export
+#' @seealso See \code{\link{theme_gdocs}} for examples.
 scale_fill_gdocs <- function(...) {
-    discrete_scale("fill", "gdocs", gdocs_pal(), ...)
+  discrete_scale("fill", "gdocs", gdocs_pal(), ...)
 }
 
 #' @export
 #' @rdname scale_gdocs
 scale_colour_gdocs <- function(...) {
-    discrete_scale("colour", "gdocs", gdocs_pal(), ...)
+  discrete_scale("colour", "gdocs", gdocs_pal(), ...)
 }
 
 #' @export

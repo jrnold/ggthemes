@@ -77,22 +77,22 @@ theme_foundation_sizes <- function() {
 }
 
 
-##' Foundation Theme
-##'
-##' This theme is designed to be a foundation from which to build new
-##' themes, and not meant to be used directly. \code{theme_foundation}
-##' is a complete theme with only minimal number of elements defined.
-##'
-##' It is easier to create new themes by extending this one rather
-##' than \code{theme_gray} or \code{theme_bw}, because those themes
-##' those themes define elements deep in the hierarchy.
-##'
-##' @inheritParams ggplot2::theme_grey
-##' @param use_sizes If \code{TRUE}, then define sizes and locations
-##' with reasonable defaults taken from \code{\link{theme_gray}}.
-##'
-##' @family themes
-##' @export
+#' Foundation Theme
+#'
+#' This theme is designed to be a foundation from which to build new
+#' themes, and not meant to be used directly. \code{theme_foundation}
+#' is a complete theme with only minimal number of elements defined.
+#'
+#' It is easier to create new themes by extending this one rather
+#' than \code{theme_gray} or \code{theme_bw}, because those themes
+#' those themes define elements deep in the hierarchy.
+#'
+#' @inheritParams ggplot2::theme_grey
+#' @param use_sizes If \code{TRUE}, then define sizes and locations
+#' with reasonable defaults taken from \code{\link{theme_gray}}.
+#'
+#' @family themes
+#' @export
 theme_foundation <- function(base_size=12, base_family="", use_sizes=TRUE) {
     thm <- theme_foundation_null(base_size=base_size, base_family=base_family)
     if (use_sizes) {

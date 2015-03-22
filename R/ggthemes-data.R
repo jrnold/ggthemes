@@ -1,8 +1,8 @@
-##' Palette data for ggthemes package
-##'
-##' List with the data used by the palettes in the ggthemes package.
-##'
-##' @export
+#' Palette data for ggthemes package
+#'
+#' List with the data used by the palettes in the ggthemes package.
+#'
+#' @export
 ggthemes_data <- {
     ## x to hold value of list as I create it
     x <- list()

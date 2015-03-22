@@ -1,20 +1,20 @@
-##' Economist color palette (discrete)
-##'
-##' The hues in the palette are blues, grays, and greens. Red is not
-##' included in these palettes and should be used to indicate
-##' important data.
-##'
-##' @param stata Use the palette in the Stata economist scheme.
-##' @param fill Use the fill palette.
-##' @family colour economist
-##' @export
-##' @examples
-##' library(scales)
-##' show_col(economist_pal()(6))
-##' ## fill palette
-##' show_col(economist_pal(fill=TRUE)(6))
-##' ## RGB values from Stata's economist scheme
-##' show_col(economist_pal(stata=TRUE)(16))
+#' Economist color palette (discrete)
+#'
+#' The hues in the palette are blues, grays, and greens. Red is not
+#' included in these palettes and should be used to indicate
+#' important data.
+#'
+#' @param stata Use the palette in the Stata economist scheme.
+#' @param fill Use the fill palette.
+#' @family colour economist
+#' @export
+#' @examples
+#' library(scales)
+#' show_col(economist_pal()(6))
+#' ## fill palette
+#' show_col(economist_pal(fill=TRUE)(6))
+#' ## RGB values from Stata's economist scheme
+#' show_col(economist_pal(stata=TRUE)(16))
 economist_pal <- function(stata=FALSE, fill=TRUE) {
     if (stata) {
         manual_pal(unname(ggthemes_data$economist$stata$fg))
@@ -72,110 +72,110 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 }
 
 
-##' Economist color scales
-##'
-##' Color scales using the colors in the Economist graphics.
-##'
-##' @inheritParams ggplot2::scale_colour_hue
-##' @inheritParams economist_pal
-##' @family colour economist
-##' @rdname scale_economist
-##' @seealso \code{\link{theme_economist}} for examples.
-##' @export
+#' Economist color scales
+#'
+#' Color scales using the colors in the Economist graphics.
+#'
+#' @inheritParams ggplot2::scale_colour_hue
+#' @inheritParams economist_pal
+#' @family colour economist
+#' @rdname scale_economist
+#' @seealso \code{\link{theme_economist}} for examples.
+#' @export
 scale_colour_economist <- function(stata=FALSE, ...) {
     discrete_scale("colour", "economist", economist_pal(stata=stata), ...)
 }
 
-##' @rdname scale_economist
-##' @export
+#' @rdname scale_economist
+#' @export
 scale_color_economist <- scale_colour_economist
 
-##' @rdname scale_economist
-##' @export
+#' @rdname scale_economist
+#' @export
 scale_fill_economist <- function(stata=FALSE, ...) {
     discrete_scale("fill", "economist", economist_pal(stata=stata), ...)
 }
 
-##' ggplot color theme based on the Economist
-##'
-##' Style plots similar to those in \emph{The Economist}.
-##'
-##' \code{theme_economist} implements the standard bluish-gray
-##' background theme in the print \emph{The Economist} and
-##' \href{http://economist.com}{economist.com}.
-##' \code{theme_economist_white} implements a variant with a while
-##' panel and light gray (or white) background used by \emph{The Economist}
-##' blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
-##'
-##' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
-##' you have access to this font, you can use it with the
-##' \pkg{extrafont} package. "Verdana" is a good substitute.
-##'
-##' @inheritParams ggplot2::theme_grey
-##' @param horizontal \code{logical}. Horizontal axis lines?
-##' @param dkpanel \code{logical} Darker background for panel region?
-##' @param stata \code{logical} Use RGB values from Stata's
-##' economist scheme.
-##' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else use white
-##' background.
-##'
-##' @return An object of class \code{\link{theme}}.
-##'
-##' @export
-##' @family themes economist
-##'
-##' @references
-##' \itemize{
-##' \item \href{http://economist.com}{The Economist}
-##' \item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
-##' \item \url{http://www.economist.com/help/about-us}
-##' }
-##'
-##' @seealso \code{\link[latticeExtra]{theEconomist.theme}} for an Economist
-##' theme for lattice plots.
-##'
-##' @examples
-##' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-##' q <- (qplot(carat, price, data=dsamp, colour=clarity)
-##'       + ggtitle("Diamonds Are Forever"))
-##'
-##' ## Standard
-##' q + theme_economist() + scale_colour_economist()
-##'
-##' ## Stata colors
-##' q + theme_economist(stata=TRUE) + scale_colour_economist(stata=TRUE)
-##'
-##' ## Darker plot region
-##' q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
-##'
-##' ## Darker plot region is best for for facets
-##' dkblue <- ggthemes_data$economist$fg['blue_dark']
-##' (ggplot(data=dsamp, aes(x=carat, y=price))
-##'  + geom_point(colour=dkblue)
-##'  + facet_grid(. ~ cut )
-##'  + theme_economist(dkpanel=TRUE))
-##'
-##' ##' ## Change axis lines to vertical
-##' (q + theme_economist(horizontal=FALSE)
-##'  + scale_colour_economist() + coord_flip())
-##'
-##' ## White panel/light gray background
-##' (q + theme_economist_white()
-##'  + scale_colour_economist())
-##'
-##' ## All white variant
-##' (q + theme_economist_white(gray_bg=FALSE)
-##'  + scale_colour_economist())
-##' \dontrun{
-##' ## The Economist uses ITC Officina Sans
-##' library(extrafont)
-##' (q + theme_economist(base_family="ITC Officina Sans")
-##' + scale_colour_economist())
-##'
-##' ## Verdana is a widely available substitute
-##' (q + theme_economist(base_family="Verdana")
-##' + scale_colour_economist())
-##' }
+#' ggplot color theme based on the Economist
+#'
+#' Style plots similar to those in \emph{The Economist}.
+#'
+#' \code{theme_economist} implements the standard bluish-gray
+#' background theme in the print \emph{The Economist} and
+#' \href{http://economist.com}{economist.com}.
+#' \code{theme_economist_white} implements a variant with a while
+#' panel and light gray (or white) background used by \emph{The Economist}
+#' blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
+#'
+#' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
+#' you have access to this font, you can use it with the
+#' \pkg{extrafont} package. "Verdana" is a good substitute.
+#'
+#' @inheritParams ggplot2::theme_grey
+#' @param horizontal \code{logical}. Horizontal axis lines?
+#' @param dkpanel \code{logical} Darker background for panel region?
+#' @param stata \code{logical} Use RGB values from Stata's
+#' economist scheme.
+#' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else use white
+#' background.
+#'
+#' @return An object of class \code{\link{theme}}.
+#'
+#' @export
+#' @family themes economist
+#'
+#' @references
+#' \itemize{
+#' \item \href{http://economist.com}{The Economist}
+#' \item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
+#' \item \url{http://www.economist.com/help/about-us}
+#' }
+#'
+#' @seealso \code{\link[latticeExtra]{theEconomist.theme}} for an Economist
+#' theme for lattice plots.
+#'
+#' @examples
+#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+#' q <- (qplot(carat, price, data=dsamp, colour=clarity)
+#'       + ggtitle("Diamonds Are Forever"))
+#'
+#' ## Standard
+#' q + theme_economist() + scale_colour_economist()
+#'
+#' ## Stata colors
+#' q + theme_economist(stata=TRUE) + scale_colour_economist(stata=TRUE)
+#'
+#' ## Darker plot region
+#' q + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
+#'
+#' ## Darker plot region is best for for facets
+#' dkblue <- ggthemes_data$economist$fg['blue_dark']
+#' (ggplot(data=dsamp, aes(x=carat, y=price))
+#'  + geom_point(colour=dkblue)
+#'  + facet_grid(. ~ cut )
+#'  + theme_economist(dkpanel=TRUE))
+#'
+#' ##' ## Change axis lines to vertical
+#' (q + theme_economist(horizontal=FALSE)
+#'  + scale_colour_economist() + coord_flip())
+#'
+#' ## White panel/light gray background
+#' (q + theme_economist_white()
+#'  + scale_colour_economist())
+#'
+#' ## All white variant
+#' (q + theme_economist_white(gray_bg=FALSE)
+#'  + scale_colour_economist())
+#' \dontrun{
+#' ## The Economist uses ITC Officina Sans
+#' library(extrafont)
+#' (q + theme_economist(base_family="ITC Officina Sans")
+#' + scale_colour_economist())
+#'
+#' ## Verdana is a widely available substitute
+#' (q + theme_economist(base_family="Verdana")
+#' + scale_colour_economist())
+#' }
 theme_economist <- function(base_size = 10, base_family="sans",
                             horizontal=TRUE, dkpanel=FALSE, stata=FALSE) {
     if (stata) {
@@ -191,8 +191,7 @@ theme_economist <- function(base_size = 10, base_family="sans",
     ## Axis Titles and other text ~ 2
     ## Margins: Top/Bottom = 6/32, sides = 5/32
     ret <-
-        theme(# Basic
-              line = element_line(colour = "black", size = 0.5,
+        theme(line = element_line(colour = "black", size = 0.5,
               linetype = 1, lineend = "butt"),
               rect = element_rect(fill = bgcolors['ebg'],
               colour = NA, size = 0.5, linetype = 1),
@@ -256,8 +255,8 @@ theme_economist <- function(base_size = 10, base_family="sans",
     ret
 }
 
-##' @rdname theme_economist
-##' @export
+#' @rdname theme_economist
+#' @export
 theme_economist_white <- function(base_size = 11, base_family = "sans",
                                   gray_bg = TRUE, horizontal = TRUE) {
     if (gray_bg) {
