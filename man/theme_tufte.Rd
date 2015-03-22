@@ -7,9 +7,9 @@
 theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 }
 \arguments{
-\item{base_size}{Base font size}
+\item{base_size}{base font size}
 
-\item{base_family}{Base font family}
+\item{base_family}{base font family}
 
 \item{ticks}{\code{logical} Show axis ticks?}
 }

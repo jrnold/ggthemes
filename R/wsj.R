@@ -8,12 +8,11 @@
 ##'
 ##' \url{http://pinterest.com/wsjgraphics/wsj-graphics/}
 ##'
-##' @param base_size Base font size.
+##' @inheritParams ggplot2::theme_grey
 ##' @param color The background color of plot. One of \code{"brown",
 ##' "gray", "green", "blue"}, the names of values in
 ##' \code{ggthemes_data$wsj$bg}.
 ##' @param title_family Plot title font family.
-##' @param base_family Plot text font family.
 ##' @family themes wsj
 ##' @examples
 ##' (qplot(hp, mpg, data=mtcars, geom="point")

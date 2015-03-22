@@ -12,8 +12,7 @@
 ##' using a gray panel in \code{\link{theme_gray}}. This is
 ##' similar to the style of plots in Stata and Tableau.
 ##'
-##' @param base_size base font size
-##' @param base_family base font family
+##' @inheritParams ggplot2::theme_grey
 ##' @export
 ##' @family themes
 ##' @seealso \code{\link{theme_gray}}, \code{\link{theme_bw}}

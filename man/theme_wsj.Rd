@@ -8,13 +8,13 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
   title_family = "mono")
 }
 \arguments{
-\item{base_size}{Base font size.}
+\item{base_size}{base font size}
 
 \item{color}{The background color of plot. One of \code{"brown",
 "gray", "green", "blue"}, the names of values in
 \code{ggthemes_data$wsj$bg}.}
 
-\item{base_family}{Plot text font family.}
+\item{base_family}{base font family}
 
 \item{title_family}{Plot title font family.}
 }

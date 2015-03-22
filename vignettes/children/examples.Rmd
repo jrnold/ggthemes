@@ -234,6 +234,23 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_fill_hc("darkunica")
 ```
 
+## Maps theme
+
+A theme useful for displaying maps.
+
+```{r map}
+library("maps")
+us <- fortify(map_data("state"), region = "region")
+(ggplot()
+  + geom_map(data  =  us, map = us,
+             aes(x = long, y = lat, map_id = region, group = group),
+             fill = "white", color = "black", size = 0.25)
+  + coord_map("albers", lat0 = 39, lat1 = 45)
+  + theme_map()
+  )
+```
+
+
 
 <!--  LocalWords:  dsamp ggplot2 ggthemes nrow Tufte geoms tufte aes
  -->

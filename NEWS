@@ -1,7 +1,7 @@
-ggthemes 2.1.2
+ggthemes 2.2.0
 ------------------------
 
-* fix bugs that weren't successfully fixed in previous release
+* Added `theme_map` from hrbrmstr
 
 ggthemes 2.1.1
 ------------------------

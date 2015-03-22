@@ -62,8 +62,7 @@ scale_color_excel <- scale_colour_excel
 ##' Theme to replicate the ugly monstrosity that was the old
 ##' gray-background Excel chart. Please never use this.
 ##'
-##' @param base_size \code{numeric} base font size
-##' @param base_family \code{character} base font family
+##' @inheritParams ggplot2::theme_grey
 ##' @param horizontal \code{logical}. Horizontal axis lines?
 ##' @return An object of class \code{\link{theme}}.
 ##' @export

@@ -87,8 +87,7 @@ theme_foundation_sizes <- function() {
 ##' than \code{theme_gray} or \code{theme_bw}, because those themes
 ##' those themes define elements deep in the hierarchy.
 ##'
-##' @param base_size Base font size.
-##' @param base_family Base font family.
+##' @inheritParams ggplot2::theme_grey
 ##' @param use_sizes If \code{TRUE}, then define sizes and locations
 ##' with reasonable defaults taken from \code{\link{theme_gray}}.
 ##'

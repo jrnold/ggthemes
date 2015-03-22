@@ -7,9 +7,9 @@
 theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 }
 \arguments{
-\item{base_size}{\code{numeric} base font size}
+\item{base_size}{base font size}
 
-\item{base_family}{\code{character} base font family}
+\item{base_family}{base font family}
 
 \item{horizontal}{\code{logical}. Horizontal axis lines?}
 }

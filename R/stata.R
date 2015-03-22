@@ -194,9 +194,8 @@ theme_stata_colors <- function(scheme="s2color") {
 ##' Themes based on Stata graph schemes
 ##'
 ##' @param scheme One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono", "s2manual",
-##' "s1manual", or "sj"
-##' @param base_size base font size
-##' @param base_family base font family
+##'   "s1manual", or "sj"
+##' @inheritParams ggplot2::theme_grey
 ##' @export
 ##' @family themes stata
 ##'

@@ -111,8 +111,7 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 ##' you have access to this font, you can use it with the
 ##' \pkg{extrafont} package. "Verdana" is a good substitute.
 ##'
-##' @param base_size \code{numeric} base font size
-##' @param base_family \code{character} base font family
+##' @inheritParams ggplot2::theme_grey
 ##' @param horizontal \code{logical}. Horizontal axis lines?
 ##' @param dkpanel \code{logical} Darker background for panel region?
 ##' @param stata \code{logical} Use RGB values from Stata's

@@ -14,9 +14,8 @@
 ##' installed on your system, then you can use them with the package
 ##' \bold{extrafont}.
 ##'
+##' @inheritParams ggplot2::theme_grey
 ##' @param ticks \code{logical} Show axis ticks?
-##' @param base_size Base font size
-##' @param base_family Base font family
 ##'
 ##' @references Tufte, Edward R. (2001) The Visual Display of
 ##' Quantitative Information, Chapter 6.

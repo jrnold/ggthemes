@@ -113,8 +113,7 @@ scale_color_solarized <- scale_colour_solarized
 ##' \code{\link{theme_gray}}.
 ##'
 ##' @rdname theme_solarized
-##' @param base_size base font size
-##' @param base_family base font family
+##' @inheritParams ggplot2::theme_grey
 ##' @param light \code{logical}. Light or dark theme?
 ##' @export
 ##' @family themes solarized

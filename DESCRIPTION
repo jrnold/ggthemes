@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 2.1.3
+Version: 2.2.0
 Title: Extra Themes, Scales and Geoms for `ggplot2`
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"),
@@ -8,6 +8,7 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     person("Brian", "Weitzner", role = "ctb"),
     person("Joshua", "Kunst", role = "ctb"),
     person("Baptise", "Auguie", role = "ctb"),
+    person("Bob", "Rudis", role = "ctb"),
     person("Justin",  "Talbot", role = "ctb",
     comment = "Some code from the labeling package"))
 Depends:
@@ -23,7 +24,9 @@ Suggests:
     plyr,
     reshape2,
     extrafont,
-    pander
+    pander,
+    maps,
+    mapproj
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for `ggplot2`.
 License: GPL-2
@@ -52,6 +55,7 @@ Collate:
     'stata.R'
     'tableau.R'
     'theme-foundation.R'
+    'theme-map.R'
     'theme-solid.R'
     'tufte.R'
     'utils.R'

@@ -6,8 +6,7 @@ NULL
 #'
 #' Theme inspired by the plots on \href{fivethirtyeight.com}{http://fivethirtyeight.com}.
 #'
-#' @param base_size Base font size.
-#' @param base_family Plot text font family.
+#' @inheritParams ggplot2::theme_grey
 #' @family themes fivethirtyeight
 #' @export
 #' @examples

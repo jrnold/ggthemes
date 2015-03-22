@@ -7,9 +7,9 @@
 theme_fivethirtyeight(base_size = 12, base_family = "sans")
 }
 \arguments{
-\item{base_size}{Base font size.}
+\item{base_size}{base font size}
 
-\item{base_family}{Plot text font family.}
+\item{base_family}{base font family}
 }
 \description{
 Theme inspired by the plots on \href{fivethirtyeight.com}{http://fivethirtyeight.com}.

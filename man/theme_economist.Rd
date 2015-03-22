@@ -12,9 +12,9 @@ theme_economist_white(base_size = 11, base_family = "sans",
   gray_bg = TRUE, horizontal = TRUE)
 }
 \arguments{
-\item{base_size}{\code{numeric} base font size}
+\item{base_size}{base font size}
 
-\item{base_family}{\code{character} base font family}
+\item{base_family}{base font family}
 
 \item{horizontal}{\code{logical}. Horizontal axis lines?}
 

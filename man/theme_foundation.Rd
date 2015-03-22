@@ -7,9 +7,9 @@
 theme_foundation(base_size = 12, base_family = "", use_sizes = TRUE)
 }
 \arguments{
-\item{base_size}{Base font size.}
+\item{base_size}{base font size}
 
-\item{base_family}{Base font family.}
+\item{base_family}{base font family}
 
 \item{use_sizes}{If \code{TRUE}, then define sizes and locations
 with reasonable defaults taken from \code{\link{theme_gray}}.}

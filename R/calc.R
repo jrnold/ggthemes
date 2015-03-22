@@ -2,8 +2,7 @@
 ##'
 ##' Theme similar to the default settings of LibreOffice Calc charts.
 ##'
-##' @param base_size base font size
-##' @param base_family base font family
+##' @inheritParams ggplot2::theme_grey
 ##' @export
 ##' @family themes calc
 ##' @examples
