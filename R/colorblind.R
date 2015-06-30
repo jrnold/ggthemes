@@ -1,11 +1,13 @@
 #' Colorblind Color Palette (Discrete) and Scales
 #'
-#' An 8-color colorblind safe qualitative discrete palette from
-#' \url{http://jfly.iam.u-tokyo.ac.jp/color} and the
-#' \href{http://wiki.stdout.org/rcookbook/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook
-#' for R}.
+#' An 8-color colorblind safe qualitative discrete palette.
 #'
 #' @rdname colorblind
+#' @references
+#' Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook for R}"
+#'
+#' \url{http://jfly.iam.u-tokyo.ac.jp/color}
+#'
 #' @export
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour
