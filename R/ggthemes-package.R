@@ -8,5 +8,12 @@
 #'
 #' @name ggthemes
 #' @docType package
-#' @import colorspace grid proto scales ggplot2
-NULL 
+#' @import utils
+#' @import colorspace
+#' @import grid
+#' @import proto
+#' @import scales
+#' @import ggplot2
+#' @importFrom graphics abline axis text points
+#' @importFrom methods hasArg as
+NULL

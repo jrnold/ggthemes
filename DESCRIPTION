@@ -18,7 +18,8 @@ Imports:
     colorspace,
     grid,
     proto,
-    scales
+    scales,
+    methods
 Suggests:
     knitr,
     plyr,
