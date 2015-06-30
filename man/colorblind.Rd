@@ -20,10 +20,7 @@ scale_fill_colorblind(...)
 to control name, limits, breaks, labels and so forth.}
 }
 \description{
-An 8-color colorblind safe qualitative discrete palette from
-\url{http://jfly.iam.u-tokyo.ac.jp/color} and the
-\href{http://wiki.stdout.org/rcookbook/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook
-for R}.
+An 8-color colorblind safe qualitative discrete palette.
 }
 \examples{
 library(scales)
@@ -31,6 +28,11 @@ show_col(colorblind_pal()(8))
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_igray()
 p + scale_colour_colorblind()
+}
+\references{
+Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook for R}"
+
+\url{http://jfly.iam.u-tokyo.ac.jp/color}
 }
 \seealso{
 The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}},
