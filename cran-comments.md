@@ -1,3 +1,5 @@
+This is a resubmission to fix NOTE for no visible global function definition related to not importing stats.
+
 ## R CMD check
 
 * In `DESCRIPTION`, "Geoms", "geoms", and "ggplot" are not mis-spelled.

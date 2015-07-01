@@ -8,6 +8,7 @@
 #'
 #' @name ggthemes
 #' @docType package
+#' @import stats
 #' @import utils
 #' @import colorspace
 #' @import grid
