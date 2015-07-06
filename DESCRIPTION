@@ -30,6 +30,10 @@ Suggests:
     mapproj
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for `ggplot2`.
+    Provides `ggplot2` themes and scales that replicate the look of plots
+    by Edward Tufte, Stephen Few, `Fivethirtyeight`, `The Economist`, `Stata`,
+    `Excel`, and `The Wall Street Journal`, among others.
+    Provides `geoms` for Tufte's box plot and range frame.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
