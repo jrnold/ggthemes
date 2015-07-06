@@ -7,17 +7,17 @@ aesthetics <- function(x) {
     return(suppressWarnings(sort(names(x$default_aes()))))
   }
   if (length(def_aes) == 0) {
-    return(paste("\\strong{", sort(x$required_aes), "}", sep = ""))
+    return(paste0("\\strong{", sort(x$required_aes), "}"))
   }
-  return(c(paste("\\strong{", sort(x$required_aes), "}", sep = ""), sort(def_aes)))
+  return(c(paste0("\\strong{", sort(x$required_aes), "}"), sort(def_aes)))
 }
 
 
 ## altered from same function from ggplot2
 rd_aesthetics <- function(name, geom) {
   aes <- aesthetics(geom)
-  paste("\\code{", name, "} ", "understands the following aesthetics (required aesthetics are in bold):\n\n", "\\itemize{\n", 
-    paste("  \\item \\code{", aes, "}", collapse = "\n", sep = ""), "\n}\n", sep = "")
+  paste0("\\code{", name, "} ", "understands the following aesthetics (required aesthetics are in bold):\n\n", "\\itemize{\n", 
+    paste0("  \\item \\code{", aes, "}", collapse = "\n"), "\n}\n")
 }
 
 cpaste <- function(..., sep = ", ", collapse = NULL, and = TRUE) {

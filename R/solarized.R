@@ -9,11 +9,11 @@
 #' @keywords internal
 solarized_rebase <- function(light = TRUE) {
   if (light) {
-    rebase <- ggthemes_data$solarized$base[c(paste("base", 3:0, sep = ""), paste("base0", 0:3, sep = ""))]
+    rebase <- ggthemes_data$solarized$base[c(paste0("base", 3:0), paste0("base0", 0:3))]
   } else {
-    rebase <- ggthemes_data$solarized$base[c(paste("base0", 3:0, sep = ""), paste("base", 0:3, sep = ""))]
+    rebase <- ggthemes_data$solarized$base[c(paste0("base0", 3:0), paste0("base", 0:3))]
   }
-  names(rebase) <- paste("rebase", c(paste("0", 3:0, sep = ""), 0:3), sep = "")
+  names(rebase) <- paste0("rebase", c(paste0("0", 3:0), 0:3))
   rebase
 }
 
