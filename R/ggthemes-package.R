@@ -11,10 +11,10 @@
 #' @import stats
 #' @import utils
 #' @import colorspace
-#' @import grid
 #' @import proto
-#' @import scales
 #' @import ggplot2
+#' @importFrom grid unit
+#' @importFrom scales manual_pal div_gradient_pal seq_gradient_pal
 #' @importFrom graphics abline axis text points
 #' @importFrom methods hasArg as
 NULL

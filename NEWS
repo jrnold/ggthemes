@@ -1,3 +1,8 @@
+ggthemes 2.2.2
+------------------------
+
+* bugfix: Import fewer functions from grid and scales packages. Issue #35
+
 ggthemes 2.2.1
 ------------------------
 
