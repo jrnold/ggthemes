@@ -11,7 +11,6 @@
 #' @import stats
 #' @import utils
 #' @import colorspace
-#' @import proto
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom scales manual_pal div_gradient_pal seq_gradient_pal

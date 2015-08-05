@@ -21,50 +21,57 @@
 #' (ggplot(mtcars, aes(wt, mpg))
 #'  + geom_point() + geom_rangeframe()
 #'  + theme_tufte())
-geom_rangeframe <- function(mapping = NULL, data = NULL, stat = "identity", position = "identity", sides = "bl", fun_min = min, 
-  fun_max = max, ...) {
-  GeomRangeFrame$new(mapping = mapping, data = data, stat = stat, position = position, sides = sides, fun_min = match.fun(fun_min), 
-    fun_max = match.fun(fun_max), ...)
+geom_rangeframe <- function(mapping = NULL, data = NULL, stat = "identity", position = "identity", sides = "bl", fun_min = min,
+  fun_max = max, ..., show.legend = NA, inherit.aes = TRUE) {
+
+  layer(
+    data = data,
+    mapping = mapping,
+    stat = stat,
+    geom = GeomRangeFrame,
+    position = position,
+    show.legend = show.legend,
+    inherit.aes = inherit.aes,
+    geom_params = list(sides = sides, fun_min = fun_min, fun_max = fun_max),
+    params = list(...)
+  )
 }
 
-GeomRangeFrame <- proto(ggplot2:::Geom, {
-  objname <- "rangeframe"
-  
-  draw <- function(., data, scales, coordinates, sides, fun_min, fun_max, ...) {
+GeomRangeFrame <- ggproto("GeomRangeFrame", Geom,
+  draw = function(self, data, scales, coord, sides, fun_min, fun_max, ...) {
     rugs <- list()
-    data <- coord_transform(coordinates, data, scales)
+    data <- coord$transform(data, scales)
     if (!is.null(data$x)) {
       if (grepl("b", sides)) {
-        rugs$x_b <- segmentsGrob(x0 = unit(fun_min(data$x), "native"), x1 = unit(fun_max(data$x), "native"), y0 = unit(0, 
-          "npc"), y1 = unit(0, "npc"), gp = gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size * 
+        rugs$x_b <- grid::segmentsGrob(x0 = unit(fun_min(data$x), "native"), x1 = unit(fun_max(data$x), "native"), y0 = unit(0,
+          "npc"), y1 = unit(0, "npc"), gp = grid::gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size *
           .pt))
       }
-      
+
       if (grepl("t", sides)) {
-        rugs$x_t <- segmentsGrob(x0 = unit(fun_min(data$x), "native"), x1 = unit(fun_max(data$x), "native"), y0 = unit(1, 
-          "npc"), y1 = unit(1, "npc"), gp = gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size * 
+        rugs$x_t <- grid::segmentsGrob(x0 = unit(fun_min(data$x), "native"), x1 = unit(fun_max(data$x), "native"), y0 = unit(1,
+          "npc"), y1 = unit(1, "npc"), gp = grid::gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size *
           .pt))
       }
     }
-    
+
     if (!is.null(data$y)) {
       if (grepl("l", sides)) {
-        rugs$y_l <- segmentsGrob(y0 = unit(fun_min(data$y), "native"), y1 = unit(fun_max(data$y), "native"), x0 = unit(0, 
-          "npc"), x1 = unit(0, "npc"), gp = gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size * 
+        rugs$y_l <- grid::segmentsGrob(y0 = unit(fun_min(data$y), "native"), y1 = unit(fun_max(data$y), "native"), x0 = unit(0,
+          "npc"), x1 = unit(0, "npc"), gp = grid::gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size *
           .pt))
       }
-      
+
       if (grepl("r", sides)) {
-        rugs$y_r <- segmentsGrob(y0 = unit(fun_min(data$y), "native"), y1 = unit(fun_max(data$y), "native"), x0 = unit(1, 
-          "npc"), x1 = unit(1, "npc"), gp = gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size * 
+        rugs$y_r <- grid::segmentsGrob(y0 = unit(fun_min(data$y), "native"), y1 = unit(fun_max(data$y), "native"), x0 = unit(1,
+          "npc"), x1 = unit(1, "npc"), gp = grid::gpar(col = alpha(data$colour, data$alpha), lty = data$linetype, lwd = data$size *
           .pt))
       }
     }
-    gTree(children = do.call("gList", rugs))
-  }
-  
-  default_stat <- function(.) StatIdentity
-  default_aes <- function(.) aes(colour = "black", size = 0.5, linetype = 1, alpha = NA)
-  guide_geom <- function(.) "path"
-})
- 
+    grid::gTree(children = do.call(grid::gList, rugs))
+  },
+
+  default_aes = aes(colour = "black", size = 0.5, linetype = 1, alpha = NA),
+  draw_legend = draw_key_path
+)
+

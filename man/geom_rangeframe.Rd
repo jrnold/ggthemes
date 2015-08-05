@@ -6,21 +6,21 @@
 \usage{
 geom_rangeframe(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", sides = "bl", fun_min = min, fun_max = max,
-  ...)
+  ..., show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{The aesthetic mapping, usually constructed with
 \code{\link{aes}} or \code{\link{aes_string}}. Only needs to be set
 at the layer level if you are overriding the plot defaults.}
 
-\item{data}{A layer specific dataset - only needed if you want to override
-the plot defaults.}
+\item{data}{A data frame. If specified, overrides the default data frame
+defined at the top level of the plot.}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer.}
+layer, as a string.}
 
-\item{position}{The position adjustment to use for overlapping points
-on this layer}
+\item{position}{Position adjustment, either as a string, or the result of
+a call to a position adjustment function.}
 
 \item{sides}{A string that controls which sides of the plot the frames appear on.
 It can be set to a string containing any of \code{'trbl'}, for top, right,
@@ -30,9 +30,25 @@ bottom, and left.}
 
 \item{fun_max}{Function used to calculate the minimum of the range frame line.}
 
-\item{...}{other arguments passed on to \code{\link{layer}}. This can
-include aesthetics whose values you want to set, not map. See
-\code{\link{layer}} for more details.}
+\item{...}{other arguments passed on to \code{\link{layer}}. There are
+  three types of arguments you can use here:
+
+  \itemize{
+  \item Aesthetics: to set an aesthetic to a fixed value, like
+     \code{color = "red"} or \code{size = 3}.
+  \item Other arguments to the layer, for example you override the
+    default \code{stat} associated with the layer.
+  \item Other arguments passed on to the stat.
+  }}
+
+\item{show.legend}{logical. Should this layer be included in the legends?
+\code{NA}, the default, includes if any aesthetics are mapped.
+\code{FALSE} never includes, and \code{TRUE} always includes.}
+
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link{borders}}.}
 }
 \description{
 Axis lines which extend to the maximum and minimum of the plotted data.
