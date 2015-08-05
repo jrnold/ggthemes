@@ -114,11 +114,12 @@ Quantitative Information*.
 
 ```r
 (ggplot(mtcars, aes(wt, mpg))
-  + geom_point() + geom_rangeframe()
+  + geom_point()
+  + geom_rangeframe()
   + theme_tufte())
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/WiEabhz.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/cFKzduk.png) 
 
 The Tufte minimal boxplot.
 
@@ -129,7 +130,7 @@ The Tufte minimal boxplot.
  + geom_tufteboxplot())
 ```
 
-![plot of chunk tufteboxplot](http://i.imgur.com/HFZmsSg.png) 
+![plot of chunk tufteboxplot](http://i.imgur.com/Thimw7U.png) 
 
 ### Economist theme
 
@@ -144,7 +145,7 @@ magazine.
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk economist](http://i.imgur.com/BKtp5BK.png) 
+![plot of chunk economist](http://i.imgur.com/WWIRvqk.png) 
 
 ### Solarized theme
 
@@ -159,7 +160,7 @@ The light theme.
                              + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/ku8yfjJ.png) 
+![plot of chunk solarized-light](http://i.imgur.com/UHA0dz3.png) 
 
 The dark theme.
 
@@ -170,7 +171,7 @@ The dark theme.
                              + scale_colour_solarized("red"))
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/EjYA6GY.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/yLvCIqi.png) 
 
 An alternative theme.
 
@@ -181,7 +182,7 @@ An alternative theme.
                              + scale_colour_solarized("blue"))
 ```
 
-![plot of chunk solarized-alt](http://i.imgur.com/LuL4YRo.png) 
+![plot of chunk solarized-alt](http://i.imgur.com/HYID7US.png) 
 
 
 ### Stata theme 
@@ -197,7 +198,7 @@ schemes in Stata.
                              + ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/Ad3gCry.png) 
+![plot of chunk stata](http://i.imgur.com/esg58c6.png) 
 
 ### Excel 2003 theme
 
@@ -211,7 +212,7 @@ and pies not included. Please never use this theme.
  + scale_colour_excel())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/6jUdrMm.png) 
+![plot of chunk excel1](http://i.imgur.com/PqUR5DH.png) 
 
 
 ```r
@@ -221,7 +222,7 @@ and pies not included. Please never use this theme.
  + theme_excel())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/UCYr4H8.png) 
+![plot of chunk excel2](http://i.imgur.com/d8QtAWr.png) 
 
 ### Inverse Gray Theme
 
@@ -233,7 +234,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
  + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/JSOTz1H.png) 
+![plot of chunk igray](http://i.imgur.com/KCEmEi1.png) 
 
 ### Fivethirtyeight theme
 
@@ -247,7 +248,7 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
  + theme_fivethirtyeight())
 ```
 
-![plot of chunk fivethirtyeight](http://i.imgur.com/JDjAjYB.png) 
+![plot of chunk fivethirtyeight](http://i.imgur.com/OSd8swI.png) 
 
 ### Tableau Scales
 
@@ -260,7 +261,7 @@ Color, fill, and shape scales based on those used in the Tableau software.
  + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/wCxPL9a.png) 
+![plot of chunk tableau](http://i.imgur.com/AIMNc28.png) 
 
 
 ```r
@@ -269,7 +270,7 @@ Color, fill, and shape scales based on those used in the Tableau software.
  + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/okOlBId.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/DnW96cf.png) 
 
 ### Stephen Few's Practical Rules for Using Color ...
 
@@ -282,7 +283,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
  + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/1gX15CV.png) 
+![plot of chunk few](http://i.imgur.com/TVrq0D3.png) 
 
 ### Wall Street Journal
 
@@ -296,7 +297,7 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
  + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/CCYgY03.png) 
+![plot of chunk wsj](http://i.imgur.com/tRs732Y.png) 
 
 ### GDocs Theme
 
@@ -310,7 +311,7 @@ Theme and color palettes based on the defaults in Google Docs.
  + scale_color_gdocs())
 ```
 
-![plot of chunk gdocs](http://i.imgur.com/syis3Jo.png) 
+![plot of chunk gdocs](http://i.imgur.com/hvTd1TL.png) 
 
 ### Calc Theme
 
@@ -324,7 +325,7 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
  + scale_color_calc())
 ```
 
-![plot of chunk calc](http://i.imgur.com/9fuTuWG.png) 
+![plot of chunk calc](http://i.imgur.com/L5USATp.png) 
 
 ### Pander Theme
 
@@ -337,7 +338,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
  + scale_colour_pander())
 ```
 
-![plot of chunk pander-scatterplot](http://i.imgur.com/Xcew2Ly.png) 
+![plot of chunk pander-scatterplot](http://i.imgur.com/0q4ejpu.png) 
 
 
 ```r
@@ -346,7 +347,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
   + scale_fill_pander())
 ```
 
-![plot of chunk pander-barplot](http://i.imgur.com/NH58zGm.png) 
+![plot of chunk pander-barplot](http://i.imgur.com/rsOlhAL.png) 
 
 ### Highcharts  theme
 
@@ -360,7 +361,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-default](http://i.imgur.com/16Z4PI4.png) 
+![plot of chunk hc-default](http://i.imgur.com/1fDLDeF.png) 
 
 ```r
 (qplot(carat, price, data = dsamp, colour = cut)
@@ -369,7 +370,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-darkunica](http://i.imgur.com/nsR2kc9.png) 
+![plot of chunk hc-darkunica](http://i.imgur.com/gd4x2j7.png) 
 
 
 ```r
@@ -390,7 +391,7 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_colour_hc()
 ```
 
-![plot of chunk hc-default-line](http://i.imgur.com/PbkwRIg.png) 
+![plot of chunk hc-default-line](http://i.imgur.com/gehiBSe.png) 
 
 
 ```r
@@ -401,7 +402,7 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_fill_hc("darkunica")
 ```
 
-![plot of chunk hc-darkunica-line](http://i.imgur.com/EctOuyk.png) 
+![plot of chunk hc-darkunica-line](http://i.imgur.com/eUcxCNI.png) 
 
 ## Maps theme
 
@@ -420,7 +421,7 @@ us <- fortify(map_data("state"), region = "region")
   )
 ```
 
-![plot of chunk map](http://i.imgur.com/B8czD1p.png) 
+![plot of chunk map](http://i.imgur.com/wruOZ5s.png) 
 
 
 
