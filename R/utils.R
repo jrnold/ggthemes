@@ -1,25 +1,3 @@
-## copied from ggplot2
-aesthetics <- function(x) {
-  req_aes <- x$required_aes
-  def_aes <- names(x$default_aes())
-  def_aes <- setdiff(def_aes, req_aes)
-  if (length(req_aes) == 0) {
-    return(suppressWarnings(sort(names(x$default_aes()))))
-  }
-  if (length(def_aes) == 0) {
-    return(paste0("\\strong{", sort(x$required_aes), "}"))
-  }
-  return(c(paste0("\\strong{", sort(x$required_aes), "}"), sort(def_aes)))
-}
-
-
-## altered from same function from ggplot2
-rd_aesthetics <- function(name, geom) {
-  aes <- aesthetics(geom)
-  paste0("\\code{", name, "} ", "understands the following aesthetics (required aesthetics are in bold):\n\n", "\\itemize{\n", 
-    paste0("  \\item \\code{", aes, "}", collapse = "\n"), "\n}\n")
-}
-
 cpaste <- function(..., sep = ", ", collapse = NULL, and = TRUE) {
   arglist <- list(...)
   n <- length(arglist)
@@ -98,4 +76,7 @@ show_linetypes <- function(linetypes, labels = TRUE) {
 charopts <- function(x) {
   paste(sprintf("\\code{\"%s\"}", x), collapse = ", ")
 }
- 
+
+"%||%" <- function(a, b) {
+  if (!is.null(a)) a else b
+}

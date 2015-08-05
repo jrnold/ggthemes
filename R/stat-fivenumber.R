@@ -3,9 +3,6 @@
 #' The five number summary of a sample is the minimum, first quartile,
 #' median, third quartile, and maximum.
 #'
-#' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('stat_fivenumber', ggthemes:::StatFivenumber)}
-#'
 #' @param na.rm If \code{FALSE} (the default), removes missing values with
 #'    a warning.  If \code{TRUE} silently removes missing values.
 #' @inheritParams ggplot2::stat_identity
@@ -20,39 +17,45 @@
 #'   \item{ymax}{maximum}
 #' @seealso \code{\link{stat_boxplot}}
 #' @export
-stat_fivenumber <- function(mapping = NULL, data = NULL, geom = "boxplot", position = "dodge", na.rm = FALSE, ...) {
-  StatFivenumber$new(mapping = mapping, data = data, geom = geom, position = position, na.rm = na.rm, ...)
+stat_fivenumber <- function(mapping = NULL, data = NULL, geom = "boxplot", position = "dodge", na.rm = FALSE, ..., show.legend = NA, inherit.aes = TRUE) {
+
+  layer(
+    data = data,
+    mapping = mapping,
+    stat = StatFivenumber,
+    geom = geom,
+    position = position,
+    show.legend = show.legend,
+    inherit.aes = inherit.aes,
+    stat_params = list(
+      na.rm = na.rm
+    ),
+    params = list(...)
+  )
 }
 
-StatFivenumber <- proto(ggplot2:::Stat, {
-  objname <- "fivenumber"
-  
-  required_aes <- c("x", "y")
-  default_geom <- function(.) GeomBoxplot
-  
-  calculate_groups <- function(., data, na.rm = FALSE, width = NULL, ...) {
-    data <- remove_missing(data, na.rm, c("y", "weight"), name = "stat_fivenumber", finite = TRUE)
-    data$weight <- data$weight %||% 1
-    width <- width %||% resolution(data$x) * 0.75
-    
-    .super$calculate_groups(., data, na.rm = na.rm, width = width, ...)
+StatFivenumber <- ggproto("StatFivenumber", Stat,
+  required_aes = c("x", "y"),
+
+  compute_group = function(., data, scales, width = NULL, na.rm = FALSE, ...) {
+    qs <- c(0, 0.25, 0.5, 0.75, 1)
+
+    if (!is.null(data$weight)) {
+      try_require("quantreg")
+      stats <- as.numeric(coef(rq(y ~ 1, weights = weight, tau = qs, data = data)))
+    } else {
+      stats <- as.numeric(quantile(data$y, qs))
+    }
+    names(stats) <- c("ymin", "lower", "middle", "upper", "ymax")
+    if (length(unique(data$x)) > 1)
+      width <- diff(range(data$x)) * 0.9
+    else
+      width <- 0.9
+
+    df <- as.data.frame(as.list(stats))
+    transform(df,
+      x = if (is.factor(data$x)) data$x[1] else mean(range(data$x)),
+      width = width
+    )
   }
-  
-  calculate <- function(., data, scales, width = NULL, na.rm = FALSE, ...) {
-    with(data, {
-      qs <- c(0, 0.25, 0.5, 0.75, 1)
-      if (length(unique(weight)) != 1) {
-        try_require("quantreg")
-        stats <- as.numeric(coef(rq(y ~ 1, weights = weight, tau = qs)))
-      } else {
-        stats <- as.numeric(quantile(y, qs))
-      }
-      names(stats) <- c("ymin", "lower", "middle", "upper", "ymax")
-      if (length(unique(x)) > 1) 
-        width <- diff(range(x)) * 0.9
-      df <- as.data.frame(as.list(stats))
-      transform(df, x = if (is.factor(x)) 
-        x[1] else mean(range(x)), width = width)
-    })
-  }
-}) 
+)
