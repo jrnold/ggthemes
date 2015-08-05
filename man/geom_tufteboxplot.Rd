@@ -7,7 +7,7 @@
 geom_tufteboxplot(mapping = NULL, data = NULL, stat = "boxplot",
   position = "dodge", outlier.colour = "black", outlier.shape = 16,
   outlier.size = 2, fatten = 4, median.type = "point", boxwidth = 0.25,
-  ..., show.legend = NA, inherit.aes = FALSE)
+  ..., show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{The aesthetic mapping, usually constructed with

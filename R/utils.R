@@ -16,7 +16,7 @@ aesthetics <- function(x) {
 ## altered from same function from ggplot2
 rd_aesthetics <- function(name, geom) {
   aes <- aesthetics(geom)
-  paste0("\\code{", name, "} ", "understands the following aesthetics (required aesthetics are in bold):\n\n", "\\itemize{\n", 
+  paste0("\\code{", name, "} ", "understands the following aesthetics (required aesthetics are in bold):\n\n", "\\itemize{\n",
     paste0("  \\item \\code{", aes, "}", collapse = "\n"), "\n}\n")
 }
 
@@ -98,4 +98,7 @@ show_linetypes <- function(linetypes, labels = TRUE) {
 charopts <- function(x) {
   paste(sprintf("\\code{\"%s\"}", x), collapse = ", ")
 }
- 
+
+"%||%" <- function(a, b) {
+  if (!is.null(a)) a else b
+}

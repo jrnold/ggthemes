@@ -40,7 +40,7 @@
 #' p + geom_tufteboxplot(median.type='line')
 #'
 geom_tufteboxplot <- function(mapping = NULL, data = NULL, stat = "boxplot", position = "dodge", outlier.colour = "black",
-  outlier.shape = 16, outlier.size = 2, fatten = 4, median.type = "point", boxwidth = 0.25, ..., show.legend = NA, inherit.aes = FALSE) {
+  outlier.shape = 16, outlier.size = 2, fatten = 4, median.type = "point", boxwidth = 0.25, ..., show.legend = NA, inherit.aes = TRUE) {
   layer(
     data = data,
     mapping = mapping,
@@ -118,25 +118,30 @@ GeomTufteboxplot <- ggproto("GeomTufteboxplot", Geom,
       middle_grob <- NULL
     } else if (median.type == "point") {
       box_grob <- NULL
-      middle_grob <- GeomPoint$draw(transform(data, y = middle, size = size * fatten), ...)
+      middle_grob <- GeomPoint$draw(data = transform(data, y = middle, size = size * fatten), ...)
     } else {
       stop("`median.type` must be one of \"point\", \"line\", or \"box\".")
     }
 
     if (!is.null(data$outliers) && length(data$outliers[[1]] >= 1)) {
       outliers <- data.frame(y = data$outliers[[1]], x = data$x[1], colour = outlier.colour %||% data$colour[1], shape = outlier.shape %||%
-        data$shape[1], size = outlier.size %||% data$size[1], fill = NA, alpha = NA, stringsAsFactors = FALSE)
+        data$shape[1], size = outlier.size %||% data$size[1], fill = NA, alpha = NA, stringsAsFactors = FALSE, stroke = 1)
       outliers_grob <- GeomPoint$draw(outliers, ...)
     } else {
       outliers_grob <- NULL
     }
 
-    ggname(.$my_name(), grobTree(outliers_grob, box_grob, GeomSegment$draw(whiskers, ...), middle_grob))
+    grid::grobTree(
+      outliers_grob,
+      box_grob,
+      GeomSegment$draw(whiskers, ...),
+      middle_grob
+    )
   },
 
   draw_legend = draw_key_pointrange,
   default_aes = aes(colour = "black", size = 0.5, linetype = 1, shape = 16,
-    fill = "gray20", alpha = NA),
+    fill = "gray20", alpha = NA, stroke = 1),
   required_aes =  c("x", "lower", "upper", "middle", "ymin", "ymax")
 )
 
