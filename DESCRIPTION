@@ -9,8 +9,10 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     person("Joshua", "Kunst", role = "ctb"),
     person("Baptise", "Auguie", role = "ctb"),
     person("Bob", "Rudis", role = "ctb"),
+    person("Hadley", "Wickham", role = c("ctb", "cph"),
+    "Code from the ggplot2 package."),
     person("Justin",  "Talbot", role = "ctb",
-    comment = "Some code from the labeling package"))
+    comment = "Code from the labeling package"))
 Depends:
     R (>= 3.0.0),
     ggplot2 (>= 1.0.0.9003)
