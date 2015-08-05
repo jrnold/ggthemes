@@ -18,7 +18,6 @@ Depends:
     ggplot2 (>= 1.0.0.9003)
 Imports:
     colorspace,
-    grid,
     scales,
     methods
 Suggests:

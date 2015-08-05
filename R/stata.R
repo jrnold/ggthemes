@@ -72,7 +72,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         rect = element_rect(size = 0.5, linetype = 1, fill="white", colour="black"),
         text = element_text(family = base_family, face = "plain", colour="black",
                             size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-                            lineheight = 1),
+                            lineheight = 1, margin = margin()),
         title = element_text(),
         ## Axis
         axis.line = element_line(),
@@ -87,7 +87,6 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         # axis.ticks.length = stata_gsize$tiny,
         # axis.ticks.margin = stata_gsize$half_tiny,
         axis.ticks.length = unit(4/11, "lines"),
-        axis.ticks.margin = unit(2/11, "lines"),
         legend.background = element_rect(linetype=1),
         legend.margin = unit(1.2 / 100, "npc"),
         legend.key = element_rect(linetype=0),

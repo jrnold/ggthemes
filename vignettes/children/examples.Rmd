@@ -13,7 +13,8 @@ Quantitative Information*.
 
 ```{r tufte-rangeframe}
 (ggplot(mtcars, aes(wt, mpg))
-  + geom_point() + geom_rangeframe()
+  + geom_point()
+  + geom_rangeframe()
   + theme_tufte())
 ```
 
