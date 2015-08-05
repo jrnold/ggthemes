@@ -10,7 +10,7 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     person("Baptise", "Auguie", role = "ctb"),
     person("Bob", "Rudis", role = "ctb"),
     person("Hadley", "Wickham", role = c("ctb", "cph"),
-    "Code from the ggplot2 package."),
+    comment = "Code from the ggplot2 package."),
     person("Justin",  "Talbot", role = "ctb",
     comment = "Code from the labeling package"))
 Depends:
