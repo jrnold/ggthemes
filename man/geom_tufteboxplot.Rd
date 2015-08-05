@@ -68,7 +68,16 @@ replaces it with a single point and the whiskers.
 }
 \section{Aesthetics}{
 
-\Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('geom_tufteboxplot', ggthemes:::GeomTufteboxplot)}
+\itemize{
+\item x [required]
+\item y [required]
+\item colour
+\item size
+\item linetype
+\item shape
+\item fill
+\item alpha
+}
 }
 \examples{
 p <- ggplot(mtcars, aes(factor(cyl), mpg))

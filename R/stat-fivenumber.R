@@ -3,9 +3,6 @@
 #' The five number summary of a sample is the minimum, first quartile,
 #' median, third quartile, and maximum.
 #'
-#' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('stat_fivenumber', ggthemes:::StatFivenumber)}
-#'
 #' @param na.rm If \code{FALSE} (the default), removes missing values with
 #'    a warning.  If \code{TRUE} silently removes missing values.
 #' @inheritParams ggplot2::stat_identity

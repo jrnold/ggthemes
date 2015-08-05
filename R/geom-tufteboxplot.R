@@ -4,7 +4,16 @@
 #' replaces it with a single point and the whiskers.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('geom_tufteboxplot', ggthemes:::GeomTufteboxplot)}
+#' \itemize{
+#' \item x [required]
+#' \item y [required]
+#' \item colour
+#' \item size
+#' \item linetype
+#' \item shape
+#' \item fill
+#' \item alpha
+#' }
 #'
 #' @references Tufte, Edward R. (2001) The Visual Display of
 #' Quantitative Information, Chapter 6.

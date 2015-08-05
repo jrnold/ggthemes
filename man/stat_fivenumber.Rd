@@ -52,10 +52,6 @@ A data frame with additional columns:
 The five number summary of a sample is the minimum, first quartile,
 median, third quartile, and maximum.
 }
-\section{Aesthetics}{
-
-\Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('stat_fivenumber', ggthemes:::StatFivenumber)}
-}
 \seealso{
 \code{\link{stat_boxplot}}
 }

@@ -3,7 +3,12 @@
 #' Axis lines which extend to the maximum and minimum of the plotted data.
 #'
 #' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggthemes:::rd_aesthetics('geom_tufteboxplot', ggthemes:::GeomRangeFrame)}
+#' \itemize{
+#' \item colour
+#' \item size
+#' \item linetype
+#' \item alpha
+#' }
 #'
 #' @inheritParams ggplot2::geom_point
 #' @param sides A string that controls which sides of the plot the frames appear on.
