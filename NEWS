@@ -1,7 +1,6 @@
-ggthemes 2.2.2
-------------------------
+ggthemes 3.0.0
 
-* bugfix: Import fewer functions from grid and scales packages. Issue #35
+* Compatible with `ggplot >= 9
 
 ggthemes 2.2.1
 ------------------------

@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 2.2.2
+Version: 3.0.0
 Title: Extra Themes, Scales and Geoms for `ggplot2`
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"),
@@ -19,7 +19,7 @@ Depends:
 Imports:
     colorspace,
     grid,
-    scales,
+    scales (>= 1.0.0.9002),
     methods
 Suggests:
     knitr,
