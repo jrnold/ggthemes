@@ -34,6 +34,10 @@ stat_fivenumber <- function(mapping = NULL, data = NULL, geom = "boxplot", posit
   )
 }
 
+#' @export
+#' @format NULL
+#' @usage NULL
+#' @rdname stat_fivenumber
 StatFivenumber <- ggproto("StatFivenumber", Stat,
   required_aes = c("x", "y"),
 

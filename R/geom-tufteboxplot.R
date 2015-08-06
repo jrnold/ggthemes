@@ -74,6 +74,10 @@ geom_tufteboxplot <-
     )
   }
 
+#' @rdname geom_tufteboxplot
+#' @usage NULL
+#' @format NULL
+#' @export
 GeomTufteboxplot <- ggproto("GeomTufteboxplot", Geom,
   reparameterise = function(df, params) {
     df$width <-

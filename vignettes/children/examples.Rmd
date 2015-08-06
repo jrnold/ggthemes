@@ -1,4 +1,4 @@
-## Examples
+# Examples
 
 ```{r dsamp}
 library("ggplot2")
@@ -18,12 +18,19 @@ Quantitative Information*.
   + theme_tufte())
 ```
 
-The Tufte minimal boxplot.
-
+The Tufte minimal boxplot, in both its variants.
+With a point indicating the median:
 ```{r tufteboxplot}
 (ggplot(mtcars, aes(factor(cyl), mpg)) 
  + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot())
+ + geom_tufteboxplot(stat = "fivenumber"))
+```
+
+With an offset line indicating the interquartile range and a gap indicating the median,
+```{r tufteboxplot2}
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot(median.type = "line", stat = "fivenumber"))
 ```
 
 ### Economist theme

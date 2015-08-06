@@ -42,6 +42,10 @@ geom_rangeframe <- function(mapping = NULL, data = NULL, stat = "identity", posi
   )
 }
 
+#' @rdname geom_rangeframe
+#' @usage NULL
+#' @format NULL
+#' @export
 GeomRangeFrame <- ggproto("GeomRangeFrame", Geom,
   draw = function(self, data, scales, coord, sides, fun_min, fun_max, ...) {
     rugs <- list()
