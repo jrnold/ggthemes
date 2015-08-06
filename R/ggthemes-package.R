@@ -12,6 +12,7 @@
 #' @import utils
 #' @import colorspace
 #' @import ggplot2
+#' @importFrom grid grobTree grobName
 #' @importFrom scales manual_pal div_gradient_pal seq_gradient_pal
 #' @importFrom graphics abline axis text points
 #' @importFrom methods hasArg as
