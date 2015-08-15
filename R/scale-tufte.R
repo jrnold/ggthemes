@@ -61,14 +61,14 @@
 
 
 #' Pretty axis breaks inclusive of extreme values
-#' 
+#'
 #' This function returns pretty axis breaks that always include the extreme  values of the data.
 #' This works by calling the extended Wilkinson alogorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
 #' Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
 #'
 #' \code{extended_range_breaks} implements the algorithm and returns the break values.
 #' \code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
-#' 
+#'
 #' @param dmin minimum of the data range
 #' @param dmax maximum of the data range
 #' @param n desired number of breaks
@@ -86,7 +86,7 @@ extended_range_breaks <- function(dmin, dmax, n = 5,
                                   Q = c(1, 5, 2, 2.5, 4, 3),
                                   w = c(0.25, 0.2, 0.5, 0.05)) {
   eps <- .Machine$double.eps * 100
-  
+
   if(dmin > dmax) {
     temp <- dmin
     dmin <- dmax
@@ -103,7 +103,7 @@ extended_range_breaks <- function(dmin, dmax, n = 5,
 
   best <- list()
   best$score <- -2
-  
+
   j <- 1
   while(j < Inf)
   {
@@ -116,27 +116,27 @@ extended_range_breaks <- function(dmin, dmax, n = 5,
         j <- Inf
         break
       }
-    
+
       k <- 2
       while(k < Inf)                          # loop over tick counts
-      {    
+      {
         dm <- .density.max(k, n)
 
         if((w[1]*sm+w[2]+w[3]*dm+w[4]) < best$score)
           break
-      
+
         delta <- (dmax-dmin)/(k+1)/j/q
         z <- ceiling(log(delta, base=10))
 
         while(z < Inf)
-        {      
+        {
           step <- j*q*10^z
 
           cm <- .coverage.max(dmin, dmax, step*(k-1))
 
           if((w[1]*sm+w[2]*cm+w[3]*dm+w[4]) < best$score)
             break
-          
+
           min_start <- floor(dmax/(step))*j - (k - 1)*j
           max_start <- ceiling(dmin/(step))*j
 
@@ -153,9 +153,9 @@ extended_range_breaks <- function(dmin, dmax, n = 5,
             lstep <- step
 
             s <- .simplicity(q, Q, j, lmin, lmax, lstep)
-            c <- .coverage(dmin, dmax, lmin, lmax)            
+            c <- .coverage(dmin, dmax, lmin, lmax)
             g <- .density(k, n, dmin, dmax, lmin, lmax)
-            l <- .legibility(lmin, lmax, lstep)            
+            l <- .legibility(lmin, lmax, lstep)
 
             score <- w[1]*s + w[2]*c + w[3]*g + w[4]*l
 
@@ -169,11 +169,11 @@ extended_range_breaks <- function(dmin, dmax, n = 5,
             }
           }
           z <- z+1
-        }        
+        }
         k <- k+1
       }
     }
-    j <- j + 1    
+    j <- j + 1
   }
   breaks <- seq(from=best$lmin, to=best$lmax, by=best$lstep)
   if (length(breaks) >= 2) {
@@ -190,7 +190,7 @@ extended_range_breaks <- function(dmin, dmax, n = 5,
 scales_extended_range_breaks <- function (expand = c(0, 0), ...)  {
     function(x) {
         spread <- range(x)
-        m <- matrix(c(1+expand[1], expand[1], expand[1], 1+expand[1]), 
+        m <- matrix(c(1+expand[1], expand[1], expand[1], 1+expand[1]),
                     ncol=2, byrow=TRUE)
         limits <- m %*% (spread + c(1,-1)*expand[2]) / (1+2*expand[1])
         extended_range_breaks(limits[1], limits[2], ...)
@@ -199,19 +199,20 @@ scales_extended_range_breaks <- function (expand = c(0, 0), ...)  {
 
 #' Axis breaks inclusive of extreme values
 #'
-#' These scales draw pretty axis breaks that always include the extreme 
+#' These scales draw pretty axis breaks that always include the extreme
 #' values of the data.
-#' 
+#'
 #' @aliases scale_x_tufte scale_y_tufte
 #' @param breaks see \code{\link{scale_x_continuous}}
 #' @param expand see \code{\link{scale_x_continuous}}
 #' @param ... additional parameters passed to \code{\link{continuous_scale}}
+#' @param labels see \code{\link{scale_x_continuous}}
 #' @family tufte
 #' @seealso range_breaks
 #' @author Baptise Auguie
 #' @rdname scale_tufte
 #' @examples
-#' (ggplot(mtcars, aes(x = wt + runif(1), y = mpg)) 
+#' (ggplot(mtcars, aes(x = wt + runif(1), y = mpg))
 #'  + geom_point()
 #'  + geom_rangeframe()
 #'  + theme_tufte()
@@ -220,23 +221,29 @@ scales_extended_range_breaks <- function (expand = c(0, 0), ...)  {
 #'  )
 #' @export
 scale_x_tufte <-  function(breaks = scales_extended_range_breaks(expand), ...,
-                           expand = c(0.04, 0)) {
+                           expand = c(0.04, 0),
+                           labels = smart_digits_format()) {
   continuous_scale(c("x", "xmin", "xmax", "xend", "xintercept"),
-                   "position_c", identity, ...,
+                   "position_c", identity,
+                   labels = labels,
                    breaks = breaks,
                    expand = expand,
-                   guide = "none")
+                   guide = "none",
+                   ...)
 }
 
 #' @rdname scale_tufte
 #' @export
-scale_y_tufte <-  function(breaks = scales_extended_range_breaks(expand), ..., 
-                           expand = c(0.04, 0)) {
+scale_y_tufte <-  function(breaks = scales_extended_range_breaks(expand), ...,
+                           expand = c(0.04, 0),
+                           labels = smart_digits_format()) {
   continuous_scale(c("y", "ymin", "ymay", "yend", "yintercept"),
-                   "position_c", identity, ...,
+                   "position_c", identity,
+                   labels = labels,
                    breaks = breaks,
                    expand = expand,
-                   guide = "none")
+                   guide = "none",
+                   ...)
 }
 
 

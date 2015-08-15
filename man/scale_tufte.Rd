@@ -6,10 +6,10 @@
 \title{Axis breaks inclusive of extreme values}
 \usage{
 scale_x_tufte(breaks = scales_extended_range_breaks(expand), ...,
-  expand = c(0.04, 0))
+  expand = c(0.04, 0), labels = smart_digits_format())
 
 scale_y_tufte(breaks = scales_extended_range_breaks(expand), ...,
-  expand = c(0.04, 0))
+  expand = c(0.04, 0), labels = smart_digits_format())
 }
 \arguments{
 \item{breaks}{see \code{\link{scale_x_continuous}}}
@@ -17,6 +17,8 @@ scale_y_tufte(breaks = scales_extended_range_breaks(expand), ...,
 \item{...}{additional parameters passed to \code{\link{continuous_scale}}}
 
 \item{expand}{see \code{\link{scale_x_continuous}}}
+
+\item{labels}{see \code{\link{scale_x_continuous}}}
 }
 \description{
 These scales draw pretty axis breaks that always include the extreme
