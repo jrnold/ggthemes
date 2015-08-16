@@ -1,6 +1,8 @@
 ggthemes 3.0.0
+------------------------
 
 * Compatible with `ggplot >= 9
+* Make `smart_digits_format` the default for labels in `scale_*_tufte`. Issue #42
 
 ggthemes 2.2.1
 ------------------------
