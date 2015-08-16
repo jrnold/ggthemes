@@ -8,6 +8,7 @@ r_packages:
   - latticeExtra
 
 r_github_packages:
+  - hadley/scales
   - hadley/ggplot2
   - hadley/devtools
 
