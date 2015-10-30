@@ -176,8 +176,9 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 #' (q + theme_economist(base_family="Verdana")
 #' + scale_colour_economist())
 #' }
-theme_economist <- function(base_size = 10, base_family="sans",
-                            horizontal=TRUE, dkpanel=FALSE, stata=FALSE) {
+theme_economist <- function(base_size = 10, base_family = "sans",
+                            horizontal = TRUE, dkpanel = FALSE,
+                            stata = FALSE) {
     if (stata) {
         bgcolors <- ggthemes_data$economist$stata$bg
     } else {
@@ -197,7 +198,7 @@ theme_economist <- function(base_size = 10, base_family="sans",
               colour = NA, size = 0.5, linetype = 1),
               text = element_text(family = base_family, face = "plain",
               colour = "black", size = base_size, hjust = 0.5, vjust = 0.5,
-              angle = 0, lineheight = 1, margin = margin()),
+              angle = 0, lineheight = 1, margin = margin(), debug = FALSE),
               ## Axis
               axis.line = element_line(size = rel(0.8)),
               axis.line.y = element_blank(),

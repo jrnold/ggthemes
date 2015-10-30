@@ -72,7 +72,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         rect = element_rect(size = 0.5, linetype = 1, fill="white", colour="black"),
         text = element_text(family = base_family, face = "plain", colour="black",
                             size = base_size, hjust = 0.5, vjust = 1, angle = 0,
-                            lineheight = 1, margin = margin()),
+                            lineheight = 1, margin = margin(), debug = FALSE),
         title = element_text(),
         ## Axis
         axis.line = element_line(),

@@ -4,33 +4,38 @@
 library("ggplot2")
 library("ggthemes")
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+diamond_plot <- 
+  ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+  geom_point() +
+  ggtitle("Diamonds Are Forever")
 ```
 
 ### Tufte theme and geoms
 
-Minimal theme and geoms based on plots in *The Visual Display of
-Quantitative Information*.
+Minimal theme and geoms based on plots in *The Visual Display of Quantitative Information*.
 
 ```{r tufte-rangeframe}
-(ggplot(mtcars, aes(wt, mpg))
-  + geom_point()
-  + geom_rangeframe()
-  + theme_tufte())
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point() +
+  geom_rangeframe() +
+  theme_tufte()
 ```
 
 The Tufte minimal boxplot, in both its variants.
 With a point indicating the median:
 ```{r tufteboxplot}
-(ggplot(mtcars, aes(factor(cyl), mpg)) 
- + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(stat = "fivenumber"))
+ggplot(mtcars, aes(factor(cyl), mpg))  +
+ theme_tufte(ticks=FALSE) +
+ geom_tufteboxplot()
+
 ```
 
 With an offset line indicating the interquartile range and a gap indicating the median,
 ```{r tufteboxplot2}
 (ggplot(mtcars, aes(factor(cyl), mpg)) 
  + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(median.type = "line", stat = "fivenumber"))
+ + geom_tufteboxplot(median.type = "line")
+)
 ```
 
 ### Economist theme
@@ -39,10 +44,9 @@ A theme that approximates the style of plots in The Economist
 magazine.
 
 ```{r economist}
-(qplot(carat, price, data=dsamp, colour=cut)
- + theme_economist()
- + scale_colour_economist()
- + ggtitle("Diamonds Are Forever"))
+diamond_plot +
+  theme_economist() +
+  scale_colour_economist() 
 ```
 
 ### Solarized theme
@@ -52,25 +56,27 @@ A theme and color and fill scales based on the Solarized palette.
 The light theme.
 
 ```{r solarized-light}
-(qplot(carat, price, data=dsamp, colour=cut)
-                             + theme_solarized()
-                             + scale_colour_solarized("blue"))
+diamond_plot +
+  theme_solarized() +
+  scale_colour_solarized("blue")
 ```
 
 The dark theme.
 
 ```{r solarized-dark}
-(qplot(carat, price, data=dsamp, colour=cut)
-                             + theme_solarized(light=FALSE)
-                             + scale_colour_solarized("red"))
+diamond_plot +
+  theme_solarized(light = FALSE) +
+  scale_colour_solarized("red")
+
 ```
 
 An alternative theme.
 
 ```{r solarized-alt}
-(qplot(carat, price, data=dsamp, colour=cut)
-                             + theme_solarized_2()
-                             + scale_colour_solarized("blue"))
+diamond_plot +
+  theme_solarized_2(light = FALSE) +
+  scale_colour_solarized("blue")
+
 ```
 
 

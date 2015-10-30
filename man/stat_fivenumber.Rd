@@ -6,9 +6,9 @@
 \alias{stat_fivenumber}
 \title{Calculate components of a five-number summary}
 \usage{
-stat_fivenumber(mapping = NULL, data = NULL, geom = "boxplot",
-  position = "dodge", na.rm = FALSE, ..., show.legend = NA,
-  inherit.aes = TRUE)
+stat_fivenumber(mapping = NULL, data = NULL, geom = "boxplot", qs = c(0,
+  0.25, 0.5, 0.75, 1), fun.args = list(), na.rm = FALSE,
+  position = "identity", show.legend = NA, inherit.aes = TRUE, ...)
 }
 \arguments{
 \item{mapping}{The aesthetic mapping, usually constructed with
@@ -20,15 +20,11 @@ the plot defaults.}
 
 \item{geom}{The geometric object to use display the data}
 
-\item{position}{The position adjustment to use for overlapping points
-on this layer}
-
 \item{na.rm}{If \code{FALSE} (the default), removes missing values with
 a warning.  If \code{TRUE} silently removes missing values.}
 
-\item{...}{other arguments passed on to \code{\link{layer}}. This can
-include aesthetics whose values you want to set, not map. See
-\code{\link{layer}} for more details.}
+\item{position}{The position adjustment to use for overlapping points
+on this layer}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -38,17 +34,19 @@ include aesthetics whose values you want to set, not map. See
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link{borders}}.}
+
+\item{...}{other arguments passed on to \code{\link{layer}}. This can
+include aesthetics whose values you want to set, not map. See
+\code{\link{layer}} for more details.}
 }
 \value{
 A data frame with additional columns:
   \item{width}{width of boxplot}
-  \item{ymin}{minimum}
+  \item{min}{minimum}
   \item{lower}{lower hinge, 25\% quantile}
-  \item{notchlower}{lower edge of notch = median - 1.58 * IQR / sqrt(n)}
   \item{middle}{median, 50\% quantile}
-  \item{notchupper}{upper edge of notch = median + 1.58 * IQR / sqrt(n)}
   \item{upper}{upper hinge, 75\% quantile}
-  \item{ymax}{maximum}
+  \item{max}{maximum}
 }
 \description{
 The five number summary of a sample is the minimum, first quartile,

@@ -1,7 +1,7 @@
 #' @include ggthemes-package.R
 NULL
 
-theme_foundation_null <- function(base_size=12, base_family="") {
+theme_foundation_null <- function(base_size = 12, base_family = "") {
         theme(
             line = element_line(colour = "black", size = 0.5,
             linetype = 1, lineend = "butt"),
@@ -10,7 +10,7 @@ theme_foundation_null <- function(base_size=12, base_family="") {
             text =  element_text(family = base_family, face = "plain",
             colour = "black", size = base_size,
             hjust = 0.5, vjust = 0.5, angle = 0, lineheight = 0.9,
-            margin = margin()),
+            margin = margin(), debug = FALSE),
             axis.text = element_text(),
             strip.text = element_text(),
             axis.line = element_blank(),
