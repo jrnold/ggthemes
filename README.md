@@ -32,7 +32,7 @@ Some extra geoms, scales, and themes for
 - ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
 - ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
 - ``theme_tufte``: a minimal ink theme based on Tufte's *The Visual Display of Quantitative Information*.
-- ``theme_wsj``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
+- - ``theme_wsj``: a theme based on the plots in the [The Wall Street Journal](http://www.wsj.com/).
 
 ### Scales
 
@@ -79,11 +79,11 @@ Or, to install the development version from github, use the
 
 ```r
 library("devtools")
-install_github("jrnold/ggthemes")
+install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
 ```
 
-Windows users also must first install
-[Rtools](http://cran.rstudio.com/bin/windows/Rtools/).
+Note: at the moment the development version of **ggthemes** will *only* work with the development version of **ggplot2**, and is not compatible with the version of **ggplot2** on CRAN.
+
 
 <!--  LocalWords:  CRAN 'ggthemes' github devtools jrnold ggthemes
  -->
@@ -97,3 +97,401 @@ Contributions are welcome! If you would like to add a theme, scales,
 etc., fork the repository, add your theme, and submit a pull request.
 
 
+# Examples
+
+
+```r
+library("ggplot2")
+library("ggthemes")
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+```
+
+### Tufte theme and geoms
+
+Minimal theme and geoms based on plots in *The Visual Display of
+Quantitative Information*.
+
+
+```r
+(ggplot(mtcars, aes(wt, mpg))
+  + geom_point()
+  + geom_rangeframe()
+  + theme_tufte())
+```
+
+```
+## Error in layer(data = data, mapping = mapping, stat = stat, geom = GeomRangeFrame, : unused argument (geom_params = list(sides = sides, fun_min = fun_min, fun_max = fun_max))
+```
+
+The Tufte minimal boxplot, in both its variants.
+With a point indicating the median:
+
+```r
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot(stat = "fivenumber"))
+```
+
+```
+## Error in layer(data = data, mapping = mapping, stat = stat, geom = GeomTufteboxplot, : unused argument (geom_params = list(outlier.colour = outlier.colour, outlier.shape = outlier.shape, outlier.size = outlier.size, fatten = fatten, median.type = median.type, boxwidth = boxwidth))
+```
+
+With an offset line indicating the interquartile range and a gap indicating the median,
+
+```r
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot(median.type = "line", stat = "fivenumber"))
+```
+
+```
+## Error in layer(data = data, mapping = mapping, stat = stat, geom = GeomTufteboxplot, : unused argument (geom_params = list(outlier.colour = outlier.colour, outlier.shape = outlier.shape, outlier.size = outlier.size, fatten = fatten, median.type = median.type, boxwidth = boxwidth))
+```
+
+### Economist theme
+
+A theme that approximates the style of plots in The Economist
+magazine.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_economist()
+ + scale_colour_economist()
+ + ggtitle("Diamonds Are Forever"))
+```
+
+```
+## Error in FUN(X[[i]], ...): Theme element 'text' has NULL property: debug
+```
+
+![plot of chunk economist](http://i.imgur.com/zEDXHQN.png) 
+
+### Solarized theme
+
+A theme and color and fill scales based on the Solarized palette.
+
+The light theme.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized()
+                             + scale_colour_solarized("blue"))
+```
+
+![plot of chunk solarized-light](http://i.imgur.com/fckD4gK.png) 
+
+The dark theme.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized(light=FALSE)
+                             + scale_colour_solarized("red"))
+```
+
+![plot of chunk solarized-dark](http://i.imgur.com/C1JZwRB.png) 
+
+An alternative theme.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_solarized_2()
+                             + scale_colour_solarized("blue"))
+```
+
+```
+## Error in FUN(X[[i]], ...): Theme element 'text' has NULL property: debug
+```
+
+![plot of chunk solarized-alt](http://i.imgur.com/bY1dJPA.png) 
+
+
+### Stata theme 
+
+Themes and scales (color, fill, linetype, shapes) based on the graph
+schemes in Stata.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+                             + theme_stata() 
+                             + scale_colour_stata()
+                             + ggtitle("Plot Title"))
+```
+
+```
+## Error in FUN(X[[i]], ...): Theme element 'text' has NULL property: debug
+```
+
+![plot of chunk stata](http://i.imgur.com/65WUWQF.png) 
+
+### Excel 2003 theme
+
+For that classic ugly look and feel. For ironic purposes only. 3D bars
+and pies not included. Please never use this theme.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_excel() 
+ + scale_colour_excel())
+```
+
+![plot of chunk excel1](http://i.imgur.com/taTqVNk.png) 
+
+
+```r
+(ggplot(diamonds, aes(clarity, fill=cut)) 
+ + geom_bar()
+ + scale_fill_excel()
+ + theme_excel())
+```
+
+![plot of chunk excel2](http://i.imgur.com/7rIrPj5.png) 
+
+### Inverse Gray Theme
+
+Inverse of `theme_gray`, i.e. white plot area and gray background.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray())
+```
+
+![plot of chunk igray](http://i.imgur.com/bYcicXF.png) 
+
+### Fivethirtyeight theme
+
+Theme and color palette based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
+
+
+```r
+(qplot(hp, mpg, data= subset(mtcars, cyl != 5), geom="point", color = factor(cyl))
+ + geom_smooth(method = "lm", se = FALSE)
+ + scale_color_fivethirtyeight()
+ + theme_fivethirtyeight())
+```
+
+```
+## Error in FUN(X[[i]], ...): Theme element 'text' has NULL property: debug
+```
+
+![plot of chunk fivethirtyeight](http://i.imgur.com/0N2NI9G.png) 
+
+### Tableau Scales
+
+Color, fill, and shape scales based on those used in the Tableau software.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray()
+ + scale_colour_tableau())
+```
+
+![plot of chunk tableau](http://i.imgur.com/5BpqUzC.png) 
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_igray()
+ + scale_colour_tableau("colorblind10"))
+```
+
+![plot of chunk tableau-colorbind10](http://i.imgur.com/s09WxBg.png) 
+
+### Stephen Few's Practical Rules for Using Color ...
+
+Color palette and theme based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_few()
+ + scale_colour_few())
+```
+
+![plot of chunk few](http://i.imgur.com/opdUgfB.png) 
+
+### Wall Street Journal
+
+Theme and some color palettes based on plots in the *The Wall Street Journal*.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=cut)
+ + theme_wsj()
+ + scale_colour_wsj("colors6", "")
+ + ggtitle("Diamond Prices"))
+```
+
+```
+## Error in FUN(X[[i]], ...): Theme element 'text' has NULL property: debug
+```
+
+![plot of chunk wsj](http://i.imgur.com/qBdZlYD.png) 
+
+### GDocs Theme
+
+Theme and color palettes based on the defaults in Google Docs.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_gdocs()
+ + ggtitle("Diamonds")
+ + scale_color_gdocs())
+```
+
+```
+## Error in FUN(X[[i]], ...): Theme element 'text' has NULL property: debug
+```
+
+![plot of chunk gdocs](http://i.imgur.com/Y6YbP4A.png) 
+
+### Calc Theme
+
+Theme and color and shape palettes based on the defaults in LibreOffice Calc.
+
+
+```r
+(qplot(carat, price, data=dsamp, colour=clarity)
+ + theme_calc()
+ + ggtitle("Diamonds")
+ + scale_color_calc())
+```
+
+```
+## Error in FUN(X[[i]], ...): Theme element 'text' has NULL property: debug
+```
+
+![plot of chunk calc](http://i.imgur.com/BXhBSnS.png) 
+
+### Pander Theme
+
+Theme and color palettes based on the [pander package](http://rapporter.github.io/pander/).
+
+
+```r
+(qplot(carat, price, data = dsamp, colour = clarity)
+ + theme_pander()
+ + scale_colour_pander())
+```
+
+![plot of chunk pander-scatterplot](http://i.imgur.com/nyLa60g.png) 
+
+
+```r
+(ggplot(dsamp, aes(clarity, fill = cut)) + geom_bar()
+  + theme_pander()
+  + scale_fill_pander())
+```
+
+![plot of chunk pander-barplot](http://i.imgur.com/tSNM5LD.png) 
+
+### Highcharts  theme
+
+A theme that approximates the style of plots in [Highcharts JS](http://www.highcharts.com/demo).
+
+
+```r
+(qplot(carat, price, data = dsamp, colour = cut)
+ + theme_hc()
+ + scale_colour_hc()
+ + ggtitle("Diamonds Are Forever"))
+```
+
+![plot of chunk hc-default](http://i.imgur.com/kkQGNws.png) 
+
+```r
+(qplot(carat, price, data = dsamp, colour = cut)
+ + theme_hc(bgcolor = "darkunica")
+ + scale_colour_hc("darkunica")
+ + ggtitle("Diamonds Are Forever"))
+```
+
+![plot of chunk hc-darkunica](http://i.imgur.com/QCQmQ0R.png) 
+
+
+```r
+dtemp <- data.frame(months = factor(rep(substr(month.name,1,3), 4), levels = substr(month.name,1,3)),
+                    city = rep(c("Tokyo", "New York", "Berlin", "London"), each = 12),
+                    temp = c(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
+                             -0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5,
+                             -0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0,
+                             3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8))
+```
+
+
+```r
+qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
+  geom_point(size=1.1) + 
+  ggtitle("Monthly Average Temperature") +
+  theme_hc() +
+  scale_colour_hc()
+```
+
+![plot of chunk hc-default-line](http://i.imgur.com/Coi6jzS.png) 
+
+
+```r
+qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
+  geom_point(size=1.1) + 
+  ggtitle("Monthly Average Temperature") +
+  theme_hc(bgcolor = "darkunica") +
+  scale_fill_hc("darkunica")
+```
+
+![plot of chunk hc-darkunica-line](http://i.imgur.com/RG4y3tb.png) 
+
+## Maps theme
+
+A theme useful for displaying maps.
+
+
+```r
+library("maps")
+```
+
+```
+## 
+##  # ATTENTION: maps v3.0 has an updated 'world' map.        #
+##  # Many country borders and names have changed since 1990. #
+##  # Type '?world' or 'news(package="maps")'. See README_v3. #
+```
+
+```r
+us <- fortify(map_data("state"), region = "region")
+(ggplot()
+  + geom_map(data  =  us, map = us,
+             aes(x = long, y = lat, map_id = region, group = group),
+             fill = "white", color = "black", size = 0.25)
+  + coord_map("albers", lat0 = 39, lat1 = 45)
+  + theme_map()
+  )
+```
+
+![plot of chunk map](http://i.imgur.com/EKpKjPF.png) 
+
+
+
+<!--  LocalWords:  dsamp ggplot2 ggthemes nrow Tufte geoms tufte aes
+ -->
+<!--  LocalWords:  rangeframe ggplot mtcars boxplot tufteboxplot cyl
+ -->
+<!--  LocalWords:  qplot colour ggtitle Solarized solarized Stata 3D
+ -->
+<!--  LocalWords:  linetype stata excel1 excel2 igray Fivethirtyeight
+ -->
+<!--  LocalWords:  fivethirtyeight lm se colorbind10 colorblind10 wsj
+ -->
+<!--  LocalWords:  Few's colors6 GDocs gdocs Calc LibreOffice calc JS
+ -->
+<!--  LocalWords:  scatterplot barplot Highcharts hc darkunica dtemp
+ -->
+<!--  LocalWords:  bgcolor substr
+ -->
