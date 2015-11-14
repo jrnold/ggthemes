@@ -57,8 +57,9 @@ theme_foundation_null <- function(base_size = 12, base_family = "") {
             plot.margin = unit(c(1, 1, 0.5, 0.5), "lines"),
             strip.background = element_rect(),
             strip.text = element_text(),
-            strip.text.x = element_text(),
-            strip.text.y = element_text(angle = -90),
+            strip.text.x = element_text(margin = unit(c(5.5, 0, 5.5, 0), "pt")),
+            strip.text.y = element_text(angle = -90,
+                                        margin = unit(c(0, 5.5, 0, 5.5), "pt")),
             complete = TRUE)
 }
 
@@ -96,7 +97,7 @@ theme_foundation_sizes <- function() {
 theme_foundation <- function(base_size=12, base_family="", use_sizes=TRUE) {
     thm <- theme_foundation_null(base_size=base_size, base_family=base_family)
     if (use_sizes) {
-        thm + theme_foundation_sizes()
+        thm <- thm + theme_foundation_sizes()
     }
     thm
 }
