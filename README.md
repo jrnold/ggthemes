@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jrnold/ggthemes.svg?branch=master)](https://travis-ci.org/jrnold/ggthemes)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/ggthemes)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/ggthemes)](http://cran.rstudio.com/web/packages/ggthemes)
+[![cran version](http://www.r-pkg.org/badges/version/ggthemes)](https://cran.rstudio.com/web/packages/ggthemes/)
 
 
 
@@ -12,7 +12,7 @@
 ## Overview
 
 Some extra geoms, scales, and themes for
-[ggplot](http://had.co.nz/ggplot2/), including:
+[ggplot](http://ggplot2.org/), including:
 
 ### Geoms
 
@@ -30,7 +30,7 @@ Some extra geoms, scales, and themes for
 - ``theme_hc``: a theme based on [Highcharts JS](http://www.highcharts.com).
 - ``theme_pander``: a theme to use with the [pander](http://rapporter.github.io/pander/) package.
 - ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
-- ``theme_stata``: themes based on [Stata](http://stata.com/) graph schemes.
+- ``theme_stata``: themes based on [Stata](http://www.stata.com/) graph schemes.
 - ``theme_tufte``: a minimal ink theme based on Tufte's *The Visual Display of Quantitative Information*.
 - - ``theme_wsj``: a theme based on the plots in the [The Wall Street Journal](http://www.wsj.com/).
 
@@ -45,7 +45,7 @@ Some extra geoms, scales, and themes for
 - ``scale_colour_hc``: a theme based on [Highcharts JS](http://www.highcharts.com).
 - ``scale_colour_solarized``: [Solarized](http://ethanschoonover.com/solarized) colors
 - ``scale_colour_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
-- ``scale_colour_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableausoftware.com/).
+- ``scale_colour_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableau.com/).
 - ``scale_colour_pander``, ``scale_fill_pander``: scales to use with the [pander](http://rapporter.github.io/pander/) package.
 - ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, Tremmel (1995), and Lewandowsky and Spence (1989).
 - ``scale_x_tufte``, ``scale_y_tufte``: x and y scales with pretty labels that also include the min and max values.
