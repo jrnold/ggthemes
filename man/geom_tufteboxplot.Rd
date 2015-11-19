@@ -6,11 +6,11 @@
 \alias{geom_tufteboxplot}
 \title{Tufte's Box Blot}
 \usage{
-geom_tufteboxplot(mapping = NULL, data = NULL, stat = "boxplot",
-  position = "dodge", outlier.colour = "black", outlier.shape = 19,
-  outlier.size = 1.5, outlier.stroke = 0.5, notch = FALSE,
-  notchwidth = 0.5, varwidth = FALSE, na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, ...)
+geom_tufteboxplot(mapping = NULL, data = NULL, stat = "fivenumber",
+  position = "identity", outlier.colour = "black", outlier.shape = 19,
+  outlier.size = 1.5, outlier.stroke = 0.5, voffset = 0.01,
+  hoffset = 0.005, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
+  median.type = "point", whisker.type = "line", ...)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
@@ -34,6 +34,10 @@ a call to a position adjustment function.}
 
 \item{outlier.size}{size of outlying points}
 
+\item{voffset}{controls the size of the gap in the line representing the median when \code{median.type = 'line'}. This is a fraction of the range of \code{y}.}
+
+\item{hoffset}{controls how much the interquartile line is offset from the whiskers when \code{median.type = 'line'}. This is a fraction of the range of \code{x}.}
+
 \item{na.rm}{If \code{FALSE} (the default), removes missing values with
 a warning.  If \code{TRUE} silently removes missing values.}
 
@@ -46,6 +50,8 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link{borders}}.}
 
+\item{median.type}{If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represnted by a line, possibly offset, and the median by a gap in the line.}
+
 \item{...}{other arguments passed on to \code{\link{layer}}. There are
   three types of arguments you can use here:
 
@@ -56,23 +62,10 @@ the default plot specification, e.g. \code{\link{borders}}.}
     default \code{stat} associated with the layer.
   \item Other arguments passed on to the stat.
   }}
-
-\item{fatten}{a multiplicative factor to fatten the middle point
-(or line) by}
-
-\item{median.type}{One of \code{'box'}, \code{'line'}, or \code{'box'}. If \code{median.type='point'},
-then use whitespace to represent the central quartiles and a point at the median.
-If \code{median.type='box'}, then use a box to represent the standard error of the median. This
-is similar to what the \code{notch} option does in a standard boxplot.
-the same thing as the notch does in a standard boxplot.
-If \code{median.type='line'}, the use offset lines to represent the central quartile and whitespace at the median}
-
-\item{boxwidth}{a number between 0 and 1 which represents the
-relative width of the box to the middle line.}
 }
 \description{
-Edward Tufte's revision of the box plot erases the box and
-replaces it with a single point and the whiskers.
+Edward Tufte's revisions of the box plot as described in
+\emph{The Visual Display of Quantitative Information}.
 }
 \section{Aesthetics}{
 
