@@ -122,10 +122,11 @@ ggplot(mtcars, aes(wt, mpg)) +
   theme_tufte()
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/T8zeKLR.png) 
+![plot of chunk tufte-rangeframe](http://i.imgur.com/WFhxnwW.png) 
 
-The Tufte minimal boxplot, in both its variants.
-With a point indicating the median:
+The function `geom_tufteboxplot` creates several variants of Tufte's minimal-ink boxplots.
+For a boxplot with a point indicating the median, a gap indicating the interquartile range,
+and lines for whiskers:
 
 ```r
 ggplot(mtcars, aes(factor(cyl), mpg))  +
@@ -133,13 +134,8 @@ ggplot(mtcars, aes(factor(cyl), mpg))  +
  geom_tufteboxplot()
 ```
 
-```
-## Error in match.arg(median.type): 'arg' must be of length 1
-```
-
-![plot of chunk tufteboxplot](http://i.imgur.com/QqOYxex.png) 
-
-With an offset line indicating the interquartile range and a gap indicating the median,
+![plot of chunk tufteboxplot](http://i.imgur.com/our4lzQ.png) 
+For a boxplot with an offset line indicating the interquartile range and a gap indicating the median:
 
 ```r
 (ggplot(mtcars, aes(factor(cyl), mpg)) 
@@ -148,7 +144,30 @@ With an offset line indicating the interquartile range and a gap indicating the 
 )
 ```
 
-![plot of chunk tufteboxplot2](http://i.imgur.com/xWd7q5n.png) 
+![plot of chunk tufteboxplot2](http://i.imgur.com/po4nUf8.png) 
+For a boxplot with an line indicating the interquartile range, a gap indicating the median, and 
+points indicating the minimum and maximum:
+
+```r
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot(median.type = "line", whisker.type = 'point', hoffset = 0)
+)
+```
+
+![plot of chunk tufteboxplot3](http://i.imgur.com/98KswgV.png) 
+For a boxplot with a wide line indicating the interquartile range, a gap indicating the median, and 
+lines indicating the minimum and maximum
+
+```r
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0,
+                     width = 3)
+)
+```
+
+![plot of chunk tufteboxplot4](http://i.imgur.com/3ZKF49X.png) 
 
 ### Economist theme
 
@@ -162,7 +181,7 @@ diamond_plot +
   scale_colour_economist() 
 ```
 
-![plot of chunk economist](http://i.imgur.com/bhrH3s7.png) 
+![plot of chunk economist](http://i.imgur.com/ChSC8tc.png) 
 
 ### Solarized theme
 
@@ -177,7 +196,7 @@ diamond_plot +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/xy3Ht8u.png) 
+![plot of chunk solarized-light](http://i.imgur.com/B1OB7VH.png) 
 
 The dark theme.
 
@@ -188,7 +207,7 @@ diamond_plot +
   scale_colour_solarized("red")
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/XhIXAIL.png) 
+![plot of chunk solarized-dark](http://i.imgur.com/D9jiN3z.png) 
 
 An alternative theme.
 
@@ -199,7 +218,7 @@ diamond_plot +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-alt](http://i.imgur.com/c7SSmUp.png) 
+![plot of chunk solarized-alt](http://i.imgur.com/H2NFjcS.png) 
 
 
 ### Stata theme 
@@ -215,7 +234,7 @@ schemes in Stata.
                              + ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/Q8qquUE.png) 
+![plot of chunk stata](http://i.imgur.com/YXPYiCn.png) 
 
 ### Excel 2003 theme
 
@@ -229,7 +248,7 @@ and pies not included. Please never use this theme.
  + scale_colour_excel())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/ldKfUuX.png) 
+![plot of chunk excel1](http://i.imgur.com/fD3rfiR.png) 
 
 
 ```r
@@ -239,7 +258,7 @@ and pies not included. Please never use this theme.
  + theme_excel())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/TrHLiiB.png) 
+![plot of chunk excel2](http://i.imgur.com/QEpFsDK.png) 
 
 ### Inverse Gray Theme
 
@@ -251,7 +270,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
  + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/5kVXwdZ.png) 
+![plot of chunk igray](http://i.imgur.com/vRZvvNi.png) 
 
 ### Fivethirtyeight theme
 
@@ -265,11 +284,7 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
  + theme_fivethirtyeight())
 ```
 
-```
-## Error in FUN(X[[i]], ...): Theme element 'line' has NULL property: colour
-```
-
-![plot of chunk fivethirtyeight](http://i.imgur.com/qOisrn0.png) 
+![plot of chunk fivethirtyeight](http://i.imgur.com/NUPythV.png) 
 
 ### Tableau Scales
 
@@ -282,7 +297,7 @@ Color, fill, and shape scales based on those used in the Tableau software.
  + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/tsJtVl5.png) 
+![plot of chunk tableau](http://i.imgur.com/J7Q0maT.png) 
 
 
 ```r
@@ -291,7 +306,7 @@ Color, fill, and shape scales based on those used in the Tableau software.
  + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/InzVyYq.png) 
+![plot of chunk tableau-colorbind10](http://i.imgur.com/6pwe3rB.png) 
 
 ### Stephen Few's Practical Rules for Using Color ...
 
@@ -304,7 +319,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
  + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/CnoTd20.png) 
+![plot of chunk few](http://i.imgur.com/oVIPu9f.png) 
 
 ### Wall Street Journal
 
@@ -318,7 +333,7 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
  + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/SPXLJGT.png) 
+![plot of chunk wsj](http://i.imgur.com/whwsmIl.png) 
 
 ### GDocs Theme
 
@@ -332,11 +347,7 @@ Theme and color palettes based on the defaults in Google Docs.
  + scale_color_gdocs())
 ```
 
-```
-## Error in FUN(X[[i]], ...): Theme element 'rect' has NULL property: fill, colour
-```
-
-![plot of chunk gdocs](http://i.imgur.com/pYH5yqS.png) 
+![plot of chunk gdocs](http://i.imgur.com/iF1Crt2.png) 
 
 ### Calc Theme
 
@@ -350,11 +361,7 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
  + scale_color_calc())
 ```
 
-```
-## Error in FUN(X[[i]], ...): Theme element 'rect' has NULL property: fill
-```
-
-![plot of chunk calc](http://i.imgur.com/GRekYXE.png) 
+![plot of chunk calc](http://i.imgur.com/Gc4XkS1.png) 
 
 ### Pander Theme
 
@@ -367,7 +374,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
  + scale_colour_pander())
 ```
 
-![plot of chunk pander-scatterplot](http://i.imgur.com/xkrz1NK.png) 
+![plot of chunk pander-scatterplot](http://i.imgur.com/BBo6CGe.png) 
 
 
 ```r
@@ -376,7 +383,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
   + scale_fill_pander())
 ```
 
-![plot of chunk pander-barplot](http://i.imgur.com/hxyUkmC.png) 
+![plot of chunk pander-barplot](http://i.imgur.com/9sFbZw8.png) 
 
 ### Highcharts  theme
 
@@ -390,7 +397,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-default](http://i.imgur.com/IdaswA7.png) 
+![plot of chunk hc-default](http://i.imgur.com/e2ES3Tj.png) 
 
 ```r
 (qplot(carat, price, data = dsamp, colour = cut)
@@ -399,7 +406,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-darkunica](http://i.imgur.com/7lq1Dni.png) 
+![plot of chunk hc-darkunica](http://i.imgur.com/xXeTcQl.png) 
 
 
 ```r
@@ -420,7 +427,7 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_colour_hc()
 ```
 
-![plot of chunk hc-default-line](http://i.imgur.com/lPcSOM9.png) 
+![plot of chunk hc-default-line](http://i.imgur.com/a7AgfpO.png) 
 
 
 ```r
@@ -431,7 +438,7 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_fill_hc("darkunica")
 ```
 
-![plot of chunk hc-darkunica-line](http://i.imgur.com/ZFA0P9N.png) 
+![plot of chunk hc-darkunica-line](http://i.imgur.com/yhnAGCw.png) 
 
 ## Maps theme
 
@@ -460,7 +467,7 @@ us <- fortify(map_data("state"), region = "region")
   )
 ```
 
-![plot of chunk map](http://i.imgur.com/0a28cE1.png) 
+![plot of chunk map](http://i.imgur.com/QdODDRL.png) 
 
 
 

@@ -21,20 +21,37 @@ ggplot(mtcars, aes(wt, mpg)) +
   theme_tufte()
 ```
 
-The Tufte minimal boxplot, in both its variants.
-With a point indicating the median:
+The function `geom_tufteboxplot` creates several variants of Tufte's minimal-ink boxplots.
+For a boxplot with a point indicating the median, a gap indicating the interquartile range,
+and lines for whiskers:
 ```{r tufteboxplot}
 ggplot(mtcars, aes(factor(cyl), mpg))  +
  theme_tufte(ticks=FALSE) +
  geom_tufteboxplot()
 
 ```
-
-With an offset line indicating the interquartile range and a gap indicating the median,
+For a boxplot with an offset line indicating the interquartile range and a gap indicating the median:
 ```{r tufteboxplot2}
 (ggplot(mtcars, aes(factor(cyl), mpg)) 
  + theme_tufte(ticks=FALSE)
  + geom_tufteboxplot(median.type = "line")
+)
+```
+For a boxplot with an line indicating the interquartile range, a gap indicating the median, and 
+points indicating the minimum and maximum:
+```{r tufteboxplot3}
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot(median.type = "line", whisker.type = 'point', hoffset = 0)
+)
+```
+For a boxplot with a wide line indicating the interquartile range, a gap indicating the median, and 
+lines indicating the minimum and maximum
+```{r tufteboxplot4}
+(ggplot(mtcars, aes(factor(cyl), mpg)) 
+ + theme_tufte(ticks=FALSE)
+ + geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0,
+                     width = 3)
 )
 ```
 
