@@ -12,12 +12,10 @@ NULL
 #' those themes define elements deep in the hierarchy.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param use_sizes If \code{TRUE}, then define sizes and locations
-#' with reasonable defaults taken from \code{\link{theme_gray}}.
 #'
 #' @family themes
 #' @export
-theme_foundation <- function(base_size=12, base_family="", use_sizes=TRUE) {
+theme_foundation <- function(base_size=12, base_family="") {
   thm <- theme_gray(base_size = base_size, base_family = base_family)
   for (i in names(thm)) {
     if ("colour" %in% names(thm[[i]])) {
