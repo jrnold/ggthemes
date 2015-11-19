@@ -1,8 +1,12 @@
 ggthemes 3.0.0
 ------------------------
 
-* Compatible with `ggplot >= 9
+* Rewrote Geoms, Stats, and themes for `ggplot2` >= 1.0.1
 * Make `smart_digits_format` the default for labels in `scale_*_tufte`. Issue #42
+* `theme_foundation` rewritten. Removed `use_sizes` argument.
+* For `geom_tufteboxplot` and `GeomTufteboxplot`. Option `median.type` supports only
+  `line` and `point` options. Added option `whisker.type` which allows for whiskers
+  to be specified by lines or points.
 
 ggthemes 2.2.1
 ------------------------
@@ -22,7 +26,7 @@ ggthemes 2.1.1
 * bugfix: fix non-escaped URLs in colorblind.R
 * bugfix: fix broken URL in few.R
 * bugfix: remove non-ascii characters in shapes.R
-* bugfix: use requireNamespace() instead of require()
+* bugfix: use `requireNamespace()` instead of `require()`
 
 ggthemes 2.1.0
 ------------------------
