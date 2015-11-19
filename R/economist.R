@@ -192,13 +192,11 @@ theme_economist <- function(base_size = 10, base_family = "sans",
     ## Axis Titles and other text ~ 2
     ## Margins: Top/Bottom = 6/32, sides = 5/32
     ret <-
-        theme(line = element_line(colour = "black", size = 0.5,
-              linetype = 1, lineend = "butt"),
-              rect = element_rect(fill = bgcolors['ebg'],
-              colour = NA, size = 0.5, linetype = 1),
-              text = element_text(family = base_family, face = "plain",
-              colour = "black", size = base_size, hjust = 0.5, vjust = 0.5,
-              angle = 0, lineheight = 1, margin = margin(), debug = FALSE),
+      theme_foundation(base_size = base_size, base_family = base_family) +
+        theme(line = element_line(colour = "black"),
+              rect = element_rect(fill = bgcolors['ebg'], colour = NA,
+                                  linetype = 1),
+              text = element_text(colour = "black"),
               ## Axis
               axis.line = element_line(size = rel(0.8)),
               axis.line.y = element_blank(),
