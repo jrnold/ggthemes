@@ -15,7 +15,8 @@
 #'  + scale_shape_calc())
 theme_calc <- function(base_size = 10, base_family = "sans") {
   (theme_foundation(base_family = base_family, base_size = base_size)
-   + theme(rect = element_rect(colour = NA),
+   + theme(rect = element_rect(colour = "black", fill = "white"),
+           text = element_text(colour = "black"),
            line = element_line(colour = "gray70"),
            # 13 pt
            plot.title = element_text(size = rel(1.3)),

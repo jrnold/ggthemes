@@ -13,7 +13,10 @@
 #'  + scale_color_gdocs())
 theme_gdocs <- function(base_size=12, base_family="sans") {
   (theme_foundation(base_size=base_size, base_family=base_family)
-   + theme(plot.title = element_text(face = "bold",
+   + theme(rect = element_rect(colour = "black", fill = "white"),
+           line = element_line(colour = "black"),
+           text = element_text(colour = "black"),
+           plot.title = element_text(face = "bold",
                                      # 16 pt, bold, align left
                                      size = rel(1.33), hjust = 0),
            panel.background = element_rect(colour = NA),

@@ -20,7 +20,7 @@ NULL
 theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
   (theme_foundation(base_size = base_size, base_family = base_family)
    + theme(
-     line = element_line(),
+     line = element_line(colour = "black"),
      rect = element_rect(fill = ggthemes_data$fivethirtyeight['ltgray'],
                          linetype = 0, colour = NA),
      text = element_text(colour = ggthemes_data$fivethirtyeight['dkgray']),
