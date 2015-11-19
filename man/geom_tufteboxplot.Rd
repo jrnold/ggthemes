@@ -34,6 +34,8 @@ a call to a position adjustment function.}
 
 \item{outlier.size}{size of outlying points}
 
+\item{outlier.stroke}{stroke for outlying points}
+
 \item{voffset}{controls the size of the gap in the line representing the median when \code{median.type = 'line'}. This is a fraction of the range of \code{y}.}
 
 \item{hoffset}{controls how much the interquartile line is offset from the whiskers when \code{median.type = 'line'}. This is a fraction of the range of \code{x}.}
@@ -51,6 +53,8 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link{borders}}.}
 
 \item{median.type}{If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represnted by a line, possibly offset, and the median by a gap in the line.}
+
+\item{whisker.type}{If \code{'line'}, then whiskers are represented by lines. If \code{'point'}, then whiskers are represented by points at \code{ymin} and \code{ymax}.}
 
 \item{...}{other arguments passed on to \code{\link{layer}}. There are
   three types of arguments you can use here:
@@ -82,11 +86,13 @@ Edward Tufte's revisions of the box plot as described in
 }
 \examples{
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
-## with only a point
+## with a point for the median and lines for whiskers
 p + geom_tufteboxplot()
-## with a middle box
-p + geom_tufteboxplot(median.type='box', fatten=1)
-## using lines
+## with a line for the interquartile range and points for whiskers
+p + geom_tufteboxplot(median.type = "line", whisker.type = "point", hoffset = 0)
+## with a wide line for the interquartile range and lines for whiskers
+p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
+## with an offset line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type='line')
 }
 \references{

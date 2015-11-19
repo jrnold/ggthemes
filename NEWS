@@ -7,6 +7,7 @@ ggthemes 3.0.0
 * For `geom_tufteboxplot` and `GeomTufteboxplot`. Option `median.type` supports only
   `line` and `point` options. Added option `whisker.type` which allows for whiskers
   to be specified by lines or points.
+* Rewrote `stat_fivenumber`
 
 ggthemes 2.2.1
 ------------------------

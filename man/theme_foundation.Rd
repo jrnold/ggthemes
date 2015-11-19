@@ -4,15 +4,12 @@
 \alias{theme_foundation}
 \title{Foundation Theme}
 \usage{
-theme_foundation(base_size = 12, base_family = "", use_sizes = TRUE)
+theme_foundation(base_size = 12, base_family = "")
 }
 \arguments{
 \item{base_size}{base font size}
 
 \item{base_family}{base font family}
-
-\item{use_sizes}{If \code{TRUE}, then define sizes and locations
-with reasonable defaults taken from \code{\link{theme_gray}}.}
 }
 \description{
 This theme is designed to be a foundation from which to build new

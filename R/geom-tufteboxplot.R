@@ -26,7 +26,9 @@
 #' @param outlier.colour colour for outlying points
 #' @param outlier.shape shape of outlying points
 #' @param outlier.size size of outlying points
+#' @param outlier.stroke stroke for outlying points
 #' @param median.type If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represnted by a line, possibly offset, and the median by a gap in the line.
+#' @param whisker.type If \code{'line'}, then whiskers are represented by lines. If \code{'point'}, then whiskers are represented by points at \code{ymin} and \code{ymax}.
 #' @param voffset controls the size of the gap in the line representing the median when \code{median.type = 'line'}. This is a fraction of the range of \code{y}.
 #' @param hoffset controls how much the interquartile line is offset from the whiskers when \code{median.type = 'line'}. This is a fraction of the range of \code{x}.
 #' @family geom tufte
@@ -34,11 +36,13 @@
 #'
 #' @examples
 #' p <- ggplot(mtcars, aes(factor(cyl), mpg))
-#' ## with only a point
+#' ## with a point for the median and lines for whiskers
 #' p + geom_tufteboxplot()
-#' ## with a middle box
-#' p + geom_tufteboxplot(median.type='box', fatten=1)
-#' ## using lines
+#' ## with a line for the interquartile range and points for whiskers
+#' p + geom_tufteboxplot(median.type = "line", whisker.type = "point", hoffset = 0)
+#' ## with a wide line for the interquartile range and lines for whiskers
+#' p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
+#' ## with an offset line for the interquartile range and lines for whiskers
 #' p + geom_tufteboxplot(median.type='line')
 #'
 geom_tufteboxplot <-

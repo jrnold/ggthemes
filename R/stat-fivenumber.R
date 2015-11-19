@@ -1,36 +1,3 @@
-make_fivenumber_fun <- function(fun.data,
-                                fun.ymin,
-                                fun.lower,
-                                fun.middle,
-                                fun.upper,
-                                fun.ymax,
-                                fun.args) {
-  if (!is.null(fun.data)) {
-    # Function that takes complete data frame as input
-    fun.data <- match.fun(fun.data)
-    function(df) {
-      do.call(fun.data, c(list(quote(df$y)), fun.args))
-    }
-  } else {
-    # Three functions that take vectors as inputs
-
-    call_f <- function(fun, x) {
-      if (is.null(fun)) return(NA_real_)
-      do.call(fun, c(list(quote(x)), fun.args))
-    }
-
-    function(df, ...) {
-      data.frame(
-        ymin = call_f(fun.min, df$y),
-        lower = call_fun(fun.lower, df$y),
-        middle = call_f(fun.middle, df$y),
-        upper = call_f(fun.upper, df$y),
-        ymax = call_f(fun.ymax, df$y)
-      )
-    }
-  }
-}
-
 #' Calculate components of a five-number summary
 #'
 #' The five number summary of a sample is the minimum, first quartile,
@@ -38,6 +5,7 @@ make_fivenumber_fun <- function(fun.data,
 #'
 #' @param na.rm If \code{FALSE} (the default), removes missing values with
 #'    a warning.  If \code{TRUE} silently removes missing values.
+#' @param qs Quantiles to use for the five number summary.
 #' @inheritParams ggplot2::stat_identity
 #' @return A data frame with additional columns:
 #'   \item{width}{width of boxplot}
@@ -53,7 +21,6 @@ stat_fivenumber <- function(mapping = NULL,
                             data = NULL,
                             geom = "boxplot",
                             qs = c(0, 0.25, 0.5, 0.75, 1),
-                            fun.args = list(),
                             na.rm = FALSE,
                             position = "identity",
                             show.legend = NA,
@@ -90,6 +57,10 @@ StatFivenumber <- ggproto("StatFivenumber", Stat,
                            na.rm = FALSE,
                            qs = c(0, 0.25, 0.5, 0.75, 1)) {
 
+    if (length(qs) != 5) {
+      stop("'qs' should contain 5 quantiles.")
+    qs <- sort(qs)
+    }
     if (!is.null(data$weight)) {
       mod <- quantreg::rq(y ~ 1, weights = weight, tau = qunatiles,
                           data = data)
