@@ -45,8 +45,8 @@ Collate:
     'economist.R'
     'excel.R'
     'few.R'
-    'ggthemes-package.R'
     'ggthemes-data.R'
+    'ggthemes-package.R'
     'fivethirtyeight.R'
     'gdocs.R'
     'geom-rangeframe.R'
@@ -67,3 +67,4 @@ Collate:
     'tufte.R'
     'utils.R'
     'wsj.R'
+RoxygenNote: 5.0.1
