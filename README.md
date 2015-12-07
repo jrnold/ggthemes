@@ -1,7 +1,9 @@
 <!-- DO NOT EDIT README.md. It is created by README.Rmd -->
 
 [![Build Status](https://travis-ci.org/jrnold/ggthemes.svg?branch=master)](https://travis-ci.org/jrnold/ggthemes)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/ggthemes)](https://github.com/metacran/cranlogs.app)
+[![rstudio m      
+
+     downloads](http://cranlogs.r-pkg.org/badges/ggthemes)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/ggthemes)](http://cran.rstudio.com/web/packages/ggthemes)
 
 
@@ -121,7 +123,7 @@ ggplot(mtcars, aes(wt, mpg)) +
   theme_tufte()
 ```
 
-![plot of chunk tufte-rangeframe](http://i.imgur.com/BAOMyws.png) 
+![plot of chunk tufte-rangeframe](figure/tufte-rangeframe-1.png) 
 
 The function `geom_tufteboxplot` creates several variants of Tufte's minimal-ink boxplots.
 For a boxplot with a point indicating the median, a gap indicating the interquartile range,
@@ -133,7 +135,7 @@ ggplot(mtcars, aes(factor(cyl), mpg))  +
  geom_tufteboxplot()
 ```
 
-![plot of chunk tufteboxplot](http://i.imgur.com/tLKWAuz.png) 
+![plot of chunk tufteboxplot](figure/tufteboxplot-1.png) 
 For a boxplot with an offset line indicating the interquartile range and a gap indicating the median:
 
 ```r
@@ -143,7 +145,7 @@ For a boxplot with an offset line indicating the interquartile range and a gap i
 )
 ```
 
-![plot of chunk tufteboxplot2](http://i.imgur.com/hEBojto.png) 
+![plot of chunk tufteboxplot2](figure/tufteboxplot2-1.png) 
 For a boxplot with an line indicating the interquartile range, a gap indicating the median, and 
 points indicating the minimum and maximum:
 
@@ -154,7 +156,7 @@ points indicating the minimum and maximum:
 )
 ```
 
-![plot of chunk tufteboxplot3](http://i.imgur.com/wVVILxA.png) 
+![plot of chunk tufteboxplot3](figure/tufteboxplot3-1.png) 
 For a boxplot with a wide line indicating the interquartile range, a gap indicating the median, and 
 lines indicating the minimum and maximum
 
@@ -166,7 +168,7 @@ lines indicating the minimum and maximum
 )
 ```
 
-![plot of chunk tufteboxplot4](http://i.imgur.com/DGXfPpQ.png) 
+![plot of chunk tufteboxplot4](figure/tufteboxplot4-1.png) 
 
 ### Economist theme
 
@@ -180,7 +182,7 @@ diamond_plot +
   scale_colour_economist() 
 ```
 
-![plot of chunk economist](http://i.imgur.com/G9sQ8l5.png) 
+![plot of chunk economist](figure/economist-1.png) 
 
 ### Solarized theme
 
@@ -195,7 +197,7 @@ diamond_plot +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-light](http://i.imgur.com/bmBnvRi.png) 
+![plot of chunk solarized-light](figure/solarized-light-1.png) 
 
 The dark theme.
 
@@ -206,7 +208,7 @@ diamond_plot +
   scale_colour_solarized("red")
 ```
 
-![plot of chunk solarized-dark](http://i.imgur.com/XsAXBaa.png) 
+![plot of chunk solarized-dark](figure/solarized-dark-1.png) 
 
 An alternative theme.
 
@@ -217,7 +219,7 @@ diamond_plot +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-alt](http://i.imgur.com/1cKslM1.png) 
+![plot of chunk solarized-alt](figure/solarized-alt-1.png) 
 
 
 ### Stata theme 
@@ -233,7 +235,7 @@ schemes in Stata.
                              + ggtitle("Plot Title"))
 ```
 
-![plot of chunk stata](http://i.imgur.com/De4pRPZ.png) 
+![plot of chunk stata](figure/stata-1.png) 
 
 ### Excel 2003 theme
 
@@ -247,7 +249,7 @@ and pies not included. Please never use this theme.
  + scale_colour_excel())
 ```
 
-![plot of chunk excel1](http://i.imgur.com/uamUPWx.png) 
+![plot of chunk excel1](figure/excel1-1.png) 
 
 
 ```r
@@ -257,7 +259,7 @@ and pies not included. Please never use this theme.
  + theme_excel())
 ```
 
-![plot of chunk excel2](http://i.imgur.com/fG0gZvH.png) 
+![plot of chunk excel2](figure/excel2-1.png) 
 
 ### Inverse Gray Theme
 
@@ -269,7 +271,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
  + theme_igray())
 ```
 
-![plot of chunk igray](http://i.imgur.com/WRfN0E6.png) 
+![plot of chunk igray](figure/igray-1.png) 
 
 ### Fivethirtyeight theme
 
@@ -283,7 +285,7 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
  + theme_fivethirtyeight())
 ```
 
-![plot of chunk fivethirtyeight](http://i.imgur.com/N2tDBrt.png) 
+![plot of chunk fivethirtyeight](figure/fivethirtyeight-1.png) 
 
 ### Tableau Scales
 
@@ -296,7 +298,7 @@ Color, fill, and shape scales based on those used in the Tableau software.
  + scale_colour_tableau())
 ```
 
-![plot of chunk tableau](http://i.imgur.com/vQ7bz0I.png) 
+![plot of chunk tableau](figure/tableau-1.png) 
 
 
 ```r
@@ -305,7 +307,7 @@ Color, fill, and shape scales based on those used in the Tableau software.
  + scale_colour_tableau("colorblind10"))
 ```
 
-![plot of chunk tableau-colorbind10](http://i.imgur.com/d1kOsYB.png) 
+![plot of chunk tableau-colorbind10](figure/tableau-colorbind10-1.png) 
 
 ### Stephen Few's Practical Rules for Using Color ...
 
@@ -318,7 +320,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
  + scale_colour_few())
 ```
 
-![plot of chunk few](http://i.imgur.com/tkdJlfJ.png) 
+![plot of chunk few](figure/few-1.png) 
 
 ### Wall Street Journal
 
@@ -332,7 +334,7 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
  + ggtitle("Diamond Prices"))
 ```
 
-![plot of chunk wsj](http://i.imgur.com/Pl6vlpq.png) 
+![plot of chunk wsj](figure/wsj-1.png) 
 
 ### GDocs Theme
 
@@ -346,7 +348,7 @@ Theme and color palettes based on the defaults in Google Docs.
  + scale_color_gdocs())
 ```
 
-![plot of chunk gdocs](http://i.imgur.com/JdPePFf.png) 
+![plot of chunk gdocs](figure/gdocs-1.png) 
 
 ### Calc Theme
 
@@ -360,7 +362,7 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
  + scale_color_calc())
 ```
 
-![plot of chunk calc](http://i.imgur.com/78j6znc.png) 
+![plot of chunk calc](figure/calc-1.png) 
 
 ### Pander Theme
 
@@ -373,7 +375,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
  + scale_colour_pander())
 ```
 
-![plot of chunk pander-scatterplot](http://i.imgur.com/krE2PtY.png) 
+![plot of chunk pander-scatterplot](figure/pander-scatterplot-1.png) 
 
 
 ```r
@@ -382,7 +384,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
   + scale_fill_pander())
 ```
 
-![plot of chunk pander-barplot](http://i.imgur.com/9zO0hc9.png) 
+![plot of chunk pander-barplot](figure/pander-barplot-1.png) 
 
 ### Highcharts  theme
 
@@ -396,7 +398,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-default](http://i.imgur.com/sq9qjdo.png) 
+![plot of chunk hc-default](figure/hc-default-1.png) 
 
 ```r
 (qplot(carat, price, data = dsamp, colour = cut)
@@ -405,7 +407,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-darkunica](http://i.imgur.com/BVSy5UW.png) 
+![plot of chunk hc-darkunica](figure/hc-darkunica-1.png) 
 
 
 ```r
@@ -426,7 +428,7 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_colour_hc()
 ```
 
-![plot of chunk hc-default-line](http://i.imgur.com/WJepEYo.png) 
+![plot of chunk hc-default-line](figure/hc-default-line-1.png) 
 
 
 ```r
@@ -437,7 +439,7 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
   scale_fill_hc("darkunica")
 ```
 
-![plot of chunk hc-darkunica-line](http://i.imgur.com/ADj5hvX.png) 
+![plot of chunk hc-darkunica-line](figure/hc-darkunica-line-1.png) 
 
 ## Maps theme
 
@@ -466,7 +468,7 @@ us <- fortify(map_data("state"), region = "region")
   )
 ```
 
-![plot of chunk map](http://i.imgur.com/rTkE7YT.png) 
+![plot of chunk map](figure/map-1.png) 
 
 
 
