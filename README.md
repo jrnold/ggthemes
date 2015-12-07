@@ -125,7 +125,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
   scale_y_continuous(breaks = extended_range_breaks()(mtcars$mpg))
 ```
 
-![plot of chunk tufte-rangeframe](figure/tufte-rangeframe-1.png) 
+![plot of chunk tufte-rangeframe](figure/tufte-rangeframe-1.svg) 
 
 The function `geom_tufteboxplot` creates several variants of Tufte's minimal-ink boxplots.
 For a boxplot with a point indicating the median, a gap indicating the interquartile range,
@@ -137,7 +137,7 @@ ggplot(mtcars, aes(factor(cyl), mpg))  +
  geom_tufteboxplot()
 ```
 
-![plot of chunk tufteboxplot](figure/tufteboxplot-1.png) 
+![plot of chunk tufteboxplot](figure/tufteboxplot-1.svg) 
 For a boxplot with an offset line indicating the interquartile range and a gap indicating the median:
 
 ```r
@@ -147,7 +147,7 @@ For a boxplot with an offset line indicating the interquartile range and a gap i
 )
 ```
 
-![plot of chunk tufteboxplot2](figure/tufteboxplot2-1.png) 
+![plot of chunk tufteboxplot2](figure/tufteboxplot2-1.svg) 
 For a boxplot with an line indicating the interquartile range, a gap indicating the median, and 
 points indicating the minimum and maximum:
 
@@ -158,7 +158,7 @@ points indicating the minimum and maximum:
 )
 ```
 
-![plot of chunk tufteboxplot3](figure/tufteboxplot3-1.png) 
+![plot of chunk tufteboxplot3](figure/tufteboxplot3-1.svg) 
 For a boxplot with a wide line indicating the interquartile range, a gap indicating the median, and 
 lines indicating the minimum and maximum
 
@@ -170,7 +170,7 @@ lines indicating the minimum and maximum
 )
 ```
 
-![plot of chunk tufteboxplot4](figure/tufteboxplot4-1.png) 
+![plot of chunk tufteboxplot4](figure/tufteboxplot4-1.svg) 
 
 ### Economist theme
 
@@ -184,7 +184,7 @@ diamond_plot +
   scale_colour_economist() 
 ```
 
-![plot of chunk economist](figure/economist-1.png) 
+![plot of chunk economist](figure/economist-1.svg) 
 
 ### Solarized theme
 
@@ -199,7 +199,7 @@ diamond_plot +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-light](figure/solarized-light-1.png) 
+![plot of chunk solarized-light](figure/solarized-light-1.svg) 
 
 The dark theme.
 
@@ -210,7 +210,7 @@ diamond_plot +
   scale_colour_solarized("red")
 ```
 
-![plot of chunk solarized-dark](figure/solarized-dark-1.png) 
+![plot of chunk solarized-dark](figure/solarized-dark-1.svg) 
 
 An alternative theme.
 
@@ -221,7 +221,7 @@ diamond_plot +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-alt](figure/solarized-alt-1.png) 
+![plot of chunk solarized-alt](figure/solarized-alt-1.svg) 
 
 
 ### Stata theme 
@@ -238,7 +238,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
   ggtitle("Plot Title")
 ```
 
-![plot of chunk stata](figure/stata-1.png) 
+![plot of chunk stata](figure/stata-1.svg) 
 
 ### Excel 2003 theme
 
@@ -253,7 +253,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
   scale_colour_excel()
 ```
 
-![plot of chunk excel1](figure/excel1-1.png) 
+![plot of chunk excel1](figure/excel1-1.svg) 
 
 
 ```r
@@ -263,7 +263,7 @@ ggplot(diamonds, aes(x = clarity, fill = cut)) +
   theme_excel()
 ```
 
-![plot of chunk excel2](figure/excel2-1.png) 
+![plot of chunk excel2](figure/excel2-1.svg) 
 
 ### Inverse Gray Theme
 
@@ -276,7 +276,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
   theme_igray()
 ```
 
-![plot of chunk igray](figure/igray-1.png) 
+![plot of chunk igray](figure/igray-1.svg) 
 
 ### Fivethirtyeight theme
 
@@ -292,7 +292,7 @@ ggplot(subset(mtcars, cyl != 5),
   theme_fivethirtyeight()
 ```
 
-![plot of chunk fivethirtyeight](figure/fivethirtyeight-1.png) 
+![plot of chunk fivethirtyeight](figure/fivethirtyeight-1.svg) 
 
 ### Tableau Scales
 
@@ -306,7 +306,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
   scale_colour_tableau()
 ```
 
-![plot of chunk tableau](figure/tableau-1.png) 
+![plot of chunk tableau](figure/tableau-1.svg) 
 
 
 ```r
@@ -316,7 +316,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
   scale_colour_tableau("colorblind10")
 ```
 
-![plot of chunk tableau-colorbind10](figure/tableau-colorbind10-1.png) 
+![plot of chunk tableau-colorbind10](figure/tableau-colorbind10-1.svg) 
 
 ### Stephen Few's Practical Rules for Using Color ...
 
@@ -330,7 +330,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
   scale_colour_few()
 ```
 
-![plot of chunk few](figure/few-1.png) 
+![plot of chunk few](figure/few-1.svg) 
 
 ### Wall Street Journal
 
@@ -345,7 +345,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
   ggtitle("Diamond Prices")
 ```
 
-![plot of chunk wsj](figure/wsj-1.png) 
+![plot of chunk wsj](figure/wsj-1.svg) 
 
 ### GDocs Theme
 
@@ -360,7 +360,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
   scale_color_gdocs()
 ```
 
-![plot of chunk gdocs](figure/gdocs-1.png) 
+![plot of chunk gdocs](figure/gdocs-1.svg) 
 
 ### Calc Theme
 
@@ -375,7 +375,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=clarity)) +
   scale_color_calc()
 ```
 
-![plot of chunk calc](figure/calc-1.png) 
+![plot of chunk calc](figure/calc-1.svg) 
 
 ### Pander Theme
 
@@ -389,7 +389,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
   scale_colour_pander()
 ```
 
-![plot of chunk pander-scatterplot](figure/pander-scatterplot-1.png) 
+![plot of chunk pander-scatterplot](figure/pander-scatterplot-1.svg) 
 
 
 ```r
@@ -399,7 +399,7 @@ ggplot(dsamp, aes(x = clarity, fill = cut)) +
   scale_fill_pander()
 ```
 
-![plot of chunk pander-barplot](figure/pander-barplot-1.png) 
+![plot of chunk pander-barplot](figure/pander-barplot-1.svg) 
 
 ### Highcharts  theme
 
@@ -413,7 +413,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-default](figure/hc-default-1.png) 
+![plot of chunk hc-default](figure/hc-default-1.svg) 
 
 ```r
 (qplot(carat, price, data = dsamp, colour = cut)
@@ -422,7 +422,7 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
  + ggtitle("Diamonds Are Forever"))
 ```
 
-![plot of chunk hc-darkunica](figure/hc-darkunica-1.png) 
+![plot of chunk hc-darkunica](figure/hc-darkunica-1.svg) 
 
 
 ```r
@@ -444,7 +444,7 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   scale_colour_hc()
 ```
 
-![plot of chunk hc-default-line](figure/hc-default-line-1.png) 
+![plot of chunk hc-default-line](figure/hc-default-line-1.svg) 
 
 
 ```r
@@ -456,7 +456,7 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   scale_fill_hc("darkunica")
 ```
 
-![plot of chunk hc-darkunica-line](figure/hc-darkunica-line-1.png) 
+![plot of chunk hc-darkunica-line](figure/hc-darkunica-line-1.svg) 
 
 ## Maps theme
 
@@ -474,7 +474,7 @@ ggplot() +
   theme_map()
 ```
 
-![plot of chunk map](figure/map-1.png) 
+![plot of chunk map](figure/map-1.svg) 
 
 
 
