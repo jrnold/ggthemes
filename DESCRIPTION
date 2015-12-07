@@ -20,7 +20,8 @@ Imports:
     colorspace,
     grid,
     scales,
-    methods
+    methods,
+    assertthat
 Suggests:
     knitr,
     plyr,
@@ -45,8 +46,8 @@ Collate:
     'economist.R'
     'excel.R'
     'few.R'
-    'ggthemes-data.R'
     'ggthemes-package.R'
+    'ggthemes-data.R'
     'fivethirtyeight.R'
     'gdocs.R'
     'geom-rangeframe.R'
@@ -68,3 +69,4 @@ Collate:
     'utils.R'
     'wsj.R'
 RoxygenNote: 5.0.1
+LazyData: true

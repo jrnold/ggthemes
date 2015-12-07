@@ -12,6 +12,7 @@
 #' @import utils
 #' @import colorspace
 #' @import ggplot2
+#' @import assertthat
 #' @importFrom grid grobTree grobName gTree gList segmentsGrob gpar
 #' @importFrom scales manual_pal div_gradient_pal seq_gradient_pal
 #' @importFrom graphics abline axis text points
@@ -23,3 +24,5 @@ ggname <- function (prefix, grob) {
   grob$name <- grobName(grob, prefix)
   grob
 }
+
+globalVariables("ggthemes_data")

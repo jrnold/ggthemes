@@ -22,8 +22,8 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
     colors <- ggthemes_data$economist$fg
     if (fill) {
       function(n) {
-        assertthat(n < length(ggthemes_data$economist$fg))
-        assertthat(n > 0)
+        assert_that(n < length(ggthemes_data$economist$fg))
+        assert_that(n > 0)
         if (n == 1) {
           i <- "blue_dark"
         } else if (n == 2) {
@@ -50,8 +50,8 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
       }
     } else {
       function(n) {
-        assertthat(n > 0)
-        assertthat(n <= length(ggthemes_data$economist$fg))
+        assert_that(n > 0)
+        assert_that(n <= length(ggthemes_data$economist$fg))
         if (n <= 3) {
           # 20120818_AMC20
           # 20120901_FBC897
