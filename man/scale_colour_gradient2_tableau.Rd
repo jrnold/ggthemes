@@ -16,7 +16,7 @@ scale_color_gradient2_tableau(palette = "Red-Blue", ..., space = "rgb",
   na.value = "grey50", guide = "colourbar")
 }
 \arguments{
-\item{palette}{Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$divergent))}.}
+\item{palette}{Palette name. See \code{ggthemes_data$tableau$divergent}.}
 
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}

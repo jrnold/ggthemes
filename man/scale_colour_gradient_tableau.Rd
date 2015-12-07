@@ -24,7 +24,7 @@ scale_fill_continuous_tableau(palette = "Red", ..., space = "Lab",
   na.value = "grey50", guide = "colourbar")
 }
 \arguments{
-\item{palette}{Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$sequential))}.}
+\item{palette}{Palette name. See \code{ggthemes_data$tableau$sequential}.}
 
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}

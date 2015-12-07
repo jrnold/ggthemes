@@ -7,7 +7,7 @@
 tableau_seq_gradient_pal(palette = "Red", space = "Lab")
 }
 \arguments{
-\item{palette}{Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$sequential))}.}
+\item{palette}{Palette name. See \code{ggthemes_data$tableau$sequential}.}
 
 \item{space}{Colour space in which to calculate gradient.}
 }

@@ -24,7 +24,7 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
            legend.text = element_text(size = rel(1)),
            axis.title = element_text(size = rel(1)),
            axis.line = element_blank(),
-           panel.border = element_rect(colour = "gray70"),
+           panel.border = element_rect(fill = NA, colour = "gray70"),
            panel.grid.minor = element_blank(),
            panel.grid.major.x = element_blank(),
            legend.position = "right",

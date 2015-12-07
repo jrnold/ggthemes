@@ -7,7 +7,7 @@
 [![cran version](http://www.r-pkg.org/badges/version/ggthemes)](http://cran.rstudio.com/web/packages/ggthemes)
 
 ```{r header,echo=FALSE,results='hide'}
-opts_chunk$set(fig.width = 5.25,
+knitr::opts_chunk$set(fig.width = 5.25,
                fig.height = 3.75,
                cache = FALSE,
                dev = 'png')

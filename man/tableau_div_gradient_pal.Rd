@@ -7,7 +7,7 @@
 tableau_div_gradient_pal(palette = "Red-Blue", space = "Lab")
 }
 \arguments{
-\item{palette}{Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$divergent))}.}
+\item{palette}{Palette name. See \code{ggthemes_data$tableau$divergent}.}
 
 \item{space}{Colour space in which to calculate gradient.}
 }

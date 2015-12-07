@@ -4,7 +4,7 @@
 #' \href{http://www.tableausoftware.com/}{Tableau}.
 #'
 #' @export
-#' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(c(names(ggthemes::ggthemes_data$tableau$colors), c('tableau10', 'tableau10light', 'purplegray6', 'bluered6', 'greenorange6')))}.
+#' @param palette Palette name.
 #'
 #' @references
 #' \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -98,7 +98,7 @@ scale_color_tableau <- scale_colour_tableau
 #' \href{http://www.tableausoftware.com/}{Tableau}.
 #'
 #' @export
-#' @param palette Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$shapes))}.
+#' @param palette Palette name. See \code{ggthemes_data$tableau$shapes}.
 #' @family shape tableau
 #' @examples
 #' show_shapes(tableau_shape_pal()(5))
@@ -126,7 +126,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 
 #' Tableau sequential colour gradient palettes (continuous)
 #'
-#' @param palette Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$sequential))}.
+#' @param palette Palette name. See \code{ggthemes_data$tableau$sequential}.
 #' @param space Colour space in which to calculate gradient.
 #' @family colour tableau
 #'
@@ -159,7 +159,7 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #' d + scale_colour_gradient_tableau('Blue', limits=c(3, 4))
 #' d + scale_colour_gradient_tableau('Green', limits=c(3, 4))
 scale_colour_gradient_tableau <- function(palette = "Red", ..., space = "Lab", na.value = "grey50", guide = "colourbar") {
-  continuous_scale("colour", "tableau", tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide, 
+  continuous_scale("colour", "tableau", tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide,
     ...)
 }
 
@@ -184,7 +184,7 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 
 #' Tableau diverging colour gradient palettes (continuous)
 #'
-#' @param palette Palette name: One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$divergent))}.
+#' @param palette Palette name. See \code{ggthemes_data$tableau$divergent}.
 #' @param space Colour space in which to calculate gradient.
 #' @family colour tableau
 #'
@@ -217,7 +217,7 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 #' d + scale_colour_gradient2_tableau('Orange-Blue')
 #' d + scale_colour_gradient2_tableau('Temperature')
 scale_colour_gradient2_tableau <- function(palette = "Red-Blue", ..., space = "rgb", na.value = "grey50", guide = "colourbar") {
-  continuous_scale("colour", "tableau2", tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide, 
+  continuous_scale("colour", "tableau2", tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide,
     ...)
 }
 
@@ -229,4 +229,4 @@ scale_fill_gradient2_tableau <- function(palette = "Red-Blue", ..., space = "rgb
 
 #' @export
 #' @rdname scale_colour_gradient2_tableau
-scale_color_gradient2_tableau <- scale_colour_gradient2_tableau 
+scale_color_gradient2_tableau <- scale_colour_gradient2_tableau

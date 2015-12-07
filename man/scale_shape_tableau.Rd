@@ -7,7 +7,7 @@
 scale_shape_tableau(palette = "default", ...)
 }
 \arguments{
-\item{palette}{Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(names(ggthemes::ggthemes_data$tableau$shapes))}.}
+\item{palette}{Palette name. See \code{ggthemes_data$tableau$shapes}.}
 
 \item{...}{common discrete scale parameters: \code{name}, \code{breaks},
 \code{labels}, \code{na.value}, \code{limits} and \code{guide}.  See

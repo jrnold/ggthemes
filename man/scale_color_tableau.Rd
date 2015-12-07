@@ -13,7 +13,7 @@ scale_fill_tableau(palette = "tableau10", ...)
 scale_color_tableau(palette = "tableau10", ...)
 }
 \arguments{
-\item{palette}{Palette name. One of \Sexpr[results=rd,stage=build]{ggthemes:::charopts(c(names(ggthemes::ggthemes_data$tableau$colors), c('tableau10', 'tableau10light', 'purplegray6', 'bluered6', 'greenorange6')))}.}
+\item{palette}{Palette name.}
 
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}

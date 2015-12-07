@@ -15,10 +15,12 @@ diamond_plot <-
 Minimal theme and geoms based on plots in *The Visual Display of Quantitative Information*.
 
 ```{r tufte-rangeframe}
-ggplot(mtcars, aes(wt, mpg)) +
+ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   geom_rangeframe() +
-  theme_tufte()
+  theme_tufte() + 
+  scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt)) +
+  scale_y_continuous(breaks = extended_range_breaks()(mtcars$mpg))
 ```
 
 The function `geom_tufteboxplot` creates several variants of Tufte's minimal-ink boxplots.
@@ -103,10 +105,12 @@ Themes and scales (color, fill, linetype, shapes) based on the graph
 schemes in Stata.
 
 ```{r stata}
-(qplot(carat, price, data=dsamp, colour=cut)
-                             + theme_stata() 
-                             + scale_colour_stata()
-                             + ggtitle("Plot Title"))
+ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
+  geom_point() +
+  theme_stata() +
+  scale_colour_stata() +
+  ggtitle("Plot Title")
+                             
 ```
 
 ### Excel 2003 theme
@@ -115,17 +119,18 @@ For that classic ugly look and feel. For ironic purposes only. 3D bars
 and pies not included. Please never use this theme.
 
 ```{r excel1}
-(qplot(carat, price, data=dsamp, colour=cut)
- + theme_excel() 
- + scale_colour_excel())
+ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
+  geom_point() +
+  theme_excel() +
+  scale_colour_excel()
 
 ```
 
 ```{r excel2}
-(ggplot(diamonds, aes(clarity, fill=cut)) 
- + geom_bar()
- + scale_fill_excel()
- + theme_excel())
+ggplot(diamonds, aes(x = clarity, fill = cut)) +
+  geom_bar() +
+  scale_fill_excel() +
+  theme_excel()
 ```
 
 ### Inverse Gray Theme
@@ -133,8 +138,10 @@ and pies not included. Please never use this theme.
 Inverse of `theme_gray`, i.e. white plot area and gray background.
 
 ```{r igray}
-(qplot(carat, price, data=dsamp, colour=cut)
- + theme_igray())
+ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+  geom_point() +
+  theme_igray()
+
 ```
 
 ### Fivethirtyeight theme
@@ -142,10 +149,13 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 Theme and color palette based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
 
 ```{r fivethirtyeight}
-(qplot(hp, mpg, data= subset(mtcars, cyl != 5), geom="point", color = factor(cyl))
- + geom_smooth(method = "lm", se = FALSE)
- + scale_color_fivethirtyeight()
- + theme_fivethirtyeight())
+ggplot(subset(mtcars, cyl != 5),
+       aes(x = hp, y = mpg, colour = factor(cyl))) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_fivethirtyeight("cyl") +
+  theme_fivethirtyeight()
+
 ```
 
 ### Tableau Scales
@@ -153,15 +163,19 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
 Color, fill, and shape scales based on those used in the Tableau software.
 
 ```{r tableau}
-(qplot(carat, price, data=dsamp, colour=cut)
- + theme_igray()
- + scale_colour_tableau())
+ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+  geom_point() +
+  theme_igray() +
+  scale_colour_tableau()
+
 ```
 
 ```{r tableau-colorbind10}
-(qplot(carat, price, data=dsamp, colour=cut)
- + theme_igray()
- + scale_colour_tableau("colorblind10"))
+ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+  geom_point() +
+  theme_igray() +
+  scale_colour_tableau("colorblind10")
+
 ```
 
 ### Stephen Few's Practical Rules for Using Color ...
@@ -169,9 +183,11 @@ Color, fill, and shape scales based on those used in the Tableau software.
 Color palette and theme based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 ```{r few}
-(qplot(carat, price, data=dsamp, colour=cut)
- + theme_few()
- + scale_colour_few())
+ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+  geom_point() +
+  theme_few() +
+  scale_colour_few()
+
 ```
 
 ### Wall Street Journal
@@ -179,10 +195,12 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 Theme and some color palettes based on plots in the *The Wall Street Journal*.
 
 ```{r wsj}
-(qplot(carat, price, data=dsamp, colour=cut)
- + theme_wsj()
- + scale_colour_wsj("colors6", "")
- + ggtitle("Diamond Prices"))
+ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+  geom_point() +
+  theme_wsj() +
+  scale_colour_wsj("colors6", "") +
+  ggtitle("Diamond Prices")
+
 ```
 
 ### GDocs Theme
@@ -190,10 +208,11 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
 Theme and color palettes based on the defaults in Google Docs.
 
 ```{r gdocs}
-(qplot(carat, price, data=dsamp, colour=clarity)
- + theme_gdocs()
- + ggtitle("Diamonds")
- + scale_color_gdocs())
+ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
+  geom_point() +
+  theme_gdocs() +
+  ggtitle("Diamonds") +
+  scale_color_gdocs()
 ```
 
 ### Calc Theme
@@ -201,10 +220,12 @@ Theme and color palettes based on the defaults in Google Docs.
 Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 
 ```{r calc}
-(qplot(carat, price, data=dsamp, colour=clarity)
- + theme_calc()
- + ggtitle("Diamonds")
- + scale_color_calc())
+ggplot(dsamp, aes(x = carat, y = price, colour=clarity)) +
+  geom_point() +
+  theme_calc() +
+  ggtitle("Diamonds") +
+  scale_color_calc()
+ 
 ```
 
 ### Pander Theme
@@ -212,15 +233,19 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 Theme and color palettes based on the [pander package](http://rapporter.github.io/pander/).
 
 ```{r pander-scatterplot}
-(qplot(carat, price, data = dsamp, colour = clarity)
- + theme_pander()
- + scale_colour_pander())
+ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
+  geom_point() +
+  theme_pander() +
+  scale_colour_pander()
+ 
 ```
 
 ```{r pander-barplot}
-(ggplot(dsamp, aes(clarity, fill = cut)) + geom_bar()
-  + theme_pander()
-  + scale_fill_pander())
+ggplot(dsamp, aes(x = clarity, fill = cut)) +
+  geom_bar() +
+  theme_pander() +
+  scale_fill_pander()
+  
 ```
 
 ### Highcharts  theme
@@ -250,16 +275,18 @@ dtemp <- data.frame(months = factor(rep(substr(month.name,1,3), 4), levels = sub
 ```
 
 ```{r hc-default-line}
-qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
-  geom_point(size=1.1) + 
+ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
+  geom_line() +
+  geom_point(size = 1.1) + 
   ggtitle("Monthly Average Temperature") +
   theme_hc() +
   scale_colour_hc()
 ```
 
 ```{r hc-darkunica-line}
-qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
-  geom_point(size=1.1) + 
+ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
+  geom_line() + 
+  geom_point(size = 1.1) + 
   ggtitle("Monthly Average Temperature") +
   theme_hc(bgcolor = "darkunica") +
   scale_fill_hc("darkunica")
@@ -269,16 +296,16 @@ qplot(months, temp, data=dtemp, group=city, color=city, geom="line") +
 
 A theme useful for displaying maps.
 
-```{r map}
+```{r map,message=FALSE}
 library("maps")
 us <- fortify(map_data("state"), region = "region")
-(ggplot()
-  + geom_map(data  =  us, map = us,
-             aes(x = long, y = lat, map_id = region, group = group),
-             fill = "white", color = "black", size = 0.25)
-  + coord_map("albers", lat0 = 39, lat1 = 45)
-  + theme_map()
-  )
+ggplot() +
+  geom_map(data  =  us, map = us,
+           aes(x = long, y = lat, map_id = region, group = group),
+           fill = "white", color = "black", size = 0.25) +
+  coord_map("albers", lat0 = 39, lat1 = 45) +
+  theme_map()
+
 ```
 
 
