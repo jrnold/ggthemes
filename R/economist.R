@@ -16,59 +16,63 @@
 #' ## RGB values from Stata's economist scheme
 #' show_col(economist_pal(stata=TRUE)(16))
 economist_pal <- function(stata=FALSE, fill=TRUE) {
-    if (stata) {
-        manual_pal(unname(ggthemes_data$economist$stata$fg))
-    } else {
-        colors <- ggthemes_data$economist$fg
-        if (fill) {
-            function(n) {
-                if (n == 1) {
-                    i <- "blue_dark"
-                } else if (n == 2) {
-                    i <- c("blue_mid", "blue_dark")
-                } else if (n == 3) {
-                    i <- c("blue_gray", "blue_dark", "blue_mid")
-                } else if (n == 4) {
-                    i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
-                } else if (n %in% 5:6) {
-                    ## 20120901_woc904
-                    i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
-                           "green_light", "green_dark")
-                } else if (n == 7) {
-                    # 20120818_AMC820
-                    i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-                          "green_dark", "green_light", "gray")
-                } else if (n >= 8) {
-                    # 20120915_EUC094
-                    i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-                          "green_dark", "green_light", "red_dark", "red_light",
-                          "gray")
-                }
-                unname(colors[i][seq_len(n)])
-            }
-        } else {
-            function(n) {
-                if (n <= 3) {
-                    # 20120818_AMC20
-                    # 20120901_FBC897
-                    i <- c("blue_dark", "blue_mid", "blue_light")
-                } else if (n %in% 4:5) {
-                    # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
-                    i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
-                } else if (n == 6) {
-                    # 20120825_IRC829
-                    i <- c("green_light", "green_dark", "gray",
-                           "blue_gray", "blue_light", "blue_dark")
-                } else if (n > 6) {
-                    # 20120825_IRC829
-                    i <- c("green_light", "green_dark", "gray",
-                           "blue_gray", "blue_light", "blue_dark", "red_dark", "red_light",
-                           "brown")
-                }
-                unname(colors[i][seq_len(n)])
-            }
+  if (stata) {
+    manual_pal(unname(ggthemes_data$economist$stata$fg))
+  } else {
+    colors <- ggthemes_data$economist$fg
+    if (fill) {
+      function(n) {
+        assertthat(n < length(ggthemes_data$economist$fg))
+        assertthat(n > 0)
+        if (n == 1) {
+          i <- "blue_dark"
+        } else if (n == 2) {
+          i <- c("blue_mid", "blue_dark")
+        } else if (n == 3) {
+          i <- c("blue_gray", "blue_dark", "blue_mid")
+        } else if (n == 4) {
+          i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
+        } else if (n %in% 5:6) {
+          ## 20120901_woc904
+          i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
+                 "green_light", "green_dark")
+        } else if (n == 7) {
+          # 20120818_AMC820
+          i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+                 "green_dark", "green_light", "gray")
+        } else if (n >= 8) {
+          # 20120915_EUC094
+          i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+                 "green_dark", "green_light", "red_dark", "red_light",
+                 "gray")
         }
+        unname(colors[i][seq_len(n)])
+      }
+    } else {
+      function(n) {
+        assertthat(n > 0)
+        assertthat(n <= length(ggthemes_data$economist$fg))
+        if (n <= 3) {
+          # 20120818_AMC20
+          # 20120901_FBC897
+          i <- c("blue_dark", "blue_mid", "blue_light")
+        } else if (n %in% 4:5) {
+          # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
+          i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
+        } else if (n == 6) {
+          # 20120825_IRC829
+          i <- c("green_light", "green_dark", "gray",
+                 "blue_gray", "blue_light", "blue_dark")
+        } else if (n > 6) {
+          # 20120825_IRC829
+          i <- c("green_light", "green_dark", "gray",
+                 "blue_gray", "blue_light", "blue_dark", "red_dark", "red_light",
+                 "brown")
+        }
+        unname(colors[i][seq_len(n)])
+      }
     }
+  }
 }
 
 
@@ -83,7 +87,7 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 #' @seealso \code{\link{theme_economist}} for examples.
 #' @export
 scale_colour_economist <- function(stata=FALSE, ...) {
-    discrete_scale("colour", "economist", economist_pal(stata=stata), ...)
+  discrete_scale("colour", "economist", economist_pal(stata=stata), ...)
 }
 
 #' @rdname scale_economist
@@ -93,7 +97,7 @@ scale_color_economist <- scale_colour_economist
 #' @rdname scale_economist
 #' @export
 scale_fill_economist <- function(stata=FALSE, ...) {
-    discrete_scale("fill", "economist", economist_pal(stata=stata), ...)
+  discrete_scale("fill", "economist", economist_pal(stata=stata), ...)
 }
 
 #' ggplot color theme based on the Economist
@@ -179,97 +183,97 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 theme_economist <- function(base_size = 10, base_family = "sans",
                             horizontal = TRUE, dkpanel = FALSE,
                             stata = FALSE) {
-    if (stata) {
-        bgcolors <- ggthemes_data$economist$stata$bg
-    } else {
-        bgcolors <- ggthemes_data$economist$bg
-    }
-    ## From measurements
-    ## Ticks = 1/32 in, with margin about 1.5/32
-    ## Title = 3/32 in (6 pt)
-    ## Legend Labels = 2.5/32 in (5pt)
-    ## Axis Labels = 2
-    ## Axis Titles and other text ~ 2
-    ## Margins: Top/Bottom = 6/32, sides = 5/32
-    ret <-
-      theme_foundation(base_size = base_size, base_family = base_family) +
-        theme(line = element_line(colour = "black"),
-              rect = element_rect(fill = bgcolors['ebg'], colour = NA,
-                                  linetype = 1),
-              text = element_text(colour = "black"),
-              ## Axis
-              axis.line = element_line(size = rel(0.8)),
-              axis.line.y = element_blank(),
-              axis.text = element_text(size = rel(1)),
-              axis.text.x = element_text(vjust = 0,
-                                         margin = margin(t = base_size,
-                                                         unit = "pt")),
-              axis.text.y = element_text(hjust = 0,
-                                         margin = margin(r = base_size,
-                                                         unit = "pt")),
-              ## I cannot figure out how to get ggplot to do 2 levels of ticks
-              ## axis.ticks.margin = unit(3/72, "in"),
-              axis.ticks = element_line(),
-              axis.ticks.y = element_blank(),
-              axis.title = element_text(size = rel(1)),
-              axis.title.x = element_text(),
-              axis.title.y = element_text(angle = 90),
-              # axis.ticks.length = unit(-1/32, "in"),
-              axis.ticks.length = unit(-base_size * 0.5 , "points"),
-              legend.background = element_rect(linetype=0),
-              legend.margin = unit(base_size * 1.5, "points"),
-              legend.key = element_rect(linetype=0),
-              legend.key.size = unit(1.2, "lines"),
-              legend.key.height = NULL,
-              legend.key.width = NULL,
-              legend.text = element_text(size = rel(1.25)),
-              legend.text.align = NULL,
-              legend.title = element_text(size = rel(1),  hjust = 0),
-              legend.title.align = NULL,
-              legend.position = "top",
-              legend.direction = NULL,
-              legend.justification = "center",
-              ## legend.box = element_rect(fill = palette_economist['bgdk'], colour=NA, linetype=0),
-              ## Economist only uses vertical lines
-              panel.background = element_rect(linetype=0),
-              panel.border = element_blank(),
-              panel.grid.major = element_line(colour = "white", size=rel(1.75)),
-              panel.grid.minor = element_blank(),
-              panel.margin = unit(0.25, "lines"),
-              strip.background = element_rect(fill = bgcolors['ebg'],
-              colour = NA, linetype=0),
-              strip.text = element_text(size = rel(1.25)),
-              strip.text.x = element_text(),
-              strip.text.y = element_text(angle = -90),
-              plot.background = element_rect(fill = bgcolors['ebg'], colour=NA),
-              plot.title = element_text(size = rel(1.5), hjust=0, face="bold"),
-              plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
-              complete = TRUE)
-    if (horizontal) {
-        ret <- ret + theme(panel.grid.major.x = element_blank())
-    } else {
-        ret <- ret + theme(panel.grid.major.y = element_blank())
-    }
-    if (dkpanel==TRUE) {
-        ret <- ret + theme(panel.background=element_rect(fill = bgcolors['edkbg']),
-                           strip.background=element_rect(fill = bgcolors['edkbg']))
-    }
-    ret
+  if (stata) {
+    bgcolors <- ggthemes_data$economist$stata$bg
+  } else {
+    bgcolors <- ggthemes_data$economist$bg
+  }
+  ## From measurements
+  ## Ticks = 1/32 in, with margin about 1.5/32
+  ## Title = 3/32 in (6 pt)
+  ## Legend Labels = 2.5/32 in (5pt)
+  ## Axis Labels = 2
+  ## Axis Titles and other text ~ 2
+  ## Margins: Top/Bottom = 6/32, sides = 5/32
+  ret <-
+    theme_foundation(base_size = base_size, base_family = base_family) +
+    theme(line = element_line(colour = "black"),
+          rect = element_rect(fill = bgcolors['ebg'], colour = NA,
+                              linetype = 1),
+          text = element_text(colour = "black"),
+          ## Axis
+          axis.line = element_line(size = rel(0.8)),
+          axis.line.y = element_blank(),
+          axis.text = element_text(size = rel(1)),
+          axis.text.x = element_text(vjust = 0,
+                                     margin = margin(t = base_size,
+                                                     unit = "pt")),
+          axis.text.y = element_text(hjust = 0,
+                                     margin = margin(r = base_size,
+                                                     unit = "pt")),
+          ## I cannot figure out how to get ggplot to do 2 levels of ticks
+          ## axis.ticks.margin = unit(3/72, "in"),
+          axis.ticks = element_line(),
+          axis.ticks.y = element_blank(),
+          axis.title = element_text(size = rel(1)),
+          axis.title.x = element_text(),
+          axis.title.y = element_text(angle = 90),
+          # axis.ticks.length = unit(-1/32, "in"),
+          axis.ticks.length = unit(-base_size * 0.5 , "points"),
+          legend.background = element_rect(linetype=0),
+          legend.margin = unit(base_size * 1.5, "points"),
+          legend.key = element_rect(linetype=0),
+          legend.key.size = unit(1.2, "lines"),
+          legend.key.height = NULL,
+          legend.key.width = NULL,
+          legend.text = element_text(size = rel(1.25)),
+          legend.text.align = NULL,
+          legend.title = element_text(size = rel(1),  hjust = 0),
+          legend.title.align = NULL,
+          legend.position = "top",
+          legend.direction = NULL,
+          legend.justification = "center",
+          ## legend.box = element_rect(fill = palette_economist['bgdk'], colour=NA, linetype=0),
+          ## Economist only uses vertical lines
+          panel.background = element_rect(linetype=0),
+          panel.border = element_blank(),
+          panel.grid.major = element_line(colour = "white", size=rel(1.75)),
+          panel.grid.minor = element_blank(),
+          panel.margin = unit(0.25, "lines"),
+          strip.background = element_rect(fill = bgcolors['ebg'],
+                                          colour = NA, linetype=0),
+          strip.text = element_text(size = rel(1.25)),
+          strip.text.x = element_text(),
+          strip.text.y = element_text(angle = -90),
+          plot.background = element_rect(fill = bgcolors['ebg'], colour=NA),
+          plot.title = element_text(size = rel(1.5), hjust=0, face="bold"),
+          plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
+          complete = TRUE)
+  if (horizontal) {
+    ret <- ret + theme(panel.grid.major.x = element_blank())
+  } else {
+    ret <- ret + theme(panel.grid.major.y = element_blank())
+  }
+  if (dkpanel==TRUE) {
+    ret <- ret + theme(panel.background=element_rect(fill = bgcolors['edkbg']),
+                       strip.background=element_rect(fill = bgcolors['edkbg']))
+  }
+  ret
 }
 
 #' @rdname theme_economist
 #' @export
 theme_economist_white <- function(base_size = 11, base_family = "sans",
                                   gray_bg = TRUE, horizontal = TRUE) {
-    if (gray_bg) {
-        bgcolor <- ggthemes_data$economist$bg['ltgray']
-    } else {
-        bgcolor <- "white"
-    }
-    (theme_economist(base_family=base_family, base_size=base_size, horizontal=horizontal)
-     + theme(rect = element_rect(fill = bgcolor),
-             plot.background = element_rect(fill = bgcolor),
-             panel.background = element_rect(fill = "white"),
-             panel.grid.major = element_line(colour=ggthemes_data$economist$bg['dkgray']),
-             strip.background = element_rect(fill = "white")))
+  if (gray_bg) {
+    bgcolor <- ggthemes_data$economist$bg['ltgray']
+  } else {
+    bgcolor <- "white"
+  }
+  (theme_economist(base_family=base_family, base_size=base_size, horizontal=horizontal)
+  + theme(rect = element_rect(fill = bgcolor),
+          plot.background = element_rect(fill = bgcolor),
+          panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(colour=ggthemes_data$economist$bg['dkgray']),
+          strip.background = element_rect(fill = "white")))
 }
