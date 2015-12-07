@@ -10,7 +10,7 @@
 knitr::opts_chunk$set(fig.width = 5.25,
                fig.height = 3.75,
                cache = FALSE,
-               dev = 'svg')
+               dev = 'png')
 ```
 
 # ggthemes
