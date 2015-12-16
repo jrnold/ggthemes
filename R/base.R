@@ -375,7 +375,8 @@ theme_base <- function(base_size = 16, base_family = "") {
 #' \code{"tck"}, \code{"xaxt"}, \code{"yaxt"}.
 #'
 #' This theme does not translate the base graphics perfectly, so the graphs
-#' produced by it will not be identical to those produced by base graphics.
+#' produced by it will not be identical to those produced by base graphics,
+#' most notably in the spacing of the margins.
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @export
@@ -425,7 +426,7 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
         panel.margin = unit(half_line, "pt"),
         panel.margin.x = NULL,
         panel.margin.y = NULL,
-        panel.background = element_rect(fill = NA),
+        panel.background = element_rect(fill = NA, colour = par()$col),
         panel.grid = element_blank(),
         plot.background = element_rect(colour = NA),
         plot.margin = unit(par()$mar, "lines"),
@@ -470,10 +471,14 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   }
   # plot x or y axis
   if (par()$xaxt == "n") {
-    thm <- thm + theme(axis.line.x = element_blank())
+    thm <- thm + theme(axis.line.x = element_blank(),
+                       axis.text.x = element_blank(),
+                       axis.ticks.x = element_blank())
   }
   if (par()$yaxt == "n") {
-    thm <- thm + theme(axis.line.y = element_blank())
+    thm <- thm + theme(axis.line.y = element_blank(),
+                       axis.text.y = element_blank(),
+                       axis.ticks.y = element_blank())
   }
 
   thm

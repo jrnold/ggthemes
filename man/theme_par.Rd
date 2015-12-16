@@ -23,9 +23,15 @@ Currently this theme uses the values of the parameters:
 \code{"lheight"}, \code{"lty"}, \code{"mar"}, \code{"ps"}, \code{"tcl"},
 \code{"tck"}, \code{"xaxt"}, \code{"yaxt"}.
 }
+\details{
+This theme does not translate the base graphics perfectly, so the graphs
+produced by it will not be identical to those produced by base graphics,
+most notably in the spacing of the margins.
+}
 \examples{
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) + facet_wrap(~am)
+par(font = 2, col.lab = "red", fg = "blue")
 p + theme_par()
 }
 \seealso{
