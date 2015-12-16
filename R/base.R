@@ -374,17 +374,22 @@ theme_base <- function(base_size = 16, base_family = "") {
 #' \code{"lheight"}, \code{"lty"}, \code{"mar"}, \code{"ps"}, \code{"tcl"},
 #' \code{"tck"}, \code{"xaxt"}, \code{"yaxt"}.
 #'
+#' This theme does not translate the base graphics perfectly, so the graphs
+#' produced by it will not be identical to those produced by base graphics.
+#'
 #' @inheritParams ggplot2::theme_bw
 #' @export
 #' @family themes
 #' @examples
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 #'      colour=factor(gear))) + facet_wrap(~am)
+#' par(font = 2, col.lab = "red", fg = "blue")
 #' p + theme_par()
 theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   faces <- c("plain", "bold", "italic", "bold.italic")
   half_line <- base_size / 2
-  thm <- theme(line = element_line(colour = par()$fg,
+  thm <- theme_foundation() %+replace%
+        theme(line = element_line(colour = par()$fg,
                                    size = 0.5,
                                    lineend = par()$lend,
                                    linetype = par()$lty),
@@ -412,6 +417,9 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
                                                    b = 0.8 * half_line / 2)),
         axis.text.y = element_text(margin = margin(r = 0.8 * half_line / 2,
                                                    l = 0.8 * half_line / 2)),
+        axis.ticks = element_line(colour = par()$fg),
+        legend.title = element_text(colour = par()$fg),
+        legend.text = element_text(colour = par()$fg),
         legend.margin = unit(0.2, "cm"),
         legend.key = element_rect(colour = NA),
         panel.margin = unit(half_line, "pt"),
@@ -419,7 +427,8 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
         panel.margin.y = NULL,
         panel.background = element_rect(fill = NA),
         panel.grid = element_blank(),
-        plot.margin = unit(par()$mar, "pt"),
+        plot.background = element_rect(colour = NA),
+        plot.margin = unit(par()$mar, "lines"),
         plot.title = element_text(size = rel(par()$cex.main),
                                   face = faces[par()$font.main],
                                   colour = par()$col.main,
@@ -431,9 +440,7 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
                                                     b = half_line)),
         strip.text.y = element_text(margin = margin(l = half_line,
                                                     r = half_line)),
-        strip.background = element_rect(colour = NA),
-        complete = TRUE,
-        validate = TRUE
+        strip.background = element_rect(colour = NA)
   )
 
   las <- par()$las
@@ -448,7 +455,7 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   } else if (las == 2) {
     # perpendicular
     thm <- thm + theme(axis.title.x = element_text(angle = 90),
-                         axis.title.y = element_text(angle = 0))
+                       axis.title.y = element_text(angle = 0))
   } else if (las == 3) {
     # vertical
     thm <- thm + theme(axis.title.x = element_text(angle = 90),
