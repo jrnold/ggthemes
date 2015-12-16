@@ -15,11 +15,11 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     comment = "Code from the labeling package"))
 Depends:
     R (>= 3.0.0),
-    ggplot2 (>= 1.0.0.9003)
+    ggplot2 (>= 2.0.0)
 Imports:
     colorspace,
     grid,
-    scales,
+    scales (>= 0.3.0),
     methods,
     assertthat
 Suggests:
