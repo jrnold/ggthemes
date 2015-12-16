@@ -10,6 +10,7 @@ Some extra geoms, scales, and themes for
 
 ### Themes 
 
+- ``theme_base``: a theme resembling the default base graphics in R. See also ``theme_par``.
 - ``theme_calc``: a theme based on LibreOffice Calc.
 - ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 - ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
@@ -17,6 +18,7 @@ Some extra geoms, scales, and themes for
 - ``theme_fivethirtyeight``: a theme based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
 - ``theme_gdocs``: a theme based on Google Docs.
 - ``theme_hc``: a theme based on [Highcharts JS](http://www.highcharts.com).
+- ``theme_par``: a theme that uses the current values of the base graphics parameters in `par`.
 - ``theme_pander``: a theme to use with the [pander](http://rapporter.github.io/pander/) package.
 - ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
 - ``theme_stata``: themes based on [Stata](http://www.stata.com/) graph schemes.

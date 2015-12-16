@@ -6,13 +6,15 @@
 #' @export
 #' @family themes calc
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-#'   + theme_calc()
-#'   + scale_color_calc())
-#' (d <- qplot(carat, price, data=dsamp, shape=cut)
-#'  + theme_calc()
-#'  + scale_shape_calc())
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+#'      facet_wrap(~am) + theme_calc()
+#' p + scale_color_calc()
+#' q <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
+#'      facet_wrap(~am) +
+#'      theme_calc()
+#' q + scale_shape_calc()
 theme_calc <- function(base_size = 10, base_family = "sans") {
   (theme_foundation(base_family = base_family, base_size = base_size)
    + theme(rect = element_rect(colour = "black", fill = "white"),

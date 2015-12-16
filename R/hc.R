@@ -13,18 +13,11 @@
 #' 'darkunica'}, the names of values in
 #' \code{ggthemes_data$hc$bg}.
 #' @examples
-#' (qplot(hp, mpg, data = mtcars, geom = 'point')
-#' + scale_colour_hc()
-#' + ggtitle('Diamond Prices')
-#' + theme_hc())
-#' ## Use a Dark-Unica theme
-#' (qplot(hp, mpg, data = mtcars, geom = 'point')
-#' + scale_colour_hc('darkunica')
-#' + ggtitle('Diamond Prices')
-#' + theme_hc(bgcolor = 'darkunica'))
+#' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
+#'      colour=factor(gear))) + facet_wrap(~am)
+#' p + theme_hc() + scale_colour_hc()
+#' p + theme_hc(bgcolor = 'darkunica') + scale_colour_hc('darkunica')
 #' @export
-
-
 theme_hc <- function(base_size = 12, base_family = "sans", bgcolor = "default") {
   
   bgcol <- ggthemes_data$hc$bg[bgcolor]

@@ -6,11 +6,10 @@
 #' @export
 #' @family themes gdocs
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-#'  + theme_gdocs()
-#'  + ggtitle("Diamonds")
-#'  + scale_color_gdocs())
+#' p <- ggplot(mtcars) +
+#'   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
+#'   facet_wrap(~am)
+#' p + theme_gdocs() + scale_color_gdocs()
 theme_gdocs <- function(base_size=12, base_family="sans") {
   theme_foundation(base_size = base_size,
                    base_family = base_family) +

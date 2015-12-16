@@ -5,6 +5,7 @@
 [![cran version](http://www.r-pkg.org/badges/version/ggthemes)](http://cran.rstudio.com/web/packages/ggthemes)
 
 
+
 # ggthemes
 
 
@@ -20,6 +21,7 @@ Some extra geoms, scales, and themes for
 
 ### Themes 
 
+- ``theme_base``: a theme resembling the default base graphics in R. See also ``theme_par``.
 - ``theme_calc``: a theme based on LibreOffice Calc.
 - ``theme_economist``: a theme based on the plots in the [The Economist](http://www.economist.com/) magazine.
 - ``theme_excel``: a theme replicating the classic ugly gray charts in Excel
@@ -27,6 +29,7 @@ Some extra geoms, scales, and themes for
 - ``theme_fivethirtyeight``: a theme based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
 - ``theme_gdocs``: a theme based on Google Docs.
 - ``theme_hc``: a theme based on [Highcharts JS](http://www.highcharts.com).
+- ``theme_par``: a theme that uses the current values of the base graphics parameters in `par`.
 - ``theme_pander``: a theme to use with the [pander](http://rapporter.github.io/pander/) package.
 - ``theme_solarized``: a theme using the [solarized](http://ethanschoonover.com/solarized) color palette.
 - ``theme_stata``: themes based on [Stata](http://www.stata.com/) graph schemes.
@@ -101,11 +104,16 @@ etc., fork the repository, add your theme, and submit a pull request.
 ```r
 library("ggplot2")
 library("ggthemes")
-dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-diamond_plot <- 
-  ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
-  ggtitle("Diamonds Are Forever")
+  ggtitle("Cars")
+
+p2 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point() +
+  ggtitle("Cars")
+
+p3 <- p2 + facet_wrap(~ am)
 ```
 
 ### Tufte theme and geoms
@@ -114,9 +122,7 @@ Minimal theme and geoms based on plots in *The Visual Display of Quantitative In
 
 
 ```r
-ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_point() +
-  geom_rangeframe() +
+p + geom_rangeframe() +
   theme_tufte() + 
   scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt)) +
   scale_y_continuous(breaks = extended_range_breaks()(mtcars$mpg))
@@ -129,42 +135,38 @@ For a boxplot with a point indicating the median, a gap indicating the interquar
 and lines for whiskers:
 
 ```r
-ggplot(mtcars, aes(factor(cyl), mpg))  +
- theme_tufte(ticks=FALSE) +
- geom_tufteboxplot()
+p4 <- ggplot(mtcars, aes(factor(cyl), mpg))
+
+p4 + theme_tufte(ticks=FALSE) + geom_tufteboxplot()
 ```
 
 ![plot of chunk tufteboxplot](figure/tufteboxplot-1.png) 
+
 For a boxplot with an offset line indicating the interquartile range and a gap indicating the median:
 
 ```r
-(ggplot(mtcars, aes(factor(cyl), mpg)) 
- + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(median.type = "line")
-)
+p4 + theme_tufte(ticks=FALSE) +
+  geom_tufteboxplot(median.type = "line")
 ```
 
 ![plot of chunk tufteboxplot2](figure/tufteboxplot2-1.png) 
+
 For a boxplot with an line indicating the interquartile range, a gap indicating the median, and 
 points indicating the minimum and maximum:
 
 ```r
-(ggplot(mtcars, aes(factor(cyl), mpg)) 
- + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(median.type = "line", whisker.type = 'point', hoffset = 0)
-)
+p4 + theme_tufte(ticks=FALSE) +
+  geom_tufteboxplot(median.type = "line", whisker.type = 'point', hoffset = 0)
 ```
 
 ![plot of chunk tufteboxplot3](figure/tufteboxplot3-1.png) 
+
 For a boxplot with a wide line indicating the interquartile range, a gap indicating the median, and 
 lines indicating the minimum and maximum
 
 ```r
-(ggplot(mtcars, aes(factor(cyl), mpg)) 
- + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0,
-                     width = 3)
-)
+p4 + theme_tufte(ticks=FALSE) +
+  geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0, width = 3)
 ```
 
 ![plot of chunk tufteboxplot4](figure/tufteboxplot4-1.png) 
@@ -176,9 +178,7 @@ magazine.
 
 
 ```r
-diamond_plot +
-  theme_economist() +
-  scale_colour_economist() 
+p2 + theme_economist() + scale_colour_economist() 
 ```
 
 ![plot of chunk economist](figure/economist-1.png) 
@@ -191,8 +191,7 @@ The light theme.
 
 
 ```r
-diamond_plot +
-  theme_solarized() +
+p2 + theme_solarized() +
   scale_colour_solarized("blue")
 ```
 
@@ -202,8 +201,7 @@ The dark theme.
 
 
 ```r
-diamond_plot +
-  theme_solarized(light = FALSE) +
+p2 + theme_solarized(light = FALSE) +
   scale_colour_solarized("red")
 ```
 
@@ -213,8 +211,7 @@ An alternative theme.
 
 
 ```r
-diamond_plot +
-  theme_solarized_2(light = FALSE) +
+p2 + theme_solarized_2(light = FALSE) +
   scale_colour_solarized("blue")
 ```
 
@@ -228,11 +225,7 @@ schemes in Stata.
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
-  geom_point() +
-  theme_stata() +
-  scale_colour_stata() +
-  ggtitle("Plot Title")
+p2 + theme_stata() + scale_colour_stata()
 ```
 
 ![plot of chunk stata](figure/stata-1.png) 
@@ -244,10 +237,7 @@ and pies not included. Please never use this theme.
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
-  geom_point() +
-  theme_excel() +
-  scale_colour_excel()
+p2 + theme_excel() + scale_colour_excel()
 ```
 
 ![plot of chunk excel1](figure/excel1-1.png) 
@@ -268,9 +258,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_igray()
+p2 + theme_igray()
 ```
 
 ![plot of chunk igray](figure/igray-1.png) 
@@ -281,10 +269,7 @@ Theme and color palette based on the plots at [fivethirtyeight.com](http://fivet
 
 
 ```r
-ggplot(subset(mtcars, cyl != 5),
-       aes(x = hp, y = mpg, colour = factor(cyl))) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+p2 + geom_smooth(method = "lm", se = FALSE) +
   scale_color_fivethirtyeight("cyl") +
   theme_fivethirtyeight()
 ```
@@ -297,20 +282,14 @@ Color, fill, and shape scales based on those used in the Tableau software.
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_igray() +
-  scale_colour_tableau()
+p2 + theme_igray() + scale_colour_tableau()
 ```
 
 ![plot of chunk tableau](figure/tableau-1.png) 
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_igray() +
-  scale_colour_tableau("colorblind10")
+p2 + theme_igray() + scale_colour_tableau("colorblind10")
 ```
 
 ![plot of chunk tableau-colorbind10](figure/tableau-colorbind10-1.png) 
@@ -321,10 +300,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_few() +
-  scale_colour_few()
+p2 + theme_few() + scale_colour_few()
 ```
 
 ![plot of chunk few](figure/few-1.png) 
@@ -335,14 +311,34 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_wsj() +
-  scale_colour_wsj("colors6", "") +
-  ggtitle("Diamond Prices")
+p2 + theme_wsj() + scale_colour_wsj("colors6", "")
 ```
 
 ![plot of chunk wsj](figure/wsj-1.png) 
+
+### Base and Par Themes
+
+Theme that resembles the default theme in the `base` graphics in R.
+
+
+```r
+p2 + theme_base()
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+
+### Par theme
+
+Theme that uses the current values of base graphics stored in  `par`. Not all `par` parameters, are supported, and not all are relevant to **ggplot2** themes.
+
+
+```r
+par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
+p2 + theme_par()
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+
 
 ### GDocs Theme
 
@@ -350,11 +346,7 @@ Theme and color palettes based on the defaults in Google Docs.
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
-  geom_point() +
-  theme_gdocs() +
-  ggtitle("Diamonds") +
-  scale_color_gdocs()
+p2 + theme_gdocs() + scale_color_gdocs()
 ```
 
 ![plot of chunk gdocs](figure/gdocs-1.png) 
@@ -365,11 +357,7 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour=clarity)) +
-  geom_point() +
-  theme_calc() +
-  ggtitle("Diamonds") +
-  scale_color_calc()
+p2 + theme_calc() + scale_color_calc()
 ```
 
 ![plot of chunk calc](figure/calc-1.png) 
@@ -380,17 +368,14 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
 
 
 ```r
-ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
-  geom_point() +
-  theme_pander() +
-  scale_colour_pander()
+p2 + theme_pander() + scale_colour_pander()
 ```
 
 ![plot of chunk pander-scatterplot](figure/pander-scatterplot-1.png) 
 
 
 ```r
-ggplot(dsamp, aes(x = clarity, fill = cut)) +
+ggplot(diamonds, aes(x = clarity, fill = cut)) +
   geom_bar() +
   theme_pander() +
   scale_fill_pander()
@@ -404,19 +389,14 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut)
- + theme_hc()
- + scale_colour_hc()
- + ggtitle("Diamonds Are Forever"))
+p2 + theme_hc() + scale_colour_hc()
 ```
 
 ![plot of chunk hc-default](figure/hc-default-1.png) 
 
 ```r
-(qplot(carat, price, data = dsamp, colour = cut)
- + theme_hc(bgcolor = "darkunica")
- + scale_colour_hc("darkunica")
- + ggtitle("Diamonds Are Forever"))
+p2 + theme_hc(bgcolor = "darkunica") +
+  scale_colour_hc("darkunica")
 ```
 
 ![plot of chunk hc-darkunica](figure/hc-darkunica-1.png) 

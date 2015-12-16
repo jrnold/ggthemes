@@ -22,13 +22,14 @@
 #' line with an encircled plus sign.
 #'
 #' @examples
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
+#'      facet_wrap(~am) +
+#'      theme_bw()
 #' # overlapping symbol palette
-#' dsamp <- diamonds[sample(nrow(diamonds), 100), ]
-#' (qplot(carat, price, data=dsamp, shape=cut)
-#' + theme_bw() + scale_shape_cleveland())
+#' p + scale_shape_cleveland()
 #' # non-overlapping symbol palette
-#' (qplot(carat, price, data=dsamp, shape=cut)
-#' + theme_bw() + scale_shape_cleveland(overlap=FALSE))
+#' p + scale_shape_cleveland(overlap=FALSE)
 #'
 #' @references
 #' Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.

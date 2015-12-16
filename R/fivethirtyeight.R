@@ -11,12 +11,12 @@ NULL
 #' @family themes fivethirtyeight
 #' @export
 #' @examples
-#'  (qplot(hp, mpg, data= subset(mtcars, cyl != 5),
-#'         geom="point", color = factor(cyl))
-#'  + ggtitle("Horsepower, mpg and cylinders")
-#'  + geom_smooth(method = "lm", se = FALSE)
-#'  + scale_color_fivethirtyeight()
-#'  + theme_fivethirtyeight())
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+#'      facet_wrap(~am) +
+#'      geom_smooth(method = "lm", se = FALSE) +
+#'      scale_color_fivethirtyeight() +
+#'      theme_fivethirtyeight()
 theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
   (theme_foundation(base_size = base_size, base_family = base_family)
    + theme(

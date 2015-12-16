@@ -1,5 +1,5 @@
 ^\.gitignore$
-^README.R?md$
+^README\.(R?md|html)$
 ^figure$
 ^\.Rhistory$
 ^stata$

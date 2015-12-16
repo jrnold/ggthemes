@@ -42,14 +42,6 @@ stata_pal <- function(scheme="s2color") {
 #' @family colour stata
 #' @rdname scale_stata
 #' @export
-#' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-#'                + theme_bw()
-#'                + scale_color_stata())
-#' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-#'                + theme_bw()
-#'                + scale_color_stata("s1color"))
 scale_colour_stata <- function(scheme="s2color", ...) {
   discrete_scale("colour", "stata", stata_pal(scheme), ...)
 }
@@ -205,34 +197,19 @@ theme_stata_colors <- function(scheme="s2color") {
 #' @references \url{http://www.stata.com/help.cgi?schemes}
 #'
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' q1 <- (qplot(carat, price, data=dsamp, colour=clarity)
-#'        + ggtitle("Diamonds"))
-#' q2 <- (qplot(carat, price, data=dsamp)
-#'        + facet_wrap(~ clarity)
-#'        + ggtitle("Diamonds"))
-#' q1mono <- (qplot(carat, price, shape=clarity, color=clarity,
-#'            data=dsamp)
-#'            + scale_shape_stata()
-#'            + ggtitle("Diamonds"))
-#' ## s2color
-#' (q1 + theme_stata() + scale_colour_stata(scheme = "s2color"))
-#' (q2 + theme_stata())
-#' ## s2mono
-#' (q1mono + theme_stata(scheme = "s2mono") + scale_colour_stata("mono"))
-#' (q2 + theme_stata(scheme = "s2mono"))
-#' ## s1color
-#' (q1 + theme_stata(scheme = "s1color") + scale_colour_stata("s1color"))
-#' (q2 + theme_stata(scheme = "s1color"))
-#' ## s1rcolor
-#' (q1 + theme_stata(scheme = "s1rcolor") + scale_colour_stata("s1rcolor"))
-#' (ggplot(dsamp, aes(x=carat, y=price)) + geom_point(colour="white")
-#'  + facet_wrap(~ clarity) + scale_colour_stata("s1rcolor")
-#'  + ggtitle("Diamonds"))
-#' ## s1mono
-#' (q1mono + theme_stata(scheme = "s1mono") + scale_colour_stata("mono"))
-#' (q2 + theme_stata(scheme = "s1mono"))
-#'
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+#'     facet_wrap(~am)
+#' # s2color
+#' p + theme_stata() + scale_colour_stata("s2color")
+#' # s2mono
+#' p + theme_stata(scheme = "s2mono") + scale_colour_stata("mono")
+#' # s1color
+#' p + theme_stata(scheme = "s2color") + scale_colour_stata("s1color")
+#' # s1rcolor
+#' p + theme_stata(scheme = "s1rcolor") + scale_colour_stata("s1rcolor")
+#' # s1mono
+#' p + theme_stata(scheme = "s1mono") + scale_colour_stata("mono")
 theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") {
   ## Sizes
   (theme_stata_base(base_size=eval(base_size), base_family=base_family)
@@ -265,9 +242,10 @@ stata_shape_pal <- function() {
 #' @family shape stata
 #' @export
 #' @examples
-#' dsmall <- diamonds[sample(nrow(diamonds), 100), ]
-#' (d <- qplot(carat, price, data=dsmall, shape=cut)
-#'  + scale_shape_stata())
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
+#'      facet_wrap(~am)
+#' p + theme_stata() + scale_shape_stata()
 scale_shape_stata <- function (...) {
   discrete_scale("shape", "stata", stata_shape_pal(), ...)
 }

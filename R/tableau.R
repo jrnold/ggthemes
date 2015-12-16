@@ -66,8 +66,9 @@ tableau_color_pal <- function(palette = "tableau10") {
 #' @export
 #' @seealso \code{\link{tableau_color_pal}} for references.
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' p <- qplot(carat, price, data=dsamp, colour=clarity) + theme_igray()
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+#'      facet_wrap(~am)
 #' p + scale_colour_tableau()
 #' p + scale_colour_tableau('tableau20')
 #' p + scale_colour_tableau('tableau10medium')
@@ -115,8 +116,9 @@ tableau_shape_pal <- function(palette = "default") {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shape tableau
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' p <- qplot(carat, price, data=dsamp, shape=clarity)
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
+#'      facet_wrap(~am)
 #' p + scale_shape_tableau()
 scale_shape_tableau <- function(palette = "default", ...) {
   discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)

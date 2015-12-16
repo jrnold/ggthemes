@@ -41,13 +41,14 @@ URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
 Collate:
     'banking.R'
+    'base.R'
     'calc.R'
     'colorblind.R'
     'economist.R'
     'excel.R'
     'few.R'
-    'ggthemes-package.R'
     'ggthemes-data.R'
+    'ggthemes-package.R'
     'fivethirtyeight.R'
     'gdocs.R'
     'geom-rangeframe.R'

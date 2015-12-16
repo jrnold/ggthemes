@@ -3,11 +3,18 @@
 ```{r dsamp}
 library("ggplot2")
 library("ggthemes")
-dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-diamond_plot <- 
-  ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
+
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
-  ggtitle("Diamonds Are Forever")
+  ggtitle("Cars")
+
+p2 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point() +
+  ggtitle("Cars")
+
+p3 <- p2 + facet_wrap(~ am)
+
+
 ```
 
 ### Tufte theme and geoms
@@ -15,9 +22,7 @@ diamond_plot <-
 Minimal theme and geoms based on plots in *The Visual Display of Quantitative Information*.
 
 ```{r tufte-rangeframe}
-ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_point() +
-  geom_rangeframe() +
+p + geom_rangeframe() +
   theme_tufte() + 
   scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt)) +
   scale_y_continuous(breaks = extended_range_breaks()(mtcars$mpg))
@@ -27,34 +32,32 @@ The function `geom_tufteboxplot` creates several variants of Tufte's minimal-ink
 For a boxplot with a point indicating the median, a gap indicating the interquartile range,
 and lines for whiskers:
 ```{r tufteboxplot}
-ggplot(mtcars, aes(factor(cyl), mpg))  +
- theme_tufte(ticks=FALSE) +
- geom_tufteboxplot()
+p4 <- ggplot(mtcars, aes(factor(cyl), mpg))
+
+p4 + theme_tufte(ticks=FALSE) + geom_tufteboxplot()
 
 ```
+
 For a boxplot with an offset line indicating the interquartile range and a gap indicating the median:
 ```{r tufteboxplot2}
-(ggplot(mtcars, aes(factor(cyl), mpg)) 
- + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(median.type = "line")
-)
+p4 + theme_tufte(ticks=FALSE) +
+  geom_tufteboxplot(median.type = "line")
 ```
+
 For a boxplot with an line indicating the interquartile range, a gap indicating the median, and 
 points indicating the minimum and maximum:
 ```{r tufteboxplot3}
-(ggplot(mtcars, aes(factor(cyl), mpg)) 
- + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(median.type = "line", whisker.type = 'point', hoffset = 0)
-)
+p4 + theme_tufte(ticks=FALSE) +
+  geom_tufteboxplot(median.type = "line", whisker.type = 'point', hoffset = 0)
+
 ```
+
 For a boxplot with a wide line indicating the interquartile range, a gap indicating the median, and 
 lines indicating the minimum and maximum
 ```{r tufteboxplot4}
-(ggplot(mtcars, aes(factor(cyl), mpg)) 
- + theme_tufte(ticks=FALSE)
- + geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0,
-                     width = 3)
-)
+p4 + theme_tufte(ticks=FALSE) +
+  geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0, width = 3)
+
 ```
 
 ### Economist theme
@@ -63,9 +66,7 @@ A theme that approximates the style of plots in The Economist
 magazine.
 
 ```{r economist}
-diamond_plot +
-  theme_economist() +
-  scale_colour_economist() 
+p2 + theme_economist() + scale_colour_economist() 
 ```
 
 ### Solarized theme
@@ -75,16 +76,14 @@ A theme and color and fill scales based on the Solarized palette.
 The light theme.
 
 ```{r solarized-light}
-diamond_plot +
-  theme_solarized() +
+p2 + theme_solarized() +
   scale_colour_solarized("blue")
 ```
 
 The dark theme.
 
 ```{r solarized-dark}
-diamond_plot +
-  theme_solarized(light = FALSE) +
+p2 + theme_solarized(light = FALSE) +
   scale_colour_solarized("red")
 
 ```
@@ -92,8 +91,7 @@ diamond_plot +
 An alternative theme.
 
 ```{r solarized-alt}
-diamond_plot +
-  theme_solarized_2(light = FALSE) +
+p2 + theme_solarized_2(light = FALSE) +
   scale_colour_solarized("blue")
 
 ```
@@ -105,11 +103,7 @@ Themes and scales (color, fill, linetype, shapes) based on the graph
 schemes in Stata.
 
 ```{r stata}
-ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
-  geom_point() +
-  theme_stata() +
-  scale_colour_stata() +
-  ggtitle("Plot Title")
+p2 + theme_stata() + scale_colour_stata()
                              
 ```
 
@@ -119,10 +113,7 @@ For that classic ugly look and feel. For ironic purposes only. 3D bars
 and pies not included. Please never use this theme.
 
 ```{r excel1}
-ggplot(dsamp, aes(x = carat, y = price, colour = cut)) +
-  geom_point() +
-  theme_excel() +
-  scale_colour_excel()
+p2 + theme_excel() + scale_colour_excel()
 
 ```
 
@@ -131,6 +122,7 @@ ggplot(diamonds, aes(x = clarity, fill = cut)) +
   geom_bar() +
   scale_fill_excel() +
   theme_excel()
+
 ```
 
 ### Inverse Gray Theme
@@ -138,9 +130,7 @@ ggplot(diamonds, aes(x = clarity, fill = cut)) +
 Inverse of `theme_gray`, i.e. white plot area and gray background.
 
 ```{r igray}
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_igray()
+p2 + theme_igray()
 
 ```
 
@@ -149,10 +139,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
 Theme and color palette based on the plots at [fivethirtyeight.com](http://fivethirtyeight.com).
 
 ```{r fivethirtyeight}
-ggplot(subset(mtcars, cyl != 5),
-       aes(x = hp, y = mpg, colour = factor(cyl))) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+p2 + geom_smooth(method = "lm", se = FALSE) +
   scale_color_fivethirtyeight("cyl") +
   theme_fivethirtyeight()
 
@@ -163,18 +150,12 @@ ggplot(subset(mtcars, cyl != 5),
 Color, fill, and shape scales based on those used in the Tableau software.
 
 ```{r tableau}
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_igray() +
-  scale_colour_tableau()
+p2 + theme_igray() + scale_colour_tableau()
 
 ```
 
 ```{r tableau-colorbind10}
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_igray() +
-  scale_colour_tableau("colorblind10")
+p2 + theme_igray() + scale_colour_tableau("colorblind10")
 
 ```
 
@@ -183,11 +164,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
 Color palette and theme based on Stephen Few's ["Practical Rules for Using Color in Charts"](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 
 ```{r few}
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_few() +
-  scale_colour_few()
-
+p2 + theme_few() + scale_colour_few()
 ```
 
 ### Wall Street Journal
@@ -195,24 +172,34 @@ ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
 Theme and some color palettes based on plots in the *The Wall Street Journal*.
 
 ```{r wsj}
-ggplot(dsamp, aes(x = carat, y = price, colour=cut)) +
-  geom_point() +
-  theme_wsj() +
-  scale_colour_wsj("colors6", "") +
-  ggtitle("Diamond Prices")
-
+p2 + theme_wsj() + scale_colour_wsj("colors6", "")
 ```
+
+### Base and Par Themes
+
+Theme that resembles the default theme in the `base` graphics in R.
+
+```{r}
+p2 + theme_base()
+```
+
+### Par theme
+
+Theme that uses the current values of base graphics stored in  `par`. Not all `par` parameters, are supported, and not all are relevant to **ggplot2** themes.
+
+```{r}
+par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
+p2 + theme_par()
+```
+
 
 ### GDocs Theme
 
 Theme and color palettes based on the defaults in Google Docs.
 
 ```{r gdocs}
-ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
-  geom_point() +
-  theme_gdocs() +
-  ggtitle("Diamonds") +
-  scale_color_gdocs()
+p2 + theme_gdocs() + scale_color_gdocs()
+
 ```
 
 ### Calc Theme
@@ -220,12 +207,7 @@ ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
 Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 
 ```{r calc}
-ggplot(dsamp, aes(x = carat, y = price, colour=clarity)) +
-  geom_point() +
-  theme_calc() +
-  ggtitle("Diamonds") +
-  scale_color_calc()
- 
+p2 + theme_calc() + scale_color_calc()
 ```
 
 ### Pander Theme
@@ -233,15 +215,12 @@ ggplot(dsamp, aes(x = carat, y = price, colour=clarity)) +
 Theme and color palettes based on the [pander package](http://rapporter.github.io/pander/).
 
 ```{r pander-scatterplot}
-ggplot(dsamp, aes(x = carat, y = price, colour = clarity)) +
-  geom_point() +
-  theme_pander() +
-  scale_colour_pander()
+p2 + theme_pander() + scale_colour_pander()
  
 ```
 
 ```{r pander-barplot}
-ggplot(dsamp, aes(x = clarity, fill = cut)) +
+ggplot(diamonds, aes(x = clarity, fill = cut)) +
   geom_bar() +
   theme_pander() +
   scale_fill_pander()
@@ -253,16 +232,12 @@ ggplot(dsamp, aes(x = clarity, fill = cut)) +
 A theme that approximates the style of plots in [Highcharts JS](http://www.highcharts.com/demo).
 
 ```{r hc-default}
-(qplot(carat, price, data = dsamp, colour = cut)
- + theme_hc()
- + scale_colour_hc()
- + ggtitle("Diamonds Are Forever"))
+p2 + theme_hc() + scale_colour_hc()
+ 
 ```
 ```{r hc-darkunica}
-(qplot(carat, price, data = dsamp, colour = cut)
- + theme_hc(bgcolor = "darkunica")
- + scale_colour_hc("darkunica")
- + ggtitle("Diamonds Are Forever"))
+p2 + theme_hc(bgcolor = "darkunica") +
+  scale_colour_hc("darkunica")
 ```
 
 ```{r dtemp}

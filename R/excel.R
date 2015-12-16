@@ -38,11 +38,6 @@ excel_pal <- function(palette = "line") {
 #' @rdname scale_excel
 #' @export
 #' @seealso See \code{\link{theme_excel}} for examples.
-#' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' (qplot(carat, price, data=dsamp, colour=clarity)
-#'  + theme_igray()
-#'  + scale_colour_excel('new'))
 scale_fill_excel <- function(palette = "fill", ...) {
   discrete_scale("fill", "excel", excel_pal(palette), ...)
 }
@@ -68,11 +63,13 @@ scale_color_excel <- scale_colour_excel
 #' @export
 #' @family themes excel
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' # Old line color palette
-#' (qplot(carat, price, data=dsamp, colour=clarity)
-#'  + theme_excel()
-#'  + scale_colour_excel() )
+#' 
+#' # Old line color
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+#'      facet_wrap(~am)
+#' p + theme_excel() + scale_colour_excel()
+#' 
 #' # Old fill color palette
 #' (ggplot(diamonds, aes(clarity, fill=cut))
 #' + geom_bar()

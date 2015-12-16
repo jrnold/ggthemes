@@ -79,10 +79,10 @@ solarized_pal <- function(accent = "blue") {
 #' @family solarized colour
 #' @export
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' (d <- qplot(carat, price, data=dsamp, colour=clarity)
-#'                + theme_solarized()
-#'                + scale_colour_solarized() )
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+#'      facet_wrap(~am)
+#' p + theme_solarized() + scale_colour_solarized()
 scale_fill_solarized <- function(accent = "blue", ...) {
   discrete_scale("fill", "solarized", solarized_pal(accent), ...)
 }
@@ -114,24 +114,14 @@ scale_color_solarized <- scale_colour_solarized
 #' @export
 #' @family themes solarized
 #' @examples
-#' data("ggthemes_data")
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' (qplot(carat, price, data=dsamp, colour=clarity)
-#'  + theme_solarized()
-#'  + scale_colour_solarized('blue'))
+#' p <- ggplot(mtcars) +
+#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+#'      facet_wrap(~am)
+#' p + theme_solarized() + scale_colour_solarized('blue')
+#' 
 #' ## Dark version
-#' (qplot(carat, price, data=dsamp, colour=clarity)
-#'  + theme_solarized(light=FALSE)
-#'  + scale_colour_solarized('blue'))
-#' ## With panels
-#'  (ggplot(dsamp, aes(x = carat, y = price))
-#'   + geom_point(color = ggthemes_data$solarized$base['base00'])
-#'   + facet_wrap(~ clarity)
-#'   + theme_solarized())
-#' ## Alternative version
-#'  (qplot(carat, price, data=dsamp, color=clarity)
-#'   + theme_solarized_2(light=FALSE)
-#'   + scale_colour_solarized('blue'))
+#' p + theme_solarized(light = FALSE) +
+#'     scale_colour_solarized('blue')
 theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
   rebase <- solarized_rebase(light)
   ret <- (theme_bw(base_size = base_size, base_family = base_family) + theme(text = element_text(colour = rebase["rebase01"]),

@@ -60,17 +60,12 @@ scale_fill_few <- function(palette="light", ...) {
 #' @family themes few
 #' @export
 #' @examples
-#' dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
-#' (qplot(carat, price, data=dsamp, colour=clarity)
-#' + theme_few()
-#' + scale_colour_few())
-#' (qplot(carat, price, data=dsamp, colour=clarity)
-#' + theme_few()
-#' + scale_colour_few("dark"))
-#' (ggplot(diamonds, aes(clarity, fill=cut))
-#' + geom_bar()
-#' + theme_few()
-#' + scale_fill_few("light"))
+#' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
+#'     colour=factor(gear))) + facet_wrap(~am)
+#' p + theme_few() + scale_colour_few()
+#' p + theme_few() + scale_colour_few("light")
+#' p + theme_few() + scale_colour_few("dark")
+#' 
 theme_few <- function(base_size=12, base_family="") {
     colors <- ggthemes_data$few
     gray <- colors$medium['gray']
