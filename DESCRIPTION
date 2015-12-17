@@ -19,7 +19,7 @@ Depends:
 Imports:
     colorspace,
     grid,
-    scales (>= 0.3.0),
+    scales,
     methods,
     assertthat
 Suggests:

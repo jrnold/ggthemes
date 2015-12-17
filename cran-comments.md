@@ -1,8 +1,10 @@
-This is a resubmission to fix NOTE for no visible global function definition related to not importing stats.
+This submission is to make ggthemes compatible with version 2.0.0 of ggplot2 which
+has been submitted to CRAN.
 
 ## R CMD check
 
-* In `DESCRIPTION`, "Geoms", "geoms", and "ggplot" are not mis-spelled.
+* In `DESCRIPTION`, the words "Fivethirtyeight", "Geoms", "Stata", "Tufte", 
+  "Tufte's", geoms", and "ggplot" are not mis-spelled.
 
 * URLs http://www.jstor.org/stable/1390760, http://www.jstor.org/stable/2289649
   are valid but sometimes return status 391 or 503 due to redirection.
