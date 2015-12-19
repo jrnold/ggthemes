@@ -1,8 +1,9 @@
 language: r
 
 warnings_are_errors: true
+sudo: required
 
-# r_check_revdep: true
+r_check_revdep: true
 
 r_packages:
   - latticeExtra
