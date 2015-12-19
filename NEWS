@@ -1,8 +1,6 @@
 ggthemes 3.0.0
 ------------------------
 
-
-
 * For `geom_tufteboxplot` and `GeomTufteboxplot`. Option `median.type` supports only
   `line` and `point` options. Added option `whisker.type` which allows for whiskers
   to be specified by lines or points.
@@ -10,7 +8,8 @@ ggthemes 3.0.0
 * Added `theme_base` and `theme_par`
 * Removed `scale_(x|y)_tufte`. See issue #49
 * `theme_foundation` rewritten. Removed `use_sizes` argument.
-* Depends on `ggplot2` >= 2.0.0
+* Import rather than depend on `ggplot2`
+* Update geoms, scales, and themes to ggplot >= 2.0.0
 
 
 ggthemes 2.2.1
