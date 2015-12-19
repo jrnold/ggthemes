@@ -14,7 +14,7 @@
 #' @family colour excel
 #' @export
 #' @examples
-#' library(scales)
+#' library("scales")
 #' show_col(excel_pal()(8))
 #' show_col(excel_pal('fill')(8))
 #' show_col(excel_pal('new')(10))
@@ -63,7 +63,7 @@ scale_color_excel <- scale_colour_excel
 #' @export
 #' @family themes excel
 #' @examples
-#' 
+#' library("ggplot2")
 #' # Old line color
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +

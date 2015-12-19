@@ -139,7 +139,7 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 #' theme for lattice plots.
 #'
 #' @examples
-#'
+#' library("ggplot2")
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 #'      colour=factor(gear))) +
 #'      facet_wrap(~am) +

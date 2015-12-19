@@ -15,6 +15,7 @@ theme_base(base_size = 16, base_family = "")
 Theme similar to the default settings of the \sQuote{base} R graphics.
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) + facet_wrap(~am)
 p + theme_base()

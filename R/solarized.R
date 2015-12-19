@@ -36,7 +36,7 @@ solarized_accent_list <- function() {
 #' @export
 #' @family solarized colour
 #' @examples
-#' library(scales)
+#' library("scales")
 #' show_col(solarized_pal()(2))
 #' show_col(solarized_pal()(3))
 #' show_col(solarized_pal('red')(4))
@@ -79,6 +79,7 @@ solarized_pal <- function(accent = "blue") {
 #' @family solarized colour
 #' @export
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'      facet_wrap(~am)
@@ -114,6 +115,7 @@ scale_color_solarized <- scale_colour_solarized
 #' @export
 #' @family themes solarized
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'      facet_wrap(~am)

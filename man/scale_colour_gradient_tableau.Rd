@@ -40,8 +40,9 @@ colour bar, or \code{'legend'} for discrete colour legend.}
 Tableau sequential colour scale (continuous)
 }
 \examples{
+library("ggplot2")
 dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
-d <- qplot(x, y, data=dsub, colour=z)
+d <- ggplot(dsub, aes(x = x, y = y, colour=z)) + geom_point()
 d + scale_colour_gradient_tableau('Red', limits=c(3, 4))
 d + scale_colour_gradient_tableau('Blue', limits=c(3, 4))
 d + scale_colour_gradient_tableau('Green', limits=c(3, 4))

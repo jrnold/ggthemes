@@ -29,6 +29,7 @@ Following Tremmel (1995), I replace the circle with a vertical
 line with an encircled plus sign.
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
      facet_wrap(~am) +

@@ -15,7 +15,7 @@ tableau_seq_gradient_pal(palette = "Red", space = "Lab")
 Tableau sequential colour gradient palettes (continuous)
 }
 \examples{
-library(scales)
+library("scales")
 x <- seq(0, 1, length = 25)
 show_col(tableau_seq_gradient_pal('Red')(x))
 show_col(tableau_seq_gradient_pal('Blue')(x))

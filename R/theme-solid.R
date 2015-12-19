@@ -8,6 +8,7 @@
 #' @param fill Background color of the plot.
 #' @family themes
 #' @examples
+#' library("ggplot2")
 #' (ggplot(mtcars, aes(wt, mpg))
 #'  + geom_point()
 #'  + theme_solid(fill = "white"))

@@ -21,7 +21,7 @@ Theme to replicate the ugly monstrosity that was the old
 gray-background Excel chart. Please never use this.
 }
 \examples{
-
+library("ggplot2")
 # Old line color
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +

@@ -22,7 +22,7 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \examples{
-     
+library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
      facet_wrap(~am) +

@@ -22,7 +22,7 @@ The color palettes are
 }
 }
 \examples{
-library(scales)
+library("scales")
 show_col(excel_pal()(8))
 show_col(excel_pal('fill')(8))
 show_col(excel_pal('new')(10))

@@ -4,7 +4,8 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @examples
-#' library('maps')
+#' library("maps")
+#' library("ggplot2")
 #' us <- fortify(map_data('state'), region = 'region')
 #' gg <-
 #'  (ggplot()

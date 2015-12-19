@@ -14,6 +14,7 @@
 #' @seealso The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}},
 #'  and \code{\link{scale_color_tableau}} for other colorblind palettes.
 #' @examples
+#' library("ggplot2")
 #' library(scales)
 #' show_col(colorblind_pal()(8))
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,

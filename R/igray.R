@@ -17,6 +17,7 @@
 #' @family themes
 #' @seealso \code{\link{theme_gray}}, \code{\link{theme_bw}}
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'     geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'     facet_wrap(~am)

@@ -6,6 +6,7 @@
 #' @export
 #' @family themes gdocs
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
 #'   facet_wrap(~am)
@@ -41,7 +42,7 @@ theme_gdocs <- function(base_size=12, base_family="sans") {
 #' @family colour gdocs
 #' @export
 #' @examples
-#' library(scales)
+#' library("scales")
 #' show_col(gdocs_pal()(20))
 gdocs_pal <- function() {
   manual_pal(unname(ggthemes_data$gdocs))

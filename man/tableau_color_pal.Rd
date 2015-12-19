@@ -14,7 +14,7 @@ Color palettes used in
 \href{http://www.tableausoftware.com/}{Tableau}.
 }
 \examples{
-library(scales)
+library("scales")
 show_col(tableau_color_pal('tableau20')(20))
 show_col(tableau_color_pal('tableau10')(10))
 show_col(tableau_color_pal('tableau10medium')(10))

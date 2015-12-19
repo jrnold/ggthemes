@@ -15,6 +15,7 @@ theme_gdocs(base_size = 12, base_family = "sans")
 Theme similar to the default look of charts in Google Docs.
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
   facet_wrap(~am)

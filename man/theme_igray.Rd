@@ -26,6 +26,7 @@ using a gray panel in \code{\link{theme_gray}}. This is
 similar to the style of plots in Stata and Tableau.
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars) +
     geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
     facet_wrap(~am)

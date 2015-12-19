@@ -32,9 +32,10 @@ colour bar, or \code{'legend'} for discrete colour legend.}
 Tableau diverging colour scales (continuous)
 }
 \examples{
+library("ggplot2")
 dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
 dsub$diff <- with(dsub, sqrt(abs(x-y))* sign(x-y))
-d <- qplot(x, y, data=dsub, colour=diff)
+d <- ggplot(dsub, aes(x = x, y = y, colour=diff)) + geom_point()
 d + scale_colour_gradient2_tableau()
 d + scale_colour_gradient2_tableau('Orange-Blue')
 d + scale_colour_gradient2_tableau('Temperature')

@@ -13,6 +13,7 @@
 #' 'darkunica'}, the names of values in
 #' \code{ggthemes_data$hc$bg}.
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 #'      colour=factor(gear))) + facet_wrap(~am)
 #' p + theme_hc() + scale_colour_hc()
