@@ -19,6 +19,7 @@ Imports:
     assertthat,
     colorspace,
     ggplot2 (>= 2.0.0),
+    graphics,
     grid,
     methods,
     scales
