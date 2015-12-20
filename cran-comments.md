@@ -1,5 +1,14 @@
-This submission is to make ggthemes compatible with version 2.0.0 of ggplot2 which
-has been submitted to CRAN.
+This is a resubmission to fix the R CMD check problem:
+
+```
+* checking R code for possible problems ... NOTE
+theme_par: no visible global function definition for 'par'
+Undefined global functions or variables:
+  par
+Consider adding
+  importFrom("graphics", "par")
+to your NAMESPACE.
+```
 
 ## R CMD check
 
