@@ -30,7 +30,9 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
            panel.grid.minor = element_blank(),
            panel.grid.major.x = element_blank(),
            legend.position = "right",
-           legend.direction = "vertical"))
+           legend.direction = "vertical",
+           legend.background = element_rect(colour = NA),
+           legend.key = element_rect(colour = NA)))
 
 }
 
