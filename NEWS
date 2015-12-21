@@ -1,7 +1,10 @@
+ggthemes 3.0.1
+
+* Bugfix: Remove border around legends in `theme_gdocs`. Thanks SandyMuspratt! Pull request #53.
+* Bugfix: Remove border around legends in `theme_calc`.
+
 ggthemes 3.0.0
 ------------------------
-
-
 
 * For `geom_tufteboxplot` and `GeomTufteboxplot`. Option `median.type` supports only
   `line` and `point` options. Added option `whisker.type` which allows for whiskers
