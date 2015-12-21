@@ -23,6 +23,7 @@ to control name, limits, breaks, labels and so forth.}
 An 8-color colorblind safe qualitative discrete palette.
 }
 \examples{
+library("ggplot2")
 library(scales)
 show_col(colorblind_pal()(8))
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,

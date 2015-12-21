@@ -16,6 +16,7 @@ Theme inspired by the plots on
 \href{fivethirtyeight.com}{http://fivethirtyeight.com}.
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
      facet_wrap(~am) +

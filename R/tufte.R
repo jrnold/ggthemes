@@ -22,6 +22,7 @@
 #'
 #' @family themes tufte
 #' @examples
+#' library("ggplot2")
 #' # with ticks and range frames
 #' (ggplot(mtcars, aes(wt, mpg))
 #'  + geom_point() + geom_rangeframe()

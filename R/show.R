@@ -9,7 +9,7 @@
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 #'
 #' @examples
-#' library(scales)
+#' library("scales")
 #' show_shapes(shape_pal()(5))
 #' show_shapes(shape_pal()(3), labels=TRUE)
 #'
@@ -43,7 +43,7 @@ show_shapes <- function(shapes, labels = TRUE) {
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 #'
 #' @examples
-#' library(scales)
+#' library("scales")
 #' show_linetypes(linetype_pal()(3))
 #' show_linetypes(linetype_pal()(3), labels=TRUE)
 show_linetypes <- function(linetypes, labels = TRUE) {

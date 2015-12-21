@@ -85,6 +85,7 @@ Edward Tufte's revisions of the box plot as described in
 }
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
 ## with a point for the median and lines for whiskers
 p + geom_tufteboxplot()

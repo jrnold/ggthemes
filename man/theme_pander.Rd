@@ -46,7 +46,9 @@ enabled via \code{panderOptions}, which is now also available outside of \pkg{pa
 }
 \examples{
 \dontrun{
-p <- qplot(mpg, wt, data = mtcars)
+require("ggplot2")
+p <- ggplot2(mtcars, aes(x = mpg, y = wt)) +
+     geom_point()
 p + theme_pander()
 
 panderOptions('graph.grid.color', 'red')
@@ -56,7 +58,8 @@ p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) + geom_point()
 p + theme_pander() + scale_color_pander()
 
 ## standard examples of the ggtheme package
-qplot(carat, price, data = diamonds, colour = cut) +
+ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
+  geom_point() +
   theme_pander() +
   scale_colour_pander()
 ggplot(diamonds, aes(clarity, fill = cut)) +

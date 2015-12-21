@@ -15,7 +15,8 @@ theme_map(base_size = 9, base_family = "")
 A clean theme that is good for displaying maps from \code{\link{geom_map}}.
 }
 \examples{
-library('maps')
+library("maps")
+library("ggplot2")
 us <- fortify(map_data('state'), region = 'region')
 gg <-
  (ggplot()

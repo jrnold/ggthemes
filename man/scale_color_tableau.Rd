@@ -22,6 +22,7 @@ to control name, limits, breaks, labels and so forth.}
 See \code{\link{tableau_color_pal}} for details.
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
      facet_wrap(~am)

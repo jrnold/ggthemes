@@ -1,18 +1,29 @@
-language: r
+language: c
+sudo: required
 
-warnings_are_errors: true
+before_install:
+  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
+  - chmod 755 pkg-build.sh
+  - ./pkg-build.sh bootstrap
 
-# r_check_revdep: true
+install:
+  - ./pkg-build.sh install_github hadley/scales hadley/ggplot2
+  - ./pkg-build.sh install_deps
 
-r_packages:
-  - latticeExtra
+script:
+  - ./pkg-build.sh run_tests
 
-r_github_packages:
-  - hadley/scales
-  - hadley/ggplot2
-  - hadley/devtools
+after_failure:
+  - ./pkg-build.sh dump_logs
 
 notifications:
   email:
     on_success: change
     on_failure: change
+
+env:
+  matrix:
+    - RVERSION=oldrel
+    - RVERSION=release
+    - RVERSION=devel
+

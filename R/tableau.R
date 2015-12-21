@@ -21,7 +21,7 @@
 #'
 #' @family colour tableau
 #' @examples
-#' library(scales)
+#' library("scales")
 #' show_col(tableau_color_pal('tableau20')(20))
 #' show_col(tableau_color_pal('tableau10')(10))
 #' show_col(tableau_color_pal('tableau10medium')(10))
@@ -66,6 +66,7 @@ tableau_color_pal <- function(palette = "tableau10") {
 #' @export
 #' @seealso \code{\link{tableau_color_pal}} for references.
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'      facet_wrap(~am)
@@ -116,6 +117,7 @@ tableau_shape_pal <- function(palette = "default") {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shape tableau
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
 #'      facet_wrap(~am)
@@ -134,7 +136,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #'
 #' @export
 #' @examples
-#' library(scales)
+#' library("scales")
 #' x <- seq(0, 1, length = 25)
 #' show_col(tableau_seq_gradient_pal('Red')(x))
 #' show_col(tableau_seq_gradient_pal('Blue')(x))
@@ -155,8 +157,9 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #' @family colour tableau
 #' @rdname scale_colour_gradient_tableau
 #' @examples
+#' library("ggplot2")
 #' dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
-#' d <- qplot(x, y, data=dsub, colour=z)
+#' d <- ggplot(dsub, aes(x = x, y = y, colour=z)) + geom_point()
 #' d + scale_colour_gradient_tableau('Red', limits=c(3, 4))
 #' d + scale_colour_gradient_tableau('Blue', limits=c(3, 4))
 #' d + scale_colour_gradient_tableau('Green', limits=c(3, 4))
@@ -212,9 +215,10 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 #' @export
 #' @rdname scale_colour_gradient2_tableau
 #' @examples
+#' library("ggplot2")
 #' dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
 #' dsub$diff <- with(dsub, sqrt(abs(x-y))* sign(x-y))
-#' d <- qplot(x, y, data=dsub, colour=diff)
+#' d <- ggplot(dsub, aes(x = x, y = y, colour=diff)) + geom_point()
 #' d + scale_colour_gradient2_tableau()
 #' d + scale_colour_gradient2_tableau('Orange-Blue')
 #' d + scale_colour_gradient2_tableau('Temperature')

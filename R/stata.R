@@ -9,7 +9,7 @@
 #' @export
 #' @family stata colour
 #' @examples
-#' library(scales)
+#' library("scales")
 #' show_col(stata_pal("s2color")(15))
 #' show_col(stata_pal("s1rcolor")(15))
 #' show_col(stata_pal("s1color")(15))
@@ -197,6 +197,7 @@ theme_stata_colors <- function(scheme="s2color") {
 #' @references \url{http://www.stata.com/help.cgi?schemes}
 #'
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'     facet_wrap(~am)
@@ -242,6 +243,7 @@ stata_shape_pal <- function() {
 #' @family shape stata
 #' @export
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
 #'      facet_wrap(~am)
@@ -272,13 +274,15 @@ stata_linetype_pal <- function() {
 #' @family linetype stata
 #' @export
 #' @examples
-#' library(reshape2) # for melt
-#' library(plyr) # for ddply
-#' library(ggplot2)
+#' library("reshape2") # for melt
+#' library("plyr") # for ddply
+#' library("ggplot2")
 #' ecm <- melt(economics, id = "date")
 #' rescale01 <- function(x) {(x - min(x)) / diff(range(x))}
 #' ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
-#' qplot(date, value, data=ecm, geom="line", linetype=variable) + scale_linetype_stata()
+#' ggplot(ecm, aes(x = date, y = value, linetype=variable)) +
+#'   geom_line() +
+#'   scale_linetype_stata()
 scale_linetype_stata <- function (...)  {
   discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }

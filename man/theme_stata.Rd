@@ -23,6 +23,7 @@ into themes and scales, as well as defaults specific to different
 graph types (which ggplot does not support).
 }
 \examples{
+library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
     facet_wrap(~am)

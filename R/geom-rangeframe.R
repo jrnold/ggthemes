@@ -21,9 +21,11 @@
 #'
 #' @family geom tufte
 #' @examples
-#' (ggplot(mtcars, aes(wt, mpg))
-#'  + geom_point() + geom_rangeframe()
-#'  + theme_tufte())
+#' library("ggplot2")
+#' ggplot(mtcars, aes(wt, mpg)) +
+#'  geom_point() +
+#'  geom_rangeframe() +
+#'  theme_tufte()
 geom_rangeframe <- function(mapping = NULL, data = NULL, stat = "identity",
                             position = "identity", sides = "bl",
                             na.rm = FALSE, show.legend = NA,

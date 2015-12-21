@@ -6,6 +6,7 @@
 #' @export
 #' @family themes
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 #'      colour=factor(gear))) + facet_wrap(~am)
 #' p + theme_base()
@@ -382,6 +383,7 @@ theme_base <- function(base_size = 16, base_family = "") {
 #' @export
 #' @family themes
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
 #'      colour=factor(gear))) + facet_wrap(~am)
 #' par(font = 2, col.lab = "red", fg = "blue")

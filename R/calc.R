@@ -6,6 +6,7 @@
 #' @export
 #' @family themes calc
 #' @examples
+#' library("ggplot2")
 #' p <- ggplot(mtcars) +
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'      facet_wrap(~am) + theme_calc()
@@ -79,6 +80,7 @@ scale_color_calc <- scale_colour_calc
 #' @export
 #' @family shapes calc
 #' @examples
+#' library("ggplot2")
 #' show_shapes(calc_shape_pal()(15))
 calc_shape_pal <- function() {
     values <- ggthemes_data$calc$shapes

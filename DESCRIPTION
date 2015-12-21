@@ -15,21 +15,22 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     comment = "Code from the labeling package"))
 Depends:
     R (>= 3.0.0),
-    ggplot2 (>= 2.0.0)
 Imports:
+    assertthat,
     colorspace,
+    ggplot2 (>= 2.0.0),
+    graphics,
     grid,
-    scales (>= 0.3.0),
     methods,
-    assertthat
+    scales
 Suggests:
-    knitr,
-    plyr,
-    reshape2,
     extrafont,
-    pander,
+    knitr,
     maps,
-    mapproj
+    mapproj,
+    pander,
+    plyr,
+    reshape2
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for `ggplot2`.
     Provides `ggplot2` themes and scales that replicate the look of plots
