@@ -1,15 +1,3 @@
-This is a resubmission to fix the R CMD check problem:
-
-```
-* checking R code for possible problems ... NOTE
-theme_par: no visible global function definition for 'par'
-Undefined global functions or variables:
-  par
-Consider adding
-  importFrom("graphics", "par")
-to your NAMESPACE.
-```
-
 ## R CMD check
 
 * In `DESCRIPTION`, the words "Fivethirtyeight", "Geoms", "Stata", "Tufte", 
