@@ -83,8 +83,6 @@ library("devtools")
 install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
 ```
 
-Note: at the moment the development version of **ggthemes** will *only* work with the development version of **ggplot2**, and is not compatible with the version of **ggplot2** on CRAN.
-
 
 <!--  LocalWords:  CRAN 'ggthemes' github devtools jrnold ggthemes
  -->

@@ -1,3 +1,9 @@
+ggthemes 3.0.1
+------------------------
+
+* Bugfix: Remove border around legends in `theme_gdocs`. Thanks SandyMuspratt! Pull request #53.
+* Bugfix: Remove border around legends in `theme_calc`.
+
 ggthemes 3.0.0
 ------------------------
 

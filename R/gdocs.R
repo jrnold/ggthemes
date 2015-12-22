@@ -30,6 +30,7 @@ theme_gdocs <- function(base_size=12, base_family="sans") {
           axis.ticks = element_blank(),
           panel.grid.major = element_line(colour = "#CCCCCC"),
           panel.grid.minor = element_blank(),
+          legend.background = element_rect(colour = NA),
           legend.key = element_rect(colour = NA),
           legend.position = "right",
           legend.direction = "vertical")
