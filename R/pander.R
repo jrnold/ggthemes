@@ -18,10 +18,10 @@
 #' @param axis axis angle as defined in \code{par(les)}
 #' @export
 #' @examples
-#' require("ggplot2")
-#' require("pander")
+#' library("ggplot2")
+#' library("pander")
 #' 
-#' p <- ggplot2(mtcars, aes(x = mpg, y = wt)) +
+#' p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
 #'      geom_point()
 #' p + theme_pander()
 #'
