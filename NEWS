@@ -3,6 +3,7 @@ ggthemes 3.0.1
 
 * Bugfix: Remove border around legends in `theme_gdocs`. Thanks SandyMuspratt! Pull request #53.
 * Bugfix: Remove border around legends in `theme_calc`.
+* Bugfix: Add colour and fill values to `theme_foundation`. This restores its behavior to version 2.2.1. Fixes Issue #56.
 
 ggthemes 3.0.0
 ------------------------
