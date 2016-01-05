@@ -33,12 +33,20 @@ Tableau diverging colour scales (continuous)
 }
 \examples{
 library("ggplot2")
-dsub <- subset(diamonds, x > 5 & x < 6 & y > 5 & y < 6)
-dsub$diff <- with(dsub, sqrt(abs(x-y))* sign(x-y))
-d <- ggplot(dsub, aes(x = x, y = y, colour=diff)) + geom_point()
-d + scale_colour_gradient2_tableau()
-d + scale_colour_gradient2_tableau('Orange-Blue')
-d + scale_colour_gradient2_tableau('Temperature')
+df <- data.frame(
+x = runif(100),
+y = runif(100),
+z1 = rnorm(100),
+z2 = abs(rnorm(100))
+)
+
+
+p <- ggplot(df, aes(x, y)) +
+             geom_point(aes(colour = z2))
+
+p + scale_colour_gradient2_tableau()
+p + scale_colour_gradient2_tableau('Orange-Blue')
+p + scale_colour_gradient2_tableau('Temperature')
 }
 \seealso{
 Other colour tableau: \code{\link{scale_colour_gradient_tableau}},

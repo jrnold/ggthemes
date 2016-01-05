@@ -40,7 +40,7 @@ colour bar, or \code{'legend'} for discrete colour legend.}
 Tableau sequential colour scale (continuous)
 }
 \examples{
-#' 
+#'
 library("ggplot2")
 library("ggplot2")
 
