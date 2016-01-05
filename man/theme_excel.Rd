@@ -29,10 +29,10 @@ p <- ggplot(mtcars) +
 p + theme_excel() + scale_colour_excel()
 
 # Old fill color palette
-(ggplot(diamonds, aes(clarity, fill=cut))
-+ geom_bar()
-+ scale_fill_excel('fill')
-+ theme_excel())
+ggplot(mpg, aes(x = class, fill = drv)) +
+  geom_bar() +
+  scale_fill_excel('fill') +
+  theme_excel()
 
 }
 

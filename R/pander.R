@@ -17,28 +17,26 @@
 #' @param lp legend position
 #' @param axis axis angle as defined in \code{par(les)}
 #' @export
-#' @examples \dontrun{
-#' require("ggplot2")
-#' p <- ggplot2(mtcars, aes(x = mpg, y = wt)) +
+#' @examples
+#' library("ggplot2")
+#' library("pander")
+#' 
+#' p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
 #'      geom_point()
 #' p + theme_pander()
 #'
 #' panderOptions('graph.grid.color', 'red')
 #' p + theme_pander()
 #'
-#' p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) + geom_point()
+#' p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
+#'   geom_point()
 #' p + theme_pander() + scale_color_pander()
 #'
-#' ## standard examples of the ggtheme package
-#' ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
-#'   geom_point() +
-#'   theme_pander() +
-#'   scale_colour_pander()
-#' ggplot(diamonds, aes(clarity, fill = cut)) +
+#' ggplot(mpg, aes(x = class, fill = drv)) +
 #'   geom_bar() +
 #'   scale_fill_pander() +
 #'   theme_pander()
-#' }
+#' 
 theme_pander <- function(base_size = 12, base_family = "sans", nomargin = TRUE, ff = NULL, fc = "black", fs = NULL, gM = TRUE, 
   gm = TRUE, gc = "grey", gl = "dashed", boxes = FALSE, bc = "white", pc = "transparent", lp = "right", axis = 1) {
   
