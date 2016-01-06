@@ -45,7 +45,6 @@ Collate:
     'base.R'
     'calc.R'
     'colorblind.R'
-    'data.R'
     'economist.R'
     'excel.R'
     'few.R'
