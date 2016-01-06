@@ -13,9 +13,9 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     comment = "Code from the ggplot2 package."),
     person("Justin",  "Talbot", role = "ctb",
     comment = "Code from the labeling package"))
-Depends: 
+Depends:
     R (>= 3.0.0),
-Imports: 
+Imports:
     assertthat,
     colorspace,
     ggplot2 (>= 2.0.0),
@@ -23,7 +23,7 @@ Imports:
     grid,
     methods,
     scales
-Suggests: 
+Suggests:
     extrafont,
     knitr,
     maps,
@@ -40,11 +40,12 @@ Description: Some extra themes, geoms, and scales for `ggplot2`.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
-Collate: 
+Collate:
     'banking.R'
     'base.R'
     'calc.R'
     'colorblind.R'
+    'data.R'
     'economist.R'
     'excel.R'
     'few.R'

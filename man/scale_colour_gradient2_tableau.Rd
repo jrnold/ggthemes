@@ -34,10 +34,10 @@ Tableau diverging colour scales (continuous)
 \examples{
 library("ggplot2")
 df <- data.frame(
-x = runif(100),
-y = runif(100),
-z1 = rnorm(100),
-z2 = abs(rnorm(100))
+  x = runif(100),
+  y = runif(100),
+  z1 = rnorm(100),
+  z2 = abs(rnorm(100))
 )
 
 
