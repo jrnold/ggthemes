@@ -204,16 +204,16 @@ bank_slopes_ao <- function(slopes, weight = TRUE, ...) {
     f <- function(alpha, slopes) {
       (mean(abs(atan(slopes$s / alpha))) - FORTY_FIVE) ^ 2
     }
-    nlm(f, alpha0, slopes = slopes)$estimate
   }
+  nlm(f, alpha0, slopes = slopes)$estimate
 }
 
 bank_slopes_gor <- function(slopes, ...) {
   alpha0 <- bank_slopes_ms(slopes)
   s <- slopes$s
   f <- function(alpha) {
-    theta <- atan(s / alpha) * -mean(as.numeric(dist(theta,
-                                                     method = "manhattan")))
+    theta <- atan(s / alpha)
+    - mean(as.numeric(dist(theta, method = "manhattan")))
   }
   nlm(f, alpha0)$estimate
 }

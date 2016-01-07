@@ -10,3 +10,4 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^data-raw$
+^\.lintr$

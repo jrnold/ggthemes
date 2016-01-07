@@ -28,7 +28,7 @@ p <- ggplot(mtcars) +
      facet_wrap(~am) +
      ggtitle('Diamond Prices')
 p + scale_colour_wsj('colors6', '') + theme_wsj()
-# Use a gray background instead#' 
+# Use a gray background instead#'
 p + scale_colour_wsj('colors6', '') + theme_wsj(color = "gray")
 }
 \references{

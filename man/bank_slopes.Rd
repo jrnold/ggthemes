@@ -100,8 +100,8 @@ alpha = M R_x / R_y
 
 \strong{Banking by Optimizing Orientation Resolution}
 
-The angle between line segments i and j is \eqn{r_{i,j} =
-\|\theta_i(\alpha) - \theta_j(\alpha)\|}{r_{i,j} = |
+The angle between line segments i and j is \eqn{r_{i, j} =
+\|\theta_i(\alpha) - \theta_j(\alpha)\|}{r_{i, j} = |
 theta_i(alpha) - theta_j(alpha)|}, where \eqn{\theta_i(\alpha) =
 \arctan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / \alpha)} and
 \eqn{s_i} is the slope of line segment i. This function finds the
@@ -109,9 +109,9 @@ theta_i(alpha) - theta_j(alpha)|}, where \eqn{\theta_i(\alpha) =
 pairs of line segments.
 
 \deqn{
-  \max_{\alpha} \sum_i \sum_{j: j < 1} r_{i,j}
+  \max_{\alpha} \sum_i \sum_{j: j < 1} r_{i, j}
 }{
-  max_{alpha} sum_i sum_{j: j < 1} r_{i,j}
+  max_{alpha} sum_i sum_{j: j < 1} r_{i, j}
 }
 
 The local optimization only includes line-segments
@@ -120,9 +120,9 @@ segments, then the local orientation orientation
 has the following objective function.
 
 \deqn{
-  \max_{\alpha} \sum_{i=2}^{n} r_{i,i-1}
+  \max_{\alpha} \sum_{i=2}^{n} r_{i, i-1}
 }{
-  max_{\alpha} sum_{i=2}^{n} r_{i,i-1}
+  max_{\alpha} sum_{i=2}^{n} r_{i, i-1}
 }
 }
 \examples{

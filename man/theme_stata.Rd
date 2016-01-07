@@ -11,7 +11,8 @@ theme_stata(base_size = 11, base_family = "sans", scheme = "s2color")
 
 \item{base_family}{base font family}
 
-\item{scheme}{One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono", "s2manual",
+\item{scheme}{One of "s2color", "s2mono", "s1color",
+"s1rcolor", or "s1mono", "s2manual",
 "s1manual", or "sj"}
 }
 \description{
