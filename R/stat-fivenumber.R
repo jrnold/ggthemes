@@ -25,8 +25,7 @@ stat_fivenumber <- function(mapping = NULL,
                             position = "identity",
                             show.legend = NA,
                             inherit.aes = TRUE,
-                            ...)
-  {
+                            ...) {
   layer(
     data = data,
     mapping = mapping,

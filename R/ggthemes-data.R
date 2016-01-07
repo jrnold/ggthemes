@@ -59,24 +59,24 @@ ggthemes_data <- {
     x$economist$stata <-
         list(bg=
              c(## Background
-               ebg = rgb(198,211,223, max=255),
-               edkbg = rgb(178,191,203, max=255)),
+               ebg = rgb(198, 211, 223, max=255),
+               edkbg = rgb(178, 191, 203, max=255)),
              fg=
-             c(edkblue = rgb(62,100,125, max=255),
-               emidblue = rgb(123,146,168, max=255),
-               eltblue = rgb(130,192,233, max=255),
-               emerald = rgb(45,109,102, max=255),
-               erose = rgb(191,161,156, max=255),
-               ebblue = rgb(0,139,188, max=255),
-               eltgreen = rgb(151,182,176, max=255),
-               stone = rgb(215,210,158, max=255),
-               navy = rgb(26,71,111, max=255),
-               maroon = rgb(144,53,59, max=255),
-               brown = rgb(156,136,71, max=255),
-               lavender = rgb(147,141,210, max=255),
-               teal = rgb(110,142,132, max=255),
+             c(edkblue = rgb(62, 100, 125, max=255),
+               emidblue = rgb(123, 146, 168, max=255),
+               eltblue = rgb(130, 192, 233, max=255),
+               emerald = rgb(45, 109, 102, max=255),
+               erose = rgb(191, 161, 156, max=255),
+               ebblue = rgb(0, 139, 188, max=255),
+               eltgreen = rgb(151, 182, 176, max=255),
+               stone = rgb(215, 210, 158, max=255),
+               navy = rgb(26, 71, 111, max=255),
+               maroon = rgb(144, 53, 59, max=255),
+               brown = rgb(156, 136, 71, max=255),
+               lavender = rgb(147, 141, 210, max=255),
+               teal = rgb(110, 142, 132, max=255),
                cranberry=rgb(193, 5, 52, max=255),
-               khaki = rgb(202,194, 126, max=255)))
+               khaki = rgb(202, 194, 126, max=255)))
 
     ## Excel Colors
     x$excel <-
@@ -170,7 +170,7 @@ ggthemes_data <- {
                 x[i] <- -0x2218
             }
             ## Invisible
-            x['i'] <- NA
+            x["i"] <- NA
             x
         })
 

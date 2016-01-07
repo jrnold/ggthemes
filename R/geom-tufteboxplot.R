@@ -213,5 +213,3 @@ GeomTufteboxplot <-
                             outlier.size = 1.5,
                             outlier.stroke = 0.5)
   )
-
-

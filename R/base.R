@@ -486,4 +486,3 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   thm
   # TODO: get margins right
 }
-

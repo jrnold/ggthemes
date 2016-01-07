@@ -157,34 +157,48 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #' @family colour tableau
 #' @rdname scale_colour_gradient_tableau
 #' @examples
-#' #' 
+#' #'
 #' library("ggplot2")
 #' library("ggplot2")
-#' 
+#'
 #' df <- data.frame(
 #'   x = runif(100),
 #'   y = runif(100),
 #'   z1 = rnorm(100),
 #'   z2 = abs(rnorm(100))
 #' )
-#' 
-#' 
+#'
+#'
 #' p <- ggplot(df, aes(x, y)) +
 #'      geom_point(aes(colour = z2)) +
 #'      theme_igray()
-#' 
+#'
 #' p + scale_colour_gradient_tableau("Red")
 #' p + scale_colour_gradient_tableau("Blue")
 #' p + scale_colour_gradient_tableau("Green")
-scale_colour_gradient_tableau <- function(palette = "Red", ..., space = "Lab", na.value = "grey50", guide = "colourbar") {
-  continuous_scale("colour", "tableau", tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide,
-    ...)
+scale_colour_gradient_tableau <- function(palette = "Red",
+                                          ...,
+                                          space = "Lab",
+                                          na.value = "grey50",
+                                          guide = "colourbar") {
+  continuous_scale("colour", "tableau",
+                   tableau_seq_gradient_pal(palette, space),
+                   na.value = na.value,
+                   guide = guide,
+                   ...)
 }
 
 #' @export
 #' @rdname scale_colour_gradient_tableau
-scale_fill_gradient_tableau <- function(palette = "Red", ..., space = "Lab", na.value = "grey50", guide = "colourbar") {
-  continuous_scale("fill", "tableau", tableau_seq_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
+scale_fill_gradient_tableau <- function(palette = "Red",
+                                        ..., space = "Lab",
+                                        na.value = "grey50",
+                                        guide = "colourbar") {
+  continuous_scale("fill", "tableau",
+                   tableau_seq_gradient_pal(palette, space),
+                   na.value = na.value,
+                   guide = guide,
+                   ...)
 }
 
 #' @export
@@ -210,12 +224,16 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #' @examples
 #' x <- seq(-1, 1, length = 100)
 #' r <- sqrt(outer(x^2, x^2, '+'))
-#' image(r, col = tableau_div_gradient_pal()(seq(0, 1, length = 12)))
-#' image(r, col = tableau_div_gradient_pal('Orange-Blue')(seq(0, 1, length = 12)))
-#' image(r, col = tableau_div_gradient_pal('Temperature')(seq(0, 1, length = 12)))
+#' image(r,
+#'       col = tableau_div_gradient_pal()(seq(0, 1, length = 12)))
+#' image(r,
+#'       col = tableau_div_gradient_pal('Orange-Blue')(seq(0, 1, length = 12)))
+#' image(r,
+#'       col = tableau_div_gradient_pal('Temperature')(seq(0, 1, length = 12)))
 tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
   pal <- ggthemes_data[["tableau"]][["diverging"]][[palette]]
-  div_gradient_pal(low = pal["low"], mid = pal["mid"], high = pal["high"], space = space)
+  div_gradient_pal(low = pal["low"], mid = pal["mid"], high = pal["high"],
+                   space = space)
 }
 
 #' Tableau diverging colour scales (continuous)
@@ -235,15 +253,29 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 #' d + scale_colour_gradient2_tableau()
 #' d + scale_colour_gradient2_tableau('Orange-Blue')
 #' d + scale_colour_gradient2_tableau('Temperature')
-scale_colour_gradient2_tableau <- function(palette = "Red-Blue", ..., space = "rgb", na.value = "grey50", guide = "colourbar") {
-  continuous_scale("colour", "tableau2", tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide,
-    ...)
+scale_colour_gradient2_tableau <- function(palette = "Red-Blue",
+                                           ..., space = "rgb",
+                                           na.value = "grey50",
+                                           guide = "colourbar") {
+  continuous_scale("colour", "tableau2",
+                   tableau_div_gradient_pal(palette, space),
+                   na.value = na.value,
+                   guide = guide,
+                   ...)
 }
 
 #' @export
 #' @rdname scale_colour_gradient2_tableau
-scale_fill_gradient2_tableau <- function(palette = "Red-Blue", ..., space = "rgb", na.value = "grey50", guide = "colourbar") {
-  continuous_scale("fill", "tableau2", tableau_div_gradient_pal(palette, space), na.value = na.value, guide = guide, ...)
+scale_fill_gradient2_tableau <- function(palette = "Red-Blue",
+                                         ...,
+                                         space = "rgb",
+                                         na.value = "grey50",
+                                         guide = "colourbar") {
+  continuous_scale("fill", "tableau2",
+                   tableau_div_gradient_pal(palette, space),
+                   na.value = na.value,
+                   guide = guide,
+                   ...)
 }
 
 #' @export

@@ -58,37 +58,43 @@ scale_color_stata <- scale_colour_stata
 
 theme_stata_base <- function(base_size = 11, base_family = "sans") {
   ## Sizes
-  relsz <- sapply(as.numeric(stata_gsize), `/`, y=as.numeric(stata_gsize$medium))
+  relsz <- sapply(as.numeric(stata_gsize), `/`,
+                  y = as.numeric(stata_gsize$medium))
   names(relsz) <- names(stata_gsize)
-  theme(line = element_line(size = 0.5, linetype = 1, lineend = "butt", colour="black"),
-        rect = element_rect(size = 0.5, linetype = 1, fill="white", colour="black"),
-        text = element_text(family = base_family, face = "plain", colour="black",
-                            size = base_size, hjust = 0.5, vjust = 1, angle = 0,
+  theme(line = element_line(size = 0.5, linetype = 1, lineend = "butt",
+                            colour="black"),
+        rect = element_rect(size = 0.5, linetype = 1, fill = "white",
+                            colour="black"),
+        text = element_text(family = base_family,
+                            face = "plain",
+                            colour = "black",
+                            size = base_size, hjust = 0.5,
+                            vjust = 1, angle = 0,
                             lineheight = 1, margin = margin(), debug = FALSE),
         title = element_text(),
         ## Axis
         axis.line = element_line(),
-        axis.text = element_text(size=rel(relsz['medsmall'])),
-        axis.text.x = element_text(vjust=1),
-        axis.text.y = element_text(angle=90, vjust=0.5),
+        axis.text = element_text(size = rel(relsz["medsmall"])),
+        axis.text.x = element_text(vjust = 1),
+        axis.text.y = element_text(angle = 90, vjust = 0.5),
         ## I cannot figure out how to get ggplot to do 2 levels of ticks
         axis.ticks = element_line(),
-        axis.title = element_text(size=rel(relsz['medsmall'])),
+        axis.title = element_text(size = rel(relsz["medsmall"])),
         axis.title.x = element_text(),
-        axis.title.y = element_text(angle = 90, vjust=0),
+        axis.title.y = element_text(angle = 90, vjust = 0),
         # axis.ticks.length = stata_gsize$tiny,
         # axis.ticks.margin = stata_gsize$half_tiny,
-        axis.ticks.length = unit(4/11, "lines"),
-        legend.background = element_rect(linetype=1),
+        axis.ticks.length = unit(4 / 11, "lines"),
+        legend.background = element_rect(linetype = 1),
         legend.margin = unit(1.2 / 100, "npc"),
-        legend.key = element_rect(linetype=0),
+        legend.key = element_rect(linetype = 0),
         legend.key.size = unit(1.2, "lines"),
         legend.key.height = NULL,
         legend.key.width = NULL,
-        legend.text = element_text(size = rel(relsz['medsmall'])),
+        legend.text = element_text(size = rel(relsz["medsmall"])),
         legend.text.align = NULL,
         ## See textboxstyle leg_title
-        legend.title = element_text(size = rel(relsz['large']), hjust = 0),
+        legend.title = element_text(size = rel(relsz["large"]), hjust = 0),
         legend.title.align = 0.5,
         legend.position = "bottom",
         legend.direction = NULL,
@@ -102,12 +108,14 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         panel.grid.major.x = element_blank(),
         panel.margin = unit(0.25, "lines"),
         ## textboxstyle bytitle      bytitle
-        strip.background = element_rect(linetype=0),
-        strip.text = element_text(size = rel(relsz['medlarge'])),
-        strip.text.x = element_text(vjust=0.5),
+        strip.background = element_rect(linetype = 0),
+        strip.text = element_text(size = rel(relsz["medlarge"])),
+        strip.text.x = element_text(vjust = 0.5),
         strip.text.y = element_text(angle = -90),
-        plot.background = element_rect(linetype=0, colour=NA),
-        plot.title = element_text(size = rel(relsz['large']), hjust=0.5, vjust=1),
+        plot.background = element_rect(linetype = 0, colour = NA),
+        plot.title = element_text(size = rel(relsz["large"]),
+                                  hjust = 0.5,
+                                  vjust = 1),
         plot.margin = unit(rep(0.035, 4), "npc"),
         complete=TRUE)
 }
@@ -115,22 +123,22 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 theme_stata_colors <- function(scheme="s2color") {
   stata_colors <- ggthemes_data$stata$colors
   if (scheme == "s2color") {
-    color_plot <- stata_colors['ltbluishgray']
+    color_plot <- stata_colors["ltbluishgray"]
     color_bg <- "white"
     color_fg <- "black"
-    color_grid <- stata_colors['ltbluishgray']
-    color_grid_major <- stata_colors['ltbluishgray']
-    fill_strip <- stata_colors['bluishgray']
+    color_grid <- stata_colors["ltbluishgray"]
+    #color_grid_major <- stata_colors["ltbluishgray"]
+    fill_strip <- stata_colors["bluishgray"]
     color_strip <- NA
-    color_title <- stata_colors['dknavy']
+    color_title <- stata_colors["dknavy"]
     color_border <- NA
   } else if (scheme %in% c("s2mono", "s2manual", "sj")) {
-    color_plot <- stata_colors['gs15']
+    color_plot <- stata_colors["gs15"]
     color_bg <- "white"
     color_fg <- "black"
-    color_grid <- stata_colors['dimgray']
-    color_grid_major <- stata_colors['dimgray']
-    fill_strip <- stata_colors['gs13']
+    color_grid <- stata_colors["dimgray"]
+    #color_grid_major <- stata_colors["dimgray"]
+    fill_strip <- stata_colors["gs13"]
     color_strip <- NA
     color_title <- "black"
     color_border <- NA
@@ -138,8 +146,8 @@ theme_stata_colors <- function(scheme="s2color") {
     color_plot <- "white"
     color_bg <- "white"
     color_fg <- "black"
-    color_grid <- stata_colors['gs14']
-    fill_strip <- stata_colors['ltkhaki']
+    color_grid <- stata_colors["gs14"]
+    fill_strip <- stata_colors["ltkhaki"]
     color_strip <- "black"
     color_title <- "black"
     color_border <- "black"
@@ -147,8 +155,8 @@ theme_stata_colors <- function(scheme="s2color") {
     color_plot <- "black"
     color_bg <- "black"
     color_fg <- "white"
-    color_grid <- stata_colors['gs5']
-    fill_strip <- stata_colors['maroon']
+    color_grid <- stata_colors["gs5"]
+    fill_strip <- stata_colors["maroon"]
     color_strip <- "white"
     color_title <- "white"
     color_border <- "white"
@@ -156,8 +164,8 @@ theme_stata_colors <- function(scheme="s2color") {
     color_plot <- "white"
     color_bg <- "white"
     color_fg <- "black"
-    color_grid <- stata_colors['gs14']
-    fill_strip <- stata_colors['gs13']
+    color_grid <- stata_colors["gs14"]
+    fill_strip <- stata_colors["gs13"]
     color_strip <- "black"
     color_title <- "black"
     color_border <- "black"
@@ -165,24 +173,28 @@ theme_stata_colors <- function(scheme="s2color") {
     stop(sprintf("'%s' is not a valid value for scheme.", scheme))
   }
 
-  theme(line = element_line(colour = color_fg, linetype=1),
-        rect = element_rect(fill = color_bg, colour = color_fg, linetype=1),
+  theme(line = element_line(colour = color_fg, linetype = 1),
+        rect = element_rect(fill = color_bg, colour = color_fg, linetype = 1),
         text = element_text(colour = color_fg),
         title = element_text(colour = color_title),
-        axis.title = element_text(colour=color_fg),
-        axis.ticks.x = element_line(colour=color_fg),
-        axis.ticks.y = element_line(colour=color_fg),
-        axis.text.x = element_text(colour=color_fg),
-        axis.text.y = element_text(colour=color_fg),
-        legend.key = element_rect(fill=color_bg, colour=NA, linetype=0),
-        legend.background = element_rect(linetype=1),
-        panel.background = element_rect(fill=color_bg, colour=color_border, linetype=1),
+        axis.title = element_text(colour = color_fg),
+        axis.ticks.x = element_line(colour = color_fg),
+        axis.ticks.y = element_line(colour = color_fg),
+        axis.text.x = element_text(colour = color_fg),
+        axis.text.y = element_text(colour = color_fg),
+        legend.key = element_rect(fill = color_bg, colour = NA, linetype = 0),
+        legend.background = element_rect(linetype = 1),
+        panel.background = element_rect(fill = color_bg,
+                                        colour = color_border,
+                                        linetype = 1),
         panel.grid.major = element_line(colour = color_grid),
-        strip.background = element_rect(fill=fill_strip, colour=color_strip, linetype=1),
+        strip.background = element_rect(fill = fill_strip,
+                                        colour = color_strip,
+                                        linetype = 1),
         plot.background = element_rect(fill = color_plot))
 }
 
-#' Themes based on Stata graph schemes
+#" Themes based on Stata graph schemes
 #'
 #' @param scheme One of "s2color", "s2mono", "s1color", "s1rcolor", or "s1mono", "s2manual",
 #'   "s1manual", or "sj"
@@ -213,8 +225,8 @@ theme_stata_colors <- function(scheme="s2color") {
 #' p + theme_stata(scheme = "s1mono") + scale_colour_stata("mono")
 theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") {
   ## Sizes
-  (theme_stata_base(base_size=eval(base_size), base_family=base_family)
-   + theme_stata_colors(scheme=scheme))
+  (theme_stata_base(base_size = eval(base_size), base_family = base_family)
+   + theme_stata_colors(scheme = scheme))
 }
 
 #' Stata shape palette (discrete)
@@ -227,10 +239,10 @@ theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") 
 #' @seealso See \code{\link{scale_shape_stata}} for examples.
 stata_shape_pal <- function() {
   ## From s1mono, ignore small shapes
-  shapenames <- c('circle', 'diamond', 'square',
-                  'triangle', 'x', 'plus',
-                  'circle_hollow', 'diamond_hollow',
-                  'square_hollow', 'triangle_hollow')
+  shapenames <- c("circle", "diamond", "square",
+                  "triangle", "x", "plus",
+                  "circle_hollow", "diamond_hollow",
+                  "square_hollow", "triangle_hollow")
   values <- ggthemes_data$stata$shapes[shapenames]
   manual_pal(unname(values))
 }
@@ -283,7 +295,7 @@ stata_linetype_pal <- function() {
 #' ggplot(ecm, aes(x = date, y = value, linetype=variable)) +
 #'   geom_line() +
 #'   scale_linetype_stata()
-scale_linetype_stata <- function (...)  {
+scale_linetype_stata <- function(...)  {
   discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }
 

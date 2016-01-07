@@ -9,16 +9,19 @@
 #' @keywords internal
 solarized_rebase <- function(light = TRUE) {
   if (light) {
-    rebase <- ggthemes_data$solarized$base[c(paste0("base", 3:0), paste0("base0", 0:3))]
+    rebase <- ggthemes_data$solarized$base[c(paste0("base", 3:0),
+                                             paste0("base0", 0:3))]
   } else {
-    rebase <- ggthemes_data$solarized$base[c(paste0("base0", 3:0), paste0("base", 0:3))]
+    rebase <- ggthemes_data$solarized$base[c(paste0("base0", 3:0),
+                                             paste0("base", 0:3))]
   }
   names(rebase) <- paste0("rebase", c(paste0("0", 3:0), 0:3))
   rebase
 }
 
 solarized_accent_list <- function() {
-  paste0("\\code{\"", names(ggthemes_data$solarized$accents), "\"}", collapse = ",")
+  paste0("\\code{\"", names(ggthemes_data$solarized$accents), "\"}",
+         collapse = ",")
 }
 
 #' Solarized color palette (discrete)
@@ -44,7 +47,8 @@ solarized_pal <- function(accent = "blue") {
   best_colors <- function(color, n = 1) {
     allcolors <- names(ggthemes_data$solarized$accents)
     othercolors <- setdiff(allcolors, color)
-    solarized <- as(as(hex2RGB(ggthemes_data$solarized$accents), "LAB")@coords, "matrix")
+    solarized <- as(as(hex2RGB(ggthemes_data$solarized$accents), "LAB")@coords,
+                    "matrix")
     rownames(solarized) <- names(ggthemes_data$solarized$accents)
     solarized_dist <- as.matrix(dist(solarized, method = "euclidean"))
     total_dist <- function(i) {
@@ -57,7 +61,8 @@ solarized_pal <- function(accent = "blue") {
     } else {
       othercolors <- setdiff(allcolors, color)
       combinations <- combn(othercolors, n - 1)
-      maxdist <- which.max(apply(combinations, 2, function(x) total_dist(c(color, x))))
+      maxdist <-
+        which.max(apply(combinations, 2, function(x) total_dist(c(color, x))))
       colorlist <- c(color, combinations[, maxdist])
     }
     unname(ggthemes_data$solarized$accents[colorlist])
@@ -120,20 +125,32 @@ scale_color_solarized <- scale_colour_solarized
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'      facet_wrap(~am)
 #' p + theme_solarized() + scale_colour_solarized('blue')
-#' 
+#'
 #' ## Dark version
 #' p + theme_solarized(light = FALSE) +
 #'     scale_colour_solarized('blue')
 theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
   rebase <- solarized_rebase(light)
-  ret <- (theme_bw(base_size = base_size, base_family = base_family) + theme(text = element_text(colour = rebase["rebase01"]),
-    title = element_text(color = rebase["rebase0"]), line = element_line(color = rebase["rebase01"]), rect = element_rect(fill = rebase["rebase03"],
-      color = rebase["rebase01"]), axis.ticks = element_line(color = rebase["rebase01"]), axis.line = element_line(color = rebase["rebase01"],
-      linetype = 1), legend.background = element_rect(fill = NULL, color = NA), legend.key = element_rect(fill = NULL,
-      colour = NULL, linetype = 0), panel.background = element_rect(fill = rebase["rebase03"], colour = rebase["rebase01"]),
-    panel.border = element_blank(), panel.grid = element_line(color = rebase["rebase02"]), panel.grid.major = element_line(color = rebase["rebase02"]),
-    panel.grid.minor = element_line(color = rebase["rebase02"]), plot.background = element_rect(fill = NULL, colour = NA,
-      linetype = 0)))
+  ret <- (theme_bw(base_size = base_size, base_family = base_family) +
+            theme(text = element_text(colour = rebase["rebase01"]),
+                  title = element_text(color = rebase["rebase0"]),
+                  line = element_line(color = rebase["rebase01"]),
+                  rect = element_rect(fill = rebase["rebase03"],
+                                      color = rebase["rebase01"]),
+                  axis.ticks = element_line(color = rebase["rebase01"]),
+                  axis.line = element_line(color = rebase["rebase01"],
+                                           linetype = 1),
+                  legend.background = element_rect(fill = NULL, color = NA),
+                  legend.key = element_rect(fill = NULL,
+                                            colour = NULL, linetype = 0),
+                  panel.background = element_rect(fill = rebase["rebase03"],
+                                                  colour = rebase["rebase01"]),
+                  panel.border = element_blank(),
+                  panel.grid = element_line(color = rebase["rebase02"]),
+                  panel.grid.major = element_line(color = rebase["rebase02"]),
+                  panel.grid.minor = element_line(color = rebase["rebase02"]),
+                  plot.background = element_rect(fill = NULL, colour = NA,
+                                                 linetype = 0)))
   ret
 }
 
@@ -141,13 +158,27 @@ theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
 #' @export
 theme_solarized_2 <- function(base_size = 12, base_family = "", light = TRUE) {
   rebase <- solarized_rebase(light)
-  ret <- (theme_foundation(base_size = base_size, base_family = base_family) + theme(text = element_text(color = rebase["rebase01"]),
-    title = element_text(color = rebase["rebase0"]), line = element_line(color = rebase["rebase01"]), rect = element_rect(fill = rebase["rebase03"],
-      color = NA), axis.ticks = element_line(color = rebase["rebase01"]), axis.line = element_line(color = rebase["reabase01"],
-      linetype = 1), axis.title.y = element_text(angle = 90), legend.background = element_rect(fill = NULL, color = NA),
-    legend.key = element_rect(fill = NULL, colour = NULL, linetype = 0), panel.background = element_rect(fill = rebase["rebase02"],
-      colour = NA), panel.border = element_blank(), panel.grid = element_line(color = rebase["rebase03"]), panel.grid.major = element_line(color = rebase["rebase03"]),
-    panel.grid.minor = element_line(color = rebase["rebase03"], size = 0.25), plot.background = element_rect(fill = NULL,
-      colour = NULL, linetype = 0)))
+  ret <- (theme_foundation(base_size = base_size, base_family = base_family) +
+            theme(text = element_text(color = rebase["rebase01"]),
+                  title = element_text(color = rebase["rebase0"]),
+                  line = element_line(color = rebase["rebase01"]),
+                  rect = element_rect(fill = rebase["rebase03"],
+                                      color = NA),
+                  axis.ticks = element_line(color = rebase["rebase01"]),
+                  axis.line = element_line(color = rebase["reabase01"],
+                                           linetype = 1),
+                  axis.title.y = element_text(angle = 90),
+                  legend.background = element_rect(fill = NULL, color = NA),
+                  legend.key = element_rect(fill = NULL, colour = NULL,
+                                            linetype = 0),
+                  panel.background = element_rect(fill = rebase["rebase02"],
+                                                  colour = NA),
+                  panel.border = element_blank(),
+                  panel.grid = element_line(color = rebase["rebase03"]),
+                  panel.grid.major = element_line(color = rebase["rebase03"]),
+                  panel.grid.minor = element_line(color = rebase["rebase03"],
+                                                  size = 0.25),
+                  plot.background = element_rect(fill = NULL,
+                                                 colour = NULL, linetype = 0)))
   ret
 }

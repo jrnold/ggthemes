@@ -66,12 +66,12 @@ scale_fill_few <- function(palette="light", ...) {
 #' p + theme_few() + scale_colour_few()
 #' p + theme_few() + scale_colour_few("light")
 #' p + theme_few() + scale_colour_few("dark")
-#' 
+#'
 theme_few <- function(base_size=12, base_family="") {
     colors <- ggthemes_data$few
-    gray <- colors$medium['gray']
-    black <- colors$dark['black']
-    theme_bw(base_size=base_size, base_family=base_family) +
+    gray <- colors$medium["gray"]
+    black <- colors$dark["black"]
+    theme_bw(base_size = base_size, base_family = base_family) +
         theme(
             line = element_line(colour = gray),
             rect = element_rect(fill = "white", colour = NA),
@@ -81,7 +81,6 @@ theme_few <- function(base_size=12, base_family="") {
             ## Examples do not use grid lines
             panel.border = element_rect(colour = gray),
             panel.grid = element_blank(),
-            strip.background = element_rect(fill="white", colour=NA)
+            strip.background = element_rect(fill = "white", colour = NA)
             )
 }
-

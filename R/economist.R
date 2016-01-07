@@ -185,16 +185,16 @@ theme_economist <- function(base_size = 10, base_family = "sans",
     bgcolors <- ggthemes_data$economist$bg
   }
   ## From measurements
-  ## Ticks = 1/32 in, with margin about 1.5/32
-  ## Title = 3/32 in (6 pt)
-  ## Legend Labels = 2.5/32 in (5pt)
+  ## Ticks = 1 / 32 in, with margin about 1.5 / 32
+  ## Title = 3 / 32 in (6 pt)
+  ## Legend Labels = 2.5 / 32 in (5pt)
   ## Axis Labels = 2
   ## Axis Titles and other text ~ 2
-  ## Margins: Top/Bottom = 6/32, sides = 5/32
+  ## Margins: Top / Bottom = 6 / 32, sides = 5 / 32
   ret <-
     theme_foundation(base_size = base_size, base_family = base_family) +
     theme(line = element_line(colour = "black"),
-          rect = element_rect(fill = bgcolors['ebg'], colour = NA,
+          rect = element_rect(fill = bgcolors["ebg"], colour = NA,
                               linetype = 1),
           text = element_text(colour = "black"),
           ## Axis
@@ -208,14 +208,14 @@ theme_economist <- function(base_size = 10, base_family = "sans",
                                      margin = margin(r = base_size,
                                                      unit = "pt")),
           ## I cannot figure out how to get ggplot to do 2 levels of ticks
-          ## axis.ticks.margin = unit(3/72, "in"),
+          ## axis.ticks.margin = unit(3 / 72, "in"),
           axis.ticks = element_line(),
           axis.ticks.y = element_blank(),
           axis.title = element_text(size = rel(1)),
           axis.title.x = element_text(),
           axis.title.y = element_text(angle = 90),
-          # axis.ticks.length = unit(-1/32, "in"),
-          axis.ticks.length = unit(-base_size * 0.5 , "points"),
+          # axis.ticks.length = unit( - 1/32, "in"),
+          axis.ticks.length = unit( - base_size * 0.5 , "points"),
           legend.background = element_rect(linetype=0),
           legend.margin = unit(base_size * 1.5, "points"),
           legend.key = element_rect(linetype=0),
@@ -233,16 +233,17 @@ theme_economist <- function(base_size = 10, base_family = "sans",
           ## Economist only uses vertical lines
           panel.background = element_rect(linetype=0),
           panel.border = element_blank(),
-          panel.grid.major = element_line(colour = "white", size=rel(1.75)),
+          panel.grid.major = element_line(colour = "white", size = rel(1.75)),
           panel.grid.minor = element_blank(),
           panel.margin = unit(0.25, "lines"),
-          strip.background = element_rect(fill = bgcolors['ebg'],
-                                          colour = NA, linetype=0),
+          strip.background = element_rect(fill = bgcolors["ebg"],
+                                          colour = NA, linetype = 0),
           strip.text = element_text(size = rel(1.25)),
           strip.text.x = element_text(),
           strip.text.y = element_text(angle = -90),
-          plot.background = element_rect(fill = bgcolors['ebg'], colour=NA),
-          plot.title = element_text(size = rel(1.5), hjust=0, face="bold"),
+          plot.background = element_rect(fill = bgcolors["ebg"], colour = NA),
+          plot.title = element_text(size = rel(1.5),
+                                    hjust = 0, face = "bold"),
           plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
           complete = TRUE)
   if (horizontal) {
@@ -250,9 +251,11 @@ theme_economist <- function(base_size = 10, base_family = "sans",
   } else {
     ret <- ret + theme(panel.grid.major.y = element_blank())
   }
-  if (dkpanel==TRUE) {
-    ret <- ret + theme(panel.background=element_rect(fill = bgcolors['edkbg']),
-                       strip.background=element_rect(fill = bgcolors['edkbg']))
+  if (dkpanel == TRUE) {
+    ret <- ret + theme(panel.background =
+                         element_rect(fill = bgcolors["edkbg"]),
+                       strip.background =
+                         element_rect(fill = bgcolors["edkbg"]))
   }
   ret
 }
@@ -262,14 +265,17 @@ theme_economist <- function(base_size = 10, base_family = "sans",
 theme_economist_white <- function(base_size = 11, base_family = "sans",
                                   gray_bg = TRUE, horizontal = TRUE) {
   if (gray_bg) {
-    bgcolor <- ggthemes_data$economist$bg['ltgray']
+    bgcolor <- ggthemes_data$economist$bg["ltgray"]
   } else {
     bgcolor <- "white"
   }
-  (theme_economist(base_family=base_family, base_size=base_size, horizontal=horizontal)
+  (theme_economist(base_family = base_family,
+                   base_size = base_size,
+                   horizontal = horizontal)
   + theme(rect = element_rect(fill = bgcolor),
           plot.background = element_rect(fill = bgcolor),
           panel.background = element_rect(fill = "white"),
-          panel.grid.major = element_line(colour=ggthemes_data$economist$bg['dkgray']),
+          panel.grid.major =
+            element_line(colour = ggthemes_data$economist$bg["dkgray"]),
           strip.background = element_rect(fill = "white")))
 }

@@ -19,20 +19,33 @@
 #' p + theme_hc() + scale_colour_hc()
 #' p + theme_hc(bgcolor = 'darkunica') + scale_colour_hc('darkunica')
 #' @export
-theme_hc <- function(base_size = 12, base_family = "sans", bgcolor = "default") {
-  
+theme_hc <- function(base_size = 12,
+                     base_family = "sans",
+                     bgcolor = "default") {
   bgcol <- ggthemes_data$hc$bg[bgcolor]
-  
-  ret <- theme(rect = element_rect(fill = bgcol, linetype = 0, colour = NA), text = element_text(size = base_size, family = base_family), 
-    title = element_text(hjust = 0.5), axis.title.x = element_text(hjust = 0.5), axis.title.y = element_text(hjust = 0.5), 
-    panel.grid.major.y = element_line(color = "gray"), panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), panel.border = element_blank(), panel.background = element_blank(), legend.position = "bottom", 
-    legend.key = element_rect(fill = "#FFFFFF00"))
-  
+
+  ret <- theme(rect = element_rect(fill = bgcol, linetype = 0, colour = NA),
+               text = element_text(size = base_size, family = base_family),
+               title = element_text(hjust = 0.5),
+               axis.title.x = element_text(hjust = 0.5),
+               axis.title.y = element_text(hjust = 0.5),
+               panel.grid.major.y = element_line(color = "gray"),
+               panel.grid.minor.y = element_blank(),
+               panel.grid.major.x = element_blank(),
+               panel.grid.minor.x = element_blank(),
+               panel.border = element_blank(),
+               panel.background = element_blank(),
+               legend.position = "bottom",
+               legend.key = element_rect(fill = "#FFFFFF00"))
+
   if (bgcolor == "darkunica") {
-    ret <- (ret + theme(rect = element_rect(fill = bgcol), text = element_text(colour = "#A0A0A3"), title = element_text(colour = "#FFFFFF"), 
-      axis.title.x = element_text(colour = "#A0A0A3"), axis.title.y = element_text(colour = "#A0A0A3"), panel.grid.major.y = element_line(color = "gray"), 
-      legend.title = element_text(colour = "#A0A0A3")))
+    ret <- (ret + theme(rect = element_rect(fill = bgcol),
+                        text = element_text(colour = "#A0A0A3"),
+                        title = element_text(colour = "#FFFFFF"),
+                        axis.title.x = element_text(colour = "#A0A0A3"),
+                        axis.title.y = element_text(colour = "#A0A0A3"),
+                        panel.grid.major.y = element_line(color = "gray"),
+                        legend.title = element_text(colour = "#A0A0A3")))
   }
   ret
 }
@@ -48,8 +61,12 @@ theme_hc <- function(base_size = 12, base_family = "sans", bgcolor = "default") 
 #' The following palettes are defined,
 #'
 #' \describe{
-#' \item{default}{#7cb5ec, #434348, #90ed7d, #f7a35c, #8085e9, #f15c80', #e4d354, #8085e8, #8d4653, #91e8e1 theme. Examples: \url{http://www.highcharts.com/demo}.}
-#' \item{darkunica}{#2b908f, #90ee7e, #f45b5b, #7798BF, #aaeeee, #ff0066, #eeaaee, #55BF3B, #DF5353, #7798BF, #aaeeee'. Examples: \url{http://www.highcharts.com/demo/line-basic/dark-unica}.}
+#' \item{default}{#7cb5ec, #434348, #90ed7d, #f7a35c, #8085e9, #f15c80',
+#' #e4d354, #8085e8, #8d4653, #91e8e1 theme.
+#' Examples: \url{http://www.highcharts.com/demo}.}
+#' \item{darkunica}{#2b908f, #90ee7e, #f45b5b, #7798BF, #aaeeee,
+#' #ff0066, #eeaaee, #55BF3B, #DF5353, #7798BF, #aaeeee'. Examples:
+#' \url{http://www.highcharts.com/demo/line-basic/dark-unica}.}
 #' }
 #'
 #' @param palette \code{character} The color palette to use. This
@@ -89,4 +106,4 @@ scale_color_hc <- scale_colour_hc
 #' @export
 scale_fill_hc <- function(palette = "default", ...) {
   discrete_scale("fill", "hc", hc_pal(palette), ...)
-} 
+}

@@ -36,4 +36,3 @@ theme_foundation <- function(base_size=12, base_family="") {
               rect = element_rect(fill = "white", colour = "black"),
               text = element_text(colour = "black"))
 }
-

@@ -38,4 +38,4 @@ scale_color_colorblind <- scale_colour_colorblind
 #' @export
 scale_fill_colorblind <- function(...) {
   discrete_scale("fill", "colorblind", colorblind_pal(), ...)
-} 
+}

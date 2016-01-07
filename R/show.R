@@ -16,7 +16,7 @@
 show_shapes <- function(shapes, labels = TRUE) {
   n <- length(shapes)
   ncol <- ceiling(sqrt(n))
-  nrow <- ceiling(n/ncol)
+  nrow <- ceiling(n / ncol)
   shapes <- c(shapes, rep(NA, nrow * ncol - length(shapes)))
   shapes <- matrix(shapes, ncol = ncol, byrow = TRUE)
   shapes <- shapes[nrow(shapes):1, ]
@@ -58,4 +58,3 @@ show_linetypes <- function(linetypes, labels = TRUE) {
     axis(side = 2, at = seq_len(n), tick = FALSE, labels = seq_len(n), las = 2)
   }
 }
-

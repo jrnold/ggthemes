@@ -69,7 +69,7 @@ scale_color_excel <- scale_colour_excel
 #'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
 #'      facet_wrap(~am)
 #' p + theme_excel() + scale_colour_excel()
-#' 
+#'
 #' # Old fill color palette
 #' ggplot(mpg, aes(x = class, fill = drv)) +
 #'   geom_bar() +
@@ -78,9 +78,16 @@ scale_color_excel <- scale_colour_excel
 #'
 theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
   gray <- "#C0C0C0"
-  ret <- (theme_bw() + theme(panel.background = element_rect(fill = gray), panel.border = element_rect(colour = "black", 
-    linetype = 1), panel.grid.major = element_line(colour = "black"), panel.grid.minor = element_blank(), legend.key = element_rect(colour = NA), 
-    legend.background = element_rect(colour = "black", linetype = 1), strip.background = element_rect(fill = "white", 
+  ret <- (theme_bw() +
+            theme(panel.background = element_rect(fill = gray),
+                  panel.border = element_rect(colour = "black",
+                                              linetype = 1),
+                  panel.grid.major = element_line(colour = "black"),
+                  panel.grid.minor = element_blank(),
+                  legend.key = element_rect(colour = NA),
+
+    legend.background = element_rect(colour = "black", linetype = 1),
+ strip.background = element_rect(fill = "white",
       colour = NA, linetype = 0)))
   if (horizontal) {
     ret <- ret + theme(panel.grid.major.x = element_blank())
@@ -88,4 +95,4 @@ theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
     ret <- ret + theme(panel.grid.major.y = element_blank())
   }
   ret
-} 
+}

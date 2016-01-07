@@ -1,11 +1,11 @@
 ## 45 degrees in radians
-FORTY_FIVE <- 45 * pi/180
+FORTY_FIVE <- 45 * pi / 180
 
 calc_slopes <- function(x, y, cull = FALSE) {
   dx <- diff(x)
   dy <- diff(y)
-  s <- dy/dx
-  w <- sqrt(dx^2 + dy^2)
+  s <- dy / dx
+  w <- sqrt(dx ^ 2 + dy ^ 2)
   if (cull) {
     touse <- abs(s) > 0 & abs(s) < Inf
     s <- s[touse]
@@ -99,8 +99,8 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #'
 #' \strong{Banking by Optimizing Orientation Resolution}
 #'
-#' The angle between line segments i and j is \eqn{r_{i,j} =
-#' \|\theta_i(\alpha) - \theta_j(\alpha)\|}{r_{i,j} = |
+#' The angle between line segments i and j is \eqn{r_{i, j} =
+#' \|\theta_i(\alpha) - \theta_j(\alpha)\|}{r_{i, j} = |
 #' theta_i(alpha) - theta_j(alpha)|}, where \eqn{\theta_i(\alpha) =
 #' \arctan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / \alpha)} and
 #' \eqn{s_i} is the slope of line segment i. This function finds the
@@ -108,9 +108,9 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' pairs of line segments.
 #'
 #' \deqn{
-#'   \max_{\alpha} \sum_i \sum_{j: j < 1} r_{i,j}
+#'   \max_{\alpha} \sum_i \sum_{j: j < 1} r_{i, j}
 #' }{
-#'   max_{alpha} sum_i sum_{j: j < 1} r_{i,j}
+#'   max_{alpha} sum_i sum_{j: j < 1} r_{i, j}
 #' }
 #'
 #' The local optimization only includes line-segments
@@ -119,9 +119,9 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' has the following objective function.
 #'
 #' \deqn{
-#'   \max_{\alpha} \sum_{i=2}^{n} r_{i,i-1}
+#'   \max_{\alpha} \sum_{i=2}^{n} r_{i, i-1}
 #' }{
-#'   max_{\alpha} sum_{i=2}^{n} r_{i,i-1}
+#'   max_{\alpha} sum_{i=2}^{n} r_{i, i-1}
 #' }
 #'
 #' @references
@@ -174,45 +174,46 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' ## Local Orientation Resolution
 #' bank_slopes(x, y, method='lor')
 #' bank_slopes(x, y, method='lor', cull=TRUE)
-bank_slopes <- function(x, y, cull = FALSE, method = "ms", weight = TRUE, ...) {
+bank_slopes <- function(x, y, cull = FALSE, method = "ms",
+                        weight = TRUE, ...) {
   FUN <- get(sprintf("bank_slopes_%s", method))
   xyrat <- FUN(calc_slopes(x, y, cull = cull), weight = weight, ...)
-  1/xyrat
+  1 / xyrat
 }
 
 bank_slopes_ms <- function(slopes, ...) {
   Rx <- diff(slopes$range_x)
   Ry <- diff(slopes$range_y)
-  median(abs(slopes$s)) * Rx/Ry
+  median(abs(slopes$s)) * Rx / Ry
 }
 
 bank_slopes_as <- function(slopes, ...) {
   Rx <- diff(slopes$range_x)
   Ry <- diff(slopes$range_y)
-  mean(abs(slopes$s)) * Rx/Ry
+  mean(abs(slopes$s)) * Rx / Ry
 }
 
 bank_slopes_ao <- function(slopes, weight = TRUE, ...) {
-  s <- slopes$s
   alpha0 <- bank_slopes_ms(slopes)
   if (weight) {
     f <- function(alpha, slopes) {
-      (weighted.mean(abs(atan(slopes$s/alpha)), slopes$length) - FORTY_FIVE)^2
+      (weighted.mean(abs(atan(slopes$s / alpha)),
+                     slopes$length) - FORTY_FIVE) ^ 2
     }
   } else {
     f <- function(alpha, slopes) {
-      (mean(abs(atan(slopes$s/alpha))) - FORTY_FIVE)^2
+      (mean(abs(atan(slopes$s / alpha))) - FORTY_FIVE) ^ 2
     }
+    nlm(f, alpha0, slopes = slopes)$estimate
   }
-  nlm(f, alpha0, slopes = slopes)$estimate
 }
 
 bank_slopes_gor <- function(slopes, ...) {
   alpha0 <- bank_slopes_ms(slopes)
   s <- slopes$s
   f <- function(alpha) {
-    theta <- atan(s/alpha)
-    -1 * mean(as.numeric(dist(theta, method = "manhattan")))
+    theta <- atan(s / alpha) * -mean(as.numeric(dist(theta,
+                                                     method = "manhattan")))
   }
   nlm(f, alpha0)$estimate
 }
@@ -221,9 +222,7 @@ bank_slopes_lor <- function(slopes, ...) {
   alpha0 <- bank_slopes_ms(slopes)
   s <- slopes$s
   f <- function(alpha) {
-    -1 * mean(abs(diff(atan(s/alpha))))
+    -1 * mean(abs(diff(atan(s / alpha))))
   }
   nlm(f, alpha0)$estimate
 }
-
-

@@ -104,4 +104,3 @@ GeomRangeFrame <-
                             linetype = 1, alpha = NA),
           draw_legend = draw_key_path
   )
-
