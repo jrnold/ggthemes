@@ -48,8 +48,7 @@ you have access to this font, you can use it with the
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) +
-     facet_wrap(~am) +
-     ggtitle("Diamonds Are Forever")
+     facet_wrap(~am)
 
 ## Standard
 p + theme_economist() + scale_colour_economist()
