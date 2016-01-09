@@ -1,3 +1,6 @@
+This is a resubmission after changing grave accents in the Title and Description
+to single quotes.
+
 ## R CMD check
 
 * In `DESCRIPTION`, the words "Fivethirtyeight", "Geoms", "Stata", "Tufte", 
