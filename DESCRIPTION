@@ -26,13 +26,14 @@ Imports:
 Suggests:
     extrafont,
     knitr,
+    lintr,
     maps,
     mapproj,
     pander,
     plyr,
     reshape2,
-    testthat,
-    lintr
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots
