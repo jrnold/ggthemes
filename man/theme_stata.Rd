@@ -19,9 +19,10 @@ theme_stata(base_size = 11, base_family = "sans", scheme = "s2color")
 Themes based on Stata graph schemes
 }
 \note{
-Stata graph schemes include what \pkg{ggplot2} seperates
-into themes and scales, as well as defaults specific to different
-graph types (which ggplot does not support).
+Stata graph schemes include the features of \pkg{ggplot2}
+into themes and scales. Stata graph themes also allow for defaults
+for specific graph types, a feature which \pkg{ggplot2} does not directly
+support.
 }
 \examples{
 library("ggplot2")

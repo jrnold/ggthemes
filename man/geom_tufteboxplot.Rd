@@ -52,7 +52,7 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link{borders}}.}
 
-\item{median.type}{If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represnted by a line, possibly offset, and the median by a gap in the line.}
+\item{median.type}{If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represented by a line, possibly offset, and the median by a gap in the line.}
 
 \item{whisker.type}{If \code{'line'}, then whiskers are represented by lines. If \code{'point'}, then whiskers are represented by points at \code{ymin} and \code{ymax}.}
 

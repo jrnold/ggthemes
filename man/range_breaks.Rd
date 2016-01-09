@@ -31,7 +31,7 @@ A function which returns breaks given a vector.
 }
 \description{
 This function returns pretty axis breaks that always include the extreme  values of the data.
-This works by calling the extended Wilkinson alogorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
+This works by calling the extended Wilkinson algorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
 Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
 }
 \details{

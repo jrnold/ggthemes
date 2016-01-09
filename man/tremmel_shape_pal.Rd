@@ -24,7 +24,7 @@ If three symbols, then use a solid circle, empty circle, and an
 empty triangle. However, that set of symbols does not satisfy the
 requirement that each symbol should differ from the other symbols
 in the same feature dimension. A set of three symbols that
-satisfies this is a cicle (curvature), plus sign (number of
+satisfies this is a circle (curvature), plus sign (number of
 terminators), triangle (line orientation).
 
 If more than three groups of data, then separate the groups into
