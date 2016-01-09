@@ -203,9 +203,10 @@ theme_stata_colors <- function(scheme="s2color") {
 #' @export
 #' @family themes stata
 #'
-#' @note Stata graph schemes include what \pkg{ggplot2} seperates
-#' into themes and scales, as well as defaults specific to different
-#' graph types (which ggplot does not support).
+#' @note Stata graph schemes include the features of \pkg{ggplot2}
+#' into themes and scales. Stata graph themes also allow for defaults
+#' for specific graph types, a feature which \pkg{ggplot2} does not directly
+#' support.
 #'
 #' @references \url{http://www.stata.com/help.cgi?schemes}
 #'

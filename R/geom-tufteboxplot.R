@@ -27,7 +27,7 @@
 #' @param outlier.shape shape of outlying points
 #' @param outlier.size size of outlying points
 #' @param outlier.stroke stroke for outlying points
-#' @param median.type If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represnted by a line, possibly offset, and the median by a gap in the line.
+#' @param median.type If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represented by a line, possibly offset, and the median by a gap in the line.
 #' @param whisker.type If \code{'line'}, then whiskers are represented by lines. If \code{'point'}, then whiskers are represented by points at \code{ymin} and \code{ymax}.
 #' @param voffset controls the size of the gap in the line representing the median when \code{median.type = 'line'}. This is a fraction of the range of \code{y}.
 #' @param hoffset controls how much the interquartile line is offset from the whiskers when \code{median.type = 'line'}. This is a fraction of the range of \code{x}.
