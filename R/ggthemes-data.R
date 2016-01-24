@@ -3,6 +3,7 @@
 #' Data used by the palettes in the ggthemes package.
 #'
 #' @format A \code{list}.
+#' @export
 ggthemes_data <- {
     ## x to hold value of list as I create it
     x <- list()
