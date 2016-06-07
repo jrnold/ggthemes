@@ -2,6 +2,8 @@
 #'
 #' Qualitative color palettes from Paul Tol,
 #' \href{https://personal.sron.nl/~pault/colourschemes.pdf}{"Colour Schemes"}.
+#' Incorporation of the palette into an R package was originally inspired by
+#' Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 #'
 #' @export
 #' @param palette One of "ptol1_qual","ptol2_qual,...,"ptol12_qual"
@@ -26,7 +28,7 @@ ptol_pal <- function(palette="ptol4_qual") {
 #' @family colour ptol
 #' @rdname scale_ptol
 #' @export
-scale_colour_ptol <- function(palette="ptol4_qual", ...) {
+scale_colour_ptol <- function(palette="ptol9_qual", ...) {
     discrete_scale("colour", "ptol", ptol_pal(palette), ...)
 }
 
@@ -36,6 +38,6 @@ scale_color_ptol <- scale_colour_ptol
 
 #' @export
 #' @rdname scale_ptol
-scale_fill_ptol <- function(palette="ptol4_qual", ...) {
+scale_fill_ptol <- function(palette="ptol9_qual", ...) {
     discrete_scale("fill", "ptol", ptol_pal(palette), ...)
 }

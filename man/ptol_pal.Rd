@@ -12,6 +12,8 @@ ptol_pal(palette = "ptol4_qual")
 \description{
 Qualitative color palettes from Paul Tol,
 \href{https://personal.sron.nl/~pault/colourschemes.pdf}{"Colour Schemes"}.
+Incorporation of the palette into an R package was originally inspired by
+Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 }
 \examples{
 library("scales")
