@@ -60,6 +60,7 @@ Collate:
     'hc.R'
     'igray.R'
     'pander.R'
+    'ptol.R'
     'scale-tufte.R'
     'shapes.R'
     'show.R'

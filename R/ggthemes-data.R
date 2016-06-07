@@ -294,35 +294,34 @@ ggthemes_data <- {
                purple="#D5B2D4",
                maroon="#DDB9A9",
                magenta="#EBC0DA"))
-    x$ptol <- list()
-    x$ptol$colors <-
+    x$ptol <-
     list(
-        tol1qual = 
+        ptol1_qual =
             c("#4477AA"),
-        tol2qual = 
+        ptol2_qual =
             c("#4477AA", "#CC6677"),
-        tol3qual = 
+        ptol3_qual =
             c("#4477AA", "#DDCC77", "#CC6677"),
-        tol4qual = 
+        ptol4_qual =
             c("#4477AA", "#117733", "#DDCC77", "#CC6677"),
-        tol5qual = 
+        ptol5_qual =
             c("#332288", "#88CCEE", "#117733", "#DDCC77", "#CC6677"),
-        tol6qual = 
+        ptol6_qual =
             c("#332288", "#88CCEE", "#117733", "#DDCC77", "#CC6677","#AA4499"),
-        tol7qual = 
+        ptol7_qual =
             c("#332288", "#88CCEE", "#44AA99", "#117733", "#DDCC77", "#CC6677","#AA4499"),
-        tol8qual = 
+        ptol8_qual =
             c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77", "#CC6677","#AA4499"),
-        tol9qual = 
+        ptol9_qual =
             c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77", "#CC6677", "#882255", "#AA4499"),
-        tol10qual = 
+        ptol10_qual =
             c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77", "#661100", "#CC6677", "#882255", "#AA4499"),
-        tol11qual = 
+        ptol11_qual =
             c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77", "#661100", "#CC6677", "#882255", "#AA4499"),
-        tol12qual = 
+        ptol12_qual =
             c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77", "#661100", "#CC6677", "#AA4466", "#882255", "#AA4499")
     )
-        
+
     x$tableau <- list()
     x$tableau$colors <-
     list(
