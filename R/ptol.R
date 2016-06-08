@@ -13,7 +13,7 @@
 #' show_col(ptol_pal()(9))
 #' show_col(ptol_pal("ptol4_qual")(4))
 #' show_col(ptol_pal("ptol12_qual")(12))
-ptol_pal <- function(palette="ptol4_qual") {
+ptol_pal <- function(palette="ptol6_qual") {
     values <- ggthemes_data$ptol[[palette]]
     n <- length(values)
     scales::manual_pal(unname(values[1:n]))
@@ -28,7 +28,7 @@ ptol_pal <- function(palette="ptol4_qual") {
 #' @family colour ptol
 #' @rdname scale_ptol
 #' @export
-scale_colour_ptol <- function(palette="ptol9_qual", ...) {
+scale_colour_ptol <- function(palette="ptol6_qual", ...) {
     discrete_scale("colour", "ptol", ptol_pal(palette), ...)
 }
 
@@ -38,6 +38,6 @@ scale_color_ptol <- scale_colour_ptol
 
 #' @export
 #' @rdname scale_ptol
-scale_fill_ptol <- function(palette="ptol9_qual", ...) {
+scale_fill_ptol <- function(palette="ptol6_qual", ...) {
     discrete_scale("fill", "ptol", ptol_pal(palette), ...)
 }

@@ -6,11 +6,11 @@
 \alias{scale_fill_ptol}
 \title{Color Scales from Paul Tol's "Colour Schemes}
 \usage{
-scale_colour_ptol(palette = "ptol9_qual", ...)
+scale_colour_ptol(palette = "ptol6_qual", ...)
 
-scale_color_ptol(palette = "ptol9_qual", ...)
+scale_color_ptol(palette = "ptol6_qual", ...)
 
-scale_fill_ptol(palette = "ptol9_qual", ...)
+scale_fill_ptol(palette = "ptol6_qual", ...)
 }
 \arguments{
 \item{palette}{One of "ptol1_qual","ptol2_qual,...,"ptol12_qual"}

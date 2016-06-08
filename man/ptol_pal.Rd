@@ -4,7 +4,7 @@
 \alias{ptol_pal}
 \title{Color Palletes from Paul Tol's "Colour Schemes}
 \usage{
-ptol_pal(palette = "ptol4_qual")
+ptol_pal(palette = "ptol6_qual")
 }
 \arguments{
 \item{palette}{One of "ptol1_qual","ptol2_qual,...,"ptol12_qual"}

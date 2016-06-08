@@ -147,7 +147,7 @@ p2 + geom_smooth(method = "lm", se = FALSE) +
 
 ### Paul Tol Scales
 
-Color palette based on [Paul Tol's Colour Schemes](https://personal.sron.nl/~pault/colourschemes.pdf). The default palette consists of 9 colors and can be used as a generic option for up to 9 levels. If the number of levels is known, then use of the specific palette (e.g., `ptol4_qual` for 4 levels) is preferred.
+Color palette based on [Paul Tol's Colour Schemes](https://personal.sron.nl/~pault/colourschemes.pdf). The default palette consists of 6 colors and can be used as a generic option for qualitative data with less. If the number of levels is known, then use of the specific palette (e.g., `ptol4_qual` for 4 levels, `ptol9_qual` for 9 levels) is preferred.
 
 ```{r paultol}
 p2 + geom_smooth(method = "lm", se = FALSE) +
