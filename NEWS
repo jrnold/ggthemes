@@ -1,3 +1,8 @@
+ggthemes 3.0.4
+------------------------
+
+* Fix panel.gird.major.y colors for `theme_hc`. Thanks @flying-sheep! #64
+
 ggthemes 3.0.3
 ------------------------
 
