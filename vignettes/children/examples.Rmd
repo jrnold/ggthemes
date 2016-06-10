@@ -151,7 +151,7 @@ Color palette based on [Paul Tol's Colour Schemes](https://personal.sron.nl/~pau
 
 ```{r paultol}
 p2 + geom_smooth(method = "lm", se = FALSE) +
-  scale_color_ptol("ptol3_qual","cyl") +
+  scale_color_ptol(palette = "ptol3_qual","cyl") +
   theme_fivethirtyeight()
 ```
 
