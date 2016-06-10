@@ -126,7 +126,7 @@ p + geom_rangeframe() +
   scale_y_continuous(breaks = extended_range_breaks()(mtcars$mpg))
 ```
 
-![plot of chunk tufte-rangeframe](figure/tufte-rangeframe-1.png) 
+![plot of chunk tufte-rangeframe](figure/tufte-rangeframe-1.png)
 
 The function `geom_tufteboxplot` creates several variants of Tufte's minimal-ink boxplots.
 For a boxplot with a point indicating the median, a gap indicating the interquartile range,
@@ -138,7 +138,7 @@ p4 <- ggplot(mtcars, aes(factor(cyl), mpg))
 p4 + theme_tufte(ticks=FALSE) + geom_tufteboxplot()
 ```
 
-![plot of chunk tufteboxplot](figure/tufteboxplot-1.png) 
+![plot of chunk tufteboxplot](figure/tufteboxplot-1.png)
 
 For a boxplot with an offset line indicating the interquartile range and a gap indicating the median:
 
@@ -147,7 +147,7 @@ p4 + theme_tufte(ticks=FALSE) +
   geom_tufteboxplot(median.type = "line")
 ```
 
-![plot of chunk tufteboxplot2](figure/tufteboxplot2-1.png) 
+![plot of chunk tufteboxplot2](figure/tufteboxplot2-1.png)
 
 For a boxplot with an line indicating the interquartile range, a gap indicating the median, and 
 points indicating the minimum and maximum:
@@ -157,7 +157,7 @@ p4 + theme_tufte(ticks=FALSE) +
   geom_tufteboxplot(median.type = "line", whisker.type = 'point', hoffset = 0)
 ```
 
-![plot of chunk tufteboxplot3](figure/tufteboxplot3-1.png) 
+![plot of chunk tufteboxplot3](figure/tufteboxplot3-1.png)
 
 For a boxplot with a wide line indicating the interquartile range, a gap indicating the median, and 
 lines indicating the minimum and maximum
@@ -167,7 +167,7 @@ p4 + theme_tufte(ticks=FALSE) +
   geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0, width = 3)
 ```
 
-![plot of chunk tufteboxplot4](figure/tufteboxplot4-1.png) 
+![plot of chunk tufteboxplot4](figure/tufteboxplot4-1.png)
 
 ### Economist theme
 
@@ -179,7 +179,7 @@ magazine.
 p2 + theme_economist() + scale_colour_economist() 
 ```
 
-![plot of chunk economist](figure/economist-1.png) 
+![plot of chunk economist](figure/economist-1.png)
 
 ### Solarized theme
 
@@ -193,7 +193,7 @@ p2 + theme_solarized() +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-light](figure/solarized-light-1.png) 
+![plot of chunk solarized-light](figure/solarized-light-1.png)
 
 The dark theme.
 
@@ -203,7 +203,7 @@ p2 + theme_solarized(light = FALSE) +
   scale_colour_solarized("red")
 ```
 
-![plot of chunk solarized-dark](figure/solarized-dark-1.png) 
+![plot of chunk solarized-dark](figure/solarized-dark-1.png)
 
 An alternative theme.
 
@@ -213,7 +213,7 @@ p2 + theme_solarized_2(light = FALSE) +
   scale_colour_solarized("blue")
 ```
 
-![plot of chunk solarized-alt](figure/solarized-alt-1.png) 
+![plot of chunk solarized-alt](figure/solarized-alt-1.png)
 
 
 ### Stata theme 
@@ -226,7 +226,7 @@ schemes in Stata.
 p2 + theme_stata() + scale_colour_stata()
 ```
 
-![plot of chunk stata](figure/stata-1.png) 
+![plot of chunk stata](figure/stata-1.png)
 
 ### Excel 2003 theme
 
@@ -238,7 +238,7 @@ and pies not included. Please never use this theme.
 p2 + theme_excel() + scale_colour_excel()
 ```
 
-![plot of chunk excel1](figure/excel1-1.png) 
+![plot of chunk excel1](figure/excel1-1.png)
 
 
 ```r
@@ -248,7 +248,7 @@ ggplot(diamonds, aes(x = clarity, fill = cut)) +
   theme_excel()
 ```
 
-![plot of chunk excel2](figure/excel2-1.png) 
+![plot of chunk excel2](figure/excel2-1.png)
 
 ### Inverse Gray Theme
 
@@ -259,7 +259,7 @@ Inverse of `theme_gray`, i.e. white plot area and gray background.
 p2 + theme_igray()
 ```
 
-![plot of chunk igray](figure/igray-1.png) 
+![plot of chunk igray](figure/igray-1.png)
 
 ### Fivethirtyeight theme
 
@@ -272,7 +272,7 @@ p2 + geom_smooth(method = "lm", se = FALSE) +
   theme_fivethirtyeight()
 ```
 
-![plot of chunk fivethirtyeight](figure/fivethirtyeight-1.png) 
+![plot of chunk fivethirtyeight](figure/fivethirtyeight-1.png)
 
 ### Tableau Scales
 
@@ -283,14 +283,14 @@ Color, fill, and shape scales based on those used in the Tableau software.
 p2 + theme_igray() + scale_colour_tableau()
 ```
 
-![plot of chunk tableau](figure/tableau-1.png) 
+![plot of chunk tableau](figure/tableau-1.png)
 
 
 ```r
 p2 + theme_igray() + scale_colour_tableau("colorblind10")
 ```
 
-![plot of chunk tableau-colorbind10](figure/tableau-colorbind10-1.png) 
+![plot of chunk tableau-colorbind10](figure/tableau-colorbind10-1.png)
 
 ### Stephen Few's Practical Rules for Using Color ...
 
@@ -301,7 +301,7 @@ Color palette and theme based on Stephen Few's ["Practical Rules for Using Color
 p2 + theme_few() + scale_colour_few()
 ```
 
-![plot of chunk few](figure/few-1.png) 
+![plot of chunk few](figure/few-1.png)
 
 ### Wall Street Journal
 
@@ -312,7 +312,7 @@ Theme and some color palettes based on plots in the *The Wall Street Journal*.
 p2 + theme_wsj() + scale_colour_wsj("colors6", "")
 ```
 
-![plot of chunk wsj](figure/wsj-1.png) 
+![plot of chunk wsj](figure/wsj-1.png)
 
 ### Base and Par Themes
 
@@ -323,7 +323,7 @@ Theme that resembles the default theme in the `base` graphics in R.
 p2 + theme_base()
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 ### Par theme
 
@@ -335,7 +335,7 @@ par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
 p2 + theme_par()
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 
 ### GDocs Theme
@@ -347,7 +347,7 @@ Theme and color palettes based on the defaults in Google Docs.
 p2 + theme_gdocs() + scale_color_gdocs()
 ```
 
-![plot of chunk gdocs](figure/gdocs-1.png) 
+![plot of chunk gdocs](figure/gdocs-1.png)
 
 ### Calc Theme
 
@@ -358,7 +358,7 @@ Theme and color and shape palettes based on the defaults in LibreOffice Calc.
 p2 + theme_calc() + scale_color_calc()
 ```
 
-![plot of chunk calc](figure/calc-1.png) 
+![plot of chunk calc](figure/calc-1.png)
 
 ### Pander Theme
 
@@ -369,7 +369,7 @@ Theme and color palettes based on the [pander package](http://rapporter.github.i
 p2 + theme_pander() + scale_colour_pander()
 ```
 
-![plot of chunk pander-scatterplot](figure/pander-scatterplot-1.png) 
+![plot of chunk pander-scatterplot](figure/pander-scatterplot-1.png)
 
 
 ```r
@@ -379,7 +379,7 @@ ggplot(diamonds, aes(x = clarity, fill = cut)) +
   scale_fill_pander()
 ```
 
-![plot of chunk pander-barplot](figure/pander-barplot-1.png) 
+![plot of chunk pander-barplot](figure/pander-barplot-1.png)
 
 ### Highcharts  theme
 
@@ -390,14 +390,14 @@ A theme that approximates the style of plots in [Highcharts JS](http://www.highc
 p2 + theme_hc() + scale_colour_hc()
 ```
 
-![plot of chunk hc-default](figure/hc-default-1.png) 
+![plot of chunk hc-default](figure/hc-default-1.png)
 
 ```r
 p2 + theme_hc(bgcolor = "darkunica") +
   scale_colour_hc("darkunica")
 ```
 
-![plot of chunk hc-darkunica](figure/hc-darkunica-1.png) 
+![plot of chunk hc-darkunica](figure/hc-darkunica-1.png)
 
 
 ```r
@@ -419,7 +419,7 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   scale_colour_hc()
 ```
 
-![plot of chunk hc-default-line](figure/hc-default-line-1.png) 
+![plot of chunk hc-default-line](figure/hc-default-line-1.png)
 
 
 ```r
@@ -431,7 +431,7 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   scale_fill_hc("darkunica")
 ```
 
-![plot of chunk hc-darkunica-line](figure/hc-darkunica-line-1.png) 
+![plot of chunk hc-darkunica-line](figure/hc-darkunica-line-1.png)
 
 ## Maps theme
 
@@ -449,7 +449,7 @@ ggplot() +
   theme_map()
 ```
 
-![plot of chunk map](figure/map-1.png) 
+![plot of chunk map](figure/map-1.png)
 
 
 
