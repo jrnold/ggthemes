@@ -6,24 +6,26 @@
 #' Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 #'
 #' @export
-#' @param palette One of "ptol1_qual","ptol2_qual,...,"ptol12_qual"
+#' @param n number of colors; integer value between 1 and 12
 #' @family colour ptol
 #' @examples
 #' library("scales")
-#' show_col(ptol_pal()(9))
-#' show_col(ptol_pal("ptol4_qual")(4))
-#' show_col(ptol_pal("ptol12_qual")(12))
-ptol_pal <- function(palette) {
-  if (missing(palette)) {
-    palette <- "ptol6_qual"
+#' show_col(ptol_pal()(6))
+#' show_col(ptol_pal(4)(4))
+#' show_col(ptol_pal(4)(12))
+ptol_pal <- function(n) {
+  if (missing(n)) {
+    n <- 6
   }
-  palettelist <- ggthemes_data$ptol
-  if (!palette %in% c(names(palettelist))) {
-    stop(sprintf("%s is not a valid palette name", palette))
+  else if (n > 12) {
+    stop(sprintf("%s is greater than the max number of colors", n))
   }
-    values <- ggthemes_data$ptol[[palette]]
-    n <- length(values)
-    scales::manual_pal(unname(values[1:n]))
+  else if (n == 0) {
+    stop("the number of colors cannot be zero")
+  }
+    values <- ggthemes_data$ptol[[n]]
+    l <- length(values)
+    scales::manual_pal(unname(values[1:l]))
 }
 
 #' Color Scales from Paul Tol's "Colour Schemes
@@ -35,8 +37,8 @@ ptol_pal <- function(palette) {
 #' @family colour ptol
 #' @rdname scale_ptol
 #' @export
-scale_colour_ptol <- function(palette, ...) {
-    discrete_scale("colour", "ptol", ptol_pal(palette), ...)
+scale_colour_ptol <- function(n, ...) {
+    discrete_scale("colour", "ptol", ptol_pal(n), ...)
 }
 
 #' @export
@@ -45,6 +47,6 @@ scale_color_ptol <- scale_colour_ptol
 
 #' @export
 #' @rdname scale_ptol
-scale_fill_ptol <- function(palette, ...) {
-    discrete_scale("fill", "ptol", ptol_pal(palette), ...)
+scale_fill_ptol <- function(n, ...) {
+    discrete_scale("fill", "ptol", ptol_pal(n), ...)
 }
