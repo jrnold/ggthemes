@@ -6,15 +6,13 @@
 \alias{scale_fill_ptol}
 \title{Color Scales from Paul Tol's "Colour Schemes}
 \usage{
-scale_colour_ptol(n, ...)
+scale_colour_ptol(...)
 
-scale_color_ptol(n, ...)
+scale_color_ptol(...)
 
-scale_fill_ptol(n, ...)
+scale_fill_ptol(...)
 }
 \arguments{
-\item{n}{number of colors; integer value between 1 and 12}
-
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}
 }
