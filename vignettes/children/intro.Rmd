@@ -38,6 +38,7 @@ Some extra geoms, scales, and themes for
 - ``scale_colour_stata``, ``scale_shapes_stata``, ``scale_linetype_stata``: color, shape, and linetype palettes from Stata graph schemes.
 - ``scale_colour_tableau``, ``scale_shape_tableau``: color and shape palettes from [Tableau](http://www.tableau.com/).
 - ``scale_colour_pander``, ``scale_fill_pander``: scales to use with the [pander](http://rapporter.github.io/pander/) package.
+- ``scale_colour_ptol``, ``scale_fill_ptol``: color palettes from Paul Tol's [Colour Schemes](https://personal.sron.nl/~pault/colourschemes.pdf)
 - ``scale_shape_cleveland``, ``scale_shape_tremmel``, ``scale_shape_circlefill``: shape scales from classic works in visual perception: Cleveland, Tremmel (1995), and Lewandowsky and Spence (1989).
 
 Most of these scales also have associates palettes, as used  in the *scales* package.

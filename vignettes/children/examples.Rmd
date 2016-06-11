@@ -145,6 +145,23 @@ p2 + geom_smooth(method = "lm", se = FALSE) +
 
 ```
 
+### Paul Tol Scales
+
+Color palette based on [Paul Tol's Colour Schemes](https://personal.sron.nl/~pault/colourschemes.pdf). The default palette consists of 6 colors and can be used as a generic option for qualitative data with 6 or fewer levels. If the number of levels is known, then specifiying the number of colors (n) is preferred.
+
+```{r paultol}
+p2 + geom_smooth(method = "lm", se = FALSE) +
+  scale_color_ptol(n = 3, "cyl") +
+  theme_fivethirtyeight()
+```
+
+```{r paultol-barplot}
+ggplot(diamonds, aes(x = clarity, fill = cut)) +
+  geom_bar() +
+  theme_fivethirtyeight() +
+  scale_fill_ptol()
+```
+
 ### Tableau Scales
 
 Color, fill, and shape scales based on those used in the Tableau software.
