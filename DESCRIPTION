@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 3.0.4
+Version: 3.1.0
 Title: Extra Themes, Scales and Geoms for 'ggplot2'
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"),
@@ -12,7 +12,8 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     person("Hadley", "Wickham", role = c("ctb", "cph"),
     comment = "Code from the ggplot2 package."),
     person("Justin",  "Talbot", role = "ctb",
-    comment = "Code from the labeling package"))
+    comment = "Code from the labeling package"),
+    person("Joshua", "London", role = "ctb"))
 Depends:
     R (>= 3.0.0),
 Imports:

@@ -1,7 +1,8 @@
-ggthemes 3.0.4
+ggthemes 3.1.0
 ------------------------
 
-* Fix panel.gird.major.y colors for `theme_hc`. Thanks @flying-sheep! #64
+* Add `ptol_pal`, `scale_colour_ptol`, and `scale_file_ptol` based on Paul Tol's qualitative color palettes. Thanks @jmlondon. (#65)
+* Fix panel.grid.major.y colors for `theme_hc`. Thanks @flying-sheep! (#64)
 
 ggthemes 3.0.3
 ------------------------
