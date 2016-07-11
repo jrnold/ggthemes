@@ -1,3 +1,8 @@
+ggthemes 3.2.0
+------------------------
+
+* Bugfix: In function `bank_slopes`, remove methods `ao`, `gor`, and `lor`. These methods were not producing reliable results, and should not produce results much different thatn `ms` or `as`. If used, they will produce a warning, and `ms` will be used instead. (#68)
+
 ggthemes 3.1.0
 ------------------------
 
