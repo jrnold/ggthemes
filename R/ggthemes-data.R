@@ -12,11 +12,11 @@ ggthemes_data <- {
     x$economist <- list()
     ## Colors from http://vis.stanford.edu/color-names/analyzer/
     ## x$economist$fg <-
-    ##     c(red_dark="#621e15", red_light="#e59076",
-    ##       blue_mid="#128dcd", blue_dark="#083c52", blue_mid="#64c5f2",
-    ##       green_light="#61afaf", green_dark="#0f7369", gray="#9c9da1",
+    ##     c(red_dark = "#621e15", red_light = "#e59076",
+    ##       blue_mid = "#128dcd", blue_dark = "#083c52", blue_mid = "#64c5f2",
+    ##       green_light = "#61afaf", green_dark = "#0f7369", gray = "#9c9da1",
     ##       # From color picker of png
-    ##       blue_gray="#6794a7")
+    ##       blue_gray = "#6794a7")
 
     ## Colors picked from pngs
     ## bg : d5e4eb
@@ -58,26 +58,26 @@ ggthemes_data <- {
           green_light = "#76c0c1",
           brown = "#a18376")
     x$economist$stata <-
-        list(bg=
+        list(bg =
              c(## Background
-               ebg = rgb(198, 211, 223, max=255),
-               edkbg = rgb(178, 191, 203, max=255)),
-             fg=
-             c(edkblue = rgb(62, 100, 125, max=255),
-               emidblue = rgb(123, 146, 168, max=255),
-               eltblue = rgb(130, 192, 233, max=255),
-               emerald = rgb(45, 109, 102, max=255),
-               erose = rgb(191, 161, 156, max=255),
-               ebblue = rgb(0, 139, 188, max=255),
-               eltgreen = rgb(151, 182, 176, max=255),
-               stone = rgb(215, 210, 158, max=255),
-               navy = rgb(26, 71, 111, max=255),
-               maroon = rgb(144, 53, 59, max=255),
-               brown = rgb(156, 136, 71, max=255),
-               lavender = rgb(147, 141, 210, max=255),
-               teal = rgb(110, 142, 132, max=255),
-               cranberry=rgb(193, 5, 52, max=255),
-               khaki = rgb(202, 194, 126, max=255)))
+               ebg = rgb(198, 211, 223, max = 255),
+               edkbg = rgb(178, 191, 203, max = 255)),
+             fg =
+             c(edkblue = rgb(62, 100, 125, max = 255),
+               emidblue = rgb(123, 146, 168, max = 255),
+               eltblue = rgb(130, 192, 233, max = 255),
+               emerald = rgb(45, 109, 102, max = 255),
+               erose = rgb(191, 161, 156, max = 255),
+               ebblue = rgb(0, 139, 188, max = 255),
+               eltgreen = rgb(151, 182, 176, max = 255),
+               stone = rgb(215, 210, 158, max = 255),
+               navy = rgb(26, 71, 111, max = 255),
+               maroon = rgb(144, 53, 59, max = 255),
+               brown = rgb(156, 136, 71, max = 255),
+               lavender = rgb(147, 141, 210, max = 255),
+               teal = rgb(110, 142, 132, max = 255),
+               cranberry = rgb(193, 5, 52, max = 255),
+               khaki = rgb(202, 194, 126, max = 255)))
 
     ## Excel Colors
     x$excel <-
@@ -223,8 +223,8 @@ ggthemes_data <- {
              ##
              ## Conversion between Stata decimals and R hex
              ## Range of stata dash lengths is 4 to 0.1
-             ## x <- ceiling(seq(.1, 1, by=0.1) / (4/15))
-             ## names(x) <- seq(.1, 1, by=0.1)
+             ## x <- ceiling(seq(.1, 1, by = 0.1) / (4/15))
+             ## names(x) <- seq(.1, 1, by = 0.1)
              ## 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9   1
              ##   1   1   2   2   2   3   3   3   4   4
              ## 2 = 8
@@ -267,70 +267,93 @@ ggthemes_data <- {
 
     ## Stephen Few
     x$few <-
-        list(medium=
-             c(gray="#737373",
-               red="#F15A60",
-               green="#7AC36A",
-               blue="#5A9BD4",
-               orange="#FAA75B",
-               purple="#9E67AB",
-               maroon="#CE7058",
-               magenta="#D77FB4"),
-             dark=
-             c(black="#010202",
-               red="#EE2E2F",
-               green="#008C48",
-               blue="#185AA9",
-               orange="#F47D23",
-               purple="#662C91",
-               maroon="#A21D21",
-               magenta="#B43894"),
-             light=
-             c(gray="#CCCCCC",
-               red="#F2AFAD",
-               green="#D9E4AA",
-               blue="#B8D2EC",
-               orange="#F3D1B0",
-               purple="#D5B2D4",
-               maroon="#DDB9A9",
-               magenta="#EBC0DA"))
+        list(medium =
+             c(gray = "#737373",
+               red = "#F15A60",
+               green = "#7AC36A",
+               blue = "#5A9BD4",
+               orange = "#FAA75B",
+               purple = "#9E67AB",
+               maroon = "#CE7058",
+               magenta = "#D77FB4"),
+             dark =
+             c(black = "#010202",
+               red = "#EE2E2F",
+               green = "#008C48",
+               blue = "#185AA9",
+               orange = "#F47D23",
+               purple = "#662C91",
+               maroon = "#A21D21",
+               magenta = "#B43894"),
+             light =
+             c(gray = "#CCCCCC",
+               red = "#F2AFAD",
+               green = "#D9E4AA",
+               blue = "#B8D2EC",
+               orange = "#F3D1B0",
+               purple = "#D5B2D4",
+               maroon = "#DDB9A9",
+               magenta = "#EBC0DA"))
+    x$ptol <-
+      list(qualitative =
+             list(
+               c("#4477AA"),
+               c("#4477AA", "#CC6677"),
+               c("#4477AA", "#DDCC77", "#CC6677"),
+               c("#4477AA", "#117733", "#DDCC77", "#CC6677"),
+               c("#4477AA", "#88CCEE", "#117733", "#DDCC77", "#CC6677"),
+               c("#4477AA", "#88CCEE", "#117733", "#DDCC77", "#CC6677",
+                 "#AA4499"),
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#DDCC77", "#CC6677",
+                 "#AA4499"),
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77",
+                 "#CC6677", "#AA4499"),
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77",
+                 "#CC6677", "#882255", "#AA4499"),
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77",
+                 "#661100", "#CC6677", "#882255", "#AA4499"),
+               c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733", "#999933",
+                 "#DDCC77", "#661100", "#CC6677", "#882255", "#AA4499"),
+               c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733", "#999933",
+                 "#DDCC77", "#661100", "#CC6677", "#AA4466", "#882255", "#AA4499")
+             ))
 
     x$tableau <- list()
     x$tableau$colors <-
     list(
         tableau20 =
-        c(blue="#1F77B4",
-          blue_light="#AEC7E8",
-          orange="#FF7F0E",
-          orange_light="#FFBB78",
-          green="#2CA02C",
-          green_light="#98DF8A",
-          red="#D62728",
-          red_light="#FF9896",
-          purple="#9467BD",
-          purple_light="#C5B0D5",
-          brown="#8C564B",
-          brown_light="#C49C94",
-          pink="#E377C2",
-          pink_light="#F7B6D2",
-          gray="#7F7F7F",
-          gray_light="#C7C7C7",
-          gold="#BCBD22",
-          gold_light="#DBDB8D",
-          teal="#17BECF",
-          teal_light="#9EDAE5"),
+        c(blue = "#1F77B4",
+          blue_light = "#AEC7E8",
+          orange = "#FF7F0E",
+          orange_light = "#FFBB78",
+          green = "#2CA02C",
+          green_light = "#98DF8A",
+          red = "#D62728",
+          red_light = "#FF9896",
+          purple = "#9467BD",
+          purple_light = "#C5B0D5",
+          brown = "#8C564B",
+          brown_light = "#C49C94",
+          pink = "#E377C2",
+          pink_light = "#F7B6D2",
+          gray = "#7F7F7F",
+          gray_light = "#C7C7C7",
+          gold = "#BCBD22",
+          gold_light = "#DBDB8D",
+          teal = "#17BECF",
+          teal_light = "#9EDAE5"),
         ## Tablau10 are odd, Tableau10-light are even
         tableau10medium =
-        c(blue="#729ECE",
-          orange="#FF9E4A",
-          green="#67BF5C",
-          red="#ED665D",
-          purple="#AD8BC9",
-          brown="#A8786E",
-          pink="#ED97CA",
-          gray="#A2A2A2",
-          gold="#CDCC5D",
-          teal="#6DCCDA"),
+        c(blue = "#729ECE",
+          orange = "#FF9E4A",
+          green = "#67BF5C",
+          red = "#ED665D",
+          purple = "#AD8BC9",
+          brown = "#A8786E",
+          pink = "#ED97CA",
+          gray = "#A2A2A2",
+          gold = "#CDCC5D",
+          teal = "#6DCCDA"),
         gray5 =
         c("#60636A",
           "#A5ACAF",
@@ -440,22 +463,22 @@ ggthemes_data <- {
              `Purple Sequential` = c(low = "#EFEDF5", high = "#807DBA"),
              `Grey Sequential` = c(low = "#F0F0F0", high = "#737373"))
     x$tableau$diverging <-
-        list(`Red-Blue` = c(low="#9C0824", mid="#CACACA", high="#26456E"),
-             `Red-Green` = c(low="#9C0824", mid="#CACACA", high="#09622A"),
-             `Red-White-Green` = c(low="#9C0824", mid="#FFFFFF", high="#09622A"),
-             `Red-Black` = c(low="#9C0824", mid="#CACACA", high="#1E1E1E"),
-             `Red-White-Black` = c(low="#9C0824", mid="#FFFFFF", high="#1E1E1E"),
-             `Green-Blue` = c(low="#09622A", mid="#CACACA", high="#26456E"),
-             `Orange-Blue` = c(low="#7B3014", mid="#CACACA", high="#26456E"),
-             `Orange-White-Blue` = c(low="#7B3014", mid="#FFFFFF", high="#26456E"),
-             `Red-Green Light` = c(low="#FFB2B6", mid="#E5E5E5", high="#B7E6A7"),
-             `Red-White-Green Light` = c(low="#FFB2B6", mid="#FFFFFF", high="#B7E6A7"),
-             `Red-White-Black Light` = c(low="#FFB2B6", mid="#FFFFFF", high="#C6C6C6"),
-             `Orange-Blue Light` = c(low="#FFCC9E", mid="#E5E5E5", high="#C4D8F3"),
-             `Orange-White-Blue Light` = c(low="#FFCC9E", mid="#FFFFFF", high="#C4D8F3"),
-             `Orange-Blue` = c(low="#E0AD30", mid="#E4E4E2", high="#7492AA"),
-             `Light Red-Green` = c(low="#EDA389", mid="#CDE1D3", high="#5C8B70"),
-             `Temperature` = c(low="#529985", mid="#DBCF47", high="#C26B51"))
+        list(`Red-Blue` = c(low = "#9C0824", mid = "#CACACA", high = "#26456E"),
+             `Red-Green` = c(low = "#9C0824", mid = "#CACACA", high = "#09622A"),
+             `Red-White-Green` = c(low = "#9C0824", mid = "#FFFFFF", high = "#09622A"),
+             `Red-Black` = c(low = "#9C0824", mid = "#CACACA", high = "#1E1E1E"),
+             `Red-White-Black` = c(low = "#9C0824", mid = "#FFFFFF", high = "#1E1E1E"),
+             `Green-Blue` = c(low = "#09622A", mid = "#CACACA", high = "#26456E"),
+             `Orange-Blue` = c(low = "#7B3014", mid = "#CACACA", high = "#26456E"),
+             `Orange-White-Blue` = c(low = "#7B3014", mid = "#FFFFFF", high = "#26456E"),
+             `Red-Green Light` = c(low = "#FFB2B6", mid = "#E5E5E5", high = "#B7E6A7"),
+             `Red-White-Green Light` = c(low = "#FFB2B6", mid = "#FFFFFF", high = "#B7E6A7"),
+             `Red-White-Black Light` = c(low = "#FFB2B6", mid = "#FFFFFF", high = "#C6C6C6"),
+             `Orange-Blue Light` = c(low = "#FFCC9E", mid = "#E5E5E5", high = "#C4D8F3"),
+             `Orange-White-Blue Light` = c(low = "#FFCC9E", mid = "#FFFFFF", high = "#C4D8F3"),
+             `Orange-Blue` = c(low = "#E0AD30", mid = "#E4E4E2", high = "#7492AA"),
+             `Light Red-Green` = c(low = "#EDA389", mid = "#CDE1D3", high = "#5C8B70"),
+             `Temperature` = c(low = "#529985", mid = "#DBCF47", high = "#C26B51"))
     x$tableau$shapes <-
     list(proportions = c(#
          -0x25CBL, # White circle
@@ -523,28 +546,28 @@ ggthemes_data <- {
           "#de9ed6", "#ce6dbd", "#a55194", "#7b4173")
 
     x$wsj <- list()
-    x$wsj$bg <- c(gray="#efefef",
-                  green="#e9f3ea",
-                  blue="#d4dee7",
-                  brown="#f8f2e4")
+    x$wsj$bg <- c(gray = "#efefef",
+                  green = "#e9f3ea",
+                  blue = "#d4dee7",
+                  brown = "#f8f2e4")
     x$wsj$palettes <- list()
     x$wsj$palettes$rgby <-
-        c(yellow="#d3ba68",
-          red="#d5695d",
-          blue="#5d8ca8",
-          green="#65a479")
+        c(yellow = "#d3ba68",
+          red = "#d5695d",
+          blue = "#5d8ca8",
+          green = "#65a479")
     x$wsj$palettes$red_green <-
         c(green = "#088158",
           red = "#ba2f2a")
     x$wsj$palettes$black_green <-
-        c(black="#000000",
-          gray="#595959",
-          ltgreen="#59a77f",
-          green="#008856")
+        c(black = "#000000",
+          gray = "#595959",
+          ltgreen = "#59a77f",
+          green = "#008856")
     x$wsj$palettes$dem_rep <-
-        c(blue="#006a8e",
-          red="#b1283a",
-          gray="#a8a6a7")
+        c(blue = "#006a8e",
+          red = "#b1283a",
+          gray = "#a8a6a7")
     x$wsj$palettes$colors6 <-
         c(red = "#c72e29",
           blue = "#016392",
@@ -554,14 +577,14 @@ ggthemes_data <- {
           black = "#000000")
 
     ##
-    x$colorblind <- c(black="#000000",
-                      orange="#E69F00",
-                      sky_blue="#56B4E9",
-                      bluish_green="#009E73",
-                      yellow="#F0E442",
-                      blue="#0072B2",
-                      vermillion="#D55E00",
-                      reddish_purple="#CC79A7")
+    x$colorblind <- c(black = "#000000",
+                      orange = "#E69F00",
+                      sky_blue = "#56B4E9",
+                      bluish_green = "#009E73",
+                      yellow = "#F0E442",
+                      blue = "#0072B2",
+                      vermillion = "#D55E00",
+                      reddish_purple = "#CC79A7")
 
     ##
     x$gdocs <-

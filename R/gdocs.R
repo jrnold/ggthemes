@@ -26,7 +26,7 @@ theme_gdocs <- function(base_size=12, base_family="sans") {
           axis.title = element_text(face = "italic"),
           # 12 pt
           axis.text = element_text(),
-          axis.line = element_line(colour="black"),
+          axis.line = element_line(colour = "black"),
           axis.ticks = element_blank(),
           panel.grid.major = element_line(colour = "#CCCCCC"),
           panel.grid.minor = element_blank(),

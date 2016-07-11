@@ -34,6 +34,6 @@ p + scale_colour_wsj('colors6', '') + theme_wsj(color = "gray")
 \references{
 \url{https://twitter.com/WSJGraphics}
 
-\url{http://pinterest.com/wsjgraphics/wsj-graphics/}
+\url{https://pinterest.com/wsjgraphics/wsj-graphics/}
 }
 

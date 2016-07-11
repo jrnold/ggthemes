@@ -62,9 +62,9 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
                   y = as.numeric(stata_gsize$medium))
   names(relsz) <- names(stata_gsize)
   theme(line = element_line(size = 0.5, linetype = 1, lineend = "butt",
-                            colour="black"),
+                            colour = "black"),
         rect = element_rect(size = 0.5, linetype = 1, fill = "white",
-                            colour="black"),
+                            colour = "black"),
         text = element_text(family = base_family,
                             face = "plain",
                             colour = "black",

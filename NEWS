@@ -1,3 +1,23 @@
+ggthemes 3.2.0
+------------------------
+
+* Bugfix: In function `bank_slopes`, remove methods `ao`, `gor`, and `lor`. These methods were not producing reliable results, and should not produce results much different thatn `ms` or `as`. If used, they will produce a warning, and `ms` will be used instead. (#68)
+
+ggthemes 3.1.0
+------------------------
+
+* Add `ptol_pal`, `scale_colour_ptol`, and `scale_file_ptol` based on Paul Tol's qualitative color palettes. Thanks @jmlondon. (#65)
+
+ggthemes 3.0.4
+------------------------
+
+* Fix panel.grid.major.y colors for `theme_hc`. Thanks @flying-sheep! (#64)
+
+ggthemes 3.0.3
+------------------------
+
+* Bugfix: remove `lintr` tests that broke with new `testthat`.
+
 ggthemes 3.0.2
 ------------------------
 

@@ -145,6 +145,23 @@ p2 + geom_smooth(method = "lm", se = FALSE) +
 
 ```
 
+### Paul Tol Scales
+
+Color palette based on [Paul Tol's Colour Schemes](https://personal.sron.nl/~pault/colourschemes.pdf).
+
+```{r paultol}
+p2 + geom_smooth(method = "lm", se = FALSE) +
+  scale_color_ptol("cyl") +
+  theme_minimal()
+```
+
+```{r paultol-barplot}
+ggplot(diamonds, aes(x = clarity, fill = cut)) +
+  geom_bar() +
+  scale_fill_ptol() +
+  theme_minimal()
+```
+
 ### Tableau Scales
 
 Color, fill, and shape scales based on those used in the Tableau software.

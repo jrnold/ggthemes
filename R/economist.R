@@ -87,7 +87,7 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 #' @seealso \code{\link{theme_economist}} for examples.
 #' @export
 scale_colour_economist <- function(stata=FALSE, ...) {
-  discrete_scale("colour", "economist", economist_pal(stata=stata), ...)
+  discrete_scale("colour", "economist", economist_pal(stata = stata), ...)
 }
 
 #' @rdname scale_economist
@@ -97,7 +97,7 @@ scale_color_economist <- scale_colour_economist
 #' @rdname scale_economist
 #' @export
 scale_fill_economist <- function(stata=FALSE, ...) {
-  discrete_scale("fill", "economist", economist_pal(stata=stata), ...)
+  discrete_scale("fill", "economist", economist_pal(stata = stata), ...)
 }
 
 #' ggplot color theme based on the Economist
@@ -213,11 +213,11 @@ theme_economist <- function(base_size = 10, base_family = "sans",
           axis.title = element_text(size = rel(1)),
           axis.title.x = element_text(),
           axis.title.y = element_text(angle = 90),
-          # axis.ticks.length = unit( - 1/32, "in"),
-          axis.ticks.length = unit( - base_size * 0.5 , "points"),
-          legend.background = element_rect(linetype=0),
+          # axis.ticks.length = unit( -1/32, "in"),
+          axis.ticks.length = unit( -base_size * 0.5, "points"),
+          legend.background = element_rect(linetype = 0),
           legend.margin = unit(base_size * 1.5, "points"),
-          legend.key = element_rect(linetype=0),
+          legend.key = element_rect(linetype = 0),
           legend.key.size = unit(1.2, "lines"),
           legend.key.height = NULL,
           legend.key.width = NULL,
@@ -230,7 +230,7 @@ theme_economist <- function(base_size = 10, base_family = "sans",
           legend.justification = "center",
           ## legend.box = element_rect(fill = palette_economist['bgdk'], colour=NA, linetype=0),
           ## Economist only uses vertical lines
-          panel.background = element_rect(linetype=0),
+          panel.background = element_rect(linetype = 0),
           panel.border = element_blank(),
           panel.grid.major = element_line(colour = "white", size = rel(1.75)),
           panel.grid.minor = element_blank(),

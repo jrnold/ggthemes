@@ -6,7 +6,7 @@
 #'
 #' \url{https://twitter.com/WSJGraphics}
 #'
-#' \url{http://pinterest.com/wsjgraphics/wsj-graphics/}
+#' \url{https://pinterest.com/wsjgraphics/wsj-graphics/}
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @param color The background color of plot. One of \code{'brown',
@@ -63,7 +63,7 @@ theme_wsj <- function(base_size = 12,
 #' plots. This collects a few of them, but is by no means exhaustive.
 #' Collections of these plots can be found on the WSJ Graphics
 #' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
-#' \href{http://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
+#' \href{https://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 #'
 #' @section Palettes:
 #'
@@ -71,16 +71,16 @@ theme_wsj <- function(base_size = 12,
 #'
 #' \describe{
 #' \item{rgby}{Red/Green/Blue/Yellow theme.
-#' Examples: \url{http://twitpic.com/b2e3v2}.}
+#' Examples: \url{https://twitpic.com/b2e3v2}.}
 #' \item{green_red}{Green/red two-color scale for good/bad. Examples:
-#' \url{http://twitpic.com/b1avj6}, \url{http://twitpic.com/a4kxcl}.}
+#' \url{https://twitpic.com/b1avj6}, \url{http://twitpic.com/a4kxcl}.}
 #' \item{green_black}{Black-green 4-color scale for 'Very negative',
 #' 'Somewhat negative', 'somewhat positive', 'very positive'.
-#' Examples: \url{http://twitpic.com/awbua0}.}
+#' Examples: \url{https://twitpic.com/awbua0}.}
 #' \item{dem_rep}{Democrat/Republican/Undecided blue/red/gray scale.
-#' Examples: \url{http://twitpic.com/awbua0}.}
+#' Examples: \url{https://twitpic.com/awbua0}.}
 #' \item{colors6}{Red, blue, gold, green, orange, and black palette.
-#' Examples: \url{http://twitpic.com/9gfg5q}.}
+#' Examples: \url{https://twitpic.com/9gfg5q}.}
 #' }
 #'
 #' @param palette \code{character} The color palette to use. This
