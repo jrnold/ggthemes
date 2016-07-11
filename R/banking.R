@@ -31,11 +31,11 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @param x x values
 #' @param y y values
 #' @param cull \code{logical}. Remove all slopes of 0 or \code{Inf}.
-#' @param method One of 'ms' (Median Absolute Slope), 'as' (Average
-#' Absolute Slope), 'ao' (Average Orientation), 'awo' (Average Weighted Orientation), 'lor' (Local
-#' Orientation Resolution), 'gor' (Global Orientation Resolution).
-#' @param ... Passed to \code{\link{nlm}} in methods 'ao', 'lor' and
-#' 'gor'.
+#' @param method One of 'ms' (Median Absolute Slope) or 'as' (Average
+#' Absolute Slope). Other options are no longer supported, and will use
+#' 'ms' instead with a warning.
+#' @param weight No longer used, but kept for backwards compatiblity.
+#' @param ... No longer used, but kept for backwards compatibility.
 #'
 #' @section Methods:
 #'
@@ -62,23 +62,6 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' alpha = M R_x / R_y
 #' }
 #'
-#' \strong{Average-Absolute-Orientation Banking}
-#'
-#' This method finds the aspect ratio by setting the average
-#' orientation to 45 degrees. For an aspect ratio
-#' \eqn{\alpha}{alpha}, let the orientation of a line segment be
-#' \eqn{\theta_i(\alpha) = \arctan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / alpha)}.
-#'
-#' \deqn{
-#' \frac{ \sum_i \theta_i(\alpha) l_i}{\sum_i l_i} = \frac{\pi}{4} rad
-#' }{
-#' ((\sum_i theta_i(alpha) l_i) / (\sum_i l_i)) = (pi / 4 ) rad
-#' }
-#' where \eqn{l_i = 1} if unweighted, and
-#' \eqn{l_i = \sqrt{x_i^2 + y_i^2}}{l_i = sqrt(x_i^2 + y_i^2)}
-#' (length of the line segment), if weighted.
-#' The value of \eqn{\alpha} is found with \code{\link{nlm}}.
-#'
 #' \strong{Average Absolute Slope Banking}
 #'
 #' Let the aspect ratio be \eqn{\alpha = \frac{w}{h}}{alpha = w/h}.
@@ -90,40 +73,11 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #'  mean |s_i / alpha| = 1
 #' }
 #'
-#' Let \eqn{R_z = z_{max} - z_{min}} for \eqn{z = x, y},
-#' and \eqn{M = mean \| s_i \|}. Then,
-#' \deqn{
-#' \alpha = M R_x / R_y
-#' }{
-#' alpha = M R_x / R_y
-#' }
-#'
-#' \strong{Banking by Optimizing Orientation Resolution}
-#'
-#' The angle between line segments i and j is \eqn{r_{i, j} =
-#' \|\theta_i(\alpha) - \theta_j(\alpha)\|}{r_{i, j} = |
-#' theta_i(alpha) - theta_j(alpha)|}, where \eqn{\theta_i(\alpha) =
-#' \arctan(s_i / \alpha)}{theta_i(alpha) = atan(s_i / \alpha)} and
-#' \eqn{s_i} is the slope of line segment i. This function finds the
-#' \eqn{\alpha} that maximizes the sum of the angles between all
-#' pairs of line segments.
-#'
-#' \deqn{
-#'   \max_{\alpha} \sum_i \sum_{j: j < 1} r_{i, j}
-#' }{
-#'   max_{alpha} sum_i sum_{j: j < 1} r_{i, j}
-#' }
-#'
-#' The local optimization only includes line-segments
-#' that are next to each other. Suppose there are n line
-#' segments, then the local orientation orientation
-#' has the following objective function.
-#'
-#' \deqn{
-#'   \max_{\alpha} \sum_{i=2}^{n} r_{i, i-1}
-#' }{
-#'   max_{\alpha} sum_{i=2}^{n} r_{i, i-1}
-#' }
+#' Heer and Agrawala (2006) and Cleveland discuss several other methods
+#' including average (weighted) orientation, and global and local orientation resolution.
+#' These are no longer implemented in this function. In general, either the
+#' median or average absolute slopes will produce reasonable results without
+#' requiring optimization.
 #'
 #' @references
 #' Cleveland, W. S., M. E. McGill, and R. McGill. The Shape Parameter
@@ -155,45 +109,22 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' ## Using the default method, Median Absolute Slope
 #' ratio <- bank_slopes(x, y)
 #' m + coord_fixed(ratio = ratio)
-#'
-#' ## Alternative methods to calculate the banking
-#' bank_slopes(x, y, method='ms')
 #' ## Using culling
-#' bank_slopes(x, y, method='ms', cull=TRUE)
 #' ## Average Absolute Slope
 #' bank_slopes(x, y, method='as')
-#' bank_slopes(x, y, method='as', cull=TRUE)
-#' ## Average Orientation
-#' bank_slopes(x, y, method='ao')
-#' bank_slopes(x, y, method='ao', cull=TRUE)
-#' ## Average Orientation (Weighted)
-#' bank_slopes(x, y, method='awo')
-#' bank_slopes(x, y, method='awo', cull=TRUE)
-#' ## Global Orientation Resolution
-#' bank_slopes(x, y, method='gor')
-#' bank_slopes(x, y, method='gor', cull=TRUE)
-#' ## Local Orientation Resolution
-#' bank_slopes(x, y, method='lor')
-#' bank_slopes(x, y, method='lor', cull=TRUE)
-bank_slopes <- function(x, y, cull = FALSE, method = c("ms", "as", "ao", "awo", "gor", "lor"), ...) {
+bank_slopes <- function(x, y, cull = FALSE, weight = NULL,
+                        method = c("ms", "as", "ao", "gor", "lor"), ...) {
   method <- match.arg(method)
+  if (method %in% c("ao", "gor", "lor")) {
+    warning(sQuote("method"), " ", dQuote(method),
+            " no longer supported. Using ", dQuote("ms"), " instead.")
+    method <- "ms"
+  }
   FUN <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y
   xyrat <- FUN(calc_slopes(x, y, cull = cull), ...)
   # but coord_fixed ratio is the aspect ratio y/x
   1 / xyrat
-}
-
-calc_min_alpha <- function(slopes) {
-  max(min(abs(slopes$s)) * slopes$Rx / slopes$Ry, .Machine$double.eps)
-}
-
-calc_max_alpha <- function(slopes) {
-  min(max(abs(slopes$s)) * slopes$Rx / slopes$Ry, .Machine$double.xmax)
-}
-
-init_alpha <- function(slopes) {
-  mean(abs(slopes$s)) * slopes$Rx / slopes$Ry
 }
 
 bank_slopes_funs <- list()
@@ -208,69 +139,3 @@ bank_slopes_funs[["as"]] <-
       mean(abs(slopes$s)) * slopes$Rx / slopes$Ry
     }
 
-bank_slopes_funs[["ao"]] <-
-  function(slopes, ...) {
-    f <- function(alpha) {
-      # Minimize the squared distance between average orientation and 45 degrees
-      theta <- atan(slopes$s / alpha)
-      mean(abs(theta)) - FORTY_FIVE
-    }
-    alpha_min <- calc_min_alpha(slopes)
-    alpha_max <- calc_max_alpha(slopes)
-    est <- uniroot(f, lower = alpha_min, upper = alpha_max, ...)
-    x <- est$root
-    attr(x, "optimization") <- est
-    x
-  }
-
-bank_slopes_funs[["awo"]] <-
-  function(slopes, ...) {
-    f <- function(alpha) {
-      # adjust lengths of lines for alpha
-      lengths <- sqrt((slopes$dx / alpha) ^ 2 + (slopes$dy * alpha) ^ 2)
-      theta <- atan(slopes$s / alpha)
-      sum(abs(theta) * lengths) / sum(lengths) - FORTY_FIVE
-    }
-    alpha_min <- calc_min_alpha(slopes)
-    alpha_max <- calc_max_alpha(slopes)
-    est <- uniroot(f, lower = alpha_min, upper = alpha_max, ...)
-    x <- est$root
-    attr(x, "optimization") <- est
-    x
-  }
-
-bank_slopes_funs[["gor"]] <-
-  function(slopes, ...) {
-    f <- function(alpha) {
-      theta <- atan(slopes$s / alpha)
-      # multiply by -1 because maximizing, not minimizing
-      # manhattan distance because | theta(a)_i - theta(a)_j |
-      # this only takes lower triangle, but cost function is the same as summing over all pairs
-      d <- as.numeric(dist(theta, method = "manhattan"))
-      mean(pmin(d, base::pi - d) ^ 2)
-    }
-    alpha_min <- calc_min_alpha(slopes)
-    alpha_max <- calc_max_alpha(slopes)
-    print(c(alpha_min, alpha_max))
-    est <- optimize(f, lower = alpha_min, upper = alpha_max, maximum = TRUE, ...)
-    x <- est$maximum
-    attr(x, "optimization") <- est
-    x
-  }
-
-bank_slopes_funs[["lor"]] <-
-  function(slopes, ...) {
-    f <- function(alpha) {
-      theta <- atan(slopes$s / alpha)
-      # multiply by -1 because maximizing, not minimizing
-      d <- abs(diff(theta))
-      mean(pmin(d, base::pi - d) ^ 2)
-    }
-    alpha_min <- calc_min_alpha(slopes)
-    alpha_max <- calc_max_alpha(slopes)
-    print(c(alpha_min, alpha_max))
-    est <- optimize(f, lower = alpha_min, upper = alpha_max, maximum = TRUE, ...)
-    x <- est$maximum
-    attr(x, "optimization") <- est
-    x
-  }
