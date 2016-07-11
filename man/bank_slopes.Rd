@@ -4,7 +4,8 @@
 \alias{bank_slopes}
 \title{Bank Slopes to 45 degrees}
 \usage{
-bank_slopes(x, y, cull = FALSE, method = "ms", weight = TRUE, ...)
+bank_slopes(x, y, cull = FALSE, method = c("ms", "as", "ao", "awo", "gor",
+  "lor"), ...)
 }
 \arguments{
 \item{x}{x values}
@@ -14,11 +15,8 @@ bank_slopes(x, y, cull = FALSE, method = "ms", weight = TRUE, ...)
 \item{cull}{\code{logical}. Remove all slopes of 0 or \code{Inf}.}
 
 \item{method}{One of 'ms' (Median Absolute Slope), 'as' (Average
-Absolute Slope), 'ao' (Average Orientation), 'lor' (Local
+Absolute Slope), 'ao' (Average Orientation), 'awo' (Average Weighted Orientation), 'lor' (Local
 Orientation Resolution), 'gor' (Global Orientation Resolution).}
-
-\item{weight}{\code{logical}. Weight line segments by their
-length. Only used when \code{method='ao'}.}
 
 \item{...}{Passed to \code{\link{nlm}} in methods 'ao', 'lor' and
 'gor'.}
@@ -127,7 +125,7 @@ has the following objective function.
 }
 \examples{
 library("ggplot2")
-# Use the classic sunspot data from Cleveland's orig paper
+# Use the classic sunspot data from Cleveland's original paper
 x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
 # Without banking
@@ -150,8 +148,8 @@ bank_slopes(x, y, method='as', cull=TRUE)
 bank_slopes(x, y, method='ao')
 bank_slopes(x, y, method='ao', cull=TRUE)
 ## Average Orientation (Weighted)
-bank_slopes(x, y, method='ao', weight=TRUE)
-bank_slopes(x, y, method='ao', cull=TRUE, weight=TRUE)
+bank_slopes(x, y, method='awo')
+bank_slopes(x, y, method='awo', cull=TRUE)
 ## Global Orientation Resolution
 bank_slopes(x, y, method='gor')
 bank_slopes(x, y, method='gor', cull=TRUE)
