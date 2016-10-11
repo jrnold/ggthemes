@@ -1,3 +1,8 @@
+ggthemes 3.3.0
+------------------------
+
+* Update themes to changes in ggplot 2.1.0.9000. Thanks @juliasilge (#71)
+
 ggthemes 3.2.0
 ------------------------
 
