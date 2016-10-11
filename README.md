@@ -168,6 +168,10 @@ p4 + theme_tufte(ticks=FALSE) +
   geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0, width = 3)
 ```
 
+```
+## Warning: position_dodge requires non-overlapping x intervals
+```
+
 ![plot of chunk tufteboxplot4](figure/tufteboxplot4-1.png)
 
 ### Economist theme
@@ -471,6 +475,10 @@ ggplot() +
            fill = "white", color = "black", size = 0.25) +
   coord_map("albers", lat0 = 39, lat1 = 45) +
   theme_map()
+```
+
+```
+## Warning: Ignoring unknown aesthetics: x, y
 ```
 
 ![plot of chunk map](figure/map-1.png)
