@@ -50,7 +50,7 @@ geom_tufteboxplot <-
   function(mapping = NULL,
            data = NULL,
            stat = "fivenumber",
-           position = "identity",
+           position = "dodge",
            outlier.colour = "black",
            outlier.shape = 19,
            outlier.size = 1.5,

@@ -1,3 +1,10 @@
+ggthemes 3.3.0
+------------------------
+
+* Update themes to changes in ggplot 2.1.0.9000. Thanks @juliasilge (#71)
+* `tufte_boxplot` uses `position="dodge"` by default. Thanks @jgellar (#68)
+* Bugfix: Fix errors in `geom_rangeframe` in new version of ggplot2. Thanks @coulmont (#70)
+
 ggthemes 3.2.0
 ------------------------
 

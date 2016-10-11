@@ -7,7 +7,7 @@
 \title{Tufte's Box Blot}
 \usage{
 geom_tufteboxplot(mapping = NULL, data = NULL, stat = "fivenumber",
-  position = "identity", outlier.colour = "black", outlier.shape = 19,
+  position = "dodge", outlier.colour = "black", outlier.shape = 19,
   outlier.size = 1.5, outlier.stroke = 0.5, voffset = 0.01,
   hoffset = 0.005, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
   median.type = "point", whisker.type = "line", ...)

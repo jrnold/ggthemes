@@ -19,7 +19,7 @@ Depends:
 Imports:
     assertthat,
     colorspace,
-    ggplot2 (>= 2.0.0),
+    ggplot2 (>= 2.1.0.9000),
     graphics,
     grid,
     methods,

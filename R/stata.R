@@ -86,7 +86,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         # axis.ticks.margin = stata_gsize$half_tiny,
         axis.ticks.length = unit(4 / 11, "lines"),
         legend.background = element_rect(linetype = 1),
-        legend.margin = unit(1.2 / 100, "npc"),
+        legend.spacing = unit(1.2 / 100, "npc"),
         legend.key = element_rect(linetype = 0),
         legend.key.size = unit(1.2, "lines"),
         legend.key.height = NULL,
@@ -106,7 +106,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         panel.grid.major = element_line(),
         panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.margin = unit(0.25, "lines"),
+        panel.spacing = unit(0.25, "lines"),
         ## textboxstyle bytitle      bytitle
         strip.background = element_rect(linetype = 0),
         strip.text = element_text(size = rel(relsz["medlarge"])),
