@@ -7,8 +7,8 @@
 \title{Range Frames}
 \usage{
 geom_rangeframe(mapping = NULL, data = NULL, stat = "identity",
-  position = "identity", sides = "bl", na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, ...)
+  position = "identity", ..., sides = "bl", na.rm = FALSE,
+  show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
@@ -36,6 +36,11 @@ layer, as a string.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
+\item{...}{other arguments passed on to \code{\link{layer}}. These are
+often aesthetics, used to set an aesthetic to a fixed value, like
+\code{color = "red"} or \code{size = 3}. They may also be parameters
+to the paired geom/stat.}
+
 \item{sides}{A string that controls which sides of the plot the frames appear on.
 It can be set to a string containing any of \code{'trbl'}, for top, right,
 bottom, and left.}
@@ -51,11 +56,6 @@ a warning.  If \code{TRUE} silently removes missing values.}
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link{borders}}.}
-
-\item{...}{other arguments passed on to \code{\link{layer}}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{color = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
 }
 \description{
 Axis lines which extend to the maximum and minimum of the plotted data.
