@@ -81,7 +81,7 @@ Or, to install the development version from github, use the
 
 ```r
 library("devtools")
-install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
+install_github(c("tidyverse/ggplot2", "jrnold/ggthemes"))
 ```
 
 
