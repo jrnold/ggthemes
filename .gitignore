@@ -3,3 +3,4 @@ stata/*.png
 inst/doc
 .Rhistory
 README.html
+revdep

@@ -11,3 +11,4 @@
 ^\.travis\.yml$
 ^data-raw$
 ^\.lintr$
+^revdep$
