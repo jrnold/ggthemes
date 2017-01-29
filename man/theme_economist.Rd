@@ -48,7 +48,10 @@ you have access to this font, you can use it with the
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) +
-     facet_wrap(~am)
+     facet_wrap(~am) +
+     # Economist puts scales on the right-hand side
+     scale_y_continuous(position = "right")
+
 
 ## Standard
 p + theme_economist() + scale_colour_economist()

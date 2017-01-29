@@ -1,3 +1,9 @@
+# ggthemes 3.3.0.9999
+
+* Add color palettes from canva.com: `canva_palette`, `canva_pal()`, 
+    `scale_colour_canva()`.
+* Use NEWS.md instead of NEWS
+
 # ggthemes 3.3.0
 
 * Update themes to changes in ggplot 2.1.0.9000. Thanks @juliasilge (#71)

@@ -181,7 +181,8 @@ magazine.
 
 
 ```r
-p2 + theme_economist() + scale_colour_economist() 
+p2 + theme_economist() + scale_colour_economist() +
+  scale_y_continuous(position = "right")
 ```
 
 ![plot of chunk economist](figure/economist-1.png)
