@@ -34,7 +34,8 @@ Suggests:
     plyr,
     reshape2,
     rmarkdown,
-    testthat
+    testthat,
+    tidyverse
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots
@@ -48,6 +49,7 @@ Collate:
     'banking.R'
     'base.R'
     'calc.R'
+    'canva.R'
     'colorblind.R'
     'economist.R'
     'excel.R'
