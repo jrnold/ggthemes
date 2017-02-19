@@ -1,8 +1,9 @@
-# ggthemes 3.3.0.9999
+# ggthemes 3.4.0
 
 * Add color palettes from canva.com: `canva_palette`, `canva_pal()`, 
     `scale_colour_canva()`.
 * Use NEWS.md instead of NEWS
+* Update Economist examples to put y-axis on the right side.
 
 # ggthemes 3.3.0
 
