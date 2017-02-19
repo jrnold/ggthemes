@@ -4,3 +4,4 @@ inst/doc
 .Rhistory
 README.html
 revdep
+*.DS_Store
