@@ -35,4 +35,3 @@ ggplot(mpg, aes(x = class, fill = drv)) +
   theme_excel()
 
 }
-

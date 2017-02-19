@@ -19,4 +19,3 @@ See \code{\link{calc_shape_pal}} for details.
 
 Other shapes calc: \code{\link{calc_shape_pal}}
 }
-

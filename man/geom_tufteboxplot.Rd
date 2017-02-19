@@ -2,8 +2,8 @@
 % Please edit documentation in R/geom-tufteboxplot.R
 \docType{data}
 \name{geom_tufteboxplot}
-\alias{GeomTufteboxplot}
 \alias{geom_tufteboxplot}
+\alias{GeomTufteboxplot}
 \title{Tufte's Box Blot}
 \usage{
 geom_tufteboxplot(mapping = NULL, data = NULL, stat = "fivenumber",
@@ -88,6 +88,7 @@ Edward Tufte's revisions of the box plot as described in
 \item alpha
 }
 }
+
 \examples{
 library("ggplot2")
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
@@ -114,4 +115,3 @@ McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 Other geom tufte: \code{\link{geom_rangeframe}}
 }
 \keyword{datasets}
-

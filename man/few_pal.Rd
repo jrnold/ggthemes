@@ -30,4 +30,3 @@ show_col(few_pal("light")(7))
 \seealso{
 Other colour few: \code{\link{scale_colour_few}}
 }
-

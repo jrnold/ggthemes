@@ -23,4 +23,3 @@ show_linetypes(linetype_pal()(3), labels=TRUE)
 \seealso{
 \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 }
-

@@ -24,4 +24,3 @@ palette_pander(TRUE)
 \seealso{
 Other colour pander: \code{\link{scale_color_pander}}
 }
-

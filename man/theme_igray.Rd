@@ -25,6 +25,7 @@ typographical color of the document, which is the motivation for
 using a gray panel in \code{\link{theme_gray}}. This is
 similar to the style of plots in Stata and Tableau.
 }
+
 \examples{
 library("ggplot2")
 p <- ggplot(mtcars) +
@@ -39,4 +40,3 @@ Other themes: \code{\link{theme_base}},
   \code{\link{theme_foundation}}, \code{\link{theme_par}},
   \code{\link{theme_solid}}
 }
-

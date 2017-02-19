@@ -19,4 +19,3 @@ show_shapes(tableau_shape_pal()(5))
 \seealso{
 Other shape tableau: \code{\link{scale_shape_tableau}}
 }
-

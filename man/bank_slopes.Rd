@@ -78,6 +78,7 @@ These are no longer implemented in this function. In general, either the
 median or average absolute slopes will produce reasonable results without
 requiring optimization.
 }
+
 \examples{
 library("ggplot2")
 # Use the classic sunspot data from Cleveland's original paper
@@ -111,4 +112,3 @@ Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 \seealso{
 \code{\link[lattice]{banking}}
 }
-

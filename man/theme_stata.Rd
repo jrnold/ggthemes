@@ -43,4 +43,3 @@ p + theme_stata(scheme = "s1mono") + scale_colour_stata("mono")
 \references{
 \url{http://www.stata.com/help.cgi?schemes}
 }
-

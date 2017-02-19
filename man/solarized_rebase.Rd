@@ -17,4 +17,3 @@ of the CSS style example.}
 Base colors for Solarized light and dark themes
 }
 \keyword{internal}
-

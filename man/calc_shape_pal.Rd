@@ -16,4 +16,3 @@ show_shapes(calc_shape_pal()(15))
 \seealso{
 Other shapes calc: \code{\link{scale_shape_calc}}
 }
-

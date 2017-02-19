@@ -27,4 +27,3 @@ show_col(economist_pal(stata=TRUE)(16))
 \seealso{
 Other colour economist: \code{\link{scale_colour_economist}}
 }
-

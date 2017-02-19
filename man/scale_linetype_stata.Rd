@@ -28,4 +28,3 @@ ggplot(ecm, aes(x = date, y = value, linetype=variable)) +
 \seealso{
 Other linetype stata: \code{\link{stata_linetype_pal}}
 }
-

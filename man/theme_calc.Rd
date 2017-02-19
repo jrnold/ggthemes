@@ -26,4 +26,3 @@ q <- ggplot(mtcars) +
      theme_calc()
 q + scale_shape_calc()
 }
-

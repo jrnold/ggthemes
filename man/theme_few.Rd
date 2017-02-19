@@ -28,4 +28,3 @@ p + theme_few() + scale_colour_few("dark")
 Stephen Few, "Practical Rules for Using Color in Charts",
 \url{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}.
 }
-

@@ -39,4 +39,3 @@ p + theme_solarized() + scale_colour_solarized('blue')
 p + theme_solarized(light = FALSE) +
     scale_colour_solarized('blue')
 }
-

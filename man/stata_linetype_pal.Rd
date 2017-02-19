@@ -14,4 +14,3 @@ Linetype palette based on the linepattern scheme in Stata.
 
 Other linetype stata: \code{\link{scale_linetype_stata}}
 }
-

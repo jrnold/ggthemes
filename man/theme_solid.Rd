@@ -28,4 +28,3 @@ Other themes: \code{\link{theme_base}},
   \code{\link{theme_foundation}},
   \code{\link{theme_igray}}, \code{\link{theme_par}}
 }
-

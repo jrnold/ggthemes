@@ -31,4 +31,3 @@ Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{tableau_color_pal}},
   \code{\link{tableau_seq_gradient_pal}}
 }
-

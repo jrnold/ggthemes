@@ -30,4 +30,3 @@ show_col(excel_pal('new')(10))
 \seealso{
 Other colour excel: \code{\link{scale_fill_excel}}
 }
-

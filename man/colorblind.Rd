@@ -2,8 +2,8 @@
 % Please edit documentation in R/colorblind.R
 \name{colorblind_pal}
 \alias{colorblind_pal}
-\alias{scale_color_colorblind}
 \alias{scale_colour_colorblind}
+\alias{scale_color_colorblind}
 \alias{scale_fill_colorblind}
 \title{Colorblind Color Palette (Discrete) and Scales}
 \usage{
@@ -39,4 +39,3 @@ Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind
 The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}},
  and \code{\link{scale_color_tableau}} for other colorblind palettes.
 }
-

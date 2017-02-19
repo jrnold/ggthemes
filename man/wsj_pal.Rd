@@ -37,7 +37,7 @@ Examples: \url{https://twitpic.com/awbua0}.}
 Examples: \url{https://twitpic.com/9gfg5q}.}
 }
 }
+
 \seealso{
 Other colour wsj: \code{\link{scale_colour_wsj}}
 }
-

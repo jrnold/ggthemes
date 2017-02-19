@@ -41,7 +41,10 @@
 #' @return A function that takes a single value, the number of colors to use.
 #' @export
 #' @examples
-#' canva_pal("Fresh and bright")
+#' require("scales")
+#' show_col(canva_pal("Fresh and bright")(4))
+#' show_col(canva_pal("Cool blues")(4))
+#' show_col(canva_pal("Modern and crisp")(4))
 canva_pal <- function(palette = "Fresh and bright") {
   if (!palette %in% names(ggthemes::canva_palettes)) {
     stop("Palette ", sQuote(palette), " not a valid name.", call. = FALSE)
@@ -63,3 +66,9 @@ scale_colour_canva <- function(..., palette = "Fresh and bright") {
 #' @export
 #' @rdname scale_colour_canva
 scale_color_canva <- scale_colour_canva
+
+#' @export
+#' @rdname scale_colour_canva
+scale_fill_canva <- function(..., palette = "Fresh and bright") {
+  discrete_scale("fill", "canva", canva_pal(palette), ...)
+}

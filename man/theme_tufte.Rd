@@ -54,4 +54,3 @@ library(extrafont)
 Tufte, Edward R. (2001) The Visual Display of
 Quantitative Information, Chapter 6.
 }
-

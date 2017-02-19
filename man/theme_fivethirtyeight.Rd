@@ -24,4 +24,3 @@ p <- ggplot(mtcars) +
      scale_color_fivethirtyeight() +
      theme_fivethirtyeight()
 }
-

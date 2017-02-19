@@ -16,6 +16,8 @@ A function that takes a single value, the number of colors to use.
 150+ color palettes from canva.com. See \code{\link{canva_palettes}}.
 }
 \examples{
-canva_pal("Fresh and bright")
+require("scales")
+show_col(canva_pal("Fresh and bright")(4))
+show_col(canva_pal("Cool blues")(4))
+show_col(canva_pal("Modern and crisp")(4))
 }
-

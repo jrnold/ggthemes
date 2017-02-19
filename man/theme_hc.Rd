@@ -30,4 +30,3 @@ p + theme_hc(bgcolor = 'darkunica') + scale_colour_hc('darkunica')
 
 \url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
 }
-
