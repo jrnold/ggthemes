@@ -1,6 +1,10 @@
+# ggthemes 3.4.1
+
+* Bugfix: Resolve duplicate palette names in `canva_palettes`. Thanks @Eluvias (#78)
+
 # ggthemes 3.4.0
 
-* Add color palettes from canva.com: `canva_palette`, `canva_pal()`, 
+* Add color palettes from canva.com: `canva_palettes`, `canva_pal()`, 
     `scale_colour_canva()`.
 * Use NEWS.md instead of NEWS
 * Update Economist examples to put y-axis on the right side.
