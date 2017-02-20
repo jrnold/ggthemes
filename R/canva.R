@@ -19,18 +19,16 @@
 #' @source
 #' \url{http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt}
 #' @examples
-#' \dontrun{
 #' require("tidyverse")
-#' canva_df <- map_df(canva_palette, names(canva_palette),
-#'                    ~ tible(color = .x, .id = seq_along(color), palette = .y))
-#' ggplot(canva_df, aes(y = palette, x = .id, fill = color)) +
+#' canva_df <- map2_df(canva_palettes, names(canva_palettes),
+#'                    ~ tibble(colors = .x, .id = seq_along(colors), palette = .y))
+#' ggplot(canva_df, aes(y = palette, x = .id, fill = colors)) +
 #'        geom_raster() +
 #'        scale_fill_identity(guide = FALSE) +
 #'        theme_minimal() +
-#'        theme(panel.grid= element_blank(),
+#'        theme(panel.grid = element_blank(),
 #'              axis.text.x = element_blank()) +
 #'        labs(x = "", y = "")
-#' }
 "canva_palettes"
 
 #' Canva.com color palettes
