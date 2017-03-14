@@ -38,11 +38,7 @@ solarized_accent_list <- function() {
 #' @param accent \code{character} Starting color.
 #' @export
 #' @family solarized colour
-#' @examples
-#' library("scales")
-#' show_col(solarized_pal()(2))
-#' show_col(solarized_pal()(3))
-#' show_col(solarized_pal('red')(4))
+#' @example inst/examples/ex-solarized_pal.R
 solarized_pal <- function(accent = "blue") {
   best_colors <- function(color, n = 1) {
     allcolors <- names(ggthemes_data$solarized$accents)
@@ -83,12 +79,7 @@ solarized_pal <- function(accent = "blue") {
 #' @rdname scale_solarized
 #' @family solarized colour
 #' @export
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'      facet_wrap(~am)
-#' p + theme_solarized() + scale_colour_solarized()
+#' @example inst/examples/ex-scale_solarized.R
 scale_fill_solarized <- function(accent = "blue", ...) {
   discrete_scale("fill", "solarized", solarized_pal(accent), ...)
 }
@@ -119,16 +110,7 @@ scale_color_solarized <- scale_colour_solarized
 #' @param light \code{logical}. Light or dark theme?
 #' @export
 #' @family themes solarized
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'      facet_wrap(~am)
-#' p + theme_solarized() + scale_colour_solarized('blue')
-#'
-#' ## Dark version
-#' p + theme_solarized(light = FALSE) +
-#'     scale_colour_solarized('blue')
+#' @example inst/examples/ex-theme_solarized.R
 theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
   rebase <- solarized_rebase(light)
   ret <- (theme_bw(base_size = base_size, base_family = base_family) +

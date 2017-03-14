@@ -2,8 +2,8 @@
 % Please edit documentation in R/geom-tufteboxplot.R
 \docType{data}
 \name{geom_tufteboxplot}
-\alias{GeomTufteboxplot}
 \alias{geom_tufteboxplot}
+\alias{GeomTufteboxplot}
 \title{Tufte's Box Blot}
 \usage{
 geom_tufteboxplot(mapping = NULL, data = NULL, stat = "fivenumber",
@@ -88,7 +88,15 @@ Edward Tufte's revisions of the box plot as described in
 \item alpha
 }
 }
+
 \examples{
+### Name: geom_tufteboxplot
+### Title: Tufte's Box Blot
+### Aliases: geom_tufteboxplot GeomTufteboxplot
+### Keywords: datasets
+
+### ** Examples
+
 library("ggplot2")
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
 ## with a point for the median and lines for whiskers
@@ -99,6 +107,9 @@ p + geom_tufteboxplot(median.type = "line", whisker.type = "point", hoffset = 0)
 p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
 ## with an offset line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type='line')
+
+
+
 
 }
 \references{
@@ -114,4 +125,3 @@ McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 Other geom tufte: \code{\link{geom_rangeframe}}
 }
 \keyword{datasets}
-

@@ -5,11 +5,7 @@
 #' @inheritParams ggplot2::theme_bw
 #' @export
 #' @family themes
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-#'      colour=factor(gear))) + facet_wrap(~am)
-#' p + theme_base()
+#' @example inst/examples/ex-theme_base.R
 theme_base <- function(base_size = 16, base_family = "") {
  theme_foundation() +
     theme(line = element_line(colour = "black",
@@ -382,12 +378,7 @@ theme_base <- function(base_size = 16, base_family = "") {
 #' @inheritParams ggplot2::theme_bw
 #' @export
 #' @family themes
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-#'      colour=factor(gear))) + facet_wrap(~am)
-#' par(font = 2, col.lab = "red", fg = "blue")
-#' p + theme_par()
+#' @example inst/examples/ex-theme_par.R
 theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   faces <- c("plain", "bold", "italic", "bold.italic")
   half_line <- base_size / 2

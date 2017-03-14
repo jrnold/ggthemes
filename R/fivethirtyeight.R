@@ -10,14 +10,7 @@ NULL
 #' @inheritParams ggplot2::theme_grey
 #' @family themes fivethirtyeight
 #' @export
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'      facet_wrap(~am) +
-#'      geom_smooth(method = "lm", se = FALSE) +
-#'      scale_color_fivethirtyeight() +
-#'      theme_fivethirtyeight()
+#' @example inst/examples/ex-theme_fivethirtyeight.R
 theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
   (theme_foundation(base_size = base_size, base_family = base_family)
    + theme(
@@ -49,9 +42,7 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
 #'
 #' @family colour fivethirtyeight
 #' @export
-#' @examples
-#' library("scales")
-#' show_col(fivethirtyeight_pal()(3))
+#' @example inst/examples/ex-fivethirtyeight_pal.R
 fivethirtyeight_pal <- function() {
   function(n) {
     colors <- ggthemes_data$fivethirtyeight[c("blue", "red", "green")]

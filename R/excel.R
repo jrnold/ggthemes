@@ -13,11 +13,7 @@
 #' @param palette One of \code{'old'}, \code{'fill'}, or \code{'new'}.
 #' @family colour excel
 #' @export
-#' @examples
-#' library("scales")
-#' show_col(excel_pal()(8))
-#' show_col(excel_pal('fill')(8))
-#' show_col(excel_pal('new')(10))
+#' @example inst/examples/ex-excel_pal.R
 excel_pal <- function(palette = "line") {
   if (palette == "new") {
     manual_pal(ggthemes_data$excel$new)
@@ -62,20 +58,7 @@ scale_color_excel <- scale_colour_excel
 #' @return An object of class \code{\link{theme}}.
 #' @export
 #' @family themes excel
-#' @examples
-#' library("ggplot2")
-#' # Old line color
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'      facet_wrap(~am)
-#' p + theme_excel() + scale_colour_excel()
-#'
-#' # Old fill color palette
-#' ggplot(mpg, aes(x = class, fill = drv)) +
-#'   geom_bar() +
-#'   scale_fill_excel('fill') +
-#'   theme_excel()
-#'
+#' @example inst/examples/ex-theme_excel.R
 theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
   gray <- "#C0C0C0"
   ret <- (theme_bw() +

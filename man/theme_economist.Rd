@@ -45,6 +45,12 @@ you have access to this font, you can use it with the
 \pkg{extrafont} package. "Verdana" is a good substitute.
 }
 \examples{
+### Name: theme_economist
+### Title: ggplot color theme based on the Economist
+### Aliases: theme_economist theme_economist_white
+
+### ** Examples
+
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) +
@@ -71,16 +77,19 @@ p + theme_economist_white() +
 ## All white variant
 p + theme_economist_white(gray_bg=FALSE) +
     scale_colour_economist()
-\dontrun{
-## The Economist uses ITC Officina Sans
-library(extrafont)
-p + theme_economist(base_family="ITC Officina Sans") +
-    scale_colour_economist()
+## Not run: 
+##D ## The Economist uses ITC Officina Sans
+##D library(extrafont)
+##D p + theme_economist(base_family="ITC Officina Sans") +
+##D     scale_colour_economist()
+##D 
+##D ## Verdana is a widely available substitute
+##D p + theme_economist(base_family="Verdana") +
+##D     scale_colour_economist()
+## End(Not run)
 
-## Verdana is a widely available substitute
-p + theme_economist(base_family="Verdana") +
-    scale_colour_economist()
-}
+
+
 }
 \references{
 \itemize{
@@ -93,4 +102,3 @@ p + theme_economist(base_family="Verdana") +
 \code{\link[latticeExtra]{theEconomist.theme}} for an Economist
 theme for lattice plots.
 }
-

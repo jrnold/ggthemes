@@ -12,4 +12,3 @@ ggthemes_data
 Data used by the palettes in the ggthemes package.
 }
 \keyword{datasets}
-

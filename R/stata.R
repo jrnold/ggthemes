@@ -8,12 +8,7 @@
 #'
 #' @export
 #' @family stata colour
-#' @examples
-#' library("scales")
-#' show_col(stata_pal("s2color")(15))
-#' show_col(stata_pal("s1rcolor")(15))
-#' show_col(stata_pal("s1color")(15))
-#' show_col(stata_pal("mono")(15))
+#' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme="s2color") {
   colorlists <-
     list(s2color = c("navy", "maroon", "forest_green",
@@ -210,21 +205,7 @@ theme_stata_colors <- function(scheme="s2color") {
 #'
 #' @references \url{http://www.stata.com/help.cgi?schemes}
 #'
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'     facet_wrap(~am)
-#' # s2color
-#' p + theme_stata() + scale_colour_stata("s2color")
-#' # s2mono
-#' p + theme_stata(scheme = "s2mono") + scale_colour_stata("mono")
-#' # s1color
-#' p + theme_stata(scheme = "s2color") + scale_colour_stata("s1color")
-#' # s1rcolor
-#' p + theme_stata(scheme = "s1rcolor") + scale_colour_stata("s1rcolor")
-#' # s1mono
-#' p + theme_stata(scheme = "s1mono") + scale_colour_stata("mono")
+#' @example inst/examples/ex-theme_stata.R
 theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") {
   ## Sizes
   (theme_stata_base(base_size = eval(base_size), base_family = base_family)
@@ -256,12 +237,7 @@ stata_shape_pal <- function() {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shape stata
 #' @export
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
-#'      facet_wrap(~am)
-#' p + theme_stata() + scale_shape_stata()
+#' @example inst/examples/ex-scale_shape_stata.R
 scale_shape_stata <- function (...) {
   discrete_scale("shape", "stata", stata_shape_pal(), ...)
 }
@@ -287,16 +263,7 @@ stata_linetype_pal <- function() {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family linetype stata
 #' @export
-#' @examples
-#' library("reshape2") # for melt
-#' library("plyr") # for ddply
-#' library("ggplot2")
-#' ecm <- melt(economics, id = "date")
-#' rescale01 <- function(x) {(x - min(x)) / diff(range(x))}
-#' ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
-#' ggplot(ecm, aes(x = date, y = value, linetype=variable)) +
-#'   geom_line() +
-#'   scale_linetype_stata()
+#' @example inst/examples/ex-scale_linetype_stata.R
 scale_linetype_stata <- function(...)  {
   discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }

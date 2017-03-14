@@ -22,6 +22,12 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \examples{
+### Name: theme_wsj
+### Title: Wall Street Journal theme
+### Aliases: theme_wsj
+
+### ** Examples
+
 library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
@@ -30,10 +36,12 @@ p <- ggplot(mtcars) +
 p + scale_colour_wsj('colors6', '') + theme_wsj()
 # Use a gray background instead#'
 p + scale_colour_wsj('colors6', '') + theme_wsj(color = "gray")
+
+
+
 }
 \references{
 \url{https://twitter.com/WSJGraphics}
 
 \url{https://pinterest.com/wsjgraphics/wsj-graphics/}
 }
-

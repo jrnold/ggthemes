@@ -2,8 +2,8 @@
 % Please edit documentation in R/geom-rangeframe.R
 \docType{data}
 \name{geom_rangeframe}
-\alias{GeomRangeFrame}
 \alias{geom_rangeframe}
+\alias{GeomRangeFrame}
 \title{Range Frames}
 \usage{
 geom_rangeframe(mapping = NULL, data = NULL, stat = "identity",
@@ -69,12 +69,23 @@ Axis lines which extend to the maximum and minimum of the plotted data.
 \item alpha
 }
 }
+
 \examples{
+### Name: geom_rangeframe
+### Title: Range Frames
+### Aliases: geom_rangeframe GeomRangeFrame
+### Keywords: datasets
+
+### ** Examples
+
 library("ggplot2")
 ggplot(mtcars, aes(wt, mpg)) +
  geom_point() +
  geom_rangeframe() +
  theme_tufte()
+
+
+
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of
@@ -84,4 +95,3 @@ Quantitative Information, Chapter 6.
 Other geom tufte: \code{\link{geom_tufteboxplot}}
 }
 \keyword{datasets}
-

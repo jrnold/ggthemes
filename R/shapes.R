@@ -21,17 +21,7 @@
 #' Following Tremmel (1995), I replace the circle with a vertical
 #' line with an encircled plus sign.
 #'
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
-#'      facet_wrap(~am) +
-#'      theme_bw()
-#' # overlapping symbol palette
-#' p + scale_shape_cleveland()
-#' # non-overlapping symbol palette
-#' p + scale_shape_cleveland(overlap=FALSE)
-#'
+#' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references
 #' Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
@@ -98,16 +88,13 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 #' Lewandowsky, Stephan and Ian Spence (1989)
 #' "Discriminating Strata in Scatterplots", Journal of
 #' the American Statistical Assocation, \url{http://www.jstor.org/stable/2289649}
-#' @examples
-#' library("ggplot2")
-#' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
-#'  + geom_point() + scale_shape_tremmel())
+#' @example inst/examples/ex-circlefill_shape_pal.R
 #' @family shapes
 #' @export
 circlefill_shape_pal <- function() {
     maxshapes <- 5
     types <- c(16, 1, -0x25D3, -0x25D5, -0x25D4)
-    function (n) {
+    function(n) {
         if (n > maxshapes) {
             msg <- sprintf(paste("The shape palette can deal with a maximum of %d discrete ",
                                  "values because more than %d becomes difficult to discriminate; ",
@@ -195,16 +182,7 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
 #'
 #'
 #' @seealso \code{\link{tremmel_shape_pal}} for a description of the palette.
-#' @examples
-#' library("ggplot2")
-#' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
-#'  + geom_point() + scale_shape_tremmel())
-#' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
-#'  + geom_point() + scale_shape_tremmel(n3alt=FALSE))
-#' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(am)))
-#'  + geom_point() + scale_shape_tremmel())
-#' (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(am)))
-#'  + geom_point() + scale_shape_tremmel(overlap=TRUE))
+#' @example inst/examples/ex-scale_shape_tremmel.R
 #' @family shapes
 #' @export
 scale_shape_tremmel <- function(overlap=FALSE, n3alt=TRUE, ...) {

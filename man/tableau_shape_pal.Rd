@@ -14,9 +14,17 @@ Shape palettes used by
 \href{http://www.tableausoftware.com/}{Tableau}.
 }
 \examples{
+### Name: tableau_shape_pal
+### Title: Tableau Shape Palettes (discrete)
+### Aliases: tableau_shape_pal
+
+### ** Examples
+
 show_shapes(tableau_shape_pal()(5))
+
+
+
 }
 \seealso{
 Other shape tableau: \code{\link{scale_shape_tableau}}
 }
-

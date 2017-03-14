@@ -11,11 +11,7 @@
 #' @references
 #' Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
 #'  \url{https://personal.sron.nl/~pault/colourschemes.pdf}
-#' @examples
-#' library("scales")
-#' show_col(ptol_pal()(6))
-#' show_col(ptol_pal()(4))
-#' show_col(ptol_pal()(12))
+#' @example inst/examples/ex-ptol_pal.R
 ptol_pal <- function() {
   function(n) {
     if (n > 12) {

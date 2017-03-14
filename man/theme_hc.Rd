@@ -19,15 +19,23 @@ theme_hc(base_size = 12, base_family = "sans", bgcolor = "default")
 Theme based on the plots in \emph{Highcharts JS}.
 }
 \examples{
+### Name: theme_hc
+### Title: Highcharts JS theme
+### Aliases: theme_hc
+
+### ** Examples
+
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) + facet_wrap(~am)
 p + theme_hc() + scale_colour_hc()
 p + theme_hc(bgcolor = 'darkunica') + scale_colour_hc('darkunica')
+
+
+
 }
 \references{
 \url{http://www.highcharts.com/demo/line-basic}
 
 \url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
 }
-

@@ -29,6 +29,13 @@ Following Tremmel (1995), I replace the circle with a vertical
 line with an encircled plus sign.
 }
 \examples{
+### Name: cleveland_shape_pal
+### Title: Shape palette from Cleveland "Elements of Graphing Data"
+###   (discrete).
+### Aliases: cleveland_shape_pal
+
+### ** Examples
+
 library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
@@ -38,6 +45,9 @@ p <- ggplot(mtcars) +
 p + scale_shape_cleveland()
 # non-overlapping symbol palette
 p + scale_shape_cleveland(overlap=FALSE)
+
+
+
 
 }
 \references{
@@ -53,4 +63,3 @@ Other shapes: \code{\link{circlefill_shape_pal}},
   \code{\link{scale_shape_tremmel}},
   \code{\link{tremmel_shape_pal}}
 }
-

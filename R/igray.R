@@ -16,12 +16,7 @@
 #' @export
 #' @family themes
 #' @seealso \code{\link{theme_gray}}, \code{\link{theme_bw}}
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'     geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'     facet_wrap(~am)
-#' p + theme_igray()
+#' @example inst/examples/ex-theme_igray.R
 theme_igray <- function(base_size = 12, base_family = "") {
   (theme_gray(base_size = base_size, base_family = base_family) +
      theme(rect = element_rect(fill = "gray90"),

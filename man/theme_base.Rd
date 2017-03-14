@@ -15,14 +15,22 @@ theme_base(base_size = 16, base_family = "")
 Theme similar to the default settings of the \sQuote{base} R graphics.
 }
 \examples{
+### Name: theme_base
+### Title: Theme Base
+### Aliases: theme_base
+
+### ** Examples
+
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) + facet_wrap(~am)
 p + theme_base()
+
+
+
 }
 \seealso{
 Other themes: \code{\link{theme_foundation}},
   \code{\link{theme_igray}}, \code{\link{theme_par}},
   \code{\link{theme_solid}}
 }
-

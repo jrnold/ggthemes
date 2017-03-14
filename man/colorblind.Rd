@@ -2,8 +2,8 @@
 % Please edit documentation in R/colorblind.R
 \name{colorblind_pal}
 \alias{colorblind_pal}
-\alias{scale_color_colorblind}
 \alias{scale_colour_colorblind}
+\alias{scale_color_colorblind}
 \alias{scale_fill_colorblind}
 \title{Colorblind Color Palette (Discrete) and Scales}
 \usage{
@@ -23,12 +23,22 @@ to control name, limits, breaks, labels and so forth.}
 An 8-color colorblind safe qualitative discrete palette.
 }
 \examples{
+### Name: colorblind_pal
+### Title: Colorblind Color Palette (Discrete) and Scales
+### Aliases: colorblind_pal scale_colour_colorblind scale_color_colorblind
+###   scale_fill_colorblind
+
+### ** Examples
+
 library("ggplot2")
 library(scales)
 show_col(colorblind_pal()(8))
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour=factor(gear))) + facet_wrap(~am)
 p + theme_igray() + scale_colour_colorblind()
+
+
+
 }
 \references{
 Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook for R}"
@@ -39,4 +49,3 @@ Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind
 The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}},
  and \code{\link{scale_color_tableau}} for other colorblind palettes.
 }
-

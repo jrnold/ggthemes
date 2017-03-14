@@ -2,8 +2,8 @@
 % Please edit documentation in R/stat-fivenumber.R
 \docType{data}
 \name{stat_fivenumber}
-\alias{StatFivenumber}
 \alias{stat_fivenumber}
+\alias{StatFivenumber}
 \title{Calculate components of a five-number summary}
 \usage{
 stat_fivenumber(mapping = NULL, data = NULL, geom = "boxplot", qs = c(0,
@@ -71,4 +71,3 @@ median, third quartile, and maximum.
 \code{\link{stat_boxplot}}
 }
 \keyword{datasets}
-

@@ -20,12 +20,7 @@
 #' Quantitative Information, Chapter 6.
 #'
 #' @family geom tufte
-#' @examples
-#' library("ggplot2")
-#' ggplot(mtcars, aes(wt, mpg)) +
-#'  geom_point() +
-#'  geom_rangeframe() +
-#'  theme_tufte()
+#' @example inst/examples/ex-geom_rangeframe.R
 geom_rangeframe <- function(mapping = NULL,
                             data = NULL,
                             stat = "identity",

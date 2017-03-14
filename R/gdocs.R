@@ -5,12 +5,7 @@
 #' @inheritParams ggplot2::theme_grey
 #' @export
 #' @family themes gdocs
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
-#'   facet_wrap(~am)
-#' p + theme_gdocs() + scale_color_gdocs()
+#' @example inst/examples/ex-theme_gdocs.R
 theme_gdocs <- function(base_size=12, base_family="sans") {
   theme_foundation(base_size = base_size,
                    base_family = base_family) +
@@ -42,9 +37,7 @@ theme_gdocs <- function(base_size=12, base_family="sans") {
 #'
 #' @family colour gdocs
 #' @export
-#' @examples
-#' library("scales")
-#' show_col(gdocs_pal()(20))
+#' @example inst/examples/ex-gdocs_pal.R
 gdocs_pal <- function() {
   manual_pal(unname(ggthemes_data$gdocs))
 }

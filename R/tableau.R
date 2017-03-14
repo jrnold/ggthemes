@@ -20,18 +20,7 @@
 #' \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 #'
 #' @family colour tableau
-#' @examples
-#' library("scales")
-#' show_col(tableau_color_pal('tableau20')(20))
-#' show_col(tableau_color_pal('tableau10')(10))
-#' show_col(tableau_color_pal('tableau10medium')(10))
-#' show_col(tableau_color_pal('tableau10light')(10))
-#' show_col(tableau_color_pal('colorblind10')(10))
-#' show_col(tableau_color_pal('trafficlight')(10))
-#' show_col(tableau_color_pal('purplegray12')(12))
-#' show_col(tableau_color_pal('bluered12')(12))
-#' show_col(tableau_color_pal('greenorange12')(12))
-#' show_col(tableau_color_pal('cyclic')(20))
+#' @example inst/examples/ex-tableau_color_pal.R
 tableau_color_pal <- function(palette = "tableau10") {
   palettelist <- ggthemes_data$tableau$colors
   if (!palette %in% c(names(palettelist), "tableau10", "tableau10light", "purplegray6", "bluered6", "greenorange6")) {
@@ -65,21 +54,7 @@ tableau_color_pal <- function(palette = "tableau10") {
 #' @rdname scale_color_tableau
 #' @export
 #' @seealso \code{\link{tableau_color_pal}} for references.
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'      facet_wrap(~am)
-#' p + scale_colour_tableau()
-#' p + scale_colour_tableau('tableau20')
-#' p + scale_colour_tableau('tableau10medium')
-#' p + scale_colour_tableau('tableau10light')
-#' p + scale_colour_tableau('colorblind10')
-#' p + scale_colour_tableau('trafficlight')
-#' p + scale_colour_tableau('purplegray12')
-#' p + scale_colour_tableau('bluered12')
-#' p + scale_colour_tableau('greenorange12')
-#' p + scale_colour_tableau('cyclic')
+#' @example inst/examples/ex-scale_color_tableau.R
 scale_colour_tableau <- function(palette = "tableau10", ...) {
   discrete_scale("colour", "tableau", tableau_color_pal(palette), ...)
 }
@@ -102,8 +77,7 @@ scale_color_tableau <- scale_colour_tableau
 #' @export
 #' @param palette Palette name. See \code{ggthemes_data$tableau$shapes}.
 #' @family shape tableau
-#' @examples
-#' show_shapes(tableau_shape_pal()(5))
+#' @example inst/examples/ex-tableau_shape_pal.R
 tableau_shape_pal <- function(palette = "default") {
   manual_pal(unname(ggthemes_data$tableau$shapes[[palette]]))
 }
@@ -116,12 +90,7 @@ tableau_shape_pal <- function(palette = "default") {
 #' @inheritParams tableau_shape_pal
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shape tableau
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
-#'      facet_wrap(~am)
-#' p + scale_shape_tableau()
+#' @example inst/examples/ex-scale_shape_tableau.R
 scale_shape_tableau <- function(palette = "default", ...) {
   discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
@@ -135,12 +104,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #' @family colour tableau
 #'
 #' @export
-#' @examples
-#' library("scales")
-#' x <- seq(0, 1, length = 25)
-#' show_col(tableau_seq_gradient_pal('Red')(x))
-#' show_col(tableau_seq_gradient_pal('Blue')(x))
-#' show_col(tableau_seq_gradient_pal('Purple Sequential')(x))
+#' @example inst/examples/ex-tableau_seq_gradient_pal.R
 tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
   pal <- ggthemes_data[["tableau"]][["sequential"]][[palette]]
   seq_gradient_pal(low = pal["low"], high = pal["high"])
@@ -156,26 +120,7 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #'   colour bar, or \code{'legend'} for discrete colour legend.
 #' @family colour tableau
 #' @rdname scale_colour_gradient_tableau
-#' @examples
-#' #'
-#' library("ggplot2")
-#' library("ggplot2")
-#'
-#' df <- data.frame(
-#'   x = runif(100),
-#'   y = runif(100),
-#'   z1 = rnorm(100),
-#'   z2 = abs(rnorm(100))
-#' )
-#'
-#'
-#' p <- ggplot(df, aes(x, y)) +
-#'      geom_point(aes(colour = z2)) +
-#'      theme_igray()
-#'
-#' p + scale_colour_gradient_tableau("Red")
-#' p + scale_colour_gradient_tableau("Blue")
-#' p + scale_colour_gradient_tableau("Green")
+#' @example inst/examples/ex-scale_colour_gradient_tableau.R
 scale_colour_gradient_tableau <- function(palette = "Red",
                                           ...,
                                           space = "Lab",
@@ -221,15 +166,7 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #' @family colour tableau
 #'
 #' @export
-#' @examples
-#' x <- seq(-1, 1, length = 100)
-#' r <- sqrt(outer(x^2, x^2, '+'))
-#' image(r,
-#'       col = tableau_div_gradient_pal()(seq(0, 1, length = 12)))
-#' image(r,
-#'       col = tableau_div_gradient_pal('Orange-Blue')(seq(0, 1, length = 12)))
-#' image(r,
-#'       col = tableau_div_gradient_pal('Temperature')(seq(0, 1, length = 12)))
+#' @example inst/examples/ex-tableau_div_gradient_pal.R
 tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
   pal <- ggthemes_data[["tableau"]][["diverging"]][[palette]]
   div_gradient_pal(low = pal["low"], mid = pal["mid"], high = pal["high"],
@@ -245,19 +182,7 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 #' @family colour tableau
 #' @export
 #' @rdname scale_colour_gradient2_tableau
-#' @examples
-#' library("ggplot2")
-#' df <- data.frame(
-#' x = runif(100),
-#' y = runif(100),
-#' z1 = rnorm(100),
-#' z2 = abs(rnorm(100))
-#' )
-#' p <- ggplot(df, aes(x, y)) + geom_point(aes(colour = z2))
-#'
-#' p + scale_colour_gradient2_tableau()
-#' p + scale_colour_gradient2_tableau('Orange-Blue')
-#' p + scale_colour_gradient2_tableau('Temperature')
+#' @example inst/examples/ex-scale_colour_gradient2_tableau.R
 scale_colour_gradient2_tableau <- function(palette = "Red-Blue",
                                            ..., space = "rgb",
                                            na.value = "grey50",

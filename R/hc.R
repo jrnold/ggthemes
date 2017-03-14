@@ -12,12 +12,7 @@
 #' @param bgcolor The background color of plot. One of \code{'default',
 #' 'darkunica'}, the names of values in
 #' \code{ggthemes_data$hc$bg}.
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-#'      colour=factor(gear))) + facet_wrap(~am)
-#' p + theme_hc() + scale_colour_hc()
-#' p + theme_hc(bgcolor = 'darkunica') + scale_colour_hc('darkunica')
+#' @example inst/examples/ex-theme_hc.R
 #' @export
 theme_hc <- function(base_size = 12,
                      base_family = "sans",

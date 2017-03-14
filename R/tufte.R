@@ -21,27 +21,7 @@
 #' Quantitative Information, Chapter 6.
 #'
 #' @family themes tufte
-#' @examples
-#' library("ggplot2")
-#' # with ticks and range frames
-#' (ggplot(mtcars, aes(wt, mpg))
-#'  + geom_point() + geom_rangeframe()
-#'  + theme_tufte())
-#' # with geom_rug
-#' (ggplot(mtcars, aes(wt, mpg))
-#'  + geom_point() + geom_rug()
-#'  + theme_tufte(ticks=FALSE))
-#' \dontrun{
-#' ## Using the Bembo serif family
-#' library(extrafont)
-#' (ggplot(mtcars, aes(wt, mpg))
-#'  + geom_point() + geom_rangeframe()
-#'  + theme_tufte(base_family='BemboStd'))
-#' ## Using the Gill Sans sans serif family
-#' (ggplot(mtcars, aes(wt, mpg))
-#'  + geom_point() + geom_rangeframe()
-#'  + theme_tufte(base_family='GillSans'))
-#' }
+#' @example inst/examples/ex-theme_tufte.R
 #' @export
 theme_tufte <- function(base_size = 11, base_family = "serif", ticks = TRUE) {
   ## TODO: start with theme_minimal

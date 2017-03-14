@@ -17,26 +17,7 @@
 #' @param lp legend position
 #' @param axis axis angle as defined in \code{par(les)}
 #' @export
-#' @examples
-#' library("ggplot2")
-#' library("pander")
-#'
-#' p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
-#'      geom_point()
-#' p + theme_pander()
-#'
-#' panderOptions('graph.grid.color', 'red')
-#' p + theme_pander()
-#'
-#' p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
-#'   geom_point()
-#' p + theme_pander() + scale_color_pander()
-#'
-#' ggplot(mpg, aes(x = class, fill = drv)) +
-#'   geom_bar() +
-#'   scale_fill_pander() +
-#'   theme_pander()
-#'
+#' @example inst/examples/ex-theme_pander.R
 theme_pander <- function(base_size = 12,
                          base_family = "sans",
                          nomargin = TRUE,
@@ -205,9 +186,7 @@ theme_pander <- function(base_size = 12,
 #'  rendering each plot to get colorful images
 #' @export
 #' @family colour pander
-#' @examples \dontrun{
-#' palette_pander(TRUE)
-#' }
+#' @example inst/examples/ex-palette_pander.R
 palette_pander <- function(n, random_order = FALSE) {
 
   ## default (colorblind and printer-friendly) colors

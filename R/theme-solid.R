@@ -7,11 +7,7 @@
 #' @param base_family Ignored, kept for consistency with \code{theme}.
 #' @param fill Background color of the plot.
 #' @family themes
-#' @examples
-#' library("ggplot2")
-#' (ggplot(mtcars, aes(wt, mpg))
-#'  + geom_point()
-#'  + theme_solid(fill = "white"))
+#' @example inst/examples/ex-theme_solid.R
 #' @export
 theme_solid <- function(base_size = 12, base_family = "", fill = NA) {
   theme(line = element_blank(),

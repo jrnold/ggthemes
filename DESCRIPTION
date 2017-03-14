@@ -75,5 +75,5 @@ Collate:
     'tufte.R'
     'utils.R'
     'wsj.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 LazyData: true

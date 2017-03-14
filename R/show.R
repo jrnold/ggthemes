@@ -8,11 +8,7 @@
 #' @param labels Include the plotting character value of the symbol.
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 #'
-#' @examples
-#' library("scales")
-#' show_shapes(shape_pal()(5))
-#' show_shapes(shape_pal()(3), labels=TRUE)
-#'
+#' @example inst/examples/ex-show_shapes.R
 show_shapes <- function(shapes, labels = TRUE) {
   n <- length(shapes)
   ncol <- ceiling(sqrt(n))
@@ -42,10 +38,7 @@ show_shapes <- function(shapes, labels = TRUE) {
 #'
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 #'
-#' @examples
-#' library("scales")
-#' show_linetypes(linetype_pal()(3))
-#' show_linetypes(linetype_pal()(3), labels=TRUE)
+#' @example inst/examples/ex-show_linetypes.R
 show_linetypes <- function(linetypes, labels = TRUE) {
   n <- length(linetypes)
   plot(0, 0, xlim = c(0, 1), ylim = c(n, 1), type = "n", xlab = "", ylab = "", axes = FALSE)

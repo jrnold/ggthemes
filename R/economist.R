@@ -8,13 +8,7 @@
 #' @param fill Use the fill palette.
 #' @family colour economist
 #' @export
-#' @examples
-#' library(scales)
-#' show_col(economist_pal()(6))
-#' ## fill palette
-#' show_col(economist_pal(fill=TRUE)(6))
-#' ## RGB values from Stata's economist scheme
-#' show_col(economist_pal(stata=TRUE)(16))
+#' @example inst/examples/ex-economist_pal.R
 economist_pal <- function(stata=FALSE, fill=TRUE) {
   if (stata) {
     manual_pal(unname(ggthemes_data$economist$stata$fg))
@@ -138,43 +132,7 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 #' @seealso \code{\link[latticeExtra]{theEconomist.theme}} for an Economist
 #' theme for lattice plots.
 #'
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-#'      colour=factor(gear))) +
-#'      facet_wrap(~am)
-#'
-#' ## Standard
-#' p + theme_economist() + scale_colour_economist()
-#'
-#' ## Stata colors
-#' p + theme_economist(stata=TRUE) + scale_colour_economist(stata=TRUE)
-#'
-#' ## Darker plot region
-#' p + theme_economist(dkpanel=TRUE) + scale_colour_economist(stata=TRUE)
-#'
-#' # Change axis lines to vertical
-#' p + theme_economist(horizontal=FALSE) +
-#'     scale_colour_economist() +
-#'     coord_flip()
-#'
-#' ## White panel/light gray background
-#' p + theme_economist_white() +
-#'     scale_colour_economist()
-#'
-#' ## All white variant
-#' p + theme_economist_white(gray_bg=FALSE) +
-#'     scale_colour_economist()
-#' \dontrun{
-#' ## The Economist uses ITC Officina Sans
-#' library(extrafont)
-#' p + theme_economist(base_family="ITC Officina Sans") +
-#'     scale_colour_economist()
-#'
-#' ## Verdana is a widely available substitute
-#' p + theme_economist(base_family="Verdana") +
-#'     scale_colour_economist()
-#' }
+#' @example inst/examples/ex-theme_economist.R
 theme_economist <- function(base_size = 10, base_family = "sans",
                             horizontal = TRUE, dkpanel = FALSE,
                             stata = FALSE) {

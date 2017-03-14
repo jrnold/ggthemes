@@ -13,9 +13,18 @@ solid, hollow, half-filled, with two additional fill amounts:
 three-quarters, and one-quarter.
 }
 \examples{
+### Name: circlefill_shape_pal
+### Title: Filled Circle Shape palette (discrete)
+### Aliases: circlefill_shape_pal
+
+### ** Examples
+
 library("ggplot2")
 (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
  + geom_point() + scale_shape_tremmel())
+
+
+
 }
 \references{
 Lewandowsky, Stephan and Ian Spence (1989)
@@ -29,4 +38,3 @@ Other shapes: \code{\link{cleveland_shape_pal}},
   \code{\link{scale_shape_tremmel}},
   \code{\link{tremmel_shape_pal}}
 }
-

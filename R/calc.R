@@ -5,17 +5,7 @@
 #' @inheritParams ggplot2::theme_grey
 #' @export
 #' @family themes calc
-#' @examples
-#' library("ggplot2")
-#' p <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
-#'      facet_wrap(~am) + theme_calc()
-#' p + scale_color_calc()
-#' q <- ggplot(mtcars) +
-#'      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
-#'      facet_wrap(~am) +
-#'      theme_calc()
-#' q + scale_shape_calc()
+#' @example inst/examples/ex-theme_calc.R
 theme_calc <- function(base_size = 10, base_family = "sans") {
   (theme_foundation(base_family = base_family, base_size = base_size)
    + theme(rect = element_rect(colour = "black", fill = "white"),
@@ -43,9 +33,7 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 #'
 #' @family colour calc
 #' @export
-#' @examples
-#' library(scales)
-#' show_col(calc_pal()(12))
+#' @example inst/examples/ex-calc_pal.R
 calc_pal <- function() {
     manual_pal(unname(ggthemes_data$calc$colors))
 }
@@ -79,9 +67,7 @@ scale_color_calc <- scale_colour_calc
 #'
 #' @export
 #' @family shapes calc
-#' @examples
-#' library("ggplot2")
-#' show_shapes(calc_shape_pal()(15))
+#' @example inst/examples/ex-calc_shape_pal.R
 calc_shape_pal <- function() {
     values <- ggthemes_data$calc$shapes
     manual_pal(unname(values))

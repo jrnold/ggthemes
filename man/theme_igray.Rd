@@ -25,12 +25,22 @@ typographical color of the document, which is the motivation for
 using a gray panel in \code{\link{theme_gray}}. This is
 similar to the style of plots in Stata and Tableau.
 }
+
 \examples{
+### Name: theme_igray
+### Title: Inverse gray theme
+### Aliases: theme_igray
+
+### ** Examples
+
 library("ggplot2")
 p <- ggplot(mtcars) +
     geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
     facet_wrap(~am)
 p + theme_igray()
+
+
+
 }
 \seealso{
 \code{\link{theme_gray}}, \code{\link{theme_bw}}
@@ -39,4 +49,3 @@ Other themes: \code{\link{theme_base}},
   \code{\link{theme_foundation}}, \code{\link{theme_par}},
   \code{\link{theme_solid}}
 }
-

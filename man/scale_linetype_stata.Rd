@@ -15,6 +15,12 @@ scale_linetype_stata(...)
 See \code{\link{stata_linetype_pal}} for details.
 }
 \examples{
+### Name: scale_linetype_stata
+### Title: Stata linetype palette (discrete)
+### Aliases: scale_linetype_stata
+
+### ** Examples
+
 library("reshape2") # for melt
 library("plyr") # for ddply
 library("ggplot2")
@@ -24,8 +30,10 @@ ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
 ggplot(ecm, aes(x = date, y = value, linetype=variable)) +
   geom_line() +
   scale_linetype_stata()
+
+
+
 }
 \seealso{
 Other linetype stata: \code{\link{stata_linetype_pal}}
 }
-

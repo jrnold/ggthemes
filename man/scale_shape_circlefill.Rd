@@ -23,4 +23,3 @@ Other shapes: \code{\link{circlefill_shape_pal}},
   \code{\link{scale_shape_tremmel}},
   \code{\link{tremmel_shape_pal}}
 }
-

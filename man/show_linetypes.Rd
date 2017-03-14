@@ -16,11 +16,19 @@ show_linetypes(linetypes, labels = TRUE)
 A quick and dirty way to show linetypes.
 }
 \examples{
+### Name: show_linetypes
+### Title: Show linetypes
+### Aliases: show_linetypes
+
+### ** Examples
+
 library("scales")
 show_linetypes(linetype_pal()(3))
 show_linetypes(linetype_pal()(3), labels=TRUE)
+
+
+
 }
 \seealso{
 \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 }
-

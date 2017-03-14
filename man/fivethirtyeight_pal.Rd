@@ -10,10 +10,18 @@ fivethirtyeight_pal()
 The standard fivethirtyeight.com palette for line plots is blue, red, green.
 }
 \examples{
+### Name: fivethirtyeight_pal
+### Title: fivethirtyeight.com color palette
+### Aliases: fivethirtyeight_pal
+
+### ** Examples
+
 library("scales")
 show_col(fivethirtyeight_pal()(3))
+
+
+
 }
 \seealso{
 Other colour fivethirtyeight: \code{\link{scale_colour_fivethirtyeight}}
 }
-

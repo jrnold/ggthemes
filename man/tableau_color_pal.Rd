@@ -14,6 +14,12 @@ Color palettes used in
 \href{http://www.tableausoftware.com/}{Tableau}.
 }
 \examples{
+### Name: tableau_color_pal
+### Title: Color Palettes based on Tableau (discrete)
+### Aliases: tableau_color_pal
+
+### ** Examples
+
 library("scales")
 show_col(tableau_color_pal('tableau20')(20))
 show_col(tableau_color_pal('tableau10')(10))
@@ -25,6 +31,9 @@ show_col(tableau_color_pal('purplegray12')(12))
 show_col(tableau_color_pal('bluered12')(12))
 show_col(tableau_color_pal('greenorange12')(12))
 show_col(tableau_color_pal('cyclic')(20))
+
+
+
 }
 \references{
 \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -46,4 +55,3 @@ Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{tableau_div_gradient_pal}},
   \code{\link{tableau_seq_gradient_pal}}
 }
-
