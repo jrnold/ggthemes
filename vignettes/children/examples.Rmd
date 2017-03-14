@@ -3,6 +3,7 @@
 ```{r dsamp}
 library("ggplot2")
 library("ggthemes")
+library("scales")
 
 p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
@@ -66,7 +67,8 @@ A theme that approximates the style of plots in The Economist
 magazine.
 
 ```{r economist}
-p2 + theme_economist() + scale_colour_economist() 
+p2 + theme_economist() + scale_colour_economist() +
+  scale_y_continuous(position = "right")
 ```
 
 ### Solarized theme
@@ -298,6 +300,15 @@ ggplot() +
   coord_map("albers", lat0 = 39, lat1 = 45) +
   theme_map()
 
+```
+
+## Canva Color palettes
+
+150+ color palettes by Canva derived from [photos](https://designschool.canva.com/blog/100-color-combinations/) and "[impactful websites](https://designschool.canva.com/blog/website-color-schemes/)". These palettes were previously adapted for [Tableau](http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/) and [Excel](https://policyviz.com/2017/01/12/150-color-palettes-for-excel/).
+
+```{r}
+show_col(canva_pal("Fresh and bright")(4))
+show_col(canva_pal("Timeless and nautical")(4))
 ```
 
 

@@ -103,6 +103,7 @@ etc., fork the repository, add your theme, and submit a pull request.
 ```r
 library("ggplot2")
 library("ggthemes")
+library("scales")
 
 p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
@@ -181,7 +182,8 @@ magazine.
 
 
 ```r
-p2 + theme_economist() + scale_colour_economist() 
+p2 + theme_economist() + scale_colour_economist() +
+  scale_y_continuous(position = "right")
 ```
 
 ![plot of chunk economist](figure/economist-1.png)
@@ -482,6 +484,23 @@ ggplot() +
 ```
 
 ![plot of chunk map](figure/map-1.png)
+
+## Canva Color palettes
+
+150+ color palettes by Canva derived from [photos](https://designschool.canva.com/blog/100-color-combinations/) and "[impactful websites](https://designschool.canva.com/blog/website-color-schemes/)". These palettes were previously adapted for [Tableau](http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/) and [Excel](https://policyviz.com/2017/01/12/150-color-palettes-for-excel/).
+
+
+```r
+show_col(canva_pal("Fresh and bright")(4))
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+
+```r
+show_col(canva_pal("Timeless and nautical")(4))
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
 
 
 
