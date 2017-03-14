@@ -31,8 +31,6 @@ Suggests:
     maps,
     mapproj,
     pander,
-    plyr,
-    reshape2,
     rmarkdown,
     testthat,
     tidyverse

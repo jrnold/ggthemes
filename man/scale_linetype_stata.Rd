@@ -21,18 +21,14 @@ See \code{\link{stata_linetype_pal}} for details.
 
 ### ** Examples
 
-library("reshape2") # for melt
-library("plyr") # for ddply
-library("ggplot2")
-ecm <- melt(economics, id = "date")
+library("tidyverse")
 rescale01 <- function(x) {(x - min(x)) / diff(range(x))}
-ecm <- ddply(ecm, "variable", transform, value = rescale01(value))
-ggplot(ecm, aes(x = date, y = value, linetype=variable)) +
+gather(economics, variable, value, -date) \%>\%
+  group_by(variable) \%>\%
+  mutate(value = rescale01(value)) \%>\%
+  ggplot(aes(x = date, y = value, linetype = variable)) +
   geom_line() +
   scale_linetype_stata()
-
-
-
 }
 \seealso{
 Other linetype stata: \code{\link{stata_linetype_pal}}
