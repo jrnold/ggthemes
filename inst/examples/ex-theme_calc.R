@@ -1,8 +1,4 @@
-### Name: theme_calc
-### Title: Theme Calc
-### Aliases: theme_calc
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

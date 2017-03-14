@@ -15,11 +15,7 @@ theme_map(base_size = 9, base_family = "")
 A clean theme that is good for displaying maps from \code{\link{geom_map}}.
 }
 \examples{
-### Name: theme_map
-### Title: Clean theme for maps
-### Aliases: theme_map
 
-### ** Examples
 
 library("maps")
 library("ggplot2")

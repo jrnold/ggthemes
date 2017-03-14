@@ -32,12 +32,8 @@ colour bar, or \code{'legend'} for discrete colour legend.}
 Tableau diverging colour scales (continuous)
 }
 \examples{
-### Name: scale_colour_gradient2_tableau
-### Title: Tableau diverging colour scales (continuous)
-### Aliases: scale_colour_gradient2_tableau scale_fill_gradient2_tableau
 ###   scale_color_gradient2_tableau
 
-### ** Examples
 
 library("ggplot2")
 df <- data.frame(

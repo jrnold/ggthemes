@@ -15,11 +15,7 @@ theme_calc(base_size = 10, base_family = "sans")
 Theme similar to the default settings of LibreOffice Calc charts.
 }
 \examples{
-### Name: theme_calc
-### Title: Theme Calc
-### Aliases: theme_calc
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

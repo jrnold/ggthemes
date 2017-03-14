@@ -29,12 +29,8 @@ Following Tremmel (1995), I replace the circle with a vertical
 line with an encircled plus sign.
 }
 \examples{
-### Name: cleveland_shape_pal
-### Title: Shape palette from Cleveland "Elements of Graphing Data"
 ###   (discrete).
-### Aliases: cleveland_shape_pal
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

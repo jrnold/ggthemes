@@ -23,12 +23,8 @@ to control name, limits, breaks, labels and so forth.}
 An 8-color colorblind safe qualitative discrete palette.
 }
 \examples{
-### Name: colorblind_pal
-### Title: Colorblind Color Palette (Discrete) and Scales
-### Aliases: colorblind_pal scale_colour_colorblind scale_color_colorblind
 ###   scale_fill_colorblind
 
-### ** Examples
 
 library("ggplot2")
 library(scales)

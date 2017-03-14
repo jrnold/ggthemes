@@ -16,11 +16,7 @@ Theme based on the rules and examples in
 Stephen Few, "Practical Rules for Using Color in Charts"
 }
 \examples{
-### Name: theme_few
-### Title: Theme based on Few's "Practical Rules for Using Color in Charts"
-### Aliases: theme_few
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,

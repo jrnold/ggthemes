@@ -22,12 +22,8 @@ to control name, limits, breaks, labels and so forth.}
 See \code{\link{solarized_pal}} for details.
 }
 \examples{
-### Name: scale_fill_solarized
-### Title: Solarized color scales
-### Aliases: scale_fill_solarized scale_colour_solarized
 ###   scale_color_solarized
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

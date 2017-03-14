@@ -22,11 +22,7 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \examples{
-### Name: theme_wsj
-### Title: Wall Street Journal theme
-### Aliases: theme_wsj
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

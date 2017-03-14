@@ -15,11 +15,7 @@ Stata color palettes. See Stata documentation for a description of
 the schemes, \url{http://www.stata.com/help.cgi?schemes}.
 }
 \examples{
-### Name: stata_pal
-### Title: Stata color palettes (discrete)
-### Aliases: stata_pal
 
-### ** Examples
 
 library("scales")
 show_col(stata_pal("s2color")(15))

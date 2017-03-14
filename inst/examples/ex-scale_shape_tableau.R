@@ -1,8 +1,4 @@
-### Name: scale_shape_tableau
-### Title: Tableau shape scales
-### Aliases: scale_shape_tableau
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

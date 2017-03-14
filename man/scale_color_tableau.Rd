@@ -22,11 +22,7 @@ to control name, limits, breaks, labels and so forth.}
 See \code{\link{tableau_color_pal}} for details.
 }
 \examples{
-### Name: scale_colour_tableau
-### Title: Tableau color scales.
-### Aliases: scale_colour_tableau scale_fill_tableau scale_color_tableau
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

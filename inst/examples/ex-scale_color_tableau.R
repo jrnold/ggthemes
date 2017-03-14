@@ -1,8 +1,4 @@
-### Name: scale_colour_tableau
-### Title: Tableau color scales.
-### Aliases: scale_colour_tableau scale_fill_tableau scale_color_tableau
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

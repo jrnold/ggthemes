@@ -15,11 +15,7 @@ scale_linetype_stata(...)
 See \code{\link{stata_linetype_pal}} for details.
 }
 \examples{
-### Name: scale_linetype_stata
-### Title: Stata linetype palette (discrete)
-### Aliases: scale_linetype_stata
 
-### ** Examples
 
 library("tidyverse")
 rescale01 <- function(x) {(x - min(x)) / diff(range(x))}

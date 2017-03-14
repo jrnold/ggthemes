@@ -15,11 +15,7 @@ scale_shape_stata(...)
 See \code{\link{stata_shape_pal}} for details.
 }
 \examples{
-### Name: scale_shape_stata
-### Title: Stata shape scale
-### Aliases: scale_shape_stata
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

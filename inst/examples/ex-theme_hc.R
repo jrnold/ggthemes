@@ -1,8 +1,4 @@
-### Name: theme_hc
-### Title: Highcharts JS theme
-### Aliases: theme_hc
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,

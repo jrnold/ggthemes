@@ -1,10 +1,6 @@
-### Name: scale_colour_gradient_tableau
-### Title: Tableau sequential colour scale (continuous)
-### Aliases: scale_colour_gradient_tableau scale_fill_gradient_tableau
 ###   scale_color_gradient_tableau scale_color_continuous_tableau
 ###   scale_fill_continuous_tableau
 
-### ** Examples
 
 #'
 library("ggplot2")

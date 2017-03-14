@@ -17,11 +17,7 @@ included in these palettes and should be used to indicate
 important data.
 }
 \examples{
-### Name: economist_pal
-### Title: Economist color palette (discrete)
-### Aliases: economist_pal
 
-### ** Examples
 
 library(scales)
 show_col(economist_pal()(6))

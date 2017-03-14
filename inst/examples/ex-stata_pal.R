@@ -1,8 +1,4 @@
-### Name: stata_pal
-### Title: Stata color palettes (discrete)
-### Aliases: stata_pal
 
-### ** Examples
 
 library("scales")
 show_col(stata_pal("s2color")(15))

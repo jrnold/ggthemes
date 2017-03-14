@@ -1,8 +1,4 @@
-### Name: theme_base
-### Title: Theme Base
-### Aliases: theme_base
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,

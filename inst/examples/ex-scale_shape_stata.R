@@ -1,8 +1,4 @@
-### Name: scale_shape_stata
-### Title: Stata shape scale
-### Aliases: scale_shape_stata
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

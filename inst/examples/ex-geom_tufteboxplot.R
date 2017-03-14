@@ -1,9 +1,5 @@
-### Name: geom_tufteboxplot
-### Title: Tufte's Box Blot
-### Aliases: geom_tufteboxplot GeomTufteboxplot
 ### Keywords: datasets
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars, aes(factor(cyl), mpg))

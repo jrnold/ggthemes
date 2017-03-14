@@ -71,12 +71,8 @@ Axis lines which extend to the maximum and minimum of the plotted data.
 }
 
 \examples{
-### Name: geom_rangeframe
-### Title: Range Frames
-### Aliases: geom_rangeframe GeomRangeFrame
 ### Keywords: datasets
 
-### ** Examples
 
 library("ggplot2")
 ggplot(mtcars, aes(wt, mpg)) +

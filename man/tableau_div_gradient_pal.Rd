@@ -15,11 +15,7 @@ tableau_div_gradient_pal(palette = "Red-Blue", space = "Lab")
 Tableau diverging colour gradient palettes (continuous)
 }
 \examples{
-### Name: tableau_div_gradient_pal
-### Title: Tableau diverging colour gradient palettes (continuous)
-### Aliases: tableau_div_gradient_pal
 
-### ** Examples
 
 x <- seq(-1, 1, length = 100)
 r <- sqrt(outer(x^2, x^2, '+'))

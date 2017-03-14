@@ -1,8 +1,4 @@
-### Name: tableau_color_pal
-### Title: Color Palettes based on Tableau (discrete)
-### Aliases: tableau_color_pal
 
-### ** Examples
 
 library("scales")
 show_col(tableau_color_pal('tableau20')(20))

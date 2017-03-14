@@ -1,8 +1,4 @@
-### Name: theme_excel
-### Title: ggplot color theme based on old Excel plots
-### Aliases: theme_excel
 
-### ** Examples
 
 library("ggplot2")
 # Old line color

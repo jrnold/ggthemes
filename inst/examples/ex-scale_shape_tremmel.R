@@ -1,8 +1,4 @@
-### Name: scale_shape_tremmel
-### Title: Shape scales from Tremmel (1995)
-### Aliases: scale_shape_tremmel
 
-### ** Examples
 
 library("ggplot2")
 (ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))

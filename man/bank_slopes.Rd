@@ -80,11 +80,7 @@ requiring optimization.
 }
 
 \examples{
-### Name: bank_slopes
-### Title: Bank Slopes to 45 degrees
-### Aliases: bank_slopes
 
-### ** Examples
 
 library("ggplot2")
 # Use the classic sunspot data from Cleveland's original paper

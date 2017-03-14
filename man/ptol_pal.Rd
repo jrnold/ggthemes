@@ -15,11 +15,7 @@ Incorporation of the palette into an R package was originally inspired by
 Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 }
 \examples{
-### Name: ptol_pal
-### Title: Color Palettes from Paul Tol's "Colour Schemes"
-### Aliases: ptol_pal
 
-### ** Examples
 
 library("scales")
 show_col(ptol_pal()(6))

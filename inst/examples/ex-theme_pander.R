@@ -1,8 +1,4 @@
-### Name: theme_pander
-### Title: A ggplot theme originated from the pander package
-### Aliases: theme_pander
 
-### ** Examples
 
 library("ggplot2")
 library("pander")

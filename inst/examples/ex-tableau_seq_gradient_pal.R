@@ -1,8 +1,4 @@
-### Name: tableau_seq_gradient_pal
-### Title: Tableau sequential colour gradient palettes (continuous)
-### Aliases: tableau_seq_gradient_pal
 
-### ** Examples
 
 library("scales")
 x <- seq(0, 1, length = 25)

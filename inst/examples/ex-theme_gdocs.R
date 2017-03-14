@@ -1,8 +1,4 @@
-### Name: theme_gdocs
-### Title: Theme with Google Docs Chart defaults
-### Aliases: theme_gdocs
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

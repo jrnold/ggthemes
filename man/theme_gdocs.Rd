@@ -15,11 +15,7 @@ theme_gdocs(base_size = 12, base_family = "sans")
 Theme similar to the default look of charts in Google Docs.
 }
 \examples{
-### Name: theme_gdocs
-### Title: Theme with Google Docs Chart defaults
-### Aliases: theme_gdocs
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

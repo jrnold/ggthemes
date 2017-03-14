@@ -27,11 +27,7 @@ similar to the style of plots in Stata and Tableau.
 }
 
 \examples{
-### Name: theme_igray
-### Title: Inverse gray theme
-### Aliases: theme_igray
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

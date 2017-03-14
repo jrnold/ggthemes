@@ -1,8 +1,4 @@
-### Name: theme_stata
-### Title: Themes based on Stata graph schemes
-### Aliases: theme_stata
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

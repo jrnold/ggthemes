@@ -1,8 +1,4 @@
-### Name: theme_map
-### Title: Clean theme for maps
-### Aliases: theme_map
 
-### ** Examples
 
 library("maps")
 library("ggplot2")

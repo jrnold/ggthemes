@@ -19,11 +19,7 @@ theme_hc(base_size = 12, base_family = "sans", bgcolor = "default")
 Theme based on the plots in \emph{Highcharts JS}.
 }
 \examples{
-### Name: theme_hc
-### Title: Highcharts JS theme
-### Aliases: theme_hc
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,

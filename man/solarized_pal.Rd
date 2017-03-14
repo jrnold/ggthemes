@@ -19,11 +19,7 @@ the other colors are the combination of colors that maximizes the
 total Euclidean distance between colors in L*a*b space.
 }
 \examples{
-### Name: solarized_pal
-### Title: Solarized color palette (discrete)
-### Aliases: solarized_pal
 
-### ** Examples
 
 library("scales")
 show_col(solarized_pal()(2))

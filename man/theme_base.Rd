@@ -15,11 +15,7 @@ theme_base(base_size = 16, base_family = "")
 Theme similar to the default settings of the \sQuote{base} R graphics.
 }
 \examples{
-### Name: theme_base
-### Title: Theme Base
-### Aliases: theme_base
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,

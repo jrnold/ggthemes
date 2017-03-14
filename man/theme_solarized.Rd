@@ -29,11 +29,7 @@ to \code{\link{theme_bw}}, while \code{theme_solarized_2} is similar to
 \code{\link{theme_gray}}.
 }
 \examples{
-### Name: theme_solarized
-### Title: ggplot color themes based on the Solarized palette
-### Aliases: theme_solarized theme_solarized_2
 
-### ** Examples
 
 library("ggplot2")
 p <- ggplot(mtcars) +

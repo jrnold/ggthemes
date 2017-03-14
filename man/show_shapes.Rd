@@ -16,11 +16,7 @@ show_shapes(shapes, labels = TRUE)
 A quick and dirty way to show shapes.
 }
 \examples{
-### Name: show_shapes
-### Title: Show shapes
-### Aliases: show_shapes
 
-### ** Examples
 
 library("scales")
 show_shapes(shape_pal()(5))
