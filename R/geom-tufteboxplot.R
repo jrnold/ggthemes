@@ -1,4 +1,4 @@
-#' Tufte's Box Blot
+#' Tufte's Box Plot
 #'
 #' Edward Tufte's revisions of the box plot as described in
 #' \emph{The Visual Display of Quantitative Information}.
