@@ -4,7 +4,7 @@
 \name{geom_tufteboxplot}
 \alias{geom_tufteboxplot}
 \alias{GeomTufteboxplot}
-\title{Tufte's Box Blot}
+\title{Tufte's Box Plot}
 \usage{
 geom_tufteboxplot(mapping = NULL, data = NULL, stat = "fivenumber",
   position = "dodge", outlier.colour = "black", outlier.shape = 19,
