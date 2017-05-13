@@ -18,8 +18,6 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
      rect = element_rect(fill = ggthemes_data$fivethirtyeight["ltgray"],
                          linetype = 0, colour = NA),
      text = element_text(colour = ggthemes_data$fivethirtyeight["dkgray"]),
-     axis.title = element_blank(),
-     axis.text = element_text(),
      axis.ticks = element_blank(),
      axis.line = element_blank(),
      legend.background = element_rect(),
