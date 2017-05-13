@@ -16,6 +16,5 @@ theme_map <- function(base_size = 9, base_family = "") {
           panel.grid = element_blank(),
           panel.spacing = unit(0, "lines"),
           plot.background = element_blank(),
-          legend.justification = c(0, 0),
-          legend.position = c(0, 0))
+          legend.justification = "right")
 }
