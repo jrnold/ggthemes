@@ -15,7 +15,7 @@
 #' @example inst/examples/ex-theme_hc.R
 #' @export
 theme_hc <- function(base_size = 12,
-                     base_family = "sans",
+                     base_family = "sans-serif",
                      bgcolor = "default") {
   bgcol <- ggthemes_data$hc$bg[bgcolor]
 
