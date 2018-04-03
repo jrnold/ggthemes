@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 3.4.1
+Version: 3.4.2
 Title: Extra Themes, Scales and Geoms for 'ggplot2'
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com"),
@@ -25,15 +25,18 @@ Imports:
     methods,
     scales
 Suggests:
+    dplyr,
     extrafont,
     knitr,
     lintr,
     maps,
     mapproj,
     pander,
+    purrr,
     rmarkdown,
     testthat,
-    tidyverse
+    tibble,
+    tidyr
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots

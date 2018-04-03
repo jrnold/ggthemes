@@ -17,7 +17,9 @@ See \code{\link{stata_linetype_pal}} for details.
 \examples{
 
 
-library("tidyverse")
+require("dplyr")
+require("tidyr")
+require("ggplot2")
 rescale01 <- function(x) {(x - min(x)) / diff(range(x))}
 gather(economics, variable, value, -date) \%>\%
   group_by(variable) \%>\%

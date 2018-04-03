@@ -19,7 +19,9 @@
 #' @source
 #' \url{http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt}
 #' @examples
-#' require("tidyverse")
+#' require("ggplot2")
+#' require("purrr")
+#' require("tibble")
 #' canva_df <- map2_df(canva_palettes, names(canva_palettes),
 #'                    ~ tibble(colors = .x, .id = seq_along(colors), palette = .y))
 #' ggplot(canva_df, aes(y = palette, x = .id, fill = colors)) +

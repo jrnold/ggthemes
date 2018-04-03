@@ -1,7 +1,7 @@
-# ggthemes 3.4.1.9000
+# ggthemes 3.4.2
 
 * Bugfix: Fix example code in `theme_economist`. Thanks @carlganz #81.
-* Remove suggests dependencies: `reshape2`, `plyr` 
+* Remove suggests dependencies: `reshape2`, `plyr`, `tidyverse`
 
 # ggthemes 3.4.1
 
