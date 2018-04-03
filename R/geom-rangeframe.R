@@ -62,44 +62,44 @@ GeomRangeFrame <- ggproto("GeomRangeFrame", Geom,
                lwd = data[["size"]] * .pt)
     if (!is.null(data[["x"]])) {
       if (grepl("b", sides)) {
-        rugs[["x_b"]] <-
+        rugs[["x_b"]] <- ggname("range_x_b",
           segmentsGrob(x0 = unit(min(data[["x"]]), "native"),
                        x1 = unit(max(data[["x"]]), "native"),
                        y0 = unit(0, "npc"),
                        y1 = unit(0, "npc"),
-                       gp = gp)
+                       gp = gp))
       }
 
       if (grepl("t", sides)) {
-        rugs[["x_t"]] <-
+        rugs[["x_t"]] <- ggname("range_x_t",
           segmentsGrob(x0 = unit(min(data[["x"]]), "native"),
                        x1 = unit(max(data[["x"]]), "native"),
                        y0 = unit(1, "npc"),
                        y1 = unit(1, "npc"),
-                       gp = gp)
+                       gp = gp))
       }
     }
 
     if (!is.null(data[["y"]])) {
       if (grepl("l", sides)) {
-        rugs[["y_l"]] <-
+        rugs[["y_l"]] <- ggname("range_y_l",
           segmentsGrob(y0 = unit(min(data[["y"]]), "native"),
                        y1 = unit(max(data[["y"]]), "native"),
                        x0 = unit(0, "npc"),
                        x1 = unit(0, "npc"),
-                       gp = gp)
+                       gp = gp))
       }
 
       if (grepl("r", sides)) {
-        rugs[["y_r"]] <-
+        rugs[["y_r"]] <- ggname("range_y_r",
           segmentsGrob(y0 = unit(min(data[["y"]]), "native"),
                        y1 = unit(max(data[["y"]]), "native"),
                        x0 = unit(1, "npc"),
                        x1 = unit(1, "npc"),
-                       gp = gp)
+                       gp = gp))
       }
     }
-    gTree(children = do.call("gList", rugs))
+    ggname("geom_rangeframe", gTree(children = do.call("gList", rugs)))
   },
   default_aes = aes(colour = "black", size = 0.5,
                     linetype = 1, alpha = NA),
