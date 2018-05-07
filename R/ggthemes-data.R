@@ -294,33 +294,15 @@ ggthemes_data <- {
 
     ## Stephen Few
     x$few <-
-        list(medium =
-             c(gray = "#737373",
-               red = "#F15A60",
-               green = "#7AC36A",
-               blue = "#5A9BD4",
-               orange = "#FAA75B",
-               purple = "#9E67AB",
-               maroon = "#CE7058",
-               magenta = "#D77FB4"),
-             dark =
-             c(black = "#010202",
-               red = "#EE2E2F",
-               green = "#008C48",
-               blue = "#185AA9",
-               orange = "#F47D23",
-               purple = "#662C91",
-               maroon = "#A21D21",
-               magenta = "#B43894"),
-             light =
-             c(gray = "#CCCCCC",
-               red = "#F2AFAD",
-               green = "#D9E4AA",
-               blue = "#B8D2EC",
-               orange = "#F3D1B0",
-               purple = "#D5B2D4",
-               maroon = "#DDB9A9",
-               magenta = "#EBC0DA"))
+      list(light = c(Gray = "#8C8C8C", Blue = "#88BDE6", Orange = "#FBB258",
+                     Green = "#90CD97", Pink = "#F6AAC9", Brown = "#BFA554",
+                     Purple = "#BC99C7", Yellow = "#EDDD46", Red = "#F07E6E"),
+           medium = c(Gray = "#4D4D4D", Blue = "#5DA5DA", Orange = "#FAA43A",
+                      Green = "#60BD68", Pink = "#F17CB0", Brown = "#B2912F",
+                      Purple = "#B276B2", Yellow = "#DECF3F", Red = "#F15854"),
+           dark = c(Gray = "#000000", Blue = "#265DAB", Orange = "#DF5C24",
+                    Green = "#059748", Pink = "#E5126F", Brown = "#9D722A",
+                    Purple = "#7B3A96", Yellow = "#C7B42E", Red = "#CB2027"))
     x$ptol <-
       list(qualitative =
              list(
@@ -331,18 +313,20 @@ ggthemes_data <- {
                c("#4477AA", "#88CCEE", "#117733", "#DDCC77", "#CC6677"),
                c("#4477AA", "#88CCEE", "#117733", "#DDCC77", "#CC6677",
                  "#AA4499"),
-               c("#332288", "#88CCEE", "#44AA99", "#117733", "#DDCC77", "#CC6677",
-                 "#AA4499"),
-               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77",
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#DDCC77",
                  "#CC6677", "#AA4499"),
-               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77",
-                 "#CC6677", "#882255", "#AA4499"),
-               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933", "#DDCC77",
-                 "#661100", "#CC6677", "#882255", "#AA4499"),
-               c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733", "#999933",
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933",
+                 "#DDCC77", "#CC6677", "#AA4499"),
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933",
+                 "#DDCC77", "#CC6677", "#882255", "#AA4499"),
+               c("#332288", "#88CCEE", "#44AA99", "#117733", "#999933",
                  "#DDCC77", "#661100", "#CC6677", "#882255", "#AA4499"),
-               c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733", "#999933",
-                 "#DDCC77", "#661100", "#CC6677", "#AA4466", "#882255", "#AA4499")
+               c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733",
+                 "#999933", "#DDCC77", "#661100", "#CC6677", "#882255",
+                 "#AA4499"),
+               c("#332288", "#6699CC", "#88CCEE", "#44AA99", "#117733",
+                 "#999933", "#DDCC77", "#661100", "#CC6677", "#AA4466",
+                 "#882255", "#AA4499")
              ))
 
     x$tableau <- list()

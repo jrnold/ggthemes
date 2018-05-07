@@ -13,7 +13,7 @@ scale_color_few(palette = "medium", ...)
 scale_fill_few(palette = "light", ...)
 }
 \arguments{
-\item{palette}{One of "medium", "dark", or "light"}
+\item{palette}{One of \code{c("medium", "dark", "light")}.}
 
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}

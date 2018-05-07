@@ -7,19 +7,16 @@
 few_pal(palette = "medium")
 }
 \arguments{
-\item{palette}{One of "medium", "dark", or "light"}
+\item{palette}{One of \code{c("medium", "dark", "light")}.}
 }
 \description{
 Qualitative color palettes from Stephen Few,
-\href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical
-Rules for Using Color in Charts"}.
 }
 \details{
-He suggests the following
-\itemize{
-\item For bars, use medium.
-\item For lines and points use dark if small or thin, and medium otherwise.
-}
+Use the light palette for filled areas, such as bar charts.
+The medium palette should be used for points and lines.
+The dark palette should be used for either highlighting specific points,
+or if the lines and points are small or thin.
 }
 \examples{
 library("scales")
@@ -27,6 +24,12 @@ library("scales")
 show_col(few_pal()(7))
 show_col(few_pal("dark")(7))
 show_col(few_pal("light")(7))
+}
+\references{
+Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.
+2nd edition. Analytics Press.
+
+\href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
 }
 \seealso{
 Other colour few: \code{\link{scale_colour_few}}
