@@ -27,22 +27,30 @@ process_color <- function(x) {
   set_names(list(val), name)
 }
 
-process_clrScheme <- function(path) {
+process_clrScheme <- function(x) {
   clrScheme <- xml_find_first(x, ".//a:clrScheme")
   scheme_name <- xml_attr(clrScheme, "name")
-  browser()
+  colors = flatten(map(xml_children(clrScheme), process_color))
   list(
-    colors = flatten(map(xml_children(clrScheme), process_color)),
-    url = scheme_url,
-    name = scheme_name)
+    colors = list(
+      accents = flatten_chr(colors[str_subset(names(colors), "^accent")]),
+      dk = flatten_chr(colors[c("dk1", "dk2")]),
+      lt = flatten_chr(colors[c("lt1", "lt2")]),
+      hlink = list(
+        "default" = colors[["hlink"]],
+        "followed" = colors[["folHlink"]]
+      )
+    ),
+    name = scheme_name
+  )
 }
 
 read_office_color_theme <- function(path) {
-  process_clrScheme(xml_read(path))
+  process_clrScheme(read_xml(path))
 }
 
 read_thmx_colors <- function(path) {
-  theme1 <- read_xml(unz(path, "theme/theme/theme1.xml"))
+  theme1 <- unz(path, "theme/theme/theme1.xml")
   read_office_color_theme(theme1)
 }
 

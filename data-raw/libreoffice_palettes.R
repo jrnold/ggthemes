@@ -1,3 +1,6 @@
+library("tidyverse")
+library("xml2")
+
 # https://www.openoffice.org/xml/xml_specification.pdf
 #
 # LibreOffice colors can be found at
@@ -29,10 +32,6 @@ soc_process_color <- function(x) {
 read_soc <- function(path) {
   map(xml_find_all(read_xml(path), "draw_color"), process_color)
 }
-
-
-library("tidyverse")
-library("xml2")
 
 soc_process_color <- function(x) {
   tibble(color = xml_attr(x, "name"),
