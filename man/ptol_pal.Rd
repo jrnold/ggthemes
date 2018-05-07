@@ -15,15 +15,11 @@ Incorporation of the palette into an R package was originally inspired by
 Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 }
 \examples{
-
-
 library("scales")
+
 show_col(ptol_pal()(6))
 show_col(ptol_pal()(4))
 show_col(ptol_pal()(12))
-
-
-
 }
 \references{
 Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.

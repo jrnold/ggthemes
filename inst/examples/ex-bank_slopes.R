@@ -1,6 +1,5 @@
-
-
 library("ggplot2")
+
 # Use the classic sunspot data from Cleveland's original paper
 x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
@@ -14,7 +13,4 @@ ratio <- bank_slopes(x, y)
 m + coord_fixed(ratio = ratio)
 ## Using culling
 ## Average Absolute Slope
-bank_slopes(x, y, method='as')
-
-
-
+bank_slopes(x, y, method = "as")

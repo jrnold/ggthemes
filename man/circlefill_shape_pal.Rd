@@ -13,14 +13,10 @@ solid, hollow, half-filled, with two additional fill amounts:
 three-quarters, and one-quarter.
 }
 \examples{
-
-
 library("ggplot2")
-(ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
+
+(ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(cyl)))
  + geom_point() + scale_shape_tremmel())
-
-
-
 }
 \references{
 Lewandowsky, Stephan and Ian Spence (1989)

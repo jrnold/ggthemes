@@ -90,10 +90,8 @@ Edward Tufte's revisions of the box plot as described in
 }
 
 \examples{
-### Keywords: datasets
-
-
 library("ggplot2")
+
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
 ## with a point for the median and lines for whiskers
 p + geom_tufteboxplot()
@@ -102,11 +100,7 @@ p + geom_tufteboxplot(median.type = "line", whisker.type = "point", hoffset = 0)
 ## with a wide line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
 ## with an offset line for the interquartile range and lines for whiskers
-p + geom_tufteboxplot(median.type='line')
-
-
-
-
+p + geom_tufteboxplot(median.type = "line")
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of

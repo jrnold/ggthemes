@@ -123,4 +123,3 @@ bank_slopes_funs[["as"]] <-
     function(slopes, ...) {
       mean(abs(slopes$s)) * slopes$Rx / slopes$Ry
     }
-

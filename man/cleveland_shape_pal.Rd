@@ -40,11 +40,7 @@ p <- ggplot(mtcars) +
 # overlapping symbol palette
 p + scale_shape_cleveland()
 # non-overlapping symbol palette
-p + scale_shape_cleveland(overlap=FALSE)
-
-
-
-
+p + scale_shape_cleveland(overlap = FALSE)
 }
 \references{
 Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.

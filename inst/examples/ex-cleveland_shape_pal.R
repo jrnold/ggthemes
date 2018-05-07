@@ -9,8 +9,4 @@ p <- ggplot(mtcars) +
 # overlapping symbol palette
 p + scale_shape_cleveland()
 # non-overlapping symbol palette
-p + scale_shape_cleveland(overlap=FALSE)
-
-
-
-
+p + scale_shape_cleveland(overlap = FALSE)

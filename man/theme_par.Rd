@@ -29,17 +29,12 @@ produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.
 }
 \examples{
-###   parameter values in 'par'.
-
-
 library("ggplot2")
+
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     colour=factor(gear))) + facet_wrap(~am)
+     colour = factor(gear))) + facet_wrap(~am)
 par(font = 2, col.lab = "red", fg = "blue")
 p + theme_par()
-
-
-
 }
 \seealso{
 Other themes: \code{\link{theme_base}},

@@ -22,19 +22,15 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \examples{
-
-
 library("ggplot2")
+
 p <- ggplot(mtcars) +
-     geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+     geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
      facet_wrap(~am) +
-     ggtitle('Diamond Prices')
-p + scale_colour_wsj('colors6', '') + theme_wsj()
-# Use a gray background instead#'
-p + scale_colour_wsj('colors6', '') + theme_wsj(color = "gray")
-
-
-
+     ggtitle("Diamond Prices")
+p + scale_colour_wsj("colors6", "") + theme_wsj()
+# Use a gray background instead
+p + scale_colour_wsj("colors6", "") + theme_wsj(color = "gray")
 }
 \references{
 \url{https://twitter.com/WSJGraphics}

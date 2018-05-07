@@ -16,15 +16,10 @@ show_shapes(shapes, labels = TRUE)
 A quick and dirty way to show shapes.
 }
 \examples{
-
-
 library("scales")
+
 show_shapes(shape_pal()(5))
-show_shapes(shape_pal()(3), labels=TRUE)
-
-
-
-
+show_shapes(shape_pal()(3), labels = TRUE)
 }
 \seealso{
 \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}

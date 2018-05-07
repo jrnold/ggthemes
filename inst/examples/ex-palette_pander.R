@@ -1,8 +1,3 @@
-
-
 \dontrun{
-palette_pander(TRUE)
+  palette_pander(TRUE)
 }
-
-
-

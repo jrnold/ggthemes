@@ -10,13 +10,9 @@ calc_pal()
 Color palettes from LibreOffice Calc.
 }
 \examples{
+library("scales")
 
-
-library(scales)
 show_col(calc_pal()(12))
-
-
-
 }
 \seealso{
 Other colour calc: \code{\link{scale_fill_calc}}
