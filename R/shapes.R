@@ -10,7 +10,7 @@
 #' two shape palettes for scatter plots: one for overlapping data and
 #' another for non-overlapping data. The symbols for overlapping data
 #' relies on pattern discrimination, while the symbols for
-#' non-overlapping data vary the amount of fill. This palatte
+#' non-overlapping data vary the amount of fill. This palette
 #' attempts to create these palettes. However, I found that these
 #' were hard to replicate. Using the R shapes and unicode fonts: the
 #' symbols can vary in size, they are dependent of the fonts used,
@@ -92,7 +92,7 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 #' @references
 #' Lewandowsky, Stephan and Ian Spence (1989)
 #' "Discriminating Strata in Scatterplots", Journal of
-#' the American Statistical Assocation, \url{http://www.jstor.org/stable/2289649}
+#' the American Statistical Association, \url{http://www.jstor.org/stable/2289649}
 #' @example inst/examples/ex-circlefill_shape_pal.R
 #' @family shapes
 #' @export

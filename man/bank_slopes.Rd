@@ -14,7 +14,7 @@ bank_slopes(x, y, cull = FALSE, weight = NULL, method = c("ms", "as",
 
 \item{cull}{\code{logical}. Remove all slopes of 0 or \code{Inf}.}
 
-\item{weight}{No longer used, but kept for backwards compatiblity.}
+\item{weight}{No longer used, but kept for backwards compatibility.}
 
 \item{method}{One of 'ms' (Median Absolute Slope) or 'as' (Average
 Absolute Slope). Other options are no longer supported, and will use

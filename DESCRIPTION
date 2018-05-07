@@ -25,6 +25,7 @@ Imports:
     methods,
     scales
 Suggests:
+    spelling,
     dplyr,
     extrafont,
     knitr,
@@ -80,3 +81,4 @@ Collate:
     'wsj.R'
 RoxygenNote: 6.0.1
 LazyData: true
+Language: en-US
