@@ -1,4 +1,4 @@
-# ggthemes 3.4.2.9000
+# ggthemes 3.5.0
 
 -   Bugfix: Fix RGB colors in `scale_color_few`, `scale_fill_few`, and `few_pal` (#89, @bpbraun)
 -   Update documentation to include mentions of the maximum number of values that discrete scales support (#85)
