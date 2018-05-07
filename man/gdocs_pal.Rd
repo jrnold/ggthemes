@@ -8,6 +8,7 @@ gdocs_pal()
 }
 \description{
 Color palettes from Google Docs.
+This palette includes 20 colors.
 }
 \examples{
 library("scales")

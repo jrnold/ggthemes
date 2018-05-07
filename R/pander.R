@@ -181,7 +181,8 @@ theme_pander <- function(base_size = 12,
 #'
 #' The \pkg{pander} ships with a default colorblind and printer-friendly
 #' color palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
-#' @param n number of colors
+#'
+#' @param n number of colors. This palette supports up to eight colors.
 #' @param random_order if the palette should be reordered randomly before
 #'  rendering each plot to get colorful images
 #' @export

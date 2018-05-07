@@ -27,7 +27,8 @@ solarized_accent_list <- function() {
 #' Solarized color palette (discrete)
 #'
 #' Qualitative color palate based on the Ethan Schoonover's Solarized
-#' palette, \url{http://ethanschoonover.com/solarized}.
+#' palette, \url{http://ethanschoonover.com/solarized}. This palette supports
+#' up to seven values.
 #'
 #' @note
 #'
@@ -66,7 +67,6 @@ solarized_pal <- function(accent = "blue") {
   function(n) {
     best_colors(accent, n)
   }
-
 }
 
 #' Solarized color scales

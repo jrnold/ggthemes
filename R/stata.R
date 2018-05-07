@@ -3,6 +3,8 @@
 #' Stata color palettes. See Stata documentation for a description of
 #' the schemes, \url{http://www.stata.com/help.cgi?schemes}.
 #'
+#' All these palettes support up to 15 values.
+#'
 #' @param scheme \code{character}. One of \code{"s2color"},
 #' \code{"s1rcolor"}, \code{"s1color"}, or \code{"mono"}.
 #'
@@ -217,8 +219,8 @@ theme_stata <- function(base_size = 11, base_family = "sans",
 
 #' Stata shape palette (discrete)
 #'
-#' Shape palette based on the symbol palette in Stata, specifically
-#' that for the scheme s2mono.
+#' Shape palette based on the symbol palette in Stata used in scheme s2mono.
+#' This palette supports up to 10 values.
 #'
 #' @export
 #' @family shapes stata
@@ -248,6 +250,7 @@ scale_shape_stata <- function (...) {
 #' Stata linetype palette (discrete)
 #'
 #' Linetype palette based on the linepattern scheme in Stata.
+#' This palette supports up to 15 values.
 #'
 #' @family linetype stata
 #' @export

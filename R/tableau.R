@@ -1,7 +1,14 @@
+# see mstone_Palettes at https://github.com/mcstone/mstone/tree/5acd4ad14246feb07f759053c0e53dc2e023302e/Palettes
+
 #' Color Palettes based on Tableau (discrete)
 #'
 #' Color palettes used in
 #' \href{http://www.tableausoftware.com/}{Tableau}.
+#'
+#' The number in some palette names indicates the maximum number of
+#' values supported, e.g \code{tableau20} supports up to 20 values.
+#' \code{"trafficlight"} supports up to nine values, and \code{"cyclic"}
+#' supports up to 20 values.
 #'
 #' @export
 #' @param palette Palette name.
@@ -16,8 +23,6 @@
 #'
 #' Heer, Jeffrey and Maureen Stone, 2012 'Color Naming Models for
 #' Color Selection, Image Editing and Palette Design', ACM Human
-# see mstone_Palettes at https://github.com/mcstone/mstone/tree/5acd4ad14246feb07f759053c0e53dc2e023302e/Palettes
-
 #' Factors in Computing Systems (CHI)
 #' \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 #'

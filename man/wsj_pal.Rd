@@ -25,16 +25,16 @@ The following palettes are defined,
 
 \describe{
 \item{rgby}{Red/Green/Blue/Yellow theme.
-Examples: \url{https://twitpic.com/b2e3v2}.}
-\item{green_red}{Green/red two-color scale for good/bad. Examples:
+  Examples: \url{https://twitpic.com/b2e3v2}. Up to four values.}
+  \item{red_green}{Green/red two-color scale for good/bad. Examples:
 \url{https://twitpic.com/b1avj6}, \url{http://twitpic.com/a4kxcl}.}
 \item{green_black}{Black-green 4-color scale for 'Very negative',
-'Somewhat negative', 'somewhat positive', 'very positive'.
-Examples: \url{https://twitpic.com/awbua0}.}
+  'Somewhat negative', 'somewhat positive', 'very positive'.
+  Examples: \url{https://twitpic.com/awbua0}.}
 \item{dem_rep}{Democrat/Republican/Undecided blue/red/gray scale.
-Examples: \url{https://twitpic.com/awbua0}.}
+  Examples: \url{https://twitpic.com/awbua0}.}
 \item{colors6}{Red, blue, gold, green, orange, and black palette.
-Examples: \url{https://twitpic.com/9gfg5q}.}
+  Examples: \url{https://twitpic.com/9gfg5q}.}
 }
 }
 

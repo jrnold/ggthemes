@@ -17,7 +17,7 @@ scale_fill_ptol(...)
 to control name, limits, breaks, labels and so forth.}
 }
 \description{
-See \code{\link{ptol_pal}}.
+See \code{\link{ptol_pal}}. These palettes support up to 12 values.
 }
 \seealso{
 Other colour ptol: \code{\link{ptol_pal}}

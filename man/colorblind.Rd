@@ -20,7 +20,7 @@ scale_fill_colorblind(...)
 to control name, limits, breaks, labels and so forth.}
 }
 \description{
-An 8-color colorblind safe qualitative discrete palette.
+An eight-color colorblind safe qualitative discrete palette.
 }
 \examples{
 library("ggplot2")

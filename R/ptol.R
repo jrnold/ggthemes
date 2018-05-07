@@ -25,7 +25,7 @@ ptol_pal <- function() {
 
 #' Color Scales from Paul Tol's "Colour Schemes
 #'
-#' See \code{\link{ptol_pal}}.
+#' See \code{\link{ptol_pal}}. These palettes support up to 12 values.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams ptol_pal

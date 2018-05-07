@@ -7,7 +7,7 @@
 palette_pander(n, random_order = FALSE)
 }
 \arguments{
-\item{n}{number of colors}
+\item{n}{number of colors. This palette supports up to eight colors.}
 
 \item{random_order}{if the palette should be reordered randomly before
 rendering each plot to get colorful images}

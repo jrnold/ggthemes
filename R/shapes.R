@@ -21,6 +21,8 @@
 #' Following Tremmel (1995), I replace the circle with a vertical
 #' line with an encircled plus sign.
 #'
+#' The palette \code{cleveland_shape_pal} supports up to five values.
+#'
 #' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references
 #' Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
@@ -30,7 +32,7 @@
 #'
 #' @family shapes
 #' @export
-cleveland_shape_pal <- function(overlap=TRUE) {
+cleveland_shape_pal <- function(overlap = TRUE) {
     function(n) {
         maxshapes <- 5
         if (n > maxshapes) {
@@ -85,7 +87,7 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 #' solid, hollow, half-filled, with two additional fill amounts:
 #' three-quarters, and one-quarter.
 #'
-#'
+#' This palette supports up to five values.
 #'
 #' @references
 #' Lewandowsky, Stephan and Ian Spence (1989)
@@ -138,6 +140,7 @@ scale_shape_circlefill <- function(...) {
 #' satisfies this is a circle (curvature), plus sign (number of
 #' terminators), triangle (line orientation).
 #'
+#' This palette supports up to three values.
 #' If more than three groups of data, then separate the groups into
 #' different plots.
 #'
@@ -188,7 +191,6 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams tremmel_shape_pal
-#'
 #'
 #' @seealso \code{\link{tremmel_shape_pal}} for a description of the palette.
 #' @example inst/examples/ex-scale_shape_tremmel.R

@@ -8,6 +8,7 @@ calc_pal()
 }
 \description{
 Color palettes from LibreOffice Calc.
+This palette has 12 values.
 }
 \examples{
 library("scales")

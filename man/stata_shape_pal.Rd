@@ -7,8 +7,8 @@
 stata_shape_pal()
 }
 \description{
-Shape palette based on the symbol palette in Stata, specifically
-that for the scheme s2mono.
+Shape palette based on the symbol palette in Stata used in scheme s2mono.
+This palette supports up to 10 values.
 }
 \seealso{
 See \code{\link{scale_shape_stata}} for examples.

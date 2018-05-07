@@ -2,7 +2,7 @@
 % Please edit documentation in R/few.R
 \name{few_pal}
 \alias{few_pal}
-\title{Color Palletes from Few's "Practical Rules for Using Color in Charts"}
+\title{Color Palettes from Few's "Practical Rules for Using Color in Charts"}
 \usage{
 few_pal(palette = "medium")
 }
@@ -17,6 +17,7 @@ Use the light palette for filled areas, such as bar charts.
 The medium palette should be used for points and lines.
 The dark palette should be used for either highlighting specific points,
 or if the lines and points are small or thin.
+All these palettes contain nine colors.
 }
 \examples{
 library("scales")

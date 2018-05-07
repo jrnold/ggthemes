@@ -1,4 +1,4 @@
-#' Color Palletes from Few's "Practical Rules for Using Color in Charts"
+#' Color Palettes from Few's "Practical Rules for Using Color in Charts"
 #'
 #' Qualitative color palettes from Stephen Few,
 #'
@@ -6,6 +6,7 @@
 #' The medium palette should be used for points and lines.
 #' The dark palette should be used for either highlighting specific points,
 #' or if the lines and points are small or thin.
+#' All these palettes contain nine colors.
 #'
 #' @references
 #' Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.

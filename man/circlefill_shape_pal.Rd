@@ -12,6 +12,9 @@ the set of 3 circle fill values in Lewandowsky and Spence (1989):
 solid, hollow, half-filled, with two additional fill amounts:
 three-quarters, and one-quarter.
 }
+\details{
+This palette supports up to five values.
+}
 \examples{
 library("ggplot2")
 

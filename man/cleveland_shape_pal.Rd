@@ -27,6 +27,8 @@ know.
 
 Following Tremmel (1995), I replace the circle with a vertical
 line with an encircled plus sign.
+
+The palette \code{cleveland_shape_pal} supports up to five values.
 }
 \examples{
 ###   (discrete).

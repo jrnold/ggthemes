@@ -34,6 +34,7 @@ theme_gdocs <- function(base_size=12, base_family="sans") {
 #' Google Docs color palette (discrete)
 #'
 #' Color palettes from Google Docs.
+#' This palette includes 20 colors.
 #'
 #' @family colour gdocs
 #' @export

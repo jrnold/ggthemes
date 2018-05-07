@@ -13,6 +13,12 @@ tableau_color_pal(palette = "tableau10")
 Color palettes used in
 \href{http://www.tableausoftware.com/}{Tableau}.
 }
+\details{
+The number in some palette names indicates the maximum number of
+values supported, e.g \code{tableau20} supports up to 20 values.
+\code{"trafficlight"} supports up to nine values, and \code{"cyclic"}
+supports up to 20 values.
+}
 \examples{
 library("scales")
 

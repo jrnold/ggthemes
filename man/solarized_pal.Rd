@@ -11,7 +11,8 @@ solarized_pal(accent = "blue")
 }
 \description{
 Qualitative color palate based on the Ethan Schoonover's Solarized
-palette, \url{http://ethanschoonover.com/solarized}.
+palette, \url{http://ethanschoonover.com/solarized}. This palette supports
+up to seven values.
 }
 \note{
 For a given starting color and number of colors in the palette,

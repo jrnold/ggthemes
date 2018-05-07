@@ -8,6 +8,7 @@ stata_linetype_pal()
 }
 \description{
 Linetype palette based on the linepattern scheme in Stata.
+This palette supports up to 15 values.
 }
 \seealso{
 \code{\link{scale_linetype_stata}}
