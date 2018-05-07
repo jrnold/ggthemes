@@ -34,9 +34,12 @@ cleveland_shape_pal <- function(overlap=TRUE) {
     function(n) {
         maxshapes <- 5
         if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum of %d discrete ",
-                                 "values because more than %d becomes difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying shapes manually. if you ",
+            msg <- sprintf(paste("The shape palette can deal with a maximum ",
+                                 "of %d discrete ",
+                                 "values because more than %d becomes ",
+                                 "difficult to discriminate; ",
+                                 "you have ", n, ". Consider specifying ",
+                                 "shapes manually. if you ",
                                  "must have them.", sep = ""),
                            maxshapes, maxshapes)
             warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
@@ -96,10 +99,13 @@ circlefill_shape_pal <- function() {
     types <- c(16, 1, -0x25D3, -0x25D5, -0x25D4)
     function(n) {
         if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum of %d discrete ",
-                                 "values because more than %d becomes difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying shapes manually. if you ",
-                                 "must have them.", sep = ""),
+            msg <- sprintf(paste("The shape palette can deal with a maximum ",
+                                 "of %d discrete ",
+                                 "values because more than %d becomes ",
+                                 "difficult to discriminate; ",
+                                 "you have ", n,
+                                 ". Consider specifying shapes manually, ",
+                                 "if you must have them.", sep = ""),
                            maxshapes, maxshapes)
             warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
         }
@@ -165,9 +171,12 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
                   2) # triangle
             }
         } else if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum of %d discrete ",
-                                 "values because more than %d becomes difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying shapes manually. if you ",
+            msg <- sprintf(paste("The shape palette can deal with a maximum ",
+                                 "of %d discrete ",
+                                 "values because more than %d becomes ",
+                                 "difficult to discriminate; ",
+                                 "you have ", n, ". Consider specifying ",
+                                 "shapes manually. if you ",
                                  "must have them.", sep = ""),
                            maxshapes, maxshapes)
             warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)

@@ -12,7 +12,8 @@
 theme_solid <- function(base_size = 12, base_family = "", fill = NA) {
   theme(line = element_blank(),
         text = element_blank(),
-        rect = element_rect(fill = fill, size = base_size, colour = NA, linetype = 0),
+        rect = element_rect(fill = fill, size = base_size, colour = NA,
+                            linetype = 0),
         # Maybe a bug. panel.background doesn't seem to inherit from geom_rect
         panel.background = element_rect(fill = fill),
         complete = TRUE)

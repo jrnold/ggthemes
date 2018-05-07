@@ -23,7 +23,8 @@
 #' @example inst/examples/ex-tableau_color_pal.R
 tableau_color_pal <- function(palette = "tableau10") {
   palettelist <- ggthemes_data$tableau$colors
-  if (!palette %in% c(names(palettelist), "tableau10", "tableau10light", "purplegray6", "bluered6", "greenorange6")) {
+  if (!palette %in% c(names(palettelist), "tableau10", "tableau10light",
+                      "purplegray6", "bluered6", "greenorange6")) {
     stop(sprintf("%s is not a valid palette name", palette))
   }
   if (palette == "tableau10") {

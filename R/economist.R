@@ -60,8 +60,9 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
         } else if (n > 6) {
           # 20120825_IRC829
           i <- c("green_light", "green_dark", "gray",
-                 "blue_gray", "blue_light", "blue_dark", "red_dark", "red_light",
-                 "brown")
+                 "blue_gray", "blue_light", "blue_dark", "red_dark",
+                 "red_light", "brown")
+
         }
         unname(colors[i][seq_len(n)])
       }
@@ -186,7 +187,8 @@ theme_economist <- function(base_size = 10, base_family = "sans",
           legend.position = "top",
           legend.direction = NULL,
           legend.justification = "center",
-          ## legend.box = element_rect(fill = palette_economist['bgdk'], colour=NA, linetype=0),
+          ## legend.box = element_rect(fill = palette_economist['bgdk'],
+          ## colour=NA, linetype=0),
           ## Economist only uses vertical lines
           panel.background = element_rect(linetype = 0),
           panel.border = element_blank(),

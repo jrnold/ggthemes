@@ -1,2 +1,2 @@
-linters: with_defaults(commented_code_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, line_length_linter(120L), multiple_dots_linter = NULL)
+linters: with_defaults(commented_code_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, line_length_linter(80L), multiple_dots_linter = NULL)
 exclusions: list("inst/examples/ex-palette_pander.R", "inst/examples/ex-theme_economist.R", "inst/examples/ex-theme_tufte.R")

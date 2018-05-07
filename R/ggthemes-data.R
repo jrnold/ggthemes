@@ -90,28 +90,6 @@ ggthemes_data <- {
              new =
              c("#365e96", "#983334", "#77973d", "#5d437c", "#36869f",
                "#d1702f", "#8197c5", "#c47f80", "#acc484", "#9887b0"))
-
-    ## See http://ethanschoonover.com/solarized
-    ## L*a*b values are canonical (White D65, Reference D50), other values are matched in sRGB space.
-
-    ## SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
-    ## --------- ------- ---- -------  ----------- ---------- ----------- -----------
-    ## base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-    ## base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-    ## base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
-    ## base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
-    ## base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-    ## base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-    ## base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
-    ## base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
-    ## yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-    ## orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-    ## red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-    ## magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-    ## violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-    ## blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-    ## cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-    ## green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
     x$solarized <-
         list(
             base =
@@ -178,30 +156,79 @@ ggthemes_data <- {
     ## Stata
     x$stata <-
         list(colors =
-             c(eltgreen = "#97b6b0", forest_green =
-              "#55752f", sandb = "#ffe474", gold = "#ffd200", midgreen =
-               "#00b000", lavender = "#938dd2", maroon = "#90353b", dknavy =
-               "#1e2d53", sienna = "#a0522d", gs15 = "#f0f0f0", pink = "#ff0080",
-               ebg = "#c6d3df", edkblue = "#3e647d", edkbg = "#b2bfcb", navy =
-               "#1a476f", gs14 = "#e0e0e0", magenta = "#ff00ff", gs16 =
-               "#ffffff", ltbluishgray = "#eaf2f3", gs10 = "#a0a0a0", gs13 =
-               "#d0d0d0", lime = "#00ff00", blue = "#0000ff", gs0 = "#000000",
-               gs3 = "#303030", gs2 = "#202020", gs5 = "#505050", gs4 =
-               "#404040", gs7 = "#707070", gs6 = "#606060", dimgray = "#e8e8e8",
-               gs8 = "#808080", bluishgray = "#d9e6eb", eggshell = "#fffbf0", gs1
-               = "#101010", sunflowerlime = "#eaffaa", ltblue = "#add8e6", black
-               = "#000000", orange_red = "#ff4500", midblue = "#0080ff", white =
-               "#ffffff", gs12 = "#c0c0c0", red = "#ff0000", olive_teal =
-               "#c0dcc0", khaki = "#cac27e", eltblue = "#82c0e9", gs11 =
-               "#b0b0b0", ebblue = "#008bbc", stone = "#d7d29e", ltbluishgray8 =
-               "#e1e6f0", chocolate = "#804000", orange = "#ff7f00", bluishgray8
-               = "#d2d7e4", yellow = "#ffff00", emerald = "#2d6d66", olive =
-               "#5c4717", cyan = "#00ffff", erose = "#bfa19c", gray = "#808080",
-               none = "#000000", gs9 = "#909090", brown = "#9c8847", ltkhaki =
-               "#e5daa5", navy8 = "#273f6f", mint = "#00ff80", purple =
-               "#800080", emidblue = "#7b92a8", dkorange = "#e37e00", sand =
-               "#d9c263", dkgreen = "#006000", green = "#008000", teal =
-               "#6e8e84", cranberry = "#c10534"),
+             c(eltgreen = "#97b6b0",
+               forest_green = "#55752f",
+               sandb = "#ffe474",
+               gold = "#ffd200",
+               midgreen = "#00b000",
+               lavender = "#938dd2",
+               maroon = "#90353b",
+               dknavy = "#1e2d53",
+               sienna = "#a0522d",
+               gs15 = "#f0f0f0",
+               pink = "#ff0080",
+               ebg = "#c6d3df",
+               edkblue = "#3e647d",
+               edkbg = "#b2bfcb",
+               navy = "#1a476f",
+               gs14 = "#e0e0e0",
+               magenta = "#ff00ff",
+               gs16 = "#ffffff",
+               ltbluishgray = "#eaf2f3",
+               gs10 = "#a0a0a0",
+               gs13 = "#d0d0d0",
+               lime = "#00ff00",
+               blue = "#0000ff",
+               gs0 = "#000000",
+               gs3 = "#303030",
+               gs2 = "#202020",
+               gs5 = "#505050",
+               gs4 = "#404040",
+               gs7 = "#707070",
+               gs6 = "#606060",
+               dimgray = "#e8e8e8",
+               gs8 = "#808080",
+               bluishgray = "#d9e6eb",
+               eggshell = "#fffbf0",
+               gs1 = "#101010",
+               sunflowerlime = "#eaffaa",
+               ltblue = "#add8e6",
+               black = "#000000",
+               orange_red = "#ff4500",
+               midblue = "#0080ff",
+               white = "#ffffff",
+               gs12 = "#c0c0c0",
+               red = "#ff0000",
+               olive_teal = "#c0dcc0",
+               khaki = "#cac27e",
+               eltblue = "#82c0e9",
+               gs11 = "#b0b0b0",
+               ebblue = "#008bbc",
+               stone = "#d7d29e",
+               ltbluishgray8 = "#e1e6f0",
+               chocolate = "#804000",
+               orange = "#ff7f00",
+               bluishgray8 = "#d2d7e4",
+               yellow = "#ffff00",
+               emerald = "#2d6d66",
+               olive = "#5c4717",
+               cyan = "#00ffff",
+               erose = "#bfa19c",
+               gray = "#808080",
+               none = "#000000",
+               gs9 = "#909090",
+               brown = "#9c8847",
+               ltkhaki = "#e5daa5",
+               navy8 = "#273f6f",
+               mint = "#00ff80",
+               purple = "#800080",
+               emidblue = "#7b92a8",
+               dkorange = "#e37e00",
+               sand = "#d9c263",
+               dkgreen = "#006000",
+               green = "#008000",
+               teal = "#6e8e84",
+               cranberry = "#c10534"),
              shapes = stata_symbols,
              ## From s1mono and s2mono
              ## help linepatternstyle
@@ -463,22 +490,38 @@ ggthemes_data <- {
              `Purple Sequential` = c(low = "#EFEDF5", high = "#807DBA"),
              `Grey Sequential` = c(low = "#F0F0F0", high = "#737373"))
     x$tableau$diverging <-
-        list(`Red-Blue` = c(low = "#9C0824", mid = "#CACACA", high = "#26456E"),
-             `Red-Green` = c(low = "#9C0824", mid = "#CACACA", high = "#09622A"),
-             `Red-White-Green` = c(low = "#9C0824", mid = "#FFFFFF", high = "#09622A"),
-             `Red-Black` = c(low = "#9C0824", mid = "#CACACA", high = "#1E1E1E"),
-             `Red-White-Black` = c(low = "#9C0824", mid = "#FFFFFF", high = "#1E1E1E"),
-             `Green-Blue` = c(low = "#09622A", mid = "#CACACA", high = "#26456E"),
-             `Orange-Blue` = c(low = "#7B3014", mid = "#CACACA", high = "#26456E"),
-             `Orange-White-Blue` = c(low = "#7B3014", mid = "#FFFFFF", high = "#26456E"),
-             `Red-Green Light` = c(low = "#FFB2B6", mid = "#E5E5E5", high = "#B7E6A7"),
-             `Red-White-Green Light` = c(low = "#FFB2B6", mid = "#FFFFFF", high = "#B7E6A7"),
-             `Red-White-Black Light` = c(low = "#FFB2B6", mid = "#FFFFFF", high = "#C6C6C6"),
-             `Orange-Blue Light` = c(low = "#FFCC9E", mid = "#E5E5E5", high = "#C4D8F3"),
-             `Orange-White-Blue Light` = c(low = "#FFCC9E", mid = "#FFFFFF", high = "#C4D8F3"),
-             `Orange-Blue` = c(low = "#E0AD30", mid = "#E4E4E2", high = "#7492AA"),
-             `Light Red-Green` = c(low = "#EDA389", mid = "#CDE1D3", high = "#5C8B70"),
-             `Temperature` = c(low = "#529985", mid = "#DBCF47", high = "#C26B51"))
+        list(`Red-Blue` = c(low = "#9C0824", mid = "#CACACA",
+                            high = "#26456E"),
+             `Red-Green` = c(low = "#9C0824", mid = "#CACACA",
+                             high = "#09622A"),
+             `Red-White-Green` = c(low = "#9C0824", mid = "#FFFFFF",
+                                   high = "#09622A"),
+             `Red-Black` = c(low = "#9C0824", mid = "#CACACA",
+                             high = "#1E1E1E"),
+             `Red-White-Black` = c(low = "#9C0824", mid = "#FFFFFF",
+                                   high = "#1E1E1E"),
+             `Green-Blue` = c(low = "#09622A", mid = "#CACACA",
+                              high = "#26456E"),
+             `Orange-Blue` = c(low = "#7B3014", mid = "#CACACA",
+                               high = "#26456E"),
+             `Orange-White-Blue` = c(low = "#7B3014", mid = "#FFFFFF",
+                                     high = "#26456E"),
+             `Red-Green Light` = c(low = "#FFB2B6", mid = "#E5E5E5",
+                                   high = "#B7E6A7"),
+             `Red-White-Green Light` = c(low = "#FFB2B6", mid = "#FFFFFF",
+                                         high = "#B7E6A7"),
+             `Red-White-Black Light` = c(low = "#FFB2B6", mid = "#FFFFFF",
+                                         high = "#C6C6C6"),
+             `Orange-Blue Light` = c(low = "#FFCC9E", mid = "#E5E5E5",
+                                     high = "#C4D8F3"),
+             `Orange-White-Blue Light` = c(low = "#FFCC9E", mid = "#FFFFFF",
+                                           high = "#C4D8F3"),
+             `Orange-Blue` = c(low = "#E0AD30", mid = "#E4E4E2",
+                               high = "#7492AA"),
+             `Light Red-Green` = c(low = "#EDA389", mid = "#CDE1D3",
+                                   high = "#5C8B70"),
+             `Temperature` = c(low = "#529985", mid = "#DBCF47",
+                               high = "#C26B51"))
     x$tableau$shapes <-
     list(proportions = c(#
          -0x25CBL, # White circle
@@ -652,8 +695,10 @@ ggthemes_data <- {
     x$hc <- list()
     x$hc$palettes <- list()
     x$hc$palettes$default <- c("#7cb5ec", "#434348", "#90ed7d", "#f7a35c",
-                               "#8085e9", "#f15c80", "#e4d354", "#8085e8", "#8d4653", "#91e8e1")
-    x$hc$palettes$darkunica <- c("#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+                               "#8085e9", "#f15c80", "#e4d354", "#8085e8",
+                               "#8d4653", "#91e8e1")
+    x$hc$palettes$darkunica <- c("#2b908f", "#90ee7e", "#f45b5b", "#7798BF",
+                                 "#aaeeee", "#ff0066", "#eeaaee",
                                  "#55BF3B", "#DF5353", "#7798BF", "#aaeeee")
     x$hc$bg <- c(default = "#FFFFFF",
                  darkunica = "#2a2a2b")

@@ -12,12 +12,14 @@
 stata_pal <- function(scheme="s2color") {
   colorlists <-
     list(s2color = c("navy", "maroon", "forest_green",
-                     "dkorange", "teal", "cranberry", "lavender", "khaki", "sienna",
-                     "emidblue", "emerald", "brown", "erose", "gold", "bluishgray" # gs6
+                     "dkorange", "teal", "cranberry", "lavender",
+                     "khaki", "sienna",
+                     "emidblue", "emerald", "brown", "erose", "gold",
+                     "bluishgray" # gs6
     ),
     s1rcolor = c("yellow", "lime", "midblue", "magenta", "orange",
-                 "red", "ltblue", "sandb", "mint", "olive_teal", "orange_red", "blue",
-                 "pink", "teal", "sienna"), # white
+                 "red", "ltblue", "sandb", "mint", "olive_teal", "orange_red",
+                 "blue", "pink", "teal", "sienna"), # white
     s1color = c("dkgreen", "orange_red", "navy", "maroon", "teal", "sienna",
                 "orange", "magenta", "cyan", "red", "lime", "brown", "purple",
                 "olive_teal", "ltblue"), #gs6
@@ -206,7 +208,8 @@ theme_stata_colors <- function(scheme="s2color") {
 #' @references \url{http://www.stata.com/help.cgi?schemes}
 #'
 #' @example inst/examples/ex-theme_stata.R
-theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") {
+theme_stata <- function(base_size = 11, base_family = "sans",
+                        scheme="s2color") {
   ## Sizes
   (theme_stata_base(base_size = eval(base_size), base_family = base_family)
    + theme_stata_colors(scheme = scheme))
