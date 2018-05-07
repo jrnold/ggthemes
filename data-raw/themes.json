@@ -203,110 +203,6 @@
       }
     ]
   },
-  "few": {
-    "medium": [
-      {
-        "name": "gray",
-        "value": "#737373"
-      },
-      {
-        "name": "red",
-        "value": "#F15A60"
-      },
-      {
-        "name": "green",
-        "value": "#7AC36A"
-      },
-      {
-        "name": "blue",
-        "value": "#5A9BD4"
-      },
-      {
-        "name": "orange",
-        "value": "#FAA75B"
-      },
-      {
-        "name": "purple",
-        "value": "#9E67AB"
-      },
-      {
-        "name": "maroon",
-        "value": "#CE7058"
-      },
-      {
-        "name": "magenta",
-        "value": "#D77FB4"
-      }
-    ],
-    "dark": [
-      {
-        "name": "black",
-        "value": "#010202"
-      },
-      {
-        "name": "red",
-        "value": "#EE2E2F"
-      },
-      {
-        "name": "green",
-        "value": "#008C48"
-      },
-      {
-        "name": "blue",
-        "value": "#185AA9"
-      },
-      {
-        "name": "orange",
-        "value": "#F47D23"
-      },
-      {
-        "name": "purple",
-        "value": "#662C91"
-      },
-      {
-        "name": "maroon",
-        "value": "#A21D21"
-      },
-      {
-        "name": "magenta",
-        "value": "#B43894"
-      }
-    ],
-    "light": [
-      {
-        "name": "gray",
-        "value": "#CCCCCC"
-      },
-      {
-        "name": "red",
-        "value": "#F2AFAD"
-      },
-      {
-        "name": "green",
-        "value": "#D9E4AA"
-      },
-      {
-        "name": "blue",
-        "value": "#B8D2EC"
-      },
-      {
-        "name": "orange",
-        "value": "#F3D1B0"
-      },
-      {
-        "name": "purple",
-        "value": "#D5B2D4"
-      },
-      {
-        "name": "maroon",
-        "value": "#DDB9A9"
-      },
-      {
-        "name": "magenta",
-        "value": "#EBC0DA"
-      }
-    ]
-  },
   "ptol": {
     "qualitative": [
       [
@@ -1338,5 +1234,121 @@
         "value": "#2a2a2b"
       }
     ]
-  }
+  },
+{
+  "Light": [
+    {
+      "name": "Gray",
+      "hex": "#8C8C8C"
+    },
+    {
+      "name": "Blue",
+      "hex": "#88BDE6"
+    },
+    {
+      "name": "Orange",
+      "hex": "#FBB258"
+    },
+    {
+      "name": "Green",
+      "hex": "#90CD97"
+    },
+    {
+      "name": "Pink",
+      "hex": "#F6AAC9"
+    },
+    {
+      "name": "Brown",
+      "hex": "#BFA554"
+    },
+    {
+      "name": "Purple",
+      "hex": "#BC99C7"
+    },
+    {
+      "name": "Yellow",
+      "hex": "#EDDD46"
+    },
+    {
+      "name": "Red",
+      "hex": "#F07E6E"
+    }
+  ],
+  "Medium": [
+    {
+      "name": "Gray",
+      "hex": "#4D4D4D"
+    },
+    {
+      "name": "Blue",
+      "hex": "#5DA5DA"
+    },
+    {
+      "name": "Orange",
+      "hex": "#FAA43A"
+    },
+    {
+      "name": "Green",
+      "hex": "#60BD68"
+    },
+    {
+      "name": "Pink",
+      "hex": "#F17CB0"
+    },
+    {
+      "name": "Brown",
+      "hex": "#B2912F"
+    },
+    {
+      "name": "Purple",
+      "hex": "#B276B2"
+    },
+    {
+      "name": "Yellow",
+      "hex": "#DECF3F"
+    },
+    {
+      "name": "Red",
+      "hex": "#F15854"
+    }
+  ],
+  "Dark & Bright": [
+    {
+      "name": "Gray",
+      "hex": "#000000"
+    },
+    {
+      "name": "Blue",
+      "hex": "#265DAB"
+    },
+    {
+      "name": "Orange",
+      "hex": "#DF5C24"
+    },
+    {
+      "name": "Green",
+      "hex": "#059748"
+    },
+    {
+      "name": "Pink",
+      "hex": "#E5126F"
+    },
+    {
+      "name": "Brown",
+      "hex": "#9D722A"
+    },
+    {
+      "name": "Purple",
+      "hex": "#7B3A96"
+    },
+    {
+      "name": "Yellow",
+      "hex": "#C7B42E"
+    },
+    {
+      "name": "Red",
+      "hex": "#CB2027"
+    }
+  ]
+}
 }
