@@ -219,3 +219,36 @@ scale_fill_gradient2_tableau <- function(palette = "Red-Blue",
 #' @export
 #' @rdname scale_colour_gradient2_tableau
 scale_color_gradient2_tableau <- scale_colour_gradient2_tableau
+
+# Tableau 10 has 30 palettes
+#
+# - tableau 10
+# - tableau 20
+# - color blind
+# - seattle grays
+# - traffic light
+# - superfishel stone
+# - miller stone
+# - nuriel stone
+# - jewel bright
+# - summer
+# - winter
+# - green-orange-teal
+# - blue-red-brown
+# - purple-pink-gray
+# - tableau classic 10
+# - tableau classic medium
+# - tableau classic 20
+# - blue
+# - orange
+# - green
+# - red
+# - purple
+# - brown
+# - gray
+# - gray warm
+# - blue-teal
+# - orange-gold
+# - green-gold
+# - red-gold
+# - hue circle
