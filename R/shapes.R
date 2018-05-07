@@ -42,12 +42,12 @@ cleveland_shape_pal <- function(overlap=TRUE) {
             warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
         }
         if (overlap) {
-        c(1, ## empty circle
-          3, ## plus
-          60, # <
-          87, # S
-          83  # W
-          )[seq_len(n)]
+          c(1, ## empty circle
+            3, ## plus
+            60, # <
+            87, # S
+            83  # W
+            )[seq_len(n)]
         } else {
             c(1, ## empty circle
               19, ## solid circle

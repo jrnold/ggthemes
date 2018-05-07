@@ -1,0 +1,218 @@
+{
+  "gdocs": [
+      {
+        "name": "Circle",
+        "unicode": "BLACK CIRCLE (U+25CF)",
+        "point": "-0x25CF"
+      },
+      {
+        "name": "Triangle",
+        "unicode": "BLACK UP-POINTING TRIANGLE (U+25B2)",
+        "point": "-0x25B2"
+      },
+      {
+        "name": "Square",
+        "unicode": "BLACK MEDIUM SQUARE (U+25FC)",
+        "point": "-0x25FC"
+      },
+      {
+        "name": "Diamond",
+        "unicode": "BLACK DIAMOND (U+25C6)",
+        "point": "-0x25C6"
+      },
+      {
+        "name": "Star",
+        "unicode": "Black Star (U+2605)",
+        "point": "-0x2605"
+      },
+      {
+        "name": "X mark",
+        "unicode": "MULTIPLICATION X (U+2715)",
+        "point": "-0x2715"
+      },
+      {
+        "name": "Pentagon",
+        "unicode": "BLACK PENTAGON (U+2B20)",
+        "point": "-0x2B20"
+      },
+      {
+        "name": "Hexagon",
+        "unicode": "BLACK HEXAGON (U+2B22)",
+        "point": "-0x2B22"
+      }
+  ],
+  "cleveland": {
+    "shapes": {
+      "overlap": [
+        {"name": "Empty Circle",
+         "value": 1
+        },
+        {
+          "name": "Plus",
+          "value": 3
+        },
+        {
+          "name": "<",
+          "value": 60
+        },
+        {
+          "name": "S",
+          "value": 87
+        }
+      ],
+      "default": [
+        {
+          "name": "WHITE CIRCLE",
+          "unicode": "25CB"
+        },
+        {
+          "name": "BLACK CIRCLE",
+          "unicode": "25CF"
+        },
+        {
+          "name": "CIRCLED PLUS",
+          "unicode": "2295"
+        },
+        {
+          "name": "CIRCLED DOT OPERATOR",
+          "unicode": "2299"
+        },
+        {
+          "name": "CIRCLED RING OPERATOR",
+          "unicode": "229A"
+        }
+      ]
+    }
+  },
+  "circlefill": [
+    {
+      "name": "WHITE CIRCLE",
+      "unicode": "25CB"
+    },
+    {
+      "name": "BLACK CIRCLE",
+      "unicode": "25CF"
+    },
+    {
+      "name": "CIRCLE WITH UPPER HALF BLACK",
+      "unicode": "25D3"
+    },
+    {
+      "name": "CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK",
+      "unicode": "25D5"
+    },
+    {
+      "name": "CIRCLE WITH UPPER RIGHT QUADRANT BLACK",
+      "unicode": "25D4"
+    }
+  ],
+  "tremmel": {
+    "1": [16],
+    "2": [16, 3],
+    "2 (overlap)":  [1, 3],
+    "3": [16, 3, 2],
+    "3 (alternate)": [16, 1, 2]
+  },
+  "libreoffice": [
+    {
+      "name": "BLACK SQUARE",
+      "unicode": "25A0"
+    },
+    {
+      "name": "BLACK DIAMOND",
+      "unicode": "25C6"
+    },
+    {
+      "name": "BLACK DOWN-POINTING CHARACTER",
+      "unicode": "25BC"
+    },
+    {
+      "name": "BLACK UP-POINTING TRIANGLE",
+      "unicode": "25B2"
+    },
+    {
+      "name": "BLACK RIGHT-POINTING TRIANGLE",
+      "unicode": "25B6"
+    },
+    -9664,
+    -10707,
+    -10711,
+    {
+      "name": "BLACK CIRCLE",
+      "value": "25CF"
+    },
+    -10022,
+    {
+      "name": "MULTIPLICATION X",
+      "unicode": "2715"
+    },
+    {
+      "name": "FULLWIDTH PLUS SIGN",
+      "unicode": "FF0B"
+    },
+    -8727,
+    -10134,
+    -10073
+  ],
+  "tableau": {
+    "proportions": [
+      -9675,
+      -605,
+      -9681,
+      -9685,
+      -9679
+    ],
+    "default": [
+      1,
+      0,
+      3,
+      4,
+      -8727,
+      5,
+      -9651,
+      -9661,
+      -9655,
+      -9665
+    ],
+    "filled": [
+      16,
+      15,
+      -10133,
+      -10006,
+      -9733,
+      18,
+      -9650,
+      -9660,
+      -9654,
+      -9664
+    ],
+    "gender": [
+      -9794,
+      -9792
+    ],
+    "kpi": [
+      -10003,
+      21,
+      4,
+      16,
+      17,
+      18
+    ],
+    "thin_arrows": [
+      -8595,
+      -8600,
+      -8594,
+      -8599,
+      -8593,
+      -8598,
+      -8592,
+      -8601
+    ],
+    "weather": [
+      -9728,
+      -9729,
+      -9730,
+      -9731
+    ]
+  }
+}

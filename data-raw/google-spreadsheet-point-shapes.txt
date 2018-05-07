@@ -1,0 +1,18 @@
+SVG Paths for Google spreadsheet point shapes
+
+Circle: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><circle cx="6" cy="6" r="6" style="user-select: none;"></circle></svg>
+Triangle: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><path d="M 6,0 L 12,12 L 0,12" style="user-select: none;"></path></svg>
+Square: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><rect x="0" y="0" width="12" height="12" style="user-select: none;"></rect></svg>
+Diamond: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><path d="M 6,0 L 12,6 L 6,12 L 0,6 z" style="user-select: none;"></path></svg>
+Star: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><path d="M 6,0 L 10,12 L 0,4.75 L 12,4.75 L 2,12 z" style="user-select: none;"></path></svg>
+X mark: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><path d="M 0,0 L 6,5 L 12,0 L 7,6 L 12,12 L 6,7 L 0,12 L 5,6 z" style="user-select: none;"></path></svg>
+Pentagon: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><path d="M 6,0 L 12,5 L 9,12 L 3,12 L 0,5 z" style="user-select: none;"></path></svg>
+Hexagon: >-
+  <svg viewBox="0 0 12 12" class="docs-charteditor-series-point-shape-icon" style="user-select: none;"><path d="M 6,0 L 12,3 L 12,9 L 6,12 L 0,9 L 0,3 z" style="user-select: none;"></path></svg>
