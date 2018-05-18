@@ -29,18 +29,14 @@ to \code{\link{theme_bw}}, while \code{theme_solarized_2} is similar to
 \code{\link{theme_gray}}.
 }
 \examples{
-
-
 library("ggplot2")
+
 p <- ggplot(mtcars) +
-     geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+     geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
      facet_wrap(~am)
-p + theme_solarized() + scale_colour_solarized('blue')
+p + theme_solarized() + scale_colour_solarized("blue")
 
 ## Dark version
 p + theme_solarized(light = FALSE) +
-    scale_colour_solarized('blue')
-
-
-
+    scale_colour_solarized("blue")
 }

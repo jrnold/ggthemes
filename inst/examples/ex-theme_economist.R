@@ -1,6 +1,5 @@
-
-
 library("ggplot2")
+
 p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
      colour = factor(gear))) +
      facet_wrap(~am) +
@@ -28,16 +27,16 @@ p + theme_economist_white() +
 ## All white variant
 p + theme_economist_white(gray_bg = FALSE) +
     scale_colour_economist()
+
 \dontrun{
+
 ## The Economist uses ITC Officina Sans
 library(extrafont)
 p + theme_economist(base_family="ITC Officina Sans") +
     scale_colour_economist()
-##D
+
 ## Verdana is a widely available substitute
 p + theme_economist(base_family="Verdana") +
     scale_colour_economist()
+
 }
-
-
-

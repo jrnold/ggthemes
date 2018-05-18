@@ -12,20 +12,19 @@ the set of 3 circle fill values in Lewandowsky and Spence (1989):
 solid, hollow, half-filled, with two additional fill amounts:
 three-quarters, and one-quarter.
 }
+\details{
+This palette supports up to five values.
+}
 \examples{
-
-
 library("ggplot2")
-(ggplot(mtcars, aes(x=mpg, y=hp, shape=factor(cyl)))
+
+(ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(cyl)))
  + geom_point() + scale_shape_tremmel())
-
-
-
 }
 \references{
 Lewandowsky, Stephan and Ian Spence (1989)
 "Discriminating Strata in Scatterplots", Journal of
-the American Statistical Assocation, \url{http://www.jstor.org/stable/2289649}
+the American Statistical Association, \url{http://www.jstor.org/stable/2289649}
 }
 \seealso{
 Other shapes: \code{\link{cleveland_shape_pal}},

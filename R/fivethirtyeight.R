@@ -38,7 +38,8 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
 
 #' fivethirtyeight.com color palette
 #'
-#' The standard fivethirtyeight.com palette for line plots is blue, red, green.
+#' The standard three-color fivethirtyeight.com palette for line plots is
+#' blue, red, and green.
 #'
 #' @family colour fivethirtyeight
 #' @export

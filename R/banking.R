@@ -34,7 +34,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @param method One of 'ms' (Median Absolute Slope) or 'as' (Average
 #' Absolute Slope). Other options are no longer supported, and will use
 #' 'ms' instead with a warning.
-#' @param weight No longer used, but kept for backwards compatiblity.
+#' @param weight No longer used, but kept for backwards compatibility.
 #' @param ... No longer used, but kept for backwards compatibility.
 #'
 #' @section Methods:
@@ -123,4 +123,3 @@ bank_slopes_funs[["as"]] <-
     function(slopes, ...) {
       mean(abs(slopes$s)) * slopes$Rx / slopes$Ry
     }
-

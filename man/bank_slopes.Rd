@@ -14,7 +14,7 @@ bank_slopes(x, y, cull = FALSE, weight = NULL, method = c("ms", "as",
 
 \item{cull}{\code{logical}. Remove all slopes of 0 or \code{Inf}.}
 
-\item{weight}{No longer used, but kept for backwards compatiblity.}
+\item{weight}{No longer used, but kept for backwards compatibility.}
 
 \item{method}{One of 'ms' (Median Absolute Slope) or 'as' (Average
 Absolute Slope). Other options are no longer supported, and will use
@@ -80,9 +80,8 @@ requiring optimization.
 }
 
 \examples{
-
-
 library("ggplot2")
+
 # Use the classic sunspot data from Cleveland's original paper
 x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
@@ -96,10 +95,7 @@ ratio <- bank_slopes(x, y)
 m + coord_fixed(ratio = ratio)
 ## Using culling
 ## Average Absolute Slope
-bank_slopes(x, y, method='as')
-
-
-
+bank_slopes(x, y, method = "as")
 }
 \references{
 Cleveland, W. S., M. E. McGill, and R. McGill. The Shape Parameter

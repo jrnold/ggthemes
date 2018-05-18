@@ -159,7 +159,8 @@ GeomTufteboxplot <-
                 common,
                 stringsAsFactors = FALSE
               )
-              middle_grob <- GeomSegment$draw_panel(middata, panel_scales, coord)
+              middle_grob <- GeomSegment$draw_panel(middata, panel_scales,
+                                                    coord)
 
             }
 
@@ -175,7 +176,8 @@ GeomTufteboxplot <-
                 alpha = NA,
                 stringsAsFactors = FALSE
               )
-              outliers_grob <- GeomPoint$draw_panel(outliers, panel_scales, coord)
+              outliers_grob <- GeomPoint$draw_panel(outliers, panel_scales,
+                                                    coord)
             } else {
               outliers_grob <- NULL
             }

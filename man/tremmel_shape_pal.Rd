@@ -27,6 +27,7 @@ in the same feature dimension. A set of three symbols that
 satisfies this is a circle (curvature), plus sign (number of
 terminators), triangle (line orientation).
 
+This palette supports up to three values.
 If more than three groups of data, then separate the groups into
 different plots.
 }

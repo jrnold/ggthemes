@@ -1,6 +1,6 @@
 #' Colorblind Color Palette (Discrete) and Scales
 #'
-#' An 8-color colorblind safe qualitative discrete palette.
+#' An eight-color colorblind safe qualitative discrete palette.
 #'
 #' @rdname colorblind
 #' @references

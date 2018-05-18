@@ -71,17 +71,12 @@ Axis lines which extend to the maximum and minimum of the plotted data.
 }
 
 \examples{
-### Keywords: datasets
-
-
 library("ggplot2")
+
 ggplot(mtcars, aes(wt, mpg)) +
  geom_point() +
  geom_rangeframe() +
  theme_tufte()
-
-
-
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of

@@ -14,15 +14,14 @@ stata_pal(scheme = "s2color")
 Stata color palettes. See Stata documentation for a description of
 the schemes, \url{http://www.stata.com/help.cgi?schemes}.
 }
+\details{
+All these palettes support up to 15 values.
+}
 \examples{
-
-
 library("scales")
+
 show_col(stata_pal("s2color")(15))
 show_col(stata_pal("s1rcolor")(15))
 show_col(stata_pal("s1color")(15))
 show_col(stata_pal("mono")(15))
-
-
-
 }

@@ -8,15 +8,12 @@ gdocs_pal()
 }
 \description{
 Color palettes from Google Docs.
+This palette includes 20 colors.
 }
 \examples{
-
-
 library("scales")
+
 show_col(gdocs_pal()(20))
-
-
-
 }
 \seealso{
 Other colour gdocs: \code{\link{scale_fill_gdocs}}

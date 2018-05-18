@@ -27,16 +27,12 @@ similar to the style of plots in Stata and Tableau.
 }
 
 \examples{
-
-
 library("ggplot2")
+
 p <- ggplot(mtcars) +
-    geom_point(aes(x = wt, y = mpg, colour=factor(gear))) +
+    geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
     facet_wrap(~am)
 p + theme_igray()
-
-
-
 }
 \seealso{
 \code{\link{theme_gray}}, \code{\link{theme_bw}}

@@ -5,9 +5,9 @@
 #'
 #' The color palettes are
 #' \describe{
-#' \item{line}{Excel 2003 default color palette.}
-#' \item{fill}{Excel 2003 bar chart color palette.}
-#' \item{new}{Color palette from newer Excel versions.}
+#' \item{line}{Excel 2003 default color palette. seven colors.}
+#' \item{fill}{Excel 2003 bar chart color palette. seven colors.}
+#' \item{new}{Color palette from newer Excel versions. 10 colors.}
 #' }
 #'
 #' @param palette One of \code{'old'}, \code{'fill'}, or \code{'new'}.

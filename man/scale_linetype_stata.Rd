@@ -15,12 +15,14 @@ scale_linetype_stata(...)
 See \code{\link{stata_linetype_pal}} for details.
 }
 \examples{
-
-
 require("dplyr")
 require("tidyr")
 require("ggplot2")
-rescale01 <- function(x) {(x - min(x)) / diff(range(x))}
+
+rescale01 <- function(x) {
+  (x - min(x)) / diff(range(x))
+}
+
 gather(economics, variable, value, -date) \%>\%
   group_by(variable) \%>\%
   mutate(value = rescale01(value)) \%>\%

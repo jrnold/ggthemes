@@ -11,7 +11,8 @@ solarized_pal(accent = "blue")
 }
 \description{
 Qualitative color palate based on the Ethan Schoonover's Solarized
-palette, \url{http://ethanschoonover.com/solarized}.
+palette, \url{http://ethanschoonover.com/solarized}. This palette supports
+up to seven values.
 }
 \note{
 For a given starting color and number of colors in the palette,
@@ -19,15 +20,11 @@ the other colors are the combination of colors that maximizes the
 total Euclidean distance between colors in L*a*b space.
 }
 \examples{
-
-
 library("scales")
+
 show_col(solarized_pal()(2))
 show_col(solarized_pal()(3))
-show_col(solarized_pal('red')(4))
-
-
-
+show_col(solarized_pal("red")(4))
 }
 \seealso{
 Other solarized colour: \code{\link{scale_fill_solarized}}

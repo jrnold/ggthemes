@@ -3,6 +3,8 @@
 #' Stata color palettes. See Stata documentation for a description of
 #' the schemes, \url{http://www.stata.com/help.cgi?schemes}.
 #'
+#' All these palettes support up to 15 values.
+#'
 #' @param scheme \code{character}. One of \code{"s2color"},
 #' \code{"s1rcolor"}, \code{"s1color"}, or \code{"mono"}.
 #'
@@ -12,12 +14,14 @@
 stata_pal <- function(scheme="s2color") {
   colorlists <-
     list(s2color = c("navy", "maroon", "forest_green",
-                     "dkorange", "teal", "cranberry", "lavender", "khaki", "sienna",
-                     "emidblue", "emerald", "brown", "erose", "gold", "bluishgray" # gs6
+                     "dkorange", "teal", "cranberry", "lavender",
+                     "khaki", "sienna",
+                     "emidblue", "emerald", "brown", "erose", "gold",
+                     "bluishgray" # gs6
     ),
     s1rcolor = c("yellow", "lime", "midblue", "magenta", "orange",
-                 "red", "ltblue", "sandb", "mint", "olive_teal", "orange_red", "blue",
-                 "pink", "teal", "sienna"), # white
+                 "red", "ltblue", "sandb", "mint", "olive_teal", "orange_red",
+                 "blue", "pink", "teal", "sienna"), # white
     s1color = c("dkgreen", "orange_red", "navy", "maroon", "teal", "sienna",
                 "orange", "magenta", "cyan", "red", "lime", "brown", "purple",
                 "olive_teal", "ltblue"), #gs6
@@ -206,7 +210,8 @@ theme_stata_colors <- function(scheme="s2color") {
 #' @references \url{http://www.stata.com/help.cgi?schemes}
 #'
 #' @example inst/examples/ex-theme_stata.R
-theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") {
+theme_stata <- function(base_size = 11, base_family = "sans",
+                        scheme="s2color") {
   ## Sizes
   (theme_stata_base(base_size = eval(base_size), base_family = base_family)
    + theme_stata_colors(scheme = scheme))
@@ -214,8 +219,8 @@ theme_stata <- function(base_size = 11, base_family = "sans", scheme="s2color") 
 
 #' Stata shape palette (discrete)
 #'
-#' Shape palette based on the symbol palette in Stata, specifically
-#' that for the scheme s2mono.
+#' Shape palette based on the symbol palette in Stata used in scheme s2mono.
+#' This palette supports up to 10 values.
 #'
 #' @export
 #' @family shapes stata
@@ -245,6 +250,7 @@ scale_shape_stata <- function (...) {
 #' Stata linetype palette (discrete)
 #'
 #' Linetype palette based on the linepattern scheme in Stata.
+#' This palette supports up to 15 values.
 #'
 #' @family linetype stata
 #' @export

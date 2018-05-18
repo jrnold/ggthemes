@@ -10,7 +10,7 @@
 #' two shape palettes for scatter plots: one for overlapping data and
 #' another for non-overlapping data. The symbols for overlapping data
 #' relies on pattern discrimination, while the symbols for
-#' non-overlapping data vary the amount of fill. This palatte
+#' non-overlapping data vary the amount of fill. This palette
 #' attempts to create these palettes. However, I found that these
 #' were hard to replicate. Using the R shapes and unicode fonts: the
 #' symbols can vary in size, they are dependent of the fonts used,
@@ -21,6 +21,8 @@
 #' Following Tremmel (1995), I replace the circle with a vertical
 #' line with an encircled plus sign.
 #'
+#' The palette \code{cleveland_shape_pal} supports up to five values.
+#'
 #' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references
 #' Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
@@ -30,13 +32,16 @@
 #'
 #' @family shapes
 #' @export
-cleveland_shape_pal <- function(overlap=TRUE) {
+cleveland_shape_pal <- function(overlap = TRUE) {
     function(n) {
         maxshapes <- 5
         if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum of %d discrete ",
-                                 "values because more than %d becomes difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying shapes manually. if you ",
+            msg <- sprintf(paste("The shape palette can deal with a maximum ",
+                                 "of %d discrete ",
+                                 "values because more than %d becomes ",
+                                 "difficult to discriminate; ",
+                                 "you have ", n, ". Consider specifying ",
+                                 "shapes manually. if you ",
                                  "must have them.", sep = ""),
                            maxshapes, maxshapes)
             warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
@@ -82,12 +87,12 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 #' solid, hollow, half-filled, with two additional fill amounts:
 #' three-quarters, and one-quarter.
 #'
-#'
+#' This palette supports up to five values.
 #'
 #' @references
 #' Lewandowsky, Stephan and Ian Spence (1989)
 #' "Discriminating Strata in Scatterplots", Journal of
-#' the American Statistical Assocation, \url{http://www.jstor.org/stable/2289649}
+#' the American Statistical Association, \url{http://www.jstor.org/stable/2289649}
 #' @example inst/examples/ex-circlefill_shape_pal.R
 #' @family shapes
 #' @export
@@ -96,10 +101,13 @@ circlefill_shape_pal <- function() {
     types <- c(16, 1, -0x25D3, -0x25D5, -0x25D4)
     function(n) {
         if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum of %d discrete ",
-                                 "values because more than %d becomes difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying shapes manually. if you ",
-                                 "must have them.", sep = ""),
+            msg <- sprintf(paste("The shape palette can deal with a maximum ",
+                                 "of %d discrete ",
+                                 "values because more than %d becomes ",
+                                 "difficult to discriminate; ",
+                                 "you have ", n,
+                                 ". Consider specifying shapes manually, ",
+                                 "if you must have them.", sep = ""),
                            maxshapes, maxshapes)
             warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
         }
@@ -132,6 +140,7 @@ scale_shape_circlefill <- function(...) {
 #' satisfies this is a circle (curvature), plus sign (number of
 #' terminators), triangle (line orientation).
 #'
+#' This palette supports up to three values.
 #' If more than three groups of data, then separate the groups into
 #' different plots.
 #'
@@ -165,9 +174,12 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
                   2) # triangle
             }
         } else if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum of %d discrete ",
-                                 "values because more than %d becomes difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying shapes manually. if you ",
+            msg <- sprintf(paste("The shape palette can deal with a maximum ",
+                                 "of %d discrete ",
+                                 "values because more than %d becomes ",
+                                 "difficult to discriminate; ",
+                                 "you have ", n, ". Consider specifying ",
+                                 "shapes manually. if you ",
                                  "must have them.", sep = ""),
                            maxshapes, maxshapes)
             warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
@@ -179,7 +191,6 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams tremmel_shape_pal
-#'
 #'
 #' @seealso \code{\link{tremmel_shape_pal}} for a description of the palette.
 #' @example inst/examples/ex-scale_shape_tremmel.R

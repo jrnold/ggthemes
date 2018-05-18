@@ -7,7 +7,7 @@
 palette_pander(n, random_order = FALSE)
 }
 \arguments{
-\item{n}{number of colors}
+\item{n}{number of colors. This palette supports up to eight colors.}
 
 \item{random_order}{if the palette should be reordered randomly before
 rendering each plot to get colorful images}
@@ -17,14 +17,9 @@ The \pkg{pander} ships with a default colorblind and printer-friendly
 color palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 \examples{
-
-
 \dontrun{
-palette_pander(TRUE)
+  palette_pander(TRUE)
 }
-
-
-
 }
 \seealso{
 Other colour pander: \code{\link{scale_color_pander}}

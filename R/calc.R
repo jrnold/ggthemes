@@ -30,6 +30,7 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 #' Calc color palette (discrete)
 #'
 #' Color palettes from LibreOffice Calc.
+#' This palette has 12 values.
 #'
 #' @family colour calc
 #' @export

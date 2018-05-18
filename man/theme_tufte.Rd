@@ -39,21 +39,23 @@ library("ggplot2")
 # with geom_rug
 (ggplot(mtcars, aes(wt, mpg))
  + geom_point() + geom_rug()
- + theme_tufte(ticks=FALSE))
+ + theme_tufte(ticks = FALSE))
+
 \dontrun{
+
 ## Using the Bembo serif family
-library(extrafont)
+library("extrafont")
+
 (ggplot(mtcars, aes(wt, mpg))
  + geom_point() + geom_rangeframe()
- + theme_tufte(base_family='BemboStd'))
+ + theme_tufte(base_family = "BemboStd"))
+
 ## Using the Gill Sans sans serif family
 (ggplot(mtcars, aes(wt, mpg))
  + geom_point() + geom_rangeframe()
- + theme_tufte(base_family='GillSans'))
+ + theme_tufte(base_family = "GillSans"))
+
 }
-
-
-
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of

@@ -45,16 +45,14 @@ The \pkg{pander} ships with a default theme when the 'unify plots' option is
 enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals}, \code{eval.msgs} or \code{Pandoc.brew}.
 }
 \examples{
-
-
-library("ggplot2")
-library("pander")
+require("ggplot2")
+require("pander")
 
 p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
      geom_point()
 p + theme_pander()
 
-panderOptions('graph.grid.color', 'red')
+panderOptions("graph.grid.color", "red")
 p + theme_pander()
 
 p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
@@ -65,8 +63,4 @@ ggplot(mpg, aes(x = class, fill = drv)) +
   geom_bar() +
   scale_fill_pander() +
   theme_pander()
-
-
-
-
 }

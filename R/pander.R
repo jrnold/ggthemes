@@ -181,7 +181,8 @@ theme_pander <- function(base_size = 12,
 #'
 #' The \pkg{pander} ships with a default colorblind and printer-friendly
 #' color palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
-#' @param n number of colors
+#'
+#' @param n number of colors. This palette supports up to eight colors.
 #' @param random_order if the palette should be reordered randomly before
 #'  rendering each plot to get colorful images
 #' @export
@@ -190,7 +191,8 @@ theme_pander <- function(base_size = 12,
 palette_pander <- function(n, random_order = FALSE) {
 
   ## default (colorblind and printer-friendly) colors
-  cols <- c("#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999", "#E69F00")
+  cols <- c("#56B4E9", "#009E73", "#F0E442", "#0072B2",
+            "#D55E00", "#CC79A7", "#999999", "#E69F00")
 
   if (requireNamespace("pander", quietly = TRUE)) {
     cols <- pander::panderOptions("graph.colors")
@@ -217,7 +219,9 @@ palette_pander <- function(n, random_order = FALSE) {
 #' @rdname scale_pander
 #' @seealso \code{\link{theme_pander}}
 #' @export
-scale_color_pander <- function(...) discrete_scale("colour", "pander", palette_pander, ...)
+scale_color_pander <- function(...) {
+  discrete_scale("colour", "pander", palette_pander, ...)
+}
 
 
 #' @rdname scale_pander
@@ -227,4 +231,6 @@ scale_colour_pander <- scale_color_pander
 
 #' @rdname scale_pander
 #' @export
-scale_fill_pander <- function(...) discrete_scale("fill", "pander", palette_pander, ...)
+scale_fill_pander <- function(...) {
+  discrete_scale("fill", "pander", palette_pander, ...)
+}

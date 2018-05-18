@@ -51,18 +51,8 @@ theme_hc <- function(base_size = 12,
 #' The Highcharts JS uses many different color palettes in its
 #' plots. This collects a few of them.
 #'
-#' @section Palettes:
-#'
-#' The following palettes are defined,
-#'
-#' \describe{
-#' \item{default}{#7cb5ec, #434348, #90ed7d, #f7a35c, #8085e9, #f15c80',
-#' #e4d354, #8085e8, #8d4653, #91e8e1 theme.
-#' Examples: \url{http://www.highcharts.com/demo}.}
-#' \item{darkunica}{#2b908f, #90ee7e, #f45b5b, #7798BF, #aaeeee,
-#' #ff0066, #eeaaee, #55BF3B, #DF5353, #7798BF, #aaeeee'. Examples:
-#' \url{http://www.highcharts.com/demo/line-basic/dark-unica}.}
-#' }
+#' The \code{"darkunica"} palette has 11 colors, and the \code{"default"}
+#' palette has 10 colors.
 #'
 #' @param palette \code{character} The color palette to use. This
 #' must be a name in

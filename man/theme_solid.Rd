@@ -18,15 +18,11 @@ Theme that removes all non-geom elements (lines, text, etc),
 This theme is when only the geometric objects are desired.
 }
 \examples{
-
-
 library("ggplot2")
+
 (ggplot(mtcars, aes(wt, mpg))
  + geom_point()
  + theme_solid(fill = "white"))
-
-
-
 }
 \seealso{
 Other themes: \code{\link{theme_base}},

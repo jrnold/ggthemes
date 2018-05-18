@@ -13,23 +13,25 @@ tableau_color_pal(palette = "tableau10")
 Color palettes used in
 \href{http://www.tableausoftware.com/}{Tableau}.
 }
+\details{
+The number in some palette names indicates the maximum number of
+values supported, e.g \code{tableau20} supports up to 20 values.
+\code{"trafficlight"} supports up to nine values, and \code{"cyclic"}
+supports up to 20 values.
+}
 \examples{
-
-
 library("scales")
-show_col(tableau_color_pal('tableau20')(20))
-show_col(tableau_color_pal('tableau10')(10))
-show_col(tableau_color_pal('tableau10medium')(10))
-show_col(tableau_color_pal('tableau10light')(10))
-show_col(tableau_color_pal('colorblind10')(10))
-show_col(tableau_color_pal('trafficlight')(10))
-show_col(tableau_color_pal('purplegray12')(12))
-show_col(tableau_color_pal('bluered12')(12))
-show_col(tableau_color_pal('greenorange12')(12))
-show_col(tableau_color_pal('cyclic')(20))
 
-
-
+show_col(tableau_color_pal("tableau20")(20))
+show_col(tableau_color_pal("tableau10")(10))
+show_col(tableau_color_pal("tableau10medium")(10))
+show_col(tableau_color_pal("tableau10light")(10))
+show_col(tableau_color_pal("colorblind10")(10))
+show_col(tableau_color_pal("trafficlight")(10))
+show_col(tableau_color_pal("purplegray12")(12))
+show_col(tableau_color_pal("bluered12")(12))
+show_col(tableau_color_pal("greenorange12")(12))
+show_col(tableau_color_pal("cyclic")(20))
 }
 \references{
 \url{http://vis.stanford.edu/color-names/analyzer/}
