@@ -1,19 +1,22 @@
 library("ggplot2")
 
-p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     colour = factor(gear))) +
+p <- ggplot(mtcars) +
+     geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
      facet_wrap(~am) +
-     # Economist puts scales on the right-hand side
+     # Economist puts x-axis labels on the right-hand side
      scale_y_continuous(position = "right")
 
 ## Standard
-p + theme_economist() + scale_colour_economist()
+p + theme_economist() +
+  scale_colour_economist()
 
 ## Stata colors
-p + theme_economist(stata = TRUE) + scale_colour_economist(stata = TRUE)
+p + theme_economist(stata = TRUE) +
+  scale_colour_economist(stata = TRUE)
 
 ## Darker plot region
-p + theme_economist(dkpanel = TRUE) + scale_colour_economist(stata = TRUE)
+p + theme_economist(dkpanel = TRUE) +
+  scale_colour_economist(stata = TRUE)
 
 # Change axis lines to vertical
 p + theme_economist(horizontal = FALSE) +
@@ -31,7 +34,7 @@ p + theme_economist_white(gray_bg = FALSE) +
 \dontrun{
 
 ## The Economist uses ITC Officina Sans
-library(extrafont)
+library("extrafont")
 p + theme_economist(base_family="ITC Officina Sans") +
     scale_colour_economist()
 

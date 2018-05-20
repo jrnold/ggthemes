@@ -1,7 +1,8 @@
 #' Excel color palette (discrete)
 #'
-#' Color palettes from Excel, both current and the pre-2007 ugly
-#' palettes.
+#' Color palettes from Excel, both current and Excel 2003, for that classic
+#' ugly look and feel. For ironic purposes only.
+#' 3D bars and pies not included. Please never use this theme.
 #'
 #' The color palettes are
 #' \describe{

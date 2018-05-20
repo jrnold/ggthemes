@@ -32,6 +32,7 @@ ptol_pal <- function() {
 #' @family colour ptol
 #' @rdname scale_ptol
 #' @export
+#' @example inst/examples/ex-scale_colour_ptol.R
 scale_colour_ptol <- function(...) {
   discrete_scale("colour", "ptol", ptol_pal(), ...)
 }

@@ -30,9 +30,9 @@
 
 <meta property="og:title" content="150 Color Palettes from Canva — canva_palettes" />
 
-<meta property="og:description" content="150 four-color palettes by the canva.com design school.
-These palettes were derived from photos and "impactful websites".
-They were then adapted to Tableau and Excel palettes by the sources below." />
+<meta property="og:description" content="150 four-color palettes by the
+canva.com design school.
+These palettes were derived from photos and "impactful websites"." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -73,31 +73,7 @@ They were then adapted to Tableau and Excel palettes by the sources below." />
   </a>
 </li>
 <li>
-  <a href="../articles/ggthemes.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/children/contribute.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
-      <a href="../articles/children/examples.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
-      <a href="../articles/children/install.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
-      <a href="../articles/children/intro.html">UNKNOWN TITLE</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -130,9 +106,9 @@ They were then adapted to Tableau and Excel palettes by the sources below." />
 
     <div class="ref-description">
     
-    <p>150 four-color palettes by the <a href='https://designschool.canva.com'>canva.com</a> design school.
-These palettes were derived from photos and "impactful websites".
-They were then adapted to Tableau and Excel palettes by the sources below.</p>
+    <p>150 four-color palettes by the
+<a href='https://designschool.canva.com'>canva.com</a> design school.
+These palettes were derived from photos and "impactful websites".</p>
     
     </div>
 
@@ -151,11 +127,16 @@ are hex colors, e.g. <code>"#f98866"</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <ul>
-<li><p>Janie Kliever, <a href='https://designschool.canva.com/blog/100-color-combinations/'>100 Brilliant Color Combinations and How to Apply Them to Your Designs</a>, <em>Canva.com</em>, June 20, 2015.</p></li>
-<li><p>Mary Stribley, <a href='https://designschool.canva.com/blog/website-color-schemes/'>Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You</a>, <em>Canva.com</em>, January 26, 2016.</p></li>
-<li><p>Pablo Saenz de Tejeda, <a href='http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/'>150 paletas de colores para Tableau</a>, January 1, 2017.</p></li>
-<li><p>Schwabish, Jonathan. <a href='https://policyviz.com/2017/01/12/150-color-palettes-for-excel/'>150+ Color Palettes for Excel</a>, <em>PolicyViz</em>,
-January 12, 2017.</p></li>
+<li><p>Janie Kliever, <a href='https://designschool.canva.com/blog/100-color-combinations/'>100 Brilliant Color Combinations and How to Apply Them to Your Designs</a>,
+  <em>Canva.com</em>, June 20, 2015.</p></li>
+<li><p>Mary Stribley, <a href='https://designschool.canva.com/blog/website-color-schemes/'>Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You</a>,
+  <em>Canva.com</em>, January 26, 2016.</p></li>
+<li><p>Pablo Saenz de Tejeda,
+  <a href='http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/'>150 paletas de colores para Tableau</a>,
+  January 1, 2017.</p></li>
+<li><p>Schwabish, Jonathan.
+   <a href='https://policyviz.com/2017/01/12/150-color-palettes-for-excel/'>150+ Color Palettes for Excel</a>,
+    <em>PolicyViz</em>, January 12, 2017.</p></li>
 </ul>
     
 
@@ -163,15 +144,18 @@ January 12, 2017.</p></li>
     <pre class="examples"><div class='input'><span class='fu'>require</span>(<span class='st'>"ggplot2"</span>)
 <span class='fu'>require</span>(<span class='st'>"purrr"</span>)
 <span class='fu'>require</span>(<span class='st'>"tibble"</span>)
+<span class='fu'>require</span>(<span class='st'>"scales"</span>)
 <span class='no'>canva_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map2'>map2_df</a></span>(<span class='no'>canva_palettes</span>, <span class='fu'>names</span>(<span class='no'>canva_palettes</span>),
-                   ~ <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>.x</span>, <span class='kw'>.id</span> <span class='kw'>=</span> <span class='fu'>seq_along</span>(<span class='no'>colors</span>), <span class='kw'>palette</span> <span class='kw'>=</span> <span class='no'>.y</span>))
+                    ~ <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>.x</span>, <span class='kw'>.id</span> <span class='kw'>=</span> <span class='fu'>seq_along</span>(<span class='no'>colors</span>),
+                             <span class='kw'>palette</span> <span class='kw'>=</span> <span class='no'>.y</span>))
 <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>canva_df</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>palette</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.id</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>colors</span>)) +
        <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile'>geom_raster</a></span>() +
        <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/scale_identity'>scale_fill_identity</a></span>(<span class='kw'>guide</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) +
        <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_minimal</a></span>() +
        <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/theme'>theme</a></span>(<span class='kw'>panel.grid</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/element'>element_blank</a></span>(),
              <span class='kw'>axis.text.x</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/element'>element_blank</a></span>()) +
-       <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='canva_palettes-1.png' alt='' width='700' height='433' /></div></pre>
+       <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='canva_palettes-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'><a href='canva_pal.html'>canva_pal</a></span>(<span class='st'>"Fresh and bright"</span>)(<span class='fl'>4</span>))</div><div class='img'><img src='canva_palettes-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'><a href='canva_pal.html'>canva_pal</a></span>(<span class='st'>"Cool blues"</span>)(<span class='fl'>4</span>))</div><div class='img'><img src='canva_palettes-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'><a href='canva_pal.html'>canva_pal</a></span>(<span class='st'>"Modern and crisp"</span>)(<span class='fl'>4</span>))</div><div class='img'><img src='canva_palettes-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

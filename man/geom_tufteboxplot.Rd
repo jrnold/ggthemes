@@ -46,9 +46,13 @@ a call to a position adjustment function.}
 
 \item{outlier.stroke}{stroke for outlying points}
 
-\item{voffset}{controls the size of the gap in the line representing the median when \code{median.type = 'line'}. This is a fraction of the range of \code{y}.}
+\item{voffset}{controls the size of the gap in the line representing the
+median when \code{median.type = 'line'}. This is a fraction of the range
+of \code{y}.}
 
-\item{hoffset}{controls how much the interquartile line is offset from the whiskers when \code{median.type = 'line'}. This is a fraction of the range of \code{x}.}
+\item{hoffset}{controls how much the interquartile line is offset from the
+whiskers when \code{median.type = 'line'}. This is a fraction of the
+range of \code{x}.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
@@ -62,9 +66,14 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link{borders}}.}
 
-\item{median.type}{If \code{'point'}, then the median is represented by a point, and the interquartile range by a gap in the line. If \code{median.type='line'}, then the interquartile range is represented by a line, possibly offset, and the median by a gap in the line.}
+\item{median.type}{If \code{'point'}, then the median is represented by a
+point, and the interquartile range by a gap in the line. If
+\code{median.type='line'}, then the interquartile range is represented by
+a line, possibly offset, and the median by a gap in the line.}
 
-\item{whisker.type}{If \code{'line'}, then whiskers are represented by lines. If \code{'point'}, then whiskers are represented by points at \code{ymin} and \code{ymax}.}
+\item{whisker.type}{If \code{'line'}, then whiskers are represented by lines.
+If \code{'point'}, then whiskers are represented by points at
+\code{ymin} and \code{ymax}.}
 
 \item{...}{other arguments passed on to \code{\link{layer}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
@@ -74,6 +83,19 @@ to the paired geom/stat.}
 \description{
 Edward Tufte's revisions of the box plot as described in
 \emph{The Visual Display of Quantitative Information}.
+This functions provides several box plot variants:
+\itemize{
+\item{A point indicating the median, a gap indicating the
+  interquartile range, and lines for whiskers.}
+\item{An offset line indicating the interquartile range
+      and a gap indicating the median.}
+\item{A line indicating the interquartile range,
+      a gap indicating the median, and points indicating
+      the minimum and maximum values}
+\item{A  wide line indicating the interquartile range,
+      a gap indicating the median, and lines indicating the minimum and
+      maximum.}
+}
 }
 \section{Aesthetics}{
 
@@ -93,21 +115,25 @@ Edward Tufte's revisions of the box plot as described in
 library("ggplot2")
 
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
-## with a point for the median and lines for whiskers
+# with a point for the median and lines for whiskers
 p + geom_tufteboxplot()
-## with a line for the interquartile range and points for whiskers
+# with a line for the interquartile range and points for whiskers
 p + geom_tufteboxplot(median.type = "line", whisker.type = "point", hoffset = 0)
-## with a wide line for the interquartile range and lines for whiskers
+# with a wide line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
-## with an offset line for the interquartile range and lines for whiskers
+# with an offset line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type = "line")
+# combined with theme_tufte
+p + geom_tufteboxplot() +
+  theme_tufte() +
+  theme(axis.ticks.x = element_blank())
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of
 Quantitative Information, Chapter 6.
 
 McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
-    box plots. The American Statistician 32, 12-16.
+box plots. The American Statistician 32, 12-16.
 }
 \seealso{
 \code{\link{geom_boxplot}}

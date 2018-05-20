@@ -1,4 +1,7 @@
 reference:
+- title: Themes
+  contents:
+  - starts_with("theme_")
 - title: "Color Scales"
   desc: >-
     Provided ggplot2 scales for the `color` (`colour`) aesthetic.
@@ -6,12 +9,6 @@ reference:
     properties.
   contents:
   - starts_with("scale_color_")
-- title: "Fill scales (Discrete)"
-  desc: >-
-    Provided ggplot2 scales for the `fill` aesthetic.
-    Scales control the details of how data values are translated to visual
-    properties.
-  contents:
   - starts_with("scale_fill_")
 - title: Shape Scales
   desc: >-
@@ -27,9 +24,9 @@ reference:
     properties.
   contents:
   - starts_with("scale_linetype_")
-- title: Color Palettes
+- title: Color, Shape, and Linetype Palettes
   desc: >-
-    Color palette functions which return a function
+    Color, shape, and linetype palettes.
   contents:
   - ends_with("_pal")
   - palette_pander
@@ -43,9 +40,6 @@ reference:
     ggplot2 stats layers.
   contents:
   - stat_fivenumber
-- title: Themes
-  contents:
-  - starts_with("theme_")
 - title: Other functions
   contents:
   - bank_slopes

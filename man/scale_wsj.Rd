@@ -21,9 +21,8 @@ must be a name in
 to control name, limits, breaks, labels and so forth.}
 }
 \description{
-Colour and fill scales which use the palettes in
-\code{\link{wsj_pal}} and are meant for use with
-\code{\link{theme_wsj}}.
+Colour and fill scales which use the palettes in \code{\link{wsj_pal}}.
+These scales should be used with \code{\link{theme_wsj}}.
 }
 \seealso{
 Other colour wsj: \code{\link{wsj_pal}}

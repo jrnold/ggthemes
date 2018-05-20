@@ -11,16 +11,22 @@ knitr::opts_chunk$set(fig.width = 5.25,
                dev = 'png')
 ```
 
-# ggthemes
+Some extra geoms, scales, and themes for
+[ggplot](http://ggplot2.org), including:
 
-```{r child='vignettes/children/intro.Rmd'}
+
+## Install 
+
+To install the stable version from CRAN,
+
+```r
+install.packages('ggthemes', dependencies = TRUE)
 ```
 
-```{r child='vignettes/children/install.Rmd'}
-```
+Or, to install the development version from github, use the
+**devtools** package,
 
-```{r child='vignettes/children/contribute.Rmd'}
-```
-
-```{r child='vignettes/children/examples.Rmd'}
+```r
+library("devtools")
+install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
 ```

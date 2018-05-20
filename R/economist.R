@@ -97,25 +97,30 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 
 #' ggplot color theme based on the Economist
 #'
-#' Style plots similar to those in \emph{The Economist}.
+#' A theme that approximates the style of \emph{The Economist}.
 #'
 #' \code{theme_economist} implements the standard bluish-gray
 #' background theme in the print \emph{The Economist} and
 #' \href{http://economist.com}{economist.com}.
+#'
 #' \code{theme_economist_white} implements a variant with a while
-#' panel and light gray (or white) background used by \emph{The Economist}
+#' panel and light gray (or white) background often used by \emph{The Economist}
 #' blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
+#'
+#' Use \code{\link{scale_color_economist}} with this theme.
+#' The x axis should be displayed on the right hand side.
 #'
 #' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
 #' you have access to this font, you can use it with the
 #' \pkg{extrafont} package. "Verdana" is a good substitute.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal \code{logical}. Horizontal axis lines?
+#' @param horizontal \code{logical} Horizontal axis lines?
 #' @param dkpanel \code{logical} Darker background for panel region?
 #' @param stata \code{logical} Use RGB values from Stata's
-#' economist scheme.
-#' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else use white
+#'    economist scheme.
+#' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else
+#'    use white
 #' background.
 #'
 #' @return An object of class \code{\link{theme}}.

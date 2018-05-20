@@ -1,27 +1,13 @@
-
-
 library("ggplot2")
-# with ticks and range frames
-(ggplot(mtcars, aes(wt, mpg))
- + geom_point() + geom_rangeframe()
- + theme_tufte())
-# with geom_rug
-(ggplot(mtcars, aes(wt, mpg))
- + geom_point() + geom_rug()
- + theme_tufte(ticks = FALSE))
 
-\dontrun{
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt)) +
+  scale_y_continuous(breaks = extended_range_breaks()(mtcars$mpg)) +
+  ggtitle("Cars")
 
-## Using the Bembo serif family
-library("extrafont")
+p + geom_rangeframe() +
+  theme_tufte()
 
-(ggplot(mtcars, aes(wt, mpg))
- + geom_point() + geom_rangeframe()
- + theme_tufte(base_family = "BemboStd"))
-
-## Using the Gill Sans sans serif family
-(ggplot(mtcars, aes(wt, mpg))
- + geom_point() + geom_rangeframe()
- + theme_tufte(base_family = "GillSans"))
-
-}
+p + geom_rug() +
+ theme_tufte(ticks = FALSE)

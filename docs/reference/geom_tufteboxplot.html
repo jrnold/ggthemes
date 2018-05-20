@@ -31,7 +31,19 @@
 <meta property="og:title" content="Tufte's Box Plot — geom_tufteboxplot" />
 
 <meta property="og:description" content="Edward Tufte's revisions of the box plot as described in
-The Visual Display of Quantitative Information." />
+The Visual Display of Quantitative Information.
+This functions provides several box plot variants:
+A point indicating the median, a gap indicating the
+  interquartile range, and lines for whiskers.
+An offset line indicating the interquartile range
+      and a gap indicating the median.
+A line indicating the interquartile range,
+      a gap indicating the median, and points indicating
+      the minimum and maximum values
+A  wide line indicating the interquartile range,
+      a gap indicating the median, and lines indicating the minimum and
+      maximum.
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -72,31 +84,7 @@ The Visual Display of Quantitative Information." />
   </a>
 </li>
 <li>
-  <a href="../articles/ggthemes.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/children/contribute.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
-      <a href="../articles/children/examples.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
-      <a href="../articles/children/install.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
-      <a href="../articles/children/intro.html">UNKNOWN TITLE</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -130,7 +118,19 @@ The Visual Display of Quantitative Information." />
     <div class="ref-description">
     
     <p>Edward Tufte's revisions of the box plot as described in
-<em>The Visual Display of Quantitative Information</em>.</p>
+<em>The Visual Display of Quantitative Information</em>.
+This functions provides several box plot variants:</p><ul>
+<li><p>A point indicating the median, a gap indicating the
+  interquartile range, and lines for whiskers.</p></li>
+<li><p>An offset line indicating the interquartile range
+      and a gap indicating the median.</p></li>
+<li><p>A line indicating the interquartile range,
+      a gap indicating the median, and points indicating
+      the minimum and maximum values</p></li>
+<li><p>A  wide line indicating the interquartile range,
+      a gap indicating the median, and lines indicating the minimum and
+      maximum.</p></li>
+</ul>
     
     </div>
 
@@ -191,11 +191,15 @@ a call to a position adjustment function.</p></td>
     </tr>
     <tr>
       <th>voffset</th>
-      <td><p>controls the size of the gap in the line representing the median when <code>median.type = 'line'</code>. This is a fraction of the range of <code>y</code>.</p></td>
+      <td><p>controls the size of the gap in the line representing the
+median when <code>median.type = 'line'</code>. This is a fraction of the range
+of <code>y</code>.</p></td>
     </tr>
     <tr>
       <th>hoffset</th>
-      <td><p>controls how much the interquartile line is offset from the whiskers when <code>median.type = 'line'</code>. This is a fraction of the range of <code>x</code>.</p></td>
+      <td><p>controls how much the interquartile line is offset from the
+whiskers when <code>median.type = 'line'</code>. This is a fraction of the
+range of <code>x</code>.</p></td>
     </tr>
     <tr>
       <th>na.rm</th>
@@ -217,11 +221,16 @@ the default plot specification, e.g. <code>borders</code>.</p></td>
     </tr>
     <tr>
       <th>median.type</th>
-      <td><p>If <code>'point'</code>, then the median is represented by a point, and the interquartile range by a gap in the line. If <code>median.type='line'</code>, then the interquartile range is represented by a line, possibly offset, and the median by a gap in the line.</p></td>
+      <td><p>If <code>'point'</code>, then the median is represented by a
+point, and the interquartile range by a gap in the line. If
+<code>median.type='line'</code>, then the interquartile range is represented by
+a line, possibly offset, and the median by a gap in the line.</p></td>
     </tr>
     <tr>
       <th>whisker.type</th>
-      <td><p>If <code>'line'</code>, then whiskers are represented by lines. If <code>'point'</code>, then whiskers are represented by points at <code>ymin</code> and <code>ymax</code>.</p></td>
+      <td><p>If <code>'line'</code>, then whiskers are represented by lines.
+If <code>'point'</code>, then whiskers are represented by points at
+<code>ymin</code> and <code>ymax</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -251,7 +260,7 @@ to the paired geom/stat.</p></td>
     <p>Tufte, Edward R. (2001) The Visual Display of
 Quantitative Information, Chapter 6.</p>
 <p>McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
-    box plots. The American Statistician 32, 12-16.</p>
+box plots. The American Statistician 32, 12-16.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -263,11 +272,14 @@ Quantitative Information, Chapter 6.</p>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"ggplot2"</span>)
 
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='fu'>factor</span>(<span class='no'>cyl</span>), <span class='no'>mpg</span>))
-<span class='co'>## with a point for the median and lines for whiskers</span>
-<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>()</div><div class='img'><img src='geom_tufteboxplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>## with a line for the interquartile range and points for whiskers</span>
-<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>, <span class='kw'>whisker.type</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>hoffset</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='img'><img src='geom_tufteboxplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>## with a wide line for the interquartile range and lines for whiskers</span>
-<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>, <span class='kw'>hoffset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: position_dodge requires non-overlapping x intervals</span></div><div class='img'><img src='geom_tufteboxplot-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>## with an offset line for the interquartile range and lines for whiskers</span>
-<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>)</div><div class='img'><img src='geom_tufteboxplot-4.png' alt='' width='700' height='433' /></div></pre>
+<span class='co'># with a point for the median and lines for whiskers</span>
+<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>()</div><div class='img'><img src='geom_tufteboxplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># with a line for the interquartile range and points for whiskers</span>
+<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>, <span class='kw'>whisker.type</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>hoffset</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='img'><img src='geom_tufteboxplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># with a wide line for the interquartile range and lines for whiskers</span>
+<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>, <span class='kw'>hoffset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: position_dodge requires non-overlapping x intervals</span></div><div class='img'><img src='geom_tufteboxplot-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># with an offset line for the interquartile range and lines for whiskers</span>
+<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>)</div><div class='img'><img src='geom_tufteboxplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># combined with theme_tufte</span>
+<span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>() +
+  <span class='fu'><a href='theme_tufte.html'>theme_tufte</a></span>() +
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/theme'>theme</a></span>(<span class='kw'>axis.ticks.x</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/element'>element_blank</a></span>())</div><div class='img'><img src='geom_tufteboxplot-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

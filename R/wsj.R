@@ -2,6 +2,8 @@
 #'
 #' Theme based on the plots in \emph{The Wall Street Journal}.
 #'
+#' This theme should be used with \code{\link{scale_color_wsj}}.
+#'
 #' @references
 #'
 #' \url{https://twitter.com/WSJGraphics}
@@ -91,9 +93,8 @@ wsj_pal <- function(palette = "colors6") {
 
 #' Wall Street Journal color and fill scales
 #'
-#' Colour and fill scales which use the palettes in
-#' \code{\link{wsj_pal}} and are meant for use with
-#' \code{\link{theme_wsj}}.
+#' Colour and fill scales which use the palettes in \code{\link{wsj_pal}}.
+#' These scales should be used with \code{\link{theme_wsj}}.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams wsj_pal

@@ -2,8 +2,10 @@
 % Please edit documentation in R/base.R
 \name{theme_par}
 \alias{theme_par}
-\title{Theme which takes its values from the current \sQuote{base} graphics
-parameter values in \code{\link{par}}.}
+\title{Theme which uses the current \sQuote{base} graphics parameter values
+from \code{\link{par}}.
+Not all \code{par} parameters, are supported, and not all are relevant to
+\pkg{ggplot2} themes.}
 \usage{
 theme_par(base_size = par()$ps, base_family = par()$family)
 }
