@@ -1,0 +1,10 @@
+pandoc: 1.19.2.1
+pkgdown: 1.0.0
+pkgdown_sha: ~
+articles:
+  contribute: children/contribute.html
+  examples: children/examples.html
+  install: children/install.html
+  intro: children/intro.html
+  ggthemes: ggthemes.html
+
