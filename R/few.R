@@ -66,18 +66,18 @@ scale_fill_few <- function(palette = "light", ...) {
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family="") {
     colors <- ggthemes_data$few
-    gray <- colors$medium["gray"]
-    black <- colors$dark["black"]
+    gray <- colors$medium["Gray"]
+    black <- colors$dark["Gray"]
     theme_bw(base_size = base_size, base_family = base_family) +
         theme(
-            line = element_line(colour = gray),
-            rect = element_rect(fill = "white", colour = NA),
-            text = element_text(colour = black),
-            axis.ticks = element_line(colour = gray),
-            legend.key = element_rect(colour = NA),
-            ## Examples do not use grid lines
-            panel.border = element_rect(colour = gray),
-            panel.grid = element_blank(),
-            strip.background = element_rect(fill = "white", colour = NA)
+              line = element_line(colour = gray),
+              rect = element_rect(fill = "white", colour = NA),
+              text = element_text(colour = black),
+              axis.ticks = element_line(colour = gray),
+              legend.key = element_rect(colour = NA),
+              ## Examples do not use grid lines
+              panel.border = element_rect(colour = gray),
+              panel.grid = element_blank(),
+              strip.background = element_rect(fill = "white", colour = NA)
             )
 }
