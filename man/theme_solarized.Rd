@@ -32,8 +32,7 @@ to \code{\link{theme_bw}}, while \code{theme_solarized_2} is similar to
 library("ggplot2")
 
 p <- ggplot(mtcars) +
-     geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
-     facet_wrap(~am)
+     geom_point(aes(x = wt, y = mpg, colour = factor(gear)))
 
 # Light version with different main accent colors
 for (accent in names(ggthemes_data[["solarized"]][["accents"]])) {

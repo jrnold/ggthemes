@@ -2,6 +2,8 @@
 
 -   Add `scale_shapes_few` and `few_shape_pal` with a shape scale and palette
     from Stephen Few's "Show Me the Numbers".
+-   Add a pkgdown site.
+-   Remove vignette. Move all examples to man pages.
 -   Bugfix: Fix theme_few (#91)
 
 # ggthemes 3.5.0
