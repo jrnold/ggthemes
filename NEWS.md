@@ -1,3 +1,9 @@
+# ggthemes 3.5.0.9000
+
+-   Add `scale_shapes_few` and `few_shape_pal` with a shape scale and palette
+    from Stephen Few's "Show Me the Numbers".
+-   Bugfix: Fix theme_few (#91)
+
 # ggthemes 3.5.0
 
 -   Bugfix: Fix RGB colors in `scale_color_few`, `scale_fill_few`, and `few_pal` (#89, @bpbraun)
