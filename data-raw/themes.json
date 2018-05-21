@@ -401,7 +401,7 @@
     ]
   },
   "Excel": {
-    "line": [
+    "classic-line": [
       "#FF00FF",
       "#FFFF00",
       "#00FFFF",
@@ -410,7 +410,7 @@
       "#008080",
       "#0000FF"
     ],
-    "fill": [
+    "classic-fill": [
       "#993366",
       "#FFFFCC",
       "#CCFFFF",
@@ -418,18 +418,6 @@
       "#FF8080",
       "#0066CC",
       "#CCCCFF"
-    ],
-    "new": [
-      "#365e96",
-      "#983334",
-      "#77973d",
-      "#5d437c",
-      "#36869f",
-      "#d1702f",
-      "#8197c5",
-      "#c47f80",
-      "#acc484",
-      "#9887b0"
     ]
   },
   "Solarized": {
@@ -610,7 +598,7 @@
   },
   "tableau": {
     "colors": {
-      "tableau20": [
+      "Classic 20": [
         {
           "name": "blue",
           "value": "#1F77B4"
@@ -692,7 +680,7 @@
           "value": "#9EDAE5"
         }
       ],
-      "tableau10medium": [
+      "Classic 10 Medium": [
         {
           "name": "blue",
           "value": "#729ECE"
@@ -734,14 +722,14 @@
           "value": "#6DCCDA"
         }
       ],
-      "gray5": [
+      "Classic Gray 5": [
         "#60636A",
         "#A5ACAF",
         "#414451",
         "#8F8782",
         "#CFCFCF"
       ],
-      "colorblind10": [
+      "Classic Colorblind 10": [
         "#006BA4",
         "#FF800E",
         "#ABABAB",
@@ -753,7 +741,7 @@
         "#FFBC79",
         "#CFCFCF"
       ],
-      "trafficlight": [
+      "Classic Traffic Light": [
         "#B10318",
         "#DBA13A",
         "#309343",
@@ -764,7 +752,7 @@
         "#FFDD71",
         "#9FCD99"
       ],
-      "purplegray12": [
+      "Classic Purple Gray 12": [
         "#7B66D2",
         "#A699E8",
         "#DC5FBD",
@@ -778,7 +766,7 @@
         "#8B7C6E",
         "#DBD4C5"
       ],
-      "bluered12": [
+      "Classic Blue-Red 12": [
         "#2C69B0",
         "#B5C8E2",
         "#F02720",
@@ -792,7 +780,7 @@
         "#BD0A36",
         "#F4737A"
       ],
-      "greenorange12": [
+      "Classic Green-Orange 12": [
         "#32A251",
         "#ACD98D",
         "#FF7F0F",
@@ -806,7 +794,7 @@
         "#82853B",
         "#CCC94D"
       ],
-      "cyclic": [
+      "Classic Cyclic": [
         "#1F83B4",
         "#1696AC",
         "#18A188",
