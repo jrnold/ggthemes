@@ -367,20 +367,49 @@ Hue Circle:
   value: 4f7cba
 
 Blue:
-  start:
-    name: Light Blue
+  - name: Light Blue
     value: b9ddf1
-  end:
-    name: Blue
-    value: 2a5783
+  - [Light Blue, afd6ed]
+  - [Light Blue, a5cfe9]
+  - [Light Blue, 9bc7e4]
+  - [Light Blue, 92c0df]
+  - [Light Blue, 89b8da]
+  - [Light Blue, 80b0d5]
+  - [Light Blue, 79aacf]
+  - [Light Blue, 72a3c9]
+  - [Blue, 6a9bc3]
+  - [Blue, 6394be]
+  - [Blue, 5b8cb8]
+  - [Blue, 5485b2]
+  - [Blue, 4e7fac]
+  - [Blue, 4878a6]
+  - [Blue, 437a9f]
+  - [Blue, 3d6a98]
+  - [Blue, 376491]
+  - [Blue, 305d8a]
+  - [Blue, 2a5783]
 
 Orange:
-  start:
-    name: Light Orange
-    value: ffc685
-  end:
-    name: Brown
-    value: 9e3d22
+  - [Light Orange, ffc685]
+  - [Light Orange, fcbe75]
+  - [Orange, f9b665]
+  - [f7ae54]
+  - [f5a645]
+  - [f59c3c]
+  - [f49234]
+  - [f2882d]
+  - [f07e27]
+  - [ee7422]
+  - [e96b20]
+  - [e36420]
+  - [db5e20]
+  - [Brown, d25921]
+  - [ca5422]
+  - [c14f22]
+  - [b84b23]
+  - [af4623]
+  - [a64122]
+  - [9e3d22]
 
 Green:
   start:
@@ -459,4 +488,57 @@ Red-Gold:
     name: Red
     value: b71d3e
 
-
+Diverging:
+  Orange-Blue Diverging:
+    start: 9e3d22
+    end: 2b5c8a
+  Red-Green Diverging:
+    start: a3123a
+    end: 24693d
+  Red-Blue Diverging:
+    start: a90c38
+    end: 2e5a87
+  Red-Black Diverging:
+    start: ae123a
+    end: 49525e
+  Gold-Purple Diverging:
+    start: ad9024
+    end: ac7299
+  Red-Green-Gold Diverging:
+    start: be2a3e
+    end: 22763f
+  Sunset-Sunrise Diverging:
+    start: 33608c
+    end: b81840
+  Orange-Blue-White Diverging:
+    start: 9e3d22
+    end: 2b5c8a
+  Red-Green-White Diverging:
+    start: ae123a
+    end: 24693d
+  Green-Blue-White Diverging:
+    start: 24693d
+    end: 2a5783
+  Red-Blue-White Diverging:
+    start: a90c38
+    end: 2e5a87
+  Red-Black-White Diverging:
+    start: ae123a
+    end: 49525e
+  Orange-Blue Light Diverging:
+    start: ffcc9e
+    end: c4d8f3
+  Temperature Diverging:
+    start: 529985
+    end: c26b51
+Sequential:
+  Blue-Green Sequential:
+    # No lower color defined?
+    end: 41b7c4
+    start: feffd9
+  Blue Light:
+    end: c4d8f3
+    start: e5e5e5
+  Orange Light:
+    end: ffcc9e
+    start: e5e5e5

@@ -33,8 +33,7 @@
 #' @param palette Palette name. See the names of \code{\link{canva_palettes}} for valid names.
 #' @return A function that takes a single value, the number of colors to use.
 #' @export
-#' @examples
-
+#' @example inst/examples/ex-canva_pal.R
 canva_pal <- function(palette = "Fresh and bright") {
   if (!palette %in% names(ggthemes::canva_palettes)) {
     stop("Palette ", sQuote(palette), " not a valid name.", call. = FALSE)

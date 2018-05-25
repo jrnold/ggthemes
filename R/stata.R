@@ -60,6 +60,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
   relsz <- sapply(as.numeric(stata_gsize), `/`,
                   y = as.numeric(stata_gsize$medium))
   names(relsz) <- names(stata_gsize)
+  theme_foundation() +
   theme(line = element_line(size = 0.5, linetype = 1, lineend = "butt",
                             colour = "black"),
         rect = element_rect(size = 0.5, linetype = 1, fill = "white",
@@ -115,8 +116,8 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         plot.title = element_text(size = rel(relsz["large"]),
                                   hjust = 0.5,
                                   vjust = 1),
-        plot.margin = unit(rep(0.035, 4), "npc"),
-        complete = TRUE)
+        plot.margin = unit(rep(0.035, 4), "npc"))
+
 }
 
 theme_stata_colors <- function(scheme="s2color") {
