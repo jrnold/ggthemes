@@ -5,6 +5,7 @@
 -   Add a pkgdown site.
 -   Remove vignette. Move all examples to man pages.
 -   Bugfix: Fix theme_few (#91)
+-   Bugfix: Update themes to be consistent with ggplot 3.2.0
 
 # ggthemes 3.5.0
 
