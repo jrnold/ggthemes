@@ -249,12 +249,12 @@
         "unicode": "25BD"
       },
       {
-        "name": "WHITE RIGHT-POINTING TRIANGLE",
-        "unicode": "25B7"
-      },
-      {
         "name": "WHITE LEFT-POINTING TRIANGLE",
         "unicode": "25C1"
+      },
+      {
+        "name": "WHITE RIGHT-POINTING TRIANGLE",
+        "unicode": "25B7"
       }
     ],
     "filled": [
@@ -290,23 +290,77 @@
         "name": "BLACK DOWN-POINTING TRIANGLE",
         "unicode": "25BC"
       },
+     {
+        "name": "BLACK LEFT-POINTING TRIANGLE",
+        "unicode": "25C0"
+      },
       {
         "name": "BLACK RIGHT-POINTING TRIANGLE",
         "unicode": "25B6"
-      },
-      {
-        "name": "BLACK LEFT-POINTING TRIANGLE",
-        "unicode": "25C0"
       }
     ],
-    "gender": [
+    "Bug Tracking": [
+      {
+        "name": "LADY BEETLE",
+        "unicode": "1F41E",
+        "symbol": "🐞"
+      },
+      {
+        "name": "ALARM CLOCK",
+        "unicode": "",
+        "symbol": "⏰"
+      },
+      {
+        "name": "Electric Light Bulb",
+        "unicode": "1F4A1",
+        "symbol": "💡"
+      },
+      {
+        "name": "Envelope",
+        "unicode": ["2709", "FE0F"],
+        "symbol": "✉️"
+      }
+    ],
+    "Gender": [
+      {
+        "name": "MENS SYMBOL",
+        "unicode": "1F6B9"
+      },
+      {
+        "name": "WOMENS SYMBOL",
+        "unicode": "1F6BA"
+      },
+      {
+        "name": "RESTROOM",
+        "unicode": "1F6BB"
+      },
       {
         "name": "MALE SIGN",
-        "unicode": "2642"
+        "unicode": "2642",
+        "symbol": "♂"
       },
       {
         "name": "FEMALE SIGN",
-        "unicode": "2640"
+        "unicode": "2640",
+        "symbol": "♀"
+      },
+      {
+        "name": "MEDIUM WHITE CIRCLE UNICODE CHARACTER",
+        "unicode": "26AA",
+       
+      {
+        "name": "MALE AND FEMALE SIGN",
+        "unicode": "26A5"
+      },
+      {
+        "name": "VERTICAL MALE WITH STROKE SIGN",
+        "unicode": "26A8",
+        "symbol": "⚨"
+      },
+      {
+        "name": "MALE WITH STROKE AND MALE AND FEMALE SIGN",
+        "unicode": "26A7",
+        "symbol": "⚧"
       }
     ],
     "kpi": [
@@ -379,8 +433,16 @@
         "unicode": "2601"
       },
       {
+        "name": "CLOUD WITH RAIN",
+        "unicode": "1F327"
+      },
+      {
         "name": "UMBRELLA",
         "unicode": "2602"
+      },
+      {
+        "name": "UMBRELLA WITH RAINDROPS",
+        "unicode": "2614"
       },
       {
         "name": "SNOWMAN",

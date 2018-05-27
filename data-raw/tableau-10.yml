@@ -1,544 +1,779 @@
-Tableau 10:
-- name: Blue
-  value: "#4E79A7"
-- name: Orange
-  value: "#F28E2B"
-- name: Red
-  value: "#E15759"
-- name: Light Teal
-  value: "#76B7B2"
-- name: Green
-  value: "#59A14F"
-- name: Yellow
-  value: "#EDC948"
-- name: Purple
-  value: "#B07AA1"
-- name: Pink
-  value: "#FF9DA7"
-- name: Brown
-  value: "#9C755F"
-- name: Light Gray
-  value: "#BAB0AC"
+Categorical:
+  Tableau 10:
+  - name: Blue
+    value: "#4E79A7"
+  - name: Orange
+    value: "#F28E2B"
+  - name: Red
+    value: "#E15759"
+  - name: Light Teal
+    value: "#76B7B2"
+  - name: Green
+    value: "#59A14F"
+  - name: Yellow
+    value: "#EDC948"
+  - name: Purple
+    value: "#B07AA1"
+  - name: Pink
+    value: "#FF9DA7"
+  - name: Brown
+    value: "#9C755F"
+  - name: Light Gray
+    value: "#BAB0AC"
 
-Tableau 20:
-- name: Blue
-  value: "#4E79A7"
-- name: Light Blue
-  value: "#A0CBE8"
-- name: Orange
-  value: "#F28E2B"
-- name: Light Orange
-  value: "#FFBE7D"
-- name: Green
-  value: "#59A14F"
-- name: Light Green
-  value: "#8CD17D"
-- name: Yellow-Green
-  value: "#B6992D"
-- name: Yellow
-  value: "#EDC948"
-- name: Red
-  value: "#E15759"
-- name: Light Teal
-  value: "#76B7B2"
-- name: Yellow
-  value: "#F1CE63"
-- name: Teal
-  value: "#499894"
-- name: Light Teal
-  value: "#86BCB6"
-- name: Red
-  value: "#E15759"
-- name: Pink
-  value: "#FF9D9A"
-- name: Dark Gray
-  value: "#79706E"
-- name: Light Gray
-  value: "#BAB0AC"
-- name: Pink
-  value: "#D37295"
-- name: Light Pink
-  value: "#FABFD2"
-- name: Purple
-  value: "#B07AA1"
-- name: Light Purple
-  value: "#D4A6C8"
-- name: Brown
-  value: "#9D7660"
-- name: Light Orange
-  value: "#D7B5A6"
-
-Color Blind:
-- name: Blue
-  value: "#1170aa"
-- name: Orange
-  value: "#fc7d0b"
-- name: Light Gray
-  value: "#a3acb9"
-- name: Dark Gray
-  value: "#57606c"
-- name: Blue
-  value: "#5fa2ce"
-- name: Brown
-  value: "#c85200"
-- name: Gray
-  value: "#7b848f"
-- name: Light Blue
-  value: "#a3cce9"
-- name: Light Orange
-  value: "#ffbc79"
-- name: Very Light Gray
-  value: "#c8d0d9"
-
-Seattle Grays:
-- name: gray
-  value: "#767f8b"
-- name: Light Gray
-  value: "#b3b7b8"
-- name: Dark Gray
-  value: "#5c6068"
-- name: Light Gray
-  value: "#d3d3d3"
-- name: Gray
-  value: "#989ca3"
-
-Traffic:
-- name: Red
-  value: "#b60a1c"
-- name: Yellow
-  value: "#e39802"
-- name: Green
-  value: "#309143"
-- name: Red
-  value: "#e03531"
-- name: Yellow
-  value: "#f0bd27"
-- name: Green
-  value: "#51b364"
-- name: Red
-  value: "#ff684c"
-- name: Yellow
-  value: "#ffda66"
-- name: Light Green
-  value: "#8ace7e"
-
-Miller Stone:
-- name: Blue
-  value: "#4f6980"
-- name: Blue
-  value: "#849db1"
-- name: Light Green
-  value: "#a2ceaa"
-- name: Green
-  value: "#638b66"
-- name: Yellow-Green
-  value: "#bfbb60"
-- name: Orange
-  value: "#f47942"
-- name: Orange
-  value: "#fbb04e"
-- name: Brown
-  value: "#b66353"
-- name: Light Yellow
-  value: "#d7ce9f"
-- name: Light Brown
-  value: "#b9aa97"
-- name: Gray
-  value: "#7e756d"
-
-Superfishel Stone:
-- name: Blue
-  value: "#6388b4"
-- name: Orange
-  value: "#ffae34"
-- name: Red
-  value: "#ef6f6a"
-- name: Light Blue
-  value: "#8cc2ca"
-- name: Teal
-  value: "#55ad89"
-- name: Yellow-Green
-  value: "#c3bc3f"
-- name: Pink
-  value: "#bb7693"
-- name: Light Brown
-  value: "#baa094"
-- name: Light Gray
-  value: "#a9b5ae"
-- name: Dark Gray
-  value: "#767676"
-
-Nuriel Stone:
-- name: Purple
-  value: "#8175aa"
-- name: Light Teal
-  value: "#6fb899"
-- name: Blue
-  value: "#31a1b3"
-- name: Yellow-Green
-  value: "#ccb22b"
-- name: Light Purple
-  value: "#a39fc9"
-- name: Light Teal
-  value: "#94d0c0"
-- name: Gray
-  value: "#959c9e"
-- name: Blue
-  value: "#027b8e"
-- name: Yellow-Green
-  value: "#9f8f12"
-
-Jewel Bright:
-- name: Red
-  value: "#eb1e2c"
-- name: Orange
-  value: "#fd6f30"
-- name: Orange
-  value: "#f9a729"
-- name: Yellow
-  value: "#f9d23c"
-- name: Green
-  value: "#5fbb68"
-- name: Light Teal
-  value: "#64cdcc"
-- name: Light Blue
-  value: "#91dcea"
-- name: Light Blue
-  value: "#a4a4d5"
-- name: Very Light Blue
-  value: "#bbc9e5"
-
-Summer:
-- name: Yellow-Green
-  value: "#bfb202"
-- name: Yellow-Green
-  value: "#b9ca5d"
-- name: Red
-  value: "#cf3e53"
-- name: Red
-  value: "#f1788d"
-- name: Blue
-  value: "#00a2b3"
-- name: Light Blue
-  value: "#97cfd0"
-- name: Orange
-  value: "#f3a546"
-- name: Light Orange
-  value: "#f7c480"
-
-Winter:
-- name: Gray
-  value: "#90728f"
-- name: Light Gray
-  value: "#b9a0b4"
-- name: Yellow-Green
-  value: "#9d983d"
-- name: Light Yellow-Green
-  value: "#cecb76"
-- name: Red
-  value: "#e15759"
-- name: Red
-  value: "#ff9888"
-- name: Dark Gray
-  value: "#6b6b6b"
-- name: Light Gray
-  value: "#bab2ae"
-- name: Brown
-  value: "#aa8780"
-- name: Light Pink
-  value: "#dab6af"
-
-Green-Orange-Teal:
-- name: Green
-  value: "#4e9f50"
-- name: Light Green
-  value: "#87d180"
-- name: Orange
-  value: "#ef8a0c"
-- name: Light Orange
-  value: "#fcc66d"
-- name: Blue
-  value: "#3ca8bc"
-- name: Light Blue
-  value: "#98d9e4"
-- name: Yellow-Green
-  value: "#94a323"
-- name: Yellow-Green
-  value: "#c3ce3d"
-- name: Yellow-Green
-  value: "#a08400"
-- name: Yellow
-  value: "#f7d42a"
-- name: Teal
-  value: "#26897e"
-- name: Light Teal
-  value: "#8dbfa8"
-
-Red-Blue-Brown:
-- name: Blue
-  value: "#466f9d"
-- name: Light Blue
-  value: "#91b3d7"
-- name: Red
-  value: "#ed444a"
-- name: Pink
-  value: "#feb5a2"
-- name: Brown
-  value: "#9d7660"
-- name: Light Orange
-  value: "#d7b5a6"
-- name: Blue
-  value: "#3896c4"
-- name: Light Blue
-  value: "#a0d4ee"
-- name: Brown
-  value: "#ba7e45"
-- name: Light Orange
-  value: "#39b87f"
-- name: Red
-  value: "#c8133b"
-- name: Red
-  value: "#ea8783"
-
-Purple-Pink-Gray:
-- name: Purple
-  value: "#8074a8"
-- name: Light Purple
-  value: "#c6c1f0"
-- name: Pink
-  value: "#c46487"
-- name: Pink
-  value: "#ffbed1"
-- name: Gray
-  value: "#9c9290"
-- name: Light Gray
-  value: "#c5bfbe"
-- name: Light Purple
-  value: "#9b93c9"
-- name: Light Purple
-  value: "#ddb5d5"
-- name: Dark Gray
-  value: "#7c7270"
-- name: Pink
-  value: "#f498b6"
-- name: Purple
-  value: "#b173a0"
-- name: Light Purple
-  value: "#c799bc"
-
-Hue Circle:
-- name: Blue
-  value: 1ba3c6
-- name: Blue
-  value: 2cb5c0
-- name: Teal
-  value: 30bcad
-- name: Teal
-  value: 21B087
-- name: Green
-  value: 33a65c
-- name: Green
-  value: 57a337
-- name: Yellow-Green
-  value: a2b627
-- name: Yellow
-  value: d5bb21
-- name: Yellow
-  value: f8b620
-- name: Orange
-  value: f89217
-- name: Orange
-  value: f06719
-- name: Red
-  value: e03426
-- name: Red
-  value: f64971
-- name: Pink
-  value: fc719e
-- name: Pink
-  value: eb73b3
-- name: Purple
-  value: ce69be
-- name: Purple
-  value: a26dc2
-- name: Purple
-  value: 7873c0
-- name: Blue
-  value: 4f7cba
-
-Blue:
+  Tableau 20:
+  - name: Blue
+    value: "#4E79A7"
   - name: Light Blue
-    value: b9ddf1
-  - [Light Blue, afd6ed]
-  - [Light Blue, a5cfe9]
-  - [Light Blue, 9bc7e4]
-  - [Light Blue, 92c0df]
-  - [Light Blue, 89b8da]
-  - [Light Blue, 80b0d5]
-  - [Light Blue, 79aacf]
-  - [Light Blue, 72a3c9]
-  - [Blue, 6a9bc3]
-  - [Blue, 6394be]
-  - [Blue, 5b8cb8]
-  - [Blue, 5485b2]
-  - [Blue, 4e7fac]
-  - [Blue, 4878a6]
-  - [Blue, 437a9f]
-  - [Blue, 3d6a98]
-  - [Blue, 376491]
-  - [Blue, 305d8a]
-  - [Blue, 2a5783]
+    value: "#A0CBE8"
+  - name: Orange
+    value: "#F28E2B"
+  - name: Light Orange
+    value: "#FFBE7D"
+  - name: Green
+    value: "#59A14F"
+  - name: Light Green
+    value: "#8CD17D"
+  - name: Yellow-Green
+    value: "#B6992D"
+  - name: Yellow
+    value: "#EDC948"
+  - name: Red
+    value: "#E15759"
+  - name: Light Teal
+    value: "#76B7B2"
+  - name: Yellow
+    value: "#F1CE63"
+  - name: Teal
+    value: "#499894"
+  - name: Light Teal
+    value: "#86BCB6"
+  - name: Red
+    value: "#E15759"
+  - name: Pink
+    value: "#FF9D9A"
+  - name: Dark Gray
+    value: "#79706E"
+  - name: Light Gray
+    value: "#BAB0AC"
+  - name: Pink
+    value: "#D37295"
+  - name: Light Pink
+    value: "#FABFD2"
+  - name: Purple
+    value: "#B07AA1"
+  - name: Light Purple
+    value: "#D4A6C8"
+  - name: Brown
+    value: "#9D7660"
+  - name: Light Orange
+    value: "#D7B5A6"
 
-Orange:
-  - [Light Orange, ffc685]
-  - [Light Orange, fcbe75]
-  - [Orange, f9b665]
-  - [f7ae54]
-  - [f5a645]
-  - [f59c3c]
-  - [f49234]
-  - [f2882d]
-  - [f07e27]
-  - [ee7422]
-  - [e96b20]
-  - [e36420]
-  - [db5e20]
-  - [Brown, d25921]
-  - [ca5422]
-  - [c14f22]
-  - [b84b23]
-  - [af4623]
-  - [a64122]
-  - [9e3d22]
+  Color Blind:
+  - name: Blue
+    value: "#1170aa"
+  - name: Orange
+    value: "#fc7d0b"
+  - name: Light Gray
+    value: "#a3acb9"
+  - name: Dark Gray
+    value: "#57606c"
+  - name: Blue
+    value: "#5fa2ce"
+  - name: Brown
+    value: "#c85200"
+  - name: Gray
+    value: "#7b848f"
+  - name: Light Blue
+    value: "#a3cce9"
+  - name: Light Orange
+    value: "#ffbc79"
+  - name: Very Light Gray
+    value: "#c8d0d9"
 
-Green:
-  start:
-    name: Light Green
-    value: b3e0a6
-  end:
-    name: Dark Green
-    value: 24693d
+  Seattle Grays:
+  - name: gray
+    value: "#767f8b"
+  - name: Light Gray
+    value: "#b3b7b8"
+  - name: Dark Gray
+    value: "#5c6068"
+  - name: Light Gray
+    value: "#d3d3d3"
+  - name: Gray
+    value: "#989ca3"
 
-Red:
-  start:
-    name: Pink
-    value: ffbeb2
-  end:
-    name: Red
-    value: ae123a
+  Traffic:
+  - name: Red
+    value: "#b60a1c"
+  - name: Yellow
+    value: "#e39802"
+  - name: Green
+    value: "#309143"
+  - name: Red
+    value: "#e03531"
+  - name: Yellow
+    value: "#f0bd27"
+  - name: Green
+    value: "#51b364"
+  - name: Red
+    value: "#ff684c"
+  - name: Yellow
+    value: "#ffda66"
+  - name: Light Green
+    value: "#8ace7e"
 
-Purple:
-  start:
-    name: Light Purple
-    value: eec9e5
-  end:
-    name: Dark Purple
-    value: 7c4d79
+  Miller Stone:
+  - name: Blue
+    value: "#4f6980"
+  - name: Blue
+    value: "#849db1"
+  - name: Light Green
+    value: "#a2ceaa"
+  - name: Green
+    value: "#638b66"
+  - name: Yellow-Green
+    value: "#bfbb60"
+  - name: Orange
+    value: "#f47942"
+  - name: Orange
+    value: "#fbb04e"
+  - name: Brown
+    value: "#b66353"
+  - name: Light Yellow
+    value: "#d7ce9f"
+  - name: Light Brown
+    value: "#b9aa97"
+  - name: Gray
+    value: "#7e756d"
 
-Brown:
-  start:
-    name: Beige
-    value: eedbbd
-  end:
-    name: Brown
-    value: 9f3632
+  Superfishel Stone:
+  - name: Blue
+    value: "#6388b4"
+  - name: Orange
+    value: "#ffae34"
+  - name: Red
+    value: "#ef6f6a"
+  - name: Light Blue
+    value: "#8cc2ca"
+  - name: Teal
+    value: "#55ad89"
+  - name: Yellow-Green
+    value: "#c3bc3f"
+  - name: Pink
+    value: "#bb7693"
+  - name: Light Brown
+    value: "#baa094"
+  - name: Light Gray
+    value: "#a9b5ae"
+  - name: Dark Gray
+    value: "#767676"
 
-Gray:
-  start:
-    name: Light Gray
-    value: d5d5d5
+  Nuriel Stone:
+  - name: Purple
+    value: "#8175aa"
+  - name: Light Teal
+    value: "#6fb899"
+  - name: Blue
+    value: "#31a1b3"
+  - name: Yellow-Green
+    value: "#ccb22b"
+  - name: Light Purple
+    value: "#a39fc9"
+  - name: Light Teal
+    value: "#94d0c0"
+  - name: Gray
+    value: "#959c9e"
+  - name: Blue
+    value: "#027b8e"
+  - name: Yellow-Green
+    value: "#9f8f12"
 
-Gray Warm:
-  start:
-    name: Very Light Gray
-    value: dcd4d0
-  end:
-    name: Dark Gray
-    value: 59594e
+  Jewel Bright:
+  - name: Red
+    value: "#eb1e2c"
+  - name: Orange
+    value: "#fd6f30"
+  - name: Orange
+    value: "#f9a729"
+  - name: Yellow
+    value: "#f9d23c"
+  - name: Green
+    value: "#5fbb68"
+  - name: Light Teal
+    value: "#64cdcc"
+  - name: Light Blue
+    value: "#91dcea"
+  - name: Light Blue
+    value: "#a4a4d5"
+  - name: Very Light Blue
+    value: "#bbc9e5"
 
-Blue-Teal:
-  start:
-    name: Very Light Teal
-    value: bce4d8
-  end:
-    name: Blue
-    value: 2c5985
+  Summer:
+  - name: Yellow-Green
+    value: "#bfb202"
+  - name: Yellow-Green
+    value: "#b9ca5d"
+  - name: Red
+    value: "#cf3e53"
+  - name: Red
+    value: "#f1788d"
+  - name: Blue
+    value: "#00a2b3"
+  - name: Light Blue
+    value: "#97cfd0"
+  - name: Orange
+    value: "#f3a546"
+  - name: Light Orange
+    value: "#f7c480"
 
-Orange-Gold:
-  start:
-    name: Yellow
-    value: f4d166
-  end:
-    name: Brown
-    value: 9e3a26
+  Winter:
+  - name: Gray
+    value: "#90728f"
+  - name: Light Gray
+    value: "#b9a0b4"
+  - name: Yellow-Green
+    value: "#9d983d"
+  - name: Light Yellow-Green
+    value: "#cecb76"
+  - name: Red
+    value: "#e15759"
+  - name: Red
+    value: "#ff9888"
+  - name: Dark Gray
+    value: "#6b6b6b"
+  - name: Light Gray
+    value: "#bab2ae"
+  - name: Brown
+    value: "#aa8780"
+  - name: Light Pink
+    value: "#dab6af"
 
-Green-Gold:
-  start:
-    name: Yellow
-    value: f4d166
-  end:
-    name: Dark Green
-    value: 146c36
+  Green-Orange-Teal:
+  - name: Green
+    value: "#4e9f50"
+  - name: Light Green
+    value: "#87d180"
+  - name: Orange
+    value: "#ef8a0c"
+  - name: Light Orange
+    value: "#fcc66d"
+  - name: Blue
+    value: "#3ca8bc"
+  - name: Light Blue
+    value: "#98d9e4"
+  - name: Yellow-Green
+    value: "#94a323"
+  - name: Yellow-Green
+    value: "#c3ce3d"
+  - name: Yellow-Green
+    value: "#a08400"
+  - name: Yellow
+    value: "#f7d42a"
+  - name: Teal
+    value: "#26897e"
+  - name: Light Teal
+    value: "#8dbfa8"
 
-Red-Gold:
-  start:
-    name: Yellow
-    value: f4d166
-  end:
-    name: Red
-    value: b71d3e
+  Red-Blue-Brown:
+  - name: Blue
+    value: "#466f9d"
+  - name: Light Blue
+    value: "#91b3d7"
+  - name: Red
+    value: "#ed444a"
+  - name: Pink
+    value: "#feb5a2"
+  - name: Brown
+    value: "#9d7660"
+  - name: Light Orange
+    value: "#d7b5a6"
+  - name: Blue
+    value: "#3896c4"
+  - name: Light Blue
+    value: "#a0d4ee"
+  - name: Brown
+    value: "#ba7e45"
+  - name: Light Orange
+    value: "#39b87f"
+  - name: Red
+    value: "#c8133b"
+  - name: Red
+    value: "#ea8783"
+
+  Purple-Pink-Gray:
+  - name: Purple
+    value: "#8074a8"
+  - name: Light Purple
+    value: "#c6c1f0"
+  - name: Pink
+    value: "#c46487"
+  - name: Pink
+    value: "#ffbed1"
+  - name: Gray
+    value: "#9c9290"
+  - name: Light Gray
+    value: "#c5bfbe"
+  - name: Light Purple
+    value: "#9b93c9"
+  - name: Light Purple
+    value: "#ddb5d5"
+  - name: Dark Gray
+    value: "#7c7270"
+  - name: Pink
+    value: "#f498b6"
+  - name: Purple
+    value: "#b173a0"
+  - name: Light Purple
+    value: "#c799bc"
+
+  Hue Circle:
+  - name: Blue
+    value: 1ba3c6
+  - name: Blue
+    value: 2cb5c0
+  - name: Teal
+    value: 30bcad
+  - name: Teal
+    value: 21B087
+  - name: Green
+    value: 33a65c
+  - name: Green
+    value: 57a337
+  - name: Yellow-Green
+    value: a2b627
+  - name: Yellow
+    value: d5bb21
+  - name: Yellow
+    value: f8b620
+  - name: Orange
+    value: f89217
+  - name: Orange
+    value: f06719
+  - name: Red
+    value: e03426
+  - name: Red
+    value: f64971
+  - name: Pink
+    value: fc719e
+  - name: Pink
+    value: eb73b3
+  - name: Purple
+    value: ce69be
+  - name: Purple
+    value: a26dc2
+  - name: Purple
+    value: 7873c0
+  - name: Blue
+    value: 4f7cba
 
 Diverging:
   Orange-Blue Diverging:
-    start: 9e3d22
-    end: 2b5c8a
+    - 9e3d22
+    - d45b21
+    - f69035
+    - d9d5c9
+    - 77acd3
+    - 4f81af
+    - 2b5c8a
   Red-Green Diverging:
-    start: a3123a
-    end: 24693d
+    - a3123a
+    - e33f43
+    - f8816b
+    - ced7c3
+    - 73ba67
+    - 44914e
+    - 24693d
+  Green-Blue Diverging:
+    - 24693d
+    - 45934d
+    - 75bc69
+    - c9dad2
+    - 77a9cf
+    - 4e7fab
+    - 2a5783
   Red-Blue Diverging:
-    start: a90c38
-    end: 2e5a87
+    - a90c38
+    - e03b42
+    - f87f69
+    - dfd4d1
+    - 7eaed3
+    - 5383af
+    - 2e5a87
   Red-Black Diverging:
-    start: ae123a
-    end: 49525e
+    - ae123a
+    - e33e43
+    - f8816b
+    - d9d9d9
+    - a0a7a8
+    - 707c83
+    - 49525e
   Gold-Purple Diverging:
-    start: ad9024
-    end: ac7299
+    - ad9024
+    - c1a33b
+    - d4b95e
+    - e3d8cf
+    - d4a3c3
+    - c189b0
+    - ac7299
   Red-Green-Gold Diverging:
-    start: be2a3e
-    end: 22763f
+    - be2a3e
+    - e25f48
+    - f88f4d
+    - f4d166
+    - 90b960
+    - 4b9b5f
+    - 22763f
   Sunset-Sunrise Diverging:
-    start: 33608c
-    end: b81840
+    - 33608c
+    - 9768a5
+    - e7718a
+    - f6ba57
+    - ed7846
+    - d54c45
+    - b81840
   Orange-Blue-White Diverging:
-    start: 9e3d22
-    end: 2b5c8a
+    - 9e3d22
+    - e36621
+    - fcad52
+    - ffffff
+    - 95c5e1
+    - 5b8fbc
+    - 2b5c8a
   Red-Green-White Diverging:
-    start: ae123a
-    end: 24693d
+    - ae123a
+    - ee574d
+    - fdac9e
+    - ffffff
+    - 91d183
+    - 539e52
+    - 24693d
   Green-Blue-White Diverging:
-    start: 24693d
-    end: 2a5783
+    - 24693d
+    - 529c51
+    - 8fd180
+    - ffffff
+    - 95c1dd
+    - 598ab5
+    - 2a5783
   Red-Blue-White Diverging:
-    start: a90c38
-    end: 2e5a87
+    - a90c38
+    - ec534b
+    - feaa9a
+    - ffffff
+    - 9ac4e1
+    - 5c8db8
+    - 2e5a87
   Red-Black-White Diverging:
-    start: ae123a
-    end: 49525e
+    - ae123a
+    - ee574d
+    - fdac9d
+    - ffffff
+    - bdc0bf
+    - 7d888d
+    - 49525e
   Orange-Blue Light Diverging:
-    start: ffcc9e
-    end: c4d8f3
+    - ffcc9e
+    - f9d4b6
+    - f0dccd
+    - e5e5e5
+    - dae1ea
+    - cfdcef
+    - c4d8f3
   Temperature Diverging:
-    start: 529985
-    end: c26b51
+    - 529985
+    - 6c9e6e
+    - 99b059
+    - dbcf47
+    - ebc24b
+    - e3a14f
+    - c26b51
 Sequential:
   Blue-Green Sequential:
-    # No lower color defined?
-    end: 41b7c4
-    start: feffd9
+    - feffd9
+    - f2fabf
+    - dff3b2
+    - c4eab1
+    - 94d6b7
+    - 69c5be
+    - 41b7c4
   Blue Light:
-    end: c4d8f3
-    start: e5e5e5
+    - e5e5e5
+    - e0e3e8
+    - dbe1ea
+    - d5dfec
+    - d0dcef
+    - cadaf1
+    - c4d8f3
   Orange Light:
-    end: ffcc9e
-    start: e5e5e5
+    - e5e5e5
+    - ebe1d9
+    - f0ddcd
+    - f5d9c2
+    - f9d4b6
+    - fdd0aa
+    - ffcc9e
+  Blue:
+    - [Light Blue, b9ddf1]
+    - [Light Blue, afd6ed]
+    - [Light Blue, a5cfe9]
+    - [Light Blue, 9bc7e4]
+    - [Light Blue, 92c0df]
+    - [Light Blue, 89b8da]
+    - [Light Blue, 80b0d5]
+    - [Light Blue, 79aacf]
+    - [Light Blue, 72a3c9]
+    - [Blue, 6a9bc3]
+    - [Blue, 6394be]
+    - [Blue, 5b8cb8]
+    - [Blue, 5485b2]
+    - [Blue, 4e7fac]
+    - [Blue, 4878a6]
+    - [Blue, 437a9f]
+    - [Blue, 3d6a98]
+    - [Blue, 376491]
+    - [Blue, 305d8a]
+    - [Blue, 2a5783]
+
+  Orange:
+    - [Light Orange, ffc685]
+    - [Light Orange, fcbe75]
+    - [Orange, f9b665]
+    - [Orange, f7ae54]
+    - [Orange, f5a645]
+    - [Orange, f59c3c]
+    - [Orange, f49234]
+    - [Orange, f2882d]
+    - [Orange, f07e27]
+    - [Orange, ee7422]
+    - [Orange, e96b20]
+    - [Orange, e36420]
+    - [Orange, db5e20]
+    - [Brown, d25921]
+    - [Brown, ca5422]
+    - [Brown, c14f22]
+    - [Brown, b84b23]
+    - [Brown, af4623]
+    - [Brown, a64122]
+    - [Brown, 9e3d22]
+
+  Green:
+    - [Light Green, b3e0a6]
+    - [Light Green, a5db96]
+    - [Light Green, 98d687]
+    - [Light Green, 8ed07f]
+    - [Light Green, 85ca77]
+    - [Light Green, 7dc370]
+    - [Green, 75bc69]
+    - [Green, 6eb663]
+    - [Green, 67af5c]
+    - [Green, 61a956]
+    - [Green, 59a253]
+    - [Green, 519c51]
+    - [Green, 49964f]
+    - [Green, 428f4d]
+    - [Green, 398949]
+    - [Green, 308344]
+    - [Dark Green, 2b7c40]
+    - [Dark Green, 27763d]
+    - [Dark Green, 256f3d]
+    - [Dark Green, 24693d]
+
+  Red:
+    - [Pink, ffbeb2]
+    - [Pink, feb4a6]
+    - [Pink, fdab9b]
+    - [Pink, fca290]
+    - [Red, fb9984]
+    - [Red, fa8f79]
+    - [Red, f9856e]
+    - [Red, f77b66]
+    - [Red, f5715d]
+    - [Red, f36754]
+    - [Red, f05c4d]
+    - [Red, ec5049]
+    - [Red, e74545]
+    - [Red, e13b42]
+    - [Red, da323f]
+    - [Red, d3293d]
+    - [Red, ca223c]
+    - [Red, c11a3b]
+    - [Red, b8163a]
+    - [Red, ae123a]
+
+  Purple:
+    - [Light Purple, eec9e5]
+    - [Light Purple, eac1df]
+    - [Light Pink, e6b9d9]
+    - [Light Pink, e0b2d2]
+    - [Light Pink, daabcb]
+    - [Light Pink, d54ac4]
+    - [Light Pink, cf9dbe]
+    - [Light Pink, ca96b8]
+    - [Light Pink, c48fb2]
+    - [Light Pink, be89ac]
+    - [Light Pink, b882a6]
+    - [Pink, b27ba1]
+    - [Purple, aa759d]
+    - [Purple, a27099]
+    - [Purple, 9a6a96]
+    - [Purple, 926591]
+    - [Purple, 8c5f86]
+    - [Purple, 865986]
+    - [Purple, 81537f]
+    - [Dark Purple, 7c4d79]
+
+  Brown:
+    - [Beige, eedbbd]
+    - [Beige, ecd2ad]
+    - [Light Orange, ebc994]
+    - [Light Orange, eac085]
+    - [Light Orange, e8b777]
+    - [Light Orange, e5ae6c]
+    - [Light Orange, e2a562]
+    - [Orange, de9d5a]
+    - [Orange, d99455]
+    - [Brown, d38c54]
+    - [Brown, ce8451]
+    - [Brown, c9784d]
+    - [Brown, c47247]
+    - [Brown, c16941]
+    - [Brown, bd6036]
+    - [Brown, b85636]
+    - [Brown, b34d34]
+    - [Brown, ad4433]
+    - [Brown, a63d32]
+    - [Brown, 9f3632]
+
+  Gray:
+    - [Light Gray, d5d5d5]
+    - [Light Gray, cdcecd]
+    - [Light Gray, c5c7c6]
+    - [Light Gray, bcbfbe]
+    - [Light Gray, b4b7b7]
+    - [Gray, acb0b1]
+    - [Gray, a4a9ab]
+    - [Gray, 9ca3a4]
+    - [Gray, 939c9e]
+    - [Gray, 8b9598]
+    - [Gray, 848e93]
+    - [Gray, 7c878d]
+    - [Gray, 758087]
+    - [Gray, 6e7a81]
+    - [Dark Gray, 67737c]
+    - [Dark Gray, 616c77]
+    - [Dark Gray, 5b6570]
+    - [Dark Gray, 555f6a]
+    - [Dark Gray, 4f5864]
+    - [Dark Gray, 49525e]
+
+  Gray Warm:
+    - [Very Light Gray, dcd4d0]
+    - [Light Gray, d4ccc8]
+    - [Light Gray, cdc4c0]
+    - [Light Gray, c5bdb9]
+    - [Light Gray, beb6b2]
+    - [Light Gray, b7afab]
+    - [Gray, b047a4]
+    - [Gray, a9a09d]
+    - [Gray, a29996]
+    - [Gray, 9b938f]
+    - [Gray, 948c88]
+    - [Gray, 8d8481]
+    - [Gray, 867e7b]
+    - [Gray, 807774]
+    - [Dark Gray, 79706e]
+    - [Dark Gray, 736967]
+    - [Dark Gray, 6c6260]
+    - [Dark Gray, 665c51]
+    - [Dark Gray, 5f5654]
+    - [Dark Gray, 59504e]
+
+  Blue-Teal:
+    - [Very Light Teal, bce4d8]
+    - [Very Light Teal, aedcd5]
+    - [Light Teal, a1d5d2]
+    - [Light Blue, 95cecf]
+    - [Light Blue, 89c8cc]
+    - [Light Blue, 7ec1ca]
+    - [Light Blue, 72bac6]
+    - [Blue, 66b2c2]
+    - [Blue, 59acbe]
+    - [Blue, 4ba5ba]
+    - [Blue, 419eb6]
+    - [Blue, 3b96b2]
+    - [Blue, 358ead]
+    - [Blue, 3586a7]
+    - [Blue, e47ea1]
+    - [Blue, 32779b]
+    - [Blue, 316f96]
+    - [Blue, 2f6790]
+    - [Blue, 2d608a]
+    - [Blue, 2c5985]
+
+  Orange-Gold:
+    - [Yellow, f4d166]
+    - [Yellow, f6c760]
+    - [Orange, f8bc58]
+    - [Orange, f8b252]
+    - [Orange, f7a84a]
+    - [Orange, f69e41]
+    - [Orange, f49538]
+    - [Orange, f38b2f]
+    - [Orange, f28026]
+    - [Orange, f0751e]
+    - [Orange, eb6c1c]
+    - [Orange, e4641e]
+    - [Orange, de5d1f]
+    - [Orange, d75521]
+    - [Brown, cf4f22]
+    - [Brown, c64a22]
+    - [Brown, bc4623]
+    - [Brown, b24223]
+    - [Brown, a83e24]
+    - [Brown, 9e3a26]
+
+  Green-Gold:
+    - [Yellow, f4d166]
+    - [Yellow, e3cd62]
+    - [Yellow-Green, d3c95f]
+    - [Yellow-Green, c3c55d]
+    - [Yellow-Green, b2c25b]
+    - [Yellow-Green, a3bd5a]
+    - [Green, 93b958]
+    - [Green, 84b457]
+    - [Green, 76af56]
+    - [Green, 67a956]
+    - [Green, 5aa355]
+    - [Green, 4f9e53]
+    - [Green, 479751]
+    - [Green, 40914f]
+    - [Green, 3a8a4d]
+    - [Green, 34844a]
+    - [Green, 2d7d45]
+    - [Dark Green, 257740]
+    - [Dark Green, 1c713b]
+    - [Dark Green, 146c36]
+
+  Red-Gold:
+    - [Yellow, f4d166]
+    - [Yellow, f5c75f]
+    - [Orange, f6bc58]
+    - [Orange, f7b254]
+    - [Orange, f9a750]
+    - [Orange, fa9d4f]
+    - [Orange, fa9d4f]
+    - [Orange, fb934d]
+    - [Orange, f7894b]
+    - [Orange, f47f4a]
+    - [Orange, f0774a]
+    - [Red, eb6349]
+    - [Red, e66549]
+    - [Red, e15c48]
+    - [Red, dc5447]
+    - [Red, d64c45]
+    - [Red, d04344]
+    - [Red, ca3a42]
+    - [Red, c43141]
+    - [Red, bd273f]
+    - [Red, b71d3e]
