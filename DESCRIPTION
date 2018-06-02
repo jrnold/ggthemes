@@ -23,7 +23,10 @@ Imports:
     graphics,
     grid,
     methods,
-    scales
+    purrr,
+    scales,
+    stringr,
+    tibble
 Suggests:
     spelling,
     dplyr,
@@ -33,10 +36,8 @@ Suggests:
     maps,
     mapproj,
     pander,
-    purrr,
     rmarkdown,
     testthat,
-    tibble,
     tidyr
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.

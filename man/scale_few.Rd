@@ -6,14 +6,14 @@
 \alias{scale_fill_few}
 \title{Color scales from Few's "Practical Rules for Using Color in Charts"}
 \usage{
-scale_colour_few(palette = "medium", ...)
+scale_colour_few(palette = "Medium", ...)
 
-scale_color_few(palette = "medium", ...)
+scale_color_few(palette = "Medium", ...)
 
-scale_fill_few(palette = "light", ...)
+scale_fill_few(palette = "Light", ...)
 }
 \arguments{
-\item{palette}{One of \code{c("medium", "dark", "light")}.}
+\item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::GGTHEMES$few$colors))}}
 
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{

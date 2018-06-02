@@ -105,8 +105,10 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 
 }
 
+#' @importFrom tibble deframe
 theme_stata_colors <- function(scheme="s2color") {
-  stata_colors <- ggthemes::GGTHEMES[["data"]][["colors"]]
+  stata_colors <- ggthemes::GGTHEMES[["stata"]][["colors"]][["names"]]
+  stata_colors <- deframe(stata_colors[ , c("name", "value")])
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
     color_bg <- "white"
@@ -211,15 +213,19 @@ theme_stata <- function(base_size = 11, base_family = "sans",
 #' @export
 #' @family shapes stata
 #' @seealso See \code{\link{scale_shape_stata}} for examples.
+#' @importFrom purrr map_dfr map
+#' @importFrom tibble as_tibble
+#' @importFrom stringr str_replace
 stata_shape_pal <- function() {
   ## From s1mono, ignore small shapes
   shapes <- c("circle", "diamond", "square",
-              "triangle", "x", "plus",
+              "triangle", "X", "plus",
               "circle_hollow", "diamond_hollow",
               "square_hollow", "triangle_hollow")
-  statadata <-
-    tibble::enframe(ggthemes::GGTHEMES[ , c("name", "value")])[["stata"]]
-  values <- unname(statadata[["shapes"]][shapes])
+  statadata <- ggthemes::GGTHEMES[["stata"]][["shapes"]]
+  shapenames <- tibble::deframe(statadata[ , c("symbolstyle", "unicode_value")])
+  values <- as.hexmode(str_replace(shapenames[shapes], "U\\+", ""))
+  values <- -1 * as.integer(values)
   out <- manual_pal(values)
   attr(out, "max_n") <- length(shapes)
   out
@@ -233,7 +239,7 @@ stata_shape_pal <- function() {
 #' @family shape stata
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
-scale_shape_stata <- function (...) {
+scale_shape_stata <- function(...) {
   discrete_scale("shape", "stata", stata_shape_pal(), ...)
 }
 
@@ -246,7 +252,7 @@ scale_shape_stata <- function (...) {
 #' @export
 #' @seealso \code{\link{scale_linetype_stata}}
 stata_linetype_pal <- function() {
-  values <- ggthemes::GGTHEMES[["stata"]][["linetypes"]][["values"]]
+  values <- ggthemes::GGTHEMES[["stata"]][["linetypes"]]
   f <- function(n) {
     values[seq_len(n)]
   }

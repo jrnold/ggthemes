@@ -6,7 +6,7 @@
 \title{ggplot color theme based on the Economist}
 \usage{
 theme_economist(base_size = 10, base_family = "sans", horizontal = TRUE,
-  dkpanel = FALSE, stata = FALSE)
+  dkpanel = FALSE)
 
 theme_economist_white(base_size = 11, base_family = "sans",
   gray_bg = TRUE, horizontal = TRUE)
@@ -19,9 +19,6 @@ theme_economist_white(base_size = 11, base_family = "sans",
 \item{horizontal}{\code{logical} Horizontal axis lines?}
 
 \item{dkpanel}{\code{logical} Darker background for panel region?}
-
-\item{stata}{\code{logical} Use RGB values from Stata's
-economist scheme.}
 
 \item{gray_bg}{\code{logical} If \code{TRUE}, use gray background, else
    use white
@@ -61,14 +58,6 @@ p <- ggplot(mtcars) +
 ## Standard
 p + theme_economist() +
   scale_colour_economist()
-
-## Stata colors
-p + theme_economist(stata = TRUE) +
-  scale_colour_economist(stata = TRUE)
-
-## Darker plot region
-p + theme_economist(dkpanel = TRUE) +
-  scale_colour_economist(stata = TRUE)
 
 # Change axis lines to vertical
 p + theme_economist(horizontal = FALSE) +

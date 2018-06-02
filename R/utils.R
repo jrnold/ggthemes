@@ -12,3 +12,7 @@ ggname <- function(prefix, grob) {
   grob$name <- grid::grobName(grob, prefix)
   grob
 }
+
+rd_optlist <- function(x) {
+  paste0("\\code{\"", as.character(x), "\"}", collapse = ", ")
+}

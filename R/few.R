@@ -15,12 +15,17 @@
 #' \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
 #'
 #' @export
-#' @param palette One of \code{c("medium", "dark", "light")}.
+#' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::GGTHEMES$few$colors))}
 #' @family colour few
 #' @example inst/examples/ex-few_pal.R
-few_pal <- function(palette="medium") {
+few_pal <- function(palette = "Medium") {
+    palettes <- ggthemes::GGTHEMES$few$colors
+    if (!palette %in% names(palettes)) {
+      stop("palette must be one of: ",
+           paste0("\"", names(palettes), "\"", collapse = ", "), call. = FALSE)
+    }
     ## The first value, gray, is used for non-data parts.
-    values <- ggthemes_data$few[[palette]]
+    values <- palettes[[palette]][["value"]]
     n <- length(values)
     manual_pal(unname(values[2:n]))
 }
@@ -34,7 +39,7 @@ few_pal <- function(palette="medium") {
 #' @family colour few
 #' @rdname scale_few
 #' @export
-scale_colour_few <- function(palette = "medium", ...) {
+scale_colour_few <- function(palette = "Medium", ...) {
     discrete_scale("colour", "few", few_pal(palette), ...)
 }
 
@@ -44,7 +49,7 @@ scale_color_few <- scale_colour_few
 
 #' @export
 #' @rdname scale_few
-scale_fill_few <- function(palette = "light", ...) {
+scale_fill_few <- function(palette = "Light", ...) {
     discrete_scale("fill", "few", few_pal(palette), ...)
 }
 
@@ -65,9 +70,9 @@ scale_fill_few <- function(palette = "light", ...) {
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family="") {
-    colors <- ggthemes_data$few
-    gray <- colors$medium["Gray"]
-    black <- colors$dark["Gray"]
+    colors <- ggthemes::GGTHEMES[["few"]][["colors"]]
+    gray <- deframe(colors[["Medium"]])[["Gray"]]
+    black <- deframe(colors[["Dark"]])[["Gray"]]
     theme_bw(base_size = base_size, base_family = base_family) +
         theme(
               line = element_line(colour = gray),

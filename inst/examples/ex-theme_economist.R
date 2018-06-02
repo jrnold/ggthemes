@@ -10,14 +10,6 @@ p <- ggplot(mtcars) +
 p + theme_economist() +
   scale_colour_economist()
 
-## Stata colors
-p + theme_economist(stata = TRUE) +
-  scale_colour_economist(stata = TRUE)
-
-## Darker plot region
-p + theme_economist(dkpanel = TRUE) +
-  scale_colour_economist(stata = TRUE)
-
 # Change axis lines to vertical
 p + theme_economist(horizontal = FALSE) +
     scale_colour_economist() +

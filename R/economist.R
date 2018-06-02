@@ -138,9 +138,8 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 #'
 #' @example inst/examples/ex-theme_economist.R
 theme_economist <- function(base_size = 10, base_family = "sans",
-                            horizontal = TRUE, dkpanel = FALSE,
-                            stata = FALSE) {
-  bgcolors <- GGTHEMES[["economist"]][["bg"]]
+                            horizontal = TRUE, dkpanel = FALSE) {
+  bgcolors <- deframe(ggthemes::GGTHEMES[["economist"]][["bg"]])
   ## From measurements
   ## Ticks = 1 / 32 in, with margin about 1.5 / 32
   ## Title = 3 / 32 in (6 pt)

@@ -1,7 +1,7 @@
 colors:
-  Light: [{name: Gray, hex: '#8C8C8C'}, {name: Blue, hex: '#88BDE6'}, {name: Orange, hex: '#FBB258'}, {name: Green, hex: '#90CD97'}, {name: Pink, hex: '#F6AAC9'}, {name: Brown, hex: '#BFA554'}, {name: Purple, hex: '#BC99C7'}, {name: Yellow, hex: '#EDDD46'}, {name: Red, hex: '#F07E6E'}]
-  Medium: [{name: Gray, hex: '#4D4D4D'}, {name: Blue, hex: '#5DA5DA'}, {name: Orange, hex: '#FAA43A'}, {name: Green, hex: '#60BD68'}, {name: Pink, hex: '#F17CB0'}, {name: Brown, hex: '#B2912F'}, {name: Purple, hex: '#B276B2'}, {name: Yellow, hex: '#DECF3F'}, {name: Red, hex: '#F15854'}]
-  'Dark & Bright': [{name: Gray, hex: '#000000'}, {name: Blue, hex: '#265DAB'}, {name: Orange, hex: '#DF5C24'}, {name: Green, hex: '#059748'}, {name: Pink, hex: '#E5126F'}, {name: Brown, hex: '#9D722A'}, {name: Purple, hex: '#7B3A96'}, {name: Yellow, hex: '#C7B42E'}, {name: Red, hex: '#CB2027'}]
+  Light: [{name: Gray, value: '#8C8C8C'}, {name: Blue, value: '#88BDE6'}, {name: Orange, value: '#FBB258'}, {name: Green, value: '#90CD97'}, {name: Pink, value: '#F6AAC9'}, {name: Brown, value: '#BFA554'}, {name: Purple, value: '#BC99C7'}, {name: Yellow, value: '#EDDD46'}, {name: Red, value: '#F07E6E'}]
+  Medium: [{name: Gray, value: '#4D4D4D'}, {name: Blue, value: '#5DA5DA'}, {name: Orange, value: '#FAA43A'}, {name: Green, value: '#60BD68'}, {name: Pink, value: '#F17CB0'}, {name: Brown, value: '#B2912F'}, {name: Purple, value: '#B276B2'}, {name: Yellow, value: '#DECF3F'}, {name: Red, value: '#F15854'}]
+  'Dark': [{name: Gray, value: '#000000'}, {name: Blue, value: '#265DAB'}, {name: Orange, value: '#DF5C24'}, {name: Green, value: '#059748'}, {name: Pink, value: '#E5126F'}, {name: Brown, value: '#9D722A'}, {name: Purple, value: '#7B3A96'}, {name: Yellow, value: '#C7B42E'}, {name: Red, value: '#CB2027'}]
 shapes:
   - {name: 'WHITE CIRCLE', pch: 1, character: "○", unicode: U+25CB}
   - {name: 'WHITE SQUARE', pch: 0, unicode: "U+25A1", character: "□"}

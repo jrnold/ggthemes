@@ -4,10 +4,10 @@
 \alias{few_pal}
 \title{Color Palettes from Few's "Practical Rules for Using Color in Charts"}
 \usage{
-few_pal(palette = "medium")
+few_pal(palette = "Medium")
 }
 \arguments{
-\item{palette}{One of \code{c("medium", "dark", "light")}.}
+\item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::GGTHEMES$few$colors))}}
 }
 \description{
 Qualitative color palettes from Stephen Few,
@@ -23,8 +23,8 @@ All these palettes contain nine colors.
 library("scales")
 
 show_col(few_pal()(7))
-show_col(few_pal("dark")(7))
-show_col(few_pal("light")(7))
+show_col(few_pal("Dark")(7))
+show_col(few_pal("Light")(7))
 }
 \references{
 Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.

@@ -13,9 +13,8 @@ scale_color_wsj(palette = "colors6", ...)
 scale_fill_wsj(palette = "colors6", ...)
 }
 \arguments{
-\item{palette}{\code{character} The color palette to use. This
-must be a name in
-\code{\link[=ggthemes_data]{ggthemes_data$wsj$palettes}}.}
+\item{palette}{\code{character} The color palette to use: .
+\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$wsj$palettes))}}
 
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{

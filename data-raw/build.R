@@ -7,13 +7,14 @@ GGTHEMES <- new_environment()
 
 load_stata <- function() {
   out <- yaml::yaml.load_file(here::here("data-raw", "theme-data", "stata.yml"))
-  out$colornames <- map_dfr(out$colornames, as_tibble)
+  out$colors$names <- map_dfr(out$colors$names, as_tibble)
 
-  for (i in names(out$schemes)) {
-    out$schemes[[i]]  <-
-      tibble(name = out$schemes[[i]]) %>%
-      left_join(out$colornames, by = "name")
+  for (i in names(out$colors$schemes)) {
+    out$colors$schemes[[i]]  <-
+      tibble(name = out$colors$schemes[[i]]) %>%
+      left_join(out$colors$names, by = "name")
   }
+  out$shapes <- select(map_dfr(out$shapes, as_tibble), -comment)
   out
 }
 GGTHEMES$stata <- load_stata()
