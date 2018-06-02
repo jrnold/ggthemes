@@ -359,15 +359,14 @@
       "symbolstyle": "smplus",
       "synonym": "",
       "unicode_name": "PLUS SIGN",
-      "unicode_value": "002B",
+      "unicode_value": "002B"
     },
     {
       "symbolstyle": "smx",
       "synonym": "",
       "unicode_name": "MULTIPLICATION X",
-      "unicode_value": "2715",
+      "unicode_value": "2715"
     },
-    # new
     {
       "symbolstyle": "circle_hollow",
       "synonym": "Oh",
@@ -422,12 +421,12 @@
       "synonym": "p",
       "unicode_name": "MIDDLE DOT",
       "unicode_value": "00B7"
-    }
+    },
     {
       "symbolstyle": "none",
       "synonym": "i",
       "unicode_name": "",
-      "unicode_value", ""
+      "unicode_value": ""
     }
   ],
   "linetypes": [

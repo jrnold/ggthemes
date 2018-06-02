@@ -1,0 +1,65 @@
+gdocs:
+  - {name: Circle, label: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}
+  - {name: Triangle, label: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, symbol: ▲}
+  - {label: Square, name: 'BLACK MEDIUM SQUARE', unicode: U+25FC, symbol: ◼}
+  - {label: Diamond, name: 'BLACK DIAMOND', unicode: U+25C6, symbol: ◆}
+  - {label: Star, name: U+2605, symbol: ★}
+  - {label: 'X mark', name: 'MULTIPLICATION X', unicode: U+2715, symbol: ✕}
+  - {label: Pentagon, name: 'BLACK PENTAGON', point: U+2B1F, symbol: ⬟}
+  - {name: Hexagon, unicode: 'BLACK HEXAGON', point: U+2B22, symbol: ⬢}
+cleveland:
+  shapes: {overlap: [{name: 'WHITE CIRCLE', value: 1, symbol: ○, unicode: U+25CB}, {name: 'PLUS SIGN', value: 3, symbol: +, unicode: U+002B}, {name: 'LESS-THAN SIGN', value: 60, symbol: '<', unicode: U+003C}, {name: 'LATIN CAPITAL LETTER S', value: 87, unicode: U+0053, symbol: S}], default: [{name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○}, {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}, {name: 'CIRCLED PLUS', unicode: U+2295, symbol: ⊕}, {name: 'CIRCLED DOT OPERATOR', unicode: U+2299, symbol: ⊙}, {name: 'CIRCLED RING OPERATOR', unicode: U+229A, symbol: ⊚}]}
+circlefill:
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○}
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}
+  - {name: 'CIRCLE WITH UPPER HALF BLACK', unicode: U+25D3, symbol: ◓}
+  - {name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: U+25D5, symbol: ◕}
+  - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', unicode: U+25D4, symbol: ◔}
+tremmel:
+  '1': [{value: 16, name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}]
+  '2': [{name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, value: 16}, {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, value: 3}]
+  '3': [{name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, value: 16}, {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, value: 3}, {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, symbol: △, value: 2}]
+  '2 (overlap)': [{name: 'WHITE SQUARE', unicode: U+25A1, symbol: □, value: 1}, {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, value: 3}]
+  '3 (alternate)': [{name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, value: 16}, {name: 'WHITE SQUARE', unicode: U+25A1, symbol: □, value: 1}, {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, symbol: △, value: 2}]
+libreoffice:
+  - {name: 'BLACK SQUARE', unicode: U+25A0, symbol: ■}
+  - {name: 'BLACK DIAMOND', unicode: U+25C6, symbol: ◆}
+  - {name: 'BLACK DOWN-POINTING CHARACTER', unicode: U+25BC, symbol: ▼}
+  - {name: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, symbol: ▲}
+  - {name: 'BLACK RIGHT-POINTING TRIANGLE', unicode: U+25B6, symbol: ▶}
+  - {name: 'BLACK LEFT-POINTING TRIANGLE', unicode: U+25C0, symbol: ◀}
+  - {name: 'BLACK BOWTIE', unicode: U+29D3, symbol: ⧓}
+  - {name: 'BLACK HOURGLASS', unicode: U+29D7, symbol: ⧗}
+  - {name: 'BLACK CIRCLE', value: U+25CF, symbol: ●}
+  - {name: 'BLACK FOUR POINTED STAR', unicode: U+2726, symbol: ✦}
+  - {name: 'MULTIPLICATION X', unicode: U+2715, symbol: ✕}
+  - {name: 'FULLWIDTH PLUS SIGN', unicode: U+FF0B, symbol: ＋}
+  - {name: 'ASTERISK OPERATOR', unicode: U+2217, symbol: ∗}
+  - {name: 'HEAVY MINUS SIGN', unicode: U+2796, symbol: ➖}
+  - {name: 'MEDIUM VERTICAL BAR', unicode: U+2759, symbol: ❙}
+tableau:
+  proportions: [{name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○}, {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', unicode: U+25D4, symbol: ◔}, {name: 'CIRCLE WITH RIGHT HALF BLACK', unicode: U+25D1, symbol: ◑}, {name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: U+25D5, symbol: ◕}, {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}]
+  default: [{name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○}, {name: 'WHITE SQUARE', unicode: U+25A1, symbol: □}, {name: 'FULLWIDTH PLUS SIGN', unicode: U+FF0B, symbol: ＋}, {name: 'MULTIPLICATION X', unicode: U+2715, symbol: ✕}, {name: 'ASTERISK OPERATOR', unicode: U+2217, symbol: ∗}, {name: 'WHITE DIAMOND', unicode: U+25C7, symbol: ◇}, {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, symbol: △}, {name: 'WHITE DOWN-POINTING TRIANGLE', unicode: U+25BD, symbol: ▽}, {name: 'WHITE LEFT-POINTING TRIANGLE', unicode: U+25C1, symbol: ◁}, {name: 'WHITE RIGHT-POINTING TRIANGLE', unicode: U+25B7, symbol: ▷}]
+  filled: [{name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}, {name: 'BLACK SQUARE', unicode: U+25A0, symbol: ■}, {name: 'HEAVY PLUS SIGN', unicode: U+2795, symbol: ➕}, {name: 'HEAVY MULTIPLICATION X', unicode: U+2716, symbol: ✖}, {name: 'BLACK STAR', unicode: U+2605, symbol: ★}, {name: 'BLACK DIAMOND', unicode: U+25C6, symbol: ◆}, {name: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, symbol: ▲}, {name: 'BLACK DOWN-POINTING TRIANGLE', unicode: U+25BC, symbol: ▼}, {name: 'BLACK LEFT-POINTING TRIANGLE', unicode: U+25C0, symbol: ◀}, {name: 'BLACK RIGHT-POINTING TRIANGLE', unicode: U+25B6, symbol: ▶}]
+  'Bug Tracking': [{name: 'LADY BEETLE', unicode: 1F41E, symbol: 🐞, emoji: true}, {name: 'ALARM CLOCK', unicode: U+23F0, symbol: ⏰, emoji: true}, {name: 'Electric Light Bulb', unicode: U+1F4A1, symbol: 💡, emoji: true}, {name: Envelope, unicode: 'U+2709 U+FE0F', symbol: ✉️, emoji: true}]
+  Gender: [{name: 'MEN''S ROOM', unicode: U+1F6B9, symbol: 🚹, emoji: true}, {name: 'WOMEN''S ROOM', unicode: U+1F6BA, symbol: 🚺, emoji: true}, {name: RESTROOM, unicode: U+1F6BB, symbol: 🚻, emoji: true}, {name: 'MALE SIGN', unicode: U+2642, symbol: ♂, emoji: false}, {name: 'FEMALE SIGN', unicode: U+2640, symbol: ♀, emoji: false}, {name: 'MEDIUM WHITE CIRCLE UNICODE CHARACTER', unicode: U+26AA, symbol: ⚪, emoji: false}, {name: 'MALE AND FEMALE SIGN', unicode: U+26A5, symbol: ⚥, emoji: false}, {name: 'VERTICAL MALE WITH STROKE SIGN', unicode: U+26A8, symbol: ⚨, emoji: false}, {name: 'MALE WITH STROKE AND MALE AND FEMALE SIGN', unicode: U+26A7, symbol: ⚧, emoji: false}]
+  kpi: [{name: 'CHECK MARK', unicode: 'U+2714 U+FE0E', symbol: ✔︎}, {name: 'MULTIPLICATION X', unicode: 'U+2716 U+FE0E', symbol: ✖︎}, {name: 'EXCLAMATION MARK', unicode: U+0021, symbol: '!'}, {Name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}, {unicode: U+25B2, symbol: ▲}, {name: 'BLACK DIAMOND', unicode: U+25C6, symbol: ◆}]
+  weather: [{name: SUN, unicode: U+2600, symbol: ☀︎, emoji: true}, {name: CLOUD, unicode: U+2601, symbol: ☁︎, emoji: true}, {name: 'CLOUD WITH RAIN', unicode: U+1F327, symbol: 🌧, emoji: true}, {name: UMBRELLA, unicode: U+2602, symbol: ☂︎︎, emoji: true}, {name: 'UMBRELLA WITH RAINDROPS', unicode: U+2614, symbol: ☔, emoji: true}, {name: SNOWMAN, unicode: U+2603, symbol: ☃︎, emoji: true}]
+  Arrows: [{name: 'Up Arrow', unicode: U+2B06, symbol: ⬆, emoji: true}, {name: 'Up Right Arrow', unicode: U+2197, symbol: ↗, emoji: true}, {name: 'Right Arrow', unicode: U+27A1, symbol: ➡, emoji: true}, {name: 'Down Right Arrow', unicode: U+2198, symbol: ↘, emoji: true}, {name: 'Down Arrow', unicode: U+2B07, symbol: ⬇, emoji: true}, {name: 'Down-Left Arrow', unicode: U+2199, symbol: ↙, emoji: true}, {name: 'Left Arrow', unicode: U+2B05, symbol: ⬅, emoji: true}, {name: 'Up-Left Arrow', symbol: ↖, unicode: U+2196, emoji: true}]
+  'Thin Arrows': [{name: 'Up Arrow', unicode: U+2B06, symbol: ⬆, emoji: false}, {name: 'Up Right Arrow', unicode: U+2197, symbol: ↗, emoji: false}, {name: 'Right Arrow', unicode: U+27A1, symbol: ➡, emoji: false}, {name: 'Down Right Arrow', unicode: U+2198, symbol: ↘, emoji: false}, {name: 'Down Arrow', unicode: U+2B07, symbol: ⬇, emoji: false}, {name: 'Down-Left Arrow', unicode: U+2199, symbol: ↙, emoji: false}, {name: 'Left Arrow', unicode: U+2B05, symbol: ⬅, emoji: false}, {name: 'Up-Left Arrow', symbol: ↖, unicode: U+2196, emoji: false}]
+excel:
+  - {name: Circle, label: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}
+  - {label: Square, name: 'BLACK MEDIUM SQUARE', unicode: U+25FC, symbol: ◼}
+  - {label: Diamond, name: 'BLACK DIAMOND', unicode: U+25C6, symbol: ◆}
+  - {name: Triangle, label: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, symbol: ▲}
+  - {name: 'MULTIPLICATION X', unicode: U+2715, symbol: ✕}
+  - {name: 'LIGHT SIX SPOKED ASTERISK', unicode: U+1F7B5, symbol: 🞵}
+  - {name: HYPHEN-MINUS, unicode: U+002D, symbol: '-'}
+  - {name: 'EM DASH', unicode: U+2013, symbol: —}
+  - {name: 'PLUS SIGN', symbol: +, unicode: U+002B}
+Harvey:
+  - {name: 'LARGE CIRCLE', symbol: ○, unicode: U+25CB}
+  - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', symbol: ◔, unicode: U+25D4}
+  - {name: 'CIRCLE WITH RIGHT HALF BLACK', symbol: ◑, unicode: U+25D1}
+  - {symbol: ◕, name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: U+25D5}
+  - {name: 'BLACK CIRCLE', symbol: ●, unicode: U+25CF}
