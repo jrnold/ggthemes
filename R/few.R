@@ -1,12 +1,17 @@
-#' Color Palettes from Few's "Practical Rules for Using Color in Charts"
+#' Color Palettes Few "Show Me the Numbers"
 #'
-#' Qualitative color palettes from Stephen Few,
+#' Qualitative color palettes from Stephen Few (2012)
+#' \emph{Show Me the Numbers}. There are three palettes:
+#' Light, Medium, and Dark. Each palette comprises nine colors:
+#' gray, blue, orange, green, pink, brown, purple, yellow, red.
+#' For \code{n = 1}, gray is used. For \code{n > 1}, the eight non-gray
+#' colors are used.
+#'
 #'
 #' Use the light palette for filled areas, such as bar charts.
-#' The medium palette should be used for points and lines.
-#' The dark palette should be used for either highlighting specific points,
-#' or if the lines and points are small or thin.
-#' All these palettes contain nine colors.
+#' Use the medium palette for points and lines.
+#' Use the dark palette for highlighting specific points
+#' or for small and thin lines and points.
 #'
 #' @references
 #' Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.
@@ -19,15 +24,26 @@
 #' @family colour few
 #' @example inst/examples/ex-few_pal.R
 few_pal <- function(palette = "Medium") {
-    palettes <- ggthemes::GGTHEMES$few$colors
-    if (!palette %in% names(palettes)) {
-      stop("palette must be one of: ",
-           paste0("\"", names(palettes), "\"", collapse = ", "), call. = FALSE)
+  palettes <- ggthemes::GGTHEMES$few$colors
+  if (!palette %in% names(palettes)) {
+    stop("palette must be one of: ",
+         paste0("\"", names(palettes), "\"", collapse = ", "), call. = FALSE)
+  }
+  ## The first value, gray, is used for non-data parts.
+  values <- palettes[[palette]][["value"]]
+  n <- length(values)
+  f <- function(n) {
+    if (n == 1L) {
+      values[[1L]]
+    } else if (n > 1L && n <= (length(values) - 1L)) {
+      unname(values[2:n])
+    } else {
+      stop("Palette supports at most ", length(values), " values.",
+           call. = FALSE)
     }
-    ## The first value, gray, is used for non-data parts.
-    values <- palettes[[palette]][["value"]]
-    n <- length(values)
-    manual_pal(unname(values[2:n]))
+  }
+  attr(f, "max_n") <- length(values) - 1L
+  f
 }
 
 #' Color scales from Few's "Practical Rules for Using Color in Charts"
@@ -90,7 +106,8 @@ theme_few <- function(base_size = 12, base_family="") {
 #' Shape palette from "Show Me the Numbers" (discrete)
 #'
 #' Shape palette from Stephen Few's, "Show Me the Numbers".
-#' It consists of five shapes: circle, square, triangle, plus, times.
+#' The shape palette consists of five shapes: circle, square, triangle, plus,
+#' times.
 #'
 #' @references Few, S. (2012)
 #'   \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
@@ -98,18 +115,16 @@ theme_few <- function(base_size = 12, base_family="") {
 #'
 #' @export
 few_shape_pal <- function() {
-  max_n <- 5
+  shapes <- ggthemes::GGTHEMES[["few"]][["shapes"]]
+  max_n <- nrow(shapes)
   f <- function(n) {
     msg <- paste("The shape palette can deal with a maximum of ", max_n,
                  "discrete values;",
-                 "you have ", n, ".",
-                 " Consider specifying shapes manually if you ",
-                 "must have them.", sep = "")
+                 "you have ", n, ".")
     if (n > max_n) {
       stop(msg, call. = FALSE)
     }
-    # circle, square, triangle, plus, cross
-    ggthemes::GGTHEMES[["few"]][["shapes"]][["pch"]][seq_len(n)]
+    shapes[["pch"]][seq_len(n)]
   }
   attr(f, "max_n") <- max_n
   f

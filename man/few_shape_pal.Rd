@@ -8,7 +8,8 @@ few_shape_pal()
 }
 \description{
 Shape palette from Stephen Few's, "Show Me the Numbers".
-It consists of five shapes: circle, square, triangle, plus, times.
+The shape palette consists of five shapes: circle, square, triangle, plus,
+times.
 }
 \references{
 Few, S. (2012)

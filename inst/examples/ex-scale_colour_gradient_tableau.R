@@ -11,6 +11,8 @@ p <- ggplot(df, aes(x, y)) +
      geom_point(aes(colour = z2)) +
      theme_igray()
 
-p + scale_colour_gradient_tableau("Red")
-p + scale_colour_gradient_tableau("Blue")
-p + scale_colour_gradient_tableau("Green")
+palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["ordered-sequential"]]
+for (palette in names(palettes)) {
+  print(p + scale_colour_gradient_tableau(palette) +
+          ggtitle(palette))
+}

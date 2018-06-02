@@ -4,34 +4,24 @@
 \alias{tableau_color_pal}
 \title{Color Palettes based on Tableau (discrete)}
 \usage{
-tableau_color_pal(palette = "tableau10")
+tableau_color_pal(palette = "Tableau 10", type = "regular", direction = 1)
 }
 \arguments{
 \item{palette}{Palette name.}
 }
 \description{
-Color palettes used in
-\href{http://www.tableausoftware.com/}{Tableau}.
-}
-\details{
-The number in some palette names indicates the maximum number of
-values supported, e.g \code{tableau20} supports up to 20 values.
-\code{"trafficlight"} supports up to nine values, and \code{"cyclic"}
-supports up to 20 values.
+Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 }
 \examples{
 library("scales")
 
-show_col(tableau_color_pal("tableau20")(20))
-show_col(tableau_color_pal("tableau10")(10))
-show_col(tableau_color_pal("tableau10medium")(10))
-show_col(tableau_color_pal("tableau10light")(10))
-show_col(tableau_color_pal("colorblind10")(10))
-show_col(tableau_color_pal("trafficlight")(10))
-show_col(tableau_color_pal("purplegray12")(12))
-show_col(tableau_color_pal("bluered12")(12))
-show_col(tableau_color_pal("greenorange12")(12))
-show_col(tableau_color_pal("cyclic")(20))
+palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["regular"]]
+for (palname in names(palettes)) {
+  pal <- tableau_color_pal(palname)
+  max_n <- attr(pal, "max_n")
+  show_col(pal(max_n))
+  title(main = palname)
+}
 }
 \references{
 \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -50,6 +40,5 @@ Factors in Computing Systems (CHI)
 Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{scale_colour_gradient_tableau}},
   \code{\link{scale_colour_tableau}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+  \code{\link{tableau_gradient_pal}}
 }

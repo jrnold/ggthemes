@@ -4,68 +4,64 @@
 #' included in these palettes and should be used to indicate
 #' important data.
 #'
-#' @param stata Use the palette in the Stata economist scheme.
 #' @param fill Use the fill palette.
 #' @family colour economist
 #' @export
 #' @example inst/examples/ex-economist_pal.R
-economist_pal <- function(stata=FALSE, fill=TRUE) {
-  if (stata) {
-    manual_pal(unname(ggthemes_data$economist$stata$fg))
+economist_pal <- function(fill=TRUE) {
+  colors <- deframe(ggthemes::GGTHEMES[["economist"]][["fg"]])
+  max_n <- length(colors)
+  if (fill) {
+    function(n) {
+      assert_that(n < max_n)
+      assert_that(n > 0)
+      if (n == 1) {
+        i <- "blue_dark"
+      } else if (n == 2) {
+        i <- c("blue_mid", "blue_dark")
+      } else if (n == 3) {
+        i <- c("blue_gray", "blue_dark", "blue_mid")
+      } else if (n == 4) {
+        i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
+      } else if (n %in% 5:6) {
+        ## 20120901_woc904
+        i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
+               "green_light", "green_dark")
+      } else if (n == 7) {
+        # 20120818_AMC820
+        i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+               "green_dark", "green_light", "gray")
+      } else if (n >= 8) {
+        # 20120915_EUC094
+        i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+               "green_dark", "green_light", "red_dark", "red_light",
+               "gray")
+      }
+      unname(colors[i][seq_len(n)])
+    }
   } else {
-    colors <- ggthemes_data$economist$fg
-    if (fill) {
-      function(n) {
-        assert_that(n < length(ggthemes_data$economist$fg))
-        assert_that(n > 0)
-        if (n == 1) {
-          i <- "blue_dark"
-        } else if (n == 2) {
-          i <- c("blue_mid", "blue_dark")
-        } else if (n == 3) {
-          i <- c("blue_gray", "blue_dark", "blue_mid")
-        } else if (n == 4) {
-          i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
-        } else if (n %in% 5:6) {
-          ## 20120901_woc904
-          i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
-                 "green_light", "green_dark")
-        } else if (n == 7) {
-          # 20120818_AMC820
-          i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-                 "green_dark", "green_light", "gray")
-        } else if (n >= 8) {
-          # 20120915_EUC094
-          i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-                 "green_dark", "green_light", "red_dark", "red_light",
-                 "gray")
-        }
-        unname(colors[i][seq_len(n)])
-      }
-    } else {
-      function(n) {
-        assert_that(n > 0)
-        assert_that(n <= length(ggthemes_data$economist$fg))
-        if (n <= 3) {
-          # 20120818_AMC20
-          # 20120901_FBC897
-          i <- c("blue_dark", "blue_mid", "blue_light")
-        } else if (n %in% 4:5) {
-          # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
-          i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
-        } else if (n == 6) {
-          # 20120825_IRC829
-          i <- c("green_light", "green_dark", "gray",
-                 "blue_gray", "blue_light", "blue_dark")
-        } else if (n > 6) {
-          # 20120825_IRC829
-          i <- c("green_light", "green_dark", "gray",
-                 "blue_gray", "blue_light", "blue_dark", "red_dark",
-                 "red_light", "brown")
+    function(n) {
+      assert_that(n > 0)
+      assert_that(n <= max_n)
+      if (n <= 3) {
+        # 20120818_AMC20
+        # 20120901_FBC897
+        i <- c("blue_dark", "blue_mid", "blue_light")
+      } else if (n %in% 4:5) {
+        # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
+        i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
+      } else if (n == 6) {
+        # 20120825_IRC829
+        i <- c("green_light", "green_dark", "gray",
+               "blue_gray", "blue_light", "blue_dark")
+      } else if (n > 6) {
+        # 20120825_IRC829
+        i <- c("green_light", "green_dark", "gray",
+               "blue_gray", "blue_light", "blue_dark", "red_dark",
+               "red_light", "brown")
 
-        }
-        unname(colors[i][seq_len(n)])
       }
+      unname(colors[i][seq_len(n)])
     }
   }
 }
@@ -81,8 +77,8 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 #' @rdname scale_economist
 #' @seealso \code{\link{theme_economist}} for examples.
 #' @export
-scale_colour_economist <- function(stata=FALSE, ...) {
-  discrete_scale("colour", "economist", economist_pal(stata = stata), ...)
+scale_colour_economist <- function(...) {
+  discrete_scale("colour", "economist", economist_pal(), ...)
 }
 
 #' @rdname scale_economist
@@ -91,8 +87,8 @@ scale_color_economist <- scale_colour_economist
 
 #' @rdname scale_economist
 #' @export
-scale_fill_economist <- function(stata=FALSE, ...) {
-  discrete_scale("fill", "economist", economist_pal(stata = stata), ...)
+scale_fill_economist <- function(...) {
+  discrete_scale("fill", "economist", economist_pal(), ...)
 }
 
 #' ggplot color theme based on the Economist

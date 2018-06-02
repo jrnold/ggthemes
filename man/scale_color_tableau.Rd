@@ -6,11 +6,11 @@
 \alias{scale_color_tableau}
 \title{Tableau color scales.}
 \usage{
-scale_colour_tableau(palette = "tableau10", ...)
+scale_colour_tableau(palette = "Tableau 10", ...)
 
-scale_fill_tableau(palette = "tableau10", ...)
+scale_fill_tableau(palette = "Tableau 10", ...)
 
-scale_color_tableau(palette = "tableau10", ...)
+scale_color_tableau(palette = "Tableau 10", ...)
 }
 \arguments{
 \item{palette}{Palette name.}
@@ -76,16 +76,12 @@ library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
      facet_wrap(~am)
-p + scale_colour_tableau()
-p + scale_colour_tableau("tableau20")
-p + scale_colour_tableau("tableau10medium")
-p + scale_colour_tableau("tableau10light")
-p + scale_colour_tableau("colorblind10")
-p + scale_colour_tableau("trafficlight")
-p + scale_colour_tableau("purplegray12")
-p + scale_colour_tableau("bluered12")
-p + scale_colour_tableau("greenorange12")
-p + scale_colour_tableau("cyclic")
+
+palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["regular"]]
+for (palette in names(palettes)) {
+  print(p + scale_colour_tableau(palette) +
+          ggtitle(palette))
+}
 }
 \seealso{
 \code{\link{tableau_color_pal}} for references.
@@ -93,6 +89,5 @@ p + scale_colour_tableau("cyclic")
 Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{scale_colour_gradient_tableau}},
   \code{\link{tableau_color_pal}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+  \code{\link{tableau_gradient_pal}}
 }

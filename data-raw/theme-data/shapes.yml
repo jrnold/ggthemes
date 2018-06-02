@@ -17,11 +17,22 @@ circlefill:
   - {name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: U+25D5, symbol: ◕}
   - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', unicode: U+25D4, symbol: ◔}
 tremmel:
-  '1': [{pch: 16, name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}]
-  '2': [{name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, pch: 16}, {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, pch: 1}]
-  '3': [{name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, pch: 16}, {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, pch: 1}, {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, symbol: △, pch: 2}]
-  '2-overlap': [{name: 'WHITE SQUARE', unicode: U+25A1, symbol: □, pch: 0}, {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, pch: 3}]
-  '3-alternate': [{name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, pch: 16}, {name: 'WHITE SQUARE', unicode: U+25A1, symbol: □, pch: 1}, {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, symbol: △, pch: 2}]
+  '1':
+  - {pch: 16, name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}]
+  '2':
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, pch: 16}
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, pch: 1}]
+  '3':
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, pch: 16}
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, pch: 1}
+  - {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, symbol: △, pch: 2}]
+  '2-overlap':
+  - {name: 'WHITE SQUARE', unicode: U+25A1, symbol: □, pch: 0}
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, symbol: ○, pch: 3}
+  '3-alternate':
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●, pch: 16}
+  - {name: 'WHITE SQUARE', unicode: U+25A1, symbol: □, pch: 1}
+  - {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, symbol: △, pch: 2}
 harvey:
   - {name: 'LARGE CIRCLE', symbol: ○, unicode: U+25CB}
   - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', symbol: ◔, unicode: U+25D4}

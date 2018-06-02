@@ -1,14 +1,11 @@
 # see mstone_Palettes at https://github.com/mcstone/mstone/tree/5acd4ad14246feb07f759053c0e53dc2e023302e/Palettes
+#
+
 
 #' Color Palettes based on Tableau (discrete)
 #'
-#' Color palettes used in
-#' \href{http://www.tableausoftware.com/}{Tableau}.
+#' Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 #'
-#' The number in some palette names indicates the maximum number of
-#' values supported, e.g \code{tableau20} supports up to 20 values.
-#' \code{"trafficlight"} supports up to nine values, and \code{"cyclic"}
-#' supports up to 20 values.
 #'
 #' @export
 #' @param palette Palette name.
@@ -28,29 +25,30 @@
 #'
 #' @family colour tableau
 #' @example inst/examples/ex-tableau_color_pal.R
-tableau_color_pal <- function(palette = "tableau10") {
-  palettelist <- ggthemes_data$tableau$colors
-  if (!palette %in% c(names(palettelist), "tableau10", "tableau10light",
-                      "purplegray6", "bluered6", "greenorange6")) {
-    stop(sprintf("%s is not a valid palette name", palette))
+tableau_color_pal <- function(palette = "Tableau 10",
+                              type = "regular",
+                              direction = 1) {
+  palettes <- ggthemes::GGTHEMES[["tableau"]][["color-palettes"]][[type]]
+  if (!palette %in% names(palettes)) {
+    stop("`palette` must be one of ", paste(names(palettes), collapse = ", "),
+         ".")
   }
-  if (palette == "tableau10") {
-    types <- palettelist[["tableau20"]][seq(1, 20, by = 2)]
-  } else if (palette == "tableau10light") {
-    types <- palettelist[["tableau20"]][seq(2, 20, by = 2)]
-  } else if (palette == "purplegray6") {
-    types <- palettelist[["purplegray12"]][seq(1, 12, by = 2)]
-  } else if (palette == "bluered6") {
-    types <- palettelist[["bluered12"]][seq(1, 12, by = 2)]
-  } else if (palette == "greenorange6") {
-    types <- palettelist[["greenorange12"]][seq(1, 12, by = 2)]
-  } else {
-    types <- palettelist[[palette]]
+  values <- palettes[[palette]][["value"]]
+  max_n <- length(values)
+  f <- function(n) {
+    check_pal_n(n, max_n)
+    if (type == "regular") {
+      pal <- unname(values)[seq_len(n)]
+    }
+    if (direction < 0) {
+      pal <- rev(pal)
+    }
+    pal
   }
-  function(n) {
-    unname(types)[seq_len(n)]
-  }
+  attr(f, "max_n") <- length(values)
+  f
 }
+
 
 #' Tableau color scales.
 #'
@@ -63,13 +61,13 @@ tableau_color_pal <- function(palette = "tableau10") {
 #' @export
 #' @seealso \code{\link{tableau_color_pal}} for references.
 #' @example inst/examples/ex-scale_color_tableau.R
-scale_colour_tableau <- function(palette = "tableau10", ...) {
+scale_colour_tableau <- function(palette = "Tableau 10", ...) {
   discrete_scale("colour", "tableau", tableau_color_pal(palette), ...)
 }
 
 #' @export
 #' @rdname scale_color_tableau
-scale_fill_tableau <- function(palette = "tableau10", ...) {
+scale_fill_tableau <- function(palette = "Tableau 10", ...) {
   discrete_scale("fill", "tableau", tableau_color_pal(palette), ...)
 }
 
@@ -103,21 +101,49 @@ scale_shape_tableau <- function(palette = "default", ...) {
   discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
 
-
-
-#' Tableau sequential colour gradient palettes (continuous)
+#' Tableau colour gradient palettes (continuous)
 #'
-#' @param palette Palette name. See \code{ggthemes_data$tableau$sequential}.
-#' @param space Colour space in which to calculate gradient.
+#' @param palette Palette name.
+#'  \itemize{
+#'  \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+#'  \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+#'  }
+#' @param type Palette type, either \code{"ordered-sequential"} or
+#'   \code{"ordered-diverging"}.
+#' @param values if colours should not be evenly positioned along the gradient
+#'   this vector gives the position (between 0 and 1) for each colour in the
+#'   colours vector. See \link[scales]{rescale} for a convenience function to
+#'   map an arbitrary range to between 0 and 1.
+#' @param direction Sets the order of colors in the scale.
+#'    If 1, the default, colors are as the original order.
+#'    If -1, the order of colors is reversed.
+#' @param ... Arguments passed to \code{tableau_gradient_pal}.
 #' @family colour tableau
 #'
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
-tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
-  pal <- ggthemes_data[["tableau"]][["sequential"]][[palette]]
-  seq_gradient_pal(low = pal["low"], high = pal["high"])
+tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential",
+                                 values = NULL, direction = 1) {
+  type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
+  pal <- ggthemes::GGTHEMES[["tableau"]][["color-palettes"]][[type]][[palette]]
+  colours <- pal[["value"]]
+  if (direction < 0) {
+    colours <- rev(colours)
+  }
+  scales::gradient_n_pal(colours, values = values, space = "Lab")
 }
 
+#' @export
+#' @rdname tableau_gradient_pal
+tableau_seq_gradient_pal <- function(palette = "Blue", ...) {
+  tableau_gradient_pal(palette = palette, type = "ordered-sequential", ...)
+}
+
+#' @export
+#' @rdname tableau_gradient_pal
+tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
+  tableau_gradient_pal(palette = palette, type = "ordered-diverging", ...)
+}
 
 #' Tableau sequential colour scale (continuous)
 #'
@@ -129,13 +155,12 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #' @family colour tableau
 #' @rdname scale_colour_gradient_tableau
 #' @example inst/examples/ex-scale_colour_gradient_tableau.R
-scale_colour_gradient_tableau <- function(palette = "Red",
+scale_colour_gradient_tableau <- function(palette = "Blue",
                                           ...,
-                                          space = "Lab",
                                           na.value = "grey50",
                                           guide = "colourbar") {
   continuous_scale("colour", "tableau",
-                   tableau_seq_gradient_pal(palette, space),
+                   tableau_seq_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)
@@ -143,12 +168,12 @@ scale_colour_gradient_tableau <- function(palette = "Red",
 
 #' @export
 #' @rdname scale_colour_gradient_tableau
-scale_fill_gradient_tableau <- function(palette = "Red",
-                                        ..., space = "Lab",
+scale_fill_gradient_tableau <- function(palette = "Blue",
+                                        ...,
                                         na.value = "grey50",
                                         guide = "colourbar") {
   continuous_scale("fill", "tableau",
-                   tableau_seq_gradient_pal(palette, space),
+                   tableau_seq_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)
@@ -166,21 +191,6 @@ scale_color_continuous_tableau <- scale_colour_gradient_tableau
 #' @rdname scale_colour_gradient_tableau
 scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 
-
-#' Tableau diverging colour gradient palettes (continuous)
-#'
-#' @param palette Palette name. See \code{ggthemes_data$tableau$divergent}.
-#' @param space Colour space in which to calculate gradient.
-#' @family colour tableau
-#'
-#' @export
-#' @example inst/examples/ex-tableau_div_gradient_pal.R
-tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
-  pal <- ggthemes_data[["tableau"]][["diverging"]][[palette]]
-  div_gradient_pal(low = pal["low"], mid = pal["mid"], high = pal["high"],
-                   space = space)
-}
-
 #' Tableau diverging colour scales (continuous)
 #'
 #' @inheritParams tableau_div_gradient_pal
@@ -191,12 +201,12 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 #' @export
 #' @rdname scale_colour_gradient2_tableau
 #' @example inst/examples/ex-scale_colour_gradient2_tableau.R
-scale_colour_gradient2_tableau <- function(palette = "Red-Blue",
-                                           ..., space = "rgb",
+scale_colour_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
+                                           ...,
                                            na.value = "grey50",
                                            guide = "colourbar") {
   continuous_scale("colour", "tableau2",
-                   tableau_div_gradient_pal(palette, space),
+                   tableau_div_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)
@@ -204,13 +214,12 @@ scale_colour_gradient2_tableau <- function(palette = "Red-Blue",
 
 #' @export
 #' @rdname scale_colour_gradient2_tableau
-scale_fill_gradient2_tableau <- function(palette = "Red-Blue",
+scale_fill_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
                                          ...,
-                                         space = "rgb",
                                          na.value = "grey50",
                                          guide = "colourbar") {
   continuous_scale("fill", "tableau2",
-                   tableau_div_gradient_pal(palette, space),
+                   tableau_div_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)
@@ -219,36 +228,3 @@ scale_fill_gradient2_tableau <- function(palette = "Red-Blue",
 #' @export
 #' @rdname scale_colour_gradient2_tableau
 scale_color_gradient2_tableau <- scale_colour_gradient2_tableau
-
-# Tableau 10 has 30 palettes
-#
-# - tableau 10
-# - tableau 20
-# - color blind
-# - seattle grays
-# - traffic light
-# - superfishel stone
-# - miller stone
-# - nuriel stone
-# - jewel bright
-# - summer
-# - winter
-# - green-orange-teal
-# - blue-red-brown
-# - purple-pink-gray
-# - tableau classic 10
-# - tableau classic medium
-# - tableau classic 20
-# - blue
-# - orange
-# - green
-# - red
-# - purple
-# - brown
-# - gray
-# - gray warm
-# - blue-teal
-# - orange-gold
-# - green-gold
-# - red-gold
-# - hue circle

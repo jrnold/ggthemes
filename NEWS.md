@@ -2,6 +2,10 @@
 
 -   Add `scale_shapes_few` and `few_shape_pal` with a shape scale and palette
     from Stephen Few's "Show Me the Numbers".
+-   Remove `stata` argument from `scale_*_economist` and `theme_economist`.
+-   Add Stata's economist scheme to `scale_*_stata` and `theme_stata`.
+-   Change behavior of `few_pal`. If `n = 1`, use gray. If `n > 1` use non-gray
+    colors.
 -   Add a pkgdown site.
 -   Remove vignette. Move all examples to man pages.
 -   Bugfix: Fix theme_few (#91)
