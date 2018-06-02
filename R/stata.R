@@ -12,24 +12,9 @@
 #' @family stata colour
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme="s2color") {
-  colorlists <-
-    list(s2color = c("navy", "maroon", "forest_green",
-                     "dkorange", "teal", "cranberry", "lavender",
-                     "khaki", "sienna",
-                     "emidblue", "emerald", "brown", "erose", "gold",
-                     "bluishgray" # gs6
-    ),
-    s1rcolor = c("yellow", "lime", "midblue", "magenta", "orange",
-                 "red", "ltblue", "sandb", "mint", "olive_teal", "orange_red",
-                 "blue", "pink", "teal", "sienna"), # white
-    s1color = c("dkgreen", "orange_red", "navy", "maroon", "teal", "sienna",
-                "orange", "magenta", "cyan", "red", "lime", "brown", "purple",
-                "olive_teal", "ltblue"), #gs6
-    ## s2manual, s2gmanual, s1mono, s1manual, s
-    mono = c("gs6", "gs10", "gs8", "gs4", "black", "gs14", "gs2", "gs7",
-             "gs9", "gs11", "gs13", "gs15", "gs3", "gs12", "gs5") #black
-    )
-  manual_pal(unname(ggthemes_data$stata$colors[colorlists[[scheme]]]))
+  colors <-
+    ggthemes::GGTHEMES_DATA[["stata"]][["colors"]][["schemes"]][[scheme]]
+  manual_pal(colors[["value"]])
 }
 
 #' Stata color scales
@@ -121,7 +106,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 }
 
 theme_stata_colors <- function(scheme="s2color") {
-  stata_colors <- ggthemes_data$stata$colors
+  stata_colors <- ggthemes::GGTHEMES_DATA[["data"]][["colors"]]
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
     color_bg <- "white"
@@ -228,12 +213,16 @@ theme_stata <- function(base_size = 11, base_family = "sans",
 #' @seealso See \code{\link{scale_shape_stata}} for examples.
 stata_shape_pal <- function() {
   ## From s1mono, ignore small shapes
-  shapenames <- c("circle", "diamond", "square",
-                  "triangle", "x", "plus",
-                  "circle_hollow", "diamond_hollow",
-                  "square_hollow", "triangle_hollow")
-  values <- ggthemes_data$stata$shapes[shapenames]
-  manual_pal(unname(values))
+  shapes <- c("circle", "diamond", "square",
+              "triangle", "x", "plus",
+              "circle_hollow", "diamond_hollow",
+              "square_hollow", "triangle_hollow")
+  shapenames <- enframe(select(ggthemes::GGTHEMES_DATA, name, value)
+                               [["stata"]][["shapes"]])
+  values <- unname(shapenames[shapes])
+  out <- manual_pal(values)
+  attr(out, "max_n") <- length(shapes)
+  out
 }
 
 #' Stata shape scale
@@ -257,10 +246,12 @@ scale_shape_stata <- function (...) {
 #' @export
 #' @seealso \code{\link{scale_linetype_stata}}
 stata_linetype_pal <- function() {
-  values <- ggthemes_data$stata$linetypes
-  function(n) {
+  linetypes <- ggthemes::GGTHEMES_DATA[["stata"]][["linetypes"]][["values"]]
+  f <- function(n) {
     values[seq_len(n)]
   }
+  attr(f, "max_n") <- length(linetypes)
+  f
 }
 
 #' Stata linetype palette (discrete)
@@ -274,7 +265,6 @@ stata_linetype_pal <- function() {
 scale_linetype_stata <- function(...)  {
   discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }
-
 
 ## Text sizes (from style definitions ado/base/style/gsize-*.style)
 ## default 4.166
