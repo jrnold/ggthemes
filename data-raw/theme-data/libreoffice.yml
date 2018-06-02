@@ -1,0 +1,18 @@
+values:
+  -
+shapes:
+  - {name: 'BLACK SQUARE', unicode: U+25A0, symbol: ■}
+  - {name: 'BLACK DIAMOND', unicode: U+25C6, symbol: ◆}
+  - {name: 'BLACK DOWN-POINTING CHARACTER', unicode: U+25BC, symbol: ▼}
+  - {name: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, symbol: ▲}
+  - {name: 'BLACK RIGHT-POINTING TRIANGLE', unicode: U+25B6, symbol: ▶}
+  - {name: 'BLACK LEFT-POINTING TRIANGLE', unicode: U+25C0, symbol: ◀}
+  - {name: 'BLACK BOWTIE', unicode: U+29D3, symbol: ⧓}
+  - {name: 'BLACK HOURGLASS', unicode: U+29D7, symbol: ⧗}
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}
+  - {name: 'BLACK FOUR POINTED STAR', unicode: U+2726, symbol: ✦}
+  - {name: 'MULTIPLICATION X', unicode: U+2715, symbol: ✕}
+  - {name: 'FULLWIDTH PLUS SIGN', unicode: U+FF0B, symbol: ＋}
+  - {name: 'ASTERISK OPERATOR', unicode: U+2217, symbol: ∗}
+  - {name: 'HEAVY MINUS SIGN', unicode: U+2796, symbol: ➖}
+  - {name: 'MEDIUM VERTICAL BAR', unicode: U+2759, symbol: ❙}

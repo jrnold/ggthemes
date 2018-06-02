@@ -22,7 +22,7 @@ theme_wsj <- function(base_size = 12,
                       color = "brown",
                       base_family = "sans",
                       title_family = "mono") {
-  colorhex <- ggthemes_data$wsj$bg[color]
+  colorhex <- ggthemes::GGTHEMES$wsj$bg[color]
   (theme_foundation(base_size = base_size, base_family = base_family) +
     theme(line = element_line(linetype = 1, colour = "black"),
           rect = element_rect(fill = colorhex, linetype = 0, colour = NA),
@@ -84,8 +84,9 @@ theme_wsj <- function(base_size = 12,
 #' @family colour wsj
 #' @export
 wsj_pal <- function(palette = "colors6") {
-  if (palette %in% names(ggthemes_data$wsj$palettes)) {
-    manual_pal(unname(ggthemes_data$wsj$palettes[[palette]]))
+  palettes <- GGTHEMES[["wsj"]][["palettes"]]
+  if (palette %in% names(palettes)) {
+    manual_pal(unname(palettes[[palette]]))
   } else {
     stop(sprintf("palette %s not a valid palette.", palette))
   }

@@ -104,7 +104,7 @@ few_shape_pal <- function() {
       stop(msg, call. = FALSE)
     }
     # circle, square, triangle, plus, cross
-    c(1, 0, 2, 3, 4)[seq_len(n)]
+    ggthemes::GGTHEMES[["few"]][["shapes"]][["pch"]][seq_len(n)]
   }
   attr(f, "max_n") <- max_n
   f

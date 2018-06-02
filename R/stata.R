@@ -13,7 +13,7 @@
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme="s2color") {
   colors <-
-    ggthemes::GGTHEMES_DATA[["stata"]][["colors"]][["schemes"]][[scheme]]
+    ggthemes::GGTHEMES[["stata"]][["colors"]][["schemes"]][[scheme]]
   manual_pal(colors[["value"]])
 }
 
@@ -106,7 +106,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 }
 
 theme_stata_colors <- function(scheme="s2color") {
-  stata_colors <- ggthemes::GGTHEMES_DATA[["data"]][["colors"]]
+  stata_colors <- ggthemes::GGTHEMES[["data"]][["colors"]]
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
     color_bg <- "white"
@@ -217,9 +217,9 @@ stata_shape_pal <- function() {
               "triangle", "x", "plus",
               "circle_hollow", "diamond_hollow",
               "square_hollow", "triangle_hollow")
-  shapenames <- enframe(select(ggthemes::GGTHEMES_DATA, name, value)
-                               [["stata"]][["shapes"]])
-  values <- unname(shapenames[shapes])
+  statadata <-
+    tibble::enframe(ggthemes::GGTHEMES[ , c("name", "value")])[["stata"]]
+  values <- unname(statadata[["shapes"]][shapes])
   out <- manual_pal(values)
   attr(out, "max_n") <- length(shapes)
   out
@@ -246,11 +246,11 @@ scale_shape_stata <- function (...) {
 #' @export
 #' @seealso \code{\link{scale_linetype_stata}}
 stata_linetype_pal <- function() {
-  linetypes <- ggthemes::GGTHEMES_DATA[["stata"]][["linetypes"]][["values"]]
+  values <- ggthemes::GGTHEMES[["stata"]][["linetypes"]][["values"]]
   f <- function(n) {
     values[seq_len(n)]
   }
-  attr(f, "max_n") <- length(linetypes)
+  attr(f, "max_n") <- length(values)
   f
 }
 

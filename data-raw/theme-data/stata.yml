@@ -22,7 +22,7 @@ shapes:
   - {symbolstyle: smsquare_hollow, synonym: sh, unicode_name: 'WHITE SMALL SQUARE', unicode_value: "U+25AB", character: "▫"}
   - {symbolstyle: smtriangle_hollow, synonym: th, unicode_name: 'WHITE UP-POINTING SMALL TRIANGLE', unicode_value: "U+25B5", character: "▵"}
   - {symbolstyle: point, synonym: p, unicode_name: 'MIDDLE DOT', unicode_value: "U+00B7", character: "·"}
-  - {symbolstyle: none, synonym: i, unicode_name: "", unicode_value: "", character ""}
+  - {symbolstyle: "none", synonym: i, unicode_name: "SPACE", unicode_value: "U+0020", character: " ", comment: "Perhaps use empty space?"}
 linetypes:
   - solid
   - '84'

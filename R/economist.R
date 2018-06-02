@@ -117,8 +117,6 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 #' @inheritParams ggplot2::theme_grey
 #' @param horizontal \code{logical} Horizontal axis lines?
 #' @param dkpanel \code{logical} Darker background for panel region?
-#' @param stata \code{logical} Use RGB values from Stata's
-#'    economist scheme.
 #' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else
 #'    use white
 #' background.
@@ -142,11 +140,7 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 theme_economist <- function(base_size = 10, base_family = "sans",
                             horizontal = TRUE, dkpanel = FALSE,
                             stata = FALSE) {
-  if (stata) {
-    bgcolors <- ggthemes_data$economist$stata$bg
-  } else {
-    bgcolors <- ggthemes_data$economist$bg
-  }
+  bgcolors <- GGTHEMES[["economist"]][["bg"]]
   ## From measurements
   ## Ticks = 1 / 32 in, with margin about 1.5 / 32
   ## Title = 3 / 32 in (6 pt)
