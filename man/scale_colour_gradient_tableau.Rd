@@ -26,8 +26,8 @@ scale_fill_continuous_tableau(palette = "Blue", ..., na.value = "grey50",
 \arguments{
 \item{palette}{Palette name.
 \itemize{
-\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-sequential"]]))}}
-\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 }}
 
 \item{...}{Arguments passed to \code{tableau_gradient_pal}.}
@@ -54,7 +54,8 @@ p <- ggplot(df, aes(x, y)) +
      geom_point(aes(colour = z2)) +
      theme_igray()
 
-palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["ordered-sequential"]]
+palettes <-
+  ggthemes_data[["tableau"]][["color-palettes"]][["ordered-sequential"]]
 for (palette in names(palettes)) {
   print(p + scale_colour_gradient_tableau(palette) +
           ggtitle(palette))

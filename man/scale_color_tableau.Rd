@@ -4,7 +4,7 @@
 \alias{scale_colour_tableau}
 \alias{scale_fill_tableau}
 \alias{scale_color_tableau}
-\title{Tableau color scales.}
+\title{Tableau color scales}
 \usage{
 scale_colour_tableau(palette = "Tableau 10", ...)
 
@@ -13,7 +13,7 @@ scale_fill_tableau(palette = "Tableau 10", ...)
 scale_color_tableau(palette = "Tableau 10", ...)
 }
 \arguments{
-\item{palette}{Palette name.}
+\item{palette}{Palette name. See Details for available palettes.}
 
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{
@@ -68,16 +68,17 @@ scales, "top" or "bottom" for horizontal scales}
 }}
 }
 \description{
-See \code{\link{tableau_color_pal}} for details.
+Categorical color scales from Tableau.
 }
 \examples{
 library("ggplot2")
 
 p <- ggplot(mtcars) +
-     geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
-     facet_wrap(~am)
+  geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
+  facet_wrap(~am) +
+  theme_igray()
 
-palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["regular"]]
+palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
 for (palette in names(palettes)) {
   print(p + scale_colour_tableau(palette) +
           ggtitle(palette))

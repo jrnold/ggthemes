@@ -20,26 +20,25 @@
 #' \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
 #'
 #' @export
-#' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::GGTHEMES$few$colors))}
+#' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}
 #' @family colour few
 #' @example inst/examples/ex-few_pal.R
 few_pal <- function(palette = "Medium") {
-  palettes <- ggthemes::GGTHEMES$few$colors
-  if (!palette %in% names(palettes)) {
+  palette <- ggthemes::ggthemes_data$few$colors[[palette]]
+  if (is.null(palette)) {
     stop("palette must be one of: ",
-         paste0("\"", names(palettes), "\"", collapse = ", "), call. = FALSE)
+         paste0("\"", names(ggthemes::ggthemes_data$few$colors),
+                "\"", collapse = ", "), call. = FALSE)
   }
   ## The first value, gray, is used for non-data parts.
-  values <- palettes[[palette]][["value"]]
-  n <- length(values)
+  values <- palette[["value"]]
+  max_n <- length(values) - 1L
   f <- function(n) {
+    check_pal_n(n, max_n)
     if (n == 1L) {
       values[[1L]]
-    } else if (n > 1L && n <= (length(values) - 1L)) {
-      unname(values[2:n])
     } else {
-      stop("Palette supports at most ", length(values), " values.",
-           call. = FALSE)
+      unname(values[2L:(n + 1L)])
     }
   }
   attr(f, "max_n") <- length(values) - 1L
@@ -86,7 +85,7 @@ scale_fill_few <- function(palette = "Light", ...) {
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family="") {
-    colors <- ggthemes::GGTHEMES[["few"]][["colors"]]
+    colors <- ggthemes::ggthemes_data[["few"]][["colors"]]
     gray <- deframe(colors[["Medium"]])[["Gray"]]
     black <- deframe(colors[["Dark"]])[["Gray"]]
     theme_bw(base_size = base_size, base_family = base_family) +
@@ -115,15 +114,10 @@ theme_few <- function(base_size = 12, base_family="") {
 #'
 #' @export
 few_shape_pal <- function() {
-  shapes <- ggthemes::GGTHEMES[["few"]][["shapes"]]
+  shapes <- ggthemes::ggthemes_data[["few"]][["shapes"]]
   max_n <- nrow(shapes)
   f <- function(n) {
-    msg <- paste("The shape palette can deal with a maximum of ", max_n,
-                 "discrete values;",
-                 "you have ", n, ".")
-    if (n > max_n) {
-      stop(msg, call. = FALSE)
-    }
+    check_pal_n(n, max_n)
     shapes[["pch"]][seq_len(n)]
   }
   attr(f, "max_n") <- max_n

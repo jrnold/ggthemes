@@ -2,20 +2,37 @@
 % Please edit documentation in R/tableau.R
 \name{tableau_color_pal}
 \alias{tableau_color_pal}
-\title{Color Palettes based on Tableau (discrete)}
+\title{Tableau Color Palettes (discrete)}
 \usage{
-tableau_color_pal(palette = "Tableau 10", type = "regular", direction = 1)
+tableau_color_pal(palette = "Tableau 10", type = c("regular",
+  "ordered-seqential", "ordered-diverging"), direction = 1)
 }
 \arguments{
-\item{palette}{Palette name.}
+\item{palette}{Palette name. See Details for available palettes.}
+
+\item{type}{Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.}
+
+\item{direction}{If 1, the default, then use the original order of
+colors. If -1, then reverse the order.}
 }
 \description{
 Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 }
+\details{
+Tableau provides types of color palettes:
+\code{"regular"} (discrete, qualitative categories),
+\code{"ordered-sequential"}, and \code{"ordered-diverging"}.
+
+\itemize{
+\item{\code{"regular"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))}}
+\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+}
+}
 \examples{
 library("scales")
 
-palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["regular"]]
+palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
 for (palname in names(palettes)) {
   pal <- tableau_color_pal(palname)
   max_n <- attr(pal, "max_n")

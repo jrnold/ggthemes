@@ -103,8 +103,22 @@
 <a href="#ggthemes-3-5-0-9000" class="anchor"></a>ggthemes 3.5.0.9000<small> Unreleased </small>
 </h1>
 <ul>
+<li>Old Excel colors moved to <code>excel_classic_pal</code> and <code>scale_colour_excel_classic</code> and <code>scale_fill_excel_classic</code>.</li>
+<li>The <code>excel_pal</code>, <code>scale_colour_excel</code>, and <code>scale_fill_excel</code> functions only include current Excel color palettes. However, it now includes palettes generated from all color themes in the current version of Excel.</li>
+<li>Added new palettes introduced in Tableau 10 and renamed old palettes in <code>tableau_color_pal</code>, <code>scale_color_tableau</code>, <code>scale_fill_tableau</code>, and others. The continuous sequential and diverging palettes are improved by including more intermediate steps.</li>
+<li>Theme <code>theme_excel</code> renamed to <code>theme_excel_classic</code>.</li>
 <li>Add <code>scale_shapes_few</code> and <code>few_shape_pal</code> with a shape scale and palette from Stephen Few’s “Show Me the Numbers”.</li>
+<li>Remove <code>stata</code> argument from <code>scale_*_economist</code> and <code>theme_economist</code>.</li>
+<li>Add Stata’s economist scheme to <code>scale_*_stata</code> and <code>theme_stata</code>.</li>
+<li>Change behavior of <code>few_pal</code>. If <code>n = 1</code>, use gray. If <code>n &gt; 1</code> use non-gray colors.</li>
+<li>
+<code>tremmel_shape_scale</code> uses <code>alt = TRUE</code> by default now.</li>
+<li>
+<code>tremmel_shape_scale</code> argument <code>n3alt</code> deprecated; use the newly added <code>alt</code> argument instead.</li>
+<li>Add a pkgdown site.</li>
+<li>Remove vignette. Move all examples to man pages.</li>
 <li>Bugfix: Fix theme_few (<a href='http://github.com/jrnold/ggthemes/issues/91'>#91</a>)</li>
+<li>Bugfix: Update themes to be consistent with ggplot 3.2.0</li>
 </ul>
 </div>
     <div id="ggthemes-3-5-0" class="section level1">

@@ -33,35 +33,15 @@
 #' @family shapes
 #' @export
 cleveland_shape_pal <- function(overlap = TRUE) {
-    function(n) {
-        maxshapes <- 5
-        if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum ",
-                                 "of %d discrete ",
-                                 "values because more than %d becomes ",
-                                 "difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying ",
-                                 "shapes manually. if you ",
-                                 "must have them.", sep = ""),
-                           maxshapes, maxshapes)
-            warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
-        }
-        if (overlap) {
-          c(1, ## empty circle
-            3, ## plus
-            60, # <
-            87, # S
-            83  # W
-            )[seq_len(n)]
-        } else {
-            c(1, ## empty circle
-              19, ## solid circle
-              10, ## encircled plus sign
-              -0x2299, ##
-              -0x229A ##
-              )[seq_len(n)]
-        }
-    }
+  shapes <- if (overlap[[1]]) {
+    ggthemes::ggthemes_data$shapes$cleveland$overlap$pch
+  } else {
+    ggthemes::ggthemes_data$shapes$cleveland$default$pch
+  }
+  max_n <- length(shapes)
+  f <- manual_pal(shapes)
+  attr(f, "max_n") <- max_n
+  f
 }
 
 #' Shape scales from Cleveland "Elements of Graphing Data"
@@ -76,7 +56,7 @@ cleveland_shape_pal <- function(overlap = TRUE) {
 #' Cleveland WS. The Elements of Graphing Data. Revised Edition. Hobart Press, Summit, NJ, 1994,
 #' pp. 154-164, 234-239.
 #'
-scale_shape_cleveland <- function(overlap=TRUE, ...) {
+scale_shape_cleveland <- function(overlap = TRUE, ...) {
     discrete_scale("shape", "cleveland", cleveland_shape_pal(overlap), ...)
 }
 
@@ -97,22 +77,11 @@ scale_shape_cleveland <- function(overlap=TRUE, ...) {
 #' @family shapes
 #' @export
 circlefill_shape_pal <- function() {
-    maxshapes <- 5
-    types <- c(16, 1, -0x25D3, -0x25D5, -0x25D4)
-    function(n) {
-        if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum ",
-                                 "of %d discrete ",
-                                 "values because more than %d becomes ",
-                                 "difficult to discriminate; ",
-                                 "you have ", n,
-                                 ". Consider specifying shapes manually, ",
-                                 "if you must have them.", sep = ""),
-                           maxshapes, maxshapes)
-            warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
-        }
-        types[seq_len(n)]
-    }
+  values <- ggthemes::ggthemes_data[["shapes"]][["circlefill"]][["pch"]]
+  max_n <- length(values)
+  f <- manual_pal(values)
+  attr(f, "max_n") <- max_n
+  f
 }
 
 #' Filled Circle Shape palette (discrete)
@@ -124,7 +93,7 @@ circlefill_shape_pal <- function() {
 #' @seealso
 #' \code{\link{circlefill_shape_pal}} for a description of the palette.
 scale_shape_circlefill <- function(...) {
-    discrete_scale("shape", "circlefill", circlefill_shape_pal(), ...)
+  discrete_scale("shape", "circlefill", circlefill_shape_pal(), ...)
 }
 
 #' Shape palette from Tremmel (1995) (discrete)
@@ -146,45 +115,45 @@ scale_shape_circlefill <- function(...) {
 #'
 #' @param overlap use an empty circle instead of a solid circle when
 #' \code{n == 2}.
-#' @param n3alt If \code{TRUE} then use a solid circle, plus sign and
-#' empty triangle, else use a solid circle, empty circle, and empty
-#' triangle.
+#' @param alt,n3alt If \code{TRUE}, then when \code{n == 3},
+#'   use a solid circle, plus sign and
+#'   empty triangle. Otherwise use a solid circle, empty circle, and empty
+#'   triangle.
 #' @family shapes
 #' @references
 #' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
 #' Journal of Computational and Graphical Statistics,
 #' \url{http://www.jstor.org/stable/1390760}
 #' @export
-tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
-    maxshapes <- 3
-    function (n) {
-        if (n == 1)  {
-            16 # solid circle
-        } else if (n == 2) {
-            c(ifelse(overlap, 1, 16), # hollow or solid circle
-              3) # plus sign
-        } else if (n == 3) {
-            if (n3alt) {
-                c(16, # solid circle,
-                  3, # plus
-                  2) # hollow triangle
-            } else {
-                c(16, # solid circle,
-                  1, # hollow circle
-                  2) # triangle
-            }
-        } else if (n > maxshapes) {
-            msg <- sprintf(paste("The shape palette can deal with a maximum ",
-                                 "of %d discrete ",
-                                 "values because more than %d becomes ",
-                                 "difficult to discriminate; ",
-                                 "you have ", n, ". Consider specifying ",
-                                 "shapes manually. if you ",
-                                 "must have them.", sep = ""),
-                           maxshapes, maxshapes)
-            warning(paste(strwrap(msg), collapse = "\n"), call. = FALSE)
-        }
+tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE, n3alt = NULL) {
+  if (!is.null(n3alt)) {
+    warning("`n3alt` is deprecated. Use `alt` instead.")
+    alt <- n3alt[[1]]
+  }
+  max_n <- 3L
+  palettes <- ggthemes::ggthemes_data$shapes$tremmel
+  f <- function(n) {
+    check_pal_n(n, max_n)
+    if (n == 1) {
+      palettes[["1"]]$pch
+    } else if (n == 2) {
+      if (overlap[[1]]) {
+        palettes[["2-overlap"]]$pch
+      } else {
+        palettes[["2"]]$pch
+      }
+    } else if (n >= 3) {
+      out <- rep(NA_integer_, n)
+      out[1:3] <- if (alt) {
+        palettes[["3-alternate"]]$pch
+      } else {
+        palettes[["3"]]$pch
+      }
+      out
     }
+  }
+  attr(f, "max_n") <- max_n
+  f
 }
 
 #' Shape scales from Tremmel (1995)
@@ -196,7 +165,7 @@ tremmel_shape_pal <- function(overlap=FALSE, n3alt=TRUE) {
 #' @example inst/examples/ex-scale_shape_tremmel.R
 #' @family shapes
 #' @export
-scale_shape_tremmel <- function(overlap=FALSE, n3alt=TRUE, ...) {
+scale_shape_tremmel <- function(overlap=FALSE, alt=TRUE, ...) {
     discrete_scale("shape", "tremmel", tremmel_shape_pal(overlap = overlap,
-                                                         n3alt = n3alt), ...)
+                                                         alt = alt), ...)
 }

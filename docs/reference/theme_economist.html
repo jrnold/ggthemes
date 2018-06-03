@@ -109,7 +109,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>theme_economist</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>horizontal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dkpanel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stata</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>dkpanel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>theme_economist_white</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>,
   <span class='kw'>gray_bg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>horizontal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -132,11 +132,6 @@
     <tr>
       <th>dkpanel</th>
       <td><p><code>logical</code> Darker background for panel region?</p></td>
-    </tr>
-    <tr>
-      <th>stata</th>
-      <td><p><code>logical</code> Use RGB values from Stata's
-economist scheme.</p></td>
     </tr>
     <tr>
       <th>gray_bg</th>
@@ -189,23 +184,17 @@ theme for lattice plots.</p></div>
 
 <span class='co'>## Standard</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist</span>() +
-  <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='img'><img src='theme_economist-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## Stata colors</span>
-<span class='no'>p</span> + <span class='fu'>theme_economist</span>(<span class='kw'>stata</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) +
-  <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>(<span class='kw'>stata</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='theme_economist-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## Darker plot region</span>
-<span class='no'>p</span> + <span class='fu'>theme_economist</span>(<span class='kw'>dkpanel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) +
-  <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>(<span class='kw'>stata</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='theme_economist-3.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 32 rows containing missing values (geom_point).</span></div><div class='img'><img src='theme_economist-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Change axis lines to vertical</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist</span>(<span class='kw'>horizontal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) +
     <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>() +
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/coord_flip'>coord_flip</a></span>()</div><div class='img'><img src='theme_economist-4.png' alt='' width='700' height='433' /></div><div class='input'>
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/coord_flip'>coord_flip</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 32 rows containing missing values (geom_point).</span></div><div class='img'><img src='theme_economist-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## White panel/light gray background</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist_white</span>() +
-    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='img'><img src='theme_economist-5.png' alt='' width='700' height='433' /></div><div class='input'>
+    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 32 rows containing missing values (geom_point).</span></div><div class='img'><img src='theme_economist-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## All white variant</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist_white</span>(<span class='kw'>gray_bg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) +
-    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='img'><img src='theme_economist-6.png' alt='' width='700' height='433' /></div><div class='input'>
+    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 32 rows containing missing values (geom_point).</span></div><div class='img'><img src='theme_economist-4.png' alt='' width='700' height='433' /></div><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'>## The Economist uses ITC Officina Sans</span>
 <span class='fu'>library</span>(<span class='st'>"extrafont"</span>)

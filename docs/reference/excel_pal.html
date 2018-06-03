@@ -30,9 +30,7 @@
 
 <meta property="og:title" content="Excel color palette (discrete) — excel_pal" />
 
-<meta property="og:description" content="Color palettes from Excel, both current and Excel 2003, for that classic
-ugly look and feel. For ironic purposes only.
-3D bars and pies not included. Please never use this theme." />
+<meta property="og:description" content="Color palettes used by Microsoft Office and Excel." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,48 +104,43 @@ ugly look and feel. For ironic purposes only.
 
     <div class="ref-description">
     
-    <p>Color palettes from Excel, both current and Excel 2003, for that classic
-ugly look and feel. For ironic purposes only.
-3D bars and pies not included. Please never use this theme.</p>
+    <p>Color palettes used by Microsoft Office and Excel.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>excel_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"line"</span>)</pre>
+    <pre class="usage"><span class='fu'>excel_pal</span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"Office Theme"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>palette</th>
-      <td><p>One of <code>'old'</code>, <code>'fill'</code>, or <code>'new'</code>.</p></td>
+      <th>theme</th>
+      <td><p>The name of the Office theme or color theme
+(not to be confused with ggplot2 themes) from which to derive the color
+palette. Available themes include:
+<code>"Atlas"</code>, <code>"Badge"</code>, <code>"Berlin"</code>, <code>"Celestial"</code>, <code>"Crop"</code>, <code>"Depth"</code>, <code>"Droplet"</code>, <code>"Facet"</code>, <code>"Feathered"</code>, <code>"Gallery"</code>, <code>"Headlines"</code>, <code>"Integral"</code>, <code>"Ion Boardroom"</code>, <code>"Ion"</code>, <code>"Madison"</code>, <code>"Main Event"</code>, <code>"Mesh"</code>, <code>"Office Theme"</code>, <code>"Organic"</code>, <code>"Parallax"</code>, <code>"Parcel"</code>, <code>"Retrospect"</code>, <code>"Savon"</code>, <code>"Slice"</code>, <code>"Vapor Trail"</code>, <code>"View"</code>, <code>"Wisp"</code>, <code>"Wood Type"</code>, <code>"Aspect"</code>, <code>"Blue Green"</code>, <code>"Blue II"</code>, <code>"Blue Warm"</code>, <code>"Blue"</code>, <code>"Grayscale"</code>, <code>"Green Yellow"</code>, <code>"Green"</code>, <code>"Marquee"</code>, <code>"Median"</code>, <code>"Office 2007-2010"</code>, <code>"Orange Red"</code>, <code>"Orange"</code>, <code>"Paper"</code>, <code>"Red Orange"</code>, <code>"Red Violet"</code>, <code>"Red"</code>, <code>"Slipstream"</code>, <code>"Violet II"</code>, <code>"Violet"</code>, <code>"Yellow Orange"</code>, <code>"Yellow"</code></p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The color palettes are</p><dl class='dl-horizontal'>
-<dt>line</dt><dd><p>Excel 2003 default color palette. seven colors.</p></dd>
-<dt>fill</dt><dd><p>Excel 2003 bar chart color palette. seven colors.</p></dd>
-<dt>new</dt><dd><p>Color palette from newer Excel versions. 10 colors.</p></dd>
-</dl>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other colour excel: <code><a href='scale_excel.html'>scale_fill_excel</a></code></p></div>
+    <div class='dont-index'><p>Other colour excel: <code><a href='excel_classic_pal.html'>excel_classic_pal</a></code>,
+  <code>scale_color_excel_classic</code>,
+  <code><a href='scale_excel_classic.html'>scale_fill_excel_classic</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"scales"</span>)
 
-<span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>excel_pal</span>()(<span class='fl'>8</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: This manual palette can handle a maximum of 7 values. You have supplied 8.</span></div><div class='img'><img src='excel_pal-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>excel_pal</span>(<span class='st'>"fill"</span>)(<span class='fl'>8</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: This manual palette can handle a maximum of 7 values. You have supplied 8.</span></div><div class='img'><img src='excel_pal-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>excel_pal</span>(<span class='st'>"new"</span>)(<span class='fl'>10</span>))</div><div class='img'><img src='excel_pal-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fu'>names</span>(<span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/ggthemes_data'>ggthemes_data</a></span>$<span class='no'>excel</span>$<span class='no'>palettes</span>)) {
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>excel_pal</span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='no'>i</span>))(<span class='fl'>6</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

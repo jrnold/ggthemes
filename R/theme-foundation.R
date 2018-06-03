@@ -1,6 +1,3 @@
-#' @include ggthemes-package.R
-NULL
-
 #' Foundation Theme
 #'
 #' This theme is designed to be a foundation from which to build new

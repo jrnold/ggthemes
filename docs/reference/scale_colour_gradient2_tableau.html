@@ -108,13 +108,13 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>scale_colour_gradient2_tableau</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Red-Blue"</span>, <span class='no'>...</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"rgb"</span>,
+    <pre class="usage"><span class='fu'>scale_colour_gradient2_tableau</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Orange-Blue Diverging"</span>, <span class='no'>...</span>,
   <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>)
 
-<span class='fu'>scale_fill_gradient2_tableau</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Red-Blue"</span>, <span class='no'>...</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"rgb"</span>,
+<span class='fu'>scale_fill_gradient2_tableau</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Orange-Blue Diverging"</span>, <span class='no'>...</span>,
   <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>)
 
-<span class='fu'>scale_color_gradient2_tableau</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Red-Blue"</span>, <span class='no'>...</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"rgb"</span>,
+<span class='fu'>scale_color_gradient2_tableau</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Orange-Blue Diverging"</span>, <span class='no'>...</span>,
   <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -122,16 +122,14 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>palette</th>
-      <td><p>Palette name. See <code>ggthemes_data$tableau$divergent</code>.</p></td>
+      <td><p>Palette name.</p><ul>
+<li><p><code>"ordered-sequential"</code><code>"Blue-Green Sequential"</code>, <code>"Blue Light"</code>, <code>"Orange Light"</code>, <code>"Blue"</code>, <code>"Orange"</code>, <code>"Green"</code>, <code>"Red"</code>, <code>"Purple"</code>, <code>"Brown"</code>, <code>"Gray"</code>, <code>"Gray Warm"</code>, <code>"Blue-Teal"</code>, <code>"Orange-Gold"</code>, <code>"Green-Gold"</code>, <code>"Red-Gold"</code>, <code>"Classic Green"</code>, <code>"Classic Gray"</code>, <code>"Classic Blue"</code>, <code>"Classic Red"</code>, <code>"Classic Orange"</code>, <code>"Classic Area Red"</code>, <code>"Classic Area Green"</code>, <code>"Classic Area-Brown"</code></p></li>
+<li><p><code>"ordered-diverging"</code><code>"Orange-Blue Diverging"</code>, <code>"Red-Green Diverging"</code>, <code>"Green-Blue Diverging"</code>, <code>"Red-Blue Diverging"</code>, <code>"Red-Black Diverging"</code>, <code>"Gold-Purple Diverging"</code>, <code>"Red-Green-Gold Diverging"</code>, <code>"Sunset-Sunrise Diverging"</code>, <code>"Orange-Blue-White Diverging"</code>, <code>"Red-Green-White Diverging"</code>, <code>"Green-Blue-White Diverging"</code>, <code>"Red-Blue-White Diverging"</code>, <code>"Red-Black-White Diverging"</code>, <code>"Orange-Blue Light Diverging"</code>, <code>"Temperature Diverging"</code>, <code>"Classic Red-Green"</code>, <code>"Classic Red-Blue"</code>, <code>"Classic Red-Black"</code>, <code>"Classic Area Red-Green"</code>, <code>"Classic Orange-Blue"</code>, <code>"Classic Green-Blue"</code>, <code>"Classic Red-White-Green"</code>, <code>"Classic Red-White-Black"</code>, <code>"Classic Orange-White-Blue"</code>, <code>"Classic Red-White-Black Light"</code>, <code>"Classic Orange-White-Blue Light"</code>, <code>"Classic Red-White-Green Light"</code>, <code>"Classic Red-Green Light"</code></p></li>
+</ul></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments passed on to <code>discrete_scale</code>
-to control name, limits, breaks, labels and so forth.</p></td>
-    </tr>
-    <tr>
-      <th>space</th>
-      <td><p>Colour space in which to calculate gradient.</p></td>
+      <td><p>Arguments passed to <code>tableau_gradient_pal</code>.</p></td>
     </tr>
     <tr>
       <th>na.value</th>
@@ -149,8 +147,7 @@ colour bar, or <code>'legend'</code> for discrete colour legend.</p></td>
     <div class='dont-index'><p>Other colour tableau: <code><a href='scale_colour_gradient_tableau.html'>scale_colour_gradient_tableau</a></code>,
   <code><a href='scale_color_tableau.html'>scale_colour_tableau</a></code>,
   <code><a href='tableau_color_pal.html'>tableau_color_pal</a></code>,
-  <code><a href='tableau_div_gradient_pal.html'>tableau_div_gradient_pal</a></code>,
-  <code><a href='tableau_seq_gradient_pal.html'>tableau_seq_gradient_pal</a></code></p></div>
+  <code><a href='tableau_gradient_pal.html'>tableau_gradient_pal</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -164,7 +161,12 @@ colour bar, or <code>'legend'</code> for discrete colour legend.</p></td>
 )
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>df</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)) + <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>z2</span>))
 
-<span class='no'>p</span> + <span class='fu'>scale_colour_gradient2_tableau</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Non Lab interpolation is deprecated</span></div><div class='img'><img src='scale_colour_gradient2_tableau-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>p</span> + <span class='fu'>scale_colour_gradient2_tableau</span>(<span class='st'>"Orange-Blue"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Non Lab interpolation is deprecated</span></div><div class='img'><img src='scale_colour_gradient2_tableau-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>p</span> + <span class='fu'>scale_colour_gradient2_tableau</span>(<span class='st'>"Temperature"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Non Lab interpolation is deprecated</span></div><div class='img'><img src='scale_colour_gradient2_tableau-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>palettes</span> <span class='kw'>&lt;-</span>
+  <span class='no'>ggthemes_data</span><span class='kw'>[[</span><span class='st'>"tableau"</span>]]<span class='kw'>[[</span><span class='st'>"color-palettes"</span>]]<span class='kw'>[[</span><span class='st'>"ordered-diverging"</span>]]
+<span class='kw'>for</span> (<span class='no'>palette</span> <span class='kw'>in</span> <span class='fu'>names</span>(<span class='no'>palettes</span>)) {
+  <span class='fu'>print</span>(<span class='no'>p</span> + <span class='fu'>scale_colour_gradient2_tableau</span>(<span class='no'>palette</span>) +
+        <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='no'>palette</span>))
+}</div><div class='img'><img src='scale_colour_gradient2_tableau-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-6.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-8.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-9.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-10.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-11.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-12.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-13.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-14.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-15.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-16.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-17.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-18.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-19.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-20.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-21.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-22.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-23.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-24.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-25.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-26.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-27.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient2_tableau-28.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

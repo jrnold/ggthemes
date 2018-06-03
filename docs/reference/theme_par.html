@@ -164,10 +164,14 @@ most notably in the spacing of the margins.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"ggplot2"</span>)
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) + <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-     <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>gear</span>))) + <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~<span class='no'>am</span>)
-<span class='fu'>par</span>(<span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>col.lab</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>fg</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)
-<span class='no'>p</span> + <span class='fu'>theme_par</span>()</div><div class='img'><img src='theme_par-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) +
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>gear</span>))) +
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~<span class='no'>am</span>)
+
+<span class='no'>p</span> + <span class='fu'>theme_par</span>()</div><div class='img'><img src='theme_par-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># theme changes with respect to values of par</span>
+<span class='fu'>par</span>(<span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>col.lab</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>fg</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"black"</span>)
+<span class='no'>p</span> + <span class='fu'>theme_par</span>()</div><div class='img'><img src='theme_par-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

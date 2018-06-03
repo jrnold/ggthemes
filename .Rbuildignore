@@ -14,3 +14,5 @@
 ^revdep$
 ^_pkgdown\.yml$
 ^docs$
+^codecov\.yml$
+^\.covrignore$

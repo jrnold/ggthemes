@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Color Palettes based on Tableau (discrete) — tableau_color_pal • ggthemes</title>
+<title>Tableau Color Palettes (discrete) — tableau_color_pal • ggthemes</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,10 +28,9 @@
 
 
 
-<meta property="og:title" content="Color Palettes based on Tableau (discrete) — tableau_color_pal" />
+<meta property="og:title" content="Tableau Color Palettes (discrete) — tableau_color_pal" />
 
-<meta property="og:description" content="Color palettes used in
-Tableau." />
+<meta property="og:description" content="Color palettes used in Tableau." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,35 +97,48 @@ Tableau." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Color Palettes based on Tableau (discrete)</h1>
+    <h1>Tableau Color Palettes (discrete)</h1>
     <small class="dont-index">Source: <a href='http://github.com/jrnold/ggthemes/blob/master/R/tableau.R'><code>R/tableau.R</code></a></small>
     <div class="hidden name"><code>tableau_color_pal.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Color palettes used in
-<a href='http://www.tableausoftware.com/'>Tableau</a>.</p>
+    <p>Color palettes used in <a href='http://www.tableausoftware.com/'>Tableau</a>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>tableau_color_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"tableau10"</span>)</pre>
+    <pre class="usage"><span class='fu'>tableau_color_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Tableau 10"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"regular"</span>,
+  <span class='st'>"ordered-seqential"</span>, <span class='st'>"ordered-diverging"</span>), <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>palette</th>
-      <td><p>Palette name.</p></td>
+      <td><p>Palette name. See Details for available palettes.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of palette. One of <code>"regular"</code>, <code>"ordered-diverging"</code>, or <code>"ordered-sequential"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>direction</th>
+      <td><p>If 1, the default, then use the original order of
+colors. If -1, then reverse the order.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The number in some palette names indicates the maximum number of
-values supported, e.g <code>tableau20</code> supports up to 20 values.
-<code>"trafficlight"</code> supports up to nine values, and <code>"cyclic"</code>
-supports up to 20 values.</p>
+    <p>Tableau provides types of color palettes:
+<code>"regular"</code> (discrete, qualitative categories),
+<code>"ordered-sequential"</code>, and <code>"ordered-diverging"</code>.</p>
+<ul>
+<li><p><code>"regular"</code><code>"Tableau 10"</code>, <code>"Tableau 20"</code>, <code>"Color Blind"</code>, <code>"Seattle Grays"</code>, <code>"Traffic"</code>, <code>"Miller Stone"</code>, <code>"Superfishel Stone"</code>, <code>"Nuriel Stone"</code>, <code>"Jewel Bright"</code>, <code>"Summer"</code>, <code>"Winter"</code>, <code>"Green-Orange-Teal"</code>, <code>"Red-Blue-Brown"</code>, <code>"Purple-Pink-Gray"</code>, <code>"Hue Circle"</code>, <code>"Classic 10"</code>, <code>"Classic 10 Medium"</code>, <code>"Classic 10 Light"</code>, <code>"Classic 20"</code>, <code>"Classic Gray 5"</code>, <code>"Classic Color Blind"</code>, <code>"Classic Traffic Light"</code>, <code>"Classic Purple-Gray 6"</code>, <code>"Classic Purple-Gray 12"</code>, <code>"Classic Green-Orange 6"</code>, <code>"Classic Green-Orange 12"</code>, <code>"Classic Blue-Red 6"</code>, <code>"Classic Blue-Red 12"</code>, <code>"Classic Cyclic"</code></p></li>
+<li><p><code>"ordered-diverging"</code><code>"Orange-Blue Diverging"</code>, <code>"Red-Green Diverging"</code>, <code>"Green-Blue Diverging"</code>, <code>"Red-Blue Diverging"</code>, <code>"Red-Black Diverging"</code>, <code>"Gold-Purple Diverging"</code>, <code>"Red-Green-Gold Diverging"</code>, <code>"Sunset-Sunrise Diverging"</code>, <code>"Orange-Blue-White Diverging"</code>, <code>"Red-Green-White Diverging"</code>, <code>"Green-Blue-White Diverging"</code>, <code>"Red-Blue-White Diverging"</code>, <code>"Red-Black-White Diverging"</code>, <code>"Orange-Blue Light Diverging"</code>, <code>"Temperature Diverging"</code>, <code>"Classic Red-Green"</code>, <code>"Classic Red-Blue"</code>, <code>"Classic Red-Black"</code>, <code>"Classic Area Red-Green"</code>, <code>"Classic Orange-Blue"</code>, <code>"Classic Green-Blue"</code>, <code>"Classic Red-White-Green"</code>, <code>"Classic Red-White-Black"</code>, <code>"Classic Orange-White-Blue"</code>, <code>"Classic Red-White-Black Light"</code>, <code>"Classic Orange-White-Blue Light"</code>, <code>"Classic Red-White-Green Light"</code>, <code>"Classic Red-Green Light"</code></p></li>
+<li><p><code>"ordered-sequential"</code><code>"Blue-Green Sequential"</code>, <code>"Blue Light"</code>, <code>"Orange Light"</code>, <code>"Blue"</code>, <code>"Orange"</code>, <code>"Green"</code>, <code>"Red"</code>, <code>"Purple"</code>, <code>"Brown"</code>, <code>"Gray"</code>, <code>"Gray Warm"</code>, <code>"Blue-Teal"</code>, <code>"Orange-Gold"</code>, <code>"Green-Gold"</code>, <code>"Red-Gold"</code>, <code>"Classic Green"</code>, <code>"Classic Gray"</code>, <code>"Classic Blue"</code>, <code>"Classic Red"</code>, <code>"Classic Orange"</code>, <code>"Classic Area Red"</code>, <code>"Classic Area Green"</code>, <code>"Classic Area-Brown"</code></p></li>
+</ul>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -145,14 +157,19 @@ Factors in Computing Systems (CHI)
     <div class='dont-index'><p>Other colour tableau: <code><a href='scale_colour_gradient2_tableau.html'>scale_colour_gradient2_tableau</a></code>,
   <code><a href='scale_colour_gradient_tableau.html'>scale_colour_gradient_tableau</a></code>,
   <code><a href='scale_color_tableau.html'>scale_colour_tableau</a></code>,
-  <code><a href='tableau_div_gradient_pal.html'>tableau_div_gradient_pal</a></code>,
-  <code><a href='tableau_seq_gradient_pal.html'>tableau_seq_gradient_pal</a></code></p></div>
+  <code><a href='tableau_gradient_pal.html'>tableau_gradient_pal</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"scales"</span>)
 
-<span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"tableau20"</span>)(<span class='fl'>20</span>))</div><div class='img'><img src='tableau_color_pal-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"tableau10"</span>)(<span class='fl'>10</span>))</div><div class='img'><img src='tableau_color_pal-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"tableau10medium"</span>)(<span class='fl'>10</span>))</div><div class='img'><img src='tableau_color_pal-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"tableau10light"</span>)(<span class='fl'>10</span>))</div><div class='img'><img src='tableau_color_pal-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"colorblind10"</span>)(<span class='fl'>10</span>))</div><div class='img'><img src='tableau_color_pal-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"trafficlight"</span>)(<span class='fl'>10</span>))</div><div class='img'><img src='tableau_color_pal-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"purplegray12"</span>)(<span class='fl'>12</span>))</div><div class='img'><img src='tableau_color_pal-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"bluered12"</span>)(<span class='fl'>12</span>))</div><div class='img'><img src='tableau_color_pal-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"greenorange12"</span>)(<span class='fl'>12</span>))</div><div class='img'><img src='tableau_color_pal-9.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>tableau_color_pal</span>(<span class='st'>"cyclic"</span>)(<span class='fl'>20</span>))</div><div class='img'><img src='tableau_color_pal-10.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>palettes</span> <span class='kw'>&lt;-</span> <span class='no'>ggthemes_data</span><span class='kw'>[[</span><span class='st'>"tableau"</span>]]<span class='kw'>[[</span><span class='st'>"color-palettes"</span>]]<span class='kw'>[[</span><span class='st'>"regular"</span>]]
+<span class='kw'>for</span> (<span class='no'>palname</span> <span class='kw'>in</span> <span class='fu'>names</span>(<span class='no'>palettes</span>)) {
+  <span class='no'>pal</span> <span class='kw'>&lt;-</span> <span class='fu'>tableau_color_pal</span>(<span class='no'>palname</span>)
+  <span class='no'>max_n</span> <span class='kw'>&lt;-</span> <span class='fu'>attr</span>(<span class='no'>pal</span>, <span class='st'>"max_n"</span>)
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>pal</span>(<span class='no'>max_n</span>))
+  <span class='fu'>title</span>(<span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>palname</span>)
+}</div><div class='img'><img src='tableau_color_pal-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-6.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-8.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-9.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-10.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-11.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-12.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-13.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-14.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-15.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-16.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-17.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-18.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-19.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-20.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-21.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-22.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-23.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-24.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-25.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-26.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-27.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-28.png' alt='' width='700' height='433' /></div><div class='img'><img src='tableau_color_pal-29.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

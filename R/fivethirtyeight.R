@@ -1,7 +1,3 @@
-#' @include ggthemes-package.R
-#' @include ggthemes-data.R
-NULL
-
 #' Theme inspired by fivethirtyeight.com plots
 #'
 #' Theme inspired by the plots on
@@ -12,7 +8,7 @@ NULL
 #' @export
 #' @example inst/examples/ex-theme_fivethirtyeight.R
 theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
-  colors <- deframe(ggthemes::GGTHEMES[["fivethirtyeight"]])
+  colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
   (theme_foundation(base_size = base_size, base_family = base_family)
    + theme(
      line = element_line(colour = "black"),
@@ -46,7 +42,7 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
 #' @export
 #' @example inst/examples/ex-fivethirtyeight_pal.R
 fivethirtyeight_pal <- function() {
-  colors <- deframe(ggthemes::GGTHEMES[["fivethirtyeight"]])
+  colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
   values <- unname(colors[c("blue", "red", "green")])
   max_n <- length(values)
   f <- manual_pal(values)

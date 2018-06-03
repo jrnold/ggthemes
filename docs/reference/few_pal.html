@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Color Palettes from Few's "Practical Rules for Using Color in Charts" — few_pal • ggthemes</title>
+<title>Color Palettes Few "Show Me the Numbers" — few_pal • ggthemes</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,14 @@
 
 
 
-<meta property="og:title" content="Color Palettes from Few's "Practical Rules for Using Color in Charts" — few_pal" />
+<meta property="og:title" content="Color Palettes Few "Show Me the Numbers" — few_pal" />
 
-<meta property="og:description" content="Qualitative color palettes from Stephen Few," />
+<meta property="og:description" content="Qualitative color palettes from Stephen Few (2012)
+Show Me the Numbers. There are three palettes:
+Light, Medium, and Dark. Each palette comprises nine colors:
+gray, blue, orange, green, pink, brown, purple, yellow, red.
+For n = 1, gray is used. For n &gt; 1, the eight non-gray
+colors are used." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,35 +102,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Color Palettes from Few's "Practical Rules for Using Color in Charts"</h1>
+    <h1>Color Palettes Few "Show Me the Numbers"</h1>
     <small class="dont-index">Source: <a href='http://github.com/jrnold/ggthemes/blob/master/R/few.R'><code>R/few.R</code></a></small>
     <div class="hidden name"><code>few_pal.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Qualitative color palettes from Stephen Few,</p>
+    <p>Qualitative color palettes from Stephen Few (2012)
+<em>Show Me the Numbers</em>. There are three palettes:
+Light, Medium, and Dark. Each palette comprises nine colors:
+gray, blue, orange, green, pink, brown, purple, yellow, red.
+For <code>n = 1</code>, gray is used. For <code>n &gt; 1</code>, the eight non-gray
+colors are used.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>few_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"medium"</span>)</pre>
+    <pre class="usage"><span class='fu'>few_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Medium"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>palette</th>
-      <td><p>One of <code>c("medium", "dark", "light")</code>.</p></td>
+      <td><p>One of</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Use the light palette for filled areas, such as bar charts.
-The medium palette should be used for points and lines.
-The dark palette should be used for either highlighting specific points,
-or if the lines and points are small or thin.
-All these palettes contain nine colors.</p>
+Use the medium palette for points and lines.
+Use the dark palette for highlighting specific points
+or for small and thin lines and points.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -141,7 +150,7 @@ All these palettes contain nine colors.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"scales"</span>)
 
-<span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>()(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"dark"</span>)(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"light"</span>)(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>()(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"Dark"</span>)(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"Light"</span>)(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -15,7 +15,7 @@
 #'  and \code{\link{scale_color_tableau}} for other colorblind palettes.
 #' @example inst/examples/ex-colorblind.R
 colorblind_pal <- function() {
-  values <- unname(ggthemes::GGTHEMES[["colorblind"]][["value"]])
+  values <- unname(ggthemes::ggthemes_data[["colorblind"]][["value"]])
   f <- manual_pal(values)
   attr(f, "max_n") <- length(values)
   f

@@ -5,7 +5,7 @@ p <- ggplot(mtcars) +
   facet_wrap(~am) +
   theme_igray()
 
-palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["regular"]]
+palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
 for (palette in names(palettes)) {
   print(p + scale_colour_tableau(palette) +
           ggtitle(palette))

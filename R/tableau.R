@@ -1,14 +1,22 @@
-# see mstone_Palettes at https://github.com/mcstone/mstone/tree/5acd4ad14246feb07f759053c0e53dc2e023302e/Palettes
-#
-
-
-#' Color Palettes based on Tableau (discrete)
+#' Tableau Color Palettes (discrete)
 #'
 #' Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 #'
+#' @details Tableau provides types of color palettes:
+#' \code{"regular"} (discrete, qualitative categories),
+#' \code{"ordered-sequential"}, and \code{"ordered-diverging"}.
+#'
+#' \itemize{
+#' \item{\code{"regular"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))}}
+#' \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+#' \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+#' }
 #'
 #' @export
-#' @param palette Palette name.
+#' @param palette Palette name. See Details for available palettes.
+#' @param type Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.
+#' @param direction If 1, the default, then use the original order of
+#'   colors. If -1, then reverse the order.
 #'
 #' @references
 #' \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -26,9 +34,11 @@
 #' @family colour tableau
 #' @example inst/examples/ex-tableau_color_pal.R
 tableau_color_pal <- function(palette = "Tableau 10",
-                              type = "regular",
+                              type = c("regular", "ordered-seqential",
+                                       "ordered-diverging"),
                               direction = 1) {
-  palettes <- ggthemes::GGTHEMES[["tableau"]][["color-palettes"]][[type]]
+  type <- match.arg(type)
+  palettes <- ggthemes::ggthemes_data[["tableau"]][["color-palettes"]][[type]]
   if (!palette %in% names(palettes)) {
     stop("`palette` must be one of ", paste(names(palettes), collapse = ", "),
          ".")
@@ -37,22 +47,18 @@ tableau_color_pal <- function(palette = "Tableau 10",
   max_n <- length(values)
   f <- function(n) {
     check_pal_n(n, max_n)
-    if (type == "regular") {
-      pal <- unname(values)[seq_len(n)]
-    }
     if (direction < 0) {
-      pal <- rev(pal)
+      values <- rev(values)
     }
-    pal
+    values[seq_len(n)]
   }
   attr(f, "max_n") <- length(values)
   f
 }
 
-
-#' Tableau color scales.
+#' Tableau color scales
 #'
-#' See \code{\link{tableau_color_pal}} for details.
+#' Categorical color scales from Tableau.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams tableau_color_pal
@@ -80,12 +86,26 @@ scale_color_tableau <- scale_colour_tableau
 #' Shape palettes used by
 #' \href{http://www.tableausoftware.com/}{Tableau}.
 #'
+#' Not all shape palettes in Tableau are supported. Additionally, these
+#' palettes are not exact, and use the best unicode character for the shape
+#' palette.
+#'
+#' Since these palettes use unicode characters, their look may depend on the
+#' font being used, and not all characters may be available.
+#'
+#' Shape palettes in Tableau are used to expose images for use a markers in
+#' charts, and thus are sometimes groupings of closely related symbols.
+#'
 #' @export
-#' @param palette Palette name. See \code{ggthemes_data$tableau$shapes}.
+#' @param palette Palette name.
 #' @family shape tableau
 #' @example inst/examples/ex-tableau_shape_pal.R
-tableau_shape_pal <- function(palette = "default") {
-  manual_pal(unname(ggthemes_data$tableau$shapes[[palette]]))
+tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
+  palette <- match.arg(palette)
+  shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
+  f <- manual_pal(shapes[["pch"]])
+  attr(f, "max_n") <- nrow(shapes)
+  f
 }
 
 #' Tableau shape scales
@@ -105,8 +125,8 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #'
 #' @param palette Palette name.
 #'  \itemize{
-#'  \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-sequential"]]))}}
-#'  \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+#'  \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+#'  \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 #'  }
 #' @param type Palette type, either \code{"ordered-sequential"} or
 #'   \code{"ordered-diverging"}.
@@ -125,7 +145,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential",
                                  values = NULL, direction = 1) {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
-  pal <- ggthemes::GGTHEMES[["tableau"]][["color-palettes"]][[type]][[palette]]
+  pal <- ggthemes::ggthemes_data[["tableau"]][["color-palettes"]][[type]][[palette]]
   colours <- pal[["value"]]
   if (direction < 0) {
     colours <- rev(colours)

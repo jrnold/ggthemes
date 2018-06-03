@@ -145,23 +145,23 @@ This functions provides several box plot variants:</p><ul>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mapping</th>
-      <td><p>Set of aesthetic mappings created by <code>aes</code> or
-<code>aes_</code>. If specified and <code>inherit.aes = TRUE</code> (the
+      <td><p>Set of aesthetic mappings created by <code>aes()</code> or
+<code>aes_()</code>. If specified and <code>inherit.aes = TRUE</code> (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply <code>mapping</code> if there is no plot mapping.</p></td>
     </tr>
     <tr>
       <th>data</th>
       <td><p>The data to be displayed in this layer. There are three
-   options:</p>
+options:</p>
 <p>If <code>NULL</code>, the default, the data is inherited from the plot
-   data as specified in the call to <code>ggplot</code>.</p>
+data as specified in the call to <code>ggplot()</code>.</p>
 <p>A <code>data.frame</code>, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   <code>fortify</code> for which variables will be created.</p>
+data. All objects will be fortified to produce a data frame. See
+<code>fortify()</code> for which variables will be created.</p>
 <p>A <code>function</code> will be called with a single argument,
-   the plot data. The return value must be a <code>data.frame.</code>, and
-   will be used as the layer data.</p></td>
+the plot data. The return value must be a <code>data.frame.</code>, and
+will be used as the layer data.</p></td>
     </tr>
     <tr>
       <th>stat</th>
@@ -210,14 +210,16 @@ a warning. If <code>TRUE</code>, missing values are silently removed.</p></td>
       <th>show.legend</th>
       <td><p>logical. Should this layer be included in the legends?
 <code>NA</code>, the default, includes if any aesthetics are mapped.
-<code>FALSE</code> never includes, and <code>TRUE</code> always includes.</p></td>
+<code>FALSE</code> never includes, and <code>TRUE</code> always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.</p></td>
     </tr>
     <tr>
       <th>inherit.aes</th>
       <td><p>If <code>FALSE</code>, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. <code>borders</code>.</p></td>
+the default plot specification, e.g. <code>borders()</code>.</p></td>
     </tr>
     <tr>
       <th>median.type</th>
@@ -234,7 +236,7 @@ If <code>'point'</code>, then whiskers are represented by points at
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed on to <code>layer</code>. These are
+      <td><p>Other arguments passed on to <code>layer()</code>. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 <code>color = "red"</code> or <code>size = 3</code>. They may also be parameters
 to the paired geom/stat.</p></td>

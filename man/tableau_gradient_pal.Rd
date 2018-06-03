@@ -16,8 +16,8 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 \arguments{
 \item{palette}{Palette name.
 \itemize{
-\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-sequential"]]))}}
-\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 }}
 
 \item{type}{Palette type, either \code{"ordered-sequential"} or
@@ -42,7 +42,8 @@ library("scales")
 
 x <- seq(0, 1, length = 25)
 r <- sqrt(outer(x ^ 2, x ^ 2, "+"))
-palettes <- GGTHEMES[["tableau"]][["color-palettes"]][["ordered-sequential"]]
+palettes <-
+  ggthemes_data[["tableau"]][["color-palettes"]][["ordered-sequential"]]
 for (palname in names(palettes)) {
   col <- tableau_seq_gradient_pal(palname)(seq(0, 1, length = 12))
   image(r, col = col)

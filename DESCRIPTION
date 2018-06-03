@@ -17,8 +17,6 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
 Depends:
     R (>= 3.0.0),
 Imports:
-    assertthat,
-    colorspace,
     ggplot2 (>= 2.2.0),
     graphics,
     grid,
@@ -27,8 +25,7 @@ Imports:
     scales,
     stringr,
     tibble
-Suggests:
-    spelling,
+Suggests: 
     dplyr,
     extrafont,
     knitr,
@@ -36,9 +33,11 @@ Suggests:
     maps,
     mapproj,
     pander,
+    spelling,
     rmarkdown,
     testthat,
-    tidyr
+    tidyr,
+    covr
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots
@@ -48,38 +47,6 @@ Description: Some extra themes, geoms, and scales for 'ggplot2'.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
-Collate: 
-    'banking.R'
-    'base.R'
-    'calc.R'
-    'canva.R'
-    'colorblind.R'
-    'economist.R'
-    'excel.R'
-    'few.R'
-    'ggthemes-data.R'
-    'ggthemes-package.R'
-    'fivethirtyeight.R'
-    'gdocs.R'
-    'geom-rangeframe.R'
-    'geom-tufteboxplot.R'
-    'hc.R'
-    'igray.R'
-    'pander.R'
-    'ptol.R'
-    'scale-tufte.R'
-    'shapes.R'
-    'show.R'
-    'solarized.R'
-    'stat-fivenumber.R'
-    'stata.R'
-    'tableau.R'
-    'theme-foundation.R'
-    'theme-map.R'
-    'theme-solid.R'
-    'tufte.R'
-    'utils.R'
-    'wsj.R'
 RoxygenNote: 6.0.1
 LazyData: true
 Language: en-US

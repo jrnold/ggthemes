@@ -110,16 +110,26 @@ Tableau." />
     
     </div>
 
-    <pre class="usage"><span class='fu'>tableau_shape_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"default"</span>)</pre>
+    <pre class="usage"><span class='fu'>tableau_shape_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default"</span>, <span class='st'>"filled"</span>, <span class='st'>"proportions"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>palette</th>
-      <td><p>Palette name. See <code>ggthemes_data$tableau$shapes</code>.</p></td>
+      <td><p>Palette name.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Not all shape palettes in Tableau are supported. Additionally, these
+palettes are not exact, and use the best unicode character for the shape
+palette.</p>
+<p>Since these palettes use unicode characters, their look may depend on the
+font being used, and not all characters may be available.</p>
+<p>Shape palettes in Tableau are used to expose images for use a markers in
+charts, and thus are sometimes groupings of closely related symbols.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -134,6 +144,8 @@ Tableau." />
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

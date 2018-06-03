@@ -13,7 +13,7 @@
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme="s2color") {
   colors <-
-    ggthemes::GGTHEMES[["stata"]][["colors"]][["schemes"]][[scheme]]
+    ggthemes::ggthemes_data[["stata"]][["colors"]][["schemes"]][[scheme]]
   manual_pal(colors[["value"]])
 }
 
@@ -107,7 +107,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 
 #' @importFrom tibble deframe
 theme_stata_colors <- function(scheme="s2color") {
-  stata_colors <- ggthemes::GGTHEMES[["stata"]][["colors"]][["names"]]
+  stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
   stata_colors <- deframe(stata_colors[ , c("name", "value")])
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
@@ -222,7 +222,7 @@ stata_shape_pal <- function() {
               "triangle", "X", "plus",
               "circle_hollow", "diamond_hollow",
               "square_hollow", "triangle_hollow")
-  statadata <- ggthemes::GGTHEMES[["stata"]][["shapes"]]
+  statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
   shapenames <- tibble::deframe(statadata[ , c("symbolstyle", "unicode_value")])
   values <- as.hexmode(str_replace(shapenames[shapes], "U\\+", ""))
   values <- -1 * as.integer(values)
@@ -252,7 +252,7 @@ scale_shape_stata <- function(...) {
 #' @export
 #' @seealso \code{\link{scale_linetype_stata}}
 stata_linetype_pal <- function() {
-  values <- ggthemes::GGTHEMES[["stata"]][["linetypes"]]
+  values <- ggthemes::ggthemes_data[["stata"]][["linetypes"]]
   f <- function(n) {
     values[seq_len(n)]
   }

@@ -40,6 +40,7 @@ show_shapes <- function(shapes, labels = TRUE) {
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 #'
 #' @example inst/examples/ex-show_linetypes.R
+#' @importFrom graphics plot
 show_linetypes <- function(linetypes, labels = TRUE) {
   n <- length(linetypes)
   plot(0, 0, xlim = c(0, 1), ylim = c(n, 1), type = "n", xlab = "",

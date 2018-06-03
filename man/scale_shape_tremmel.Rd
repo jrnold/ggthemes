@@ -4,14 +4,15 @@
 \alias{scale_shape_tremmel}
 \title{Shape scales from Tremmel (1995)}
 \usage{
-scale_shape_tremmel(overlap = FALSE, n3alt = TRUE, ...)
+scale_shape_tremmel(overlap = FALSE, alt = TRUE, ...)
 }
 \arguments{
 \item{overlap}{use an empty circle instead of a solid circle when
 \code{n == 2}.}
 
-\item{n3alt}{If \code{TRUE} then use a solid circle, plus sign and
-empty triangle, else use a solid circle, empty circle, and empty
+\item{alt}{If \code{TRUE}, then when \code{n == 3},
+use a solid circle, plus sign and
+empty triangle. Otherwise use a solid circle, empty circle, and empty
 triangle.}
 
 \item{...}{Arguments passed on to \code{discrete_scale}
@@ -65,14 +66,12 @@ Shape scales from Tremmel (1995)
 \examples{
 library("ggplot2")
 
-(ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(cyl)))
- + geom_point() + scale_shape_tremmel())
-(ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(cyl)))
- + geom_point() + scale_shape_tremmel(n3alt = FALSE))
-(ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(am)))
- + geom_point() + scale_shape_tremmel())
-(ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(am)))
- + geom_point() + scale_shape_tremmel(overlap = TRUE))
+p <- ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(cyl))) +
+  geom_point()
+
+p + scale_shape_tremmel()
+p + scale_shape_tremmel(alt = TRUE)
+p + scale_shape_tremmel(overlap = TRUE)
 }
 \seealso{
 \code{\link{tremmel_shape_pal}} for a description of the palette.

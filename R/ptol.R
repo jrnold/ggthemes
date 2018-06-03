@@ -19,7 +19,7 @@ ptol_pal <- function() {
     } else if (n < 1) {
       stop("the number of colors cannot be zero")
     }
-    ggthemes::GGTHEMES[["ptol"]][["qualitative"]][[n]]
+    ggthemes::ggthemes_data[["ptol"]][["qualitative"]][[n]]
   }
   attr(f, "max_n") <- 12
   f

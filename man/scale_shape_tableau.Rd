@@ -7,7 +7,7 @@
 scale_shape_tableau(palette = "default", ...)
 }
 \arguments{
-\item{palette}{Palette name. See \code{ggthemes_data$tableau$shapes}.}
+\item{palette}{Palette name.}
 
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{

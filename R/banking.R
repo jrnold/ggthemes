@@ -98,13 +98,8 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @export
 #' @example inst/examples/ex-bank_slopes.R
 bank_slopes <- function(x, y, cull = FALSE, weight = NULL,
-                        method = c("ms", "as", "ao", "gor", "lor"), ...) {
+                        method = c("ms", "as"), ...) {
   method <- match.arg(method)
-  if (method %in% c("ao", "gor", "lor")) {
-    warning(sQuote("method"), " ", dQuote(method),
-            " no longer supported. Using ", dQuote("ms"), " instead.")
-    method <- "ms"
-  }
   FUN <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y
   xyrat <- FUN(calc_slopes(x, y, cull = cull), ...)

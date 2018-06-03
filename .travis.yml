@@ -3,4 +3,6 @@ sudo: required
 r_github_packages:
   - hadley/ggplot2
   - hadley/scales
+after_success:
+- Rscript -e 'covr::codecov()'
 warnings_are_errors: true

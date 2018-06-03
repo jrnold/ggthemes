@@ -1,5 +1,5 @@
 library("scales")
 
-show_col(excel_pal()(8))
-show_col(excel_pal("fill")(8))
-show_col(excel_pal("new")(10))
+for (i in names(ggthemes::ggthemes_data$excel$palettes)) {
+  show_col(excel_pal(theme = i))(6)
+}

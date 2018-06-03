@@ -13,7 +13,7 @@ scale_color_few(palette = "Medium", ...)
 scale_fill_few(palette = "Light", ...)
 }
 \arguments{
-\item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::GGTHEMES$few$colors))}}
+\item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}}
 
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{

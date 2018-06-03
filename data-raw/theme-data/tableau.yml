@@ -1,79 +1,79 @@
 "shape-palettes":
   proportions:
-    - {name: 'WHITE CIRCLE', unicode: "U+25CB", symbol: "○"}
-    - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', unicode: "U+25D4", symbol: "◔"}
-    - {name: 'CIRCLE WITH RIGHT HALF BLACK', unicode: "U+25D1", symbol: "◑"}
-    - {name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: "U+25D5", symbol: "◕"}
-    - {name: 'BLACK CIRCLE', unicode: "U+25CF", symbol: "●"}
+    - {name: 'WHITE CIRCLE', unicode: "U+25CB", character: "○"}
+    - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', unicode: "U+25D4", character: "◔"}
+    - {name: 'CIRCLE WITH RIGHT HALF BLACK', unicode: "U+25D1", character: "◑"}
+    - {name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: "U+25D5", character: "◕"}
+    - {name: 'BLACK CIRCLE', unicode: "U+25CF", character: "●"}
   default:
-    - {name: 'WHITE CIRCLE', unicode: "U+25CB", symbol: "○"}
-    - {name: 'WHITE SQUARE', unicode: "U+25A1", symbol: "□"}
-    - {name: 'FULLWIDTH PLUS SIGN', unicode: "U+FF0B", symbol: "＋"}
-    - {name: 'MULTIPLICATION X', unicode: "U+2715", symbol: "✕"}
-    - {name: 'ASTERISK OPERATOR', unicode: "U+2217", symbol: ∗}
-    - {name: 'WHITE DIAMOND', unicode: "U+25C7", symbol: "◇"}
-    - {name: 'WHITE UP-POINTING TRIANGLE', unicode: "U+25B3", symbol: "△"}
-    - {name: 'WHITE DOWN-POINTING TRIANGLE', unicode: "U+25BD", symbol: "▽"}
-    - {name: 'WHITE LEFT-POINTING TRIANGLE', unicode: "U+25C1", symbol: "◁"}
-    - {name: 'WHITE RIGHT-POINTING TRIANGLE', unicode: "U+25B7", symbol: "▷"}
+    - {name: 'WHITE CIRCLE', unicode: "U+25CB", character: "○"}
+    - {name: 'WHITE SQUARE', unicode: "U+25A1", character: "□"}
+    - {name: 'FULLWIDTH PLUS SIGN', unicode: "U+FF0B", character: "＋"}
+    - {name: 'MULTIPLICATION X', unicode: "U+2715", character: "✕"}
+    - {name: 'ASTERISK OPERATOR', unicode: "U+2217", character: ∗}
+    - {name: 'WHITE DIAMOND', unicode: "U+25C7", character: "◇"}
+    - {name: 'WHITE UP-POINTING TRIANGLE', unicode: "U+25B3", character: "△"}
+    - {name: 'WHITE DOWN-POINTING TRIANGLE', unicode: "U+25BD", character: "▽"}
+    - {name: 'WHITE LEFT-POINTING TRIANGLE', unicode: "U+25C1", character: "◁"}
+    - {name: 'WHITE RIGHT-POINTING TRIANGLE', unicode: "U+25B7", character: "▷"}
   filled:
-  - {name: 'BLACK CIRCLE', unicode: U+25CF, symbol: "●"}
-  - {name: 'BLACK SQUARE', unicode: U+25A0, symbol: "■"}
-  - {name: 'HEAVY PLUS SIGN', unicode: U+2795, symbol: "➕"}
-  - {name: 'HEAVY MULTIPLICATION X', unicode: U+2716, symbol: "✖"}
-  - {name: 'BLACK STAR', unicode: U+2605, symbol: "★"}
-  - {name: 'BLACK DIAMOND', unicode: U+25C6, symbol: "◆"}
-  - {name: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, symbol: "▲"}
-  - {name: 'BLACK DOWN-POINTING TRIANGLE', unicode: U+25BC, symbol: ▼}
-  - {name: 'BLACK LEFT-POINTING TRIANGLE', unicode: U+25C0, symbol: ◀}
-  - {name: 'BLACK RIGHT-POINTING TRIANGLE', unicode: U+25B6, symbol: ▶}
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: "●"}
+  - {name: 'BLACK SQUARE', unicode: U+25A0, character: "■"}
+  - {name: 'HEAVY PLUS SIGN', unicode: U+2795, character: "➕"}
+  - {name: 'HEAVY MULTIPLICATION X', unicode: U+2716, character: "✖"}
+  - {name: 'BLACK STAR', unicode: U+2605, character: "★"}
+  - {name: 'BLACK DIAMOND', unicode: U+25C6, character: "◆"}
+  - {name: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, character: "▲"}
+  - {name: 'BLACK DOWN-POINTING TRIANGLE', unicode: U+25BC, character: ▼}
+  - {name: 'BLACK LEFT-POINTING TRIANGLE', unicode: U+25C0, character: ◀}
+  - {name: 'BLACK RIGHT-POINTING TRIANGLE', unicode: U+25B6, character: ▶}
   'Bug Tracking':
-  - {name: 'LADY BEETLE', unicode: U+1F41E, symbol: 🐞, emoji: true}
-  - {name: 'ALARM CLOCK', unicode: U+23F0, symbol: ⏰, emoji: true}
-  - {name: 'Electric Light Bulb', unicode: U+1F4A1, symbol: 💡, emoji: true}
-  - {name: 'Envelope', unicode: 'U+2709 U+FE0F', symbol: ✉️, emoji: true}
+  - {name: 'LADY BEETLE', unicode: U+1F41E, character: 🐞, emoji: true}
+  - {name: 'ALARM CLOCK', unicode: U+23F0, character: ⏰, emoji: true}
+  - {name: 'Electric Light Bulb', unicode: U+1F4A1, character: 💡, emoji: true}
+  - {name: 'Envelope', unicode: 'U+2709 U+FE0F', character: ✉️, emoji: true}
   Gender:
-  - {name: 'MEN''S ROOM', unicode: U+1F6B9, symbol: 🚹, emoji: true}
-  - {name: 'WOMEN''S ROOM', unicode: U+1F6BA, symbol: 🚺, emoji: true}
-  - {name: RESTROOM, unicode: U+1F6BB, symbol: 🚻, emoji: true}
-  - {name: 'MALE SIGN', unicode: U+2642, symbol: ♂, emoji: false}
-  - {name: 'FEMALE SIGN', unicode: U+2640, symbol: ♀, emoji: false}
-  - {name: 'MEDIUM WHITE CIRCLE UNICODE CHARACTER', unicode: U+26AA, symbol: ⚪, emoji: false}
-  - {name: 'MALE AND FEMALE SIGN', unicode: U+26A5, symbol: ⚥, emoji: false}
-  - {name: 'VERTICAL MALE WITH STROKE SIGN', unicode: U+26A8, symbol: ⚨, emoji: false}
-  - {name: 'MALE WITH STROKE AND MALE AND FEMALE SIGN', unicode: U+26A7, symbol: ⚧, emoji: false}
+  - {name: 'MEN''S ROOM', unicode: U+1F6B9, character: 🚹, emoji: true}
+  - {name: 'WOMEN''S ROOM', unicode: U+1F6BA, character: 🚺, emoji: true}
+  - {name: RESTROOM, unicode: U+1F6BB, character: 🚻, emoji: true}
+  - {name: 'MALE SIGN', unicode: U+2642, character: ♂, emoji: false}
+  - {name: 'FEMALE SIGN', unicode: U+2640, character: ♀, emoji: false}
+  - {name: 'MEDIUM WHITE CIRCLE UNICODE CHARACTER', unicode: U+26AA, character: ⚪, emoji: false}
+  - {name: 'MALE AND FEMALE SIGN', unicode: U+26A5, character: ⚥, emoji: false}
+  - {name: 'VERTICAL MALE WITH STROKE SIGN', unicode: U+26A8, character: ⚨, emoji: false}
+  - {name: 'MALE WITH STROKE AND MALE AND FEMALE SIGN', unicode: U+26A7, character: ⚧, emoji: false}
   kpi:
-  - {name: 'CHECK MARK', unicode: 'U+2714 U+FE0E', symbol: ✔}
-  - {name: 'MULTIPLICATION X', unicode: 'U+2716 U+FE0E', symbol: ✖︎}
-  - {name: 'EXCLAMATION MARK', unicode: U+0021, symbol: '!'}
-  - {Name: 'BLACK CIRCLE', unicode: U+25CF, symbol: ●}
-  - {unicode: U+25B2, symbol: ▲}
-  - {name: 'BLACK DIAMOND', unicode: U+25C6, symbol: ◆}
+  - {name: 'CHECK MARK', unicode: 'U+2714 U+FE0E', character: ✔}
+  - {name: 'MULTIPLICATION X', unicode: 'U+2716 U+FE0E', character: ✖︎}
+  - {name: 'EXCLAMATION MARK', unicode: U+0021, character: '!'}
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
+  - {name: 'BLACK UP ARROW', unicode: U+25B2, character: ▲}
+  - {name: 'BLACK DIAMOND', unicode: U+25C6, character: ◆}
   weather:
-  - {name: SUN, unicode: U+2600, symbol: ☀︎, emoji: true}
-  - {name: CLOUD, unicode: U+2601, symbol: ☁︎, emoji: true}
-  - {name: 'CLOUD WITH RAIN', unicode: U+1F327, symbol: 🌧, emoji: true}
-  - {name: UMBRELLA, unicode: U+2602, symbol: ☂︎︎, emoji: true}
-  - {name: 'UMBRELLA WITH RAINDROPS', unicode: U+2614, symbol: ☔, emoji: true}
-  - {name: SNOWMAN, unicode: U+2603, symbol: ☃︎, emoji: true}
+  - {name: SUN, unicode: U+2600, character: ☀︎, emoji: true}
+  - {name: CLOUD, unicode: U+2601, character: ☁︎, emoji: true}
+  - {name: 'CLOUD WITH RAIN', unicode: U+1F327, character: 🌧, emoji: true}
+  - {name: UMBRELLA, unicode: U+2602, character: ☂︎︎, emoji: true}
+  - {name: 'UMBRELLA WITH RAINDROPS', unicode: U+2614, character: ☔, emoji: true}
+  - {name: SNOWMAN, unicode: U+2603, character: ☃︎, emoji: true}
   Arrows:
-  - {name: 'Up Arrow', unicode: U+2B06, symbol: ⬆, emoji: true}
-  - {name: 'Up Right Arrow', unicode: U+2197, symbol: ↗, emoji: true}
-  - {name: 'Right Arrow', unicode: U+27A1, symbol: ➡, emoji: true}
-  - {name: 'Down Right Arrow', unicode: U+2198, symbol: ↘, emoji: true}
-  - {name: 'Down Arrow', unicode: U+2B07, symbol: ⬇, emoji: true}
-  - {name: 'Down-Left Arrow', unicode: U+2199, symbol: ↙, emoji: true}
-  - {name: 'Left Arrow', unicode: U+2B05, symbol: ⬅, emoji: true}
-  - {name: 'Up-Left Arrow', symbol: ↖, unicode: U+2196, emoji: true}
+  - {name: 'Up Arrow', unicode: U+2B06, character: ⬆, emoji: true}
+  - {name: 'Up Right Arrow', unicode: U+2197, character: ↗, emoji: true}
+  - {name: 'Right Arrow', unicode: U+27A1, character: ➡, emoji: true}
+  - {name: 'Down Right Arrow', unicode: U+2198, character: ↘, emoji: true}
+  - {name: 'Down Arrow', unicode: U+2B07, character: ⬇, emoji: true}
+  - {name: 'Down-Left Arrow', unicode: U+2199, character: ↙, emoji: true}
+  - {name: 'Left Arrow', unicode: U+2B05, character: ⬅, emoji: true}
+  - {name: 'Up-Left Arrow', character: ↖, unicode: U+2196, emoji: true}
   'Thin Arrows':
-  - {name: 'Up Arrow', unicode: U+2B06, symbol: ⬆, emoji: false}
-  - {name: 'Up Right Arrow', unicode: U+2197, symbol: ↗, emoji: false}
-  - {name: 'Right Arrow', unicode: U+27A1, symbol: ➡, emoji: false}
-  - {name: 'Down Right Arrow', unicode: U+2198, symbol: ↘, emoji: false}
-  - {name: 'Down Arrow', unicode: U+2B07, symbol: ⬇, emoji: false}
-  - {name: 'Down-Left Arrow', unicode: U+2199, symbol: ↙, emoji: false}
-  - {name: 'Left Arrow', unicode: U+2B05, symbol: ⬅, emoji: false}
-  - {name: 'Up-Left Arrow', symbol: ↖, unicode: U+2196, emoji: false}
+  - {name: 'Up Arrow', unicode: U+2B06, character: ⬆, emoji: false}
+  - {name: 'Up Right Arrow', unicode: U+2197, character: ↗, emoji: false}
+  - {name: 'Right Arrow', unicode: U+27A1, character: ➡, emoji: false}
+  - {name: 'Down Right Arrow', unicode: U+2198, character: ↘, emoji: false}
+  - {name: 'Down Arrow', unicode: U+2B07, character: ⬇, emoji: false}
+  - {name: 'Down-Left Arrow', unicode: U+2199, character: ↙, emoji: false}
+  - {name: 'Left Arrow', unicode: U+2B05, character: ⬅, emoji: false}
+  - {name: 'Up-Left Arrow', character: ↖, unicode: U+2196, emoji: false}
 
 "color-palettes":
   regular:

@@ -132,7 +132,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="theme_excel.html">theme_excel()</a></code> </p>
+          <p><code><a href="theme_excel_classic.html">theme_excel_classic()</a></code> </p>
         </td>
         <td><p>ggplot color theme based on old Excel plots</p></td>
       </tr><tr>
@@ -159,12 +159,6 @@
           <p><code><a href="theme_gdocs.html">theme_gdocs()</a></code> </p>
         </td>
         <td><p>Theme with Google Docs Chart defaults</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="theme_hc.html">theme_hc()</a></code> </p>
-        </td>
-        <td><p>Highcharts JS theme</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -247,7 +241,7 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
         <td>
           <p><code><a href="scale_color_tableau.html">scale_colour_tableau()</a></code> <code><a href="scale_color_tableau.html">scale_fill_tableau()</a></code> <code><a href="scale_color_tableau.html">scale_color_tableau()</a></code> </p>
         </td>
-        <td><p>Tableau color scales.</p></td>
+        <td><p>Tableau color scales</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -275,9 +269,9 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="scale_excel.html">scale_fill_excel()</a></code> <code><a href="scale_excel.html">scale_colour_excel()</a></code> <code><a href="scale_excel.html">scale_color_excel()</a></code> </p>
+          <p><code><a href="scale_excel.html">scale_color_excel_classic()</a></code> <code><a href="scale_excel.html">scale_color_excel_classic()</a></code> <code><a href="scale_excel.html">scale_colour_excel()</a></code> <code><a href="scale_excel.html">scale_color_excel()</a></code> <code><a href="scale_excel.html">scale_fill_excel()</a></code> </p>
         </td>
-        <td><p>Excel color scales</p></td>
+        <td><p>Excel color scales (classic)</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -296,12 +290,6 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
           <p><code><a href="scale_gdocs.html">scale_fill_gdocs()</a></code> <code><a href="scale_gdocs.html">scale_colour_gdocs()</a></code> <code><a href="scale_gdocs.html">scale_color_gdocs()</a></code> </p>
         </td>
         <td><p>Google Docs color scales</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="scale_hc.html">scale_colour_hc()</a></code> <code><a href="scale_hc.html">scale_color_hc()</a></code> <code><a href="scale_hc.html">scale_fill_hc()</a></code> </p>
-        </td>
-        <td><p>Highcharts color and fill scales</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -332,6 +320,12 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
           <p><code><a href="scale_wsj.html">scale_colour_wsj()</a></code> <code><a href="scale_wsj.html">scale_color_wsj()</a></code> <code><a href="scale_wsj.html">scale_fill_wsj()</a></code> </p>
         </td>
         <td><p>Wall Street Journal color and fill scales</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="scale_excel_classic.html">scale_fill_excel_classic()</a></code> <code><a href="scale_excel_classic.html">scale_colour_excel_classic()</a></code> </p>
+        </td>
+        <td><p>Excel color scales (classic)</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -449,6 +443,12 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
       </tr><tr>
         <!--  -->
         <td>
+          <p><code><a href="excel_classic_pal.html">excel_classic_pal()</a></code> </p>
+        </td>
+        <td><p>Excel color palette (discrete)</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
           <p><code><a href="excel_pal.html">excel_pal()</a></code> </p>
         </td>
         <td><p>Excel color palette (discrete)</p></td>
@@ -457,7 +457,7 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
         <td>
           <p><code><a href="few_pal.html">few_pal()</a></code> </p>
         </td>
-        <td><p>Color Palettes from Few's "Practical Rules for Using Color in Charts"</p></td>
+        <td><p>Color Palettes Few "Show Me the Numbers"</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -476,12 +476,6 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
           <p><code><a href="gdocs_pal.html">gdocs_pal()</a></code> </p>
         </td>
         <td><p>Google Docs color palette (discrete)</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="hc_pal.html">hc_pal()</a></code> </p>
-        </td>
-        <td><p>Highcharts JS color palette (discrete)</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -517,19 +511,13 @@ Not all <code>par</code> parameters, are supported, and not all are relevant to
         <td>
           <p><code><a href="tableau_color_pal.html">tableau_color_pal()</a></code> </p>
         </td>
-        <td><p>Color Palettes based on Tableau (discrete)</p></td>
+        <td><p>Tableau Color Palettes (discrete)</p></td>
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="tableau_div_gradient_pal.html">tableau_div_gradient_pal()</a></code> </p>
+          <p><code><a href="tableau_gradient_pal.html">tableau_gradient_pal()</a></code> <code><a href="tableau_gradient_pal.html">tableau_seq_gradient_pal()</a></code> <code><a href="tableau_gradient_pal.html">tableau_div_gradient_pal()</a></code> </p>
         </td>
-        <td><p>Tableau diverging colour gradient palettes (continuous)</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="tableau_seq_gradient_pal.html">tableau_seq_gradient_pal()</a></code> </p>
-        </td>
-        <td><p>Tableau sequential colour gradient palettes (continuous)</p></td>
+        <td><p>Tableau colour gradient palettes (continuous)</p></td>
       </tr><tr>
         <!--  -->
         <td>

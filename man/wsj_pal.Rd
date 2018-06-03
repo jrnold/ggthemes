@@ -8,7 +8,7 @@ wsj_pal(palette = "colors6")
 }
 \arguments{
 \item{palette}{\code{character} The color palette to use: .
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$wsj$palettes))}}
+\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}}
 }
 \description{
 The Wall Street Journal uses many different color palettes in its

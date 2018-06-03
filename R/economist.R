@@ -9,29 +9,28 @@
 #' @export
 #' @example inst/examples/ex-economist_pal.R
 economist_pal <- function(fill=TRUE) {
-  colors <- deframe(ggthemes::GGTHEMES[["economist"]][["fg"]])
+  colors <- deframe(ggthemes::ggthemes_data[["economist"]][["fg"]])
   max_n <- length(colors)
   if (fill) {
     function(n) {
-      assert_that(n < max_n)
-      assert_that(n > 0)
-      if (n == 1) {
+      check_pal_n(n, max_n)
+      if (n == 1L) {
         i <- "blue_dark"
-      } else if (n == 2) {
+      } else if (n == 2L) {
         i <- c("blue_mid", "blue_dark")
-      } else if (n == 3) {
+      } else if (n == 3L) {
         i <- c("blue_gray", "blue_dark", "blue_mid")
-      } else if (n == 4) {
+      } else if (n == 4L) {
         i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
       } else if (n %in% 5:6) {
         ## 20120901_woc904
         i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
                "green_light", "green_dark")
-      } else if (n == 7) {
+      } else if (n == 7L) {
         # 20120818_AMC820
         i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
                "green_dark", "green_light", "gray")
-      } else if (n >= 8) {
+      } else if (n >= 8L) {
         # 20120915_EUC094
         i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
                "green_dark", "green_light", "red_dark", "red_light",
@@ -41,8 +40,7 @@ economist_pal <- function(fill=TRUE) {
     }
   } else {
     function(n) {
-      assert_that(n > 0)
-      assert_that(n <= max_n)
+      check_pal_n(n, max_n)
       if (n <= 3) {
         # 20120818_AMC20
         # 20120901_FBC897
@@ -59,13 +57,11 @@ economist_pal <- function(fill=TRUE) {
         i <- c("green_light", "green_dark", "gray",
                "blue_gray", "blue_light", "blue_dark", "red_dark",
                "red_light", "brown")
-
       }
       unname(colors[i][seq_len(n)])
     }
   }
 }
-
 
 #' Economist color scales
 #'
@@ -135,7 +131,7 @@ scale_fill_economist <- function(...) {
 #' @example inst/examples/ex-theme_economist.R
 theme_economist <- function(base_size = 10, base_family = "sans",
                             horizontal = TRUE, dkpanel = FALSE) {
-  bgcolors <- deframe(ggthemes::GGTHEMES[["economist"]][["bg"]])
+  bgcolors <- deframe(ggthemes::ggthemes_data[["economist"]][["bg"]])
   ## From measurements
   ## Ticks = 1 / 32 in, with margin about 1.5 / 32
   ## Title = 3 / 32 in (6 pt)
@@ -218,7 +214,7 @@ theme_economist <- function(base_size = 10, base_family = "sans",
 theme_economist_white <- function(base_size = 11, base_family = "sans",
                                   gray_bg = TRUE, horizontal = TRUE) {
   if (gray_bg) {
-    bgcolor <- ggthemes_data$economist$bg["ltgray"]
+    bgcolor <- ggthemes::ggthemes_data$economist$bg[["ltgray"]]
   } else {
     bgcolor <- "white"
   }
@@ -229,6 +225,6 @@ theme_economist_white <- function(base_size = 11, base_family = "sans",
           plot.background = element_rect(fill = bgcolor),
           panel.background = element_rect(fill = "white"),
           panel.grid.major =
-            element_line(colour = ggthemes_data$economist$bg["dkgray"]),
+            element_line(colour = ggthemes::ggthemes_data$economist$bg[["dkgray"]]),
           strip.background = element_rect(fill = "white")))
 }

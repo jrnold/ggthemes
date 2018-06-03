@@ -12,8 +12,7 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @param color The background color of plot. One of \code{'brown',
-#' 'gray', 'green', 'blue'}, the names of values in
-#' \code{ggthemes_data$wsj$bg}.
+#' 'gray', 'green', 'blue'}.
 #' @param title_family Plot title font family.
 #' @family themes wsj
 #' @example inst/examples/ex-theme_wsj.R
@@ -22,7 +21,7 @@ theme_wsj <- function(base_size = 12,
                       color = "brown",
                       base_family = "sans",
                       title_family = "mono") {
-  colorhex <- ggthemes::GGTHEMES$wsj$bg[color]
+  colorhex <- ggthemes::ggthemes_data$wsj$bg[color]
   (theme_foundation(base_size = base_size, base_family = base_family) +
     theme(line = element_line(linetype = 1, colour = "black"),
           rect = element_rect(fill = colorhex, linetype = 0, colour = NA),
@@ -78,12 +77,12 @@ theme_wsj <- function(base_size = 12,
 #' }
 #'
 #' @param palette \code{character} The color palette to use: .
-#' \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::GGTHEMES$wsj$palettes))}
+#' \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}
 #'
 #' @family colour wsj
 #' @export
 wsj_pal <- function(palette = "colors6") {
-  palettes <- ggthemes::GGTHEMES[["wsj"]][["palettes"]]
+  palettes <- ggthemes::ggthemes_data[["wsj"]][["palettes"]]
   if (palette %in% names(palettes)) {
     manual_pal(palettes[[palette]][["value"]])
   } else {
