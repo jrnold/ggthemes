@@ -145,7 +145,8 @@ scale_shape_tableau <- function(palette = "default", ...) {
 tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential",
                                  values = NULL, direction = 1) {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
-  pal <- ggthemes::ggthemes_data[["tableau"]][["color-palettes"]][[type]][[palette]]
+  pal <- ggthemes::ggthemes_data[[c("tableau", "color-palettes",
+                                    type, palette)]]
   colours <- pal[["value"]]
   if (direction < 0) {
     colours <- rev(colours)

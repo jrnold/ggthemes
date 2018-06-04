@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Highcharts JS theme — theme_hc • ggthemes</title>
+<title>Highcharts Themes — theme_hc • ggthemes</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,12 @@
 
 
 
-<meta property="og:title" content="Highcharts JS theme — theme_hc" />
+<meta property="og:title" content="Highcharts Themes — theme_hc" />
 
-<meta property="og:description" content="Theme based on the plots in Highcharts JS." />
+<meta property="og:description" content="Themes inspired by https://www.highcharts.com/ themes.
+default
+darkunica
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,18 +100,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Highcharts JS theme</h1>
+    <h1>Highcharts Themes</h1>
     <small class="dont-index">Source: <a href='http://github.com/jrnold/ggthemes/blob/master/R/hc.R'><code>R/hc.R</code></a></small>
     <div class="hidden name"><code>theme_hc.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Theme based on the plots in <em>Highcharts JS</em>.</p>
+    <p>Themes inspired by <a href='Highcharts JS'>https://www.highcharts.com/</a> themes.</p><ul>
+<li><p><a href='http://www.highcharts.com/demo'>default</a></p></li>
+<li><p><a href='http://www.highcharts.com/demo/line-basic/dark-unica'>darkunica</a></p></li>
+</ul>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_hc</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"default"</span>)</pre>
+    <pre class="usage"><span class='fu'>theme_hc</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>hc_theme</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default"</span>,
+  <span class='st'>"darkunica"</span>), <span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -122,12 +129,19 @@
       <td><p>base font family</p></td>
     </tr>
     <tr>
+      <th>hc_theme</th>
+      <td><p>The name of Highcharts theme the theme is based on.</p></td>
+    </tr>
+    <tr>
       <th>bgcolor</th>
-      <td><p>The background color of plot. One of <code>'default',
-'darkunica'</code>, the names of values in
-<code>ggthemes_data$hc$bg</code>.</p></td>
+      <td><p>Deprecated. Use <code>hc_theme</code>.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This theme should be used with the <code><a href='scale_hc.html'>scale_color_hc</a></code> color
+palette.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -141,9 +155,9 @@
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) + <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
      <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>gear</span>))) + <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~<span class='no'>am</span>)
 <span class='no'>p</span> + <span class='fu'>theme_hc</span>() + <span class='fu'><a href='scale_hc.html'>scale_colour_hc</a></span>()</div><div class='img'><img src='theme_hc-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>p</span> + <span class='fu'>theme_hc</span>(<span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"darkunica"</span>) +
-  <span class='fu'><a href='scale_hc.html'>scale_colour_hc</a></span>(<span class='st'>"darkunica"</span>)</div><div class='img'><img src='theme_hc-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>dtemp</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>months</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='fu'>rep</span>(<span class='fu'>substr</span>(<span class='no'>month.name</span>,<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='fl'>4</span>),
-                                    <span class='kw'>levels</span> <span class='kw'>=</span> <span class='fu'>substr</span>(<span class='no'>month.name</span>,<span class='fl'>1</span>,<span class='fl'>3</span>)),
+  <span class='fu'><a href='scale_hc.html'>scale_colour_hc</a></span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `name`</span></div><div class='img'><img src='theme_hc-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>dtemp</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>months</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='fu'>rep</span>(<span class='fu'>substr</span>(<span class='no'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span>), <span class='fl'>4</span>),
+                                    <span class='kw'>levels</span> <span class='kw'>=</span> <span class='fu'>substr</span>(<span class='no'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span>)),
                     <span class='kw'>city</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='st'>"Tokyo"</span>, <span class='st'>"New York"</span>, <span class='st'>"Berlin"</span>, <span class='st'>"London"</span>),
                                <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>12</span>),
                     <span class='kw'>temp</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>7.0</span>, <span class='fl'>6.9</span>, <span class='fl'>9.5</span>, <span class='fl'>14.5</span>, <span class='fl'>18.2</span>, <span class='fl'>21.5</span>,
@@ -166,13 +180,15 @@
   <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.1</span>) +
   <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Monthly Average Temperature"</span>) +
   <span class='fu'>theme_hc</span>(<span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"darkunica"</span>) +
-  <span class='fu'><a href='scale_hc.html'>scale_fill_hc</a></span>(<span class='st'>"darkunica"</span>)</div><div class='img'><img src='theme_hc-4.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'><a href='scale_hc.html'>scale_fill_hc</a></span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `name`</span></div><div class='img'><img src='theme_hc-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>

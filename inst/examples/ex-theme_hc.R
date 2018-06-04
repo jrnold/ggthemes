@@ -6,8 +6,8 @@ p + theme_hc() + scale_colour_hc()
 p + theme_hc(bgcolor = "darkunica") +
   scale_colour_hc("darkunica")
 
-dtemp <- data.frame(months = factor(rep(substr(month.name,1,3), 4),
-                                    levels = substr(month.name,1,3)),
+dtemp <- data.frame(months = factor(rep(substr(month.name, 1, 3), 4),
+                                    levels = substr(month.name, 1, 3)),
                     city = rep(c("Tokyo", "New York", "Berlin", "London"),
                                each = 12),
                     temp = c(7.0, 6.9, 9.5, 14.5, 18.2, 21.5,

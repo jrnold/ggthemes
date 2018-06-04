@@ -225,6 +225,7 @@ theme_economist_white <- function(base_size = 11, base_family = "sans",
           plot.background = element_rect(fill = bgcolor),
           panel.background = element_rect(fill = "white"),
           panel.grid.major =
-            element_line(colour = ggthemes::ggthemes_data$economist$bg[["dkgray"]]),
+            element_line(colour =
+                           ggthemes::ggthemes_data$economist$bg[["dkgray"]]),
           strip.background = element_rect(fill = "white")))
 }

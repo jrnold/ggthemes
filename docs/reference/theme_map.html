@@ -125,8 +125,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"maps"</span>)
-<span class='fu'>library</span>(<span class='st'>"ggplot2"</span>)
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"maps"</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘maps’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:purrr’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    map</span></div><div class='input'><span class='fu'>library</span>(<span class='st'>"ggplot2"</span>)
 
 <span class='no'>us</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/fortify'>fortify</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/map_data'>map_data</a></span>(<span class='st'>"state"</span>), <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"region"</span>)
 <span class='no'>gg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>() +

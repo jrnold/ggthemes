@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Highcharts JS color palette (discrete) — hc_pal • ggthemes</title>
+<title>Highcharts color palettes (discrete) — hc_pal • ggthemes</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,10 +28,12 @@
 
 
 
-<meta property="og:title" content="Highcharts JS color palette (discrete) — hc_pal" />
+<meta property="og:title" content="Highcharts color palettes (discrete) — hc_pal" />
 
-<meta property="og:description" content="The Highcharts JS uses many different color palettes in its
-plots. This collects a few of them." />
+<meta property="og:description" content="Color palettes used in selected Highcharts JShttps://www.highcharts.com/
+themes.
+These palettes should be used with the theme_hc theme
+with the hc_theme argument of the same name." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,15 +100,17 @@ plots. This collects a few of them." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Highcharts JS color palette (discrete)</h1>
+    <h1>Highcharts color palettes (discrete)</h1>
     <small class="dont-index">Source: <a href='http://github.com/jrnold/ggthemes/blob/master/R/hc.R'><code>R/hc.R</code></a></small>
     <div class="hidden name"><code>hc_pal.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>The Highcharts JS uses many different color palettes in its
-plots. This collects a few of them.</p>
+    <p>Color palettes used in selected <code>Highcharts JS</code>https://www.highcharts.com/
+themes.
+These palettes should be used with the <code><a href='theme_hc.html'>theme_hc</a></code> theme
+with the <code>hc_theme</code> argument of the same name.</p>
     
     </div>
 
@@ -117,16 +121,24 @@ plots. This collects a few of them.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>palette</th>
-      <td><p><code>character</code> The color palette to use. This
-must be a name in
-<code><a href='ggthemes_data.html'>ggthemes_data$hc$palettes</a></code>.</p></td>
+      <td><p><code>character</code> The name of the palette to use. If used
+with <code><a href='theme_hc.html'>theme_hc</a></code> this should be the same as the <code>hc_theme</code>
+passed to it.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="palettes"><a class="anchor" href="#palettes"></a>Palettes</h2>
 
-    <p>The <code>"darkunica"</code> palette has 11 colors, and the <code>"default"</code>
-palette has 10 colors.</p>
+    
+    <p>The following palettes are defined,</p>
+<ul>
+<li><p><a href='http://www.highcharts.com/demo'>default</a></p></li>
+<li><p><a href='http://www.highcharts.com/demo/line-basic/dark-unica'>dark-unica</a></p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other colour hc: <code><a href='scale_hc.html'>scale_colour_hc</a></code></p></div>
     
 
   </div>
@@ -135,7 +147,9 @@ palette has 10 colors.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
+      <li><a href="#palettes">Palettes</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>

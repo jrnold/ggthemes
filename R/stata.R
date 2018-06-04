@@ -14,7 +14,10 @@
 stata_pal <- function(scheme="s2color") {
   colors <-
     ggthemes::ggthemes_data[["stata"]][["colors"]][["schemes"]][[scheme]]
-  manual_pal(colors[["value"]])
+  max_n <- length(colors)
+  f <- manual_pal(colors[["value"]])
+  attr(f, "max_n") <- max_n
+  f
 }
 
 #' Stata color scales
@@ -108,7 +111,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 #' @importFrom tibble deframe
 theme_stata_colors <- function(scheme="s2color") {
   stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
-  stata_colors <- deframe(stata_colors[ , c("name", "value")])
+  stata_colors <- deframe(stata_colors[, c("name", "value")])
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
     color_bg <- "white"
@@ -223,9 +226,9 @@ stata_shape_pal <- function() {
               "circle_hollow", "diamond_hollow",
               "square_hollow", "triangle_hollow")
   statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
-  shapenames <- tibble::deframe(statadata[ , c("symbolstyle", "unicode_value")])
+  shapenames <- tibble::deframe(statadata[, c("symbolstyle", "unicode_value")])
   values <- as.hexmode(str_replace(shapenames[shapes], "U\\+", ""))
-  values <- -1 * as.integer(values)
+  values <- -as.integer(values)
   out <- manual_pal(values)
   attr(out, "max_n") <- length(shapes)
   out

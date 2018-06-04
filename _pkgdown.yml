@@ -30,21 +30,16 @@ reference:
   contents:
   - ends_with("_pal")
   - palette_pander
-- title: Geoms
+- title: Geoms and Stats
   desc: >-
-    ggplot2 geom layers.
+    ggplot2 geom and stat layers.
   contents:
   - starts_with("geom_")
-- title: Stats
-  desc: >-
-    ggplot2 stats layers.
-  contents:
-  - stat_fivenumber
+  - starts_with("stat_")
 - title: Other functions
   contents:
   - bank_slopes
-  - extended_range_breaks_
+  - extended_range_breaks
   - show_linetypes
   - show_shapes
   - smart_digits
-

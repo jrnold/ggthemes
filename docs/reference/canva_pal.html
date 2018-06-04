@@ -126,9 +126,12 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>require</span>(<span class='st'>"ggplot2"</span>)
-<span class='fu'>require</span>(<span class='st'>"purrr"</span>)
-<span class='fu'>require</span>(<span class='st'>"tibble"</span>)
-<span class='fu'>require</span>(<span class='st'>"scales"</span>)
+<span class='fu'>require</span>(<span class='st'>"purrr"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: purrr</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘purrr’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:scales’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    discard</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:ggthemes’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    %||%</span></div><div class='input'><span class='fu'>require</span>(<span class='st'>"tibble"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: tibble</span></div><div class='input'><span class='fu'>require</span>(<span class='st'>"scales"</span>)
 <span class='no'>canva_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map2'>map2_df</a></span>(<span class='no'>canva_palettes</span>, <span class='fu'>names</span>(<span class='no'>canva_palettes</span>),
                     ~ <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>.x</span>, <span class='kw'>.id</span> <span class='kw'>=</span> <span class='fu'>seq_along</span>(<span class='no'>colors</span>),
                              <span class='kw'>palette</span> <span class='kw'>=</span> <span class='no'>.y</span>))

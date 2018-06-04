@@ -30,7 +30,7 @@ test_that("theme_par recognizes las", {
 
 test_that("theme_par recognizes tck", {
   withr::with_par(list(tck = 1), {
-    expect_equal(theme_par()$axis.ticks.length, grid::unit(-1, 'snpc'))
+    expect_equal(theme_par()$axis.ticks.length, grid::unit(-1, "snpc"))
   })
 })
 

@@ -75,7 +75,6 @@ scale_color_calc <- scale_colour_calc
 #' @example inst/examples/ex-calc_shape_pal.R
 calc_shape_pal <- function() {
     values <- ggthemes::ggthemes_data$calc$shapes[["pch"]]
-    max_n <- length(values)
     f <- manual_pal(unname(values))
     attr(f, "max_n") <- length(values)
     f

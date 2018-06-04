@@ -6,7 +6,14 @@ suppressPackageStartupMessages({
   library("xml2")
 })
 
-
+utf8ToPch <- function(x) {
+  # str_replace(x, "^U\\+", "") %>%
+  #   as.hexmode() %>%
+  #   as.integer() %>%
+  #   `*`(-1)
+  #   TODO: support emoji
+  as.integer(-1L * map_int(x, ~ utf8ToInt(.x)[[1]]))
+}
 
 ggthemes_data <- new_environment()
 
@@ -84,14 +91,7 @@ tableau_classic <- function() {
   map(xml_children(classic), tableau_palette)
 }
 
-utf8ToPch <- function(x) {
-  # str_replace(x, "^U\\+", "") %>%
-  #   as.hexmode() %>%
-  #   as.integer() %>%
-  #   `*`(-1)
-  #   TODO: support emoji
-  as.integer(-1L * map_int(x, ~ utf8ToInt(.x)[[1]]))
-}
+
 
 load_tableau <- function() {
   tableau <- yaml.load_file(here("data-raw", "theme-data", "tableau.yml"))
@@ -182,6 +182,12 @@ load_shapes <- function() {
   out
 }
 ggthemes_data$shapes <- load_shapes()
+
+
+load_hc <- function() {
+  yaml.load_file(here("data-raw", "theme-data", "hc.yml"))
+}
+ggthemes_data$hc <- load_hc()
 
 # save
 

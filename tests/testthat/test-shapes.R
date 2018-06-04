@@ -62,4 +62,3 @@ test_that("cleveland_shape_pal works with overlap", {
 test_that("scale_shape_cleveland works", {
   expect_is(scale_shape_cleveland(), "ScaleDiscrete")
 })
-
