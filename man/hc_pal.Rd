@@ -2,20 +2,16 @@
 % Please edit documentation in R/hc.R
 \name{hc_pal}
 \alias{hc_pal}
-\title{Highcharts color palettes (discrete)}
+\title{Highcharts JS color palette (discrete)}
 \usage{
 hc_pal(palette = "default")
 }
 \arguments{
-\item{palette}{\code{character} The name of the palette to use. If used
-with \code{\link{theme_hc}} this should be the same as the \code{hc_theme}
-passed to it.}
+\item{palette}{\code{character} The name of the Highcharts theme to use.}
 }
 \description{
-Color palettes used in selected \code{Highcharts JS}{https://www.highcharts.com/}
-themes.
-These palettes should be used with the \code{\link{theme_hc}} theme
-with the \code{hc_theme} argument of the same name.
+The Highcharts JS uses many different color palettes in its
+plots. This collects a few of them.
 }
 \section{Palettes}{
 

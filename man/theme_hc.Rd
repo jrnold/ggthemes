@@ -2,9 +2,9 @@
 % Please edit documentation in R/hc.R
 \name{theme_hc}
 \alias{theme_hc}
-\title{Highcharts Themes}
+\title{Highcharts Theme}
 \usage{
-theme_hc(base_size = 12, base_family = "sans", hc_theme = c("default",
+theme_hc(base_size = 12, base_family = "sans", style = c("default",
   "darkunica"), bgcolor = NULL)
 }
 \arguments{
@@ -12,20 +12,13 @@ theme_hc(base_size = 12, base_family = "sans", hc_theme = c("default",
 
 \item{base_family}{base font family}
 
-\item{hc_theme}{The name of Highcharts theme the theme is based on.}
+\item{style}{The Highcharts theme to use \code{'default'},
+\code{'darkunica'}.}
 
-\item{bgcolor}{Deprecated. Use \code{hc_theme}.}
+\item{bgcolor}{Deprecated}
 }
 \description{
-Themes inspired by \href{Highcharts JS}{https://www.highcharts.com/} themes.
-\itemize{
-  \item{\href{http://www.highcharts.com/demo}{default}}
-  \item{\href{http://www.highcharts.com/demo/line-basic/dark-unica}{darkunica}}
-}
-}
-\details{
-This theme should be used with the \code{\link{scale_color_hc}} color
-palette.
+Theme based on the plots in \url{Highcharts JS}.
 }
 \examples{
 library("ggplot2")

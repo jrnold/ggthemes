@@ -13,9 +13,7 @@ scale_color_hc(palette = "default", ...)
 scale_fill_hc(palette = "default", ...)
 }
 \arguments{
-\item{palette}{\code{character} The name of the palette to use. If used
-with \code{\link{theme_hc}} this should be the same as the \code{hc_theme}
-passed to it.}
+\item{palette}{\code{character} The name of the Highcharts theme to use.}
 
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{
