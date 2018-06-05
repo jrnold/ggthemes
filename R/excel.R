@@ -1,52 +1,96 @@
 #' Excel color palette (discrete)
 #'
-#' Color palettes from Excel, both current and the pre-2007 ugly
-#' palettes.
+#' The color palettes used in Microsoft Excel 1997 (up until Excel 2007).
+#' Use this for that classic ugly look and feel. For ironic purposes only.
+#' 3D bars and pies not included. Please never use this color palette.
 #'
-#' The color palettes are
-#' \describe{
-#' \item{line}{Excel 2003 default color palette. seven colors.}
-#' \item{fill}{Excel 2003 bar chart color palette. seven colors.}
-#' \item{new}{Color palette from newer Excel versions. 10 colors.}
-#' }
-#'
-#' @param palette One of \code{'old'}, \code{'fill'}, or \code{'new'}.
+#' @param line If \code{TRUE}, use the palette for lines and points. Else,
+#'    use the palette for area.
+
 #' @family colour excel
 #' @export
-#' @example inst/examples/ex-excel_pal.R
-excel_pal <- function(palette = "line") {
-  if (palette == "new") {
-    manual_pal(ggthemes_data$excel$new)
-  } else if (palette == "fill") {
-    manual_pal(ggthemes_data$excel$fill)
+#' @example inst/examples/ex-excel_classic_pal.R
+excel_classic_pal <- function(line = TRUE) {
+  if (line[[1]]) {
+    manual_pal(ggthemes::ggthemes_data$excel$classic$line)
   } else {
-    manual_pal(ggthemes_data$excel$line)
+    manual_pal(ggthemes::ggthemes_data$excel$classic$fill)
   }
 }
 
-#' Excel color scales
+#' Excel color palette (discrete)
 #'
-#' Color scales from both old and new Excel.
+#' Color palettes used by Microsoft Office and Excel.
+#'
+#' @param theme The name of the Office theme or color theme
+#'   (not to be confused with ggplot2 themes) from which to derive the color
+#'   palette. Available themes include:
+#'   \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}
+#' @family colour excel
+#' @example inst/examples/ex-excel_pal.R
+#' @export
+excel_pal <- function(theme = "Office Theme") {
+  allthemes <- ggthemes::ggthemes_data$excel$themes
+  if (!theme %in% names(allthemes)) {
+    stop("`theme` must be one of ", paste0(names(allthemes), collapse = ", "))
+  }
+  values <- unname(allthemes[[theme]][["accents"]])
+  f <- manual_pal(values)
+  attr(f, "max_n") <- length(values)
+  f
+}
+
+#' Excel color scales (classic)
+#'
+#' The classic "ugly" Excel 1997 color scales.
+#'
+#' @inheritParams excel_classic_pal
+#' @inheritParams ggplot2::scale_colour_hue
+#' @family colour excel
+#' @rdname scale_excel_classic
+#' @export
+#' @example inst/examples/ex-theme_excel_classic.R
+scale_fill_excel_classic <- function(...) {
+  discrete_scale("fill", "excel", excel_classic_pal(line = FALSE), ...)
+}
+
+#' @export
+#' @rdname scale_excel_classic
+scale_colour_excel_classic <- function(...) {
+  discrete_scale("colour", "excel", excel_classic_pal(line = TRUE), ...)
+}
+
+#' @export
+#' @rdname scale_excel
+scale_color_excel_classic <- scale_colour_excel_classic
+
+#' Excel color scales (classic)
+#'
+#' The classic "ugly" Excel 1997 color scales.
 #'
 #' @inheritParams excel_pal
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour excel
 #' @rdname scale_excel
 #' @export
-#' @seealso See \code{\link{theme_excel}} for examples.
-scale_fill_excel <- function(palette = "fill", ...) {
-  discrete_scale("fill", "excel", excel_pal(palette), ...)
-}
+#' @example inst/examples/ex-theme_excel_classic.R
+scale_color_excel_classic <- scale_colour_excel_classic
 
 #' @export
 #' @rdname scale_excel
-scale_colour_excel <- function(palette = "line", ...) {
-  discrete_scale("colour", "excel", excel_pal(palette), ...)
+scale_colour_excel <- function(theme = "Office Theme", ...) {
+  discrete_scale("colour", "excel", excel_pal(theme), ...)
 }
 
 #' @export
 #' @rdname scale_excel
 scale_color_excel <- scale_colour_excel
+
+#' @export
+#' @rdname scale_excel
+scale_fill_excel <- function(theme = "Office Theme", ...) {
+  discrete_scale("fill", "excel", excel_pal(theme), ...)
+}
 
 #' ggplot color theme based on old Excel plots
 #'
@@ -58,8 +102,9 @@ scale_color_excel <- scale_colour_excel
 #' @return An object of class \code{\link{theme}}.
 #' @export
 #' @family themes excel
-#' @example inst/examples/ex-theme_excel.R
-theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
+#' @example inst/examples/ex-theme_excel_classic.R
+theme_excel_classic <- function(base_size = 12, base_family = "",
+                                horizontal = TRUE) {
   gray <- "#C0C0C0"
   ret <- (theme_bw() +
             theme(panel.background = element_rect(fill = gray),

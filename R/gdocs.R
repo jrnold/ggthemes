@@ -40,9 +40,11 @@ theme_gdocs <- function(base_size=12, base_family="sans") {
 #' @export
 #' @example inst/examples/ex-gdocs_pal.R
 gdocs_pal <- function() {
-  manual_pal(unname(ggthemes_data$gdocs))
+  values <- ggthemes::ggthemes_data$gdocs$colors$value
+  f <- manual_pal(values)
+  attr(f, "max_n") <- length(values)
+  f
 }
-
 
 #' Google Docs color scales
 #'

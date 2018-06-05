@@ -2,6 +2,8 @@
 #'
 #' Theme based on the plots in \emph{The Wall Street Journal}.
 #'
+#' This theme should be used with \code{\link{scale_color_wsj}}.
+#'
 #' @references
 #'
 #' \url{https://twitter.com/WSJGraphics}
@@ -10,8 +12,7 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @param color The background color of plot. One of \code{'brown',
-#' 'gray', 'green', 'blue'}, the names of values in
-#' \code{ggthemes_data$wsj$bg}.
+#' 'gray', 'green', 'blue'}.
 #' @param title_family Plot title font family.
 #' @family themes wsj
 #' @example inst/examples/ex-theme_wsj.R
@@ -20,7 +21,7 @@ theme_wsj <- function(base_size = 12,
                       color = "brown",
                       base_family = "sans",
                       title_family = "mono") {
-  colorhex <- ggthemes_data$wsj$bg[color]
+  colorhex <- ggthemes::ggthemes_data$wsj$bg[color]
   (theme_foundation(base_size = base_size, base_family = base_family) +
     theme(line = element_line(linetype = 1, colour = "black"),
           rect = element_rect(fill = colorhex, linetype = 0, colour = NA),
@@ -75,15 +76,15 @@ theme_wsj <- function(base_size = 12,
 #'   Examples: \url{https://twitpic.com/9gfg5q}.}
 #' }
 #'
-#' @param palette \code{character} The color palette to use. This
-#' must be a name in
-#' \code{\link[=ggthemes_data]{ggthemes_data$wsj$palettes}}.
+#' @param palette \code{character} The color palette to use: .
+#' \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}
 #'
 #' @family colour wsj
 #' @export
 wsj_pal <- function(palette = "colors6") {
-  if (palette %in% names(ggthemes_data$wsj$palettes)) {
-    manual_pal(unname(ggthemes_data$wsj$palettes[[palette]]))
+  palettes <- ggthemes::ggthemes_data[["wsj"]][["palettes"]]
+  if (palette %in% names(palettes)) {
+    manual_pal(palettes[[palette]][["value"]])
   } else {
     stop(sprintf("palette %s not a valid palette.", palette))
   }
@@ -91,9 +92,8 @@ wsj_pal <- function(palette = "colors6") {
 
 #' Wall Street Journal color and fill scales
 #'
-#' Colour and fill scales which use the palettes in
-#' \code{\link{wsj_pal}} and are meant for use with
-#' \code{\link{theme_wsj}}.
+#' Colour and fill scales which use the palettes in \code{\link{wsj_pal}}.
+#' These scales should be used with \code{\link{theme_wsj}}.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams wsj_pal

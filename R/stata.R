@@ -12,24 +12,12 @@
 #' @family stata colour
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme="s2color") {
-  colorlists <-
-    list(s2color = c("navy", "maroon", "forest_green",
-                     "dkorange", "teal", "cranberry", "lavender",
-                     "khaki", "sienna",
-                     "emidblue", "emerald", "brown", "erose", "gold",
-                     "bluishgray" # gs6
-    ),
-    s1rcolor = c("yellow", "lime", "midblue", "magenta", "orange",
-                 "red", "ltblue", "sandb", "mint", "olive_teal", "orange_red",
-                 "blue", "pink", "teal", "sienna"), # white
-    s1color = c("dkgreen", "orange_red", "navy", "maroon", "teal", "sienna",
-                "orange", "magenta", "cyan", "red", "lime", "brown", "purple",
-                "olive_teal", "ltblue"), #gs6
-    ## s2manual, s2gmanual, s1mono, s1manual, s
-    mono = c("gs6", "gs10", "gs8", "gs4", "black", "gs14", "gs2", "gs7",
-             "gs9", "gs11", "gs13", "gs15", "gs3", "gs12", "gs5") #black
-    )
-  manual_pal(unname(ggthemes_data$stata$colors[colorlists[[scheme]]]))
+  colors <-
+    ggthemes::ggthemes_data[["stata"]][["colors"]][["schemes"]][[scheme]]
+  max_n <- length(colors)
+  f <- manual_pal(colors[["value"]])
+  attr(f, "max_n") <- max_n
+  f
 }
 
 #' Stata color scales
@@ -60,6 +48,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
   relsz <- sapply(as.numeric(stata_gsize), `/`,
                   y = as.numeric(stata_gsize$medium))
   names(relsz) <- names(stata_gsize)
+  theme_foundation() +
   theme(line = element_line(size = 0.5, linetype = 1, lineend = "butt",
                             colour = "black"),
         rect = element_rect(size = 0.5, linetype = 1, fill = "white",
@@ -115,12 +104,14 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         plot.title = element_text(size = rel(relsz["large"]),
                                   hjust = 0.5,
                                   vjust = 1),
-        plot.margin = unit(rep(0.035, 4), "npc"),
-        complete = TRUE)
+        plot.margin = unit(rep(0.035, 4), "npc"))
+
 }
 
+#' @importFrom tibble deframe
 theme_stata_colors <- function(scheme="s2color") {
-  stata_colors <- ggthemes_data$stata$colors
+  stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
+  stata_colors <- deframe(stata_colors[, c("name", "value")])
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
     color_bg <- "white"
@@ -225,14 +216,22 @@ theme_stata <- function(base_size = 11, base_family = "sans",
 #' @export
 #' @family shapes stata
 #' @seealso See \code{\link{scale_shape_stata}} for examples.
+#' @importFrom purrr map_dfr map
+#' @importFrom tibble as_tibble
+#' @importFrom stringr str_replace
 stata_shape_pal <- function() {
   ## From s1mono, ignore small shapes
-  shapenames <- c("circle", "diamond", "square",
-                  "triangle", "x", "plus",
-                  "circle_hollow", "diamond_hollow",
-                  "square_hollow", "triangle_hollow")
-  values <- ggthemes_data$stata$shapes[shapenames]
-  manual_pal(unname(values))
+  shapes <- c("circle", "diamond", "square",
+              "triangle", "X", "plus",
+              "circle_hollow", "diamond_hollow",
+              "square_hollow", "triangle_hollow")
+  statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
+  shapenames <- tibble::deframe(statadata[, c("symbolstyle", "unicode_value")])
+  values <- as.hexmode(str_replace(shapenames[shapes], "U\\+", ""))
+  values <- -as.integer(values)
+  out <- manual_pal(values)
+  attr(out, "max_n") <- length(shapes)
+  out
 }
 
 #' Stata shape scale
@@ -243,7 +242,7 @@ stata_shape_pal <- function() {
 #' @family shape stata
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
-scale_shape_stata <- function (...) {
+scale_shape_stata <- function(...) {
   discrete_scale("shape", "stata", stata_shape_pal(), ...)
 }
 
@@ -256,10 +255,12 @@ scale_shape_stata <- function (...) {
 #' @export
 #' @seealso \code{\link{scale_linetype_stata}}
 stata_linetype_pal <- function() {
-  values <- ggthemes_data$stata$linetypes
-  function(n) {
+  values <- ggthemes::ggthemes_data[["stata"]][["linetypes"]]
+  f <- function(n) {
     values[seq_len(n)]
   }
+  attr(f, "max_n") <- length(values)
+  f
 }
 
 #' Stata linetype palette (discrete)
@@ -273,7 +274,6 @@ stata_linetype_pal <- function() {
 scale_linetype_stata <- function(...)  {
   discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
 }
-
 
 ## Text sizes (from style definitions ado/base/style/gsize-*.style)
 ## default 4.166

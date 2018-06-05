@@ -36,7 +36,11 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 #' @export
 #' @example inst/examples/ex-calc_pal.R
 calc_pal <- function() {
-    manual_pal(unname(ggthemes_data$calc$colors))
+  values <- unname(ggthemes::ggthemes_data$calc$colors[["value"]])
+  max_n <- length(values)
+  f <- manual_pal(values)
+  attr(f, "max_n") <- max_n
+  f
 }
 
 #' LibreOffice Calc color scales
@@ -70,8 +74,10 @@ scale_color_calc <- scale_colour_calc
 #' @family shapes calc
 #' @example inst/examples/ex-calc_shape_pal.R
 calc_shape_pal <- function() {
-    values <- ggthemes_data$calc$shapes
-    manual_pal(unname(values))
+    values <- ggthemes::ggthemes_data$calc$shapes[["pch"]]
+    f <- manual_pal(unname(values))
+    attr(f, "max_n") <- length(values)
+    f
 }
 
 #' Calc shape scale

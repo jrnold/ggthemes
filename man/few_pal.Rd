@@ -2,29 +2,33 @@
 % Please edit documentation in R/few.R
 \name{few_pal}
 \alias{few_pal}
-\title{Color Palettes from Few's "Practical Rules for Using Color in Charts"}
+\title{Color Palettes Few "Show Me the Numbers"}
 \usage{
-few_pal(palette = "medium")
+few_pal(palette = "Medium")
 }
 \arguments{
-\item{palette}{One of \code{c("medium", "dark", "light")}.}
+\item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}}
 }
 \description{
-Qualitative color palettes from Stephen Few,
+Qualitative color palettes from Stephen Few (2012)
+\emph{Show Me the Numbers}. There are three palettes:
+Light, Medium, and Dark. Each palette comprises nine colors:
+gray, blue, orange, green, pink, brown, purple, yellow, red.
+For \code{n = 1}, gray is used. For \code{n > 1}, the eight non-gray
+colors are used.
 }
 \details{
 Use the light palette for filled areas, such as bar charts.
-The medium palette should be used for points and lines.
-The dark palette should be used for either highlighting specific points,
-or if the lines and points are small or thin.
-All these palettes contain nine colors.
+Use the medium palette for points and lines.
+Use the dark palette for highlighting specific points
+or for small and thin lines and points.
 }
 \examples{
 library("scales")
 
 show_col(few_pal()(7))
-show_col(few_pal("dark")(7))
-show_col(few_pal("light")(7))
+show_col(few_pal("Dark")(7))
+show_col(few_pal("Light")(7))
 }
 \references{
 Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.

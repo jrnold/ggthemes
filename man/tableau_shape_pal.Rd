@@ -4,14 +4,25 @@
 \alias{tableau_shape_pal}
 \title{Tableau Shape Palettes (discrete)}
 \usage{
-tableau_shape_pal(palette = "default")
+tableau_shape_pal(palette = c("default", "filled", "proportions"))
 }
 \arguments{
-\item{palette}{Palette name. See \code{ggthemes_data$tableau$shapes}.}
+\item{palette}{Palette name.}
 }
 \description{
 Shape palettes used by
 \href{http://www.tableausoftware.com/}{Tableau}.
+}
+\details{
+Not all shape palettes in Tableau are supported. Additionally, these
+palettes are not exact, and use the best unicode character for the shape
+palette.
+
+Since these palettes use unicode characters, their look may depend on the
+font being used, and not all characters may be available.
+
+Shape palettes in Tableau are used to expose images for use a markers in
+charts, and thus are sometimes groupings of closely related symbols.
 }
 \examples{
 show_shapes(tableau_shape_pal()(5))

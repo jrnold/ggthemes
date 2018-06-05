@@ -6,7 +6,7 @@
 \title{ggplot color theme based on the Economist}
 \usage{
 theme_economist(base_size = 10, base_family = "sans", horizontal = TRUE,
-  dkpanel = FALSE, stata = FALSE)
+  dkpanel = FALSE)
 
 theme_economist_white(base_size = 11, base_family = "sans",
   gray_bg = TRUE, horizontal = TRUE)
@@ -16,29 +16,31 @@ theme_economist_white(base_size = 11, base_family = "sans",
 
 \item{base_family}{base font family}
 
-\item{horizontal}{\code{logical}. Horizontal axis lines?}
+\item{horizontal}{\code{logical} Horizontal axis lines?}
 
 \item{dkpanel}{\code{logical} Darker background for panel region?}
 
-\item{stata}{\code{logical} Use RGB values from Stata's
-economist scheme.}
-
-\item{gray_bg}{\code{logical} If \code{TRUE}, use gray background, else use white
+\item{gray_bg}{\code{logical} If \code{TRUE}, use gray background, else
+   use white
 background.}
 }
 \value{
 An object of class \code{\link{theme}}.
 }
 \description{
-Style plots similar to those in \emph{The Economist}.
+A theme that approximates the style of \emph{The Economist}.
 }
 \details{
 \code{theme_economist} implements the standard bluish-gray
 background theme in the print \emph{The Economist} and
 \href{http://economist.com}{economist.com}.
+
 \code{theme_economist_white} implements a variant with a while
-panel and light gray (or white) background used by \emph{The Economist}
+panel and light gray (or white) background often used by \emph{The Economist}
 blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
+
+Use \code{\link{scale_color_economist}} with this theme.
+The x axis should be displayed on the right hand side.
 
 \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
 you have access to this font, you can use it with the
@@ -47,20 +49,15 @@ you have access to this font, you can use it with the
 \examples{
 library("ggplot2")
 
-p <- ggplot(mtcars) + geom_point(aes(x = wt, y = mpg,
-     colour = factor(gear))) +
+p <- ggplot(mtcars) +
+     geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
      facet_wrap(~am) +
-     # Economist puts scales on the right-hand side
+     # Economist puts x-axis labels on the right-hand side
      scale_y_continuous(position = "right")
 
 ## Standard
-p + theme_economist() + scale_colour_economist()
-
-## Stata colors
-p + theme_economist(stata = TRUE) + scale_colour_economist(stata = TRUE)
-
-## Darker plot region
-p + theme_economist(dkpanel = TRUE) + scale_colour_economist(stata = TRUE)
+p + theme_economist() +
+  scale_colour_economist()
 
 # Change axis lines to vertical
 p + theme_economist(horizontal = FALSE) +
@@ -78,7 +75,7 @@ p + theme_economist_white(gray_bg = FALSE) +
 \dontrun{
 
 ## The Economist uses ITC Officina Sans
-library(extrafont)
+library("extrafont")
 p + theme_economist(base_family="ITC Officina Sans") +
     scale_colour_economist()
 

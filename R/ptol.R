@@ -13,14 +13,16 @@
 #'  \url{https://personal.sron.nl/~pault/colourschemes.pdf}
 #' @example inst/examples/ex-ptol_pal.R
 ptol_pal <- function() {
-  function(n) {
+  f <- function(n) {
     if (n > 12) {
       stop(sprintf("%s is greater than the max number of colors", n))
     } else if (n < 1) {
       stop("the number of colors cannot be zero")
     }
-    ggthemes_data$ptol$qualitative[[n]]
+    ggthemes::ggthemes_data[["ptol"]][["qualitative"]][[n]]
   }
+  attr(f, "max_n") <- 12
+  f
 }
 
 #' Color Scales from Paul Tol's "Colour Schemes
@@ -32,6 +34,7 @@ ptol_pal <- function() {
 #' @family colour ptol
 #' @rdname scale_ptol
 #' @export
+#' @example inst/examples/ex-scale_colour_ptol.R
 scale_colour_ptol <- function(...) {
   discrete_scale("colour", "ptol", ptol_pal(), ...)
 }

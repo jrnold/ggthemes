@@ -1,17 +1,22 @@
-# see mstone_Palettes at https://github.com/mcstone/mstone/tree/5acd4ad14246feb07f759053c0e53dc2e023302e/Palettes
-
-#' Color Palettes based on Tableau (discrete)
+#' Tableau Color Palettes (discrete)
 #'
-#' Color palettes used in
-#' \href{http://www.tableausoftware.com/}{Tableau}.
+#' Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 #'
-#' The number in some palette names indicates the maximum number of
-#' values supported, e.g \code{tableau20} supports up to 20 values.
-#' \code{"trafficlight"} supports up to nine values, and \code{"cyclic"}
-#' supports up to 20 values.
+#' @details Tableau provides types of color palettes:
+#' \code{"regular"} (discrete, qualitative categories),
+#' \code{"ordered-sequential"}, and \code{"ordered-diverging"}.
+#'
+#' \itemize{
+#' \item{\code{"regular"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))}}
+#' \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+#' \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+#' }
 #'
 #' @export
-#' @param palette Palette name.
+#' @param palette Palette name. See Details for available palettes.
+#' @param type Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.
+#' @param direction If 1, the default, then use the original order of
+#'   colors. If -1, then reverse the order.
 #'
 #' @references
 #' \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -28,33 +33,32 @@
 #'
 #' @family colour tableau
 #' @example inst/examples/ex-tableau_color_pal.R
-tableau_color_pal <- function(palette = "tableau10") {
-  palettelist <- ggthemes_data$tableau$colors
-  if (!palette %in% c(names(palettelist), "tableau10", "tableau10light",
-                      "purplegray6", "bluered6", "greenorange6")) {
-    stop(sprintf("%s is not a valid palette name", palette))
+tableau_color_pal <- function(palette = "Tableau 10",
+                              type = c("regular", "ordered-seqential",
+                                       "ordered-diverging"),
+                              direction = 1) {
+  type <- match.arg(type)
+  palettes <- ggthemes::ggthemes_data[["tableau"]][["color-palettes"]][[type]]
+  if (!palette %in% names(palettes)) {
+    stop("`palette` must be one of ", paste(names(palettes), collapse = ", "),
+         ".")
   }
-  if (palette == "tableau10") {
-    types <- palettelist[["tableau20"]][seq(1, 20, by = 2)]
-  } else if (palette == "tableau10light") {
-    types <- palettelist[["tableau20"]][seq(2, 20, by = 2)]
-  } else if (palette == "purplegray6") {
-    types <- palettelist[["purplegray12"]][seq(1, 12, by = 2)]
-  } else if (palette == "bluered6") {
-    types <- palettelist[["bluered12"]][seq(1, 12, by = 2)]
-  } else if (palette == "greenorange6") {
-    types <- palettelist[["greenorange12"]][seq(1, 12, by = 2)]
-  } else {
-    types <- palettelist[[palette]]
+  values <- palettes[[palette]][["value"]]
+  max_n <- length(values)
+  f <- function(n) {
+    check_pal_n(n, max_n)
+    if (direction < 0) {
+      values <- rev(values)
+    }
+    values[seq_len(n)]
   }
-  function(n) {
-    unname(types)[seq_len(n)]
-  }
+  attr(f, "max_n") <- length(values)
+  f
 }
 
-#' Tableau color scales.
+#' Tableau color scales
 #'
-#' See \code{\link{tableau_color_pal}} for details.
+#' Categorical color scales from Tableau.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams tableau_color_pal
@@ -63,13 +67,13 @@ tableau_color_pal <- function(palette = "tableau10") {
 #' @export
 #' @seealso \code{\link{tableau_color_pal}} for references.
 #' @example inst/examples/ex-scale_color_tableau.R
-scale_colour_tableau <- function(palette = "tableau10", ...) {
+scale_colour_tableau <- function(palette = "Tableau 10", ...) {
   discrete_scale("colour", "tableau", tableau_color_pal(palette), ...)
 }
 
 #' @export
 #' @rdname scale_color_tableau
-scale_fill_tableau <- function(palette = "tableau10", ...) {
+scale_fill_tableau <- function(palette = "Tableau 10", ...) {
   discrete_scale("fill", "tableau", tableau_color_pal(palette), ...)
 }
 
@@ -82,12 +86,26 @@ scale_color_tableau <- scale_colour_tableau
 #' Shape palettes used by
 #' \href{http://www.tableausoftware.com/}{Tableau}.
 #'
+#' Not all shape palettes in Tableau are supported. Additionally, these
+#' palettes are not exact, and use the best unicode character for the shape
+#' palette.
+#'
+#' Since these palettes use unicode characters, their look may depend on the
+#' font being used, and not all characters may be available.
+#'
+#' Shape palettes in Tableau are used to expose images for use a markers in
+#' charts, and thus are sometimes groupings of closely related symbols.
+#'
 #' @export
-#' @param palette Palette name. See \code{ggthemes_data$tableau$shapes}.
+#' @param palette Palette name.
 #' @family shape tableau
 #' @example inst/examples/ex-tableau_shape_pal.R
-tableau_shape_pal <- function(palette = "default") {
-  manual_pal(unname(ggthemes_data$tableau$shapes[[palette]]))
+tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
+  palette <- match.arg(palette)
+  shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
+  f <- manual_pal(shapes[["pch"]])
+  attr(f, "max_n") <- nrow(shapes)
+  f
 }
 
 #' Tableau shape scales
@@ -103,21 +121,50 @@ scale_shape_tableau <- function(palette = "default", ...) {
   discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
 
-
-
-#' Tableau sequential colour gradient palettes (continuous)
+#' Tableau colour gradient palettes (continuous)
 #'
-#' @param palette Palette name. See \code{ggthemes_data$tableau$sequential}.
-#' @param space Colour space in which to calculate gradient.
+#' @param palette Palette name.
+#'  \itemize{
+#'  \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+#'  \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+#'  }
+#' @param type Palette type, either \code{"ordered-sequential"} or
+#'   \code{"ordered-diverging"}.
+#' @param values if colours should not be evenly positioned along the gradient
+#'   this vector gives the position (between 0 and 1) for each colour in the
+#'   colours vector. See \link[scales]{rescale} for a convenience function to
+#'   map an arbitrary range to between 0 and 1.
+#' @param direction Sets the order of colors in the scale.
+#'    If 1, the default, colors are as the original order.
+#'    If -1, the order of colors is reversed.
+#' @param ... Arguments passed to \code{tableau_gradient_pal}.
 #' @family colour tableau
 #'
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
-tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
-  pal <- ggthemes_data[["tableau"]][["sequential"]][[palette]]
-  seq_gradient_pal(low = pal["low"], high = pal["high"])
+tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential",
+                                 values = NULL, direction = 1) {
+  type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
+  pal <- ggthemes::ggthemes_data[[c("tableau", "color-palettes",
+                                    type, palette)]]
+  colours <- pal[["value"]]
+  if (direction < 0) {
+    colours <- rev(colours)
+  }
+  scales::gradient_n_pal(colours, values = values, space = "Lab")
 }
 
+#' @export
+#' @rdname tableau_gradient_pal
+tableau_seq_gradient_pal <- function(palette = "Blue", ...) {
+  tableau_gradient_pal(palette = palette, type = "ordered-sequential", ...)
+}
+
+#' @export
+#' @rdname tableau_gradient_pal
+tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
+  tableau_gradient_pal(palette = palette, type = "ordered-diverging", ...)
+}
 
 #' Tableau sequential colour scale (continuous)
 #'
@@ -129,13 +176,12 @@ tableau_seq_gradient_pal <- function(palette = "Red", space = "Lab") {
 #' @family colour tableau
 #' @rdname scale_colour_gradient_tableau
 #' @example inst/examples/ex-scale_colour_gradient_tableau.R
-scale_colour_gradient_tableau <- function(palette = "Red",
+scale_colour_gradient_tableau <- function(palette = "Blue",
                                           ...,
-                                          space = "Lab",
                                           na.value = "grey50",
                                           guide = "colourbar") {
   continuous_scale("colour", "tableau",
-                   tableau_seq_gradient_pal(palette, space),
+                   tableau_seq_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)
@@ -143,12 +189,12 @@ scale_colour_gradient_tableau <- function(palette = "Red",
 
 #' @export
 #' @rdname scale_colour_gradient_tableau
-scale_fill_gradient_tableau <- function(palette = "Red",
-                                        ..., space = "Lab",
+scale_fill_gradient_tableau <- function(palette = "Blue",
+                                        ...,
                                         na.value = "grey50",
                                         guide = "colourbar") {
   continuous_scale("fill", "tableau",
-                   tableau_seq_gradient_pal(palette, space),
+                   tableau_seq_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)
@@ -166,21 +212,6 @@ scale_color_continuous_tableau <- scale_colour_gradient_tableau
 #' @rdname scale_colour_gradient_tableau
 scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 
-
-#' Tableau diverging colour gradient palettes (continuous)
-#'
-#' @param palette Palette name. See \code{ggthemes_data$tableau$divergent}.
-#' @param space Colour space in which to calculate gradient.
-#' @family colour tableau
-#'
-#' @export
-#' @example inst/examples/ex-tableau_div_gradient_pal.R
-tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
-  pal <- ggthemes_data[["tableau"]][["diverging"]][[palette]]
-  div_gradient_pal(low = pal["low"], mid = pal["mid"], high = pal["high"],
-                   space = space)
-}
-
 #' Tableau diverging colour scales (continuous)
 #'
 #' @inheritParams tableau_div_gradient_pal
@@ -191,12 +222,12 @@ tableau_div_gradient_pal <- function(palette = "Red-Blue", space = "Lab") {
 #' @export
 #' @rdname scale_colour_gradient2_tableau
 #' @example inst/examples/ex-scale_colour_gradient2_tableau.R
-scale_colour_gradient2_tableau <- function(palette = "Red-Blue",
-                                           ..., space = "rgb",
+scale_colour_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
+                                           ...,
                                            na.value = "grey50",
                                            guide = "colourbar") {
   continuous_scale("colour", "tableau2",
-                   tableau_div_gradient_pal(palette, space),
+                   tableau_div_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)
@@ -204,13 +235,12 @@ scale_colour_gradient2_tableau <- function(palette = "Red-Blue",
 
 #' @export
 #' @rdname scale_colour_gradient2_tableau
-scale_fill_gradient2_tableau <- function(palette = "Red-Blue",
+scale_fill_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
                                          ...,
-                                         space = "rgb",
                                          na.value = "grey50",
                                          guide = "colourbar") {
   continuous_scale("fill", "tableau2",
-                   tableau_div_gradient_pal(palette, space),
+                   tableau_div_gradient_pal(palette),
                    na.value = na.value,
                    guide = guide,
                    ...)

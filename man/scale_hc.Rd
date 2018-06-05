@@ -13,9 +13,7 @@ scale_color_hc(palette = "default", ...)
 scale_fill_hc(palette = "default", ...)
 }
 \arguments{
-\item{palette}{\code{character} The color palette to use. This
-must be a name in
-\code{\link[=ggthemes_data]{ggthemes_data$hc$palettes}}.}
+\item{palette}{\code{character} The name of the Highcharts theme to use.}
 
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}
@@ -24,4 +22,7 @@ to control name, limits, breaks, labels and so forth.}
 Colour and fill scales which use the palettes in
 \code{\link{hc_pal}} and are meant for use with
 \code{\link{theme_hc}}.
+}
+\seealso{
+Other colour hc: \code{\link{hc_pal}}
 }

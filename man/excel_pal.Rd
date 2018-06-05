@@ -4,30 +4,26 @@
 \alias{excel_pal}
 \title{Excel color palette (discrete)}
 \usage{
-excel_pal(palette = "line")
+excel_pal(theme = "Office Theme")
 }
 \arguments{
-\item{palette}{One of \code{'old'}, \code{'fill'}, or \code{'new'}.}
+\item{theme}{The name of the Office theme or color theme
+(not to be confused with ggplot2 themes) from which to derive the color
+palette. Available themes include:
+\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}}
 }
 \description{
-Color palettes from Excel, both current and the pre-2007 ugly
-palettes.
-}
-\details{
-The color palettes are
-\describe{
-\item{line}{Excel 2003 default color palette. seven colors.}
-\item{fill}{Excel 2003 bar chart color palette. seven colors.}
-\item{new}{Color palette from newer Excel versions. 10 colors.}
-}
+Color palettes used by Microsoft Office and Excel.
 }
 \examples{
 library("scales")
 
-show_col(excel_pal()(8))
-show_col(excel_pal("fill")(8))
-show_col(excel_pal("new")(10))
+for (i in names(ggthemes::ggthemes_data$excel$palettes)) {
+  show_col(excel_pal(theme = i))(6)
+}
 }
 \seealso{
-Other colour excel: \code{\link{scale_fill_excel}}
+Other colour excel: \code{\link{excel_classic_pal}},
+  \code{\link{scale_color_excel_classic}},
+  \code{\link{scale_fill_excel_classic}}
 }

@@ -1,0 +1,45 @@
+reference:
+- title: Themes
+  contents:
+  - starts_with("theme_")
+- title: "Color Scales"
+  desc: >-
+    Provided ggplot2 scales for the `color` (`colour`) aesthetic.
+    Scales control the details of how data values are translated to visual
+    properties.
+  contents:
+  - starts_with("scale_color_")
+  - starts_with("scale_fill_")
+- title: Shape Scales
+  desc: >-
+    Provided ggplot2 scales for the `shape` aesthetic.
+    Scales control the details of how data values are translated to visual
+    properties.
+  contents:
+  - starts_with("scale_shape_")
+- title: Lintetype Scales
+  desc: >-
+    Provided ggplot2 scales for the `linetype` aesthetic.
+    Scales control the details of how data values are translated to visual
+    properties.
+  contents:
+  - starts_with("scale_linetype_")
+- title: Color, Shape, and Linetype Palettes
+  desc: >-
+    Color, shape, and linetype palettes.
+  contents:
+  - ends_with("_pal")
+  - palette_pander
+- title: Geoms and Stats
+  desc: >-
+    ggplot2 geom and stat layers.
+  contents:
+  - starts_with("geom_")
+  - starts_with("stat_")
+- title: Other functions
+  contents:
+  - bank_slopes
+  - extended_range_breaks
+  - show_linetypes
+  - show_shapes
+  - smart_digits

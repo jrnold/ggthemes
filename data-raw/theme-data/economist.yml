@@ -1,0 +1,19 @@
+bg:
+- {name: "blue-gray", value: '#d5e4eb'}
+- {name: "dark blue-gray", value: '#c3d6df'}
+- {name: "red", value: '#ed111a'}
+- {name: "light gray", value: '#ebebeb'}
+- {name: "dark gray", value: '#c9c9c9'}
+fg:
+- {name: "blue gray", value: '#6794a7'}
+- {name: "dark blue", value: '#014d64'}
+- {name: "light green", value: '#76c0c1'}
+- {name: "blue", value: '#01a2d9'}
+- {name: "light blue", value: '#7ad2f6'}
+- {name: "dark green", value: '#00887d'}
+- {name: "gray", value: '#adadad'}
+- {name: "light blue", value: '#7bd3f6'}
+- {name: "dark red", value: '#7c260b'}
+- {name: "pink", value: '#ee8f71'}
+- {name: "light green", value: '#76c0c1'}
+- {name: "brown", value: '#a18376'}

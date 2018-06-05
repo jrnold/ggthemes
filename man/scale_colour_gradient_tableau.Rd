@@ -8,28 +8,29 @@
 \alias{scale_fill_continuous_tableau}
 \title{Tableau sequential colour scale (continuous)}
 \usage{
-scale_colour_gradient_tableau(palette = "Red", ..., space = "Lab",
-  na.value = "grey50", guide = "colourbar")
+scale_colour_gradient_tableau(palette = "Blue", ..., na.value = "grey50",
+  guide = "colourbar")
 
-scale_fill_gradient_tableau(palette = "Red", ..., space = "Lab",
-  na.value = "grey50", guide = "colourbar")
+scale_fill_gradient_tableau(palette = "Blue", ..., na.value = "grey50",
+  guide = "colourbar")
 
-scale_color_gradient_tableau(palette = "Red", ..., space = "Lab",
-  na.value = "grey50", guide = "colourbar")
+scale_color_gradient_tableau(palette = "Blue", ..., na.value = "grey50",
+  guide = "colourbar")
 
-scale_color_continuous_tableau(palette = "Red", ..., space = "Lab",
-  na.value = "grey50", guide = "colourbar")
+scale_color_continuous_tableau(palette = "Blue", ..., na.value = "grey50",
+  guide = "colourbar")
 
-scale_fill_continuous_tableau(palette = "Red", ..., space = "Lab",
-  na.value = "grey50", guide = "colourbar")
+scale_fill_continuous_tableau(palette = "Blue", ..., na.value = "grey50",
+  guide = "colourbar")
 }
 \arguments{
-\item{palette}{Palette name. See \code{ggthemes_data$tableau$sequential}.}
+\item{palette}{Palette name.
+\itemize{
+\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+}}
 
-\item{...}{Other arguments passed on to \code{\link{discrete_scale}}
-to control name, limits, breaks, labels and so forth.}
-
-\item{space}{Colour space in which to calculate gradient.}
+\item{...}{Arguments passed to \code{tableau_gradient_pal}.}
 
 \item{na.value}{Colour to use for missing values}
 
@@ -53,14 +54,16 @@ p <- ggplot(df, aes(x, y)) +
      geom_point(aes(colour = z2)) +
      theme_igray()
 
-p + scale_colour_gradient_tableau("Red")
-p + scale_colour_gradient_tableau("Blue")
-p + scale_colour_gradient_tableau("Green")
+palettes <-
+  ggthemes_data[["tableau"]][["color-palettes"]][["ordered-sequential"]]
+for (palette in names(palettes)) {
+  print(p + scale_colour_gradient_tableau(palette) +
+          ggtitle(palette))
+}
 }
 \seealso{
 Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{scale_colour_tableau}},
   \code{\link{tableau_color_pal}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+  \code{\link{tableau_gradient_pal}}
 }

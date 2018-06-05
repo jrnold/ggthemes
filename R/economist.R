@@ -4,72 +4,64 @@
 #' included in these palettes and should be used to indicate
 #' important data.
 #'
-#' @param stata Use the palette in the Stata economist scheme.
 #' @param fill Use the fill palette.
 #' @family colour economist
 #' @export
 #' @example inst/examples/ex-economist_pal.R
-economist_pal <- function(stata=FALSE, fill=TRUE) {
-  if (stata) {
-    manual_pal(unname(ggthemes_data$economist$stata$fg))
+economist_pal <- function(fill=TRUE) {
+  colors <- deframe(ggthemes::ggthemes_data[["economist"]][["fg"]])
+  max_n <- length(colors)
+  if (fill) {
+    function(n) {
+      check_pal_n(n, max_n)
+      if (n == 1L) {
+        i <- "blue_dark"
+      } else if (n == 2L) {
+        i <- c("blue_mid", "blue_dark")
+      } else if (n == 3L) {
+        i <- c("blue_gray", "blue_dark", "blue_mid")
+      } else if (n == 4L) {
+        i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
+      } else if (n %in% 5:6) {
+        ## 20120901_woc904
+        i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
+               "green_light", "green_dark")
+      } else if (n == 7L) {
+        # 20120818_AMC820
+        i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+               "green_dark", "green_light", "gray")
+      } else if (n >= 8L) {
+        # 20120915_EUC094
+        i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
+               "green_dark", "green_light", "red_dark", "red_light",
+               "gray")
+      }
+      unname(colors[i][seq_len(n)])
+    }
   } else {
-    colors <- ggthemes_data$economist$fg
-    if (fill) {
-      function(n) {
-        assert_that(n < length(ggthemes_data$economist$fg))
-        assert_that(n > 0)
-        if (n == 1) {
-          i <- "blue_dark"
-        } else if (n == 2) {
-          i <- c("blue_mid", "blue_dark")
-        } else if (n == 3) {
-          i <- c("blue_gray", "blue_dark", "blue_mid")
-        } else if (n == 4) {
-          i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
-        } else if (n %in% 5:6) {
-          ## 20120901_woc904
-          i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
-                 "green_light", "green_dark")
-        } else if (n == 7) {
-          # 20120818_AMC820
-          i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-                 "green_dark", "green_light", "gray")
-        } else if (n >= 8) {
-          # 20120915_EUC094
-          i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-                 "green_dark", "green_light", "red_dark", "red_light",
-                 "gray")
-        }
-        unname(colors[i][seq_len(n)])
+    function(n) {
+      check_pal_n(n, max_n)
+      if (n <= 3) {
+        # 20120818_AMC20
+        # 20120901_FBC897
+        i <- c("blue_dark", "blue_mid", "blue_light")
+      } else if (n %in% 4:5) {
+        # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
+        i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
+      } else if (n == 6) {
+        # 20120825_IRC829
+        i <- c("green_light", "green_dark", "gray",
+               "blue_gray", "blue_light", "blue_dark")
+      } else if (n > 6) {
+        # 20120825_IRC829
+        i <- c("green_light", "green_dark", "gray",
+               "blue_gray", "blue_light", "blue_dark", "red_dark",
+               "red_light", "brown")
       }
-    } else {
-      function(n) {
-        assert_that(n > 0)
-        assert_that(n <= length(ggthemes_data$economist$fg))
-        if (n <= 3) {
-          # 20120818_AMC20
-          # 20120901_FBC897
-          i <- c("blue_dark", "blue_mid", "blue_light")
-        } else if (n %in% 4:5) {
-          # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
-          i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
-        } else if (n == 6) {
-          # 20120825_IRC829
-          i <- c("green_light", "green_dark", "gray",
-                 "blue_gray", "blue_light", "blue_dark")
-        } else if (n > 6) {
-          # 20120825_IRC829
-          i <- c("green_light", "green_dark", "gray",
-                 "blue_gray", "blue_light", "blue_dark", "red_dark",
-                 "red_light", "brown")
-
-        }
-        unname(colors[i][seq_len(n)])
-      }
+      unname(colors[i][seq_len(n)])
     }
   }
 }
-
 
 #' Economist color scales
 #'
@@ -81,8 +73,8 @@ economist_pal <- function(stata=FALSE, fill=TRUE) {
 #' @rdname scale_economist
 #' @seealso \code{\link{theme_economist}} for examples.
 #' @export
-scale_colour_economist <- function(stata=FALSE, ...) {
-  discrete_scale("colour", "economist", economist_pal(stata = stata), ...)
+scale_colour_economist <- function(...) {
+  discrete_scale("colour", "economist", economist_pal(), ...)
 }
 
 #' @rdname scale_economist
@@ -91,31 +83,34 @@ scale_color_economist <- scale_colour_economist
 
 #' @rdname scale_economist
 #' @export
-scale_fill_economist <- function(stata=FALSE, ...) {
-  discrete_scale("fill", "economist", economist_pal(stata = stata), ...)
+scale_fill_economist <- function(...) {
+  discrete_scale("fill", "economist", economist_pal(), ...)
 }
 
 #' ggplot color theme based on the Economist
 #'
-#' Style plots similar to those in \emph{The Economist}.
+#' A theme that approximates the style of \emph{The Economist}.
 #'
 #' \code{theme_economist} implements the standard bluish-gray
 #' background theme in the print \emph{The Economist} and
 #' \href{http://economist.com}{economist.com}.
+#'
 #' \code{theme_economist_white} implements a variant with a while
-#' panel and light gray (or white) background used by \emph{The Economist}
+#' panel and light gray (or white) background often used by \emph{The Economist}
 #' blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
+#'
+#' Use \code{\link{scale_color_economist}} with this theme.
+#' The x axis should be displayed on the right hand side.
 #'
 #' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
 #' you have access to this font, you can use it with the
 #' \pkg{extrafont} package. "Verdana" is a good substitute.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal \code{logical}. Horizontal axis lines?
+#' @param horizontal \code{logical} Horizontal axis lines?
 #' @param dkpanel \code{logical} Darker background for panel region?
-#' @param stata \code{logical} Use RGB values from Stata's
-#' economist scheme.
-#' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else use white
+#' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else
+#'    use white
 #' background.
 #'
 #' @return An object of class \code{\link{theme}}.
@@ -135,13 +130,8 @@ scale_fill_economist <- function(stata=FALSE, ...) {
 #'
 #' @example inst/examples/ex-theme_economist.R
 theme_economist <- function(base_size = 10, base_family = "sans",
-                            horizontal = TRUE, dkpanel = FALSE,
-                            stata = FALSE) {
-  if (stata) {
-    bgcolors <- ggthemes_data$economist$stata$bg
-  } else {
-    bgcolors <- ggthemes_data$economist$bg
-  }
+                            horizontal = TRUE, dkpanel = FALSE) {
+  bgcolors <- deframe(ggthemes::ggthemes_data[["economist"]][["bg"]])
   ## From measurements
   ## Ticks = 1 / 32 in, with margin about 1.5 / 32
   ## Title = 3 / 32 in (6 pt)
@@ -224,7 +214,7 @@ theme_economist <- function(base_size = 10, base_family = "sans",
 theme_economist_white <- function(base_size = 11, base_family = "sans",
                                   gray_bg = TRUE, horizontal = TRUE) {
   if (gray_bg) {
-    bgcolor <- ggthemes_data$economist$bg["ltgray"]
+    bgcolor <- ggthemes::ggthemes_data$economist$bg[["ltgray"]]
   } else {
     bgcolor <- "white"
   }
@@ -235,6 +225,7 @@ theme_economist_white <- function(base_size = 11, base_family = "sans",
           plot.background = element_rect(fill = bgcolor),
           panel.background = element_rect(fill = "white"),
           panel.grid.major =
-            element_line(colour = ggthemes_data$economist$bg["dkgray"]),
+            element_line(colour =
+                           ggthemes::ggthemes_data$economist$bg[["dkgray"]]),
           strip.background = element_rect(fill = "white")))
 }

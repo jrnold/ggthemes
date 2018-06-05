@@ -6,15 +6,13 @@
 \alias{scale_fill_economist}
 \title{Economist color scales}
 \usage{
-scale_colour_economist(stata = FALSE, ...)
+scale_colour_economist(...)
 
-scale_color_economist(stata = FALSE, ...)
+scale_color_economist(...)
 
-scale_fill_economist(stata = FALSE, ...)
+scale_fill_economist(...)
 }
 \arguments{
-\item{stata}{Use the palette in the Stata economist scheme.}
-
 \item{...}{Other arguments passed on to \code{\link{discrete_scale}}
 to control name, limits, breaks, labels and so forth.}
 }

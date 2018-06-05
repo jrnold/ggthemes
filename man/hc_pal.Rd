@@ -7,15 +7,23 @@
 hc_pal(palette = "default")
 }
 \arguments{
-\item{palette}{\code{character} The color palette to use. This
-must be a name in
-\code{\link[=ggthemes_data]{ggthemes_data$hc$palettes}}.}
+\item{palette}{\code{character} The name of the Highcharts theme to use.}
 }
 \description{
 The Highcharts JS uses many different color palettes in its
 plots. This collects a few of them.
 }
-\details{
-The \code{"darkunica"} palette has 11 colors, and the \code{"default"}
-palette has 10 colors.
+\section{Palettes}{
+
+
+The following palettes are defined,
+
+\itemize{
+  \item{\href{http://www.highcharts.com/demo}{default}}
+  \item{\href{http://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
+}
+}
+
+\seealso{
+Other colour hc: \code{\link{scale_colour_hc}}
 }

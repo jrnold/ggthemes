@@ -1,0 +1,42 @@
+colors:
+  names: [{name: eltgreen, value: '#97b6b0'}, {name: forest_green, value: '#55752f'}, {name: sandb, value: '#ffe474'}, {name: gold, value: '#ffd200'}, {name: midgreen, value: '#00b000'}, {name: lavender, value: '#938dd2'}, {name: maroon, value: '#90353b'}, {name: dknavy, value: '#1e2d53'}, {name: sienna, value: '#a0522d'}, {name: gs15, value: '#f0f0f0'}, {name: pink, value: '#ff0080'}, {name: ebg, value: '#c6d3df'}, {name: edkblue, value: '#3e647d'}, {name: edkbg, value: '#b2bfcb'}, {name: navy, value: '#1a476f'}, {name: gs14, value: '#e0e0e0'}, {name: magenta, value: '#ff00ff'}, {name: gs16, value: '#ffffff'}, {name: ltbluishgray, value: '#eaf2f3'}, {name: gs10, value: '#a0a0a0'}, {name: gs13, value: '#d0d0d0'}, {name: lime, value: '#00ff00'}, {name: blue, value: '#0000ff'}, {name: gs0, value: '#000000'}, {name: gs3, value: '#303030'}, {name: gs2, value: '#202020'}, {name: gs5, value: '#505050'}, {name: gs4, value: '#404040'}, {name: gs7, value: '#707070'}, {name: gs6, value: '#606060'}, {name: dimgray, value: '#e8e8e8'}, {name: gs8, value: '#808080'}, {name: bluishgray, value: '#d9e6eb'}, {name: eggshell, value: '#fffbf0'}, {name: gs1, value: '#101010'}, {name: sunflowerlime, value: '#eaffaa'}, {name: ltblue, value: '#add8e6'}, {name: black, value: '#000000'}, {name: orange_red, value: '#ff4500'}, {name: midblue, value: '#0080ff'}, {name: white, value: '#ffffff'}, {name: gs12, value: '#c0c0c0'}, {name: red, value: '#ff0000'}, {name: olive_teal, value: '#c0dcc0'}, {name: khaki, value: '#cac27e'}, {name: eltblue, value: '#82c0e9'}, {name: gs11, value: '#b0b0b0'}, {name: ebblue, value: '#008bbc'}, {name: stone, value: '#d7d29e'}, {name: ltbluishgray8, value: '#e1e6f0'}, {name: chocolate, value: '#804000'}, {name: orange, value: '#ff7f00'}, {name: bluishgray8, value: '#d2d7e4'}, {name: yellow, value: '#ffff00'}, {name: emerald, value: '#2d6d66'}, {name: olive, value: '#5c4717'}, {name: cyan, value: '#00ffff'}, {name: erose, value: '#bfa19c'}, {name: gray, value: '#808080'}, {name: none, value: '#000000'}, {name: gs9, value: '#909090'}, {name: brown, value: '#9c8847'}, {name: ltkhaki, value: '#e5daa5'}, {name: navy8, value: '#273f6f'}, {name: mint, value: '#00ff80'}, {name: purple, value: '#800080'}, {name: emidblue, value: '#7b92a8'}, {name: dkorange, value: '#e37e00'}, {name: sand, value: '#d9c263'}, {name: dkgreen, value: '#006000'}, {name: green, value: '#008000'}, {name: teal, value: '#6e8e84'}, {name: cranberry, value: '#c10534'}]
+  schemes: {s2color: [navy, maroon, forest_green, dkorange, teal, cranberry, lavender, khaki, sienna, emidblue, emerald, brown, erose, gold, bluishgray], s1rcolor: [yellow, lime, midblue, magenta, orange, red, ltblue, sandb, mint, olive_teal, orange_red, blue, pink, teal, sienna], s1color: [dkgreen, orange_red, navy, maroon, teal, sienna, orange, magenta, cyan, red, lime, brown, purple, olive_teal, ltblue], mono: [gs6, gs10, gs8, gs4, black, gs14, gs2, gs7, gs9, gs11, gs13, gs15, gs3, gs12, gs5], economist: [dkblue, emidblue, eltblue, emerald, erose, ebblue, eltgreen, stone, navy, maroon, brown, lavender, teal, cranberry, khaki]}
+shapes:
+  - {symbolstyle: circle, synonym: O, unicode_name: 'BLACK CIRCLE', unicode_value: "U+25CF", character: "●"}
+  - {symbolstyle: diamond, synonym: D, unicode_name: 'BLACK MEDIUM DIAMOND', unicode_value: "U+2B25", character: "⬥"}
+  - {symbolstyle: triangle, synonym: T, unicode_name: 'BLACK UP-POINTING TRIANGLE', unicode_value: "U+25B2", character: "▲"}
+  - {symbolstyle: square, synonym: S, unicode_name: 'BLACK SQUARE', unicode_value: "U+25A0", character: "■"}
+  - {symbolstyle: plus, synonym: +, unicode_name: 'HEAVY PLUS SIGN', unicode_value: 'U+2795', character: "➕"}
+  - {symbolstyle: X, synonym: X, unicode_name: 'HEAVY MULTIPLICATION X', unicode_value: 'U+2716', character: "✖"}
+  - {symbolstyle: smcircle, synonym: o, unicode_name: BULLET, unicode_value: 'U+2022', character: "•"}
+  - {symbolstyle: smdiamond, synonym: d, unicode_name: 'BLACK DIAMOND', unicode_value: "U+2B29", character: "⬩"}
+  - {symbolstyle: smsquare, synonym: s, unicode_name: 'BLACK SMALL SQUARE', unicode_value: "U+25AA", character: "▪"}
+  - {symbolstyle: smtriangle, synonym: t, unicode_name: 'BLACK UP-POINTING SMALL TRIANGLE', unicode_value: "U+25B4", character: "▴"}
+  - {symbolstyle: smplus, synonym: "", unicode_name: 'PLUS SIGN', unicode_value: "U+002B", character: "+"}
+  - {symbolstyle: smx, synonym: "", unicode_name: 'MULTIPLICATION X', unicode_value: "U+2715", character: "✕"}
+  - {symbolstyle: circle_hollow, synonym: Oh, description: solid, unicode_name: 'WHITE CIRCLE', unicode_value: "U+25CB", character: "○"}
+  - {symbolstyle: diamond_hollow, synonym: Dh, unicode_name: 'WHITE MEDIUM DIAMOND', unicode_value: "U+2B26", character: "⬦"}
+  - {symbolstyle: triangle_hollow, synonym: Th, unicode_name: 'WHITE UP-POINTING TRIANGLE', unicode_value: "U+25B3", character: "△"}
+  - {symbolstyle: square_hollow, synonym: Sh, unicode_name: 'WHITE SQUARE', unicode_value: "U+25A1", character: "□"}
+  - {symbolstyle: smcircle_hollow, synonym: oh, unicode_name: 'WHITE BULLET', unicode_value: "U+25E6", character: "◦"}
+  - {symbolstyle: smdiamond_hollow, synonym: dh, unicode_name: 'WHITE DIAMOND', unicode_value: "U+25C7", character: "◇"}
+  - {symbolstyle: smsquare_hollow, synonym: sh, unicode_name: 'WHITE SMALL SQUARE', unicode_value: "U+25AB", character: "▫"}
+  - {symbolstyle: smtriangle_hollow, synonym: th, unicode_name: 'WHITE UP-POINTING SMALL TRIANGLE', unicode_value: "U+25B5", character: "▵"}
+  - {symbolstyle: point, synonym: p, unicode_name: 'MIDDLE DOT', unicode_value: "U+00B7", character: "·"}
+  - {symbolstyle: "none", synonym: i, unicode_name: "SPACE", unicode_value: "U+0020", character: " ", comment: "Perhaps use empty space?"}
+linetypes:
+  - solid
+  - '84'
+  - '23'
+  - "F414"
+  - "F4"
+  - '8414'
+  - '13'
+  - '3313'
+  - '12'
+  - '841414'
+  - "F434343"
+  - '84141414'
+  - "F41414"
+  - '331313'
+  - "F4141414"

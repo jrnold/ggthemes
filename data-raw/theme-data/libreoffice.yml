@@ -1,0 +1,41 @@
+shapes:
+  - {name: 'BLACK SQUARE', unicode: "U+25A0", character: "■"}
+  - {name: 'BLACK DIAMOND', unicode: "U+25C6", character: "◆"}
+  - {name: 'BLACK DOWN-POINTING CHARACTER', unicode: "U+25BC", character: "▼"}
+  - {name: 'BLACK UP-POINTING TRIANGLE', unicode: "U+25B2", character: "▲"}
+  - {name: 'BLACK RIGHT-POINTING TRIANGLE', unicode: "U+25B6", character: "▶"}
+  - {name: 'BLACK LEFT-POINTING TRIANGLE', unicode: "U+25C0", character: "◀"}
+  - {name: 'BLACK BOWTIE', unicode: "U+29D3", character: "⧓"}
+  - {name: 'BLACK HOURGLASS', unicode: "U+29D7", character: "⧗"}
+  - {name: 'BLACK CIRCLE', unicode: "U+25CF", character: "●"}
+  - {name: 'BLACK FOUR POINTED STAR', unicode: "U+2726", character: "✦"}
+  - {name: 'MULTIPLICATION X', unicode: "U+2715", character: "✕"}
+  - {name: 'PLUS SIGN', unicode: "U+002B", character: "+"}
+  - {name: 'ASTERISK OPERATOR', unicode: "U+2217", character: "∗"}
+#  - {name: 'HEAVY MINUS SIGN', unicode: "U+2796", character: "➖}
+#  - {name: 'MEDIUM VERTICAL BAR', unicode: "U+2759", character: ❙}
+colors:
+- name: Chart 1
+  value: '#004586'
+- name: Chart 2
+  value: '#ff420e'
+- name: Chart 3
+  value: '#ffd320'
+- name: Chart 4
+  value: '#579d1c'
+- name: Chart 5
+  value: '#7e0021'
+- name: Chart 6
+  value: '#83caff'
+- name: Chart 7
+  value: '#314004'
+- name: Chart 8
+  value: '#aecf00'
+- name: Chart 9
+  value: '#4b1f6f'
+- name: Chart 10
+  value: '#ff950e'
+- name: Chart 11
+  value: '#c5000b'
+- name: Chart 12
+  value: '#0084d1'

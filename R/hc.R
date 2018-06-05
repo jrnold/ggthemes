@@ -1,6 +1,6 @@
-#' Highcharts JS theme
+#' Highcharts Theme
 #'
-#' Theme based on the plots in \emph{Highcharts JS}.
+#' Theme based on the plots in \url{Highcharts JS}.
 #'
 #' @references
 #'
@@ -9,17 +9,27 @@
 #' \url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
 #'
 #' @inheritParams ggplot2::theme_bw
-#' @param bgcolor The background color of plot. One of \code{'default',
-#' 'darkunica'}, the names of values in
-#' \code{ggthemes_data$hc$bg}.
+#' @param style The Highcharts theme to use \code{'default'},
+#'   \code{'darkunica'}.
+#' @param bgcolor Deprecated
 #' @example inst/examples/ex-theme_hc.R
+#' @family themes hc
 #' @export
 theme_hc <- function(base_size = 12,
                      base_family = "sans",
-                     bgcolor = "default") {
-  bgcol <- ggthemes_data$hc$bg[bgcolor]
+                     style = c("default", "darkunica"),
+                     bgcolor = NULL) {
 
-  ret <- theme(rect = element_rect(fill = bgcol, linetype = 0, colour = NA),
+  if (!is.null(bgcolor)) {
+    warning("`bgcolor` is deprecated. Use `style` instead.")
+    style <- bgcolor
+  }
+  style <- match.arg(style)
+  bgcolor <- switch(style,
+                    default = "#FFFFFF",
+                    "darkunica" = "#2a2a2b")
+
+  ret <- theme(rect = element_rect(fill = bgcolor, linetype = 0, colour = NA),
                text = element_text(size = base_size, family = base_family),
                title = element_text(hjust = 0.5),
                axis.title.x = element_text(hjust = 0.5),
@@ -34,7 +44,7 @@ theme_hc <- function(base_size = 12,
                legend.key = element_rect(fill = "#FFFFFF00"))
 
   if (bgcolor == "darkunica") {
-    ret <- (ret + theme(rect = element_rect(fill = bgcol),
+    ret <- (ret + theme(rect = element_rect(fill = bgcolor),
                         text = element_text(colour = "#A0A0A3"),
                         title = element_text(colour = "#FFFFFF"),
                         axis.title.x = element_text(colour = "#A0A0A3"),
@@ -51,20 +61,27 @@ theme_hc <- function(base_size = 12,
 #' The Highcharts JS uses many different color palettes in its
 #' plots. This collects a few of them.
 #'
-#' The \code{"darkunica"} palette has 11 colors, and the \code{"default"}
-#' palette has 10 colors.
+#' @section Palettes:
 #'
-#' @param palette \code{character} The color palette to use. This
-#' must be a name in
-#' \code{\link[=ggthemes_data]{ggthemes_data$hc$palettes}}.
+#' The following palettes are defined,
+#'
+#' \itemize{
+#'   \item{\href{http://www.highcharts.com/demo}{default}}
+#'   \item{\href{http://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
+#' }
+#'
+#' @param palette \code{character} The name of the Highcharts theme to use.
 #'
 #' @family colour hc
 #' @export
 hc_pal <- function(palette = "default") {
-  if (palette %in% names(ggthemes_data$hc$palettes)) {
-    manual_pal(unname(ggthemes_data$hc$palettes[[palette]]))
+  if (palette %in% names(ggthemes::ggthemes_data$hc$palettes)) {
+    manual_pal(unname(ggthemes::ggthemes_data$hc$palettes[[palette]]))
   } else {
-    stop(sprintf("palette %s not a valid palette.", palette))
+    stop(sprintf("Palette `", palette, "` not valid. Must be one of ",
+                 stringr::str_c("`", names(ggthemes::ggthemes_data$hc$palettes),
+                                "`", collapse = ", ")),
+         call. = FALSE)
   }
 }
 
@@ -76,7 +93,7 @@ hc_pal <- function(palette = "default") {
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams hc_pal
-#' @family colour_hc
+#' @family colour hc
 #' @rdname scale_hc
 #' @export
 scale_colour_hc <- function(palette = "default", ...) {

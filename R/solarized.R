@@ -9,18 +9,18 @@
 #' @keywords internal
 solarized_rebase <- function(light = TRUE) {
   if (light) {
-    rebase <- ggthemes_data$solarized$base[c(paste0("base", 3:0),
-                                             paste0("base0", 0:3))]
+    rebase <- ggthemes::ggthemes_data$solarized$Base[c(paste0("base", 3:0),
+                                                  paste0("base0", 0:3))]
   } else {
-    rebase <- ggthemes_data$solarized$base[c(paste0("base0", 3:0),
-                                             paste0("base", 0:3))]
+    rebase <- ggthemes::ggthemes_data$solarized$Base[c(paste0("base0", 3:0),
+                                                  paste0("base", 0:3))]
   }
   names(rebase) <- paste0("rebase", c(paste0("0", 3:0), 0:3))
   rebase
 }
 
 solarized_accent_list <- function() {
-  paste0("\\code{\"", names(ggthemes_data$solarized$accents), "\"}",
+  paste0("\\code{\"", names(ggthemes::ggthemes_data$solarized$Accents), "\"}",
          collapse = ",")
 }
 
@@ -41,32 +41,14 @@ solarized_accent_list <- function() {
 #' @family solarized colour
 #' @example inst/examples/ex-solarized_pal.R
 solarized_pal <- function(accent = "blue") {
-  best_colors <- function(color, n = 1) {
-    allcolors <- names(ggthemes_data$solarized$accents)
-    othercolors <- setdiff(allcolors, color)
-    solarized <- as(as(hex2RGB(ggthemes_data$solarized$accents), "LAB")@coords,
-                    "matrix")
-    rownames(solarized) <- names(ggthemes_data$solarized$accents)
-    solarized_dist <- as.matrix(dist(solarized, method = "euclidean"))
-    total_dist <- function(i) {
-      sum(solarized_dist[i, i][lower.tri(diag(length(i)))])
-    }
-    if (n == 1) {
-      colorlist <- color
-    } else if (n >= length(allcolors)) {
-      colorlist <- c(color, othercolors)
-    } else {
-      othercolors <- setdiff(allcolors, color)
-      combinations <- combn(othercolors, n - 1)
-      maxdist <-
-        which.max(apply(combinations, 2, function(x) total_dist(c(color, x))))
-      colorlist <- c(color, combinations[, maxdist])
-    }
-    unname(ggthemes_data$solarized$accents[colorlist])
+  palettes <- ggthemes::ggthemes_data[["solarized"]][["palettes"]][[accent]]
+  max_n <- length(palettes)
+  f <- function(n) {
+    check_pal_n(n, max_n)
+    palettes[[n]]
   }
-  function(n) {
-    best_colors(accent, n)
-  }
+  attr(f, "max_n") <- f
+  f
 }
 
 #' Solarized color scales

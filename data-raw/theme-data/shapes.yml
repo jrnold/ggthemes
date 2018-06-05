@@ -1,0 +1,41 @@
+cleveland:
+  overlap:
+  - {name: 'WHITE CIRCLE', pch: 1, character: "○", unicode: U+25CB}
+  - {name: 'PLUS SIGN', pch: 3, character: "+", unicode: U+002B}
+  - {name: 'LESS-THAN SIGN', pch: 60, character: '<', unicode: U+003C}
+  - {name: 'LATIN CAPITAL LETTER S', pch: 87, unicode: U+0053, character: "S"}
+  default:
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○}
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
+  - {name: 'CIRCLED PLUS', unicode: U+2295, character: ⊕}
+  - {name: 'CIRCLED DOT OPERATOR', unicode: U+2299, character: ⊙}
+  - {name: 'CIRCLED RING OPERATOR', unicode: U+229A, character: ⊚}
+circlefill:
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○}
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
+  - {name: 'CIRCLE WITH UPPER HALF BLACK', unicode: U+25D3, character: ◓}
+  - {name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: U+25D5, character: ◕}
+  - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', unicode: U+25D4, character: ◔}
+tremmel:
+  '1':
+  - {pch: 16, name: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
+  '2':
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●, pch: 16}
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○, pch: 1}
+  '3':
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●, pch: 16}
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○, pch: 1}
+  - {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, character: △, pch: 2}
+  '2-overlap':
+  - {name: 'WHITE SQUARE', unicode: U+25A1, character: □, pch: 0}
+  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○, pch: 3}
+  '3-alternate':
+  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●, pch: 16}
+  - {name: 'WHITE SQUARE', unicode: U+25A1, character: □, pch: 1}
+  - {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, character: △, pch: 2}
+#harvey:
+#  - {name: 'LARGE CIRCLE', character: ○, unicode: U+25CB}
+#  - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', character: ◔, unicode: U+25D4}
+#  - {name: 'CIRCLE WITH RIGHT HALF BLACK', character: ◑, unicode: U+25D1}#
+#  - {character: ◕, name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: U+25D5}
+#  - {name: 'BLACK CIRCLE', character: ●, unicode: U+25CF}

@@ -12,3 +12,7 @@
 ^data-raw$
 ^\.lintr$
 ^revdep$
+^_pkgdown\.yml$
+^docs$
+^codecov\.yml$
+^\.covrignore$

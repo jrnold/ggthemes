@@ -1,0 +1,18 @@
+Base:
+- {name: base03, value: '#002b36'}
+- {name: base02, value: '#073642'}
+- {name: base01, value: '#586e75'}
+- {name: base00, value: '#657b83'}
+- {name: base0, value: '#839496'}
+- {name: base1, value: '#93a1a1'}
+- {name: base2, value: '#eee8d5'}
+- {name: base3, value: '#fdf6e3'}
+Accents:
+- {name: yellow, value: '#b58900'}
+- {name: orange, value: '#cb4b16'}
+- {name: red, value: '#dc322f'}
+- {name: magenta, value: '#d33682'}
+- {name: violet, value: '#6c71c4'}
+- {name: blue, value: '#268bd2'}
+- {name: cyan, value: '#2aa198'}
+- {name: green, value: '#859900'}

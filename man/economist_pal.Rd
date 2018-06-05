@@ -4,11 +4,9 @@
 \alias{economist_pal}
 \title{Economist color palette (discrete)}
 \usage{
-economist_pal(stata = FALSE, fill = TRUE)
+economist_pal(fill = TRUE)
 }
 \arguments{
-\item{stata}{Use the palette in the Stata economist scheme.}
-
 \item{fill}{Use the fill palette.}
 }
 \description{
@@ -22,8 +20,6 @@ library("scales")
 show_col(economist_pal()(6))
 ## fill palette
 show_col(economist_pal(fill = TRUE)(6))
-## RGB values from Stata's economist scheme
-show_col(economist_pal(stata = TRUE)(16))
 }
 \seealso{
 Other colour economist: \code{\link{scale_colour_economist}}

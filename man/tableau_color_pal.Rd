@@ -2,36 +2,43 @@
 % Please edit documentation in R/tableau.R
 \name{tableau_color_pal}
 \alias{tableau_color_pal}
-\title{Color Palettes based on Tableau (discrete)}
+\title{Tableau Color Palettes (discrete)}
 \usage{
-tableau_color_pal(palette = "tableau10")
+tableau_color_pal(palette = "Tableau 10", type = c("regular",
+  "ordered-seqential", "ordered-diverging"), direction = 1)
 }
 \arguments{
-\item{palette}{Palette name.}
+\item{palette}{Palette name. See Details for available palettes.}
+
+\item{type}{Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.}
+
+\item{direction}{If 1, the default, then use the original order of
+colors. If -1, then reverse the order.}
 }
 \description{
-Color palettes used in
-\href{http://www.tableausoftware.com/}{Tableau}.
+Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 }
 \details{
-The number in some palette names indicates the maximum number of
-values supported, e.g \code{tableau20} supports up to 20 values.
-\code{"trafficlight"} supports up to nine values, and \code{"cyclic"}
-supports up to 20 values.
+Tableau provides types of color palettes:
+\code{"regular"} (discrete, qualitative categories),
+\code{"ordered-sequential"}, and \code{"ordered-diverging"}.
+
+\itemize{
+\item{\code{"regular"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))}}
+\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+}
 }
 \examples{
 library("scales")
 
-show_col(tableau_color_pal("tableau20")(20))
-show_col(tableau_color_pal("tableau10")(10))
-show_col(tableau_color_pal("tableau10medium")(10))
-show_col(tableau_color_pal("tableau10light")(10))
-show_col(tableau_color_pal("colorblind10")(10))
-show_col(tableau_color_pal("trafficlight")(10))
-show_col(tableau_color_pal("purplegray12")(12))
-show_col(tableau_color_pal("bluered12")(12))
-show_col(tableau_color_pal("greenorange12")(12))
-show_col(tableau_color_pal("cyclic")(20))
+palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
+for (palname in names(palettes)) {
+  pal <- tableau_color_pal(palname)
+  max_n <- attr(pal, "max_n")
+  show_col(pal(max_n))
+  title(main = palname)
+}
 }
 \references{
 \url{http://vis.stanford.edu/color-names/analyzer/}
@@ -50,6 +57,5 @@ Factors in Computing Systems (CHI)
 Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{scale_colour_gradient_tableau}},
   \code{\link{scale_colour_tableau}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+  \code{\link{tableau_gradient_pal}}
 }

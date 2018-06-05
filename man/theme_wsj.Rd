@@ -11,8 +11,7 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 \item{base_size}{base font size}
 
 \item{color}{The background color of plot. One of \code{'brown',
-'gray', 'green', 'blue'}, the names of values in
-\code{ggthemes_data$wsj$bg}.}
+'gray', 'green', 'blue'}.}
 
 \item{base_family}{base font family}
 
@@ -20,6 +19,9 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 }
 \description{
 Theme based on the plots in \emph{The Wall Street Journal}.
+}
+\details{
+This theme should be used with \code{\link{scale_color_wsj}}.
 }
 \examples{
 library("ggplot2")

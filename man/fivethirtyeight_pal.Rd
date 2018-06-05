@@ -7,7 +7,7 @@
 fivethirtyeight_pal()
 }
 \description{
-The standard three-color fivethirtyeight.com palette for line plots is
+The standard three-color fivethirtyeight.com palette for line plots comprises
 blue, red, and green.
 }
 \examples{

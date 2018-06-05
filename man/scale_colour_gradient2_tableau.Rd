@@ -6,22 +6,23 @@
 \alias{scale_color_gradient2_tableau}
 \title{Tableau diverging colour scales (continuous)}
 \usage{
-scale_colour_gradient2_tableau(palette = "Red-Blue", ..., space = "rgb",
+scale_colour_gradient2_tableau(palette = "Orange-Blue Diverging", ...,
   na.value = "grey50", guide = "colourbar")
 
-scale_fill_gradient2_tableau(palette = "Red-Blue", ..., space = "rgb",
+scale_fill_gradient2_tableau(palette = "Orange-Blue Diverging", ...,
   na.value = "grey50", guide = "colourbar")
 
-scale_color_gradient2_tableau(palette = "Red-Blue", ..., space = "rgb",
+scale_color_gradient2_tableau(palette = "Orange-Blue Diverging", ...,
   na.value = "grey50", guide = "colourbar")
 }
 \arguments{
-\item{palette}{Palette name. See \code{ggthemes_data$tableau$divergent}.}
+\item{palette}{Palette name.
+\itemize{
+\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+}}
 
-\item{...}{Other arguments passed on to \code{\link{discrete_scale}}
-to control name, limits, breaks, labels and so forth.}
-
-\item{space}{Colour space in which to calculate gradient.}
+\item{...}{Arguments passed to \code{tableau_gradient_pal}.}
 
 \item{na.value}{Colour to use for missing values}
 
@@ -42,14 +43,16 @@ df <- data.frame(
 )
 p <- ggplot(df, aes(x, y)) + geom_point(aes(colour = z2))
 
-p + scale_colour_gradient2_tableau()
-p + scale_colour_gradient2_tableau("Orange-Blue")
-p + scale_colour_gradient2_tableau("Temperature")
+palettes <-
+  ggthemes_data[["tableau"]][["color-palettes"]][["ordered-diverging"]]
+for (palette in names(palettes)) {
+  print(p + scale_colour_gradient2_tableau(palette) +
+        ggtitle(palette))
+}
 }
 \seealso{
 Other colour tableau: \code{\link{scale_colour_gradient_tableau}},
   \code{\link{scale_colour_tableau}},
   \code{\link{tableau_color_pal}},
-  \code{\link{tableau_div_gradient_pal}},
-  \code{\link{tableau_seq_gradient_pal}}
+  \code{\link{tableau_gradient_pal}}
 }
