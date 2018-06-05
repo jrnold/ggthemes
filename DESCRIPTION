@@ -25,7 +25,6 @@ Imports:
     methods,
     scales
 Suggests:
-    spelling,
     dplyr,
     extrafont,
     knitr,
@@ -35,9 +34,11 @@ Suggests:
     pander,
     purrr,
     rmarkdown,
+    spelling,    
     testthat,
     tibble,
-    tidyr
+    tidyr,
+    vdiffr
 VignetteBuilder: knitr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots

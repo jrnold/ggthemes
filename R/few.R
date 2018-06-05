@@ -65,9 +65,8 @@ scale_fill_few <- function(palette = "light", ...) {
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family="") {
-    colors <- ggthemes_data$few
-    gray <- colors$medium["gray"]
-    black <- colors$dark["black"]
+    gray <- "#4D4D4D"
+    black <- "#000000"
     theme_bw(base_size = base_size, base_family = base_family) +
         theme(
             line = element_line(colour = gray),
