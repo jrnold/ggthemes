@@ -18,29 +18,42 @@ theme_stata(base_size = 11, base_family = "sans", scheme = "s2color")
 \description{
 Themes based on Stata graph schemes
 }
-\note{
-Stata graph schemes include the features of \pkg{ggplot2}
-into themes and scales. Stata graph themes also allow for defaults
-for specific graph types, a feature which \pkg{ggplot2} does not directly
-support.
+\details{
+These themes approximate Stata schemes using the features
+\pkg{ggplot2}. The graphical models of Stata and ggplot2 differ
+in various ways that make an exact replication impossible (or
+more difficult than it is worth).
+Some features in Stata schemes not in ggplot2:
+defaults for specific graph types, different levels of titles,
+captions and notes. These themes also adopt some of the ggplot2
+defaults, and more effort was made to match the colors and sizes
+of major elements than in matching the margins.
 }
 \examples{
 library("ggplot2")
 
 p <- ggplot(mtcars) +
-     geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
-    facet_wrap(~ am)
+  geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
+  facet_wrap(~ am) +
+  labs(title = "Graphs by car type",
+       x = "Weight (lbs.)", y = "MPG")
 
 # s2color
-p + theme_stata() # + scale_colour_stata("s2color")
+p + theme_stata() +
+  scale_colour_stata("s2color")
 # s2mono
-p + theme_stata(scheme = "s2mono") + scale_colour_stata("mono")
+p + theme_stata(scheme = "s2mono") +
+  scale_colour_stata("mono")
 # s1color
-p + theme_stata(scheme = "s2color") + scale_colour_stata("s1color")
+p + theme_stata(scheme = "s2color") +
+  scale_colour_stata("s1color")
 # s1rcolor
-p + theme_stata(scheme = "s1rcolor") + scale_colour_stata("s1rcolor")
+p + theme_stata(scheme = "s1rcolor") +
+  scale_colour_stata("s1rcolor")
 # s1mono
-p + theme_stata(scheme = "s1mono") + scale_colour_stata("mono")
+p + theme_stata(scheme = "s1mono") +
+  scale_colour_stata("mono")
+
 }
 \references{
 \url{http://www.stata.com/help.cgi?schemes}
