@@ -58,7 +58,8 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
                             colour = "black",
                             size = base_size, hjust = 0.5,
                             vjust = 1, angle = 0,
-                            lineheight = 1, margin = margin(), debug = FALSE),
+                            lineheight = 1, margin = margin(),
+                            debug = FALSE),
         title = element_text(),
         ## Axis
         axis.line = element_line(),
@@ -73,7 +74,8 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         # axis.ticks.length = stata_gsize$tiny,
         # axis.ticks.margin = stata_gsize$half_tiny,
         axis.ticks.length = unit(4 / 11, "lines"),
-        legend.background = element_rect(linetype = 1),
+        legend.background = element_rect(linetype = 1 ,
+                                         size = rel(stata_linewidths[["thin"]])),
         legend.spacing = unit(1.2 / 100, "npc"),
         legend.key = element_rect(linetype = 0),
         legend.key.size = unit(1.2, "lines"),
@@ -101,9 +103,17 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         strip.text.x = element_text(vjust = 0.5),
         strip.text.y = element_text(angle = -90),
         plot.background = element_rect(linetype = 0, colour = NA),
+        # Stata subtitle
         plot.title = element_text(size = rel(relsz["large"]),
                                   hjust = 0.5,
                                   vjust = 1),
+        # Stata subtitle
+        plot.subtitle = element_text(size = rel(relsz["medium"]),
+                                     hjust = 0.5,
+                                     vjust = 1),
+        # Stata note
+        plot.caption = element_text(size = rel(relsz["small"]),
+                                    hjust = 0, vjust = 0),
         plot.margin = unit(rep(0.035, 4), "npc"))
 
 }
@@ -122,6 +132,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- NA
     color_title <- stata_colors["dknavy"]
     color_border <- NA
+    legend_border = "black"
   } else if (scheme %in% c("s2mono", "s2manual", "sj")) {
     color_plot <- stata_colors["gs15"]
     color_bg <- "white"
@@ -132,6 +143,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- NA
     color_title <- "black"
     color_border <- NA
+    legend_border = "black"
   } else if (scheme == "s1color") {
     color_plot <- "white"
     color_bg <- "white"
@@ -141,6 +153,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- "black"
     color_title <- "black"
     color_border <- "black"
+    legend_border = "black"
   } else if (scheme == "s1rcolor") {
     color_plot <- "black"
     color_bg <- "black"
@@ -150,6 +163,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- "white"
     color_title <- "white"
     color_border <- "white"
+    legend_border = "black"
   } else if (scheme %in% c("s1mono", "s1manual")) {
     color_plot <- "white"
     color_bg <- "white"
@@ -159,6 +173,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- "black"
     color_title <- "black"
     color_border <- "black"
+    legend_border = "black"
   } else {
     stop(sprintf("'%s' is not a valid value for scheme.", scheme))
   }
@@ -173,7 +188,8 @@ theme_stata_colors <- function(scheme="s2color") {
         axis.text.x = element_text(colour = color_fg),
         axis.text.y = element_text(colour = color_fg),
         legend.key = element_rect(fill = color_bg, colour = NA, linetype = 0),
-        legend.background = element_rect(linetype = 1),
+        legend.background = element_rect(linetype = 1,
+                                         colour = legend_border),
         panel.background = element_rect(fill = color_bg,
                                         colour = color_border,
                                         linetype = 1),
@@ -184,6 +200,8 @@ theme_stata_colors <- function(scheme="s2color") {
         plot.background = element_rect(fill = color_plot))
 }
 
+
+
 #' Themes based on Stata graph schemes
 #'
 #' @param scheme One of "s2color", "s2mono", "s1color",
@@ -193,10 +211,15 @@ theme_stata_colors <- function(scheme="s2color") {
 #' @export
 #' @family themes stata
 #'
-#' @note Stata graph schemes include the features of \pkg{ggplot2}
-#' into themes and scales. Stata graph themes also allow for defaults
-#' for specific graph types, a feature which \pkg{ggplot2} does not directly
-#' support.
+#' @details These themes approximate Stata schemes using the features
+#' \pkg{ggplot2}. The graphical models of Stata and ggplot2 differ
+#' in various ways that make an exact replication impossible (or
+#' more difficult than it is worth).
+#' Some features in Stata schemes not in ggplot2:
+#' defaults for specific graph types, different levels of titles,
+#' captions and notes. These themes also adopt some of the ggplot2
+#' defaults, and more effort was made to match the colors and sizes
+#' of major elements than in matching the margins.
 #'
 #' @references \url{http://www.stata.com/help.cgi?schemes}
 #'
@@ -276,38 +299,6 @@ scale_linetype_stata <- function(...)  {
 }
 
 ## Text sizes (from style definitions ado/base/style/gsize-*.style)
-## default 4.166
-## full 100
-## half 50
-## half_tiny 0.6944 (2 pt in 4 in high graph)
-## huge 6.9444 (20 pt)
-## large 4.8611 (14 pt)
-## medium 3.8194 (11 pt)
-## medlarge 4.1667 (12 pt)
-## medsmall 3.4722 (10 pt)
-## miniscule 0.3472 (1 pt in 1 in high graph)
-## quarter 25
-## quarter_tiny 0.34722 (1 pt in 4 in high graph)
-## small 2.777 (8 pt)
-## tenth 10
-## third 33.33333333333
-## third_tiny 0.46296 (1.33 pt)
-## tiny 1.3888 (4 pt)
-## vhuge 9.7222 (28 pt)
-## vlarge 5.5556 (16 pt)
-## vsmall 2.0833 (6 pt)
-## zero 0
-## which means
-##
-## text medium
-## body medsmall
-## heading large
-## axis title medsmall
-## label medsmall
-## tick tiny =
-## tick_label medsmall
-## tick_biglabel medium
-## key_label medsmall
 stata_gsize <-
   lapply(c(default = 4.1667,
            full = 100,
@@ -333,45 +324,60 @@ stata_gsize <-
          unit,
          units = "npc")
 
-## Line width styles ado/base/style/linewidth-*.style
-## see stata help linewidth
-## unsure of the scale. likely npc * 100
-## stata_linewidth <-
-##     c(medium  = 0.3,
-##       medthick = 0.45,
-##       medthin = 0.25,
-##       none = 0,
-##       thick = 0.8,
-##       thin = 0.2,
-##       vthick = 1.4,
-##       thin = 0.15,
-##       vvthick = 2.6,
-##       vvthin = 0.01,
-##       vvvthick = 4.2,
-##       vvvthin = .000001)
+# Line width styles ado/base/style/linewidth-*.style
+# original values in npc * 100
+# provide this in terms of relative values to medium
+stata_linewidths <-
+   c(medium  = 0.3,
+      medthick = 0.45,
+      medthin = 0.25,
+      none = 0,
+      thick = 0.8,
+      thin = 0.2,
+      vthick = 1.4,
+      thin = 0.15,
+      vvthick = 2.6,
+      vvthin = 0.01,
+      vvvthick = 4.2,
+      vvvthin = .000001) / 0.3
 
-## Stata margin styles
-## Units are npc * 100
-## Left, right, top, bottom
-## ggplot margins go top, right, bottom, left.
-## From ado/base/style/margin-*.style
-## stata_margins <-
-##     list(bargraph = c(3.5, 3.5, 3.5, 0),
-##          bottom = c(0, 0, 0, 3),
-##          ebargraph = c(1.5, 1.5, 1.5, 0),
-##          esubhead = c(2.2, 2.2, 0, 4),
-##          horiz_bargraph = c(0, 3.5, 3.5, 3.5),
-##          large = c(8, 8, 8, 8),
-##          left = c(3, 0, 0, 0),
-##          medium = c(3.5, 3.5, 3.5, 3.5),
-##          medlarge = c(5, 5, 5, 5),
-##          medsmall = c(2.2, 2.2, 2.2, 2.2),
-##          right = c(0, 3, 0, 0),
-##          sides = c(3.5, 3.5, 0, 0),
-##          small = rep(1.2, 4),
-##          tiny = rep(0.3, 4),
-##          top_bottom = c(0, 0, 3.5, 3.5),
-##          top = c(0, 0, 3, 0),
-##          vlarge = rep(12, 4),
-##          vsmall = rep(0.6, 4),
-##          zero = rep(0, 4))
+
+# Stata margin styles
+# From ado/base/style/margin-*.style
+stata_margins <- list(bargraph = c(3.5, 3.5, 3.5, 0),
+  bottom = c(0, 0, 0, 3),
+  ebargraph = c(1.5, 1.5, 1.5, 0),
+  esubhead = c(2.2, 2.2, 0, 4),
+  horiz_bargraph = c(0, 3.5, 3.5, 3.5),
+  large = c(8, 8, 8, 8),
+  left = c(3, 0, 0, 0),
+  medium = c(3.5, 3.5, 3.5, 3.5),
+  medlarge = c(5, 5, 5, 5),
+  medsmall = c(2.2, 2.2, 2.2, 2.2),
+  right = c(0, 3, 0, 0),
+  sides = c(3.5, 3.5, 0, 0),
+  small = rep(1.2, 4),
+  tiny = rep(0.3, 4),
+  top_bottom = c(0, 0, 3.5, 3.5),
+  top = c(0, 0, 3, 0),
+  vlarge = rep(12, 4),
+  vsmall = rep(0.6, 4),
+  zero = rep(0, 4))
+
+
+# s1mono line
+# linepattern p1line  solid
+# linepattern p2line  dash
+# linepattern p3line  vshortdash
+# linepattern p4line  longdash_dot
+# linepattern p5line  longdash
+# linepattern p6line  dash_dot
+# linepattern p7line  dot
+# linepattern p8line  shortdash_dot
+# linepattern p9line  tight_dot
+# linepattern p10line dash_dot_dot
+# linepattern p11line longdash_shortdash
+# linepattern p12line dash_3dot
+# linepattern p13line longdash_dot_dot
+# linepattern p14line shortdash_dot_dot
+# linepattern p15line longdash_3dot
