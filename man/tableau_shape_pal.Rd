@@ -25,7 +25,10 @@ Shape palettes in Tableau are used to expose images for use a markers in
 charts, and thus are sometimes groupings of closely related symbols.
 }
 \examples{
-show_shapes(tableau_shape_pal()(5))
+\dontrun{
+  # need to set a font containing these values
+  show_shapes(tableau_shape_pal()(5))
+}
 }
 \seealso{
 Other shape tableau: \code{\link{scale_shape_tableau}}
