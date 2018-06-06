@@ -12,7 +12,10 @@ Shape palette based on the shapes used in LibreOffice Calc.
 \examples{
 library("ggplot2")
 
-show_shapes(calc_shape_pal()(15))
+\dontrun{
+  # This requires fonts to be
+  show_shapes(calc_shape_pal()(13))
+}
 }
 \seealso{
 Other shapes calc: \code{\link{scale_shape_calc}}

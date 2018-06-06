@@ -75,12 +75,12 @@ theme_hc <- function(base_size = 12,
 #' @family colour hc
 #' @export
 hc_pal <- function(palette = "default") {
-  if (palette %in% names(ggthemes::ggthemes_data$hc$palettes)) {
-    manual_pal(unname(ggthemes::ggthemes_data$hc$palettes[[palette]]))
+  if (palette %in% names(ggthemes::ggthemes_data$hc)) {
+    manual_pal(unname(ggthemes::ggthemes_data$hc[[palette]]))
   } else {
-    stop(sprintf("Palette `", palette, "` not valid. Must be one of ",
-                 stringr::str_c("`", names(ggthemes::ggthemes_data$hc$palettes),
-                                "`", collapse = ", ")),
+    stop("Palette `", palette, "` not valid. Must be one of ",
+         stringr::str_c("`", names(ggthemes::ggthemes_data$hc),
+                        "`", collapse = ", "),
          call. = FALSE)
   }
 }

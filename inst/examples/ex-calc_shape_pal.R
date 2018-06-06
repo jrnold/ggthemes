@@ -1,3 +1,6 @@
 library("ggplot2")
 
-show_shapes(calc_shape_pal()(15))
+\dontrun{
+  # This requires fonts to be
+  show_shapes(calc_shape_pal()(13))
+}

@@ -1,6 +1,6 @@
 context("few")
 
-expect_that("theme_few draws correctly", {
+test_that("theme_few draws correctly", {
   p <- ggplot(mtcars) +
     geom_point(aes(x = wt, y = mpg,  colour = factor(gear))) +
     facet_wrap(~am)
