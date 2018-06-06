@@ -124,3 +124,63 @@ theme_excel_classic <- function(base_size = 12, base_family = "",
   }
   ret
 }
+
+# # Default Font is Calibri
+# theme_excel <- function(base_size = 9,
+#                         base_family = "sans") {
+#   colorlist <- list(lt_gray = "#D9D9D9",
+#                     gray = "#BFBFBF",
+#                     dk_gray = "#595959")
+#   theme_bw(base_family = base_family,
+#            base_size = base_size) +
+#     theme(
+#       text = element_text(
+#         colour = colorlist$dk_gray,
+#         size = base_size
+#       ),
+#       line = element_line(
+#         linetype = "solid",
+#         colour = colorlist$gray
+#       ),
+#       rect = element_rect(
+#         linetype = 0,
+#         colour = "white"
+#       ),
+#       panel.grid.major = element_line(
+#         linetype = "solid",
+#         colour = colorlist$gray,
+#         size = 0.75 * PT_TO_MM
+#       ),
+#       panel.grid.minor = element_blank(),
+#       axis.title = element_blank(),
+#       axis.text = element_text(
+#         colour = colorlist$dk_gray,
+#         size = 9
+#       ),
+#       strip.background = element_rect(
+#         fill = NA
+#       ),
+#       strip.text = element_text(
+#         colour = colorlist$dk_gray,
+#         size = 9
+#       ),
+#       axis.ticks = element_blank(),
+#       panel.background = element_blank(),
+#       panel.border = element_rect(colour = NA),
+#       title = element_text(
+#         face = "plain",
+#         hjust = 0.5
+#       ),
+#       plot.title = element_text(
+#         size = 14,
+#         hjust = 0.5
+#       ),
+#       plot.subtitle = element_blank(),
+#       legend.position = "bottom",
+#       legend.text = element_text(
+#         size = 9,
+#         colour = colorlist$dk_gray
+#       ),
+#       legend.title = element_blank(),
+#     )
+# }

@@ -68,3 +68,71 @@ scale_colour_gdocs <- function(...) {
 #' @export
 #' @rdname scale_gdocs
 scale_color_gdocs <- scale_colour_gdocs
+
+# # Default Font is Roboto
+# theme_gdocs <- function(base_size = 12,
+#                         base_family = "sans") {
+#   colorlist <- list(lt_gray = "#CCCCCC",
+#                     dk_gray = "#757575")
+#   theme_bw(base_family = base_family,
+#            base_size = base_size) +
+#     theme(
+#       text = element_text(
+#         colour = colorlist$dk_gray,
+#         size = base_size
+#       ),
+#       line = element_line(
+#         linetype = "solid",
+#         colour = colorlist$lt_gray
+#       ),
+#       rect = element_rect(
+#         linetype = 0,
+#         fill = "white",
+#         colour = NA
+#       ),
+#       panel.grid.major = element_line(
+#         linetype = "solid",
+#         colour = colorlist$lt_gray
+#       ),
+#       panel.grid.minor = element_blank(),
+#       axis.title = element_text(
+#         size = 12,
+#         colour = colorlist$dk_gray,
+#         hjust = 0.5
+#       ),
+#       axis.line.x = element_line(
+#         colour = "#000000"
+#       ),
+#       axis.line.y = element_blank(),
+#       axis.text = element_text(
+#         colour = colorlist$dk_gray,
+#         size = 12
+#       ),
+#       axis.ticks = element_blank(),
+#       strip.background = element_rect(
+#         fill = NA,
+#         colour = NA
+#       ),
+#       strip.text = element_text(
+#         colour = colorlist$dk_gray,
+#         size = 12
+#       ),
+#       panel.background = element_blank(),
+#       panel.border = element_rect(colour = NA),
+#       title = element_text(
+#         face = "plain",
+#         colour = colorlist$dk_gray,
+#       ),
+#       plot.title = element_text(
+#         size = 20,
+#         hjust = 0
+#       ),
+#       plot.subtitle = element_blank(),
+#       legend.position = "right",
+#       legend.text = element_text(
+#         size = 12,
+#         colour = colorlist$dk_gray
+#       ),
+#       legend.title = element_blank()
+#     )
+# }

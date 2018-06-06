@@ -91,3 +91,65 @@ calc_shape_pal <- function() {
 scale_shape_calc <- function (...) {
     discrete_scale("shape", "calc", calc_shape_pal(), ...)
 }
+
+# PT_TO_MM <- 0.352778
+#
+# # Default font is Liberation Sans
+# theme_libre <- function(base_size = 10,
+#                         base_family = "sans") {
+#   colorlist <- list(gray = "#B3B3B3")
+#   theme_bw(base_family = base_family,
+#            base_size = base_size) +
+#     theme(
+#       text = element_text(colour = "black"),
+#       line = element_line(
+#         linetype = "solid",
+#         colour = colorlist$gray,
+#         size = 0.5 * PT_TO_MM
+#       ),
+#       rect = element_rect(
+#         fill = "white",
+#         linetype = "solid",
+#         colour = colorlist$gray,
+#         size = 0.5 * PT_TO_MM
+#       ),
+#       panel.grid.major = element_line(
+#         linetype = "solid",
+#         colour = colorlist$gray,
+#         size = 0.5 * PT_TO_MM
+#       ),
+#       axis.title = element_text(
+#         size = 9
+#       ),
+#       axis.text = element_text(
+#         size = 10
+#       ),
+#       axis.ticks = element_line(
+#         colour = colorlist$gray
+#       ),
+#       panel.background = element_rect(
+#         colour = colorlist$gray,
+#         size = 0.5 * PT_TO_MM
+#       ),
+#       title = element_text(
+#         face = "plain",
+#         hjust = 0.5
+#       ),
+#       plot.title = element_text(
+#         size = 13,
+#         hjust = 0.5
+#       ),
+#       plot.subtitle = element_text(
+#         size = 11,
+#         hjust = 0.5
+#       ),
+#       panel.grid.major.x = element_blank(),
+#       panel.grid.minor = element_blank(),
+#       legend.position = "right",
+#       strip.background = element_blank(),
+#       strip.text = element_text(size = 9),
+#       legend.title = element_text(
+#         size = 9
+#       )
+#     )
+# }
