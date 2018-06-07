@@ -8,7 +8,6 @@ is_hexcolor <- function(x) {
   str_detect(x, regex("^#[a-f0-9]{6}$", ignore_case = TRUE))
 }
 
-
 expect_hexcolor <- function(object) {
   # capture object and label
   act <- quasi_label(rlang::enquo(object))
