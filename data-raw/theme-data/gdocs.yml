@@ -1,10 +1,30 @@
-colors: ['#3366cc', '#dc3912', '#ff9900', '#109618', '#990099', '#0099c6', '#dd4477', '#66aa00', '#b82e2e', '#316395', '#994499', '#22aa99', '#aaaa11', '#6633cc', '#e67300', '#8b0707', '#651067', '#329262', '#5574a6', '#3b3eac', '#b77322', '#16d620', '#b91383', '#f4359e', '#9c5935', '#a9c413', '#2a778d', '#668d1c', '#bea413', '#0c5922', '#743411', '#3366cc']
+colors:
+- name: blue
+  value: "#3366cc"
+- name: red
+  value: "#dc3912"
+- name: orange
+  value: "#ff9900"
+- name: green
+  value: "#109618"
+- name: purple
+  value: "#990099"
+- name: blue
+  value: "#0099c6"
+- name: pink
+  value: "#dd4477"
+- name: green
+  value: "#66aa00"
+- name: red
+  value: "#b82e2e"
+- name: blue
+  value: "#316395"
 shapes:
   - {name: Circle, label: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
   - {name: Triangle, label: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, character: ▲}
   - {label: Square, name: 'BLACK MEDIUM SQUARE', unicode: U+25FC, character: ◼}
   - {label: Diamond, name: 'BLACK DIAMOND', unicode: U+25C6, character: ◆}
-  - {label: Star, name: U+2605, character: ★}
+  - {label: Star, name: 'MULTIPLICATION X', unicode: U+2605, character: ★}
   - {label: 'X mark', name: 'MULTIPLICATION X', unicode: U+2715, character: ✕}
   - {label: Pentagon, name: 'BLACK PENTAGON', unicode: U+2B1F, character: ⬟}
   - {label: Hexagon, name: 'BLACK HEXAGON', unicode: U+2B22, character: ⬢}

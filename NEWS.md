@@ -4,13 +4,13 @@
 -   The `excel_pal`, `scale_colour_excel`, and `scale_fill_excel` functions only
     include current Excel color palettes. However, it now includes palettes 
     generated from all color themes in the current version of Excel.
--   Added new palettes introduced in Tableau 10 and renamed old palettes
+-   Added Tableau 10 palettes and renamed old palettes
     in `tableau_color_pal`, `scale_color_tableau`, `scale_fill_tableau`,
-    and others.  The continuous sequential and diverging palettes are improved
-    by including more intermediate steps.
+    and others.  The continuous sequential and diverging palettes are improved by including more intermediate steps.
+-   Update `theme_gdocs` to current look.
+-   Update `scale_color_gdocs` and `fill_color_gdocs` to current color.
 -   Theme `theme_excel` renamed to `theme_excel_classic`.
--   Add `scale_shapes_few` and `few_shape_pal` with a shape scale and palette
-    from Stephen Few's "Show Me the Numbers".
+-   Add `scale_shapes_few` and `few_shape_pal` with a shape scale and palette from Stephen Few's "Show Me the Numbers".
 -   Remove `stata` argument from `scale_*_economist` and `theme_economist`.
 -   Add Stata's economist scheme to `scale_*_stata` and `theme_stata`.
 -   Change behavior of `few_pal`. If `n = 1`, use gray. If `n > 1` use non-gray
