@@ -5,7 +5,7 @@
 #' is a complete theme with only minimal number of elements defined.
 #' It is easier to create new themes by extending this one rather
 #' than \code{theme_gray} or \code{theme_bw}, because those themes
-#' those themes define elements deep in the hierarchy.
+#' define elements deep in the hierarchy.
 #'
 #' This theme takes \code{theme_gray} and sets all \code{colour} and \code{fill}
 #' values to \code{NULL}, except for the top-level elements
