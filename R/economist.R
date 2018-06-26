@@ -10,57 +10,60 @@
 #' @example inst/examples/ex-economist_pal.R
 economist_pal <- function(fill=TRUE) {
   colors <- deframe(ggthemes::ggthemes_data[["economist"]][["fg"]])
-  max_n <- length(colors)
   if (fill) {
-    function(n) {
+    max_n <- 9
+    f <- function(n) {
       check_pal_n(n, max_n)
       if (n == 1L) {
-        i <- "blue_dark"
+        i <- "dark blue"
       } else if (n == 2L) {
-        i <- c("blue_mid", "blue_dark")
+        i <- c("blue", "dark blue")
       } else if (n == 3L) {
-        i <- c("blue_gray", "blue_dark", "blue_mid")
+        i <- c("blue-gray", "dark blue", "blue")
       } else if (n == 4L) {
-        i <- c("blue_gray", "blue_dark", "blue_mid", "gray")
+        i <- c("blue-gray", "dark blue", "blue", "gray")
       } else if (n %in% 5:6) {
         ## 20120901_woc904
-        i <- c("blue_gray", "blue_dark", "blue_light", "blue_mid",
-               "green_light", "green_dark")
+        i <- c("blue-gray", "dark blue", "light blue", "blue",
+               "light green", "dark green")
       } else if (n == 7L) {
         # 20120818_AMC820
-        i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-               "green_dark", "green_light", "gray")
+        i <- c("blue-gray", "dark blue", "blue", "light blue",
+               "dark green", "light green", "gray")
       } else if (n >= 8L) {
         # 20120915_EUC094
-        i <- c("blue_gray", "blue_dark", "blue_mid", "blue_light",
-               "green_dark", "green_light", "red_dark", "red_light",
+        i <- c("blue-gray", "dark blue", "blue", "light blue",
+               "dark green", "light green", "dark red", "pink",
                "gray")
       }
       unname(colors[i][seq_len(n)])
     }
   } else {
-    function(n) {
+    max_n <- 9
+    f <- function(n) {
       check_pal_n(n, max_n)
       if (n <= 3) {
         # 20120818_AMC20
         # 20120901_FBC897
-        i <- c("blue_dark", "blue_mid", "blue_light")
+        i <- c("dark blue", "blue", "light blue")
       } else if (n %in% 4:5) {
-        # i <- c("blue_dark", "blue_mid", "blue_light", "red", "gray")
-        i <- c("blue_dark", "blue_mid", "blue_light", "blue_gray", "gray")
+        # i <- c("dark blue", "blue", "light blue", "red", "gray")
+        i <- c("dark blue", "blue", "light blue", "blue-gray", "gray")
       } else if (n == 6) {
         # 20120825_IRC829
-        i <- c("green_light", "green_dark", "gray",
-               "blue_gray", "blue_light", "blue_dark")
+        i <- c("light green", "dark green", "gray",
+               "blue-gray", "light blue", "dark blue")
       } else if (n > 6) {
         # 20120825_IRC829
-        i <- c("green_light", "green_dark", "gray",
-               "blue_gray", "blue_light", "blue_dark", "red_dark",
-               "red_light", "brown")
+        i <- c("light green", "dark green", "gray",
+               "blue-gray", "light blue", "dark blue", "dark red",
+               "pink", "brown")
       }
       unname(colors[i][seq_len(n)])
     }
   }
+  attr(f, "max_n") <- max_n
+  f
 }
 
 #' Economist color scales
@@ -190,7 +193,7 @@ theme_economist <- function(base_size = 10, base_family = "sans",
           strip.text = element_text(size = rel(1.25)),
           strip.text.x = element_text(),
           strip.text.y = element_text(angle = -90),
-          plot.background = element_rect(fill = bgcolors["ebg"], colour = NA),
+          plot.background = element_rect(fill = bgcolors["blue-gray"], colour = NA),
           plot.title = element_text(size = rel(1.5),
                                     hjust = 0, face = "bold"),
           plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
@@ -202,9 +205,11 @@ theme_economist <- function(base_size = 10, base_family = "sans",
   }
   if (dkpanel == TRUE) {
     ret <- ret + theme(panel.background =
-                         element_rect(fill = bgcolors["edkbg"]),
+                         element_rect(fill =
+                                        unname(bgcolors["dark blue-gray"])),
                        strip.background =
-                         element_rect(fill = bgcolors["edkbg"]))
+                         element_rect(fill =
+                                        unname(bgcolors["dark blue-gray"])))
   }
   ret
 }
@@ -214,18 +219,18 @@ theme_economist <- function(base_size = 10, base_family = "sans",
 theme_economist_white <- function(base_size = 11, base_family = "sans",
                                   gray_bg = TRUE, horizontal = TRUE) {
   if (gray_bg) {
-    bgcolor <- ggthemes::ggthemes_data$economist$bg[["ltgray"]]
+    bgcolor <- get_colors(c("economist", "bg"), "light gray")
   } else {
     bgcolor <- "white"
   }
-  (theme_economist(base_family = base_family,
+  theme_economist(base_family = base_family,
                    base_size = base_size,
-                   horizontal = horizontal)
-  + theme(rect = element_rect(fill = bgcolor),
+                   horizontal = horizontal) +
+    theme(rect = element_rect(fill = bgcolor),
           plot.background = element_rect(fill = bgcolor),
           panel.background = element_rect(fill = "white"),
           panel.grid.major =
             element_line(colour =
-                           ggthemes::ggthemes_data$economist$bg[["dkgray"]]),
-          strip.background = element_rect(fill = "white")))
+                           get_colors(c("economist", "bg"), "dark gray")),
+          strip.background = element_rect(fill = "white"))
 }

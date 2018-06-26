@@ -5,7 +5,7 @@ bg:
 - {name: "light gray", value: '#ebebeb'}
 - {name: "dark gray", value: '#c9c9c9'}
 fg:
-- {name: "blue gray", value: '#6794a7'}
+- {name: "blue-gray", value: '#6794a7'}
 - {name: "dark blue", value: '#014d64'}
 - {name: "light green", value: '#76c0c1'}
 - {name: "blue", value: '#01a2d9'}

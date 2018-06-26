@@ -50,15 +50,19 @@ test_that("tremmel_pal arg n3alt is deprected", {
   expect_warning(tremmel_shape_pal(n3alt = TRUE))
 })
 
-test_that("cleveland_shape_pal works with overlap", {
-  pal <- cleveland_shape_pal(overlap = TRUE)
+test_that("cleveland_shape_pal works with overlap = FALSE", {
+  pal <- cleveland_shape_pal(overlap = FALSE)
   expect_is(pal, "function")
-  expect_equal(attr(pal, "max_n"), 4)
+  expect_equal(attr(pal, "max_n"), 5)
   n <- 3
   vals <- pal(n)
   expect_equal(length(vals), n)
+  expect_is(vals, "integer")
+  expect_true(all(vals < 0))
 })
 
 test_that("scale_shape_cleveland works", {
   expect_is(scale_shape_cleveland(), "ScaleDiscrete")
 })
+
+

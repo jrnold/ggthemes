@@ -5,7 +5,9 @@ library("glue")
 library("stringr")
 
 is_hexcolor <- function(x) {
-  str_detect(x, regex("^#[a-f0-9]{6}$", ignore_case = TRUE))
+  out <- str_detect(x, regex("^#[a-f0-9]{6}$", ignore_case = TRUE))
+  out[is.na(out)] <- FALSE
+  out
 }
 
 expect_hexcolor <- function(object) {

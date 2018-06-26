@@ -9,6 +9,11 @@ test_that("hc_pal works", {
   expect_equal(length(values), n)
 })
 
+test_that("hc_pal raises error with invalid palette", {
+  expect_error(hc_pal(palette = "asdgasdgasdgas"),
+               regexp = "not valid")
+})
+
 test_that("scale_colour_hc works", {
   expect_is(scale_colour_hc(), "ScaleDiscrete")
 })
@@ -23,5 +28,11 @@ test_that("scale_fill_hc works", {
 
 test_that("theme_hc works", {
   expect_is(theme_hc(), "theme")
-  expect_is(theme_hc("dark-unica"), "theme")
+  expect_is(theme_hc("darkunica"), "theme")
 })
+
+test_that("bgcolor raises warning", {
+  expect_warning(theme_hc(bgcolor = "darkunica"), regexp = "deprecated")
+})
+
+

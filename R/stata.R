@@ -119,9 +119,12 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 }
 
 #' @importFrom tibble deframe
+#' @importFrom stringr str_c
 theme_stata_colors <- function(scheme="s2color") {
   stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
   stata_colors <- deframe(stata_colors[, c("name", "value")])
+  schemes <- c("s2color", "s2mono", "s2manual", "sj", "s1color", "s1rcolor",
+               "s1mono", "s1manual")
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
     color_bg <- "white"
@@ -175,7 +178,8 @@ theme_stata_colors <- function(scheme="s2color") {
     color_border <- "black"
     legend_border = "black"
   } else {
-    stop(sprintf("'%s' is not a valid value for scheme.", scheme))
+    stop(str_c("`scheme` must be one of: ",
+               str_c(sort(schemes), collapse = ","), ", "))
   }
 
   theme(line = element_line(colour = color_fg, linetype = 1),
@@ -199,8 +203,6 @@ theme_stata_colors <- function(scheme="s2color") {
                                         linetype = 1),
         plot.background = element_rect(fill = color_plot))
 }
-
-
 
 #' Themes based on Stata graph schemes
 #'

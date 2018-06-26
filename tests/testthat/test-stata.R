@@ -23,11 +23,20 @@ test_that("scale_fill_stata works", {
   expect_is(scale_fill_stata(), "ScaleDiscrete")
 })
 
+test_that("scale_shape_stata works", {
+  expect_is(scale_shape_stata(), "ScaleDiscrete")
+})
+
 test_that("theme_stata works", {
   expect_is(theme_stata(), "theme")
   for (i in c("s2mono", "s1mono", "s2manual", "s1rcolor", "s1color")) {
     expect_is(theme_stata(scheme = i), "theme")
   }
+})
+
+test_that("theme_state raises error with invallid scheme", {
+  expect_error(theme_stata(scheme = "dsagasagdadgaga"),
+               regexp = "`scheme` must be one of")
 })
 
 test_that("stata_shape_pal works", {
@@ -40,7 +49,6 @@ test_that("stata_shape_pal works", {
   expect_true(all(vals < 0))
   expect_warning(p(100))
 })
-
 
 test_that("stata_linetype_pal works", {
   p <- stata_linetype_pal()

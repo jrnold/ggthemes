@@ -43,7 +43,7 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
 #' @example inst/examples/ex-fivethirtyeight_pal.R
 fivethirtyeight_pal <- function() {
   colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
-  values <- unname(colors[c("blue", "red", "green")])
+  values <- unname(colors[c("Blue", "Red", "Green")])
   max_n <- length(values)
   f <- manual_pal(values)
   attr(f, "max_n") <- max_n

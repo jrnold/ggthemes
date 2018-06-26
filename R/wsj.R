@@ -22,7 +22,7 @@ theme_wsj <- function(base_size = 12,
                       base_family = "sans",
                       title_family = "mono") {
   colorhex <- ggthemes::ggthemes_data$wsj$bg[color]
-  (theme_foundation(base_size = base_size, base_family = base_family) +
+  theme_foundation(base_size = base_size, base_family = base_family) +
     theme(line = element_line(linetype = 1, colour = "black"),
           rect = element_rect(fill = colorhex, linetype = 0, colour = NA),
           text = element_text(colour = "black"),
@@ -47,7 +47,7 @@ theme_wsj <- function(base_size = 12,
           panel.grid.minor = element_blank(),
           plot.title = element_text(hjust = 0, face = "bold"),
           plot.margin = unit(c(1, 1, 1, 1), "lines"),
-          strip.background = element_rect()))
+          strip.background = element_rect())
 }
 
 #' Wall Street Journal color palette (discrete)
@@ -84,7 +84,11 @@ theme_wsj <- function(base_size = 12,
 wsj_pal <- function(palette = "colors6") {
   palettes <- ggthemes::ggthemes_data[["wsj"]][["palettes"]]
   if (palette %in% names(palettes)) {
-    manual_pal(palettes[[palette]][["value"]])
+    colors <- palettes[[palette]][["value"]]
+    max_n <- length(colors)
+    f <- manual_pal(unname(colors))
+    attr(f, "max_n") <- max_n
+    f
   } else {
     stop(sprintf("palette %s not a valid palette.", palette))
   }
