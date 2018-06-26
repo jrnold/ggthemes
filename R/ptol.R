@@ -13,15 +13,13 @@
 #'  \url{https://personal.sron.nl/~pault/colourschemes.pdf}
 #' @example inst/examples/ex-ptol_pal.R
 ptol_pal <- function() {
+  colors <- ggthemes::ggthemes_data[["ptol"]][["qualitative"]]
+  max_n <- length(colors)
   f <- function(n) {
-    if (n > 12) {
-      stop(sprintf("%s is greater than the max number of colors", n))
-    } else if (n < 1) {
-      stop("the number of colors cannot be zero")
-    }
-    ggthemes::ggthemes_data[["ptol"]][["qualitative"]][[n]]
+    check_pal_n(n, max_n)
+    colors[[n]]
   }
-  attr(f, "max_n") <- 12
+  attr(f, "max_n") <- max_n
   f
 }
 

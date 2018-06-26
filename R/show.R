@@ -7,25 +7,27 @@
 #' \code{\link{par}}.
 #' @param labels Include the plotting character value of the symbol.
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
-#'
+#' @return This function called for the side effect of creating a plot.
+#'   It returns \code{shapes}.
 #' @example inst/examples/ex-show_shapes.R
 show_shapes <- function(shapes, labels = TRUE) {
   n <- length(shapes)
   ncol <- ceiling(sqrt(n))
   nrow <- ceiling(n / ncol)
-  shapes <- c(shapes, rep(NA, nrow * ncol - length(shapes)))
-  shapes <- matrix(shapes, ncol = ncol, byrow = TRUE)
-  shapes <- shapes[nrow(shapes):1, ]
-  plot(0, 0, xlim = c(1, ncol(shapes)), ylim = c(1, nrow(shapes)), type = "n",
+  x <- c(shapes, rep(NA, nrow * ncol - length(shapes)))
+  x <- matrix(x, ncol = ncol, byrow = TRUE)
+  x <- x[nrow(x):1, ]
+  plot(0, 0, xlim = c(1, ncol(x)), ylim = c(1, nrow(x)), type = "n",
        xlab = "", ylab = "", axes = FALSE)
-  for (i in seq_len(ncol(shapes))) {
-    for (j in seq_len(nrow(shapes))) {
-      points(i, j, pch = shapes[j, i])
+  for (i in seq_len(ncol(x))) {
+    for (j in seq_len(nrow(x))) {
+      points(i, j, pch = x[j, i])
       if (labels) {
-        text(i, j, shapes[j, i], pos = 1, col = "gray70")
+        text(i, j, x[j, i], pos = 1, col = "gray70")
       }
     }
   }
+  invisible(shapes)
 }
 
 #' Show linetypes
@@ -40,6 +42,8 @@ show_shapes <- function(shapes, labels = TRUE) {
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 #'
 #' @example inst/examples/ex-show_linetypes.R
+#' @return This function called for the side effect of creating a plot.
+#'   It returns \code{linetypes}.
 #' @importFrom graphics plot
 show_linetypes <- function(linetypes, labels = TRUE) {
   n <- length(linetypes)
@@ -53,4 +57,5 @@ show_linetypes <- function(linetypes, labels = TRUE) {
   } else {
     axis(side = 2, at = seq_len(n), tick = FALSE, labels = seq_len(n), las = 2)
   }
+  invisible(linetypes)
 }

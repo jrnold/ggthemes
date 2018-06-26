@@ -12,6 +12,10 @@ show_linetypes(linetypes, labels = TRUE)
 
 \item{labels}{Label each line with its linetype (lty) value.}
 }
+\value{
+This function called for the side effect of creating a plot.
+  It returns \code{linetypes}.
+}
 \description{
 A quick and dirty way to show linetypes.
 }

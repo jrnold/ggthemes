@@ -6,8 +6,7 @@
 \alias{tableau_div_gradient_pal}
 \title{Tableau colour gradient palettes (continuous)}
 \usage{
-tableau_gradient_pal(palette = "Blue", type = "ordered-sequential",
-  values = NULL, direction = 1)
+tableau_gradient_pal(palette = "Blue", type = "ordered-sequential")
 
 tableau_seq_gradient_pal(palette = "Blue", ...)
 
@@ -22,15 +21,6 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 
 \item{type}{Palette type, either \code{"ordered-sequential"} or
 \code{"ordered-diverging"}.}
-
-\item{values}{if colours should not be evenly positioned along the gradient
-this vector gives the position (between 0 and 1) for each colour in the
-colours vector. See \link[scales]{rescale} for a convenience function to
-map an arbitrary range to between 0 and 1.}
-
-\item{direction}{Sets the order of colors in the scale.
-If 1, the default, colors are as the original order.
-If -1, the order of colors is reversed.}
 
 \item{...}{Arguments passed to \code{tableau_gradient_pal}.}
 }

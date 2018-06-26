@@ -12,6 +12,10 @@ show_shapes(shapes, labels = TRUE)
 
 \item{labels}{Include the plotting character value of the symbol.}
 }
+\value{
+This function called for the side effect of creating a plot.
+  It returns \code{shapes}.
+}
 \description{
 A quick and dirty way to show shapes.
 }

@@ -45,3 +45,45 @@ test_that("tableau_shape_pal works", {
 test_that("scale_shape_tableau works", {
   expect_is(scale_shape_tableau(), "ScaleDiscrete")
 })
+
+test_that("scale_colour_tableau works", {
+  expect_is(scale_colour_tableau(), "ScaleDiscrete")
+})
+
+test_that("scale_fill_tableau works", {
+  expect_is(scale_fill_tableau(), "ScaleDiscrete")
+})
+
+test_that("tableau_gradient_pal works", {
+  p <- tableau_gradient_pal()
+  expect_is(p, "function")
+  expect_hexcolor(p(seq(0, 1, by = 0.1)))
+})
+
+test_that("tableau_seq_gradient_pal works", {
+  p <- tableau_seq_gradient_pal()
+  expect_is(p, "function")
+  expect_hexcolor(p(seq(0, 1, by = 0.1)))
+})
+
+test_that("tableau_div_gradient_pal works", {
+  p <- tableau_seq_gradient_pal()
+  expect_is(p, "function")
+  expect_hexcolor(p(seq(0, 1, by = 0.1)))
+})
+
+test_that("scale_colour_gradient_tableau works", {
+  expect_is(scale_colour_gradient_tableau(), "ScaleContinuous")
+})
+
+test_that("scale_fill_gradient_tableau works", {
+  expect_is(scale_fill_gradient_tableau(), "ScaleContinuous")
+})
+
+test_that("scale_colour_gradient_tableau works", {
+  expect_is(scale_colour_gradient2_tableau(), "ScaleContinuous")
+})
+
+test_that("scale_fill_gradient_tableau works", {
+  expect_is(scale_fill_gradient2_tableau(), "ScaleContinuous")
+})

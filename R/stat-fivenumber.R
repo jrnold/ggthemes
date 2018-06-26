@@ -5,7 +5,7 @@
 #'
 #' @param na.rm If \code{FALSE} (the default), removes missing values with
 #'    a warning.  If \code{TRUE} silently removes missing values.
-#' @param qs Quantiles to use for the five number summary.
+#' @param probs Quantiles to use for the five number summary.
 #' @inheritParams ggplot2::stat_identity
 #' @return A data frame with additional columns:
 #'   \item{width}{width of boxplot}
@@ -20,7 +20,7 @@
 stat_fivenumber <- function(mapping = NULL,
                             data = NULL,
                             geom = "boxplot",
-                            qs = c(0, 0.25, 0.5, 0.75, 1),
+                            probs = c(0, 0.25, 0.5, 0.75, 1),
                             na.rm = FALSE,
                             position = "identity",
                             show.legend = NA,
@@ -29,13 +29,13 @@ stat_fivenumber <- function(mapping = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatSummaryBin,
+    stat = StatFivenumber,
     geom = geom,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
-      qs = qs,
+      probs = probs,
       na.rm = na.rm,
       ...
     )
@@ -48,24 +48,49 @@ stat_fivenumber <- function(mapping = NULL,
 #' @usage NULL
 #' @rdname stat_fivenumber
 StatFivenumber <- ggproto("StatFivenumber", Stat,
-  required_aes = c("x", "y"),
+  required_aes = "y",
+
+  non_missing_aes = "weight",
+
+  setup_data = function(data, params) {
+    data$x <- data$x %||% 0
+    data <- remove_missing(
+      data,
+      na.rm = FALSE,
+      vars = "x",
+      name = "stat_fivenumber"
+    )
+    data
+  },
+
+  setup_params = function(data, params) {
+    params$width <- params$width %||% (resolution(data$x %||% 0) * 0.75)
+
+    if (is.double(data$x) && !has_groups(data) && any(data$x != data$x[1L])) {
+      warning(
+        "Continuous x aesthetic -- did you forget aes(group=...)?",
+        call. = FALSE)
+    }
+
+    params
+  },
 
   compute_group = function(data,
                            scales,
                            width = NULL,
                            na.rm = FALSE,
-                           qs = c(0, 0.25, 0.5, 0.75, 1)) {
+                           probs = c(0, 0.25, 0.5, 0.75, 1)) {
 
-    if (length(qs) != 5) {
-      stop("'qs' should contain 5 quantiles.")
-    qs <- sort(qs)
+    if (length(probs) != 5) {
+      stop("'probs' should contain 5 quantiles.")
     }
+    probs <- sort(probs)
     if (!is.null(data$weight)) {
-      mod <- quantreg::rq(y ~ 1, weights = weight, tau = qunatiles,
+      mod <- quantreg::rq(y ~ 1, weights = weight, tau = probs,
                           data = data)
       stats <- as.numeric(stats::coef(mod))
     } else {
-      stats <- as.numeric(quantile(data$y, qs))
+      stats <- as.numeric(quantile(data$y, probs = probs))
     }
     names(stats) <- c("ymin", "lower", "middle", "upper", "ymax")
     df <- as.data.frame(as.list(stats))

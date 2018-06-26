@@ -130,28 +130,16 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #'  }
 #' @param type Palette type, either \code{"ordered-sequential"} or
 #'   \code{"ordered-diverging"}.
-#' @param values if colours should not be evenly positioned along the gradient
-#'   this vector gives the position (between 0 and 1) for each colour in the
-#'   colours vector. See \link[scales]{rescale} for a convenience function to
-#'   map an arbitrary range to between 0 and 1.
-#' @param direction Sets the order of colors in the scale.
-#'    If 1, the default, colors are as the original order.
-#'    If -1, the order of colors is reversed.
 #' @param ... Arguments passed to \code{tableau_gradient_pal}.
 #' @family colour tableau
 #'
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
-tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential",
-                                 values = NULL, direction = 1) {
+tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential") {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
   pal <- ggthemes::ggthemes_data[[c("tableau", "color-palettes",
                                     type, palette)]]
-  colours <- pal[["value"]]
-  if (direction < 0) {
-    colours <- rev(colours)
-  }
-  scales::gradient_n_pal(colours, values = values, space = "Lab")
+  scales::gradient_n_pal(colours = pal[["value"]])
 }
 
 #' @export

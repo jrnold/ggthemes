@@ -6,8 +6,8 @@
 \alias{StatFivenumber}
 \title{Calculate components of a five-number summary}
 \usage{
-stat_fivenumber(mapping = NULL, data = NULL, geom = "boxplot", qs = c(0,
-  0.25, 0.5, 0.75, 1), na.rm = FALSE, position = "identity",
+stat_fivenumber(mapping = NULL, data = NULL, geom = "boxplot",
+  probs = c(0, 0.25, 0.5, 0.75, 1), na.rm = FALSE, position = "identity",
   show.legend = NA, inherit.aes = TRUE, ...)
 }
 \arguments{
@@ -32,7 +32,7 @@ will be used as the layer data.}
 
 \item{geom}{The geometric object to use display the data}
 
-\item{qs}{Quantiles to use for the five number summary.}
+\item{probs}{Quantiles to use for the five number summary.}
 
 \item{na.rm}{If \code{FALSE} (the default), removes missing values with
 a warning.  If \code{TRUE} silently removes missing values.}

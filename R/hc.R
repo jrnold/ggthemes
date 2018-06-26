@@ -43,7 +43,7 @@ theme_hc <- function(base_size = 12,
                legend.position = "bottom",
                legend.key = element_rect(fill = "#FFFFFF00"))
 
-  if (bgcolor == "darkunica") {
+  if (style == "darkunica") {
     ret <- (ret + theme(rect = element_rect(fill = bgcolor),
                         text = element_text(colour = "#A0A0A3"),
                         title = element_text(colour = "#FFFFFF"),

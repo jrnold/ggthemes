@@ -28,7 +28,7 @@ test_that("scale_fill_hc works", {
 
 test_that("theme_hc works", {
   expect_is(theme_hc(), "theme")
-  expect_is(theme_hc("darkunica"), "theme")
+  expect_is(theme_hc(style = "darkunica"), "theme")
 })
 
 test_that("bgcolor raises warning", {
