@@ -21,4 +21,3 @@ p + theme_stata(scheme = "s1rcolor") +
 # s1mono
 p + theme_stata(scheme = "s1mono") +
   scale_colour_stata("mono")
-

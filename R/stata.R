@@ -74,8 +74,9 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         # axis.ticks.length = stata_gsize$tiny,
         # axis.ticks.margin = stata_gsize$half_tiny,
         axis.ticks.length = unit(4 / 11, "lines"),
-        legend.background = element_rect(linetype = 1 ,
-                                         size = rel(stata_linewidths[["thin"]])),
+        legend.background =
+          element_rect(linetype = 1,
+                       size = rel(stata_linewidths[["thin"]])),
         legend.spacing = unit(1.2 / 100, "npc"),
         legend.key = element_rect(linetype = 0),
         legend.key.size = unit(1.2, "lines"),
@@ -135,7 +136,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- NA
     color_title <- stata_colors["dknavy"]
     color_border <- NA
-    legend_border = "black"
+    legend_border <- "black"
   } else if (scheme %in% c("s2mono", "s2manual", "sj")) {
     color_plot <- stata_colors["gs15"]
     color_bg <- "white"
@@ -146,7 +147,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- NA
     color_title <- "black"
     color_border <- NA
-    legend_border = "black"
+    legend_border <- "black"
   } else if (scheme == "s1color") {
     color_plot <- "white"
     color_bg <- "white"
@@ -156,7 +157,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- "black"
     color_title <- "black"
     color_border <- "black"
-    legend_border = "black"
+    legend_border <- "black"
   } else if (scheme == "s1rcolor") {
     color_plot <- "black"
     color_bg <- "black"
@@ -166,7 +167,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- "white"
     color_title <- "white"
     color_border <- "white"
-    legend_border = "black"
+    legend_border <- "black"
   } else if (scheme %in% c("s1mono", "s1manual")) {
     color_plot <- "white"
     color_bg <- "white"
@@ -176,7 +177,7 @@ theme_stata_colors <- function(scheme="s2color") {
     color_strip <- "black"
     color_title <- "black"
     color_border <- "black"
-    legend_border = "black"
+    legend_border <- "black"
   } else {
     stop(str_c("`scheme` must be one of: ",
                str_c(sort(schemes), collapse = ","), ", "))

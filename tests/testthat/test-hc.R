@@ -34,5 +34,3 @@ test_that("theme_hc works", {
 test_that("bgcolor raises warning", {
   expect_warning(theme_hc(bgcolor = "darkunica"), regexp = "deprecated")
 })
-
-

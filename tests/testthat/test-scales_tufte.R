@@ -1,2 +1,1 @@
-context("scale-tufte")
-
+context("scales")

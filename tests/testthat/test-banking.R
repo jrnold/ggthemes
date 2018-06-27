@@ -27,4 +27,3 @@ test_that("bank_slopes works with cull = TRUE", {
   expect_equal(length(out), 1L)
   expect_is(out, "numeric")
 })
-

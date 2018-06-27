@@ -135,7 +135,8 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #'
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
-tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential") {
+tableau_gradient_pal <- function(palette = "Blue",
+                                 type = "ordered-sequential") {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
   pal <- ggthemes::ggthemes_data[[c("tableau", "color-palettes",
                                     type, palette)]]

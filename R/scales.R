@@ -14,7 +14,6 @@
   n <- length(Q)
   i <- match(q, Q)[1]
   v <- 1
-
   1 - (i - 1) / (n - 1) - j + v
 }
 
@@ -41,16 +40,16 @@
 }
 
 .density.max <- function(k, m) {
-  if (k >= m)
+  if (k >= m) {
     2 - (k - 1) / (m - 1)
-  else
+  } else {
     1
+  }
 }
 
 .legibility <- function(lmin, lmax, lstep) {
-  1      ## did all the legibility tests in C#, not in R.
+  1
 }
-
 
 #' Pretty axis breaks inclusive of extreme values
 #'
@@ -160,8 +159,8 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
   }
   breaks <- seq(from = best$lmin, to = best$lmax, by = best$lstep)
   if (length(breaks) >= 2) {
-      breaks[1] <- dmin
-      breaks[length(breaks)] <- dmax
+    breaks[1] <- dmin
+    breaks[length(breaks)] <- dmax
   }
   breaks
 }
@@ -171,9 +170,9 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
 #' @return A function which returns breaks given a vector.
 #' @export
 extended_range_breaks <- function(n = 5, ...)  {
-    function(x) {
-        extended_range_breaks_(min(x), max(x), n, ...)
-    }
+  function(x) {
+    extended_range_breaks_(min(x), max(x), n, ...)
+  }
 }
 
 # from scales package
@@ -226,5 +225,5 @@ smart_digits <- function(x, ...) {
 #' @rdname smart_digits
 #' @export
 smart_digits_format <- function(x, ...) {
-    function(x) smart_digits(x, ...)
+  function(x) smart_digits(x, ...)
 }
