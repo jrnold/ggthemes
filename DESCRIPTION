@@ -29,16 +29,19 @@ Suggests:
     dplyr,
     covr,
     extrafont,
+    glue,
     knitr,
     lintr,
     maps,
     mapproj,
     pander,
+    rlang,
     rmarkdown,
     spelling,    
     testthat,
     tidyr,
-    vdiffr
+    vdiffr,
+    withr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots
     by Edward Tufte, Stephen Few, 'Fivethirtyeight', 'The Economist', 'Stata',
