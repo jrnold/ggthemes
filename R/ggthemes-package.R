@@ -2,7 +2,7 @@
 #'
 #' This package contains extra themes, scales, and geoms, and
 #' functions for and related to \pkg{ggplot2}. See
-#' \url{https://http://jrnold.github.io/ggthemes/} for documentation.
+#' \url{https://jrnold.github.io/ggthemes/} for documentation.
 #'
 #' @name ggthemes
 #' @docType package
