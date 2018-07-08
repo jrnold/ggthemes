@@ -75,3 +75,4 @@ Colour and fill scales which use the palettes in
 \seealso{
 Other colour hc: \code{\link{hc_pal}}
 }
+\concept{colour hc}

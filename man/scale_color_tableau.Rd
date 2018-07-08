@@ -79,7 +79,7 @@ p <- ggplot(mtcars) +
   theme_igray()
 
 palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
-for (palette in names(palettes)) {
+for (palette in head(names(palettes), 3L)) {
   print(p + scale_colour_tableau(palette) +
           ggtitle(palette))
 }
@@ -92,3 +92,4 @@ Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{tableau_color_pal}},
   \code{\link{tableau_gradient_pal}}
 }
+\concept{colour tableau}

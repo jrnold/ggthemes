@@ -63,3 +63,4 @@ p <- ggplot(mtcars) +
      facet_wrap(~am)
 p + theme_stata() + scale_shape_stata()
 }
+\concept{shape stata}

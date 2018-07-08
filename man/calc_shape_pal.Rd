@@ -19,3 +19,4 @@ library("ggplot2")
 \seealso{
 Other shapes calc: \code{\link{scale_shape_calc}}
 }
+\concept{shapes calc}

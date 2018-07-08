@@ -39,3 +39,4 @@ p + scale_colour_wsj("colors6", "") + theme_wsj(color = "gray")
 
 \url{https://pinterest.com/wsjgraphics/wsj-graphics/}
 }
+\concept{themes wsj}

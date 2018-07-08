@@ -57,3 +57,4 @@ p + theme_stata(scheme = "s1mono") +
 \references{
 \url{http://www.stata.com/help.cgi?schemes}
 }
+\concept{themes stata}

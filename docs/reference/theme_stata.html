@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Themes based on Stata graph schemes" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.5.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.0.0</span>
       </span>
     </div>
 
@@ -129,12 +132,17 @@
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Stata graph schemes include the features of <span class="pkg">ggplot2</span>
-into themes and scales. Stata graph themes also allow for defaults
-for specific graph types, a feature which <span class="pkg">ggplot2</span> does not directly
-support.</p>
+    <p>These themes approximate Stata schemes using the features
+<span class="pkg">ggplot2</span>. The graphical models of Stata and ggplot2 differ
+in various ways that make an exact replication impossible (or
+more difficult than it is worth).
+Some features in Stata schemes not in ggplot2:
+defaults for specific graph types, different levels of titles,
+captions and notes. These themes also adopt some of the ggplot2
+defaults, and more effort was made to match the colors and sizes
+of major elements than in matching the margins.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -145,22 +153,29 @@ support.</p>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"ggplot2"</span>)
 
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) +
-     <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>gear</span>))) +
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~ <span class='no'>am</span>)
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>gear</span>))) +
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~ <span class='no'>am</span>) +
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Graphs by car type"</span>,
+       <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"Weight (lbs.)"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"MPG"</span>)
 
 <span class='co'># s2color</span>
-<span class='no'>p</span> + <span class='fu'>theme_stata</span>() <span class='co'># + scale_colour_stata("s2color")</span></div><div class='img'><img src='theme_stata-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s2mono</span>
-<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s2mono"</span>) + <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"mono"</span>)</div><div class='img'><img src='theme_stata-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s1color</span>
-<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s2color"</span>) + <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"s1color"</span>)</div><div class='img'><img src='theme_stata-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s1rcolor</span>
-<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s1rcolor"</span>) + <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"s1rcolor"</span>)</div><div class='img'><img src='theme_stata-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s1mono</span>
-<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s1mono"</span>) + <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"mono"</span>)</div><div class='img'><img src='theme_stata-5.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>p</span> + <span class='fu'>theme_stata</span>() +
+  <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"s2color"</span>)</div><div class='img'><img src='theme_stata-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s2mono</span>
+<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s2mono"</span>) +
+  <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"mono"</span>)</div><div class='img'><img src='theme_stata-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s1color</span>
+<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s2color"</span>) +
+  <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"s1color"</span>)</div><div class='img'><img src='theme_stata-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s1rcolor</span>
+<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s1rcolor"</span>) +
+  <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"s1rcolor"</span>)</div><div class='img'><img src='theme_stata-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># s1mono</span>
+<span class='no'>p</span> + <span class='fu'>theme_stata</span>(<span class='kw'>scheme</span> <span class='kw'>=</span> <span class='st'>"s1mono"</span>) +
+  <span class='fu'><a href='scale_stata.html'>scale_colour_stata</a></span>(<span class='st'>"mono"</span>)</div><div class='img'><img src='theme_stata-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#note">Note</a></li>
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
       

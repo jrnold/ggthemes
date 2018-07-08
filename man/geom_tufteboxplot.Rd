@@ -142,4 +142,5 @@ box plots. The American Statistician 32, 12-16.
 
 Other geom tufte: \code{\link{geom_rangeframe}}
 }
+\concept{geom tufte}
 \keyword{datasets}

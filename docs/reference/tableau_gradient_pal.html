@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Tableau colour gradient palettes (continuous)" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.5.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.0.0</span>
       </span>
     </div>
 
@@ -108,8 +111,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>tableau_gradient_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Blue"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"ordered-sequential"</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+    <pre class="usage"><span class='fu'>tableau_gradient_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Blue"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"ordered-sequential"</span>)
 
 <span class='fu'>tableau_seq_gradient_pal</span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Blue"</span>, <span class='no'>...</span>)
 
@@ -129,19 +131,6 @@
       <th>type</th>
       <td><p>Palette type, either <code>"ordered-sequential"</code> or
 <code>"ordered-diverging"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>values</th>
-      <td><p>if colours should not be evenly positioned along the gradient
-this vector gives the position (between 0 and 1) for each colour in the
-colours vector. See <a href='http://www.rdocumentation.org/packages/scales/topics/rescale'>rescale</a> for a convenience function to
-map an arbitrary range to between 0 and 1.</p></td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td><p>Sets the order of colors in the scale.
-If 1, the default, colors are as the original order.
-If -1, the order of colors is reversed.</p></td>
     </tr>
     <tr>
       <th>...</th>

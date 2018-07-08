@@ -96,3 +96,4 @@ p + theme_economist(base_family="Verdana") +
 \code{\link[latticeExtra]{theEconomist.theme}} for an Economist
 theme for lattice plots.
 }
+\concept{themes economist}

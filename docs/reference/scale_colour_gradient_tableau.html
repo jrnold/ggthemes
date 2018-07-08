@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Tableau sequential colour scale (continuous)" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.5.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.0.0</span>
       </span>
     </div>
 
@@ -172,10 +175,10 @@ colour bar, or <code>'legend'</code> for discrete colour legend.</p></td>
 
 <span class='no'>palettes</span> <span class='kw'>&lt;-</span>
   <span class='no'>ggthemes_data</span><span class='kw'>[[</span><span class='st'>"tableau"</span>]]<span class='kw'>[[</span><span class='st'>"color-palettes"</span>]]<span class='kw'>[[</span><span class='st'>"ordered-sequential"</span>]]
-<span class='kw'>for</span> (<span class='no'>palette</span> <span class='kw'>in</span> <span class='fu'>names</span>(<span class='no'>palettes</span>)) {
+<span class='kw'>for</span> (<span class='no'>palette</span> <span class='kw'>in</span> <span class='fu'>head</span>(<span class='fu'>names</span>(<span class='no'>palettes</span>))) {
   <span class='fu'>print</span>(<span class='no'>p</span> + <span class='fu'>scale_colour_gradient_tableau</span>(<span class='no'>palette</span>) +
           <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='no'>palette</span>))
-}</div><div class='img'><img src='scale_colour_gradient_tableau-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-6.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-8.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-9.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-10.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-11.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-12.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-13.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-14.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-15.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-16.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-17.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-18.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-19.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-20.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-21.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-22.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-23.png' alt='' width='700' height='433' /></div></pre>
+}</div><div class='img'><img src='scale_colour_gradient_tableau-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

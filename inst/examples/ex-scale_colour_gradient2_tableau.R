@@ -10,7 +10,7 @@ p <- ggplot(df, aes(x, y)) + geom_point(aes(colour = z2))
 
 palettes <-
   ggthemes_data[["tableau"]][["color-palettes"]][["ordered-diverging"]]
-for (palette in names(palettes)) {
+for (palette in head(names(palettes))) {
   print(p + scale_colour_gradient2_tableau(palette) +
         ggtitle(palette))
 }

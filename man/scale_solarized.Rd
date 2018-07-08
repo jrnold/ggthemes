@@ -82,3 +82,5 @@ p + theme_solarized() +
 \seealso{
 Other solarized colour: \code{\link{solarized_pal}}
 }
+\concept{colour scales}
+\concept{solarized colour}

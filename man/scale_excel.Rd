@@ -2,7 +2,6 @@
 % Please edit documentation in R/excel.R
 \name{scale_color_excel_classic}
 \alias{scale_color_excel_classic}
-\alias{scale_color_excel_classic}
 \alias{scale_colour_excel}
 \alias{scale_color_excel}
 \alias{scale_fill_excel}
@@ -99,3 +98,4 @@ Other colour excel: \code{\link{excel_classic_pal}},
   \code{\link{excel_pal}},
   \code{\link{scale_fill_excel_classic}}
 }
+\concept{colour excel}

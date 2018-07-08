@@ -73,3 +73,4 @@ Color scales using the colors in the Economist graphics.
 
 Other colour economist: \code{\link{economist_pal}}
 }
+\concept{colour economist}

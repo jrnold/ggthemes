@@ -73,3 +73,4 @@ Color scales using the colors in the fivethirtyeight graphics.
 
 Other colour fivethirtyeight: \code{\link{fivethirtyeight_pal}}
 }
+\concept{colour fivethirtyeight}

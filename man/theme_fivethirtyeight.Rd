@@ -25,3 +25,4 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   theme_fivethirtyeight()
 p
 }
+\concept{themes fivethirtyeight}

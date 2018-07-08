@@ -74,3 +74,4 @@ palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
 
 Other colour pander: \code{\link{palette_pander}}
 }
+\concept{colour pander}

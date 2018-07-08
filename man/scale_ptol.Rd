@@ -86,3 +86,4 @@ ggplot(diamonds, aes(x = clarity, fill = cut)) +
 \seealso{
 Other colour ptol: \code{\link{ptol_pal}}
 }
+\concept{colour ptol}

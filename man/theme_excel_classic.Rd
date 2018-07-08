@@ -35,3 +35,4 @@ ggplot(mpg, aes(x = class, fill = drv)) +
   scale_fill_excel_classic() +
   theme_excel_classic()
 }
+\concept{themes excel}

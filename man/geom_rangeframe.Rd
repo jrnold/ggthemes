@@ -87,4 +87,5 @@ Quantitative Information, Chapter 6.
 \seealso{
 Other geom tufte: \code{\link{geom_tufteboxplot}}
 }
+\concept{geom tufte}
 \keyword{datasets}

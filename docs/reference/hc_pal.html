@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Highcharts color palettes (discrete) — hc_pal • ggthemes</title>
+<title>Highcharts JS color palette (discrete) — hc_pal • ggthemes</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -21,20 +21,21 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Highcharts color palettes (discrete) — hc_pal" />
+<meta property="og:title" content="Highcharts JS color palette (discrete) — hc_pal" />
 
-<meta property="og:description" content="Color palettes used in selected Highcharts JShttps://www.highcharts.com/
-themes.
-These palettes should be used with the theme_hc theme
-with the hc_theme argument of the same name." />
+<meta property="og:description" content="The Highcharts JS uses many different color palettes in its
+plots. This collects a few of them." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -61,7 +62,7 @@ with the hc_theme argument of the same name." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.5.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.0.0</span>
       </span>
     </div>
 
@@ -100,17 +101,15 @@ with the hc_theme argument of the same name." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Highcharts color palettes (discrete)</h1>
+    <h1>Highcharts JS color palette (discrete)</h1>
     <small class="dont-index">Source: <a href='http://github.com/jrnold/ggthemes/blob/master/R/hc.R'><code>R/hc.R</code></a></small>
     <div class="hidden name"><code>hc_pal.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Color palettes used in selected <code>Highcharts JS</code>https://www.highcharts.com/
-themes.
-These palettes should be used with the <code><a href='theme_hc.html'>theme_hc</a></code> theme
-with the <code>hc_theme</code> argument of the same name.</p>
+    <p>The Highcharts JS uses many different color palettes in its
+plots. This collects a few of them.</p>
     
     </div>
 
@@ -121,9 +120,7 @@ with the <code>hc_theme</code> argument of the same name.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>palette</th>
-      <td><p><code>character</code> The name of the palette to use. If used
-with <code><a href='theme_hc.html'>theme_hc</a></code> this should be the same as the <code>hc_theme</code>
-passed to it.</p></td>
+      <td><p><code>character</code> The name of the Highcharts theme to use.</p></td>
     </tr>
     </table>
     

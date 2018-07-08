@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -34,9 +36,10 @@
 Show Me the Numbers. There are three palettes:
 Light, Medium, and Dark. Each palette comprises nine colors:
 gray, blue, orange, green, pink, brown, purple, yellow, red.
-For n = 1, gray is used. For n &gt; 1, the eight non-gray
+For n = 1, gray is used. For n &amp;gt; 1, the eight non-gray
 colors are used." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -63,7 +66,7 @@ colors are used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.5.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.0.0</span>
       </span>
     </div>
 
@@ -150,7 +153,7 @@ or for small and thin lines and points.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='st'>"scales"</span>)
 
-<span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>()(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"Dark"</span>)(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"Light"</span>)(<span class='fl'>7</span>))</div><div class='img'><img src='few_pal-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>()(<span class='fl'>7</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: data length [7] is not a sub-multiple or multiple of the number of rows [3]</span></div><div class='img'><img src='few_pal-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"Dark"</span>)(<span class='fl'>7</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: data length [7] is not a sub-multiple or multiple of the number of rows [3]</span></div><div class='img'><img src='few_pal-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>few_pal</span>(<span class='st'>"Light"</span>)(<span class='fl'>7</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: data length [7] is not a sub-multiple or multiple of the number of rows [3]</span></div><div class='img'><img src='few_pal-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -85,3 +85,4 @@ Other colour excel: \code{\link{excel_classic_pal}},
   \code{\link{excel_pal}},
   \code{\link{scale_color_excel_classic}}
 }
+\concept{colour excel}

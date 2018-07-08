@@ -37,3 +37,4 @@ Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlight
 Stephen Few, "Practical Rules for Using Color in Charts",
 \url{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}.
 }
+\concept{themes few}

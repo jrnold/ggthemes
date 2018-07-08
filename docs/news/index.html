@@ -21,14 +21,17 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
 <meta property="og:title" content="Changelog" />
+
 
 
 <!-- mathjax -->
@@ -55,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.5.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">4.0.0</span>
       </span>
     </div>
 
@@ -105,7 +108,9 @@
 <ul>
 <li>Old Excel colors moved to <code>excel_classic_pal</code> and <code>scale_colour_excel_classic</code> and <code>scale_fill_excel_classic</code>.</li>
 <li>The <code>excel_pal</code>, <code>scale_colour_excel</code>, and <code>scale_fill_excel</code> functions only include current Excel color palettes. However, it now includes palettes generated from all color themes in the current version of Excel.</li>
-<li>Added new palettes introduced in Tableau 10 and renamed old palettes in <code>tableau_color_pal</code>, <code>scale_color_tableau</code>, <code>scale_fill_tableau</code>, and others. The continuous sequential and diverging palettes are improved by including more intermediate steps.</li>
+<li>Added Tableau 10 palettes and renamed old palettes in <code>tableau_color_pal</code>, <code>scale_color_tableau</code>, <code>scale_fill_tableau</code>, and others. The continuous sequential and diverging palettes are improved by including more intermediate steps.</li>
+<li>Update <code>theme_gdocs</code> to current look.</li>
+<li>Update <code>scale_color_gdocs</code> and <code>fill_color_gdocs</code> to current color.</li>
 <li>Theme <code>theme_excel</code> renamed to <code>theme_excel_classic</code>.</li>
 <li>Add <code>scale_shapes_few</code> and <code>few_shape_pal</code> with a shape scale and palette from Stephen Few’s “Show Me the Numbers”.</li>
 <li>Remove <code>stata</code> argument from <code>scale_*_economist</code> and <code>theme_economist</code>.</li>

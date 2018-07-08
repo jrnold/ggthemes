@@ -26,3 +26,4 @@ Other colour excel: \code{\link{excel_pal}},
   \code{\link{scale_color_excel_classic}},
   \code{\link{scale_fill_excel_classic}}
 }
+\concept{colour excel}

@@ -68,3 +68,4 @@ p + scale_shape_tableau()
 \seealso{
 Other shape tableau: \code{\link{tableau_shape_pal}}
 }
+\concept{shape tableau}

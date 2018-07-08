@@ -39,3 +39,4 @@ Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlight
 \seealso{
 Other colour few: \code{\link{scale_colour_few}}
 }
+\concept{colour few}

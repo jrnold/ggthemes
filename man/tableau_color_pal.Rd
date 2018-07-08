@@ -59,3 +59,4 @@ Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
   \code{\link{scale_colour_tableau}},
   \code{\link{tableau_gradient_pal}}
 }
+\concept{colour tableau}

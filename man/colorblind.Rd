@@ -89,3 +89,4 @@ Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind
 The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}},
  and \code{\link{scale_color_tableau}} for other colorblind palettes.
 }
+\concept{colour}

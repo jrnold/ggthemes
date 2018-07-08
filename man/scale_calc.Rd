@@ -73,3 +73,4 @@ See \code{\link{theme_calc}} for examples.
 
 Other colour calc: \code{\link{calc_pal}}
 }
+\concept{colour calc}

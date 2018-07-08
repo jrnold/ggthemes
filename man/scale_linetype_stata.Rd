@@ -74,3 +74,4 @@ gather(economics, variable, value, -date) \%>\%
 \seealso{
 Other linetype stata: \code{\link{stata_linetype_pal}}
 }
+\concept{linetype stata}

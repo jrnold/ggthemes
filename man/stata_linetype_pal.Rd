@@ -15,3 +15,4 @@ This palette supports up to 15 values.
 
 Other linetype stata: \code{\link{scale_linetype_stata}}
 }
+\concept{linetype stata}

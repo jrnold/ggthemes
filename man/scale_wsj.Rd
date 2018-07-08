@@ -75,3 +75,4 @@ These scales should be used with \code{\link{theme_wsj}}.
 \seealso{
 Other colour wsj: \code{\link{wsj_pal}}
 }
+\concept{colour wsj}

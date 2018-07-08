@@ -73,3 +73,4 @@ See \code{\link{few_pal}}.
 \seealso{
 Other colour few: \code{\link{few_pal}}
 }
+\concept{colour few}

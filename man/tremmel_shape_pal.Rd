@@ -44,3 +44,4 @@ Other shapes: \code{\link{circlefill_shape_pal}},
   \code{\link{scale_shape_cleveland}},
   \code{\link{scale_shape_tremmel}}
 }
+\concept{shapes}

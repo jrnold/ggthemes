@@ -27,3 +27,4 @@ The following palettes are defined,
 \seealso{
 Other colour hc: \code{\link{scale_colour_hc}}
 }
+\concept{colour hc}

@@ -73,3 +73,4 @@ See \code{\link{theme_gdocs}} for examples.
 
 Other colour gdocs: \code{\link{gdocs_pal}}
 }
+\concept{colour gdocs}

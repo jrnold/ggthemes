@@ -48,3 +48,4 @@ p + theme_solarized(light = FALSE) +
 p + theme_solarized_2(light = FALSE) +
   scale_colour_solarized("blue")
 }
+\concept{themes solarized}

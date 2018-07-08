@@ -18,3 +18,4 @@ show_col(fivethirtyeight_pal()(3))
 \seealso{
 Other colour fivethirtyeight: \code{\link{scale_colour_fivethirtyeight}}
 }
+\concept{colour fivethirtyeight}

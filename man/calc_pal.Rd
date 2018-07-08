@@ -18,3 +18,4 @@ show_col(calc_pal()(12))
 \seealso{
 Other colour calc: \code{\link{scale_fill_calc}}
 }
+\concept{colour calc}

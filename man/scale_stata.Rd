@@ -71,3 +71,4 @@ scales, "top" or "bottom" for horizontal scales}
 \description{
 See \code{\link{stata_pal}} for details.
 }
+\concept{colour stata}

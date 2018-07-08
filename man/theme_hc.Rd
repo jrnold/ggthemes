@@ -61,3 +61,4 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
 
 \url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
 }
+\concept{themes hc}

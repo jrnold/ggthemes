@@ -31,3 +31,4 @@ Other themes: \code{\link{theme_base}},
   \code{\link{theme_igray}}, \code{\link{theme_par}},
   \code{\link{theme_solid}}
 }
+\concept{themes}

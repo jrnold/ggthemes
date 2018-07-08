@@ -22,3 +22,4 @@ p <- ggplot(mtcars) +
   facet_wrap(~am)
 p + theme_gdocs() + scale_color_gdocs()
 }
+\concept{themes gdocs}
