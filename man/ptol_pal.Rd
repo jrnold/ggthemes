@@ -8,7 +8,7 @@ ptol_pal()
 }
 \description{
 Qualitative color palettes from Paul Tol,
-\href{https://personal.sron.nl/~pault/colourschemes.pdf}{"Colour Schemes"}.
+\href{https://personal.sron.nl/~pault/}{"Colour Schemes"}.
 }
 \details{
 Incorporation of the palette into an R package was originally inspired by
@@ -23,7 +23,7 @@ show_col(ptol_pal()(12))
 }
 \references{
 Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
- \url{https://personal.sron.nl/~pault/colourschemes.pdf}
+ \url{https://personal.sron.nl/~pault/data/colourschemes.pdf}
 }
 \seealso{
 Other colour ptol: \code{\link{scale_colour_ptol}}

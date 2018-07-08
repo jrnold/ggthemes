@@ -1,7 +1,7 @@
 #' Color Palettes from Paul Tol's "Colour Schemes"
 #'
 #' Qualitative color palettes from Paul Tol,
-#' \href{https://personal.sron.nl/~pault/colourschemes.pdf}{"Colour Schemes"}.
+#' \href{https://personal.sron.nl/~pault/}{"Colour Schemes"}.
 #'
 #' Incorporation of the palette into an R package was originally inspired by
 #' Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
@@ -10,7 +10,7 @@
 #' @family colour ptol
 #' @references
 #' Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
-#'  \url{https://personal.sron.nl/~pault/colourschemes.pdf}
+#'  \url{https://personal.sron.nl/~pault/data/colourschemes.pdf}
 #' @example inst/examples/ex-ptol_pal.R
 ptol_pal <- function() {
   colors <- ggthemes::ggthemes_data[["ptol"]][["qualitative"]]
