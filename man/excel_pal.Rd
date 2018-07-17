@@ -2,29 +2,28 @@
 % Please edit documentation in R/excel.R
 \name{excel_pal}
 \alias{excel_pal}
-\title{Excel color palette (discrete)}
+\title{Excel 97 ugly color palettes (discrete)}
 \usage{
-excel_pal(theme = "Office Theme")
+excel_pal(line = TRUE)
 }
 \arguments{
-\item{theme}{The name of the Office theme or color theme
-(not to be confused with ggplot2 themes) from which to derive the color
-palette. Available themes include:
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}}
+\item{line}{If \code{TRUE}, use the palette for lines and points. Otherwise,
+use the palette for area.}
 }
 \description{
-Color palettes used by Microsoft Office and Excel.
+The color palettes used in Microsoft Excel 97 (and up until Excel 2007).
+Use this for that classic ugly look and feel. For ironic purposes only.
+3D bars and pies not included. Please never use this color palette.
 }
 \examples{
 library("scales")
 
-for (i in names(ggthemes::ggthemes_data$excel$palettes)) {
-  show_col(excel_pal(theme = i))(6)
-}
+show_col(excel_pal()(7))
+show_col(excel_pal(line = FALSE)(7))
 }
 \seealso{
-Other colour excel: \code{\link{excel_classic_pal}},
-  \code{\link{scale_color_excel_classic}},
-  \code{\link{scale_fill_excel_classic}}
+Other colour excel: \code{\link{excel_new_pal}},
+  \code{\link{scale_colour_excel_new}},
+  \code{\link{scale_fill_excel}}
 }
 \concept{colour excel}

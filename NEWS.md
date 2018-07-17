@@ -1,25 +1,24 @@
 # ggthemes 3.5.0.9000
 
--   Old Excel colors moved to  `excel_classic_pal` and `scale_colour_excel_classic` and `scale_fill_excel_classic`.
--   The `excel_pal`, `scale_colour_excel`, and `scale_fill_excel` functions only
-    include current Excel color palettes. However, it now includes palettes 
-    generated from all color themes in the current version of Excel.
+-   Added palettes and based on current versions of Excel:
+    `excel_pal_new`, `scale_colour_excel_new`, and `scale_fill_excel_new`.
+    Excel '97 based scales keep the same names.
+-   Added `theme_excel_new` which is based on the chart defaults of current versions
+    of Excel.
 -   Added Tableau 10 palettes and renamed old palettes
     in `tableau_color_pal`, `scale_color_tableau`, `scale_fill_tableau`,
     and others.  The continuous sequential and diverging palettes are improved by including more intermediate steps.
--   Update `theme_gdocs` to current look.
--   Update `scale_color_gdocs` and `fill_color_gdocs` to current color.
--   Theme `theme_excel` renamed to `theme_excel_classic`.
--   Add `scale_shapes_few` and `few_shape_pal` with a shape scale and palette from Stephen Few's "Show Me the Numbers".
--   Remove `stata` argument from `scale_*_economist` and `theme_economist`.
--   Add Stata's economist scheme to `scale_*_stata` and `theme_stata`.
--   Change behavior of `few_pal`. If `n = 1`, use gray. If `n > 1` use non-gray
+-   Updated `theme_gdocs` to current look.
+-   Updated `scale_color_gdocs` and `fill_color_gdocs` to current color.
+-   Added `scale_shapes_few` and `few_shape_pal` with a shape scale and palette from Stephen Few's "Show Me the Numbers".
+-   Removed `stata` argument from `scale_*_economist` and `theme_economist`.
+-   Changed the format of the `ggthemes_data` object.
+-   Changed behavior of `few_pal`. If `n = 1`, use gray. If `n > 1` use non-gray
     colors.
--   `tremmel_shape_scale` uses `alt = TRUE` by default now.
--   `tremmel_shape_scale` argument `n3alt` deprecated; use the newly
-    added `alt` argument instead.
--   Add a pkgdown site.
--   Remove vignette. Move all examples to man pages.
+-   Changed `tremmel_shape_scale` to use `alt = TRUE` by default
+-   Deprecated `tremmel_shape_scale` argument `n3alt`. Use the `alt` argument instead.
+-   Addd a pkgdown site.
+-   Removed vignette. Move all examples to man pages.
 -   Bugfix: Fix theme_few (#91)
 -   Bugfix: Update themes to be consistent with ggplot 3.2.0
 
