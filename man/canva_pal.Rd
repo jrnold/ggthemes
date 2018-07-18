@@ -20,6 +20,7 @@ require("ggplot2")
 require("purrr")
 require("tibble")
 require("scales")
+require("dplyr")
 canva_df <- map2_df(canva_palettes, names(canva_palettes),
                     ~ tibble(colors = .x, .id = seq_along(colors),
                              palette = .y))
