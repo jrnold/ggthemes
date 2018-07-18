@@ -16,3 +16,4 @@
 ^docs$
 ^codecov\.yml$
 ^\.covrignore$
+^appveyor\.yml$
