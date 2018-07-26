@@ -1,4 +1,9 @@
-# ggthemes 3.5.0.9000
+# ggthemes 4.0.0.9000
+
+-   Fix bug in `tableau_color_pal`. Wrong colors in "Tableau 20" theme.
+    (Thanks @friskin, #95)
+
+# ggthemes 4.0.0
 
 -   Added palettes and based on current versions of Excel:
     `excel_pal_new`, `scale_colour_excel_new`, and `scale_fill_excel_new`.
@@ -38,7 +43,7 @@
 
 # ggthemes 3.4.0
 
--   Add color palettes from canva.com: `canva_palettes`, `canva_pal()`, 
+-   Add color palettes from canva.com: `canva_palettes`, `canva_pal()`,
     `scale_colour_canva()`.
 -   Use NEWS.md instead of NEWS
 -   Update Economist examples to put y-axis on the right side.
@@ -191,4 +196,3 @@
   ratio.
 -   added `theme-foundation`: a theme designed to be easy to extend into new
   themes.
-
