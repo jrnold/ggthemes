@@ -87,3 +87,10 @@ test_that("scale_colour_gradient_tableau works", {
 test_that("scale_fill_gradient_tableau works", {
   expect_is(scale_fill_gradient2_tableau(), "ScaleContinuous")
 })
+
+test_that("classic colors are in the correct order", {
+  # Issue #96
+  pal <- tableau_color_pal("Classic 20")(20)
+  expect_equal(pal[[1]], "#1f77b4")
+  expect_equal(pal[[20]], "#9edae5")
+})

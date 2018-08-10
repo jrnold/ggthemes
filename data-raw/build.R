@@ -82,16 +82,16 @@ ggthemes_data$fivethirtyeight <- load_fivethirtyeight()
 tableau_palette <- function(x) {
   out <- list(name = xml_attr(x, "name"),
               type = xml_attr(x, "type"))
-  out$colors <- tibble(value = map_chr(xml_children(x), xml_text))
+  out$colors <- tibble(value = rev(map_chr(xml_children(x), xml_text)))
   out
 }
 
 tableau_classic <- function() {
-  classic <- read_xml(here("data-raw", "theme-data", "tableau-classic.xml"))
-  map(xml_children(classic), tableau_palette)
+  classic <- read_xml(here("data-raw", "theme-data", "tableau-classic.xml")) %>%
+    xml_children() %>%
+    map(tableau_palette)
+
 }
-
-
 
 load_tableau <- function() {
   tableau <- yaml.load_file(here("data-raw", "theme-data", "tableau.yml"))
