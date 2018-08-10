@@ -2,10 +2,9 @@ library("ggplot2")
 library("grid")
 library("scales")
 library("glue")
-library("stringr")
 
 is_hexcolor <- function(x) {
-  out <- str_detect(x, regex("^#[a-f0-9]{6}$", ignore_case = TRUE))
+  out <- stringr::str_detect(x, regex("^#[a-f0-9]{6}$", ignore_case = TRUE))
   out[is.na(out)] <- FALSE
   out
 }
