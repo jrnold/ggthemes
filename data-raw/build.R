@@ -134,7 +134,9 @@ best_colors <- function(colors, accent, n = 1) {
 
 load_solarized <- function(x) {
   out <- yaml.load_file(here("data-raw", "theme-data", "solarized.yml"))
-  colors <- deframe(map_dfr(out[["Accents"]], as_tibble))
+  out$Accents <- map_dfr(out[["Accents"]], as_tibble)
+  out$Base <- map_dfr(out[["Base"]], as_tibble)
+  colors <- deframe(out[["Accents"]])
   max_n <- length(colors)
   out$palettes <- list()
   for (accent in names(colors)) {

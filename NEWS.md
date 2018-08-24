@@ -3,6 +3,8 @@
 -   Fix bugs in `tableau_color_pal()`. Wrong colors in "Tableau 20" theme
     (Thanks @friskin, #95), and incorrect order of classic color palettes 
     (Thanks @luca-scr, #96).
+-   Fix fatal bug in `theme_solarized()` and `solarized_rebase()`.
+    (Thanks @mdodrill-usgs, #97)
 
 # ggthemes 4.0.0
 
