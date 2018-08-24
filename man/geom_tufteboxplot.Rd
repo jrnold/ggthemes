@@ -9,8 +9,9 @@
 geom_tufteboxplot(mapping = NULL, data = NULL, stat = "fivenumber",
   position = "dodge", outlier.colour = "black", outlier.shape = 19,
   outlier.size = 1.5, outlier.stroke = 0.5, voffset = 0.01,
-  hoffset = 0.005, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
-  median.type = "point", whisker.type = "line", ...)
+  hoffset = 0.005, na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE, median.type = "point", whisker.type = "line",
+  ...)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -29,7 +30,7 @@ data. All objects will be fortified to produce a data frame. See
 \code{\link[=fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
-the plot data. The return value must be a \code{data.frame.}, and
+the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data.}
 
 \item{stat}{The statistical transformation to use on the data for this
@@ -79,7 +80,7 @@ If \code{'point'}, then whiskers are represented by points at
 
 \item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
-\code{color = "red"} or \code{size = 3}. They may also be parameters
+\code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 }
 \description{

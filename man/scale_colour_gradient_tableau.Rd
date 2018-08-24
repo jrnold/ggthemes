@@ -8,20 +8,20 @@
 \alias{scale_fill_continuous_tableau}
 \title{Tableau sequential colour scale (continuous)}
 \usage{
-scale_colour_gradient_tableau(palette = "Blue", ..., na.value = "grey50",
-  guide = "colourbar")
+scale_colour_gradient_tableau(palette = "Blue", ...,
+  na.value = "grey50", guide = "colourbar")
 
 scale_fill_gradient_tableau(palette = "Blue", ..., na.value = "grey50",
   guide = "colourbar")
 
-scale_color_gradient_tableau(palette = "Blue", ..., na.value = "grey50",
-  guide = "colourbar")
+scale_color_gradient_tableau(palette = "Blue", ...,
+  na.value = "grey50", guide = "colourbar")
 
-scale_color_continuous_tableau(palette = "Blue", ..., na.value = "grey50",
-  guide = "colourbar")
+scale_color_continuous_tableau(palette = "Blue", ...,
+  na.value = "grey50", guide = "colourbar")
 
-scale_fill_continuous_tableau(palette = "Blue", ..., na.value = "grey50",
-  guide = "colourbar")
+scale_fill_continuous_tableau(palette = "Blue", ...,
+  na.value = "grey50", guide = "colourbar")
 }
 \arguments{
 \item{palette}{Palette name.

@@ -50,7 +50,7 @@ Description: Some extra themes, geoms, and scales for 'ggplot2'.
 License: GPL-2
 URL: http://github.com/jrnold/ggthemes
 BugReports: http://github.com/jrnold/ggthemes
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.0
 LazyData: true
 Language: en-US
 Encoding: UTF-8

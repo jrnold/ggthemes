@@ -3,4 +3,4 @@ FreeType: 2.7.0
 Cairo: 1.14.6
 vdiffr: 0.2.3
 svglite: 1.2.1
-ggplot2: 2.2.1.9000
+ggplot2: 3.0.0.9000

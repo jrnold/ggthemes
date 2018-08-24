@@ -5,8 +5,8 @@
 \alias{theme_economist_white}
 \title{ggplot color theme based on the Economist}
 \usage{
-theme_economist(base_size = 10, base_family = "sans", horizontal = TRUE,
-  dkpanel = FALSE)
+theme_economist(base_size = 10, base_family = "sans",
+  horizontal = TRUE, dkpanel = FALSE)
 
 theme_economist_white(base_size = 11, base_family = "sans",
   gray_bg = TRUE, horizontal = TRUE)
