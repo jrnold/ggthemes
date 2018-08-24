@@ -1,4 +1,4 @@
-# ggthemes 4.0.0.9000
+# ggthemes 4.0.1
 
 -   Fix bugs in `tableau_color_pal()`. Wrong colors in "Tableau 20" theme
     (Thanks @friskin, #95), and incorrect order of classic color palettes 
