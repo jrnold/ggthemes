@@ -7,11 +7,10 @@
 scale_shape_few(...)
 }
 \arguments{
-\item{...}{Common \code{discrete_scale} parameters. See
-\code{\link[ggplot2]{discrete_scale}} for more details.}
+\item{...}{Common \code{\link[ggplot2]{discrete_scale}()} parameters.}
 }
 \description{
-\code{scale_shape_few} maps discrete variables to five easily
+\code{scale_shape_few()} maps discrete variables to up to five easily
 discernible shapes. It is based on the shape palette suggested in
 Few (2012).
 }
@@ -21,6 +20,6 @@ Few, S. (2012)
   Analytics Press, p. 208.
 }
 \seealso{
-\code{\link{scale_shape_few}} for the shape palette that this
+\code{\link{scale_shape_few}()} for the shape palette that this
   scale uses.
 }

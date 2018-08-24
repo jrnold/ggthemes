@@ -13,10 +13,12 @@ scale_color_canva(..., palette = "Fresh and bright")
 scale_fill_canva(..., palette = "Fresh and bright")
 }
 \arguments{
-\item{...}{Arguments passed to \code{\link{discrete_scale}}.}
+\item{...}{Arguments passed to \code{\link{discrete_scale}()}.}
 
-\item{palette}{Palette name. See the names of \code{\link{canva_palettes}} for valid names.}
+\item{palette}{Palette name. See the names of \code{\link{canva_palettes}()}
+for valid names.}
 }
 \description{
-Color scale for canva.com color palettes described in \code{\link{canva_palettes}}.
+Color scale for canva.com color palettes described in
+\code{\link{canva_palettes}()}.
 }

@@ -21,7 +21,7 @@ extended_range_breaks(n = 5, ...)
 
 \item{w}{weights applied to the four optimization components (simplicity, coverage, density, and legibility)}
 
-\item{...}{other arguments passed to \code{extended_range_breaks_}}
+\item{...}{other arguments passed to \code{extended_range_breaks_()}}
 }
 \value{
 For \code{extended_range_breaks}, the vector of axis label locations.

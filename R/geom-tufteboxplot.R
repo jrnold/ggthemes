@@ -34,7 +34,7 @@
 #' McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 #' box plots. The American Statistician 32, 12-16.
 #'
-#' @seealso \code{\link{geom_boxplot}}
+#' @seealso \code{\link{geom_boxplot}()}
 #' @inheritParams ggplot2::geom_point
 #' @param outlier.colour colour for outlying points
 #' @param outlier.shape shape of outlying points

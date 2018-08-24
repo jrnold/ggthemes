@@ -88,8 +88,8 @@ hc_pal <- function(palette = "default") {
 #' Highcharts color and fill scales
 #'
 #' Colour and fill scales which use the palettes in
-#' \code{\link{hc_pal}} and are meant for use with
-#' \code{\link{theme_hc}}.
+#' \code{\link{hc_pal}()} and are meant for use with
+#' \code{\link{theme_hc}()}.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams hc_pal

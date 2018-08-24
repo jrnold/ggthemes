@@ -52,7 +52,7 @@ solarized_pal <- function(accent = "blue") {
 
 #' Solarized color scales
 #'
-#' See \code{\link{solarized_pal}} for details.
+#' See \code{\link{solarized_pal}()} for details.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams solarized_pal
@@ -83,8 +83,8 @@ scale_color_solarized <- scale_colour_solarized
 #' Beamer color theme.
 #' \url{https://github.com/jrnold/beamercolorthemesolarized}.
 #' There are two variations: \code{theme_solarized} is similar to
-#' to \code{\link[ggplot2]{theme_bw}}, while \code{theme_solarized_2} is similar to
-#' \code{\link[ggplot2]{theme_gray}}.
+#' to \code{\link[ggplot2]{theme_bw}()}, while \code{theme_solarized_2()} is
+#' similar to \code{\link[ggplot2]{theme_gray}()}.
 #'
 #' @rdname theme_solarized
 #' @inheritParams ggplot2::theme_grey

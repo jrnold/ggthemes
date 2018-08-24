@@ -139,7 +139,7 @@ McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 box plots. The American Statistician 32, 12-16.
 }
 \seealso{
-\code{\link{geom_boxplot}}
+\code{\link{geom_boxplot}()}
 
 Other geom tufte: \code{\link{geom_rangeframe}}
 }

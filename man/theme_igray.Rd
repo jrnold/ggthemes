@@ -17,12 +17,12 @@ Theme with white panel and gray background.
 \section{Details}{
 
 
-This theme inverts the colors in the \code{\link{theme_gray}}, a
+This theme inverts the colors in the \code{\link[ggplot2]{theme_gray}()}, a
 white panel and a light gray area around it. This keeps a white
-background for the color scales like \code{\link{theme_bw}}. But
+background for the color scales like \code{\link[ggplot2]{theme_bw}()}. But
 by using a gray background, the plot is closer to the
 typographical color of the document, which is the motivation for
-using a gray panel in \code{\link{theme_gray}}. This is
+using a gray panel in \code{\link[ggplot2]{theme_gray}()}. This is
 similar to the style of plots in Stata and Tableau.
 }
 
@@ -35,7 +35,8 @@ p <- ggplot(mtcars) +
 p + theme_igray()
 }
 \seealso{
-\code{\link{theme_gray}}, \code{\link{theme_bw}}
+\code{\link[ggplot2]{theme_gray}()},
+  \code{\link[ggplot2]{theme_bw}()}
 
 Other themes: \code{\link{theme_base}},
   \code{\link{theme_foundation}}, \code{\link{theme_par}},

@@ -11,7 +11,7 @@ Linetype palette based on the linepattern scheme in Stata.
 This palette supports up to 15 values.
 }
 \seealso{
-\code{\link{scale_linetype_stata}}
+\code{\link{scale_linetype_stata}()}
 
 Other linetype stata: \code{\link{scale_linetype_stata}}
 }

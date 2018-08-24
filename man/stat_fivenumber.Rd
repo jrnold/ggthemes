@@ -70,6 +70,6 @@ The five number summary of a sample is the minimum, first quartile,
 median, third quartile, and maximum.
 }
 \seealso{
-\code{\link{stat_boxplot}}
+\code{\link[ggplot2]{stat_boxplot}()}
 }
 \keyword{datasets}

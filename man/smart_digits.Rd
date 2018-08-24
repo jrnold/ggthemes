@@ -12,17 +12,19 @@ smart_digits_format(x, ...)
 \arguments{
 \item{x}{A numeric vector to format}
 
-\item{...}{Parameters passed to \code{\link{format}}}
+\item{...}{Parameters passed to \code{\link{format}()}}
 }
 \value{
-\code{smart_digits} returns a character vector.
-\code{smart_digits_format} returns a function with a single argument \code{x}, a numeric vector, that returns a charactger vector.
+A character vector.
+\code{smart_digits_format()} returns a function with a single argument
+\code{x}, a numeric vector, that returns a charactger vector.
 }
 \description{
 Format numbers with automatic number of digits
 }
 \references{
-Josh O'Brien, \url{http://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
+Josh O'Brien,
+  \url{http://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
 }
 \author{
 Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold

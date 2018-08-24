@@ -14,7 +14,7 @@ theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 \item{horizontal}{\code{logical}. Horizontal axis lines?}
 }
 \value{
-An object of class \code{\link{theme}}.
+An object of class \code{\link[ggplot2]{theme}()}.
 }
 \description{
 Theme to replicate the ugly monstrosity that was the old

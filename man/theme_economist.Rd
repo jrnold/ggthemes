@@ -25,7 +25,7 @@ theme_economist_white(base_size = 11, base_family = "sans",
 background.}
 }
 \value{
-An object of class \code{\link{theme}}.
+An object of class \code{\link[ggplot2]{theme}()}.
 }
 \description{
 A theme that approximates the style of \emph{The Economist}.
@@ -39,7 +39,7 @@ background theme in the print \emph{The Economist} and
 panel and light gray (or white) background often used by \emph{The Economist}
 blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
 
-Use \code{\link{scale_color_economist}} with this theme.
+Use \code{\link{scale_color_economist}()} with this theme.
 The x axis should be displayed on the right hand side.
 
 \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
@@ -91,9 +91,5 @@ p + theme_economist(base_family="Verdana") +
 \item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 \item \url{http://www.economist.com/help/about-us}
 }
-}
-\seealso{
-\code{\link[latticeExtra]{theEconomist.theme}} for an Economist
-theme for lattice plots.
 }
 \concept{themes economist}

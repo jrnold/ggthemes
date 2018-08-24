@@ -57,7 +57,7 @@ fivethirtyeight_pal <- function() {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour fivethirtyeight
 #' @rdname scale_fivethirtyeight
-#' @seealso \code{\link{theme_fivethirtyeight}} for examples.
+#' @seealso \code{\link{theme_fivethirtyeight}()} for examples.
 #' @export
 scale_colour_fivethirtyeight <- function(...) {
   discrete_scale("colour", "economist", fivethirtyeight_pal(), ...)

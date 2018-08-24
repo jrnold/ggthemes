@@ -51,7 +51,7 @@ calc_pal <- function() {
 #' @family colour calc
 #' @rdname scale_calc
 #' @export
-#' @seealso See \code{\link{theme_calc}} for examples.
+#' @seealso See \code{\link{theme_calc}()} for examples.
 scale_fill_calc <- function(...) {
     discrete_scale("fill", "calc", calc_pal(), ...)
 }
@@ -82,12 +82,12 @@ calc_shape_pal <- function() {
 
 #' Calc shape scale
 #'
-#' See \code{\link{calc_shape_pal}} for details.
+#' See \code{\link{calc_shape_pal}()} for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shapes calc
 #' @export
-#' @seealso \code{\link{theme_calc}} for examples.
+#' @seealso \code{\link{theme_calc}()} for examples.
 scale_shape_calc <- function (...) {
     discrete_scale("shape", "calc", calc_shape_pal(), ...)
 }

@@ -83,7 +83,7 @@ gdocs_pal <- function() {
 #' @family colour gdocs
 #' @rdname scale_gdocs
 #' @export
-#' @seealso See \code{\link{theme_gdocs}} for examples.
+#' @seealso See \code{\link{theme_gdocs}()} for examples.
 scale_fill_gdocs <- function(...) {
   discrete_scale("fill", "gdocs", gdocs_pal(), ...)
 }

@@ -21,7 +21,7 @@
 #' Following Tremmel (1995), I replace the circle with a vertical
 #' line with an encircled plus sign.
 #'
-#' The palette \code{cleveland_shape_pal} supports up to five values.
+#' The palette \code{cleveland_shape_pal()} supports up to five values.
 #'
 #' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references
@@ -51,10 +51,10 @@ cleveland_shape_pal <- function(overlap = TRUE) {
 #' @export
 #'
 #' @family shapes
-#' @seealso \code{\link{cleveland_shape_pal}} for a description of the palette.
+#' @seealso \code{\link{cleveland_shape_pal}()} for a description of the palette.
 #' @references
-#' Cleveland WS. The Elements of Graphing Data. Revised Edition. Hobart Press, Summit, NJ, 1994,
-#' pp. 154-164, 234-239.
+#' Cleveland WS. The Elements of Graphing Data. Revised Edition.
+#' Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
 scale_shape_cleveland <- function(overlap = TRUE, ...) {
     discrete_scale("shape", "cleveland", cleveland_shape_pal(overlap), ...)
@@ -91,7 +91,7 @@ circlefill_shape_pal <- function() {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shapes
 #' @seealso
-#' \code{\link{circlefill_shape_pal}} for a description of the palette.
+#' \code{\link{circlefill_shape_pal}()} for a description of the palette.
 scale_shape_circlefill <- function(...) {
   discrete_scale("shape", "circlefill", circlefill_shape_pal(), ...)
 }
@@ -161,7 +161,7 @@ tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE, n3alt = NULL) {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams tremmel_shape_pal
 #'
-#' @seealso \code{\link{tremmel_shape_pal}} for a description of the palette.
+#' @seealso \code{\link{tremmel_shape_pal}()} for a description of the palette.
 #' @example inst/examples/ex-scale_shape_tremmel.R
 #' @family shapes
 #' @export

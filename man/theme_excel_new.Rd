@@ -12,7 +12,7 @@ theme_excel_new(base_size = 9, base_family = "sans")
 \item{base_family}{base font family}
 }
 \value{
-An object of class \code{\link{theme}}.
+An object of class \code{\link[ggplot2]{theme}()}.
 }
 \description{
 Theme for ggplot2 that is similar to the default style of charts in

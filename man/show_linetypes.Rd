@@ -8,7 +8,7 @@ show_linetypes(linetypes, labels = TRUE)
 }
 \arguments{
 \item{linetypes}{A character vector of linetypes. See
-\code{\link{par}}.}
+\code{\link{par}()}.}
 
 \item{labels}{Label each line with its linetype (lty) value.}
 }
@@ -26,5 +26,5 @@ show_linetypes(linetype_pal()(3))
 show_linetypes(linetype_pal()(3), labels = TRUE)
 }
 \seealso{
-\code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
+\code{\link[scales]{show_col}()}, \code{\link{show_linetypes}()}
 }

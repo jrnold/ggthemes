@@ -41,7 +41,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #'
 #' As written, all of these methods calculate the aspect ratio (x
 #' /y), but \code{bank_slopes} will return (y / x) to be compatible
-#' with \code{link[ggplot2]{coord_fixed}}.
+#' with \code{link[ggplot2]{coord_fixed()}}.
 #'
 #' \strong{Median Absolute Slopes Banking}
 #'
@@ -94,7 +94,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #'
 #' @return \code{numeric} The aspect ratio (x , y).
 #'
-#' @seealso \code{\link[lattice]{banking}}
+#' @seealso \code{\link[lattice]{banking}()}
 #' @export
 #' @example inst/examples/ex-bank_slopes.R
 bank_slopes <- function(x, y, cull = FALSE, weight = NULL,

@@ -1,6 +1,7 @@
 #' Clean theme for maps
 #'
-#' A clean theme that is good for displaying maps from \code{\link[ggplot2]{geom_map}}.
+#' A clean theme that is good for displaying maps from
+#' \code{\link[ggplot2]{geom_map}()}.
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @example inst/examples/ex-theme_map.R

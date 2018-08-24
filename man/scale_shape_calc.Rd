@@ -9,6 +9,9 @@ scale_shape_calc(...)
 \arguments{
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{
+  \item{palette}{A palette function that when called with a single integer
+argument (the number of levels in the scale) returns the values that
+they should take.}
   \item{breaks}{One of:
 \itemize{
 \item \code{NULL} for no breaks
@@ -31,9 +34,6 @@ value should missing be displayed as? Does not apply to position scales
 where \code{NA} is always placed at the far right.}
   \item{aesthetics}{The names of the aesthetics that this scale works with}
   \item{scale_name}{The name of the scale}
-  \item{palette}{A palette function that when called with a single integer
-argument (the number of levels in the scale) returns the values that
-they should take}
   \item{name}{The name of the scale. Used as the axis or legend title. If
 \code{waiver()}, the default, the name of the scale is taken from the first
 mapping used for that aesthetic. If \code{NULL}, the legend title will be
@@ -53,10 +53,10 @@ as output
 }}
 }
 \description{
-See \code{\link{calc_shape_pal}} for details.
+See \code{\link{calc_shape_pal}()} for details.
 }
 \seealso{
-\code{\link{theme_calc}} for examples.
+\code{\link{theme_calc}()} for examples.
 
 Other shapes calc: \code{\link{calc_shape_pal}}
 }

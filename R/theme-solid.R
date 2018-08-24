@@ -4,7 +4,7 @@
 #' This theme is when only the geometric objects are desired.
 #'
 #' @param base_size Base font size.
-#' @param base_family Ignored, kept for consistency with \code{theme}.
+#' @param base_family Ignored, kept for consistency with \code{\link{theme}()}.
 #' @param fill Background color of the plot.
 #' @family themes
 #' @example inst/examples/ex-theme_solid.R

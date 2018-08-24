@@ -65,7 +65,7 @@ tableau_color_pal <- function(palette = "Tableau 10",
 #' @family colour tableau
 #' @rdname scale_color_tableau
 #' @export
-#' @seealso \code{\link{tableau_color_pal}} for references.
+#' @seealso \code{\link{tableau_color_pal}()} for references.
 #' @example inst/examples/ex-scale_color_tableau.R
 scale_colour_tableau <- function(palette = "Tableau 10", ...) {
   discrete_scale("colour", "tableau", tableau_color_pal(palette), ...)
@@ -110,7 +110,7 @@ tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
 
 #' Tableau shape scales
 #'
-#' See \code{\link{tableau_shape_pal}} for details.
+#' See \code{\link{tableau_shape_pal}()} for details.
 #'
 #' @export
 #' @inheritParams tableau_shape_pal

@@ -11,6 +11,6 @@ Shape palette based on the symbol palette in Stata used in scheme s2mono.
 This palette supports up to 10 values.
 }
 \seealso{
-See \code{\link{scale_shape_stata}} for examples.
+See \code{\link{scale_shape_stata}()} for examples.
 }
 \concept{shapes stata}

@@ -28,9 +28,10 @@
 
 #' Canva.com color palettes
 #'
-#' 150+ color palettes from canva.com. See \code{\link{canva_palettes}}.
+#' 150+ color palettes from canva.com. See \code{\link{canva_palettes}()}.
 #'
-#' @param palette Palette name. See the names of \code{\link{canva_palettes}} for valid names.
+#' @param palette Palette name. See the names of \code{\link{canva_palettes}()}
+#'   for valid names.
 #' @return A function that takes a single value, the number of colors to use.
 #' @export
 #' @example inst/examples/ex-canva_pal.R
@@ -43,9 +44,10 @@ canva_pal <- function(palette = "Fresh and bright") {
 
 #' Discrete color scale using canva.com color palettes
 #'
-#' Color scale for canva.com color palettes described in \code{\link{canva_palettes}}.
+#' Color scale for canva.com color palettes described in
+#' \code{\link{canva_palettes}()}.
 #'
-#' @param ... Arguments passed to \code{\link{discrete_scale}}.
+#' @param ... Arguments passed to \code{\link{discrete_scale}()}.
 #' @inheritParams canva_pal
 #' @export
 scale_colour_canva <- function(..., palette = "Fresh and bright") {

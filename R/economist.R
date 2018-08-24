@@ -74,7 +74,7 @@ economist_pal <- function(fill=TRUE) {
 #' @inheritParams economist_pal
 #' @family colour economist
 #' @rdname scale_economist
-#' @seealso \code{\link{theme_economist}} for examples.
+#' @seealso \code{\link{theme_economist}()} for examples.
 #' @export
 scale_colour_economist <- function(...) {
   discrete_scale("colour", "economist", economist_pal(), ...)
@@ -102,7 +102,7 @@ scale_fill_economist <- function(...) {
 #' panel and light gray (or white) background often used by \emph{The Economist}
 #' blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
 #'
-#' Use \code{\link{scale_color_economist}} with this theme.
+#' Use \code{\link{scale_color_economist}()} with this theme.
 #' The x axis should be displayed on the right hand side.
 #'
 #' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
@@ -116,7 +116,7 @@ scale_fill_economist <- function(...) {
 #'    use white
 #' background.
 #'
-#' @return An object of class \code{\link[ggplot2]{theme}}.
+#' @return An object of class \code{\link[ggplot2]{theme}()}.
 #'
 #' @export
 #' @family themes economist
@@ -127,9 +127,6 @@ scale_fill_economist <- function(...) {
 #' \item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 #' \item \url{http://www.economist.com/help/about-us}
 #' }
-#'
-#' @seealso \code{\link[latticeExtra]{theEconomist.theme}} for an Economist
-#' theme for lattice plots.
 #'
 #' @example inst/examples/ex-theme_economist.R
 theme_economist <- function(base_size = 10, base_family = "sans",

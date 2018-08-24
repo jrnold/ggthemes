@@ -47,7 +47,7 @@ few_pal <- function(palette = "Medium") {
 
 #' Color scales from Few's "Practical Rules for Using Color in Charts"
 #'
-#' See \code{\link{few_pal}}.
+#' See \code{\link{few_pal}()}.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams few_pal
@@ -125,17 +125,15 @@ few_shape_pal <- function() {
 
 #' Scales for shapes from "Show Me the Numbers"
 #'
-#' \code{scale_shape_few} maps discrete variables to five easily
+#' \code{scale_shape_few()} maps discrete variables to up to five easily
 #' discernible shapes. It is based on the shape palette suggested in
 #' Few (2012).
 #'
-#' @param ... Common \code{discrete_scale} parameters. See
-#'   \code{\link[ggplot2]{discrete_scale}} for more details.
-#'
+#' @param ... Common \code{\link[ggplot2]{discrete_scale}()} parameters.
 #' @references Few, S. (2012)
 #'   \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
 #'   Analytics Press, p. 208.
-#' @seealso \code{\link{scale_shape_few}} for the shape palette that this
+#' @seealso \code{\link{scale_shape_few}()} for the shape palette that this
 #'   scale uses.
 #' @export
 scale_shape_few <- function(...) {

@@ -8,7 +8,7 @@ show_shapes(shapes, labels = TRUE)
 }
 \arguments{
 \item{shapes}{A numeric or character vector of shapes. See
-\code{\link{par}}.}
+\code{\link[graphics]{par}()}.}
 
 \item{labels}{Include the plotting character value of the symbol.}
 }
@@ -26,5 +26,5 @@ show_shapes(shape_pal()(5))
 show_shapes(shape_pal()(3), labels = TRUE)
 }
 \seealso{
-\code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
+\code{\link[scales]{show_col}()}, \code{\link{show_linetypes}()}
 }

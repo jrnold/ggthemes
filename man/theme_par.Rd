@@ -3,8 +3,8 @@
 \name{theme_par}
 \alias{theme_par}
 \title{Theme which uses the current \sQuote{base} graphics parameter values
-from \code{\link{par}}.
-Not all \code{par} parameters, are supported, and not all are relevant to
+from \code{\link[graphics]{par}()}.
+Not all \code{par()} parameters, are supported, and not all are relevant to
 \pkg{ggplot2} themes.}
 \usage{
 theme_par(base_size = par()$ps, base_family = par()$family)

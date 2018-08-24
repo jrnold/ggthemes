@@ -217,7 +217,7 @@ palette_pander <- function(n, random_order = FALSE) {
 #' @inheritParams palette_pander
 #' @family colour pander
 #' @rdname scale_pander
-#' @seealso \code{\link{theme_pander}}
+#' @seealso \code{\link{theme_pander}()}
 #' @export
 scale_color_pander <- function(...) {
   discrete_scale("colour", "pander", palette_pander, ...)

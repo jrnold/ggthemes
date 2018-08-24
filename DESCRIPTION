@@ -32,7 +32,6 @@ Suggests:
     glue,
     knitr,
     lattice,
-    latticeExtras,
     lintr,
     maps,
     mapproj,

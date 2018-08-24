@@ -22,7 +22,7 @@ stata_pal <- function(scheme="s2color") {
 
 #' Stata color scales
 #'
-#' See \code{\link{stata_pal}} for details.
+#' See \code{\link{stata_pal}()} for details.
 #'
 #' @inheritParams stata_pal
 #' @inheritParams ggplot2::scale_colour_hue
@@ -241,7 +241,7 @@ theme_stata <- function(base_size = 11, base_family = "sans",
 #'
 #' @export
 #' @family shapes stata
-#' @seealso See \code{\link{scale_shape_stata}} for examples.
+#' @seealso See \code{\link{scale_shape_stata}()} for examples.
 #' @importFrom purrr map_dfr map
 #' @importFrom tibble as_tibble
 #' @importFrom stringr str_replace
@@ -262,7 +262,7 @@ stata_shape_pal <- function() {
 
 #' Stata shape scale
 #'
-#' See \code{\link{stata_shape_pal}} for details.
+#' See \code{\link{stata_shape_pal}()} for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shape stata
@@ -279,7 +279,7 @@ scale_shape_stata <- function(...) {
 #'
 #' @family linetype stata
 #' @export
-#' @seealso \code{\link{scale_linetype_stata}}
+#' @seealso \code{\link{scale_linetype_stata}()}
 stata_linetype_pal <- function() {
   values <- ggthemes::ggthemes_data[["stata"]][["linetypes"]]
   f <- function(n) {
@@ -291,7 +291,7 @@ stata_linetype_pal <- function() {
 
 #' Stata linetype palette (discrete)
 #'
-#' See \code{\link{stata_linetype_pal}} for details.
+#' See \code{\link{stata_linetype_pal}()} for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family linetype stata

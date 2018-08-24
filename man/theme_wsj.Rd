@@ -21,7 +21,7 @@ theme_wsj(base_size = 12, color = "brown", base_family = "sans",
 Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \details{
-This theme should be used with \code{\link{scale_color_wsj}}.
+This theme should be used with \code{\link{scale_color_wsj}()}.
 }
 \examples{
 library("ggplot2")

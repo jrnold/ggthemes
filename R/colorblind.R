@@ -11,8 +11,8 @@
 #' @export
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour
-#' @seealso The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}},
-#'  and \code{\link{scale_color_tableau}} for other colorblind palettes.
+#' @seealso The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}()},
+#'   and \code{\link{scale_color_tableau}()} for other colorblind palettes.
 #' @example inst/examples/ex-colorblind.R
 colorblind_pal <- function() {
   values <- unname(ggthemes::ggthemes_data[["colorblind"]][["value"]])

@@ -15,6 +15,9 @@ scale_color_gdocs(...)
 \arguments{
 \item{...}{Arguments passed on to \code{discrete_scale}
 \describe{
+  \item{palette}{A palette function that when called with a single integer
+argument (the number of levels in the scale) returns the values that
+they should take.}
   \item{breaks}{One of:
 \itemize{
 \item \code{NULL} for no breaks
@@ -36,9 +39,6 @@ from a discrete scale, specify \code{na.translate = FALSE}.}
 value should missing be displayed as? Does not apply to position scales
 where \code{NA} is always placed at the far right.}
   \item{scale_name}{The name of the scale}
-  \item{palette}{A palette function that when called with a single integer
-argument (the number of levels in the scale) returns the values that
-they should take}
   \item{name}{The name of the scale. Used as the axis or legend title. If
 \code{waiver()}, the default, the name of the scale is taken from the first
 mapping used for that aesthetic. If \code{NULL}, the legend title will be
@@ -69,7 +69,7 @@ scales, "top" or "bottom" for horizontal scales}
 Color scales from Google Docs.
 }
 \seealso{
-See \code{\link{theme_gdocs}} for examples.
+See \code{\link{theme_gdocs}()} for examples.
 
 Other colour gdocs: \code{\link{gdocs_pal}}
 }
