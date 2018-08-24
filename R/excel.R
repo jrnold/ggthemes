@@ -95,7 +95,7 @@ scale_fill_excel_new <- function(theme = "Office Theme", ...) {
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @param horizontal \code{logical}. Horizontal axis lines?
-#' @return An object of class \code{\link{theme}}.
+#' @return An object of class \code{\link[ggplot2]{theme}}.
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel.R
@@ -127,7 +127,7 @@ theme_excel <- function(base_size = 12, base_family = "",
 #' current versions of Microsoft Excel.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return An object of class \code{\link{theme}}.
+#' @return An object of class \code{\link[ggplot2]{theme}}.
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel_new.R

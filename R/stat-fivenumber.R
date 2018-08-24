@@ -14,7 +14,7 @@
 #'   \item{middle}{median, 50\% quantile}
 #'   \item{upper}{upper hinge, 75\% quantile}
 #'   \item{max}{maximum}
-#' @seealso \code{\link{stat_boxplot}}
+#' @seealso \code{\link[ggplot2]{stat_boxplot}}
 #' @export
 #'
 stat_fivenumber <- function(mapping = NULL,

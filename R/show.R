@@ -4,7 +4,7 @@
 #'
 #' @export
 #' @param shapes A numeric or character vector of shapes. See
-#' \code{\link{par}}.
+#' \code{\link[graphics]{par}}.
 #' @param labels Include the plotting character value of the symbol.
 #' @seealso \code{\link[scales]{show_col}}, \code{\link{show_linetypes}}
 #' @return This function called for the side effect of creating a plot.

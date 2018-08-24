@@ -116,7 +116,7 @@ scale_fill_economist <- function(...) {
 #'    use white
 #' background.
 #'
-#' @return An object of class \code{\link{theme}}.
+#' @return An object of class \code{\link[ggplot2]{theme}}.
 #'
 #' @export
 #' @family themes economist

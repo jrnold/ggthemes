@@ -359,7 +359,7 @@ theme_base <- function(base_size = 16, base_family = "") {
 # #' Theme Par
 #'
 #' Theme which uses the current \sQuote{base} graphics parameter values
-#' from \code{\link{par}}.
+#' from \code{\link[graphics]{par}}.
 #' Not all \code{par} parameters, are supported, and not all are relevant to
 #' \pkg{ggplot2} themes.
 #'

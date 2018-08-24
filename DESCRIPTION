@@ -31,6 +31,8 @@ Suggests:
     extrafont,
     glue,
     knitr,
+    lattice,
+    latticeExtras,
     lintr,
     maps,
     mapproj,

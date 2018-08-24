@@ -83,8 +83,8 @@ scale_color_solarized <- scale_colour_solarized
 #' Beamer color theme.
 #' \url{https://github.com/jrnold/beamercolorthemesolarized}.
 #' There are two variations: \code{theme_solarized} is similar to
-#' to \code{\link{theme_bw}}, while \code{theme_solarized_2} is similar to
-#' \code{\link{theme_gray}}.
+#' to \code{\link[ggplot2]{theme_bw}}, while \code{theme_solarized_2} is similar to
+#' \code{\link[ggplot2]{theme_gray}}.
 #'
 #' @rdname theme_solarized
 #' @inheritParams ggplot2::theme_grey
