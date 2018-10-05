@@ -34,7 +34,7 @@
 #' @family colour tableau
 #' @example inst/examples/ex-tableau_color_pal.R
 tableau_color_pal <- function(palette = "Tableau 10",
-                              type = c("regular", "ordered-seqential",
+                              type = c("regular", "ordered-sequential",
                                        "ordered-diverging"),
                               direction = 1) {
   type <- match.arg(type)

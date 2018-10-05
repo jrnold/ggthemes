@@ -5,7 +5,7 @@
 \title{Tableau Color Palettes (discrete)}
 \usage{
 tableau_color_pal(palette = "Tableau 10", type = c("regular",
-  "ordered-seqential", "ordered-diverging"), direction = 1)
+  "ordered-sequential", "ordered-diverging"), direction = 1)
 }
 \arguments{
 \item{palette}{Palette name. See Details for available palettes.}
