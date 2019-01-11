@@ -19,7 +19,8 @@ An object of class \code{\link[ggplot2]{theme}()}.
 \description{
 Theme to replicate the ugly monstrosity that was the old
 gray-background Excel chart. Please never use this.
-This should be combined with
+This theme should be combined with the \code{\link{scale_colour_excel}()}
+color scale.
 }
 \examples{
 library("ggplot2")

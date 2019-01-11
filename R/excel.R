@@ -91,7 +91,8 @@ scale_fill_excel_new <- function(theme = "Office Theme", ...) {
 #'
 #' Theme to replicate the ugly monstrosity that was the old
 #' gray-background Excel chart. Please never use this.
-#' This should be combined with
+#' This theme should be combined with the \code{\link{scale_colour_excel}()}
+#' color scale.
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @param horizontal \code{logical}. Horizontal axis lines?
