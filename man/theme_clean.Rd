@@ -7,7 +7,9 @@
 theme_clean(base_size = 12, base_family = "sans")
 }
 \arguments{
-\item{base_family}{}
+\item{base_size}{Base font size.}
+
+\item{base_family}{Base font family.}
 }
 \description{
 Clean ggplot theme with no panel background, black axis lines

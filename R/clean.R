@@ -5,8 +5,8 @@
 #'
 #' @author Konrad Zdeb \email{name.surname@@me.com}
 #'
-#' @param base_size
-#' @param base_family
+#' @param base_size Base font size.
+#' @param base_family Base font family.
 #'
 #' @family themes
 #' @export
@@ -32,6 +32,12 @@ theme_clean <- function(base_size = 12,
                        panel.grid.minor = element_blank(),
                        panel.grid.major.y = element_line(colour = "gray", linetype = "dotted"),
                        panel.grid.major.x = element_blank(),
+                       panel.background = element_rect(),
+                       panel.border = element_blank(),
+                       strip.background = element_rect(linetype = 0),
+                       strip.text = element_text(),
+                       strip.text.x = element_text(vjust = 0.5),
+                       strip.text.y = element_text(angle = -90),
                        legend.text = element_text(size = 13, family = "sans"),
                        legend.title = element_text(
                          size = 13,
@@ -39,14 +45,9 @@ theme_clean <- function(base_size = 12,
                          family = "sans"
                        ),
                        legend.position = "right",
-                       legend.key = element_rect(fill = "white"),
+                       legend.key = element_rect(fill = "white", colour = NA),
                        legend.background = element_rect(colour = "black"),
                        plot.background = element_rect(colour = "black"),
-                       panel.background = element_rect(
-                         colour = "black",
-                         size = 1,
-                         linetype = "solid"
-                       ),
                        plot.title = element_text(size = 16, face = "bold"),
                        plot.subtitle = element_text(size = 14)
                      )
