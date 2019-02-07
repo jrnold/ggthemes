@@ -45,6 +45,7 @@ p + theme_par()
 }
 \seealso{
 Other themes: \code{\link{theme_base}},
+  \code{\link{theme_clean}},
   \code{\link{theme_foundation}},
   \code{\link{theme_igray}}, \code{\link{theme_solid}}
 }

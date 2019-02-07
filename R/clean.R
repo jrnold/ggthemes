@@ -32,7 +32,6 @@ theme_clean <- function(base_size = 12,
                        panel.grid.minor = element_blank(),
                        panel.grid.major.y = element_line(colour = "gray", linetype = "dotted"),
                        panel.grid.major.x = element_blank(),
-                       plot.background = element_rect(colour = "black"),
                        legend.text = element_text(size = 13, family = "sans"),
                        legend.title = element_text(
                          size = 13,
