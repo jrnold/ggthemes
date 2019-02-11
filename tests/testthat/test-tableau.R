@@ -50,8 +50,32 @@ test_that("scale_colour_tableau works", {
   expect_is(scale_colour_tableau(), "ScaleDiscrete")
 })
 
+test_that("scale_colour_tableau works with diverging scales", {
+  expect_is(scale_colour_tableau(type = "ordered-diverging",
+                                 palette = "Orange-Blue Diverging"),
+            "ScaleDiscrete")
+})
+
+test_that("scale_colour_tableau works with sequential scales", {
+  expect_is(scale_colour_tableau(type = "ordered-sequential",
+                                 palette = "Blue-Green Sequential"),
+            "ScaleDiscrete")
+})
+
 test_that("scale_fill_tableau works", {
   expect_is(scale_fill_tableau(), "ScaleDiscrete")
+})
+
+test_that("scale_fill_tableau works with diverging scales", {
+  expect_is(scale_fill_tableau(type = "ordered-diverging",
+                               palette = "Orange-Blue Diverging"),
+            "ScaleDiscrete")
+})
+
+test_that("scale_fill_tableau works with sequential scales", {
+  expect_is(scale_fill_tableau(type = "ordered-sequential",
+                               palette = "Blue-Green Sequential"),
+            "ScaleDiscrete")
 })
 
 test_that("tableau_gradient_pal works", {
