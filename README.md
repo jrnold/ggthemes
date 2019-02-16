@@ -7,7 +7,7 @@
 
 
 Some extra geoms, scales, and themes for
-[ggplot](http://ggplot2.org), including:
+[ggplot](http://ggplot2.org).
 
 
 ## Install 
