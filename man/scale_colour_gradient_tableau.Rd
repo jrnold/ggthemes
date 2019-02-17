@@ -6,7 +6,7 @@
 \alias{scale_color_gradient_tableau}
 \alias{scale_color_continuous_tableau}
 \alias{scale_fill_continuous_tableau}
-\title{Tableau sequential colour scale (continuous)}
+\title{Tableau sequential colour scales (continuous)}
 \usage{
 scale_colour_gradient_tableau(palette = "Blue", ...,
   na.value = "grey50", guide = "colourbar")
@@ -38,7 +38,10 @@ scale_fill_continuous_tableau(palette = "Blue", ...,
 colour bar, or \code{'legend'} for discrete colour legend.}
 }
 \description{
-Tableau sequential colour scale (continuous)
+Continuous color scales using the sequential color palettes in Tableau.
+See \funclink{scale_colour_tableau} for Tableau discrete color scales,
+and \funclink{scale_colour_gradient2_tableau} for diverging color
+scales.
 }
 \examples{
 library("ggplot2")
