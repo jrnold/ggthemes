@@ -19,7 +19,7 @@ colors. If -1, then reverse the order.}
 Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 }
 \details{
-Tableau provides types of color palettes:
+Tableau provides three types of color palettes:
 \code{"regular"} (discrete, qualitative categories),
 \code{"ordered-sequential"}, and \code{"ordered-diverging"}.
 

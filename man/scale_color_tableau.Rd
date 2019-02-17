@@ -4,11 +4,11 @@
 \alias{scale_colour_tableau}
 \alias{scale_fill_tableau}
 \alias{scale_color_tableau}
-\title{Tableau color scales}
+\title{Tableau color scales (discrete)}
 \usage{
 scale_colour_tableau(palette = "Tableau 10", ...)
 
-scale_fill_tableau(palette = "Tableau 10", ...)
+scale_fill_tableau(palette = "Tableau 10", type = "regular", ...)
 
 scale_color_tableau(palette = "Tableau 10", ...)
 }
@@ -66,9 +66,15 @@ expand the scale by 5\% on each side for continuous variables, and by
 scales, "top" or "bottom" for horizontal scales}
   \item{super}{The super class to use for the constructed scale}
 }}
+
+\item{type}{Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.}
 }
 \description{
-Categorical color scales from Tableau.
+Categorical (qualitative) color scales used in Tableau.
+See \funclink{tableau_color_pal} for details.
+Use the function \funclink{scale_colour_gradient_tableau} for the sequential
+and \funclink{scale_colour_gradient2_tableau} for the diverging continuous
+color scales from Tableu.
 }
 \examples{
 library("ggplot2")

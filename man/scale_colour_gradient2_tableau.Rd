@@ -30,7 +30,9 @@ scale_color_gradient2_tableau(palette = "Orange-Blue Diverging", ...,
 colour bar, or \code{'legend'} for discrete colour legend.}
 }
 \description{
-Tableau diverging colour scales (continuous)
+Continuous color scales using the diverging color scales in Tableau.
+See \funclink{scale_colour_tableau} for Tabaleau discrete color scales,
+and \funclink{scale_colour_gradient_tableau} for sequential color scales.
 }
 \examples{
 library("ggplot2")

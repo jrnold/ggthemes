@@ -2,7 +2,7 @@
 #'
 #' Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
 #'
-#' @details Tableau provides types of color palettes:
+#' @details Tableau provides three types of color palettes:
 #' \code{"regular"} (discrete, qualitative categories),
 #' \code{"ordered-sequential"}, and \code{"ordered-diverging"}.
 #'
@@ -56,11 +56,16 @@ tableau_color_pal <- function(palette = "Tableau 10",
   f
 }
 
-#' Tableau color scales
+#' Tableau color scales (discrete)
 #'
-#' Categorical color scales from Tableau.
+#' Categorical (qualitative) color scales used in Tableau.
+#' See \funclink{tableau_color_pal} for details.
+#' Use the function \funclink{scale_colour_gradient_tableau} for the sequential
+#' and \funclink{scale_colour_gradient2_tableau} for the diverging continuous
+#' color scales from Tableu.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
+#' @param palette Palette name. See Details for available palettes.
 #' @inheritParams tableau_color_pal
 #' @family colour tableau
 #' @rdname scale_color_tableau
@@ -68,13 +73,16 @@ tableau_color_pal <- function(palette = "Tableau 10",
 #' @seealso \code{\link{tableau_color_pal}()} for references.
 #' @example inst/examples/ex-scale_color_tableau.R
 scale_colour_tableau <- function(palette = "Tableau 10", ...) {
-  discrete_scale("colour", "tableau", tableau_color_pal(palette), ...)
+  discrete_scale("colour", "tableau", tableau_color_pal(palette, "regular"),
+                 ...)
 }
 
 #' @export
 #' @rdname scale_color_tableau
-scale_fill_tableau <- function(palette = "Tableau 10", ...) {
-  discrete_scale("fill", "tableau", tableau_color_pal(palette), ...)
+scale_fill_tableau <- function(palette = "Tableau 10",
+                               type = "regular",
+                               ...) {
+  discrete_scale("fill", "tableau", tableau_color_pal(palette, "regular"), ...)
 }
 
 #' @export
@@ -123,6 +131,10 @@ scale_shape_tableau <- function(palette = "default", ...) {
 
 #' Tableau colour gradient palettes (continuous)
 #'
+#' Gradient color palettes using the diverging and sequential continous color
+#' palettes in Tableau. See \funclink{tableau_color_pal} for discrete color
+#' palettes.
+#'
 #' @param palette Palette name.
 #'  \itemize{
 #'  \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
@@ -155,7 +167,12 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
   tableau_gradient_pal(palette = palette, type = "ordered-diverging", ...)
 }
 
-#' Tableau sequential colour scale (continuous)
+#' Tableau sequential colour scales (continuous)
+#'
+#' Continuous color scales using the sequential color palettes in Tableau.
+#' See \funclink{scale_colour_tableau} for Tableau discrete color scales,
+#' and \funclink{scale_colour_gradient2_tableau} for diverging color
+#' scales.
 #'
 #' @export
 #' @inheritParams tableau_seq_gradient_pal
@@ -202,6 +219,10 @@ scale_color_continuous_tableau <- scale_colour_gradient_tableau
 scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 
 #' Tableau diverging colour scales (continuous)
+#'
+#' Continuous color scales using the diverging color scales in Tableau.
+#' See \funclink{scale_colour_tableau} for Tabaleau discrete color scales,
+#' and \funclink{scale_colour_gradient_tableau} for sequential color scales.
 #'
 #' @inheritParams tableau_div_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue

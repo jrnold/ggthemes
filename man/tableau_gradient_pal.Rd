@@ -25,7 +25,9 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 \item{...}{Arguments passed to \code{tableau_gradient_pal}.}
 }
 \description{
-Tableau colour gradient palettes (continuous)
+Gradient color palettes using the diverging and sequential continous color
+palettes in Tableau. See \funclink{tableau_color_pal} for discrete color
+palettes.
 }
 \examples{
 library("scales")
