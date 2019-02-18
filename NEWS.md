@@ -1,3 +1,8 @@
+# ggthemes 4.1.0
+
+-   Add `type` argument to `scale_color_tableau` so that sequential and diverging
+    palettes can be used in discrete scales. (Thanks @onesandzeroes, #108)
+
 # ggthemes 4.0.1
 
 -   Fix bugs in `tableau_color_pal()`. Wrong colors in "Tableau 20" theme
