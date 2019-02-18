@@ -195,4 +195,4 @@ ggthemes_data$hc <- load_hc()
 
 ggthemes_data <- as.list(ggthemes_data)
 
-devtools::use_data(ggthemes_data, overwrite = TRUE)
+usethis::use_data(ggthemes_data, overwrite = TRUE)
