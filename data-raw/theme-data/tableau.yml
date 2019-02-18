@@ -787,7 +787,7 @@
       - {name: "Light Pink", value: "#e6b9d9"}
       - {name: "Light Pink", value: "#e0b2d2"}
       - {name: "Light Pink", value: "#daabcb"}
-      - {name: "Light Pink", value: "#d54ac4"}
+      - {name: "Light Pink", value: "#d5a4c4"}
       - {name: "Light Pink", value: "#cf9dbe"}
       - {name: "Light Pink", value: "#ca96b8"}
       - {name: "Light Pink", value: "#c48fb2"}
@@ -884,7 +884,7 @@
       - {name: "Blue", value: "#3b96b2"}
       - {name: "Blue", value: "#358ead"}
       - {name: "Blue", value: "#3586a7"}
-      - {name: "Blue", value: "#e47ea1"}
+      - {name: "Blue", value: "#347ea1"}
       - {name: "Blue", value: "#32779b"}
       - {name: "Blue", value: "#316f96"}
       - {name: "Blue", value: "#2f6790"}
