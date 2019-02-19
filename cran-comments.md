@@ -1,5 +1,8 @@
 ## R CMD check notes
 
+-   "Author field differs from that derived from Authors@R" is due to use of
+    an ORCID identifier.
+
 -   "found ... marked UTF-8 strings": The UTF strings are necessary to the package.
     They encode specific non-ASCII characters to use as symbols.
 
