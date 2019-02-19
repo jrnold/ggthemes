@@ -5,6 +5,9 @@
 
 -   URLs from jstor.org and twitpic.com are valid but sometimes return status 
     391 or 503 due to redirection.
+    
+-   Sometimes https://policyviz.com/2017/01/12/150-color-palettes-for-excel/
+    times out.
 
 -   In `DESCRIPTION`, the words "Geoms", "Stata", "Tufte", "Tufte's", 
     and "geoms" are not mis-spelled.
