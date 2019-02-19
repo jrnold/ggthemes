@@ -43,6 +43,7 @@ scale_fill_stata <- function(scheme="s2color", ...) {
 #' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
 
+#' @importFrom ggplot2 margin
 theme_stata_base <- function(base_size = 11, base_family = "sans") {
   ## Sizes
   relsz <- sapply(as.numeric(stata_gsize), `/`,
@@ -268,6 +269,7 @@ stata_shape_pal <- function() {
 #' @family shape stata
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
+#' @importFrom ggplot2 discrete_scale
 scale_shape_stata <- function(...) {
   discrete_scale("shape", "stata", stata_shape_pal(), ...)
 }

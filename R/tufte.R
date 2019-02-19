@@ -23,6 +23,7 @@
 #' @family themes tufte
 #' @example inst/examples/ex-theme_tufte.R
 #' @export
+#' @importFrom ggplot2 theme_bw
 theme_tufte <- function(base_size = 11, base_family = "serif", ticks = TRUE) {
   ## TODO: start with theme_minimal
   ret <- theme_bw(base_family = base_family, base_size = base_size) +

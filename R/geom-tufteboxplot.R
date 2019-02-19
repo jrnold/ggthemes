@@ -101,9 +101,10 @@ geom_tufteboxplot <-
 #' @usage NULL
 #' @format NULL
 #' @export
+#' @importFrom ggplot2 draw_key_pointrange
 GeomTufteboxplot <-
-  ggproto("GeomTufteboxplot",
-          GeomBoxplot,
+  ggplot2::ggproto("GeomTufteboxplot",
+           ggplot2::GeomBoxplot,
           setup_data = function(self, data, params) {
             data <- ggproto_parent(GeomBoxplot, self)$setup_data(data, params)
             x_range <- diff(range(data$x))
@@ -211,8 +212,8 @@ GeomTufteboxplot <-
                      middle_grob
                    ))
           },
-          draw_legend = draw_key_pointrange,
-          default_aes = aes(weight = 1,
+          draw_legend = ggplot2::draw_key_pointrange,
+          default_aes = ggplot2::aes(weight = 1,
                             colour = "black",
                             fill = "grey20",
                             size = 0.5,

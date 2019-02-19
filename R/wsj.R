@@ -17,6 +17,7 @@
 #' @family themes wsj
 #' @example inst/examples/ex-theme_wsj.R
 #' @export
+#' @importFrom ggplot2 element_line element_rect element_text element_blank rel
 theme_wsj <- function(base_size = 12,
                       color = "brown",
                       base_family = "sans",

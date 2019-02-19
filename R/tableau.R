@@ -185,6 +185,7 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
 #' @family colour tableau
 #' @rdname scale_colour_gradient_tableau
 #' @example inst/examples/ex-scale_colour_gradient_tableau.R
+#' @importFrom ggplot2 continuous_scale
 scale_colour_gradient_tableau <- function(palette = "Blue",
                                           ...,
                                           na.value = "grey50",

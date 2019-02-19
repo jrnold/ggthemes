@@ -1,4 +1,5 @@
 context("few")
+library("ggplot2")
 
 test_that("few_shape_pal works", {
   out <- few_shape_pal()

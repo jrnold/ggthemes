@@ -6,6 +6,7 @@
 #' @inheritParams ggplot2::theme_grey
 #' @example inst/examples/ex-theme_map.R
 #' @export
+#' @importFrom ggplot2 %+replace%
 theme_map <- function(base_size = 9, base_family = "") {
   theme_bw(base_size = base_size, base_family = base_family) %+replace%
     theme(axis.line = element_blank(),

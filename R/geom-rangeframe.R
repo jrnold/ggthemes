@@ -20,6 +20,7 @@
 #' Quantitative Information, Chapter 6.
 #'
 #' @family geom tufte
+#' @importFrom ggplot2 layer
 #' @example inst/examples/ex-geom_rangeframe.R
 geom_rangeframe <- function(mapping = NULL,
                             data = NULL,
@@ -51,7 +52,8 @@ geom_rangeframe <- function(mapping = NULL,
 #' @usage NULL
 #' @format NULL
 #' @export
-GeomRangeFrame <- ggproto("GeomRangeFrame", Geom,
+#' @importFrom ggplot2 Geom
+GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame", ggplot2::Geom,
   optional_aes = c("x", "y"),
 
   draw_panel = function(data, panel_scales, coord, sides = "bl") {
@@ -101,8 +103,8 @@ GeomRangeFrame <- ggproto("GeomRangeFrame", Geom,
     }
     ggname("geom_rangeframe", gTree(children = do.call("gList", rugs)))
   },
-  default_aes = aes(colour = "black", size = 0.5,
-                    linetype = 1, alpha = NA),
+  default_aes = ggplot2::aes(colour = "black", size = 0.5,
+                             linetype = 1, alpha = NA),
 
-  draw_key = draw_key_path
+  draw_key = ggplot2::draw_key_path
 )

@@ -7,6 +7,7 @@
 #' @family themes fivethirtyeight
 #' @export
 #' @example inst/examples/ex-theme_fivethirtyeight.R
+#' @importFrom grid unit
 theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
   colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
   (theme_foundation(base_size = base_size, base_family = base_family)

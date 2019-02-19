@@ -16,7 +16,6 @@
 #'   \item{max}{maximum}
 #' @seealso \code{\link[ggplot2]{stat_boxplot}()}
 #' @export
-#'
 stat_fivenumber <- function(mapping = NULL,
                             data = NULL,
                             geom = "boxplot",
@@ -47,7 +46,7 @@ stat_fivenumber <- function(mapping = NULL,
 #' @format NULL
 #' @usage NULL
 #' @rdname stat_fivenumber
-StatFivenumber <- ggproto("StatFivenumber", Stat,
+StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat,
   required_aes = "y",
 
   non_missing_aes = "weight",
