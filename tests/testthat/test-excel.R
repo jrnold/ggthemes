@@ -5,7 +5,6 @@ test_that("excel_clasic_pal works", {
   n <- 5L
   values <- pal(n)
   expect_is(values, "character")
-  expect_true(all(values < 0))
   expect_equal(length(values), n)
 })
 
@@ -14,7 +13,6 @@ test_that("excel_clasic_pal with line = TRUE works", {
   n <- 5L
   values <- pal(n)
   expect_is(values, "character")
-  expect_true(all(values < 0))
   expect_equal(length(values), n)
 })
 
@@ -27,7 +25,6 @@ test_that("excel_new_pal works", {
   n <- 5L
   vals <- pal(n)
   expect_is(vals, "character")
-  expect_true(all(vals < 0))
   expect_equal(length(vals), n)
 })
 
