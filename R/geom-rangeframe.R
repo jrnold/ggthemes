@@ -53,6 +53,7 @@ geom_rangeframe <- function(mapping = NULL,
 #' @format NULL
 #' @export
 #' @importFrom ggplot2 Geom
+#' @importFrom scales alpha
 GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame", ggplot2::Geom,
   optional_aes = c("x", "y"),
 
