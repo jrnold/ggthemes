@@ -62,7 +62,7 @@ GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame", ggplot2::Geom,
     data <- coord[["transform"]](data, panel_scales)
     gp <- gpar(col = alpha(data[["colour"]], data[["alpha"]]),
                lty = data[["linetype"]],
-               lwd = data[["size"]] * .pt)
+               lwd = data[["size"]] * ggplot2::.pt)
     if (!is.null(data[["x"]])) {
       if (grepl("b", sides)) {
         rugs[["x_b"]] <- ggname("range_x_b",
