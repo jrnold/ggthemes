@@ -8,22 +8,21 @@ addons:
     packages:
       - libfreetype6
 
-r:
-- oldrel
-- release
-- devel
+matrix:
+  include:
+  - r: devel
+    # avoind errors due to world clock API (hopefully can be removed in future)
+    env: _R_CHECK_SYSTEM_CLOCK_=false
+  - r: release
+  - r: oldrel
 
-# work around temporary travis + R 3.5 bug
-r_packages: devtools
-
-# Install manually because dev vdiffr is not compatible with Appveyor yet
-r_github_packages:
-- lionel-/vdiffr
-- tidyverse/ggplot2
-
+# environment variables set for all builds
 env:
   global:
+  # don't treat missing suggested packages as error
   - _R_CHECK_FORCE_SUGGESTS_=false
+  # switch off vdiffr by default
+  - VDIFFR_RUN_TESTS=false
 
 after_success:
   - Rscript -e 'covr::codecov()'
