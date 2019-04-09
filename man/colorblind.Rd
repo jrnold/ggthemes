@@ -83,7 +83,7 @@ p + theme_igray() + scale_colour_colorblind()
 \references{
 Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook for R}"
 
-\url{http://jfly.iam.u-tokyo.ac.jp/color}
+\verb{http://jfly.iam.u-tokyo.ac.jp/color}
 }
 \seealso{
 The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}()},
