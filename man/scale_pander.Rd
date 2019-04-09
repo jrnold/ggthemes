@@ -67,7 +67,7 @@ scales, "top" or "bottom" for horizontal scales}
 }
 \description{
 The \pkg{pander} ships with a default colorblind and printer-friendly color
-palette borrowed from \url{http://jfly.iam.u-tokyo.ac.jp/color/}.
+palette borrowed from \verb{http://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 \seealso{
 \code{\link{theme_pander}()}
