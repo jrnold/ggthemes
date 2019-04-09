@@ -1,3 +1,8 @@
+# ggthemes 4.1.1
+
+-   Fix bugs in `geom_rangeframe` and `geom_tufteboxplot` caused by 
+    failing to import `alpha`. (Thanks @flying-sheep, #110)
+
 # ggthemes 4.1.0
 
 -   Add `type` argument to `scale_color_tableau` so that sequential and diverging
