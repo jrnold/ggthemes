@@ -28,7 +28,7 @@ and-non colour defaults of the default \pkg{ggplot2} themes in place.
 }
 \seealso{
 Other themes: \code{\link{theme_base}},
-  \code{\link{theme_igray}}, \code{\link{theme_par}},
-  \code{\link{theme_solid}}
+  \code{\link{theme_clean}}, \code{\link{theme_igray}},
+  \code{\link{theme_par}}, \code{\link{theme_solid}}
 }
 \concept{themes}
