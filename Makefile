@@ -11,7 +11,7 @@ test:
 
 .PHONY: docs
 docs:
-	$(RSCRIPT) -e 'devtools::build_docs()'
+	$(RSCRIPT) -e 'devtools::document()'
 
 .PHONY: site
 site:
