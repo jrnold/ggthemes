@@ -1,3 +1,7 @@
+# ggthemes 4.1.1.9000
+
+-   Add `theme_clean()` (Thanks @konradzdeb, #105)
+
 # ggthemes 4.1.1
 
 -   Fix bugs in `geom_rangeframe` and `geom_tufteboxplot` caused by 
