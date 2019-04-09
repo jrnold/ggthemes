@@ -76,7 +76,7 @@ A  wide line indicating the interquartile range,
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.1.1</span>
       </span>
     </div>
 
@@ -272,14 +272,14 @@ box plots. The American Statistician 32, 12-16.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a>()</code></p>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_boxplot'>geom_boxplot</a>()</code></p>
 <p>Other geom tufte: <code><a href='geom_rangeframe.html'>geom_rangeframe</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"ggplot2"</span>)
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>cyl</span>), <span class='no'>mpg</span>))
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>cyl</span>), <span class='no'>mpg</span>))
 <span class='co'># with a point for the median and lines for whiskers</span>
 <span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>()</div><div class='img'><img src='geom_tufteboxplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># with a line for the interquartile range and points for whiskers</span>
 <span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>, <span class='kw'>whisker.type</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>hoffset</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='img'><img src='geom_tufteboxplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># with a wide line for the interquartile range and lines for whiskers</span>
@@ -287,7 +287,7 @@ box plots. The American Statistician 32, 12-16.</p>
 <span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>(<span class='kw'>median.type</span> <span class='kw'>=</span> <span class='st'>"line"</span>)</div><div class='img'><img src='geom_tufteboxplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># combined with theme_tufte</span>
 <span class='no'>p</span> + <span class='fu'>geom_tufteboxplot</span>() +
   <span class='fu'><a href='theme_tufte.html'>theme_tufte</a></span>() +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>axis.ticks.x</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span>())</div><div class='img'><img src='geom_tufteboxplot-5.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/theme'>theme</a></span>(<span class='kw'>axis.ticks.x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/element'>element_blank</a></span>())</div><div class='img'><img src='geom_tufteboxplot-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

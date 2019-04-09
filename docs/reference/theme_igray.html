@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.1.1</span>
       </span>
     </div>
 
@@ -131,18 +131,18 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     
-    <p>This theme inverts the colors in the <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray</a>()</code>, a
+    <p>This theme inverts the colors in the <code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a>()</code>, a
 white panel and a light gray area around it. This keeps a white
-background for the color scales like <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a>()</code>. But
+background for the color scales like <code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a>()</code>. But
 by using a gray background, the plot is closer to the
 typographical color of the document, which is the motivation for
-using a gray panel in <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray</a>()</code>. This is
+using a gray panel in <code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a>()</code>. This is
 similar to the style of plots in Stata and Tableau.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray</a>()</code>,
-  <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a>()</code></p>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a>()</code>,
+  <code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a>()</code></p>
 <p>Other themes: <code><a href='theme_base.html'>theme_base</a></code>,
   <code><a href='theme_foundation.html'>theme_foundation</a></code>, <code><a href='theme_par.html'>theme_par</a></code>,
   <code><a href='theme_solid.html'>theme_solid</a></code></p></div>
@@ -151,9 +151,9 @@ similar to the style of plots in Stata and Tableau.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"ggplot2"</span>)
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>mtcars</span>) +
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>gear</span>))) +
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>am</span>)
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) +
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>gear</span>))) +
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~<span class='no'>am</span>)
 <span class='no'>p</span> + <span class='fu'>theme_igray</span>()</div><div class='img'><img src='theme_igray-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

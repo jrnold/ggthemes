@@ -66,7 +66,7 @@ scales." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.1.1</span>
       </span>
     </div>
 
@@ -177,15 +177,15 @@ colour bar, or <code>'legend'</code> for discrete colour legend.</p></td>
   <span class='kw'>z2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>100</span>))
 )
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)) +
-     <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>z2</span>)) +
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>df</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)) +
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>z2</span>)) +
      <span class='fu'><a href='theme_igray.html'>theme_igray</a></span>()
 
 <span class='no'>palettes</span> <span class='kw'>&lt;-</span>
   <span class='no'>ggthemes_data</span><span class='kw'>[[</span><span class='st'>"tableau"</span>]]<span class='kw'>[[</span><span class='st'>"color-palettes"</span>]]<span class='kw'>[[</span><span class='st'>"ordered-sequential"</span>]]
 <span class='kw'>for</span> (<span class='no'>palette</span> <span class='kw'>in</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>palettes</span>))) {
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p</span> + <span class='fu'>scale_colour_gradient_tableau</span>(<span class='no'>palette</span>) +
-          <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='no'>palette</span>))
+          <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='no'>palette</span>))
 }</div><div class='img'><img src='scale_colour_gradient_tableau-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='scale_colour_gradient_tableau-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
