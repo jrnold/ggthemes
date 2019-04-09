@@ -11,7 +11,7 @@
 #' @family themes
 #' @export
 #'
-#' @examples inst/examples/ex-theme_clean.R
+#' @example inst/examples/ex-theme_clean.R
 theme_clean <- function(base_size = 12,
                         base_family = "sans") {
   (

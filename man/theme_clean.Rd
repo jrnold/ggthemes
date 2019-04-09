@@ -16,7 +16,13 @@ Clean ggplot theme with no panel background, black axis lines
   and grey fill colour for chart elements.
 }
 \examples{
-inst/examples/ex-theme_clean.R
+library("ggplot2")
+p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point() +
+  facet_wrap(~am) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_clean()
+p
 }
 \seealso{
 Other themes: \code{\link{theme_base}},
