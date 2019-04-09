@@ -15,14 +15,14 @@
 #' \item{Mary Stribley, \href{https://designschool.canva.com/blog/website-color-schemes/}{Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You},
 #'   \emph{Canva.com}, January 26, 2016.}
 #' \item{Pablo Saenz de Tejeda,
-#'   \href{https://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/}{150 paletas de colores para Tableau},
+#'   \href{http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/}{150 paletas de colores para Tableau},
 #'   January 1, 2017.}
 #' \item{Schwabish, Jonathan.
 #'    \href{https://policyviz.com/2017/01/12/150-color-palettes-for-excel/}{150+ Color Palettes for Excel},
 #'     \emph{PolicyViz}, January 12, 2017.}
 #' }
 #' @source
-#' \url{https://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt}
+#' \url{http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt}
 #' @example inst/examples/ex-canva_pal.R
 "canva_palettes"
 

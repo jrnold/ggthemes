@@ -6,7 +6,7 @@
 library("xml2")
 library("purrr")
 
-color_palettes_url <- "https://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt"
+color_palettes_url <- "http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt"
 
 color_palettes_txt <- readLines(color_palettes_url)
 
