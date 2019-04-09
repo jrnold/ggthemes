@@ -8,14 +8,9 @@ addons:
     packages:
       - libfreetype6
 
-r_github_packages:
-- tidyverse/ggplot2
-
 matrix:
   include:
   - r: devel
-    # avoind errors due to world clock API (hopefully can be removed in future)
-    env: _R_CHECK_SYSTEM_CLOCK_=false
   - r: release
   - r: oldrel
 
@@ -29,7 +24,3 @@ env:
 
 after_success:
   - Rscript -e 'covr::codecov()'
-
-before_install:
-  - sudo apt-get --yes --force-yes update -qq
-  - Rscript -e 'update.packages(ask = FALSE)'
