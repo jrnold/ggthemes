@@ -102,6 +102,7 @@ geom_tufteboxplot <-
 #' @format NULL
 #' @export
 #' @importFrom ggplot2 draw_key_pointrange
+#' @importFrom scales alpha
 GeomTufteboxplot <-
   ggplot2::ggproto("GeomTufteboxplot",
            ggplot2::GeomBoxplot,
