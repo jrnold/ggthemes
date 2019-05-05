@@ -12,7 +12,7 @@ test_that("tableau_color_pal works", {
 
 test_that("tableau_color_pal direction = -1 works", {
   n <- 4L
-  expect_false(all(tableau_color_pal(direction = -1)(n) ==
+  expect_true(all(tableau_color_pal(direction = -1)(n) ==
                    rev(tableau_color_pal()(n))))
 })
 

@@ -1,6 +1,7 @@
 # ggthemes 4.1.1.9000
 
 -   Add `theme_clean()` (Thanks @konradzdeb, #105)
+-   `scale_color_tableau()` and `scale_fill_tableau()` gain a `direction` argument to reverse the order of discrete color palettes
 
 # ggthemes 4.1.1
 
@@ -101,7 +102,7 @@
 
 -   Bugfix: In function `bank_slopes()`, remove methods `ao`, `gor`, and `lor`. 
     These methods were not producing reliable results, and should not produce
-    results much different thatn `ms` or `as`. If used, they will produce a 
+    results much different than `ms` or `as`. If used, they will produce a 
     warning, and `ms` will be used instead. (#68)
 
 # ggthemes 3.1.0

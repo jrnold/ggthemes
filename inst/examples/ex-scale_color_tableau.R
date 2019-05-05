@@ -10,3 +10,6 @@ for (palette in head(names(palettes), 3L)) {
   print(p + scale_colour_tableau(palette) +
           ggtitle(palette))
 }
+
+# the order of colour can be reversed
+p + scale_color_tableau(direction = -1)
