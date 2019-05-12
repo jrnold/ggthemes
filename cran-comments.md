@@ -14,5 +14,7 @@
     
 -   The URL http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt is valid but sometimes returns a 403 error.
 
+-   The URL http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/ is valid but sometimes returns a 403 error.
+
 -   In `DESCRIPTION`, the words "Geoms", "Stata", "Tufte", "Tufte's", 
     and "geoms" are not mis-spelled.
