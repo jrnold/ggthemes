@@ -1,7 +1,8 @@
 # ggthemes 4.1.1.9000
 
 -   Add `theme_clean()` (Thanks @konradzdeb, #105)
--   `scale_color_tableau()` and `scale_fill_tableau()` gain a `direction` argument to reverse the order of discrete color palettes
+-   Add `direction` argument to `scale_color_tableau()` and `scale_fill_tableau()`
+    (Thanks @vadimus202, #112)
 
 # ggthemes 4.1.1
 
