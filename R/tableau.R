@@ -69,6 +69,7 @@ tableau_color_pal <- function(palette = "Tableau 10",
 #' @param type Palette type. One of \code{"regular"}, \code{"sequential"},
 #'   or \code{"diverging"}. See \funclink{tableau_color_pal}.
 #' @inheritParams tableau_color_pal
+#' @param ... Other arguments passed on to \funclink{discrete_scale}.
 #' @family colour tableau
 #' @rdname scale_color_tableau
 #' @export
