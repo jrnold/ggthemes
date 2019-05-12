@@ -1,4 +1,4 @@
-# ggthemes 4.1.1.9000
+# ggthemes 4.2.0
 
 -   Add `theme_clean()` (Thanks @konradzdeb, #105)
 -   Add `direction` argument to `scale_color_tableau()` and `scale_fill_tableau()`
