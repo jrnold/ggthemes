@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.1.1.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
       </span>
     </div>
 
@@ -149,8 +149,8 @@
 
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
      <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>gear</span>))) + <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~<span class='no'>am</span>)
-<span class='no'>p</span> + <span class='fu'>theme_hc</span>() + <span class='fu'><a href='scale_hc.html'>scale_colour_hc</a></span>()</div><div class='img'><img src='theme_hc-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>p</span> + <span class='fu'>theme_hc</span>(<span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"darkunica"</span>) +
-  <span class='fu'><a href='scale_hc.html'>scale_colour_hc</a></span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>p</span> + <span class='fu'>theme_hc</span>() + <span class='fu'>scale_colour_hc</span>()</div><div class='img'><img src='theme_hc-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>p</span> + <span class='fu'>theme_hc</span>(<span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"darkunica"</span>) +
+  <span class='fu'>scale_colour_hc</span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>dtemp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>months</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substr</a></span>(<span class='no'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span>), <span class='fl'>4</span>),
                                     <span class='kw'>levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substr</a></span>(<span class='no'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span>)),
                     <span class='kw'>city</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Tokyo"</span>, <span class='st'>"New York"</span>, <span class='st'>"Berlin"</span>, <span class='st'>"London"</span>),
@@ -169,13 +169,13 @@
   <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.1</span>) +
   <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Monthly Average Temperature"</span>) +
   <span class='fu'>theme_hc</span>() +
-  <span class='fu'><a href='scale_hc.html'>scale_colour_hc</a></span>()</div><div class='img'><img src='theme_hc-3.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'>scale_colour_hc</span>()</div><div class='img'><img src='theme_hc-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>dtemp</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>months</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>temp</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>city</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>city</span>)) +
   <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_path'>geom_line</a></span>() +
   <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.1</span>) +
   <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Monthly Average Temperature"</span>) +
   <span class='fu'>theme_hc</span>(<span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"darkunica"</span>) +
-  <span class='fu'><a href='scale_hc.html'>scale_fill_hc</a></span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-4.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'>scale_fill_hc</span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

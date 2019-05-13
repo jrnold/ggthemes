@@ -66,7 +66,7 @@ scales." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.1.1.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
       </span>
     </div>
 
@@ -113,8 +113,8 @@ scales." />
     <div class="ref-description">
     
     <p>Continuous color scales using the sequential color palettes in Tableau.
-See <code><a href='scale_color_tableau.html'>scale_colour_tableau()</a></code> for Tableau discrete color scales,
-and <code><a href='scale_colour_gradient2_tableau.html'>scale_colour_gradient2_tableau()</a></code> for diverging color
+See <code>scale_colour_tableau()</code> for Tableau discrete color scales,
+and <code>scale_colour_gradient2_tableau()</code> for diverging color
 scales.</p>
     
     </div>
@@ -161,10 +161,10 @@ colour bar, or <code>'legend'</code> for discrete colour legend.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other colour tableau: <code><a href='scale_colour_gradient2_tableau.html'>scale_colour_gradient2_tableau</a></code>,
-  <code><a href='scale_color_tableau.html'>scale_colour_tableau</a></code>,
-  <code><a href='tableau_color_pal.html'>tableau_color_pal</a></code>,
-  <code><a href='tableau_gradient_pal.html'>tableau_gradient_pal</a></code></p></div>
+    <div class='dont-index'><p>Other colour tableau: <code>scale_colour_gradient2_tableau</code>,
+  <code>scale_colour_tableau</code>,
+  <code>tableau_color_pal</code>,
+  <code>tableau_gradient_pal</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -179,7 +179,7 @@ colour bar, or <code>'legend'</code> for discrete colour legend.</p></td>
 
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>df</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)) +
      <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>z2</span>)) +
-     <span class='fu'><a href='theme_igray.html'>theme_igray</a></span>()
+     <span class='fu'>theme_igray</span>()
 
 <span class='no'>palettes</span> <span class='kw'>&lt;-</span>
   <span class='no'>ggthemes_data</span><span class='kw'>[[</span><span class='st'>"tableau"</span>]]<span class='kw'>[[</span><span class='st'>"color-palettes"</span>]]<span class='kw'>[[</span><span class='st'>"ordered-sequential"</span>]]

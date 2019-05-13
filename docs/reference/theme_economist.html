@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.1.1.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
       </span>
     </div>
 
@@ -158,7 +158,7 @@ background theme in the print <em>The Economist</em> and
 <p><code>theme_economist_white</code> implements a variant with a while
 panel and light gray (or white) background often used by <em>The Economist</em>
 blog <a href='http://www.economist.com/blogs/graphicdetail'>Graphic Detail</a>.</p>
-<p>Use <code><a href='scale_economist.html'>scale_color_economist</a>()</code> with this theme.
+<p>Use <code>scale_color_economist()</code> with this theme.
 The x axis should be displayed on the right hand side.</p>
 <p><em>The Economist</em> uses "ITC Officina Sans" as its font for graphs. If
 you have access to this font, you can use it with the
@@ -184,26 +184,26 @@ you have access to this font, you can use it with the
 
 <span class='co'>## Standard</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist</span>() +
-  <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='img'><img src='theme_economist-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'>scale_colour_economist</span>()</div><div class='img'><img src='theme_economist-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Change axis lines to vertical</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist</span>(<span class='kw'>horizontal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) +
-    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>() +
+    <span class='fu'>scale_colour_economist</span>() +
     <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/coord_flip'>coord_flip</a></span>()</div><div class='img'><img src='theme_economist-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## White panel/light gray background</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist_white</span>() +
-    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='img'><img src='theme_economist-3.png' alt='' width='700' height='433' /></div><div class='input'>
+    <span class='fu'>scale_colour_economist</span>()</div><div class='img'><img src='theme_economist-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## All white variant</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist_white</span>(<span class='kw'>gray_bg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) +
-    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()</div><div class='img'><img src='theme_economist-4.png' alt='' width='700' height='433' /></div><div class='input'>
+    <span class='fu'>scale_colour_economist</span>()</div><div class='img'><img src='theme_economist-4.png' alt='' width='700' height='433' /></div><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'>## The Economist uses ITC Officina Sans</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"extrafont"</span>)
 <span class='no'>p</span> + <span class='fu'>theme_economist</span>(<span class='kw'>base_family</span><span class='kw'>=</span><span class='st'>"ITC Officina Sans"</span>) +
-    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()
+    <span class='fu'>scale_colour_economist</span>()
 
 <span class='co'>## Verdana is a widely available substitute</span>
 <span class='no'>p</span> + <span class='fu'>theme_economist</span>(<span class='kw'>base_family</span><span class='kw'>=</span><span class='st'>"Verdana"</span>) +
-    <span class='fu'><a href='scale_economist.html'>scale_colour_economist</a></span>()
+    <span class='fu'>scale_colour_economist</span>()
 
 <span class='co'># }</span></pre>
   </div>
