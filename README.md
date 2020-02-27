@@ -33,7 +33,7 @@ For a quick tutorial, check out [Rafael Irizarry's book](https://rafalab.github.
 
 ## Previews
 
-Previews for themes provided below using the popular `mtcars` & `diamonds` datasets:
+Previews provided below using the popular `mtcars` & `diamonds` datasets:
 
 <table>
  <tr>
