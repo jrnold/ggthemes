@@ -36,6 +36,7 @@ geoms
 Geoms
 ggplot
 github
+grey
 Hanrahan
 hc
 Heer
@@ -70,6 +71,7 @@ pkgdown
 PolicyViz
 ptoche
 ptol
+pts
 quartile
 rcolor
 rstudio
@@ -105,3 +107,4 @@ wordpress
 WS
 wsj
 WSJ
+Zdeb
