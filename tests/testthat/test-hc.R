@@ -6,7 +6,7 @@ test_that("hc_pal works", {
   n <- 5
   values <- pal(n)
   expect_is(values, "character")
-  expect_equal(length(values), n)
+  expect_eqNe(length(values), n)
 })
 
 test_that("hc_pal raises error with invalid palette", {
@@ -19,7 +19,7 @@ test_that("scale_colour_hc works", {
 })
 
 test_that("scale_color_hc works", {
-  expect_equal(scale_colour_hc(), scale_color_hc())
+  expect_eqNe(scale_colour_hc(), scale_color_hc())
 })
 
 test_that("scale_fill_hc works", {

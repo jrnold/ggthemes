@@ -5,7 +5,7 @@ test_that("excel_clasic_pal works", {
   n <- 5L
   values <- pal(n)
   expect_is(values, "character")
-  expect_equal(length(values), n)
+  expect_eqNe(length(values), n)
 })
 
 test_that("excel_clasic_pal with line = TRUE works", {
@@ -13,7 +13,7 @@ test_that("excel_clasic_pal with line = TRUE works", {
   n <- 5L
   values <- pal(n)
   expect_is(values, "character")
-  expect_equal(length(values), n)
+  expect_eqNe(length(values), n)
 })
 
 test_that("calc_shape_pal raises warning for large n", {
@@ -25,7 +25,7 @@ test_that("excel_new_pal works", {
   n <- 5L
   vals <- pal(n)
   expect_is(vals, "character")
-  expect_equal(length(vals), n)
+  expect_eqNe(length(vals), n)
 })
 
 test_that("excel_new_pal raises error for bad n", {
@@ -58,5 +58,5 @@ test_that("scale_fill_excel works", {
 
 test_that("theme_excel with horizontal = FALSE works", {
   thm <- theme_excel(horizontal = FALSE)
-  expect_equal(thm$panel.grid.major.y, element_blank())
+  expect_eqNe(thm$panel.grid.major.y, element_blank())
 })

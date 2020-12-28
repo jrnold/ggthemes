@@ -17,3 +17,9 @@ expect_hexcolor <- function(object) {
 
   invisible(act$val)
 }
+
+# Needed to fix CRAN issues due to changes in all-equal function
+# See https://github.com/Ryo-N7/tvthemes/issues/15
+expect_eqNe <- function(...) {
+  testthat::expect_equal(..., check.environment=FALSE)
+}

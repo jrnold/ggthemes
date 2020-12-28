@@ -25,7 +25,7 @@ test_that("theme_pander works", {
 test_that("theme_pander works with gm = FALSE", {
   thm <- theme_pander(gM = FALSE)
   expect_is(thm, "theme")
-  expect_equal(thm$panel.grid, element_blank())
+  expect_eqNe(thm$panel.grid, element_blank())
 })
 
 

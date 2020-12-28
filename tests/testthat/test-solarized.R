@@ -15,7 +15,7 @@ test_that("scale_colour_solarized works", {
 })
 
 test_that("scale_color_solarized works", {
-  expect_equal(scale_colour_solarized(), scale_color_solarized())
+  expect_eqNe(scale_colour_solarized(), scale_color_solarized())
 })
 
 test_that("scale_fill_solarized works", {
@@ -28,5 +28,5 @@ test_that("solarized_pal works", {
   n <- 5L
   values <- pal(n)
   expect_is(values, "character")
-  expect_equal(length(values), n)
+  expect_eqNe(length(values), n)
 })

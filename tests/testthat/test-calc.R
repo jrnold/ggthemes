@@ -8,7 +8,7 @@ test_that("calc_shape_pal works", {
   shapes <- pal(n)
   expect_is(shapes, "integer")
   expect_true(all(shapes < 0))
-  expect_equal(length(shapes), n)
+  expect_eqNe(length(shapes), n)
 })
 
 test_that("calc_pal works", {

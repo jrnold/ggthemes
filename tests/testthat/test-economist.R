@@ -21,7 +21,7 @@ test_that("economist_pal raises warning with large number", {
 })
 
 test_that("scale_colour_economist equals scale_color_economist", {
-  expect_equal(scale_color_economist(), scale_colour_economist())
+  expect_eqNe(scale_color_economist(), scale_colour_economist())
 })
 
 test_that("scale_colour_economist works", {
@@ -39,13 +39,13 @@ test_that("theme economist works", {
 test_that("theme economist with horizontal=FALSE works", {
   thm <- theme_economist(horizontal = FALSE)
   expect_is(thm, "theme")
-  expect_equal(thm$panel.grid.major.y, element_blank())
+  expect_eqNe(thm$panel.grid.major.y, element_blank())
 })
 
 test_that("theme economist with dark panel works", {
   thm <- theme_economist(dkpanel = TRUE)
   expect_is(thm, "theme")
-  expect_equal(thm$strip.background$fill,
+  expect_eqNe(thm$strip.background$fill,
                purrr::pluck(dplyr::filter(ggthemes_data$economist$bg,
                                           name == "dark blue-gray"), "value"))
 })
@@ -53,14 +53,14 @@ test_that("theme economist with dark panel works", {
 test_that("theme economist_white works", {
   thm <- theme_economist_white(gray_bg = FALSE)
   expect_is(thm, "theme")
-  expect_equal(thm$panel.background$fill, "white")
-  expect_equal(thm$plot.background$fill, "white")
+  expect_eqNe(thm$panel.background$fill, "white")
+  expect_eqNe(thm$plot.background$fill, "white")
 })
 
 test_that("theme economist_white with gray background works", {
   thm <- theme_economist_white(gray_bg = TRUE)
   expect_is(thm, "theme")
-  expect_equal(thm$plot.background$fill,
+  expect_eqNe(thm$plot.background$fill,
                purrr::pluck(dplyr::filter(ggthemes_data$economist$bg,
                                           name == "light gray"), "value"))
 })

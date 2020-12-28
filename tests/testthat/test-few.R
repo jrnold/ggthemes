@@ -25,16 +25,16 @@ test_that("few_pal runs", {
   expect_is(attr(p, "max_n"), "integer")
   out <- p(5)
   expect_is(out, "character")
-  expect_equal(length(out), 5L)
+  expect_eqNe(length(out), 5L)
   # should use the first accent color
-  expect_equal(out[[1]],
+  expect_eqNe(out[[1]],
                ggthemes::ggthemes_data$few$colors$Medium$value[[2]])
   expect_warning(p(10))
 })
 
 test_that("few_pal works with n = 1", {
   out <- few_pal("Medium")(1)
-  expect_equal(out, ggthemes::ggthemes_data$few$colors$Medium$value[[1]])
+  expect_eqNe(out, ggthemes::ggthemes_data$few$colors$Medium$value[[1]])
 })
 
 test_that("few_pal raises error with bad palette", {
@@ -46,7 +46,7 @@ test_that("scale_colour_few works", {
 })
 
 test_that("scale_color_few works", {
-  expect_equal(scale_color_few(), scale_colour_few())
+  expect_eqNe(scale_color_few(), scale_colour_few())
 })
 
 test_that("scale_fill_few works", {
