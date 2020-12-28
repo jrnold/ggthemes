@@ -4,11 +4,15 @@
 \alias{theme_hc}
 \title{Highcharts Theme}
 \usage{
-theme_hc(base_size = 12, base_family = "sans", style = c("default",
-  "darkunica"), bgcolor = NULL)
+theme_hc(
+  base_size = 12,
+  base_family = "sans",
+  style = c("default", "darkunica"),
+  bgcolor = NULL
+)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 

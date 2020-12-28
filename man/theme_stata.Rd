@@ -7,7 +7,7 @@
 theme_stata(base_size = 11, base_family = "sans", scheme = "s2color")
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 

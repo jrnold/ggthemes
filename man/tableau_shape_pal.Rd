@@ -31,6 +31,7 @@ charts, and thus are sometimes groupings of closely related symbols.
 }
 }
 \seealso{
-Other shape tableau: \code{\link{scale_shape_tableau}}
+Other shape tableau: 
+\code{\link{scale_shape_tableau}()}
 }
 \concept{shape tableau}

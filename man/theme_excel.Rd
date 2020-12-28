@@ -7,7 +7,7 @@
 theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 
@@ -38,6 +38,7 @@ ggplot(mpg, aes(x = class, fill = drv)) +
   theme_excel()
 }
 \seealso{
-Other themes excel: \code{\link{theme_excel_new}}
+Other themes excel: 
+\code{\link{theme_excel_new}()}
 }
 \concept{themes excel}

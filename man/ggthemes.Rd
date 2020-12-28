@@ -3,7 +3,6 @@
 \docType{package}
 \name{ggthemes}
 \alias{ggthemes}
-\alias{ggthemes-package}
 \title{ggthemes}
 \description{
 This package contains extra themes, scales, and geoms, and

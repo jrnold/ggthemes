@@ -7,7 +7,7 @@
 theme_igray(base_size = 12, base_family = "")
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 }
@@ -38,9 +38,11 @@ p + theme_igray()
 \code{\link[ggplot2]{theme_gray}()},
   \code{\link[ggplot2]{theme_bw}()}
 
-Other themes: \code{\link{theme_base}},
-  \code{\link{theme_clean}},
-  \code{\link{theme_foundation}}, \code{\link{theme_par}},
-  \code{\link{theme_solid}}
+Other themes: 
+\code{\link{theme_base}()},
+\code{\link{theme_clean}()},
+\code{\link{theme_foundation}()},
+\code{\link{theme_par}()},
+\code{\link{theme_solid}()}
 }
 \concept{themes}

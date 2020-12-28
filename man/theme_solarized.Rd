@@ -10,7 +10,7 @@ theme_solarized(base_size = 12, base_family = "", light = TRUE)
 theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 

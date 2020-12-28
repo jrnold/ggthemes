@@ -5,8 +5,13 @@
 \alias{extended_range_breaks}
 \title{Pretty axis breaks inclusive of extreme values}
 \usage{
-extended_range_breaks_(dmin, dmax, n = 5, Q = c(1, 5, 2, 2.5, 4, 3),
-  w = c(0.25, 0.2, 0.5, 0.05))
+extended_range_breaks_(
+  dmin,
+  dmax,
+  n = 5,
+  Q = c(1, 5, 2, 2.5, 4, 3),
+  w = c(0.25, 0.2, 0.5, 0.05)
+)
 
 extended_range_breaks(n = 5, ...)
 }

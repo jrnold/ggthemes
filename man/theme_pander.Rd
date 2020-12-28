@@ -4,13 +4,26 @@
 \alias{theme_pander}
 \title{A ggplot theme originated from the pander package}
 \usage{
-theme_pander(base_size = 12, base_family = "sans", nomargin = TRUE,
-  ff = NULL, fc = "black", fs = NULL, gM = TRUE, gm = TRUE,
-  gc = "grey", gl = "dashed", boxes = FALSE, bc = "white",
-  pc = "transparent", lp = "right", axis = 1)
+theme_pander(
+  base_size = 12,
+  base_family = "sans",
+  nomargin = TRUE,
+  ff = NULL,
+  fc = "black",
+  fs = NULL,
+  gM = TRUE,
+  gm = TRUE,
+  gc = "grey",
+  gl = "dashed",
+  boxes = FALSE,
+  bc = "white",
+  pc = "transparent",
+  lp = "right",
+  axis = 1
+)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 

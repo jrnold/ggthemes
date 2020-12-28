@@ -4,8 +4,11 @@
 \alias{tableau_color_pal}
 \title{Tableau Color Palettes (discrete)}
 \usage{
-tableau_color_pal(palette = "Tableau 10", type = c("regular",
-  "ordered-sequential", "ordered-diverging"), direction = 1)
+tableau_color_pal(
+  palette = "Tableau 10",
+  type = c("regular", "ordered-sequential", "ordered-diverging"),
+  direction = 1
+)
 }
 \arguments{
 \item{palette}{Palette name. See Details for available palettes.}
@@ -54,9 +57,10 @@ Factors in Computing Systems (CHI)
 \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 }
 \seealso{
-Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
-  \code{\link{scale_colour_gradient_tableau}},
-  \code{\link{scale_colour_tableau}},
-  \code{\link{tableau_gradient_pal}}
+Other colour tableau: 
+\code{\link{scale_colour_gradient2_tableau}()},
+\code{\link{scale_colour_gradient_tableau}()},
+\code{\link{scale_colour_tableau}()},
+\code{\link{tableau_gradient_pal}()}
 }
 \concept{colour tableau}

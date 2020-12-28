@@ -4,8 +4,7 @@
 \alias{bank_slopes}
 \title{Bank Slopes to 45 degrees}
 \usage{
-bank_slopes(x, y, cull = FALSE, weight = NULL, method = c("ms",
-  "as"), ...)
+bank_slopes(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"), ...)
 }
 \arguments{
 \item{x}{x values}

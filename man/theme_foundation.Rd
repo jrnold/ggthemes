@@ -7,7 +7,7 @@
 theme_foundation(base_size = 12, base_family = "")
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 }
@@ -27,8 +27,11 @@ elements (\code{line}, \code{rect}, and \code{title}), which have
 and-non colour defaults of the default \pkg{ggplot2} themes in place.
 }
 \seealso{
-Other themes: \code{\link{theme_base}},
-  \code{\link{theme_clean}}, \code{\link{theme_igray}},
-  \code{\link{theme_par}}, \code{\link{theme_solid}}
+Other themes: 
+\code{\link{theme_base}()},
+\code{\link{theme_clean}()},
+\code{\link{theme_igray}()},
+\code{\link{theme_par}()},
+\code{\link{theme_solid}()}
 }
 \concept{themes}

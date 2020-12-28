@@ -4,9 +4,11 @@
 \name{canva_palettes}
 \alias{canva_palettes}
 \title{150 Color Palettes from Canva}
-\format{A named \code{list} of character vector.
+\format{
+A named \code{list} of character vector.
 The names are the palette names. The values of the character vectors
-are hex colors, e.g. \code{"#f98866"}.}
+are hex colors, e.g. \code{"#f98866"}.
+}
 \source{
 \url{http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt}
 }

@@ -22,6 +22,7 @@ show_col(economist_pal()(6))
 show_col(economist_pal(fill = TRUE)(6))
 }
 \seealso{
-Other colour economist: \code{\link{scale_colour_economist}}
+Other colour economist: 
+\code{\link{scale_colour_economist}()}
 }
 \concept{colour economist}

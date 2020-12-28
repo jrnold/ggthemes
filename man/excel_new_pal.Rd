@@ -23,8 +23,9 @@ for (i in names(ggthemes::ggthemes_data$excel$palettes)) {
 }
 }
 \seealso{
-Other colour excel: \code{\link{excel_pal}},
-  \code{\link{scale_colour_excel_new}},
-  \code{\link{scale_fill_excel}}
+Other colour excel: 
+\code{\link{excel_pal}()},
+\code{\link{scale_colour_excel_new}()},
+\code{\link{scale_fill_excel}()}
 }
 \concept{colour excel}

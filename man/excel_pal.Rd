@@ -22,8 +22,9 @@ show_col(excel_pal()(7))
 show_col(excel_pal(line = FALSE)(7))
 }
 \seealso{
-Other colour excel: \code{\link{excel_new_pal}},
-  \code{\link{scale_colour_excel_new}},
-  \code{\link{scale_fill_excel}}
+Other colour excel: 
+\code{\link{excel_new_pal}()},
+\code{\link{scale_colour_excel_new}()},
+\code{\link{scale_fill_excel}()}
 }
 \concept{colour excel}

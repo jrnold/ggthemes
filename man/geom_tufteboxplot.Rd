@@ -6,16 +6,28 @@
 \alias{GeomTufteboxplot}
 \title{Tufte's Box Plot}
 \usage{
-geom_tufteboxplot(mapping = NULL, data = NULL, stat = "fivenumber",
-  position = "dodge", outlier.colour = "black", outlier.shape = 19,
-  outlier.size = 1.5, outlier.stroke = 0.5, voffset = 0.01,
-  hoffset = 0.005, na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, median.type = "point", whisker.type = "line",
-  ...)
+geom_tufteboxplot(
+  mapping = NULL,
+  data = NULL,
+  stat = "fivenumber",
+  position = "dodge",
+  outlier.colour = "black",
+  outlier.shape = 19,
+  outlier.size = 1.5,
+  outlier.stroke = 0.5,
+  voffset = 0.01,
+  hoffset = 0.005,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  median.type = "point",
+  whisker.type = "line",
+  ...
+)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
-\code{\link[=aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
+\code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply \code{mapping} if there is no plot mapping.}
 
@@ -23,15 +35,16 @@ plot. You must supply \code{mapping} if there is no plot mapping.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
-will be used as the layer data.}
+will be used as the layer data. A \code{function} can be created
+from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{stat}{The statistical transformation to use on the data for this
 layer, as a string.}
@@ -67,7 +80,7 @@ display.}
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
+the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{median.type}{If \code{'point'}, then the median is represented by a
 point, and the interquartile range by a gap in the line. If
@@ -78,7 +91,7 @@ a line, possibly offset, and the median by a gap in the line.}
 If \code{'point'}, then whiskers are represented by points at
 \code{ymin} and \code{ymax}.}
 
-\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
@@ -141,7 +154,8 @@ box plots. The American Statistician 32, 12-16.
 \seealso{
 \code{\link{geom_boxplot}()}
 
-Other geom tufte: \code{\link{geom_rangeframe}}
+Other geom tufte: 
+\code{\link{geom_rangeframe}()}
 }
 \concept{geom tufte}
 \keyword{datasets}
