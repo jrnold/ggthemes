@@ -1,5 +1,7 @@
 # ggthemes (development version)
 
+- Fix error in `expect_equal` functions (#123)
+
 # ggthemes 4.2.0
 
 -   Add `theme_clean()` (Thanks @konradzdeb, #105)
