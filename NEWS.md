@@ -1,3 +1,5 @@
+# ggthemes (development version)
+
 # ggthemes 4.2.0
 
 -   Add `theme_clean()` (Thanks @konradzdeb, #105)
