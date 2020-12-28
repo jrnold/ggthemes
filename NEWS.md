@@ -1,5 +1,6 @@
 # ggthemes (development version)
 
+- Conditionally use the vidffr package in tests so it complies with suggested package policy (#124)
 - Fix error in `expect_equal` functions (#123)
 
 # ggthemes 4.2.0
