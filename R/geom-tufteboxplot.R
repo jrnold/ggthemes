@@ -101,8 +101,9 @@ geom_tufteboxplot <-
 #' @usage NULL
 #' @format NULL
 #' @export
-#' @importFrom ggplot2 draw_key_pointrange
+#' @importFrom ggplot2 draw_key_pointrange ggproto_parent GeomBoxplot GeomSegment GeomPoint
 #' @importFrom scales alpha
+#' @importFrom grid grobTree
 GeomTufteboxplot <-
   ggplot2::ggproto("GeomTufteboxplot",
            ggplot2::GeomBoxplot,

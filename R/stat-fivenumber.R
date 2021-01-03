@@ -41,11 +41,19 @@ stat_fivenumber <- function(mapping = NULL,
   )
 }
 
+# From ggplot2:::NO_GROUP
+NO_GROUP <- -1
+
+# Copied from ggplot2:::has_groups
+has_groups <- function(data) {
+  data$group[1L] != NO_GROUP
+}
 
 #' @export
 #' @format NULL
 #' @usage NULL
 #' @rdname stat_fivenumber
+#' @importFrom ggplot2 resolution remove_missing
 StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat,
   required_aes = "y",
 
