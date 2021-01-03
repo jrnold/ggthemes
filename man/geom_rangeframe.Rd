@@ -72,7 +72,7 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 Axis lines which extend to the maximum and minimum of the plotted data.
 }
 \details{
-This should be used with `coord_cartesion(clip="off")` in order to
+This should be used with `coord_cartesian(clip="off")` in order to
   correctly draw the lines.
 }
 \section{Aesthetics}{
