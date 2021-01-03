@@ -1,6 +1,6 @@
 RSCRIPT = Rscript
 
-all:
+all: build
 
 .PHONY: build
 build: docs site data
