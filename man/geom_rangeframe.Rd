@@ -71,6 +71,10 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 \description{
 Axis lines which extend to the maximum and minimum of the plotted data.
 }
+\details{
+This should be used with `coord_cartesion(clip="off")` in order to
+  correctly draw the lines.
+}
 \section{Aesthetics}{
 
 \itemize{
@@ -87,7 +91,13 @@ library("ggplot2")
 ggplot(mtcars, aes(wt, mpg)) +
  geom_point() +
  geom_rangeframe() +
+ coord_cartesian(clip="off") +
  theme_tufte()
+
+# In the example above,
+# `coord_cartesian(clip="off")`` ensures that the full width of the line is drawn.
+# if you know a better way to fix this,
+# please open an issue or PR on github https://github.com/jrnold/ggthemes/issue
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of

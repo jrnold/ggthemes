@@ -5,6 +5,7 @@
 - Fix errors in `geom_tufteboxplot` and `stat_fivenumber` due to missing imported
   objects from ggplot2 (#117, #121)
 - Fix text labels in top axis in `theme_economist` (#115)
+- Update documentation on `geom_rangeframe`; it should be used with `coord_cartesian(clip="off")`. (#120)
 
 # ggthemes 4.2.0
 
