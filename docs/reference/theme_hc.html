@@ -8,21 +8,29 @@
 
 <title>Highcharts Theme — theme_hc • ggthemes</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Highcharts Theme — theme_hc" />
 
+<meta property="og:title" content="Highcharts Theme — theme_hc" />
 <meta property="og:description" content="Theme based on the plots in Highcharts JS." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0.9000</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -82,11 +91,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jrnold/ggthemes">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="http://github.com/jrnold/ggthemes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,31 +105,34 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Highcharts Theme</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jrnold/ggthemes/blob/master/R/hc.R'><code>R/hc.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/jrnold/ggthemes/blob/master/R/hc.R'><code>R/hc.R</code></a></small>
     <div class="hidden name"><code>theme_hc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>Theme based on the plots in <a href='Highcharts JS'>Highcharts JS</a>.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>theme_hc</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>,
-  <span class='st'>"darkunica"</span>), <span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>theme_hc</span><span class='op'>(</span>
+  base_size <span class='op'>=</span> <span class='fl'>12</span>,
+  base_family <span class='op'>=</span> <span class='st'>"sans"</span>,
+  style <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"default"</span>, <span class='st'>"darkunica"</span><span class='op'>)</span>,
+  bgcolor <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>base_size</th>
-      <td><p>base font size</p></td>
+      <td><p>base font size, given in pts.</p></td>
     </tr>
     <tr>
       <th>base_family</th>
@@ -137,58 +148,56 @@
       <td><p>Deprecated</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='http://www.highcharts.com/demo/line-basic'>http://www.highcharts.com/demo/line-basic</a></p>
 <p><a href='https://github.com/highslide-software/highcharts.com/tree/master/js/themes'>https://github.com/highslide-software/highcharts.com/tree/master/js/themes</a></p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"ggplot2"</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-     <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>gear</span>))) + <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~<span class='no'>am</span>)
-<span class='no'>p</span> + <span class='fu'>theme_hc</span>() + <span class='fu'>scale_colour_hc</span>()</div><div class='img'><img src='theme_hc-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>p</span> + <span class='fu'>theme_hc</span>(<span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"darkunica"</span>) +
-  <span class='fu'>scale_colour_hc</span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>dtemp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>months</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substr</a></span>(<span class='no'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span>), <span class='fl'>4</span>),
-                                    <span class='kw'>levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substr</a></span>(<span class='no'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span>)),
-                    <span class='kw'>city</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Tokyo"</span>, <span class='st'>"New York"</span>, <span class='st'>"Berlin"</span>, <span class='st'>"London"</span>),
-                               <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>12</span>),
-                    <span class='kw'>temp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>7.0</span>, <span class='fl'>6.9</span>, <span class='fl'>9.5</span>, <span class='fl'>14.5</span>, <span class='fl'>18.2</span>, <span class='fl'>21.5</span>,
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>wt</span>, y <span class='op'>=</span> <span class='va'>mpg</span>,
+     colour <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>gear</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>am</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_hc</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='scale_colour_hc.html'>scale_colour_hc</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='theme_hc-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_hc</span><span class='op'>(</span>bgcolor <span class='op'>=</span> <span class='st'>"darkunica"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='scale_colour_hc.html'>scale_colour_hc</a></span><span class='op'>(</span><span class='st'>"darkunica"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>dtemp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>months <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='va'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span>,
+                                    levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='va'>month.name</span>, <span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>,
+                    city <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Tokyo"</span>, <span class='st'>"New York"</span>, <span class='st'>"Berlin"</span>, <span class='st'>"London"</span><span class='op'>)</span>,
+                               each <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>,
+                    temp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>7.0</span>, <span class='fl'>6.9</span>, <span class='fl'>9.5</span>, <span class='fl'>14.5</span>, <span class='fl'>18.2</span>, <span class='fl'>21.5</span>,
                              <span class='fl'>25.2</span>, <span class='fl'>26.5</span>, <span class='fl'>23.3</span>, <span class='fl'>18.3</span>, <span class='fl'>13.9</span>, <span class='fl'>9.6</span>,
-                             -<span class='fl'>0.2</span>, <span class='fl'>0.8</span>, <span class='fl'>5.7</span>, <span class='fl'>11.3</span>, <span class='fl'>17.0</span>, <span class='fl'>22.0</span>,
+                             <span class='op'>-</span><span class='fl'>0.2</span>, <span class='fl'>0.8</span>, <span class='fl'>5.7</span>, <span class='fl'>11.3</span>, <span class='fl'>17.0</span>, <span class='fl'>22.0</span>,
                              <span class='fl'>24.8</span>, <span class='fl'>24.1</span>, <span class='fl'>20.1</span>, <span class='fl'>14.1</span>, <span class='fl'>8.6</span>, <span class='fl'>2.5</span>,
-                             -<span class='fl'>0.9</span>, <span class='fl'>0.6</span>, <span class='fl'>3.5</span>, <span class='fl'>8.4</span>, <span class='fl'>13.5</span>, <span class='fl'>17.0</span>,
+                             <span class='op'>-</span><span class='fl'>0.9</span>, <span class='fl'>0.6</span>, <span class='fl'>3.5</span>, <span class='fl'>8.4</span>, <span class='fl'>13.5</span>, <span class='fl'>17.0</span>,
                              <span class='fl'>18.6</span>, <span class='fl'>17.9</span>, <span class='fl'>14.3</span>, <span class='fl'>9.0</span>, <span class='fl'>3.9</span>, <span class='fl'>1.0</span>,
                              <span class='fl'>3.9</span>, <span class='fl'>4.2</span>, <span class='fl'>5.7</span>, <span class='fl'>8.5</span>, <span class='fl'>11.9</span>, <span class='fl'>15.2</span>,
-                             <span class='fl'>17.0</span>, <span class='fl'>16.6</span>, <span class='fl'>14.2</span>, <span class='fl'>10.3</span>, <span class='fl'>6.6</span>, <span class='fl'>4.8</span>))
+                             <span class='fl'>17.0</span>, <span class='fl'>16.6</span>, <span class='fl'>14.2</span>, <span class='fl'>10.3</span>, <span class='fl'>6.6</span>, <span class='fl'>4.8</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>dtemp</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>months</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>temp</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>city</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>city</span>)) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_path'>geom_line</a></span>() +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.1</span>) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Monthly Average Temperature"</span>) +
-  <span class='fu'>theme_hc</span>() +
-  <span class='fu'>scale_colour_hc</span>()</div><div class='img'><img src='theme_hc-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>dtemp</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>months</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>temp</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>city</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>city</span>)) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_path'>geom_line</a></span>() +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1.1</span>) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Monthly Average Temperature"</span>) +
-  <span class='fu'>theme_hc</span>(<span class='kw'>bgcolor</span> <span class='kw'>=</span> <span class='st'>"darkunica"</span>) +
-  <span class='fu'>scale_fill_hc</span>(<span class='st'>"darkunica"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-4.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>dtemp</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>months</span>, y <span class='op'>=</span> <span class='va'>temp</span>, group <span class='op'>=</span> <span class='va'>city</span>, color <span class='op'>=</span> <span class='va'>city</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1.1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Monthly Average Temperature"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_hc</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='scale_colour_hc.html'>scale_colour_hc</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='theme_hc-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>dtemp</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>months</span>, y <span class='op'>=</span> <span class='va'>temp</span>, group <span class='op'>=</span> <span class='va'>city</span>, color <span class='op'>=</span> <span class='va'>city</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1.1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Monthly Average Temperature"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_hc</span><span class='op'>(</span>bgcolor <span class='op'>=</span> <span class='st'>"darkunica"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='scale_colour_hc.html'>scale_fill_hc</a></span><span class='op'>(</span><span class='st'>"darkunica"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `bgcolor` is deprecated. Use `style` instead.</span></div><div class='img'><img src='theme_hc-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -196,13 +205,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

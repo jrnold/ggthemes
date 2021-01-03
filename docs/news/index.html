@@ -8,21 +8,29 @@
 
 <title>Changelog • ggthemes</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Changelog" />
+
 
 
 
@@ -44,9 +54,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -60,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0.9000</span>
       </span>
     </div>
 
@@ -68,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -79,11 +90,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jrnold/ggthemes">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="http://github.com/jrnold/ggthemes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -94,145 +104,158 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/jrnold/ggthemes/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='http://github.com/jrnold/ggthemes/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggthemes-420" class="section level1">
-<h1 class="page-header">
-<a href="#ggthemes-420" class="anchor"></a>ggthemes 4.2.0<small> Unreleased </small>
+    <div id="ggthemes-development-version" class="section level1">
+<h1 class="page-header" data-toc-text="development version">
+<a href="#ggthemes-development-version" class="anchor"></a>ggthemes (development version)<small> Unreleased </small>
 </h1>
 <ul>
-<li>Add <code>theme_clean()</code> (Thanks <a href='https://github.com/konradzdeb'>@konradzdeb</a>, <a href='https://github.com/jrnold/ggthemes/issues/105'>#105</a>)</li>
-<li>Add <code>direction</code> argument to <code>scale_color_tableau()</code> and <code>scale_fill_tableau()</code> (Thanks <a href='https://github.com/vadimus202'>@vadimus202</a>, <a href='https://github.com/jrnold/ggthemes/issues/112'>#112</a>)</li>
+<li>Conditionally use the vdiffr package in tests so it complies with suggested package policy (<a href='http://github.com/jrnold/ggthemes/issues/124'>#124</a>)</li>
+<li>Fix error in <code>expect_equal</code> functions (<a href='http://github.com/jrnold/ggthemes/issues/123'>#123</a>)</li>
+<li>Fix errors in <code>geom_tufteboxplot</code> and <code>stat_fivenumber</code> due to missing imported objects from ggplot2 (<a href='http://github.com/jrnold/ggthemes/issues/117'>#117</a>, <a href='http://github.com/jrnold/ggthemes/issues/121'>#121</a>)</li>
+<li>Fix text labels in top axis in <code>theme_economist</code> (<a href='http://github.com/jrnold/ggthemes/issues/115'>#115</a>)</li>
+<li>Update documentation on <code>geom_rangeframe</code>; it should be used with <code><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian(clip="off")</a></code>. (<a href='http://github.com/jrnold/ggthemes/issues/120'>#120</a>)</li>
+</ul>
+</div>
+    <div id="ggthemes-420" class="section level1">
+<h1 class="page-header" data-toc-text="4.2.0">
+<a href="#ggthemes-420" class="anchor"></a>ggthemes 4.2.0<small> 2019-05-13 </small>
+</h1>
+<ul>
+<li>Add <code><a href="../reference/theme_clean.html">theme_clean()</a></code> (Thanks <a href='http://github.com/konradzdeb'>@konradzdeb</a>, <a href='http://github.com/jrnold/ggthemes/issues/105'>#105</a>)</li>
+<li>Add <code>direction</code> argument to <code><a href="../reference/scale_colour_tableau.html">scale_color_tableau()</a></code> and <code><a href="../reference/scale_colour_tableau.html">scale_fill_tableau()</a></code> (Thanks <a href='http://github.com/vadimus202'>@vadimus202</a>, <a href='http://github.com/jrnold/ggthemes/issues/112'>#112</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-411" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="4.1.1">
 <a href="#ggthemes-411" class="anchor"></a>ggthemes 4.1.1<small> 2019-04-09 </small>
 </h1>
 <ul>
-<li>Fix bugs in <code>geom_rangeframe</code> and <code>geom_tufteboxplot</code> caused by failing to import <code>alpha</code>. (Thanks <a href='https://github.com/flying-sheep'>@flying-sheep</a>, <a href='https://github.com/jrnold/ggthemes/issues/110'>#110</a>)</li>
+<li>Fix bugs in <code>geom_rangeframe</code> and <code>geom_tufteboxplot</code> caused by failing to import <code>alpha</code>. (Thanks <a href='http://github.com/flying-sheep'>@flying-sheep</a>, <a href='http://github.com/jrnold/ggthemes/issues/110'>#110</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-410" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="4.1.0">
 <a href="#ggthemes-410" class="anchor"></a>ggthemes 4.1.0<small> 2019-02-19 </small>
 </h1>
 <ul>
-<li>Add <code>type</code> argument to <code>scale_color_tableau</code> so that sequential and diverging palettes can be used in discrete scales. (Thanks <a href='https://github.com/onesandzeroes'>@onesandzeroes</a>, <a href='https://github.com/jrnold/ggthemes/issues/108'>#108</a>)</li>
-<li>Fix colors in “Purple” and “Blue-Teal” palettes in <code>tableau_color_pal()</code>. (Thanks <a href='https://github.com/leonawicz'>@leonawicz</a>, <a href='https://github.com/jrnold/ggthemes/issues/109'>#109</a>)</li>
+<li>Add <code>type</code> argument to <code>scale_color_tableau</code> so that sequential and diverging palettes can be used in discrete scales. (Thanks <a href='http://github.com/onesandzeroes'>@onesandzeroes</a>, <a href='http://github.com/jrnold/ggthemes/issues/108'>#108</a>)</li>
+<li>Fix colors in “Purple” and “Blue-Teal” palettes in <code><a href="../reference/tableau_color_pal.html">tableau_color_pal()</a></code>. (Thanks <a href='http://github.com/leonawicz'>@leonawicz</a>, <a href='http://github.com/jrnold/ggthemes/issues/109'>#109</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-401" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="4.0.1">
 <a href="#ggthemes-401" class="anchor"></a>ggthemes 4.0.1<small> 2018-08-24 </small>
 </h1>
 <ul>
-<li>Fix bugs in <code>tableau_color_pal()</code>. Wrong colors in “Tableau 20” theme (Thanks <a href='https://github.com/friskin'>@friskin</a>, <a href='https://github.com/jrnold/ggthemes/issues/95'>#95</a>), and incorrect order of classic color palettes (Thanks <a href='https://github.com/luca-scr'>@luca-scr</a>, <a href='https://github.com/jrnold/ggthemes/issues/96'>#96</a>).</li>
-<li>Fix fatal bug in <code>theme_solarized()</code> and <code>solarized_rebase()</code>. (Thanks <a href='https://github.com/mdodrill-usgs'>@mdodrill-usgs</a>, <a href='https://github.com/jrnold/ggthemes/issues/97'>#97</a>)</li>
+<li>Fix bugs in <code><a href="../reference/tableau_color_pal.html">tableau_color_pal()</a></code>. Wrong colors in “Tableau 20” theme (Thanks <a href='http://github.com/friskin'>@friskin</a>, <a href='http://github.com/jrnold/ggthemes/issues/95'>#95</a>), and incorrect order of classic color palettes (Thanks <a href='http://github.com/luca-scr'>@luca-scr</a>, <a href='http://github.com/jrnold/ggthemes/issues/96'>#96</a>).</li>
+<li>Fix fatal bug in <code><a href="../reference/theme_solarized.html">theme_solarized()</a></code> and <code><a href="../reference/solarized_rebase.html">solarized_rebase()</a></code>. (Thanks <a href='http://github.com/mdodrill-usgs'>@mdodrill-usgs</a>, <a href='http://github.com/jrnold/ggthemes/issues/97'>#97</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-400" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="4.0.0">
 <a href="#ggthemes-400" class="anchor"></a>ggthemes 4.0.0<small> 2018-07-19 </small>
 </h1>
 <ul>
-<li><p>Added palettes and based on current versions of Excel: <code>excel_pal_new()</code>, <code>scale_colour_excel_new()</code>, and <code>scale_fill_excel_new()</code>. Excel ’97 based scales keep the same names.</p></li>
-<li><p>Added <code>theme_excel_new()</code> which is based on the chart defaults of current versions of Excel.</p></li>
-<li><p>Added Tableau 10 palettes and renamed old palettes in <code>tableau_color_pal()</code>, <code>scale_color_tableau()</code>, <code>scale_fill_tableau()</code>, and others. The continuous sequential and diverging palettes are improved by including more intermediate steps.</p></li>
-<li><p>Updated <code>theme_gdocs()</code> to current look.</p></li>
-<li><p>Updated <code>scale_color_gdocs()</code> and <code>fill_color_gdocs()</code> to current color.</p></li>
-<li><p>Added <code>scale_shapes_few()</code> and <code>few_shape_pal()</code> with a shape scale and palette from Stephen Few’s “Show Me the Numbers”.</p></li>
-<li><p>Removed <code>stata</code> argument from <code>scale_*_economist()</code> and <code>theme_economist()</code>.</p></li>
+<li><p>Added palettes and based on current versions of Excel: <code>excel_pal_new()</code>, <code><a href="../reference/scale_colour_excel_new.html">scale_colour_excel_new()</a></code>, and <code><a href="../reference/scale_colour_excel_new.html">scale_fill_excel_new()</a></code>. Excel ’97 based scales keep the same names.</p></li>
+<li><p>Added <code><a href="../reference/theme_excel_new.html">theme_excel_new()</a></code> which is based on the chart defaults of current versions of Excel.</p></li>
+<li><p>Added Tableau 10 palettes and renamed old palettes in <code><a href="../reference/tableau_color_pal.html">tableau_color_pal()</a></code>, <code><a href="../reference/scale_colour_tableau.html">scale_color_tableau()</a></code>, <code><a href="../reference/scale_colour_tableau.html">scale_fill_tableau()</a></code>, and others. The continuous sequential and diverging palettes are improved by including more intermediate steps.</p></li>
+<li><p>Updated <code><a href="../reference/theme_gdocs.html">theme_gdocs()</a></code> to current look.</p></li>
+<li><p>Updated <code><a href="../reference/scale_fill_gdocs.html">scale_color_gdocs()</a></code> and <code>fill_color_gdocs()</code> to current color.</p></li>
+<li><p>Added <code>scale_shapes_few()</code> and <code><a href="../reference/few_shape_pal.html">few_shape_pal()</a></code> with a shape scale and palette from Stephen Few’s “Show Me the Numbers”.</p></li>
+<li><p>Removed <code>stata</code> argument from <code>scale_*_economist()</code> and <code><a href="../reference/theme_economist.html">theme_economist()</a></code>.</p></li>
 <li><p>Changed the format of the <code>ggthemes_data</code> object.</p></li>
-<li><p>Changed behavior of <code>few_pal()</code>. If <code>n = 1</code>, use gray. If <code>n &gt; 1</code> use non-gray colors.</p></li>
+<li><p>Changed behavior of <code><a href="../reference/few_pal.html">few_pal()</a></code>. If <code>n = 1</code>, use gray. If <code>n &gt; 1</code> use non-gray colors.</p></li>
 <li><p>Changed <code>tremmel_shape_scale()</code> to use <code>alt = TRUE</code> by default</p></li>
 <li><p>Deprecated <code>tremmel_shape_scale()</code> argument <code>n3alt</code>. Use the <code>alt</code> argument instead.</p></li>
 <li><p>Added a pkgdown site.</p></li>
 <li><p>Removed vignette. Move all examples to man pages.</p></li>
-<li><p>Bugfix: Fix <code>theme_few()</code> (<a href='https://github.com/jrnold/ggthemes/issues/91'>#91</a>)</p></li>
+<li><p>Bugfix: Fix <code><a href="../reference/theme_few.html">theme_few()</a></code> (<a href='http://github.com/jrnold/ggthemes/issues/91'>#91</a>)</p></li>
 <li><p>Bugfix: Update themes to be consistent with <code>ggplot&gt;=3.2.0</code></p></li>
 </ul>
 </div>
     <div id="ggthemes-350" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.5.0">
 <a href="#ggthemes-350" class="anchor"></a>ggthemes 3.5.0<small> 2018-05-07 </small>
 </h1>
 <ul>
-<li><p>Bugfix: Fix RGB colors in <code>scale_color_few()</code>, <code>scale_fill_few()</code>, and <code>few_pal()</code> (<a href='https://github.com/jrnold/ggthemes/issues/89'>#89</a>, <a href='https://github.com/bpbraun'>@bpbraun</a>)</p></li>
-<li><p>Update documentation to include mentions of the maximum number of values that discrete scales support (<a href='https://github.com/jrnold/ggthemes/issues/85'>#85</a>)</p></li>
+<li><p>Bugfix: Fix RGB colors in <code><a href="../reference/scale_colour_few.html">scale_color_few()</a></code>, <code><a href="../reference/scale_colour_few.html">scale_fill_few()</a></code>, and <code><a href="../reference/few_pal.html">few_pal()</a></code> (<a href='http://github.com/jrnold/ggthemes/issues/89'>#89</a>, <a href='http://github.com/bpbraun'>@bpbraun</a>)</p></li>
+<li><p>Update documentation to include mentions of the maximum number of values that discrete scales support (<a href='http://github.com/jrnold/ggthemes/issues/85'>#85</a>)</p></li>
 </ul>
 </div>
     <div id="ggthemes-342" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.4.2">
 <a href="#ggthemes-342" class="anchor"></a>ggthemes 3.4.2<small> 2018-04-03 </small>
 </h1>
 <ul>
-<li>Bugfix: Fix example code in <code>theme_economist()</code>. Thanks <a href='https://github.com/carlganz'>@carlganz</a> <a href='https://github.com/jrnold/ggthemes/issues/81'>#81</a>.</li>
+<li>Bugfix: Fix example code in <code><a href="../reference/theme_economist.html">theme_economist()</a></code>. Thanks <a href='http://github.com/carlganz'>@carlganz</a> <a href='http://github.com/jrnold/ggthemes/issues/81'>#81</a>.</li>
 <li>Remove suggests dependencies: <code>reshape2</code>, <code>plyr</code>, <code>tidyverse</code>
 </li>
 </ul>
 </div>
     <div id="ggthemes-341" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.4.1">
 <a href="#ggthemes-341" class="anchor"></a>ggthemes 3.4.1<small> Unreleased </small>
 </h1>
 <ul>
-<li>Bugfix: Resolve duplicate palette names in <code>canva_palettes()</code>. Thanks <a href='https://github.com/Eluvias'>@Eluvias</a> (<a href='https://github.com/jrnold/ggthemes/issues/78'>#78</a>)</li>
+<li>Bugfix: Resolve duplicate palette names in <code><a href="../reference/canva_palettes.html">canva_palettes()</a></code>. Thanks <a href='http://github.com/Eluvias'>@Eluvias</a> (<a href='http://github.com/jrnold/ggthemes/issues/78'>#78</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-340" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.4.0">
 <a href="#ggthemes-340" class="anchor"></a>ggthemes 3.4.0<small> 2017-02-19 </small>
 </h1>
 <ul>
-<li><p>Add color palettes from canva.com: <code>canva_palettes()</code>, <code>canva_pal()</code>, <code>scale_colour_canva()</code>.</p></li>
+<li><p>Add color palettes from canva.com: <code><a href="../reference/canva_palettes.html">canva_palettes()</a></code>, <code><a href="../reference/canva_pal.html">canva_pal()</a></code>, <code><a href="../reference/scale_colour_canva.html">scale_colour_canva()</a></code>.</p></li>
 <li><p>Use <code>NEWS.md</code> instead of <code>NEWS</code></p></li>
 <li><p>Update Economist examples to put y-axis on the right side.</p></li>
 </ul>
 </div>
     <div id="ggthemes-330" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.3.0">
 <a href="#ggthemes-330" class="anchor"></a>ggthemes 3.3.0<small> 2016-11-24 </small>
 </h1>
 <ul>
-<li><p>Update themes to changes in ggplot 2.1.0.9000. Thanks <a href='https://github.com/juliasilge'>@juliasilge</a> (<a href='https://github.com/jrnold/ggthemes/issues/71'>#71</a>)</p></li>
-<li><p><code>tufte_boxplot()</code> uses <code>position="dodge"</code> by default. Thanks <a href='https://github.com/jgellar'>@jgellar</a> (<a href='https://github.com/jrnold/ggthemes/issues/68'>#68</a>)</p></li>
-<li><p>Bugfix: Fix errors in <code>geom_rangeframe()</code> in new version of ggplot2. Thanks <a href='https://github.com/coulmont'>@coulmont</a> (<a href='https://github.com/jrnold/ggthemes/issues/70'>#70</a>)</p></li>
+<li><p>Update themes to changes in ggplot 2.1.0.9000. Thanks <a href='http://github.com/juliasilge'>@juliasilge</a> (<a href='http://github.com/jrnold/ggthemes/issues/71'>#71</a>)</p></li>
+<li><p><code>tufte_boxplot()</code> uses <code>position="dodge"</code> by default. Thanks <a href='http://github.com/jgellar'>@jgellar</a> (<a href='http://github.com/jrnold/ggthemes/issues/68'>#68</a>)</p></li>
+<li><p>Bugfix: Fix errors in <code><a href="../reference/geom_rangeframe.html">geom_rangeframe()</a></code> in new version of ggplot2. Thanks <a href='http://github.com/coulmont'>@coulmont</a> (<a href='http://github.com/jrnold/ggthemes/issues/70'>#70</a>)</p></li>
 </ul>
 </div>
     <div id="ggthemes-320" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.2.0">
 <a href="#ggthemes-320" class="anchor"></a>ggthemes 3.2.0<small> 2016-07-11 </small>
 </h1>
 <ul>
-<li>Bugfix: In function <code>bank_slopes()</code>, remove methods <code>ao</code>, <code>gor</code>, and <code>lor</code>. These methods were not producing reliable results, and should not produce results much different than <code>ms</code> or <code>as</code>. If used, they will produce a warning, and <code>ms</code> will be used instead. (<a href='https://github.com/jrnold/ggthemes/issues/68'>#68</a>)</li>
+<li>Bugfix: In function <code><a href="../reference/bank_slopes.html">bank_slopes()</a></code>, remove methods <code>ao</code>, <code>gor</code>, and <code>lor</code>. These methods were not producing reliable results, and should not produce results much different than <code>ms</code> or <code>as</code>. If used, they will produce a warning, and <code>ms</code> will be used instead. (<a href='http://github.com/jrnold/ggthemes/issues/68'>#68</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-310" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.1.0">
 <a href="#ggthemes-310" class="anchor"></a>ggthemes 3.1.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>Add <code>ptol_pal()</code>, <code>scale_colour_ptol()</code>, and <code>scale_file_ptol()</code> based on Paul Tol’s qualitative color palettes. Thanks <a href='https://github.com/jmlondon'>@jmlondon</a>. (<a href='https://github.com/jrnold/ggthemes/issues/65'>#65</a>)</li>
+<li>Add <code><a href="../reference/ptol_pal.html">ptol_pal()</a></code>, <code><a href="../reference/scale_colour_ptol.html">scale_colour_ptol()</a></code>, and <code>scale_file_ptol()</code> based on Paul Tol’s qualitative color palettes. Thanks <a href='http://github.com/jmlondon'>@jmlondon</a>. (<a href='http://github.com/jrnold/ggthemes/issues/65'>#65</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-304" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.0.4">
 <a href="#ggthemes-304" class="anchor"></a>ggthemes 3.0.4<small> Unreleased </small>
 </h1>
 <ul>
-<li>Fix panel.grid.major.y colors for <code>theme_hc()</code>. Thanks <a href='https://github.com/flying-sheep'>@flying-sheep</a>! (<a href='https://github.com/jrnold/ggthemes/issues/64'>#64</a>)</li>
+<li>Fix panel.grid.major.y colors for <code><a href="../reference/theme_hc.html">theme_hc()</a></code>. Thanks <a href='http://github.com/flying-sheep'>@flying-sheep</a>! (<a href='http://github.com/jrnold/ggthemes/issues/64'>#64</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-303" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.0.3">
 <a href="#ggthemes-303" class="anchor"></a>ggthemes 3.0.3<small> 2016-04-09 </small>
 </h1>
 <ul>
@@ -240,40 +263,40 @@
 </ul>
 </div>
     <div id="ggthemes-302" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.0.2">
 <a href="#ggthemes-302" class="anchor"></a>ggthemes 3.0.2<small> 2016-02-26 </small>
 </h1>
 <ul>
-<li>Bugfix: export <code>ggthemes_data()</code>
+<li>Bugfix: export <code><a href="../reference/ggthemes_data.html">ggthemes_data()</a></code>
 </li>
 </ul>
 </div>
     <div id="ggthemes-301" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.0.1">
 <a href="#ggthemes-301" class="anchor"></a>ggthemes 3.0.1<small> 2016-01-10 </small>
 </h1>
 <ul>
-<li><p>Bugfix: Remove border around legends in <code>theme_gdocs()</code>. Thanks SandyMuspratt! Pull request <a href='https://github.com/jrnold/ggthemes/issues/53'>#53</a>.</p></li>
-<li><p>Bugfix: Remove border around legends in <code>theme_calc()</code>.</p></li>
-<li><p>Bugfix: Add colour and fill values to <code>theme_foundation()</code>. This restores its behavior to version 2.2.1. Fixes Issue <a href='https://github.com/jrnold/ggthemes/issues/56'>#56</a>.</p></li>
+<li><p>Bugfix: Remove border around legends in <code><a href="../reference/theme_gdocs.html">theme_gdocs()</a></code>. Thanks SandyMuspratt! Pull request <a href='http://github.com/jrnold/ggthemes/issues/53'>#53</a>.</p></li>
+<li><p>Bugfix: Remove border around legends in <code><a href="../reference/theme_calc.html">theme_calc()</a></code>.</p></li>
+<li><p>Bugfix: Add colour and fill values to <code><a href="../reference/theme_foundation.html">theme_foundation()</a></code>. This restores its behavior to version 2.2.1. Fixes Issue <a href='http://github.com/jrnold/ggthemes/issues/56'>#56</a>.</p></li>
 </ul>
 </div>
     <div id="ggthemes-300" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="3.0.0">
 <a href="#ggthemes-300" class="anchor"></a>ggthemes 3.0.0<small> 2015-12-20 </small>
 </h1>
 <ul>
-<li><p>For <code>geom_tufteboxplot()</code> and <code>GeomTufteboxplot</code>, option <code>median.type</code> supports only <code>line</code> and <code>point</code> options. Added option <code>whisker.type</code> which allows for whiskers to be specified by lines or points.</p></li>
-<li><p>Changed default stat for <code>geom_tufteboxplot()</code> to <code>stat_fivenumber()</code>.</p></li>
-<li><p>Added <code>theme_base()</code> and <code>theme_par()</code></p></li>
-<li><p>Removed <code>scale_(x|y)_tufte()</code>. See issue <a href='https://github.com/jrnold/ggthemes/issues/49'>#49</a></p></li>
-<li><p><code>theme_foundation()</code> rewritten. Removed <code>use_sizes</code> argument.</p></li>
+<li><p>For <code><a href="../reference/geom_tufteboxplot.html">geom_tufteboxplot()</a></code> and <code>GeomTufteboxplot</code>, option <code>median.type</code> supports only <code>line</code> and <code>point</code> options. Added option <code>whisker.type</code> which allows for whiskers to be specified by lines or points.</p></li>
+<li><p>Changed default stat for <code><a href="../reference/geom_tufteboxplot.html">geom_tufteboxplot()</a></code> to <code><a href="../reference/stat_fivenumber.html">stat_fivenumber()</a></code>.</p></li>
+<li><p>Added <code><a href="../reference/theme_base.html">theme_base()</a></code> and <code><a href="../reference/theme_par.html">theme_par()</a></code></p></li>
+<li><p>Removed <code>scale_(x|y)_tufte()</code>. See issue <a href='http://github.com/jrnold/ggthemes/issues/49'>#49</a></p></li>
+<li><p><code><a href="../reference/theme_foundation.html">theme_foundation()</a></code> rewritten. Removed <code>use_sizes</code> argument.</p></li>
 <li><p>Import rather than depend on <code>ggplot2</code></p></li>
 <li><p>Update geoms, scales, and themes to ggplot &gt;= 2.0.0</p></li>
 </ul>
 </div>
     <div id="ggthemes-221" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="2.2.1">
 <a href="#ggthemes-221" class="anchor"></a>ggthemes 2.2.1<small> 2015-07-01 </small>
 </h1>
 <ul>
@@ -282,15 +305,15 @@
 </ul>
 </div>
     <div id="ggthemes-220" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="2.2.0">
 <a href="#ggthemes-220" class="anchor"></a>ggthemes 2.2.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>Added <code>theme_map()</code> from <a href='https://github.com/hrbrmstr'>@hrbrmstr</a></li>
+<li>Added <code><a href="../reference/theme_map.html">theme_map()</a></code> from <a href='http://github.com/hrbrmstr'>@hrbrmstr</a></li>
 </ul>
 </div>
     <div id="ggthemes-211" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="2.1.1">
 <a href="#ggthemes-211" class="anchor"></a>ggthemes 2.1.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -298,79 +321,79 @@
 <li>bugfix: fix non-escaped URLs in colorblind.R</li>
 <li>bugfix: fix broken URL in few.R</li>
 <li>bugfix: remove non-ascii characters in shapes.R</li>
-<li>bugfix: use <code><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace()</a></code> instead of <code><a href="https://www.rdocumentation.org/packages/base/topics/library">require()</a></code>
+<li>bugfix: use <code><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace()</a></code> instead of <code><a href="https://rdrr.io/r/base/library.html">require()</a></code>
 </li>
 </ul>
 </div>
     <div id="ggthemes-210" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="2.1.0">
 <a href="#ggthemes-210" class="anchor"></a>ggthemes 2.1.0<small> 2014-12-18 </small>
 </h1>
 <ul>
-<li>New theme and scale based on Highcharts JS: <code>scale_*_hc()</code>, <code>theme_hc()</code>. Thanks jbkunst!</li>
+<li>New theme and scale based on Highcharts JS: <code>scale_*_hc()</code>, <code><a href="../reference/theme_hc.html">theme_hc()</a></code>. Thanks jbkunst!</li>
 </ul>
 </div>
     <div id="ggthemes-200" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="2.0.0">
 <a href="#ggthemes-200" class="anchor"></a>ggthemes 2.0.0<small> Unreleased </small>
 </h1>
 <ul>
-<li><p>New options for <code>geom_tufteboxplot()</code>. <code>median.type</code> takes values “point”, “box”, or “line”. Option <code>usebox</code> is no longer supported, and equivalent to <code>median.type="box"</code>. Thanks weitzner! Issue <a href='https://github.com/jrnold/ggthemes/issues/13'>#13</a>, PR <a href='https://github.com/jrnold/ggthemes/issues/19'>#19</a>.</p></li>
-<li><p>All theme functions have <code>base_size</code> and <code>base_family</code> as first two arguments. This affects <code>theme_economist_white()</code>, <code>theme_excel()</code>, <code>theme_pander()</code>, <code>theme_solid()</code>, and <code>theme_tufte()</code>. Thanks ptoche! Issue <a href='https://github.com/jrnold/ggthemes/issues/25'>#25</a>.</p></li>
-<li><p><code>theme_pander()</code>: Options <code>ff</code> and <code>fs</code> are deprecated; use <code>base_family</code> and <code>base_size</code> options instead, respectively.</p></li>
+<li><p>New options for <code><a href="../reference/geom_tufteboxplot.html">geom_tufteboxplot()</a></code>. <code>median.type</code> takes values “point”, “box”, or “line”. Option <code>usebox</code> is no longer supported, and equivalent to <code>median.type="box"</code>. Thanks weitzner! Issue <a href='http://github.com/jrnold/ggthemes/issues/13'>#13</a>, PR <a href='http://github.com/jrnold/ggthemes/issues/19'>#19</a>.</p></li>
+<li><p>All theme functions have <code>base_size</code> and <code>base_family</code> as first two arguments. This affects <code><a href="../reference/theme_economist.html">theme_economist_white()</a></code>, <code><a href="../reference/theme_excel.html">theme_excel()</a></code>, <code><a href="../reference/theme_pander.html">theme_pander()</a></code>, <code><a href="../reference/theme_solid.html">theme_solid()</a></code>, and <code><a href="../reference/theme_tufte.html">theme_tufte()</a></code>. Thanks ptoche! Issue <a href='http://github.com/jrnold/ggthemes/issues/25'>#25</a>.</p></li>
+<li><p><code><a href="../reference/theme_pander.html">theme_pander()</a></code>: Options <code>ff</code> and <code>fs</code> are deprecated; use <code>base_family</code> and <code>base_size</code> options instead, respectively.</p></li>
 </ul>
 </div>
     <div id="ggthemes-190" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.9.0">
 <a href="#ggthemes-190" class="anchor"></a>ggthemes 1.9.0<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>added vignette</p></li>
-<li><p>added themes / scales based on factory defaults of pander package: <code>pander_palette()</code>, <code>scale_color_pander()</code>, <code>scale_fill_pander()</code>, <code>theme_pander()</code>. Thanks daroczig.</p></li>
-<li><p>added additional fill and gradient color scales: <code>scale_fill_fivethirtyeight()</code>, <code>scale_colour_gradient_tableau()</code>, <code>scale_fill_gradient_tableau()</code>, <code>scale_fill_continuous_tableau()</code>, <code>scale_colour_gradient2_tableau()</code>, <code>scale_fill_gradient2_tableau()</code>. Thanks bowerth.</p></li>
+<li><p>added themes / scales based on factory defaults of pander package: <code>pander_palette()</code>, <code><a href="../reference/scale_color_pander.html">scale_color_pander()</a></code>, <code><a href="../reference/scale_color_pander.html">scale_fill_pander()</a></code>, <code><a href="../reference/theme_pander.html">theme_pander()</a></code>. Thanks daroczig.</p></li>
+<li><p>added additional fill and gradient color scales: <code><a href="../reference/scale_colour_fivethirtyeight.html">scale_fill_fivethirtyeight()</a></code>, <code><a href="../reference/scale_colour_gradient_tableau.html">scale_colour_gradient_tableau()</a></code>, <code><a href="../reference/scale_colour_gradient_tableau.html">scale_fill_gradient_tableau()</a></code>, <code><a href="../reference/scale_colour_gradient_tableau.html">scale_fill_continuous_tableau()</a></code>, <code><a href="../reference/scale_colour_gradient2_tableau.html">scale_colour_gradient2_tableau()</a></code>, <code><a href="../reference/scale_colour_gradient2_tableau.html">scale_fill_gradient2_tableau()</a></code>. Thanks bowerth.</p></li>
 </ul>
 </div>
     <div id="ggthemes-180" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.8.0">
 <a href="#ggthemes-180" class="anchor"></a>ggthemes 1.8.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>added themes and color scale from fivethirtyeight.com: <code>theme_fivethirtyeight()</code>, <code>fivethirtyeight_pal()</code>, <code>scale_color_fivethirtyeight()</code>
+<li>added themes and color scale from fivethirtyeight.com: <code><a href="../reference/theme_fivethirtyeight.html">theme_fivethirtyeight()</a></code>, <code><a href="../reference/fivethirtyeight_pal.html">fivethirtyeight_pal()</a></code>, <code><a href="../reference/scale_colour_fivethirtyeight.html">scale_color_fivethirtyeight()</a></code>
 </li>
 </ul>
 </div>
     <div id="ggthemes-170" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.7.0">
 <a href="#ggthemes-170" class="anchor"></a>ggthemes 1.7.0<small> 2014-04-22 </small>
 </h1>
 <ul>
-<li>added a new breaks algorithm: <code>scales_extended_range_breaks()</code>, <code>extended_range_breaks()</code>
+<li>added a new breaks algorithm: <code>scales_extended_range_breaks()</code>, <code><a href="../reference/extended_range_breaks_.html">extended_range_breaks()</a></code>
 </li>
 <li>added scales which implement the breaks algorithm: <code>scale_x_tufte()</code>, <code>scale_y_tufte()</code>
 </li>
-<li>added new label format: <code>smart_digits()</code>, <code>smart_digits_format()</code>
+<li>added new label format: <code><a href="../reference/smart_digits.html">smart_digits()</a></code>, <code><a href="../reference/smart_digits.html">smart_digits_format()</a></code>
 </li>
 </ul>
 </div>
     <div id="ggthemes-161" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.6.1">
 <a href="#ggthemes-161" class="anchor"></a>ggthemes 1.6.1<small> Unreleased </small>
 </h1>
 <ul>
-<li>fix bug in <code>theme_wsj()</code> (issue <a href='https://github.com/jrnold/ggthemes/issues/17'>#17</a>)</li>
+<li>fix bug in <code><a href="../reference/theme_wsj.html">theme_wsj()</a></code> (issue <a href='http://github.com/jrnold/ggthemes/issues/17'>#17</a>)</li>
 </ul>
 </div>
     <div id="ggthemes-160" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.6.0">
 <a href="#ggthemes-160" class="anchor"></a>ggthemes 1.6.0<small> 2013-12-14 </small>
 </h1>
 <ul>
-<li>added <code>theme_solid()</code>
+<li>added <code><a href="../reference/theme_solid.html">theme_solid()</a></code>
 </li>
 </ul>
 </div>
     <div id="ggthemes-151" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.5.1">
 <a href="#ggthemes-151" class="anchor"></a>ggthemes 1.5.1<small> 2013-10-20 </small>
 </h1>
 <ul>
@@ -378,142 +401,105 @@
 </ul>
 </div>
     <div id="ggthemes-150" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.5.0">
 <a href="#ggthemes-150" class="anchor"></a>ggthemes 1.5.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>added alternative Solarized theme: <code>theme_solarized_2()</code>
+<li>added alternative Solarized theme: <code><a href="../reference/theme_solarized.html">theme_solarized_2()</a></code>
 </li>
 <li>
-<code>theme_solarized()</code>: adjusted the colors</li>
-<li>added LibreOffic Calc themes and palettes: <code>theme_calc()</code>, <code>calc_pal()</code>, <code>scale_fill_calc()</code>, <code>scale_colour_calc()</code>, <code>cacl_shape_pal()</code>, <code>scale_shape_calc()</code>
+<code><a href="../reference/theme_solarized.html">theme_solarized()</a></code>: adjusted the colors</li>
+<li>added LibreOffic Calc themes and palettes: <code><a href="../reference/theme_calc.html">theme_calc()</a></code>, <code><a href="../reference/calc_pal.html">calc_pal()</a></code>, <code><a href="../reference/scale_fill_calc.html">scale_fill_calc()</a></code>, <code><a href="../reference/scale_fill_calc.html">scale_colour_calc()</a></code>, <code>cacl_shape_pal()</code>, <code><a href="../reference/scale_shape_calc.html">scale_shape_calc()</a></code>
 </li>
-<li>added Google Docs themes and palettes: <code>theme_gdocs()</code>, <code>gdocs_pal()</code>, <code>scale_fill_gdocs()</code>, <code>scale_colour_gdocs()</code>
+<li>added Google Docs themes and palettes: <code><a href="../reference/theme_gdocs.html">theme_gdocs()</a></code>, <code><a href="../reference/gdocs_pal.html">gdocs_pal()</a></code>, <code><a href="../reference/scale_fill_gdocs.html">scale_fill_gdocs()</a></code>, <code><a href="../reference/scale_fill_gdocs.html">scale_colour_gdocs()</a></code>
 </li>
 <li>fixed some examples</li>
 </ul>
 </div>
     <div id="ggthemes-140" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.4.0">
 <a href="#ggthemes-140" class="anchor"></a>ggthemes 1.4.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>fix bug in default palettes of <code>scale_colour_excel()</code> and <code>scale_fill_excel()</code>.</li>
+<li>fix bug in default palettes of <code><a href="../reference/scale_fill_excel.html">scale_colour_excel()</a></code> and <code><a href="../reference/scale_fill_excel.html">scale_fill_excel()</a></code>.</li>
 </ul>
 </div>
     <div id="ggthemes-134" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.3.4">
 <a href="#ggthemes-134" class="anchor"></a>ggthemes 1.3.4<small> Unreleased </small>
 </h1>
 <ul>
-<li>added Tableau sequential colour palettes: <code>tableau_seq_gradient_pal()</code>, <code>scale_colour_gradient_tableau()</code>, <code>scale_fill_gradient_tableau()</code>.</li>
-<li>added Tableau diverging colour palettes: <code>tableau_div_gradient_pal()</code>, <code>scale_colour_gradient2_tableau()</code>, <code>scale_fill_gradient2_tableau()</code>.</li>
+<li>added Tableau sequential colour palettes: <code><a href="../reference/tableau_gradient_pal.html">tableau_seq_gradient_pal()</a></code>, <code><a href="../reference/scale_colour_gradient_tableau.html">scale_colour_gradient_tableau()</a></code>, <code><a href="../reference/scale_colour_gradient_tableau.html">scale_fill_gradient_tableau()</a></code>.</li>
+<li>added Tableau diverging colour palettes: <code><a href="../reference/tableau_gradient_pal.html">tableau_div_gradient_pal()</a></code>, <code><a href="../reference/scale_colour_gradient2_tableau.html">scale_colour_gradient2_tableau()</a></code>, <code><a href="../reference/scale_colour_gradient2_tableau.html">scale_fill_gradient2_tableau()</a></code>.</li>
 <li>
 <code>tableau_colour_pal()</code>: added palette "cyclical</li>
 </ul>
 </div>
     <div id="ggthemes-133" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.3.3">
 <a href="#ggthemes-133" class="anchor"></a>ggthemes 1.3.3<small> 2013-03-25 </small>
 </h1>
 <ul>
-<li>fix issue <a href='https://github.com/jrnold/ggthemes/issues/11'>#11</a>: error with fonts and <code>theme_wsj()</code> in Windows</li>
+<li>fix issue <a href='http://github.com/jrnold/ggthemes/issues/11'>#11</a>: error with fonts and <code><a href="../reference/theme_wsj.html">theme_wsj()</a></code> in Windows</li>
 </ul>
 </div>
     <div id="ggthemes-131" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.3.1">
 <a href="#ggthemes-131" class="anchor"></a>ggthemes 1.3.1<small> 2012-12-22 </small>
 </h1>
 <ul>
 <li>
-<code>bank_slopes()</code> returns y/x aspect ratio to be compatible with <code>coord_fixed()</code>
+<code><a href="../reference/bank_slopes.html">bank_slopes()</a></code> returns y/x aspect ratio to be compatible with <code><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed()</a></code>
 </li>
 <li>improved documentation</li>
 </ul>
 </div>
     <div id="ggthemes-130" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.3.0">
 <a href="#ggthemes-130" class="anchor"></a>ggthemes 1.3.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>renamed <code>theme_excel2003()</code> to <code>theme_excel()</code>
+<li>renamed <code>theme_excel2003()</code> to <code><a href="../reference/theme_excel.html">theme_excel()</a></code>
 </li>
-<li>replace <code>scale_fill_excel2003()</code> and <code>scale_fill_excel10()</code> with <code>scale_fill_excel()</code>
+<li>replace <code>scale_fill_excel2003()</code> and <code>scale_fill_excel10()</code> with <code><a href="../reference/scale_fill_excel.html">scale_fill_excel()</a></code>
 </li>
-<li>replaced <code>scale_colour_excel2003()</code> and <code>scale_colour_excel10()</code> with <code>scale_colour_excel()</code>
+<li>replaced <code>scale_colour_excel2003()</code> and <code>scale_colour_excel10()</code> with <code><a href="../reference/scale_fill_excel.html">scale_colour_excel()</a></code>
 </li>
-<li>replaced <code>excel2003_pal()</code> and <code>excel10_pal()</code> with <code>excel_pal()</code>
+<li>replaced <code>excel2003_pal()</code> and <code>excel10_pal()</code> with <code><a href="../reference/excel_pal.html">excel_pal()</a></code>
 </li>
-<li>renamed <code>theme_base()</code> to <code>theme_foundation()</code>
+<li>renamed <code><a href="../reference/theme_base.html">theme_base()</a></code> to <code><a href="../reference/theme_foundation.html">theme_foundation()</a></code>
 </li>
 </ul>
 </div>
     <div id="ggthemes-120" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.2.0">
 <a href="#ggthemes-120" class="anchor"></a>ggthemes 1.2.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>added colorblind scales: <code>colorblind_pal()</code>, <code>scale_*_colorblind()</code>.</li>
+<li>added colorblind scales: <code><a href="../reference/colorblind_pal.html">colorblind_pal()</a></code>, <code>scale_*_colorblind()</code>.</li>
 </ul>
 </div>
     <div id="ggthemes-110" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.1.0">
 <a href="#ggthemes-110" class="anchor"></a>ggthemes 1.1.0<small> Unreleased </small>
 </h1>
 <ul>
-<li>added Wall Street Journal themes, palettes, scales: <code>theme_wsj()</code>, <code>wsj_pal()</code>, <code>scale_colour_wsj()</code>, and <code>scale_fill_wsj()</code>.</li>
-<li>added function <code>bank_slopes()</code> : methods for determining the optimal slope ratio.</li>
+<li>added Wall Street Journal themes, palettes, scales: <code><a href="../reference/theme_wsj.html">theme_wsj()</a></code>, <code><a href="../reference/wsj_pal.html">wsj_pal()</a></code>, <code><a href="../reference/scale_colour_wsj.html">scale_colour_wsj()</a></code>, and <code><a href="../reference/scale_colour_wsj.html">scale_fill_wsj()</a></code>.</li>
+<li>added function <code><a href="../reference/bank_slopes.html">bank_slopes()</a></code> : methods for determining the optimal slope ratio.</li>
 <li>added <code>theme-foundation()</code>: a theme designed to be easy to extend into new themes.</li>
 <li>added NEWS file</li>
 </ul>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggthemes-420">4.2.0</a></li>
-        <li><a href="#ggthemes-411">4.1.1</a></li>
-        <li><a href="#ggthemes-410">4.1.0</a></li>
-        <li><a href="#ggthemes-401">4.0.1</a></li>
-        <li><a href="#ggthemes-400">4.0.0</a></li>
-        <li><a href="#ggthemes-350">3.5.0</a></li>
-        <li><a href="#ggthemes-342">3.4.2</a></li>
-        <li><a href="#ggthemes-341">3.4.1</a></li>
-        <li><a href="#ggthemes-340">3.4.0</a></li>
-        <li><a href="#ggthemes-330">3.3.0</a></li>
-        <li><a href="#ggthemes-320">3.2.0</a></li>
-        <li><a href="#ggthemes-310">3.1.0</a></li>
-        <li><a href="#ggthemes-304">3.0.4</a></li>
-        <li><a href="#ggthemes-303">3.0.3</a></li>
-        <li><a href="#ggthemes-302">3.0.2</a></li>
-        <li><a href="#ggthemes-301">3.0.1</a></li>
-        <li><a href="#ggthemes-300">3.0.0</a></li>
-        <li><a href="#ggthemes-221">2.2.1</a></li>
-        <li><a href="#ggthemes-220">2.2.0</a></li>
-        <li><a href="#ggthemes-211">2.1.1</a></li>
-        <li><a href="#ggthemes-210">2.1.0</a></li>
-        <li><a href="#ggthemes-200">2.0.0</a></li>
-        <li><a href="#ggthemes-190">1.9.0</a></li>
-        <li><a href="#ggthemes-180">1.8.0</a></li>
-        <li><a href="#ggthemes-170">1.7.0</a></li>
-        <li><a href="#ggthemes-161">1.6.1</a></li>
-        <li><a href="#ggthemes-160">1.6.0</a></li>
-        <li><a href="#ggthemes-151">1.5.1</a></li>
-        <li><a href="#ggthemes-150">1.5.0</a></li>
-        <li><a href="#ggthemes-140">1.4.0</a></li>
-        <li><a href="#ggthemes-134">1.3.4</a></li>
-        <li><a href="#ggthemes-133">1.3.3</a></li>
-        <li><a href="#ggthemes-131">1.3.1</a></li>
-        <li><a href="#ggthemes-130">1.3.0</a></li>
-        <li><a href="#ggthemes-120">1.2.0</a></li>
-        <li><a href="#ggthemes-110">1.1.0</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -521,13 +507,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

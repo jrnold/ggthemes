@@ -8,21 +8,29 @@
 
 <title>Tufte Maximal Data, Minimal Ink Theme — theme_tufte • ggthemes</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,14 +38,14 @@
 
 
 
-<meta property="og:title" content="Tufte Maximal Data, Minimal Ink Theme — theme_tufte" />
 
+<meta property="og:title" content="Tufte Maximal Data, Minimal Ink Theme — theme_tufte" />
 <meta property="og:description" content="Theme based on Chapter 6 'Data-Ink Maximization and Graphical
 Design' of Edward Tufte *The Visual Display of Quantitative
 Information*. No border, no axis lines, no grids. This theme works
 best in combination with geom_rug() or
 geom_rangeframe()." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -51,9 +59,10 @@ geom_rangeframe()." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +76,7 @@ geom_rangeframe()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0.9000</span>
       </span>
     </div>
 
@@ -75,7 +84,7 @@ geom_rangeframe()." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -86,11 +95,10 @@ geom_rangeframe()." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jrnold/ggthemes">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="http://github.com/jrnold/ggthemes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -101,34 +109,33 @@ geom_rangeframe()." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Tufte Maximal Data, Minimal Ink Theme</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jrnold/ggthemes/blob/master/R/tufte.R'><code>R/tufte.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/jrnold/ggthemes/blob/master/R/tufte.R'><code>R/tufte.R</code></a></small>
     <div class="hidden name"><code>theme_tufte.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>Theme based on Chapter 6 'Data-Ink Maximization and Graphical
 Design' of Edward Tufte *The Visual Display of Quantitative
 Information*. No border, no axis lines, no grids. This theme works
-best in combination with <code>geom_rug()</code> or
-<code>geom_rangeframe()</code>.</p>
-    
+best in combination with <code><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>geom_rug</a>()</code> or
+<code><a href='geom_rangeframe.html'>geom_rangeframe</a>()</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>theme_tufte</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='st'>"serif"</span>, <span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>theme_tufte</span><span class='op'>(</span>base_size <span class='op'>=</span> <span class='fl'>11</span>, base_family <span class='op'>=</span> <span class='st'>"serif"</span>, ticks <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>base_size</th>
-      <td><p>base font size</p></td>
+      <td><p>base font size, given in pts.</p></td>
     </tr>
     <tr>
       <th>base_family</th>
@@ -139,7 +146,7 @@ best in combination with <code>geom_rug()</code> or
       <td><p><code>logical</code> Show axis ticks?</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The default font family is set to 'serif' as he uses serif fonts
@@ -148,41 +155,35 @@ The serif font used by Tufte in his books is a variant of Bembo,
 while the sans serif font is Gill Sans. If these fonts are
 installed on your system, then you can use them with the package
 <b>extrafont</b>.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Tufte, Edward R. (2001) The Visual Display of
 Quantitative Information, Chapter 6.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"ggplot2"</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>)) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>() +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous'>scale_x_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'>extended_range_breaks</span>()(<span class='no'>mtcars</span>$<span class='no'>wt</span>)) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'>extended_range_breaks</span>()(<span class='no'>mtcars</span>$<span class='no'>mpg</span>)) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Cars"</span>)
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>wt</span>, y <span class='op'>=</span> <span class='va'>mpg</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='extended_range_breaks_.html'>extended_range_breaks</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>wt</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='extended_range_breaks_.html'>extended_range_breaks</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>mpg</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>"Cars"</span><span class='op'>)</span>
 
-<span class='no'>p</span> + <span class='fu'>geom_rangeframe</span>() +
-  <span class='fu'>theme_tufte</span>()</div><div class='img'><img src='theme_tufte-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>p</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_rug'>geom_rug</a></span>() +
- <span class='fu'>theme_tufte</span>(<span class='kw'>ticks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='theme_tufte-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'><a href='geom_rangeframe.html'>geom_rangeframe</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>clip<span class='op'>=</span><span class='st'>"off"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_tufte</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='theme_tufte-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>geom_rug</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>theme_tufte</span><span class='op'>(</span>ticks <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='theme_tufte-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -190,13 +191,16 @@ Quantitative Information, Chapter 6.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
