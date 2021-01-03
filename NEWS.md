@@ -4,6 +4,7 @@
 - Fix error in `expect_equal` functions (#123)
 - Fix errors in `geom_tufteboxplot` and `stat_fivenumber` due to missing imported
   objects from ggplot2 (#117, #121)
+- Fix text labels in top axis in `theme_economist` (#115)
 
 # ggthemes 4.2.0
 
