@@ -17,7 +17,7 @@ theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 \item{light}{\code{logical}. Light or dark theme?}
 }
 \description{
-See \url{http://ethanschoonover.com/solarized} for a
+See \url{https://ethanschoonover.com/solarized/} for a
 description of the Solarized palette.
 }
 \details{

@@ -50,8 +50,8 @@ Description: Some extra themes, geoms, and scales for 'ggplot2'.
     'Excel', and 'The Wall Street Journal', among others.
     Provides 'geoms' for Tufte's box plot and range frame.
 License: GPL-2
-URL: http://github.com/jrnold/ggthemes
-BugReports: http://github.com/jrnold/ggthemes
+URL: https://github.com/jrnold/ggthemes
+BugReports: https://github.com/jrnold/ggthemes
 RoxygenNote: 7.1.1
 LazyData: true
 Language: en-US

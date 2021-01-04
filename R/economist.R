@@ -96,11 +96,11 @@ scale_fill_economist <- function(...) {
 #'
 #' \code{theme_economist} implements the standard bluish-gray
 #' background theme in the print \emph{The Economist} and
-#' \href{http://economist.com}{economist.com}.
+#' \href{https://economist.com/}{economist.com}.
 #'
 #' \code{theme_economist_white} implements a variant with a while
 #' panel and light gray (or white) background often used by \emph{The Economist}
-#' blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
+#' blog \href{https://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
 #'
 #' Use \code{\link{scale_color_economist}()} with this theme.
 #' The x axis should be displayed on the right hand side.
@@ -123,9 +123,9 @@ scale_fill_economist <- function(...) {
 #'
 #' @references
 #' \itemize{
-#' \item \href{http://economist.com}{The Economist}
-#' \item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
-#' \item \url{http://www.economist.com/help/about-us}
+#' \item \href{https://economist.com/}{The Economist}
+#' \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
+#' \item \url{https://www.economist.com/help/about-us}
 #' }
 #'
 #' @example inst/examples/ex-theme_economist.R

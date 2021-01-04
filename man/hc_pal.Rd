@@ -19,8 +19,8 @@ plots. This collects a few of them.
 The following palettes are defined,
 
 \itemize{
-  \item{\href{http://www.highcharts.com/demo}{default}}
-  \item{\href{http://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
+  \item{\href{https://www.highcharts.com/demo}{default}}
+  \item{\href{https://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
 }
 }
 

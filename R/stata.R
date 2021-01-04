@@ -1,7 +1,7 @@
 #' Stata color palettes (discrete)
 #'
 #' Stata color palettes. See Stata documentation for a description of
-#' the schemes, \url{http://www.stata.com/help.cgi?schemes}.
+#' the schemes, \url{https://www.stata.com/help.cgi?schemes}.
 #'
 #' All these palettes support up to 15 values.
 #'
@@ -225,7 +225,7 @@ theme_stata_colors <- function(scheme="s2color") {
 #' defaults, and more effort was made to match the colors and sizes
 #' of major elements than in matching the margins.
 #'
-#' @references \url{http://www.stata.com/help.cgi?schemes}
+#' @references \url{https://www.stata.com/help.cgi?schemes}
 #'
 #' @example inst/examples/ex-theme_stata.R
 theme_stata <- function(base_size = 11, base_family = "sans",

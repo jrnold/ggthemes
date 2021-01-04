@@ -19,7 +19,7 @@ tableau_color_pal(
 colors. If -1, then reverse the order.}
 }
 \description{
-Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
+Color palettes used in \href{https://www.tableau.com/}{Tableau}.
 }
 \details{
 Tableau provides three types of color palettes:
@@ -48,8 +48,7 @@ for (palname in names(palettes)) {
 
 Maureen Stone, 'Designing Colors for Data' (slides), at the
 International Symposium on Computational Aesthetics in Graphics,
-Visualization, and Imaging, Banff, AB, Canada, June 22, 2007
-\url{http://www.stonesc.com/slides/CompAe\%202007.pdf}.
+Visualization, and Imaging, Banff, AB, Canada, June 22, 2007.
 
 Heer, Jeffrey and Maureen Stone, 2012 'Color Naming Models for
 Color Selection, Image Editing and Palette Design', ACM Human

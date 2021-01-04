@@ -11,7 +11,7 @@ tableau_shape_pal(palette = c("default", "filled", "proportions"))
 }
 \description{
 Shape palettes used by
-\href{http://www.tableausoftware.com/}{Tableau}.
+\href{https://www.tableau.com/}{Tableau}.
 }
 \details{
 Not all shape palettes in Tableau are supported. Additionally, these

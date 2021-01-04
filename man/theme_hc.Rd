@@ -61,8 +61,6 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   scale_fill_hc("darkunica")
 }
 \references{
-\url{http://www.highcharts.com/demo/line-basic}
-
-\url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
+\url{https://www.highcharts.com/demo/line-basic}
 }
 \concept{themes hc}

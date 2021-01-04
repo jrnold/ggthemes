@@ -1,6 +1,6 @@
 #' Tableau Color Palettes (discrete)
 #'
-#' Color palettes used in \href{http://www.tableausoftware.com/}{Tableau}.
+#' Color palettes used in \href{https://www.tableau.com/}{Tableau}.
 #'
 #' @details Tableau provides three types of color palettes:
 #' \code{"regular"} (discrete, qualitative categories),
@@ -23,8 +23,7 @@
 #'
 #' Maureen Stone, 'Designing Colors for Data' (slides), at the
 #' International Symposium on Computational Aesthetics in Graphics,
-#' Visualization, and Imaging, Banff, AB, Canada, June 22, 2007
-#' \url{http://www.stonesc.com/slides/CompAe\%202007.pdf}.
+#' Visualization, and Imaging, Banff, AB, Canada, June 22, 2007.
 #'
 #' Heer, Jeffrey and Maureen Stone, 2012 'Color Naming Models for
 #' Color Selection, Image Editing and Palette Design', ACM Human
@@ -98,7 +97,7 @@ scale_color_tableau <- scale_colour_tableau
 #' Tableau Shape Palettes (discrete)
 #'
 #' Shape palettes used by
-#' \href{http://www.tableausoftware.com/}{Tableau}.
+#' \href{https://www.tableau.com/}{Tableau}.
 #'
 #' Not all shape palettes in Tableau are supported. Additionally, these
 #' palettes are not exact, and use the best unicode character for the shape

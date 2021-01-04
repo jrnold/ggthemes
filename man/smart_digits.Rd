@@ -17,14 +17,14 @@ smart_digits_format(x, ...)
 \value{
 A character vector.
 \code{smart_digits_format()} returns a function with a single argument
-\code{x}, a numeric vector, that returns a charactger vector.
+\code{x}, a numeric vector, that returns a character vector.
 }
 \description{
 Format numbers with automatic number of digits
 }
 \references{
 Josh O'Brien,
-  \url{http://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
+  \url{https://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
 }
 \author{
 Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold

@@ -163,7 +163,7 @@
 # ggthemes 2.2.1
 
 -   bugfix: fix R CMD check notes due to change in how it handles non-base 
-    default packages: <http://developer.r-project.org/blosxom.cgi/R-devel/2015/06/29#n2015-06-29>
+    default packages: <https://developer.r-project.org/blosxom.cgi/R-devel/2015/06/29>
 
 -   bugfix: fix bad URLs
 

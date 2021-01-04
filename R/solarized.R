@@ -3,7 +3,7 @@
 #' @param light \code{logical} Light theme?
 #'
 #' Creates the base colors for a light or dark solarized theme. See
-#' \url{http://ethanschoonover.com/solarized}. This function is a port
+#' \url{https://ethanschoonover.com/solarized/}. This function is a port
 #' of the CSS style example.
 #'
 #' @keywords internal
@@ -26,7 +26,7 @@ solarized_accent_list <- function() {
 #' Solarized color palette (discrete)
 #'
 #' Qualitative color palate based on the Ethan Schoonover's Solarized
-#' palette, \url{http://ethanschoonover.com/solarized}. This palette supports
+#' palette, \url{https://ethanschoonover.com/solarized/}. This palette supports
 #' up to seven values.
 #'
 #' @note
@@ -76,7 +76,7 @@ scale_color_solarized <- scale_colour_solarized
 
 #' ggplot color themes based on the Solarized palette
 #'
-#' See \url{http://ethanschoonover.com/solarized} for a
+#' See \url{https://ethanschoonover.com/solarized/} for a
 #' description of the Solarized palette.
 #'
 #' Plots made with this theme integrate seamlessly with the Solarized
