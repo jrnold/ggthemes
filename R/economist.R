@@ -96,7 +96,7 @@ scale_fill_economist <- function(...) {
 #'
 #' \code{theme_economist} implements the standard bluish-gray
 #' background theme in the print \emph{The Economist} and
-#' \href{https://economist.com/}{economist.com}.
+#' \href{https://www.economist.com/}{economist.com}.
 #'
 #' \code{theme_economist_white} implements a variant with a while
 #' panel and light gray (or white) background often used by \emph{The Economist}
@@ -123,7 +123,7 @@ scale_fill_economist <- function(...) {
 #'
 #' @references
 #' \itemize{
-#' \item \href{https://economist.com/}{The Economist}
+#' \item \href{https://www.economist.com/}{The Economist}
 #' \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 #' \item \url{https://www.economist.com/help/about-us}
 #' }
