@@ -1,4 +1,4 @@
-# ggthemes (development version)
+# ggthemes 4.2.1
 
 - Conditionally use the vdiffr package in tests so it complies with suggested package policy (#124)
 - Fix error in `expect_equal` functions (#123)
