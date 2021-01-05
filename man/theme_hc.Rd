@@ -22,7 +22,7 @@ theme_hc(
 \item{bgcolor}{Deprecated}
 }
 \description{
-Theme based on the plots in \url{Highcharts JS}.
+Theme based on \href{https://www.highcharts.com/}{Highcharts} plots.
 }
 \examples{
 library("ggplot2")

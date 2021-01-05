@@ -2,7 +2,7 @@
 % Please edit documentation in R/hc.R
 \name{hc_pal}
 \alias{hc_pal}
-\title{Highcharts JS color palette (discrete)}
+\title{Highcharts color palette (discrete)}
 \usage{
 hc_pal(palette = "default")
 }
@@ -10,7 +10,7 @@ hc_pal(palette = "default")
 \item{palette}{\code{character} The name of the Highcharts theme to use.}
 }
 \description{
-The Highcharts JS uses many different color palettes in its
+The Highcharts uses many different color palettes in its
 plots. This collects a few of them.
 }
 \section{Palettes}{

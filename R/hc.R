@@ -1,6 +1,6 @@
 #' Highcharts Theme
 #'
-#' Theme based on the plots in \url{Highcharts JS}.
+#' Theme based on \href{https://www.highcharts.com/}{Highcharts} plots.
 #'
 #' @references
 #'
@@ -54,9 +54,9 @@ theme_hc <- function(base_size = 12,
 }
 
 
-#' Highcharts JS color palette (discrete)
+#' Highcharts color palette (discrete)
 #'
-#' The Highcharts JS uses many different color palettes in its
+#' The Highcharts uses many different color palettes in its
 #' plots. This collects a few of them.
 #'
 #' @section Palettes:

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fivethirtyeight.R
 \name{theme_fivethirtyeight}
 \alias{theme_fivethirtyeight}
-\title{Theme inspired by fivethirtyeight.com plots}
+\title{Theme inspired by FiveThirtyEight plots}
 \usage{
 theme_fivethirtyeight(base_size = 12, base_family = "sans")
 }
@@ -13,7 +13,7 @@ theme_fivethirtyeight(base_size = 12, base_family = "sans")
 }
 \description{
 Theme inspired by the plots on
-\href{fivethirtyeight.com}{http://fivethirtyeight.com}.
+\href{FiveThirtyEight}{http://fivethirtyeight.com}.
 }
 \examples{
 library("ggplot2")

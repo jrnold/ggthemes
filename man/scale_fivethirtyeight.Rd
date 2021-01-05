@@ -4,7 +4,7 @@
 \alias{scale_colour_fivethirtyeight}
 \alias{scale_color_fivethirtyeight}
 \alias{scale_fill_fivethirtyeight}
-\title{fivethirtyeight.com color scales}
+\title{FiveThirtyEight color scales}
 \usage{
 scale_colour_fivethirtyeight(...)
 
@@ -70,7 +70,7 @@ expand the scale by 5\% on each side for continuous variables, and by
   }}
 }
 \description{
-Color scales using the colors in the fivethirtyeight graphics.
+Color scales using the colors in the FiveThirtyEight graphics.
 }
 \seealso{
 \code{\link{theme_fivethirtyeight}()} for examples.

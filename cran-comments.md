@@ -12,9 +12,9 @@
 -   The URL https://policyviz.com/2017/01/12/150-color-palettes-for-excel/
     sometimes times out.
     
--   The URL http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt is valid but sometimes returns a 403 error.
+-   The URLs https://www.canva.com/learn/ return status 403 errors but are valid.
 
--   The URL http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/ is valid but sometimes returns a 403 error.
+=   Highcharts JS is not
 
 -   In `DESCRIPTION`, the words "Geoms", "Stata", "Tufte", "Tufte's", 
     and "geoms" are not mis-spelled.
