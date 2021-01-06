@@ -11,10 +11,12 @@
     
 -   The URL https://policyviz.com/2017/01/12/150-color-palettes-for-excel/
     sometimes times out.
-    
--   The URLs https://www.canva.com/learn/ return status 403 errors but are valid.
-
-=   Highcharts JS is not
 
 -   In `DESCRIPTION`, the words "Geoms", "Stata", "Tufte", "Tufte's", 
     and "geoms" are not mis-spelled.
+    
+-   The URLs https://www.canva.com/learn/ returns status 403 errors but are valid.
+
+-   The URL https://twitter.com/WSJGraphics seometimes returns status 400 but is valid.
+
+-   The URL http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf sometimes produces libcurl error 6 with message: "could not resolve host: www.perceptualedge.com" but is valid.
