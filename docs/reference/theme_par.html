@@ -7,25 +7,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Theme which uses the current &#8216;base&#8217; graphics parameter values
-from <code><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a>()</code>.
-Not all <code>par()</code> parameters, are supported, and not all are relevant to
-<span class="pkg">ggplot2</span> themes. — theme_par • ggthemes</title>
+from par().
+Not all par() parameters, are supported, and not all are relevant to
+ggplot2 themes. — theme_par • ggthemes</title>
+
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -33,11 +41,11 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
 
 
 
-<meta property="og:title" content="Theme which uses the current &#8216;base&#8217; graphics parameter values
-from <code><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a>()</code>.
-Not all <code>par()</code> parameters, are supported, and not all are relevant to
-<span class="pkg">ggplot2</span> themes. — theme_par" />
 
+<meta property="og:title" content="Theme which uses the current &#8216;base&#8217; graphics parameter values
+from par().
+Not all par() parameters, are supported, and not all are relevant to
+ggplot2 themes. — theme_par" />
 <meta property="og:description" content="Currently this theme uses the values of the parameters:
 &quot;code&quot;, &quot;&quot;ps&quot;&quot;, &quot;code&quot; &quot;family&quot;, &quot;fg&quot;,
 &quot;bg&quot;, &quot;adj&quot;, &quot;font&quot;, &quot;cex.axis&quot;,
@@ -47,7 +55,7 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
 &quot;font.sub&quot;, &quot;las&quot;, &quot;lend&quot;,
 &quot;lheight&quot;, &quot;lty&quot;, &quot;mar&quot;, &quot;ps&quot;, &quot;tcl&quot;,
 &quot;tck&quot;, &quot;xaxt&quot;, &quot;yaxt&quot;." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -61,9 +69,10 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -77,7 +86,7 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0.9000</span>
       </span>
     </div>
 
@@ -85,7 +94,7 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -96,11 +105,10 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jrnold/ggthemes">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/jrnold/ggthemes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -111,13 +119,14 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Theme which uses the current &#8216;base&#8217; graphics parameter values
-from <code><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a>()</code>.
+from <code><a href='https://rdrr.io/r/graphics/par.html'>par</a>()</code>.
 Not all <code>par()</code> parameters, are supported, and not all are relevant to
 <span class="pkg">ggplot2</span> themes.</h1>
     <small class="dont-index">Source: <a href='https://github.com/jrnold/ggthemes/blob/master/R/base.R'><code>R/base.R</code></a></small>
@@ -125,7 +134,6 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
     </div>
 
     <div class="ref-description">
-    
     <p>Currently this theme uses the values of the parameters:
 <code>"code"</code>, "<code>"ps"</code>", <code>"code"</code> <code>"family"</code>, <code>"fg"</code>,
 <code>"bg"</code>, <code>"adj"</code>, <code>"font"</code>, <code>"cex.axis"</code>,
@@ -135,64 +143,58 @@ Not all <code>par()</code> parameters, are supported, and not all are relevant t
 <code>"font.sub"</code>, <code>"las"</code>, <code>"lend"</code>,
 <code>"lheight"</code>, <code>"lty"</code>, <code>"mar"</code>, <code>"ps"</code>, <code>"tcl"</code>,
 <code>"tck"</code>, <code>"xaxt"</code>, <code>"yaxt"</code>.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>theme_par</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>()$<span class='no'>ps</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>()$<span class='no'>family</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>theme_par</span><span class='op'>(</span>base_size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>ps</span>, base_family <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>family</span><span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>base_size</th>
-      <td><p>base font size</p></td>
+      <td><p>base font size, given in pts.</p></td>
     </tr>
     <tr>
       <th>base_family</th>
       <td><p>base font family</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other themes: <code>theme_base</code>,
-  <code>theme_clean</code>,
-  <code>theme_foundation</code>,
-  <code>theme_igray</code>, <code>theme_solid</code></p></div>
-    
+    <div class='dont-index'><p>Other themes: 
+<code><a href='theme_base.html'>theme_base</a>()</code>,
+<code><a href='theme_clean.html'>theme_clean</a>()</code>,
+<code><a href='theme_foundation.html'>theme_foundation</a>()</code>,
+<code><a href='theme_igray.html'>theme_igray</a>()</code>,
+<code><a href='theme_solid.html'>theme_solid</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"ggplot2"</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>gear</span>))) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~<span class='no'>am</span>)
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>wt</span>, y <span class='op'>=</span> <span class='va'>mpg</span>, colour <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>gear</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>am</span><span class='op'>)</span>
 
-<span class='no'>p</span> + <span class='fu'>theme_par</span>()</div><div class='img'><img src='theme_par-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_par</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='theme_par-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># theme changes with respect to values of par</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>col.lab</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>fg</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"black"</span>)
-<span class='no'>p</span> + <span class='fu'>theme_par</span>()</div><div class='img'><img src='theme_par-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>font <span class='op'>=</span> <span class='fl'>2</span>, col.lab <span class='op'>=</span> <span class='st'>"red"</span>, fg <span class='op'>=</span> <span class='st'>"white"</span>, bg <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_par</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='theme_par-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -200,13 +202,16 @@ most notably in the spacing of the margins.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

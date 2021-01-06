@@ -7,7 +7,7 @@ test_that("tableau_color_pal works", {
   n <- 3
   vals <- pal(n)
   expect_is(vals, "character")
-  expect_equal(length(vals), n)
+  expect_eqNe(length(vals), n)
 })
 
 test_that("tableau_color_pal direction = -1 works", {
@@ -21,7 +21,7 @@ test_that("tableau_color_pal works with diverging palette", {
   pal <- tableau_color_pal("Orange-Blue Diverging",
                            type = "ordered-diverging")(n)
   expect_is(pal, "character")
-  expect_equal(length(pal), n)
+  expect_eqNe(length(pal), n)
 })
 
 test_that("tableau_color_pal raises error with invalid palette", {
@@ -39,7 +39,7 @@ test_that("tableau_shape_pal works", {
   expect_is(attr(tableau_shape_pal(), "max_n"), "integer")
   # all unicode
   expect_true(all(pal < 0))
-  expect_equal(length(pal), n)
+  expect_eqNe(length(pal), n)
 })
 
 test_that("scale_shape_tableau works", {
@@ -115,6 +115,6 @@ test_that("scale_fill_gradient_tableau works", {
 test_that("classic colors are in the correct order", {
   # Issue #96
   pal <- tableau_color_pal("Classic 20")(20)
-  expect_equal(pal[[1]], "#1f77b4")
-  expect_equal(pal[[20]], "#9edae5")
+  expect_eqNe(pal[[1]], "#1f77b4")
+  expect_eqNe(pal[[20]], "#9edae5")
 })

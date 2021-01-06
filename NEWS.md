@@ -1,3 +1,12 @@
+# ggthemes 4.2.1
+
+- Conditionally use the vdiffr package in tests so it complies with suggested package policy (#124)
+- Fix error in `expect_equal` functions (#123)
+- Fix errors in `geom_tufteboxplot` and `stat_fivenumber` due to missing imported
+  objects from ggplot2 (#117, #121)
+- Fix text labels in top axis in `theme_economist` (#115)
+- Update documentation on `geom_rangeframe`; it should be used with `coord_cartesian(clip="off")`. (#120)
+
 # ggthemes 4.2.0
 
 -   Add `theme_clean()` (Thanks @konradzdeb, #105)
@@ -154,7 +163,7 @@
 # ggthemes 2.2.1
 
 -   bugfix: fix R CMD check notes due to change in how it handles non-base 
-    default packages: <http://developer.r-project.org/blosxom.cgi/R-devel/2015/06/29#n2015-06-29>
+    default packages: <https://developer.r-project.org/blosxom.cgi/R-devel/2015/06/29>
 
 -   bugfix: fix bad URLs
 

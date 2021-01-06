@@ -10,7 +10,7 @@ solarized_rebase(light = TRUE)
 \item{light}{\code{logical} Light theme?
 
 Creates the base colors for a light or dark solarized theme. See
-\url{http://ethanschoonover.com/solarized}. This function is a port
+\url{https://ethanschoonover.com/solarized/}. This function is a port
 of the CSS style example.}
 }
 \description{

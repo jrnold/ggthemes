@@ -5,14 +5,22 @@
 \alias{theme_economist_white}
 \title{ggplot color theme based on the Economist}
 \usage{
-theme_economist(base_size = 10, base_family = "sans",
-  horizontal = TRUE, dkpanel = FALSE)
+theme_economist(
+  base_size = 10,
+  base_family = "sans",
+  horizontal = TRUE,
+  dkpanel = FALSE
+)
 
-theme_economist_white(base_size = 11, base_family = "sans",
-  gray_bg = TRUE, horizontal = TRUE)
+theme_economist_white(
+  base_size = 11,
+  base_family = "sans",
+  gray_bg = TRUE,
+  horizontal = TRUE
+)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 
@@ -33,11 +41,11 @@ A theme that approximates the style of \emph{The Economist}.
 \details{
 \code{theme_economist} implements the standard bluish-gray
 background theme in the print \emph{The Economist} and
-\href{http://economist.com}{economist.com}.
+\href{https://www.economist.com/}{economist.com}.
 
 \code{theme_economist_white} implements a variant with a while
 panel and light gray (or white) background often used by \emph{The Economist}
-blog \href{http://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
+blog \href{https://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
 
 Use \code{\link{scale_color_economist}()} with this theme.
 The x axis should be displayed on the right hand side.
@@ -87,9 +95,9 @@ p + theme_economist(base_family="Verdana") +
 }
 \references{
 \itemize{
-\item \href{http://economist.com}{The Economist}
-\item \href{http://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
-\item \url{http://www.economist.com/help/about-us}
+\item \href{https://www.economist.com/}{The Economist}
+\item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
+\item \url{https://www.economist.com/help/about-us}
 }
 }
 \concept{themes economist}

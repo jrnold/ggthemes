@@ -1,12 +1,10 @@
 #' Highcharts Theme
 #'
-#' Theme based on the plots in \url{Highcharts JS}.
+#' Theme based on \href{https://www.highcharts.com/}{Highcharts} plots.
 #'
 #' @references
 #'
-#' \url{http://www.highcharts.com/demo/line-basic}
-#'
-#' \url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
+#' \url{https://www.highcharts.com/demo/line-basic}
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @param style The Highcharts theme to use \code{'default'},
@@ -56,9 +54,9 @@ theme_hc <- function(base_size = 12,
 }
 
 
-#' Highcharts JS color palette (discrete)
+#' Highcharts color palette (discrete)
 #'
-#' The Highcharts JS uses many different color palettes in its
+#' The Highcharts uses many different color palettes in its
 #' plots. This collects a few of them.
 #'
 #' @section Palettes:
@@ -66,8 +64,8 @@ theme_hc <- function(base_size = 12,
 #' The following palettes are defined,
 #'
 #' \itemize{
-#'   \item{\href{http://www.highcharts.com/demo}{default}}
-#'   \item{\href{http://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
+#'   \item{\href{https://www.highcharts.com/demo}{default}}
+#'   \item{\href{https://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
 #' }
 #'
 #' @param palette \code{character} The name of the Highcharts theme to use.

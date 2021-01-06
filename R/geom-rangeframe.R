@@ -16,6 +16,9 @@
 #'   bottom, and left.
 #' @export
 #'
+#' @details This should be used with `coord_cartesian(clip="off")` in order to
+#'   correctly draw the lines.
+#'
 #' @references Tufte, Edward R. (2001) The Visual Display of
 #' Quantitative Information, Chapter 6.
 #'

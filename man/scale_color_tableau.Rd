@@ -6,14 +6,26 @@
 \alias{scale_color_tableau}
 \title{Tableau color scales (discrete)}
 \usage{
-scale_colour_tableau(palette = "Tableau 10", type = "regular",
-  direction = 1, ...)
+scale_colour_tableau(
+  palette = "Tableau 10",
+  type = "regular",
+  direction = 1,
+  ...
+)
 
-scale_fill_tableau(palette = "Tableau 10", type = "regular",
-  direction = 1, ...)
+scale_fill_tableau(
+  palette = "Tableau 10",
+  type = "regular",
+  direction = 1,
+  ...
+)
 
-scale_color_tableau(palette = "Tableau 10", type = "regular",
-  direction = 1, ...)
+scale_color_tableau(
+  palette = "Tableau 10",
+  type = "regular",
+  direction = 1,
+  ...
+)
 }
 \arguments{
 \item{palette}{Palette name. See \funclink{tableau_color_pal}
@@ -53,9 +65,10 @@ p + scale_color_tableau(direction = -1)
 \seealso{
 \code{\link{tableau_color_pal}()} for references.
 
-Other colour tableau: \code{\link{scale_colour_gradient2_tableau}},
-  \code{\link{scale_colour_gradient_tableau}},
-  \code{\link{tableau_color_pal}},
-  \code{\link{tableau_gradient_pal}}
+Other colour tableau: 
+\code{\link{scale_colour_gradient2_tableau}()},
+\code{\link{scale_colour_gradient_tableau}()},
+\code{\link{tableau_color_pal}()},
+\code{\link{tableau_gradient_pal}()}
 }
 \concept{colour tableau}

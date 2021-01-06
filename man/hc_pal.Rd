@@ -2,7 +2,7 @@
 % Please edit documentation in R/hc.R
 \name{hc_pal}
 \alias{hc_pal}
-\title{Highcharts JS color palette (discrete)}
+\title{Highcharts color palette (discrete)}
 \usage{
 hc_pal(palette = "default")
 }
@@ -10,7 +10,7 @@ hc_pal(palette = "default")
 \item{palette}{\code{character} The name of the Highcharts theme to use.}
 }
 \description{
-The Highcharts JS uses many different color palettes in its
+The Highcharts uses many different color palettes in its
 plots. This collects a few of them.
 }
 \section{Palettes}{
@@ -19,12 +19,13 @@ plots. This collects a few of them.
 The following palettes are defined,
 
 \itemize{
-  \item{\href{http://www.highcharts.com/demo}{default}}
-  \item{\href{http://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
+  \item{\href{https://www.highcharts.com/demo}{default}}
+  \item{\href{https://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
 }
 }
 
 \seealso{
-Other colour hc: \code{\link{scale_colour_hc}}
+Other colour hc: 
+\code{\link{scale_colour_hc}()}
 }
 \concept{colour hc}

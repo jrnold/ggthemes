@@ -43,3 +43,7 @@ reference:
   - show_linetypes
   - show_shapes
   - smart_digits
+- title: Data
+  contents:
+  - ggthemes_data
+  - canva_palettes

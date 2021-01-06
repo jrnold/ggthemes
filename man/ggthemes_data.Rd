@@ -4,7 +4,9 @@
 \name{ggthemes_data}
 \alias{ggthemes_data}
 \title{Palette and theme data}
-\format{A \code{list} object.}
+\format{
+A \code{list} object.
+}
 \usage{
 ggthemes_data
 }

@@ -10,14 +10,14 @@ theme_solarized(base_size = 12, base_family = "", light = TRUE)
 theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 
 \item{light}{\code{logical}. Light or dark theme?}
 }
 \description{
-See \url{http://ethanschoonover.com/solarized} for a
+See \url{https://ethanschoonover.com/solarized/} for a
 description of the Solarized palette.
 }
 \details{

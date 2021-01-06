@@ -8,21 +8,29 @@
 
 <title>150 Color Palettes from Canva — canva_palettes • ggthemes</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,12 +38,12 @@
 
 
 
-<meta property="og:title" content="150 Color Palettes from Canva — canva_palettes" />
 
+<meta property="og:title" content="150 Color Palettes from Canva — canva_palettes" />
 <meta property="og:description" content="150 four-color palettes by the
 canva.com design school.
 These palettes were derived from photos and &quot;impactful websites&quot;." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -49,9 +57,10 @@ These palettes were derived from photos and &quot;impactful websites&quot;." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -65,7 +74,7 @@ These palettes were derived from photos and &quot;impactful websites&quot;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0.9000</span>
       </span>
     </div>
 
@@ -73,7 +82,7 @@ These palettes were derived from photos and &quot;impactful websites&quot;." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -84,11 +93,10 @@ These palettes were derived from photos and &quot;impactful websites&quot;." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jrnold/ggthemes">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/jrnold/ggthemes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,6 +107,7 @@ These palettes were derived from photos and &quot;impactful websites&quot;." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -110,86 +119,71 @@ These palettes were derived from photos and &quot;impactful websites&quot;." />
     </div>
 
     <div class="ref-description">
-    
     <p>150 four-color palettes by the
-<a href='https://designschool.canva.com'>canva.com</a> design school.
+<a href='https://www.canva.com/learn/'>canva.com</a> design school.
 These palettes were derived from photos and "impactful websites".</p>
-    
     </div>
 
-    <pre class="usage"><span class='no'>canva_palettes</span></pre>
-        
+    <pre class="usage"><span class='va'>canva_palettes</span></pre>
+
+
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A named <code>list</code> of character vector.
 The names are the palette names. The values of the character vectors
 are hex colors, e.g. <code>"#f98866"</code>.</p>
-    
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt'>http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt</a></p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <ul>
-<li><p>Janie Kliever, <a href='https://designschool.canva.com/blog/100-color-combinations/'>100 Brilliant Color Combinations and How to Apply Them to Your Designs</a>,
+    
+<ul>
+<li><p>Janie Kliever, <a href='https://www.canva.com/learn/100-color-combinations/'>100 Brilliant Color Combinations and How to Apply Them to Your Designs</a>,
   <em>Canva.com</em>, June 20, 2015.</p></li>
-<li><p>Mary Stribley, <a href='https://designschool.canva.com/blog/website-color-schemes/'>Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You</a>,
+<li><p>Mary Stribley, <a href='https://www.canva.com/learn/website-color-schemes/'>Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You</a>,
   <em>Canva.com</em>, January 26, 2016.</p></li>
-<li><p>Pablo Saenz de Tejeda,
-  <a href='http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/'>150 paletas de colores para Tableau</a>,
-  January 1, 2017.</p></li>
 <li><p>Schwabish, Jonathan.
    <a href='https://policyviz.com/2017/01/12/150-color-palettes-for-excel/'>150+ Color Palettes for Excel</a>,
     <em>PolicyViz</em>, January 12, 2017.</p></li>
 </ul>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"ggplot2"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"tibble"</span>)
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"purrr"</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"scales"</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"dplyr"</span>)) {
-        <span class='no'>canva_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>map2_df</a></span>(
-                <span class='no'>canva_palettes</span>,
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>canva_palettes</span>),
-                ~ <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(
-                        <span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>.x</span>,
-                        <span class='kw'>.id</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>colors</span>),
-                        <span class='kw'>palette</span> <span class='kw'>=</span> <span class='no'>.y</span>
-                )
-        )
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>canva_df</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(
-                <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>palette</span>,
-                <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.id</span>,
-                <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>colors</span>
-        )) +
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_tile'>geom_raster</a></span>() +
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_identity'>scale_fill_identity</a></span>(<span class='kw'>guide</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) +
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_minimal</a></span>() +
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/theme'>theme</a></span>(<span class='kw'>panel.grid</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/element'>element_blank</a></span>(),
-                      <span class='kw'>axis.text.x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/element'>element_blank</a></span>()) +
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>""</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://tibble.tidyverse.org/'>"tibble"</a></span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='http://purrr.tidyverse.org'>"purrr"</a></span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://scales.r-lib.org'>"scales"</a></span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://dplyr.tidyverse.org'>"dplyr"</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+        <span class='va'>canva_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>map2_df</a></span><span class='op'>(</span>
+                <span class='va'>canva_palettes</span>,
+                <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>canva_palettes</span><span class='op'>)</span>,
+                <span class='op'>~</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+                        colors <span class='op'>=</span> <span class='va'>.x</span>,
+                        .id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>colors</span><span class='op'>)</span>,
+                        palette <span class='op'>=</span> <span class='va'>.y</span>
+                <span class='op'>)</span>
+        <span class='op'>)</span>
+        <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>canva_df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>
+                y <span class='op'>=</span> <span class='va'>palette</span>,
+                x <span class='op'>=</span> <span class='va'>.id</span>,
+                fill <span class='op'>=</span> <span class='va'>colors</span>
+        <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_raster</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_identity.html'>scale_fill_identity</a></span><span class='op'>(</span>guide <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+                      axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+                <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>""</span>, y <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
 
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>canva_pal</span>(<span class='st'>"Fresh and bright"</span>)(<span class='fl'>4</span>))
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>canva_pal</span>(<span class='st'>"Cool blues"</span>)(<span class='fl'>4</span>))
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/scales/topics/show_col'>show_col</a></span>(<span class='fu'>canva_pal</span>(<span class='st'>"Modern and crisp"</span>)(<span class='fl'>4</span>))
-}</div><div class='img'><img src='canva_palettes-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='canva_palettes-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='canva_palettes-3.png' alt='' width='700' height='433' /></div></pre>
+        <span class='fu'><a href='https://scales.r-lib.org//reference/show_col.html'>show_col</a></span><span class='op'>(</span><span class='fu'><a href='canva_pal.html'>canva_pal</a></span><span class='op'>(</span><span class='st'>"Fresh and bright"</span><span class='op'>)</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+        <span class='fu'><a href='https://scales.r-lib.org//reference/show_col.html'>show_col</a></span><span class='op'>(</span><span class='fu'><a href='canva_pal.html'>canva_pal</a></span><span class='op'>(</span><span class='st'>"Cool blues"</span><span class='op'>)</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+        <span class='fu'><a href='https://scales.r-lib.org//reference/show_col.html'>show_col</a></span><span class='op'>(</span><span class='fu'><a href='canva_pal.html'>canva_pal</a></span><span class='op'>(</span><span class='st'>"Modern and crisp"</span><span class='op'>)</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='img'><img src='canva_palettes-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='canva_palettes-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='canva_palettes-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -197,13 +191,16 @@ are hex colors, e.g. <code>"#f98866"</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

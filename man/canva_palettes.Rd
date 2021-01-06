@@ -4,18 +4,17 @@
 \name{canva_palettes}
 \alias{canva_palettes}
 \title{150 Color Palettes from Canva}
-\format{A named \code{list} of character vector.
+\format{
+A named \code{list} of character vector.
 The names are the palette names. The values of the character vectors
-are hex colors, e.g. \code{"#f98866"}.}
-\source{
-\url{http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt}
+are hex colors, e.g. \code{"#f98866"}.
 }
 \usage{
 canva_palettes
 }
 \description{
 150 four-color palettes by the
-\href{https://designschool.canva.com}{canva.com} design school.
+\href{https://www.canva.com/learn/}{canva.com} design school.
 These palettes were derived from photos and "impactful websites".
 }
 \examples{
@@ -50,13 +49,10 @@ if (require("purrr") && require("scales") && require("dplyr")) {
 }
 \references{
 \itemize{
-\item{Janie Kliever, \href{https://designschool.canva.com/blog/100-color-combinations/}{100 Brilliant Color Combinations and How to Apply Them to Your Designs},
+\item{Janie Kliever, \href{https://www.canva.com/learn/100-color-combinations/}{100 Brilliant Color Combinations and How to Apply Them to Your Designs},
   \emph{Canva.com}, June 20, 2015.}
-\item{Mary Stribley, \href{https://designschool.canva.com/blog/website-color-schemes/}{Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You},
+\item{Mary Stribley, \href{https://www.canva.com/learn/website-color-schemes/}{Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You},
   \emph{Canva.com}, January 26, 2016.}
-\item{Pablo Saenz de Tejeda,
-  \href{http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/}{150 paletas de colores para Tableau},
-  January 1, 2017.}
 \item{Schwabish, Jonathan.
    \href{https://policyviz.com/2017/01/12/150-color-palettes-for-excel/}{150+ Color Palettes for Excel},
     \emph{PolicyViz}, January 12, 2017.}

@@ -4,11 +4,15 @@
 \alias{theme_wsj}
 \title{Wall Street Journal theme}
 \usage{
-theme_wsj(base_size = 12, color = "brown", base_family = "sans",
-  title_family = "mono")
+theme_wsj(
+  base_size = 12,
+  color = "brown",
+  base_family = "sans",
+  title_family = "mono"
+)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{color}{The background color of plot. One of \code{'brown',
 'gray', 'green', 'blue'}.}

@@ -3,11 +3,11 @@ context("shapes")
 test_that("circlefill_pal works", {
   pal <- circlefill_shape_pal()
   expect_is(pal, "function")
-  expect_equal(attr(pal, "max_n"), 5L)
+  expect_eqNe(attr(pal, "max_n"), 5L)
   n <- 4L
   values <- pal(n)
   expect_is(values, "integer")
-  expect_equal(length(values), n)
+  expect_eqNe(length(values), n)
 })
 
 test_that("scale_shape_circlefill works", {
@@ -17,18 +17,18 @@ test_that("scale_shape_circlefill works", {
 test_that("tremmel_shape_pal works", {
   pal <- tremmel_shape_pal()
   expect_is(pal, "function")
-  expect_equal(attr(pal, "max_n"), 3L)
+  expect_eqNe(attr(pal, "max_n"), 3L)
   n <- 3L
   values <- pal(n)
   expect_is(values, "integer")
-  expect_equal(length(values), n)
+  expect_eqNe(length(values), n)
 })
 
 test_that("tremmel_shape_pal works for all values", {
   for (i in 1:3L) {
-    expect_equal(length(tremmel_shape_pal()(i)), i)
-    expect_equal(length(tremmel_shape_pal(alt = TRUE)(i)), i)
-    expect_equal(length(tremmel_shape_pal(overlap = TRUE)(i)), i)
+    expect_eqNe(length(tremmel_shape_pal()(i)), i)
+    expect_eqNe(length(tremmel_shape_pal(alt = TRUE)(i)), i)
+    expect_eqNe(length(tremmel_shape_pal(overlap = TRUE)(i)), i)
   }
 })
 
@@ -39,10 +39,10 @@ test_that("scale_shape_tremmel works", {
 test_that("cleveland_shape_pal works", {
   pal <- cleveland_shape_pal()
   expect_is(pal, "function")
-  expect_equal(attr(pal, "max_n"), 4)
+  expect_eqNe(attr(pal, "max_n"), 4)
   n <- 3
   vals <- pal(n)
-  expect_equal(length(vals), n)
+  expect_eqNe(length(vals), n)
 })
 
 test_that("tremmel_pal arg n3alt is deprected", {
@@ -53,10 +53,10 @@ test_that("tremmel_pal arg n3alt is deprected", {
 test_that("cleveland_shape_pal works with overlap = FALSE", {
   pal <- cleveland_shape_pal(overlap = FALSE)
   expect_is(pal, "function")
-  expect_equal(attr(pal, "max_n"), 5)
+  expect_eqNe(attr(pal, "max_n"), 5)
   n <- 3
   vals <- pal(n)
-  expect_equal(length(vals), n)
+  expect_eqNe(length(vals), n)
   expect_is(vals, "integer")
   expect_true(all(vals < 0))
 })

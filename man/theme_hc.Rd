@@ -4,11 +4,15 @@
 \alias{theme_hc}
 \title{Highcharts Theme}
 \usage{
-theme_hc(base_size = 12, base_family = "sans", style = c("default",
-  "darkunica"), bgcolor = NULL)
+theme_hc(
+  base_size = 12,
+  base_family = "sans",
+  style = c("default", "darkunica"),
+  bgcolor = NULL
+)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 
@@ -18,7 +22,7 @@ theme_hc(base_size = 12, base_family = "sans", style = c("default",
 \item{bgcolor}{Deprecated}
 }
 \description{
-Theme based on the plots in \url{Highcharts JS}.
+Theme based on \href{https://www.highcharts.com/}{Highcharts} plots.
 }
 \examples{
 library("ggplot2")
@@ -57,8 +61,6 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   scale_fill_hc("darkunica")
 }
 \references{
-\url{http://www.highcharts.com/demo/line-basic}
-
-\url{https://github.com/highslide-software/highcharts.com/tree/master/js/themes}
+\url{https://www.highcharts.com/demo/line-basic}
 }
 \concept{themes hc}

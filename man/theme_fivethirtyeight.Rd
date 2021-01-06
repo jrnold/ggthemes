@@ -2,18 +2,18 @@
 % Please edit documentation in R/fivethirtyeight.R
 \name{theme_fivethirtyeight}
 \alias{theme_fivethirtyeight}
-\title{Theme inspired by fivethirtyeight.com plots}
+\title{Theme inspired by FiveThirtyEight plots}
 \usage{
 theme_fivethirtyeight(base_size = 12, base_family = "sans")
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 }
 \description{
 Theme inspired by the plots on
-\href{fivethirtyeight.com}{http://fivethirtyeight.com}.
+\href{FiveThirtyEight}{http://fivethirtyeight.com}.
 }
 \examples{
 library("ggplot2")

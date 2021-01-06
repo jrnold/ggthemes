@@ -7,6 +7,7 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   ggtitle("Cars")
 
 p + geom_rangeframe() +
+  coord_cartesian(clip="off") +
   theme_tufte()
 
 p + geom_rug() +

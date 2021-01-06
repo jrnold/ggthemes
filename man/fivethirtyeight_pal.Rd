@@ -2,12 +2,12 @@
 % Please edit documentation in R/fivethirtyeight.R
 \name{fivethirtyeight_pal}
 \alias{fivethirtyeight_pal}
-\title{fivethirtyeight.com color palette}
+\title{FiveThirtyEight color palette}
 \usage{
 fivethirtyeight_pal()
 }
 \description{
-The standard three-color fivethirtyeight.com palette for line plots comprises
+The standard three-color FiveThirtyEight palette for line plots comprises
 blue, red, and green.
 }
 \examples{
@@ -16,6 +16,7 @@ library("scales")
 show_col(fivethirtyeight_pal()(3))
 }
 \seealso{
-Other colour fivethirtyeight: \code{\link{scale_colour_fivethirtyeight}}
+Other colour fivethirtyeight: 
+\code{\link{scale_colour_fivethirtyeight}()}
 }
 \concept{colour fivethirtyeight}

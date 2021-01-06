@@ -16,6 +16,7 @@ calc
 Calc
 canva
 Canva
+cartesian
 cgi
 charactger
 CMD
@@ -23,6 +24,7 @@ colores
 colour
 Colour
 continous
+coord
 cran
 daroczig
 de
@@ -30,12 +32,13 @@ devtools
 et
 extrafont
 fivethirtyeight
-Fivethirtyeight
+FiveThirtyEight
 gdocs
 geoms
 Geoms
 ggplot
 github
+grey
 Hanrahan
 hc
 Heer
@@ -70,6 +73,7 @@ pkgdown
 PolicyViz
 ptoche
 ptol
+pts
 quartile
 rcolor
 rstudio
@@ -99,9 +103,11 @@ Tufte
 Tufte's
 unica
 unicode
+vdiffr
 Verdana
 weitzner
 wordpress
 WS
 wsj
 WSJ
+Zdeb

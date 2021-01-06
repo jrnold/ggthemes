@@ -8,21 +8,29 @@
 
 <title>A ggplot theme originated from the pander package — theme_pander • ggthemes</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,11 +38,11 @@
 
 
 
-<meta property="og:title" content="A ggplot theme originated from the pander package — theme_pander" />
 
+<meta property="og:title" content="A ggplot theme originated from the pander package — theme_pander" />
 <meta property="og:description" content="The pander ships with a default theme when the 'unify plots' option is
 enabled via panderOptions, which is now also available outside of pander internals, like evals, eval.msgs or Pandoc.brew." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -48,9 +56,10 @@ enabled via panderOptions, which is now also available outside of pander interna
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -64,7 +73,7 @@ enabled via panderOptions, which is now also available outside of pander interna
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggthemes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">4.2.0.9000</span>
       </span>
     </div>
 
@@ -72,7 +81,7 @@ enabled via panderOptions, which is now also available outside of pander interna
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -83,11 +92,10 @@ enabled via panderOptions, which is now also available outside of pander interna
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jrnold/ggthemes">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/jrnold/ggthemes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -98,6 +106,7 @@ enabled via panderOptions, which is now also available outside of pander interna
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -109,23 +118,34 @@ enabled via panderOptions, which is now also available outside of pander interna
     </div>
 
     <div class="ref-description">
-    
     <p>The <span class="pkg">pander</span> ships with a default theme when the 'unify plots' option is
 enabled via <code>panderOptions</code>, which is now also available outside of <span class="pkg">pander</span> internals, like <code>evals</code>, <code>eval.msgs</code> or <code>Pandoc.brew</code>.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>theme_pander</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>base_family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>nomargin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ff</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fc</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>fs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gM</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>gm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>gc</span> <span class='kw'>=</span> <span class='st'>"grey"</span>, <span class='kw'>gl</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>boxes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bc</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>pc</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>, <span class='kw'>lp</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>theme_pander</span><span class='op'>(</span>
+  base_size <span class='op'>=</span> <span class='fl'>12</span>,
+  base_family <span class='op'>=</span> <span class='st'>"sans"</span>,
+  nomargin <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ff <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fc <span class='op'>=</span> <span class='st'>"black"</span>,
+  fs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gM <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  gm <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  gc <span class='op'>=</span> <span class='st'>"grey"</span>,
+  gl <span class='op'>=</span> <span class='st'>"dashed"</span>,
+  boxes <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  bc <span class='op'>=</span> <span class='st'>"white"</span>,
+  pc <span class='op'>=</span> <span class='st'>"transparent"</span>,
+  lp <span class='op'>=</span> <span class='st'>"right"</span>,
+  axis <span class='op'>=</span> <span class='fl'>1</span>
+<span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>base_size</th>
-      <td><p>base font size</p></td>
+      <td><p>base font size, given in pts.</p></td>
     </tr>
     <tr>
       <th>base_family</th>
@@ -181,42 +201,40 @@ enabled via <code>panderOptions</code>, which is now also available outside of <
     </tr>
     <tr>
       <th>axis</th>
-      <td><p>axis angle as defined in <code><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par(les)</a></code></p></td>
+      <td><p>axis angle as defined in <code><a href='https://rdrr.io/r/graphics/par.html'>par(les)</a></code></p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"ggplot2"</span>)
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"pander"</span>)) {
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='http://rapporter.github.io/pander'>"pander"</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
 
-  <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mpg</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>)) +
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>()
-  <span class='no'>p</span> + <span class='fu'>theme_pander</span>()
+  <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mpg</span>, y <span class='op'>=</span> <span class='va'>wt</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+       <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_pander</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/pander/topics/panderOptions'>panderOptions</a></span>(<span class='st'>"graph.grid.color"</span>, <span class='st'>"red"</span>)
-  <span class='no'>p</span> + <span class='fu'>theme_pander</span>()
+  <span class='fu'><a href='https://rdrr.io/pkg/pander/man/panderOptions.html'>panderOptions</a></span><span class='op'>(</span><span class='st'>"graph.grid.color"</span>, <span class='st'>"red"</span><span class='op'>)</span>
+  <span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_pander</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>cyl</span>))) +
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>()
-  <span class='no'>p</span> + <span class='fu'>theme_pander</span>() + <span class='fu'>scale_color_pander</span>()
+  <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>mpg</span>, colour <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>cyl</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='va'>p</span> <span class='op'>+</span> <span class='fu'>theme_pander</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='scale_color_pander.html'>scale_color_pander</a></span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>mpg</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>class</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>drv</span>)) +
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_bar'>geom_bar</a></span>() +
-    <span class='fu'>scale_fill_pander</span>() +
-    <span class='fu'>theme_pander</span>()
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: pander</span></div><div class='img'><img src='theme_pander-1.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mpg</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>class</span>, fill <span class='op'>=</span> <span class='va'>drv</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='scale_color_pander.html'>scale_fill_pander</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>theme_pander</span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: pander</span></div><div class='img'><img src='theme_pander-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -224,13 +242,16 @@ enabled via <code>panderOptions</code>, which is now also available outside of <
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

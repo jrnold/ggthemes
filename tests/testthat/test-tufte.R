@@ -8,5 +8,5 @@ test_that("theme_tufte works", {
 test_that("theme_tufte works with ticks = FALSE", {
   thm <- theme_tufte(ticks = FALSE)
   expect_is(thm, "theme")
-  expect_equal(thm$axis.ticks, element_blank())
+  expect_eqNe(thm$axis.ticks, element_blank())
 })

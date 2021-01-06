@@ -7,7 +7,7 @@
 theme_calc(base_size = 10, base_family = "sans")
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 }

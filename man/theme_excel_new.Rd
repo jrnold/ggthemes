@@ -7,7 +7,7 @@
 theme_excel_new(base_size = 9, base_family = "sans")
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
 }
@@ -27,6 +27,7 @@ p <- ggplot(mtcars) +
 p + theme_excel_new() + scale_colour_excel_new()
 }
 \seealso{
-Other themes excel: \code{\link{theme_excel}}
+Other themes excel: 
+\code{\link{theme_excel}()}
 }
 \concept{themes excel}

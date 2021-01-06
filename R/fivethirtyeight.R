@@ -1,7 +1,7 @@
-#' Theme inspired by fivethirtyeight.com plots
+#' Theme inspired by FiveThirtyEight plots
 #'
 #' Theme inspired by the plots on
-#' \href{fivethirtyeight.com}{http://fivethirtyeight.com}.
+#' \href{FiveThirtyEight}{http://fivethirtyeight.com}.
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @family themes fivethirtyeight
@@ -34,9 +34,9 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
      strip.background = element_rect()))
 }
 
-#' fivethirtyeight.com color palette
+#' FiveThirtyEight color palette
 #'
-#' The standard three-color fivethirtyeight.com palette for line plots comprises
+#' The standard three-color FiveThirtyEight palette for line plots comprises
 #' blue, red, and green.
 #'
 #' @family colour fivethirtyeight
@@ -51,9 +51,9 @@ fivethirtyeight_pal <- function() {
   f
 }
 
-#' fivethirtyeight.com color scales
+#' FiveThirtyEight color scales
 #'
-#' Color scales using the colors in the fivethirtyeight graphics.
+#' Color scales using the colors in the FiveThirtyEight graphics.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour fivethirtyeight
