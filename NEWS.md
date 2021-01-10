@@ -1,3 +1,7 @@
+# ggthemes 4.2.2
+
+- Fixing URLs for CRAN submission.
+
 # ggthemes 4.2.1
 
 - Conditionally use the vdiffr package in tests so it complies with suggested package policy (#124)
