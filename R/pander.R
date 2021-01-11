@@ -180,7 +180,7 @@ theme_pander <- function(base_size = 12,
 #' Color palette from the pander package
 #'
 #' The \pkg{pander} ships with a default colorblind and printer-friendly
-#' color palette borrowed from \verb{http://jfly.iam.u-tokyo.ac.jp/color/}.
+#' color palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
 #'
 #' @param n number of colors. This palette supports up to eight colors.
 #' @param random_order if the palette should be reordered randomly before
@@ -212,7 +212,7 @@ palette_pander <- function(n, random_order = FALSE) {
 #' Color scale from the pander package
 #'
 #' The \pkg{pander} ships with a default colorblind and printer-friendly color
-#' palette borrowed from \verb{http://jfly.iam.u-tokyo.ac.jp/color/}.
+#' palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams palette_pander
 #' @family colour pander

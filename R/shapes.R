@@ -28,7 +28,7 @@
 #' Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
 #' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots", \emph{Journal of Computational and Graphical Statistics},
-#' \url{http://www.jstor.org/stable/1390760}
+#' \url{https://www.jstor.org/stable/1390760}
 #'
 #' @family shapes
 #' @export
@@ -72,7 +72,7 @@ scale_shape_cleveland <- function(overlap = TRUE, ...) {
 #' @references
 #' Lewandowsky, Stephan and Ian Spence (1989)
 #' "Discriminating Strata in Scatterplots", Journal of
-#' the American Statistical Association, \url{http://www.jstor.org/stable/2289649}
+#' the American Statistical Association, \url{https://www.jstor.org/stable/2289649}
 #' @example inst/examples/ex-circlefill_shape_pal.R
 #' @family shapes
 #' @export
@@ -123,7 +123,7 @@ scale_shape_circlefill <- function(...) {
 #' @references
 #' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
 #' Journal of Computational and Graphical Statistics,
-#' \url{http://www.jstor.org/stable/1390760}
+#' \url{https://www.jstor.org/stable/1390760}
 #' @export
 tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE, n3alt = NULL) {
   if (!is.null(n3alt)) {

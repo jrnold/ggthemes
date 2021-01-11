@@ -17,7 +17,7 @@
 #' Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.
 #' 2nd edition. Analytics Press.
 #'
-#' \href{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
+#' \href{https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
 #'
 #' @export
 #' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}
@@ -78,7 +78,7 @@ scale_fill_few <- function(palette = "Light", ...) {
 #' 2nd edition. Analytics Press.
 #'
 #' Stephen Few, "Practical Rules for Using Color in Charts",
-#' \url{http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}.
+#' \url{https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}.
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @family themes few
