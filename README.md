@@ -2,12 +2,12 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jrnold/ggthemes?branch=master&svg=true)](https://ci.appveyor.com/project/jrnold/ggthemes)
 [![Code Coverage Status](https://codecov.io/gh/jrnold/ggthemes/branch/master/graph/badge.svg)](https://codecov.io/github/jrnold/ggthemes?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/ggthemes)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/ggthemes)](http://cran.rstudio.com/web/packages/ggthemes)
+[![CRAN status](https://www.r-pkg.org/badges/version/ggthemes)](https://CRAN.R-project.org/package=ggthemes)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 
 Some extra geoms, scales, and themes for
-[ggplot](http://ggplot2.org).
+[ggplot](https://ggplot2.tidyverse.org/).
 
 
 ## Install 
