@@ -71,7 +71,7 @@ expand the scale by 5\% on each side for continuous variables, and by
 }
 \description{
 The \pkg{pander} ships with a default colorblind and printer-friendly color
-palette borrowed from \verb{http://jfly.iam.u-tokyo.ac.jp/color/}.
+palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 \seealso{
 \code{\link{theme_pander}()}

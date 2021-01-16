@@ -13,7 +13,7 @@ theme_fivethirtyeight(base_size = 12, base_family = "sans")
 }
 \description{
 Theme inspired by the plots on
-\href{FiveThirtyEight}{http://fivethirtyeight.com}.
+\href{https://fivethirtyeight.com}{FiveThirtyEight}.
 }
 \examples{
 library("ggplot2")

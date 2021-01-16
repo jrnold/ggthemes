@@ -29,7 +29,7 @@ p + scale_shape_cleveland(overlap = TRUE)
 \references{
 Lewandowsky, Stephan and Ian Spence (1989)
 "Discriminating Strata in Scatterplots", Journal of
-the American Statistical Association, \url{http://www.jstor.org/stable/2289649}
+the American Statistical Association, \url{https://www.jstor.org/stable/2289649}
 }
 \seealso{
 Other shapes: 

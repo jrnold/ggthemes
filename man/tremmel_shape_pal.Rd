@@ -35,7 +35,7 @@ different plots.
 \references{
 Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
 Journal of Computational and Graphical Statistics,
-\url{http://www.jstor.org/stable/1390760}
+\url{https://www.jstor.org/stable/1390760}
 }
 \seealso{
 Other shapes: 

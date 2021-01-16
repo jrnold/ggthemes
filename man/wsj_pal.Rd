@@ -26,7 +26,7 @@ The following palettes are defined,
 \item{rgby}{Red/Green/Blue/Yellow theme.
   Examples: \url{https://twitpic.com/b2e3v2}. Up to four values.}
   \item{red_green}{Green/red two-color scale for good/bad. Examples:
-\url{https://twitpic.com/b1avj6}, \url{http://twitpic.com/a4kxcl}.}
+\url{https://twitpic.com/b1avj6}, \url{https://twitpic.com/a4kxcl}.}
 \item{green_black}{Black-green 4-color scale for 'Very negative',
   'Somewhat negative', 'somewhat positive', 'very positive'.
   Examples: \url{https://twitpic.com/awbua0}.}
