@@ -9,9 +9,10 @@
 -   In `DESCRIPTION`, the words "Geoms", "Stata", "Tufte", "Tufte's", 
     and "geoms" are not misspelled.
 
--   "Found the following (possibly) invalid URLs" check": These URLs are valid:
+-   "Found the following (possibly) invalid URLs" check": The following URLs are valid.
+    These URLs are listed along with errors that occur during checks.
 
-    -   https://policyviz.com/2017/01/12/150-color-palettes-for-excel/ (times out)
+    -   https://policyviz.com/2017/01/12/150-color-palettes-for-excel/ (Times out)
     -   https://spiekermann.com/en/itc-officina-display/ (libcurl error 38 "Connection timed out")
     -   https://twitpic.com/9gfg5q (391, 503)
     -   https://twitpic.com/awbua0 (391, 503)
@@ -25,3 +26,4 @@
     -   https://www.highcharts.com/demo (503)
     -   https://www.jstor.org/stable/1390760  (403)
     -   https://www.jstor.org/stable/2289649  (403)
+    -   https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf (Could not resolve host: www.perceptualedge.com)
