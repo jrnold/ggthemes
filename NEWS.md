@@ -1,3 +1,5 @@
+# ggthemes 4.2.4
+
 # ggthemes 4.2.3
 
 - Fixing URLs for CRAN submission again.
