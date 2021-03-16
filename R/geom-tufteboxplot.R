@@ -193,10 +193,10 @@ GeomTufteboxplot <-
               outliers <- data.frame(
                 y = data$outliers[[1]],
                 x = data$x[1],
-                colour = outlier.colour %||% data$colour[1],
-                shape = outlier.shape %||% data$shape[1],
-                size = outlier.size %||% data$size[1],
-                stroke = outlier.stroke %||% data$stroke[1],
+                colour = outlier.colour,
+                shape = outlier.shape,
+                size = outlier.size,
+                stroke = outlier.stroke,
                 fill = NA,
                 alpha = NA,
                 stringsAsFactors = FALSE
