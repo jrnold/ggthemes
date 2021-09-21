@@ -47,7 +47,12 @@ will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+layer, as a string. The default (\code{stat = 'fivenumber'}) calls
+\code{\link{stat_fivenumber}} and produces whiskers that extend
+from the interquartile range to the extremes of the data; specifying
+\code{\link{stat_boxplot}} will produce a more traditional boxplot
+with whiskers extending to the most extreme points that are < 1.5 IQR
+away from the hinges (i.e., the first and third quartiles).}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
@@ -143,6 +148,8 @@ p + geom_tufteboxplot(median.type = "line")
 p + geom_tufteboxplot() +
   theme_tufte() +
   theme(axis.ticks.x = element_blank())
+# traditional boxplot with whiskers only out to 1.5 IQR, outlier points
+p + geom_tufteboxplot(stat="boxplot", outlier.shape = 5)
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of
