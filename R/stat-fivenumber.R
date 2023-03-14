@@ -93,6 +93,9 @@ StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat,
     }
     probs <- sort(probs)
     if (!is.null(data$weight)) {
+      if (!requireNamespace("quantreg", quietly = TRUE)) {
+        stop("Package 'quantreg' is required for compute_group() with weights.")
+      }
       mod <- quantreg::rq(y ~ 1, weights = weight, tau = probs,
                           data = data)
       stats <- as.numeric(stats::coef(mod))
