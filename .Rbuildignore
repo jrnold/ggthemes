@@ -18,3 +18,4 @@
 ^\.covrignore$
 ^appveyor\.yml$
 ^\.github$
+^CONTRIBUTING.*$
