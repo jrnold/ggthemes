@@ -37,35 +37,35 @@ Previews provided below using the popular `mtcars` & `diamonds` datasets:
 
 <table>
  <tr>
-    <td><img src="figure/few-1.png" title="Few-1" width="400">
-        <img src="figure/calc-1.png" title="Calc-1" width="400">
-        <img src="figure/economist-1.png" title="Economist-1" width="400">
-        <img src="figure/excel1-1.png" title="Excel-1" width="400">
-        <img src="figure/excel2-1.png" title="Excel-2" width="400">
-        <img src="figure/fivethirtyeight-1.png" title="FiveThirtyEight-1" width="400">
-        <img src="figure/gdocs-1.png" title="Gdocs-1" width="400">
-        <img src="figure/hc-darkunica-1.png" title="hc-darkunica-1" width="400">
-        <img src="figure/hc-darkunica-line-1.png" title="hc-darkunica-line-1" width="400">
-        <img src="figure/hc-default-1.png" title="hc-default-1" width="400">
-        <img src="figure/hc-default-line-1.png" title="hc-default-line-1" width="400">
-        <img src="figure/igray-1.png" title="igray-1" width="400">
-        <img src="figure/wsj-1.png" title="wsj-1.png" width="400">
-        <img src="figure/pander-barplot-1.png" title="pander-barplot-1" width="400">
+    <td><img src="https://github.com/jrnold/ggthemes/blob/main/figure/few-1.png" title="Few-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/calc-1.png" title="Calc-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/economist-1.png" title="Economist-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/excel1-1.png" title="Excel-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/excel2-1.png" title="Excel-2" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/fivethirtyeight-1.png" title="FiveThirtyEight-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/gdocs-1.png" title="Gdocs-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/hc-darkunica-1.png" title="hc-darkunica-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/hc-darkunica-line-1.png" title="hc-darkunica-line-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/hc-default-1.png" title="hc-default-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/hc-default-line-1.png" title="hc-default-line-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/igray-1.png" title="igray-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/wsj-1.png" title="wsj-1.png" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/pander-barplot-1.png" title="pander-barplot-1" width="400">
     </td>
-    <td><img src="figure/tufte-rangeframe-1.png" title="tufte-rangeframe-1" width="400">
-        <img src="figure/solarized-alt-1.png" title="solarized-alt-1" width="400">
-        <img src="figure/solarized-dark-1.png" title="solarized-dark-1" width="400">
-        <img src="figure/solarized-light-1.png" title="solarized-light-1" width="400">
-        <img src="figure/stata-1.png" title="stata-1" width="400">
-        <img src="figure/tableau-1.png" title="tableau-1" width="400">
-        <img src="figure/tableau-colorbind10-1.png" title="tableau-colorbind10-1" width="400">
-        <img src="figure/tufteboxplot-1.png" title="tufteboxplot-1" width="400">
-        <img src="figure/tufteboxplot2-1.png" title="tufteboxplot2-1" width="400">
-        <img src="figure/tufteboxplot3-1.png" title="tufteboxplot3-1" width="400">
-        <img src="figure/tufteboxplot4-1.png" title="tufteboxplot4-1" width="400">
-        <img src="figure/pander-scatterplot-1.png" title="pander-scatterplot-1" width="400">
-        <img src="figure/paultol-1.png" title="paultol-1" width="400">
-        <img src="figure/paultol-barplot-1.png" title="paultol-barplot-1" width="400">
+    <td><img src="https://github.com/jrnold/ggthemes/blob/main/figure/tufte-rangeframe-1.png" title="tufte-rangeframe-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/solarized-alt-1.png" title="solarized-alt-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/solarized-dark-1.png" title="solarized-dark-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/solarized-light-1.png" title="solarized-light-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/stata-1.png" title="stata-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/tableau-1.png" title="tableau-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/tableau-colorbind10-1.png" title="tableau-colorbind10-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/tufteboxplot-1.png" title="tufteboxplot-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/tufteboxplot2-1.png" title="tufteboxplot2-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/tufteboxplot3-1.png" title="tufteboxplot3-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/tufteboxplot4-1.png" title="tufteboxplot4-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/pander-scatterplot-1.png" title="pander-scatterplot-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/paultol-1.png" title="paultol-1" width="400">
+        <img src="https://github.com/jrnold/ggthemes/blob/main/figure/paultol-barplot-1.png" title="paultol-barplot-1" width="400">
    </td>
  </tr>
 </table>
