@@ -115,7 +115,7 @@ scale_shape_circlefill <- function(...) {
 #'
 #' @param overlap use an empty circle instead of a solid circle when
 #' \code{n == 2}.
-#' @param alt,n3alt If \code{TRUE}, then when \code{n == 3},
+#' @param alt If \code{TRUE}, then when \code{n == 3},
 #'   use a solid circle, plus sign and
 #'   empty triangle. Otherwise use a solid circle, empty circle, and empty
 #'   triangle.
@@ -125,11 +125,7 @@ scale_shape_circlefill <- function(...) {
 #' Journal of Computational and Graphical Statistics,
 #' \url{https://www.jstor.org/stable/1390760}
 #' @export
-tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE, n3alt = NULL) {
-  if (!is.null(n3alt)) {
-    warning("`n3alt` is deprecated. Use `alt` instead.")
-    alt <- n3alt[[1]]
-  }
+tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
   max_n <- 3L
   palettes <- ggthemes::ggthemes_data$shapes$tremmel
   f <- function(n) {
