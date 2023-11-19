@@ -37,6 +37,7 @@ Suggests:
     maps,
     mapproj,
     pander,
+    quantreg,
     rlang,
     rmarkdown,
     spelling,    
