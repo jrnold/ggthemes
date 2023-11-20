@@ -2,7 +2,7 @@ test_that("circlefill_pal works", {
   expect_snapshot({
     pal <- circlefill_shape_pal()
     expect_type(pal, "closure")
-    expect_eqNe(attr(pal, "max_n"), 5L)
+    expect_equal(attr(pal, "max_n"), 5L)
     n <- 4L
     values <- pal(n)
     expect_type(values, "integer")

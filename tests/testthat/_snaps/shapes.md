@@ -6,38 +6,18 @@
       Warning:
       `circlefill_shape_pal()` was deprecated in ggthemes 5.0.0.
     Code
-      expect_is(pal, "function")
-    Condition
-      Warning:
-      `expect_is()` was deprecated in the 3rd edition.
-      i Use `expect_type()`, `expect_s3_class()`, or `expect_s4_class()` instead
-    Code
-      expect_eqNe(attr(pal, "max_n"), 5L)
-    Condition
-      Warning:
-      Unused arguments (check.environment = FALSE)
-    Code
+      expect_type(pal, "closure")
+      expect_equal(attr(pal, "max_n"), 5L)
       n <- 4L
       values <- pal(n)
-      expect_is(values, "integer")
-    Condition
-      Warning:
-      `expect_is()` was deprecated in the 3rd edition.
-      i Use `expect_type()`, `expect_s3_class()`, or `expect_s4_class()` instead
-    Code
-      expect_eqNe(length(values), n)
-    Condition
-      Warning:
-      Unused arguments (check.environment = FALSE)
+      expect_type(values, "integer")
+      expect_equal(length(values), n)
 
 # scale_shape_circlefill works
 
     Code
-      expect_is(scale_shape_circlefill(), "ScaleDiscrete")
+      expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
     Condition
-      Warning:
-      `expect_is()` was deprecated in the 3rd edition.
-      i Use `expect_type()`, `expect_s3_class()`, or `expect_s4_class()` instead
       Warning:
       `scale_shape_circlefill()` was deprecated in ggthemes 5.0.0.
       Warning:
