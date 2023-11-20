@@ -1,6 +1,9 @@
 # ggthemes (development version)
 
 - Remove deprecated `n3alt` argument from `tremmel_shape_pal`. Use `alt` instead.
+- Deprecate `scale_shape_circlefill` and `circlefill_shape_pal`. The unicode characters
+  used to represent circles in the scale are too often different sizes. Will be removed
+  in a later version.
 - Bugfix: Add alias to `ggthemes-package`
 - Make `quantreg` package suggested
 
