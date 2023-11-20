@@ -4,13 +4,13 @@
 \alias{tremmel_shape_pal}
 \title{Shape palette from Tremmel (1995) (discrete)}
 \usage{
-tremmel_shape_pal(overlap = FALSE, alt = FALSE, n3alt = NULL)
+tremmel_shape_pal(overlap = FALSE, alt = FALSE)
 }
 \arguments{
 \item{overlap}{use an empty circle instead of a solid circle when
 \code{n == 2}.}
 
-\item{alt, n3alt}{If \code{TRUE}, then when \code{n == 3},
+\item{alt}{If \code{TRUE}, then when \code{n == 3},
 use a solid circle, plus sign and
 empty triangle. Otherwise use a solid circle, empty circle, and empty
 triangle.}
