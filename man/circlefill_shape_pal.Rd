@@ -7,24 +7,17 @@
 circlefill_shape_pal()
 }
 \description{
+`r lifecycle::badge("deprecated")`
+
+This function was deprecated because unicode glyphs used for the circles
+vary in size, making them unusable for plotting.
+
 Shape palette with circles varying by amount of fill. This uses
 the set of 3 circle fill values in Lewandowsky and Spence (1989):
 solid, hollow, half-filled, with two additional fill amounts:
 three-quarters, and one-quarter.
-}
-\details{
+
 This palette supports up to five values.
-}
-\examples{
-library("ggplot2")
-
-p <- ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(cyl))) +
- geom_point()
-
-p + scale_shape_tremmel()
-p + scale_shape_circlefill()
-p + scale_shape_cleveland()
-p + scale_shape_cleveland(overlap = TRUE)
 }
 \references{
 Lewandowsky, Stephan and Ian Spence (1989)

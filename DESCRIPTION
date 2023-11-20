@@ -21,6 +21,7 @@ Imports:
     ggplot2 (>= 3.0.0),
     graphics,
     grid,
+    lifecycle,
     methods,
     purrr,
     scales,
