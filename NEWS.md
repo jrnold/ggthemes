@@ -1,5 +1,8 @@
 # ggthemes (development version)
 
+- Remove deprecated `n3alt` argument from `tremmel_shape_pal`. Use `alt` instead.
+- Bugfix: Add alias to `ggthemes-package`
+- Make `quantreg` package suggested
 
 # ggthemes 4.2.3
 
