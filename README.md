@@ -5,12 +5,10 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/ggthemes)](https://CRAN.R-project.org/package=ggthemes)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
-
 Some extra geoms, scales, and themes for
 [ggplot](https://ggplot2.tidyverse.org/).
 
-
-## Install 
+## Install
 
 To install the stable version from CRAN,
 
@@ -29,7 +27,6 @@ install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
 ## How to use
 
 For a quick tutorial, check out [Rafael Irizarry's book](https://rafalab.github.io/dsbook/ggplot2.html#add-on-packages). For more examples [click here](https://github.com/BTJ01/ggthemes/tree/master/inst/examples).
-
 
 ## Previews
 
@@ -69,26 +66,3 @@ Previews provided below using the popular `mtcars` & `diamonds` datasets:
    </td>
  </tr>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
