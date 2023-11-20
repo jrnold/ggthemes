@@ -1,4 +1,5 @@
-# ggthemes 4.2.4
+# ggthemes (development version)
+
 
 # ggthemes 4.2.3
 
