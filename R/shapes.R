@@ -62,6 +62,12 @@ scale_shape_cleveland <- function(overlap = TRUE, ...) {
 
 #' Filled Circle Shape palette (discrete)
 #'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' This function was deprecated because unicode glyphs used for the circles
+#' vary in size, making them unusable for plotting.
+#'
 #' Shape palette with circles varying by amount of fill. This uses
 #' the set of 3 circle fill values in Lewandowsky and Spence (1989):
 #' solid, hollow, half-filled, with two additional fill amounts:
@@ -73,10 +79,11 @@ scale_shape_cleveland <- function(overlap = TRUE, ...) {
 #' Lewandowsky, Stephan and Ian Spence (1989)
 #' "Discriminating Strata in Scatterplots", Journal of
 #' the American Statistical Association, \url{https://www.jstor.org/stable/2289649}
-#' @example inst/examples/ex-circlefill_shape_pal.R
 #' @family shapes
+#' @importFrom lifecycle deprecate_soft
 #' @export
 circlefill_shape_pal <- function() {
+  deprecate_soft("5.0.0", "circlefill_shape_pal()")
   values <- ggthemes::ggthemes_data[["shapes"]][["circlefill"]][["pch"]]
   max_n <- length(values)
   f <- manual_pal(values)
@@ -86,13 +93,18 @@ circlefill_shape_pal <- function() {
 
 #' Filled Circle Shape palette (discrete)
 #'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
 #' @export
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shapes
+#' @importFrom lifecycle deprecate_soft
 #' @seealso
 #' \code{\link{circlefill_shape_pal}()} for a description of the palette.
 scale_shape_circlefill <- function(...) {
+  deprecate_soft("5.0.0", "scale_shape_circlefill()")
   discrete_scale("shape", "circlefill", circlefill_shape_pal(), ...)
 }
 

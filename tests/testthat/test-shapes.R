@@ -1,15 +1,19 @@
 test_that("circlefill_pal works", {
-  pal <- circlefill_shape_pal()
-  expect_type(pal, "closure")
-  expect_equal(attr(pal, "max_n"), 5L)
-  n <- 4L
-  values <- pal(n)
-  expect_type(values, "integer")
-  expect_equal(length(values), n)
+  expect_snapshot({
+    pal <- circlefill_shape_pal()
+    expect_type(pal, "closure")
+    expect_eqNe(attr(pal, "max_n"), 5L)
+    n <- 4L
+    values <- pal(n)
+    expect_type(values, "integer")
+    expect_equal(length(values), n)
+  })
 })
 
 test_that("scale_shape_circlefill works", {
-  expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
+  expect_snapshot({
+    expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
+  })
 })
 
 test_that("tremmel_shape_pal works", {
@@ -42,6 +46,8 @@ test_that("cleveland_shape_pal works", {
   vals <- pal(n)
   expect_equal(length(vals), n)
 })
+
+
 
 test_that("cleveland_shape_pal works with overlap = FALSE", {
   pal <- cleveland_shape_pal(overlap = FALSE)
