@@ -1,7 +1,5 @@
-context("theme_map")
-
 test_that("theme_map works", {
   thm <- theme_map()
-  expect_is(thm, "theme")
-  expect_eqNe(thm$panel.background, element_blank())
+  expect_s3_class(thm, "theme")
+  expect_equal(thm$panel.background, element_blank())
 })

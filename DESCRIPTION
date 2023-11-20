@@ -40,8 +40,8 @@ Suggests:
     quantreg,
     rlang,
     rmarkdown,
-    spelling,    
-    testthat,
+    spelling,
+    testthat (>= 3.2.0),
     tidyr,
     vdiffr,
     withr
@@ -57,3 +57,4 @@ RoxygenNote: 7.2.3
 LazyData: true
 Language: en-US
 Encoding: UTF-8
+Config/testthat/edition: 3

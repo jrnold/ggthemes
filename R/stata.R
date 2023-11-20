@@ -50,9 +50,9 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
                   y = as.numeric(stata_gsize$medium))
   names(relsz) <- names(stata_gsize)
   theme_foundation() +
-  theme(line = element_line(size = 0.5, linetype = 1, lineend = "butt",
+  theme(line = element_line(linewidth = 0.5, linetype = 1, lineend = "butt",
                             colour = "black"),
-        rect = element_rect(size = 0.5, linetype = 1, fill = "white",
+        rect = element_rect(linewidth = 0.5, linetype = 1, fill = "white",
                             colour = "black"),
         text = element_text(family = base_family,
                             face = "plain",
@@ -77,7 +77,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         axis.ticks.length = unit(4 / 11, "lines"),
         legend.background =
           element_rect(linetype = 1,
-                       size = rel(stata_linewidths[["thin"]])),
+                       linewidth = rel(stata_linewidths[["thin"]])),
         legend.spacing = unit(1.2 / 100, "npc"),
         legend.key = element_rect(linetype = 0),
         legend.key.size = unit(1.2, "lines"),

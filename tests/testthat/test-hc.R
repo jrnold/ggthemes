@@ -1,12 +1,10 @@
-context("hc")
-
 test_that("hc_pal works", {
   pal <- hc_pal()
-  expect_is(pal, "function")
+  expect_type(pal, "closure")
   n <- 5
   values <- pal(n)
-  expect_is(values, "character")
-  expect_eqNe(length(values), n)
+  expect_type(values, "character")
+  expect_equal(length(values), n)
 })
 
 test_that("hc_pal raises error with invalid palette", {
@@ -15,20 +13,20 @@ test_that("hc_pal raises error with invalid palette", {
 })
 
 test_that("scale_colour_hc works", {
-  expect_is(scale_colour_hc(), "ScaleDiscrete")
+  expect_s3_class(scale_colour_hc(), "ScaleDiscrete")
 })
 
 test_that("scale_color_hc works", {
-  expect_eqNe(scale_colour_hc(), scale_color_hc())
+  expect_equal(scale_colour_hc(), scale_color_hc())
 })
 
 test_that("scale_fill_hc works", {
-  expect_is(scale_fill_hc(), "ScaleDiscrete")
+  expect_s3_class(scale_fill_hc(), "ScaleDiscrete")
 })
 
 test_that("theme_hc works", {
-  expect_is(theme_hc(), "theme")
-  expect_is(theme_hc(style = "darkunica"), "theme")
+  expect_s3_class(theme_hc(), "theme")
+  expect_s3_class(theme_hc(style = "darkunica"), "theme")
 })
 
 test_that("bgcolor raises warning", {

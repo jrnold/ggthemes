@@ -386,12 +386,12 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   half_line <- base_size / 2
   thm <- theme_foundation() %+replace%
         theme(line = element_line(colour = par()$fg,
-                                   size = 0.5,
+                                   linewidth = 0.5,
                                    lineend = par()$lend,
                                    linetype = par()$lty),
         rect = element_rect(fill = par()$bg,
                             colour = par()$fg,
-                            size = 0.5,
+                            linewidth = 0.5,
                             linetype = par()$lty),
         text = element_text(colour = par()$fg,
                             face = faces[par()$font],

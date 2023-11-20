@@ -1,11 +1,9 @@
-context("pander")
-
 test_that("scale_colour_pander works", {
-  expect_is(scale_colour_pander(), "ScaleDiscrete")
+  expect_s3_class(scale_colour_pander(), "ScaleDiscrete")
 })
 
 test_that("scale_fill_pander works", {
-  expect_is(scale_fill_pander(), "ScaleDiscrete")
+  expect_s3_class(scale_fill_pander(), "ScaleDiscrete")
 })
 
 test_that("palette_pander works", {
@@ -19,13 +17,13 @@ test_that("palette_pander random_order=TRUE works", {
 })
 
 test_that("theme_pander works", {
-  expect_is(theme_pander(), "theme")
+  expect_s3_class(theme_pander(), "theme")
 })
 
 test_that("theme_pander works with gm = FALSE", {
   thm <- theme_pander(gM = FALSE)
-  expect_is(thm, "theme")
-  expect_eqNe(thm$panel.grid, element_blank())
+  expect_s3_class(thm, "theme")
+  expect_equal(thm$panel.grid, element_blank())
 })
 
 

@@ -1,5 +1,3 @@
-context("geom-tufteboxplot")
-
 test_that("geom_tufteboxplot works", {
-  expect_is(geom_tufteboxplot(), "LayerInstance")
+  expect_s3_class(geom_tufteboxplot(), "LayerInstance")
 })

@@ -13,6 +13,6 @@ theme_solid <- function(base_size = 12, base_family = "", fill = NA) {
   theme_foundation() +
   theme(line = element_blank(),
         text = element_blank(),
-        rect = element_rect(fill = fill, size = base_size, colour = NA,
+        rect = element_rect(fill = fill, linewidth = base_size, colour = NA,
                             linetype = 0))
 }
