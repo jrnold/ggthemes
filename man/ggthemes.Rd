@@ -3,9 +3,35 @@
 \docType{package}
 \name{ggthemes}
 \alias{ggthemes}
+\alias{ggthemes-package}
 \title{ggthemes}
 \description{
 This package contains extra themes, scales, and geoms, and
 functions for and related to \pkg{ggplot2}. See
 \url{https://jrnold.github.io/ggthemes/} for documentation.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jrnold/ggthemes}
+  \item Report bugs at \url{https://github.com/jrnold/ggthemes}
+}
+
+}
+\author{
+\strong{Maintainer}: Jeffrey B. Arnold \email{jeffrey.arnold@gmail.com} (<https://orcid.org/0000-0001-9953-3904>)
+
+Other contributors:
+\itemize{
+  \item Gergely Daroczi [contributor]
+  \item Bo Werth [contributor]
+  \item Brian Weitzner [contributor]
+  \item Joshua Kunst [contributor]
+  \item Baptise Auguie [contributor]
+  \item Bob Rudis [contributor]
+  \item Hadley Wickham (Code from the ggplot2 package.) [contributor]
+  \item Justin Talbot (Code from the labeling package) [contributor]
+  \item Joshua London [contributor]
+}
+
 }

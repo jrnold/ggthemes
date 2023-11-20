@@ -12,6 +12,6 @@
 #' @importFrom graphics abline axis text points
 #' @importFrom methods hasArg as
 #' @importFrom graphics par
-NULL
+"_PACKAGE"
 
 globalVariables(".data")
