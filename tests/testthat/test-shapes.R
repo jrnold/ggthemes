@@ -45,11 +45,6 @@ test_that("cleveland_shape_pal works", {
   expect_eqNe(length(vals), n)
 })
 
-test_that("tremmel_pal arg n3alt is deprected", {
-  expect_warning(tremmel_shape_pal(n3alt = FALSE))
-  expect_warning(tremmel_shape_pal(n3alt = TRUE))
-})
-
 test_that("cleveland_shape_pal works with overlap = FALSE", {
   pal <- cleveland_shape_pal(overlap = FALSE)
   expect_is(pal, "function")
