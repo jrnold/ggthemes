@@ -17,3 +17,10 @@ expect_hexcolor <- function(object) {
 
   invisible(act$val)
 }
+
+expect_equal_scale <- function(x, y, ...) {
+  x <- as.list(x)
+  y <- as.list(y)
+  x$call <- y$call <- NULL
+  expect_equal(x, y, ...)
+}

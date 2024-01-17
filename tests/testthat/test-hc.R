@@ -17,7 +17,7 @@ test_that("scale_colour_hc works", {
 })
 
 test_that("scale_color_hc works", {
-  expect_equal(scale_colour_hc(), scale_color_hc())
+  expect_equal_scale(scale_colour_hc(), scale_color_hc())
 })
 
 test_that("scale_fill_hc works", {

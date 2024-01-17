@@ -14,7 +14,7 @@ test_that("scale_colour_colorblind works", {
 })
 
 test_that("scale_color_canva works", {
-  expect_equal(scale_color_colorblind(), scale_colour_colorblind())
+  expect_equal_scale(scale_color_colorblind(), scale_colour_colorblind())
 })
 
 test_that("scale_fill_colorblind works", {

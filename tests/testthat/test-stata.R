@@ -14,7 +14,7 @@ test_that("scale_colour_stata works", {
 })
 
 test_that("scale_color_stata works", {
-  expect_equal(scale_colour_stata(), scale_color_stata())
+  expect_equal_scale(scale_colour_stata(), scale_color_stata())
 })
 
 test_that("scale_fill_stata works", {
