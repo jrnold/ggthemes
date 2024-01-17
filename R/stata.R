@@ -86,8 +86,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
         legend.text = element_text(size = rel(relsz["medsmall"])),
         legend.text.align = NULL,
         ## See textboxstyle leg_title
-        legend.title = element_text(size = rel(relsz["large"]), hjust = 0),
-        legend.title.align = 0.5,
+        legend.title = element_text(size = rel(relsz["large"]), hjust = 0.5),
         legend.position = "bottom",
         legend.direction = NULL,
         legend.justification = "center",
