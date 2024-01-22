@@ -1,3 +1,6 @@
+template:
+  bootstrap: 5
+
 reference:
 - title: Themes
   contents:
