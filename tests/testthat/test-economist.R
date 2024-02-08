@@ -19,7 +19,7 @@ test_that("economist_pal raises warning with large number", {
 })
 
 test_that("scale_colour_economist equals scale_color_economist", {
-  expect_equal(scale_color_economist(), scale_colour_economist())
+  expect_equal_scale(scale_color_economist(), scale_colour_economist())
 })
 
 test_that("scale_colour_economist works", {

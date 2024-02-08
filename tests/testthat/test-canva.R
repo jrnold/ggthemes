@@ -22,7 +22,7 @@ test_that("scale_colour_canva works", {
 })
 
 test_that("scale_color_canva works", {
-  expect_equal(scale_color_canva(), scale_colour_canva())
+  expect_equal_scale(scale_color_canva(), scale_colour_canva())
 })
 
 test_that("scale_colour_canva works", {

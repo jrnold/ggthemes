@@ -45,7 +45,7 @@ test_that("scale_colour_few works", {
 })
 
 test_that("scale_color_few works", {
-  expect_equal(scale_color_few(), scale_colour_few())
+  expect_equal_scale(scale_color_few(), scale_colour_few())
 })
 
 test_that("scale_fill_few works", {
