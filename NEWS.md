@@ -1,5 +1,7 @@
 # ggthemes (development version)
 
+- Updated tests.
+- Removed `legend.title.align` and `legend.text.align` from themes.
 - Remove deprecated `n3alt` argument from `tremmel_shape_pal`. Use `alt` instead.
 - Deprecate `scale_shape_circlefill` and `circlefill_shape_pal`. The unicode characters
   used to represent circles in the scale are too often different sizes. Will be removed
