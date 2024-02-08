@@ -13,7 +13,7 @@ Useful links:
 \itemize{
   \item \url{https://jrnold.github.io/ggthemes/}
   \item \url{https://github.com/jrnold/ggthemes}
-  \item Report bugs at \url{https://github.com/jrnold/ggthemes}
+  \item Report bugs at \url{https://github.com/jrnold/ggthemes/issues}
 }
 
 }
