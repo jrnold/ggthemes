@@ -1,5 +1,7 @@
 suppressPackageStartupMessages({
-  library("tidyverse")
+  library("dplyr")
+  library("purrr")
+  library("tibble")
   library("rlang")
   library("here")
   library("yaml")

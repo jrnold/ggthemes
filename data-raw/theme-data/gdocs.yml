@@ -1,24 +1,57 @@
 colors:
 - name: blue
-  value: "#3366cc"
+  value: "#4285f4"
 - name: red
-  value: "#dc3912"
+  value: "#ea4335"
+- name: yellow
+  value: "#fbbc04"
+- name: green
+  value: "#34a853"
 - name: orange
-  value: "#ff9900"
-- name: green
-  value: "#109618"
-- name: purple
-  value: "#990099"
-- name: blue
-  value: "#0099c6"
-- name: pink
-  value: "#dd4477"
-- name: green
-  value: "#66aa00"
-- name: red
-  value: "#b82e2e"
-- name: blue
-  value: "#316395"
+  value: "#ff6d01"
+- name: teal
+  value: "#46bdc6"
+
+- name: blue 2
+  value: "#7baaf7"
+- name: red 2
+  value: "#f07b72"
+- name: yellow 2
+  value: "#fcd04f"
+- name: green 2
+  value: "#71c287"
+- name: orange 2
+  value: "#ff994d"
+- name: teal 2
+  value: "#ff994d"
+
+- name: blue 3
+  value: "#b3cefb"
+- name: red 3
+  value: "#f7b4ae"
+- name: yellow 3
+  value: "#fde49b"
+- name: green 3
+  value: "#aedcba"
+- name: orange 3
+  value: "#ffc599"
+- name: teal 3
+  value: "#c9e4e7"
+
+
+- name: blue 4
+  value: "#ecf3fe"
+- name: red 4
+  value: "#fdeceb"
+- name: yellow 4
+  value: "#fff8e6"
+- name: green 4
+  value: "#ebf6ee"
+- name: orange 4
+  value: "#fff0e6"
+- name: teal 4
+  value: "#edf8f9"
+
 shapes:
   - {name: Circle, label: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
   - {name: Triangle, label: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, character: ▲}
