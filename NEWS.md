@@ -1,15 +1,17 @@
 # ggthemes (development version)
 
-- Updated tests.
-- Removed `legend.title.align` and `legend.text.align` from themes.
+- Updated `scale_color_gdocs` and `gdocs_pal` to use current colors. Palette extended from 10 to 24 colors.
+- Updated tests to be compatible with ggplot 3.5.0 (#153)
+- Removed `legend.title.align` and `legend.text.align` from themes. (#153)
+
+# ggthemes 4.2.4
+
 - Remove deprecated `n3alt` argument from `tremmel_shape_pal`. Use `alt` instead.
 - Deprecate `scale_shape_circlefill` and `circlefill_shape_pal`. The unicode characters
   used to represent circles in the scale are too often different sizes. Will be removed
   in a later version.
 - Bugfix: Add alias to `ggthemes-package`
 - Make `quantreg` package suggested
-
-# ggthemes 4.2.4
 
 # ggthemes 4.2.3
 
