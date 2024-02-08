@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 4.2.4
+Version: 4.2.4.9000
 Title: Extra Themes, Scales and Geoms for 'ggplot2'
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com", 
@@ -54,7 +54,7 @@ Description: Some extra themes, geoms, and scales for 'ggplot2'.
 License: GPL-2
 URL: https://github.com/jrnold/ggthemes
 BugReports: https://github.com/jrnold/ggthemes
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 LazyData: true
 Language: en-US
 Encoding: UTF-8

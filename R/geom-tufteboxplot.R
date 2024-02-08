@@ -53,6 +53,13 @@
 #' @param hoffset controls how much the interquartile line is offset from the
 #'    whiskers when \code{median.type = 'line'}. This is a fraction of the
 #'    range of \code{x}.
+#' @param  stat The statistical transformation to use on the data for this
+#'    layer, as a string. The default (\code{stat = 'fivenumber'}) calls
+#'    \code{\link{stat_fivenumber}} and produces whiskers that extend
+#'    from the interquartile range to the extremes of the data; specifying
+#'    \code{\link{stat_boxplot}} will produce a more traditional boxplot
+#'    with whiskers extending to the most extreme points that are < 1.5 IQR
+#'    away from the hinges (i.e., the first and third quartiles).
 #' @family geom tufte
 #' @export
 #'
@@ -193,10 +200,10 @@ GeomTufteboxplot <-
               outliers <- data.frame(
                 y = data$outliers[[1]],
                 x = data$x[1],
-                colour = outlier.colour %||% data$colour[1],
-                shape = outlier.shape %||% data$shape[1],
-                size = outlier.size %||% data$size[1],
-                stroke = outlier.stroke %||% data$stroke[1],
+                colour = outlier.colour,
+                shape = outlier.shape,
+                size = outlier.size,
+                stroke = outlier.stroke,
                 fill = NA,
                 alpha = NA,
                 stringsAsFactors = FALSE
