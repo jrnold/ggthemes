@@ -2,8 +2,8 @@
 % Please edit documentation in R/ggthemes-package.R
 \docType{package}
 \name{ggthemes}
-\alias{ggthemes}
 \alias{ggthemes-package}
+\alias{ggthemes}
 \title{ggthemes}
 \description{
 This package contains extra themes, scales, and geoms, and

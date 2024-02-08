@@ -62,7 +62,7 @@ notation.
   }}
 }
 \description{
-Filled Circle Shape palette (discrete)
+`r lifecycle::badge("deprecated")`
 }
 \seealso{
 \code{\link{circlefill_shape_pal}()} for a description of the palette.
