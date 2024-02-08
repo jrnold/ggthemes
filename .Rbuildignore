@@ -19,3 +19,4 @@
 ^appveyor\.yml$
 ^\.github$
 ^CONTRIBUTING.*$
+^\.pre-commit-config\.yaml$
