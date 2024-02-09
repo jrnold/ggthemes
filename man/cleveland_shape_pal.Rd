@@ -33,7 +33,7 @@ The palette \code{cleveland_shape_pal()} supports up to five values.
 \examples{
 ###   (discrete).
 
-
+\dontrun{
 library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
@@ -44,6 +44,7 @@ p + scale_shape_cleveland()
 # non-overlapping symbol palette
 p + scale_shape_cleveland(overlap = FALSE)
 }
+}
 \references{
 Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 
@@ -51,7 +52,7 @@ Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterp
 \url{https://www.jstor.org/stable/1390760}
 }
 \seealso{
-Other shapes: 
+Other shapes:
 \code{\link{circlefill_shape_pal}()},
 \code{\link{scale_shape_circlefill}()},
 \code{\link{scale_shape_cleveland}()},
