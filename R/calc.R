@@ -8,23 +8,24 @@
 #' @example inst/examples/ex-theme_calc.R
 theme_calc <- function(base_size = 10, base_family = "sans") {
   (theme_foundation(base_family = base_family, base_size = base_size)
-   + theme(rect = element_rect(colour = "black", fill = "white"),
-           text = element_text(colour = "black"),
-           line = element_line(colour = "gray70"),
-           # 13 pt
-           plot.title = element_text(size = rel(1.3)),
-           legend.title = element_text(size = rel(1)),
-           legend.text = element_text(size = rel(1)),
-           axis.title = element_text(size = rel(1)),
-           axis.line = element_blank(),
-           panel.border = element_rect(fill = NA, colour = "gray70"),
-           panel.grid.minor = element_blank(),
-           panel.grid.major.x = element_blank(),
-           legend.position = "right",
-           legend.direction = "vertical",
-           legend.background = element_rect(colour = NA),
-           legend.key = element_rect(colour = NA)))
-
+  + theme(
+      rect = element_rect(colour = "black", fill = "white"),
+      text = element_text(colour = "black"),
+      line = element_line(colour = "gray70"),
+      # 13 pt
+      plot.title = element_text(size = rel(1.3)),
+      legend.title = element_text(size = rel(1)),
+      legend.text = element_text(size = rel(1)),
+      axis.title = element_text(size = rel(1)),
+      axis.line = element_blank(),
+      panel.border = element_rect(fill = NA, colour = "gray70"),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank(),
+      legend.position = "right",
+      legend.direction = "vertical",
+      legend.background = element_rect(colour = NA),
+      legend.key = element_rect(colour = NA)
+    ))
 }
 
 #' Calc color palette (discrete)
@@ -53,13 +54,13 @@ calc_pal <- function() {
 #' @export
 #' @seealso See \code{\link{theme_calc}()} for examples.
 scale_fill_calc <- function(...) {
-    discrete_scale("fill", "calc", calc_pal(), ...)
+  discrete_scale("fill", "calc", calc_pal(), ...)
 }
 
 #' @export
 #' @rdname scale_calc
 scale_colour_calc <- function(...) {
-    discrete_scale("colour", "calc", calc_pal(), ...)
+  discrete_scale("colour", "calc", calc_pal(), ...)
 }
 
 #' @export
@@ -74,10 +75,10 @@ scale_color_calc <- scale_colour_calc
 #' @family shapes calc
 #' @example inst/examples/ex-calc_shape_pal.R
 calc_shape_pal <- function() {
-    values <- ggthemes::ggthemes_data$calc$shapes[["pch"]]
-    f <- manual_pal(unname(values))
-    attr(f, "max_n") <- length(values)
-    f
+  values <- ggthemes::ggthemes_data$calc$shapes[["pch"]]
+  f <- manual_pal(unname(values))
+  attr(f, "max_n") <- length(values)
+  f
 }
 
 #' Calc shape scale
@@ -88,8 +89,8 @@ calc_shape_pal <- function() {
 #' @family shapes calc
 #' @export
 #' @seealso \code{\link{theme_calc}()} for examples.
-scale_shape_calc <- function (...) {
-    discrete_scale("shape", "calc", calc_shape_pal(), ...)
+scale_shape_calc <- function(...) {
+  discrete_scale("shape", "calc", calc_shape_pal(), ...)
 }
 
 # PT_TO_MM <- 0.352778

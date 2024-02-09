@@ -101,19 +101,24 @@ scale_fill_excel_new <- function(theme = "Office Theme", ...) {
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel.R
 theme_excel <- function(base_size = 12, base_family = "",
-                                horizontal = TRUE) {
+                        horizontal = TRUE) {
   gray <- "#C0C0C0"
   ret <- (theme_bw() +
-            theme(panel.background = element_rect(fill = gray),
-                  panel.border = element_rect(colour = "black",
-                                              linetype = 1),
-                  panel.grid.major = element_line(colour = "black"),
-                  panel.grid.minor = element_blank(),
-                  legend.key = element_rect(colour = NA),
-
-    legend.background = element_rect(colour = "black", linetype = 1),
- strip.background = element_rect(fill = "white",
-      colour = NA, linetype = 0)))
+    theme(
+      panel.background = element_rect(fill = gray),
+      panel.border = element_rect(
+        colour = "black",
+        linetype = 1
+      ),
+      panel.grid.major = element_line(colour = "black"),
+      panel.grid.minor = element_blank(),
+      legend.key = element_rect(colour = NA),
+      legend.background = element_rect(colour = "black", linetype = 1),
+      strip.background = element_rect(
+        fill = "white",
+        colour = NA, linetype = 0
+      )
+    ))
   if (horizontal) {
     ret <- ret + theme(panel.grid.major.x = element_blank())
   } else {
@@ -134,12 +139,16 @@ theme_excel <- function(base_size = 12, base_family = "",
 #' @example inst/examples/ex-theme_excel_new.R
 #'
 theme_excel_new <- function(base_size = 9,
-                        base_family = "sans") {
-  colorlist <- list(lt_gray = "#D9D9D9",
-                    gray = "#BFBFBF",
-                    dk_gray = "#595959")
-  theme_bw(base_family = base_family,
-           base_size = base_size) +
+                            base_family = "sans") {
+  colorlist <- list(
+    lt_gray = "#D9D9D9",
+    gray = "#BFBFBF",
+    dk_gray = "#595959"
+  )
+  theme_bw(
+    base_family = base_family,
+    base_size = base_size
+  ) +
     theme(
       text = element_text(
         colour = colorlist$dk_gray,

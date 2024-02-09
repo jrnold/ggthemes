@@ -23,7 +23,6 @@ test_that("theme_par recognizes las", {
     expect_equal(thm$axis.title.x$angle, 90)
     expect_equal(thm$axis.title.y$angle, 90)
   })
-
 })
 
 test_that("theme_par recognizes tck", {

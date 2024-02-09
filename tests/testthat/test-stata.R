@@ -34,7 +34,8 @@ test_that("theme_stata works", {
 
 test_that("theme_state raises error with invallid scheme", {
   expect_error(theme_stata(scheme = "dsagasagdadgaga"),
-               regexp = "`scheme` must be one of")
+    regexp = "`scheme` must be one of"
+  )
 })
 
 test_that("stata_shape_pal works", {

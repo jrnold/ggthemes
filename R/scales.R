@@ -4,9 +4,9 @@
 
   n <- length(Q)
   i <- match(q, Q)[1]
-  v <- ifelse( (lmin %% lstep < eps ||
-                 lstep - (lmin %% lstep) < eps) &&
-                lmin <= 0 && lmax >= 0, 1, 0)
+  v <- ifelse((lmin %% lstep < eps ||
+    lstep - (lmin %% lstep) < eps) &&
+    lmin <= 0 && lmax >= 0, 1, 0)
   1 - (i - 1) / (n - 1) - j + v
 }
 
@@ -19,16 +19,15 @@
 
 .coverage <- function(dmin, dmax, lmin, lmax) {
   range <- dmax - dmin
-  1 - 0.5 * ( (dmax - lmax) ^ 2 + (dmin - lmin) ^ 2) / ( (0.1 * range) ^ 2)
+  1 - 0.5 * ((dmax - lmax)^2 + (dmin - lmin)^2) / ((0.1 * range)^2)
 }
 
 .coverage.max <- function(dmin, dmax, span) {
   range <- dmax - dmin
   if (span > range) {
     half <- (span - range) / 2
-    1 - 0.5 * (half ^ 2 + half ^ 2) / ( (0.1 * range) ^ 2)
-  }
-  else {
+    1 - 0.5 * (half^2 + half^2) / ((0.1 * range)^2)
+  } else {
     1
   }
 }
@@ -36,7 +35,7 @@
 .density <- function(k, m, dmin, dmax, lmin, lmax) {
   r <- (k - 1) / (lmax - lmin)
   rt <- (m - 1) / (max(lmax, dmax) - min(dmin, lmin))
-  2 - max( r / rt, rt / r )
+  2 - max(r / rt, rt / r)
 }
 
 .density.max <- function(k, m) {
@@ -84,8 +83,8 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
   }
 
   if (dmax - dmin < eps) {
-    #if the range is near the floating point limit,
-    #let seq generate some equally spaced steps.
+    # if the range is near the floating point limit,
+    # let seq generate some equally spaced steps.
     return(seq(from = dmin, to = dmax, length.out = n))
   }
 
@@ -99,7 +98,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
     for (q in Q) {
       sm <- .simplicity.max(q, Q, j)
 
-      if ( (w[1] * sm + w[2] + w[3] + w[4]) < best$score) {
+      if ((w[1] * sm + w[2] + w[3] + w[4]) < best$score) {
         j <- Inf
         break
       }
@@ -107,19 +106,21 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
       k <- 2
       while (k < Inf) {
         dm <- .density.max(k, n)
-        if ( (w[1] * sm + w[2] + w[3] * dm + w[4]) < best$score)
+        if ((w[1] * sm + w[2] + w[3] * dm + w[4]) < best$score) {
           break
+        }
 
         delta <- (dmax - dmin) / (k + 1) / j / q
         z <- ceiling(log(delta, base = 10))
 
         while (z < Inf) {
-          step <- j * q * 10 ^ z
+          step <- j * q * 10^z
 
           cm <- .coverage.max(dmin, dmax, step * (k - 1))
 
-          if ( (w[1] * sm + w[2] * cm + w[3] * dm + w[4]) < best$score)
+          if ((w[1] * sm + w[2] * cm + w[3] * dm + w[4]) < best$score) {
             break
+          }
 
           min_start <- floor(dmax / (step)) * j - (k - 1) * j
           max_start <- ceiling(dmin / (step)) * j
@@ -141,13 +142,15 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
 
             score <- w[1] * s + w[2] * c + w[3] * g + w[4] * l
 
-            if (score > best$score
-               && lmin >= dmin
-               && lmax <= dmax) {
-                best <- list(lmin = lmin,
-                             lmax = lmax,
-                             lstep = lstep,
-                             score = score)
+            if (score > best$score &&
+              lmin >= dmin &&
+              lmax <= dmax) {
+              best <- list(
+                lmin = lmin,
+                lmax = lmax,
+                lstep = lstep,
+                score = score
+              )
             }
           }
           z <- z + 1
@@ -169,7 +172,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
 #' @param ... other arguments passed to \code{extended_range_breaks_()}
 #' @return A function which returns breaks given a vector.
 #' @export
-extended_range_breaks <- function(n = 5, ...)  {
+extended_range_breaks <- function(n = 5, ...) {
   function(x) {
     extended_range_breaks_(min(x), max(x), n, ...)
   }
@@ -177,29 +180,37 @@ extended_range_breaks <- function(n = 5, ...)  {
 
 # from scales package
 zero_range <- function(x, tol = 1000 * .Machine$double.eps) {
-  if (length(x) == 1)
+  if (length(x) == 1) {
     return(TRUE)
-  if (length(x) != 2)
+  }
+  if (length(x) != 2) {
     stop("x must be length 1 or 2")
-  if (any(is.na(x)))
+  }
+  if (any(is.na(x))) {
     return(NA)
-  if (x[1] == x[2])
+  }
+  if (x[1] == x[2]) {
     return(TRUE)
-  if (all(is.infinite(x)))
+  }
+  if (all(is.infinite(x))) {
     return(FALSE)
+  }
   m <- min(abs(x))
-  if (m == 0)
+  if (m == 0) {
     return(FALSE)
-  abs( (x[1] - x[2]) / m) < tol
+  }
+  abs((x[1] - x[2]) / m) < tol
 }
 
 # from scales package
 precision <- function(x) {
   rng <- range(x, na.rm = TRUE)
-  span <- if (zero_range(rng))
+  span <- if (zero_range(rng)) {
     abs(rng[1])
-  else diff(rng)
-  10 ^ floor(log10(span))
+  } else {
+    diff(rng)
+  }
+  10^floor(log10(span))
 }
 
 #' Format numbers with automatic number of digits
@@ -217,8 +228,9 @@ precision <- function(x) {
 #' @rdname smart_digits
 #' @export
 smart_digits <- function(x, ...) {
-  if (length(x) == 0)
+  if (length(x) == 0) {
     return(character())
+  }
   accuracy <- precision(x)
   x <- round(x / accuracy) * accuracy
   format(x, ...)

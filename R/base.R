@@ -7,28 +7,35 @@
 #' @family themes
 #' @example inst/examples/ex-theme_base.R
 theme_base <- function(base_size = 16, base_family = "") {
- theme_foundation() +
-    theme(line = element_line(colour = "black",
-                              lineend = "round",
-                              linetype = "solid"),
-          rect = element_rect(fill = "white",
-                              colour = "black",
-                              linetype = "solid"),
-          text = element_text(colour = "black",
-                              face = "plain",
-                              family = base_family,
-                              size = base_size,
-                              vjust = 0.5,
-                              hjust = 0.5,
-                              lineheight = 1),
-          panel.grid = element_blank(),
-          strip.background = element_rect(colour = NA),
-          legend.key = element_rect(colour = NA),
-          title = element_text(size = rel(1)),
-          plot.title = element_text(size = rel(1.2), face = "bold"),
-          strip.text = element_text(),
-          axis.ticks.length = unit(0.5, "lines")
-          )
+  theme_foundation() +
+    theme(
+      line = element_line(
+        colour = "black",
+        lineend = "round",
+        linetype = "solid"
+      ),
+      rect = element_rect(
+        fill = "white",
+        colour = "black",
+        linetype = "solid"
+      ),
+      text = element_text(
+        colour = "black",
+        face = "plain",
+        family = base_family,
+        size = base_size,
+        vjust = 0.5,
+        hjust = 0.5,
+        lineheight = 1
+      ),
+      panel.grid = element_blank(),
+      strip.background = element_rect(colour = NA),
+      legend.key = element_rect(colour = NA),
+      title = element_text(size = rel(1)),
+      plot.title = element_text(size = rel(1.2), face = "bold"),
+      strip.text = element_text(),
+      axis.ticks.length = unit(0.5, "lines")
+    )
   # TODO: get margins right
 }
 
@@ -385,95 +392,130 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   faces <- c("plain", "bold", "italic", "bold.italic")
   half_line <- base_size / 2
   thm <- theme_foundation() %+replace%
-        theme(line = element_line(colour = par()$fg,
-                                   linewidth = 0.5,
-                                   lineend = par()$lend,
-                                   linetype = par()$lty),
-        rect = element_rect(fill = par()$bg,
-                            colour = par()$fg,
-                            linewidth = 0.5,
-                            linetype = par()$lty),
-        text = element_text(colour = par()$fg,
-                            face = faces[par()$font],
-                            family = base_family,
-                            size = base_size,
-                            angle = 0,
-                            margin = margin(),
-                            vjust = par()$adj,
-                            hjust = par()$adj,
-                            lineheight = par()$lheight,
-                            debug = FALSE),
-        axis.title = element_text(size = rel(par()$cex.lab),
-                                  colour = par()$col.lab,
-                                  face = faces[par()$font.lab]),
-        axis.text = element_text(size = rel(par()$cex.axis),
-                                 colour = par()$col.axis,
-                                 face = faces[par()$font.axis]),
-        axis.text.x = element_text(margin = margin(t = 0.8 * half_line / 2,
-                                                   b = 0.8 * half_line / 2)),
-        axis.text.y = element_text(margin = margin(r = 0.8 * half_line / 2,
-                                                   l = 0.8 * half_line / 2)),
-        axis.ticks = element_line(colour = par()$fg),
-        legend.title = element_text(colour = par()$fg),
-        legend.text = element_text(colour = par()$fg),
-        legend.spacing = unit(0.2, "cm"),
-        legend.key = element_rect(colour = NA),
-        panel.spacing = unit(half_line, "pt"),
-        panel.spacing.x = NULL,
-        panel.spacing.y = NULL,
-        panel.background = element_rect(fill = NA, colour = par()$col),
-        panel.grid = element_blank(),
-        plot.background = element_rect(colour = NA),
-        plot.margin = unit(par()$mar, "lines"),
-        plot.title = element_text(size = rel(par()$cex.main),
-                                  face = faces[par()$font.main],
-                                  colour = par()$col.main,
-                                  margin = margin(b = half_line * 1.2)),
-        strip.text = element_text(size = rel(par()$cex.sub),
-                                  face = faces[par()$font.sub],
-                                  colour = par()$col.sub),
-        strip.text.x = element_text(margin = margin(t = half_line,
-                                                    b = half_line)),
-        strip.text.y = element_text(margin = margin(l = half_line,
-                                                    r = half_line)),
-        strip.background = element_rect(colour = NA)
-  )
+    theme(
+      line = element_line(
+        colour = par()$fg,
+        linewidth = 0.5,
+        lineend = par()$lend,
+        linetype = par()$lty
+      ),
+      rect = element_rect(
+        fill = par()$bg,
+        colour = par()$fg,
+        linewidth = 0.5,
+        linetype = par()$lty
+      ),
+      text = element_text(
+        colour = par()$fg,
+        face = faces[par()$font],
+        family = base_family,
+        size = base_size,
+        angle = 0,
+        margin = margin(),
+        vjust = par()$adj,
+        hjust = par()$adj,
+        lineheight = par()$lheight,
+        debug = FALSE
+      ),
+      axis.title = element_text(
+        size = rel(par()$cex.lab),
+        colour = par()$col.lab,
+        face = faces[par()$font.lab]
+      ),
+      axis.text = element_text(
+        size = rel(par()$cex.axis),
+        colour = par()$col.axis,
+        face = faces[par()$font.axis]
+      ),
+      axis.text.x = element_text(margin = margin(
+        t = 0.8 * half_line / 2,
+        b = 0.8 * half_line / 2
+      )),
+      axis.text.y = element_text(margin = margin(
+        r = 0.8 * half_line / 2,
+        l = 0.8 * half_line / 2
+      )),
+      axis.ticks = element_line(colour = par()$fg),
+      legend.title = element_text(colour = par()$fg),
+      legend.text = element_text(colour = par()$fg),
+      legend.spacing = unit(0.2, "cm"),
+      legend.key = element_rect(colour = NA),
+      panel.spacing = unit(half_line, "pt"),
+      panel.spacing.x = NULL,
+      panel.spacing.y = NULL,
+      panel.background = element_rect(fill = NA, colour = par()$col),
+      panel.grid = element_blank(),
+      plot.background = element_rect(colour = NA),
+      plot.margin = unit(par()$mar, "lines"),
+      plot.title = element_text(
+        size = rel(par()$cex.main),
+        face = faces[par()$font.main],
+        colour = par()$col.main,
+        margin = margin(b = half_line * 1.2)
+      ),
+      strip.text = element_text(
+        size = rel(par()$cex.sub),
+        face = faces[par()$font.sub],
+        colour = par()$col.sub
+      ),
+      strip.text.x = element_text(margin = margin(
+        t = half_line,
+        b = half_line
+      )),
+      strip.text.y = element_text(margin = margin(
+        l = half_line,
+        r = half_line
+      )),
+      strip.background = element_rect(colour = NA)
+    )
 
   las <- par()$las
   if (las == 0) {
     # parallel to axis
-    thm <- thm + theme(axis.title.x = element_text(angle = 0),
-                       axis.title.y = element_text(angle = 90))
+    thm <- thm + theme(
+      axis.title.x = element_text(angle = 0),
+      axis.title.y = element_text(angle = 90)
+    )
   } else if (las == 1) {
     # horizontal
-    thm <- thm + theme(axis.title.x = element_text(angle = 0),
-                       axis.title.y = element_text(angle = 0))
+    thm <- thm + theme(
+      axis.title.x = element_text(angle = 0),
+      axis.title.y = element_text(angle = 0)
+    )
   } else if (las == 2) {
     # perpendicular
-    thm <- thm + theme(axis.title.x = element_text(angle = 90),
-                       axis.title.y = element_text(angle = 0))
+    thm <- thm + theme(
+      axis.title.x = element_text(angle = 90),
+      axis.title.y = element_text(angle = 0)
+    )
   } else if (las == 3) {
     # vertical
-    thm <- thm + theme(axis.title.x = element_text(angle = 90),
-                       axis.title.y = element_text(angle = 90))
+    thm <- thm + theme(
+      axis.title.x = element_text(angle = 90),
+      axis.title.y = element_text(angle = 90)
+    )
   }
 
   # ticks
-  if (! is.na(par()$tck)) {
-    thm <- thm + theme(axis.ticks.length = unit(- par()$tck, "snpc"))
+  if (!is.na(par()$tck)) {
+    thm <- thm + theme(axis.ticks.length = unit(-par()$tck, "snpc"))
   } else {
-    thm <- thm + theme(axis.ticks.length = unit(- par()$tcl, "lines"))
+    thm <- thm + theme(axis.ticks.length = unit(-par()$tcl, "lines"))
   }
   # plot x or y axis
   if (par()$xaxt == "n") {
-    thm <- thm + theme(axis.line.x = element_blank(),
-                       axis.text.x = element_blank(),
-                       axis.ticks.x = element_blank())
+    thm <- thm + theme(
+      axis.line.x = element_blank(),
+      axis.text.x = element_blank(),
+      axis.ticks.x = element_blank()
+    )
   }
   if (par()$yaxt == "n") {
-    thm <- thm + theme(axis.line.y = element_blank(),
-                       axis.text.y = element_blank(),
-                       axis.ticks.y = element_blank())
+    thm <- thm + theme(
+      axis.line.y = element_blank(),
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank()
+    )
   }
 
   thm

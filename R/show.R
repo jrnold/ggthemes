@@ -17,8 +17,10 @@ show_shapes <- function(shapes, labels = TRUE) {
   x <- c(shapes, rep(NA, nrow * ncol - length(shapes)))
   x <- matrix(x, ncol = ncol, byrow = TRUE)
   x <- x[nrow(x):1, ]
-  plot(0, 0, xlim = c(1, ncol(x)), ylim = c(1, nrow(x)), type = "n",
-       xlab = "", ylab = "", axes = FALSE)
+  plot(0, 0,
+    xlim = c(1, ncol(x)), ylim = c(1, nrow(x)), type = "n",
+    xlab = "", ylab = "", axes = FALSE
+  )
   for (i in seq_len(ncol(x))) {
     for (j in seq_len(nrow(x))) {
       points(i, j, pch = x[j, i])
@@ -47,8 +49,10 @@ show_shapes <- function(shapes, labels = TRUE) {
 #' @importFrom graphics plot
 show_linetypes <- function(linetypes, labels = TRUE) {
   n <- length(linetypes)
-  plot(0, 0, xlim = c(0, 1), ylim = c(n, 1), type = "n", xlab = "",
-       ylab = "", axes = FALSE)
+  plot(0, 0,
+    xlim = c(0, 1), ylim = c(n, 1), type = "n", xlab = "",
+    ylab = "", axes = FALSE
+  )
   for (i in seq_along(linetypes)) {
     abline(h = i, lty = linetypes[i])
   }

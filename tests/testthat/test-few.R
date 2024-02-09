@@ -10,7 +10,6 @@ test_that("few_shape_pal works", {
   pal3 <- out(3)
   expect_identical(length(pal3), 3L)
   expect_warning(out(10))
-
 })
 
 test_that("few_shape_pal works", {
@@ -26,8 +25,10 @@ test_that("few_pal runs", {
   expect_type(out, "character")
   expect_equal(length(out), 5L)
   # should use the first accent color
-  expect_equal(out[[1]],
-               ggthemes::ggthemes_data$few$colors$Medium$value[[2]])
+  expect_equal(
+    out[[1]],
+    ggthemes::ggthemes_data$few$colors$Medium$value[[2]]
+  )
   expect_warning(p(10))
 })
 
@@ -60,6 +61,6 @@ test_that("theme_few draws correctly", {
   df <- data.frame(x = 1:3, y = 1:3, z = c("a", "b", "a"), a = 1)
   plot <- ggplot(df, aes(x, y, colour = z)) +
     geom_point() +
-    facet_wrap(~ a)
+    facet_wrap(~a)
   expect_doppelganger("theme_few", plot)
 })

@@ -10,11 +10,13 @@ calc_slopes <- function(x, y, cull = FALSE) {
   } else {
     is.finite(s)
   }
-  list(s = s[touse],
-       dx = dx[touse],
-       dy = dy[touse],
-       Rx = diff(range(x)),
-       Ry = diff(range(y)))
+  list(
+    s = s[touse],
+    dx = dx[touse],
+    dy = dy[touse],
+    Rx = diff(range(x)),
+    Ry = diff(range(y))
+  )
 }
 
 #' Bank Slopes to 45 degrees
@@ -110,11 +112,11 @@ bank_slopes <- function(x, y, cull = FALSE, weight = NULL,
 bank_slopes_funs <- list()
 
 bank_slopes_funs[["ms"]] <-
-    function(slopes, ...) {
-      median(abs(slopes$s)) * slopes$Rx / slopes$Ry
-    }
+  function(slopes, ...) {
+    median(abs(slopes$s)) * slopes$Rx / slopes$Ry
+  }
 
 bank_slopes_funs[["as"]] <-
-    function(slopes, ...) {
-      mean(abs(slopes$s)) * slopes$Rx / slopes$Ry
-    }
+  function(slopes, ...) {
+    mean(abs(slopes$s)) * slopes$Rx / slopes$Ry
+  }
