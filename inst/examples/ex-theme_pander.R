@@ -1,8 +1,7 @@
 require("ggplot2")
 if (require("pander")) {
-
   p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
-       geom_point()
+    geom_point()
   p + theme_pander()
 
   panderOptions("graph.grid.color", "red")

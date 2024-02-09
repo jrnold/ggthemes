@@ -75,7 +75,7 @@
 #' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
 #' @rdname range_breaks
 #' @export
-extended_range_breaks_ <- function(dmin, dmax, n = 5, #nolint: cyclocomp_linter
+extended_range_breaks_ <- function(dmin, dmax, n = 5, # nolint: cyclocomp_linter
                                    Q = c(1, 5, 2, 2.5, 4, 3), # nolint: object_name_linter
                                    w = c(0.25, 0.2, 0.5, 0.05)) {
   eps <- .Machine$double.eps * 100

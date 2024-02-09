@@ -23,4 +23,4 @@ data:
 
 .PHONY: style
 style:
-	$(RSCRIPT) -e 'styler::style_pkg(".", style = styler::tidyverse_style, strict = TRUE)'
+	$(RSCRIPT) scripts/style.R

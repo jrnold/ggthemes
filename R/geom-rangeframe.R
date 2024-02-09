@@ -34,7 +34,7 @@ geom_rangeframe <- function(mapping = NULL,
                             na.rm = FALSE, # nolint: object_name_linter
                             show.legend = NA, # nolint: object_name_linter
                             inherit.aes = TRUE # nolint: object_name_linter
-                            ) {
+) {
   layer(
     data = data,
     mapping = mapping,
@@ -57,7 +57,7 @@ geom_rangeframe <- function(mapping = NULL,
 #' @export
 #' @importFrom ggplot2 Geom
 #' @importFrom scales alpha
-GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame",  # nolint: object_name_linter
+GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame", # nolint: object_name_linter
   ggplot2::Geom,
   optional_aes = c("x", "y"),
   draw_panel = function(data, panel_scales, coord, sides = "bl") {

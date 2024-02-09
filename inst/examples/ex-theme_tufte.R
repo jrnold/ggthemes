@@ -11,4 +11,4 @@ p + geom_rangeframe() +
   theme_tufte()
 
 p + geom_rug() +
- theme_tufte(ticks = FALSE)
+  theme_tufte(ticks = FALSE)

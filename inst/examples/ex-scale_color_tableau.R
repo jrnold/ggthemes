@@ -8,7 +8,7 @@ p <- ggplot(mtcars) +
 palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
 for (palette in head(names(palettes), 3L)) {
   print(p + scale_colour_tableau(palette) +
-          ggtitle(palette))
+    ggtitle(palette))
 }
 
 # the order of colour can be reversed

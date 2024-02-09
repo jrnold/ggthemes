@@ -21,3 +21,4 @@
 ^CONTRIBUTING.*$
 ^\.pre-commit-config\.yaml$
 ^CRAN-SUBMISSION$
+^scripts$
