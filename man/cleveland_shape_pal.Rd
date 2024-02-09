@@ -52,7 +52,7 @@ Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterp
 \url{https://www.jstor.org/stable/1390760}
 }
 \seealso{
-Other shapes:
+Other shapes: 
 \code{\link{circlefill_shape_pal}()},
 \code{\link{scale_shape_circlefill}()},
 \code{\link{scale_shape_cleveland}()},

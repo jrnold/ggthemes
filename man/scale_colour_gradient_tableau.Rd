@@ -85,7 +85,7 @@ for (palette in head(names(palettes))) {
 }
 }
 \seealso{
-Other colour tableau:
+Other colour tableau: 
 \code{\link{scale_colour_gradient2_tableau}()},
 \code{\link{scale_colour_tableau}()},
 \code{\link{tableau_color_pal}()},

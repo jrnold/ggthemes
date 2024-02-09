@@ -34,7 +34,7 @@ The following palettes are defined,
 }
 
 \seealso{
-Other colour wsj:
+Other colour wsj: 
 \code{\link{scale_colour_wsj}()}
 }
 \concept{colour wsj}

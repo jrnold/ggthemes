@@ -43,7 +43,7 @@ for (palname in names(palettes)) {
 }
 }
 \seealso{
-Other colour tableau:
+Other colour tableau: 
 \code{\link{scale_colour_gradient2_tableau}()},
 \code{\link{scale_colour_gradient_tableau}()},
 \code{\link{scale_colour_tableau}()},

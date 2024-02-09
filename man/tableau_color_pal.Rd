@@ -56,7 +56,7 @@ Factors in Computing Systems (CHI)
 \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 }
 \seealso{
-Other colour tableau:
+Other colour tableau: 
 \code{\link{scale_colour_gradient2_tableau}()},
 \code{\link{scale_colour_gradient_tableau}()},
 \code{\link{scale_colour_tableau}()},
