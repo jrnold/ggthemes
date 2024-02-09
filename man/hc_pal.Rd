@@ -20,12 +20,12 @@ The following palettes are defined,
 
 \itemize{
   \item{\href{https://www.highcharts.com/demo}{default}}
-  \item{\href{https://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
+  \item{\href{https://www.highcharts.com/demo/highcharts/line-chart}}
 }
 }
 
 \seealso{
-Other colour hc: 
+Other colour hc:
 \code{\link{scale_colour_hc}()}
 }
 \concept{colour hc}
