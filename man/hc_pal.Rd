@@ -14,9 +14,8 @@ hc_pal(palette = "default")
 The Highcharts uses many different color palettes in its
 plots. This collects a few of them.
 }
-
 \seealso{
-Other colour hc:
+Other colour hc: 
 \code{\link{scale_colour_hc}()}
 }
 \concept{colour hc}
