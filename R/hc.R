@@ -59,11 +59,6 @@ theme_hc <- function(base_size = 12,
 #' The Highcharts uses many different color palettes in its
 #' plots. This collects a few of them.
 #'
-#' @section Palettes:
-#'
-#' The following palettes are defined:
-#'
-#'
 #' @param palette \code{character} The name of the Highcharts theme to use. One of
 #'  \code{"default"}, or \code{"darkunica"}.
 #'
