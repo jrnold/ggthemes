@@ -23,8 +23,7 @@ Collections of these plots can be found on the WSJ Graphics
 The following palettes are defined,
 
 \describe{
-\item{rgby}{Red/Green/Blue/Yellow theme.
-  Examples: \url{https://twitpic.com/b2e3v2}. Up to four values.}
+\item{rgby}{Red/Green/Blue/Yellow theme.}
   \item{red_green}{Green/red two-color scale for good/bad.}
 \item{green_black}{Black-green 4-color scale for 'Very negative',
   'Somewhat negative', 'somewhat positive', 'very positive'.}
