@@ -1,5 +1,5 @@
 ## 45 degrees in radians
-FORTY_FIVE <- base::pi / 4
+FORTY_FIVE <- base::pi / 4 # nolint: object_name_linter
 
 calc_slopes <- function(x, y, cull = FALSE) {
   dx <- abs(diff(x))

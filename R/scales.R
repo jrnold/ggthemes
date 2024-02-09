@@ -1,5 +1,5 @@
 # Much of this code is copied from the labeling package.
-.simplicity <- function(q, Q, j, lmin, lmax, lstep) {
+.simplicity <- function(q, Q, j, lmin, lmax, lstep) {  # nolint: object_name_linter
   eps <- .Machine$double.eps * 100
 
   n <- length(Q)
@@ -10,7 +10,7 @@
   1 - (i - 1) / (n - 1) - j + v
 }
 
-.simplicity_max <- function(q, Q, j) {
+.simplicity_max <- function(q, Q, j) {  # nolint: object_name_linter
   n <- length(Q)
   i <- match(q, Q)[1]
   v <- 1
@@ -38,7 +38,7 @@
   2 - max(r / rt, rt / r)
 }
 
-.density.max <- function(k, m) {
+.density_max <- function(k, m) {
   if (k >= m) {
     2 - (k - 1) / (m - 1)
   } else {
@@ -109,7 +109,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5, # nolint: cyclocomp_linter
 
       k <- 2
       while (k < Inf) {
-        dm <- .density.max(k, n)
+        dm <- .density_max(k, n)
         if ((w[1] * sm + w[2] + w[3] * dm + w[4]) < best$score) {
           break
         }

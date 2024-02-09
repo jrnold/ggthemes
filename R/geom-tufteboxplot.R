@@ -75,7 +75,7 @@ geom_tufteboxplot <-
            outlier.stroke = 0.5, # nolint: object_name_linter
            voffset = 0.01,
            hoffset = 0.005,
-           na.rm = FALSE,
+           na.rm = FALSE, # nolint: object_name_linter
            show.legend = NA, # nolint: object_name_linter
            inherit.aes = TRUE, # nolint: object_name_linter
            median.type = "point", # nolint: object_name_linter
@@ -132,8 +132,8 @@ GeomTufteboxplot <- # nolint: object_name_linter
                           whisker.type = c("line", "point"), # nolint: object_name_linter
                           hoffset = 0.01,
                           voffset = 0.01) {
-      median.type <- match.arg(median.type)
-      whisker.type <- match.arg(whisker.type)
+      median.type <- match.arg(median.type) # nolint: object_name_linter
+      whisker.type <- match.arg(whisker.type) # nolint: object_name_linter
 
       common <- data.frame(
         colour = data$colour,

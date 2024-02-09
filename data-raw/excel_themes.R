@@ -37,7 +37,7 @@ process_color <- function(x) {
   set_names(list(val), name)
 }
 
-process_clrScheme <- function(x) {
+process_clr_scheme <- function(x) {
   scheme_name <- xml_attr(x, "name")
   colors <- flatten_chr(map(xml_children(x), process_color))
   list(
@@ -59,7 +59,7 @@ process_clrScheme <- function(x) {
 
 read_office_color_theme <- function(path) {
   tree <- read_xml(path)
-  process_clrScheme(xml_find_first(tree, "//a:clrScheme"))
+  process_clr_scheme(xml_find_first(tree, "//a:clrScheme"))
 }
 
 read_thmx_colors <- function(path) {

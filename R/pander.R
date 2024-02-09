@@ -1,7 +1,8 @@
 #' A ggplot theme originated from the pander package
 #'
 #' The \pkg{pander} ships with a default theme when the 'unify plots' option is
-#' enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals}, \code{eval.msgs} or \code{Pandoc.brew}.
+#' enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals},
+#' \code{eval.msgs} or \code{Pandoc.brew}.
 #' @inheritParams ggplot2::theme_bw
 #' @param nomargin suppress the white space around the plot (boolean)
 #' @param ff font family, like \code{sans}. Deprecated: use \code{base_family} instead.
@@ -18,13 +19,13 @@
 #' @param axis axis angle as defined in \code{par(les)}
 #' @export
 #' @example inst/examples/ex-theme_pander.R
-theme_pander <- function(base_size = 12,
+theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
                          base_family = "sans",
                          nomargin = TRUE,
                          ff = NULL,
                          fc = "black",
                          fs = NULL,
-                         gM = TRUE,
+                         gM = TRUE, # nolint: object_name_linter
                          gm = TRUE,
                          gc = "grey",
                          gl = "dashed",
@@ -57,7 +58,7 @@ theme_pander <- function(base_size = 12,
       base_size <- pander::panderOptions("graph.fontsize")
     }
     if (missing(gM)) {
-      gM <- pander::panderOptions("graph.grid")
+      gM <- pander::panderOptions("graph.grid")  # nolint: object_name_linter
     }
     if (missing(gm)) {
       gm <- pander::panderOptions("graph.grid.minor")
