@@ -1,7 +1,6 @@
 #' Theme inspired by FiveThirtyEight plots
 #'
-#' Theme inspired by the plots on
-#' \href{https://fivethirtyeight.com}{FiveThirtyEight}.
+#' Theme inspired by the plots from FiveThirtyEight.com.
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @family themes fivethirtyeight
