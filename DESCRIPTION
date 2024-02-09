@@ -1,5 +1,5 @@
 Package: ggthemes
-Version: 4.2.4.9000
+Version: 5.1.0
 Title: Extra Themes, Scales and Geoms for 'ggplot2'
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     email = "jeffrey.arnold@gmail.com", 
