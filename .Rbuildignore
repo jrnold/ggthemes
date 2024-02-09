@@ -22,3 +22,4 @@
 ^\.pre-commit-config\.yaml$
 ^CRAN-SUBMISSION$
 ^scripts$
+^pkgdown$
