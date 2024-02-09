@@ -10,9 +10,8 @@ calc_shape_pal()
 Shape palette based on the shapes used in LibreOffice Calc.
 }
 \examples{
-library("ggplot2")
-
 \dontrun{
+  library("ggplot2")
   show_shapes(calc_shape_pal()(13))
 }
 }
