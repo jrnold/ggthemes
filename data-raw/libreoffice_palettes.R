@@ -9,14 +9,18 @@ library("xml2")
 
 #' @importFrom xml2 xml_attr
 soc_process_color <- function(x) {
-  list(name = xml_attr(x, "draw:name"),
-       color = xml_attr(x, "draw:color"))
+  list(
+    name = xml_attr(x, "draw:name"),
+    color = xml_attr(x, "draw:color")
+  )
 }
 
 
 soc_process_color <- function(x) {
-  tibble(name = xml_attr(x, "name"),
-         value = xml_attr(x, "color"))
+  tibble(
+    name = xml_attr(x, "name"),
+    value = xml_attr(x, "color")
+  )
 }
 
 read_soc <- function(path) {
@@ -26,18 +30,19 @@ read_soc <- function(path) {
 
 palettes <-
   c("chart-palettes")
-    #"freecolour-hlc",
-    #"html",
-    #"libreoffice",
-    #"standard",
-    #"tonal")
+# "freecolour-hlc",
+# "html",
+# "libreoffice",
+# "standard",
+# "tonal")
 
 palette_url <- function(name) {
-  str_c("https://raw.githubusercontent.com/LibreOffice/core/",
-         "master/extras/source/palettes/", name, ".soc")
+  str_c(
+    "https://raw.githubusercontent.com/LibreOffice/core/",
+    "master/extras/source/palettes/", name, ".soc"
+  )
 }
 
 chart_palette <- read_soc(palette_url("chart-palettes"))
 
 cat(yaml::as.yaml(chart_palette, column.major = FALSE))
-

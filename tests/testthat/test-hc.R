@@ -9,7 +9,8 @@ test_that("hc_pal works", {
 
 test_that("hc_pal raises error with invalid palette", {
   expect_error(hc_pal(palette = "asdgasdgasdgas"),
-               regexp = "not valid")
+    regexp = "not valid"
+  )
 })
 
 test_that("scale_colour_hc works", {

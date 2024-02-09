@@ -34,7 +34,6 @@ geom_rangeframe <- function(mapping = NULL,
                             na.rm = FALSE,
                             show.legend = NA,
                             inherit.aes = TRUE) {
-
   layer(
     data = data,
     mapping = mapping,
@@ -59,56 +58,74 @@ geom_rangeframe <- function(mapping = NULL,
 #' @importFrom scales alpha
 GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame", ggplot2::Geom,
   optional_aes = c("x", "y"),
-
   draw_panel = function(data, panel_scales, coord, sides = "bl") {
     rugs <- list()
     data <- coord[["transform"]](data, panel_scales)
-    gp <- gpar(col = alpha(data[["colour"]], data[["alpha"]]),
-               lty = data[["linetype"]],
-               lwd = data[["size"]] * ggplot2::.pt)
+    gp <- gpar(
+      col = alpha(data[["colour"]], data[["alpha"]]),
+      lty = data[["linetype"]],
+      lwd = data[["size"]] * ggplot2::.pt
+    )
     if (!is.null(data[["x"]])) {
       if (grepl("b", sides)) {
-        rugs[["x_b"]] <- ggname("range_x_b",
-          segmentsGrob(x0 = unit(min(data[["x"]]), "native"),
-                       x1 = unit(max(data[["x"]]), "native"),
-                       y0 = unit(0, "npc"),
-                       y1 = unit(0, "npc"),
-                       gp = gp))
+        rugs[["x_b"]] <- ggname(
+          "range_x_b",
+          segmentsGrob(
+            x0 = unit(min(data[["x"]]), "native"),
+            x1 = unit(max(data[["x"]]), "native"),
+            y0 = unit(0, "npc"),
+            y1 = unit(0, "npc"),
+            gp = gp
+          )
+        )
       }
 
       if (grepl("t", sides)) {
-        rugs[["x_t"]] <- ggname("range_x_t",
-          segmentsGrob(x0 = unit(min(data[["x"]]), "native"),
-                       x1 = unit(max(data[["x"]]), "native"),
-                       y0 = unit(1, "npc"),
-                       y1 = unit(1, "npc"),
-                       gp = gp))
+        rugs[["x_t"]] <- ggname(
+          "range_x_t",
+          segmentsGrob(
+            x0 = unit(min(data[["x"]]), "native"),
+            x1 = unit(max(data[["x"]]), "native"),
+            y0 = unit(1, "npc"),
+            y1 = unit(1, "npc"),
+            gp = gp
+          )
+        )
       }
     }
 
     if (!is.null(data[["y"]])) {
       if (grepl("l", sides)) {
-        rugs[["y_l"]] <- ggname("range_y_l",
-          segmentsGrob(y0 = unit(min(data[["y"]]), "native"),
-                       y1 = unit(max(data[["y"]]), "native"),
-                       x0 = unit(0, "npc"),
-                       x1 = unit(0, "npc"),
-                       gp = gp))
+        rugs[["y_l"]] <- ggname(
+          "range_y_l",
+          segmentsGrob(
+            y0 = unit(min(data[["y"]]), "native"),
+            y1 = unit(max(data[["y"]]), "native"),
+            x0 = unit(0, "npc"),
+            x1 = unit(0, "npc"),
+            gp = gp
+          )
+        )
       }
 
       if (grepl("r", sides)) {
-        rugs[["y_r"]] <- ggname("range_y_r",
-          segmentsGrob(y0 = unit(min(data[["y"]]), "native"),
-                       y1 = unit(max(data[["y"]]), "native"),
-                       x0 = unit(1, "npc"),
-                       x1 = unit(1, "npc"),
-                       gp = gp))
+        rugs[["y_r"]] <- ggname(
+          "range_y_r",
+          segmentsGrob(
+            y0 = unit(min(data[["y"]]), "native"),
+            y1 = unit(max(data[["y"]]), "native"),
+            x0 = unit(1, "npc"),
+            x1 = unit(1, "npc"),
+            gp = gp
+          )
+        )
       }
     }
     ggname("geom_rangeframe", gTree(children = do.call("gList", rugs)))
   },
-  default_aes = ggplot2::aes(colour = "black", size = 0.5,
-                             linetype = 1, alpha = NA),
-
+  default_aes = ggplot2::aes(
+    colour = "black", size = 0.5,
+    linetype = 1, alpha = NA
+  ),
   draw_key = ggplot2::draw_key_path
 )

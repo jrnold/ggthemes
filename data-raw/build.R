@@ -24,7 +24,7 @@ load_stata <- function() {
   out$colors$names <- map_dfr(out$colors$names, as_tibble)
 
   for (i in names(out$colors$schemes)) {
-    out$colors$schemes[[i]]  <-
+    out$colors$schemes[[i]] <-
       tibble(name = out$colors$schemes[[i]]) %>%
       left_join(out$colors$names, by = "name")
   }
@@ -35,8 +35,10 @@ load_stata <- function() {
 ggthemes_data$stata <- load_stata()
 
 load_economist <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data",
-                                         "economist.yml"))
+  out <- yaml.load_file(here(
+    "data-raw", "theme-data",
+    "economist.yml"
+  ))
   map(out, ~ map_dfr(., as_tibble))
 }
 
@@ -59,8 +61,10 @@ load_wsj <- function() {
 ggthemes_data$wsj <- load_wsj()
 
 load_colorblind <- function() {
-  yaml.load_file(here("data-raw", "theme-data",
-                                  "colorblind.yml")) %>%
+  yaml.load_file(here(
+    "data-raw", "theme-data",
+    "colorblind.yml"
+  )) %>%
     map_dfr(as_tibble)
 }
 ggthemes_data$colorblind <- load_colorblind()
@@ -82,8 +86,10 @@ load_fivethirtyeight <- function() {
 ggthemes_data$fivethirtyeight <- load_fivethirtyeight()
 
 tableau_palette <- function(x) {
-  out <- list(name = xml_attr(x, "name"),
-              type = xml_attr(x, "type"))
+  out <- list(
+    name = xml_attr(x, "name"),
+    type = xml_attr(x, "type")
+  )
   out$colors <- tibble(value = rev(map_chr(xml_children(x), xml_text)))
   out
 }
@@ -92,15 +98,16 @@ tableau_classic <- function() {
   classic <- read_xml(here("data-raw", "theme-data", "tableau-classic.xml")) %>%
     xml_children() %>%
     map(tableau_palette)
-
 }
 
 load_tableau <- function() {
   tableau <- yaml.load_file(here("data-raw", "theme-data", "tableau.yml"))
-  tableau[["color-palettes"]] <- map(tableau[["color-palettes"]],
-      function(x) {
-        map(x, ~ map_dfr(., as_tibble))
-      })
+  tableau[["color-palettes"]] <- map(
+    tableau[["color-palettes"]],
+    function(x) {
+      map(x, ~ map_dfr(., as_tibble))
+    }
+  )
   tableau[["shape-palettes"]] <- map(tableau[["shape-palettes"]], function(x) {
     map_dfr(x, as_tibble) %>%
       mutate(pch = utf8ToPch(character))
@@ -112,7 +119,6 @@ load_tableau <- function() {
       pal[["colors"]]
   }
   tableau
-
 }
 ggthemes_data$tableau <- load_tableau()
 
@@ -178,7 +184,8 @@ ggthemes_data$gdocs <- load_gdocs()
 load_shapes <- function() {
   out <- yaml.load_file(here("data-raw", "theme-data", "shapes.yml"))
   out$cleveland$default <- mutate(map_dfr(out$cleveland$default, as_tibble),
-                                  pch = utf8ToPch(character))
+    pch = utf8ToPch(character)
+  )
   out$cleveland$overlap <- map_dfr(out$cleveland$overlap, as_tibble)
   out$tremmel <- map(out$tremmel, ~ map_dfr(., as_tibble))
   out$circlefill <- map_df(out$circlefill, as_tibble) %>%

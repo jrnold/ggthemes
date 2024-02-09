@@ -35,8 +35,10 @@ process_clrScheme <- function(x) {
   colors <- flatten_chr(map(xml_children(x), process_color))
   list(
     colors = list(
-      accents = str_c("#",
-                      unname(colors[str_subset(names(colors), "^accent")])),
+      accents = str_c(
+        "#",
+        unname(colors[str_subset(names(colors), "^accent")])
+      ),
       dk = str_c("#", unname(colors[c("dk1", "dk2")])),
       lt = str_c("#", unname(colors[c("lt1", "lt2")])),
       hlink = list(
@@ -58,8 +60,10 @@ read_thmx_colors <- function(path) {
   read_office_color_theme(theme1)
 }
 
-themes <- c(map(thmx_files, read_thmx_colors),
-            map(color_theme_files, read_office_color_theme))
+themes <- c(
+  map(thmx_files, read_thmx_colors),
+  map(color_theme_files, read_office_color_theme)
+)
 
 names(themes) <- map_chr(themes, "name")
 for (i in names(themes)) {
@@ -67,4 +71,5 @@ for (i in names(themes)) {
 }
 
 cat(as.yaml(themes),
-    file = here("data-raw", "theme-data", "excel-themes.yml"))
+  file = here("data-raw", "theme-data", "excel-themes.yml")
+)

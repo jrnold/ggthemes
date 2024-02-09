@@ -27,14 +27,16 @@
 theme_tufte <- function(base_size = 11, base_family = "serif", ticks = TRUE) {
   ## TODO: start with theme_minimal
   ret <- theme_bw(base_family = base_family, base_size = base_size) +
-    theme(legend.background = element_blank(),
-          legend.key = element_blank(),
-          panel.background = element_blank(),
-          panel.border = element_blank(),
-          strip.background = element_blank(),
-          plot.background = element_blank(),
-          axis.line = element_blank(),
-          panel.grid = element_blank())
+    theme(
+      legend.background = element_blank(),
+      legend.key = element_blank(),
+      panel.background = element_blank(),
+      panel.border = element_blank(),
+      strip.background = element_blank(),
+      plot.background = element_blank(),
+      axis.line = element_blank(),
+      panel.grid = element_blank()
+    )
   if (!ticks) {
     ret <- ret + theme(axis.ticks = element_blank())
   }

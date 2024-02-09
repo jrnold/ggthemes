@@ -27,8 +27,12 @@ few_pal <- function(palette = "Medium") {
   palette <- ggthemes::ggthemes_data$few$colors[[palette]]
   if (is.null(palette)) {
     stop("palette must be one of: ",
-         paste0("\"", names(ggthemes::ggthemes_data$few$colors),
-                "\"", collapse = ", "), call. = FALSE)
+      paste0("\"", names(ggthemes::ggthemes_data$few$colors),
+        "\"",
+        collapse = ", "
+      ),
+      call. = FALSE
+    )
   }
   ## The first value, gray, is used for non-data parts.
   values <- palette[["value"]]
@@ -55,7 +59,7 @@ few_pal <- function(palette = "Medium") {
 #' @rdname scale_few
 #' @export
 scale_colour_few <- function(palette = "Medium", ...) {
-    discrete_scale("colour", "few", few_pal(palette), ...)
+  discrete_scale("colour", "few", few_pal(palette), ...)
 }
 
 #' @export
@@ -65,7 +69,7 @@ scale_color_few <- scale_colour_few
 #' @export
 #' @rdname scale_few
 scale_fill_few <- function(palette = "Light", ...) {
-    discrete_scale("fill", "few", few_pal(palette), ...)
+  discrete_scale("fill", "few", few_pal(palette), ...)
 }
 
 #' Theme based on Few's "Practical Rules for Using Color in Charts"
@@ -84,21 +88,21 @@ scale_fill_few <- function(palette = "Light", ...) {
 #' @family themes few
 #' @export
 #' @example inst/examples/ex-theme_few.R
-theme_few <- function(base_size = 12, base_family="") {
-    gray <- "#4D4D4D"
-    black <- "#000000"
-    theme_bw(base_size = base_size, base_family = base_family) +
-        theme(
-              line = element_line(colour = gray),
-              rect = element_rect(fill = "white", colour = NA),
-              text = element_text(colour = black),
-              axis.ticks = element_line(colour = gray),
-              legend.key = element_rect(colour = NA),
-              ## Examples do not use grid lines
-              panel.border = element_rect(colour = gray),
-              panel.grid = element_blank(),
-              strip.background = element_rect(fill = "white", colour = NA)
-            )
+theme_few <- function(base_size = 12, base_family = "") {
+  gray <- "#4D4D4D"
+  black <- "#000000"
+  theme_bw(base_size = base_size, base_family = base_family) +
+    theme(
+      line = element_line(colour = gray),
+      rect = element_rect(fill = "white", colour = NA),
+      text = element_text(colour = black),
+      axis.ticks = element_line(colour = gray),
+      legend.key = element_rect(colour = NA),
+      ## Examples do not use grid lines
+      panel.border = element_rect(colour = gray),
+      panel.grid = element_blank(),
+      strip.background = element_rect(fill = "white", colour = NA)
+    )
 }
 
 #' Shape palette from "Show Me the Numbers" (discrete)
