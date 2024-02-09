@@ -13,10 +13,10 @@ This palette includes 20 colors.
 \examples{
 library("scales")
 
-show_col(gdocs_pal()(20))
+show_col(gdocs_pal()(24))
 }
 \seealso{
-Other colour gdocs: 
+Other colour gdocs:
 \code{\link{scale_fill_gdocs}()}
 }
 \concept{colour gdocs}

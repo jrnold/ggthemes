@@ -45,7 +45,7 @@ scale_fill_continuous_tableau(
 }
 \arguments{
 \item{palette}{Palette name.
-\itemize{
+\describe{
 \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
 \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 }}
@@ -85,7 +85,7 @@ for (palette in head(names(palettes))) {
 }
 }
 \seealso{
-Other colour tableau: 
+Other colour tableau:
 \code{\link{scale_colour_gradient2_tableau}()},
 \code{\link{scale_colour_tableau}()},
 \code{\link{tableau_color_pal}()},

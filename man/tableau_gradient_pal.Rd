@@ -14,7 +14,7 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 }
 \arguments{
 \item{palette}{Palette name.
-\itemize{
+\describe{
 \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
 \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 }}
@@ -43,7 +43,7 @@ for (palname in names(palettes)) {
 }
 }
 \seealso{
-Other colour tableau: 
+Other colour tableau:
 \code{\link{scale_colour_gradient2_tableau}()},
 \code{\link{scale_colour_gradient_tableau}()},
 \code{\link{scale_colour_tableau}()},

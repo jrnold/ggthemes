@@ -26,7 +26,7 @@ Tableau provides three types of color palettes:
 \code{"regular"} (discrete, qualitative categories),
 \code{"ordered-sequential"}, and \code{"ordered-diverging"}.
 
-\itemize{
+\describe{
 \item{\code{"regular"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))}}
 \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
@@ -56,7 +56,7 @@ Factors in Computing Systems (CHI)
 \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 }
 \seealso{
-Other colour tableau: 
+Other colour tableau:
 \code{\link{scale_colour_gradient2_tableau}()},
 \code{\link{scale_colour_gradient_tableau}()},
 \code{\link{scale_colour_tableau}()},

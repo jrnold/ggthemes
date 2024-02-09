@@ -6,7 +6,7 @@
 #' \code{"regular"} (discrete, qualitative categories),
 #' \code{"ordered-sequential"}, and \code{"ordered-diverging"}.
 #'
-#' \itemize{
+#' \describe{
 #' \item{\code{"regular"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))}}
 #' \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 #' \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
@@ -141,7 +141,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #' palettes.
 #'
 #' @param palette Palette name.
-#'  \itemize{
+#'  \describe{
 #'  \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
 #'  \item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
 #'  }
