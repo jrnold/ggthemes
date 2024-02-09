@@ -1,6 +1,6 @@
 #' Magic Number: Points to Millimeters
 #' @noRd
-PT_TO_MM <- 0.352778
+PT_TO_MM <- 0.352778 # nolint: object_name_linter
 
 charopts <- function(x) {
   paste(sprintf("\\code{\"%s\"}", x), collapse = ", ")

@@ -1,5 +1,7 @@
-library("tidyverse")
-library("xml2")
+suppressPackageStartupMessages({
+  library("tibble")
+  library("xml2")
+})
 
 # https://www.openoffice.org/xml/xml_specification.pdf
 #
@@ -24,7 +26,6 @@ soc_process_color <- function(x) {
 }
 
 read_soc <- function(path) {
-  name <- tools::file_path_sans_ext(basename(path))
   map_dfr(xml_find_all(read_xml(path), "draw:color"), soc_process_color)
 }
 

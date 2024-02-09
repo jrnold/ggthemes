@@ -102,9 +102,9 @@ calc_slopes <- function(x, y, cull = FALSE) {
 bank_slopes <- function(x, y, cull = FALSE, weight = NULL,
                         method = c("ms", "as"), ...) {
   method <- match.arg(method)
-  FUN <- bank_slopes_funs[[method]]
+  fun <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y
-  xyrat <- FUN(calc_slopes(x, y, cull = cull), ...)
+  xyrat <- fun(calc_slopes(x, y, cull = cull), ...)
   # but coord_fixed ratio is the aspect ratio y/x
   1 / xyrat
 }

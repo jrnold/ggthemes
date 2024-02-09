@@ -196,7 +196,7 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
 #' @importFrom ggplot2 continuous_scale
 scale_colour_gradient_tableau <- function(palette = "Blue",
                                           ...,
-                                          na.value = "grey50",
+                                          na.value = "grey50", # nolint: object_name_linter
                                           guide = "colourbar") {
   continuous_scale("colour", "tableau",
     tableau_seq_gradient_pal(palette),
@@ -210,7 +210,7 @@ scale_colour_gradient_tableau <- function(palette = "Blue",
 #' @rdname scale_colour_gradient_tableau
 scale_fill_gradient_tableau <- function(palette = "Blue",
                                         ...,
-                                        na.value = "grey50",
+                                        na.value = "grey50", # nolint: object_name_linter
                                         guide = "colourbar") {
   continuous_scale("fill", "tableau",
     tableau_seq_gradient_pal(palette),
@@ -248,7 +248,7 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #' @example inst/examples/ex-scale_colour_gradient2_tableau.R
 scale_colour_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
                                            ...,
-                                           na.value = "grey50",
+                                           na.value = "grey50", # nolint: object_name_linter
                                            guide = "colourbar") {
   continuous_scale("colour", "tableau2",
     tableau_div_gradient_pal(palette),
@@ -262,7 +262,7 @@ scale_colour_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
 #' @rdname scale_colour_gradient2_tableau
 scale_fill_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
                                          ...,
-                                         na.value = "grey50",
+                                         na.value = "grey50", # nolint: object_name_linter
                                          guide = "colourbar") {
   continuous_scale("fill", "tableau2",
     tableau_div_gradient_pal(palette),

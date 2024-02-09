@@ -10,7 +10,7 @@
   1 - (i - 1) / (n - 1) - j + v
 }
 
-.simplicity.max <- function(q, Q, j) {
+.simplicity_max <- function(q, Q, j) {
   n <- length(Q)
   i <- match(q, Q)[1]
   v <- 1
@@ -22,7 +22,7 @@
   1 - 0.5 * ((dmax - lmax)^2 + (dmin - lmin)^2) / ((0.1 * range)^2)
 }
 
-.coverage.max <- function(dmin, dmax, span) {
+.coverage_max <- function(dmin, dmax, span) {
   range <- dmax - dmin
   if (span > range) {
     half <- (span - range) / 2
@@ -72,7 +72,7 @@
 #' @rdname range_breaks
 #' @export
 extended_range_breaks_ <- function(dmin, dmax, n = 5,
-                                   Q = c(1, 5, 2, 2.5, 4, 3),
+                                   Q = c(1, 5, 2, 2.5, 4, 3), # nolint: object_name_linter
                                    w = c(0.25, 0.2, 0.5, 0.05)) {
   eps <- .Machine$double.eps * 100
 
@@ -96,7 +96,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
   j <- 1
   while (j < Inf) {
     for (q in Q) {
-      sm <- .simplicity.max(q, Q, j)
+      sm <- .simplicity_max(q, Q, j)
 
       if ((w[1] * sm + w[2] + w[3] + w[4]) < best$score) {
         j <- Inf
@@ -116,7 +116,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
         while (z < Inf) {
           step <- j * q * 10^z
 
-          cm <- .coverage.max(dmin, dmax, step * (k - 1))
+          cm <- .coverage_max(dmin, dmax, step * (k - 1))
 
           if ((w[1] * sm + w[2] * cm + w[3] * dm + w[4]) < best$score) {
             break

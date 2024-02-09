@@ -69,17 +69,17 @@ geom_tufteboxplot <-
            data = NULL,
            stat = "fivenumber",
            position = "dodge",
-           outlier.colour = "black",
-           outlier.shape = 19,
-           outlier.size = 1.5,
-           outlier.stroke = 0.5,
+           outlier.colour = "black", # nolint: object_name_linter
+           outlier.shape = 19, # nolint: object_name_linter
+           outlier.size = 1.5, # nolint: object_name_linter
+           outlier.stroke = 0.5, # nolint: object_name_linter
            voffset = 0.01,
            hoffset = 0.005,
            na.rm = FALSE,
-           show.legend = NA,
-           inherit.aes = TRUE,
-           median.type = "point",
-           whisker.type = "line",
+           show.legend = NA, # nolint: object_name_linter
+           inherit.aes = TRUE, # nolint: object_name_linter
+           median.type = "point", # nolint: object_name_linter
+           whisker.type = "line", # nolint: object_name_linter
            ...) {
     layer(
       data = data,
@@ -111,7 +111,7 @@ geom_tufteboxplot <-
 #' @importFrom ggplot2 draw_key_pointrange ggproto_parent GeomBoxplot GeomSegment GeomPoint
 #' @importFrom scales alpha
 #' @importFrom grid grobTree
-GeomTufteboxplot <-
+GeomTufteboxplot <- # nolint: object_name_linter
   ggplot2::ggproto("GeomTufteboxplot",
     ggplot2::GeomBoxplot,
     setup_data = function(self, data, params) {
@@ -123,11 +123,13 @@ GeomTufteboxplot <-
       data
     },
     draw_group = function(data, panel_scales, coord, fatten = 2,
-                          outlier.colour = "black", outlier.shape = 19,
-                          outlier.size = 1.5, outlier.stroke = 0.5,
+                          outlier.colour = "black", # nolint: object_name_linter
+                          outlier.shape = 19, # nolint: object_name_linter
+                          outlier.size = 1.5, # nolint: object_name_linter
+                          outlier.stroke = 0.5, # nolint: object_name_linter
                           varwidth = FALSE,
-                          median.type = c("point", "line"),
-                          whisker.type = c("line", "point"),
+                          median.type = c("point", "line"), # nolint: object_name_linter
+                          whisker.type = c("line", "point"), # nolint: object_name_linter
                           hoffset = 0.01,
                           voffset = 0.01) {
       median.type <- match.arg(median.type)

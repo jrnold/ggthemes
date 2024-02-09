@@ -10,8 +10,13 @@
 # -   https://support.office.com/en-us/article/open-xml-formats-and-file-name-extensions-5200d93c-3449-4380-8e11-31ef14555b18
 #
 
-library("xml2")
-library("tidyverse")
+suppressPackageStartupMessages({
+  library("xml2")
+  library("purrr")
+  library("here")
+  library("yaml")
+  library("stringr")
+})
 
 theme_dir <- "/Applications/Microsoft Excel.app/Contents/Resources/Office Themes"
 color_dir <- file.path(theme_dir, "Theme Colors")
