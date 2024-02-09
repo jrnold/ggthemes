@@ -14,7 +14,7 @@ utf_8_to_pch <- function(x) {
 ggthemes_data <- new_environment()
 
 load_stata <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "stata.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "stata.yml"))
   out$colors$names <- map_dfr(out$colors$names, as_tibble)
 
   for (i in names(out$colors$schemes)) {
@@ -29,7 +29,7 @@ load_stata <- function() {
 ggthemes_data$stata <- load_stata()
 
 load_economist <- function() {
-  out <- yaml.load_file(here(
+  out <- yaml.load_file(here::here(
     "data-raw", "theme-data",
     "economist.yml"
   ))
@@ -39,7 +39,7 @@ load_economist <- function() {
 ggthemes_data$economist <- load_economist()
 
 load_few <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "few.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "few.yml"))
   out$colors <- map(out$colors, ~ map_dfr(., as_tibble))
   out$shapes <- map_dfr(out$shapes, as_tibble)
   out
@@ -47,7 +47,7 @@ load_few <- function() {
 ggthemes_data$few <- load_few()
 
 load_wsj <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "wsj.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "wsj.yml"))
   out$bg <- set_names(map_chr(out$bg, "value"), map_chr(out$bg, "name"))
   out$palettes <- map(out$palettes, ~ map_dfr(., as_tibble))
   out
@@ -55,7 +55,7 @@ load_wsj <- function() {
 ggthemes_data$wsj <- load_wsj()
 
 load_colorblind <- function() {
-  yaml.load_file(here(
+  yaml.load_file(here::here(
     "data-raw", "theme-data",
     "colorblind.yml"
   )) %>%
@@ -64,12 +64,12 @@ load_colorblind <- function() {
 ggthemes_data$colorblind <- load_colorblind()
 
 load_ptol <- function() {
-  yaml.load_file(here("data-raw", "theme-data", "pault.yml"))
+  yaml.load_file(here::here("data-raw", "theme-data", "pault.yml"))
 }
 ggthemes_data$ptol <- load_ptol()
 
 load_manyeyes <- function() {
-  yaml.load_file(here("data-raw", "theme-data", "manyeyes.yml"))
+  yaml.load_file(here::here("data-raw", "theme-data", "manyeyes.yml"))
 }
 ggthemes_data$manyeyes <- load_manyeyes()
 
