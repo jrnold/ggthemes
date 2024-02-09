@@ -11,7 +11,7 @@
 economist_pal <- function(fill=TRUE) {
   colors <- deframe(ggthemes::ggthemes_data[["economist"]][["fg"]])
   if (fill) {
-    max_n <- 9
+    max_n <- 11
     f <- function(n) {
       check_pal_n(n, max_n)
       if (n == 1L) {
@@ -30,16 +30,20 @@ economist_pal <- function(fill=TRUE) {
         # 20120818_AMC820
         i <- c("blue-gray", "dark blue", "blue", "light blue",
                "dark green", "light green", "gray")
-      } else if (n >= 8L) {
+      } else if (n %in% 8:9) {
         # 20120915_EUC094
         i <- c("blue-gray", "dark blue", "blue", "light blue",
                "dark green", "light green", "dark red", "pink",
                "gray")
+      } else if (n >= 10L) {
+        i <- c("blue-gray", "dark blue", "blue", "light blue",
+               "dark green", "light green", "dark red", "pink",
+               "gray", "light blue", "brown")
       }
       unname(colors[i][seq_len(n)])
     }
   } else {
-    max_n <- 9
+    max_n <- 11
     f <- function(n) {
       check_pal_n(n, max_n)
       if (n <= 3) {
@@ -53,11 +57,15 @@ economist_pal <- function(fill=TRUE) {
         # 20120825_IRC829
         i <- c("light green", "dark green", "gray",
                "blue-gray", "light blue", "dark blue")
-      } else if (n > 6) {
+      } else if (n %in% 7:9) {
         # 20120825_IRC829
         i <- c("light green", "dark green", "gray",
                "blue-gray", "light blue", "dark blue", "dark red",
                "pink", "brown")
+      } else if (n >= 10) {
+        i <- c("light green", "dark green", "gray",
+               "blue-gray", "light blue", "dark blue", "dark red",
+               "pink", "brown", "blue", "light blue")
       }
       unname(colors[i][seq_len(n)])
     }
