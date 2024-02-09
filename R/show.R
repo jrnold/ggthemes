@@ -16,7 +16,7 @@ show_shapes <- function(shapes, labels = TRUE) {
   nrow <- ceiling(n / ncol)
   x <- c(shapes, rep(NA, nrow * ncol - length(shapes)))
   x <- matrix(x, ncol = ncol, byrow = TRUE)
-  x <- x[nrow(x):1, ]
+  x <- x[rev(seq_len(nrow(x))), ]
   plot(0, 0,
     xlim = c(1, ncol(x)), ylim = c(1, nrow(x)), type = "n",
     xlab = "", ylab = "", axes = FALSE
