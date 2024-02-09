@@ -24,3 +24,7 @@ data:
 .PHONY: style
 style:
 	$(RSCRIPT) scripts/style.R
+
+.PHONY: lint
+lint:
+	$(RSCRIPT) -e 'devtools::lint()'
