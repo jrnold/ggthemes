@@ -1,4 +1,4 @@
-# ggthemes (development version)
+# ggthemes 4.3.0
 
 - Updated `scale_color_gdocs` and `gdocs_pal` to use current colors. Palette extended from 10 to 24 colors.
 - Updated tests to be compatible with ggplot 3.5.0 (#153)
