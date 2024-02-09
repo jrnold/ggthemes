@@ -34,9 +34,11 @@ library("ggplot2")
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
-  facet_wrap(~ am) +
-  labs(title = "Graphs by car type",
-       x = "Weight (lbs.)", y = "MPG")
+  facet_wrap(~am) +
+  labs(
+    title = "Graphs by car type",
+    x = "Weight (lbs.)", y = "MPG"
+  )
 
 # s2color
 p + theme_stata() +

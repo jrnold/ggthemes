@@ -93,10 +93,10 @@ This should be used with `coord_cartesian(clip="off")` in order to
 library("ggplot2")
 
 ggplot(mtcars, aes(wt, mpg)) +
- geom_point() +
- geom_rangeframe() +
- coord_cartesian(clip="off") +
- theme_tufte()
+  geom_point() +
+  geom_rangeframe() +
+  coord_cartesian(clip = "off") +
+  theme_tufte()
 
 # In the example above,
 # `coord_cartesian(clip="off")`` ensures that the full width of the line is drawn.

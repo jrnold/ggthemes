@@ -38,11 +38,11 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   ggtitle("Cars")
 
 p + geom_rangeframe() +
-  coord_cartesian(clip="off") +
+  coord_cartesian(clip = "off") +
   theme_tufte()
 
 p + geom_rug() +
- theme_tufte(ticks = FALSE)
+  theme_tufte(ticks = FALSE)
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of
