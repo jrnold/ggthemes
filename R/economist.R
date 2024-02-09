@@ -125,7 +125,6 @@ scale_fill_economist <- function(...) {
 #' \itemize{
 #' \item \href{https://www.economist.com/}{The Economist}
 #' \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
-#' \item \url{https://www.economist.com/help/about-us}
 #' }
 #'
 #' @example inst/examples/ex-theme_economist.R
