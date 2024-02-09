@@ -1,3 +1,4 @@
+# nolint start
 #' Color Palettes Few "Show Me the Numbers"
 #'
 #' Qualitative color palettes from Stephen Few (2012)
@@ -23,6 +24,7 @@
 #' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}
 #' @family colour few
 #' @example inst/examples/ex-few_pal.R
+# nolint end
 few_pal <- function(palette = "Medium") {
   palette <- ggthemes::ggthemes_data$few$colors[[palette]]
   if (is.null(palette)) {

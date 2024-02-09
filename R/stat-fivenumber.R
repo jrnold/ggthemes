@@ -20,10 +20,10 @@ stat_fivenumber <- function(mapping = NULL,
                             data = NULL,
                             geom = "boxplot",
                             probs = c(0, 0.25, 0.5, 0.75, 1),
-                            na.rm = FALSE,
+                            na.rm = FALSE, # nolint: object_name_linter
                             position = "identity",
-                            show.legend = NA,
-                            inherit.aes = TRUE,
+                            show.legend = NA, # nolint: object_name_linter
+                            inherit.aes = TRUE, # nolint: object_name_linter
                             ...) {
   layer(
     data = data,
@@ -42,7 +42,7 @@ stat_fivenumber <- function(mapping = NULL,
 }
 
 # From ggplot2:::NO_GROUP
-NO_GROUP <- -1
+NO_GROUP <- -1 # nolint: object_name_linter
 
 # Copied from ggplot2:::has_groups
 has_groups <- function(data) {
@@ -54,7 +54,7 @@ has_groups <- function(data) {
 #' @usage NULL
 #' @rdname stat_fivenumber
 #' @importFrom ggplot2 resolution remove_missing
-StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat,
+StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat, # nolint: object_name_linter
   required_aes = "y",
   non_missing_aes = "weight",
   setup_data = function(data, params) {
@@ -82,7 +82,7 @@ StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat,
   compute_group = function(data,
                            scales,
                            width = NULL,
-                           na.rm = FALSE,
+                           na.rm = FALSE, # nolint: object_name_linter
                            probs = c(0, 0.25, 0.5, 0.75, 1)) {
     if (length(probs) != 5) {
       stop("'probs' should contain 5 quantiles.")

@@ -1,3 +1,4 @@
+# nolint start
 #' Shape palette from Cleveland "Elements of Graphing Data" (discrete).
 #'
 #' Shape palettes for overlapping and non-overlapping points.
@@ -32,6 +33,7 @@
 #'
 #' @family shapes
 #' @export
+# nolint end
 cleveland_shape_pal <- function(overlap = TRUE) {
   shapes <- if (overlap[[1]]) {
     ggthemes::ggthemes_data$shapes$cleveland$overlap$pch

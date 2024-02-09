@@ -1,3 +1,4 @@
+# nolint start
 #' Tableau Color Palettes (discrete)
 #'
 #' Color palettes used in \href{https://www.tableau.com/}{Tableau}.
@@ -32,6 +33,7 @@
 #'
 #' @family colour tableau
 #' @example inst/examples/ex-tableau_color_pal.R
+# nolint end
 tableau_color_pal <- function(palette = "Tableau 10",
                               type = c(
                                 "regular", "ordered-sequential",
@@ -138,6 +140,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
   discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
 
+# nolint start
 #' Tableau colour gradient palettes (continuous)
 #'
 #' Gradient color palettes using the diverging and sequential continous color
@@ -156,6 +159,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #'
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
+# nolint end
 tableau_gradient_pal <- function(palette = "Blue",
                                  type = "ordered-sequential") {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
@@ -196,7 +200,7 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
 #' @importFrom ggplot2 continuous_scale
 scale_colour_gradient_tableau <- function(palette = "Blue",
                                           ...,
-                                          na.value = "grey50",
+                                          na.value = "grey50", # nolint: object_name_linter
                                           guide = "colourbar") {
   continuous_scale("colour", "tableau",
     tableau_seq_gradient_pal(palette),
@@ -210,7 +214,7 @@ scale_colour_gradient_tableau <- function(palette = "Blue",
 #' @rdname scale_colour_gradient_tableau
 scale_fill_gradient_tableau <- function(palette = "Blue",
                                         ...,
-                                        na.value = "grey50",
+                                        na.value = "grey50", # nolint: object_name_linter
                                         guide = "colourbar") {
   continuous_scale("fill", "tableau",
     tableau_seq_gradient_pal(palette),
@@ -248,7 +252,7 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #' @example inst/examples/ex-scale_colour_gradient2_tableau.R
 scale_colour_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
                                            ...,
-                                           na.value = "grey50",
+                                           na.value = "grey50", # nolint: object_name_linter
                                            guide = "colourbar") {
   continuous_scale("colour", "tableau2",
     tableau_div_gradient_pal(palette),
@@ -262,7 +266,7 @@ scale_colour_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
 #' @rdname scale_colour_gradient2_tableau
 scale_fill_gradient2_tableau <- function(palette = "Orange-Blue Diverging",
                                          ...,
-                                         na.value = "grey50",
+                                         na.value = "grey50", # nolint: object_name_linter
                                          guide = "colourbar") {
   continuous_scale("fill", "tableau2",
     tableau_div_gradient_pal(palette),

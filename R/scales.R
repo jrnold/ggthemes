@@ -1,5 +1,5 @@
 # Much of this code is copied from the labeling package.
-.simplicity <- function(q, Q, j, lmin, lmax, lstep) {
+.simplicity <- function(q, Q, j, lmin, lmax, lstep) {  # nolint: object_name_linter
   eps <- .Machine$double.eps * 100
 
   n <- length(Q)
@@ -10,7 +10,7 @@
   1 - (i - 1) / (n - 1) - j + v
 }
 
-.simplicity.max <- function(q, Q, j) {
+.simplicity_max <- function(q, Q, j) {  # nolint: object_name_linter
   n <- length(Q)
   i <- match(q, Q)[1]
   v <- 1
@@ -22,7 +22,7 @@
   1 - 0.5 * ((dmax - lmax)^2 + (dmin - lmin)^2) / ((0.1 * range)^2)
 }
 
-.coverage.max <- function(dmin, dmax, span) {
+.coverage_max <- function(dmin, dmax, span) {
   range <- dmax - dmin
   if (span > range) {
     half <- (span - range) / 2
@@ -38,7 +38,7 @@
   2 - max(r / rt, rt / r)
 }
 
-.density.max <- function(k, m) {
+.density_max <- function(k, m) {
   if (k >= m) {
     2 - (k - 1) / (m - 1)
   } else {
@@ -52,9 +52,11 @@
 
 #' Pretty axis breaks inclusive of extreme values
 #'
-#' This function returns pretty axis breaks that always include the extreme  values of the data.
-#' This works by calling the extended Wilkinson algorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
-#' Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
+#' This function returns pretty axis breaks that always include the extreme values of the data.
+#' This works by calling the extended Wilkinson algorithm (Talbot et al., 2010), constrained to solutions
+#' interior to the data range.
+#' Then, the minimum and maximum labels are moved to the minimum and maximum of the data
+#' range.
 #'
 #' \code{extended_range_breaks} implements the algorithm and returns the break values.
 #' \code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
@@ -65,14 +67,16 @@
 #' @param Q set of nice numbers
 #' @param w weights applied to the four optimization components (simplicity, coverage, density, and legibility)
 #' @return For \code{extended_range_breaks}, the vector of axis label locations.
-#' For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns the vector of axis label locations.
+#' For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
+#'   the vector of axis label locations.
 #' @references
-#' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm for Positioning Tick Labels on Axes, InfoVis 2010.
+#' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
+#'   for Positioning Tick Labels on Axes, InfoVis 2010.
 #' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
 #' @rdname range_breaks
 #' @export
-extended_range_breaks_ <- function(dmin, dmax, n = 5,
-                                   Q = c(1, 5, 2, 2.5, 4, 3),
+extended_range_breaks_ <- function(dmin, dmax, n = 5, # nolint: cyclocomp_linter
+                                   Q = c(1, 5, 2, 2.5, 4, 3), # nolint: object_name_linter
                                    w = c(0.25, 0.2, 0.5, 0.05)) {
   eps <- .Machine$double.eps * 100
 
@@ -96,7 +100,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
   j <- 1
   while (j < Inf) {
     for (q in Q) {
-      sm <- .simplicity.max(q, Q, j)
+      sm <- .simplicity_max(q, Q, j)
 
       if ((w[1] * sm + w[2] + w[3] + w[4]) < best$score) {
         j <- Inf
@@ -105,7 +109,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
 
       k <- 2
       while (k < Inf) {
-        dm <- .density.max(k, n)
+        dm <- .density_max(k, n)
         if ((w[1] * sm + w[2] + w[3] * dm + w[4]) < best$score) {
           break
         }
@@ -116,7 +120,7 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5,
         while (z < Inf) {
           step <- j * q * 10^z
 
-          cm <- .coverage.max(dmin, dmax, step * (k - 1))
+          cm <- .coverage_max(dmin, dmax, step * (k - 1))
 
           if ((w[1] * sm + w[2] * cm + w[3] * dm + w[4]) < best$score) {
             break
@@ -213,6 +217,7 @@ precision <- function(x) {
   10^floor(log10(span))
 }
 
+# nolint start
 #' Format numbers with automatic number of digits
 #'
 #' @param x A numeric vector to format
@@ -227,6 +232,7 @@ precision <- function(x) {
 #'
 #' @rdname smart_digits
 #' @export
+# nolint end
 smart_digits <- function(x, ...) {
   if (length(x) == 0) {
     return(character())

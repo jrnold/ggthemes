@@ -3,24 +3,18 @@ suppressPackageStartupMessages({
   library("purrr")
   library("tibble")
   library("rlang")
-  library("here")
   library("yaml")
   library("xml2")
 })
 
-utf8ToPch <- function(x) {
-  # str_replace(x, "^U\\+", "") %>%
-  #   as.hexmode() %>%
-  #   as.integer() %>%
-  #   `*`(-1)
-  #   TODO: support emoji
+utf_8_to_pch <- function(x) {
   as.integer(-1L * map_int(x, ~ utf8ToInt(.x)[[1]]))
 }
 
 ggthemes_data <- new_environment()
 
 load_stata <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "stata.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "stata.yml"))
   out$colors$names <- map_dfr(out$colors$names, as_tibble)
 
   for (i in names(out$colors$schemes)) {
@@ -29,13 +23,13 @@ load_stata <- function() {
       left_join(out$colors$names, by = "name")
   }
   out$shapes <- select(map_dfr(out$shapes, as_tibble), -comment) %>%
-    mutate(pch = utf8ToPch(character))
+    mutate(pch = utf_8_to_pch(character))
   out
 }
 ggthemes_data$stata <- load_stata()
 
 load_economist <- function() {
-  out <- yaml.load_file(here(
+  out <- yaml.load_file(here::here(
     "data-raw", "theme-data",
     "economist.yml"
   ))
@@ -45,7 +39,7 @@ load_economist <- function() {
 ggthemes_data$economist <- load_economist()
 
 load_few <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "few.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "few.yml"))
   out$colors <- map(out$colors, ~ map_dfr(., as_tibble))
   out$shapes <- map_dfr(out$shapes, as_tibble)
   out
@@ -53,7 +47,7 @@ load_few <- function() {
 ggthemes_data$few <- load_few()
 
 load_wsj <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "wsj.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "wsj.yml"))
   out$bg <- set_names(map_chr(out$bg, "value"), map_chr(out$bg, "name"))
   out$palettes <- map(out$palettes, ~ map_dfr(., as_tibble))
   out
@@ -61,7 +55,7 @@ load_wsj <- function() {
 ggthemes_data$wsj <- load_wsj()
 
 load_colorblind <- function() {
-  yaml.load_file(here(
+  yaml.load_file(here::here(
     "data-raw", "theme-data",
     "colorblind.yml"
   )) %>%
@@ -70,17 +64,17 @@ load_colorblind <- function() {
 ggthemes_data$colorblind <- load_colorblind()
 
 load_ptol <- function() {
-  yaml.load_file(here("data-raw", "theme-data", "pault.yml"))
+  yaml.load_file(here::here("data-raw", "theme-data", "pault.yml"))
 }
 ggthemes_data$ptol <- load_ptol()
 
 load_manyeyes <- function() {
-  yaml.load_file(here("data-raw", "theme-data", "manyeyes.yml"))
+  yaml.load_file(here::here("data-raw", "theme-data", "manyeyes.yml"))
 }
 ggthemes_data$manyeyes <- load_manyeyes()
 
 load_fivethirtyeight <- function() {
-  yaml.load_file(here("data-raw", "theme-data", "fivethirtyeight.yml")) %>%
+  yaml.load_file(here::here("data-raw", "theme-data", "fivethirtyeight.yml")) %>%
     map_dfr(as_tibble)
 }
 ggthemes_data$fivethirtyeight <- load_fivethirtyeight()
@@ -95,13 +89,13 @@ tableau_palette <- function(x) {
 }
 
 tableau_classic <- function() {
-  classic <- read_xml(here("data-raw", "theme-data", "tableau-classic.xml")) %>%
+  read_xml(here::here("data-raw", "theme-data", "tableau-classic.xml")) %>%
     xml_children() %>%
     map(tableau_palette)
 }
 
 load_tableau <- function() {
-  tableau <- yaml.load_file(here("data-raw", "theme-data", "tableau.yml"))
+  tableau <- yaml.load_file(here::here("data-raw", "theme-data", "tableau.yml"))
   tableau[["color-palettes"]] <- map(
     tableau[["color-palettes"]],
     function(x) {
@@ -110,7 +104,7 @@ load_tableau <- function() {
   )
   tableau[["shape-palettes"]] <- map(tableau[["shape-palettes"]], function(x) {
     map_dfr(x, as_tibble) %>%
-      mutate(pch = utf8ToPch(character))
+      mutate(pch = utf_8_to_pch(character))
   })
 
   classic <- tableau_classic()
@@ -141,7 +135,7 @@ best_colors <- function(colors, accent, n = 1) {
 }
 
 load_solarized <- function(x) {
-  out <- yaml.load_file(here("data-raw", "theme-data", "solarized.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "solarized.yml"))
   out$Accents <- map_dfr(out[["Accents"]], as_tibble)
   out$Base <- map_dfr(out[["Base"]], as_tibble)
   colors <- deframe(out[["Accents"]])
@@ -156,47 +150,47 @@ load_solarized <- function(x) {
 ggthemes_data$solarized <- load_solarized()
 
 load_excel <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "excel.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "excel.yml"))
   out$shapes <- map_dfr(out$shapes, as_tibble) %>%
-    mutate(pch = utf8ToPch(character))
+    mutate(pch = utf_8_to_pch(character))
   out$themes <-
-    yaml.load_file(here("data-raw", "theme-data", "excel-themes.yml"))
+    yaml.load_file(here::here("data-raw", "theme-data", "excel-themes.yml"))
   out
 }
 ggthemes_data$excel <- load_excel()
 
 load_calc <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "libreoffice.yml")) %>%
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "libreoffice.yml")) %>%
     map(~ map_dfr(., as_tibble))
-  out$shapes <- mutate(out$shapes, pch = utf8ToPch(character))
+  out$shapes <- mutate(out$shapes, pch = utf_8_to_pch(character))
   out
 }
 ggthemes_data$calc <- load_calc()
 
 load_gdocs <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "gdocs.yml")) %>%
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "gdocs.yml")) %>%
     map(~ map_dfr(., as_tibble))
-  out$shapes <- mutate(out$shapes, pch = utf8ToPch(character))
+  out$shapes <- mutate(out$shapes, pch = utf_8_to_pch(character))
   out
 }
 ggthemes_data$gdocs <- load_gdocs()
 
 load_shapes <- function() {
-  out <- yaml.load_file(here("data-raw", "theme-data", "shapes.yml"))
+  out <- yaml.load_file(here::here("data-raw", "theme-data", "shapes.yml"))
   out$cleveland$default <- mutate(map_dfr(out$cleveland$default, as_tibble),
-    pch = utf8ToPch(character)
+    pch = utf_8_to_pch(character)
   )
   out$cleveland$overlap <- map_dfr(out$cleveland$overlap, as_tibble)
   out$tremmel <- map(out$tremmel, ~ map_dfr(., as_tibble))
   out$circlefill <- map_df(out$circlefill, as_tibble) %>%
-    mutate(pch = utf8ToPch(character))
+    mutate(pch = utf_8_to_pch(character))
   out
 }
 ggthemes_data$shapes <- load_shapes()
 
 
 load_hc <- function() {
-  yaml.load_file(here("data-raw", "theme-data", "hc.yml"))
+  yaml.load_file(here::here("data-raw", "theme-data", "hc.yml"))
 }
 ggthemes_data$hc <- load_hc()
 

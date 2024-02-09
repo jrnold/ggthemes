@@ -30,8 +30,8 @@ similar to the style of plots in Stata and Tableau.
 library("ggplot2")
 
 p <- ggplot(mtcars) +
-    geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
-    facet_wrap(~am)
+  geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
+  facet_wrap(~am)
 p + theme_igray()
 }
 \seealso{

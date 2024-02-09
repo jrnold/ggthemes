@@ -1,2 +1,19 @@
-linters: with_defaults(commented_code_linter = NULL, snake_case_linter = NULL, camel_case_linter = NULL, line_length_linter(80L), multiple_dots_linter = NULL)
-exclusions: list("./inst/examples/ex-palette_pander.R", "./inst/examples/ex-theme_economist.R")
+linters: linters_with_defaults(
+    line_length_linter(120),
+    commented_code_linter = NULL,
+    indentation_linter = NULL
+  )
+encoding: "UTF-8"
+exclusions: list(
+    "./inst/exampels/ex-few_shape_pal.R",
+    "./inst/examples/ex-calc_shape_pal.R",
+    "./inst/examples/ex-cleveland_shape_pal.R",
+    "./inst/examples/ex-few_shape_pal.R",
+    "./inst/examples/ex-palette_pander.R",
+    "./inst/examples/ex-scale_shape_stata.R",
+    "./inst/examples/ex-scale_shape_tableau.R",
+    "./inst/examples/ex-tableau_shape_pal.R",
+    "./inst/examples/ex-tableau_shape_pal.R",
+    "./inst/examples/ex-theme_calc.R",
+    "./inst/examples/ex-theme_economist.R"
+  )

@@ -5,7 +5,7 @@ x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
 # Without banking
 m <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +
-   geom_line()
+  geom_line()
 m
 
 ## Using the default method, Median Absolute Slope

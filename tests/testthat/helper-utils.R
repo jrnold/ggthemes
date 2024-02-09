@@ -1,3 +1,5 @@
+library("testthat")
+
 is_hexcolor <- function(x) {
   pattern <- stringr::regex("^#[a-f0-9]{6}$", ignore_case = TRUE)
   out <- stringr::str_detect(x, pattern)
