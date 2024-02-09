@@ -1,4 +1,7 @@
-linters: linters_with_defaults() # see vignette("lintr")
+linters: linters_with_defaults(
+    line_length_linter(120),
+    commented_code_linter = NULL
+  )
 encoding: "UTF-8"
 exclusions: list(
     "./inst/exampels/ex-few_shape_pal.R",

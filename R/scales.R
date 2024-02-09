@@ -52,9 +52,11 @@
 
 #' Pretty axis breaks inclusive of extreme values
 #'
-#' This function returns pretty axis breaks that always include the extreme  values of the data.
-#' This works by calling the extended Wilkinson algorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
-#' Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
+#' This function returns pretty axis breaks that always include the extreme values of the data.
+#' This works by calling the extended Wilkinson algorithm (Talbot et al., 2010), constrained to solutions
+#' interior to the data range.
+#' Then, the minimum and maximum labels are moved to the minimum and maximum of the data
+#' range.
 #'
 #' \code{extended_range_breaks} implements the algorithm and returns the break values.
 #' \code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
@@ -65,13 +67,15 @@
 #' @param Q set of nice numbers
 #' @param w weights applied to the four optimization components (simplicity, coverage, density, and legibility)
 #' @return For \code{extended_range_breaks}, the vector of axis label locations.
-#' For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns the vector of axis label locations.
+#' For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
+#'   the vector of axis label locations.
 #' @references
-#' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm for Positioning Tick Labels on Axes, InfoVis 2010.
+#' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
+#'   for Positioning Tick Labels on Axes, InfoVis 2010.
 #' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
 #' @rdname range_breaks
 #' @export
-extended_range_breaks_ <- function(dmin, dmax, n = 5,
+extended_range_breaks_ <- function(dmin, dmax, n = 5, #nolint: cyclocomp_linter
                                    Q = c(1, 5, 2, 2.5, 4, 3), # nolint: object_name_linter
                                    w = c(0.25, 0.2, 0.5, 0.05)) {
   eps <- .Machine$double.eps * 100
@@ -213,6 +217,7 @@ precision <- function(x) {
   10^floor(log10(span))
 }
 
+# nolint start
 #' Format numbers with automatic number of digits
 #'
 #' @param x A numeric vector to format
@@ -227,6 +232,7 @@ precision <- function(x) {
 #'
 #' @rdname smart_digits
 #' @export
+# nolint end
 smart_digits <- function(x, ...) {
   if (length(x) == 0) {
     return(character())

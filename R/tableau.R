@@ -1,3 +1,4 @@
+# nolint start
 #' Tableau Color Palettes (discrete)
 #'
 #' Color palettes used in \href{https://www.tableau.com/}{Tableau}.
@@ -32,6 +33,7 @@
 #'
 #' @family colour tableau
 #' @example inst/examples/ex-tableau_color_pal.R
+# nolint end
 tableau_color_pal <- function(palette = "Tableau 10",
                               type = c(
                                 "regular", "ordered-sequential",
@@ -138,6 +140,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
   discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
 }
 
+# nolint start
 #' Tableau colour gradient palettes (continuous)
 #'
 #' Gradient color palettes using the diverging and sequential continous color
@@ -156,6 +159,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 #'
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
+# nolint end
 tableau_gradient_pal <- function(palette = "Blue",
                                  type = "ordered-sequential") {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))

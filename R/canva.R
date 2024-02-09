@@ -1,3 +1,4 @@
+# nolint start
 #' 150 Color Palettes from Canva
 #'
 #' 150 four-color palettes by the
@@ -20,6 +21,7 @@
 #' }
 #' @example inst/examples/ex-canva_pal.R
 "canva_palettes"
+# nolint end
 
 #' Canva.com color palettes
 #'

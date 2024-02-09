@@ -30,21 +30,25 @@ extended_range_breaks(n = 5, ...)
 }
 \value{
 For \code{extended_range_breaks}, the vector of axis label locations.
-For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns the vector of axis label locations.
+For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
+  the vector of axis label locations.
 
 A function which returns breaks given a vector.
 }
 \description{
-This function returns pretty axis breaks that always include the extreme  values of the data.
-This works by calling the extended Wilkinson algorithm (Talbot et. al, 2010), constrained to solutions interior to the data range.
-Then, the minimum and maximum labels are moved to the minimum and maximum of the data range.
+This function returns pretty axis breaks that always include the extreme values of the data.
+This works by calling the extended Wilkinson algorithm (Talbot et al., 2010), constrained to solutions
+interior to the data range.
+Then, the minimum and maximum labels are moved to the minimum and maximum of the data
+range.
 }
 \details{
 \code{extended_range_breaks} implements the algorithm and returns the break values.
 \code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
 }
 \references{
-Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm for Positioning Tick Labels on Axes, InfoVis 2010.
+Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
+  for Positioning Tick Labels on Axes, InfoVis 2010.
 }
 \author{
 Justin Talbot \email{jtalbot@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie

@@ -1,3 +1,4 @@
+# nolint start
 # Extract Color Schemes from Excel
 #
 # Extract colors for all color themes on an installed version of Excel
@@ -9,6 +10,7 @@
 # -   https://msdn.microsoft.com/en-us/library/cc964302(v=office.12).aspx
 # -   https://support.office.com/en-us/article/open-xml-formats-and-file-name-extensions-5200d93c-3449-4380-8e11-31ef14555b18
 #
+# nolint end
 
 suppressPackageStartupMessages({
   library("xml2")
