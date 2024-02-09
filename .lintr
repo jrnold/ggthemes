@@ -1,6 +1,7 @@
 linters: linters_with_defaults(
     line_length_linter(120),
-    commented_code_linter = NULL
+    commented_code_linter = NULL,
+    indentation_linter = NULL
   )
 encoding: "UTF-8"
 exclusions: list(
