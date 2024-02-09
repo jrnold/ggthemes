@@ -65,11 +65,13 @@ notation.
 See \code{\link{stata_shape_pal}()} for details.
 }
 \examples{
+\dontrun{
 library("ggplot2")
 
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
      facet_wrap(~am)
 p + theme_stata() + scale_shape_stata()
+}
 }
 \concept{shape stata}

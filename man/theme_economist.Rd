@@ -97,7 +97,6 @@ p + theme_economist(base_family="Verdana") +
 \itemize{
 \item \href{https://www.economist.com/}{The Economist}
 \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
-\item \url{https://www.economist.com/help/about-us}
 }
 }
 \concept{themes economist}

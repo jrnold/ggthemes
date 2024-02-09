@@ -4,7 +4,7 @@
 #'
 #' @references
 #'
-#' \url{https://www.highcharts.com/demo/line-basic}
+#' \url{https://www.highcharts.com/demo/highcharts/line-chart}
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @param style The Highcharts theme to use \code{'default'},
@@ -61,14 +61,11 @@ theme_hc <- function(base_size = 12,
 #'
 #' @section Palettes:
 #'
-#' The following palettes are defined,
+#' The following palettes are defined:
 #'
-#' \itemize{
-#'   \item{\href{https://www.highcharts.com/demo}{default}}
-#'   \item{\href{https://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
-#' }
 #'
-#' @param palette \code{character} The name of the Highcharts theme to use.
+#' @param palette \code{character} The name of the Highcharts theme to use. One of
+#'  \code{"default"}, or \code{"darkunica"}.
 #'
 #' @family colour hc
 #' @export

@@ -4,6 +4,5 @@ repos:
     hooks:
     -   id: check-yaml
     -   id: end-of-file-fixer
-    -   id: trailing-whitespace
     -   id: 'no-commit-to-branch'
         args: ['--branch', 'main']

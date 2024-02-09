@@ -6,7 +6,7 @@
 -   "Note: found ... marked UTF-8 strings": The UTF strings are necessary to the package.
     They encode specific non-ASCII characters to use as symbols.
 
--   In `DESCRIPTION`, the words "Geoms", "Stata", "Tufte", "Tufte's", 
+-   In `DESCRIPTION`, the words "Geoms", "Stata", "Tufte", "Tufte's",
     and "geoms" are not misspelled.
 
 -   "Found the following (possibly) invalid URLs" check": The following URLs are valid.
@@ -14,10 +14,6 @@
 
     -   https://policyviz.com/2017/01/12/150-color-palettes-for-excel/ (Times out)
     -   https://spiekermann.com/en/itc-officina-display/ (libcurl error 38 "Connection timed out")
-    -   https://twitpic.com/9gfg5q (391, 503)
-    -   https://twitpic.com/awbua0 (391, 503)
-    -   https://twitpic.com/b1avj6 (391, 503)
-    -   https://twitpic.com/b2e3v2 (391, 503)
     -   https://twitter.com/WSJGraphics (400)
     -   https://www.canva.com/learn/ (403)
     -   https://www.canva.com/learn/100-color-combinations/ (403)

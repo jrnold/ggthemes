@@ -7,7 +7,8 @@
 hc_pal(palette = "default")
 }
 \arguments{
-\item{palette}{\code{character} The name of the Highcharts theme to use.}
+\item{palette}{\code{character} The name of the Highcharts theme to use. One of
+\code{"default"}, or \code{"darkunica"}.}
 }
 \description{
 The Highcharts uses many different color palettes in its
@@ -16,12 +17,7 @@ plots. This collects a few of them.
 \section{Palettes}{
 
 
-The following palettes are defined,
-
-\itemize{
-  \item{\href{https://www.highcharts.com/demo}{default}}
-  \item{\href{https://www.highcharts.com/demo/line-basic/dark-unica}{dark-unica}}
-}
+The following palettes are defined:
 }
 
 \seealso{

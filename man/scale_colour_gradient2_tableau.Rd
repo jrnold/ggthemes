@@ -68,7 +68,7 @@ for (palette in head(names(palettes))) {
 p + scale_colour_gradient2_tableau(trans = "reverse")
 }
 \seealso{
-Other colour tableau:
+Other colour tableau: 
 \code{\link{scale_colour_gradient_tableau}()},
 \code{\link{scale_colour_tableau}()},
 \code{\link{tableau_color_pal}()},
