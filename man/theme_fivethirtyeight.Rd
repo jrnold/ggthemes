@@ -12,8 +12,7 @@ theme_fivethirtyeight(base_size = 12, base_family = "sans")
 \item{base_family}{base font family}
 }
 \description{
-Theme inspired by the plots on
-\href{https://fivethirtyeight.com}{FiveThirtyEight}.
+Theme inspired by the plots from FiveThirtyEight.com.
 }
 \examples{
 library("ggplot2")
