@@ -110,10 +110,7 @@ theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
         linetype = 1
       ),
       legend.background = element_rect(fill = NULL, color = NA),
-      legend.key = element_rect(
-        fill = NULL,
-        colour = NULL, linetype = 0
-      ),
+      legend.key = element_blank(),
       panel.background = element_rect(
         fill = rebase["rebase03"],
         colour = rebase["rebase01"]
