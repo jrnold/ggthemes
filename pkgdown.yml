@@ -2,7 +2,7 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-02-11T00:09Z
+last_built: 2024-02-14T22:54Z
 urls:
   reference: http://jrnold.github.io/ggthemes/reference
   article: http://jrnold.github.io/ggthemes/articles
