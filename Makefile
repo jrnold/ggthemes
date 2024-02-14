@@ -28,3 +28,7 @@ style:
 .PHONY: lint
 lint:
 	$(RSCRIPT) -e 'devtools::lint()'
+
+README.md: README.Rmd
+	$(RSCRIPT) -e 'knitr::knit("$<", output = "$@", quiet = TRUE)'
+
