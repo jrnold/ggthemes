@@ -3,7 +3,7 @@
 #' Theme based on Chapter 6 'Data-Ink Maximization and Graphical
 #' Design' of Edward Tufte *The Visual Display of Quantitative
 #' Information*. No border, no axis lines, no grids. This theme works
-#' best in combination with \code{\link{geom_rug}()} or
+#' best in combination with \code{\link[ggplot2]{geom_rug}()} or
 #' \code{\link{geom_rangeframe}()}.
 #'
 #' @note
