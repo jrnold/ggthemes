@@ -69,6 +69,8 @@ Rscript -e 'testthat::test_file("tests/testthat/test-economist.R")'
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
 
+
+
 ### Format
 ```
 <type>[optional scope]: <description>
@@ -95,6 +97,10 @@ docs: update README with new theme examples
 test: add visual regression tests for tufte theme
 chore: update pkgdown configuration
 ```
+
+## NEWS.md
+
+For user-facing changes update `NEWS.md` when commiting.
 
 ## Architecture
 
