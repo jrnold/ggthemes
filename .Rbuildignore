@@ -24,3 +24,4 @@
 ^scripts$
 ^pkgdown$
 ^CLAUDE\.md$
+^air\.toml$

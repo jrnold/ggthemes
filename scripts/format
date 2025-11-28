@@ -1,0 +1,3 @@
+#!/bin/bash
+
+air format ./R ./data-raw/ ./man ./tests
