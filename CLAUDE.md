@@ -70,7 +70,6 @@ Rscript -e 'testthat::test_file("tests/testthat/test-economist.R")'
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
 
 
-
 ### Format
 ```
 <type>[optional scope]: <description>
@@ -159,9 +158,12 @@ Tests use:
 
 ### Code Style
 
-- Uses tidyverse style enforced by styler (see `.lintr` for configuration)
-- Line length limit: 120 characters
-- Some example files are excluded from linting/styling (see `.lintr` and `scripts/style.R`)
+Code sytle is enforced by the the [air](https://tidyverse.org/blog/2025/02/air/) and [lintr](https://lintr.r-lib.org/) packages.
+
+- Generally follows the [tidyverse style](https://style.tidyverse.org/).
+- Line length of 120
+- `air` package configuration: `air.toml`.
+- `lintr` package configuration: `.lintr`
 
 ## Key Concepts
 

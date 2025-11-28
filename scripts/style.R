@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
-styler::style_pkg(".", style = styler::tidyverse_style, strict = TRUE)
-styler::style_dir("inst/examples/", exclude_files =
+air::air_style_pkg(".")
+air::air_style_dir("inst/examples/", exclude_files =
                c("ex-few_shape_pal.R",
                   "ex-calc_shape_pal.R",
                   "ex-cleveland_shape_pal.R",
