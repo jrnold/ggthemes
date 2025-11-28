@@ -6,3 +6,4 @@ README.html
 revdep
 *.DS_Store
 docs
+.RData
