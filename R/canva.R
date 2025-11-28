@@ -44,7 +44,7 @@ canva_pal <- function(palette = "Fresh and bright") {
 #' Color scale for canva.com color palettes described in
 #' \code{\link{canva_palettes}()}.
 #'
-#' @param ... Arguments passed to \code{\link{discrete_scale}()}.
+#' @param ... Arguments passed to \code{\link[ggplot2]{discrete_scale}()}.
 #' @inheritParams canva_pal
 #' @export
 scale_colour_canva <- function(..., palette = "Fresh and bright") {

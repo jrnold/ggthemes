@@ -34,7 +34,7 @@
 #' McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 #' box plots. The American Statistician 32, 12-16.
 #'
-#' @seealso \code{\link{geom_boxplot}()}
+#' @seealso \code{\link[ggplot2]{geom_boxplot}()}
 #' @inheritParams ggplot2::geom_point
 #' @param outlier.colour colour for outlying points
 #' @param outlier.shape shape of outlying points
@@ -57,7 +57,7 @@
 #'    layer, as a string. The default (\code{stat = 'fivenumber'}) calls
 #'    \code{\link{stat_fivenumber}} and produces whiskers that extend
 #'    from the interquartile range to the extremes of the data; specifying
-#'    \code{\link{stat_boxplot}} will produce a more traditional boxplot
+#'    \code{\link[ggplot2]{stat_boxplot}} will produce a more traditional boxplot
 #'    with whiskers extending to the most extreme points that are < 1.5 IQR
 #'    away from the hinges (i.e., the first and third quartiles).
 #' @family geom tufte
