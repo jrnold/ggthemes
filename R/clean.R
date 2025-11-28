@@ -12,13 +12,12 @@
 #' @export
 #'
 #' @example inst/examples/ex-theme_clean.R
-theme_clean <- function(base_size = 12,
-                        base_family = "sans") {
-  (
-    theme_foundation(
-      base_size = base_size,
-      base_family = base_family
-    ) + theme(
+theme_clean <- function(base_size = 12, base_family = "sans") {
+  (theme_foundation(
+    base_size = base_size,
+    base_family = base_family
+  ) +
+    theme(
       axis.line.x = element_line(
         colour = "black",
         size = 0.5,
@@ -52,6 +51,5 @@ theme_clean <- function(base_size = 12,
       plot.background = element_rect(colour = "black"),
       plot.title = element_text(size = ceiling(base_size * 1.1), face = "bold"),
       plot.subtitle = element_text(size = ceiling(base_size * 1.05))
-    )
-  )
+    ))
 }

@@ -65,22 +65,24 @@
 #'
 #' @example inst/examples/ex-geom_tufteboxplot.R
 geom_tufteboxplot <-
-  function(mapping = NULL,
-           data = NULL,
-           stat = "fivenumber",
-           position = "dodge",
-           outlier.colour = "black", # nolint: object_name_linter
-           outlier.shape = 19, # nolint: object_name_linter
-           outlier.size = 1.5, # nolint: object_name_linter
-           outlier.stroke = 0.5, # nolint: object_name_linter
-           voffset = 0.01,
-           hoffset = 0.005,
-           na.rm = FALSE, # nolint: object_name_linter
-           show.legend = NA, # nolint: object_name_linter
-           inherit.aes = TRUE, # nolint: object_name_linter
-           median.type = "point", # nolint: object_name_linter
-           whisker.type = "line", # nolint: object_name_linter
-           ...) {
+  function(
+    mapping = NULL,
+    data = NULL,
+    stat = "fivenumber",
+    position = "dodge",
+    outlier.colour = "black", # nolint: object_name_linter
+    outlier.shape = 19, # nolint: object_name_linter
+    outlier.size = 1.5, # nolint: object_name_linter
+    outlier.stroke = 0.5, # nolint: object_name_linter
+    voffset = 0.01,
+    hoffset = 0.005,
+    na.rm = FALSE, # nolint: object_name_linter
+    show.legend = NA, # nolint: object_name_linter
+    inherit.aes = TRUE, # nolint: object_name_linter
+    median.type = "point", # nolint: object_name_linter
+    whisker.type = "line", # nolint: object_name_linter
+    ...
+  ) {
     layer(
       data = data,
       mapping = mapping,
@@ -112,7 +114,8 @@ geom_tufteboxplot <-
 #' @importFrom scales alpha
 #' @importFrom grid grobTree
 GeomTufteboxplot <- # nolint: object_name_linter
-  ggplot2::ggproto("GeomTufteboxplot",
+  ggplot2::ggproto(
+    "GeomTufteboxplot",
     ggplot2::GeomBoxplot,
     setup_data = function(self, data, params) {
       data <- ggproto_parent(GeomBoxplot, self)$setup_data(data, params)
@@ -122,16 +125,21 @@ GeomTufteboxplot <- # nolint: object_name_linter
       data$voffset <- params$voffset * y_range
       data
     },
-    draw_group = function(data, panel_scales, coord, fatten = 2,
-                          outlier.colour = "black", # nolint: object_name_linter
-                          outlier.shape = 19, # nolint: object_name_linter
-                          outlier.size = 1.5, # nolint: object_name_linter
-                          outlier.stroke = 0.5, # nolint: object_name_linter
-                          varwidth = FALSE,
-                          median.type = c("point", "line"), # nolint: object_name_linter
-                          whisker.type = c("line", "point"), # nolint: object_name_linter
-                          hoffset = 0.01,
-                          voffset = 0.01) {
+    draw_group = function(
+      data,
+      panel_scales,
+      coord,
+      fatten = 2,
+      outlier.colour = "black", # nolint: object_name_linter
+      outlier.shape = 19, # nolint: object_name_linter
+      outlier.size = 1.5, # nolint: object_name_linter
+      outlier.stroke = 0.5, # nolint: object_name_linter
+      varwidth = FALSE,
+      median.type = c("point", "line"), # nolint: object_name_linter
+      whisker.type = c("line", "point"), # nolint: object_name_linter
+      hoffset = 0.01,
+      voffset = 0.01
+    ) {
       median.type <- match.arg(median.type) # nolint: object_name_linter
       whisker.type <- match.arg(whisker.type) # nolint: object_name_linter
 
@@ -193,7 +201,8 @@ GeomTufteboxplot <- # nolint: object_name_linter
           stringsAsFactors = FALSE
         )
         middle_grob <- GeomSegment$draw_panel(
-          middata, panel_scales,
+          middata,
+          panel_scales,
           coord
         )
       }
@@ -211,7 +220,8 @@ GeomTufteboxplot <- # nolint: object_name_linter
           stringsAsFactors = FALSE
         )
         outliers_grob <- GeomPoint$draw_panel(
-          outliers, panel_scales,
+          outliers,
+          panel_scales,
           coord
         )
       } else {

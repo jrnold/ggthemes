@@ -46,27 +46,32 @@ scale_color_stata <- scale_colour_stata
 #' @importFrom ggplot2 margin
 theme_stata_base <- function(base_size = 11, base_family = "sans") {
   ## Sizes
-  relsz <- sapply(as.numeric(stata_gsize), `/`,
-    y = as.numeric(stata_gsize$medium)
-  )
+  relsz <- sapply(as.numeric(stata_gsize), `/`, y = as.numeric(stata_gsize$medium))
   names(relsz) <- names(stata_gsize)
   theme_foundation() +
     theme(
       line = element_line(
-        linewidth = 0.5, linetype = 1, lineend = "butt",
+        linewidth = 0.5,
+        linetype = 1,
+        lineend = "butt",
         colour = "black"
       ),
       rect = element_rect(
-        linewidth = 0.5, linetype = 1, fill = "white",
+        linewidth = 0.5,
+        linetype = 1,
+        fill = "white",
         colour = "black"
       ),
       text = element_text(
         family = base_family,
         face = "plain",
         colour = "black",
-        size = base_size, hjust = 0.5,
-        vjust = 1, angle = 0,
-        lineheight = 1, margin = margin(),
+        size = base_size,
+        hjust = 0.5,
+        vjust = 1,
+        angle = 0,
+        lineheight = 1,
+        margin = margin(),
         debug = FALSE
       ),
       title = element_text(),
@@ -83,11 +88,10 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
       # axis.ticks.length = stata_gsize$tiny,
       # axis.ticks.margin = stata_gsize$half_tiny,
       axis.ticks.length = unit(4 / 11, "lines"),
-      legend.background =
-        element_rect(
-          linetype = 1,
-          linewidth = rel(stata_linewidths[["thin"]])
-        ),
+      legend.background = element_rect(
+        linetype = 1,
+        linewidth = rel(stata_linewidths[["thin"]])
+      ),
       legend.spacing = unit(1.2 / 100, "npc"),
       legend.key = element_rect(linetype = 0),
       legend.key.size = unit(1.2, "lines"),
@@ -129,7 +133,8 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
       # Stata note
       plot.caption = element_text(
         size = rel(relsz["small"]),
-        hjust = 0, vjust = 0
+        hjust = 0,
+        vjust = 0
       ),
       plot.margin = unit(rep(0.035, 4), "npc")
     )
@@ -141,8 +146,14 @@ theme_stata_colors <- function(scheme = "s2color") {
   stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
   stata_colors <- deframe(stata_colors[, c("name", "value")])
   schemes <- c(
-    "s2color", "s2mono", "s2manual", "sj", "s1color", "s1rcolor",
-    "s1mono", "s1manual"
+    "s2color",
+    "s2mono",
+    "s2manual",
+    "sj",
+    "s1color",
+    "s1rcolor",
+    "s1mono",
+    "s1manual"
   )
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
@@ -199,7 +210,8 @@ theme_stata_colors <- function(scheme = "s2color") {
   } else {
     stop(str_c(
       "`scheme` must be one of: ",
-      str_c(sort(schemes), collapse = ","), ", "
+      str_c(sort(schemes), collapse = ","),
+      ", "
     ))
   }
 
@@ -255,11 +267,9 @@ theme_stata_colors <- function(scheme = "s2color") {
 #' @references \url{https://www.stata.com/help.cgi?schemes}
 #'
 #' @example inst/examples/ex-theme_stata.R
-theme_stata <- function(base_size = 11, base_family = "sans",
-                        scheme = "s2color") {
+theme_stata <- function(base_size = 11, base_family = "sans", scheme = "s2color") {
   ## Sizes
-  (theme_stata_base(base_size = eval(base_size), base_family = base_family)
-  + theme_stata_colors(scheme = scheme))
+  (theme_stata_base(base_size = eval(base_size), base_family = base_family) + theme_stata_colors(scheme = scheme))
 }
 
 #' Stata shape palette (discrete)
@@ -276,10 +286,16 @@ theme_stata <- function(base_size = 11, base_family = "sans",
 stata_shape_pal <- function() {
   ## From s1mono, ignore small shapes
   shapes <- c(
-    "circle", "diamond", "square",
-    "triangle", "X", "plus",
-    "circle_hollow", "diamond_hollow",
-    "square_hollow", "triangle_hollow"
+    "circle",
+    "diamond",
+    "square",
+    "triangle",
+    "X",
+    "plus",
+    "circle_hollow",
+    "diamond_hollow",
+    "square_hollow",
+    "triangle_hollow"
   )
   statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
   shapenames <- tibble::deframe(statadata[, c("symbolstyle", "unicode_value")])
@@ -357,7 +373,8 @@ stata_gsize <-
       vlarge = 5.5556,
       vsmall = 2.0833,
       zero = 0
-    ) / 100,
+    ) /
+      100,
     unit,
     units = "npc"
   )
@@ -379,7 +396,8 @@ stata_linewidths <-
     vvthin = 0.01,
     vvvthick = 4.2,
     vvvthin = .000001
-  ) / 0.3
+  ) /
+  0.3
 
 
 # Stata margin styles
@@ -405,7 +423,6 @@ stata_margins <- list(
   vsmall = rep(0.6, 4),
   zero = rep(0, 4)
 )
-
 
 # s1mono line
 # linepattern p1line  solid

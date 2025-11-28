@@ -25,20 +25,35 @@ economist_pal <- function(fill = TRUE) {
       } else if (n %in% 5:6) {
         ## 20120901_woc904
         i <- c(
-          "blue-gray", "dark blue", "light blue", "blue",
-          "light green", "dark green"
+          "blue-gray",
+          "dark blue",
+          "light blue",
+          "blue",
+          "light green",
+          "dark green"
         )
       } else if (n == 7L) {
         # 20120818_AMC820
         i <- c(
-          "blue-gray", "dark blue", "blue", "light blue",
-          "dark green", "light green", "gray"
+          "blue-gray",
+          "dark blue",
+          "blue",
+          "light blue",
+          "dark green",
+          "light green",
+          "gray"
         )
       } else if (n >= 8L) {
         # 20120915_EUC094
         i <- c(
-          "blue-gray", "dark blue", "blue", "light blue",
-          "dark green", "light green", "dark red", "pink",
+          "blue-gray",
+          "dark blue",
+          "blue",
+          "light blue",
+          "dark green",
+          "light green",
+          "dark red",
+          "pink",
           "gray"
         )
       }
@@ -58,15 +73,25 @@ economist_pal <- function(fill = TRUE) {
       } else if (n == 6) {
         # 20120825_IRC829
         i <- c(
-          "light green", "dark green", "gray",
-          "blue-gray", "light blue", "dark blue"
+          "light green",
+          "dark green",
+          "gray",
+          "blue-gray",
+          "light blue",
+          "dark blue"
         )
       } else if (n > 6) {
         # 20120825_IRC829
         i <- c(
-          "light green", "dark green", "gray",
-          "blue-gray", "light blue", "dark blue", "dark red",
-          "pink", "brown"
+          "light green",
+          "dark green",
+          "gray",
+          "blue-gray",
+          "light blue",
+          "dark blue",
+          "dark red",
+          "pink",
+          "brown"
         )
       }
       unname(colors[i][seq_len(n)])
@@ -138,8 +163,7 @@ scale_fill_economist <- function(...) {
 #' }
 #'
 #' @example inst/examples/ex-theme_economist.R
-theme_economist <- function(base_size = 10, base_family = "sans",
-                            horizontal = TRUE, dkpanel = FALSE) {
+theme_economist <- function(base_size = 10, base_family = "sans", horizontal = TRUE, dkpanel = FALSE) {
   bgcolors <- deframe(ggthemes::ggthemes_data[["economist"]][["bg"]])
   ## From measurements
   ## Ticks = 1 / 32 in, with margin about 1.5 / 32
@@ -153,7 +177,8 @@ theme_economist <- function(base_size = 10, base_family = "sans",
     theme(
       line = element_line(colour = "black"),
       rect = element_rect(
-        fill = bgcolors["ebg"], colour = NA,
+        fill = bgcolors["ebg"],
+        colour = NA,
         linetype = 1
       ),
       text = element_text(colour = "black"),
@@ -206,7 +231,8 @@ theme_economist <- function(base_size = 10, base_family = "sans",
       panel.spacing = unit(0.25, "lines"),
       strip.background = element_rect(
         fill = bgcolors["ebg"],
-        colour = NA, linetype = 0
+        colour = NA,
+        linetype = 0
       ),
       strip.text = element_text(size = rel(1.25)),
       strip.text.x = element_text(),
@@ -217,7 +243,8 @@ theme_economist <- function(base_size = 10, base_family = "sans",
       ),
       plot.title = element_text(
         size = rel(1.5),
-        hjust = 0, face = "bold"
+        hjust = 0,
+        face = "bold"
       ),
       plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
       complete = TRUE
@@ -228,26 +255,22 @@ theme_economist <- function(base_size = 10, base_family = "sans",
     ret <- ret + theme(panel.grid.major.y = element_blank())
   }
   if (dkpanel == TRUE) {
-    ret <- ret + theme(
-      panel.background =
-        element_rect(
-          fill =
-            unname(bgcolors["dark blue-gray"])
+    ret <- ret +
+      theme(
+        panel.background = element_rect(
+          fill = unname(bgcolors["dark blue-gray"])
         ),
-      strip.background =
-        element_rect(
-          fill =
-            unname(bgcolors["dark blue-gray"])
+        strip.background = element_rect(
+          fill = unname(bgcolors["dark blue-gray"])
         )
-    )
+      )
   }
   ret
 }
 
 #' @rdname theme_economist
 #' @export
-theme_economist_white <- function(base_size = 11, base_family = "sans",
-                                  gray_bg = TRUE, horizontal = TRUE) {
+theme_economist_white <- function(base_size = 11, base_family = "sans", gray_bg = TRUE, horizontal = TRUE) {
   if (gray_bg) {
     bgcolor <- get_colors(c("economist", "bg"), "light gray")
   } else {
@@ -262,11 +285,9 @@ theme_economist_white <- function(base_size = 11, base_family = "sans",
       rect = element_rect(fill = bgcolor),
       plot.background = element_rect(fill = bgcolor),
       panel.background = element_rect(fill = "white"),
-      panel.grid.major =
-        element_line(
-          colour =
-            get_colors(c("economist", "bg"), "dark gray")
-        ),
+      panel.grid.major = element_line(
+        colour = get_colors(c("economist", "bg"), "dark gray")
+      ),
       strip.background = element_rect(fill = "white")
     )
 }

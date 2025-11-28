@@ -15,7 +15,9 @@ theme_solid <- function(base_size = 12, base_family = "", fill = NA) {
       line = element_blank(),
       text = element_blank(),
       rect = element_rect(
-        fill = fill, linewidth = base_size, colour = NA,
+        fill = fill,
+        linewidth = base_size,
+        colour = NA,
         linetype = 0
       )
     )

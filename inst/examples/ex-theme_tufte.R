@@ -6,9 +6,6 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   scale_y_continuous(breaks = extended_range_breaks()(mtcars$mpg)) +
   ggtitle("Cars")
 
-p + geom_rangeframe() +
-  coord_cartesian(clip = "off") +
-  theme_tufte()
+p + geom_rangeframe() + coord_cartesian(clip = "off") + theme_tufte()
 
-p + geom_rug() +
-  theme_tufte(ticks = FALSE)
+p + geom_rug() + theme_tufte(ticks = FALSE)

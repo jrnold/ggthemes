@@ -7,8 +7,8 @@
 #' @family themes calc
 #' @example inst/examples/ex-theme_calc.R
 theme_calc <- function(base_size = 10, base_family = "sans") {
-  (theme_foundation(base_family = base_family, base_size = base_size)
-  + theme(
+  (theme_foundation(base_family = base_family, base_size = base_size) +
+    theme(
       rect = element_rect(colour = "black", fill = "white"),
       text = element_text(colour = "black"),
       line = element_line(colour = "gray70"),

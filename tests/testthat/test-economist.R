@@ -45,10 +45,13 @@ test_that("theme economist with dark panel works", {
   expect_s3_class(thm, "theme")
   expect_equal(
     thm$strip.background$fill,
-    purrr::pluck(dplyr::filter(
-      ggthemes_data$economist$bg,
-      name == "dark blue-gray"
-    ), "value")
+    purrr::pluck(
+      dplyr::filter(
+        ggthemes_data$economist$bg,
+        name == "dark blue-gray"
+      ),
+      "value"
+    )
   )
 })
 
@@ -64,9 +67,12 @@ test_that("theme economist_white with gray background works", {
   expect_s3_class(thm, "theme")
   expect_equal(
     thm$plot.background$fill,
-    purrr::pluck(dplyr::filter(
-      ggthemes_data$economist$bg,
-      name == "light gray"
-    ), "value")
+    purrr::pluck(
+      dplyr::filter(
+        ggthemes_data$economist$bg,
+        name == "light gray"
+      ),
+      "value"
+    )
   )
 })

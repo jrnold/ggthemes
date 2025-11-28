@@ -18,10 +18,7 @@
 #' @example inst/examples/ex-theme_wsj.R
 #' @export
 #' @importFrom ggplot2 element_line element_rect element_text element_blank rel
-theme_wsj <- function(base_size = 12,
-                      color = "brown",
-                      base_family = "sans",
-                      title_family = "mono") {
+theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", title_family = "mono") {
   colorhex <- ggthemes::ggthemes_data$wsj$bg[color]
   theme_foundation(base_size = base_size, base_family = base_family) +
     theme(
