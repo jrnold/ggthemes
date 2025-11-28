@@ -165,6 +165,26 @@ Code sytle is enforced by the the [air](https://tidyverse.org/blog/2025/02/air/)
 - `air` package configuration: `air.toml`.
 - `lintr` package configuration: `.lintr`
 
+### Spelling
+
+Check spelling using the [spelling](https://docs.ropensci.org/spelling/) package.
+
+```bash
+# Run spell check
+Rscript tests/spelling.R
+
+# Update wordlist interactively (adds new words found in documentation)
+Rscript -e 'spelling::update_wordlist()'
+```
+
+The custom wordlist is stored in `inst/WORDLIST` and contains project-specific terms like:
+- Package names (ggplot, vdiffr, pkgdown)
+- Theme names (fivethirtyeight, solarized, stata)
+- Author names and proper nouns
+- Technical terms specific to this project
+
+When spell check finds new valid words, add them to `inst/WORDLIST` using `spelling::update_wordlist()`.
+
 ## Key Concepts
 
 **theme_foundation()**: Located in `base.R`, this is the minimal base theme that other themes extend. It sets basic defaults for all ggplot2 elements.
