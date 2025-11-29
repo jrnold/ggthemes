@@ -29,11 +29,14 @@ if (require("purrr") && require("scales") && require("dplyr")) {
       palette = .y
     )
   )
-  ggplot(canva_df, aes(
-    y = palette,
-    x = .id,
-    fill = colors
-  )) +
+  ggplot(
+    canva_df,
+    aes(
+      y = palette,
+      x = .id,
+      fill = colors
+    )
+  ) +
     geom_raster() +
     scale_fill_identity(guide = FALSE) +
     theme_minimal() +

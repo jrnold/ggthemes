@@ -84,7 +84,8 @@ library("scales")
 show_col(colorblind_pal()(8))
 p <- ggplot(mtcars) +
   geom_point(aes(
-    x = wt, y = mpg,
+    x = wt,
+    y = mpg,
     colour = factor(gear)
   )) +
   facet_wrap(~am)
