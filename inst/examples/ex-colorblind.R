@@ -9,4 +9,4 @@ p <- ggplot(mtcars) +
     colour = factor(gear)
   )) +
   facet_wrap(~am)
-p + theme_igray() + scale_colour_colorblind()
+p + theme_igray() + scale_colour_colourblind()

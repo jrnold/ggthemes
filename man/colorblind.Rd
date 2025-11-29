@@ -3,8 +3,9 @@
 \name{colorblind_pal}
 \alias{colorblind_pal}
 \alias{colourblind_pal}
-\alias{scale_colour_colorblind}
 \alias{scale_colour_colourblind}
+\alias{scale_colour_colorblind}
+\alias{scale_color_colorblind}
 \alias{scale_fill_colorblind}
 \alias{scale_fill_colourblind}
 \title{Colorblind Color Palette (Discrete) and Scales}
@@ -13,9 +14,11 @@ colorblind_pal()
 
 colourblind_pal()
 
+scale_colour_colourblind(...)
+
 scale_colour_colorblind(...)
 
-scale_colour_colourblind(...)
+scale_color_colorblind(...)
 
 scale_fill_colorblind(...)
 
@@ -82,6 +85,8 @@ notation.
 }
 \description{
 An eight-color colorblind safe qualitative discrete palette.
+
+`r lifecycle::badge("deprecated")`
 }
 \examples{
 library("ggplot2")
@@ -95,7 +100,7 @@ p <- ggplot(mtcars) +
     colour = factor(gear)
   )) +
   facet_wrap(~am)
-p + theme_igray() + scale_colour_colorblind()
+p + theme_igray() + scale_colour_colourblind()
 }
 \references{
 Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook for R}"
