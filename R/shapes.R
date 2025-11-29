@@ -176,8 +176,13 @@ tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
 #' @family shapes
 #' @export
 scale_shape_tremmel <- function(overlap = FALSE, alt = TRUE, ...) {
-  discrete_scale("shape", "tremmel", tremmel_shape_pal(
-    overlap = overlap,
-    alt = alt
-  ), ...)
+  discrete_scale(
+    "shape",
+    "tremmel",
+    tremmel_shape_pal(
+      overlap = overlap,
+      alt = alt
+    ),
+    ...
+  )
 }

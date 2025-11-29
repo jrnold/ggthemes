@@ -30,7 +30,8 @@ ggthemes_data$stata <- load_stata()
 
 load_economist <- function() {
   out <- yaml.load_file(here::here(
-    "data-raw", "theme-data",
+    "data-raw",
+    "theme-data",
     "economist.yml"
   ))
   map(out, ~ map_dfr(., as_tibble))
@@ -56,7 +57,8 @@ ggthemes_data$wsj <- load_wsj()
 
 load_colorblind <- function() {
   yaml.load_file(here::here(
-    "data-raw", "theme-data",
+    "data-raw",
+    "theme-data",
     "colorblind.yml"
   )) %>%
     map_dfr(as_tibble)
@@ -177,9 +179,7 @@ ggthemes_data$gdocs <- load_gdocs()
 
 load_shapes <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "shapes.yml"))
-  out$cleveland$default <- mutate(map_dfr(out$cleveland$default, as_tibble),
-    pch = utf_8_to_pch(character)
-  )
+  out$cleveland$default <- mutate(map_dfr(out$cleveland$default, as_tibble), pch = utf_8_to_pch(character))
   out$cleveland$overlap <- map_dfr(out$cleveland$overlap, as_tibble)
   out$tremmel <- map(out$tremmel, ~ map_dfr(., as_tibble))
   out$circlefill <- map_df(out$circlefill, as_tibble) %>%

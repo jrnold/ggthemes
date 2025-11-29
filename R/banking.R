@@ -99,8 +99,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @seealso \code{\link[lattice]{banking}()}
 #' @export
 #' @example inst/examples/ex-bank_slopes.R
-bank_slopes <- function(x, y, cull = FALSE, weight = NULL,
-                        method = c("ms", "as"), ...) {
+bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"), ...) {
   method <- match.arg(method)
   fun <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y

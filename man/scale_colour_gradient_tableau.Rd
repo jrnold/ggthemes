@@ -80,8 +80,7 @@ p <- ggplot(df, aes(x, y)) +
 palettes <-
   ggthemes_data[["tableau"]][["color-palettes"]][["ordered-sequential"]]
 for (palette in head(names(palettes))) {
-  print(p + scale_colour_gradient_tableau(palette) +
-    ggtitle(palette))
+  print(p + scale_colour_gradient_tableau(palette) + ggtitle(palette))
 }
 }
 \seealso{

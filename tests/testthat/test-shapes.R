@@ -48,7 +48,6 @@ test_that("cleveland_shape_pal works", {
 })
 
 
-
 test_that("cleveland_shape_pal works with overlap = FALSE", {
   pal <- cleveland_shape_pal(overlap = FALSE)
   expect_type(pal, "closure")

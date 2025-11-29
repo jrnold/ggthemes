@@ -28,11 +28,9 @@
 few_pal <- function(palette = "Medium") {
   palette <- ggthemes::ggthemes_data$few$colors[[palette]]
   if (is.null(palette)) {
-    stop("palette must be one of: ",
-      paste0("\"", names(ggthemes::ggthemes_data$few$colors),
-        "\"",
-        collapse = ", "
-      ),
+    stop(
+      "palette must be one of: ",
+      paste0("\"", names(ggthemes::ggthemes_data$few$colors), "\"", collapse = ", "),
       call. = FALSE
     )
   }

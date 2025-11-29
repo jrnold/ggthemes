@@ -10,15 +10,12 @@ test_that("tableau_color_pal works", {
 
 test_that("tableau_color_pal direction = -1 works", {
   n <- 4L
-  expect_true(all(tableau_color_pal(direction = -1)(n) ==
-    rev(tableau_color_pal()(n))))
+  expect_true(all(tableau_color_pal(direction = -1)(n) == rev(tableau_color_pal()(n))))
 })
 
 test_that("tableau_color_pal works with diverging palette", {
   n <- 3L
-  pal <- tableau_color_pal("Orange-Blue Diverging",
-    type = "ordered-diverging"
-  )(n)
+  pal <- tableau_color_pal("Orange-Blue Diverging", type = "ordered-diverging")(n)
   expect_type(pal, "character")
   expect_equal(length(pal), n)
 })

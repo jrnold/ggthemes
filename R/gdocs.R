@@ -23,33 +23,42 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
       plot.title = element_text(
         face = "plain",
         size = rel(20 / 12),
-        hjust = 0, colour = dkgray
+        hjust = 0,
+        colour = dkgray
       ),
       # No subtitle or captions, so treat like other text
       plot.subtitle = element_text(
-        hjust = 0, size = rel(1),
-        face = "plain", colour = dkgray
+        hjust = 0,
+        size = rel(1),
+        face = "plain",
+        colour = dkgray
       ),
       plot.caption = element_text(
-        hjust = 0, size = rel(1),
-        face = "plain", colour = dkgray
+        hjust = 0,
+        size = rel(1),
+        face = "plain",
+        colour = dkgray
       ),
       panel.background = element_rect(fill = NA, colour = NA),
       panel.border = element_rect(fill = NA, colour = NA),
       # no strips in gdocs, so make similar to axis titles
       strip.text = element_text(
-        hjust = 0, size = rel(1), colour = dkgray2,
+        hjust = 0,
+        size = rel(1),
+        colour = dkgray2,
         face = "plain"
       ),
       strip.background = element_rect(colour = NA, fill = NA),
       # axis titles: Roboto 12pt, plain.
       axis.title = element_text(
-        face = "plain", colour = dkgray2,
+        face = "plain",
+        colour = dkgray2,
         size = rel(1)
       ),
       # axis text: Roboto 12pt, plain
       axis.text = element_text(
-        face = "plain", colour = dkgray,
+        face = "plain",
+        colour = dkgray,
         size = rel(1)
       ),
       # only axis line on the x-axis. black.
@@ -70,7 +79,8 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
       # no legend title - use same as legend text
       legend.title = element_text(
         size = rel(1),
-        colour = dkgray2, face = "plain"
+        colour = dkgray2,
+        face = "plain"
       ),
       legend.key = element_rect(colour = NA),
       legend.position = "right",

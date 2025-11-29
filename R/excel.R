@@ -100,8 +100,7 @@ scale_fill_excel_new <- function(theme = "Office Theme", ...) {
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel.R
-theme_excel <- function(base_size = 12, base_family = "",
-                        horizontal = TRUE) {
+theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
   gray <- "#C0C0C0"
   ret <- (theme_bw() +
     theme(
@@ -116,7 +115,8 @@ theme_excel <- function(base_size = 12, base_family = "",
       legend.background = element_rect(colour = "black", linetype = 1),
       strip.background = element_rect(
         fill = "white",
-        colour = NA, linetype = 0
+        colour = NA,
+        linetype = 0
       )
     ))
   if (horizontal) {
@@ -138,8 +138,7 @@ theme_excel <- function(base_size = 12, base_family = "",
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel_new.R
 #'
-theme_excel_new <- function(base_size = 9,
-                            base_family = "sans") {
+theme_excel_new <- function(base_size = 9, base_family = "sans") {
   colorlist <- list(
     lt_gray = "#D9D9D9",
     gray = "#BFBFBF",

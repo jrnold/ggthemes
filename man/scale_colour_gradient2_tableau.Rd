@@ -61,8 +61,7 @@ p <- ggplot(df, aes(x, y)) +
 palettes <-
   ggthemes_data[["tableau"]][["color-palettes"]][["ordered-diverging"]]
 for (palette in head(names(palettes))) {
-  print(p + scale_colour_gradient2_tableau(palette) +
-    ggtitle(palette))
+  print(p + scale_colour_gradient2_tableau(palette) + ggtitle(palette))
 }
 
 # If you need to reverse a palette, use a transformation

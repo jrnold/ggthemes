@@ -69,6 +69,7 @@ Rscript -e 'testthat::test_file("tests/testthat/test-economist.R")'
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
 
+
 ### Format
 ```
 <type>[optional scope]: <description>
@@ -95,6 +96,10 @@ docs: update README with new theme examples
 test: add visual regression tests for tufte theme
 chore: update pkgdown configuration
 ```
+
+## NEWS.md
+
+For user-facing changes update `NEWS.md` when commiting.
 
 ## Architecture
 
@@ -153,9 +158,32 @@ Tests use:
 
 ### Code Style
 
-- Uses tidyverse style enforced by styler (see `.lintr` for configuration)
-- Line length limit: 120 characters
-- Some example files are excluded from linting/styling (see `.lintr` and `scripts/style.R`)
+Code sytle is enforced by the the [air](https://tidyverse.org/blog/2025/02/air/) and [lintr](https://lintr.r-lib.org/) packages.
+
+- Generally follows the [tidyverse style](https://style.tidyverse.org/).
+- Line length of 120
+- `air` package configuration: `air.toml`.
+- `lintr` package configuration: `.lintr`
+
+### Spelling
+
+Check spelling using the [spelling](https://docs.ropensci.org/spelling/) package.
+
+```bash
+# Run spell check
+Rscript tests/spelling.R
+
+# Update wordlist interactively (adds new words found in documentation)
+Rscript -e 'spelling::update_wordlist()'
+```
+
+The custom wordlist is stored in `inst/WORDLIST` and contains project-specific terms like:
+- Package names (ggplot, vdiffr, pkgdown)
+- Theme names (fivethirtyeight, solarized, stata)
+- Author names and proper nouns
+- Technical terms specific to this project
+
+When spell check finds new valid words, add them to `inst/WORDLIST` using `spelling::update_wordlist()`.
 
 ## Key Concepts
 

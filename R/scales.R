@@ -1,16 +1,22 @@
 # Much of this code is copied from the labeling package.
-.simplicity <- function(q, Q, j, lmin, lmax, lstep) {  # nolint: object_name_linter
+# nolint start: object_name_linter
+.simplicity <- function(q, Q, j, lmin, lmax, lstep) {
   eps <- .Machine$double.eps * 100
 
   n <- length(Q)
   i <- match(q, Q)[1]
-  v <- ifelse((lmin %% lstep < eps ||
-    lstep - (lmin %% lstep) < eps) &&
-    lmin <= 0 && lmax >= 0, 1, 0)
+  v <- ifelse(
+    (lmin %% lstep < eps ||
+      lstep - (lmin %% lstep) < eps) &&
+      lmin <= 0 &&
+      lmax >= 0,
+    1,
+    0
+  )
   1 - (i - 1) / (n - 1) - j + v
 }
 
-.simplicity_max <- function(q, Q, j) {  # nolint: object_name_linter
+.simplicity_max <- function(q, Q, j) {
   n <- length(Q)
   i <- match(q, Q)[1]
   v <- 1
@@ -75,9 +81,13 @@
 #' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
 #' @rdname range_breaks
 #' @export
-extended_range_breaks_ <- function(dmin, dmax, n = 5, # nolint: cyclocomp_linter
-                                   Q = c(1, 5, 2, 2.5, 4, 3), # nolint: object_name_linter
-                                   w = c(0.25, 0.2, 0.5, 0.05)) {
+extended_range_breaks_ <- function(
+  dmin,
+  dmax,
+  n = 5, # nolint: cyclocomp_linter
+  Q = c(1, 5, 2, 2.5, 4, 3), # nolint: object_name_linter
+  w = c(0.25, 0.2, 0.5, 0.05)
+) {
   eps <- .Machine$double.eps * 100
 
   if (dmin > dmax) {
@@ -146,9 +156,11 @@ extended_range_breaks_ <- function(dmin, dmax, n = 5, # nolint: cyclocomp_linter
 
             score <- w[1] * s + w[2] * c + w[3] * g + w[4] * l
 
-            if (score > best$score &&
-              lmin >= dmin &&
-              lmax <= dmax) {
+            if (
+              score > best$score &&
+                lmin >= dmin &&
+                lmax <= dmax
+            ) {
               best <- list(
                 lmin = lmin,
                 lmax = lmax,
@@ -247,3 +259,5 @@ smart_digits <- function(x, ...) {
 smart_digits_format <- function(x, ...) {
   function(x) smart_digits(x, ...)
 }
+
+# nolint end: object_name_linter

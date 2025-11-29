@@ -19,9 +19,7 @@ solarized_rebase <- function(light = TRUE) {
 }
 
 solarized_accent_list <- function() {
-  paste0("\\code{\"", names(ggthemes::ggthemes_data$solarized$Accents), "\"}",
-    collapse = ","
-  )
+  paste0("\\code{\"", names(ggthemes::ggthemes_data$solarized$Accents), "\"}", collapse = ",")
 }
 
 #' Solarized color palette (discrete)
@@ -120,7 +118,8 @@ theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
       panel.grid.major = element_line(color = rebase["rebase02"]),
       panel.grid.minor = element_line(color = rebase["rebase02"]),
       plot.background = element_rect(
-        fill = NULL, colour = NA,
+        fill = NULL,
+        colour = NA,
         linetype = 0
       )
     ))
@@ -148,7 +147,8 @@ theme_solarized_2 <- function(base_size = 12, base_family = "", light = TRUE) {
       axis.title.y = element_text(angle = 90),
       legend.background = element_rect(fill = NULL, color = NA),
       legend.key = element_rect(
-        fill = NULL, colour = NULL,
+        fill = NULL,
+        colour = NULL,
         linetype = 0
       ),
       panel.background = element_rect(
@@ -164,7 +164,8 @@ theme_solarized_2 <- function(base_size = 12, base_family = "", light = TRUE) {
       ),
       plot.background = element_rect(
         fill = NULL,
-        colour = NULL, linetype = 0
+        colour = NULL,
+        linetype = 0
       )
     ))
   ret

@@ -28,11 +28,12 @@ theme_foundation <- function(base_size = 12, base_family = "") {
       thm[[i]]["fill"] <- list(NULL)
     }
   }
-  thm + theme(
-    panel.border = element_rect(fill = NA),
-    legend.background = element_rect(colour = NA),
-    line = element_line(colour = "black"),
-    rect = element_rect(fill = "white", colour = "black"),
-    text = element_text(colour = "black")
-  )
+  thm +
+    theme(
+      panel.border = element_rect(fill = NA),
+      legend.background = element_rect(colour = NA),
+      line = element_line(colour = "black"),
+      rect = element_rect(fill = "white", colour = "black"),
+      text = element_text(colour = "black")
+    )
 }

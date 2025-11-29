@@ -16,15 +16,17 @@
 #'   \item{max}{maximum}
 #' @seealso \code{\link[ggplot2]{stat_boxplot}()}
 #' @export
-stat_fivenumber <- function(mapping = NULL,
-                            data = NULL,
-                            geom = "boxplot",
-                            probs = c(0, 0.25, 0.5, 0.75, 1),
-                            na.rm = FALSE, # nolint: object_name_linter
-                            position = "identity",
-                            show.legend = NA, # nolint: object_name_linter
-                            inherit.aes = TRUE, # nolint: object_name_linter
-                            ...) {
+stat_fivenumber <- function(
+  mapping = NULL,
+  data = NULL,
+  geom = "boxplot",
+  probs = c(0, 0.25, 0.5, 0.75, 1),
+  na.rm = FALSE, # nolint: object_name_linter
+  position = "identity",
+  show.legend = NA, # nolint: object_name_linter
+  inherit.aes = TRUE, # nolint: object_name_linter
+  ...
+) {
   layer(
     data = data,
     mapping = mapping,
@@ -49,12 +51,16 @@ has_groups <- function(data) {
   data$group[1L] != NO_GROUP
 }
 
+# nolint start: object_name_linter
 #' @export
 #' @format NULL
 #' @usage NULL
 #' @rdname stat_fivenumber
 #' @importFrom ggplot2 resolution remove_missing
-StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat, # nolint: object_name_linter
+StatFivenumber <- ggplot2::ggproto(
+  # nolint
+  "StatFivenumber",
+  ggplot2::Stat, # nolint: object_name_linter
   required_aes = "y",
   non_missing_aes = "weight",
   setup_data = function(data, params) {
@@ -79,11 +85,13 @@ StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat, # nolint: ob
 
     params
   },
-  compute_group = function(data,
-                           scales,
-                           width = NULL,
-                           na.rm = FALSE, # nolint: object_name_linter
-                           probs = c(0, 0.25, 0.5, 0.75, 1)) {
+  compute_group = function(
+    data,
+    scales,
+    width = NULL,
+    na.rm = FALSE, # nolint: object_name_linter
+    probs = c(0, 0.25, 0.5, 0.75, 1)
+  ) {
     if (length(probs) != 5) {
       stop("'probs' should contain 5 quantiles.")
     }
@@ -92,10 +100,7 @@ StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat, # nolint: ob
       if (!requireNamespace("quantreg", quietly = TRUE)) {
         stop("Package 'quantreg' is required for compute_group() with weights.")
       }
-      mod <- quantreg::rq(y ~ 1,
-        weights = weight, tau = probs,
-        data = data
-      )
+      mod <- quantreg::rq(y ~ 1, weights = weight, tau = probs, data = data)
       stats <- as.numeric(stats::coef(mod))
     } else {
       stats <- as.numeric(quantile(data$y, probs = probs))
@@ -116,3 +121,4 @@ StatFivenumber <- ggplot2::ggproto("StatFivenumber", ggplot2::Stat, # nolint: ob
     df
   }
 )
+# nolint end: object_name_linter

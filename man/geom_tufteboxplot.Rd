@@ -90,12 +90,14 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.}
+display. To include legend keys for all levels, even
+when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{annotation_borders()}}.}
 
 \item{median.type}{If \code{'point'}, then the median is represented by a
 point, and the interquartile range by a gap in the line. If
@@ -178,9 +180,7 @@ p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
 # with an offset line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type = "line")
 # combined with theme_tufte
-p + geom_tufteboxplot() +
-  theme_tufte() +
-  theme(axis.ticks.x = element_blank())
+p + geom_tufteboxplot() + theme_tufte() + theme(axis.ticks.x = element_blank())
 # traditional boxplot with whiskers only out to 1.5 IQR, outlier points
 p + geom_tufteboxplot(stat = "boxplot", outlier.shape = 5)
 }

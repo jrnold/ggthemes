@@ -19,21 +19,23 @@
 #' @param axis axis angle as defined in \code{par(les)}
 #' @export
 #' @example inst/examples/ex-theme_pander.R
-theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
-                         base_family = "sans",
-                         nomargin = TRUE,
-                         ff = NULL,
-                         fc = "black",
-                         fs = NULL,
-                         gM = TRUE, # nolint: object_name_linter
-                         gm = TRUE,
-                         gc = "grey",
-                         gl = "dashed",
-                         boxes = FALSE,
-                         bc = "white",
-                         pc = "transparent",
-                         lp = "right",
-                         axis = 1) {
+theme_pander <- function(
+  base_size = 12, # nolint: cyclocomp_linter
+  base_family = "sans",
+  nomargin = TRUE,
+  ff = NULL,
+  fc = "black",
+  fs = NULL,
+  gM = TRUE, # nolint: object_name_linter
+  gm = TRUE,
+  gc = "grey",
+  gl = "dashed",
+  boxes = FALSE,
+  bc = "white",
+  pc = "transparent",
+  lp = "right",
+  axis = 1
+) {
   if (hasArg(ff)) {
     base_family <- ff
     warning("Argument `ff` deprecated. Use `base_family` instead.")
@@ -42,7 +44,6 @@ theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
     base_size <- fs
     warning("Argument `fs` deprecated. Use `base_size` instead.")
   }
-
 
   if (requireNamespace("pander", quietly = TRUE)) {
     if (missing(nomargin)) {
@@ -58,7 +59,7 @@ theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
       base_size <- pander::panderOptions("graph.fontsize")
     }
     if (missing(gM)) {
-      gM <- pander::panderOptions("graph.grid")  # nolint: object_name_linter
+      gM <- pander::panderOptions("graph.grid") # nolint: object_name_linter
     }
     if (missing(gm)) {
       gm <- pander::panderOptions("graph.grid.minor")
@@ -95,7 +96,8 @@ theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
     plot.background = element_rect(fill = bc, colour = NA),
     panel.grid = element_line(
       colour = gc,
-      linewidth = 0.2, linetype = gl
+      linewidth = 0.2,
+      linetype = gl
     ),
     panel.grid.minor = element_line(linewidth = 0.1),
     axis.ticks = element_line(
@@ -109,10 +111,12 @@ theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
     ),
     axis.text = element_text(
       colour = fc,
-      face = "plain", size = base_size * 0.8
+      face = "plain",
+      size = base_size * 0.8
     ),
     legend.text = element_text(
-      colour = fc, face = "plain",
+      colour = fc,
+      face = "plain",
       size = base_size * 0.8
     ),
     legend.title = element_text(
@@ -154,33 +158,35 @@ theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
 
   ## disable box(es) around the plot
   if (!isTRUE(boxes)) {
-    res <- res + theme(
-      legend.key = element_rect(
-        colour = "transparent",
-        fill = "transparent"
-      ),
-      strip.background = element_rect(
-        colour = "transparent",
-        fill = "transparent"
-      ),
-      panel.border = element_rect(
-        fill = NA,
-        colour = tc
-      ),
-      panel.background = element_rect(
-        fill = pc,
-        colour = tc
+    res <- res +
+      theme(
+        legend.key = element_rect(
+          colour = "transparent",
+          fill = "transparent"
+        ),
+        strip.background = element_rect(
+          colour = "transparent",
+          fill = "transparent"
+        ),
+        panel.border = element_rect(
+          fill = NA,
+          colour = tc
+        ),
+        panel.background = element_rect(
+          fill = pc,
+          colour = tc
+        )
       )
-    )
   }
 
   ## disable grid
   if (!isTRUE(gM)) {
-    res <- res + theme(
-      panel.grid = element_blank(),
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank()
-    )
+    res <- res +
+      theme(
+        panel.grid = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
   }
   ## disable minor grid
   if (!isTRUE(gm)) {
@@ -194,44 +200,51 @@ theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
 
   ## axis angle (TODO: DRY with ifelse in the default color etc. section)
   if (axis == 0) {
-    res <- res + theme(axis.text.y = element_text(
-      colour = fc,
-      family = base_family,
-      face = "plain",
-      size = base_size * 0.8,
-      angle = 90
-    ))
+    res <- res +
+      theme(
+        axis.text.y = element_text(
+          colour = fc,
+          family = base_family,
+          face = "plain",
+          size = base_size * 0.8,
+          angle = 90
+        )
+      )
   }
 
   if (axis == 2) {
-    res <- res + theme(axis.text.x = element_text(
-      colour = fc,
-      family = base_family,
-      face = "plain",
-      size = base_size * 0.8,
-      angle = 90,
-      hjust = 1
-    ))
+    res <- res +
+      theme(
+        axis.text.x = element_text(
+          colour = fc,
+          family = base_family,
+          face = "plain",
+          size = base_size * 0.8,
+          angle = 90,
+          hjust = 1
+        )
+      )
   }
 
   if (axis == 3) {
-    res <- res + theme(
-      axis.text.y = element_text(
-        colour = fc,
-        family = base_family,
-        face = "plain",
-        size = base_size * 0.8,
-        angle = 90
-      ),
-      axis.text.x = element_text(
-        colour = fc,
-        family = base_family,
-        face = "plain",
-        size = base_size * 0.8,
-        angle = 90,
-        hjust = 1
+    res <- res +
+      theme(
+        axis.text.y = element_text(
+          colour = fc,
+          family = base_family,
+          face = "plain",
+          size = base_size * 0.8,
+          angle = 90
+        ),
+        axis.text.x = element_text(
+          colour = fc,
+          family = base_family,
+          face = "plain",
+          size = base_size * 0.8,
+          angle = 90,
+          hjust = 1
+        )
       )
-    )
   }
 
   res
@@ -252,8 +265,14 @@ theme_pander <- function(base_size = 12,  # nolint: cyclocomp_linter
 palette_pander <- function(n, random_order = FALSE) {
   ## default (colorblind and printer-friendly) colors
   cols <- c(
-    "#56B4E9", "#009E73", "#F0E442", "#0072B2",
-    "#D55E00", "#CC79A7", "#999999", "#E69F00"
+    "#56B4E9",
+    "#009E73",
+    "#F0E442",
+    "#0072B2",
+    "#D55E00",
+    "#CC79A7",
+    "#999999",
+    "#E69F00"
   )
 
   if (requireNamespace("pander", quietly = TRUE)) {

@@ -60,11 +60,11 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
 
       - name: Install dependencies
-        run: install.packages("styler")
+        run: install.packages("air")
         shell: Rscript {0}
 
       - name: Style
-        run: styler::style_pkg()
+        run: air::air_style_pkg()
         shell: Rscript {0}
 
       - name: commit

@@ -40,7 +40,9 @@ palettes <-
 palette_url <- function(name) {
   str_c(
     "https://raw.githubusercontent.com/LibreOffice/core/",
-    "master/extras/source/palettes/", name, ".soc"
+    "master/extras/source/palettes/",
+    name,
+    ".soc"
   )
 }
 

@@ -9,12 +9,13 @@
 #' @importFrom grid unit
 theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
   colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
-  (theme_foundation(base_size = base_size, base_family = base_family)
-  + theme(
+  (theme_foundation(base_size = base_size, base_family = base_family) +
+    theme(
       line = element_line(colour = "black"),
       rect = element_rect(
         fill = colors["Light Gray"],
-        linetype = 0, colour = NA
+        linetype = 0,
+        colour = NA
       ),
       text = element_text(colour = colors["Dark Gray"]),
       axis.title = element_blank(),
@@ -26,8 +27,7 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
       legend.direction = "horizontal",
       legend.box = "vertical",
       panel.grid = element_line(colour = NULL),
-      panel.grid.major =
-        element_line(colour = colors["Medium Gray"]),
+      panel.grid.major = element_line(colour = colors["Medium Gray"]),
       panel.grid.minor = element_blank(),
       # unfortunately, can't mimic subtitles TODO!
       plot.title = element_text(hjust = 0, size = rel(1.5), face = "bold"),

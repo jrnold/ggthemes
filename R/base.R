@@ -427,14 +427,18 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
         colour = par()$col.axis,
         face = faces[par()$font.axis]
       ),
-      axis.text.x = element_text(margin = margin(
-        t = 0.8 * half_line / 2,
-        b = 0.8 * half_line / 2
-      )),
-      axis.text.y = element_text(margin = margin(
-        r = 0.8 * half_line / 2,
-        l = 0.8 * half_line / 2
-      )),
+      axis.text.x = element_text(
+        margin = margin(
+          t = 0.8 * half_line / 2,
+          b = 0.8 * half_line / 2
+        )
+      ),
+      axis.text.y = element_text(
+        margin = margin(
+          r = 0.8 * half_line / 2,
+          l = 0.8 * half_line / 2
+        )
+      ),
       axis.ticks = element_line(colour = par()$fg),
       legend.title = element_text(colour = par()$fg),
       legend.text = element_text(colour = par()$fg),
@@ -458,42 +462,50 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
         face = faces[par()$font.sub],
         colour = par()$col.sub
       ),
-      strip.text.x = element_text(margin = margin(
-        t = half_line,
-        b = half_line
-      )),
-      strip.text.y = element_text(margin = margin(
-        l = half_line,
-        r = half_line
-      )),
+      strip.text.x = element_text(
+        margin = margin(
+          t = half_line,
+          b = half_line
+        )
+      ),
+      strip.text.y = element_text(
+        margin = margin(
+          l = half_line,
+          r = half_line
+        )
+      ),
       strip.background = element_rect(colour = NA)
     )
 
   las <- par()$las
   if (las == 0) {
     # parallel to axis
-    thm <- thm + theme(
-      axis.title.x = element_text(angle = 0),
-      axis.title.y = element_text(angle = 90)
-    )
+    thm <- thm +
+      theme(
+        axis.title.x = element_text(angle = 0),
+        axis.title.y = element_text(angle = 90)
+      )
   } else if (las == 1) {
     # horizontal
-    thm <- thm + theme(
-      axis.title.x = element_text(angle = 0),
-      axis.title.y = element_text(angle = 0)
-    )
+    thm <- thm +
+      theme(
+        axis.title.x = element_text(angle = 0),
+        axis.title.y = element_text(angle = 0)
+      )
   } else if (las == 2) {
     # perpendicular
-    thm <- thm + theme(
-      axis.title.x = element_text(angle = 90),
-      axis.title.y = element_text(angle = 0)
-    )
+    thm <- thm +
+      theme(
+        axis.title.x = element_text(angle = 90),
+        axis.title.y = element_text(angle = 0)
+      )
   } else if (las == 3) {
     # vertical
-    thm <- thm + theme(
-      axis.title.x = element_text(angle = 90),
-      axis.title.y = element_text(angle = 90)
-    )
+    thm <- thm +
+      theme(
+        axis.title.x = element_text(angle = 90),
+        axis.title.y = element_text(angle = 90)
+      )
   }
 
   # ticks
@@ -504,18 +516,20 @@ theme_par <- function(base_size = par()$ps, base_family = par()$family) {
   }
   # plot x or y axis
   if (par()$xaxt == "n") {
-    thm <- thm + theme(
-      axis.line.x = element_blank(),
-      axis.text.x = element_blank(),
-      axis.ticks.x = element_blank()
-    )
+    thm <- thm +
+      theme(
+        axis.line.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+      )
   }
   if (par()$yaxt == "n") {
-    thm <- thm + theme(
-      axis.line.y = element_blank(),
-      axis.text.y = element_blank(),
-      axis.ticks.y = element_blank()
-    )
+    thm <- thm +
+      theme(
+        axis.line.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()
+      )
   }
 
   thm

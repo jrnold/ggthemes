@@ -25,15 +25,16 @@
 #' @family geom tufte
 #' @importFrom ggplot2 layer
 #' @example inst/examples/ex-geom_rangeframe.R
-geom_rangeframe <- function(mapping = NULL,
-                            data = NULL,
-                            stat = "identity",
-                            position = "identity",
-                            ...,
-                            sides = "bl",
-                            na.rm = FALSE, # nolint: object_name_linter
-                            show.legend = NA, # nolint: object_name_linter
-                            inherit.aes = TRUE # nolint: object_name_linter
+geom_rangeframe <- function(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  sides = "bl",
+  na.rm = FALSE, # nolint: object_name_linter
+  show.legend = NA, # nolint: object_name_linter
+  inherit.aes = TRUE # nolint: object_name_linter
 ) {
   layer(
     data = data,
@@ -57,7 +58,9 @@ geom_rangeframe <- function(mapping = NULL,
 #' @export
 #' @importFrom ggplot2 Geom
 #' @importFrom scales alpha
-GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame", # nolint: object_name_linter
+# nolint start: object_name_linter
+GeomRangeFrame <- ggplot2::ggproto(
+  "GeomRangeFrame",
   ggplot2::Geom,
   optional_aes = c("x", "y"),
   draw_panel = function(data, panel_scales, coord, sides = "bl") {
@@ -126,8 +129,11 @@ GeomRangeFrame <- ggplot2::ggproto("GeomRangeFrame", # nolint: object_name_linte
     ggname("geom_rangeframe", gTree(children = do.call("gList", rugs)))
   },
   default_aes = ggplot2::aes(
-    colour = "black", size = 0.5,
-    linetype = 1, alpha = NA
+    colour = "black",
+    size = 0.5,
+    linetype = 1,
+    alpha = NA
   ),
   draw_key = ggplot2::draw_key_path
 )
+# nolint end: object_name_linter
