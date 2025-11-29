@@ -12,8 +12,6 @@ fg:
 - {name: "light blue", value: '#7ad2f6'}
 - {name: "dark green", value: '#00887d'}
 - {name: "gray", value: '#adadad'}
-- {name: "light blue", value: '#7bd3f6'}
 - {name: "dark red", value: '#7c260b'}
 - {name: "pink", value: '#ee8f71'}
-- {name: "light green", value: '#76c0c1'}
 - {name: "brown", value: '#a18376'}
