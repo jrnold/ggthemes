@@ -164,7 +164,7 @@ theme_excel_new <- function(base_size = 9, base_family = "sans") {
       panel.grid.major = element_line(
         linetype = "solid",
         colour = colorlist$gray,
-        size = 0.75 * PT_TO_MM
+        linewidth = 0.75 * PT_TO_MM
       ),
       panel.grid.minor = element_blank(),
       axis.title = element_blank(),
