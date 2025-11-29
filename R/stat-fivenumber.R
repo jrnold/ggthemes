@@ -56,7 +56,7 @@ has_groups <- function(data) {
 #' @usage NULL
 #' @rdname stat_fivenumber
 #' @importFrom ggplot2 resolution remove_missing
-StatFivenumber <- ggplot2::ggproto(
+StatFivenumber <- ggplot2::ggproto( # nolint
   "StatFivenumber",
   ggplot2::Stat, # nolint: object_name_linter
   required_aes = "y",
