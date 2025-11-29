@@ -150,8 +150,4 @@ p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
   facet_wrap(~am)
 p + theme_excel_new() + scale_colour_excel_new()
-#> Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
-#> ℹ Please use the `linewidth` argument instead.
-#> ℹ The deprecated feature was likely used in the ggthemes package.
-#>   Please report the issue at <https://github.com/jrnold/ggthemes/issues>.
 ```
