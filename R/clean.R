@@ -20,12 +20,12 @@ theme_clean <- function(base_size = 12, base_family = "sans") {
     theme(
       axis.line.x = element_line(
         colour = "black",
-        size = 0.5,
+        linewidth = 0.5,
         linetype = "solid"
       ),
       axis.line.y = element_line(
         colour = "black",
-        size = 0.5,
+        linewidth = 0.5,
         linetype = "solid"
       ),
       axis.text = element_text(size = ceiling(base_size * 0.7), colour = "black"),
