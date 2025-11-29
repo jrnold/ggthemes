@@ -23,16 +23,37 @@ colorblind_pal <- function() {
 
 #' @rdname colorblind
 #' @export
-scale_colour_colorblind <- function(...) {
+colourblind_pal <- colorblind_pal
+
+#' @rdname colorblind
+#' @export
+scale_colour_colourblind <- function(...) {
   discrete_scale("colour", palette = colorblind_pal(), ...)
 }
 
 #' @rdname colorblind
 #' @export
-scale_color_colorblind <- scale_colour_colorblind
+#' @importFrom lifecycle deprecate_soft
+scale_colour_colorblind <- function(...) {
+  deprecate_soft("5.2.0", "scale_color_colorblind()")
+  scale_colour_colourblind(...)
+}
 
 #' @rdname colorblind
 #' @export
+scale_color_colorblind <- scale_colour_colourblind
+
+#' @rdname colorblind
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' @export
+#' @importFrom lifecycle deprecate_soft
 scale_fill_colorblind <- function(...) {
+  deprecate_soft("5.2.0", "scale_fill_colorblind()")
   discrete_scale("fill", palette = colorblind_pal(), ...)
 }
+
+#' @rdname colorblind
+#' @export
+scale_fill_colourblind <- scale_fill_colorblind
