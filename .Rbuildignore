@@ -24,5 +24,6 @@
 ^scripts$
 ^pkgdown$
 ^CLAUDE\.md$
-^air\.toml$
 ^\.claude$
+^[.]?air[.]toml$
+^\.vscode$
