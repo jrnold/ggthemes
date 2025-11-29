@@ -75,9 +75,12 @@ geom_map()."></head><body>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you misspell an argument name?</span>
 <span class="r-in"><span><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html" class="external-link">geom_map</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    data <span class="op">=</span> <span class="va">us</span>, map <span class="op">=</span> <span class="va">us</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">us</span>,</span></span>
+<span class="r-in"><span>    map <span class="op">=</span> <span class="va">us</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, map_id <span class="op">=</span> <span class="va">region</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    fill <span class="op">=</span> <span class="st">"white"</span>, color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">0.25</span></span></span>
+<span class="r-in"><span>    fill <span class="op">=</span> <span class="st">"white"</span>,</span></span>
+<span class="r-in"><span>    color <span class="op">=</span> <span class="st">"black"</span>,</span></span>
+<span class="r-in"><span>    size <span class="op">=</span> <span class="fl">0.25</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span><span class="st">"albers"</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">theme_map</span><span class="op">(</span><span class="op">)</span></span></span>

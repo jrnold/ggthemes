@@ -82,18 +82,15 @@ similar to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" 
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Light version with different main accent colors</span></span></span>
 <span class="r-in"><span><span class="kw">for</span> <span class="op">(</span><span class="va">accent</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu">ggthemes</span><span class="fu">::</span><span class="va"><a href="ggthemes_data.html">ggthemes_data</a></span><span class="op">[[</span><span class="st">"solarized"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"accents"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_solarized</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="va">accent</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_solarized</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="va">accent</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Dark version</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_solarized</span><span class="op">(</span>light <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_solarized</span><span class="op">(</span>light <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_solarized-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Alternative theme</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_solarized_2</span><span class="op">(</span>light <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_solarized_2</span><span class="op">(</span>light <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_solarized-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

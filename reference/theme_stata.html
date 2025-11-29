@@ -86,28 +86,24 @@ of major elements than in matching the margins.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Graphs by car type"</span>,</span></span>
-<span class="r-in"><span>    x <span class="op">=</span> <span class="st">"Weight (lbs.)"</span>, y <span class="op">=</span> <span class="st">"MPG"</span></span></span>
+<span class="r-in"><span>    x <span class="op">=</span> <span class="st">"Weight (lbs.)"</span>,</span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="st">"MPG"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># s2color</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s2color"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s2color"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_stata-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s2mono</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2mono"</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2mono"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_stata-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s1color</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2color"</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s1color"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2color"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s1color"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_stata-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s1rcolor</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s1rcolor"</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s1rcolor"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s1rcolor"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s1rcolor"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_stata-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s1mono</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s1mono"</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s1mono"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_stata-5.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

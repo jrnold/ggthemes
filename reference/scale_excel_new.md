@@ -36,13 +36,6 @@ scale_fill_excel_new(theme = "Office Theme", ...)
   Arguments passed on to
   [`discrete_scale`](https://ggplot2.tidyverse.org/reference/discrete_scale.html)
 
-  `palette`
-
-  :   A palette function that when called with a single integer argument
-      (the number of levels in the scale) returns the values that they
-      should take (e.g.,
-      [`scales::pal_hue()`](https://scales.r-lib.org/reference/pal_hue.html)).
-
   `breaks`
 
   :   One of:
@@ -87,9 +80,29 @@ scale_fill_excel_new(theme = "Office Theme", ...)
       values, and do so by default. If you want to remove missing values
       from a discrete scale, specify `na.translate = FALSE`.
 
-  `labels`
+  `minor_breaks`
 
   :   One of:
+
+      - `NULL` for no minor breaks
+
+      - [`waiver()`](https://ggplot2.tidyverse.org/reference/waiver.html)
+        for the default breaks (none for discrete, one minor break
+        between each major break for continuous)
+
+      - A numeric vector of positions
+
+      - A function that given the limits returns a vector of minor
+        breaks. Also accepts rlang
+        [lambda](https://rlang.r-lib.org/reference/as_function.html)
+        function notation. When the function has two arguments, it will
+        be given the limits and major break positions.
+
+  `labels`
+
+  :   One of the options below. Please note that when `labels` is a
+      vector, it is highly recommended to also set the `breaks` argument
+      as a vector to protect against unintended mismatches.
 
       - `NULL` for no labels
 

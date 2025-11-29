@@ -132,6 +132,10 @@ chore: update pkgdown configuration</code></pre>
 </div>
 </div>
 <div class="section level2">
+<h2 id="newsmd">NEWS.md<a class="anchor" aria-label="anchor" href="#newsmd"></a></h2>
+<p>For user-facing changes update <code>NEWS.md</code> when commiting.</p>
+</div>
+<div class="section level2">
 <h2 id="architecture">Architecture<a class="anchor" aria-label="anchor" href="#architecture"></a></h2>
 <div class="section level3">
 <h3 id="code-organization">Code Organization<a class="anchor" aria-label="anchor" href="#code-organization"></a></h3>
@@ -170,10 +174,26 @@ chore: update pkgdown configuration</code></pre>
 </div>
 <div class="section level3">
 <h3 id="code-style">Code Style<a class="anchor" aria-label="anchor" href="#code-style"></a></h3>
-<ul><li>Uses tidyverse style enforced by styler (see <code>.lintr</code> for configuration)</li>
-<li>Line length limit: 120 characters</li>
-<li>Some example files are excluded from linting/styling (see <code>.lintr</code> and <code>scripts/style.R</code>)</li>
+<p>Code sytle is enforced by the the <a href="https://tidyverse.org/blog/2025/02/air/" class="external-link">air</a> and <a href="https://lintr.r-lib.org/" class="external-link">lintr</a> packages.</p>
+<ul><li>Generally follows the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style</a>.</li>
+<li>Line length of 120</li>
+<li>
+<code>air</code> package configuration: <code>air.toml</code>.</li>
+<li>
+<code>lintr</code> package configuration: <code>.lintr</code>
+</li>
 </ul></div>
+<div class="section level3">
+<h3 id="spelling">Spelling<a class="anchor" aria-label="anchor" href="#spelling"></a></h3>
+<p>Check spelling using the <a href="https://docs.ropensci.org/spelling/" class="external-link">spelling</a> package.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Run spell check</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">Rscript</span> tests/spelling.R</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># Update wordlist interactively (adds new words found in documentation)</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'spelling::update_wordlist()'</span></span></code></pre></div>
+<p>The custom wordlist is stored in <code>inst/WORDLIST</code> and contains project-specific terms like: - Package names (ggplot, vdiffr, pkgdown) - Theme names (fivethirtyeight, solarized, stata) - Author names and proper nouns - Technical terms specific to this project</p>
+<p>When spell check finds new valid words, add them to <code>inst/WORDLIST</code> using <code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code>.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="key-concepts">Key Concepts<a class="anchor" aria-label="anchor" href="#key-concepts"></a></h2>

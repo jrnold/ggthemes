@@ -80,7 +80,7 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 <dt id="arg-stat">stat<a class="anchor" aria-label="anchor" href="#arg-stat"></a></dt>
 <dd><p>The statistical transformation to use on the data for this layer.
 When using a <code>geom_*()</code> function to construct a layer, the <code>stat</code>
-argument can be used the override the default coupling between geoms and
+argument can be used to override the default coupling between geoms and
 stats. The <code>stat</code> argument accepts the following:</p><ul><li><p>A <code>Stat</code> ggproto subclass, for example <code>StatCount</code>.</p></li>
 <li><p>A string naming the stat. To give the stat as a string, strip the
 function name of the <code>stat_</code> prefix. For example, to use <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">stat_count()</a></code>,
@@ -147,14 +147,16 @@ a warning. If <code>TRUE</code>, missing values are silently removed.</p></dd>
 <code>NA</code>, the default, includes if any aesthetics are mapped.
 <code>FALSE</code> never includes, and <code>TRUE</code> always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.</p></dd>
+display. To include legend keys for all levels, even
+when no data exists, use <code>TRUE</code>.  If <code>NA</code>, all levels are shown in legend,
+but unobserved levels are omitted.</p></dd>
 
 
 <dt id="arg-inherit-aes">inherit.aes<a class="anchor" aria-label="anchor" href="#arg-inherit-aes"></a></dt>
 <dd><p>If <code>FALSE</code>, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/annotation_borders.html" class="external-link">borders()</a></code>.</p></dd>
+the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/annotation_borders.html" class="external-link">annotation_borders()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

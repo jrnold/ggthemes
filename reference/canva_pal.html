@@ -71,11 +71,14 @@ for valid names.</p></dd>
 <span class="r-in"><span>      palette <span class="op">=</span> <span class="va">.y</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">canva_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    y <span class="op">=</span> <span class="va">palette</span>,</span></span>
-<span class="r-in"><span>    x <span class="op">=</span> <span class="va">.id</span>,</span></span>
-<span class="r-in"><span>    fill <span class="op">=</span> <span class="va">colors</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">canva_df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      y <span class="op">=</span> <span class="va">palette</span>,</span></span>
+<span class="r-in"><span>      x <span class="op">=</span> <span class="va">.id</span>,</span></span>
+<span class="r-in"><span>      fill <span class="op">=</span> <span class="va">colors</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">scale_fill_identity</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>

@@ -184,14 +184,16 @@ a warning. If <code>TRUE</code>, missing values are silently removed.</p></dd>
 <code>NA</code>, the default, includes if any aesthetics are mapped.
 <code>FALSE</code> never includes, and <code>TRUE</code> always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.</p></dd>
+display. To include legend keys for all levels, even
+when no data exists, use <code>TRUE</code>.  If <code>NA</code>, all levels are shown in legend,
+but unobserved levels are omitted.</p></dd>
 
 
 <dt id="arg-inherit-aes">inherit.aes<a class="anchor" aria-label="anchor" href="#arg-inherit-aes"></a></dt>
 <dd><p>If <code>FALSE</code>, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/annotation_borders.html" class="external-link">borders()</a></code>.</p></dd>
+the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/annotation_borders.html" class="external-link">annotation_borders()</a></code>.</p></dd>
 
 
 <dt id="arg-median-type">median.type<a class="anchor" aria-label="anchor" href="#arg-median-type"></a></dt>
@@ -305,9 +307,7 @@ box plots. The American Statistician 32, 12-16.</p>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="geom_tufteboxplot-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># combined with theme_tufte</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">y</span>.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>

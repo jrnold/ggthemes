@@ -56,12 +56,7 @@
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Arguments passed on to <code><a href="https://ggplot2.tidyverse.org/reference/discrete_scale.html" class="external-link">discrete_scale</a></code></p><dl><dt><code>palette</code></dt>
-<dd><p>A palette function that when called with a single integer
-argument (the number of levels in the scale) returns the values that
-they should take (e.g., <code><a href="https://scales.r-lib.org/reference/pal_hue.html" class="external-link">scales::pal_hue()</a></code>).</p></dd>
-
-    <dt><code>breaks</code></dt>
+<dd><p>Arguments passed on to <code><a href="https://ggplot2.tidyverse.org/reference/discrete_scale.html" class="external-link">discrete_scale</a></code></p><dl><dt><code>breaks</code></dt>
 <dd><p>One of:</p><ul><li><p><code>NULL</code> for no breaks</p></li>
 <li><p><code><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver()</a></code> for the default breaks (the scale limits)</p></li>
 <li><p>A character vector of breaks</p></li>
@@ -90,8 +85,21 @@ every level in a legend, the layer should use <code>show.legend = TRUE</code>.</
 missing values, and do so by default. If you want to remove missing values
 from a discrete scale, specify <code>na.translate = FALSE</code>.</p></dd>
 
+    <dt><code>minor_breaks</code></dt>
+<dd><p>One of:</p><ul><li><p><code>NULL</code> for no minor breaks</p></li>
+<li><p><code><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver()</a></code> for the default breaks (none for discrete, one minor break
+between each major break for continuous)</p></li>
+<li><p>A numeric vector of positions</p></li>
+<li><p>A function that given the limits returns a vector of minor breaks. Also
+accepts rlang <a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">lambda</a> function notation. When
+the function has two arguments, it will be given the limits and major
+break positions.</p></li>
+</ul></dd>
+
     <dt><code>labels</code></dt>
-<dd><p>One of:</p><ul><li><p><code>NULL</code> for no labels</p></li>
+<dd><p>One of the options below. Please note that when <code>labels</code> is a
+vector, it is highly recommended to also set the <code>breaks</code> argument as a
+vector to protect against unintended mismatches.</p><ul><li><p><code>NULL</code> for no labels</p></li>
 <li><p><code><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver()</a></code> for the default labels computed by the
 transformation object</p></li>
 <li><p>A character vector giving labels (must be same length as <code>breaks</code>)</p></li>
