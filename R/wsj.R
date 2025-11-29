@@ -102,7 +102,7 @@ wsj_pal <- function(palette = "colors6") {
 #' @rdname scale_wsj
 #' @export
 scale_colour_wsj <- function(palette = "colors6", ...) {
-  discrete_scale("colour", "wsj", wsj_pal(palette), ...)
+  discrete_scale("colour", palette = wsj_pal(palette), ...)
 }
 
 #' @rdname scale_wsj
@@ -112,5 +112,5 @@ scale_color_wsj <- scale_colour_wsj
 #' @rdname scale_wsj
 #' @export
 scale_fill_wsj <- function(palette = "colors6", ...) {
-  discrete_scale("fill", "wsj", wsj_pal(palette), ...)
+  discrete_scale("fill", palette = wsj_pal(palette), ...)
 }

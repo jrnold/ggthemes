@@ -48,7 +48,7 @@ canva_pal <- function(palette = "Fresh and bright") {
 #' @inheritParams canva_pal
 #' @export
 scale_colour_canva <- function(..., palette = "Fresh and bright") {
-  discrete_scale("colour", "canva", canva_pal(palette), ...)
+  discrete_scale("colour", palette = canva_pal(palette), ...)
 }
 
 #' @export
@@ -58,5 +58,5 @@ scale_color_canva <- scale_colour_canva
 #' @export
 #' @rdname scale_colour_canva
 scale_fill_canva <- function(..., palette = "Fresh and bright") {
-  discrete_scale("fill", "canva", canva_pal(palette), ...)
+  discrete_scale("fill", palette = canva_pal(palette), ...)
 }

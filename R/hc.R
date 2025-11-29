@@ -89,7 +89,7 @@ hc_pal <- function(palette = "default") {
 #' @rdname scale_hc
 #' @export
 scale_colour_hc <- function(palette = "default", ...) {
-  discrete_scale("colour", "hc", hc_pal(palette), ...)
+  discrete_scale("colour", palette = hc_pal(palette), ...)
 }
 
 #' @rdname scale_hc
@@ -99,5 +99,5 @@ scale_color_hc <- scale_colour_hc
 #' @rdname scale_hc
 #' @export
 scale_fill_hc <- function(palette = "default", ...) {
-  discrete_scale("fill", "hc", hc_pal(palette), ...)
+  discrete_scale("fill", palette = hc_pal(palette), ...)
 }

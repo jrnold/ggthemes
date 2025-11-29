@@ -30,13 +30,13 @@ stata_pal <- function(scheme = "s2color") {
 #' @rdname scale_stata
 #' @export
 scale_colour_stata <- function(scheme = "s2color", ...) {
-  discrete_scale("colour", "stata", stata_pal(scheme), ...)
+  discrete_scale("colour", palette = stata_pal(scheme), ...)
 }
 
 #' @export
 #' @rdname scale_stata
 scale_fill_stata <- function(scheme = "s2color", ...) {
-  discrete_scale("fill", "stata", stata_pal(scheme), ...)
+  discrete_scale("fill", palette = stata_pal(scheme), ...)
 }
 
 #' @export
@@ -316,7 +316,7 @@ stata_shape_pal <- function() {
 #' @example inst/examples/ex-scale_shape_stata.R
 #' @importFrom ggplot2 discrete_scale
 scale_shape_stata <- function(...) {
-  discrete_scale("shape", "stata", stata_shape_pal(), ...)
+  discrete_scale("shape", palette = stata_shape_pal(), ...)
 }
 
 #' Stata linetype palette (discrete)
@@ -345,7 +345,7 @@ stata_linetype_pal <- function() {
 #' @export
 #' @example inst/examples/ex-scale_linetype_stata.R
 scale_linetype_stata <- function(...) {
-  discrete_scale("linetype", "stata", stata_linetype_pal(), ...)
+  discrete_scale("linetype", palette = stata_linetype_pal(), ...)
 }
 
 ## Text sizes (from style definitions ado/base/style/gsize-*.style)

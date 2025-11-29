@@ -113,13 +113,13 @@ gdocs_pal <- function() {
 #' @export
 #' @seealso See \code{\link{theme_gdocs}()} for examples.
 scale_fill_gdocs <- function(...) {
-  discrete_scale("fill", "gdocs", gdocs_pal(), ...)
+  discrete_scale("fill", palette = gdocs_pal(), ...)
 }
 
 #' @export
 #' @rdname scale_gdocs
 scale_colour_gdocs <- function(...) {
-  discrete_scale("colour", "gdocs", gdocs_pal(), ...)
+  discrete_scale("colour", palette = gdocs_pal(), ...)
 }
 
 #' @export

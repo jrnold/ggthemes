@@ -50,13 +50,13 @@ excel_new_pal <- function(theme = "Office Theme") {
 #' @export
 #' @example inst/examples/ex-theme_excel.R
 scale_fill_excel <- function(...) {
-  discrete_scale("fill", "excel", excel_pal(line = FALSE), ...)
+  discrete_scale("fill", palette = excel_pal(line = FALSE), ...)
 }
 
 #' @export
 #' @rdname scale_excel
 scale_colour_excel <- function(...) {
-  discrete_scale("colour", "excel", excel_pal(line = TRUE), ...)
+  discrete_scale("colour", palette = excel_pal(line = TRUE), ...)
 }
 
 #' @export
@@ -74,7 +74,7 @@ scale_color_excel <- scale_colour_excel
 #' @example inst/examples/ex-theme_excel_new.R
 #' @export
 scale_colour_excel_new <- function(theme = "Office Theme", ...) {
-  discrete_scale("colour", "excel_new", excel_new_pal(theme), ...)
+  discrete_scale("colour", palette = excel_new_pal(theme), ...)
 }
 
 #' @export
@@ -84,7 +84,7 @@ scale_color_excel_new <- scale_colour_excel_new
 #' @export
 #' @rdname scale_excel_new
 scale_fill_excel_new <- function(theme = "Office Theme", ...) {
-  discrete_scale("fill", "excel_new", excel_new_pal(theme), ...)
+  discrete_scale("fill", palette = excel_new_pal(theme), ...)
 }
 
 #' ggplot theme based on old Excel plots

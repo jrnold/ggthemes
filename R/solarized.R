@@ -61,13 +61,13 @@ solarized_pal <- function(accent = "blue") {
 #' @export
 #' @example inst/examples/ex-scale_solarized.R
 scale_fill_solarized <- function(accent = "blue", ...) {
-  discrete_scale("fill", "solarized", solarized_pal(accent), ...)
+  discrete_scale("fill", palette = solarized_pal(accent), ...)
 }
 
 #' @export
 #' @rdname scale_solarized
 scale_colour_solarized <- function(accent = "blue", ...) {
-  discrete_scale("colour", "solarized", solarized_pal(accent), ...)
+  discrete_scale("colour", palette = solarized_pal(accent), ...)
 }
 #' @export
 #' @rdname scale_solarized

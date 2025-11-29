@@ -54,13 +54,13 @@ calc_pal <- function() {
 #' @export
 #' @seealso See \code{\link{theme_calc}()} for examples.
 scale_fill_calc <- function(...) {
-  discrete_scale("fill", "calc", calc_pal(), ...)
+  discrete_scale("fill", palette = calc_pal(), ...)
 }
 
 #' @export
 #' @rdname scale_calc
 scale_colour_calc <- function(...) {
-  discrete_scale("colour", "calc", calc_pal(), ...)
+  discrete_scale("colour", palette = calc_pal(), ...)
 }
 
 #' @export
@@ -90,7 +90,7 @@ calc_shape_pal <- function() {
 #' @export
 #' @seealso \code{\link{theme_calc}()} for examples.
 scale_shape_calc <- function(...) {
-  discrete_scale("shape", "calc", calc_shape_pal(), ...)
+  discrete_scale("shape", palette = calc_shape_pal(), ...)
 }
 
 # PT_TO_MM <- 0.352778
