@@ -5,7 +5,7 @@ linters: linters_with_defaults(
   )
 encoding: "UTF-8"
 exclusions: list(
-    "./inst/exampels/ex-few_shape_pal.R",
+    "./inst/examples/ex-few_shape_pal.R",
     "./inst/examples/ex-calc_shape_pal.R",
     "./inst/examples/ex-cleveland_shape_pal.R",
     "./inst/examples/ex-few_shape_pal.R",
