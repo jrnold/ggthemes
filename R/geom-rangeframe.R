@@ -58,9 +58,9 @@ geom_rangeframe <- function(
 #' @export
 #' @importFrom ggplot2 Geom
 #' @importFrom scales alpha
+# nolint start: object_name_linter
 GeomRangeFrame <- ggplot2::ggproto(
-  # nolint
-  "GeomRangeFrame", # nolint: object_name_linter
+  "GeomRangeFrame",
   ggplot2::Geom,
   optional_aes = c("x", "y"),
   draw_panel = function(data, panel_scales, coord, sides = "bl") {
@@ -136,3 +136,4 @@ GeomRangeFrame <- ggplot2::ggproto(
   ),
   draw_key = ggplot2::draw_key_path
 )
+# nolint end: object_name_linter

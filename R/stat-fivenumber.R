@@ -51,6 +51,7 @@ has_groups <- function(data) {
   data$group[1L] != NO_GROUP
 }
 
+# nolint start: object_name_linter
 #' @export
 #' @format NULL
 #' @usage NULL
@@ -120,3 +121,4 @@ StatFivenumber <- ggplot2::ggproto(
     df
   }
 )
+# nolint end: object_name_linter

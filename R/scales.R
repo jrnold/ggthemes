@@ -1,7 +1,6 @@
 # Much of this code is copied from the labeling package.
+# nolint start: object_name_linter
 .simplicity <- function(q, Q, j, lmin, lmax, lstep) {
-  # nolint
-  # nolint: object_name_linter
   eps <- .Machine$double.eps * 100
 
   n <- length(Q)
@@ -18,8 +17,6 @@
 }
 
 .simplicity_max <- function(q, Q, j) {
-  # nolint
-  # nolint: object_name_linter
   n <- length(Q)
   i <- match(q, Q)[1]
   v <- 1
@@ -262,3 +259,5 @@ smart_digits <- function(x, ...) {
 smart_digits_format <- function(x, ...) {
   function(x) smart_digits(x, ...)
 }
+
+# nolint end: object_name_linter
