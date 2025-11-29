@@ -59,3 +59,4 @@ LazyData: true
 Language: en-US
 Encoding: UTF-8
 Config/testthat/edition: 3
+Config/Needs/website: pkgdown
