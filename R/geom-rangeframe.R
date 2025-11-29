@@ -58,7 +58,8 @@ geom_rangeframe <- function(
 #' @export
 #' @importFrom ggplot2 Geom
 #' @importFrom scales alpha
-GeomRangeFrame <- ggplot2::ggproto( # nolint
+GeomRangeFrame <- ggplot2::ggproto(
+  # nolint
   "GeomRangeFrame", # nolint: object_name_linter
   ggplot2::Geom,
   optional_aes = c("x", "y"),

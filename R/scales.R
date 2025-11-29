@@ -1,5 +1,6 @@
 # Much of this code is copied from the labeling package.
-.simplicity <- function(q, Q, j, lmin, lmax, lstep) { # nolint
+.simplicity <- function(q, Q, j, lmin, lmax, lstep) {
+  # nolint
   # nolint: object_name_linter
   eps <- .Machine$double.eps * 100
 
@@ -16,7 +17,8 @@
   1 - (i - 1) / (n - 1) - j + v
 }
 
-.simplicity_max <- function(q, Q, j) { # nolint
+.simplicity_max <- function(q, Q, j) {
+  # nolint
   # nolint: object_name_linter
   n <- length(Q)
   i <- match(q, Q)[1]

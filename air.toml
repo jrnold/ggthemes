@@ -4,7 +4,19 @@ indent-width = 2
 indent-style = "space"
 line-ending = "auto"
 persistent-line-breaks = true
-exclude = []
+exclude = [
+  "./inst/exampels/ex-few_shape_pal.R",
+  "./inst/examples/ex-calc_shape_pal.R",
+  "./inst/examples/ex-cleveland_shape_pal.R",
+  "./inst/examples/ex-few_shape_pal.R",
+  "./inst/examples/ex-palette_pander.R",
+  "./inst/examples/ex-scale_shape_stata.R",
+  "./inst/examples/ex-scale_shape_tableau.R",
+  "./inst/examples/ex-tableau_shape_pal.R",
+  "./inst/examples/ex-tableau_shape_pal.R",
+  "./inst/examples/ex-theme_calc.R",
+  "./inst/examples/ex-theme_economist.R"
+]
 default-exclude = true
 skip = []
 table = []
