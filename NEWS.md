@@ -1,4 +1,4 @@
-# ggthemes (development version)
+# ggthemes 5.2.0
 
 - Renamed `scale_colour_colorblind()` to `scale_colour_colourblind()` (#180).
 - Updated `theme_solarized` to fix `key.background` color.
