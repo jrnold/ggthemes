@@ -85,13 +85,13 @@ tableau_color_pal <- function(
 #' @seealso \code{\link{tableau_color_pal}()} for references.
 #' @example inst/examples/ex-scale_color_tableau.R
 scale_colour_tableau <- function(palette = "Tableau 10", type = "regular", direction = 1, ...) {
-  discrete_scale("colour", "tableau", tableau_color_pal(palette, type, direction), ...)
+  discrete_scale("colour", palette = tableau_color_pal(palette, type, direction), ...)
 }
 
 #' @export
 #' @rdname scale_color_tableau
 scale_fill_tableau <- function(palette = "Tableau 10", type = "regular", direction = 1, ...) {
-  discrete_scale("fill", "tableau", tableau_color_pal(palette, type, direction), ...)
+  discrete_scale("fill", palette = tableau_color_pal(palette, type, direction), ...)
 }
 
 #' @export
@@ -135,7 +135,7 @@ tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
 #' @family shape tableau
 #' @example inst/examples/ex-scale_shape_tableau.R
 scale_shape_tableau <- function(palette = "default", ...) {
-  discrete_scale("shape", "tableau", tableau_shape_pal(palette), ...)
+  discrete_scale("shape", palette = tableau_shape_pal(palette), ...)
 }
 
 # nolint start
@@ -203,7 +203,7 @@ scale_colour_gradient_tableau <- function(
   na.value = "grey50", # nolint: object_name_linter
   guide = "colourbar"
 ) {
-  continuous_scale("colour", "tableau", tableau_seq_gradient_pal(palette), na.value = na.value, guide = guide, ...)
+  continuous_scale("colour", palette = tableau_seq_gradient_pal(palette), na.value = na.value, guide = guide, ...)
 }
 
 #' @export
@@ -214,7 +214,7 @@ scale_fill_gradient_tableau <- function(
   na.value = "grey50", # nolint: object_name_linter
   guide = "colourbar"
 ) {
-  continuous_scale("fill", "tableau", tableau_seq_gradient_pal(palette), na.value = na.value, guide = guide, ...)
+  continuous_scale("fill", palette = tableau_seq_gradient_pal(palette), na.value = na.value, guide = guide, ...)
 }
 
 #' @export
@@ -249,7 +249,7 @@ scale_colour_gradient2_tableau <- function(
   na.value = "grey50", # nolint: object_name_linter
   guide = "colourbar"
 ) {
-  continuous_scale("colour", "tableau2", tableau_div_gradient_pal(palette), na.value = na.value, guide = guide, ...)
+  continuous_scale("colour", palette = tableau_div_gradient_pal(palette), na.value = na.value, guide = guide, ...)
 }
 
 #' @export
@@ -260,7 +260,7 @@ scale_fill_gradient2_tableau <- function(
   na.value = "grey50", # nolint: object_name_linter
   guide = "colourbar"
 ) {
-  continuous_scale("fill", "tableau2", tableau_div_gradient_pal(palette), na.value = na.value, guide = guide, ...)
+  continuous_scale("fill", palette = tableau_div_gradient_pal(palette), na.value = na.value, guide = guide, ...)
 }
 
 #' @export

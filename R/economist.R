@@ -112,7 +112,7 @@ economist_pal <- function(fill = TRUE) {
 #' @seealso \code{\link{theme_economist}()} for examples.
 #' @export
 scale_colour_economist <- function(...) {
-  discrete_scale("colour", "economist", economist_pal(), ...)
+  discrete_scale("colour", palette = economist_pal(), ...)
 }
 
 #' @rdname scale_economist
@@ -122,7 +122,7 @@ scale_color_economist <- scale_colour_economist
 #' @rdname scale_economist
 #' @export
 scale_fill_economist <- function(...) {
-  discrete_scale("fill", "economist", economist_pal(), ...)
+  discrete_scale("fill", palette = economist_pal(), ...)
 }
 
 #' ggplot color theme based on the Economist

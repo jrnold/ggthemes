@@ -59,7 +59,7 @@ cleveland_shape_pal <- function(overlap = TRUE) {
 #' Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
 scale_shape_cleveland <- function(overlap = TRUE, ...) {
-  discrete_scale("shape", "cleveland", cleveland_shape_pal(overlap), ...)
+  discrete_scale("shape", palette = cleveland_shape_pal(overlap), ...)
 }
 
 #' Filled Circle Shape palette (discrete)
@@ -107,7 +107,7 @@ circlefill_shape_pal <- function() {
 #' \code{\link{circlefill_shape_pal}()} for a description of the palette.
 scale_shape_circlefill <- function(...) {
   deprecate_soft("5.0.0", "scale_shape_circlefill()")
-  discrete_scale("shape", "circlefill", circlefill_shape_pal(), ...)
+  discrete_scale("shape", palette = circlefill_shape_pal(), ...)
 }
 
 #' Shape palette from Tremmel (1995) (discrete)
@@ -178,8 +178,7 @@ tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
 scale_shape_tremmel <- function(overlap = FALSE, alt = TRUE, ...) {
   discrete_scale(
     "shape",
-    "tremmel",
-    tremmel_shape_pal(
+    palette = tremmel_shape_pal(
       overlap = overlap,
       alt = alt
     ),

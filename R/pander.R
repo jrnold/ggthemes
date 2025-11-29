@@ -302,7 +302,7 @@ palette_pander <- function(n, random_order = FALSE) {
 #' @seealso \code{\link{theme_pander}()}
 #' @export
 scale_color_pander <- function(...) {
-  discrete_scale("colour", "pander", palette_pander, ...)
+  discrete_scale("colour", palette = palette_pander, ...)
 }
 
 
@@ -314,5 +314,5 @@ scale_colour_pander <- scale_color_pander
 #' @rdname scale_pander
 #' @export
 scale_fill_pander <- function(...) {
-  discrete_scale("fill", "pander", palette_pander, ...)
+  discrete_scale("fill", palette = palette_pander, ...)
 }

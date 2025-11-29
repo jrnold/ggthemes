@@ -59,7 +59,7 @@ few_pal <- function(palette = "Medium") {
 #' @rdname scale_few
 #' @export
 scale_colour_few <- function(palette = "Medium", ...) {
-  discrete_scale("colour", "few", few_pal(palette), ...)
+  discrete_scale("colour", palette = few_pal(palette), ...)
 }
 
 #' @export
@@ -69,7 +69,7 @@ scale_color_few <- scale_colour_few
 #' @export
 #' @rdname scale_few
 scale_fill_few <- function(palette = "Light", ...) {
-  discrete_scale("fill", "few", few_pal(palette), ...)
+  discrete_scale("fill", palette = few_pal(palette), ...)
 }
 
 #' Theme based on Few's "Practical Rules for Using Color in Charts"
@@ -141,5 +141,5 @@ few_shape_pal <- function() {
 #'   scale uses.
 #' @export
 scale_shape_few <- function(...) {
-  discrete_scale("shape", "few", few_shape_pal(), ...)
+  discrete_scale("shape", palette = few_shape_pal(), ...)
 }

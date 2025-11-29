@@ -34,7 +34,7 @@ ptol_pal <- function() {
 #' @export
 #' @example inst/examples/ex-scale_colour_ptol.R
 scale_colour_ptol <- function(...) {
-  discrete_scale("colour", "ptol", ptol_pal(), ...)
+  discrete_scale("colour", palette = ptol_pal(), ...)
 }
 
 #' @export
@@ -44,5 +44,5 @@ scale_color_ptol <- scale_colour_ptol
 #' @export
 #' @rdname scale_ptol
 scale_fill_ptol <- function(...) {
-  discrete_scale("fill", "ptol", ptol_pal(), ...)
+  discrete_scale("fill", palette = ptol_pal(), ...)
 }
