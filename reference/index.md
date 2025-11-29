@@ -76,9 +76,12 @@ control the details of how data values are translated to visual
 properties.
 
 - [`colorblind_pal()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  [`colourblind_pal()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  [`scale_colour_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_colour_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_color_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_fill_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  [`scale_fill_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   : Colorblind Color Palette (Discrete) and Scales
 - [`scale_fill_calc()`](http://jrnold.github.io/ggthemes/reference/scale_calc.md)
   [`scale_colour_calc()`](http://jrnold.github.io/ggthemes/reference/scale_calc.md)
@@ -194,9 +197,12 @@ Color, shape, and linetype palettes.
 - [`cleveland_shape_pal()`](http://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md)
   : Shape palette from Cleveland "Elements of Graphing Data" (discrete).
 - [`colorblind_pal()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  [`colourblind_pal()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  [`scale_colour_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_colour_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_color_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_fill_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  [`scale_fill_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
   : Colorblind Color Palette (Discrete) and Scales
 - [`economist_pal()`](http://jrnold.github.io/ggthemes/reference/economist_pal.md)
   : Economist color palette (discrete)

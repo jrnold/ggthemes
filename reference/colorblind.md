@@ -2,16 +2,24 @@
 
 An eight-color colorblind safe qualitative discrete palette.
 
+\`r lifecycle::badge("deprecated")\`
+
 ## Usage
 
 ``` r
 colorblind_pal()
+
+colourblind_pal()
+
+scale_colour_colourblind(...)
 
 scale_colour_colorblind(...)
 
 scale_color_colorblind(...)
 
 scale_fill_colorblind(...)
+
+scale_fill_colourblind(...)
 ```
 
 ## Arguments
@@ -149,5 +157,5 @@ p <- ggplot(mtcars) +
     colour = factor(gear)
   )) +
   facet_wrap(~am)
-p + theme_igray() + scale_colour_colorblind()
+p + theme_igray() + scale_colour_colourblind()
 ```

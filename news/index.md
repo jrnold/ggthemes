@@ -2,7 +2,15 @@
 
 ## ggthemes (development version)
 
+- Renamed
+  [`scale_colour_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  to
+  [`scale_colour_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
+  ([\#180](https://github.com/jrnold/ggthemes/issues/180)).
 - Updated `theme_solarized` to fix `key.background` color.
+- Bugfix: Fix documentation cross-links
+  ([\#186](https://github.com/jrnold/ggthemes/issues/186))
+- Bugfix: Removed usage of deprecated ggplot functions
 
 ## ggthemes 5.1.0
 
