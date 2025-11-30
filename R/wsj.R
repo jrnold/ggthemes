@@ -6,7 +6,7 @@
 #'
 #' @references
 #'
-#' \url{https://twitter.com/WSJGraphics}
+#' \url{https://x.com/WSJGraphics}
 #'
 #' \url{https://pinterest.com/wsjgraphics/wsj-graphics/}
 #'
@@ -57,7 +57,7 @@ theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", tit
 #' The Wall Street Journal uses many different color palettes in its
 #' plots. This collects a few of them, but is by no means exhaustive.
 #' Collections of these plots can be found on the WSJ Graphics
-#' \href{https://twitter.com/WSJGraphics}{Twitter} feed and
+#' \href{https://x.com/WSJGraphics}{X (formerly Twitter)} feed and
 #' \href{https://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 #'
 #' @section Palettes:
