@@ -1,5 +1,7 @@
 # ggthemes (development version)
 
+- Bugfix: Fix 301 error in link (#196)
+
 # ggthemes 5.2.0
 
 - Renamed `scale_colour_colorblind()` to `scale_colour_colourblind()` (#180).
