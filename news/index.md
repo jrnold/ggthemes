@@ -2,6 +2,9 @@
 
 ## ggthemes (development version)
 
+- Bugfix: Fix 301 error in link
+  ([\#196](https://github.com/jrnold/ggthemes/issues/196))
+
 ## ggthemes 5.2.0
 
 CRAN release: 2025-11-30

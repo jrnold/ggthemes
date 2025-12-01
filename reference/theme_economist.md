@@ -55,7 +55,7 @@ in the print *The Economist* and
 
 `theme_economist_white` implements a variant with a while panel and
 light gray (or white) background often used by *The Economist* blog
-[Graphic Detail](https://www.economist.com/blogs/graphicdetail).
+[Graphic Detail](https://www.economist.com/topics/graphic-detail).
 
 Use
 [`scale_color_economist()`](http://jrnold.github.io/ggthemes/reference/scale_economist.md)
