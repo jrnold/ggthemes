@@ -45,7 +45,7 @@ background theme in the print \emph{The Economist} and
 
 \code{theme_economist_white} implements a variant with a while
 panel and light gray (or white) background often used by \emph{The Economist}
-blog \href{https://www.economist.com/blogs/graphicdetail}{Graphic Detail}.
+blog \href{https://www.economist.com/topics/graphic-detail}{Graphic Detail}.
 
 Use \code{\link{scale_color_economist}()} with this theme.
 The x axis should be displayed on the right hand side.
