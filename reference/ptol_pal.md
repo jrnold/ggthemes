@@ -1,7 +1,7 @@
 # Color Palettes from Paul Tol's "Colour Schemes"
 
 Qualitative color palettes from Paul Tol, ["Colour
-Schemes"](https://personal.sron.nl/~pault/).
+Schemes"](https://sronpersonalpages.nl/~pault/).
 
 ## Usage
 
@@ -19,7 +19,7 @@ Salute\](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-sal
 
 Paul Tol. 2012. "Colour Schemes." SRON Technical Note,
 SRON/EPS/TN/09-002.
-<https://personal.sron.nl/~pault/data/colourschemes.pdf>
+<https://sronpersonalpages.nl/~pault/data/colourschemes.pdf>
 
 ## See also
 

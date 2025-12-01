@@ -2,8 +2,8 @@
 
 The Wall Street Journal uses many different color palettes in its plots.
 This collects a few of them, but is by no means exhaustive. Collections
-of these plots can be found on the WSJ Graphics
-[Twitter](https://twitter.com/WSJGraphics) feed and
+of these plots can be found on the WSJ Graphics [X (formerly
+Twitter)](https://x.com/WSJGraphics) feed and
 [Pinterest](https://pinterest.com/wsjgraphics/wsj-graphics/).
 
 ## Usage

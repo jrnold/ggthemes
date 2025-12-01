@@ -39,7 +39,7 @@ This theme should be used with
 
 ## References
 
-<https://twitter.com/WSJGraphics>
+<https://x.com/WSJGraphics>
 
 <https://pinterest.com/wsjgraphics/wsj-graphics/>
 

@@ -1,6 +1,8 @@
 # Changelog
 
-## ggthemes (development version)
+## ggthemes 5.2.0
+
+CRAN release: 2025-11-30
 
 - Renamed
   [`scale_colour_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md)
