@@ -15,6 +15,7 @@ version has increased).
   `test-coverage.yaml` from `covr::codecov()` to `covr::package_coverage()` +
   the official `codecov/codecov-action`
 - Fix stale `branch/master` Codecov badge in README (now points at `main`)
+- Bugfix: Fix `excel_new_pal()` example so it actually generates output (#199)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
