@@ -19,6 +19,12 @@
 #' @details This should be used with `coord_cartesian(clip="off")` in order to
 #'   correctly draw the lines.
 #'
+#'   Secondary axes (\code{\link[ggplot2]{sec_axis}()}) only relabel the
+#'   existing axis; they do not introduce a separate data range. Because of
+#'   this, \code{sides = "trbl"} already draws correctly-positioned frames on
+#'   the top/right edges of a panel that has a secondary axis -- there is no
+#'   separate "secondary" range for \code{geom_rangeframe()} to draw against.
+#'
 #' @references Tufte, Edward R. (2001) The Visual Display of
 #' Quantitative Information, Chapter 6.
 #'

@@ -119,6 +119,12 @@ Axis lines which extend to the maximum and minimum of the plotted data.
 \details{
 This should be used with `coord_cartesian(clip="off")` in order to
   correctly draw the lines.
+
+  Secondary axes (\code{\link[ggplot2]{sec_axis}()}) only relabel the
+  existing axis; they do not introduce a separate data range. Because of
+  this, \code{sides = "trbl"} already draws correctly-positioned frames on
+  the top/right edges of a panel that has a secondary axis -- there is no
+  separate "secondary" range for \code{geom_rangeframe()} to draw against.
 }
 \section{Aesthetics}{
 
@@ -143,6 +149,15 @@ ggplot(mtcars, aes(wt, mpg)) +
 # `coord_cartesian(clip="off")`` ensures that the full width of the line is drawn.
 # if you know a better way to fix this,
 # please open an issue or PR on github https://github.com/jrnold/ggthemes/issue
+
+# sides = "trbl" also works with a secondary axis: the secondary axis only
+# relabels the existing scale, so the frame is still correctly positioned.
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point() +
+  geom_rangeframe(sides = "trbl") +
+  scale_y_continuous(sec.axis = sec_axis(~ . * 0.4251, name = "km/L")) +
+  coord_cartesian(clip = "off") +
+  theme_tufte()
 }
 \references{
 Tufte, Edward R. (2001) The Visual Display of
