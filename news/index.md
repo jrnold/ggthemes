@@ -68,6 +68,13 @@ version has increased).
   [`ggplot2::sec_axis()`](https://ggplot2.tidyverse.org/reference/sec_axis.html)
   only relabels the existing scale rather than introducing a separate
   data range ([\#179](https://github.com/jrnold/ggthemes/issues/179))
+- Add `midpoint` argument to
+  [`scale_colour_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
+  [`scale_fill_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
+  and
+  [`scale_color_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md)
+  to control which data value maps to the middle color of the diverging
+  palette ([\#136](https://github.com/jrnold/ggthemes/issues/136))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
