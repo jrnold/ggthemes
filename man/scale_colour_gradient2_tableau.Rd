@@ -9,6 +9,7 @@
 scale_colour_gradient2_tableau(
   palette = "Orange-Blue Diverging",
   ...,
+  midpoint = 0,
   na.value = "grey50",
   guide = "colourbar"
 )
@@ -16,6 +17,7 @@ scale_colour_gradient2_tableau(
 scale_fill_gradient2_tableau(
   palette = "Orange-Blue Diverging",
   ...,
+  midpoint = 0,
   na.value = "grey50",
   guide = "colourbar"
 )
@@ -23,6 +25,7 @@ scale_fill_gradient2_tableau(
 scale_color_gradient2_tableau(
   palette = "Orange-Blue Diverging",
   ...,
+  midpoint = 0,
   na.value = "grey50",
   guide = "colourbar"
 )
@@ -35,6 +38,9 @@ scale_color_gradient2_tableau(
 }}
 
 \item{...}{Arguments passed to \code{tableau_gradient_pal}.}
+
+\item{midpoint}{The data value that corresponds to the middle color of the
+diverging palette.}
 
 \item{na.value}{Colour to use for missing values}
 

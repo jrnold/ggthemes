@@ -4,12 +4,20 @@
 \alias{theme_foundation}
 \title{Foundation Theme}
 \usage{
-theme_foundation(base_size = 12, base_family = "")
+theme_foundation(
+  base_size = 12,
+  base_family = "",
+  ink = "black",
+  paper = "white",
+  accent = "#3366FF"
+)
 }
 \arguments{
 \item{base_size}{base font size, given in pts.}
 
 \item{base_family}{base font family}
+
+\item{ink, paper, accent}{colour for foreground, background, and accented elements respectively.}
 }
 \description{
 This theme is designed to be a foundation from which to build new
@@ -23,8 +31,14 @@ because those themes define elements deep in the hierarchy.
 This theme takes \code{\link[ggplot2]{theme_gray}()} and sets all
 \code{colour} and \code{fill} values to \code{NULL}, except for the top-level
 elements (\code{line}, \code{rect}, and \code{title}), which have
-\code{colour = "black"}, and \code{fill = "white"}. This leaves the spacing
+\code{colour = ink}, and \code{fill = paper}. This leaves the spacing
 and-non colour defaults of the default \pkg{ggplot2} themes in place.
+
+Unlike \code{theme_foundation()}, the other themes in this package (e.g.
+\code{\link{theme_economist}()}, \code{\link{theme_excel}()},
+\code{\link{theme_hc}()}) intentionally replicate a fixed, published
+visual style, so they do not expose \code{ink}/\code{paper}/\code{accent}
+arguments.
 }
 \seealso{
 Other themes: 

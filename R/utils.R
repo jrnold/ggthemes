@@ -17,6 +17,15 @@ ggname <- function(prefix, grob) {
   grob
 }
 
+# rescaler for continuous_scale() that maps `mid` to the midpoint of `to`,
+# for use with palettes that aren't ggplot2::scale_*_gradient2()'s 3-stop
+# low/mid/high palette (e.g. multi-stop diverging gradients)
+mid_rescaler <- function(mid) {
+  function(x, to = c(0, 1), from = range(x, na.rm = TRUE)) {
+    scales::rescale_mid(x, to, from, mid)
+  }
+}
+
 rd_optlist <- function(x) {
   paste0("\\code{\"", as.character(x), "\"}", collapse = ", ")
 }
