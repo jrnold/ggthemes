@@ -226,7 +226,9 @@ bank_slopes_funs[["ao"]] <-
     s <- slopes$s * slopes$Rx / slopes$Ry
     f <- function(alpha) mean(abs(atan(s / alpha))) - FORTY_FIVE
     pivot <- stats::median(abs(s))
-    if (pivot == 0) pivot <- 1
+    if (pivot == 0) {
+      pivot <- 1
+    }
     stats::uniroot(f, interval = c(pivot / 1e6, pivot * 1e6))$root
   }
 
