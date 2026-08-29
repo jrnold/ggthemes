@@ -1,5 +1,7 @@
 # ggthemes (development version)
 
+- Bugfix: `extended_range_breaks_()` now respects the `n` argument instead of
+  silently ignoring it (#139)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
