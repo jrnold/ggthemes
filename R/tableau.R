@@ -46,11 +46,7 @@ tableau_color_pal <- function(
   type <- match.arg(type)
   palettes <- ggthemes::ggthemes_data[["tableau"]][["color-palettes"]][[type]]
   if (!palette %in% names(palettes)) {
-    stop(
-      "`palette` must be one of ",
-      paste(names(palettes), collapse = ", "),
-      "."
-    )
+    cli::cli_abort("{.arg palette} must be one of {.val {names(palettes)}}, not {.val {palette}}.")
   }
   values <- palettes[[palette]][["value"]]
   max_n <- length(values)

@@ -1,5 +1,16 @@
 # ggthemes (development version)
 
+- chore: Replace base `stop()`/`warning()` with `cli::cli_abort()`/
+  `cli::cli_warn()` throughout, matching current tidyverse convention (used
+  by ggplot2/dplyr). Error/warning text is largely the same information,
+  reformatted for clarity; a few tests were updated to match. Add `cli` and
+  `rlang` to Imports.
+- chore: Use `rlang::check_installed()` instead of a manual
+  `requireNamespace()` + `stop()` check for the `quantreg` dependency in
+  `stat_fivenumber()`'s weighted case, which prompts an interactive install
+  instead of just erroring. The genuinely optional `pander`-availability
+  checks in `theme_pander()`/`palette_pander()` are left as
+  `requireNamespace()`, since `check_installed()` is for hard requirements.
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0

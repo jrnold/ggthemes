@@ -15,7 +15,7 @@
 #' @export
 theme_hc <- function(base_size = 12, base_family = "sans", style = c("default", "darkunica"), bgcolor = NULL) {
   if (!is.null(bgcolor)) {
-    warning("`bgcolor` is deprecated. Use `style` instead.")
+    cli::cli_warn("{.arg bgcolor} is deprecated. Use {.arg style} instead.")
     style <- bgcolor
   }
   style <- match.arg(style)
@@ -67,12 +67,8 @@ hc_pal <- function(palette = "default") {
   if (palette %in% names(ggthemes::ggthemes_data$hc)) {
     manual_pal(unname(ggthemes::ggthemes_data$hc[[palette]]))
   } else {
-    stop(
-      "Palette `",
-      palette,
-      "` not valid. Must be one of ",
-      stringr::str_c("`", names(ggthemes::ggthemes_data$hc), "`", collapse = ", "),
-      call. = FALSE
+    cli::cli_abort(
+      "{.arg palette} must be one of {.val {names(ggthemes::ggthemes_data$hc)}}, not {.val {palette}}."
     )
   }
 }

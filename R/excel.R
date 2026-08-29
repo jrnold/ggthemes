@@ -31,7 +31,7 @@ excel_pal <- function(line = TRUE) {
 excel_new_pal <- function(theme = "Office Theme") {
   allthemes <- ggthemes::ggthemes_data$excel$themes
   if (!theme %in% names(allthemes)) {
-    stop("`theme` must be one of ", paste0(names(allthemes), collapse = ", "))
+    cli::cli_abort("{.arg theme} must be one of {.val {names(allthemes)}}.")
   }
   values <- unname(allthemes[[theme]][["accents"]])
   f <- manual_pal(values)

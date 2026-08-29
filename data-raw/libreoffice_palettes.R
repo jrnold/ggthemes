@@ -1,6 +1,7 @@
 suppressPackageStartupMessages({
   library("tibble")
   library("xml2")
+  library("stringr")
 })
 
 # https://www.openoffice.org/xml/xml_specification.pdf

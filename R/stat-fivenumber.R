@@ -77,10 +77,7 @@ StatFivenumber <- ggplot2::ggproto(
     params$width <- params$width %||% (resolution(data$x %||% 0) * 0.75)
 
     if (is.double(data$x) && !has_groups(data) && any(data$x != data$x[1L])) {
-      warning(
-        "Continuous x aesthetic -- did you forget aes(group=...)?",
-        call. = FALSE
-      )
+      cli::cli_warn("Continuous {.field x} aesthetic -- did you forget {.code aes(group = ...)}?")
     }
 
     params
@@ -93,13 +90,11 @@ StatFivenumber <- ggplot2::ggproto(
     probs = c(0, 0.25, 0.5, 0.75, 1)
   ) {
     if (length(probs) != 5) {
-      stop("'probs' should contain 5 quantiles.")
+      cli::cli_abort("{.arg probs} must contain 5 quantiles, not {length(probs)}.")
     }
     probs <- sort(probs)
     if (!is.null(data$weight)) {
-      if (!requireNamespace("quantreg", quietly = TRUE)) {
-        stop("Package 'quantreg' is required for compute_group() with weights.")
-      }
+      rlang::check_installed("quantreg", reason = "to use `compute_group()` with weights.")
       mod <- quantreg::rq(y ~ 1, weights = weight, tau = probs, data = data)
       stats <- as.numeric(stats::coef(mod))
     } else {

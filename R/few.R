@@ -26,12 +26,13 @@
 #' @example inst/examples/ex-few_pal.R
 # nolint end
 few_pal <- function(palette = "Medium") {
+  # palette_name is used inside the cli_abort() glue string below, which
+  # object_usage_linter can't see into.
+  palette_name <- palette # nolint: object_usage_linter
   palette <- ggthemes::ggthemes_data$few$colors[[palette]]
   if (is.null(palette)) {
-    stop(
-      "palette must be one of: ",
-      paste0("\"", names(ggthemes::ggthemes_data$few$colors), "\"", collapse = ", "),
-      call. = FALSE
+    cli::cli_abort(
+      "{.arg palette} must be one of {.val {names(ggthemes::ggthemes_data$few$colors)}}, not {.val {palette_name}}."
     )
   }
   ## The first value, gray, is used for non-data parts.

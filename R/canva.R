@@ -34,7 +34,10 @@
 #' @example inst/examples/ex-canva_pal.R
 canva_pal <- function(palette = "Fresh and bright") {
   if (!palette %in% names(ggthemes::canva_palettes)) {
-    stop("Palette ", sQuote(palette), " not a valid name.", call. = FALSE)
+    cli::cli_abort(c(
+      "{.val {palette}} is not a valid {.arg palette} name.",
+      "i" = "See {.code names(canva_palettes)} for valid names."
+    ))
   }
   manual_pal(unname(ggthemes::canva_palettes[[palette]]))
 }
