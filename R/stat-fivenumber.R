@@ -57,6 +57,7 @@ has_groups <- function(data) {
 #' @usage NULL
 #' @rdname stat_fivenumber
 #' @importFrom ggplot2 resolution remove_missing
+#' @importFrom rlang check_installed
 StatFivenumber <- ggplot2::ggproto(
   # nolint
   "StatFivenumber",
