@@ -1,5 +1,9 @@
 # ggthemes (development version)
 
+- Clarify in `geom_rangeframe()` docs (and add an example) that
+  `sides = "trbl"` already draws correctly-positioned frames on panels with
+  a secondary axis, since `ggplot2::sec_axis()` only relabels the existing
+  scale rather than introducing a separate data range (#179)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
