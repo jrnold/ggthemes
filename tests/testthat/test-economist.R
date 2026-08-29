@@ -34,6 +34,18 @@ test_that("theme economist works", {
   expect_s3_class(theme_economist(), "theme")
 })
 
+test_that("theme_economist respects base_family and base_size", {
+  thm <- theme_economist(base_family = "mono", base_size = 20)
+  expect_equal(thm$text$family, "mono")
+  expect_equal(thm$text$size, 20)
+})
+
+test_that("theme_economist_white respects base_family and base_size", {
+  thm <- theme_economist_white(base_family = "mono", base_size = 20)
+  expect_equal(thm$text$family, "mono")
+  expect_equal(thm$text$size, 20)
+})
+
 test_that("theme economist with horizontal=FALSE works", {
   thm <- theme_economist(horizontal = FALSE)
   expect_s3_class(thm, "theme")

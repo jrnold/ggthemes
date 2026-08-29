@@ -26,6 +26,8 @@ version has increased).
   matching ggplot2's own `theme_gray(ink=, paper=, accent=)`. Branded themes
   (e.g. `theme_economist()`, `theme_excel()`) intentionally replicate a fixed
   published style and do not expose these (#183)
+- Bugfix: `theme_economist()`/`theme_economist_white()` and `theme_excel()` now
+  respect the `base_family` and `base_size` arguments (#135)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0

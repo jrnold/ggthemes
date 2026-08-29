@@ -173,7 +173,6 @@ theme_economist <- function(base_size = 10, base_family = "sans", horizontal = T
   ## Axis Titles and other text ~ 2
   ## Margins: Top / Bottom = 6 / 32, sides = 5 / 32
   ret <-
-    theme_foundation(base_size = base_size, base_family = base_family) +
     theme(
       line = element_line(colour = "black"),
       rect = element_rect(
@@ -181,7 +180,7 @@ theme_economist <- function(base_size = 10, base_family = "sans", horizontal = T
         colour = NA,
         linetype = 1
       ),
-      text = element_text(colour = "black"),
+      text = element_text(colour = "black", family = base_family, size = base_size),
       ## Axis
       axis.line = element_line(linewidth = rel(0.8)),
       axis.line.y = element_blank(),
