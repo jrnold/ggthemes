@@ -1,4 +1,4 @@
-# ggthemes (development version)
+# ggthemes 6.0.0
 
 - `circlefill_shape_pal()` and `scale_shape_circlefill()`, soft-deprecated
   since ggthemes 5.0.0, now always warn on use (`lifecycle::deprecate_warn()`)
