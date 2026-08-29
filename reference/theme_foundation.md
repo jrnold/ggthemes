@@ -11,7 +11,13 @@ because those themes define elements deep in the hierarchy.
 ## Usage
 
 ``` r
-theme_foundation(base_size = 12, base_family = "")
+theme_foundation(
+  base_size = 12,
+  base_family = "",
+  ink = "black",
+  paper = "white",
+  accent = "#3366FF"
+)
 ```
 
 ## Arguments
@@ -24,14 +30,25 @@ theme_foundation(base_size = 12, base_family = "")
 
   base font family
 
+- ink, paper, accent:
+
+  colour for foreground, background, and accented elements respectively.
+
 ## Details
 
 This theme takes
 [`theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 and sets all `colour` and `fill` values to `NULL`, except for the
 top-level elements (`line`, `rect`, and `title`), which have
-`colour = "black"`, and `fill = "white"`. This leaves the spacing
-and-non colour defaults of the default ggplot2 themes in place.
+`colour = ink`, and `fill = paper`. This leaves the spacing and-non
+colour defaults of the default ggplot2 themes in place.
+
+Unlike `theme_foundation()`, the other themes in this package (e.g.
+[`theme_economist()`](http://jrnold.github.io/ggthemes/reference/theme_economist.md),
+[`theme_excel()`](http://jrnold.github.io/ggthemes/reference/theme_excel.md),
+[`theme_hc()`](http://jrnold.github.io/ggthemes/reference/theme_hc.md))
+intentionally replicate a fixed, published visual style, so they do not
+expose `ink`/`paper`/`accent` arguments.
 
 ## See also
 

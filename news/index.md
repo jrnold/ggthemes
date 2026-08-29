@@ -37,6 +37,14 @@ version has increased).
   [`scale_fill_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md);
   set `black = FALSE` to drop black from the colorblind-safe palette
   ([\#178](https://github.com/jrnold/ggthemes/issues/178))
+- Add `ink`, `paper`, and `accent` arguments to
+  [`theme_foundation()`](http://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+  matching ggplot2’s own `theme_gray(ink=, paper=, accent=)`. Branded
+  themes
+  (e.g. [`theme_economist()`](http://jrnold.github.io/ggthemes/reference/theme_economist.md),
+  [`theme_excel()`](http://jrnold.github.io/ggthemes/reference/theme_excel.md))
+  intentionally replicate a fixed published style and do not expose
+  these ([\#183](https://github.com/jrnold/ggthemes/issues/183))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
