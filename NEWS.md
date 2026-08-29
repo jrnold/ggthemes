@@ -1,7 +1,8 @@
 # ggthemes (development version)
 
-This release targets 6.0.0 (not a minor/patch release) because it includes a
-breaking change: the minimum supported R version has increased.
+Note for the next release: this should ship as 6.0.0, not a minor/patch
+release, because it includes a breaking change (the minimum supported R
+version has increased).
 
 - BREAKING CHANGE: Bump minimum supported R version to 4.1.0, and use the
   base pipe (`|>`) instead of the magrittr pipe (`%>%`) in `data-raw/` and
