@@ -43,6 +43,16 @@ test_that("bank_slopes with method=\"ao\" matches analytic solution for equal-ma
   expect_equal(out, 1, tolerance = 1e-6)
 })
 
+test_that("bank_slopes with method=\"ao\" returns NaN for a flat line instead of erroring", {
+  x <- 1:5
+  y <- rep(2, length(x))
+  expect_equal(bank_slopes(x, y, method = "ao"), NaN)
+})
+
+test_that("bank_slopes with method=\"ao\" returns NaN for a single point instead of erroring", {
+  expect_equal(bank_slopes(1, 1, method = "ao"), NaN)
+})
+
 test_that("bank_slopes with method=\"was\" runs", {
   x <- 1:5
   y <- runif(length(x))
@@ -99,6 +109,13 @@ test_that("bank_plot errors for an out-of-range layer index", {
   df <- data.frame(x = 1:5, y = runif(5))
   p <- ggplot2::ggplot(df, ggplot2::aes(x, y)) + ggplot2::geom_line()
   expect_error(bank_plot(p, layer = 2), regexp = "layer")
+})
+
+test_that("bank_plot errors for a non-positive layer index", {
+  df <- data.frame(x = 1:5, y = runif(5))
+  p <- ggplot2::ggplot(df, ggplot2::aes(x, y)) + ggplot2::geom_line()
+  expect_error(bank_plot(p, layer = 0), regexp = "layer")
+  expect_error(bank_plot(p, layer = -1), regexp = "layer")
 })
 
 test_that("bank_plot errors when the layer has no x/y columns", {

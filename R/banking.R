@@ -130,6 +130,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @seealso \code{\link[lattice]{banking}()}, \code{\link{bank_plot}} to bank
 #' a \code{ggplot} using its own data.
 #' @export
+#' @importFrom stats median uniroot weighted.mean
 #' @example inst/examples/ex-bank_slopes.R
 bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as", "ao", "was"), ...) {
   method <- match.arg(method)
@@ -179,7 +180,7 @@ bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = FALSE, l
   stopifnot(ggplot2::is_ggplot(plot))
   method <- match.arg(method)
   built <- ggplot2::ggplot_build(plot)
-  if (layer > length(built$data)) {
+  if (layer < 1 || layer > length(built$data)) {
     cli::cli_abort("{.arg plot} only has {length(built$data)} layer(s), but {.arg layer} = {layer}.")
   }
   data <- built$data[[layer]]
@@ -224,6 +225,9 @@ bank_slopes_funs[["as"]] <-
 bank_slopes_funs[["ao"]] <-
   function(slopes, ...) {
     s <- slopes$s * slopes$Rx / slopes$Ry
+    if (length(s) == 0 || !all(is.finite(s))) {
+      return(NaN)
+    }
     f <- function(alpha) mean(abs(atan(s / alpha))) - FORTY_FIVE
     pivot <- stats::median(abs(s))
     if (pivot == 0) {
