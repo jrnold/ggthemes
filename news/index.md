@@ -61,6 +61,13 @@ version has increased).
   no longer silently drops the entire range line for an aesthetic when
   the data contains missing values; `na.rm` now behaves as documented
   ([\#177](https://github.com/jrnold/ggthemes/issues/177))
+- Clarify in
+  [`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+  docs (and add an example) that `sides = "trbl"` already draws
+  correctly-positioned frames on panels with a secondary axis, since
+  [`ggplot2::sec_axis()`](https://ggplot2.tidyverse.org/reference/sec_axis.html)
+  only relabels the existing scale rather than introducing a separate
+  data range ([\#179](https://github.com/jrnold/ggthemes/issues/179))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 

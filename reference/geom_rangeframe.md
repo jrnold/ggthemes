@@ -157,6 +157,14 @@ geom_rangeframe(
 This should be used with \`coord_cartesian(clip="off")\` in order to
 correctly draw the lines.
 
+Secondary axes
+([`sec_axis()`](https://ggplot2.tidyverse.org/reference/sec_axis.html))
+only relabel the existing axis; they do not introduce a separate data
+range. Because of this, `sides = "trbl"` already draws
+correctly-positioned frames on the top/right edges of a panel that has a
+secondary axis – there is no separate "secondary" range for
+`geom_rangeframe()` to draw against.
+
 ## Aesthetics
 
 - colour
@@ -193,4 +201,13 @@ ggplot(mtcars, aes(wt, mpg)) +
 # `coord_cartesian(clip="off")`` ensures that the full width of the line is drawn.
 # if you know a better way to fix this,
 # please open an issue or PR on github https://github.com/jrnold/ggthemes/issue
+
+# sides = "trbl" also works with a secondary axis: the secondary axis only
+# relabels the existing scale, so the frame is still correctly positioned.
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point() +
+  geom_rangeframe(sides = "trbl") +
+  scale_y_continuous(sec.axis = sec_axis(~ . * 0.4251, name = "km/L")) +
+  coord_cartesian(clip = "off") +
+  theme_tufte()
 ```
