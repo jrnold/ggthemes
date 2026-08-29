@@ -16,7 +16,7 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
     comment = "Code from the labeling package"),
     person("Joshua", "London", role = "ctb"))
 Depends:
-    R (>= 3.3.0)
+    R (>= 4.1.0)
 Imports:
     ggplot2 (>= 3.0.0),
     graphics,
