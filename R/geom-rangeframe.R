@@ -63,6 +63,7 @@ GeomRangeFrame <- ggplot2::ggproto(
   "GeomRangeFrame",
   ggplot2::Geom,
   optional_aes = c("x", "y"),
+  non_missing_aes = c("x", "y"),
   draw_panel = function(data, panel_scales, coord, sides = "bl") {
     rugs <- list()
     data <- coord[["transform"]](data, panel_scales)
@@ -76,8 +77,8 @@ GeomRangeFrame <- ggplot2::ggproto(
         rugs[["x_b"]] <- ggname(
           "range_x_b",
           segmentsGrob(
-            x0 = unit(min(data[["x"]]), "native"),
-            x1 = unit(max(data[["x"]]), "native"),
+            x0 = unit(min(data[["x"]], na.rm = TRUE), "native"),
+            x1 = unit(max(data[["x"]], na.rm = TRUE), "native"),
             y0 = unit(0, "npc"),
             y1 = unit(0, "npc"),
             gp = gp
@@ -89,8 +90,8 @@ GeomRangeFrame <- ggplot2::ggproto(
         rugs[["x_t"]] <- ggname(
           "range_x_t",
           segmentsGrob(
-            x0 = unit(min(data[["x"]]), "native"),
-            x1 = unit(max(data[["x"]]), "native"),
+            x0 = unit(min(data[["x"]], na.rm = TRUE), "native"),
+            x1 = unit(max(data[["x"]], na.rm = TRUE), "native"),
             y0 = unit(1, "npc"),
             y1 = unit(1, "npc"),
             gp = gp
@@ -104,8 +105,8 @@ GeomRangeFrame <- ggplot2::ggproto(
         rugs[["y_l"]] <- ggname(
           "range_y_l",
           segmentsGrob(
-            y0 = unit(min(data[["y"]]), "native"),
-            y1 = unit(max(data[["y"]]), "native"),
+            y0 = unit(min(data[["y"]], na.rm = TRUE), "native"),
+            y1 = unit(max(data[["y"]], na.rm = TRUE), "native"),
             x0 = unit(0, "npc"),
             x1 = unit(0, "npc"),
             gp = gp
@@ -117,8 +118,8 @@ GeomRangeFrame <- ggplot2::ggproto(
         rugs[["y_r"]] <- ggname(
           "range_y_r",
           segmentsGrob(
-            y0 = unit(min(data[["y"]]), "native"),
-            y1 = unit(max(data[["y"]]), "native"),
+            y0 = unit(min(data[["y"]], na.rm = TRUE), "native"),
+            y1 = unit(max(data[["y"]], na.rm = TRUE), "native"),
             x0 = unit(1, "npc"),
             x1 = unit(1, "npc"),
             gp = gp

@@ -1,5 +1,8 @@
 # ggthemes (development version)
 
+- Bugfix: `geom_rangeframe()` no longer silently drops the entire range line
+  for an aesthetic when the data contains missing values; `na.rm` now behaves
+  as documented (#177)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
