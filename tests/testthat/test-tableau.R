@@ -124,6 +124,21 @@ test_that("scale_fill_gradient_tableau works", {
   expect_s3_class(scale_fill_gradient2_tableau(), "ScaleContinuous")
 })
 
+test_that("scale_fill_gradient2_tableau midpoint argument changes the color mapping", {
+  sc0 <- scale_fill_gradient2_tableau(midpoint = 0)
+  sc5 <- scale_fill_gradient2_tableau(midpoint = 5)
+  values <- c(-2, 0, 5, 8)
+
+  map <- function(sc) {
+    sc$train(values)
+    sc$map(values)
+  }
+
+  expect_false(identical(map(sc0), map(sc5)))
+  # at midpoint, the value should map to the middle of the palette
+  expect_equal(map(sc0)[2], map(sc5)[3])
+})
+
 test_that("classic colors are in the correct order", {
   # Issue #96
   pal <- tableau_color_pal("Classic 20")(20)
