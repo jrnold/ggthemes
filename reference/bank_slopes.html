@@ -60,7 +60,14 @@ are generally the median of the various methods provided here.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bank_slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, cull <span class="op">=</span> <span class="cn">FALSE</span>, weight <span class="op">=</span> <span class="cn">NULL</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ms"</span>, <span class="st">"as"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bank_slopes</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">y</span>,</span>
+<span>  cull <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  weight <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ms"</span>, <span class="st">"as"</span>, <span class="st">"ao"</span>, <span class="st">"was"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -84,9 +91,9 @@ are generally the median of the various methods provided here.</p>
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
-<dd><p>One of 'ms' (Median Absolute Slope) or 'as' (Average
-Absolute Slope). Other options are no longer supported, and will use
-'ms' instead with a warning.</p></dd>
+<dd><p>One of 'ms' (Median Absolute Slope), 'as' (Average
+Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
+Average Absolute Slope).</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -124,11 +131,34 @@ then the mean absolute slope banking is the
 $$
   mean \left| \frac{s_i}{\alpha} \right| = 1
 $$</p>
-<p>Heer and Agrawala (2006) and Cleveland discuss several other methods
-including average (weighted) orientation, and global and local orientation resolution.
-These are no longer implemented in this function. In general, either the
-median or average absolute slopes will produce reasonable results without
-requiring optimization.</p>
+<p><strong>Average Absolute Orientation Banking</strong></p>
+<p>Rather than averaging the slopes themselves, this method averages the
+<em>orientation</em> (angle) of each segment, since perceived slope
+differences are more closely related to angle than to the raw ratio
+\(dy/dx\). Let \(s'_i = s_i R_x / R_y\)
+be the range-normalized slopes. Then \(\alpha\) is chosen such
+that,
+$$
+  mean \left| \arctan \left( \frac{s'_i}{\alpha} \right) \right| = \frac{\pi}{4}
+$$
+This has no closed-form solution and is found numerically with
+<code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code>.</p>
+<p><strong>Weighted Average Absolute Slope Banking</strong></p>
+<p>Identical to Average Absolute Slope Banking, except each segment's
+contribution is weighted by its horizontal run, \(dx_i\), so
+that segments spanning more horizontal (screen) space are weighted more
+heavily than segments that happen to be sampled more densely in
+\(x\). Using \(s'_i\) as above,
+$$
+  \alpha = \frac{\sum_i dx_i \left| s'_i \right|}{\sum_i dx_i}
+$$</p>
+<p>Heer and Agrawala (2006) also discuss multi-scale (global and local)
+orientation resolution, which extend these single-scale methods by
+aggregating slopes computed at multiple scales rather than only between
+adjacent points. These are not implemented here. In general, the
+median, average, or average-orientation absolute slope methods will
+produce reasonable results without requiring this additional
+complexity.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -143,7 +173,8 @@ Graphs.' Journal of Computational and Statistical Graphics.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/lattice/man/banking.html" class="external-link">banking()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/lattice/man/banking.html" class="external-link">banking()</a></code>, <code><a href="bank_plot.html">bank_plot</a></code> to bank
+a <code>ggplot</code> using its own data.</p></div>
     </div>
 
     <div class="section level2">
@@ -163,10 +194,24 @@ Graphs.' Journal of Computational and Statistical Graphics.</p>
 <span class="r-in"><span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu">bank_slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">m</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="va">ratio</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="bank_slopes-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="co">## Using culling</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Average Absolute Slope</span></span></span>
-<span class="r-in"><span><span class="fu">bank_slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"as"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03682336</span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fu">bank_slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"as"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="bank_slopes-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Average Absolute Orientation</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fu">bank_slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"ao"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="bank_slopes-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Weighted Average Absolute Slope: each segment is weighted by its run in</span></span></span>
+<span class="r-in"><span><span class="co">## x, so this only differs from "as" when x is not evenly spaced</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fu">bank_slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"was"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="bank_slopes-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Culling removes slopes of 0 or Inf before banking, which matters when</span></span></span>
+<span class="r-in"><span><span class="co">## the data contains runs of repeated x or y values</span></span></span>
+<span class="r-in"><span><span class="fu">bank_slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, cull <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.04554598</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

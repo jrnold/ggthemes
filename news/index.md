@@ -20,6 +20,30 @@ version has increased).
   the official `codecov/codecov-action`
 - Fix stale `branch/master` Codecov badge in README (now points at
   `main`)
+- Add `"ao"` (Average Absolute Orientation) and `"was"` (Weighted
+  Average Absolute Slope) methods to
+  [`bank_slopes()`](http://jrnold.github.io/ggthemes/reference/bank_slopes.md),
+  following Heer and Agrawala (2006). Also declare `stats` as an
+  explicit `Imports` dependency, since
+  [`bank_slopes()`](http://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+  calls
+  [`stats::median()`](https://rdrr.io/r/stats/median.html)/[`stats::uniroot()`](https://rdrr.io/r/stats/uniroot.html)/
+  [`stats::weighted.mean()`](https://rdrr.io/r/stats/weighted.mean.html),
+  and fix the
+  [`bank_slopes()`](http://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+  example so each method’s ratio is actually applied via
+  [`coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
+  instead of just computed and discarded
+- Add
+  [`bank_plot()`](http://jrnold.github.io/ggthemes/reference/bank_plot.md),
+  a wrapper around
+  [`bank_slopes()`](http://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+  that extracts `x`/`y` directly from an already-built `ggplot`
+  (respecting stats, position adjustments, groups, and facets) and
+  returns the plot with
+  [`coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
+  applied, so banking a plot no longer requires manually reconstructing
+  its plotted vectors
 - Bugfix: Fix
   [`excel_new_pal()`](http://jrnold.github.io/ggthemes/reference/excel_new_pal.md)
   example so it actually generates output
