@@ -102,7 +102,7 @@ scale_fill_excel_new <- function(theme = "Office Theme", ...) {
 #' @example inst/examples/ex-theme_excel.R
 theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
   gray <- "#C0C0C0"
-  ret <- (theme_bw() +
+  ret <- (theme_bw(base_size = base_size, base_family = base_family) +
     theme(
       panel.background = element_rect(fill = gray),
       panel.border = element_rect(

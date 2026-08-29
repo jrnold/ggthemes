@@ -34,6 +34,12 @@ test_that("theme_excel works", {
   expect_s3_class(theme_excel(), "theme")
 })
 
+test_that("theme_excel respects base_family and base_size", {
+  thm <- theme_excel(base_family = "mono", base_size = 20)
+  expect_equal(thm$text$family, "mono")
+  expect_equal(thm$text$size, 20)
+})
+
 test_that("excel_new_pal raises error with bad theme name", {
   expect_error(excel_new_pal("adfaasdfa"), regexp = "`theme` must be one of")
 })
