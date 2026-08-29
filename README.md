@@ -3,7 +3,7 @@
 
 [![R-CMD-check](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml)
 [![Code Coverage
-Status](https://codecov.io/gh/jrnold/ggthemes/branch/master/graph/badge.svg)](https://codecov.io/github/jrnold/ggthemes?branch=master)
+Status](https://codecov.io/gh/jrnold/ggthemes/branch/main/graph/badge.svg)](https://codecov.io/github/jrnold/ggthemes?branch=main)
 [![rstudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/ggthemes)](https://github.com/metacran/cranlogs.app)
 [![CRAN

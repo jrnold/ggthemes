@@ -10,16 +10,26 @@
 #' This theme takes \code{\link[ggplot2]{theme_gray}()} and sets all
 #' \code{colour} and \code{fill} values to \code{NULL}, except for the top-level
 #' elements (\code{line}, \code{rect}, and \code{title}), which have
-#' \code{colour = "black"}, and \code{fill = "white"}. This leaves the spacing
+#' \code{colour = ink}, and \code{fill = paper}. This leaves the spacing
 #' and-non colour defaults of the default \pkg{ggplot2} themes in place.
+#'
+#' Unlike \code{theme_foundation()}, the other themes in this package (e.g.
+#' \code{\link{theme_economist}()}, \code{\link{theme_excel}()},
+#' \code{\link{theme_hc}()}) intentionally replicate a fixed, published
+#' visual style, so they do not expose \code{ink}/\code{paper}/\code{accent}
+#' arguments.
 #'
 #' @inheritParams ggplot2::theme_grey
 #'
 #' @family themes
 #' @export
 #' @importFrom ggplot2 theme_grey
-theme_foundation <- function(base_size = 12, base_family = "") {
-  thm <- theme_grey(base_size = base_size, base_family = base_family)
+theme_foundation <- function(base_size = 12, base_family = "", ink = "black", paper = "white", accent = "#3366FF") {
+  if (all(c("ink", "paper", "accent") %in% names(formals(theme_grey)))) {
+    thm <- theme_grey(base_size = base_size, base_family = base_family, ink = ink, paper = paper, accent = accent)
+  } else {
+    thm <- theme_grey(base_size = base_size, base_family = base_family)
+  }
   for (i in names(thm)) {
     if ("colour" %in% names(thm[[i]])) {
       thm[[i]]["colour"] <- list(NULL)
@@ -32,8 +42,8 @@ theme_foundation <- function(base_size = 12, base_family = "") {
     theme(
       panel.border = element_rect(fill = NA),
       legend.background = element_rect(colour = NA),
-      line = element_line(colour = "black"),
-      rect = element_rect(fill = "white", colour = "black"),
-      text = element_text(colour = "black")
+      line = element_line(colour = ink),
+      rect = element_rect(fill = paper, colour = ink),
+      text = element_text(colour = ink)
     )
 }

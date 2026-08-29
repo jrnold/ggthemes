@@ -34,6 +34,12 @@ test_that("theme_excel works", {
   expect_s3_class(theme_excel(), "theme")
 })
 
+test_that("theme_excel respects base_family and base_size", {
+  thm <- theme_excel(base_family = "mono", base_size = 20)
+  expect_equal(thm$text$family, "mono")
+  expect_equal(thm$text$size, 20)
+})
+
 test_that("excel_new_pal raises error with bad theme name", {
   expect_error(excel_new_pal("adfaasdfa"), regexp = "`theme` must be one of")
 })
@@ -57,4 +63,17 @@ test_that("scale_fill_excel works", {
 test_that("theme_excel with horizontal = FALSE works", {
   thm <- theme_excel(horizontal = FALSE)
   expect_equal(thm$panel.grid.major.y, element_blank())
+})
+
+test_that("theme_excel_new respects base_size for all text elements", {
+  thm <- theme_excel_new(base_size = 20)
+  expect_equal(thm$text$size, 20)
+  expect_equal(thm$axis.text$size, 20)
+  expect_equal(thm$strip.text$size, 20)
+  expect_equal(thm$legend.text$size, 20)
+})
+
+test_that("theme_excel_new does not blank out axis titles", {
+  thm <- theme_excel_new()
+  expect_null(thm$axis.title)
 })

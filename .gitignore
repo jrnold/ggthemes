@@ -7,3 +7,4 @@ revdep
 *.DS_Store
 docs
 .RData
+Rplots.pdf
