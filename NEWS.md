@@ -1,5 +1,6 @@
 # ggthemes (development version)
 
+- Bugfix: Fix `excel_new_pal()` example so it actually generates output (#199)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
