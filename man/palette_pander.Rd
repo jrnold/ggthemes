@@ -22,7 +22,7 @@ color palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 }
 \seealso{
-Other colour pander: 
-\code{\link{scale_color_pander}()}
+Other colour pander:
+\code{\link[=scale_color_pander]{scale_color_pander()}}
 }
 \concept{colour pander}

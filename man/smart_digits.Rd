@@ -27,5 +27,5 @@ Josh O'Brien,
   \url{https://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
 }
 \author{
-Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold
+Josh O'Brien, Baptiste Auguie, Jeffrey B. Arnold
 }

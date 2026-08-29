@@ -27,3 +27,4 @@
 ^\.claude$
 ^[.]?air[.]toml$
 ^\.vscode$
+^Rplots\.pdf$

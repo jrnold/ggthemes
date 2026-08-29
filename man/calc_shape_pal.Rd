@@ -16,7 +16,7 @@ Shape palette based on the shapes used in LibreOffice Calc.
 }
 }
 \seealso{
-Other shapes calc: 
-\code{\link{scale_shape_calc}()}
+Other shapes calc:
+\code{\link[=scale_shape_calc]{scale_shape_calc()}}
 }
 \concept{shapes calc}

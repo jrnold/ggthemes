@@ -38,11 +38,11 @@ p + theme_igray()
 \code{\link[ggplot2]{theme_gray}()},
   \code{\link[ggplot2]{theme_bw}()}
 
-Other themes: 
-\code{\link{theme_base}()},
-\code{\link{theme_clean}()},
-\code{\link{theme_foundation}()},
-\code{\link{theme_par}()},
-\code{\link{theme_solid}()}
+Other themes:
+\code{\link[=theme_base]{theme_base()}},
+\code{\link[=theme_clean]{theme_clean()}},
+\code{\link[=theme_foundation]{theme_foundation()}},
+\code{\link[=theme_par]{theme_par()}},
+\code{\link[=theme_solid]{theme_solid()}}
 }
 \concept{themes}

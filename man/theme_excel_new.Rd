@@ -27,7 +27,7 @@ p <- ggplot(mtcars) +
 p + theme_excel_new() + scale_colour_excel_new()
 }
 \seealso{
-Other themes excel: 
-\code{\link{theme_excel}()}
+Other themes excel:
+\code{\link[=theme_excel]{theme_excel()}}
 }
 \concept{themes excel}

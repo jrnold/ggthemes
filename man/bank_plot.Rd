@@ -43,9 +43,6 @@ Note that \code{\link[ggplot2]{coord_fixed}} applies a single ratio to
 every panel, so faceted plots are banked using the combined data from
 all panels rather than a ratio tailored to each one individually.
 }
-\seealso{
-\code{\link{bank_slopes}}
-}
 \examples{
 library("ggplot2")
 x <- seq_along(sunspot.year)
@@ -53,4 +50,7 @@ y <- as.numeric(sunspot.year)
 p <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +
   geom_line()
 bank_plot(p)
+}
+\seealso{
+\code{\link{bank_slopes}}
 }

@@ -73,7 +73,7 @@ See \code{\link{calc_shape_pal}()} for details.
 \seealso{
 \code{\link{theme_calc}()} for examples.
 
-Other shapes calc: 
-\code{\link{calc_shape_pal}()}
+Other shapes calc:
+\code{\link[=calc_shape_pal]{calc_shape_pal()}}
 }
 \concept{shapes calc}

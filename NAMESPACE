@@ -130,55 +130,77 @@ export(theme_tufte)
 export(theme_wsj)
 export(tremmel_shape_pal)
 export(wsj_pal)
-importFrom(ggplot2,"%+replace%")
-importFrom(ggplot2,Geom)
-importFrom(ggplot2,GeomBoxplot)
-importFrom(ggplot2,GeomPoint)
-importFrom(ggplot2,GeomSegment)
-importFrom(ggplot2,aes)
-importFrom(ggplot2,continuous_scale)
-importFrom(ggplot2,discrete_scale)
-importFrom(ggplot2,draw_key_path)
-importFrom(ggplot2,draw_key_pointrange)
-importFrom(ggplot2,element_blank)
-importFrom(ggplot2,element_line)
-importFrom(ggplot2,element_rect)
-importFrom(ggplot2,element_text)
-importFrom(ggplot2,ggplot)
-importFrom(ggplot2,ggproto)
-importFrom(ggplot2,ggproto_parent)
-importFrom(ggplot2,layer)
-importFrom(ggplot2,margin)
-importFrom(ggplot2,rel)
-importFrom(ggplot2,remove_missing)
-importFrom(ggplot2,resolution)
-importFrom(ggplot2,theme)
-importFrom(ggplot2,theme_bw)
-importFrom(ggplot2,theme_gray)
-importFrom(ggplot2,theme_grey)
-importFrom(graphics,abline)
-importFrom(graphics,axis)
-importFrom(graphics,par)
-importFrom(graphics,plot)
-importFrom(graphics,points)
-importFrom(graphics,text)
-importFrom(grid,gList)
-importFrom(grid,gTree)
-importFrom(grid,gpar)
-importFrom(grid,grobName)
-importFrom(grid,grobTree)
-importFrom(grid,segmentsGrob)
-importFrom(grid,unit)
-importFrom(lifecycle,deprecate_soft)
-importFrom(methods,as)
-importFrom(methods,hasArg)
-importFrom(purrr,map)
-importFrom(purrr,map_dfr)
+importFrom(ggplot2,
+  "%+replace%",
+  Geom,
+  GeomBoxplot,
+  GeomPoint,
+  GeomSegment,
+  aes,
+  continuous_scale,
+  discrete_scale,
+  draw_key_path,
+  draw_key_pointrange,
+  element_blank,
+  element_line,
+  element_rect,
+  element_text,
+  ggplot,
+  ggproto,
+  ggproto_parent,
+  layer,
+  margin,
+  rel,
+  remove_missing,
+  resolution,
+  theme,
+  theme_bw,
+  theme_gray,
+  theme_grey
+)
+importFrom(graphics,
+  abline,
+  axis,
+  par,
+  plot,
+  points,
+  text
+)
+importFrom(grid,
+  gList,
+  gTree,
+  gpar,
+  grobName,
+  grobTree,
+  segmentsGrob,
+  unit
+)
+importFrom(lifecycle,
+  deprecate_soft,
+  deprecate_warn
+)
+importFrom(methods,
+  as,
+  hasArg
+)
+importFrom(purrr,
+  map,
+  map_dfr
+)
 importFrom(rlang,check_installed)
-importFrom(scales,alpha)
-importFrom(scales,div_gradient_pal)
-importFrom(scales,manual_pal)
-importFrom(scales,seq_gradient_pal)
+importFrom(scales,
+  alpha,
+  div_gradient_pal,
+  manual_pal,
+  seq_gradient_pal
+)
+importFrom(stats,
+  median,
+  uniroot,
+  weighted.mean
+)
 importFrom(stringr,str_replace)
-importFrom(tibble,as_tibble)
-importFrom(tibble,deframe)
+importFrom(tibble,
+  as_tibble,
+  deframe
+)

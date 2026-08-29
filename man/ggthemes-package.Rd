@@ -13,7 +13,6 @@ Useful links:
 \itemize{
   \item \url{https://jrnold.github.io/ggthemes/}
   \item \url{https://github.com/jrnold/ggthemes}
-  \item \url{http://jrnold.github.io/ggthemes/}
   \item Report bugs at \url{https://github.com/jrnold/ggthemes/issues}
 }
 
@@ -21,13 +20,18 @@ Useful links:
 \author{
 \strong{Maintainer}: Jeffrey B. Arnold \email{jeffrey.arnold@gmail.com} (<https://orcid.org/0000-0001-9953-3904>)
 
+Authors:
+\itemize{
+  \item Jeffrey B. Arnold \email{jeffrey.arnold@gmail.com} (<https://orcid.org/0000-0001-9953-3904>)
+}
+
 Other contributors:
 \itemize{
   \item Gergely Daroczi [contributor]
   \item Bo Werth [contributor]
   \item Brian Weitzner [contributor]
   \item Joshua Kunst [contributor]
-  \item Baptise Auguie [contributor]
+  \item Baptiste Auguie [contributor]
   \item Bob Rudis [contributor]
   \item Hadley Wickham (Code from the ggplot2 package.) [contributor]
   \item Justin Talbot (Code from the labeling package) [contributor]

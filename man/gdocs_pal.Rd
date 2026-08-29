@@ -16,7 +16,7 @@ library("scales")
 show_col(gdocs_pal()(24))
 }
 \seealso{
-Other colour gdocs: 
-\code{\link{scale_fill_gdocs}()}
+Other colour gdocs:
+\code{\link[=scale_fill_gdocs]{scale_fill_gdocs()}}
 }
 \concept{colour gdocs}

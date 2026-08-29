@@ -38,11 +38,11 @@ Journal of Computational and Graphical Statistics,
 \url{https://www.jstor.org/stable/1390760}
 }
 \seealso{
-Other shapes: 
-\code{\link{circlefill_shape_pal}()},
-\code{\link{cleveland_shape_pal}()},
-\code{\link{scale_shape_circlefill}()},
-\code{\link{scale_shape_cleveland}()},
-\code{\link{scale_shape_tremmel}()}
+Other shapes:
+\code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},
+\code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
+\code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
+\code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
+\code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}}
 }
 \concept{shapes}

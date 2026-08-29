@@ -1,3 +1,10 @@
+## Release summary
+
+This is a major release (6.0.0) that increases the minimum required R
+version from 3.x to 4.1.0, in order to use the base pipe (`|>`) instead of
+the magrittr pipe (`%>%`) internally. This is the only breaking change; no
+exported functions were removed.
+
 ## R CMD check notes
 
 -   "Author field differs from that derived from Authors@R" is due to use of

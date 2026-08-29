@@ -38,7 +38,7 @@ ggplot(mpg, aes(x = class, fill = drv)) +
   theme_excel()
 }
 \seealso{
-Other themes excel: 
-\code{\link{theme_excel_new}()}
+Other themes excel:
+\code{\link[=theme_excel_new]{theme_excel_new()}}
 }
 \concept{themes excel}

@@ -15,7 +15,7 @@ The Highcharts uses many different color palettes in its
 plots. This collects a few of them.
 }
 \seealso{
-Other colour hc: 
-\code{\link{scale_colour_hc}()}
+Other colour hc:
+\code{\link[=scale_colour_hc]{scale_colour_hc()}}
 }
 \concept{colour hc}

@@ -91,11 +91,11 @@ p + scale_shape_tremmel(overlap = TRUE)
 \seealso{
 \code{\link{tremmel_shape_pal}()} for a description of the palette.
 
-Other shapes: 
-\code{\link{circlefill_shape_pal}()},
-\code{\link{cleveland_shape_pal}()},
-\code{\link{scale_shape_circlefill}()},
-\code{\link{scale_shape_cleveland}()},
-\code{\link{tremmel_shape_pal}()}
+Other shapes:
+\code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},
+\code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
+\code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
+\code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
+\code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }
 \concept{shapes}
