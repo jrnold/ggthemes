@@ -75,6 +75,13 @@ version has increased).
   [`scale_color_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md)
   to control which data value maps to the middle color of the diverging
   palette ([\#136](https://github.com/jrnold/ggthemes/issues/136))
+- `cleveland_shape_pal(overlap = FALSE)` and
+  [`tableau_shape_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
+  now warn with an actionable message when their Unicode-derived pch
+  codes are likely to fail to render (non-UTF-8 locale), instead of only
+  surfacing a cryptic low-level “conversion failure … in ‘mbcsToSbcs’”
+  error at draw time
+  ([\#164](https://github.com/jrnold/ggthemes/issues/164))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
