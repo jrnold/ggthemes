@@ -1,5 +1,7 @@
 # ggthemes (development version)
 
+- Bugfix: `theme_economist()`/`theme_economist_white()` and `theme_excel()` now
+  respect the `base_family` and `base_size` arguments (#135)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
