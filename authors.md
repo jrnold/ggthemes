@@ -30,14 +30,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/jrnold/ggthemes/blob/main/DESCRIPTION)
 
-Arnold J (2025). *ggthemes: Extra Themes, Scales and Geoms for
+Arnold J (2026). *ggthemes: Extra Themes, Scales and Geoms for
 'ggplot2'*. R package version 5.2.0.9000,
 <https://jrnold.github.io/ggthemes/>.
 
     @Manual{,
       title = {ggthemes: Extra Themes, Scales and Geoms for 'ggplot2'},
       author = {Jeffrey B. Arnold},
-      year = {2025},
+      year = {2026},
       note = {R package version 5.2.0.9000},
       url = {https://jrnold.github.io/ggthemes/},
     }

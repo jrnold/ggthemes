@@ -1,8 +1,8 @@
-pandoc: 3.1.11
-pkgdown: 2.2.0
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-12-01T04:52Z
+last_built: 2026-08-29T04:10Z
 urls:
   reference: http://jrnold.github.io/ggthemes/reference
   article: http://jrnold.github.io/ggthemes/articles

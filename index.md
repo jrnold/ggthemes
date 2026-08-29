@@ -6,6 +6,7 @@ Some extra geoms, scales, and themes for
 To install the stable version from CRAN,
 
 ``` r
+
 install.packages('ggthemes', dependencies = TRUE)
 ```
 
@@ -13,6 +14,7 @@ Or, to install the development version from github, use the **devtools**
 package,
 
 ``` r
+
 library("devtools")
 install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
 ```
@@ -25,6 +27,7 @@ book](https://rafalab.github.io/dsbook/ggplot2.html#add-on-packages).
 ## Examples
 
 ``` r
+
 library("ggplot2")
 library("ggthemes")
 
@@ -48,6 +51,7 @@ p1 <- ggplot(mtcars2) +
 ```
 
 ``` r
+
 p1 +
   scale_color_calc() +
   theme_calc()
@@ -56,12 +60,14 @@ p1 +
 ![](reference/figures/README-theme_calc-1.png)
 
 ``` r
+
 p1 + theme_clean()
 ```
 
 ![](reference/figures/README-theme_clean-1.png)
 
 ``` r
+
 p1 + theme_economist() +
   scale_colour_economist()
 ```
@@ -69,6 +75,7 @@ p1 + theme_economist() +
 ![](reference/figures/README-theme_economist-1.png)
 
 ``` r
+
 p1 + theme_excel() +
   scale_colour_excel()
 ```
@@ -76,6 +83,7 @@ p1 + theme_excel() +
 ![](reference/figures/README-theme_excel-1.png)
 
 ``` r
+
 p1 + theme_excel_new() +
   scale_colour_excel_new()
 ```
@@ -83,24 +91,28 @@ p1 + theme_excel_new() +
 ![](reference/figures/README-theme_excel_new-1.png)
 
 ``` r
+
 p1 + theme_igray()
 ```
 
 ![](reference/figures/README-theme_igray-1.png)
 
 ``` r
+
 p1 + theme_par()
 ```
 
 ![](reference/figures/README-theme_par-1.png)
 
 ``` r
+
 p1 + theme_fivethirtyeight()
 ```
 
 ![](reference/figures/README-theme_fivethirtyeight-1.png)
 
 ``` r
+
 p1 + theme_few() +
   scale_colour_few()
 ```
@@ -108,6 +120,7 @@ p1 + theme_few() +
 ![](reference/figures/README-theme_few-1.png)
 
 ``` r
+
 p1 + theme_solarized() +
   scale_colour_solarized()
 ```
@@ -115,6 +128,7 @@ p1 + theme_solarized() +
 ![](reference/figures/README-theme_solarized-1.png)
 
 ``` r
+
 p1 + theme_solarized(light=FALSE) +
   scale_colour_solarized()
 ```
@@ -122,30 +136,35 @@ p1 + theme_solarized(light=FALSE) +
 ![](reference/figures/README-theme_solarized_dark-1.png)
 
 ``` r
+
 p1 + theme_solid()
 ```
 
 ![](reference/figures/README-theme_solid-1.png)
 
 ``` r
+
 p1 + theme_tufte()
 ```
 
 ![](reference/figures/README-theme_stata-1.png)
 
 ``` r
+
 p1 + theme_wsj(base_size = 8) + scale_color_wsj()
 ```
 
 ![](reference/figures/README-theme_wsj-1.png)
 
 ``` r
+
 p1 + scale_color_colorblind()
 ```
 
 ![](reference/figures/README-scale_colorblind-1.png)
 
 ``` r
+
 p1 + scale_color_tableau()
 ```
 

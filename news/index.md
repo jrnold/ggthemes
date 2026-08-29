@@ -2,6 +2,24 @@
 
 ## ggthemes (development version)
 
+Note for the next release: this should ship as 6.0.0, not a minor/patch
+release, because it includes a breaking change (the minimum supported R
+version has increased).
+
+- BREAKING CHANGE: Bump minimum supported R version to 4.1.0, and use
+  the base pipe (`|>`) instead of the magrittr pipe (`%>%`) in
+  `data-raw/` and examples, to match the current Tidyverse Style Guide
+  (lintr’s `pipe_consistency_linter` is now a default linter requiring
+  `|>`, which was failing CI)
+- chore: Modernize GitHub Actions workflows: bump `actions/checkout`,
+  `actions/upload-artifact`, and the pkgdown deploy action to their
+  current pinned versions; add explicit `permissions:` blocks; migrate
+  `test-coverage.yaml` from
+  [`covr::codecov()`](http://covr.r-lib.org/reference/codecov.md) to
+  [`covr::package_coverage()`](http://covr.r-lib.org/reference/package_coverage.md) +
+  the official `codecov/codecov-action`
+- Fix stale `branch/master` Codecov badge in README (now points at
+  `main`)
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
