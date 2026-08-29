@@ -42,6 +42,11 @@ version has increased).
   `scale_fill_gradient2_tableau()`, and `scale_color_gradient2_tableau()` to
   control which data value maps to the middle color of the diverging
   palette (#136)
+- `cleveland_shape_pal(overlap = FALSE)` and `tableau_shape_pal()` now warn
+  with an actionable message when their Unicode-derived pch codes are
+  likely to fail to render (non-UTF-8 locale), instead of only surfacing a
+  cryptic low-level "conversion failure ... in 'mbcsToSbcs'" error at draw
+  time (#164)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0

@@ -40,6 +40,7 @@ cleveland_shape_pal <- function(overlap = TRUE) {
   } else {
     ggthemes::ggthemes_data$shapes$cleveland$default$pch
   }
+  warn_unicode_pch(shapes)
   max_n <- length(shapes)
   f <- manual_pal(shapes)
   attr(f, "max_n") <- max_n

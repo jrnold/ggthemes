@@ -30,6 +30,27 @@ rd_optlist <- function(x) {
   paste0("\\code{\"", as.character(x), "\"}", collapse = ", ")
 }
 
+#' Warn about shape palettes using pch codes derived from Unicode symbols
+#'
+#' Some shape palettes use pch codes generated from Unicode glyphs (see
+#' `data-raw/build.R`'s `utf_8_to_pch()`), identifiable as pch < -255 (the
+#' base R negative-pch encoding). These can fail to render with a
+#' low-level, hard-to-diagnose error (e.g. "conversion failure ... in
+#' 'mbcsToSbcs'") on a non-UTF-8 locale, or with a font/device that lacks
+#' the glyph. Warn early with an actionable message instead.
+#' @noRd
+warn_unicode_pch <- function(pch) {
+  if (any(pch < -255, na.rm = TRUE) && !isTRUE(l10n_info()[["UTF-8"]])) {
+    warning(
+      "This shape palette uses pch codes derived from Unicode symbols, ",
+      "and your R session's locale is not UTF-8. Rendering may fail with ",
+      "a low-level error (e.g. \"conversion failure ... in 'mbcsToSbcs'\"). ",
+      "Try a UTF-8 locale, or a Cairo-based graphics device ",
+      "(e.g. grDevices::cairo_pdf(), ragg::agg_png())."
+    )
+  }
+}
+
 check_pal_n <- function(n, max_n) {
   if (n > max_n) {
     warning(
