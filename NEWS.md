@@ -1,5 +1,9 @@
 # ggthemes (development version)
 
+- Add `midpoint` argument to `scale_colour_gradient2_tableau()`,
+  `scale_fill_gradient2_tableau()`, and `scale_color_gradient2_tableau()` to
+  control which data value maps to the middle color of the diverging
+  palette (#136)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
