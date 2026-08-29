@@ -20,6 +20,10 @@ version has increased).
   the official `codecov/codecov-action`
 - Fix stale `branch/master` Codecov badge in README (now points at
   `main`)
+- Bugfix: Fix
+  [`excel_new_pal()`](http://jrnold.github.io/ggthemes/reference/excel_new_pal.md)
+  example so it actually generates output
+  ([\#199](https://github.com/jrnold/ggthemes/issues/199))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
