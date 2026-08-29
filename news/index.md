@@ -45,6 +45,12 @@ version has increased).
   [`theme_excel()`](http://jrnold.github.io/ggthemes/reference/theme_excel.md))
   intentionally replicate a fixed published style and do not expose
   these ([\#183](https://github.com/jrnold/ggthemes/issues/183))
+- Bugfix:
+  [`theme_economist()`](http://jrnold.github.io/ggthemes/reference/theme_economist.md)/[`theme_economist_white()`](http://jrnold.github.io/ggthemes/reference/theme_economist.md)
+  and
+  [`theme_excel()`](http://jrnold.github.io/ggthemes/reference/theme_excel.md)
+  now respect the `base_family` and `base_size` arguments
+  ([\#135](https://github.com/jrnold/ggthemes/issues/135))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
