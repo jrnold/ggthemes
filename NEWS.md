@@ -1,5 +1,15 @@
 # ggthemes (development version)
 
+- Bump minimum supported R version to 4.1.0, and use the base pipe (`|>`)
+  instead of the magrittr pipe (`%>%`) in `data-raw/` and examples, to match
+  the current Tidyverse Style Guide (lintr's `pipe_consistency_linter` is now
+  a default linter requiring `|>`, which was failing CI)
+- chore: Modernize GitHub Actions workflows: bump `actions/checkout`,
+  `actions/upload-artifact`, and the pkgdown deploy action to their current
+  pinned versions; add explicit `permissions:` blocks; migrate
+  `test-coverage.yaml` from `covr::codecov()` to `covr::package_coverage()` +
+  the official `codecov/codecov-action`
+- Fix stale `branch/master` Codecov badge in README (now points at `main`)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
