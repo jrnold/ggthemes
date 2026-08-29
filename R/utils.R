@@ -41,13 +41,11 @@ rd_optlist <- function(x) {
 #' @noRd
 warn_unicode_pch <- function(pch) {
   if (any(pch < -255, na.rm = TRUE) && !isTRUE(l10n_info()[["UTF-8"]])) {
-    warning(
-      "This shape palette uses pch codes derived from Unicode symbols, ",
-      "and your R session's locale is not UTF-8. Rendering may fail with ",
-      "a low-level error (e.g. \"conversion failure ... in 'mbcsToSbcs'\"). ",
-      "Try a UTF-8 locale, or a Cairo-based graphics device ",
-      "(e.g. grDevices::cairo_pdf(), ragg::agg_png())."
-    )
+    cli::cli_warn(c(
+      "This shape palette uses pch codes derived from Unicode symbols, and your R session's locale is not UTF-8.",
+      "i" = "Rendering may fail with a low-level error (e.g. \"conversion failure ... in 'mbcsToSbcs'\").",
+      "i" = "Try a UTF-8 locale, or a Cairo-based graphics device (e.g. cairo_pdf(), agg_png())."
+    ))
   }
 }
 
