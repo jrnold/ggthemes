@@ -116,6 +116,7 @@ scale_color_tableau <- scale_colour_tableau
 tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
   palette <- match.arg(palette)
   shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
+  warn_unicode_pch(shapes[["pch"]])
   f <- manual_pal(shapes[["pch"]])
   attr(f, "max_n") <- nrow(shapes)
   f
@@ -233,6 +234,8 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #'
 #' @inheritParams tableau_div_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
+#' @param midpoint The data value that corresponds to the middle color of the
+#'   diverging palette.
 #' @param guide Type of legend. Use \code{'colourbar'} for continuous
 #'   colour bar, or \code{'legend'} for discrete colour legend.
 #' @family colour tableau
@@ -242,10 +245,18 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 scale_colour_gradient2_tableau <- function(
   palette = "Orange-Blue Diverging",
   ...,
+  midpoint = 0,
   na.value = "grey50", # nolint: object_name_linter
   guide = "colourbar"
 ) {
-  continuous_scale("colour", palette = tableau_div_gradient_pal(palette), na.value = na.value, guide = guide, ...)
+  continuous_scale(
+    "colour",
+    palette = tableau_div_gradient_pal(palette),
+    na.value = na.value,
+    guide = guide,
+    rescaler = mid_rescaler(mid = midpoint),
+    ...
+  )
 }
 
 #' @export
@@ -253,10 +264,18 @@ scale_colour_gradient2_tableau <- function(
 scale_fill_gradient2_tableau <- function(
   palette = "Orange-Blue Diverging",
   ...,
+  midpoint = 0,
   na.value = "grey50", # nolint: object_name_linter
   guide = "colourbar"
 ) {
-  continuous_scale("fill", palette = tableau_div_gradient_pal(palette), na.value = na.value, guide = guide, ...)
+  continuous_scale(
+    "fill",
+    palette = tableau_div_gradient_pal(palette),
+    na.value = na.value,
+    guide = guide,
+    rescaler = mid_rescaler(mid = midpoint),
+    ...
+  )
 }
 
 #' @export

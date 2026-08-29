@@ -1,5 +1,52 @@
 # ggthemes (development version)
 
+Note for the next release: this should ship as 6.0.0, not a minor/patch
+release, because it includes a breaking change (the minimum supported R
+version has increased).
+
+- BREAKING CHANGE: Bump minimum supported R version to 4.1.0, and use the
+  base pipe (`|>`) instead of the magrittr pipe (`%>%`) in `data-raw/` and
+  examples, to match the current Tidyverse Style Guide (lintr's
+  `pipe_consistency_linter` is now a default linter requiring `|>`, which was
+  failing CI)
+- chore: Modernize GitHub Actions workflows: bump `actions/checkout`,
+  `actions/upload-artifact`, and the pkgdown deploy action to their current
+  pinned versions; add explicit `permissions:` blocks; migrate
+  `test-coverage.yaml` from `covr::codecov()` to `covr::package_coverage()` +
+  the official `codecov/codecov-action`
+- Fix stale `branch/master` Codecov badge in README (now points at `main`)
+- Bugfix: Fix `excel_new_pal()` example so it actually generates output (#199)
+- Bugfix: `extended_range_breaks_()` now respects the `n` argument instead of
+  silently ignoring it (#139)
+- Add `black` argument to `colorblind_pal()`, `scale_colour_colourblind()`,
+  `scale_color_colorblind()`, `scale_fill_colorblind()`, and
+  `scale_fill_colourblind()`; set `black = FALSE` to drop black from the
+  colorblind-safe palette (#178)
+- Add `ink`, `paper`, and `accent` arguments to `theme_foundation()`,
+  matching ggplot2's own `theme_gray(ink=, paper=, accent=)`. Branded themes
+  (e.g. `theme_economist()`, `theme_excel()`) intentionally replicate a fixed
+  published style and do not expose these (#183)
+- Bugfix: `theme_economist()`/`theme_economist_white()` and `theme_excel()` now
+  respect the `base_family` and `base_size` arguments (#135)
+- Bugfix: `theme_excel_new()` now scales `axis.text`, `strip.text`,
+  `legend.text`, and `plot.title` with `base_size`, and no longer blanks out
+  axis titles by default (#176)
+- Bugfix: `geom_rangeframe()` no longer silently drops the entire range line
+  for an aesthetic when the data contains missing values; `na.rm` now behaves
+  as documented (#177)
+- Clarify in `geom_rangeframe()` docs (and add an example) that
+  `sides = "trbl"` already draws correctly-positioned frames on panels with
+  a secondary axis, since `ggplot2::sec_axis()` only relabels the existing
+  scale rather than introducing a separate data range (#179)
+- Add `midpoint` argument to `scale_colour_gradient2_tableau()`,
+  `scale_fill_gradient2_tableau()`, and `scale_color_gradient2_tableau()` to
+  control which data value maps to the middle color of the diverging
+  palette (#136)
+- `cleveland_shape_pal(overlap = FALSE)` and `tableau_shape_pal()` now warn
+  with an actionable message when their Unicode-derived pch codes are
+  likely to fail to render (non-UTF-8 locale), instead of only surfacing a
+  cryptic low-level "conversion failure ... in 'mbcsToSbcs'" error at draw
+  time (#164)
 - chore: Replace base `stop()`/`warning()` with `cli::cli_abort()`/
   `cli::cli_warn()` throughout, matching current tidyverse convention (used
   by ggplot2/dplyr). Error/warning text is largely the same information,
