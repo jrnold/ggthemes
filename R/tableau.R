@@ -120,6 +120,7 @@ scale_color_tableau <- scale_colour_tableau
 tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
   palette <- match.arg(palette)
   shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
+  warn_unicode_pch(shapes[["pch"]])
   f <- manual_pal(shapes[["pch"]])
   attr(f, "max_n") <- nrow(shapes)
   f

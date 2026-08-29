@@ -1,5 +1,10 @@
 # ggthemes (development version)
 
+- `cleveland_shape_pal(overlap = FALSE)` and `tableau_shape_pal()` now warn
+  with an actionable message when their Unicode-derived pch codes are
+  likely to fail to render (non-UTF-8 locale), instead of only surfacing a
+  cryptic low-level "conversion failure ... in 'mbcsToSbcs'" error at draw
+  time (#164)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
