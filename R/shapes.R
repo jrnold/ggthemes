@@ -83,10 +83,10 @@ scale_shape_cleveland <- function(overlap = TRUE, ...) {
 #' "Discriminating Strata in Scatterplots", Journal of
 #' the American Statistical Association, \url{https://www.jstor.org/stable/2289649}
 #' @family shapes
-#' @importFrom lifecycle deprecate_soft
+#' @importFrom lifecycle deprecate_warn
 #' @export
 circlefill_shape_pal <- function() {
-  deprecate_soft("5.0.0", "circlefill_shape_pal()")
+  deprecate_warn("5.0.0", "circlefill_shape_pal()")
   values <- ggthemes::ggthemes_data[["shapes"]][["circlefill"]][["pch"]]
   max_n <- length(values)
   f <- manual_pal(values)
@@ -103,11 +103,11 @@ circlefill_shape_pal <- function() {
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family shapes
-#' @importFrom lifecycle deprecate_soft
+#' @importFrom lifecycle deprecate_warn
 #' @seealso
 #' \code{\link{circlefill_shape_pal}()} for a description of the palette.
 scale_shape_circlefill <- function(...) {
-  deprecate_soft("5.0.0", "scale_shape_circlefill()")
+  deprecate_warn("5.0.0", "scale_shape_circlefill()")
   discrete_scale("shape", palette = circlefill_shape_pal(), ...)
 }
 
