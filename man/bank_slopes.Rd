@@ -4,7 +4,14 @@
 \alias{bank_slopes}
 \title{Bank Slopes to 45 degrees}
 \usage{
-bank_slopes(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"), ...)
+bank_slopes(
+  x,
+  y,
+  cull = FALSE,
+  weight = NULL,
+  method = c("ms", "as", "ao", "was"),
+  ...
+)
 }
 \arguments{
 \item{x}{x values}
@@ -15,9 +22,9 @@ bank_slopes(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"), ...)
 
 \item{weight}{No longer used, but kept for backwards compatibility.}
 
-\item{method}{One of 'ms' (Median Absolute Slope) or 'as' (Average
-Absolute Slope). Other options are no longer supported, and will use
-'ms' instead with a warning.}
+\item{method}{One of 'ms' (Median Absolute Slope), 'as' (Average
+Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
+Average Absolute Slope).}
 
 \item{...}{No longer used, but kept for backwards compatibility.}
 }
@@ -71,11 +78,42 @@ then the mean absolute slope banking is the
  mean |s_i / alpha| = 1
 }
 
-Heer and Agrawala (2006) and Cleveland discuss several other methods
-including average (weighted) orientation, and global and local orientation resolution.
-These are no longer implemented in this function. In general, either the
-median or average absolute slopes will produce reasonable results without
-requiring optimization.
+\strong{Average Absolute Orientation Banking}
+
+Rather than averaging the slopes themselves, this method averages the
+\emph{orientation} (angle) of each segment, since perceived slope
+differences are more closely related to angle than to the raw ratio
+\eqn{dy/dx}{dy/dx}. Let \eqn{s'_i = s_i R_x / R_y}{s'_i = s_i * Rx / Ry}
+be the range-normalized slopes. Then \eqn{\alpha}{alpha} is chosen such
+that,
+\deqn{
+  mean \left| \arctan \left( \frac{s'_i}{\alpha} \right) \right| = \frac{\pi}{4}
+}{
+ mean |atan(s'_i / alpha)| = pi / 4
+}
+This has no closed-form solution and is found numerically with
+\code{\link[stats]{uniroot}}.
+
+\strong{Weighted Average Absolute Slope Banking}
+
+Identical to Average Absolute Slope Banking, except each segment's
+contribution is weighted by its horizontal run, \eqn{dx_i}{dx_i}, so
+that segments spanning more horizontal (screen) space are weighted more
+heavily than segments that happen to be sampled more densely in
+\eqn{x}{x}. Using \eqn{s'_i}{s'_i} as above,
+\deqn{
+  \alpha = \frac{\sum_i dx_i \left| s'_i \right|}{\sum_i dx_i}
+}{
+ alpha = sum(dx_i * |s'_i|) / sum(dx_i)
+}
+
+Heer and Agrawala (2006) also discuss multi-scale (global and local)
+orientation resolution, which extend these single-scale methods by
+aggregating slopes computed at multiple scales rather than only between
+adjacent points. These are not implemented here. In general, the
+median, average, or average-orientation absolute slope methods will
+produce reasonable results without requiring this additional
+complexity.
 }
 
 \examples{
@@ -92,9 +130,20 @@ m
 ## Using the default method, Median Absolute Slope
 ratio <- bank_slopes(x, y)
 m + coord_fixed(ratio = ratio)
-## Using culling
+
 ## Average Absolute Slope
-bank_slopes(x, y, method = "as")
+m + coord_fixed(ratio = bank_slopes(x, y, method = "as"))
+
+## Average Absolute Orientation
+m + coord_fixed(ratio = bank_slopes(x, y, method = "ao"))
+
+## Weighted Average Absolute Slope: each segment is weighted by its run in
+## x, so this only differs from "as" when x is not evenly spaced
+m + coord_fixed(ratio = bank_slopes(x, y, method = "was"))
+
+## Culling removes slopes of 0 or Inf before banking, which matters when
+## the data contains runs of repeated x or y values
+bank_slopes(x, y, cull = TRUE)
 }
 \references{
 Cleveland, W. S., M. E. McGill, and R. McGill. The Shape Parameter
@@ -110,5 +159,6 @@ Graphs.' Journal of Computational and Statistical Graphics.
 Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 }
 \seealso{
-\code{\link[lattice]{banking}()}
+\code{\link[lattice]{banking}()}, \code{\link{bank_plot}} to bank
+a \code{ggplot} using its own data.
 }

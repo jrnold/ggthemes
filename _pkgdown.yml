@@ -31,6 +31,7 @@ reference:
 - title: Other functions
   contents:
   - bank_slopes
+  - bank_plot
   - extended_range_breaks
   - show_linetypes
   - show_shapes

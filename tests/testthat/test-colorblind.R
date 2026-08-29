@@ -23,6 +23,14 @@ test_that("scale_colour_colourblind(black = FALSE) works", {
   expect_s3_class(scale_colour_colourblind(black = FALSE), "ScaleDiscrete")
 })
 
+test_that("scale_colour_colorblind is deprecated", {
+  lifecycle::expect_deprecated(scale_colour_colorblind())
+})
+
+test_that("scale_color_colorblind works", {
+  expect_equal_scale(scale_color_colorblind(), scale_colour_colourblind())
+})
+
 test_that("scale_fill_colorblind works", {
   expect_s3_class(scale_fill_colorblind(), "ScaleDiscrete")
 })
