@@ -27,6 +27,7 @@ Imports:
     purrr,
     rlang,
     scales,
+    stats,
     stringr,
     tibble
 Suggests:
@@ -55,9 +56,9 @@ Description: Some extra themes, geoms, and scales for 'ggplot2'.
 License: GPL-2
 URL: https://jrnold.github.io/ggthemes/, https://github.com/jrnold/ggthemes, http://jrnold.github.io/ggthemes/
 BugReports: https://github.com/jrnold/ggthemes/issues
-RoxygenNote: 7.3.3
 LazyData: true
 Language: en-US
 Encoding: UTF-8
+RoxygenNote: 7.3.3
 Config/testthat/edition: 3
 Config/Needs/website: pkgdown

@@ -15,6 +15,18 @@ version has increased).
   `test-coverage.yaml` from `covr::codecov()` to `covr::package_coverage()` +
   the official `codecov/codecov-action`
 - Fix stale `branch/master` Codecov badge in README (now points at `main`)
+- Add `"ao"` (Average Absolute Orientation) and `"was"` (Weighted Average
+  Absolute Slope) methods to `bank_slopes()`, following Heer and Agrawala
+  (2006). Also declare `stats` as an explicit `Imports` dependency, since
+  `bank_slopes()` calls `stats::median()`/`stats::uniroot()`/
+  `stats::weighted.mean()`, and fix the `bank_slopes()` example so each
+  method's ratio is actually applied via `coord_fixed()` instead of just
+  computed and discarded
+- Add `bank_plot()`, a wrapper around `bank_slopes()` that extracts `x`/`y`
+  directly from an already-built `ggplot` (respecting stats, position
+  adjustments, groups, and facets) and returns the plot with
+  `coord_fixed()` applied, so banking a plot no longer requires manually
+  reconstructing its plotted vectors
 - Bugfix: Fix `excel_new_pal()` example so it actually generates output (#199)
 - Bugfix: `extended_range_breaks_()` now respects the `n` argument instead of
   silently ignoring it (#139)

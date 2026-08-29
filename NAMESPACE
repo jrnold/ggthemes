@@ -3,6 +3,7 @@
 export(GeomRangeFrame)
 export(GeomTufteboxplot)
 export(StatFivenumber)
+export(bank_plot)
 export(bank_slopes)
 export(calc_pal)
 export(calc_shape_pal)
