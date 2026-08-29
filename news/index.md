@@ -82,6 +82,28 @@ version has increased).
   surfacing a cryptic low-level “conversion failure … in ‘mbcsToSbcs’”
   error at draw time
   ([\#164](https://github.com/jrnold/ggthemes/issues/164))
+- chore: Replace base
+  [`stop()`](https://rdrr.io/r/base/stop.html)/[`warning()`](https://rdrr.io/r/base/warning.html)
+  with
+  [`cli::cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html)/
+  [`cli::cli_warn()`](https://cli.r-lib.org/reference/cli_abort.html)
+  throughout, matching current tidyverse convention (used by
+  ggplot2/dplyr). Error/warning text is largely the same information,
+  reformatted for clarity; a few tests were updated to match. Add `cli`
+  and `rlang` to Imports.
+- chore: Use
+  [`rlang::check_installed()`](https://rlang.r-lib.org/reference/is_installed.html)
+  instead of a manual
+  [`requireNamespace()`](https://rdrr.io/r/base/ns-load.html) +
+  [`stop()`](https://rdrr.io/r/base/stop.html) check for the `quantreg`
+  dependency in
+  [`stat_fivenumber()`](http://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)’s
+  weighted case, which prompts an interactive install instead of just
+  erroring. The genuinely optional `pander`-availability checks in
+  [`theme_pander()`](http://jrnold.github.io/ggthemes/reference/theme_pander.md)/[`palette_pander()`](http://jrnold.github.io/ggthemes/reference/palette_pander.md)
+  are left as
+  [`requireNamespace()`](https://rdrr.io/r/base/ns-load.html), since
+  `check_installed()` is for hard requirements.
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
