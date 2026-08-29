@@ -1,5 +1,9 @@
 # ggthemes (development version)
 
+- Add `black` argument to `colorblind_pal()`, `scale_colour_colourblind()`,
+  `scale_color_colorblind()`, `scale_fill_colorblind()`, and
+  `scale_fill_colourblind()`; set `black = FALSE` to drop black from the
+  colorblind-safe palette (#178)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
