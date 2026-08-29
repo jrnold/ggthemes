@@ -58,3 +58,16 @@ test_that("theme_excel with horizontal = FALSE works", {
   thm <- theme_excel(horizontal = FALSE)
   expect_equal(thm$panel.grid.major.y, element_blank())
 })
+
+test_that("theme_excel_new respects base_size for all text elements", {
+  thm <- theme_excel_new(base_size = 20)
+  expect_equal(thm$text$size, 20)
+  expect_equal(thm$axis.text$size, 20)
+  expect_equal(thm$strip.text$size, 20)
+  expect_equal(thm$legend.text$size, 20)
+})
+
+test_that("theme_excel_new does not blank out axis titles", {
+  thm <- theme_excel_new()
+  expect_null(thm$axis.title)
+})

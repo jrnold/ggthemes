@@ -167,17 +167,16 @@ theme_excel_new <- function(base_size = 9, base_family = "sans") {
         linewidth = 0.75 * PT_TO_MM
       ),
       panel.grid.minor = element_blank(),
-      axis.title = element_blank(),
       axis.text = element_text(
         colour = colorlist$dk_gray,
-        size = 9
+        size = base_size
       ),
       strip.background = element_rect(
         fill = NA
       ),
       strip.text = element_text(
         colour = colorlist$dk_gray,
-        size = 9
+        size = base_size
       ),
       axis.ticks = element_blank(),
       panel.background = element_blank(),
@@ -187,13 +186,13 @@ theme_excel_new <- function(base_size = 9, base_family = "sans") {
         hjust = 0.5
       ),
       plot.title = element_text(
-        size = 14,
+        size = rel(14 / 9),
         hjust = 0.5
       ),
       plot.subtitle = element_blank(),
       legend.position = "bottom",
       legend.text = element_text(
-        size = 9,
+        size = base_size,
         colour = colorlist$dk_gray
       ),
       legend.title = element_blank(),

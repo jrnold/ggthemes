@@ -1,5 +1,8 @@
 # ggthemes (development version)
 
+- Bugfix: `theme_excel_new()` now scales `axis.text`, `strip.text`,
+  `legend.text`, and `plot.title` with `base_size`, and no longer blanks out
+  axis titles by default (#176)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
