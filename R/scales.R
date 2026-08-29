@@ -102,8 +102,6 @@ extended_range_breaks_ <- function(
     return(seq(from = dmin, to = dmax, length.out = n))
   }
 
-  n <- length(Q)
-
   best <- list()
   best$score <- -2
 
