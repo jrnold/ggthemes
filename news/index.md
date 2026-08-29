@@ -24,6 +24,10 @@ version has increased).
   [`excel_new_pal()`](http://jrnold.github.io/ggthemes/reference/excel_new_pal.md)
   example so it actually generates output
   ([\#199](https://github.com/jrnold/ggthemes/issues/199))
+- Bugfix:
+  [`extended_range_breaks_()`](http://jrnold.github.io/ggthemes/reference/range_breaks.md)
+  now respects the `n` argument instead of silently ignoring it
+  ([\#139](https://github.com/jrnold/ggthemes/issues/139))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
