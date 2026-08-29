@@ -51,6 +51,11 @@ version has increased).
   [`theme_excel()`](http://jrnold.github.io/ggthemes/reference/theme_excel.md)
   now respect the `base_family` and `base_size` arguments
   ([\#135](https://github.com/jrnold/ggthemes/issues/135))
+- Bugfix:
+  [`theme_excel_new()`](http://jrnold.github.io/ggthemes/reference/theme_excel_new.md)
+  now scales `axis.text`, `strip.text`, `legend.text`, and `plot.title`
+  with `base_size`, and no longer blanks out axis titles by default
+  ([\#176](https://github.com/jrnold/ggthemes/issues/176))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
