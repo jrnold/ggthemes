@@ -1,5 +1,9 @@
 # ggthemes (development version)
 
+- Add `ink`, `paper`, and `accent` arguments to `theme_foundation()`,
+  matching ggplot2's own `theme_gray(ink=, paper=, accent=)`. Branded themes
+  (e.g. `theme_economist()`, `theme_excel()`) intentionally replicate a fixed
+  published style and do not expose these (#183)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
