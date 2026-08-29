@@ -38,11 +38,11 @@ theme_pander <- function(
 ) {
   if (hasArg(ff)) {
     base_family <- ff
-    warning("Argument `ff` deprecated. Use `base_family` instead.")
+    cli::cli_warn("{.arg ff} is deprecated. Use {.arg base_family} instead.")
   }
   if (hasArg(fs)) {
     base_size <- fs
-    warning("Argument `fs` deprecated. Use `base_size` instead.")
+    cli::cli_warn("{.arg fs} is deprecated. Use {.arg base_size} instead.")
   }
 
   if (requireNamespace("pander", quietly = TRUE)) {

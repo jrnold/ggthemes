@@ -18,12 +18,14 @@ Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
 Depends:
     R (>= 4.1.0)
 Imports:
+    cli,
     ggplot2 (>= 3.0.0),
     graphics,
     grid,
     lifecycle,
     methods,
     purrr,
+    rlang,
     scales,
     stringr,
     tibble
@@ -39,7 +41,6 @@ Suggests:
     mapproj,
     pander,
     quantreg,
-    rlang,
     rmarkdown,
     spelling,
     testthat (>= 3.2.0),

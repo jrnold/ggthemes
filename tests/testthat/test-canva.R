@@ -14,7 +14,7 @@ test_that("canva_pal raises warning with to large n", {
 
 
 test_that("canva_pal raises error with invalid palette", {
-  expect_error(canva_pal("adsffafd"), regexp = "not a valid name")
+  expect_error(canva_pal("adsffafd"), regexp = "not a valid .*palette. name")
 })
 
 test_that("scale_colour_canva works", {

@@ -53,16 +53,9 @@ warn_unicode_pch <- function(pch) {
 
 check_pal_n <- function(n, max_n) {
   if (n > max_n) {
-    warning(
-      "This palette can handle a maximum of ",
-      max_n,
-      " values.",
-      "You have supplied ",
-      n,
-      "."
-    )
+    cli::cli_warn("This palette can handle a maximum of {max_n} values. You have supplied {n}.")
   } else if (n < 0) {
-    stop("`n` must be a non-negative integer.")
+    cli::cli_abort("{.arg n} must be a non-negative integer, not {n}.")
   }
 }
 

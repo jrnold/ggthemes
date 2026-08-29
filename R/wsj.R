@@ -87,7 +87,7 @@ wsj_pal <- function(palette = "colors6") {
     attr(f, "max_n") <- max_n
     f
   } else {
-    stop(sprintf("palette %s not a valid palette.", palette))
+    cli::cli_abort("{.arg palette} must be one of {.val {names(palettes)}}, not {.val {palette}}.")
   }
 }
 
