@@ -56,6 +56,11 @@ version has increased).
   now scales `axis.text`, `strip.text`, `legend.text`, and `plot.title`
   with `base_size`, and no longer blanks out axis titles by default
   ([\#176](https://github.com/jrnold/ggthemes/issues/176))
+- Bugfix:
+  [`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+  no longer silently drops the entire range line for an aesthetic when
+  the data contains missing values; `na.rm` now behaves as documented
+  ([\#177](https://github.com/jrnold/ggthemes/issues/177))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
