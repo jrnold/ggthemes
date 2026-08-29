@@ -7,22 +7,28 @@ An eight-color colorblind safe qualitative discrete palette.
 ## Usage
 
 ``` r
-colorblind_pal()
+colorblind_pal(black = TRUE)
 
-colourblind_pal()
+colourblind_pal(black = TRUE)
 
-scale_colour_colourblind(...)
+scale_colour_colourblind(black = TRUE, ...)
 
-scale_colour_colorblind(...)
+scale_colour_colorblind(black = TRUE, ...)
 
-scale_color_colorblind(...)
+scale_color_colorblind(black = TRUE, ...)
 
-scale_fill_colorblind(...)
+scale_fill_colorblind(black = TRUE, ...)
 
-scale_fill_colourblind(...)
+scale_fill_colourblind(black = TRUE, ...)
 ```
 
 ## Arguments
+
+- black:
+
+  If `FALSE`, drop black from the palette. Black is often used elsewhere
+  in a figure (e.g. text, axes), so including it as a data color can
+  wrongly suggest that group is a default or baseline.
 
 - ...:
 
@@ -149,6 +155,8 @@ library("ggplot2")
 library("scales")
 
 show_col(colorblind_pal()(8))
+
+show_col(colorblind_pal(black = FALSE)(7))
 
 p <- ggplot(mtcars) +
   geom_point(aes(

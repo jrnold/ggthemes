@@ -28,6 +28,15 @@ version has increased).
   [`extended_range_breaks_()`](http://jrnold.github.io/ggthemes/reference/range_breaks.md)
   now respects the `n` argument instead of silently ignoring it
   ([\#139](https://github.com/jrnold/ggthemes/issues/139))
+- Add `black` argument to
+  [`colorblind_pal()`](http://jrnold.github.io/ggthemes/reference/colorblind.md),
+  [`scale_colour_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md),
+  [`scale_color_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md),
+  [`scale_fill_colorblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md),
+  and
+  [`scale_fill_colourblind()`](http://jrnold.github.io/ggthemes/reference/colorblind.md);
+  set `black = FALSE` to drop black from the colorblind-safe palette
+  ([\#178](https://github.com/jrnold/ggthemes/issues/178))
 - Bugfix: Fix 301 error in link
   ([\#196](https://github.com/jrnold/ggthemes/issues/196))
 
