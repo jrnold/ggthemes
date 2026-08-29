@@ -18,6 +18,10 @@ version has increased).
 - Bugfix: Fix `excel_new_pal()` example so it actually generates output (#199)
 - Bugfix: `extended_range_breaks_()` now respects the `n` argument instead of
   silently ignoring it (#139)
+- Add `black` argument to `colorblind_pal()`, `scale_colour_colourblind()`,
+  `scale_color_colorblind()`, `scale_fill_colorblind()`, and
+  `scale_fill_colourblind()`; set `black = FALSE` to drop black from the
+  colorblind-safe palette (#178)
 - Bugfix: Fix 301 error in link (#196)
 
 # ggthemes 5.2.0
