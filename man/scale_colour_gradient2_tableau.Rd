@@ -74,10 +74,10 @@ for (palette in head(names(palettes))) {
 p + scale_colour_gradient2_tableau(trans = "reverse")
 }
 \seealso{
-Other colour tableau: 
-\code{\link{scale_colour_gradient_tableau}()},
-\code{\link{scale_colour_tableau}()},
-\code{\link{tableau_color_pal}()},
-\code{\link{tableau_gradient_pal}()}
+Other colour tableau:
+\code{\link[=scale_colour_gradient_tableau]{scale_colour_gradient_tableau()}},
+\code{\link[=scale_colour_tableau]{scale_colour_tableau()}},
+\code{\link[=tableau_color_pal]{tableau_color_pal()}},
+\code{\link[=tableau_gradient_pal]{tableau_gradient_pal()}}
 }
 \concept{colour tableau}

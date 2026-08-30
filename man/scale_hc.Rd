@@ -80,7 +80,7 @@ Colour and fill scales which use the palettes in
 \code{\link{theme_hc}()}.
 }
 \seealso{
-Other colour hc: 
-\code{\link{hc_pal}()}
+Other colour hc:
+\code{\link[=hc_pal]{hc_pal()}}
 }
 \concept{colour hc}

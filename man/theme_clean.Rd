@@ -25,12 +25,12 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
 p
 }
 \seealso{
-Other themes: 
-\code{\link{theme_base}()},
-\code{\link{theme_foundation}()},
-\code{\link{theme_igray}()},
-\code{\link{theme_par}()},
-\code{\link{theme_solid}()}
+Other themes:
+\code{\link[=theme_base]{theme_base()}},
+\code{\link[=theme_foundation]{theme_foundation()}},
+\code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_par]{theme_par()}},
+\code{\link[=theme_solid]{theme_solid()}}
 }
 \author{
 Konrad Zdeb \email{name.surname@me.com}

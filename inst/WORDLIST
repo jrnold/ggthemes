@@ -9,6 +9,7 @@ Bugfix
 CMD
 Calc
 Canva
+Codecov
 Colour
 FiveThirtyEight
 Fivethirtyeight
@@ -32,6 +33,7 @@ McGill
 Officina
 Pinterest
 PolicyViz
+README
 SRON
 SandyMuspratt
 Schoonover's
@@ -84,10 +86,15 @@ lifecycle
 linepattern
 linetype
 linetypes
+linter
+lintr's
 lty
+magrittr
+mbcsToSbcs
 nd
 orcid
 paul
+pch
 pkgdown
 plotmath
 ptoche

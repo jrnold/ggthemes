@@ -21,16 +21,12 @@ site:
 data:
 	$(RSCRIPT) data-raw/build.R
 
-.PHONY: style
-style:
-	$(RSCRIPT) scripts/style.R
-
 .PHONY: lint
 lint:
 	$(RSCRIPT) -e 'devtools::lint()'
 
-.PHONY: format
-format:
+.PHONY: style
+style:
 	./scripts/format
 
 README.md: README.Rmd

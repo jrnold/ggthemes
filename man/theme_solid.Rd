@@ -29,11 +29,11 @@ ggplot(mtcars, aes(wt, mpg)) +
   theme_solid(fill = "black")
 }
 \seealso{
-Other themes: 
-\code{\link{theme_base}()},
-\code{\link{theme_clean}()},
-\code{\link{theme_foundation}()},
-\code{\link{theme_igray}()},
-\code{\link{theme_par}()}
+Other themes:
+\code{\link[=theme_base]{theme_base()}},
+\code{\link[=theme_clean]{theme_clean()}},
+\code{\link[=theme_foundation]{theme_foundation()}},
+\code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_par]{theme_par()}}
 }
 \concept{themes}

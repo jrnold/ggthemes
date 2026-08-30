@@ -79,7 +79,7 @@ Colour and fill scales which use the palettes in \code{\link{wsj_pal}()}.
 These scales should be used with \code{\link{theme_wsj}()}.
 }
 \seealso{
-Other colour wsj: 
-\code{\link{wsj_pal}()}
+Other colour wsj:
+\code{\link[=wsj_pal]{wsj_pal()}}
 }
 \concept{colour wsj}

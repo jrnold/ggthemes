@@ -44,11 +44,11 @@ par(font = 2, col.lab = "red", fg = "white", bg = "black")
 p + theme_par()
 }
 \seealso{
-Other themes: 
-\code{\link{theme_base}()},
-\code{\link{theme_clean}()},
-\code{\link{theme_foundation}()},
-\code{\link{theme_igray}()},
-\code{\link{theme_solid}()}
+Other themes:
+\code{\link[=theme_base]{theme_base()}},
+\code{\link[=theme_clean]{theme_clean()}},
+\code{\link[=theme_foundation]{theme_foundation()}},
+\code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_solid]{theme_solid()}}
 }
 \concept{themes}

@@ -16,7 +16,7 @@ library("scales")
 show_col(fivethirtyeight_pal()(3))
 }
 \seealso{
-Other colour fivethirtyeight: 
-\code{\link{scale_colour_fivethirtyeight}()}
+Other colour fivethirtyeight:
+\code{\link[=scale_colour_fivethirtyeight]{scale_colour_fivethirtyeight()}}
 }
 \concept{colour fivethirtyeight}

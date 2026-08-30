@@ -77,7 +77,7 @@ Color scales from Google Docs.
 \seealso{
 See \code{\link{theme_gdocs}()} for examples.
 
-Other colour gdocs: 
-\code{\link{gdocs_pal}()}
+Other colour gdocs:
+\code{\link[=gdocs_pal]{gdocs_pal()}}
 }
 \concept{colour gdocs}

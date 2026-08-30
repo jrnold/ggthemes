@@ -18,14 +18,14 @@ Color palettes used by current versions of Microsoft Office and Excel.
 \examples{
 library("scales")
 
-for (i in names(ggthemes::ggthemes_data$excel$palettes)) {
-  show_col(excel_new_pal(theme = i))(6)
+for (i in names(ggthemes::ggthemes_data$excel$themes)) {
+  show_col(excel_new_pal(theme = i)(6))
 }
 }
 \seealso{
-Other colour excel: 
-\code{\link{excel_pal}()},
-\code{\link{scale_colour_excel_new}()},
-\code{\link{scale_fill_excel}()}
+Other colour excel:
+\code{\link[=excel_pal]{excel_pal()}},
+\code{\link[=scale_colour_excel_new]{scale_colour_excel_new()}},
+\code{\link[=scale_fill_excel]{scale_fill_excel()}}
 }
 \concept{colour excel}

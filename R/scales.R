@@ -235,7 +235,7 @@ precision <- function(x) {
 #'
 #' @references Josh O'Brien,
 #'   \url{https://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
-#' @author Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold
+#' @author Josh O'Brien, Baptiste Auguie, Jeffrey B. Arnold
 #' @return A character vector.
 #' \code{smart_digits_format()} returns a function with a single argument
 #' \code{x}, a numeric vector, that returns a character vector.

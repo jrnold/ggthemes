@@ -26,7 +26,7 @@ Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
  \url{https://sronpersonalpages.nl/~pault/data/colourschemes.pdf}
 }
 \seealso{
-Other colour ptol: 
-\code{\link{scale_colour_ptol}()}
+Other colour ptol:
+\code{\link[=scale_colour_ptol]{scale_colour_ptol()}}
 }
 \concept{colour ptol}

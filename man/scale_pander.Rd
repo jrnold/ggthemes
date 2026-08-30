@@ -78,7 +78,7 @@ palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
 \seealso{
 \code{\link{theme_pander}()}
 
-Other colour pander: 
-\code{\link{palette_pander}()}
+Other colour pander:
+\code{\link[=palette_pander]{palette_pander()}}
 }
 \concept{colour pander}

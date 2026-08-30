@@ -77,7 +77,7 @@ Color scales from LibreOffice Calc.
 \seealso{
 See \code{\link{theme_calc}()} for examples.
 
-Other colour calc: 
-\code{\link{calc_pal}()}
+Other colour calc:
+\code{\link[=calc_pal]{calc_pal()}}
 }
 \concept{colour calc}

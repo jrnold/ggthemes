@@ -30,11 +30,11 @@ par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
 p + theme_base()
 }
 \seealso{
-Other themes: 
-\code{\link{theme_clean}()},
-\code{\link{theme_foundation}()},
-\code{\link{theme_igray}()},
-\code{\link{theme_par}()},
-\code{\link{theme_solid}()}
+Other themes:
+\code{\link[=theme_clean]{theme_clean()}},
+\code{\link[=theme_foundation]{theme_foundation()}},
+\code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_par]{theme_par()}},
+\code{\link[=theme_solid]{theme_solid()}}
 }
 \concept{themes}
