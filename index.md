@@ -22,7 +22,7 @@ install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
 ## How to use
 
 For a quick tutorial, check out [Rafael Irizarry’s
-book](https://rafalab.github.io/dsbook/ggplot2.html#add-on-packages).
+book](http://rafalab.dfci.harvard.edu/dsbook/ggplot2.html#add-on-packages).
 
 ## Examples
 

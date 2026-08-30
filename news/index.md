@@ -1,11 +1,13 @@
 # Changelog
 
-## ggthemes (development version)
+## ggthemes 6.0.0
 
-Note for the next release: this should ship as 6.0.0, not a minor/patch
-release, because it includes a breaking change (the minimum supported R
-version has increased).
-
+- [`circlefill_shape_pal()`](http://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md)
+  and
+  [`scale_shape_circlefill()`](http://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
+  soft-deprecated since ggthemes 5.0.0, now always warn on use
+  ([`lifecycle::deprecate_warn()`](https://lifecycle.r-lib.org/reference/deprecate_soft.html))
+  instead of only when called directly by the user
 - BREAKING CHANGE: Bump minimum supported R version to 4.1.0, and use
   the base pipe (`|>`) instead of the magrittr pipe (`%>%`) in
   `data-raw/` and examples, to match the current Tidyverse Style Guide
@@ -44,6 +46,13 @@ version has increased).
   [`coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
   applied, so banking a plot no longer requires manually reconstructing
   its plotted vectors
+- Bugfix: `bank_slopes(method = "ao")` now returns `NaN` (matching the
+  other methods) instead of erroring when there is no vertical variation
+  (e.g. a flat line) or too few points to compute a slope
+- Bugfix:
+  [`bank_plot()`](http://jrnold.github.io/ggthemes/reference/bank_plot.md)
+  now rejects a non-positive `layer` with the intended `cli_abort()`
+  message instead of falling through to a raw subsetting error
 - Bugfix: Fix
   [`excel_new_pal()`](http://jrnold.github.io/ggthemes/reference/excel_new_pal.md)
   example so it actually generates output

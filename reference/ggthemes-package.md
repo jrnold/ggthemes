@@ -14,14 +14,17 @@ Useful links:
 
 - <https://github.com/jrnold/ggthemes>
 
-- <http://jrnold.github.io/ggthemes/>
-
 - Report bugs at <https://github.com/jrnold/ggthemes/issues>
 
 ## Author
 
 **Maintainer**: Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
 (\<https://orcid.org/0000-0001-9953-3904\>)
+
+Authors:
+
+- Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
+  (\<https://orcid.org/0000-0001-9953-3904\>)
 
 Other contributors:
 
@@ -33,7 +36,7 @@ Other contributors:
 
 - Joshua Kunst \[contributor\]
 
-- Baptise Auguie \[contributor\]
+- Baptiste Auguie \[contributor\]
 
 - Bob Rudis \[contributor\]
 

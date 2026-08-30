@@ -36,7 +36,7 @@ Rscript -e 'devtools::lint()'
 # Run code styling
 make style
 # Or directly:
-Rscript scripts/style.R
+./scripts/format
 ```
 
 ### Building Package Data

@@ -32,4 +32,4 @@ Josh O'Brien,
 
 ## Author
 
-Josh O'Brien, Baptise Auguie, Jeffrey B. Arnold
+Josh O'Brien, Baptiste Auguie, Jeffrey B. Arnold
