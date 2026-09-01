@@ -60,7 +60,7 @@
   <color-palette name="Classic Area Green" type = "ordered-sequential">
     <color>#3c8200</color> <color>#4a8c1c</color> <color>#569735</color> <color>#60a24d</color> <color>#6cae59</color> <color>#7abc5f</color> <color>#8ac765</color> <color>#9ad26d</color> <color>#acdc7a</color> <color>#c3e394</color> <color>#dbe8b4</color>
   </color-palette>
-  <color-palette name="Classic Area-Brown" type = "ordered-sequential">
+  <color-palette name="Classic Area Brown" type = "ordered-sequential">
     <color>#bb5137</color> <color>#bb6348</color> <color>#bb7359</color> <color>#c08262</color> <color>#cc8f63</color> <color>#d89c63</color> <color>#e4aa63</color> <color>#f0b763</color> <color>#f7c577</color> <color>#f6d29c</color> <color>#f3e0c2</color>
   </color-palette>
   <color-palette name="Classic Red-Green" type = "ordered-diverging">

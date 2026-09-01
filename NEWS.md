@@ -1,3 +1,23 @@
+# ggthemes (development version)
+
+- BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
+  `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
+  actual colour order (blue, red, brown). The old name still works but warns.
+- BREAKING CHANGE: The Tableau palette `"Classic Area-Brown"` has been renamed
+  to `"Classic Area Brown"`, for consistency with its siblings
+  `"Classic Area Red"` and `"Classic Area Green"`. The old name still works but
+  warns.
+- Fix two corrupted colours in the `"Gray Warm"` ordered-sequential Tableau
+  palette. Position 7 was `#b047a4` (a magenta, in a warm-grey ramp) and is now
+  `#b0a8a4`; position 18 was `#665c51`, which broke the ramp's monotonic blue
+  channel, and is now `#665c5a`. Plots using
+  `scale_colour_gradient_tableau("Gray Warm")` will change appearance.
+- Fix a duplicated colour (`#fa9d4f`) in the `"Red-Gold"` ordered-sequential
+  Tableau palette, which gave it 21 colours where every other 20-step Tableau
+  sequential palette has 20. Plots using `"Red-Gold"` will change appearance.
+- Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
+  `tableau.yml`.
+
 # ggthemes 6.0.0
 
 - `circlefill_shape_pal()` and `scale_shape_circlefill()`, soft-deprecated
