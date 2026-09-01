@@ -145,3 +145,47 @@ test_that("classic colors are in the correct order", {
   expect_equal(pal[[1]], "#1f77b4")
   expect_equal(pal[[20]], "#9edae5")
 })
+
+test_that("Gray Warm sequential palette has no off-hue color", {
+  # Regression: position 7 was "#b047a4", a magenta in a warm-gray ramp.
+  values <- ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]][["Gray Warm"]][["value"]]
+  expect_equal(values[[7]], "#b0a8a4")
+  # In a gray ramp no colour may have channels differing by more than 20/255.
+  rgb_values <- grDevices::col2rgb(values)
+  expect_true(all(apply(rgb_values, 2, function(x) max(x) - min(x)) < 20))
+})
+
+test_that("Red-Gold sequential palette has 20 distinct colors", {
+  # Regression: "#fa9d4f" appeared twice, giving 21 colours.
+  values <- ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]][["Red-Gold"]][["value"]]
+  expect_equal(length(values), 20L)
+  expect_equal(anyDuplicated(values), 0L)
+})
+
+test_that("Blue-Red-Brown is the canonical palette name", {
+  palettes <- ggthemes_data$tableau[["color-palettes"]][["regular"]]
+  expect_true("Blue-Red-Brown" %in% names(palettes))
+  expect_false("Red-Blue-Brown" %in% names(palettes))
+})
+
+test_that("Classic Area Brown is the canonical palette name", {
+  palettes <- ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]
+  expect_true("Classic Area Brown" %in% names(palettes))
+  expect_false("Classic Area-Brown" %in% names(palettes))
+})
+
+test_that("tableau_color_pal accepts a deprecated palette name with a warning", {
+  expect_warning(pal <- tableau_color_pal("Red-Blue-Brown"), "deprecated")
+  expect_equal(pal(4), tableau_color_pal("Blue-Red-Brown")(4))
+})
+
+test_that("tableau_gradient_pal accepts a deprecated palette name with a warning", {
+  expect_warning(
+    pal <- tableau_gradient_pal("Classic Area-Brown", type = "ordered-sequential"),
+    "deprecated"
+  )
+  expect_equal(
+    pal(c(0, 1)),
+    tableau_gradient_pal("Classic Area Brown", type = "ordered-sequential")(c(0, 1))
+  )
+})

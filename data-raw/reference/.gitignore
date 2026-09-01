@@ -1,8 +1,16 @@
 # Vendor reference data - local comparison and extraction only, not
 # redistributable. Track only the provenance notes and the scripts that
-# regenerate it.
+# fetch or regenerate it.
 *
 !.gitignore
+
+# StataCorp reference images.
+!stata/
+stata/*
+!stata/SOURCES.md
+!stata/fetch.sh
+
+# Apple Numbers palette and chart-style data.
 !numbers/
 numbers/*
 !numbers/SOURCES.md

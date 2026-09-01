@@ -1,3 +1,23 @@
+# Palette names that ggthemes used before they were corrected to match the
+# names Tableau itself uses. Mapping is deprecated-name -> canonical name.
+tableau_deprecated_palettes <- c(
+  "Red-Blue-Brown" = "Blue-Red-Brown",
+  "Classic Area-Brown" = "Classic Area Brown"
+)
+
+# Resolve a possibly-deprecated palette name to its canonical name, warning when
+# a deprecated name is used.
+tableau_resolve_palette <- function(palette) {
+  if (length(palette) == 1L && palette %in% names(tableau_deprecated_palettes)) {
+    canonical <- unname(tableau_deprecated_palettes[[palette]])
+    cli::cli_warn(
+      "Tableau palette {.val {palette}} is deprecated; use {.val {canonical}} instead."
+    )
+    return(canonical)
+  }
+  palette
+}
+
 # nolint start
 #' Tableau Color Palettes (discrete)
 #'
@@ -44,6 +64,7 @@ tableau_color_pal <- function(
   direction = 1
 ) {
   type <- match.arg(type)
+  palette <- tableau_resolve_palette(palette)
   palettes <- ggthemes::ggthemes_data[["tableau"]][["color-palettes"]][[type]]
   if (!palette %in% names(palettes)) {
     cli::cli_abort("{.arg palette} must be one of {.val {names(palettes)}}, not {.val {palette}}.")
@@ -157,6 +178,7 @@ scale_shape_tableau <- function(palette = "default", ...) {
 # nolint end
 tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential") {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
+  palette <- tableau_resolve_palette(palette)
   pal <- ggthemes::ggthemes_data[[c(
     "tableau",
     "color-palettes",

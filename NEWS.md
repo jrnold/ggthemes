@@ -1,5 +1,48 @@
 # ggthemes (development version)
 
+- BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
+  `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
+  actual colour order (blue, red, brown). The old name still works but warns.
+- BREAKING CHANGE: The Tableau palette `"Classic Area-Brown"` has been renamed
+  to `"Classic Area Brown"`, for consistency with its siblings
+  `"Classic Area Red"` and `"Classic Area Green"`. The old name still works but
+  warns.
+- Fix two corrupted colours in the `"Gray Warm"` ordered-sequential Tableau
+  palette. Position 7 was `#b047a4` (a magenta, in a warm-grey ramp) and is now
+  `#b0a8a4`; position 18 was `#665c51`, which broke the ramp's monotonic blue
+  channel, and is now `#665c5a`. Plots using
+  `scale_colour_gradient_tableau("Gray Warm")` will change appearance.
+- Fix a duplicated colour (`#fa9d4f`) in the `"Red-Gold"` ordered-sequential
+  Tableau palette, which gave it 21 colours where every other 20-step Tableau
+  sequential palette has 20. Plots using `"Red-Gold"` will change appearance.
+- Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
+  `tableau.yml`.
+
+- Add support for Stata's `st` scheme family, which has been Stata's factory
+  default since Stata 18. `stata_pal()` and `scale_colour_stata()` gain the
+  `"stcolor"` scheme (the `stc1`--`stc15` colours), and `theme_stata()` gains
+  the `"stcolor"`, `"stcolor_alt"`, `"stmono1"`, `"stmono2"` and `"stsj"`
+  schemes. `stgcolor` and `stgcolor_alt` are not included: they differ from
+  `stcolor` only in physical graph dimensions, which a ggplot2 theme does not
+  carry.
+- The 19 named colours Stata 18 added (`stc1`--`stc15` plus the `stblue`,
+  `stred`, `stgreen` and `styellow` aliases) are now in
+  `ggthemes_data$stata$colors$names`.
+- Omitting `scheme` in `stata_pal()`, `scale_colour_stata()`,
+  `scale_fill_stata()` and `theme_stata()` is now soft-deprecated. It still
+  resolves to `"s2color"`, but the default will change to `"stcolor"` in
+  ggthemes 7.0.0, following Stata. Pass `scheme` explicitly to keep the
+  current appearance.
+- BEHAVIOUR CHANGE: `stata_pal("mono")` returned the wrong colours at
+  positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It now
+  matches Stata's `s1mono`/`s2mono` exactly, including the fact that Stata
+  repeats `gs12` and `gs5` at positions 14 and 15. Plots using `"mono"` with
+  six or more levels will change.
+- Fix `stata_pal("economist")`, which returned `NA` as its first colour
+  because the scheme referred to a non-existent colour `dkblue`. It is now
+  `edkblue`, matching Stata's `scheme-economist.scheme`.
+- Fix `attr(stata_pal(scheme), "max_n")`, which reported `2` rather than `15`
+  because it measured the columns of the palette table instead of its rows.
 - Add Apple Numbers support: `numbers_pal()`, `scale_colour_numbers()`,
   `scale_color_numbers()`, `scale_fill_numbers()`, and `theme_numbers()`.
   All 12 Numbers chart palettes are available by their Numbers names

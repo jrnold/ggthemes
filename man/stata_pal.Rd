@@ -4,11 +4,14 @@
 \alias{stata_pal}
 \title{Stata color palettes (discrete)}
 \usage{
-stata_pal(scheme = "s2color")
+stata_pal(scheme = NULL)
 }
 \arguments{
 \item{scheme}{\code{character}. One of \code{"s2color"},
-\code{"s1rcolor"}, \code{"s1color"}, or \code{"mono"}.}
+\code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or
+\code{"economist"}. If \code{NULL}, the default, \code{"s2color"} is used
+and a deprecation message is issued; this default becomes \code{"stcolor"}
+in ggthemes 7.0.0.}
 }
 \description{
 Stata color palettes. See Stata documentation for a description of
@@ -16,10 +19,36 @@ the schemes, \url{https://www.stata.com/help.cgi?schemes}.
 }
 \details{
 All these palettes support up to 15 values.
+
+
+Stata's palettes come in two generations, and both are included here.
+
+\describe{
+\item{Stata 17 and earlier}{Schemes \code{"s2color"}, \code{"s1color"},
+\code{"s1rcolor"}, and \code{"mono"} are built from Stata's classic named
+colors (\code{navy}, \code{maroon}, \code{forest_green}, and so on) and the
+\code{gs0}--\code{gs16} gray scale. \code{"s2color"} was Stata's factory
+default through Stata 17.}
+\item{Stata 18 and later}{Scheme \code{"stcolor"} uses the
+\code{stc1}--\code{stc15} colors introduced in Stata 18. They are brighter
+than the classic palette and chosen to stay distinguishable for readers
+with a color vision deficiency. The first four are also available under
+the aliases \code{stblue}, \code{stred}, \code{stgreen}, and
+\code{styellow}. \code{"stcolor"} has been Stata's factory default since
+Stata 18.}
+}
+
+\code{"economist"} is not one of Stata's general-purpose schemes; it is the
+set of Economist-styled colors that Stata ships in
+\code{scheme-economist.scheme}.
 }
 \examples{
 library("scales")
 
+# Stata 18 and later (the current factory default)
+show_col(stata_pal("stcolor")(15))
+
+# Stata 17 and earlier
 show_col(stata_pal("s2color")(15))
 show_col(stata_pal("s1rcolor")(15))
 show_col(stata_pal("s1color")(15))

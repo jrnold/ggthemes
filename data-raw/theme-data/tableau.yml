@@ -455,7 +455,7 @@
     - name: Light Teal
       value: "#8dbfa8"
 
-    Red-Blue-Brown:
+    Blue-Red-Brown:
     - name: Blue
       value: "#466f9d"
     - name: Light Blue
@@ -854,7 +854,7 @@
       - {name: "Light Gray", value: "#c5bdb9"}
       - {name: "Light Gray", value: "#beb6b2"}
       - {name: "Light Gray", value: "#b7afab"}
-      - {name: "Gray", value: "#b047a4"}
+      - {name: "Gray", value: "#b0a8a4"}
       - {name: "Gray", value: "#a9a09d"}
       - {name: "Gray", value: "#a29996"}
       - {name: "Gray", value: "#9b938f"}
@@ -865,7 +865,7 @@
       - {name: "Dark Gray", value: "#79706e"}
       - {name: "Dark Gray", value: "#736967"}
       - {name: "Dark Gray", value: "#6c6260"}
-      - {name: "Dark Gray", value: "#665c51"}
+      - {name: "Dark Gray", value: "#665c5a"}
       - {name: "Dark Gray", value: "#5f5654"}
       - {name: "Dark Gray", value: "#59504e"}
 
@@ -941,7 +941,6 @@
       - {name: "Orange", value: "#f6bc58"}
       - {name: "Orange", value: "#f7b254"}
       - {name: "Orange", value: "#f9a750"}
-      - {name: "Orange", value: "#fa9d4f"}
       - {name: "Orange", value: "#fa9d4f"}
       - {name: "Orange", value: "#fb934d"}
       - {name: "Orange", value: "#f7894b"}

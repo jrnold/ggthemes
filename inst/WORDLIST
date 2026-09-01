@@ -2,6 +2,7 @@ ACM
 Agrawala
 Analytics
 Argwala
+BEHAVIOUR
 Banff
 Beamer
 Bembo
@@ -41,6 +42,7 @@ Schwabish
 Solarized
 Spiekerblog
 Stata
+Stata's
 Stribley
 Tabaleau
 Tableu
@@ -57,11 +59,13 @@ Zdeb
 al
 ao
 behaviour
+borderless
 bowerth
 bugfix
 calc
 canva
 colour
+colours
 continous
 coord
 daroczig
@@ -109,6 +113,9 @@ rstudio
 sj
 solarized
 stata
+stcolor
+stmono
+stsj
 stylesheet
 tidyverse
 tol
