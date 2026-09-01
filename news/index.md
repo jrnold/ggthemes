@@ -66,6 +66,29 @@
   `15` because it measured the columns of the palette table instead of
   its rows.
 
+- Add Apple Numbers support:
+  [`numbers_pal()`](http://jrnold.github.io/ggthemes/reference/numbers_pal.md),
+  [`scale_colour_numbers()`](http://jrnold.github.io/ggthemes/reference/scale_numbers.md),
+  [`scale_color_numbers()`](http://jrnold.github.io/ggthemes/reference/scale_numbers.md),
+  [`scale_fill_numbers()`](http://jrnold.github.io/ggthemes/reference/scale_numbers.md),
+  and
+  [`theme_numbers()`](http://jrnold.github.io/ggthemes/reference/theme_numbers.md).
+  All 12 Numbers chart palettes are available by their Numbers names
+  (`"Classic"`, the default, through `"Spectrum"`), each providing six
+  series colors.
+  [`theme_numbers()`](http://jrnold.github.io/ggthemes/reference/theme_numbers.md)
+  follows the chart style defaults that ship inside Numbers: no panel
+  fill, gridlines in the value direction only, a bottom chart border,
+  and no tick marks.
+
+- The palettes are generated from Apple Numbers 14.5 by
+  `data-raw/reference/numbers/fetch.sh` and
+  `data-raw/numbers_palettes.R`; see
+  `data-raw/reference/numbers/SOURCES.md`. This replaces
+  `data-raw/theme-data/numbers-charts.yml`, an unused file added in 2018
+  that was never wired into `data-raw/build.R` and held iWork-era colors
+  matching no current Numbers palette.
+
 ## ggthemes 6.0.0
 
 - [`circlefill_shape_pal()`](http://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md)

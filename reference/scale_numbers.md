@@ -1,16 +1,25 @@
-# Stata shape scale
+# Apple Numbers color scales
 
-See
-[`stata_shape_pal()`](http://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
-for details.
+Discrete color scales using the chart palettes from Apple Numbers.
 
 ## Usage
 
 ``` r
-scale_shape_stata(...)
+scale_fill_numbers(palette = "Classic", ...)
+
+scale_colour_numbers(palette = "Classic", ...)
+
+scale_color_numbers(palette = "Classic", ...)
 ```
 
 ## Arguments
+
+- palette:
+
+  Palette name. One of `"Blue Green"`, `"Blue Violet"`, `"Blue"`,
+  `"Brown"`, `"Classic"`, `"Earth Tone"`, `"Gray"`, `"Green"`, `"Jade"`,
+  `"Mid Century"`, `"Showroom"`, `"Spectrum"` . The default,
+  `"Classic"`, is the palette Numbers itself uses by default.
 
 - ...:
 
@@ -61,16 +70,6 @@ scale_shape_stata(...)
       values, and do so by default. If you want to remove missing values
       from a discrete scale, specify `na.translate = FALSE`.
 
-  `na.value`
-
-  :   If `na.translate = TRUE`, what aesthetic value should the missing
-      values be displayed as? Does not apply to position scales where
-      `NA` is always placed at the far right.
-
-  `aesthetics`
-
-  :   The names of the aesthetics that this scale works with.
-
   `minor_breaks`
 
   :   One of:
@@ -111,6 +110,12 @@ scale_shape_stata(...)
         [lambda](https://rlang.r-lib.org/reference/as_function.html)
         function notation.
 
+  `guide`
+
+  :   A function used to create a guide or its name. See
+      [`guides()`](https://ggplot2.tidyverse.org/reference/guides.html)
+      for more information.
+
   `call`
 
   :   The `call` used to construct the scale for reporting messages.
@@ -119,15 +124,28 @@ scale_shape_stata(...)
 
   :   The super class to use for the constructed scale
 
+## See also
+
+See
+[`theme_numbers()`](http://jrnold.github.io/ggthemes/reference/theme_numbers.md)
+for examples.
+
+Other colour numbers:
+[`numbers_pal()`](http://jrnold.github.io/ggthemes/reference/numbers_pal.md)
+
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
 library("ggplot2")
 
 p <- ggplot(mtcars) +
-     geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
-     facet_wrap(~am)
-p + theme_stata(scheme = "s2color") + scale_shape_stata()
-} # }
+  geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
+  facet_wrap(~am) +
+  theme_numbers()
+
+for (palette in head(names(ggthemes_data[["numbers"]]), 3L)) {
+  print(p + scale_colour_numbers(palette) + ggtitle(palette))
+}
+
+
 ```

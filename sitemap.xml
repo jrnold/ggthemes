@@ -27,6 +27,7 @@
 <url><loc>http://jrnold.github.io/ggthemes/reference/ggthemes_data.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/hc_pal.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/index.html</loc></url>
+<url><loc>http://jrnold.github.io/ggthemes/reference/numbers_pal.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/palette_pander.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/ptol_pal.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/range_breaks.html</loc></url>
@@ -43,6 +44,7 @@
 <url><loc>http://jrnold.github.io/ggthemes/reference/scale_gdocs.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/scale_hc.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/scale_linetype_stata.html</loc></url>
+<url><loc>http://jrnold.github.io/ggthemes/reference/scale_numbers.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/scale_pander.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/scale_ptol.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/scale_shape_calc.html</loc></url>
@@ -80,6 +82,7 @@
 <url><loc>http://jrnold.github.io/ggthemes/reference/theme_hc.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/theme_igray.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/theme_map.html</loc></url>
+<url><loc>http://jrnold.github.io/ggthemes/reference/theme_numbers.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/theme_pander.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/theme_par.html</loc></url>
 <url><loc>http://jrnold.github.io/ggthemes/reference/theme_solarized.html</loc></url>

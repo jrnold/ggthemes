@@ -42,6 +42,9 @@
 - [`theme_map()`](http://jrnold.github.io/ggthemes/reference/theme_map.md)
   : Clean theme for maps
 
+- [`theme_numbers()`](http://jrnold.github.io/ggthemes/reference/theme_numbers.md)
+  : Theme with Apple Numbers chart defaults
+
 - [`theme_pander()`](http://jrnold.github.io/ggthemes/reference/theme_pander.md)
   : A ggplot theme originated from the pander package
 
@@ -133,6 +136,10 @@ properties.
   [`scale_color_hc()`](http://jrnold.github.io/ggthemes/reference/scale_hc.md)
   [`scale_fill_hc()`](http://jrnold.github.io/ggthemes/reference/scale_hc.md)
   : Highcharts color and fill scales
+- [`scale_fill_numbers()`](http://jrnold.github.io/ggthemes/reference/scale_numbers.md)
+  [`scale_colour_numbers()`](http://jrnold.github.io/ggthemes/reference/scale_numbers.md)
+  [`scale_color_numbers()`](http://jrnold.github.io/ggthemes/reference/scale_numbers.md)
+  : Apple Numbers color scales
 - [`scale_color_pander()`](http://jrnold.github.io/ggthemes/reference/scale_pander.md)
   [`scale_colour_pander()`](http://jrnold.github.io/ggthemes/reference/scale_pander.md)
   [`scale_fill_pander()`](http://jrnold.github.io/ggthemes/reference/scale_pander.md)
@@ -220,6 +227,8 @@ Color, shape, and linetype palettes.
   : Google Docs color palette (discrete)
 - [`hc_pal()`](http://jrnold.github.io/ggthemes/reference/hc_pal.md) :
   Highcharts color palette (discrete)
+- [`numbers_pal()`](http://jrnold.github.io/ggthemes/reference/numbers_pal.md)
+  : Apple Numbers color palettes (discrete)
 - [`ptol_pal()`](http://jrnold.github.io/ggthemes/reference/ptol_pal.md)
   : Color Palettes from Paul Tol's "Colour Schemes"
 - [`solarized_pal()`](http://jrnold.github.io/ggthemes/reference/solarized_pal.md)
