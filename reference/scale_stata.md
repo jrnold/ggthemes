@@ -7,19 +7,21 @@ for details.
 ## Usage
 
 ``` r
-scale_colour_stata(scheme = "s2color", ...)
+scale_colour_stata(scheme = NULL, ...)
 
-scale_fill_stata(scheme = "s2color", ...)
+scale_fill_stata(scheme = NULL, ...)
 
-scale_color_stata(scheme = "s2color", ...)
+scale_color_stata(scheme = NULL, ...)
 ```
 
 ## Arguments
 
 - scheme:
 
-  `character`. One of `"s2color"`, `"s1rcolor"`, `"s1color"`, or
-  `"mono"`.
+  `character`. One of `"s2color"`, `"s1rcolor"`, `"s1color"`, `"mono"`,
+  `"stcolor"`, or `"economist"`. If `NULL`, the default, `"s2color"` is
+  used and a deprecation message is issued; this default becomes
+  `"stcolor"` in ggthemes 7.0.0.
 
 - ...:
 

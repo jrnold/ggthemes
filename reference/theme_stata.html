@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">theme_stata</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">11</span>, base_family <span class="op">=</span> <span class="st">"sans"</span>, scheme <span class="op">=</span> <span class="st">"s2color"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">theme_stata</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">11</span>, base_family <span class="op">=</span> <span class="st">"sans"</span>, scheme <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -55,9 +55,11 @@
 
 
 <dt id="arg-scheme">scheme<a class="anchor" aria-label="anchor" href="#arg-scheme"></a></dt>
-<dd><p>One of "s2color", "s2mono", "s1color",
-"s1rcolor", or "s1mono", "s2manual",
-"s1manual", or "sj"</p></dd>
+<dd><p>One of "stcolor", "stcolor_alt", "stmono1", "stmono2",
+"stsj", "s2color", "s2mono", "s1color", "s1rcolor", "s1mono",
+"s2manual", "s1manual", or "sj". If <code>NULL</code>, the default,
+"s2color" is used and a deprecation message is issued; this default
+becomes "stcolor" in ggthemes 7.0.0.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -71,6 +73,20 @@ defaults for specific graph types, different levels of titles,
 captions and notes. These themes also adopt some of the ggplot2
 defaults, and more effort was made to match the colors and sizes
 of major elements than in matching the margins.</p>
+<p>The schemes fall into two generations. <code>"stcolor"</code>,
+<code>"stcolor_alt"</code>, <code>"stmono1"</code>, <code>"stmono2"</code> and <code>"stsj"</code>
+are the st family introduced in Stata 18, of which <code>"stcolor"</code> is
+Stata's current factory default: a white background, a dashed grid on both
+axes, horizontal y-axis labels, and a borderless legend beside the plot.
+The remaining schemes are the s1/s2 families that were the default through
+Stata 17.</p>
+<p>Stata expresses text sizes as a percentage of graph height, while ggplot2
+uses absolute points, so the two agree only at a particular graph size.
+The relative sizes here match Stata exactly; <code>base_size = 12.4</code>
+reproduces Stata's absolute sizes at its default 7.5 by 4.5 inch graph.
+Two further differences are not expressible in a ggplot2 theme: the number
+of legend columns (set by <code><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend()</a></code> rather than
+the theme) and Stata's small default marker size (a geom default).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -90,21 +106,39 @@ of major elements than in matching the margins.</p>
 <span class="r-in"><span>    y <span class="op">=</span> <span class="st">"MPG"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># s2color</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s2color"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># The st family, Stata's default since Stata 18</span></span></span>
+<span class="r-in"><span><span class="co"># stcolor</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"stcolor"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"stcolor"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_stata-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># stcolor_alt, which puts the legend below the plot</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"stcolor_alt"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"stcolor"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="theme_stata-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># stmono1</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"stmono1"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="theme_stata-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># stmono2</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"stmono2"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="theme_stata-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># stsj, the Stata Journal scheme</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"stsj"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="theme_stata-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The s1/s2 families, Stata's defaults through Stata 17</span></span></span>
+<span class="r-in"><span><span class="co"># s2color</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2color"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s2color"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="theme_stata-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s2mono</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2mono"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="theme_stata-2.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="theme_stata-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s1color</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2color"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s1color"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="theme_stata-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s1color"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s1color"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="theme_stata-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s1rcolor</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s1rcolor"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"s1rcolor"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="theme_stata-4.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="theme_stata-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># s1mono</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">theme_stata</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s1mono"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="theme_stata-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="theme_stata-10.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

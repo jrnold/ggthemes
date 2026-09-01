@@ -42,7 +42,7 @@ the schemes, <a href="https://www.stata.com/help.cgi?schemes" class="external-li
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stata_pal</span><span class="op">(</span>scheme <span class="op">=</span> <span class="st">"s2color"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stata_pal</span><span class="op">(</span>scheme <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -51,26 +51,56 @@ the schemes, <a href="https://www.stata.com/help.cgi?schemes" class="external-li
 
 <dl><dt id="arg-scheme">scheme<a class="anchor" aria-label="anchor" href="#arg-scheme"></a></dt>
 <dd><p><code>character</code>. One of <code>"s2color"</code>,
-<code>"s1rcolor"</code>, <code>"s1color"</code>, or <code>"mono"</code>.</p></dd>
+<code>"s1rcolor"</code>, <code>"s1color"</code>, <code>"mono"</code>, <code>"stcolor"</code>, or
+<code>"economist"</code>. If <code>NULL</code>, the default, <code>"s2color"</code> is used
+and a deprecation message is issued; this default becomes <code>"stcolor"</code>
+in ggthemes 7.0.0.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>All these palettes support up to 15 values.</p>
+
+<p>Stata's palettes come in two generations, and both are included here.</p>
+<dl><dt>Stata 17 and earlier</dt>
+<dd><p>Schemes <code>"s2color"</code>, <code>"s1color"</code>,
+<code>"s1rcolor"</code>, and <code>"mono"</code> are built from Stata's classic named
+colors (<code>navy</code>, <code>maroon</code>, <code>forest_green</code>, and so on) and the
+<code>gs0</code>–<code>gs16</code> gray scale. <code>"s2color"</code> was Stata's factory
+default through Stata 17.</p></dd>
+
+<dt>Stata 18 and later</dt>
+<dd><p>Scheme <code>"stcolor"</code> uses the
+<code>stc1</code>–<code>stc15</code> colors introduced in Stata 18. They are brighter
+than the classic palette and chosen to stay distinguishable for readers
+with a color vision deficiency. The first four are also available under
+the aliases <code>stblue</code>, <code>stred</code>, <code>stgreen</code>, and
+<code>styellow</code>. <code>"stcolor"</code> has been Stata's factory default since
+Stata 18.</p></dd>
+
+
+</dl><p><code>"economist"</code> is not one of Stata's general-purpose schemes; it is the
+set of Economist-styled colors that Stata ships in
+<code>scheme-economist.scheme</code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://scales.r-lib.org" class="external-link">"scales"</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"s2color"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Stata 18 and later (the current factory default)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"stcolor"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="stata_pal-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"s1rcolor"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Stata 17 and earlier</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"s2color"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="stata_pal-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"s1color"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"s1rcolor"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="stata_pal-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"s1color"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="stata_pal-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">stata_pal</span><span class="op">(</span><span class="st">"mono"</span><span class="op">)</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="stata_pal-5.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
