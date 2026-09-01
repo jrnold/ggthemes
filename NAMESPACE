@@ -4,7 +4,9 @@ export(GeomRangeFrame)
 export(GeomTufteboxplot)
 export(StatFivenumber)
 export(bank_plot)
+export(bank_plot_multiscale)
 export(bank_slopes)
+export(bank_slopes_multiscale)
 export(calc_pal)
 export(calc_shape_pal)
 export(canva_pal)
@@ -195,6 +197,8 @@ importFrom(scales,
   seq_gradient_pal
 )
 importFrom(stats,
+  dnorm,
+  fft,
   median,
   uniroot,
   weighted.mean
