@@ -1,5 +1,27 @@
 # ggthemes (development version)
 
+- BREAKING CHANGE: `theme_excel_new()` now matches the chart chrome Excel
+  actually draws, decoded from the chart XML that Excel writes. Major
+  gridlines are `#D9D9D9` rather than `#BFBFBF`; axis lines are drawn in
+  `#BFBFBF`, where previously there were none; and axis titles are one point
+  larger than axis labels, as in Excel. Existing plots will change appearance.
+- `theme_excel_new()` documents that Excel's font has been Aptos since 2023.
+  `base_family` still defaults to `"sans"`, since Aptos is rarely installed
+  outside Office; pass `base_family = "Aptos Narrow"` for a closer match.
+- Add the current Microsoft Office theme, which Microsoft made the default in
+  2023, as the `"Office"` Excel theme:
+  `#156082`, `#E97132`, `#196B24`, `#0F9ED5`, `#A02B93`, `#4EA72E`.
+  `ggthemes_data$excel$themes` now has 51 themes.
+- BREAKING CHANGE: `excel_new_pal()`, `scale_colour_excel_new()` and
+  `scale_fill_excel_new()` now default to `theme = "Office"` instead of
+  `"Office Theme"`, so they again match a default chart in current Excel.
+  Plots that relied on the default will change appearance. Pass
+  `theme = "Office 2013"` to keep the previous colours.
+- The Excel themes `"Office Theme"` and `"Office 2007-2010"` have been renamed
+  `"Office 2013"` and `"Office 2007"`, following Microsoft's own renaming of
+  the built-in themes. The old names still work and select the same colours as
+  before.
+
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
   actual colour order (blue, red, brown). The old name still works but warns.
