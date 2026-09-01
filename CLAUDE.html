@@ -170,7 +170,21 @@ chore: update pkgdown configuration</code></pre>
 </div>
 <div class="section level3">
 <h3 id="testing-strategy">Testing Strategy<a class="anchor" aria-label="anchor" href="#testing-strategy"></a></h3>
-<p>Tests use: - <strong>vdiffr</strong>: Visual regression testing via <code>expect_doppelganger()</code> helper in <code>helper-vdiffr.R</code> - Standard testthat expectations for palette functions - Tests are organized by theme/feature (one test file per major component)</p>
+<p>Tests are organized by theme/feature (one test file per major component), and use three complementary layers:</p>
+<ul><li>
+<strong>Structural assertions</strong> — the bulk of the suite. Checks against the theme object itself (<code>expect_s3_class(theme_economist(), "theme")</code>, <code>expect_equal(thm$text$family, "mono")</code>) and against palette functions (length, <code>max_n</code>, hex validity, error and warning behaviour). These catch what someone thought to assert on, and nothing else.</li>
+<li>
+<strong>Visual regression (vdiffr)</strong> — every exported theme has an <code>expect_doppelganger()</code> baseline built from the shared <code>theme_test_plot()</code> figure in <code>helper-plots.R</code>, plus swatch-grid baselines for the Tableau ordered and regular palette families and for the package’s discrete palettes. Baselines live in <code>tests/testthat/_snaps/</code>.</li>
+<li>
+<strong>Palette property assertions</strong> — <code>test-palettes.R</code> asserts invariants over whole palette families rather than one palette at a time: valid hex, no duplicate colours, stable lengths (snapshotted), monotone lightness for sequential ramps, no out-of-family colour, and per-channel monotonicity for grey ramps. These are device-independent and name the offending palette and index, so they diagnose better than an SVG diff. Palette-specific regressions stay in <code>test-tableau.R</code>.</li>
+</ul><div class="section level4">
+<h4 id="vdiffr-and-when-it-runs">vdiffr and when it runs<a class="anchor" aria-label="anchor" href="#vdiffr-and-when-it-runs"></a></h4>
+<p><code>vdiffr</code> is in <code>Suggests</code>, so <code>helper-vdiffr.R</code> follows ggplot2’s convention: it aliases <code><a href="https://vdiffr.r-lib.org/reference/expect_doppelganger.html" class="external-link">vdiffr::expect_doppelganger()</a></code> when vdiffr is installed, and otherwise skips — unless <code>VDIFFR_RUN_TESTS="true"</code>, in which case a missing vdiffr is an error rather than a silent loss of coverage. The R-CMD-check workflow sets that variable on the <code>release</code> R version only.</p>
+<p>Visual tests <strong>do</strong> run on GitHub Actions, because <code>r-lib/actions/setup-r</code> exports <code>NOT_CRAN=true</code>. They <strong>do not</strong> run on CRAN, because vdiffr delegates to <code>testthat::expect_snapshot_file(cran = FALSE)</code>. Both behaviours are intended; neither requires configuration in this repository.</p>
+<p>When a baseline changes, review it before accepting it — a baseline generated from buggy output locks the bug in and turns the suite green:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'testthat::snapshot_review()'</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'testthat::snapshot_accept()'</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="code-style">Code Style<a class="anchor" aria-label="anchor" href="#code-style"></a></h3>
@@ -186,11 +200,11 @@ chore: update pkgdown configuration</code></pre>
 <div class="section level3">
 <h3 id="spelling">Spelling<a class="anchor" aria-label="anchor" href="#spelling"></a></h3>
 <p>Check spelling using the <a href="https://docs.ropensci.org/spelling/" class="external-link">spelling</a> package.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Run spell check</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">Rscript</span> tests/spelling.R</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># Update wordlist interactively (adds new words found in documentation)</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'spelling::update_wordlist()'</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Run spell check</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">Rscript</span> tests/spelling.R</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Update wordlist interactively (adds new words found in documentation)</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'spelling::update_wordlist()'</span></span></code></pre></div>
 <p>The custom wordlist is stored in <code>inst/WORDLIST</code> and contains project-specific terms like: - Package names (ggplot, vdiffr, pkgdown) - Theme names (fivethirtyeight, solarized, stata) - Author names and proper nouns - Technical terms specific to this project</p>
 <p>When spell check finds new valid words, add them to <code>inst/WORDLIST</code> using <code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code>.</p>
 </div>

@@ -176,10 +176,51 @@ pch codes 3. Saves the final list using
 
 ### Testing Strategy
 
-Tests use: - **vdiffr**: Visual regression testing via
-`expect_doppelganger()` helper in `helper-vdiffr.R` - Standard testthat
-expectations for palette functions - Tests are organized by
-theme/feature (one test file per major component)
+Tests are organized by theme/feature (one test file per major
+component), and use three complementary layers:
+
+- **Structural assertions** — the bulk of the suite. Checks against the
+  theme object itself (`expect_s3_class(theme_economist(), "theme")`,
+  `expect_equal(thm$text$family, "mono")`) and against palette functions
+  (length, `max_n`, hex validity, error and warning behaviour). These
+  catch what someone thought to assert on, and nothing else.
+- **Visual regression (vdiffr)** — every exported theme has an
+  `expect_doppelganger()` baseline built from the shared
+  `theme_test_plot()` figure in `helper-plots.R`, plus swatch-grid
+  baselines for the Tableau ordered and regular palette families and for
+  the package’s discrete palettes. Baselines live in
+  `tests/testthat/_snaps/`.
+- **Palette property assertions** — `test-palettes.R` asserts invariants
+  over whole palette families rather than one palette at a time: valid
+  hex, no duplicate colours, stable lengths (snapshotted), monotone
+  lightness for sequential ramps, no out-of-family colour, and
+  per-channel monotonicity for grey ramps. These are device-independent
+  and name the offending palette and index, so they diagnose better than
+  an SVG diff. Palette-specific regressions stay in `test-tableau.R`.
+
+#### vdiffr and when it runs
+
+`vdiffr` is in `Suggests`, so `helper-vdiffr.R` follows ggplot2’s
+convention: it aliases
+[`vdiffr::expect_doppelganger()`](https://vdiffr.r-lib.org/reference/expect_doppelganger.html)
+when vdiffr is installed, and otherwise skips — unless
+`VDIFFR_RUN_TESTS="true"`, in which case a missing vdiffr is an error
+rather than a silent loss of coverage. The R-CMD-check workflow sets
+that variable on the `release` R version only.
+
+Visual tests **do** run on GitHub Actions, because
+`r-lib/actions/setup-r` exports `NOT_CRAN=true`. They **do not** run on
+CRAN, because vdiffr delegates to
+`testthat::expect_snapshot_file(cran = FALSE)`. Both behaviours are
+intended; neither requires configuration in this repository.
+
+When a baseline changes, review it before accepting it — a baseline
+generated from buggy output locks the bug in and turns the suite green:
+
+``` bash
+Rscript -e 'testthat::snapshot_review()'
+Rscript -e 'testthat::snapshot_accept()'
+```
 
 ### Code Style
 
