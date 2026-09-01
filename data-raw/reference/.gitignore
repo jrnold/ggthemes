@@ -1,0 +1,10 @@
+# Vendor reference data - local comparison and extraction only, not
+# redistributable. Track only the provenance notes and the scripts that
+# regenerate it.
+*
+!.gitignore
+!numbers/
+numbers/*
+!numbers/SOURCES.md
+!numbers/fetch.sh
+!numbers/cmyk-to-srgb.swift
