@@ -11,6 +11,7 @@ Calc
 Canva
 Codecov
 Colour
+ColrSpace
 FiveThirtyEight
 Fivethirtyeight
 Geoms
@@ -60,6 +61,7 @@ bowerth
 bugfix
 calc
 canva
+colorspace
 colour
 continous
 coord
@@ -106,6 +108,9 @@ rstudio
 sj
 solarized
 stata
+stcolor
+stmono
+stsj
 tidyverse
 tol
 tradeblotter

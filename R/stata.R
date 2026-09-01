@@ -1,3 +1,25 @@
+# Stata's factory default scheme changed from s2color to stcolor in Stata 18.
+# ggthemes will follow in 7.0.0; until then an omitted `scheme` keeps the
+# historical default and says so.
+#' @importFrom lifecycle deprecate_soft
+stata_default_scheme <- function(scheme, what) {
+  if (!is.null(scheme)) {
+    return(scheme)
+  }
+  deprecate_soft(
+    "6.1.0",
+    I(paste0("Omitting `scheme` in ", what)),
+    details = c(
+      i = paste0(
+        "The default will change from \"s2color\" to \"stcolor\" in ggthemes 7.0.0, ",
+        "following Stata 18's change of factory default."
+      ),
+      i = "Set `scheme` explicitly to keep the current appearance."
+    )
+  )
+  "s2color"
+}
+
 #' Stata color palettes (discrete)
 #'
 #' Stata color palettes. See Stata documentation for a description of
@@ -5,18 +27,46 @@
 #'
 #' All these palettes support up to 15 values.
 #'
+#' @details
+#' Stata's palettes come in two generations, and both are included here.
+#'
+#' \describe{
+#' \item{Stata 17 and earlier}{Schemes \code{"s2color"}, \code{"s1color"},
+#' \code{"s1rcolor"}, and \code{"mono"} are built from Stata's classic named
+#' colors (\code{navy}, \code{maroon}, \code{forest_green}, and so on) and the
+#' \code{gs0}--\code{gs16} gray scale. \code{"s2color"} was Stata's factory
+#' default through Stata 17.}
+#' \item{Stata 18 and later}{Scheme \code{"stcolor"} uses the
+#' \code{stc1}--\code{stc15} colors introduced in Stata 18. They are brighter
+#' than the classic palette and chosen to stay distinguishable for readers
+#' with a color vision deficiency. The first four are also available under
+#' the aliases \code{stblue}, \code{stred}, \code{stgreen}, and
+#' \code{styellow}. \code{"stcolor"} has been Stata's factory default since
+#' Stata 18.}
+#' }
+#'
+#' \code{"economist"} is not one of Stata's general-purpose schemes; it is the
+#' set of Economist-styled colors that Stata ships in
+#' \code{scheme-economist.scheme}.
+#'
 #' @param scheme \code{character}. One of \code{"s2color"},
-#' \code{"s1rcolor"}, \code{"s1color"}, or \code{"mono"}.
+#' \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or
+#' \code{"economist"}. If \code{NULL}, the default, \code{"s2color"} is used
+#' and a deprecation message is issued; this default becomes \code{"stcolor"}
+#' in ggthemes 7.0.0.
 #'
 #' @export
 #' @family stata colour
 #' @example inst/examples/ex-stata_pal.R
-stata_pal <- function(scheme = "s2color") {
-  colors <-
-    ggthemes::ggthemes_data[["stata"]][["colors"]][["schemes"]][[scheme]]
-  max_n <- length(colors)
+stata_pal <- function(scheme = NULL) {
+  scheme <- stata_default_scheme(scheme, "stata_pal()")
+  schemes <- ggthemes::ggthemes_data[["stata"]][["colors"]][["schemes"]]
+  if (!scheme %in% names(schemes)) {
+    cli::cli_abort("{.arg scheme} must be one of {.val {sort(names(schemes))}}, not {.val {scheme}}.")
+  }
+  colors <- schemes[[scheme]]
   f <- manual_pal(colors[["value"]])
-  attr(f, "max_n") <- max_n
+  attr(f, "max_n") <- nrow(colors)
   f
 }
 
@@ -29,13 +79,15 @@ stata_pal <- function(scheme = "s2color") {
 #' @family colour stata
 #' @rdname scale_stata
 #' @export
-scale_colour_stata <- function(scheme = "s2color", ...) {
+scale_colour_stata <- function(scheme = NULL, ...) {
+  scheme <- stata_default_scheme(scheme, "scale_colour_stata()")
   discrete_scale("colour", palette = stata_pal(scheme), ...)
 }
 
 #' @export
 #' @rdname scale_stata
-scale_fill_stata <- function(scheme = "s2color", ...) {
+scale_fill_stata <- function(scheme = NULL, ...) {
+  scheme <- stata_default_scheme(scheme, "scale_fill_stata()")
   discrete_scale("fill", palette = stata_pal(scheme), ...)
 }
 
@@ -43,11 +95,18 @@ scale_fill_stata <- function(scheme = "s2color", ...) {
 #' @rdname scale_stata
 scale_color_stata <- scale_colour_stata
 
+# Stata text sizes expressed relative to gsize medium, which is what
+# `base_size` corresponds to.
+stata_relsize <- function() {
+  relsz <- sapply(as.numeric(stata_gsize), `/`, y = as.numeric(stata_gsize$medium))
+  names(relsz) <- names(stata_gsize)
+  relsz
+}
+
 #' @importFrom ggplot2 margin
 theme_stata_base <- function(base_size = 11, base_family = "sans") {
   ## Sizes
-  relsz <- sapply(as.numeric(stata_gsize), `/`, y = as.numeric(stata_gsize$medium))
-  names(relsz) <- names(stata_gsize)
+  relsz <- stata_relsize()
   theme_foundation() +
     theme(
       line = element_line(
@@ -140,6 +199,45 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
     )
 }
 
+# Layout, as opposed to color, differences of the Stata 18 st family.
+#
+# Measured from Stata 18-generated reference graphs; see
+# `data-raw/reference/stata/SOURCES.md`. The legacy schemes get an empty
+# theme, so nothing about their appearance changes.
+theme_stata_layout <- function(scheme = "s2color") {
+  relsz <- stata_relsize()
+  # stsj is sj with a white background and horizontal y-axis labels; it does
+  # not take the rest of the st family's layout.
+  if (scheme == "stsj") {
+    return(theme(axis.text.y = element_text(angle = 0, vjust = 0.5)))
+  }
+  if (!scheme %in% c("stcolor", "stcolor_alt", "stmono1", "stmono2")) {
+    return(theme())
+  }
+  out <- theme(
+    # y-axis labels are horizontal rather than rotated.
+    axis.text.y = element_text(angle = 0, vjust = 0.5),
+    # The major grid is dashed and drawn on both axes. Stata draws 64.8-unit
+    # dashes separated by 32.4-unit gaps at a line width of 9.72, i.e. a 2:1
+    # on/off ratio measured in line widths.
+    panel.grid.major = element_line(linetype = "63"),
+    panel.grid.major.x = element_line(),
+    # Titles are set in gsize medium, not the large that s1/s2 use.
+    plot.title = element_text(size = rel(relsz[["medium"]])),
+    plot.subtitle = element_text(size = rel(relsz[["medsmall"]])),
+    # The legend sits beside the plot with no surrounding box.
+    legend.position = "right",
+    legend.direction = "vertical",
+    legend.justification = "center",
+    legend.title = element_text(size = rel(relsz[["medsmall"]]), hjust = 0)
+  )
+  if (scheme == "stcolor_alt") {
+    out <- out +
+      theme(legend.position = "bottom", legend.direction = "horizontal")
+  }
+  out
+}
+
 #' @importFrom tibble deframe
 theme_stata_colors <- function(scheme = "s2color") {
   stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
@@ -147,7 +245,21 @@ theme_stata_colors <- function(scheme = "s2color") {
   # schemes is used inside the cli_abort() glue string below, which
   # object_usage_linter can't see into.
   # nolint start: object_usage_linter
-  schemes <- c("s2color", "s2mono", "s2manual", "sj", "s1color", "s1rcolor", "s1mono", "s1manual")
+  schemes <- c(
+    "s2color",
+    "s2mono",
+    "s2manual",
+    "sj",
+    "s1color",
+    "s1rcolor",
+    "s1mono",
+    "s1manual",
+    "stcolor",
+    "stcolor_alt",
+    "stmono1",
+    "stmono2",
+    "stsj"
+  )
   # nolint end: object_usage_linter
   if (scheme == "s2color") {
     color_plot <- stata_colors["ltbluishgray"]
@@ -191,6 +303,43 @@ theme_stata_colors <- function(scheme = "s2color") {
     color_title <- "white"
     color_border <- "white"
     legend_border <- "black"
+  } else if (scheme %in% c("stcolor", "stcolor_alt")) {
+    # Values read from Stata 18-generated SVGs; see data-raw/reference/stata.
+    # The graph region, plot region and legend are all plain white, and the
+    # grid and the by-graph strips share gs15.
+    color_plot <- "white"
+    color_bg <- "white"
+    color_fg <- "black"
+    color_grid <- stata_colors[["gs15"]]
+    fill_strip <- stata_colors[["gs15"]]
+    color_strip <- NA
+    color_title <- "black"
+    color_border <- NA
+    legend_border <- NA
+  } else if (scheme == "stmono1") {
+    # stcolor over s1mono: s1mono's white background and gs14 grid, but
+    # stcolor's borderless legend.
+    color_plot <- "white"
+    color_bg <- "white"
+    color_fg <- "black"
+    color_grid <- stata_colors[["gs14"]]
+    fill_strip <- stata_colors[["gs13"]]
+    color_strip <- "black"
+    color_title <- "black"
+    color_border <- "black"
+    legend_border <- NA
+  } else if (scheme %in% c("stmono2", "stsj")) {
+    # stcolor over s2mono: s2mono's dimgray grid, but stcolor's white
+    # background in place of s2mono's gs15.
+    color_plot <- "white"
+    color_bg <- "white"
+    color_fg <- "black"
+    color_grid <- stata_colors[["dimgray"]]
+    fill_strip <- stata_colors[["gs13"]]
+    color_strip <- NA
+    color_title <- "black"
+    color_border <- NA
+    legend_border <- NA
   } else if (scheme %in% c("s1mono", "s1manual")) {
     color_plot <- "white"
     color_bg <- "white"
@@ -237,9 +386,11 @@ theme_stata_colors <- function(scheme = "s2color") {
 
 #' Themes based on Stata graph schemes
 #'
-#' @param scheme One of "s2color", "s2mono", "s1color",
-#'   "s1rcolor", or "s1mono", "s2manual",
-#'   "s1manual", or "sj"
+#' @param scheme One of "stcolor", "stcolor_alt", "stmono1", "stmono2",
+#'   "stsj", "s2color", "s2mono", "s1color", "s1rcolor", "s1mono",
+#'   "s2manual", "s1manual", or "sj". If \code{NULL}, the default,
+#'   "s2color" is used and a deprecation message is issued; this default
+#'   becomes "stcolor" in ggthemes 7.0.0.
 #' @inheritParams ggplot2::theme_grey
 #' @export
 #' @family themes stata
@@ -254,12 +405,30 @@ theme_stata_colors <- function(scheme = "s2color") {
 #' defaults, and more effort was made to match the colors and sizes
 #' of major elements than in matching the margins.
 #'
+#' The schemes fall into two generations. \code{"stcolor"},
+#' \code{"stcolor_alt"}, \code{"stmono1"}, \code{"stmono2"} and \code{"stsj"}
+#' are the st family introduced in Stata 18, of which \code{"stcolor"} is
+#' Stata's current factory default: a white background, a dashed grid on both
+#' axes, horizontal y-axis labels, and a borderless legend beside the plot.
+#' The remaining schemes are the s1/s2 families that were the default through
+#' Stata 17.
+#'
+#' Stata expresses text sizes as a percentage of graph height, while ggplot2
+#' uses absolute points, so the two agree only at a particular graph size.
+#' The relative sizes here match Stata exactly; \code{base_size = 12.4}
+#' reproduces Stata's absolute sizes at its default 7.5 by 4.5 inch graph.
+#' Two further differences are not expressible in a ggplot2 theme: the number
+#' of legend columns (set by \code{\link[ggplot2]{guide_legend}()} rather than
+#' the theme) and Stata's small default marker size (a geom default).
+#'
 #' @references \url{https://www.stata.com/help.cgi?schemes}
 #'
 #' @example inst/examples/ex-theme_stata.R
-theme_stata <- function(base_size = 11, base_family = "sans", scheme = "s2color") {
-  ## Sizes
-  (theme_stata_base(base_size = eval(base_size), base_family = base_family) + theme_stata_colors(scheme = scheme))
+theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
+  scheme <- stata_default_scheme(scheme, "theme_stata()")
+  theme_stata_base(base_size = base_size, base_family = base_family) +
+    theme_stata_layout(scheme = scheme) +
+    theme_stata_colors(scheme = scheme)
 }
 
 #' Stata shape palette (discrete)
