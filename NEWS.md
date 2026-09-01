@@ -18,6 +18,32 @@
 - Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
   `tableau.yml`.
 
+- Add support for Stata's `st` scheme family, which has been Stata's factory
+  default since Stata 18. `stata_pal()` and `scale_colour_stata()` gain the
+  `"stcolor"` scheme (the `stc1`--`stc15` colours), and `theme_stata()` gains
+  the `"stcolor"`, `"stcolor_alt"`, `"stmono1"`, `"stmono2"` and `"stsj"`
+  schemes. `stgcolor` and `stgcolor_alt` are not included: they differ from
+  `stcolor` only in physical graph dimensions, which a ggplot2 theme does not
+  carry.
+- The 19 named colours Stata 18 added (`stc1`--`stc15` plus the `stblue`,
+  `stred`, `stgreen` and `styellow` aliases) are now in
+  `ggthemes_data$stata$colors$names`.
+- Omitting `scheme` in `stata_pal()`, `scale_colour_stata()`,
+  `scale_fill_stata()` and `theme_stata()` is now soft-deprecated. It still
+  resolves to `"s2color"`, but the default will change to `"stcolor"` in
+  ggthemes 7.0.0, following Stata. Pass `scheme` explicitly to keep the
+  current appearance.
+- BEHAVIOUR CHANGE: `stata_pal("mono")` returned the wrong colours at
+  positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It now
+  matches Stata's `s1mono`/`s2mono` exactly, including the fact that Stata
+  repeats `gs12` and `gs5` at positions 14 and 15. Plots using `"mono"` with
+  six or more levels will change.
+- Fix `stata_pal("economist")`, which returned `NA` as its first colour
+  because the scheme referred to a non-existent colour `dkblue`. It is now
+  `edkblue`, matching Stata's `scheme-economist.scheme`.
+- Fix `attr(stata_pal(scheme), "max_n")`, which reported `2` rather than `15`
+  because it measured the columns of the palette table instead of its rows.
+
 # ggthemes 6.0.0
 
 - `circlefill_shape_pal()` and `scale_shape_circlefill()`, soft-deprecated

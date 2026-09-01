@@ -1,0 +1,8 @@
+# StataCorp reference images - local comparison only, not redistributable.
+# Track only the provenance notes and the re-download script.
+*
+!.gitignore
+!stata/
+stata/*
+!stata/SOURCES.md
+!stata/fetch.sh
