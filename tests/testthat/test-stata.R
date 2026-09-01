@@ -166,3 +166,12 @@ test_that("omitting scheme is soft-deprecated", {
   lifecycle::expect_deprecated(scale_colour_stata())
   lifecycle::expect_deprecated(scale_fill_stata())
 })
+
+test_that("theme_stata draws correctly", {
+  # `scheme` is passed explicitly: its default changes in 7.0.0, and a baseline
+  # should move only when someone means to move it.
+  expect_doppelganger(
+    "theme_stata",
+    theme_test_plot() + theme_stata(scheme = "s2color")
+  )
+})

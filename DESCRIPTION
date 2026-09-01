@@ -34,6 +34,7 @@ Suggests:
     dplyr,
     covr,
     extrafont,
+    farver,
     glue,
     knitr,
     lattice,
@@ -46,7 +47,7 @@ Suggests:
     spelling,
     testthat (>= 3.2.0),
     tidyr,
-    vdiffr,
+    vdiffr (>= 1.0.6),
     withr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots

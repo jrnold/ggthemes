@@ -62,3 +62,7 @@ test_that("gdocs_pal matches the Google Sheets series colours", {
     )
   )
 })
+
+test_that("theme_gdocs draws correctly", {
+  expect_doppelganger("theme_gdocs", theme_test_plot() + theme_gdocs())
+})

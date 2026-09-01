@@ -84,10 +84,6 @@ test_that("theme_numbers draws only the bottom axis line", {
   expect_s3_class(calc_element("axis.ticks", thm), "element_blank")
 })
 
-test_that("theme_numbers plot works", {
-  p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
-    geom_point() +
-    scale_colour_numbers() +
-    theme_numbers()
-  expect_doppelganger("theme_numbers", p)
+test_that("theme_numbers draws correctly", {
+  expect_doppelganger("theme_numbers", theme_test_plot() + theme_numbers())
 })

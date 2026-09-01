@@ -58,9 +58,5 @@ test_that("theme_few works", {
 })
 
 test_that("theme_few draws correctly", {
-  df <- data.frame(x = 1:3, y = 1:3, z = c("a", "b", "a"), a = 1)
-  plot <- ggplot(df, aes(x, y, colour = z)) +
-    geom_point() +
-    facet_wrap(~a)
-  expect_doppelganger("theme_few", plot)
+  expect_doppelganger("theme_few", theme_test_plot() + theme_few())
 })

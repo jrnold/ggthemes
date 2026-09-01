@@ -17,6 +17,12 @@
   sequential palette has 20. Plots using `"Red-Gold"` will change appearance.
 - Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
   `tableau.yml`.
+- Add vdiffr visual regression baselines for every exported theme, and swatch
+  baselines plus property assertions (valid hex, no duplicate colours, stable
+  lengths, monotone lightness, no out-of-family colour, monotone grey ramps)
+  for the Tableau palette families. These are development-only tests and do not
+  run on CRAN; `vdiffr (>= 1.0.6)` and `farver` are now used in `Suggests`
+  (#219).
 
 - Add support for Stata's `st` scheme family, which has been Stata's factory
   default since Stata 18. `stata_pal()` and `scale_colour_stata()` gain the

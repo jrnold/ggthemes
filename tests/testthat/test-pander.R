@@ -72,3 +72,7 @@ test_that("palette_pander recycles colors when n exceeds the palette size", {
   expect_hexcolor(colors)
   expect_equal(length(colors), 10)
 })
+
+test_that("theme_pander draws correctly", {
+  expect_doppelganger("theme_pander", theme_test_plot() + theme_pander())
+})
