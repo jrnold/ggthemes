@@ -57,6 +57,17 @@
   that was never wired into `data-raw/build.R` and held iWork-era colors
   matching no current Numbers palette.
 
+- Fix two incorrect colours in the Google Docs palette, checked against the
+  series colours a current Google Sheets chart actually renders. `teal 2` was
+  `#ff994d`, a duplicate of `orange 2`, and is now `#7ed1d7`; `teal 3` was
+  `#c9e4e7` and is now `#b5e5e8`. This changes the output of `gdocs_pal()`,
+  `scale_colour_gdocs()`, and `scale_fill_gdocs()` for more than 11 colours.
+  The other 22 colours were already correct.
+- `theme_gdocs()` now matches the text colours Google Sheets uses. Sheets
+  applies a graded hierarchy rather than one grey: axis tick labels are black,
+  legend labels `#1a1a1a`, and axis titles and the x-axis line `#333333`. The
+  chart title (`#757575`) and gridlines (`#cccccc`) are unchanged.
+
 # ggthemes 6.0.0
 
 - `circlefill_shape_pal()` and `scale_shape_circlefill()`, soft-deprecated
