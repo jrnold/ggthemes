@@ -23,7 +23,7 @@ colors:
 - name: orange 2
   value: "#ff994d"
 - name: teal 2
-  value: "#ff994d"
+  value: "#7ed1d7"
 
 - name: blue 3
   value: "#b3cefb"
@@ -36,7 +36,7 @@ colors:
 - name: orange 3
   value: "#ffc599"
 - name: teal 3
-  value: "#c9e4e7"
+  value: "#b5e5e8"
 
 
 - name: blue 4

@@ -7,9 +7,14 @@
 #' @family themes gdocs
 #' @example inst/examples/ex-theme_gdocs.R
 theme_gdocs <- function(base_size = 12, base_family = "sans") {
-  ltgray <- "#cccccc"
-  dkgray <- "#757575"
-  dkgray2 <- "#666666"
+  # Colours sampled from a Google Sheets chart. Sheets uses a graded text
+  # hierarchy rather than a single grey: tick labels are the darkest, then
+  # legend labels, then axis titles, with the chart title lightest of all.
+  gridline <- "#cccccc"
+  tick_colour <- "#000000"
+  legend_colour <- "#1a1a1a"
+  axis_colour <- "#333333"
+  title_colour <- "#757575"
 
   theme_foundation(
     base_size = base_size,
@@ -18,26 +23,26 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
     theme(
       rect = element_rect(colour = "black", fill = "white"),
       line = element_line(colour = "black"),
-      text = element_text(colour = dkgray),
-      # title is aligned left, 20 point Roboto Font, plain
+      text = element_text(colour = legend_colour),
+      # title is aligned left, plain, and lighter than the rest of the chart
       plot.title = element_text(
         face = "plain",
         size = rel(20 / 12),
         hjust = 0,
-        colour = dkgray
+        colour = title_colour
       ),
-      # No subtitle or captions, so treat like other text
+      # No subtitle or captions in gdocs, so treat like the title
       plot.subtitle = element_text(
         hjust = 0,
         size = rel(1),
         face = "plain",
-        colour = dkgray
+        colour = title_colour
       ),
       plot.caption = element_text(
         hjust = 0,
         size = rel(1),
         face = "plain",
-        colour = dkgray
+        colour = title_colour
       ),
       panel.background = element_rect(fill = NA, colour = NA),
       panel.border = element_rect(fill = NA, colour = NA),
@@ -45,41 +50,41 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
       strip.text = element_text(
         hjust = 0,
         size = rel(1),
-        colour = dkgray2,
+        colour = axis_colour,
         face = "plain"
       ),
       strip.background = element_rect(colour = NA, fill = NA),
-      # axis titles: Roboto 12pt, plain.
+      # axis titles: base size, plain, lighter than the tick labels
       axis.title = element_text(
         face = "plain",
-        colour = dkgray2,
+        colour = axis_colour,
         size = rel(1)
       ),
-      # axis text: Roboto 12pt, plain
+      # axis text: base size, plain, the darkest text in the chart
       axis.text = element_text(
         face = "plain",
-        colour = dkgray,
+        colour = tick_colour,
         size = rel(1)
       ),
-      # only axis line on the x-axis. black.
-      axis.line = element_line(colour = "black"),
+      # only axis line on the x-axis, matching the axis titles
+      axis.line = element_line(colour = axis_colour),
       axis.line.y = element_blank(),
       # no axis ticks
       axis.ticks = element_blank(),
       # grid lines on both x and y axes. light gray. no minor gridlines
-      panel.grid.major = element_line(colour = ltgray),
+      panel.grid.major = element_line(colour = gridline),
       panel.grid.minor = element_blank(),
       # legend has no border
       legend.background = element_rect(colour = NA),
-      # legend labels: Roboto 12, dark gray
+      # legend labels: base size, near-black
       legend.text = element_text(
         size = rel(1),
-        colour = dkgray
+        colour = legend_colour
       ),
-      # no legend title - use same as legend text
+      # no legend title in gdocs - use same as legend text
       legend.title = element_text(
         size = rel(1),
-        colour = dkgray2,
+        colour = legend_colour,
         face = "plain"
       ),
       legend.key = element_rect(colour = NA),
