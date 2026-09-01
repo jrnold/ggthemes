@@ -1,7 +1,7 @@
 # Robust shape palettes
 
 Date: 2026-09-01
-Status: approved design, pending one blocked item (Tremmel)
+Status: approved design, no open items
 Target release: ggthemes 6.1.0 (breaking)
 
 ## 1. Problem
@@ -136,9 +136,13 @@ Rows lose their hand-written `pch` and gain a `shape` name:
 ```yaml
 tremmel:
   '2-overlap':
-  - {shape: square open, unicode: U+25A1, character: □}
   - {shape: circle open, unicode: U+25CB, character: ○}
+  - {shape: plus,        unicode: U+002B, character: +}
 ```
+
+(Shown with the §7 corrections applied: the stored row was `{name: WHITE SQUARE, pch: 0}` +
+`{name: WHITE CIRCLE, pch: 3}`, where Tremmel §5.1 gives empty circle + plus sign. Under this
+schema the label and the value are the same field, so that pairing is unrepresentable.)
 
 `name` (the Unicode character name) is retained as documentation but is no longer load-bearing.
 
@@ -312,6 +316,15 @@ the truncation, points at `unicode = TRUE` with a recommended font, and suggests
 `alpha` or `fill` as the idiomatic ggplot2 way to encode a proportion. Their surviving
 endpoints (empty circle, full circle) remain meaningful as a 2-value scale.
 
+For `cleveland_shape_pal(overlap = FALSE)` specifically, the truncation is arguably an
+*improvement* rather than a loss. Tremmel's Experiment 2 tested exactly this five-symbol
+Cleveland set and found the fill-graded circles to be the worst performers measured: "the
+empty circles — with or without line or dot filling — separated poorly from each other, with
+mean decision times all exceeding 2 seconds. The worst result was for ⊕/⊙, with a mean
+decision time of 2.45 seconds" — nearly a second worse than the best pairs, and the pair that
+produced the most errors (11). The three shapes that survive the safe path (`○ ● ⊕`) are the
+better-separating subset.
+
 ## 5. Testing
 
 - **Validation runs as a test, not only as a build step.** The §4.3 checks are re-run in
@@ -336,37 +349,64 @@ Unambiguous, fixed as part of this work:
 
 Under the new schema, checks 1 and 2 of §4.3 make all three unrepresentable in future.
 
-## 7. Open question — Tremmel (blocked)
+## 7. Tremmel — resolved against the paper
 
-`tremmel_shape_pal()`'s stored data contradicts its own roxygen in 3 of 5 entries:
+`tremmel_shape_pal()`'s stored data contradicted its own roxygen in 3 of 5 entries. Verified
+against the full text of Tremmel (1995), JCGS 4(2), 101–112. **The roxygen is correct in every
+disputed case; the stored data is wrong in three.**
 
-| entry | roxygen says | data gives | doc-implied |
+Source text, §5 Conclusions:
+
+> **5.1 Two Groups of Data.** "One group should be represented by solid circles or rings, and
+> the other group by plus signs or asterisks. If there is much overlap, empty circles should be
+> taken for the first group because empty symbols preserve their individuality when they
+> overlap."
+>
+> **5.2 Three Groups of Data.** "Based on the results from Experiment 1, solid circles, empty
+> circles, and empty triangles appear to be good choices. However, a second condition may be
+> necessary — each symbol should differ from both other symbols in the same feature dimension.
+> … Solid circles, plus signs, and empty triangles may be good choices, because in this triple
+> each symbol differs from every other symbol in the same feature dimension: The plus signs
+> differs from the other symbols in the number of terminators; the circle differs from both
+> other symbols in curvature; the triangle differs from both other symbols in line orientation.
+> However, this suggestion is not directly supported by our experiments."
+
+Resolution:
+
+| entry | paper | data has | corrected to |
 |---|---|---|---|
-| `2` | solid circle + plus sign | `16, 1` (circle + circle) | `16, 3` |
-| `2-overlap` | empty circle instead of solid | `0, 3`, labelled square + "circle" | `1, 3` |
-| `3` | solid circle, empty circle, empty triangle | `16, 1, 2` ✓ | `16, 1, 2` |
-| `3-alternate` | solid circle, plus sign, empty triangle | `16, 1, 2` — identical to `3` | `16, 3, 2` |
+| `1` | solid circle | `16` | `16` — unchanged |
+| `2` | solid circle + plus sign (§5.1) | `16, 1` | **`16, 3`** |
+| `2-overlap` | empty circle + plus sign (§5.1) | `0, 3` | **`1, 3`** |
+| `3` | solid circle, empty circle, empty triangle (§5.2) | `16, 1, 2` | `16, 1, 2` — unchanged |
+| `3-alternate` | solid circle, plus sign, empty triangle (§5.2) | `16, 1, 2` | **`16, 3, 2`** |
 
-The full text of Tremmel (1995) is paywalled on both Taylor & Francis and JSTOR and could not
-be retrieved. From the abstract and secondary sources it is verified that the paper's feature
-dimensions are **brightness, number of line endings, and curvature**, that symbols differing in
-two dimensions separate better than symbols differing in one, and that "the contrasts between
-circular symbols and radial line symbols like the plus sign or the asterisk are excellent."
-That evidence favours the roxygen over the data for `n = 2` — solid vs open circle differ in
-brightness alone, where circle vs plus differ in curvature *and* terminators — but it does not
-settle `2-overlap` or confirm `3`.
+The accompanying `name`/`character` fields are corrected with them: `2-overlap` is labelled
+`WHITE SQUARE` + `WHITE CIRCLE` where the paper gives empty circle + plus, and `3-alternate` is
+labelled `WHITE SQUARE` carrying pch 1. Under the §4.2 schema all five entries become
+`shape:` names, so these labels can no longer drift from the values.
 
-**Resolution: blocked pending the PDF**, to be placed in `data-raw/reference/`. No tremmel
-value is changed until all five entries are verified against the text. Everything else in this
-design proceeds independently.
+`alt` default: §5.2 supports `alt = FALSE` (`16, 1, 2`) as the default, since that triple comes
+from Experiment 1's measured results, whereas the `alt = TRUE` triple is argued on
+feature-dimension grounds that Tremmel explicitly flags as "not directly supported by our
+experiments." `tremmel_shape_pal()` already defaults to `FALSE`; **`scale_shape_tremmel()` is
+corrected from `alt = TRUE` to `alt = FALSE`** so a palette and its own scale stop disagreeing
+at `n = 3`.
 
-Two further tremmel defects, independent of the symbol sets and fixed regardless:
+The roxygen's *"line orientation"* gloss for the triangle is **correct** and stays as written —
+it quotes §5.2 verbatim. (The abstract's three headline contrasts are brightness, line endings
+and curvature; §5.2's three-symbol argument uses line orientation for the triangle. Both are
+the paper's own wording, for different claims.)
 
-- `tremmel_shape_pal(alt = FALSE)` vs `scale_shape_tremmel(alt = TRUE)` — the palette and its
-  own scale ship opposite defaults, so they disagree at `n = 3`.
-- The roxygen glosses the triangle's feature dimension as *"line orientation"*; the paper's
-  third dimension is *brightness*. The gloss is inaccurate to the source regardless of which
-  symbols are correct.
+Also verified, for `cleveland_shape_pal(overlap = FALSE)`: §3.1 states "the five circular
+symbols are the ones recommended by Cleveland (1985, p. 196) with a slight modification — the
+empty circle with a vertical bar was replaced by an empty circle with a plus sign." The
+existing cleveland `default` data (`○ ● ⊕ ⊙ ⊚`) and its roxygen note both follow this
+correctly and need no change.
+
+Reference PDF: kept locally at `data-raw/reference/papers/Tremmel1995.pdf`, **untracked** —
+`data-raw/reference/` is the established location for non-redistributable vendor and
+reference material, whose `.gitignore` tracks only provenance notes and fetch scripts.
 
 ## 8. Migration
 
@@ -382,6 +422,14 @@ Ships in 6.1.0. NEWS.md entries:
 - Bugfix: `cleveland_shape_pal()` rendered `W` where `S` was intended.
 - Bugfix: the LibreOffice and Tableau shape data contained a mislabelled shape and a corrupted
   character respectively.
+- BREAKING/Bugfix: `tremmel_shape_pal()` returned symbol sets that did not match Tremmel
+  (1995). `n = 2` now returns a solid circle and a plus sign (was two circles), `overlap = TRUE`
+  returns an empty circle and a plus sign (was a square and a plus sign), and `alt = TRUE`
+  returns a solid circle, plus sign and empty triangle (was identical to `alt = FALSE`, making
+  the argument a no-op).
+- Bugfix: `scale_shape_tremmel()` defaulted to `alt = TRUE` while `tremmel_shape_pal()`
+  defaulted to `alt = FALSE`; both now default to `FALSE`, the variant Tremmel's Experiment 1
+  actually measured.
 - `warn_unicode_pch()`'s locale guess is replaced by a real font-coverage check when
   `systemfonts` is installed.
 
