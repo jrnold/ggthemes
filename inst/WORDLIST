@@ -2,6 +2,7 @@ ACM
 Agrawala
 Analytics
 Argwala
+BEHAVIOUR
 Banff
 Beamer
 Bembo
@@ -11,7 +12,6 @@ Calc
 Canva
 Codecov
 Colour
-ColrSpace
 FiveThirtyEight
 Fivethirtyeight
 Geoms
@@ -42,9 +42,11 @@ Schwabish
 Solarized
 Spiekerblog
 Stata
+Stata's
 Stribley
 Tabaleau
 Tableu
+Tidyverse
 Tol
 Tol's
 Tremmel
@@ -57,12 +59,13 @@ Zdeb
 al
 ao
 behaviour
+borderless
 bowerth
 bugfix
 calc
 canva
-colorspace
 colour
+colours
 continous
 coord
 daroczig
@@ -79,9 +82,11 @@ ggplot
 ggproto
 github
 grey
+gridlines
 hc
 hexa
 https
+iWork
 impactful
 jbkunst
 lifecycle
@@ -111,6 +116,7 @@ stata
 stcolor
 stmono
 stsj
+stylesheet
 tidyverse
 tol
 tradeblotter

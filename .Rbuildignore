@@ -1,4 +1,5 @@
 ^CRAN-RELEASE$
+^\.git$
 ^\.gitignore$
 ^README\.(R?md|html)$
 ^figure$
