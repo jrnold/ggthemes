@@ -39,7 +39,7 @@ qualitative categories), `"ordered-sequential"`, and
   `"Tableau 10"`, `"Tableau 20"`, `"Color Blind"`, `"Seattle Grays"`,
   `"Traffic"`, `"Miller Stone"`, `"Superfishel Stone"`,
   `"Nuriel Stone"`, `"Jewel Bright"`, `"Summer"`, `"Winter"`,
-  `"Green-Orange-Teal"`, `"Red-Blue-Brown"`, `"Purple-Pink-Gray"`,
+  `"Green-Orange-Teal"`, `"Blue-Red-Brown"`, `"Purple-Pink-Gray"`,
   `"Hue Circle"`, `"Classic 10"`, `"Classic 10 Medium"`,
   `"Classic 10 Light"`, `"Classic 20"`, `"Classic Gray 5"`,
   `"Classic Color Blind"`, `"Classic Traffic Light"`,
@@ -72,7 +72,7 @@ qualitative categories), `"ordered-sequential"`, and
   `"Gray Warm"`, `"Blue-Teal"`, `"Orange-Gold"`, `"Green-Gold"`,
   `"Red-Gold"`, `"Classic Green"`, `"Classic Gray"`, `"Classic Blue"`,
   `"Classic Red"`, `"Classic Orange"`, `"Classic Area Red"`,
-  `"Classic Area Green"`, `"Classic Area-Brown"`
+  `"Classic Area Green"`, `"Classic Area Brown"`
 
 ## References
 

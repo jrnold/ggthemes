@@ -33,6 +33,14 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="ggthemes-development-version">ggthemes (development version)<a class="anchor" aria-label="anchor" href="#ggthemes-development-version"></a></h2>
+<ul><li>BREAKING CHANGE: The Tableau palette <code>"Red-Blue-Brown"</code> has been renamed to <code>"Blue-Red-Brown"</code>, matching both the name Tableau uses and the palette’s actual colour order (blue, red, brown). The old name still works but warns.</li>
+<li>BREAKING CHANGE: The Tableau palette <code>"Classic Area-Brown"</code> has been renamed to <code>"Classic Area Brown"</code>, for consistency with its siblings <code>"Classic Area Red"</code> and <code>"Classic Area Green"</code>. The old name still works but warns.</li>
+<li>Fix two corrupted colours in the <code>"Gray Warm"</code> ordered-sequential Tableau palette. Position 7 was <code>#b047a4</code> (a magenta, in a warm-grey ramp) and is now <code>#b0a8a4</code>; position 18 was <code>#665c51</code>, which broke the ramp’s monotonic blue channel, and is now <code>#665c5a</code>. Plots using <code>scale_colour_gradient_tableau("Gray Warm")</code> will change appearance.</li>
+<li>Fix a duplicated colour (<code>#fa9d4f</code>) in the <code>"Red-Gold"</code> ordered-sequential Tableau palette, which gave it 21 colours where every other 20-step Tableau sequential palette has 20. Plots using <code>"Red-Gold"</code> will change appearance.</li>
+<li>Remove <code>data-raw/theme-data/tableau-new.yml</code>, an unused duplicate of <code>tableau.yml</code>.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="6.0.0" id="ggthemes-600">ggthemes 6.0.0<a class="anchor" aria-label="anchor" href="#ggthemes-600"></a></h2>
 <ul><li>
 <code><a href="../reference/circlefill_shape_pal.html">circlefill_shape_pal()</a></code> and <code><a href="../reference/scale_shape_circlefill.html">scale_shape_circlefill()</a></code>, soft-deprecated since ggthemes 5.0.0, now always warn on use (<code><a href="https://lifecycle.r-lib.org/reference/deprecate_soft.html" class="external-link">lifecycle::deprecate_warn()</a></code>) instead of only when called directly by the user</li>

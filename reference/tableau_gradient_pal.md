@@ -29,7 +29,7 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
       `"Green-Gold"`, `"Red-Gold"`, `"Classic Green"`, `"Classic Gray"`,
       `"Classic Blue"`, `"Classic Red"`, `"Classic Orange"`,
       `"Classic Area Red"`, `"Classic Area Green"`,
-      `"Classic Area-Brown"`
+      `"Classic Area Brown"`
 
   `"ordered-diverging"`
 

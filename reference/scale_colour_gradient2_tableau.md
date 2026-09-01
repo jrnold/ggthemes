@@ -48,7 +48,7 @@ scale_color_gradient2_tableau(
       `"Green-Gold"`, `"Red-Gold"`, `"Classic Green"`, `"Classic Gray"`,
       `"Classic Blue"`, `"Classic Red"`, `"Classic Orange"`,
       `"Classic Area Red"`, `"Classic Area Green"`,
-      `"Classic Area-Brown"`
+      `"Classic Area Brown"`
 
   `"ordered-diverging"`
 
