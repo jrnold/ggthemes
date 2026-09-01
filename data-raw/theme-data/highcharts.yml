@@ -1,2 +1,0 @@
-palettes: {default: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1'], darkunica: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee']}
-bg: [{name: default, value: '#FFFFFF'}, {name: darkunica, value: '#2a2a2b'}]

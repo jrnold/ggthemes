@@ -7,7 +7,7 @@
 theme_hc(
   base_size = 12,
   base_family = "sans",
-  style = c("default", "darkunica"),
+  style = c("default", "default_dark", "darkunica", "grid_light", "sand_signika"),
   bgcolor = NULL
 )
 }
@@ -16,13 +16,25 @@ theme_hc(
 
 \item{base_family}{base font family}
 
-\item{style}{The Highcharts theme to use \code{'default'},
-\code{'darkunica'}.}
+\item{style}{The Highcharts theme to use. One of
+\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes:::hc_theme_styles))}.}
 
 \item{bgcolor}{Deprecated}
 }
 \description{
-Theme based on \href{https://www.highcharts.com/}{Highcharts} plots.
+Themes based on \href{https://www.highcharts.com/}{Highcharts} plots.
+}
+\details{
+Only the Highcharts themes that restyle the chart itself get a \code{style}
+here. The \code{"high-contrast"}, \code{"avocado"} and \code{"sunset"}
+themes shipped with Highcharts 13 change nothing but the series colours, so
+they are available through \code{\link{hc_pal}()} alone; combine them with
+\code{theme_hc("default")} or \code{theme_hc("default_dark")}.
+
+Highcharts pairs several of these themes with a web font
+(\code{darkunica} with Unica One, \code{grid_light} with Dosis,
+\code{sand_signika} with Signika). Those are not requested here, since the
+font may not be installed; pass \code{base_family} to use one.
 }
 \examples{
 library("ggplot2")
@@ -35,7 +47,9 @@ p <- ggplot(mtcars) +
   )) +
   facet_wrap(~am)
 p + theme_hc() + scale_colour_hc()
-p + theme_hc(bgcolor = "darkunica") + scale_colour_hc("darkunica")
+p + theme_hc(style = "darkunica") + scale_colour_hc("darkunica")
+p + theme_hc(style = "grid_light") + scale_colour_hc("grid_light")
+p + theme_hc(style = "default_dark") + scale_colour_hc("high_contrast_dark")
 
 dtemp <- data.frame(
   months = factor(rep(substr(month.name, 1, 3), 4), levels = substr(month.name, 1, 3)),
@@ -103,8 +117,8 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   geom_line() +
   geom_point(size = 1.1) +
   ggtitle("Monthly Average Temperature") +
-  theme_hc(bgcolor = "darkunica") +
-  scale_fill_hc("darkunica")
+  theme_hc(style = "darkunica") +
+  scale_colour_hc("darkunica")
 }
 \references{
 \url{https://www.highcharts.com/demo/highcharts/line-chart}

@@ -13,8 +13,8 @@ scale_color_hc(palette = "default", ...)
 scale_fill_hc(palette = "default", ...)
 }
 \arguments{
-\item{palette}{\code{character} The name of the Highcharts theme to use. One of
-\code{"default"}, or \code{"darkunica"}.}
+\item{palette}{\code{character} The name of the Highcharts palette to use.
+One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
