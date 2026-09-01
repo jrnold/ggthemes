@@ -88,3 +88,11 @@ test_that("theme economist_white with gray background works", {
     )
   )
 })
+
+test_that("theme_economist draws correctly", {
+  expect_doppelganger("theme_economist", theme_test_plot() + theme_economist())
+})
+
+test_that("theme_economist_white draws correctly", {
+  expect_doppelganger("theme_economist_white", theme_test_plot() + theme_economist_white())
+})

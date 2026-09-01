@@ -31,3 +31,7 @@ test_that("theme_hc works", {
 test_that("bgcolor raises warning", {
   expect_warning(theme_hc(bgcolor = "darkunica"), regexp = "deprecated")
 })
+
+test_that("theme_hc draws correctly", {
+  expect_doppelganger("theme_hc", theme_test_plot() + theme_hc())
+})

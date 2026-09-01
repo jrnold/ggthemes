@@ -28,3 +28,11 @@ test_that("solarized_pal works", {
   expect_type(values, "character")
   expect_equal(length(values), n)
 })
+
+test_that("theme_solarized draws correctly", {
+  expect_doppelganger("theme_solarized", theme_test_plot() + theme_solarized())
+})
+
+test_that("theme_solarized_2 draws correctly", {
+  expect_doppelganger("theme_solarized_2", theme_test_plot() + theme_solarized_2())
+})

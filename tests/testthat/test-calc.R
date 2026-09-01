@@ -38,3 +38,7 @@ test_that("scale_fill_calc works", {
 test_that("scale_shape_calc works", {
   expect_s3_class(scale_shape_calc(), "ScaleDiscrete")
 })
+
+test_that("theme_calc draws correctly", {
+  expect_doppelganger("theme_calc", theme_test_plot() + theme_calc())
+})

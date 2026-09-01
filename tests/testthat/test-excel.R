@@ -77,3 +77,11 @@ test_that("theme_excel_new does not blank out axis titles", {
   thm <- theme_excel_new()
   expect_null(thm$axis.title)
 })
+
+test_that("theme_excel draws correctly", {
+  expect_doppelganger("theme_excel", theme_test_plot() + theme_excel())
+})
+
+test_that("theme_excel_new draws correctly", {
+  expect_doppelganger("theme_excel_new", theme_test_plot() + theme_excel_new())
+})

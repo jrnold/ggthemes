@@ -48,3 +48,11 @@ test_that("theme_par recognizes yaxt", {
     }
   })
 })
+
+test_that("theme_base draws correctly", {
+  expect_doppelganger("theme_base", theme_test_plot() + theme_base())
+})
+
+test_that("theme_par draws correctly", {
+  expect_doppelganger("theme_par", theme_test_plot() + theme_par())
+})
