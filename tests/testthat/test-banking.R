@@ -61,15 +61,34 @@ test_that("bank_slopes with method=\"was\" runs", {
   expect_type(out, "double")
 })
 
-test_that("bank_slopes with method=\"was\" weights slopes by segment run (dx)", {
-  # Segment 1: dx = 1, slope = 1. Segment 2: dx = 2, slope = 0.5.
-  # Rx = 3, Ry = 2, so normalized slopes are 1.5 and 0.75.
-  # Weighted (by dx) mean: (1.5*1 + 0.75*2) / 3 = 1, so y/x = 1.
-  # The unweighted average ("as") would instead give alpha = 1.125.
+test_that("bank_slopes with method=\"was\" solves weighted orientation banking", {
+  # The weighted method has no closed form: segment lengths change with alpha.
   x <- c(0, 1, 3)
   y <- c(0, 1, 2)
-  out <- bank_slopes(x, y, method = "was")
-  expect_equal(out, 1, tolerance = 1e-6)
+  alpha <- 1 / bank_slopes(x, y, method = "was")
+  slopes <- calc_slopes(x, y)
+  s <- slopes$s * slopes$Rx / slopes$Ry
+  lengths <- slopes$dx * sqrt(1 + (s / alpha)^2)
+  orientation <- sum(abs(atan(s / alpha)) * lengths) / sum(lengths)
+  expect_equal(orientation, pi / 4, tolerance = 1e-6)
+})
+
+test_that("bank_slopes with method=\"was\" responds to x spacing", {
+  # Holding y fixed but changing runs must change the weighted solution. The
+  # prior dx-weighted-slope implementation made these exactly equal because
+  # its dx weights cancelled algebraically.
+  y <- c(0, 1, 2)
+  regular <- bank_slopes(c(0, 1, 2), y, method = "was")
+  uneven <- bank_slopes(c(0, 1, 100), y, method = "was")
+  expect_false(isTRUE(all.equal(regular, uneven)))
+})
+
+test_that("bank_slopes with method=\"was\" returns NaN for a flat line", {
+  expect_equal(bank_slopes(1:3, c(1, 1, 1), method = "was"), NaN)
+})
+
+test_that("bank_slopes with method=\"was\" handles mostly flat segments", {
+  expect_true(is.finite(bank_slopes(0:3, c(0, 0, 0, 1), method = "was")))
 })
 
 test_that("bank_plot runs and returns a ggplot with a numeric coord_fixed ratio", {
@@ -102,7 +121,15 @@ test_that("bank_plot computes slopes within groups, not across group boundaries"
   )
   p <- ggplot2::ggplot(df, ggplot2::aes(x, y, group = g)) + ggplot2::geom_line()
   out <- bank_plot(p, method = "was")
-  expect_equal(out$coordinates$ratio, 1 / 0.9, tolerance = 1e-6)
+  # The four real segments are (1, 1), (1, 1), (1, 2), and (2, 1), where
+  # each pair is (dx, dy). The inter-group segment must not be included.
+  correct <- list(
+    s = c(1, 1, 2, 1),
+    dx = c(1, 1, 1, 2),
+    Rx = 3,
+    Ry = 4
+  )
+  expect_equal(out$coordinates$ratio, 1 / bank_slopes_funs[["was"]](correct))
 })
 
 test_that("bank_plot errors for an out-of-range layer index", {
