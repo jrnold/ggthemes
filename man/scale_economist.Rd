@@ -78,6 +78,8 @@ Color scales using the colors in the Economist graphics.
 \code{\link{theme_economist}()} for examples.
 
 Other colour economist:
-\code{\link[=economist_pal]{economist_pal()}}
+\code{\link[=economist_pal]{economist_pal()}},
+\code{\link[=economist_seq_pal]{economist_seq_pal()}},
+\code{\link[=scale_colour_economist_c]{scale_colour_economist_c()}}
 }
 \concept{colour economist}

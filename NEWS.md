@@ -31,7 +31,7 @@
 - Omitting `scheme` in `stata_pal()`, `scale_colour_stata()`,
   `scale_fill_stata()` and `theme_stata()` is now soft-deprecated. It still
   resolves to `"s2color"`, but the default will change to `"stcolor"` in
-  ggthemes 7.0.0, following Stata. Pass `scheme` explicitly to keep the
+  ggthemes 8.0.0, following Stata. Pass `scheme` explicitly to keep the
   current appearance.
 - BEHAVIOUR CHANGE: `stata_pal("mono")` returned the wrong colours at
   positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It now
@@ -67,6 +67,37 @@
   applies a graded hierarchy rather than one grey: axis tick labels are black,
   legend labels `#1a1a1a`, and axis titles and the x-axis line `#333333`. The
   chart title (`#757575`) and gridlines (`#cccccc`) are unchanged.
+
+- BREAKING CHANGE: `theme_economist()` and `economist_pal()` now follow the
+  chart design *The Economist* introduced in 2017 and still publishes,
+  replacing the pre-2017 style ggthemes had shipped since 2013. Existing
+  plots will change appearance. The new look draws a white panel on a pale
+  `#e9edf0` ground with light horizontal gridlines, a black x-axis baseline
+  with tick marks *below* it (they previously pointed inward), and no y-axis
+  rule or ticks. `economist_pal()` returns the nine current chart colors
+  (`#006ba2`, `#3ebcd2`, `#379a8b`, `#ebb434`, `#b4ba39`, `#9a607f`,
+  `#d1b07c`, `#758d99`, `#db444b`) in place of the old blues and greens.
+  Colors and geometry are transcribed from *The Economist visual
+  styleguide* v1.2 (4 May 2017); see `data-raw/reference/economist/`.
+- `ggthemes_data$economist` is restructured to match: `main` (the nine
+  series colors plus "Econ red"), `scales` (the styleguide's
+  "equal lightness colour scales", six ordered steps for each of the nine
+  hues), `bg`, and `text`. The former `fg` and `bg` entries are gone; their
+  values are recorded in a comment in `data-raw/theme-data/economist.yml`.
+- Add `economist_seq_pal()` and `economist_gradient_pal()`, plus
+  `scale_colour_economist_c()`/`scale_fill_economist_c()` for continuous
+  data and `scale_colour_economist_ordinal()`/`scale_fill_economist_ordinal()`
+  for ordered factors, built from the equal-lightness scales.
+- Deprecate `theme_economist_white()` (`lifecycle::deprecate_warn()`); the
+  current design already draws a white panel, so it no longer differs from
+  `theme_economist()`, to which it now forwards.
+- Deprecate the `dkpanel` argument of `theme_economist()` and the `fill`
+  argument of `economist_pal()`. Both were features of the pre-2017 design
+  and are now ignored.
+- Fix: `theme_economist()` previously looked up a background colour named
+  `"ebg"`, which `economist.yml` did not define, so `rect` and
+  `strip.background` silently received a fill of `NA`. The rewritten theme
+  sets both explicitly.
 
 # ggthemes 6.0.0
 
