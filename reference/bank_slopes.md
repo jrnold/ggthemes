@@ -4,7 +4,7 @@ Calculate the optimal aspect ratio of a line graph by banking the slopes
 to 45 degrees as suggested by W.S. Cleveland. This maximizes the ability
 to visually differentiate differences in slope. This function will
 calculate the optimal aspect ratio for a line plot using any of the
-methods described in Herr and Argwala (2006). In their review of the
+methods described in Heer and Agrawala (2006). In their review of the
 methods they suggest using median absolute slope banking ('ms'), which
 produces aspect ratios which are generally the median of the various
 methods provided here.
@@ -44,7 +44,7 @@ bank_slopes(
 
   One of 'ms' (Median Absolute Slope), 'as' (Average Absolute Slope),
   'ao' (Average Absolute Orientation), or 'was' (Weighted Average
-  Absolute Slope).
+  Absolute Orientation).
 
 - ...:
 
@@ -86,14 +86,17 @@ are more closely related to angle than to the raw ratio \\dy/dx\\. Let
 closed-form solution and is found numerically with
 [`uniroot`](https://rdrr.io/r/stats/uniroot.html).
 
-**Weighted Average Absolute Slope Banking**
+**Weighted Average Absolute Orientation Banking**
 
-Identical to Average Absolute Slope Banking, except each segment's
-contribution is weighted by its horizontal run, \\dx_i\\, so that
-segments spanning more horizontal (screen) space are weighted more
-heavily than segments that happen to be sampled more densely in \\x\\.
-Using \\s'\_i\\ as above, \$\$ \alpha = \frac{\sum_i dx_i \left\| s'\_i
-\right\|}{\sum_i dx_i} \$\$
+This is the weighted version of Average Absolute Orientation Banking
+from Heer and Agrawala (2006). Each segment's absolute orientation is
+weighted by its length in display space, so both the orientation and its
+weight depend on \\\alpha\\. With \\s'\_i\\ as above and segment run
+\\dx_i\\, \\\alpha\\ is chosen such that, \$\$ \frac{\sum_i
+\left\|\arctan(s'\_i / \alpha)\right\| dx_i \sqrt{1 + (s'\_i /
+\alpha)^2}} {\sum_i dx_i \sqrt{1 + (s'\_i / \alpha)^2}} = \frac{\pi}{4}
+\$\$ This has no closed-form solution and is found numerically with
+[`uniroot`](https://rdrr.io/r/stats/uniroot.html).
 
 Heer and Agrawala (2006) also discuss multi-scale (global and local)
 orientation resolution, which extend these single-scale methods by

@@ -3,14 +3,14 @@
 slopes to 45 degrees as suggested by W.S. Cleveland. This
 maximizes the ability to visually differentiate differences in
 slope. This function will calculate the optimal aspect ratio for
-a line plot using any of the methods described in Herr and Argwala
+a line plot using any of the methods described in Heer and Agrawala
 (2006). In their review of the methods they suggest using median
 absolute slope banking ('ms'), which produces aspect ratios which
 are generally the median of the various methods provided here."><meta property="og:description" content="Calculate the optimal aspect ratio of a line graph by banking the
 slopes to 45 degrees as suggested by W.S. Cleveland. This
 maximizes the ability to visually differentiate differences in
 slope. This function will calculate the optimal aspect ratio for
-a line plot using any of the methods described in Herr and Argwala
+a line plot using any of the methods described in Heer and Agrawala
 (2006). In their review of the methods they suggest using median
 absolute slope banking ('ms'), which produces aspect ratios which
 are generally the median of the various methods provided here."></head><body>
@@ -52,7 +52,7 @@ are generally the median of the various methods provided here."></head><body>
 slopes to 45 degrees as suggested by W.S. Cleveland. This
 maximizes the ability to visually differentiate differences in
 slope. This function will calculate the optimal aspect ratio for
-a line plot using any of the methods described in Herr and Argwala
+a line plot using any of the methods described in Heer and Agrawala
 (2006). In their review of the methods they suggest using median
 absolute slope banking ('ms'), which produces aspect ratios which
 are generally the median of the various methods provided here.</p>
@@ -93,7 +93,7 @@ are generally the median of the various methods provided here.</p>
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
 <dd><p>One of 'ms' (Median Absolute Slope), 'as' (Average
 Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
-Average Absolute Slope).</p></dd>
+Average Absolute Orientation).</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -143,15 +143,19 @@ $$
 $$
 This has no closed-form solution and is found numerically with
 <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code>.</p>
-<p><strong>Weighted Average Absolute Slope Banking</strong></p>
-<p>Identical to Average Absolute Slope Banking, except each segment's
-contribution is weighted by its horizontal run, \(dx_i\), so
-that segments spanning more horizontal (screen) space are weighted more
-heavily than segments that happen to be sampled more densely in
-\(x\). Using \(s'_i\) as above,
+<p><strong>Weighted Average Absolute Orientation Banking</strong></p>
+<p>This is the weighted version of Average Absolute Orientation Banking from
+Heer and Agrawala (2006). Each segment's absolute orientation is weighted
+by its length in display space, so both the orientation and its weight
+depend on \(\alpha\). With \(s'_i\) as above and segment run
+\(dx_i\), \(\alpha\) is chosen such that,
 $$
-  \alpha = \frac{\sum_i dx_i \left| s'_i \right|}{\sum_i dx_i}
-$$</p>
+  \frac{\sum_i \left|\arctan(s'_i / \alpha)\right|
+  dx_i \sqrt{1 + (s'_i / \alpha)^2}}
+  {\sum_i dx_i \sqrt{1 + (s'_i / \alpha)^2}} = \frac{\pi}{4}
+$$
+This has no closed-form solution and is found numerically with
+<code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code>.</p>
 <p>Heer and Agrawala (2006) also discuss multi-scale (global and local)
 orientation resolution, which extend these single-scale methods by
 aggregating slopes computed at multiple scales rather than only between
