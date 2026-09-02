@@ -4,7 +4,7 @@
 \alias{scale_shape_stata}
 \title{Stata shape scale}
 \usage{
-scale_shape_stata(...)
+scale_shape_stata(..., unicode = FALSE)
 }
 \arguments{
 \item{...}{
@@ -66,6 +66,11 @@ notation.
     \item{\code{call}}{The \code{call} used to construct the scale for reporting messages.}
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
+
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
+glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
+by the device font, so they render as blank boxes in a font without
+coverage; the default returns base pch codes, which every font can draw.}
 }
 \description{
 See \code{\link{stata_shape_pal}()} for details.

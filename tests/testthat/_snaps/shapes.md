@@ -13,13 +13,3 @@
       expect_type(values, "integer")
       expect_equal(length(values), n)
 
-# scale_shape_circlefill works
-
-    Code
-      expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
-    Condition
-      Warning:
-      `scale_shape_circlefill()` was deprecated in ggthemes 5.0.0.
-      Warning:
-      `circlefill_shape_pal()` was deprecated in ggthemes 5.0.0.
-

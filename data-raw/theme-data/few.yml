@@ -30,8 +30,8 @@ colors:
   - {name: Yellow, value: '#C7B42E'}
   - {name: Red, value: '#CB2027'}
 shapes:
-  - {name: 'WHITE CIRCLE', pch: 1, character: "○", unicode: U+25CB}
-  - {name: 'WHITE SQUARE', pch: 0, unicode: "U+25A1", character: "□"}
-  - {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, character: "△", pch: 2}
-  - {name: 'PLUS SIGN', pch: 3, character: "+", unicode: U+002B}
-  - {name: 'MULTIPLICATION X', unicode: U+2715, character: ✕, pch: 4}
+  - {shape: "circle open", name: "WHITE CIRCLE", character: "○", unicode: "U+25CB"}
+  - {shape: "square open", name: "WHITE SQUARE", unicode: "U+25A1", character: "□"}
+  - {shape: "triangle open", name: "WHITE UP-POINTING TRIANGLE", unicode: "U+25B3", character: "△"}
+  - {shape: "plus", name: "PLUS SIGN", character: "+", unicode: "U+002B"}
+  - {shape: "cross", name: "MULTIPLICATION X", unicode: "U+2715", character: "✕"}

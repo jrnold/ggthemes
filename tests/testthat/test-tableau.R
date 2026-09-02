@@ -33,8 +33,8 @@ test_that("tableau_shape_pal works", {
   pal <- tableau_shape_pal()(n)
   expect_type(pal, "integer")
   expect_type(attr(tableau_shape_pal(), "max_n"), "integer")
-  # all unicode
-  expect_true(all(pal < 0))
+  # Base pch by default; the glyph branch is covered in test-shape-pal.R.
+  expect_true(all(pal %in% c(0:25, 32:127)))
   expect_equal(length(pal), n)
 })
 

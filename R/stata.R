@@ -436,13 +436,21 @@ theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
 #' Shape palette based on the symbol palette in Stata used in scheme s2mono.
 #' This palette supports up to 10 values.
 #'
+#' @inheritParams cleveland_shape_pal
+#'
+#' @note
+#'
+#' Stata's ten plotting symbols all have a base pch equivalent, so this palette
+#' supports ten values on either branch and nothing is dropped:
+#' solid and hollow circle, diamond, square and triangle, plus the X and the
+#' plus sign.
+#'
 #' @export
 #' @family shapes stata
 #' @seealso See \code{\link{scale_shape_stata}()} for examples.
 #' @importFrom purrr map_dfr map
 #' @importFrom tibble as_tibble
-#' @importFrom stringr str_replace
-stata_shape_pal <- function() {
+stata_shape_pal <- function(unicode = FALSE) {
   ## From s1mono, ignore small shapes
   shapes <- c(
     "circle",
@@ -457,12 +465,8 @@ stata_shape_pal <- function() {
     "triangle_hollow"
   )
   statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
-  shapenames <- tibble::deframe(statadata[, c("symbolstyle", "unicode_value")])
-  values <- as.hexmode(str_replace(shapenames[shapes], "U\\+", ""))
-  values <- -as.integer(values)
-  out <- manual_pal(values)
-  attr(out, "max_n") <- length(shapes)
-  out
+  statadata <- statadata[match(shapes, statadata[["symbolstyle"]]), ]
+  new_shape_pal(statadata, unicode = unicode)
 }
 
 #' Stata shape scale
@@ -470,12 +474,13 @@ stata_shape_pal <- function() {
 #' See \code{\link{stata_shape_pal}()} for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
+#' @inheritParams stata_shape_pal
 #' @family shape stata
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
 #' @importFrom ggplot2 discrete_scale
-scale_shape_stata <- function(...) {
-  discrete_scale("shape", palette = stata_shape_pal(), ...)
+scale_shape_stata <- function(..., unicode = FALSE) {
+  discrete_scale("shape", palette = stata_shape_pal(unicode = unicode), ...)
 }
 
 #' Stata linetype palette (discrete)

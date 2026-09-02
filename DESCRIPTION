@@ -21,6 +21,7 @@ Imports:
     cli,
     ggplot2 (>= 3.0.0),
     graphics,
+    grDevices,
     grid,
     lifecycle,
     methods,
@@ -28,7 +29,6 @@ Imports:
     rlang,
     scales,
     stats,
-    stringr,
     tibble
 Suggests:
     dplyr,
@@ -45,6 +45,8 @@ Suggests:
     quantreg,
     rmarkdown,
     spelling,
+    stringr,
+    systemfonts,
     testthat (>= 3.2.0),
     tidyr,
     vdiffr (>= 1.0.6),

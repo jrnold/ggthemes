@@ -71,14 +71,24 @@ scale_color_calc <- scale_colour_calc
 #'
 #' Shape palette based on the shapes used in LibreOffice Calc.
 #'
+#' @inheritParams cleveland_shape_pal
+#'
+#' @note
+#'
+#' This palette supports seven values by default and thirteen with
+#' \code{unicode = TRUE}. Six of Calc's thirteen symbols -- the solid down,
+#' left and right triangles, the bowtie, the hourglass and the four-pointed
+#' star -- have no base pch equivalent and are dropped rather than
+#' approximated by a different shape. Restoring them with \code{unicode = TRUE}
+#' needs a font covering Geometric Shapes, Dingbats and Miscellaneous
+#' Mathematical Symbols-B; Noto Sans Symbols 2 is effectively the only free
+#' font with the last of these.
+#'
 #' @export
 #' @family shapes calc
 #' @example inst/examples/ex-calc_shape_pal.R
-calc_shape_pal <- function() {
-  values <- ggthemes::ggthemes_data$calc$shapes[["pch"]]
-  f <- manual_pal(unname(values))
-  attr(f, "max_n") <- length(values)
-  f
+calc_shape_pal <- function(unicode = FALSE) {
+  new_shape_pal(ggthemes::ggthemes_data$calc$shapes, unicode = unicode)
 }
 
 #' Calc shape scale
@@ -86,11 +96,12 @@ calc_shape_pal <- function() {
 #' See \code{\link{calc_shape_pal}()} for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
+#' @inheritParams calc_shape_pal
 #' @family shapes calc
 #' @export
 #' @seealso \code{\link{theme_calc}()} for examples.
-scale_shape_calc <- function(...) {
-  discrete_scale("shape", palette = calc_shape_pal(), ...)
+scale_shape_calc <- function(..., unicode = FALSE) {
+  discrete_scale("shape", palette = calc_shape_pal(unicode = unicode), ...)
 }
 
 # PT_TO_MM <- 0.352778

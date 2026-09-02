@@ -1,38 +1,45 @@
+# `shape` is the canonical name; `data-raw/build.R` derives both pch columns
+# from it and from `character`, and aborts if they disagree. See
+# R/shape-names.R for the vocabulary.
 cleveland:
   overlap:
-  - {name: 'WHITE CIRCLE', pch: 1, character: "○", unicode: U+25CB}
-  - {name: 'PLUS SIGN', pch: 3, character: "+", unicode: U+002B}
-  - {name: 'LESS-THAN SIGN', pch: 60, character: '<', unicode: U+003C}
-  - {name: 'LATIN CAPITAL LETTER S', pch: 87, unicode: U+0053, character: "S"}
+  - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
+  - {shape: "plus", name: "PLUS SIGN", unicode: "U+002B", character: "+"}
+  - {shape: "less-than", name: "LESS-THAN SIGN", unicode: "U+003C", character: "<"}
+  - {shape: "letter S", name: "LATIN CAPITAL LETTER S", unicode: "U+0053", character: "S"}
   default:
-  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○}
-  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
-  - {name: 'CIRCLED PLUS', unicode: U+2295, character: ⊕}
-  - {name: 'CIRCLED DOT OPERATOR', unicode: U+2299, character: ⊙}
-  - {name: 'CIRCLED RING OPERATOR', unicode: U+229A, character: ⊚}
+  - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "circle plus", name: "CIRCLED PLUS", unicode: "U+2295", character: "⊕"}
+  - {shape: "circle dot", name: "CIRCLED DOT OPERATOR", unicode: "U+2299", character: "⊙"}
+  - {shape: "circle ring", name: "CIRCLED RING OPERATOR", unicode: "U+229A", character: "⊚"}
 circlefill:
-  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○}
-  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
-  - {name: 'CIRCLE WITH UPPER HALF BLACK', unicode: U+25D3, character: ◓}
-  - {name: 'CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK', unicode: U+25D5, character: ◕}
-  - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', unicode: U+25D4, character: ◔}
+  - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "circle half filled", name: "CIRCLE WITH UPPER HALF BLACK", unicode: "U+25D3", character: "◓"}
+  - {shape: "circle three-quarter filled", name: "CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK", unicode: "U+25D5", character: "◕"}
+  - {shape: "circle quarter filled", name: "CIRCLE WITH UPPER RIGHT QUADRANT BLACK", unicode: "U+25D4", character: "◔"}
+# Symbol sets from Tremmel (1995), JCGS 4(2), 101-112. §5.1 gives the two-group
+# sets (solid circle + plus sign; empty circle + plus sign where the groups
+# overlap) and §5.2 the three-group sets. The stored sets previously
+# contradicted the roxygen in three of five entries, which made `alt` a no-op.
 tremmel:
   '1':
-  - {pch: 16, name: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
   '2':
-  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●, pch: 16}
-  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○, pch: 1}
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "plus", name: "PLUS SIGN", unicode: "U+002B", character: "+"}
   '3':
-  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●, pch: 16}
-  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○, pch: 1}
-  - {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, character: △, pch: 2}
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
+  - {shape: "triangle open", name: "WHITE UP-POINTING TRIANGLE", unicode: "U+25B3", character: "△"}
   '2-overlap':
-  - {name: 'WHITE SQUARE', unicode: U+25A1, character: □, pch: 0}
-  - {name: 'WHITE CIRCLE', unicode: U+25CB, character: ○, pch: 3}
+  - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
+  - {shape: "plus", name: "PLUS SIGN", unicode: "U+002B", character: "+"}
   '3-alternate':
-  - {name: 'BLACK CIRCLE', unicode: U+25CF, character: ●, pch: 16}
-  - {name: 'WHITE SQUARE', unicode: U+25A1, character: □, pch: 1}
-  - {name: 'WHITE UP-POINTING TRIANGLE', unicode: U+25B3, character: △, pch: 2}
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "plus", name: "PLUS SIGN", unicode: "U+002B", character: "+"}
+  - {shape: "triangle open", name: "WHITE UP-POINTING TRIANGLE", unicode: "U+25B3", character: "△"}
 #harvey:
 #  - {name: 'LARGE CIRCLE', character: ○, unicode: U+25CB}
 #  - {name: 'CIRCLE WITH UPPER RIGHT QUADRANT BLACK', character: ◔, unicode: U+25D4}

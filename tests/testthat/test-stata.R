@@ -43,7 +43,8 @@ test_that("stata_shape_pal works", {
   vals <- p(n)
   expect_type(vals, "integer")
   expect_length(vals, n)
-  expect_true(all(vals < 0))
+  # Base pch by default; the glyph branch is covered in test-shape-pal.R.
+  expect_true(all(vals %in% c(0:25, 32:127)))
   expect_warning(p(100))
 })
 

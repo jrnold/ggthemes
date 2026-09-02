@@ -1,4 +1,12 @@
+# `circlefill_shape_pal()` is glyph-only, so it probes the device font. What
+# this machine's font happens to cover must not reach the snapshot, or CI
+# records one build machine's font coverage as the expected output.
+#
+# Forcing `lifecycle_verbosity` keeps this test's own deprecation warning in
+# the record whatever ran before it.
 test_that("circlefill_pal works", {
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  withr::local_options(lifecycle_verbosity = "warning")
   expect_snapshot({
     pal <- circlefill_shape_pal()
     expect_type(pal, "closure")
@@ -10,10 +18,16 @@ test_that("circlefill_pal works", {
   })
 })
 
+# Asserted rather than snapshotted. This call raises two deprecation warnings:
+# its own, and an *indirect* one from the `circlefill_shape_pal()` it delegates
+# to. lifecycle emits that second one only once per session and
+# `lifecycle_verbosity` does not override it, so a snapshot of this code records
+# one warning or two depending on what ran earlier in the session.
 test_that("scale_shape_circlefill works", {
-  expect_snapshot({
-    expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
-  })
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  lifecycle::expect_deprecated(scale_shape_circlefill())
+  withr::local_options(lifecycle_verbosity = "quiet")
+  expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
 })
 
 test_that("tremmel_shape_pal works", {
@@ -51,12 +65,14 @@ test_that("cleveland_shape_pal works", {
 test_that("cleveland_shape_pal works with overlap = FALSE", {
   pal <- cleveland_shape_pal(overlap = FALSE)
   expect_type(pal, "closure")
-  expect_equal(attr(pal, "max_n"), 5)
+  # Three, not five: the two fill-graded circles have no base pch equivalent.
+  # See test-shape-pal.R for both branches.
+  expect_equal(attr(pal, "max_n"), 3)
   n <- 3
   vals <- pal(n)
   expect_equal(length(vals), n)
   expect_type(vals, "integer")
-  expect_true(all(vals < 0))
+  expect_true(all(vals %in% c(0:25, 32:127)))
 })
 
 test_that("scale_shape_cleveland works", {

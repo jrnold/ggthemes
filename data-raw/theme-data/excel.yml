@@ -2,12 +2,12 @@ classic:
   line: ['#FF00FF', '#FFFF00', '#00FFFF', '#800080', '#800000', '#008080', '#0000FF']
   fill: ['#993366', '#FFFFCC', '#CCFFFF', '#660066', '#FF8080', '#0066CC', '#CCCCFF']
 shapes:
-  - {name: Circle, label: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
-  - {label: Square, name: 'BLACK MEDIUM SQUARE', unicode: U+25FC, character: ◼}
-  - {label: Diamond, name: 'BLACK DIAMOND', unicode: U+25C6, character: ◆}
-  - {name: Triangle, label: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, character: ▲}
-  - {name: 'MULTIPLICATION X', unicode: U+2715, character: ✕}
-  - {name: 'LIGHT SIX SPOKED ASTERISK', unicode: U+1F7B5, character: 🞵}
-  - {name: HYPHEN-MINUS, unicode: U+002D, character: '-'}
-  - {name: 'EM DASH', unicode: U+2013, character: —}
-  - {name: 'PLUS SIGN', character: +, unicode: U+002B}
+  - {shape: "circle small", name: "Circle", label: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "square", label: "Square", name: "BLACK MEDIUM SQUARE", unicode: "U+25FC", character: "◼"}
+  - {shape: "diamond", label: "Diamond", name: "BLACK DIAMOND", unicode: "U+25C6", character: "◆"}
+  - {shape: "triangle", name: "Triangle", label: "BLACK UP-POINTING TRIANGLE", unicode: "U+25B2", character: "▲"}
+  - {shape: "cross", name: "MULTIPLICATION X", unicode: "U+2715", character: "✕"}
+  - {shape: "asterisk", name: "LIGHT SIX SPOKED ASTERISK", unicode: "U+1F7B5", character: "🞵"}
+  - {shape: "hyphen", name: "HYPHEN-MINUS", unicode: "U+002D", character: "-"}
+  - {shape: "em dash", name: "EM DASH", unicode: "U+2014", character: "—"}
+  - {shape: "plus", name: "PLUS SIGN", character: "+", unicode: "U+002B"}
