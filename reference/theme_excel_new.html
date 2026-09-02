@@ -61,6 +61,18 @@ current versions of Microsoft Excel.</p>
     <p>An object of class <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code>.</p>
     </div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Excel derives its chart greys from the theme's <code>tx1</code> colour
+by luminance transform rather than hardcoding them. Since <code>tx1</code> is
+black in every built-in Office theme, these greys—<code>"#D9D9D9"</code>
+gridlines, <code>"#BFBFBF"</code> axis lines, <code>"#595959"</code> text—are the
+same whichever theme <code><a href="scale_excel_new.html">scale_colour_excel_new()</a></code> is set to.</p>
+<p>Since 2023 the default font in Excel has been Aptos, but <code>base_family</code>
+defaults to <code>"sans"</code> because Aptos is rarely installed outside of
+Office. Pass <code>base_family = "Aptos Narrow"</code> for a closer match if you
+do have it.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other themes excel:
 <code><a href="theme_excel.html">theme_excel()</a></code></p></div>

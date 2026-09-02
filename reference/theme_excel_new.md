@@ -24,6 +24,20 @@ theme_excel_new(base_size = 9, base_family = "sans")
 An object of class
 [`theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
 
+## Details
+
+Excel derives its chart greys from the theme's `tx1` colour by luminance
+transform rather than hardcoding them. Since `tx1` is black in every
+built-in Office theme, these greys—`"#D9D9D9"` gridlines, `"#BFBFBF"`
+axis lines, `"#595959"` text—are the same whichever theme
+[`scale_colour_excel_new()`](https://jrnold.github.io/ggthemes/reference/scale_excel_new.md)
+is set to.
+
+Since 2023 the default font in Excel has been Aptos, but `base_family`
+defaults to `"sans"` because Aptos is rarely installed outside of
+Office. Pass `base_family = "Aptos Narrow"` for a closer match if you do
+have it.
+
 ## See also
 
 Other themes excel:

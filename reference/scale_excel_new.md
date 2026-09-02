@@ -6,11 +6,11 @@ Excel.
 ## Usage
 
 ``` r
-scale_colour_excel_new(theme = "Office Theme", ...)
+scale_colour_excel_new(theme = "Office", ...)
 
-scale_color_excel_new(theme = "Office Theme", ...)
+scale_color_excel_new(theme = "Office", ...)
 
-scale_fill_excel_new(theme = "Office Theme", ...)
+scale_fill_excel_new(theme = "Office", ...)
 ```
 
 ## Arguments
@@ -22,12 +22,12 @@ scale_fill_excel_new(theme = "Office Theme", ...)
   themes include: `"Atlas"`, `"Badge"`, `"Berlin"`, `"Celestial"`,
   `"Crop"`, `"Depth"`, `"Droplet"`, `"Facet"`, `"Feathered"`,
   `"Gallery"`, `"Headlines"`, `"Integral"`, `"Ion Boardroom"`, `"Ion"`,
-  `"Madison"`, `"Main Event"`, `"Mesh"`, `"Office Theme"`, `"Organic"`,
-  `"Parallax"`, `"Parcel"`, `"Retrospect"`, `"Savon"`, `"Slice"`,
-  `"Vapor Trail"`, `"View"`, `"Wisp"`, `"Wood Type"`, `"Aspect"`,
-  `"Blue Green"`, `"Blue II"`, `"Blue Warm"`, `"Blue"`, `"Grayscale"`,
-  `"Green Yellow"`, `"Green"`, `"Marquee"`, `"Median"`,
-  `"Office 2007-2010"`, `"Orange Red"`, `"Orange"`, `"Paper"`,
+  `"Madison"`, `"Main Event"`, `"Mesh"`, `"Office"`, `"Office 2013"`,
+  `"Organic"`, `"Parallax"`, `"Parcel"`, `"Retrospect"`, `"Savon"`,
+  `"Slice"`, `"Vapor Trail"`, `"View"`, `"Wisp"`, `"Wood Type"`,
+  `"Aspect"`, `"Blue Green"`, `"Blue II"`, `"Blue Warm"`, `"Blue"`,
+  `"Grayscale"`, `"Green Yellow"`, `"Green"`, `"Marquee"`, `"Median"`,
+  `"Office 2007"`, `"Orange Red"`, `"Orange"`, `"Paper"`,
   `"Red Orange"`, `"Red Violet"`, `"Red"`, `"Slipstream"`,
   `"Violet II"`, `"Violet"`, `"Yellow Orange"`, `"Yellow"`
 
