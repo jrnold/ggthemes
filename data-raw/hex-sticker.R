@@ -116,7 +116,7 @@ grid.lines(
 )
 }
 
-# `logo.png` follows the conventional 240 x 278 px package-logo size used by
-# usethis, while the larger asset remains suitable for print and sharing.
+# Keep the README logo high-density so the clipped two-tone wordmark remains
+# sharp when pkgdown and GitHub scale it down.
 draw_sticker("man/figures/ggthemes-hex-sticker.png", dpi = 600)
-draw_sticker("man/figures/logo.png", dpi = 120)
+draw_sticker("man/figures/logo.png", dpi = 300)
