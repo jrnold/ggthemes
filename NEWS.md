@@ -1,5 +1,13 @@
 # ggthemes (development version)
 
+- `stata_shape_pal()` now fails with a message naming the offending
+  symbolstyles when Stata's shape data does not contain the ten the palette
+  selects. It previously looked them up with a bare `match()`, so a renamed or
+  missing `symbolstyle` produced an all-`NA` row that was silently dropped as
+  "no font-independent equivalent", leaving `max_n` quietly below the
+  documented ten. The list of ten now lives in one place and `data-raw/build.R`
+  sources it, so the build's duplicate-pch check cannot run over a stale copy.
+
 - BREAKING CHANGE: `stata_shape_pal()`, `calc_shape_pal()`,
   `tableau_shape_pal()` and `cleveland_shape_pal()` now return base pch codes
   by default instead of pch codes derived from Unicode glyphs. R draws a
@@ -82,6 +90,29 @@
   and stringr had moved from `Imports` to `Suggests`; it now uses base
   equivalents. The tests that genuinely need **withr** or **farver** skip
   when those are absent instead of erroring.
+- `geom_rangeframe()` now errors on a `sides` value that names no side, rather
+  than silently drawing nothing. `sides` packs side letters into one string, so
+  a typo such as `sides = "xy"` previously produced an empty layer with no
+  message. Valid values are strings made up of `"t"`, `"r"`, `"b"` and `"l"`.
+- Fix the `?extended_range_breaks` help page, which described a function
+  `scales_extended_range_breaks()` that does not exist and attributed the
+  wrong return value to each function. `extended_range_breaks_()` returns the
+  break values; `extended_range_breaks()` returns a breaks function. The page
+  now also warns that ggplot2 passes a `breaks` function the expanded scale
+  limits, so `breaks = extended_range_breaks()` labels the panel edges rather
+  than the data extremes; apply the function to the data to label the extremes.
+- Fix `theme_economist_white()` failing on installations without **dplyr**.
+  The internal `get_colors()` helper called `dplyr::filter()`, but dplyr is a
+  suggested package, not an import; it now uses base subsetting. The test
+  suite no longer uses dplyr either, so `R CMD check` passes with only the
+  hard dependencies installed.
+- Fix the `@family` tags that split related help pages apart. Word-order and
+  singular/plural inconsistencies (`stata colour`, `solarized colour`,
+  `shape stata`, `shape tableau`) each put one page in a family of its own, so
+  it linked to nothing. `?extended_range_breaks` had no family at all and was
+  unreachable from `theme_tufte()`, `geom_rangeframe()` and
+  `geom_tufteboxplot()`, which it is meant to be used with; those four now
+  cross-reference each other.
 - Add vdiffr visual regression baselines for every exported theme, and swatch
   baselines plus property assertions (valid hex, no duplicate colours, stable
   lengths, monotone lightness, no out-of-family colour, monotone grey ramps)

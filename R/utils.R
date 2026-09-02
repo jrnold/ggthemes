@@ -89,6 +89,6 @@ manual_pal_checked <- function(values, type = NULL) {
 #' @param colors A character vector of color names.
 #' @noRd
 get_colors <- function(path, colors) {
-  x <- dplyr::filter(ggthemes::ggthemes_data[[path]], .data$name %in% colors)
-  x <- unname(x[["value"]])
+  x <- ggthemes::ggthemes_data[[path]]
+  unname(x[["value"]][x[["name"]] %in% colors])
 }

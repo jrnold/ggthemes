@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# ggthemes <a href="https://jrnold.github.io/ggthemes/"><img src="man/figures/logo.png" align="right" height="139" alt="ggthemes hex sticker" /></a>
+
 [![R-CMD-check](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml)
 [![Code Coverage
 Status](https://codecov.io/gh/jrnold/ggthemes/branch/main/graph/badge.svg)](https://app.codecov.io/github/jrnold/ggthemes?branch=main)

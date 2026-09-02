@@ -94,7 +94,8 @@ lists which parameters it can accept.
 
 \item{sides}{A string that controls which sides of the plot the frames appear on.
 It can be set to a string containing any of \code{'trbl'}, for top, right,
-bottom, and left.}
+bottom, and left. Any other value is an error: a frame cannot be drawn on a
+side that was not named, so a typo would otherwise silently draw nothing.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
@@ -165,5 +166,11 @@ Quantitative Information, Chapter 6.
 \seealso{
 Other geom tufte:
 \code{\link[=geom_tufteboxplot]{geom_tufteboxplot()}}
+
+Other tufte:
+\code{\link[=extended_range_breaks_]{extended_range_breaks_()}},
+\code{\link[=geom_tufteboxplot]{geom_tufteboxplot()}},
+\code{\link[=theme_tufte]{theme_tufte()}}
 }
 \concept{geom tufte}
+\concept{tufte}

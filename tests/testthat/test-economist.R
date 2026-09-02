@@ -55,16 +55,8 @@ test_that("theme economist with horizontal=FALSE works", {
 test_that("theme economist with dark panel works", {
   thm <- theme_economist(dkpanel = TRUE)
   expect_s3_class(thm, "theme")
-  expect_equal(
-    thm$strip.background$fill,
-    purrr::pluck(
-      dplyr::filter(
-        ggthemes_data$economist$bg,
-        name == "dark blue-gray"
-      ),
-      "value"
-    )
-  )
+  bg <- ggthemes_data$economist$bg
+  expect_equal(thm$strip.background$fill, bg$value[bg$name == "dark blue-gray"])
 })
 
 test_that("theme economist_white works", {
@@ -77,16 +69,8 @@ test_that("theme economist_white works", {
 test_that("theme economist_white with gray background works", {
   thm <- theme_economist_white(gray_bg = TRUE)
   expect_s3_class(thm, "theme")
-  expect_equal(
-    thm$plot.background$fill,
-    purrr::pluck(
-      dplyr::filter(
-        ggthemes_data$economist$bg,
-        name == "light gray"
-      ),
-      "value"
-    )
-  )
+  bg <- ggthemes_data$economist$bg
+  expect_equal(thm$plot.background$fill, bg$value[bg$name == "light gray"])
 })
 
 test_that("theme_economist draws correctly", {

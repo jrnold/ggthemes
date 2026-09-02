@@ -65,3 +65,28 @@ test_that("geom_rangeframe sides = 'trbl' is correctly positioned with a seconda
   # identical with or without one.
   expect_equal(panel_params$y.sec$continuous_range, panel_params$y.range)
 })
+
+test_that("geom_rangeframe accepts every combination of side letters", {
+  for (sides in c("t", "r", "b", "l", "bl", "tr", "trbl", "lbrt")) {
+    expect_s3_class(geom_rangeframe(sides = sides), "LayerInstance")
+  }
+})
+
+test_that("geom_rangeframe rejects sides that name no side", {
+  # "xy" is the plausible typo: it draws nothing at all without this check,
+  # because draw_panel() tests each side with grepl().
+  expect_error(geom_rangeframe(sides = "xy"), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = "bx"), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = ""), "must be a string made up of")
+})
+
+test_that("geom_rangeframe rejects a sides that is not a single string", {
+  expect_error(geom_rangeframe(sides = c("b", "l")), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = 1), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = NA), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = NULL), "must be a string made up of")
+})
+
+test_that("the sides error names the value it rejected", {
+  expect_error(geom_rangeframe(sides = "xy"), "xy")
+})
