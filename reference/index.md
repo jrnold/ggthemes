@@ -147,7 +147,7 @@ properties.
 - [`scale_colour_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
   [`scale_color_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
   [`scale_fill_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
-  : Color Scales from Paul Tol's "Colour Schemes
+  **\[deprecated\]** : Color Scales from Paul Tol's "Colour Schemes
 - [`scale_fill_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
   [`scale_colour_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
   [`scale_color_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
@@ -230,7 +230,7 @@ Color, shape, and linetype palettes.
 - [`numbers_pal()`](https://jrnold.github.io/ggthemes/reference/numbers_pal.md)
   : Apple Numbers color palettes (discrete)
 - [`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md)
-  : Color Palettes from Paul Tol's "Colour Schemes"
+  **\[deprecated\]** : Color Palettes from Paul Tol's "Colour Schemes"
 - [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
   : Solarized color palette (discrete)
 - [`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)

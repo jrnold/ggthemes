@@ -1,5 +1,16 @@
 # Color Scales from Paul Tol's "Colour Schemes
 
+**\[deprecated\]**
+
+These scales were deprecated in ggthemes 7.0.0. Use the
+[khroma](https://CRAN.R-project.org/package=khroma) package instead,
+which tracks Paul Tol's colour schemes as he revises them.
+
+They draw the 12-colour qualitative scheme from Tol's 2012 technical
+note, and have not followed the revisions he has made since. His current
+schemes are at <https://sronpersonalpages.nl/~pault/>; the closest
+successor is `khroma::scale_colour_muted()`.
+
 See
 [`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md).
 These palettes support up to 12 values.
@@ -135,9 +146,23 @@ p2 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   scale_color_ptol("cyl") +
   theme_minimal() +
   ggtitle("Cars")
+#> Warning: `scale_colour_ptol()` was deprecated in ggthemes 7.0.0.
+#> ℹ This palette is the 12-colour qualitative scheme from Paul Tol's 2012
+#>   technical note. He has revised his schemes since; the current ones are at
+#>   <https://sronpersonalpages.nl/~pault/>.
+#> ℹ The khroma package tracks those revisions. The closest successor to this
+#>   palette is `khroma::colour("muted")`, or `khroma::scale_colour_muted()` for a
+#>   ggplot2 scale.
 
 ggplot(diamonds, aes(x = clarity, fill = cut)) +
   geom_bar() +
   scale_fill_ptol() +
   theme_minimal()
+#> Warning: `scale_fill_ptol()` was deprecated in ggthemes 7.0.0.
+#> ℹ This palette is the 12-colour qualitative scheme from Paul Tol's 2012
+#>   technical note. He has revised his schemes since; the current ones are at
+#>   <https://sronpersonalpages.nl/~pault/>.
+#> ℹ The khroma package tracks those revisions. The closest successor to this
+#>   palette is `khroma::colour("muted")`, or `khroma::scale_colour_muted()` for a
+#>   ggplot2 scale.
 ```
