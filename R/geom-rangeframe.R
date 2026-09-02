@@ -13,7 +13,8 @@
 #' @inheritParams ggplot2::geom_point
 #' @param sides A string that controls which sides of the plot the frames appear on.
 #'   It can be set to a string containing any of \code{'trbl'}, for top, right,
-#'   bottom, and left.
+#'   bottom, and left. Any other value is an error: a frame cannot be drawn on a
+#'   side that was not named, so a typo would otherwise silently draw nothing.
 #' @export
 #'
 #' @details This should be used with `coord_cartesian(clip="off")` in order to
@@ -42,6 +43,7 @@ geom_rangeframe <- function(
   show.legend = NA, # nolint: object_name_linter
   inherit.aes = TRUE # nolint: object_name_linter
 ) {
+  check_sides(sides)
   layer(
     data = data,
     mapping = mapping,
@@ -56,6 +58,25 @@ geom_rangeframe <- function(
       ...
     )
   )
+}
+
+#' Validate the `sides` argument of `geom_rangeframe()`
+#'
+#' `sides` packs a set of side letters into one string, so an unrecognised
+#' letter cannot be caught by matching against allowed values the way
+#' `match.arg()` would. Left unchecked it fails silently: `draw_panel()` tests
+#' each side with `grepl()`, so `sides = "xy"` draws no frame at all and says
+#' nothing.
+#' @noRd
+check_sides <- function(sides) {
+  if (!rlang::is_string(sides) || !grepl("^[trbl]+$", sides)) {
+    cli::cli_abort(c(
+      "{.arg sides} must be a string made up of {.val t}, {.val r}, {.val b} and {.val l}.",
+      "x" = "You supplied {.val {sides}}.",
+      "i" = "For example, {.code sides = \"bl\"} draws the bottom and left frames."
+    ))
+  }
+  invisible(sides)
 }
 
 #' @rdname geom_rangeframe
