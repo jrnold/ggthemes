@@ -1,10 +1,8 @@
 library("testthat")
 
 is_hexcolor <- function(x) {
-  pattern <- stringr::regex("^#[a-f0-9]{6}$", ignore_case = TRUE)
-  out <- stringr::str_detect(x, pattern)
-  out[is.na(out)] <- FALSE
-  out
+  # `grepl()` returns FALSE for NA, which is the behaviour the callers want.
+  grepl("^#[a-f0-9]{6}$", x, ignore.case = TRUE)
 }
 
 expect_hexcolor <- function(object) {
@@ -14,7 +12,7 @@ expect_hexcolor <- function(object) {
   valid <- is_hexcolor(act$val)
   expect(
     all(valid),
-    glue::glue("Not all elements of {act$lab} are hex colors.")
+    sprintf("Not all elements of %s are hex colors.", act$lab)
   )
 
   invisible(act$val)

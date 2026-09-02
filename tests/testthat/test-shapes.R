@@ -5,6 +5,7 @@
 # Forcing `lifecycle_verbosity` keeps this test's own deprecation warning in
 # the record whatever ran before it.
 test_that("circlefill_pal works", {
+  skip_if_not_installed("withr")
   local_mocked_bindings(missing_glyphs = function(...) character(0))
   withr::local_options(lifecycle_verbosity = "warning")
   expect_snapshot({
@@ -24,6 +25,7 @@ test_that("circlefill_pal works", {
 # `lifecycle_verbosity` does not override it, so a snapshot of this code records
 # one warning or two depending on what ran earlier in the session.
 test_that("scale_shape_circlefill works", {
+  skip_if_not_installed("withr")
   local_mocked_bindings(missing_glyphs = function(...) character(0))
   lifecycle::expect_deprecated(scale_shape_circlefill())
   withr::local_options(lifecycle_verbosity = "quiet")

@@ -1,4 +1,4 @@
-url: http://jrnold.github.io/ggthemes/
+url: https://jrnold.github.io/ggthemes/
 template:
   bootstrap: 5
 reference:
@@ -40,4 +40,3 @@ reference:
   contents:
   - ggthemes_data
   - canva_palettes
-

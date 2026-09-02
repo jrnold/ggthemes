@@ -93,6 +93,7 @@ test_that("few's palette is unchanged by the safe mapping", {
 })
 
 test_that("deprecated circlefill still returns its glyph pch", {
+  skip_if_not_installed("withr")
   withr::local_options(lifecycle_verbosity = "quiet")
   local_mocked_bindings(missing_glyphs = function(...) character(0))
   values <- circlefill_shape_pal()(5)
