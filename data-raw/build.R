@@ -149,7 +149,12 @@ load_economist <- function() {
     "theme-data",
     "economist.yml"
   ))
-  map(out, ~ map_dfr(., as_tibble))
+  # `scales` is a bare hex vector per hue, ordered darkest to lightest;
+  # the other entries are already name/value pairs.
+  out$scales <- map(out$scales, ~ tibble(step = seq_along(.x), value = .x))
+  out[names(out) != "scales"] <-
+    map(out[names(out) != "scales"], ~ map_dfr(., as_tibble))
+  out
 }
 
 ggthemes_data$economist <- load_economist()

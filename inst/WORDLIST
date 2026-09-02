@@ -14,6 +14,7 @@ Codecov
 Colour
 DejaVu
 Excel's
+Fira
 FiveThirtyEight
 Fivethirtyeight
 Geoms
@@ -38,6 +39,7 @@ Officina
 Pinterest
 PolicyViz
 README
+Roboto
 SRON
 STIX
 SandyMuspratt
@@ -114,6 +116,7 @@ orcid
 pch
 pkgdown
 plotmath
+pre
 ptoche
 ptol
 pts
@@ -126,6 +129,9 @@ stata
 stcolor
 stmono
 stsj
+styleguide
+styleguide's
+styleguide’s
 stylesheet
 tidyverse
 tufte

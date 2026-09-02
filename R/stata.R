@@ -1,5 +1,5 @@
 # Stata's factory default scheme changed from s2color to stcolor in Stata 18.
-# ggthemes will follow in 7.0.0; until then an omitted `scheme` keeps the
+# ggthemes will follow in 8.0.0; until then an omitted `scheme` keeps the
 # historical default and says so.
 #' @importFrom lifecycle deprecate_soft
 stata_default_scheme <- function(scheme, what) {
@@ -7,11 +7,11 @@ stata_default_scheme <- function(scheme, what) {
     return(scheme)
   }
   deprecate_soft(
-    "6.1.0",
+    "7.0.0",
     I(paste0("Omitting `scheme` in ", what)),
     details = c(
       i = paste0(
-        "The default will change from \"s2color\" to \"stcolor\" in ggthemes 7.0.0, ",
+        "The default will change from \"s2color\" to \"stcolor\" in ggthemes 8.0.0, ",
         "following Stata 18's change of factory default."
       ),
       i = "Set `scheme` explicitly to keep the current appearance."
@@ -53,7 +53,7 @@ stata_default_scheme <- function(scheme, what) {
 #' \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or
 #' \code{"economist"}. If \code{NULL}, the default, \code{"s2color"} is used
 #' and a deprecation message is issued; this default becomes \code{"stcolor"}
-#' in ggthemes 7.0.0.
+#' in ggthemes 8.0.0.
 #'
 #' @export
 #' @family colour stata
@@ -390,7 +390,7 @@ theme_stata_colors <- function(scheme = "s2color") {
 #'   "stsj", "s2color", "s2mono", "s1color", "s1rcolor", "s1mono",
 #'   "s2manual", "s1manual", or "sj". If \code{NULL}, the default,
 #'   "s2color" is used and a deprecation message is issued; this default
-#'   becomes "stcolor" in ggthemes 7.0.0.
+#'   becomes "stcolor" in ggthemes 8.0.0.
 #' @inheritParams ggplot2::theme_grey
 #' @export
 #' @family themes stata
