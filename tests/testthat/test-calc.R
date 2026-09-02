@@ -5,7 +5,8 @@ test_that("calc_shape_pal works", {
   n <- 5L
   shapes <- pal(n)
   expect_type(shapes, "integer")
-  expect_true(all(shapes < 0))
+  # Base pch by default; the glyph branch is covered in test-shape-pal.R.
+  expect_true(all(shapes %in% c(0:25, 32:127)))
   expect_equal(length(shapes), n)
 })
 

@@ -1,5 +1,50 @@
 # ggthemes (development version)
 
+- BREAKING CHANGE: `stata_shape_pal()`, `calc_shape_pal()`,
+  `tableau_shape_pal()` and `cleveland_shape_pal()` now return base pch codes
+  by default instead of pch codes derived from Unicode glyphs. R draws a
+  negative pch by asking the device font for that codepoint, so these palettes
+  rendered as blank boxes in a font without coverage — R's default `sans`
+  covers one of the eight codepoints they relied on — and aborted outright on
+  base `pdf()`/`postscript()`. Pass `unicode = TRUE` to restore the previous
+  values. `scale_shape_stata()`, `scale_shape_calc()`, `scale_shape_tableau()`
+  and `scale_shape_cleveland()` gain the same argument.
+- BREAKING CHANGE: `max_n` is reduced on the default branch for the palettes
+  whose source symbols have no font-independent equivalent: `calc` 13 to 7,
+  `tableau_shape_pal("filled")` 10 to 6, `tableau_shape_pal("default")` 10 to
+  8, `cleveland_shape_pal(overlap = FALSE)` 5 to 3 and
+  `tableau_shape_pal("proportions")` 5 to 2. Those shapes are dropped rather
+  than approximated by a different shape. `stata_shape_pal()` and
+  `few_shape_pal()` are unaffected — their symbol sets map exactly.
+- BREAKING CHANGE: the `pch` column of the shape tables in `ggthemes_data` now
+  holds the font-independent base pch, `NA` where there is none. The previous
+  Unicode-derived values move to a new `pch_unicode` column, and a new `shape`
+  column carries the canonical shape name both are derived from.
+- BREAKING CHANGE: `tremmel_shape_pal()` returned symbol sets that did not
+  match Tremmel (1995). `n = 2` now returns a solid circle and a plus sign (was
+  two circles), `overlap = TRUE` returns an empty circle and a plus sign (was a
+  square and a plus sign), and `alt = TRUE` returns a solid circle, plus sign
+  and empty triangle (was identical to `alt = FALSE`, making the argument a
+  no-op).
+- Fix `scale_shape_tremmel()` defaulting to `alt = TRUE` while
+  `tremmel_shape_pal()` defaulted to `alt = FALSE`, so a palette and its own
+  scale disagreed at `n = 3`. Both now default to `FALSE`, the variant
+  Tremmel's Experiment 1 measured.
+- Fix `cleveland_shape_pal(overlap = TRUE)` drawing a `W` where an `S` was
+  intended; the stored row paired the name `LATIN CAPITAL LETTER S` with
+  pch 87.
+- Fix mislabelled and corrupted shape data: LibreOffice's `BLACK
+  DOWN-POINTING CHARACTER` (now `TRIANGLE`), Google Docs' star named
+  `MULTIPLICATION X`, Excel's em dash declared as `U+2013`, and Tableau's
+  `CLOUD WITH RAIN`, stored as a mojibake sequence rather than `U+1F327`.
+- The shape tables are now validated as they are built: a shape name outside
+  the vocabulary, a `character` that disagrees with its own `unicode`, or two
+  shapes in one palette sharing a pch all fail the build, and the same checks
+  run as tests against the built data.
+- `warn_unicode_pch()`'s locale guess is replaced by a real font-coverage check
+  using `systemfonts::glyph_info()` when `systemfonts` is installed, naming the
+  glyphs the current device font cannot draw. `systemfonts` is used in
+  `Suggests`; the locale heuristic remains as the fallback.
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
   actual colour order (blue, red, brown). The old name still works but warns.

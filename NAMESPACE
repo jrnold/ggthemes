@@ -203,7 +203,6 @@ importFrom(stats,
   median,
   uniroot
 )
-importFrom(stringr,str_replace)
 importFrom(tibble,
   as_tibble,
   deframe
