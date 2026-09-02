@@ -22,6 +22,84 @@
   the built-in themes. The old names still work and select the same colours as
   before.
 
+- `stata_shape_pal()` now fails with a message naming the offending
+  symbolstyles when Stata's shape data does not contain the ten the palette
+  selects. It previously looked them up with a bare `match()`, so a renamed or
+  missing `symbolstyle` produced an all-`NA` row that was silently dropped as
+  "no font-independent equivalent", leaving `max_n` quietly below the
+  documented ten. The list of ten now lives in one place and `data-raw/build.R`
+  sources it, so the build's duplicate-pch check cannot run over a stale copy.
+
+- BREAKING CHANGE: `stata_shape_pal()`, `calc_shape_pal()`,
+  `tableau_shape_pal()` and `cleveland_shape_pal()` now return base pch codes
+  by default instead of pch codes derived from Unicode glyphs. R draws a
+  negative pch by asking the device font for that codepoint, so these palettes
+  rendered as blank boxes in a font without coverage — R's default `sans`
+  covers one of the eight codepoints they relied on — and aborted outright on
+  base `pdf()`/`postscript()`. Pass `unicode = TRUE` to restore the previous
+  values. `scale_shape_stata()`, `scale_shape_calc()`, `scale_shape_tableau()`
+  and `scale_shape_cleveland()` gain the same argument.
+- BREAKING CHANGE: `max_n` is reduced on the default branch for the palettes
+  whose source symbols have no font-independent equivalent: `calc` 13 to 7,
+  `tableau_shape_pal("filled")` 10 to 6, `tableau_shape_pal("default")` 10 to
+  8, `cleveland_shape_pal(overlap = FALSE)` 5 to 3 and
+  `tableau_shape_pal("proportions")` 5 to 2. Those shapes are dropped rather
+  than approximated by a different shape. `stata_shape_pal()` and
+  `few_shape_pal()` are unaffected — their symbol sets map exactly.
+- BREAKING CHANGE: the `pch` column of the shape tables in `ggthemes_data` now
+  holds the font-independent base pch, `NA` where there is none. The previous
+  Unicode-derived values move to a new `pch_unicode` column, and a new `shape`
+  column carries the canonical shape name both are derived from.
+- BREAKING CHANGE: `tremmel_shape_pal()` returned symbol sets that did not
+  match Tremmel (1995). `n = 2` now returns a solid circle and a plus sign (was
+  two circles), `overlap = TRUE` returns an empty circle and a plus sign (was a
+  square and a plus sign), and `alt = TRUE` returns a solid circle, plus sign
+  and empty triangle (was identical to `alt = FALSE`, making the argument a
+  no-op).
+- Fix `scale_shape_tremmel()` defaulting to `alt = TRUE` while
+  `tremmel_shape_pal()` defaulted to `alt = FALSE`, so a palette and its own
+  scale disagreed at `n = 3`. Both now default to `FALSE`, the variant
+  Tremmel's Experiment 1 measured.
+- Fix `cleveland_shape_pal(overlap = TRUE)` drawing a `W` where an `S` was
+  intended; the stored row paired the name `LATIN CAPITAL LETTER S` with
+  pch 87.
+- Fix mislabelled and corrupted shape data: LibreOffice's `BLACK
+  DOWN-POINTING CHARACTER` (now `TRIANGLE`), Google Docs' star named
+  `MULTIPLICATION X`, Excel's em dash declared as `U+2013`, and Tableau's
+  `CLOUD WITH RAIN`, stored as a mojibake sequence rather than `U+1F327`.
+- The shape tables are now validated as they are built: a shape name outside
+  the vocabulary, a `character` that disagrees with its own `unicode`, or two
+  shapes in one palette sharing a pch all fail the build, and the same checks
+  run as tests against the built data.
+- `warn_unicode_pch()`'s locale guess is joined by a real font-coverage check
+  using `systemfonts::glyph_info()` when `systemfonts` is installed, naming the
+  glyphs the device font cannot draw. `systemfonts` is used in `Suggests`. The
+  locale and coverage checks are independent failure modes and both run: a
+  UTF-8 session can still meet a font with no glyph, and a font with full
+  coverage still fails with `mbcsToSbcs` on a non-UTF-8 session. Note that R
+  exposes no way to read back a device's `family=`, so the probe measures the
+  default font and the warning names the font it actually measured.
+- Discrete colour palettes now reject a negative `n` with an error naming the
+  argument and the palette that was called. Palettes built on
+  `scales::manual_pal()` --- including `calc_pal()`, `canva_pal()`,
+  `colorblind_pal()`, `excel_pal()`, `excel_new_pal()`,
+  `fivethirtyeight_pal()`, `gdocs_pal()`, `hc_pal()`, `stata_pal()` and
+  `wsj_pal()` --- previously failed with R's internal
+  `argument must be coercible to non-negative integer` from `seq_len()`.
+  This raises the minimum version of scales to 1.4.0, which is where
+  `scales::new_discrete_palette()` was introduced.
+- `bank_slopes()` and `bank_plot()` report an invalid `method`, and
+  `tableau_shape_pal()` an invalid `palette`, with a message naming the
+  argument and the value supplied instead of `match.arg()`'s
+  `'arg' should be one of ...`. Misspellings now get a "Did you mean" hint.
+- Deprecate `ptol_pal()`, `scale_colour_ptol()`, `scale_color_ptol()` and
+  `scale_fill_ptol()`. Use the
+  [khroma](https://CRAN.R-project.org/package=khroma) package instead, which
+  tracks Paul Tol's colour schemes as he revises them. The ggthemes palette is
+  the original 12-colour qualitative scheme from Tol's 2012 technical note and
+  has not followed the revisions on his current site,
+  <https://sronpersonalpages.nl/~pault/>; the closest successor is
+  `khroma::colour("muted")`. The functions still work, but warn.
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
   actual colour order (blue, red, brown). The old name still works but warns.
@@ -39,6 +117,40 @@
   sequential palette has 20. Plots using `"Red-Gold"` will change appearance.
 - Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
   `tableau.yml`.
+- The test suite no longer requires suggested packages to be installed.
+  `expect_hexcolor()` used **stringr** and **glue** on every palette test,
+  and stringr had moved from `Imports` to `Suggests`; it now uses base
+  equivalents. The tests that genuinely need **withr** or **farver** skip
+  when those are absent instead of erroring.
+- `geom_rangeframe()` now errors on a `sides` value that names no side, rather
+  than silently drawing nothing. `sides` packs side letters into one string, so
+  a typo such as `sides = "xy"` previously produced an empty layer with no
+  message. Valid values are strings made up of `"t"`, `"r"`, `"b"` and `"l"`.
+- Fix the `?extended_range_breaks` help page, which described a function
+  `scales_extended_range_breaks()` that does not exist and attributed the
+  wrong return value to each function. `extended_range_breaks_()` returns the
+  break values; `extended_range_breaks()` returns a breaks function. The page
+  now also warns that ggplot2 passes a `breaks` function the expanded scale
+  limits, so `breaks = extended_range_breaks()` labels the panel edges rather
+  than the data extremes; apply the function to the data to label the extremes.
+- Fix `theme_economist_white()` failing on installations without **dplyr**.
+  The internal `get_colors()` helper called `dplyr::filter()`, but dplyr is a
+  suggested package, not an import; it now uses base subsetting. The test
+  suite no longer uses dplyr either, so `R CMD check` passes with only the
+  hard dependencies installed.
+- Fix the `@family` tags that split related help pages apart. Word-order and
+  singular/plural inconsistencies (`stata colour`, `solarized colour`,
+  `shape stata`, `shape tableau`) each put one page in a family of its own, so
+  it linked to nothing. `?extended_range_breaks` had no family at all and was
+  unreachable from `theme_tufte()`, `geom_rangeframe()` and
+  `geom_tufteboxplot()`, which it is meant to be used with; those four now
+  cross-reference each other.
+- Add vdiffr visual regression baselines for every exported theme, and swatch
+  baselines plus property assertions (valid hex, no duplicate colours, stable
+  lengths, monotone lightness, no out-of-family colour, monotone grey ramps)
+  for the Tableau palette families. These are development-only tests and do not
+  run on CRAN; `vdiffr (>= 1.0.6)` and `farver` are now used in `Suggests`
+  (#219).
 
 - Add support for Stata's `st` scheme family, which has been Stata's factory
   default since Stata 18. `stata_pal()` and `scale_colour_stata()` gain the
@@ -53,7 +165,7 @@
 - Omitting `scheme` in `stata_pal()`, `scale_colour_stata()`,
   `scale_fill_stata()` and `theme_stata()` is now soft-deprecated. It still
   resolves to `"s2color"`, but the default will change to `"stcolor"` in
-  ggthemes 7.0.0, following Stata. Pass `scheme` explicitly to keep the
+  ggthemes 8.0.0, following Stata. Pass `scheme` explicitly to keep the
   current appearance.
 - BEHAVIOUR CHANGE: `stata_pal("mono")` returned the wrong colours at
   positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It now
@@ -65,6 +177,61 @@
   `edkblue`, matching Stata's `scheme-economist.scheme`.
 - Fix `attr(stata_pal(scheme), "max_n")`, which reported `2` rather than `15`
   because it measured the columns of the palette table instead of its rows.
+- Add Apple Numbers support: `numbers_pal()`, `scale_colour_numbers()`,
+  `scale_color_numbers()`, `scale_fill_numbers()`, and `theme_numbers()`.
+  All 12 Numbers chart palettes are available by their Numbers names
+  (`"Classic"`, the default, through `"Spectrum"`), each providing six
+  series colors. `theme_numbers()` follows the chart style defaults that
+  ship inside Numbers: no panel fill, gridlines in the value direction
+  only, a bottom chart border, and no tick marks.
+- The palettes are generated from Apple Numbers 14.5 by
+  `data-raw/reference/numbers/fetch.sh` and `data-raw/numbers_palettes.R`;
+  see `data-raw/reference/numbers/SOURCES.md`. This replaces
+  `data-raw/theme-data/numbers-charts.yml`, an unused file added in 2018
+  that was never wired into `data-raw/build.R` and held iWork-era colors
+  matching no current Numbers palette.
+
+- Fix two incorrect colours in the Google Docs palette, checked against the
+  series colours a current Google Sheets chart actually renders. `teal 2` was
+  `#ff994d`, a duplicate of `orange 2`, and is now `#7ed1d7`; `teal 3` was
+  `#c9e4e7` and is now `#b5e5e8`. This changes the output of `gdocs_pal()`,
+  `scale_colour_gdocs()`, and `scale_fill_gdocs()` for more than 11 colours.
+  The other 22 colours were already correct.
+- `theme_gdocs()` now matches the text colours Google Sheets uses. Sheets
+  applies a graded hierarchy rather than one grey: axis tick labels are black,
+  legend labels `#1a1a1a`, and axis titles and the x-axis line `#333333`. The
+  chart title (`#757575`) and gridlines (`#cccccc`) are unchanged.
+
+- BREAKING CHANGE: `theme_economist()` and `economist_pal()` now follow the
+  chart design *The Economist* introduced in 2017 and still publishes,
+  replacing the pre-2017 style ggthemes had shipped since 2013. Existing
+  plots will change appearance. The new look draws a white panel on a pale
+  `#e9edf0` ground with light horizontal gridlines, a black x-axis baseline
+  with tick marks *below* it (they previously pointed inward), and no y-axis
+  rule or ticks. `economist_pal()` returns the nine current chart colors
+  (`#006ba2`, `#3ebcd2`, `#379a8b`, `#ebb434`, `#b4ba39`, `#9a607f`,
+  `#d1b07c`, `#758d99`, `#db444b`) in place of the old blues and greens.
+  Colors and geometry are transcribed from *The Economist visual
+  styleguide* v1.2 (4 May 2017); see `data-raw/reference/economist/`.
+- `ggthemes_data$economist` is restructured to match: `main` (the nine
+  series colors plus "Econ red"), `scales` (the styleguide's
+  "equal lightness colour scales", six ordered steps for each of the nine
+  hues), `bg`, and `text`. The former `fg` and `bg` entries are gone; their
+  values are recorded in a comment in `data-raw/theme-data/economist.yml`.
+- Add `economist_seq_pal()` and `economist_gradient_pal()`, plus
+  `scale_colour_economist_c()`/`scale_fill_economist_c()` for continuous
+  data and `scale_colour_economist_ordinal()`/`scale_fill_economist_ordinal()`
+  for ordered factors, built from the equal-lightness scales.
+- Deprecate `theme_economist_white()` (`lifecycle::deprecate_warn()`); the
+  current design already draws a white panel, so it no longer differs from
+  `theme_economist()`, to which it now forwards.
+- Deprecate the `dkpanel` argument of `theme_economist()` and the `fill`
+  argument of `economist_pal()`. Both were features of the pre-2017 design
+  and are now ignored.
+- Fix: `theme_economist()` previously looked up a background colour named
+  `"ebg"`, which `economist.yml` did not define, so `rect` and
+  `strip.background` silently received a fill of `NA`. The rewritten theme
+  sets both explicitly.
 
 # ggthemes 6.0.0
 

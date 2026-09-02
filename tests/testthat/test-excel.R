@@ -15,7 +15,7 @@ test_that("excel_clasic_pal with line = TRUE works", {
 })
 
 test_that("calc_shape_pal raises warning for large n", {
-  expect_warning(excel_pal()(8))
+  expect_snapshot(x <- excel_pal()(8))
 })
 
 test_that("excel_new_pal works", {
@@ -27,7 +27,7 @@ test_that("excel_new_pal works", {
 })
 
 test_that("excel_new_pal raises error for bad n", {
-  expect_warning(excel_new_pal()(7))
+  expect_snapshot(x <- excel_new_pal()(7))
 })
 
 test_that("theme_excel works", {
@@ -41,7 +41,7 @@ test_that("theme_excel respects base_family and base_size", {
 })
 
 test_that("excel_new_pal raises error with bad theme name", {
-  expect_error(excel_new_pal("adfaasdfa"), regexp = "`theme` must be one of")
+  expect_snapshot(excel_new_pal("adfaasdfa"), error = TRUE)
 })
 
 test_that("scale_fill_excel works", {
@@ -150,4 +150,12 @@ test_that("excel_resolve_theme leaves other names untouched", {
 test_that("scale_*_excel_new default to the current Office theme", {
   expect_equal(formals(scale_colour_excel_new)$theme, "Office")
   expect_equal(formals(scale_fill_excel_new)$theme, "Office")
+})
+
+test_that("theme_excel draws correctly", {
+  expect_doppelganger("theme_excel", theme_test_plot() + theme_excel())
+})
+
+test_that("theme_excel_new draws correctly", {
+  expect_doppelganger("theme_excel_new", theme_test_plot() + theme_excel_new())
 })

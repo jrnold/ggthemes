@@ -14,7 +14,7 @@ test_that("theme_wsj works", {
 })
 
 test_that("theme_wsj raises error with invalid palette", {
-  expect_error(wsj_pal("asdgasa"), regexp = "must be one of")
+  expect_snapshot(wsj_pal("asdgasa"), error = TRUE)
 })
 
 test_that("scale_colour_wsj works", {
@@ -23,4 +23,8 @@ test_that("scale_colour_wsj works", {
 
 test_that("scale_fill_wsj works", {
   expect_s3_class(scale_fill_wsj(), "ScaleDiscrete")
+})
+
+test_that("theme_wsj draws correctly", {
+  expect_doppelganger("theme_wsj", theme_test_plot() + theme_wsj())
 })

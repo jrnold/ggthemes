@@ -11,7 +11,7 @@ stata_pal(scheme = NULL)
 \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or
 \code{"economist"}. If \code{NULL}, the default, \code{"s2color"} is used
 and a deprecation message is issued; this default becomes \code{"stcolor"}
-in ggthemes 7.0.0.}
+in ggthemes 8.0.0.}
 }
 \description{
 Stata color palettes. See Stata documentation for a description of
@@ -54,4 +54,8 @@ show_col(stata_pal("s1rcolor")(15))
 show_col(stata_pal("s1color")(15))
 show_col(stata_pal("mono")(15))
 }
-\concept{stata colour}
+\seealso{
+Other colour stata:
+\code{\link[=scale_colour_stata]{scale_colour_stata()}}
+}
+\concept{colour stata}

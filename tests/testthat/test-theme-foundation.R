@@ -17,3 +17,7 @@ test_that("theme_foundation respects ink and paper arguments", {
   expect_equal(thm$rect$colour, "red")
   expect_equal(thm$rect$fill, "blue")
 })
+
+test_that("theme_foundation draws correctly", {
+  expect_doppelganger("theme_foundation", theme_test_plot() + theme_foundation())
+})

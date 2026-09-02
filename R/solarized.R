@@ -36,7 +36,7 @@ solarized_accent_list <- function() {
 #'
 #' @param accent \code{character} Starting color.
 #' @export
-#' @family solarized colour
+#' @family colour solarized
 #' @example inst/examples/ex-solarized_pal.R
 solarized_pal <- function(accent = "blue") {
   palettes <- ggthemes::ggthemes_data[["solarized"]][["palettes"]][[accent]]
@@ -55,9 +55,8 @@ solarized_pal <- function(accent = "blue") {
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams solarized_pal
-#' @family colour scales
 #' @rdname scale_solarized
-#' @family solarized colour
+#' @family colour solarized
 #' @export
 #' @example inst/examples/ex-scale_solarized.R
 scale_fill_solarized <- function(accent = "blue", ...) {

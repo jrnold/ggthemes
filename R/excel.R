@@ -11,9 +11,9 @@
 #' @example inst/examples/ex-excel_pal.R
 excel_pal <- function(line = TRUE) {
   if (line[[1]]) {
-    manual_pal(ggthemes::ggthemes_data$excel$classic$line)
+    manual_pal_checked(ggthemes::ggthemes_data$excel$classic$line)
   } else {
-    manual_pal(ggthemes::ggthemes_data$excel$classic$fill)
+    manual_pal_checked(ggthemes::ggthemes_data$excel$classic$fill)
   }
 }
 
@@ -57,7 +57,7 @@ excel_new_pal <- function(theme = "Office") {
     cli::cli_abort("{.arg theme} must be one of {.val {names(allthemes)}}.")
   }
   values <- unname(allthemes[[theme]][["accents"]])
-  f <- manual_pal(values)
+  f <- manual_pal_checked(values)
   attr(f, "max_n") <- length(values)
   f
 }

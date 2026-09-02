@@ -4,25 +4,38 @@
 #' Shape palettes for overlapping and non-overlapping points.
 #'
 #' @param overlap \code{logical} Use the scale for overlapping points?
+#' @param unicode If \code{TRUE}, return pch codes derived from Unicode
+#'   glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
+#'   by the device font, so they render as blank boxes in a font without
+#'   coverage; the default returns base pch codes, which every font can draw.
 #'
 #' @note
 #'
 #' In the \emph{Elements of Graphing Data}, W.S. Cleveland suggests
 #' two shape palettes for scatter plots: one for overlapping data and
 #' another for non-overlapping data. The symbols for overlapping data
-#' relies on pattern discrimination, while the symbols for
-#' non-overlapping data vary the amount of fill. This palette
-#' attempts to create these palettes. However, I found that these
-#' were hard to replicate. Using the R shapes and unicode fonts: the
-#' symbols can vary in size, they are dependent of the fonts used,
-#' and there does not exist a unicode symbol for a circle with a
-#' vertical line. If someone can improve this palette, please let me
-#' know.
+#' rely on pattern discrimination, while the symbols for
+#' non-overlapping data vary the amount of fill.
 #'
-#' Following Tremmel (1995), I replace the circle with a vertical
-#' line with an encircled plus sign.
+#' Following Tremmel (1995), the circle with a vertical line is replaced by
+#' an encircled plus sign.
 #'
-#' The palette \code{cleveland_shape_pal()} supports up to five values.
+#' \code{cleveland_shape_pal(overlap = TRUE)} supports four values on either
+#' branch.
+#'
+#' \code{cleveland_shape_pal(overlap = FALSE)} supports three values by
+#' default and five with \code{unicode = TRUE}. Its five source symbols encode
+#' \emph{fill fraction}, which base pch cannot express, so the two
+#' partially filled circles are dropped rather than approximated by a
+#' different shape. To encode a proportion, map \code{alpha} or \code{fill}
+#' instead; to restore the five glyphs, use \code{unicode = TRUE} with a font
+#' that covers Mathematical Operators, such as STIX Two Text.
+#'
+#' The truncation is arguably an improvement. Tremmel (1995) Experiment 2
+#' tested exactly this five-symbol set and found the fill-graded circles the
+#' worst performers measured, with the encircled plus and encircled dot the
+#' slowest pair and the one producing the most errors. The three shapes that
+#' survive are the better-separating subset.
 #'
 #' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references
@@ -34,17 +47,13 @@
 #' @family shapes
 #' @export
 # nolint end
-cleveland_shape_pal <- function(overlap = TRUE) {
+cleveland_shape_pal <- function(overlap = TRUE, unicode = FALSE) {
   shapes <- if (overlap[[1]]) {
-    ggthemes::ggthemes_data$shapes$cleveland$overlap$pch
+    ggthemes::ggthemes_data$shapes$cleveland$overlap
   } else {
-    ggthemes::ggthemes_data$shapes$cleveland$default$pch
+    ggthemes::ggthemes_data$shapes$cleveland$default
   }
-  warn_unicode_pch(shapes)
-  max_n <- length(shapes)
-  f <- manual_pal(shapes)
-  attr(f, "max_n") <- max_n
-  f
+  new_shape_pal(shapes, unicode = unicode)
 }
 
 #' Shape scales from Cleveland "Elements of Graphing Data"
@@ -59,8 +68,12 @@ cleveland_shape_pal <- function(overlap = TRUE) {
 #' Cleveland WS. The Elements of Graphing Data. Revised Edition.
 #' Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
-scale_shape_cleveland <- function(overlap = TRUE, ...) {
-  discrete_scale("shape", palette = cleveland_shape_pal(overlap), ...)
+scale_shape_cleveland <- function(overlap = TRUE, ..., unicode = FALSE) {
+  discrete_scale(
+    "shape",
+    palette = cleveland_shape_pal(overlap, unicode = unicode),
+    ...
+  )
 }
 
 #' Filled Circle Shape palette (discrete)
@@ -87,11 +100,12 @@ scale_shape_cleveland <- function(overlap = TRUE, ...) {
 #' @export
 circlefill_shape_pal <- function() {
   deprecate_warn("5.0.0", "circlefill_shape_pal()")
-  values <- ggthemes::ggthemes_data[["shapes"]][["circlefill"]][["pch"]]
-  max_n <- length(values)
-  f <- manual_pal(values)
-  attr(f, "max_n") <- max_n
-  f
+  # `pch_unicode`, not `pch`: this palette grades circles by fill fraction,
+  # which base pch cannot express at all, so it has no font-independent form.
+  new_shape_pal(
+    ggthemes::ggthemes_data[["shapes"]][["circlefill"]],
+    unicode = TRUE
+  )
 }
 
 #' Filled Circle Shape palette (discrete)
@@ -133,7 +147,9 @@ scale_shape_circlefill <- function(...) {
 #' @param alt If \code{TRUE}, then when \code{n == 3},
 #'   use a solid circle, plus sign and
 #'   empty triangle. Otherwise use a solid circle, empty circle, and empty
-#'   triangle.
+#'   triangle. Defaults to \code{FALSE}, the triple Tremmel's Experiment 1
+#'   actually measured; the \code{TRUE} triple is argued on feature-dimension
+#'   grounds that Tremmel flags as not directly supported by the experiments.
 #' @family shapes
 #' @references
 #' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
@@ -176,7 +192,7 @@ tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
 #' @example inst/examples/ex-scale_shape_tremmel.R
 #' @family shapes
 #' @export
-scale_shape_tremmel <- function(overlap = FALSE, alt = TRUE, ...) {
+scale_shape_tremmel <- function(overlap = FALSE, alt = FALSE, ...) {
   discrete_scale(
     "shape",
     palette = tremmel_shape_pal(

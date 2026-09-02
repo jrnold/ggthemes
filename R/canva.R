@@ -39,7 +39,7 @@ canva_pal <- function(palette = "Fresh and bright") {
       "i" = "See {.code names(canva_palettes)} for valid names."
     ))
   }
-  manual_pal(unname(ggthemes::canva_palettes[[palette]]))
+  manual_pal_checked(unname(ggthemes::canva_palettes[[palette]]))
 }
 
 #' Discrete color scale using canva.com color palettes

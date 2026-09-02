@@ -13,7 +13,9 @@ tremmel_shape_pal(overlap = FALSE, alt = FALSE)
 \item{alt}{If \code{TRUE}, then when \code{n == 3},
 use a solid circle, plus sign and
 empty triangle. Otherwise use a solid circle, empty circle, and empty
-triangle.}
+triangle. Defaults to \code{FALSE}, the triple Tremmel's Experiment 1
+actually measured; the \code{TRUE} triple is argued on feature-dimension
+grounds that Tremmel flags as not directly supported by the experiments.}
 }
 \description{
 Based on experiments Tremmel (1995) suggests the following shape palettes:

@@ -16,3 +16,7 @@ test_that("fivethirtyeight_pal works", {
   expect_type(attr(p, "max_n"), "integer")
   expect_hexcolor(p(3))
 })
+
+test_that("theme_fivethirtyeight draws correctly", {
+  expect_doppelganger("theme_fivethirtyeight", theme_test_plot() + theme_fivethirtyeight())
+})

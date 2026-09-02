@@ -6,13 +6,13 @@ test_that("colorblind_pal works", {
 })
 
 test_that("colorblind_pal raises warning with to large n", {
-  expect_warning(colorblind_pal()(20))
+  expect_snapshot(x <- colorblind_pal()(20))
 })
 
 test_that("colorblind_pal(black = FALSE) drops black from the palette", {
   p <- colorblind_pal(black = FALSE)
   expect_equal(attr(p, "max_n"), 7L)
-  expect_false("#000000" %in% p(7))
+  expect_no_match(p(7), "^#000000$")
 })
 
 test_that("scale_colour_colourblind works", {
@@ -32,9 +32,11 @@ test_that("scale_color_colorblind works", {
 })
 
 test_that("scale_fill_colorblind works", {
+  withr::local_options(lifecycle_verbosity = "quiet")
   expect_s3_class(scale_fill_colorblind(), "ScaleDiscrete")
 })
 
 test_that("scale_fill_colorblind(black = FALSE) works", {
+  withr::local_options(lifecycle_verbosity = "quiet")
   expect_s3_class(scale_fill_colorblind(black = FALSE), "ScaleDiscrete")
 })

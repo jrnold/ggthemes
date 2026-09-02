@@ -1,19 +1,64 @@
+# The Economist chart colours.
+#
+# Transcribed from "The Economist visual styleguide", version 1.2
+# (4 May 2017) -- the document that introduced the chart redesign
+# The Economist still publishes today. See
+# data-raw/reference/economist/SOURCES.md.
+#
+#   * `main` and `scales` are the web chart palette, p.12, quoted as
+#     the hex values the styleguide itself prints.
+#   * `bg` and `text` are drawn from the same page. The styleguide
+#     specifies print backgrounds and gridlines in CMYK only; rather
+#     than convert them (naive CMYK->RGB does not reproduce the
+#     rendered colour), the nearest documented web hex is used.
+#
+# The pre-2017 palette that this file replaced, for the record:
+#   fg: blue-gray #6794a7, dark blue #014d64, light green #76c0c1,
+#       blue #01a2d9, light blue #7ad2f6, dark green #00887d,
+#       gray #adadad, dark red #7c260b, pink #ee8f71, brown #a18376
+#   bg: blue-gray #d5e4eb, dark blue-gray #c3d6df, red #ed111a,
+#       light gray #ebebeb, dark gray #c9c9c9
+
+# Main chart palette (p.12). Ordered as ggthemes uses them: red is
+# placed last because The Economist reserves it to mark important
+# data rather than as a general-purpose series colour.
+main:
+  - {name: blue, value: '#006ba2'}
+  - {name: cyan, value: '#3ebcd2'}
+  - {name: green, value: '#379a8b'}
+  - {name: yellow, value: '#ebb434'}
+  - {name: olive, value: '#b4ba39'}
+  - {name: purple, value: '#9a607f'}
+  - {name: gold, value: '#d1b07c'}
+  - {name: gray, value: '#758d99'}
+  - {name: red, value: '#db444b'}
+  # "Econ red", the masthead red. Used for the tag rectangle and for
+  # single-series highlights, never as one of a set of series colours.
+  - {name: econ red, value: '#e3120b'}
+
+# "Equal lightness colour scales" (p.12): six ordered steps per hue,
+# darkest first.
+scales:
+  red: ['#a81829', '#c7303c', '#e64e53', '#ff6b6c', '#ff8785', '#ffa39f']
+  blue: ['#00588d', '#1270a8', '#3d89c3', '#5da4df', '#7bbffc', '#98daff']
+  cyan: ['#005f73', '#00788d', '#0092a7', '#25adc2', '#4ec8de', '#6fe4fb']
+  green: ['#005f52', '#00786b', '#2e9284', '#4dad9e', '#69c9b9', '#86e5d4']
+  yellow: ['#714c00', '#8d6300', '#aa7c00', '#c89608', '#e7b030', '#ffcb4d']
+  olive: ['#4c5900', '#667100', '#818a00', '#9da521', '#bac03f', '#d7db5a']
+  purple: ['#78405f', '#925977', '#ad7291', '#c98cac', '#e6a6c7', '#ffc2e3']
+  gold: ['#674e1f', '#826636', '#9d7f4e', '#b99966', '#d5b480', '#f2cf9a']
+  gray: ['#3f5661', '#576e79', '#6f8793', '#89a2ae', '#a4bdc9', '#bfd8e5']
+
+# Backgrounds and rules.
 bg:
-- {name: "blue-gray", value: '#d5e4eb'}
-- {name: "dark blue-gray", value: '#c3d6df'}
-- {name: "red", value: '#ed111a'}
-- {name: "light gray", value: '#ebebeb'}
-- {name: "dark gray", value: '#c9c9c9'}
-fg:
-- {name: "blue-gray", value: '#6794a7'}
-- {name: "dark blue", value: '#014d64'}
-- {name: "light green", value: '#76c0c1'}
-- {name: "blue", value: '#01a2d9'}
-- {name: "light blue", value: '#7ad2f6'}
-- {name: "dark green", value: '#00887d'}
-- {name: "gray", value: '#adadad'}
-- {name: "light blue", value: '#7bd3f6'}
-- {name: "dark red", value: '#7c260b'}
-- {name: "pink", value: '#ee8f71'}
-- {name: "light green", value: '#76c0c1'}
-- {name: "brown", value: '#a18376'}
+  - {name: white, value: '#ffffff'}
+  # "Boxes/nav" tint, used here for the area around the panel; it is
+  # also the closest documented hex to the print chart background.
+  - {name: pale, value: '#e9edf0'}
+  # Gridlines: the styleguide gives these as CMYK C10 K25 for print.
+  - {name: gridline, value: '#b7c6cf'}
+  - {name: gray, value: '#758d99'}
+
+text:
+  - {name: body, value: '#3f5661'}
+  - {name: title, value: '#0c0c0c'}

@@ -120,27 +120,35 @@ scale_color_tableau <- scale_colour_tableau
 #' Shape palettes used by
 #' \href{https://www.tableau.com/}{Tableau}.
 #'
-#' Not all shape palettes in Tableau are supported. Additionally, these
-#' palettes are not exact, and use the best unicode character for the shape
-#' palette.
+#' Not all shape palettes in Tableau are supported, and these palettes are not
+#' exact.
 #'
-#' Since these palettes use unicode characters, their look may depend on the
-#' font being used, and not all characters may be available.
-#'
-#' Shape palettes in Tableau are used to expose images for use a markers in
+#' Shape palettes in Tableau are used to expose images for use as markers in
 #' charts, and thus are sometimes groupings of closely related symbols.
+#'
+#' @note
+#'
+#' Supported values by palette: \code{"default"} eight (ten with
+#' \code{unicode = TRUE}), \code{"filled"} six (ten), \code{"proportions"}
+#' two (five). Shapes with no base pch equivalent -- the sideways triangles,
+#' the solid star, and the partially filled circles -- are dropped rather than
+#' approximated by a different shape.
+#'
+#' \code{"proportions"} encodes \emph{fill fraction}, which base pch cannot
+#' express at all, so only its empty and full circles survive; they remain
+#' meaningful as a two-value scale. To encode a proportion, map \code{alpha}
+#' or \code{fill} instead, or use \code{unicode = TRUE} with a font covering
+#' Geometric Shapes, such as DejaVu Sans.
 #'
 #' @export
 #' @param palette Palette name.
-#' @family shape tableau
+#' @inheritParams cleveland_shape_pal
+#' @family shapes tableau
 #' @example inst/examples/ex-tableau_shape_pal.R
-tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
-  palette <- match.arg(palette)
+tableau_shape_pal <- function(palette = c("default", "filled", "proportions"), unicode = FALSE) {
+  palette <- rlang::arg_match(palette)
   shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
-  warn_unicode_pch(shapes[["pch"]])
-  f <- manual_pal(shapes[["pch"]])
-  attr(f, "max_n") <- nrow(shapes)
-  f
+  new_shape_pal(shapes, unicode = unicode)
 }
 
 #' Tableau shape scales
@@ -150,10 +158,14 @@ tableau_shape_pal <- function(palette = c("default", "filled", "proportions")) {
 #' @export
 #' @inheritParams tableau_shape_pal
 #' @inheritParams ggplot2::scale_x_discrete
-#' @family shape tableau
+#' @family shapes tableau
 #' @example inst/examples/ex-scale_shape_tableau.R
-scale_shape_tableau <- function(palette = "default", ...) {
-  discrete_scale("shape", palette = tableau_shape_pal(palette), ...)
+scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
+  discrete_scale(
+    "shape",
+    palette = tableau_shape_pal(palette, unicode = unicode),
+    ...
+  )
 }
 
 # nolint start
