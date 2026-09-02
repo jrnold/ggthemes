@@ -43,8 +43,8 @@ step_outlier_ratio <- function(x) {
 # each is asked for. The counts are written out rather than taken from
 # `max_n` so that a change in a palette's maximum shows up as a test failure
 # rather than silently redrawing the baseline.
-discrete_palette_colours <- function() {
-  specs <- list(
+discrete_palette_specs <- function() {
+  list(
     calc = list(calc_pal(), 12L),
     canva = list(canva_pal(), 4L),
     colorblind = list(colorblind_pal(), 8L),
@@ -63,5 +63,13 @@ discrete_palette_colours <- function() {
     stata = list(stata_pal(scheme = "s2color"), 15L),
     wsj = list(wsj_pal(), 6L)
   )
-  lapply(specs, function(spec) spec[[1]](spec[[2]]))
+}
+
+discrete_palette_colours <- function() {
+  lapply(discrete_palette_specs(), function(spec) spec[[1]](spec[[2]]))
+}
+
+# The same palettes as functions, for assertions about how they validate `n`.
+discrete_palette_functions <- function() {
+  lapply(discrete_palette_specs(), function(spec) spec[[1]])
 }

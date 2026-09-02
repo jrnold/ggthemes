@@ -39,7 +39,7 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 calc_pal <- function() {
   values <- unname(ggthemes::ggthemes_data$calc$colors[["value"]])
   max_n <- length(values)
-  f <- manual_pal(values)
+  f <- manual_pal_checked(values)
   attr(f, "max_n") <- max_n
   f
 }

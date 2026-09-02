@@ -49,12 +49,38 @@ warn_unicode_pch <- function(pch) {
   }
 }
 
+# `call` is forwarded so the error names the palette the caller invoked rather
+# than this helper.
+check_pal_n_negative <- function(n, call = rlang::caller_env()) {
+  if (n < 0) {
+    cli::cli_abort("{.arg n} must be a non-negative integer, not {n}.", call = call)
+  }
+}
+
 check_pal_n <- function(n, max_n) {
+  check_pal_n_negative(n, call = rlang::caller_env())
   if (n > max_n) {
     cli::cli_warn("This palette can handle a maximum of {max_n} values. You have supplied {n}.")
-  } else if (n < 0) {
-    cli::cli_abort("{.arg n} must be a non-negative integer, not {n}.")
   }
+}
+
+#' `scales::manual_pal()` with the package's own check on `n`
+#'
+#' `manual_pal()` selects its values with `seq_len(n)`, which fails for a
+#' negative `n` with "argument must be coercible to non-negative integer" --- a
+#' message that names nothing the caller passed. Palettes written around
+#' `check_pal_n()` already reject a negative `n` by naming the argument, so
+#' wrap `manual_pal()` to report the same thing. The maximum-`n` warning is
+#' left to `manual_pal()`.
+#'
+#' @noRd
+manual_pal_checked <- function(values, type = NULL) {
+  f <- manual_pal(values, type = type)
+  fun <- function(n) {
+    check_pal_n_negative(n)
+    f(n)
+  }
+  scales::new_discrete_palette(fun, attr(f, "type"), attr(f, "nlevels"))
 }
 
 #' Extract colors from ggthemes data

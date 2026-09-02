@@ -49,6 +49,17 @@
   coverage still fails with `mbcsToSbcs` on a non-UTF-8 session. Note that R
   exposes no way to read back a device's `family=`, so the probe measures the
   default font and the warning names the font it actually measured.
+- Discrete colour palettes now reject a negative `n` with an error naming the
+  argument and the palette that was called. Palettes built on
+  `scales::manual_pal()` --- including `calc_pal()`, `canva_pal()`,
+  `colorblind_pal()`, `excel_pal()`, `excel_new_pal()`,
+  `fivethirtyeight_pal()`, `gdocs_pal()`, `hc_pal()`, `stata_pal()` and
+  `wsj_pal()` --- previously failed with R's internal
+  `argument must be coercible to non-negative integer` from `seq_len()`.
+- `bank_slopes()` and `bank_plot()` report an invalid `method`, and
+  `tableau_shape_pal()` an invalid `palette`, with a message naming the
+  argument and the value supplied instead of `match.arg()`'s
+  `'arg' should be one of ...`. Misspellings now get a "Did you mean" hint.
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
   actual colour order (blue, red, brown). The old name still works but warns.
