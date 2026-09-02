@@ -8,5 +8,3 @@
 #' @importFrom methods hasArg as
 #' @importFrom graphics par
 NULL
-
-globalVariables(".data")

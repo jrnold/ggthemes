@@ -8,3 +8,4 @@ revdep
 docs
 .RData
 Rplots.pdf
+vdiffr.Rout.fail

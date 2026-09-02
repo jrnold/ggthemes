@@ -2,7 +2,7 @@ test_that("extended_range_breaks_ respects the n argument", {
   breaks5 <- extended_range_breaks_(1, 99, n = 5)
   breaks10 <- extended_range_breaks_(1, 99, n = 10)
 
-  expect_true(length(breaks10) > length(breaks5))
+  expect_gt(length(breaks10), length(breaks5))
   expect_equal(min(breaks5), 1)
   expect_equal(max(breaks5), 99)
   expect_equal(min(breaks10), 1)
@@ -11,8 +11,8 @@ test_that("extended_range_breaks_ respects the n argument", {
 
 test_that("extended_range_breaks_ breaks are within the data range", {
   breaks <- extended_range_breaks_(1, 99, n = 10)
-  expect_true(min(breaks) >= 1)
-  expect_true(max(breaks) <= 99)
+  expect_gte(min(breaks), 1)
+  expect_lte(max(breaks), 99)
 })
 
 test_that("extended_range_breaks_ swaps dmin and dmax when reversed", {
@@ -35,15 +35,15 @@ test_that("extended_range_breaks returns a breaks function", {
 })
 
 test_that("zero_range detects degenerate ranges", {
-  expect_true(zero_range(1))
-  expect_true(zero_range(c(1, 1)))
-  expect_false(zero_range(c(1, 2)))
-  expect_true(is.na(zero_range(c(NA, 1))))
-  expect_false(zero_range(c(-Inf, Inf)))
+  expect_identical(zero_range(1), TRUE)
+  expect_identical(zero_range(c(1, 1)), TRUE)
+  expect_identical(zero_range(c(1, 2)), FALSE)
+  expect_identical(zero_range(c(NA, 1)), NA)
+  expect_identical(zero_range(c(-Inf, Inf)), FALSE)
 })
 
 test_that("zero_range errors for vectors of the wrong length", {
-  expect_error(zero_range(c(1, 2, 3)))
+  expect_snapshot(zero_range(c(1, 2, 3)), error = TRUE)
 })
 
 test_that("precision returns a power of ten based on the range", {

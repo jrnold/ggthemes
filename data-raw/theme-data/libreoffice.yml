@@ -1,17 +1,17 @@
 shapes:
-  - {name: 'BLACK SQUARE', unicode: "U+25A0", character: "■"}
-  - {name: 'BLACK DIAMOND', unicode: "U+25C6", character: "◆"}
-  - {name: 'BLACK DOWN-POINTING CHARACTER', unicode: "U+25BC", character: "▼"}
-  - {name: 'BLACK UP-POINTING TRIANGLE', unicode: "U+25B2", character: "▲"}
-  - {name: 'BLACK RIGHT-POINTING TRIANGLE', unicode: "U+25B6", character: "▶"}
-  - {name: 'BLACK LEFT-POINTING TRIANGLE', unicode: "U+25C0", character: "◀"}
-  - {name: 'BLACK BOWTIE', unicode: "U+29D3", character: "⧓"}
-  - {name: 'BLACK HOURGLASS', unicode: "U+29D7", character: "⧗"}
-  - {name: 'BLACK CIRCLE', unicode: "U+25CF", character: "●"}
-  - {name: 'BLACK FOUR POINTED STAR', unicode: "U+2726", character: "✦"}
-  - {name: 'MULTIPLICATION X', unicode: "U+2715", character: "✕"}
-  - {name: 'PLUS SIGN', unicode: "U+002B", character: "+"}
-  - {name: 'ASTERISK OPERATOR', unicode: "U+2217", character: "∗"}
+  - {shape: "square", name: "BLACK SQUARE", unicode: "U+25A0", character: "■"}
+  - {shape: "diamond", name: "BLACK DIAMOND", unicode: "U+25C6", character: "◆"}
+  - {shape: "triangle down", name: "BLACK DOWN-POINTING TRIANGLE", unicode: "U+25BC", character: "▼"}
+  - {shape: "triangle", name: "BLACK UP-POINTING TRIANGLE", unicode: "U+25B2", character: "▲"}
+  - {shape: "triangle right", name: "BLACK RIGHT-POINTING TRIANGLE", unicode: "U+25B6", character: "▶"}
+  - {shape: "triangle left", name: "BLACK LEFT-POINTING TRIANGLE", unicode: "U+25C0", character: "◀"}
+  - {shape: "bowtie", name: "BLACK BOWTIE", unicode: "U+29D3", character: "⧓"}
+  - {shape: "hourglass", name: "BLACK HOURGLASS", unicode: "U+29D7", character: "⧗"}
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "four pointed star", name: "BLACK FOUR POINTED STAR", unicode: "U+2726", character: "✦"}
+  - {shape: "cross", name: "MULTIPLICATION X", unicode: "U+2715", character: "✕"}
+  - {shape: "plus", name: "PLUS SIGN", unicode: "U+002B", character: "+"}
+  - {shape: "asterisk", name: "ASTERISK OPERATOR", unicode: "U+2217", character: "∗"}
 #  - {name: 'HEAVY MINUS SIGN', unicode: "U+2796", character: "➖}
 #  - {name: 'MEDIUM VERTICAL BAR', unicode: "U+2759", character: ❙}
 colors:

@@ -118,14 +118,9 @@ theme_few <- function(base_size = 12, base_family = "") {
 #'
 #' @export
 few_shape_pal <- function() {
-  shapes <- ggthemes::ggthemes_data[["few"]][["shapes"]]
-  max_n <- nrow(shapes)
-  f <- function(n) {
-    check_pal_n(n, max_n)
-    shapes[["pch"]][seq_len(n)]
-  }
-  attr(f, "max_n") <- max_n
-  f
+  # Already font-independent before 6.1.0 -- all five shapes have a base pch --
+  # so this palette gains no `unicode` argument.
+  new_shape_pal(ggthemes::ggthemes_data[["few"]][["shapes"]])
 }
 
 #' Scales for shapes from "Show Me the Numbers"

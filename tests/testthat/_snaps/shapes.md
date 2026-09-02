@@ -13,13 +13,13 @@
       expect_type(values, "integer")
       expect_equal(length(values), n)
 
-# scale_shape_circlefill works
+# warn_unicode_pch warns only for unicode pch on non-UTF-8 locales
 
     Code
-      expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
+      x <- warn_unicode_pch(c(-9675, -9679))
     Condition
       Warning:
-      `scale_shape_circlefill()` was deprecated in ggthemes 5.0.0.
-      Warning:
-      `circlefill_shape_pal()` was deprecated in ggthemes 5.0.0.
+      This shape palette uses pch codes derived from Unicode symbols, and your R session's locale is not UTF-8.
+      i Rendering may fail with a low-level error (e.g. "conversion failure ... in 'mbcsToSbcs'").
+      i Try a UTF-8 locale, or a Cairo-based graphics device (e.g. cairo_pdf(), agg_png()).
 

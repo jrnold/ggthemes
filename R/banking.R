@@ -35,7 +35,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @param cull \code{logical}. Remove all slopes of 0 or \code{Inf}.
 #' @param method One of 'ms' (Median Absolute Slope), 'as' (Average
 #' Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
-#' Average Absolute Slope).
+#' Average Absolute Orientation).
 #' @param weight No longer used, but kept for backwards compatibility.
 #' @param ... No longer used, but kept for backwards compatibility.
 #'
@@ -91,18 +91,23 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' This has no closed-form solution and is found numerically with
 #' \code{\link[stats]{uniroot}}.
 #'
-#' \strong{Weighted Average Absolute Slope Banking}
+#' \strong{Weighted Average Absolute Orientation Banking}
 #'
-#' Identical to Average Absolute Slope Banking, except each segment's
-#' contribution is weighted by its horizontal run, \eqn{dx_i}{dx_i}, so
-#' that segments spanning more horizontal (screen) space are weighted more
-#' heavily than segments that happen to be sampled more densely in
-#' \eqn{x}{x}. Using \eqn{s'_i}{s'_i} as above,
+#' This is the weighted version of Average Absolute Orientation Banking from
+#' Heer and Agrawala (2006). Each segment's absolute orientation is weighted
+#' by its length in display space, so both the orientation and its weight
+#' depend on \eqn{\alpha}. With \eqn{s'_i}{s'_i} as above and segment run
+#' \eqn{dx_i}{dx_i}, \eqn{\alpha}{alpha} is chosen such that,
 #' \deqn{
-#'   \alpha = \frac{\sum_i dx_i \left| s'_i \right|}{\sum_i dx_i}
+#'   \frac{\sum_i \left|\arctan(s'_i / \alpha)\right|
+#'   dx_i \sqrt{1 + (s'_i / \alpha)^2}}
+#'   {\sum_i dx_i \sqrt{1 + (s'_i / \alpha)^2}} = \frac{\pi}{4}
 #' }{
-#'  alpha = sum(dx_i * |s'_i|) / sum(dx_i)
+#' sum(|atan(s'_i / alpha)| * dx_i * sqrt(1 + (s'_i / alpha)^2)) /
+#'   sum(dx_i * sqrt(1 + (s'_i / alpha)^2)) = pi / 4
 #' }
+#' This has no closed-form solution and is found numerically with
+#' \code{\link[stats]{uniroot}}.
 #'
 #' All of these methods consider the entirety of the data at once, so they
 #' accentuate local features and can obscure larger-scale trends. Heer and
@@ -131,10 +136,10 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' \code{\link{bank_slopes_multiscale}} to bank each frequency scale in the
 #' data separately.
 #' @export
-#' @importFrom stats median uniroot weighted.mean
+#' @importFrom stats median uniroot
 #' @example inst/examples/ex-bank_slopes.R
 bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as", "ao", "was"), ...) {
-  method <- match.arg(method)
+  method <- rlang::arg_match(method)
   fun <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y
   xyrat <- fun(calc_slopes(x, y, cull = cull), ...)
@@ -179,7 +184,7 @@ bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"
 #' bank_plot(p)
 bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = FALSE, layer = 1, ...) {
   stopifnot(ggplot2::is_ggplot(plot))
-  method <- match.arg(method)
+  method <- rlang::arg_match(method)
   built <- ggplot2::ggplot_build(plot)
   if (layer < 1 || layer > length(built$data)) {
     cli::cli_abort("{.arg plot} only has {length(built$data)} layer(s), but {.arg layer} = {layer}.")
@@ -200,12 +205,14 @@ bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = FALSE, l
   plot + ggplot2::coord_fixed(ratio = 1 / xyrat)
 }
 
-check_bank_plot_data <- function(data) {
+# `fn` names the function the user called, since `bank_plot_multiscale()`
+# shares this check.
+check_bank_plot_data <- function(data, fn = "bank_plot") {
   missing <- setdiff(c("x", "y"), names(data))
   if (length(missing) > 0) {
     cli::cli_abort(c(
       "The layer data is missing required column(s): {.field {missing}}.",
-      "i" = "{.fn bank_plot} needs both {.field x} and {.field y}."
+      "i" = "{.fn {fn}} needs both {.field x} and {.field y}."
     ))
   }
   invisible(data)
@@ -239,6 +246,25 @@ bank_slopes_funs[["ao"]] <-
 
 bank_slopes_funs[["was"]] <-
   function(slopes, ...) {
-    s <- abs(slopes$s) * slopes$Rx / slopes$Ry
-    stats::weighted.mean(s, w = slopes$dx)
+    s <- slopes$s * slopes$Rx / slopes$Ry
+    if (length(s) == 0 || !all(is.finite(s))) {
+      return(NaN)
+    }
+    if (all(s == 0)) {
+      return(NaN)
+    }
+    pivot <- stats::median(abs(s))
+    if (pivot == 0) {
+      pivot <- 1
+    }
+    f <- function(alpha) {
+      orientation <- abs(atan(s / alpha))
+      length <- slopes$dx * sqrt(1 + (s / alpha)^2)
+      sum(orientation * length) / sum(length) - FORTY_FIVE
+    }
+    stats::uniroot(
+      f,
+      interval = c(pivot / 1e6, pivot * 1e6),
+      tol = sqrt(.Machine$double.eps)
+    )$root
   }

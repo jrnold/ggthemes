@@ -4,7 +4,7 @@
 \alias{scale_shape_tremmel}
 \title{Shape scales from Tremmel (1995)}
 \usage{
-scale_shape_tremmel(overlap = FALSE, alt = TRUE, ...)
+scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
 }
 \arguments{
 \item{overlap}{use an empty circle instead of a solid circle when
@@ -13,7 +13,9 @@ scale_shape_tremmel(overlap = FALSE, alt = TRUE, ...)
 \item{alt}{If \code{TRUE}, then when \code{n == 3},
 use a solid circle, plus sign and
 empty triangle. Otherwise use a solid circle, empty circle, and empty
-triangle.}
+triangle. Defaults to \code{FALSE}, the triple Tremmel's Experiment 1
+actually measured; the \code{TRUE} triple is argued on feature-dimension
+grounds that Tremmel flags as not directly supported by the experiments.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}

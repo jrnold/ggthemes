@@ -72,6 +72,17 @@ notation.
   }}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+These scales were deprecated in ggthemes 7.0.0. Use the
+\href{https://CRAN.R-project.org/package=khroma}{khroma} package instead, which
+tracks Paul Tol's colour schemes as he revises them.
+
+They draw the 12-colour qualitative scheme from Tol's 2012 technical note,
+and have not followed the revisions he has made since. His current schemes
+are at \url{https://sronpersonalpages.nl/~pault/}; the closest successor is
+\code{khroma::scale_colour_muted()}.
+
 See \code{\link{ptol_pal}()}. These palettes support up to 12 values.
 }
 \examples{

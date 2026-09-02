@@ -15,7 +15,7 @@ test_that("economist_pal fill=TRUE works", {
 })
 
 test_that("economist_pal raises warning with large number", {
-  expect_warning(economist_pal()(10))
+  expect_snapshot(x <- economist_pal()(10))
 })
 
 test_that("scale_colour_economist equals scale_color_economist", {
@@ -55,16 +55,8 @@ test_that("theme economist with horizontal=FALSE works", {
 test_that("theme economist with dark panel works", {
   thm <- theme_economist(dkpanel = TRUE)
   expect_s3_class(thm, "theme")
-  expect_equal(
-    thm$strip.background$fill,
-    purrr::pluck(
-      dplyr::filter(
-        ggthemes_data$economist$bg,
-        name == "dark blue-gray"
-      ),
-      "value"
-    )
-  )
+  bg <- ggthemes_data$economist$bg
+  expect_equal(thm$strip.background$fill, bg$value[bg$name == "dark blue-gray"])
 })
 
 test_that("theme economist_white works", {
@@ -77,14 +69,14 @@ test_that("theme economist_white works", {
 test_that("theme economist_white with gray background works", {
   thm <- theme_economist_white(gray_bg = TRUE)
   expect_s3_class(thm, "theme")
-  expect_equal(
-    thm$plot.background$fill,
-    purrr::pluck(
-      dplyr::filter(
-        ggthemes_data$economist$bg,
-        name == "light gray"
-      ),
-      "value"
-    )
-  )
+  bg <- ggthemes_data$economist$bg
+  expect_equal(thm$plot.background$fill, bg$value[bg$name == "light gray"])
+})
+
+test_that("theme_economist draws correctly", {
+  expect_doppelganger("theme_economist", theme_test_plot() + theme_economist())
+})
+
+test_that("theme_economist_white draws correctly", {
+  expect_doppelganger("theme_economist_white", theme_test_plot() + theme_economist_white())
 })

@@ -14,9 +14,8 @@ test_that("geom_rangeframe drops rows with NA x/y before drawing", {
     group = 1
   )
 
-  expect_warning(
-    filtered <- GeomRangeFrame$handle_na(data, list(na.rm = FALSE)),
-    "missing values"
+  expect_snapshot(
+    filtered <- GeomRangeFrame$handle_na(data, list(na.rm = FALSE))
   )
   expect_equal(nrow(filtered), 3)
 
@@ -47,7 +46,7 @@ test_that("geom_rangeframe draws the full range of non-missing values when NAs a
     numeric(4)
   )
 
-  expect_false(anyNA(coords))
+  expect_identical(anyNA(coords), FALSE)
   expect_equal(range(coords[3:4, grep("range_y", names(grob$children))]), c(10, 50))
 })
 
@@ -65,4 +64,29 @@ test_that("geom_rangeframe sides = 'trbl' is correctly positioned with a seconda
   # (native) coordinate range that geom_rangeframe draws against is
   # identical with or without one.
   expect_equal(panel_params$y.sec$continuous_range, panel_params$y.range)
+})
+
+test_that("geom_rangeframe accepts every combination of side letters", {
+  for (sides in c("t", "r", "b", "l", "bl", "tr", "trbl", "lbrt")) {
+    expect_s3_class(geom_rangeframe(sides = sides), "LayerInstance")
+  }
+})
+
+test_that("geom_rangeframe rejects sides that name no side", {
+  # "xy" is the plausible typo: it draws nothing at all without this check,
+  # because draw_panel() tests each side with grepl().
+  expect_error(geom_rangeframe(sides = "xy"), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = "bx"), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = ""), "must be a string made up of")
+})
+
+test_that("geom_rangeframe rejects a sides that is not a single string", {
+  expect_error(geom_rangeframe(sides = c("b", "l")), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = 1), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = NA), "must be a string made up of")
+  expect_error(geom_rangeframe(sides = NULL), "must be a string made up of")
+})
+
+test_that("the sides error names the value it rejected", {
+  expect_error(geom_rangeframe(sides = "xy"), "xy")
 })

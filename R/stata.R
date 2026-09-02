@@ -56,7 +56,7 @@ stata_default_scheme <- function(scheme, what) {
 #' in ggthemes 7.0.0.
 #'
 #' @export
-#' @family stata colour
+#' @family colour stata
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme = NULL) {
   scheme <- stata_default_scheme(scheme, "stata_pal()")
@@ -65,7 +65,7 @@ stata_pal <- function(scheme = NULL) {
     cli::cli_abort("{.arg scheme} must be one of {.val {sort(names(schemes))}}, not {.val {scheme}}.")
   }
   colors <- schemes[[scheme]]
-  f <- manual_pal(colors[["value"]])
+  f <- manual_pal_checked(colors[["value"]])
   attr(f, "max_n") <- nrow(colors)
   f
 }
@@ -431,38 +431,56 @@ theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
     theme_stata_colors(scheme = scheme)
 }
 
+#' Select shape rows by symbolstyle, in the order asked for
+#'
+#' A bare `match()` returns `NA` for a name the catalogue does not have, which
+#' indexes an all-`NA` row. `new_shape_pal()` would then drop that row as "no
+#' font-independent equivalent" and report a `max_n` quietly below the
+#' documented ten. Every other name lookup this data goes through fails loudly
+#' -- `shape_table()` in `data-raw/build.R` aborts on an unknown shape name --
+#' so this one does too.
+#' @noRd
+stata_shape_rows <- function(statadata, shapes) {
+  idx <- match(shapes, statadata[["symbolstyle"]])
+  if (anyNA(idx)) {
+    # `absent` is read only inside cli's glue strings, which lintr cannot see.
+    absent <- shapes[is.na(idx)] # nolint: object_usage_linter.
+    cli::cli_abort(c(
+      "Stata shape data is missing {length(absent)} symbolstyle{?s}: {.val {absent}}.",
+      "i" = paste(
+        "This means {.code ggthemes_data$stata$shapes} disagrees with the",
+        "palette's canonical symbolstyles; rebuild it with {.file data-raw/build.R}."
+      )
+    ))
+  }
+  statadata[idx, ]
+}
+
 #' Stata shape palette (discrete)
 #'
 #' Shape palette based on the symbol palette in Stata used in scheme s2mono.
 #' This palette supports up to 10 values.
+#'
+#' @inheritParams cleveland_shape_pal
+#'
+#' @note
+#'
+#' Stata's ten plotting symbols all have a base pch equivalent, so this palette
+#' supports ten values on either branch and nothing is dropped:
+#' solid and hollow circle, diamond, square and triangle, plus the X and the
+#' plus sign.
 #'
 #' @export
 #' @family shapes stata
 #' @seealso See \code{\link{scale_shape_stata}()} for examples.
 #' @importFrom purrr map_dfr map
 #' @importFrom tibble as_tibble
-#' @importFrom stringr str_replace
-stata_shape_pal <- function() {
-  ## From s1mono, ignore small shapes
-  shapes <- c(
-    "circle",
-    "diamond",
-    "square",
-    "triangle",
-    "X",
-    "plus",
-    "circle_hollow",
-    "diamond_hollow",
-    "square_hollow",
-    "triangle_hollow"
-  )
+stata_shape_pal <- function(unicode = FALSE) {
   statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
-  shapenames <- tibble::deframe(statadata[, c("symbolstyle", "unicode_value")])
-  values <- as.hexmode(str_replace(shapenames[shapes], "U\\+", ""))
-  values <- -as.integer(values)
-  out <- manual_pal(values)
-  attr(out, "max_n") <- length(shapes)
-  out
+  new_shape_pal(
+    stata_shape_rows(statadata, stata_palette_shapes),
+    unicode = unicode
+  )
 }
 
 #' Stata shape scale
@@ -470,12 +488,13 @@ stata_shape_pal <- function() {
 #' See \code{\link{stata_shape_pal}()} for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
-#' @family shape stata
+#' @inheritParams stata_shape_pal
+#' @family shapes stata
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
 #' @importFrom ggplot2 discrete_scale
-scale_shape_stata <- function(...) {
-  discrete_scale("shape", palette = stata_shape_pal(), ...)
+scale_shape_stata <- function(..., unicode = FALSE) {
+  discrete_scale("shape", palette = stata_shape_pal(unicode = unicode), ...)
 }
 
 #' Stata linetype palette (discrete)
