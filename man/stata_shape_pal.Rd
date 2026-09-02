@@ -24,5 +24,8 @@ plus sign.
 }
 \seealso{
 See \code{\link{scale_shape_stata}()} for examples.
+
+Other shapes stata:
+\code{\link[=scale_shape_stata]{scale_shape_stata()}}
 }
 \concept{shapes stata}

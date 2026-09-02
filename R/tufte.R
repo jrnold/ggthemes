@@ -21,6 +21,7 @@
 #' Quantitative Information, Chapter 6.
 #'
 #' @family themes tufte
+#' @family tufte
 #' @example inst/examples/ex-theme_tufte.R
 #' @export
 #' @importFrom ggplot2 theme_bw

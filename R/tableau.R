@@ -143,7 +143,7 @@ scale_color_tableau <- scale_colour_tableau
 #' @export
 #' @param palette Palette name.
 #' @inheritParams cleveland_shape_pal
-#' @family shape tableau
+#' @family shapes tableau
 #' @example inst/examples/ex-tableau_shape_pal.R
 tableau_shape_pal <- function(palette = c("default", "filled", "proportions"), unicode = FALSE) {
   palette <- match.arg(palette)
@@ -158,7 +158,7 @@ tableau_shape_pal <- function(palette = c("default", "filled", "proportions"), u
 #' @export
 #' @inheritParams tableau_shape_pal
 #' @inheritParams ggplot2::scale_x_discrete
-#' @family shape tableau
+#' @family shapes tableau
 #' @example inst/examples/ex-scale_shape_tableau.R
 scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
   discrete_scale(
