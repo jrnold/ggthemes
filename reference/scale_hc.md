@@ -19,8 +19,10 @@ scale_fill_hc(palette = "default", ...)
 
 - palette:
 
-  `character` The name of the Highcharts theme to use. One of
-  `"default"`, or `"darkunica"`.
+  `character` The name of the Highcharts palette to use. One of
+  `"default"`, `"default_dark"`, `"classic"`, `"darkunica"`,
+  `"grid_light"`, `"sand_signika"`, `"high_contrast_light"`,
+  `"high_contrast_dark"`, `"avocado"`, `"sunset"` .
 
 - ...:
 

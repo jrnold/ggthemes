@@ -1,6 +1,6 @@
 # Highcharts Theme
 
-Theme based on [Highcharts](https://www.highcharts.com/) plots.
+Themes based on [Highcharts](https://www.highcharts.com/) plots.
 
 ## Usage
 
@@ -8,7 +8,7 @@ Theme based on [Highcharts](https://www.highcharts.com/) plots.
 theme_hc(
   base_size = 12,
   base_family = "sans",
-  style = c("default", "darkunica"),
+  style = c("default", "default_dark", "darkunica", "grid_light", "sand_signika"),
   bgcolor = NULL
 )
 ```
@@ -25,11 +25,27 @@ theme_hc(
 
 - style:
 
-  The Highcharts theme to use `'default'`, `'darkunica'`.
+  The Highcharts theme to use. One of `"default"`, `"default_dark"`,
+  `"darkunica"`, `"grid_light"`, `"sand_signika"` .
 
 - bgcolor:
 
   Deprecated
+
+## Details
+
+Only the Highcharts themes that restyle the chart itself get a `style`
+here. The `"high-contrast"`, `"avocado"` and `"sunset"` themes shipped
+with Highcharts 13 change nothing but the series colours, so they are
+available through
+[`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md)
+alone; combine them with `theme_hc("default")` or
+`theme_hc("default_dark")`.
+
+Highcharts pairs several of these themes with a web font (`darkunica`
+with Unica One, `grid_light` with Dosis, `sand_signika` with Signika).
+Those are not requested here, since the font may not be installed; pass
+`base_family` to use one.
 
 ## References
 
@@ -49,8 +65,11 @@ p <- ggplot(mtcars) +
   facet_wrap(~am)
 p + theme_hc() + scale_colour_hc()
 
-p + theme_hc(bgcolor = "darkunica") + scale_colour_hc("darkunica")
-#> Warning: `bgcolor` is deprecated. Use `style` instead.
+p + theme_hc(style = "darkunica") + scale_colour_hc("darkunica")
+
+p + theme_hc(style = "grid_light") + scale_colour_hc("grid_light")
+
+p + theme_hc(style = "default_dark") + scale_colour_hc("high_contrast_dark")
 
 
 dtemp <- data.frame(
@@ -120,7 +139,6 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   geom_line() +
   geom_point(size = 1.1) +
   ggtitle("Monthly Average Temperature") +
-  theme_hc(bgcolor = "darkunica") +
-  scale_fill_hc("darkunica")
-#> Warning: `bgcolor` is deprecated. Use `style` instead.
+  theme_hc(style = "darkunica") +
+  scale_colour_hc("darkunica")
 ```
