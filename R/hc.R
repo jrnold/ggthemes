@@ -65,7 +65,7 @@ theme_hc <- function(base_size = 12, base_family = "sans", style = c("default", 
 #' @export
 hc_pal <- function(palette = "default") {
   if (palette %in% names(ggthemes::ggthemes_data$hc)) {
-    manual_pal(unname(ggthemes::ggthemes_data$hc[[palette]]))
+    manual_pal_checked(unname(ggthemes::ggthemes_data$hc[[palette]]))
   } else {
     cli::cli_abort(
       "{.arg palette} must be one of {.val {names(ggthemes::ggthemes_data$hc)}}, not {.val {palette}}."

@@ -65,7 +65,7 @@ stata_pal <- function(scheme = NULL) {
     cli::cli_abort("{.arg scheme} must be one of {.val {sort(names(schemes))}}, not {.val {scheme}}.")
   }
   colors <- schemes[[scheme]]
-  f <- manual_pal(colors[["value"]])
+  f <- manual_pal_checked(colors[["value"]])
   attr(f, "max_n") <- nrow(colors)
   f
 }

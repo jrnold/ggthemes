@@ -86,7 +86,7 @@ test_that("ordered palettes contain no out-of-family colour", {
 test_that("grey ramps stay neutral and monotone in every channel", {
   skip_if_not_installed("farver")
   pals <- tableau_palette_colours("ordered-sequential")
-  expect_true(all(grey_ramps %in% names(pals)))
+  expect_contains(names(pals), grey_ramps)
 
   for (nm in grey_ramps) {
     values <- pals[[nm]]
@@ -135,4 +135,28 @@ test_that("discrete palettes draw correctly", {
     "palettes-discrete",
     swatch_plot(discrete_palette_colours(), "Discrete palettes")
   )
+})
+
+# Palettes built on `check_pal_n()` rejected a negative `n` by naming the
+# argument, but those built directly on `scales::manual_pal()` fell through to
+# `seq_len()` and reported "argument must be coercible to non-negative
+# integer", which names nothing the caller passed.
+test_that("every discrete palette rejects a negative n by naming the argument", {
+  messages <- vapply(
+    discrete_palette_functions(),
+    function(f) {
+      tryCatch(
+        {
+          f(-1L)
+          NA_character_
+        },
+        error = conditionMessage
+      )
+    },
+    character(1)
+  )
+  uninformative <- names(messages)[
+    !grepl("must be a non-negative integer", messages)
+  ]
+  expect_equal(uninformative, character(0))
 })

@@ -8,7 +8,7 @@ test_that("hc_pal works", {
 })
 
 test_that("hc_pal raises error with invalid palette", {
-  expect_error(hc_pal(palette = "asdgasdgasdgas"), regexp = "must be one of")
+  expect_snapshot(hc_pal(palette = "asdgasdgasdgas"), error = TRUE)
 })
 
 test_that("scale_colour_hc works", {
@@ -29,7 +29,7 @@ test_that("theme_hc works", {
 })
 
 test_that("bgcolor raises warning", {
-  expect_warning(theme_hc(bgcolor = "darkunica"), regexp = "deprecated")
+  expect_snapshot(x <- theme_hc(bgcolor = "darkunica"))
 })
 
 test_that("theme_hc draws correctly", {

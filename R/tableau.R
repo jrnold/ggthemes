@@ -146,7 +146,7 @@ scale_color_tableau <- scale_colour_tableau
 #' @family shapes tableau
 #' @example inst/examples/ex-tableau_shape_pal.R
 tableau_shape_pal <- function(palette = c("default", "filled", "proportions"), unicode = FALSE) {
-  palette <- match.arg(palette)
+  palette <- rlang::arg_match(palette)
   shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
   new_shape_pal(shapes, unicode = unicode)
 }

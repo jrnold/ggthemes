@@ -27,7 +27,7 @@ Imports:
     methods,
     purrr,
     rlang,
-    scales,
+    scales (>= 1.4.0),
     stats,
     tibble
 Suggests:

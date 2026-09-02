@@ -103,7 +103,7 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
 #' @example inst/examples/ex-gdocs_pal.R
 gdocs_pal <- function() {
   values <- ggthemes::ggthemes_data$gdocs$colors$value
-  f <- manual_pal(values)
+  f <- manual_pal_checked(values)
   attr(f, "max_n") <- length(values)
   f
 }

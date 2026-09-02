@@ -15,7 +15,7 @@ test_that("economist_pal fill=TRUE works", {
 })
 
 test_that("economist_pal raises warning with large number", {
-  expect_warning(economist_pal()(10))
+  expect_snapshot(x <- economist_pal()(10))
 })
 
 test_that("scale_colour_economist equals scale_color_economist", {

@@ -74,7 +74,7 @@ test_that("cleveland_shape_pal works with overlap = FALSE", {
   vals <- pal(n)
   expect_equal(length(vals), n)
   expect_type(vals, "integer")
-  expect_true(all(vals %in% c(0:25, 32:127)))
+  expect_contains(c(0:25, 32:127), vals)
 })
 
 test_that("scale_shape_cleveland works", {
@@ -83,7 +83,7 @@ test_that("scale_shape_cleveland works", {
 
 test_that("warn_unicode_pch warns only for unicode pch on non-UTF-8 locales", {
   testthat::local_mocked_bindings(l10n_info = function() list(`UTF-8` = FALSE), .package = "base")
-  expect_warning(warn_unicode_pch(c(-9675, -9679)), "Unicode")
+  expect_snapshot(x <- warn_unicode_pch(c(-9675, -9679)))
   expect_no_warning(warn_unicode_pch(c(1, 2, 3)))
 })
 

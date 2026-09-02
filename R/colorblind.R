@@ -23,7 +23,7 @@ colorblind_pal <- function(black = TRUE) {
     values <- values[values[["name"]] != "Black", ]
   }
   values <- unname(values[["value"]])
-  f <- manual_pal(values)
+  f <- manual_pal_checked(values)
   attr(f, "max_n") <- length(values)
   f
 }

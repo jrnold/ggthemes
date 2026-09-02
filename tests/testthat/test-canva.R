@@ -9,12 +9,12 @@ test_that("canva_pal works with alt palette", {
 })
 
 test_that("canva_pal raises warning with to large n", {
-  expect_warning(canva_pal()(10))
+  expect_snapshot(x <- canva_pal()(10))
 })
 
 
 test_that("canva_pal raises error with invalid palette", {
-  expect_error(canva_pal("adsffafd"), regexp = "not a valid .*palette. name")
+  expect_snapshot(canva_pal("adsffafd"), error = TRUE)
 })
 
 test_that("scale_colour_canva works", {

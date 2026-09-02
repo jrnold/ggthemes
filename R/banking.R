@@ -138,7 +138,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @importFrom stats median uniroot
 #' @example inst/examples/ex-bank_slopes.R
 bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as", "ao", "was"), ...) {
-  method <- match.arg(method)
+  method <- rlang::arg_match(method)
   fun <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y
   xyrat <- fun(calc_slopes(x, y, cull = cull), ...)
@@ -183,7 +183,7 @@ bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"
 #' bank_plot(p)
 bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = FALSE, layer = 1, ...) {
   stopifnot(ggplot2::is_ggplot(plot))
-  method <- match.arg(method)
+  method <- rlang::arg_match(method)
   built <- ggplot2::ggplot_build(plot)
   if (layer < 1 || layer > length(built$data)) {
     cli::cli_abort("{.arg plot} only has {length(built$data)} layer(s), but {.arg layer} = {layer}.")
