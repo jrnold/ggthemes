@@ -95,12 +95,12 @@ popViewport()
 
 # Draw the package name twice, clipped at the centre: pale over dark and dark over pale.
 pushViewport(viewport(x = 0.25, y = 0.23, width = 0.5, height = 0.14, clip = "on"))
-grid.text("ggthemes", x = 1, y = 0.5, just = "centre",
+grid.text("ggthemes", x = 1.04, y = 0.5, just = "centre",
   gp = gpar(col = solarized[["base3"]], fontsize = 16, fontface = "bold", fontfamily = "sans")
 )
 popViewport()
 pushViewport(viewport(x = 0.75, y = 0.23, width = 0.5, height = 0.14, clip = "on"))
-grid.text("ggthemes", x = 0, y = 0.5, just = "centre",
+grid.text("ggthemes", x = 0.04, y = 0.5, just = "centre",
   gp = gpar(col = solarized[["base03"]], fontsize = 16, fontface = "bold", fontfamily = "sans")
 )
 popViewport()
