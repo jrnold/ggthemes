@@ -4,34 +4,55 @@
 \alias{tableau_shape_pal}
 \title{Tableau Shape Palettes (discrete)}
 \usage{
-tableau_shape_pal(palette = c("default", "filled", "proportions"))
+tableau_shape_pal(
+  palette = c("default", "filled", "proportions"),
+  unicode = FALSE
+)
 }
 \arguments{
 \item{palette}{Palette name.}
+
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
+glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
+by the device font, so they render as blank boxes in a font without
+coverage; the default returns base pch codes, which every font can draw.}
 }
 \description{
 Shape palettes used by
 \href{https://www.tableau.com/}{Tableau}.
 }
 \details{
-Not all shape palettes in Tableau are supported. Additionally, these
-palettes are not exact, and use the best unicode character for the shape
-palette.
+Not all shape palettes in Tableau are supported, and these palettes are not
+exact.
 
-Since these palettes use unicode characters, their look may depend on the
-font being used, and not all characters may be available.
-
-Shape palettes in Tableau are used to expose images for use a markers in
+Shape palettes in Tableau are used to expose images for use as markers in
 charts, and thus are sometimes groupings of closely related symbols.
 }
+\note{
+Supported values by palette: \code{"default"} eight (ten with
+\code{unicode = TRUE}), \code{"filled"} six (ten), \code{"proportions"}
+two (five). Shapes with no base pch equivalent -- the sideways triangles,
+the solid star, and the partially filled circles -- are dropped rather than
+approximated by a different shape.
+
+\code{"proportions"} encodes \emph{fill fraction}, which base pch cannot
+express at all, so only its empty and full circles survive; they remain
+meaningful as a two-value scale. To encode a proportion, map \code{alpha}
+or \code{fill} instead, or use \code{unicode = TRUE} with a font covering
+Geometric Shapes, such as DejaVu Sans.
+}
 \examples{
+# The eight shapes with a font-independent equivalent.
+show_shapes(tableau_shape_pal()(8))
+
 \dontrun{
-  # need to set a font containing these values
-  show_shapes(tableau_shape_pal()(5))
+  # All ten, drawn from the device font. Needs a font covering Geometric
+  # Shapes, such as DejaVu Sans.
+  show_shapes(tableau_shape_pal(unicode = TRUE)(10))
 }
 }
 \seealso{
-Other shape tableau:
+Other shapes tableau:
 \code{\link[=scale_shape_tableau]{scale_shape_tableau()}}
 }
-\concept{shape tableau}
+\concept{shapes tableau}

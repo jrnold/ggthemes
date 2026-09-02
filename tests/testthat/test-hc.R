@@ -8,7 +8,7 @@ test_that("hc_pal works", {
 })
 
 test_that("hc_pal raises error with invalid palette", {
-  expect_error(hc_pal(palette = "asdgasdgasdgas"), regexp = "must be one of")
+  expect_snapshot(hc_pal(palette = "asdgasdgasdgas"), error = TRUE)
   # A numeric `palette` must not be treated as a positional index.
   expect_error(hc_pal(palette = 1), regexp = "must be one of")
 })
@@ -158,5 +158,9 @@ test_that("theme_hc keeps title justification when a style sets title colour", {
 })
 
 test_that("bgcolor raises warning", {
-  expect_warning(theme_hc(bgcolor = "darkunica"), regexp = "deprecated")
+  expect_snapshot(x <- theme_hc(bgcolor = "darkunica"))
+})
+
+test_that("theme_hc draws correctly", {
+  expect_doppelganger("theme_hc", theme_test_plot() + theme_hc())
 })

@@ -23,7 +23,7 @@ colors:
 - name: orange 2
   value: "#ff994d"
 - name: teal 2
-  value: "#ff994d"
+  value: "#7ed1d7"
 
 - name: blue 3
   value: "#b3cefb"
@@ -36,7 +36,7 @@ colors:
 - name: orange 3
   value: "#ffc599"
 - name: teal 3
-  value: "#c9e4e7"
+  value: "#b5e5e8"
 
 
 - name: blue 4
@@ -53,11 +53,11 @@ colors:
   value: "#edf8f9"
 
 shapes:
-  - {name: Circle, label: 'BLACK CIRCLE', unicode: U+25CF, character: ●}
-  - {name: Triangle, label: 'BLACK UP-POINTING TRIANGLE', unicode: U+25B2, character: ▲}
-  - {label: Square, name: 'BLACK MEDIUM SQUARE', unicode: U+25FC, character: ◼}
-  - {label: Diamond, name: 'BLACK DIAMOND', unicode: U+25C6, character: ◆}
-  - {label: Star, name: 'MULTIPLICATION X', unicode: U+2605, character: ★}
-  - {label: 'X mark', name: 'MULTIPLICATION X', unicode: U+2715, character: ✕}
-  - {label: Pentagon, name: 'BLACK PENTAGON', unicode: U+2B1F, character: ⬟}
-  - {label: Hexagon, name: 'BLACK HEXAGON', unicode: U+2B22, character: ⬢}
+  - {shape: "circle small", name: "Circle", label: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "triangle", name: "Triangle", label: "BLACK UP-POINTING TRIANGLE", unicode: "U+25B2", character: "▲"}
+  - {shape: "square", label: "Square", name: "BLACK MEDIUM SQUARE", unicode: "U+25FC", character: "◼"}
+  - {shape: "diamond", label: "Diamond", name: "BLACK DIAMOND", unicode: "U+25C6", character: "◆"}
+  - {shape: "star filled", label: "Star", name: "BLACK STAR", unicode: "U+2605", character: "★"}
+  - {shape: "cross", label: "X mark", name: "MULTIPLICATION X", unicode: "U+2715", character: "✕"}
+  - {shape: "pentagon", label: "Pentagon", name: "BLACK PENTAGON", unicode: "U+2B1F", character: "⬟"}
+  - {shape: "hexagon", label: "Hexagon", name: "BLACK HEXAGON", unicode: "U+2B22", character: "⬢"}

@@ -177,12 +177,8 @@ hc_pal <- function(palette = "default") {
     )
   }
   values <- unname(ggthemes::ggthemes_data$hc[[palette]])
-  max_n <- length(values)
-  f <- function(n) {
-    check_pal_n(n, max_n)
-    values[seq_len(n)]
-  }
-  attr(f, "max_n") <- max_n
+  f <- manual_pal_checked(values)
+  attr(f, "max_n") <- length(values)
   f
 }
 

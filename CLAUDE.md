@@ -6,35 +6,41 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ggthemes is an R package that provides extra themes, scales, and geoms for ggplot2. It replicates the look of plots from various sources including The Economist, FiveThirtyEight, Edward Tufte, Stephen Few, Stata, Excel, Wall Street Journal, Tableau, and more.
 
+## R package conventions
+
+General R package practice is **not** documented here. The `r-lib` skills
+(Posit, `posit-dev/skills`) are authoritative and take precedence:
+
+- **`r-package-development`** — devtools/roxygen2 workflow, test placement,
+  documentation rules, `_pkgdown.yml` upkeep, and `NEWS.md` bullet style.
+- **`testing-r-packages`** — testthat 3e structure, expectations, fixtures,
+  snapshots, mocking, `withr` cleanup.
+- **`cran-extrachecks`** — pre-submission checks beyond `devtools::check()`.
+- **`lifecycle`**, **`cli`** — deprecation staging and console messaging.
+
+This package is testthat edition 3 (`testthat (>= 3.2.0)`) and has a
+`_pkgdown.yml`, so those skills apply as written. Where existing code diverges
+from them, the skill is the target — follow it for new and edited code.
+
+Only project-specific facts live below.
+
 ## Development Commands
 
-### Building and Testing
+The `Makefile` is the entry point; prefer these over bare `Rscript` calls,
+since several targets chain steps (`build` regenerates docs, site, and data).
+
 ```bash
-# Full build (generates docs, site, and data)
-make build
-
-# Run package checks
-make test
-# Or directly:
-Rscript -e 'devtools::check()'
-
-# Generate documentation
-make docs
-# Or directly:
-Rscript -e 'devtools::document()'
-
-# Run linter
-make lint
-# Or directly:
-Rscript -e 'devtools::lint()'
-
-# Run code styling
-make style
-# Or directly:
-./scripts/format
+make build   # Full build: docs, site, and data
+make test    # devtools::check()
+make docs    # devtools::document()
+make lint    # lintr
+make style   # ./scripts/format (air)
+make data    # Rebuild package data (see below)
+make site    # pkgdown::build_site()
 ```
 
 ### Building Package Data
+
 ```bash
 # Rebuild package data from YAML/XML theme definitions
 make data
@@ -42,33 +48,21 @@ make data
 Rscript data-raw/build.R
 ```
 
-### Documentation Site
-```bash
-# Build pkgdown site
-make site
-# Or directly:
-Rscript -e 'pkgdown::build_site()'
-```
-
 ### README
+
+README.md is auto-generated from README.Rmd and must never be edited directly
+(the first line of README.md says so).
+
 ```bash
-# Regenerate README.md from README.Rmd
 Rscript -e 'knitr::knit("README.Rmd", output = "README.md", quiet = TRUE)'
-```
-
-### Running Tests
-```bash
-# Run all tests
-Rscript -e 'devtools::test()'
-
-# Run specific test file
-Rscript -e 'testthat::test_file("tests/testthat/test-economist.R")'
 ```
 
 ## Commit Conventions
 
-This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
+Update `NEWS.md` for any user-facing change as part of the commit that
+makes it.
 
+This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
 
 ### Format
 ```
@@ -96,10 +90,6 @@ docs: update README with new theme examples
 test: add visual regression tests for tufte theme
 chore: update pkgdown configuration
 ```
-
-## NEWS.md
-
-For user-facing changes update `NEWS.md` when commiting.
 
 ## Architecture
 
@@ -151,19 +141,55 @@ The `data-raw/build.R` script:
 
 ### Testing Strategy
 
-Tests use:
-- **vdiffr**: Visual regression testing via `expect_doppelganger()` helper in `helper-vdiffr.R`
-- Standard testthat expectations for palette functions
-- Tests are organized by theme/feature (one test file per major component)
+Test files are organized **per theme**, not strictly per `R/` source file, so a
+single `test-tableau.R` covers the palettes, scales, and theme together.
+
+Three complementary layers:
+
+- **Structural assertions** — the bulk of the suite. Checks against the theme
+  object itself (`expect_s3_class(theme_economist(), "theme")`,
+  `expect_equal(thm$text$family, "mono")`) and against palette functions
+  (length, `max_n`, hex validity, error and warning behaviour). These catch
+  what someone thought to assert on, and nothing else.
+- **Visual regression (vdiffr)** — every exported theme has an
+  `expect_doppelganger()` baseline built from the shared `theme_test_plot()`
+  figure in `helper-plots.R`, plus swatch-grid baselines for the Tableau
+  ordered and regular palette families and for the package's discrete
+  palettes. Baselines live in `tests/testthat/_snaps/`.
+- **Palette property assertions** — `test-palettes.R` asserts invariants over
+  whole palette families rather than one palette at a time: valid hex, no
+  duplicate colours, stable lengths (snapshotted), monotone lightness for
+  sequential ramps, no out-of-family colour, and per-channel monotonicity for
+  grey ramps. These are device-independent and name the offending palette and
+  index, so they diagnose better than an SVG diff. Palette-specific
+  regressions stay in `test-tableau.R`.
+
+#### vdiffr and when it runs
+
+`vdiffr` is in `Suggests`, so `helper-vdiffr.R` follows ggplot2's convention:
+it aliases `vdiffr::expect_doppelganger()` when vdiffr is installed, and
+otherwise skips — unless `VDIFFR_RUN_TESTS="true"`, in which case a missing
+vdiffr is an error rather than a silent loss of coverage. The R-CMD-check
+workflow sets that variable on the `release` R version only.
+
+Visual tests **do** run on GitHub Actions, because `r-lib/actions/setup-r`
+exports `NOT_CRAN=true`. They **do not** run on CRAN, because vdiffr delegates
+to `testthat::expect_snapshot_file(cran = FALSE)`. Both behaviours are
+intended; neither requires configuration in this repository.
+
+**Never accept a changed baseline without looking at it.** Because this
+package's entire output is images, a baseline regenerated from buggy output
+locks the bug in and turns the suite green. Review before accepting.
 
 ### Code Style
 
-Code sytle is enforced by the the [air](https://tidyverse.org/blog/2025/02/air/) and [lintr](https://lintr.r-lib.org/) packages.
+Enforced by [air](https://tidyverse.org/blog/2025/02/air/) and
+[lintr](https://lintr.r-lib.org/); generally
+[tidyverse style](https://style.tidyverse.org/).
 
-- Generally follows the [tidyverse style](https://style.tidyverse.org/).
-- Line length of 120
-- `air` package configuration: `air.toml`.
-- `lintr` package configuration: `.lintr`
+- Line length of 120 (wider than the tidyverse default)
+- `air` configuration: `air.toml`
+- `lintr` configuration: `.lintr`
 
 ### Spelling
 
@@ -192,5 +218,3 @@ When spell check finds new valid words, add them to `inst/WORDLIST` using `spell
 **Color Extraction**: The `get_colors()` utility in `utils.R` filters `ggthemes_data` by color names and extracts hex values.
 
 **Shape Encoding**: Shapes use negative integers as pch codes, converted from UTF-8 using `utf_8_to_pch()` in `data-raw/build.R`.
-
-**README Generation**: README.md is auto-generated from README.Rmd and should never be edited directly. The first line of README.md indicates this.

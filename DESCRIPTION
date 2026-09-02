@@ -21,19 +21,20 @@ Imports:
     cli,
     ggplot2 (>= 3.0.0),
     graphics,
+    grDevices,
     grid,
     lifecycle,
     methods,
     purrr,
     rlang,
-    scales,
+    scales (>= 1.4.0),
     stats,
-    stringr,
     tibble
 Suggests:
     dplyr,
     covr,
     extrafont,
+    farver,
     glue,
     knitr,
     lattice,
@@ -44,9 +45,11 @@ Suggests:
     quantreg,
     rmarkdown,
     spelling,
+    stringr,
+    systemfonts,
     testthat (>= 3.2.0),
     tidyr,
-    vdiffr,
+    vdiffr (>= 1.0.6),
     withr
 Description: Some extra themes, geoms, and scales for 'ggplot2'.
     Provides 'ggplot2' themes and scales that replicate the look of plots

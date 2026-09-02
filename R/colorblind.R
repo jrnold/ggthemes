@@ -13,7 +13,7 @@
 #'
 #' @export
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour
+#' @family colour colorblind
 #' @seealso The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}()},
 #'   and \code{\link{scale_color_tableau}()} for other colorblind palettes.
 #' @example inst/examples/ex-colorblind.R
@@ -23,7 +23,7 @@ colorblind_pal <- function(black = TRUE) {
     values <- values[values[["name"]] != "Black", ]
   }
   values <- unname(values[["value"]])
-  f <- manual_pal(values)
+  f <- manual_pal_checked(values)
   attr(f, "max_n") <- length(values)
   f
 }

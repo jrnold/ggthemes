@@ -29,6 +29,13 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      _R_CHECK_FORCE_SUGGESTS_: false
+      # Require the vdiffr visual tests on the stable version of R, so that a
+      # missing vdiffr fails rather than silently skipping. Older and
+      # development versions of R may not have vdiffr available, and are
+      # allowed to skip.
+      VDIFFR_RUN_TESTS: ${{ matrix.config.r == 'release' }}
+      VDIFFR_LOG_PATH: "../vdiffr.Rout.fail"
 
     steps:
       - uses: actions/checkout@v6

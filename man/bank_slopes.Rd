@@ -24,7 +24,7 @@ bank_slopes(
 
 \item{method}{One of 'ms' (Median Absolute Slope), 'as' (Average
 Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
-Average Absolute Slope).}
+Average Absolute Orientation).}
 
 \item{...}{No longer used, but kept for backwards compatibility.}
 }
@@ -36,7 +36,7 @@ Calculate the optimal aspect ratio of a line graph by banking the
 slopes to 45 degrees as suggested by W.S. Cleveland. This
 maximizes the ability to visually differentiate differences in
 slope. This function will calculate the optimal aspect ratio for
-a line plot using any of the methods described in Herr and Argwala
+a line plot using any of the methods described in Heer and Agrawala
 (2006). In their review of the methods they suggest using median
 absolute slope banking ('ms'), which produces aspect ratios which
 are generally the median of the various methods provided here.
@@ -94,18 +94,23 @@ that,
 This has no closed-form solution and is found numerically with
 \code{\link[stats]{uniroot}}.
 
-\strong{Weighted Average Absolute Slope Banking}
+\strong{Weighted Average Absolute Orientation Banking}
 
-Identical to Average Absolute Slope Banking, except each segment's
-contribution is weighted by its horizontal run, \eqn{dx_i}{dx_i}, so
-that segments spanning more horizontal (screen) space are weighted more
-heavily than segments that happen to be sampled more densely in
-\eqn{x}{x}. Using \eqn{s'_i}{s'_i} as above,
+This is the weighted version of Average Absolute Orientation Banking from
+Heer and Agrawala (2006). Each segment's absolute orientation is weighted
+by its length in display space, so both the orientation and its weight
+depend on \eqn{\alpha}. With \eqn{s'_i}{s'_i} as above and segment run
+\eqn{dx_i}{dx_i}, \eqn{\alpha}{alpha} is chosen such that,
 \deqn{
-  \alpha = \frac{\sum_i dx_i \left| s'_i \right|}{\sum_i dx_i}
+  \frac{\sum_i \left|\arctan(s'_i / \alpha)\right|
+  dx_i \sqrt{1 + (s'_i / \alpha)^2}}
+  {\sum_i dx_i \sqrt{1 + (s'_i / \alpha)^2}} = \frac{\pi}{4}
 }{
- alpha = sum(dx_i * |s'_i|) / sum(dx_i)
+sum(|atan(s'_i / alpha)| * dx_i * sqrt(1 + (s'_i / alpha)^2)) /
+  sum(dx_i * sqrt(1 + (s'_i / alpha)^2)) = pi / 4
 }
+This has no closed-form solution and is found numerically with
+\code{\link[stats]{uniroot}}.
 
 Heer and Agrawala (2006) also discuss multi-scale (global and local)
 orientation resolution, which extend these single-scale methods by

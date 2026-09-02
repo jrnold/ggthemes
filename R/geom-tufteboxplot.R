@@ -61,6 +61,7 @@
 #'    with whiskers extending to the most extreme points that are < 1.5 IQR
 #'    away from the hinges (i.e., the first and third quartiles).
 #' @family geom tufte
+#' @family tufte
 #' @export
 #'
 #' @example inst/examples/ex-geom_tufteboxplot.R
