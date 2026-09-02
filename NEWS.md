@@ -1,5 +1,13 @@
 # ggthemes (development version)
 
+- `stata_shape_pal()` now fails with a message naming the offending
+  symbolstyles when Stata's shape data does not contain the ten the palette
+  selects. It previously looked them up with a bare `match()`, so a renamed or
+  missing `symbolstyle` produced an all-`NA` row that was silently dropped as
+  "no font-independent equivalent", leaving `max_n` quietly below the
+  documented ten. The list of ten now lives in one place and `data-raw/build.R`
+  sources it, so the build's duplicate-pch check cannot run over a stale copy.
+
 - BREAKING CHANGE: `stata_shape_pal()`, `calc_shape_pal()`,
   `tableau_shape_pal()` and `cleveland_shape_pal()` now return base pch codes
   by default instead of pch codes derived from Unicode glyphs. R draws a

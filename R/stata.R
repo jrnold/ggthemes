@@ -431,6 +431,31 @@ theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
     theme_stata_colors(scheme = scheme)
 }
 
+#' Select shape rows by symbolstyle, in the order asked for
+#'
+#' A bare `match()` returns `NA` for a name the catalogue does not have, which
+#' indexes an all-`NA` row. `new_shape_pal()` would then drop that row as "no
+#' font-independent equivalent" and report a `max_n` quietly below the
+#' documented ten. Every other name lookup this data goes through fails loudly
+#' -- `shape_table()` in `data-raw/build.R` aborts on an unknown shape name --
+#' so this one does too.
+#' @noRd
+stata_shape_rows <- function(statadata, shapes) {
+  idx <- match(shapes, statadata[["symbolstyle"]])
+  if (anyNA(idx)) {
+    # `absent` is read only inside cli's glue strings, which lintr cannot see.
+    absent <- shapes[is.na(idx)] # nolint: object_usage_linter.
+    cli::cli_abort(c(
+      "Stata shape data is missing {length(absent)} symbolstyle{?s}: {.val {absent}}.",
+      "i" = paste(
+        "This means {.code ggthemes_data$stata$shapes} disagrees with the",
+        "palette's canonical symbolstyles; rebuild it with {.file data-raw/build.R}."
+      )
+    ))
+  }
+  statadata[idx, ]
+}
+
 #' Stata shape palette (discrete)
 #'
 #' Shape palette based on the symbol palette in Stata used in scheme s2mono.
@@ -451,22 +476,11 @@ theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
 #' @importFrom purrr map_dfr map
 #' @importFrom tibble as_tibble
 stata_shape_pal <- function(unicode = FALSE) {
-  ## From s1mono, ignore small shapes
-  shapes <- c(
-    "circle",
-    "diamond",
-    "square",
-    "triangle",
-    "X",
-    "plus",
-    "circle_hollow",
-    "diamond_hollow",
-    "square_hollow",
-    "triangle_hollow"
-  )
   statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
-  statadata <- statadata[match(shapes, statadata[["symbolstyle"]]), ]
-  new_shape_pal(statadata, unicode = unicode)
+  new_shape_pal(
+    stata_shape_rows(statadata, stata_palette_shapes),
+    unicode = unicode
+  )
 }
 
 #' Stata shape scale
