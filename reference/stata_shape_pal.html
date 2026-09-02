@@ -42,9 +42,27 @@ This palette supports up to 10 values.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stata_shape_pal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stata_shape_pal</span><span class="op">(</span>unicode <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+
+
+<dl><dt id="arg-unicode">unicode<a class="anchor" aria-label="anchor" href="#arg-unicode"></a></dt>
+<dd><p>If <code>TRUE</code>, return pch codes derived from Unicode
+glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
+by the device font, so they render as blank boxes in a font without
+coverage; the default returns base pch codes, which every font can draw.</p></dd>
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>Stata's ten plotting symbols all have a base pch equivalent, so this palette
+supports ten values on either branch and nothing is dropped:
+solid and hollow circle, diamond, square and triangle, plus the X and the
+plus sign.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>See <code><a href="scale_shape_stata.html">scale_shape_stata()</a></code> for examples.</p></div>

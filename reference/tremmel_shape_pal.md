@@ -19,7 +19,10 @@ tremmel_shape_pal(overlap = FALSE, alt = FALSE)
 
   If `TRUE`, then when `n == 3`, use a solid circle, plus sign and empty
   triangle. Otherwise use a solid circle, empty circle, and empty
-  triangle.
+  triangle. Defaults to `FALSE`, the triple Tremmel's Experiment 1
+  actually measured; the `TRUE` triple is argued on feature-dimension
+  grounds that Tremmel flags as not directly supported by the
+  experiments.
 
 ## Details
 

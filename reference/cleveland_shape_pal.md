@@ -5,7 +5,7 @@ Shape palettes for overlapping and non-overlapping points.
 ## Usage
 
 ``` r
-cleveland_shape_pal(overlap = TRUE)
+cleveland_shape_pal(overlap = TRUE, unicode = FALSE)
 ```
 
 ## Arguments
@@ -14,23 +14,40 @@ cleveland_shape_pal(overlap = TRUE)
 
   `logical` Use the scale for overlapping points?
 
+- unicode:
+
+  If `TRUE`, return pch codes derived from Unicode glyphs, as this
+  palette did before ggthemes 6.1.0. Glyph shapes are drawn by the
+  device font, so they render as blank boxes in a font without coverage;
+  the default returns base pch codes, which every font can draw.
+
 ## Note
 
 In the *Elements of Graphing Data*, W.S. Cleveland suggests two shape
 palettes for scatter plots: one for overlapping data and another for
-non-overlapping data. The symbols for overlapping data relies on pattern
+non-overlapping data. The symbols for overlapping data rely on pattern
 discrimination, while the symbols for non-overlapping data vary the
-amount of fill. This palette attempts to create these palettes. However,
-I found that these were hard to replicate. Using the R shapes and
-unicode fonts: the symbols can vary in size, they are dependent of the
-fonts used, and there does not exist a unicode symbol for a circle with
-a vertical line. If someone can improve this palette, please let me
-know.
+amount of fill.
 
-Following Tremmel (1995), I replace the circle with a vertical line with
+Following Tremmel (1995), the circle with a vertical line is replaced by
 an encircled plus sign.
 
-The palette `cleveland_shape_pal()` supports up to five values.
+`cleveland_shape_pal(overlap = TRUE)` supports four values on either
+branch.
+
+`cleveland_shape_pal(overlap = FALSE)` supports three values by default
+and five with `unicode = TRUE`. Its five source symbols encode *fill
+fraction*, which base pch cannot express, so the two partially filled
+circles are dropped rather than approximated by a different shape. To
+encode a proportion, map `alpha` or `fill` instead; to restore the five
+glyphs, use `unicode = TRUE` with a font that covers Mathematical
+Operators, such as STIX Two Text.
+
+The truncation is arguably an improvement. Tremmel (1995) Experiment 2
+tested exactly this five-symbol set and found the fill-graded circles
+the worst performers measured, with the encircled plus and encircled dot
+the slowest pair and the one producing the most errors. The three shapes
+that survive are the better-separating subset.
 
 ## References
 

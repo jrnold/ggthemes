@@ -42,7 +42,10 @@ Tableau."></head><body>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tableau_shape_pal</span><span class="op">(</span>palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"filled"</span>, <span class="st">"proportions"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tableau_shape_pal</span><span class="op">(</span></span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"filled"</span>, <span class="st">"proportions"</span><span class="op">)</span>,</span>
+<span>  unicode <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -52,16 +55,33 @@ Tableau."></head><body>
 <dl><dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
 <dd><p>Palette name.</p></dd>
 
+
+<dt id="arg-unicode">unicode<a class="anchor" aria-label="anchor" href="#arg-unicode"></a></dt>
+<dd><p>If <code>TRUE</code>, return pch codes derived from Unicode
+glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
+by the device font, so they render as blank boxes in a font without
+coverage; the default returns base pch codes, which every font can draw.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Not all shape palettes in Tableau are supported. Additionally, these
-palettes are not exact, and use the best unicode character for the shape
-palette.</p>
-<p>Since these palettes use unicode characters, their look may depend on the
-font being used, and not all characters may be available.</p>
-<p>Shape palettes in Tableau are used to expose images for use a markers in
+    <p>Not all shape palettes in Tableau are supported, and these palettes are not
+exact.</p>
+<p>Shape palettes in Tableau are used to expose images for use as markers in
 charts, and thus are sometimes groupings of closely related symbols.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>Supported values by palette: <code>"default"</code> eight (ten with
+<code>unicode = TRUE</code>), <code>"filled"</code> six (ten), <code>"proportions"</code>
+two (five). Shapes with no base pch equivalent – the sideways triangles,
+the solid star, and the partially filled circles – are dropped rather than
+approximated by a different shape.</p>
+<p><code>"proportions"</code> encodes <em>fill fraction</em>, which base pch cannot
+express at all, so only its empty and full circles survive; they remain
+meaningful as a two-value scale. To encode a proportion, map <code>alpha</code>
+or <code>fill</code> instead, or use <code>unicode = TRUE</code> with a font covering
+Geometric Shapes, such as DejaVu Sans.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -71,9 +91,14 @@ charts, and thus are sometimes groupings of closely related symbols.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span>  <span class="co"># need to set a font containing these values</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="show_shapes.html">show_shapes</a></span><span class="op">(</span><span class="fu">tableau_shape_pal</span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># The eight shapes with a font-independent equivalent.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="show_shapes.html">show_shapes</a></span><span class="op">(</span><span class="fu">tableau_shape_pal</span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="tableau_shape_pal-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span>  <span class="co"># All ten, drawn from the device font. Needs a font covering Geometric</span></span></span>
+<span class="r-in"><span>  <span class="co"># Shapes, such as DejaVu Sans.</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="show_shapes.html">show_shapes</a></span><span class="op">(</span><span class="fu">tableau_shape_pal</span><span class="op">(</span>unicode <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

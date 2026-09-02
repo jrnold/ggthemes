@@ -7,7 +7,7 @@ for details.
 ## Usage
 
 ``` r
-scale_shape_tableau(palette = "default", ...)
+scale_shape_tableau(palette = "default", ..., unicode = FALSE)
 ```
 
 ## Arguments
@@ -122,6 +122,13 @@ scale_shape_tableau(palette = "default", ...)
   `super`
 
   :   The super class to use for the constructed scale
+
+- unicode:
+
+  If `TRUE`, return pch codes derived from Unicode glyphs, as this
+  palette did before ggthemes 6.1.0. Glyph shapes are drawn by the
+  device font, so they render as blank boxes in a font without coverage;
+  the default returns base pch codes, which every font can draw.
 
 ## See also
 
