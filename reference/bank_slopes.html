@@ -155,13 +155,12 @@ $$
 $$
 This has no closed-form solution and is found numerically with
 <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code>.</p>
-<p>Heer and Agrawala (2006) also discuss multi-scale (global and local)
-orientation resolution, which extend these single-scale methods by
-aggregating slopes computed at multiple scales rather than only between
-adjacent points. These are not implemented here. In general, the
-median, average, or average-orientation absolute slope methods will
-produce reasonable results without requiring this additional
-complexity.</p>
+<p>All of these methods consider the entirety of the data at once, so they
+accentuate local features and can obscure larger-scale trends. Heer and
+Agrawala (2006) address this with multi-scale banking, which uses spectral
+analysis to identify the frequency scales present in the data and banks
+each one separately; see <code><a href="bank_slopes_multiscale.html">bank_slopes_multiscale</a></code> and
+<code><a href="bank_plot_multiscale.html">bank_plot_multiscale</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -177,7 +176,9 @@ Graphs.' Journal of Computational and Statistical Graphics.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/lattice/man/banking.html" class="external-link">banking()</a></code>, <code><a href="bank_plot.html">bank_plot</a></code> to bank
-a <code>ggplot</code> using its own data.</p></div>
+a <code>ggplot</code> using its own data, and
+<code><a href="bank_slopes_multiscale.html">bank_slopes_multiscale</a></code> to bank each frequency scale in the
+data separately.</p></div>
     </div>
 
     <div class="section level2">

@@ -98,12 +98,14 @@ weight depend on \\\alpha\\. With \\s'\_i\\ as above and segment run
 \$\$ This has no closed-form solution and is found numerically with
 [`uniroot`](https://rdrr.io/r/stats/uniroot.html).
 
-Heer and Agrawala (2006) also discuss multi-scale (global and local)
-orientation resolution, which extend these single-scale methods by
-aggregating slopes computed at multiple scales rather than only between
-adjacent points. These are not implemented here. In general, the median,
-average, or average-orientation absolute slope methods will produce
-reasonable results without requiring this additional complexity.
+All of these methods consider the entirety of the data at once, so they
+accentuate local features and can obscure larger-scale trends. Heer and
+Agrawala (2006) address this with multi-scale banking, which uses
+spectral analysis to identify the frequency scales present in the data
+and banks each one separately; see
+[`bank_slopes_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
+and
+[`bank_plot_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md).
 
 ## References
 
@@ -123,7 +125,9 @@ Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 
 [`banking()`](https://rdrr.io/pkg/lattice/man/banking.html),
 [`bank_plot`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
-to bank a `ggplot` using its own data.
+to bank a `ggplot` using its own data, and
+[`bank_slopes_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
+to bank each frequency scale in the data separately.
 
 ## Examples
 

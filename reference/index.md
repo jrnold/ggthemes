@@ -281,6 +281,10 @@ ggplot2 geom and stat layers.
   : Bank Slopes to 45 degrees
 - [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
   : Bank a Plot's Own Data to 45 Degrees
+- [`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
+  : Multi-Scale Banking to 45 Degrees
+- [`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md)
+  : Bank a Plot's Own Data at Every Scale
 - [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
   [`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
   : Pretty axis breaks inclusive of extreme values
