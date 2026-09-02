@@ -75,6 +75,13 @@
   than silently drawing nothing. `sides` packs side letters into one string, so
   a typo such as `sides = "xy"` previously produced an empty layer with no
   message. Valid values are strings made up of `"t"`, `"r"`, `"b"` and `"l"`.
+- Fix the `?extended_range_breaks` help page, which described a function
+  `scales_extended_range_breaks()` that does not exist and attributed the
+  wrong return value to each function. `extended_range_breaks_()` returns the
+  break values; `extended_range_breaks()` returns a breaks function. The page
+  now also warns that ggplot2 passes a `breaks` function the expanded scale
+  limits, so `breaks = extended_range_breaks()` labels the panel edges rather
+  than the data extremes; apply the function to the data to label the extremes.
 - Fix `theme_economist_white()` failing on installations without **dplyr**.
   The internal `get_colors()` helper called `dplyr::filter()`, but dplyr is a
   suggested package, not an import; it now uses base subsetting. The test
