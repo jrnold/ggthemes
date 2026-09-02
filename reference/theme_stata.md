@@ -24,7 +24,7 @@ theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
   "s2color", "s2mono", "s1color", "s1rcolor", "s1mono", "s2manual",
   "s1manual", or "sj". If `NULL`, the default, "s2color" is used and a
   deprecation message is issued; this default becomes "stcolor" in
-  ggthemes 7.0.0.
+  ggthemes 8.0.0.
 
 ## Details
 

@@ -123,4 +123,6 @@ scale_fill_economist(...)
 for examples.
 
 Other colour economist:
-[`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
+[`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md),
+[`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md),
+[`scale_colour_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)

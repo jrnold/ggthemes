@@ -58,14 +58,24 @@ make data
 Rscript data-raw/build.R
 ```
 
+`data/ggthemes_data.rda` is generated — never merge it. On a conflict,
+resolve the `data-raw/` sources, re-run `Rscript data-raw/build.R`, and
+stage the result.
+
 ### README
 
 README.md is auto-generated from README.Rmd and must never be edited
 directly (the first line of README.md says so).
 
 ``` bash
-Rscript -e 'knitr::knit("README.Rmd", output = "README.md", quiet = TRUE)'
+# Install first: the Rmd calls library("ggthemes"), and knitr::knit() alone
+# skips the github_document step and silently writes the error into README.md.
+Rscript -e 'devtools::install(quick = TRUE, upgrade = FALSE)'
+Rscript -e 'rmarkdown::render("README.Rmd", output_file = "README.md")'
 ```
+
+Theme changes alter `man/figures/README-*.png`; commit the regenerated
+figures.
 
 ## Commit Conventions
 
@@ -102,6 +112,30 @@ messages.
     docs: update README with new theme examples
     test: add visual regression tests for tufte theme
     chore: update pkgdown configuration
+
+## Deprecation
+
+Use `lifecycle`; never delete an exported function or argument outright,
+since that breaks reverse dependencies at `R CMD check`. Deprecate and
+forward instead (see
+[`circlefill_shape_pal()`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md)
+in `R/shapes.R`).
+
+- `deprecate_warn()` for something now ignored; `deprecate_soft()` for a
+  default that will change later.
+- `when` is the **forthcoming release version** the deprecation ships in
+  — never the `.9000` dev version from `DESCRIPTION`. It is purely
+  message text (lifecycle does no version comparison), so it must name a
+  version a user can match to a NEWS heading. Writing a not-yet-released
+  number is normal.
+- A message promising a *future* change names a later version than
+  `when`, so the announcement and the change never land in the same
+  release.
+- Deprecated args take `fill = deprecated()` + `if (is_present(fill))`,
+  not a sentinel default.
+- Test with `expect_snapshot()`, matching `test-shapes.R`. These skip on
+  CRAN, so they only record under `devtools::test()`, not
+  [`testthat::test_file()`](https://testthat.r-lib.org/reference/test_file.html).
 
 ## Architecture
 
@@ -245,6 +279,11 @@ proper nouns - Technical terms specific to this project
 When spell check finds new valid words, add them to `inst/WORDLIST`
 using
 [`spelling::update_wordlist()`](https://docs.ropensci.org/spelling//reference/wordlist.html).
+
+[`spelling::update_wordlist()`](https://docs.ropensci.org/spelling//reference/wordlist.html)
+rewrites `inst/WORDLIST` in R’s locale order; the file is C-locale
+sorted, so re-sort with `sort(method = "radix")` to keep the diff
+minimal.
 
 ## Key Concepts
 

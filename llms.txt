@@ -295,6 +295,13 @@ properties.
   [`scale_color_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
   [`scale_fill_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
   : Economist color scales
+- [`scale_colour_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
+  [`scale_color_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
+  [`scale_fill_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
+  [`scale_colour_economist_ordinal()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
+  [`scale_color_economist_ordinal()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
+  [`scale_fill_economist_ordinal()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
+  : Economist sequential color scales
 - [`scale_fill_excel()`](https://jrnold.github.io/ggthemes/reference/scale_excel.md)
   [`scale_colour_excel()`](https://jrnold.github.io/ggthemes/reference/scale_excel.md)
   [`scale_color_excel()`](https://jrnold.github.io/ggthemes/reference/scale_excel.md)
@@ -396,6 +403,9 @@ Color, shape, and linetype palettes.
   : Colorblind Color Palette (Discrete) and Scales
 - [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
   : Economist color palette (discrete)
+- [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md)
+  [`economist_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md)
+  : Economist sequential color palettes
 - [`excel_new_pal()`](https://jrnold.github.io/ggthemes/reference/excel_new_pal.md)
   : Excel (current versions) color palettes (discrete)
 - [`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md)

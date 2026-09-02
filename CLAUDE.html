@@ -68,11 +68,16 @@
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">make</span> data</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Or directly:</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">Rscript</span> data-raw/build.R</span></code></pre></div>
+<p><code>data/ggthemes_data.rda</code> is generated — never merge it. On a conflict, resolve the <code>data-raw/</code> sources, re-run <code>Rscript data-raw/build.R</code>, and stage the result.</p>
 </div>
 <div class="section level3">
 <h3 id="readme">README<a class="anchor" aria-label="anchor" href="#readme"></a></h3>
 <p>README.md is auto-generated from README.Rmd and must never be edited directly (the first line of README.md says so).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'knitr::knit("README.Rmd", output = "README.md", quiet = TRUE)'</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Install first: the Rmd calls library("ggthemes"), and knitr::knit() alone</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># skips the github_document step and silently writes the error into README.md.</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::install(quick = TRUE, upgrade = FALSE)'</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'rmarkdown::render("README.Rmd", output_file = "README.md")'</span></span></code></pre></div>
+<p>Theme changes alter <code>man/figures/README-*.png</code>; commit the regenerated figures.</p>
 </div>
 </div>
 <div class="section level2">
@@ -113,6 +118,17 @@ test: add visual regression tests for tufte theme
 chore: update pkgdown configuration</code></pre>
 </div>
 </div>
+<div class="section level2">
+<h2 id="deprecation">Deprecation<a class="anchor" aria-label="anchor" href="#deprecation"></a></h2>
+<p>Use <code>lifecycle</code>; never delete an exported function or argument outright, since that breaks reverse dependencies at <code>R CMD check</code>. Deprecate and forward instead (see <code><a href="reference/circlefill_shape_pal.html">circlefill_shape_pal()</a></code> in <code>R/shapes.R</code>).</p>
+<ul><li>
+<code>deprecate_warn()</code> for something now ignored; <code>deprecate_soft()</code> for a default that will change later.</li>
+<li>
+<code>when</code> is the <strong>forthcoming release version</strong> the deprecation ships in — never the <code>.9000</code> dev version from <code>DESCRIPTION</code>. It is purely message text (lifecycle does no version comparison), so it must name a version a user can match to a NEWS heading. Writing a not-yet-released number is normal.</li>
+<li>A message promising a <em>future</em> change names a later version than <code>when</code>, so the announcement and the change never land in the same release.</li>
+<li>Deprecated args take <code>fill = deprecated()</code> + <code>if (is_present(fill))</code>, not a sentinel default.</li>
+<li>Test with <code>expect_snapshot()</code>, matching <code>test-shapes.R</code>. These skip on CRAN, so they only record under <code>devtools::test()</code>, not <code><a href="https://testthat.r-lib.org/reference/test_file.html" class="external-link">testthat::test_file()</a></code>.</li>
+</ul></div>
 <div class="section level2">
 <h2 id="architecture">Architecture<a class="anchor" aria-label="anchor" href="#architecture"></a></h2>
 <div class="section level3">
@@ -184,6 +200,7 @@ chore: update pkgdown configuration</code></pre>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'spelling::update_wordlist()'</span></span></code></pre></div>
 <p>The custom wordlist is stored in <code>inst/WORDLIST</code> and contains project-specific terms like: - Package names (ggplot, vdiffr, pkgdown) - Theme names (fivethirtyeight, solarized, stata) - Author names and proper nouns - Technical terms specific to this project</p>
 <p>When spell check finds new valid words, add them to <code>inst/WORDLIST</code> using <code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code>.</p>
+<p><code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code> rewrites <code>inst/WORDLIST</code> in R’s locale order; the file is C-locale sorted, so re-sort with <code>sort(method = "radix")</code> to keep the diff minimal.</p>
 </div>
 </div>
 <div class="section level2">
