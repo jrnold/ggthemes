@@ -25,10 +25,9 @@ points <- data.frame(
 
 scatter_plot <- function(light = TRUE, transparent = FALSE) {
   background <- if (light) solarized[["base3"]] else solarized[["base03"]]
-  foreground <- if (light) solarized[["base01"]] else solarized[["base1"]]
   grid_colour <- if (light) solarized[["base2"]] else solarized[["base02"]]
 
-  ggplot(points, aes(x, y, colour = colour)) +
+  ggplot(points, aes(x = .data[["x"]], y = .data[["y"]], colour = .data[["colour"]])) +
     geom_hline(yintercept = 1:5, colour = grid_colour, linewidth = 0.45) +
     geom_vline(xintercept = 1:5, colour = grid_colour, linewidth = 0.45) +
     geom_smooth(
