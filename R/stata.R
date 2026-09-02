@@ -56,7 +56,7 @@ stata_default_scheme <- function(scheme, what) {
 #' in ggthemes 7.0.0.
 #'
 #' @export
-#' @family stata colour
+#' @family colour stata
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme = NULL) {
   scheme <- stata_default_scheme(scheme, "stata_pal()")
@@ -475,7 +475,7 @@ stata_shape_pal <- function(unicode = FALSE) {
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams stata_shape_pal
-#' @family shape stata
+#' @family shapes stata
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
 #' @importFrom ggplot2 discrete_scale

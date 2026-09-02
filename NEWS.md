@@ -87,6 +87,13 @@
   suggested package, not an import; it now uses base subsetting. The test
   suite no longer uses dplyr either, so `R CMD check` passes with only the
   hard dependencies installed.
+- Fix the `@family` tags that split related help pages apart. Word-order and
+  singular/plural inconsistencies (`stata colour`, `solarized colour`,
+  `shape stata`, `shape tableau`) each put one page in a family of its own, so
+  it linked to nothing. `?extended_range_breaks` had no family at all and was
+  unreachable from `theme_tufte()`, `geom_rangeframe()` and
+  `geom_tufteboxplot()`, which it is meant to be used with; those four now
+  cross-reference each other.
 - Add vdiffr visual regression baselines for every exported theme, and swatch
   baselines plus property assertions (valid hex, no duplicate colours, stable
   lengths, monotone lightness, no out-of-family colour, monotone grey ramps)

@@ -85,6 +85,7 @@
 #' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
 #'   for Positioning Tick Labels on Axes, InfoVis 2010.
 #' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
+#' @family tufte
 #' @rdname range_breaks
 #' @export
 extended_range_breaks_ <- function(

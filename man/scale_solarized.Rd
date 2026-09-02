@@ -85,8 +85,7 @@ p <- ggplot(mtcars) +
 p + theme_solarized() + scale_colour_solarized()
 }
 \seealso{
-Other solarized colour:
+Other colour solarized:
 \code{\link[=solarized_pal]{solarized_pal()}}
 }
-\concept{colour scales}
-\concept{solarized colour}
+\concept{colour solarized}

@@ -54,6 +54,13 @@ instead: \code{scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))}.
 Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
   for Positioning Tick Labels on Axes, InfoVis 2010.
 }
+\seealso{
+Other tufte:
+\code{\link[=geom_rangeframe]{geom_rangeframe()}},
+\code{\link[=geom_tufteboxplot]{geom_tufteboxplot()}},
+\code{\link[=theme_tufte]{theme_tufte()}}
+}
 \author{
 Justin Talbot \email{jtalbot@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
 }
+\concept{tufte}

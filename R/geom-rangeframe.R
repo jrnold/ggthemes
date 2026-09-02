@@ -30,6 +30,7 @@
 #' Quantitative Information, Chapter 6.
 #'
 #' @family geom tufte
+#' @family tufte
 #' @importFrom ggplot2 layer
 #' @example inst/examples/ex-geom_rangeframe.R
 geom_rangeframe <- function(
