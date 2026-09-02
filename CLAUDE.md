@@ -253,7 +253,7 @@ proper nouns - Technical terms specific to this project
 
 When spell check finds new valid words, add them to `inst/WORDLIST`
 using
-[`spelling::update_wordlist()`](https://docs.ropensci.org/spelling//reference/wordlist.html).
+[`spelling::update_wordlist()`](https://docs.ropensci.org/spelling/reference/wordlist.html).
 
 ## Key Concepts
 

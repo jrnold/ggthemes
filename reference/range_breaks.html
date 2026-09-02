@@ -92,15 +92,19 @@ range.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>For <code>extended_range_breaks</code>, the vector of axis label locations.
-For <code>scales_extended_range_breaks</code>, a function which takes a single argument, a vector of data, and returns
+    <p>For <code>extended_range_breaks_</code>, the vector of axis label locations.
+For <code>extended_range_breaks</code>, a function which takes a single argument, a vector of data, and returns
   the vector of axis label locations.</p>
-<p>A function which returns breaks given a vector.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>extended_range_breaks</code> implements the algorithm and returns the break values.
-<code>scales_extended_range_breaks</code> uses the conventions of the <span class="pkg">scales</span> package, and returns a function.</p>
+    <p><code>extended_range_breaks_</code> implements the algorithm and returns the break values.
+<code>extended_range_breaks</code> uses the conventions of the <span class="pkg">scales</span> package, and returns a function.</p>
+<p>Note that ggplot2 hands a <code>breaks</code> function the expanded scale limits, not the data
+range. Passing <code>extended_range_breaks()</code> directly to <code>breaks</code> therefore places the
+end labels at the panel edges rather than at the extremes of the data. To label the extremes,
+which is what pairs with <code><a href="geom_rangeframe.html">geom_rangeframe()</a></code>, apply the function to the data
+instead: <code>scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

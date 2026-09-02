@@ -49,18 +49,24 @@ extended_range_breaks(n = 5, ...)
 
 ## Value
 
-For `extended_range_breaks`, the vector of axis label locations. For
-`scales_extended_range_breaks`, a function which takes a single
-argument, a vector of data, and returns the vector of axis label
-locations.
-
-A function which returns breaks given a vector.
+For `extended_range_breaks_`, the vector of axis label locations. For
+`extended_range_breaks`, a function which takes a single argument, a
+vector of data, and returns the vector of axis label locations.
 
 ## Details
 
-`extended_range_breaks` implements the algorithm and returns the break
-values. `scales_extended_range_breaks` uses the conventions of the
-scales package, and returns a function.
+`extended_range_breaks_` implements the algorithm and returns the break
+values. `extended_range_breaks` uses the conventions of the scales
+package, and returns a function.
+
+Note that ggplot2 hands a `breaks` function the expanded scale limits,
+not the data range. Passing `extended_range_breaks()` directly to
+`breaks` therefore places the end labels at the panel edges rather than
+at the extremes of the data. To label the extremes, which is what pairs
+with
+[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+apply the function to the data instead:
+`scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))`.
 
 ## References
 
