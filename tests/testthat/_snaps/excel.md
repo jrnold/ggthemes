@@ -20,5 +20,5 @@
       excel_new_pal("adfaasdfa")
     Condition
       Error in `excel_new_pal()`:
-      ! `theme` must be one of "Atlas", "Badge", "Berlin", "Celestial", "Crop", "Depth", "Droplet", "Facet", "Feathered", "Gallery", "Headlines", "Integral", "Ion Boardroom", "Ion", "Madison", "Main Event", "Mesh", "Office Theme", ..., "Yellow Orange", and "Yellow".
+      ! `theme` must be one of "Atlas", "Badge", "Berlin", "Celestial", "Crop", "Depth", "Droplet", "Facet", "Feathered", "Gallery", "Headlines", "Integral", "Ion Boardroom", "Ion", "Madison", "Main Event", "Mesh", "Office", ..., "Yellow Orange", and "Yellow".
 

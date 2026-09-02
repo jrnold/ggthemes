@@ -6,11 +6,11 @@
 \alias{scale_fill_excel_new}
 \title{Excel (current versions) color scales}
 \usage{
-scale_colour_excel_new(theme = "Office Theme", ...)
+scale_colour_excel_new(theme = "Office", ...)
 
-scale_color_excel_new(theme = "Office Theme", ...)
+scale_color_excel_new(theme = "Office", ...)
 
-scale_fill_excel_new(theme = "Office Theme", ...)
+scale_fill_excel_new(theme = "Office", ...)
 }
 \arguments{
 \item{theme}{The name of the Office theme or color theme

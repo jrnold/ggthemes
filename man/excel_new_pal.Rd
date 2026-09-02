@@ -4,7 +4,7 @@
 \alias{excel_new_pal}
 \title{Excel (current versions) color palettes (discrete)}
 \usage{
-excel_new_pal(theme = "Office Theme")
+excel_new_pal(theme = "Office")
 }
 \arguments{
 \item{theme}{The name of the Office theme or color theme
@@ -14,6 +14,14 @@ palette. Available themes include:
 }
 \description{
 Color palettes used by current versions of Microsoft Office and Excel.
+}
+\details{
+In 2023 Microsoft replaced the long-standing Office theme with a new
+default and renamed the old one. The default here, \code{"Office"}, is the
+current palette; \code{"Office 2013"} is the palette Excel used from 2013
+until 2022. The former ggthemes names \code{"Office Theme"} and
+\code{"Office 2007-2010"} still work, and select \code{"Office 2013"} and
+\code{"Office 2007"} respectively.
 }
 \examples{
 library("scales")

@@ -13,6 +13,15 @@
 # nolint end
 
 # This no longer works as of 2024-02-09.
+#
+# Since then excel-themes.yml has been edited by hand, so re-running this would
+# silently undo two things. First, the "Office" theme (Microsoft's default since
+# 2023) was added from the published colour scheme rather than from a .thmx, and
+# an Excel install predating that theme would not produce it. Second, this
+# script keys themes on the name inside the file, which gives the pre-rename
+# "Office Theme" and "Office 2007-2010"; ggthemes now uses Microsoft's current
+# names, "Office 2013" and "Office 2007". Reconcile both before overwriting the
+# YAML, and note that excel_theme_aliases in R/excel.R maps the old names.
 
 # suppressPackageStartupMessages({
 #   library("xml2")
