@@ -112,13 +112,12 @@ sum(|atan(s'_i / alpha)| * dx_i * sqrt(1 + (s'_i / alpha)^2)) /
 This has no closed-form solution and is found numerically with
 \code{\link[stats]{uniroot}}.
 
-Heer and Agrawala (2006) also discuss multi-scale (global and local)
-orientation resolution, which extend these single-scale methods by
-aggregating slopes computed at multiple scales rather than only between
-adjacent points. These are not implemented here. In general, the
-median, average, or average-orientation absolute slope methods will
-produce reasonable results without requiring this additional
-complexity.
+All of these methods consider the entirety of the data at once, so they
+accentuate local features and can obscure larger-scale trends. Heer and
+Agrawala (2006) address this with multi-scale banking, which uses spectral
+analysis to identify the frequency scales present in the data and banks
+each one separately; see \code{\link{bank_slopes_multiscale}} and
+\code{\link{bank_plot_multiscale}}.
 }
 
 \examples{
@@ -165,5 +164,7 @@ Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 }
 \seealso{
 \code{\link[lattice]{banking}()}, \code{\link{bank_plot}} to bank
-a \code{ggplot} using its own data.
+a \code{ggplot} using its own data, and
+\code{\link{bank_slopes_multiscale}} to bank each frequency scale in the
+data separately.
 }

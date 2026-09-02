@@ -109,13 +109,12 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' This has no closed-form solution and is found numerically with
 #' \code{\link[stats]{uniroot}}.
 #'
-#' Heer and Agrawala (2006) also discuss multi-scale (global and local)
-#' orientation resolution, which extend these single-scale methods by
-#' aggregating slopes computed at multiple scales rather than only between
-#' adjacent points. These are not implemented here. In general, the
-#' median, average, or average-orientation absolute slope methods will
-#' produce reasonable results without requiring this additional
-#' complexity.
+#' All of these methods consider the entirety of the data at once, so they
+#' accentuate local features and can obscure larger-scale trends. Heer and
+#' Agrawala (2006) address this with multi-scale banking, which uses spectral
+#' analysis to identify the frequency scales present in the data and banks
+#' each one separately; see \code{\link{bank_slopes_multiscale}} and
+#' \code{\link{bank_plot_multiscale}}.
 #'
 #' @references
 #' Cleveland, W. S., M. E. McGill, and R. McGill. The Shape Parameter
@@ -133,7 +132,9 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @return \code{numeric} The aspect ratio (x , y).
 #'
 #' @seealso \code{\link[lattice]{banking}()}, \code{\link{bank_plot}} to bank
-#' a \code{ggplot} using its own data.
+#' a \code{ggplot} using its own data, and
+#' \code{\link{bank_slopes_multiscale}} to bank each frequency scale in the
+#' data separately.
 #' @export
 #' @importFrom stats median uniroot
 #' @example inst/examples/ex-bank_slopes.R
@@ -204,12 +205,14 @@ bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = FALSE, l
   plot + ggplot2::coord_fixed(ratio = 1 / xyrat)
 }
 
-check_bank_plot_data <- function(data) {
+# `fn` names the function the user called, since `bank_plot_multiscale()`
+# shares this check.
+check_bank_plot_data <- function(data, fn = "bank_plot") {
   missing <- setdiff(c("x", "y"), names(data))
   if (length(missing) > 0) {
     cli::cli_abort(c(
       "The layer data is missing required column(s): {.field {missing}}.",
-      "i" = "{.fn bank_plot} needs both {.field x} and {.field y}."
+      "i" = "{.fn {fn}} needs both {.field x} and {.field y}."
     ))
   }
   invisible(data)

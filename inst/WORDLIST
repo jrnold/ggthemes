@@ -77,6 +77,7 @@ codepoints
 colour
 colours
 continous
+convolving
 coord
 daroczig
 devtools
@@ -124,6 +125,7 @@ rcolor
 rlang
 rstudio
 sj
+slopeless
 solarized
 stata
 stcolor
@@ -133,6 +135,7 @@ styleguide
 styleguide's
 styleguide’s
 stylesheet
+tibble
 tidyverse
 tufte
 unicode

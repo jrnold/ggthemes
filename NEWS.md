@@ -1,5 +1,17 @@
 # ggthemes (development version)
 
+- Add `bank_slopes_multiscale()` and `bank_plot_multiscale()`, implementing
+  multi-scale banking to 45 degrees (Heer and Agrawala 2006, section 3).
+  Single-scale banking considers all of the data at once, so it accentuates
+  local features and can obscure larger-scale trends. Multi-scale banking uses
+  spectral analysis to identify the frequency scales that carry real energy,
+  low-pass filters the data to each scale, and banks the resulting trend
+  curve, returning one aspect ratio per scale.
+  `bank_slopes_multiscale()` returns a tibble of frequencies and ratios;
+  `bank_plot_multiscale()` returns one `ggplot` per scale, reproducing the
+  small-multiples display used in the paper. On `sunspot.year` the
+  implementation selects the same frequency scales the paper reports.
+
 - `stata_shape_pal()` now fails with a message naming the offending
   symbolstyles when Stata's shape data does not contain the ten the palette
   selects. It previously looked them up with a bare `match()`, so a renamed or
