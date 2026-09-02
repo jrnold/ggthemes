@@ -128,7 +128,9 @@ geom_rangeframe(
 
   A string that controls which sides of the plot the frames appear on.
   It can be set to a string containing any of `'trbl'`, for top, right,
-  bottom, and left.
+  bottom, and left. Any other value is an error: a frame cannot be drawn
+  on a side that was not named, so a typo would otherwise silently draw
+  nothing.
 
 - na.rm:
 

@@ -134,7 +134,8 @@ lists which parameters it can accept.</p></li>
 <dt id="arg-sides">sides<a class="anchor" aria-label="anchor" href="#arg-sides"></a></dt>
 <dd><p>A string that controls which sides of the plot the frames appear on.
 It can be set to a string containing any of <code>'trbl'</code>, for top, right,
-bottom, and left.</p></dd>
+bottom, and left. Any other value is an error: a frame cannot be drawn on a
+side that was not named, so a typo would otherwise silently draw nothing.</p></dd>
 
 
 <dt id="arg-na-rm">na.rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
