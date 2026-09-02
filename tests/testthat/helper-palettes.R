@@ -44,6 +44,10 @@ step_outlier_ratio <- function(x) {
 # `max_n` so that a change in a palette's maximum shows up as a test failure
 # rather than silently redrawing the baseline.
 discrete_palette_specs <- function() {
+  # `ptol_pal()` is deprecated; its colours are still covered here so the
+  # baseline keeps guarding them until the function is removed. The palettes
+  # are built here, so this is where the deprecation warning fires.
+  withr::local_options(lifecycle_verbosity = "quiet")
   list(
     calc = list(calc_pal(), 12L),
     canva = list(canva_pal(), 4L),

@@ -70,6 +70,14 @@
   `tableau_shape_pal()` an invalid `palette`, with a message naming the
   argument and the value supplied instead of `match.arg()`'s
   `'arg' should be one of ...`. Misspellings now get a "Did you mean" hint.
+- Deprecate `ptol_pal()`, `scale_colour_ptol()`, `scale_color_ptol()` and
+  `scale_fill_ptol()`. Use the
+  [khroma](https://CRAN.R-project.org/package=khroma) package instead, which
+  tracks Paul Tol's colour schemes as he revises them. The ggthemes palette is
+  the original 12-colour qualitative scheme from Tol's 2012 technical note and
+  has not followed the revisions on his current site,
+  <https://sronpersonalpages.nl/~pault/>; the closest successor is
+  `khroma::colour("muted")`. The functions still work, but warn.
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
   actual colour order (blue, red, brown). The old name still works but warns.
