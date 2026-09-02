@@ -1,7 +1,7 @@
 # Tableau shape scales
 
 See
-[`tableau_shape_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
+[`tableau_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
 for details.
 
 ## Usage
@@ -133,7 +133,7 @@ scale_shape_tableau(palette = "default", ..., unicode = FALSE)
 ## See also
 
 Other shapes tableau:
-[`tableau_shape_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
+[`tableau_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
 
 ## Examples
 

@@ -22,7 +22,7 @@ numbers_pal(palette = "Classic")
 ## See also
 
 Other colour numbers:
-[`scale_fill_numbers()`](http://jrnold.github.io/ggthemes/reference/scale_numbers.md)
+[`scale_fill_numbers()`](https://jrnold.github.io/ggthemes/reference/scale_numbers.md)
 
 ## Examples
 

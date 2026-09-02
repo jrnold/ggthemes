@@ -1,9 +1,9 @@
 # Tableau color scales (discrete)
 
 Categorical (qualitative) color scales used in Tableau. Use the function
-[`scale_colour_gradient_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md)
+[`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md)
 for the sequential and
-[`scale_colour_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md)
+[`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md)
 for the diverging continuous color scales from Tableu.
 
 ## Usage
@@ -36,14 +36,14 @@ scale_color_tableau(
 - palette:
 
   Palette name. See
-  [`tableau_color_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
+  [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
   for available palettes.
 
 - type:
 
   Palette type. One of `"regular"`, `"sequential"`, or `"diverging"`.
   See
-  [`tableau_color_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_color_pal.md).
+  [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md).
 
 - direction:
 
@@ -57,14 +57,14 @@ scale_color_tableau(
 
 ## See also
 
-[`tableau_color_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
+[`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
 for references.
 
 Other colour tableau:
-[`scale_colour_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
-[`scale_colour_gradient_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
-[`tableau_color_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_color_pal.md),
-[`tableau_gradient_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
+[`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
+[`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
+[`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md),
+[`tableau_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
 
 ## Examples
 

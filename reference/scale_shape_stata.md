@@ -1,7 +1,7 @@
 # Stata shape scale
 
 See
-[`stata_shape_pal()`](http://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
+[`stata_shape_pal()`](https://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
 for details.
 
 ## Usage
@@ -129,7 +129,7 @@ scale_shape_stata(..., unicode = FALSE)
 ## See also
 
 Other shapes stata:
-[`stata_shape_pal()`](http://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
+[`stata_shape_pal()`](https://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
 
 ## Examples
 

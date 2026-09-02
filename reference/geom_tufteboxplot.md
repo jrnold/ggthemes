@@ -71,7 +71,7 @@ geom_tufteboxplot(
 
   The statistical transformation to use on the data for this layer, as a
   string. The default (`stat = 'fivenumber'`) calls
-  [`stat_fivenumber`](http://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
+  [`stat_fivenumber`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
   and produces whiskers that extend from the interquartile range to the
   extremes of the data; specifying
   [`stat_boxplot`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
@@ -229,12 +229,12 @@ plots. The American Statistician 32, 12-16.
 [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
 
 Other geom tufte:
-[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
 
 Other tufte:
-[`extended_range_breaks_()`](http://jrnold.github.io/ggthemes/reference/range_breaks.md),
-[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
-[`theme_tufte()`](http://jrnold.github.io/ggthemes/reference/theme_tufte.md)
+[`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+[`theme_tufte()`](https://jrnold.github.io/ggthemes/reference/theme_tufte.md)
 
 ## Examples
 

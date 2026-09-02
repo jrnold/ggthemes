@@ -27,7 +27,7 @@ An object of class
 ## See also
 
 Other themes excel:
-[`theme_excel()`](http://jrnold.github.io/ggthemes/reference/theme_excel.md)
+[`theme_excel()`](https://jrnold.github.io/ggthemes/reference/theme_excel.md)
 
 ## Examples
 

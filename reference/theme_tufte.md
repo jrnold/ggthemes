@@ -5,7 +5,7 @@ Edward Tufte \*The Visual Display of Quantitative Information\*. No
 border, no axis lines, no grids. This theme works best in combination
 with
 [`geom_rug()`](https://ggplot2.tidyverse.org/reference/geom_rug.html) or
-[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md).
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md).
 
 ## Usage
 
@@ -43,9 +43,9 @@ Chapter 6.
 ## See also
 
 Other tufte:
-[`extended_range_breaks_()`](http://jrnold.github.io/ggthemes/reference/range_breaks.md),
-[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
-[`geom_tufteboxplot()`](http://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
+[`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+[`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
 
 ## Examples
 

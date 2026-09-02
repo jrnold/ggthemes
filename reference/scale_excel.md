@@ -120,9 +120,9 @@ scale_color_excel(...)
 ## See also
 
 Other colour excel:
-[`excel_new_pal()`](http://jrnold.github.io/ggthemes/reference/excel_new_pal.md),
-[`excel_pal()`](http://jrnold.github.io/ggthemes/reference/excel_pal.md),
-[`scale_colour_excel_new()`](http://jrnold.github.io/ggthemes/reference/scale_excel_new.md)
+[`excel_new_pal()`](https://jrnold.github.io/ggthemes/reference/excel_new_pal.md),
+[`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md),
+[`scale_colour_excel_new()`](https://jrnold.github.io/ggthemes/reference/scale_excel_new.md)
 
 ## Examples
 

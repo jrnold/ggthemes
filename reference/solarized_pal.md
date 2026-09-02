@@ -25,7 +25,7 @@ Euclidean distance between colors in L\*a\*b space.
 ## See also
 
 Other colour solarized:
-[`scale_fill_solarized()`](http://jrnold.github.io/ggthemes/reference/scale_solarized.md)
+[`scale_fill_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
 
 ## Examples
 

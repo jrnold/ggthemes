@@ -119,21 +119,21 @@ For user-facing changes update `NEWS.md` when commiting.
 theme has its own file (e.g., `economist.R`, `tufte.R`,
 `fivethirtyeight.R`) - Each file typically contains: - Color palette
 function (e.g.,
-[`economist_pal()`](http://jrnold.github.io/ggthemes/reference/economist_pal.md)) -
+[`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)) -
 Scale functions for both color/fill (e.g.,
-[`scale_color_economist()`](http://jrnold.github.io/ggthemes/reference/scale_economist.md),
-[`scale_fill_economist()`](http://jrnold.github.io/ggthemes/reference/scale_economist.md)) -
+[`scale_color_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md),
+[`scale_fill_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)) -
 Theme function (e.g.,
-[`theme_economist()`](http://jrnold.github.io/ggthemes/reference/theme_economist.md)) -
+[`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)) -
 `utils.R`: Shared utilities including `check_pal_n()`, `get_colors()`,
 and the `%||%` operator - `geom-*.R`: Custom geoms like
-[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
 and
-[`geom_tufteboxplot()`](http://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md) -
+[`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md) -
 `stat-*.R`: Custom stats like
-[`stat_fivenumber()`](http://jrnold.github.io/ggthemes/reference/stat_fivenumber.md) -
+[`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md) -
 `base.R`: Contains
-[`theme_foundation()`](http://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+[`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
 the base theme that many other themes build upon
 
 **data-raw/**: Data generation and theme definitions - `build.R`: Master
@@ -161,7 +161,7 @@ Most themes follow this structure:
     - `scale_fill_*()`
 3.  **Theme function** (`theme_*()`): Defines complete plot appearance
     - Usually starts with
-      [`theme_foundation()`](http://jrnold.github.io/ggthemes/reference/theme_foundation.md)
+      [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md)
       or another base theme
     - Customizes elements using `theme()` with `element_*()` functions
 

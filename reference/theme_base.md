@@ -21,11 +21,11 @@ theme_base(base_size = 16, base_family = "")
 ## See also
 
 Other themes:
-[`theme_clean()`](http://jrnold.github.io/ggthemes/reference/theme_clean.md),
-[`theme_foundation()`](http://jrnold.github.io/ggthemes/reference/theme_foundation.md),
-[`theme_igray()`](http://jrnold.github.io/ggthemes/reference/theme_igray.md),
-[`theme_par()`](http://jrnold.github.io/ggthemes/reference/theme_par.md),
-[`theme_solid()`](http://jrnold.github.io/ggthemes/reference/theme_solid.md)
+[`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
+[`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+[`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md),
+[`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md),
+[`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)
 
 ## Examples
 

@@ -3,7 +3,7 @@
 Theme to replicate the ugly monstrosity that was the old gray-background
 Excel chart. Please never use this. This theme should be combined with
 the
-[`scale_colour_excel()`](http://jrnold.github.io/ggthemes/reference/scale_excel.md)
+[`scale_colour_excel()`](https://jrnold.github.io/ggthemes/reference/scale_excel.md)
 color scale.
 
 ## Usage
@@ -34,7 +34,7 @@ An object of class
 ## See also
 
 Other themes excel:
-[`theme_excel_new()`](http://jrnold.github.io/ggthemes/reference/theme_excel_new.md)
+[`theme_excel_new()`](https://jrnold.github.io/ggthemes/reference/theme_excel_new.md)
 
 ## Examples
 

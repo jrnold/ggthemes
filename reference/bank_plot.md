@@ -1,7 +1,7 @@
 # Bank a Plot's Own Data to 45 Degrees
 
 A convenience wrapper around
-[`bank_slopes`](http://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+[`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
 that extracts `x`/`y` directly from an already-specified `ggplot`, so
 you do not have to separately reconstruct the plotted vectors by hand.
 It builds `plot` with
@@ -32,7 +32,7 @@ bank_plot(
 - method, cull, ...:
 
   Passed to
-  [`bank_slopes`](http://jrnold.github.io/ggthemes/reference/bank_slopes.md).
+  [`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md).
 
 - layer:
 
@@ -61,7 +61,7 @@ one individually.
 
 ## See also
 
-[`bank_slopes`](http://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+[`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
 
 ## Examples
 

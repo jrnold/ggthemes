@@ -47,8 +47,8 @@ Scatterplots" Journal of Computational and Graphical Statistics,
 ## See also
 
 Other shapes:
-[`circlefill_shape_pal()`](http://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md),
-[`cleveland_shape_pal()`](http://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md),
-[`scale_shape_circlefill()`](http://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
-[`scale_shape_cleveland()`](http://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md),
-[`scale_shape_tremmel()`](http://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md)
+[`circlefill_shape_pal()`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md),
+[`cleveland_shape_pal()`](https://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md),
+[`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
+[`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md),
+[`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md)

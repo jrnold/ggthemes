@@ -27,7 +27,7 @@ This function called for the side effect of creating a plot. It returns
 ## See also
 
 [`show_col()`](https://scales.r-lib.org/reference/show_col.html),
-[`show_linetypes()`](http://jrnold.github.io/ggthemes/reference/show_linetypes.md)
+[`show_linetypes()`](https://jrnold.github.io/ggthemes/reference/show_linetypes.md)
 
 ## Examples
 

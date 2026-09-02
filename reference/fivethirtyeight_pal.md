@@ -12,7 +12,7 @@ fivethirtyeight_pal()
 ## See also
 
 Other colour fivethirtyeight:
-[`scale_colour_fivethirtyeight()`](http://jrnold.github.io/ggthemes/reference/scale_fivethirtyeight.md)
+[`scale_colour_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/scale_fivethirtyeight.md)
 
 ## Examples
 

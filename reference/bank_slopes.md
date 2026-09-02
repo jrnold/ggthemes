@@ -122,7 +122,7 @@ Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 ## See also
 
 [`banking()`](https://rdrr.io/pkg/lattice/man/banking.html),
-[`bank_plot`](http://jrnold.github.io/ggthemes/reference/bank_plot.md)
+[`bank_plot`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
 to bank a `ggplot` using its own data.
 
 ## Examples

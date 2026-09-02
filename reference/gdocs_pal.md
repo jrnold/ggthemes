@@ -11,7 +11,7 @@ gdocs_pal()
 ## See also
 
 Other colour gdocs:
-[`scale_fill_gdocs()`](http://jrnold.github.io/ggthemes/reference/scale_gdocs.md)
+[`scale_fill_gdocs()`](https://jrnold.github.io/ggthemes/reference/scale_gdocs.md)
 
 ## Examples
 

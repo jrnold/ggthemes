@@ -1,7 +1,7 @@
 # Stata color scales
 
 See
-[`stata_pal()`](http://jrnold.github.io/ggthemes/reference/stata_pal.md)
+[`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md)
 for details.
 
 ## Usage
@@ -129,4 +129,4 @@ scale_color_stata(scheme = NULL, ...)
 ## See also
 
 Other colour stata:
-[`stata_pal()`](http://jrnold.github.io/ggthemes/reference/stata_pal.md)
+[`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md)

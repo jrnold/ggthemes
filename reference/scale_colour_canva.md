@@ -1,7 +1,7 @@
 # Discrete color scale using canva.com color palettes
 
 Color scale for canva.com color palettes described in
-[`canva_palettes()`](http://jrnold.github.io/ggthemes/reference/canva_palettes.md).
+[`canva_palettes()`](https://jrnold.github.io/ggthemes/reference/canva_palettes.md).
 
 ## Usage
 
@@ -23,5 +23,5 @@ scale_fill_canva(..., palette = "Fresh and bright")
 - palette:
 
   Palette name. See the names of
-  [`canva_palettes()`](http://jrnold.github.io/ggthemes/reference/canva_palettes.md)
+  [`canva_palettes()`](https://jrnold.github.io/ggthemes/reference/canva_palettes.md)
   for valid names.

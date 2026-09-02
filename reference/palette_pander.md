@@ -23,7 +23,7 @@ palette_pander(n, random_order = FALSE)
 ## See also
 
 Other colour pander:
-[`scale_color_pander()`](http://jrnold.github.io/ggthemes/reference/scale_pander.md)
+[`scale_color_pander()`](https://jrnold.github.io/ggthemes/reference/scale_pander.md)
 
 ## Examples
 

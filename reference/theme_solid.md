@@ -27,11 +27,11 @@ theme_solid(base_size = 12, base_family = "", fill = NA)
 ## See also
 
 Other themes:
-[`theme_base()`](http://jrnold.github.io/ggthemes/reference/theme_base.md),
-[`theme_clean()`](http://jrnold.github.io/ggthemes/reference/theme_clean.md),
-[`theme_foundation()`](http://jrnold.github.io/ggthemes/reference/theme_foundation.md),
-[`theme_igray()`](http://jrnold.github.io/ggthemes/reference/theme_igray.md),
-[`theme_par()`](http://jrnold.github.io/ggthemes/reference/theme_par.md)
+[`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md),
+[`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
+[`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+[`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md),
+[`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
 
 ## Examples
 

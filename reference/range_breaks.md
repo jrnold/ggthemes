@@ -64,7 +64,7 @@ not the data range. Passing `extended_range_breaks()` directly to
 `breaks` therefore places the end labels at the panel edges rather than
 at the extremes of the data. To label the extremes, which is what pairs
 with
-[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
 apply the function to the data instead:
 `scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))`.
 
@@ -76,9 +76,9 @@ Algorithm for Positioning Tick Labels on Axes, InfoVis 2010.
 ## See also
 
 Other tufte:
-[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
-[`geom_tufteboxplot()`](http://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md),
-[`theme_tufte()`](http://jrnold.github.io/ggthemes/reference/theme_tufte.md)
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+[`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md),
+[`theme_tufte()`](https://jrnold.github.io/ggthemes/reference/theme_tufte.md)
 
 ## Author
 

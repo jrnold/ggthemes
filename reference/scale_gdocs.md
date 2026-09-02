@@ -120,8 +120,8 @@ scale_color_gdocs(...)
 ## See also
 
 See
-[`theme_gdocs()`](http://jrnold.github.io/ggthemes/reference/theme_gdocs.md)
+[`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md)
 for examples.
 
 Other colour gdocs:
-[`gdocs_pal()`](http://jrnold.github.io/ggthemes/reference/gdocs_pal.md)
+[`gdocs_pal()`](https://jrnold.github.io/ggthemes/reference/gdocs_pal.md)

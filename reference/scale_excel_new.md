@@ -137,9 +137,9 @@ scale_fill_excel_new(theme = "Office Theme", ...)
 ## See also
 
 Other colour excel:
-[`excel_new_pal()`](http://jrnold.github.io/ggthemes/reference/excel_new_pal.md),
-[`excel_pal()`](http://jrnold.github.io/ggthemes/reference/excel_pal.md),
-[`scale_fill_excel()`](http://jrnold.github.io/ggthemes/reference/scale_excel.md)
+[`excel_new_pal()`](https://jrnold.github.io/ggthemes/reference/excel_new_pal.md),
+[`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md),
+[`scale_fill_excel()`](https://jrnold.github.io/ggthemes/reference/scale_excel.md)
 
 ## Examples
 

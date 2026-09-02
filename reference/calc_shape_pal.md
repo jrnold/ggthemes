@@ -31,7 +31,7 @@ the last of these.
 ## See also
 
 Other shapes calc:
-[`scale_shape_calc()`](http://jrnold.github.io/ggthemes/reference/scale_shape_calc.md)
+[`scale_shape_calc()`](https://jrnold.github.io/ggthemes/reference/scale_shape_calc.md)
 
 ## Examples
 

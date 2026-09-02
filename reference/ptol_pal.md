@@ -24,7 +24,7 @@ SRON/EPS/TN/09-002.
 ## See also
 
 Other colour ptol:
-[`scale_colour_ptol()`](http://jrnold.github.io/ggthemes/reference/scale_ptol.md)
+[`scale_colour_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
 
 ## Examples
 

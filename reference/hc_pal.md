@@ -19,4 +19,4 @@ hc_pal(palette = "default")
 ## See also
 
 Other colour hc:
-[`scale_colour_hc()`](http://jrnold.github.io/ggthemes/reference/scale_hc.md)
+[`scale_colour_hc()`](https://jrnold.github.io/ggthemes/reference/scale_hc.md)

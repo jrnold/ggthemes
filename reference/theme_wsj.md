@@ -35,7 +35,7 @@ theme_wsj(
 ## Details
 
 This theme should be used with
-[`scale_color_wsj()`](http://jrnold.github.io/ggthemes/reference/scale_wsj.md).
+[`scale_color_wsj()`](https://jrnold.github.io/ggthemes/reference/scale_wsj.md).
 
 ## References
 

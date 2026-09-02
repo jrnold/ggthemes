@@ -145,7 +145,7 @@ R](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-pale
 The dichromat package,
 [`dichromat_pal()`](https://scales.r-lib.org/reference/pal_dichromat.html),
 and
-[`scale_color_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_color_tableau.md)
+[`scale_color_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md)
 for other colorblind palettes.
 
 ## Examples

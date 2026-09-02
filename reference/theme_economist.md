@@ -58,7 +58,7 @@ light gray (or white) background often used by *The Economist* blog
 [Graphic Detail](https://www.economist.com/topics/graphic-detail).
 
 Use
-[`scale_color_economist()`](http://jrnold.github.io/ggthemes/reference/scale_economist.md)
+[`scale_color_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
 with this theme. The x axis should be displayed on the right hand side.
 
 *The Economist* uses "ITC Officina Sans" as its font for graphs. If you

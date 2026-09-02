@@ -90,10 +90,10 @@ Computing Systems (CHI)
 ## See also
 
 Other colour tableau:
-[`scale_colour_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
-[`scale_colour_gradient_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
-[`scale_colour_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),
-[`tableau_gradient_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
+[`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
+[`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
+[`scale_colour_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),
+[`tableau_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
 
 ## Examples
 

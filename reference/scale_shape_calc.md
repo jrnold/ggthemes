@@ -1,7 +1,7 @@
 # Calc shape scale
 
 See
-[`calc_shape_pal()`](http://jrnold.github.io/ggthemes/reference/calc_shape_pal.md)
+[`calc_shape_pal()`](https://jrnold.github.io/ggthemes/reference/calc_shape_pal.md)
 for details.
 
 ## Usage
@@ -128,8 +128,8 @@ scale_shape_calc(..., unicode = FALSE)
 
 ## See also
 
-[`theme_calc()`](http://jrnold.github.io/ggthemes/reference/theme_calc.md)
+[`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md)
 for examples.
 
 Other shapes calc:
-[`calc_shape_pal()`](http://jrnold.github.io/ggthemes/reference/calc_shape_pal.md)
+[`calc_shape_pal()`](https://jrnold.github.io/ggthemes/reference/calc_shape_pal.md)

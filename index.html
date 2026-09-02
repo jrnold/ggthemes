@@ -6,6 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Extra Themes, Scales and Geoms for ggplot2 • ggthemes</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -13,6 +18,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Extra Themes, Scales and Geoms for ggplot2">
 <meta name="description" content="Some extra themes, geoms, and scales for ggplot2. Provides ggplot2 themes and scales that replicate the look of plots by Edward Tufte, Stephen Few, Fivethirtyeight, The Economist, Stata, Excel, and The Wall Street Journal, among others. Provides geoms for Tufte's box plot and range frame.">
 <meta property="og:description" content="Some extra themes, geoms, and scales for ggplot2. Provides ggplot2 themes and scales that replicate the look of plots by Edward Tufte, Stephen Few, Fivethirtyeight, The Economist, Stata, Excel, and The Wall Street Journal, among others. Provides geoms for Tufte's box plot and range frame.">
+<meta property="og:image" content="https://jrnold.github.io/ggthemes/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -46,7 +52,13 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="ggthemes-">ggthemes 
+<a class="anchor" aria-label="anchor" href="#ggthemes-"></a>
+</h1>
+</div>
+<p><a href="https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://app.codecov.io/github/jrnold/ggthemes?branch=main" class="external-link"><img src="https://codecov.io/gh/jrnold/ggthemes/branch/main/graph/badge.svg" alt="Code Coverage Status"></a> <a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/ggthemes" alt="rstudio mirror downloads"></a> <a href="https://CRAN.R-project.org/package=ggthemes" class="external-link"><img src="https://www.r-pkg.org/badges/version/ggthemes" alt="CRAN status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>Some extra geoms, scales, and themes for <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot</a>.</p>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
@@ -69,7 +81,7 @@
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://jrnold.github.io/ggthemes/" class="external-link">"ggthemes"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://jrnold.github.io/ggthemes/">"ggthemes"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mtcars2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">{</span></span>
 <span>  <span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">vs</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"V-shaped"</span>, <span class="st">"Straight"</span><span class="op">)</span><span class="op">)</span></span>
@@ -145,7 +157,7 @@
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/scale_color_tableau.html">scale_color_tableau</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-scale_color_tableau-1.png"><!-- --></p>
 </div>
-
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -184,16 +196,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://app.codecov.io/github/jrnold/ggthemes?branch=main" class="external-link"><img src="https://codecov.io/gh/jrnold/ggthemes/branch/main/graph/badge.svg" alt="Code Coverage Status"></a></li>
-<li><a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/ggthemes" alt="rstudio mirror downloads"></a></li>
-<li><a href="https://CRAN.R-project.org/package=ggthemes" class="external-link"><img src="https://www.r-pkg.org/badges/version/ggthemes" alt="CRAN status"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>

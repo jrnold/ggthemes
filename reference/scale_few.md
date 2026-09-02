@@ -1,7 +1,7 @@
 # Color scales from Few's "Practical Rules for Using Color in Charts"
 
 See
-[`few_pal()`](http://jrnold.github.io/ggthemes/reference/few_pal.md).
+[`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md).
 
 ## Usage
 
@@ -125,4 +125,4 @@ scale_fill_few(palette = "Light", ...)
 ## See also
 
 Other colour few:
-[`few_pal()`](http://jrnold.github.io/ggthemes/reference/few_pal.md)
+[`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)

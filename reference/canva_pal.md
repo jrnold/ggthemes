@@ -1,7 +1,7 @@
 # Canva.com color palettes
 
 150+ color palettes from canva.com. See
-[`canva_palettes()`](http://jrnold.github.io/ggthemes/reference/canva_palettes.md).
+[`canva_palettes()`](https://jrnold.github.io/ggthemes/reference/canva_palettes.md).
 
 ## Usage
 
@@ -14,7 +14,7 @@ canva_pal(palette = "Fresh and bright")
 - palette:
 
   Palette name. See the names of
-  [`canva_palettes()`](http://jrnold.github.io/ggthemes/reference/canva_palettes.md)
+  [`canva_palettes()`](https://jrnold.github.io/ggthemes/reference/canva_palettes.md)
   for valid names.
 
 ## Value

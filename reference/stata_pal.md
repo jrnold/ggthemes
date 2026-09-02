@@ -47,7 +47,7 @@ set of Economist-styled colors that Stata ships in
 ## See also
 
 Other colour stata:
-[`scale_colour_stata()`](http://jrnold.github.io/ggthemes/reference/scale_stata.md)
+[`scale_colour_stata()`](https://jrnold.github.io/ggthemes/reference/scale_stata.md)
 
 ## Examples
 

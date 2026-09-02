@@ -120,7 +120,7 @@ scale_fill_pander(...)
 
 ## See also
 
-[`theme_pander()`](http://jrnold.github.io/ggthemes/reference/theme_pander.md)
+[`theme_pander()`](https://jrnold.github.io/ggthemes/reference/theme_pander.md)
 
 Other colour pander:
-[`palette_pander()`](http://jrnold.github.io/ggthemes/reference/palette_pander.md)
+[`palette_pander()`](https://jrnold.github.io/ggthemes/reference/palette_pander.md)

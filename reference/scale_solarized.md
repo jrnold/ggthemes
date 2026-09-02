@@ -1,7 +1,7 @@
 # Solarized color scales
 
 See
-[`solarized_pal()`](http://jrnold.github.io/ggthemes/reference/solarized_pal.md)
+[`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
 for details.
 
 ## Usage
@@ -126,7 +126,7 @@ scale_color_solarized(accent = "blue", ...)
 ## See also
 
 Other colour solarized:
-[`solarized_pal()`](http://jrnold.github.io/ggthemes/reference/solarized_pal.md)
+[`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
 
 ## Examples
 

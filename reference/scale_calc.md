@@ -120,8 +120,8 @@ scale_color_calc(...)
 ## See also
 
 See
-[`theme_calc()`](http://jrnold.github.io/ggthemes/reference/theme_calc.md)
+[`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md)
 for examples.
 
 Other colour calc:
-[`calc_pal()`](http://jrnold.github.io/ggthemes/reference/calc_pal.md)
+[`calc_pal()`](https://jrnold.github.io/ggthemes/reference/calc_pal.md)

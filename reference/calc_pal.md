@@ -11,7 +11,7 @@ calc_pal()
 ## See also
 
 Other colour calc:
-[`scale_fill_calc()`](http://jrnold.github.io/ggthemes/reference/scale_calc.md)
+[`scale_fill_calc()`](https://jrnold.github.io/ggthemes/reference/scale_calc.md)
 
 ## Examples
 

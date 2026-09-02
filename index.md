@@ -1,3 +1,14 @@
+# ggthemes
+
+[![R-CMD-check](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml)
+[![Code Coverage
+Status](https://codecov.io/gh/jrnold/ggthemes/branch/main/graph/badge.svg)](https://app.codecov.io/github/jrnold/ggthemes?branch=main)
+[![rstudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/ggthemes)](https://github.com/r-hub/cranlogs.app)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ggthemes)](https://CRAN.R-project.org/package=ggthemes)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
 Some extra geoms, scales, and themes for
 [ggplot](https://ggplot2.tidyverse.org/).
 

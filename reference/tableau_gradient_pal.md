@@ -2,7 +2,7 @@
 
 Gradient color palettes using the diverging and sequential continous
 color palettes in Tableau. See
-[`tableau_color_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
+[`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
 for discrete color palettes.
 
 ## Usage
@@ -60,10 +60,10 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 ## See also
 
 Other colour tableau:
-[`scale_colour_gradient2_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
-[`scale_colour_gradient_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
-[`scale_colour_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),
-[`tableau_color_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
+[`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
+[`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
+[`scale_colour_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),
+[`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
 
 ## Examples
 

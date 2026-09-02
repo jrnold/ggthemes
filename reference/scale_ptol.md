@@ -1,7 +1,7 @@
 # Color Scales from Paul Tol's "Colour Schemes
 
 See
-[`ptol_pal()`](http://jrnold.github.io/ggthemes/reference/ptol_pal.md).
+[`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md).
 These palettes support up to 12 values.
 
 ## Usage
@@ -122,7 +122,7 @@ scale_fill_ptol(...)
 ## See also
 
 Other colour ptol:
-[`ptol_pal()`](http://jrnold.github.io/ggthemes/reference/ptol_pal.md)
+[`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md)
 
 ## Examples
 

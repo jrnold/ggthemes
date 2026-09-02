@@ -127,11 +127,11 @@ scale_color_numbers(palette = "Classic", ...)
 ## See also
 
 See
-[`theme_numbers()`](http://jrnold.github.io/ggthemes/reference/theme_numbers.md)
+[`theme_numbers()`](https://jrnold.github.io/ggthemes/reference/theme_numbers.md)
 for examples.
 
 Other colour numbers:
-[`numbers_pal()`](http://jrnold.github.io/ggthemes/reference/numbers_pal.md)
+[`numbers_pal()`](https://jrnold.github.io/ggthemes/reference/numbers_pal.md)
 
 ## Examples
 

@@ -11,7 +11,7 @@ stata_linetype_pal()
 
 ## See also
 
-[`scale_linetype_stata()`](http://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
+[`scale_linetype_stata()`](https://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
 
 Other linetype stata:
-[`scale_linetype_stata()`](http://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
+[`scale_linetype_stata()`](https://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)

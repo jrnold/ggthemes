@@ -19,7 +19,7 @@ economist_pal(fill = TRUE)
 ## See also
 
 Other colour economist:
-[`scale_colour_economist()`](http://jrnold.github.io/ggthemes/reference/scale_economist.md)
+[`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
 
 ## Examples
 

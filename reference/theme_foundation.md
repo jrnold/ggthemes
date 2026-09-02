@@ -44,17 +44,17 @@ top-level elements (`line`, `rect`, and `title`), which have
 colour defaults of the default ggplot2 themes in place.
 
 Unlike `theme_foundation()`, the other themes in this package (e.g.
-[`theme_economist()`](http://jrnold.github.io/ggthemes/reference/theme_economist.md),
-[`theme_excel()`](http://jrnold.github.io/ggthemes/reference/theme_excel.md),
-[`theme_hc()`](http://jrnold.github.io/ggthemes/reference/theme_hc.md))
+[`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
+[`theme_excel()`](https://jrnold.github.io/ggthemes/reference/theme_excel.md),
+[`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md))
 intentionally replicate a fixed, published visual style, so they do not
 expose `ink`/`paper`/`accent` arguments.
 
 ## See also
 
 Other themes:
-[`theme_base()`](http://jrnold.github.io/ggthemes/reference/theme_base.md),
-[`theme_clean()`](http://jrnold.github.io/ggthemes/reference/theme_clean.md),
-[`theme_igray()`](http://jrnold.github.io/ggthemes/reference/theme_igray.md),
-[`theme_par()`](http://jrnold.github.io/ggthemes/reference/theme_par.md),
-[`theme_solid()`](http://jrnold.github.io/ggthemes/reference/theme_solid.md)
+[`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md),
+[`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
+[`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md),
+[`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md),
+[`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)

@@ -1,9 +1,9 @@
 # Wall Street Journal color and fill scales
 
 Colour and fill scales which use the palettes in
-[`wsj_pal()`](http://jrnold.github.io/ggthemes/reference/wsj_pal.md).
+[`wsj_pal()`](https://jrnold.github.io/ggthemes/reference/wsj_pal.md).
 These scales should be used with
-[`theme_wsj()`](http://jrnold.github.io/ggthemes/reference/theme_wsj.md).
+[`theme_wsj()`](https://jrnold.github.io/ggthemes/reference/theme_wsj.md).
 
 ## Usage
 
@@ -128,4 +128,4 @@ scale_fill_wsj(palette = "colors6", ...)
 ## See also
 
 Other colour wsj:
-[`wsj_pal()`](http://jrnold.github.io/ggthemes/reference/wsj_pal.md)
+[`wsj_pal()`](https://jrnold.github.io/ggthemes/reference/wsj_pal.md)

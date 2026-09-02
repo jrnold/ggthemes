@@ -119,8 +119,8 @@ scale_fill_fivethirtyeight(...)
 
 ## See also
 
-[`theme_fivethirtyeight()`](http://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md)
+[`theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md)
 for examples.
 
 Other colour fivethirtyeight:
-[`fivethirtyeight_pal()`](http://jrnold.github.io/ggthemes/reference/fivethirtyeight_pal.md)
+[`fivethirtyeight_pal()`](https://jrnold.github.io/ggthemes/reference/fivethirtyeight_pal.md)

@@ -47,4 +47,4 @@ The following palettes are defined,
 ## See also
 
 Other colour wsj:
-[`scale_colour_wsj()`](http://jrnold.github.io/ggthemes/reference/scale_wsj.md)
+[`scale_colour_wsj()`](https://jrnold.github.io/ggthemes/reference/scale_wsj.md)

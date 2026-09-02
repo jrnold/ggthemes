@@ -1,9 +1,9 @@
 # Highcharts color and fill scales
 
 Colour and fill scales which use the palettes in
-[`hc_pal()`](http://jrnold.github.io/ggthemes/reference/hc_pal.md) and
+[`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md) and
 are meant for use with
-[`theme_hc()`](http://jrnold.github.io/ggthemes/reference/theme_hc.md).
+[`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md).
 
 ## Usage
 
@@ -128,4 +128,4 @@ scale_fill_hc(palette = "default", ...)
 ## See also
 
 Other colour hc:
-[`hc_pal()`](http://jrnold.github.io/ggthemes/reference/hc_pal.md)
+[`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md)

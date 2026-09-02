@@ -1,7 +1,7 @@
 # Stata linetype palette (discrete)
 
 See
-[`stata_linetype_pal()`](http://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
+[`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
 for details.
 
 ## Usage
@@ -122,7 +122,7 @@ scale_linetype_stata(...)
 ## See also
 
 Other linetype stata:
-[`stata_linetype_pal()`](http://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
+[`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
 
 ## Examples
 

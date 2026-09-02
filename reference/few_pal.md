@@ -35,7 +35,7 @@ Charts"](https://www.perceptualedge.com/articles/visual_business_intelligence/ru
 ## See also
 
 Other colour few:
-[`scale_colour_few()`](http://jrnold.github.io/ggthemes/reference/scale_few.md)
+[`scale_colour_few()`](https://jrnold.github.io/ggthemes/reference/scale_few.md)
 
 ## Examples
 
