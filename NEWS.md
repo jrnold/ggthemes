@@ -71,6 +71,10 @@
   and stringr had moved from `Imports` to `Suggests`; it now uses base
   equivalents. The tests that genuinely need **withr** or **farver** skip
   when those are absent instead of erroring.
+- `geom_rangeframe()` now errors on a `sides` value that names no side, rather
+  than silently drawing nothing. `sides` packs side letters into one string, so
+  a typo such as `sides = "xy"` previously produced an empty layer with no
+  message. Valid values are strings made up of `"t"`, `"r"`, `"b"` and `"l"`.
 - Add vdiffr visual regression baselines for every exported theme, and swatch
   baselines plus property assertions (valid hex, no duplicate colours, stable
   lengths, monotone lightness, no out-of-family colour, monotone grey ramps)
