@@ -2,6 +2,17 @@
 
 ## ggthemes (development version)
 
+- [`stata_shape_pal()`](https://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
+  now fails with a message naming the offending symbolstyles when
+  Stata’s shape data does not contain the ten the palette selects. It
+  previously looked them up with a bare
+  [`match()`](https://rdrr.io/r/base/match.html), so a renamed or
+  missing `symbolstyle` produced an all-`NA` row that was silently
+  dropped as “no font-independent equivalent”, leaving `max_n` quietly
+  below the documented ten. The list of ten now lives in one place and
+  `data-raw/build.R` sources it, so the build’s duplicate-pch check
+  cannot run over a stale copy.
+
 - BREAKING CHANGE:
   [`stata_shape_pal()`](https://jrnold.github.io/ggthemes/reference/stata_shape_pal.md),
   [`calc_shape_pal()`](https://jrnold.github.io/ggthemes/reference/calc_shape_pal.md),
