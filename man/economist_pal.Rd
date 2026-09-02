@@ -4,25 +4,36 @@
 \alias{economist_pal}
 \title{Economist color palette (discrete)}
 \usage{
-economist_pal(fill = TRUE)
+economist_pal(fill = deprecated())
 }
 \arguments{
-\item{fill}{Use the fill palette.}
+\item{fill}{`r lifecycle::badge("deprecated")` No longer has any effect.}
 }
 \description{
-The hues in the palette are blues, grays, and greens. Red is not
-included in these palettes and should be used to indicate
-important data.
+The nine colors \emph{The Economist} uses for chart series: blue,
+cyan, green, yellow, olive, purple, gold, gray, and red, in that
+order. Red comes last because the house style reserves it for data
+the chart is making a point about, rather than handing it out as an
+ordinary series color.
+}
+\details{
+A tenth color, "Econ red", is the brighter masthead red used for the
+tag rectangle and for single-series highlights. It is excluded from
+this palette; take it from
+\code{ggthemes_data$economist$main} when you need it.
 }
 \examples{
 library("scales")
 
 show_col(economist_pal()(6))
-## fill palette
-show_col(economist_pal(fill = TRUE)(6))
+
+## the full set of nine series colours
+show_col(economist_pal()(9))
 }
 \seealso{
 Other colour economist:
-\code{\link[=scale_colour_economist]{scale_colour_economist()}}
+\code{\link[=economist_seq_pal]{economist_seq_pal()}},
+\code{\link[=scale_colour_economist]{scale_colour_economist()}},
+\code{\link[=scale_colour_economist_c]{scale_colour_economist_c()}}
 }
 \concept{colour economist}

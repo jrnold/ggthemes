@@ -18,6 +18,18 @@ An object of class \code{\link[ggplot2]{theme}()}.
 Theme for ggplot2 that is similar to the default style of charts in
 current versions of Microsoft Excel.
 }
+\details{
+Excel derives its chart greys from the theme's \code{tx1} colour
+by luminance transform rather than hardcoding them. Since \code{tx1} is
+black in every built-in Office theme, these greys---\code{"#D9D9D9"}
+gridlines, \code{"#BFBFBF"} axis lines, \code{"#595959"} text---are the
+same whichever theme \funclink{scale_colour_excel_new} is set to.
+
+Since 2023 the default font in Excel has been Aptos, but \code{base_family}
+defaults to \code{"sans"} because Aptos is rarely installed outside of
+Office. Pass \code{base_family = "Aptos Narrow"} for a closer match if you
+do have it.
+}
 \examples{
 library("ggplot2")
 

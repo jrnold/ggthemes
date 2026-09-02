@@ -287,7 +287,24 @@ Mesh:
   hlink:
     default: '#F28943'
     followed: '#F1B76C'
-Office Theme:
+Office:
+  accents:
+  - '#156082'
+  - '#E97132'
+  - '#196B24'
+  - '#0F9ED5'
+  - '#A02B93'
+  - '#4EA72E'
+  dk:
+  - '#000000'
+  - '#0E2841'
+  lt:
+  - '#FFFFFF'
+  - '#E8E8E8'
+  hlink:
+    default: '#467886'
+    followed: '#96607D'
+Office 2013:
   accents:
   - '#4472C4'
   - '#ED7D31'
@@ -644,7 +661,7 @@ Median:
   hlink:
     default: '#F7B615'
     followed: '#704404'
-Office 2007-2010:
+Office 2007:
   accents:
   - '#4F81BD'
   - '#C0504D'

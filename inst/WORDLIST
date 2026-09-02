@@ -16,6 +16,7 @@ ColrSpace
 DejaVu
 Dosis
 Excel's
+Fira
 FiveThirtyEight
 Fivethirtyeight
 Geoms
@@ -40,6 +41,7 @@ Officina
 Pinterest
 PolicyViz
 README
+Roboto
 SRON
 STIX
 SandyMuspratt
@@ -79,6 +81,7 @@ codepoints
 colour
 colours
 continous
+convolving
 coord
 daroczig
 devtools
@@ -118,6 +121,7 @@ orcid
 pch
 pkgdown
 plotmath
+pre
 ptoche
 ptol
 pts
@@ -125,12 +129,17 @@ rcolor
 rlang
 rstudio
 sj
+slopeless
 solarized
 stata
 stcolor
 stmono
 stsj
+styleguide
+styleguide's
+styleguide’s
 stylesheet
+tibble
 tidyverse
 tufte
 unicode

@@ -16,3 +16,9 @@ numbers/*
 !numbers/SOURCES.md
 !numbers/fetch.sh
 !numbers/cmyk-to-srgb.swift
+
+# The Economist visual styleguide.
+!economist/
+economist/*
+!economist/SOURCES.md
+!economist/fetch.sh

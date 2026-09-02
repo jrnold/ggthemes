@@ -1,5 +1,38 @@
 # ggthemes (development version)
 
+- BREAKING CHANGE: `theme_excel_new()` now matches the chart chrome Excel
+  actually draws, decoded from the chart XML that Excel writes. Major
+  gridlines are `#D9D9D9` rather than `#BFBFBF`; axis lines are drawn in
+  `#BFBFBF`, where previously there were none; and axis titles are one point
+  larger than axis labels, as in Excel. Existing plots will change appearance.
+- `theme_excel_new()` documents that Excel's font has been Aptos since 2023.
+  `base_family` still defaults to `"sans"`, since Aptos is rarely installed
+  outside Office; pass `base_family = "Aptos Narrow"` for a closer match.
+- Add the current Microsoft Office theme, which Microsoft made the default in
+  2023, as the `"Office"` Excel theme:
+  `#156082`, `#E97132`, `#196B24`, `#0F9ED5`, `#A02B93`, `#4EA72E`.
+  `ggthemes_data$excel$themes` now has 51 themes.
+- BREAKING CHANGE: `excel_new_pal()`, `scale_colour_excel_new()` and
+  `scale_fill_excel_new()` now default to `theme = "Office"` instead of
+  `"Office Theme"`, so they again match a default chart in current Excel.
+  Plots that relied on the default will change appearance. Pass
+  `theme = "Office 2013"` to keep the previous colours.
+- The Excel themes `"Office Theme"` and `"Office 2007-2010"` have been renamed
+  `"Office 2013"` and `"Office 2007"`, following Microsoft's own renaming of
+  the built-in themes. The old names still work and select the same colours as
+  before.
+- Add `bank_slopes_multiscale()` and `bank_plot_multiscale()`, implementing
+  multi-scale banking to 45 degrees (Heer and Agrawala 2006, section 3).
+  Single-scale banking considers all of the data at once, so it accentuates
+  local features and can obscure larger-scale trends. Multi-scale banking uses
+  spectral analysis to identify the frequency scales that carry real energy,
+  low-pass filters the data to each scale, and banks the resulting trend
+  curve, returning one aspect ratio per scale.
+  `bank_slopes_multiscale()` returns a tibble of frequencies and ratios;
+  `bank_plot_multiscale()` returns one `ggplot` per scale, reproducing the
+  small-multiples display used in the paper. On `sunspot.year` the
+  implementation selects the same frequency scales the paper reports.
+
 - `stata_shape_pal()` now fails with a message naming the offending
   symbolstyles when Stata's shape data does not contain the ten the palette
   selects. It previously looked them up with a bare `match()`, so a renamed or
@@ -143,7 +176,7 @@
 - Omitting `scheme` in `stata_pal()`, `scale_colour_stata()`,
   `scale_fill_stata()` and `theme_stata()` is now soft-deprecated. It still
   resolves to `"s2color"`, but the default will change to `"stcolor"` in
-  ggthemes 7.0.0, following Stata. Pass `scheme` explicitly to keep the
+  ggthemes 8.0.0, following Stata. Pass `scheme` explicitly to keep the
   current appearance.
 - BEHAVIOUR CHANGE: `stata_pal("mono")` returned the wrong colours at
   positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It now
@@ -222,6 +255,36 @@
 - `theme_hc()`'s examples now pass `style` rather than the deprecated
   `bgcolor`, and the last example uses `scale_colour_hc()` instead of
   `scale_fill_hc()`, which had no effect on its colour-mapped lines.
+- BREAKING CHANGE: `theme_economist()` and `economist_pal()` now follow the
+  chart design *The Economist* introduced in 2017 and still publishes,
+  replacing the pre-2017 style ggthemes had shipped since 2013. Existing
+  plots will change appearance. The new look draws a white panel on a pale
+  `#e9edf0` ground with light horizontal gridlines, a black x-axis baseline
+  with tick marks *below* it (they previously pointed inward), and no y-axis
+  rule or ticks. `economist_pal()` returns the nine current chart colors
+  (`#006ba2`, `#3ebcd2`, `#379a8b`, `#ebb434`, `#b4ba39`, `#9a607f`,
+  `#d1b07c`, `#758d99`, `#db444b`) in place of the old blues and greens.
+  Colors and geometry are transcribed from *The Economist visual
+  styleguide* v1.2 (4 May 2017); see `data-raw/reference/economist/`.
+- `ggthemes_data$economist` is restructured to match: `main` (the nine
+  series colors plus "Econ red"), `scales` (the styleguide's
+  "equal lightness colour scales", six ordered steps for each of the nine
+  hues), `bg`, and `text`. The former `fg` and `bg` entries are gone; their
+  values are recorded in a comment in `data-raw/theme-data/economist.yml`.
+- Add `economist_seq_pal()` and `economist_gradient_pal()`, plus
+  `scale_colour_economist_c()`/`scale_fill_economist_c()` for continuous
+  data and `scale_colour_economist_ordinal()`/`scale_fill_economist_ordinal()`
+  for ordered factors, built from the equal-lightness scales.
+- Deprecate `theme_economist_white()` (`lifecycle::deprecate_warn()`); the
+  current design already draws a white panel, so it no longer differs from
+  `theme_economist()`, to which it now forwards.
+- Deprecate the `dkpanel` argument of `theme_economist()` and the `fill`
+  argument of `economist_pal()`. Both were features of the pre-2017 design
+  and are now ignored.
+- Fix: `theme_economist()` previously looked up a background colour named
+  `"ebg"`, which `economist.yml` did not define, so `rect` and
+  `strip.background` silently received a fill of `NA`. The rewritten theme
+  sets both explicitly.
 
 # ggthemes 6.0.0
 

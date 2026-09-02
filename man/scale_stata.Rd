@@ -17,7 +17,7 @@ scale_color_stata(scheme = NULL, ...)
 \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or
 \code{"economist"}. If \code{NULL}, the default, \code{"s2color"} is used
 and a deprecation message is issued; this default becomes \code{"stcolor"}
-in ggthemes 7.0.0.}
+in ggthemes 8.0.0.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
