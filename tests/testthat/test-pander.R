@@ -28,11 +28,11 @@ test_that("theme_pander works with gm = FALSE", {
 
 
 test_that("theme_pander warns about ff argument", {
-  expect_warning(theme_pander(ff = ""), regexp = "deprecated")
+  expect_snapshot(x <- theme_pander(ff = ""))
 })
 
 test_that("theme_pander warns about fs argument", {
-  expect_warning(theme_pander(fs = 1), regexp = "deprecated")
+  expect_snapshot(x <- theme_pander(fs = 1))
 })
 
 test_that("theme_pander works with gm = FALSE", {

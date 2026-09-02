@@ -14,9 +14,8 @@ test_that("geom_rangeframe drops rows with NA x/y before drawing", {
     group = 1
   )
 
-  expect_warning(
-    filtered <- GeomRangeFrame$handle_na(data, list(na.rm = FALSE)),
-    "missing values"
+  expect_snapshot(
+    filtered <- GeomRangeFrame$handle_na(data, list(na.rm = FALSE))
   )
   expect_equal(nrow(filtered), 3)
 
@@ -47,7 +46,7 @@ test_that("geom_rangeframe draws the full range of non-missing values when NAs a
     numeric(4)
   )
 
-  expect_false(anyNA(coords))
+  expect_identical(anyNA(coords), FALSE)
   expect_equal(range(coords[3:4, grep("range_y", names(grob$children))]), c(10, 50))
 })
 

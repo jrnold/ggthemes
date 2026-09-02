@@ -15,7 +15,7 @@ test_that("excel_clasic_pal with line = TRUE works", {
 })
 
 test_that("calc_shape_pal raises warning for large n", {
-  expect_warning(excel_pal()(8))
+  expect_snapshot(x <- excel_pal()(8))
 })
 
 test_that("excel_new_pal works", {
@@ -27,7 +27,7 @@ test_that("excel_new_pal works", {
 })
 
 test_that("excel_new_pal raises error for bad n", {
-  expect_warning(excel_new_pal()(7))
+  expect_snapshot(x <- excel_new_pal()(7))
 })
 
 test_that("theme_excel works", {
@@ -41,7 +41,7 @@ test_that("theme_excel respects base_family and base_size", {
 })
 
 test_that("excel_new_pal raises error with bad theme name", {
-  expect_error(excel_new_pal("adfaasdfa"), regexp = "`theme` must be one of")
+  expect_snapshot(excel_new_pal("adfaasdfa"), error = TRUE)
 })
 
 test_that("scale_fill_excel works", {

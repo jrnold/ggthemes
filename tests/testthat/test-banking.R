@@ -15,7 +15,7 @@ test_that("bank_slopes with method=\"as\" runs", {
 })
 
 test_that("bank_slopes with invalid method throws error", {
-  expect_error(bank_slopes(1:5, 1:5, method = "aor"))
+  expect_snapshot(bank_slopes(1:5, 1:5, method = "aor"), error = TRUE)
 })
 
 test_that("bank_slopes works with cull = TRUE", {
@@ -80,7 +80,7 @@ test_that("bank_slopes with method=\"was\" responds to x spacing", {
   y <- c(0, 1, 2)
   regular <- bank_slopes(c(0, 1, 2), y, method = "was")
   uneven <- bank_slopes(c(0, 1, 100), y, method = "was")
-  expect_false(isTRUE(all.equal(regular, uneven)))
+  expect_gt(abs(regular - uneven), 1e-8)
 })
 
 test_that("bank_slopes with method=\"was\" returns NaN for a flat line", {
@@ -88,7 +88,8 @@ test_that("bank_slopes with method=\"was\" returns NaN for a flat line", {
 })
 
 test_that("bank_slopes with method=\"was\" handles mostly flat segments", {
-  expect_true(is.finite(bank_slopes(0:3, c(0, 0, 0, 1), method = "was")))
+  out <- bank_slopes(0:3, c(0, 0, 0, 1), method = "was")
+  expect_identical(is.finite(out), TRUE)
 })
 
 test_that("bank_plot runs and returns a ggplot with a numeric coord_fixed ratio", {
@@ -135,16 +136,19 @@ test_that("bank_plot computes slopes within groups, not across group boundaries"
 test_that("bank_plot errors for an out-of-range layer index", {
   df <- data.frame(x = 1:5, y = runif(5))
   p <- ggplot2::ggplot(df, ggplot2::aes(x, y)) + ggplot2::geom_line()
-  expect_error(bank_plot(p, layer = 2), regexp = "layer")
+  expect_snapshot(bank_plot(p, layer = 2), error = TRUE)
 })
 
 test_that("bank_plot errors for a non-positive layer index", {
   df <- data.frame(x = 1:5, y = runif(5))
   p <- ggplot2::ggplot(df, ggplot2::aes(x, y)) + ggplot2::geom_line()
-  expect_error(bank_plot(p, layer = 0), regexp = "layer")
-  expect_error(bank_plot(p, layer = -1), regexp = "layer")
+  expect_snapshot(bank_plot(p, layer = 0), error = TRUE)
+  expect_snapshot(bank_plot(p, layer = -1), error = TRUE)
 })
 
 test_that("bank_plot errors when the layer has no x/y columns", {
-  expect_error(check_bank_plot_data(data.frame(xmin = 1:3, xmax = 2:4)), regexp = "x.*y")
+  expect_snapshot(
+    check_bank_plot_data(data.frame(xmin = 1:3, xmax = 2:4)),
+    error = TRUE
+  )
 })

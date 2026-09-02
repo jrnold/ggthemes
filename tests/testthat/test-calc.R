@@ -6,7 +6,7 @@ test_that("calc_shape_pal works", {
   shapes <- pal(n)
   expect_type(shapes, "integer")
   # Base pch by default; the glyph branch is covered in test-shape-pal.R.
-  expect_true(all(shapes %in% c(0:25, 32:127)))
+  expect_contains(c(0:25, 32:127), shapes)
   expect_equal(length(shapes), n)
 })
 
@@ -16,12 +16,12 @@ test_that("calc_pal works", {
   expect_type(attr(pal, "max_n"), "integer")
   n <- 5L
   expect_hexcolor(pal(n))
-  expect_warning(pal(100))
-  expect_error(pal(-1))
+  expect_snapshot(x <- pal(100))
+  expect_snapshot(pal(-1), error = TRUE)
 })
 
 test_that("calc_shape_pal raises warning for large n", {
-  expect_warning(calc_shape_pal()(100))
+  expect_snapshot(x <- calc_shape_pal()(100))
 })
 
 test_that("theme_calc works", {

@@ -6,7 +6,7 @@ test_that("stata_pal works", {
   vals <- p(n)
   expect_hexcolor(vals)
   expect_length(vals, n)
-  expect_warning(stata_pal("s2color")(100))
+  expect_snapshot(x <- stata_pal("s2color")(100))
 })
 
 test_that("scale_colour_stata works", {
@@ -33,7 +33,7 @@ test_that("theme_stata works", {
 })
 
 test_that("theme_state raises error with invallid scheme", {
-  expect_error(theme_stata(scheme = "dsagasagdadgaga"), regexp = "`scheme` must be one of")
+  expect_snapshot(theme_stata(scheme = "dsagasagdadgaga"), error = TRUE)
 })
 
 test_that("stata_shape_pal works", {
@@ -44,8 +44,8 @@ test_that("stata_shape_pal works", {
   expect_type(vals, "integer")
   expect_length(vals, n)
   # Base pch by default; the glyph branch is covered in test-shape-pal.R.
-  expect_true(all(vals %in% c(0:25, 32:127)))
-  expect_warning(p(100))
+  expect_contains(c(0:25, 32:127), vals)
+  expect_snapshot(x <- p(100))
 })
 
 test_that("stata_linetype_pal works", {
@@ -71,9 +71,12 @@ test_that("stata_pal() reports its true maximum n", {
 
 test_that("no stata scheme contains an unresolved color", {
   schemes <- ggthemes_data[["stata"]][["colors"]][["schemes"]]
-  for (scheme in names(schemes)) {
-    expect_false(anyNA(schemes[[scheme]][["value"]]), info = scheme)
-  }
+  unresolved <- names(schemes)[vapply(
+    schemes,
+    function(s) anyNA(s[["value"]]),
+    logical(1)
+  )]
+  expect_equal(unresolved, character(0))
 })
 
 test_that("mono scheme matches Stata's s1mono/s2mono p1-p15", {
