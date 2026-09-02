@@ -144,6 +144,19 @@
   subsetting. The test suite no longer uses dplyr either, so
   `R CMD check` passes with only the hard dependencies installed.
 
+- Fix the `@family` tags that split related help pages apart. Word-order
+  and singular/plural inconsistencies (`stata colour`,
+  `solarized colour`, `shape stata`, `shape tableau`) each put one page
+  in a family of its own, so it linked to nothing.
+  [`?extended_range_breaks`](http://jrnold.github.io/ggthemes/reference/range_breaks.md)
+  had no family at all and was unreachable from
+  [`theme_tufte()`](http://jrnold.github.io/ggthemes/reference/theme_tufte.md),
+  [`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+  and
+  [`geom_tufteboxplot()`](http://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md),
+  which it is meant to be used with; those four now cross-reference each
+  other.
+
 - Add vdiffr visual regression baselines for every exported theme, and
   swatch baselines plus property assertions (valid hex, no duplicate
   colours, stable lengths, monotone lightness, no out-of-family colour,

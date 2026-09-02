@@ -40,6 +40,13 @@ then you can use them with the package **extrafont**.
 Tufte, Edward R. (2001) The Visual Display of Quantitative Information,
 Chapter 6.
 
+## See also
+
+Other tufte:
+[`extended_range_breaks_()`](http://jrnold.github.io/ggthemes/reference/range_breaks.md),
+[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+[`geom_tufteboxplot()`](http://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
+
 ## Examples
 
 ``` r

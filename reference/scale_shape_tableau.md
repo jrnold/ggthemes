@@ -132,7 +132,7 @@ scale_shape_tableau(palette = "default", ..., unicode = FALSE)
 
 ## See also
 
-Other shape tableau:
+Other shapes tableau:
 [`tableau_shape_pal()`](http://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
 
 ## Examples

@@ -44,6 +44,11 @@ Stata's palettes come in two generations, and both are included here.
 set of Economist-styled colors that Stata ships in
 `scheme-economist.scheme`.
 
+## See also
+
+Other colour stata:
+[`scale_colour_stata()`](http://jrnold.github.io/ggthemes/reference/scale_stata.md)
+
 ## Examples
 
 ``` r

@@ -231,6 +231,11 @@ plots. The American Statistician 32, 12-16.
 Other geom tufte:
 [`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
 
+Other tufte:
+[`extended_range_breaks_()`](http://jrnold.github.io/ggthemes/reference/range_breaks.md),
+[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+[`theme_tufte()`](http://jrnold.github.io/ggthemes/reference/theme_tufte.md)
+
 ## Examples
 
 ``` r

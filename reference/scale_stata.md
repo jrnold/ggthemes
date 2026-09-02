@@ -125,3 +125,8 @@ scale_color_stata(scheme = NULL, ...)
   `super`
 
   :   The super class to use for the constructed scale
+
+## See also
+
+Other colour stata:
+[`stata_pal()`](http://jrnold.github.io/ggthemes/reference/stata_pal.md)

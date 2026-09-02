@@ -73,6 +73,13 @@ apply the function to the data instead:
 Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's
 Algorithm for Positioning Tick Labels on Axes, InfoVis 2010.
 
+## See also
+
+Other tufte:
+[`geom_rangeframe()`](http://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
+[`geom_tufteboxplot()`](http://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md),
+[`theme_tufte()`](http://jrnold.github.io/ggthemes/reference/theme_tufte.md)
+
 ## Author
 
 Justin Talbot <jtalbot@stanford.edu>, Jeffrey B. Arnold, Baptiste Auguie

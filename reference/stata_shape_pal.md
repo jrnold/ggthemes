@@ -30,3 +30,6 @@ the plus sign.
 See
 [`scale_shape_stata()`](http://jrnold.github.io/ggthemes/reference/scale_shape_stata.md)
 for examples.
+
+Other shapes stata:
+[`scale_shape_stata()`](http://jrnold.github.io/ggthemes/reference/scale_shape_stata.md)

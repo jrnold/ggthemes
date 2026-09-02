@@ -126,6 +126,11 @@ scale_shape_stata(..., unicode = FALSE)
   device font, so they render as blank boxes in a font without coverage;
   the default returns base pch codes, which every font can draw.
 
+## See also
+
+Other shapes stata:
+[`stata_shape_pal()`](http://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
+
 ## Examples
 
 ``` r

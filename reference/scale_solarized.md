@@ -125,7 +125,7 @@ scale_color_solarized(accent = "blue", ...)
 
 ## See also
 
-Other solarized colour:
+Other colour solarized:
 [`solarized_pal()`](http://jrnold.github.io/ggthemes/reference/solarized_pal.md)
 
 ## Examples

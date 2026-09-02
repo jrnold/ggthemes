@@ -48,7 +48,7 @@ Shapes, such as DejaVu Sans.
 
 ## See also
 
-Other shape tableau:
+Other shapes tableau:
 [`scale_shape_tableau()`](http://jrnold.github.io/ggthemes/reference/scale_shape_tableau.md)
 
 ## Examples
