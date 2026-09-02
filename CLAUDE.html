@@ -39,32 +39,29 @@
 <p>ggthemes is an R package that provides extra themes, scales, and geoms for ggplot2. It replicates the look of plots from various sources including The Economist, FiveThirtyEight, Edward Tufte, Stephen Few, Stata, Excel, Wall Street Journal, Tableau, and more.</p>
 </div>
 <div class="section level2">
-<h2 id="development-commands">Development Commands<a class="anchor" aria-label="anchor" href="#development-commands"></a></h2>
-<div class="section level3">
-<h3 id="building-and-testing">Building and Testing<a class="anchor" aria-label="anchor" href="#building-and-testing"></a></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Full build (generates docs, site, and data)</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">make</span> build</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># Run package checks</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> test</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># Or directly:</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::check()'</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Generate documentation</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">make</span> docs</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Or directly:</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::document()'</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># Run linter</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">make</span> lint</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># Or directly:</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::lint()'</span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co"># Run code styling</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">make</span> style</span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co"># Or directly:</span></span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="ex">./scripts/format</span></span></code></pre></div>
+<h2 id="r-package-conventions">R package conventions<a class="anchor" aria-label="anchor" href="#r-package-conventions"></a></h2>
+<p>General R package practice is <strong>not</strong> documented here. The <code>r-lib</code> skills (Posit, <code>posit-dev/skills</code>) are authoritative and take precedence:</p>
+<ul><li>
+<strong><code>r-package-development</code></strong> — devtools/roxygen2 workflow, test placement, documentation rules, <code>_pkgdown.yml</code> upkeep, and <code>NEWS.md</code> bullet style.</li>
+<li>
+<strong><code>testing-r-packages</code></strong> — testthat 3e structure, expectations, fixtures, snapshots, mocking, <code>withr</code> cleanup.</li>
+<li>
+<strong><code>cran-extrachecks</code></strong> — pre-submission checks beyond <code>devtools::check()</code>.</li>
+<li>
+<strong><code>lifecycle</code></strong>, <strong><code>cli</code></strong> — deprecation staging and console messaging.</li>
+</ul><p>This package is testthat edition 3 (<code>testthat (&gt;= 3.2.0)</code>) and has a <code>_pkgdown.yml</code>, so those skills apply as written. Where existing code diverges from them, the skill is the target — follow it for new and edited code.</p>
+<p>Only project-specific facts live below.</p>
 </div>
+<div class="section level2">
+<h2 id="development-commands">Development Commands<a class="anchor" aria-label="anchor" href="#development-commands"></a></h2>
+<p>The <code>Makefile</code> is the entry point; prefer these over bare <code>Rscript</code> calls, since several targets chain steps (<code>build</code> regenerates docs, site, and data).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">make</span> build   <span class="co"># Full build: docs, site, and data</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">make</span> test    <span class="co"># devtools::check()</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">make</span> docs    <span class="co"># devtools::document()</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">make</span> lint    <span class="co"># lintr</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> style   <span class="co"># ./scripts/format (air)</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> data    <span class="co"># Rebuild package data (see below)</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> site    <span class="co"># pkgdown::build_site()</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="building-package-data">Building Package Data<a class="anchor" aria-label="anchor" href="#building-package-data"></a></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Rebuild package data from YAML/XML theme definitions</span></span>
@@ -73,28 +70,14 @@
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">Rscript</span> data-raw/build.R</span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="documentation-site">Documentation Site<a class="anchor" aria-label="anchor" href="#documentation-site"></a></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Build pkgdown site</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">make</span> site</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># Or directly:</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'pkgdown::build_site()'</span></span></code></pre></div>
-</div>
-<div class="section level3">
 <h3 id="readme">README<a class="anchor" aria-label="anchor" href="#readme"></a></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Regenerate README.md from README.Rmd</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'knitr::knit("README.Rmd", output = "README.md", quiet = TRUE)'</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="running-tests">Running Tests<a class="anchor" aria-label="anchor" href="#running-tests"></a></h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Run all tests</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::test()'</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Run specific test file</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'testthat::test_file("tests/testthat/test-economist.R")'</span></span></code></pre></div>
+<p>README.md is auto-generated from README.Rmd and must never be edited directly (the first line of README.md says so).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'knitr::knit("README.Rmd", output = "README.md", quiet = TRUE)'</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="commit-conventions">Commit Conventions<a class="anchor" aria-label="anchor" href="#commit-conventions"></a></h2>
+<p>Update <code>NEWS.md</code> for any user-facing change as part of the commit that makes it.</p>
 <p>This project uses <a href="https://www.conventionalcommits.org/en/v1.0.0/" class="external-link">Conventional Commits</a> for commit messages.</p>
 <div class="section level3">
 <h3 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h3>
@@ -131,10 +114,6 @@ chore: update pkgdown configuration</code></pre>
 </div>
 </div>
 <div class="section level2">
-<h2 id="newsmd">NEWS.md<a class="anchor" aria-label="anchor" href="#newsmd"></a></h2>
-<p>For user-facing changes update <code>NEWS.md</code> when commiting.</p>
-</div>
-<div class="section level2">
 <h2 id="architecture">Architecture<a class="anchor" aria-label="anchor" href="#architecture"></a></h2>
 <div class="section level3">
 <h3 id="code-organization">Code Organization<a class="anchor" aria-label="anchor" href="#code-organization"></a></h3>
@@ -169,7 +148,8 @@ chore: update pkgdown configuration</code></pre>
 </div>
 <div class="section level3">
 <h3 id="testing-strategy">Testing Strategy<a class="anchor" aria-label="anchor" href="#testing-strategy"></a></h3>
-<p>Tests are organized by theme/feature (one test file per major component), and use three complementary layers:</p>
+<p>Test files are organized <strong>per theme</strong>, not strictly per <code>R/</code> source file, so a single <code>test-tableau.R</code> covers the palettes, scales, and theme together.</p>
+<p>Three complementary layers:</p>
 <ul><li>
 <strong>Structural assertions</strong> — the bulk of the suite. Checks against the theme object itself (<code>expect_s3_class(theme_economist(), "theme")</code>, <code>expect_equal(thm$text$family, "mono")</code>) and against palette functions (length, <code>max_n</code>, hex validity, error and warning behaviour). These catch what someone thought to assert on, and nothing else.</li>
 <li>
@@ -180,30 +160,28 @@ chore: update pkgdown configuration</code></pre>
 <h4 id="vdiffr-and-when-it-runs">vdiffr and when it runs<a class="anchor" aria-label="anchor" href="#vdiffr-and-when-it-runs"></a></h4>
 <p><code>vdiffr</code> is in <code>Suggests</code>, so <code>helper-vdiffr.R</code> follows ggplot2’s convention: it aliases <code><a href="https://vdiffr.r-lib.org/reference/expect_doppelganger.html" class="external-link">vdiffr::expect_doppelganger()</a></code> when vdiffr is installed, and otherwise skips — unless <code>VDIFFR_RUN_TESTS="true"</code>, in which case a missing vdiffr is an error rather than a silent loss of coverage. The R-CMD-check workflow sets that variable on the <code>release</code> R version only.</p>
 <p>Visual tests <strong>do</strong> run on GitHub Actions, because <code>r-lib/actions/setup-r</code> exports <code>NOT_CRAN=true</code>. They <strong>do not</strong> run on CRAN, because vdiffr delegates to <code>testthat::expect_snapshot_file(cran = FALSE)</code>. Both behaviours are intended; neither requires configuration in this repository.</p>
-<p>When a baseline changes, review it before accepting it — a baseline generated from buggy output locks the bug in and turns the suite green:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'testthat::snapshot_review()'</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'testthat::snapshot_accept()'</span></span></code></pre></div>
+<p><strong>Never accept a changed baseline without looking at it.</strong> Because this package’s entire output is images, a baseline regenerated from buggy output locks the bug in and turns the suite green. Review before accepting.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="code-style">Code Style<a class="anchor" aria-label="anchor" href="#code-style"></a></h3>
-<p>Code sytle is enforced by the the <a href="https://tidyverse.org/blog/2025/02/air/" class="external-link">air</a> and <a href="https://lintr.r-lib.org/" class="external-link">lintr</a> packages.</p>
-<ul><li>Generally follows the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style</a>.</li>
-<li>Line length of 120</li>
+<p>Enforced by <a href="https://tidyverse.org/blog/2025/02/air/" class="external-link">air</a> and <a href="https://lintr.r-lib.org/" class="external-link">lintr</a>; generally <a href="https://style.tidyverse.org/" class="external-link">tidyverse style</a>.</p>
+<ul><li>Line length of 120 (wider than the tidyverse default)</li>
 <li>
-<code>air</code> package configuration: <code>air.toml</code>.</li>
+<code>air</code> configuration: <code>air.toml</code>
+</li>
 <li>
-<code>lintr</code> package configuration: <code>.lintr</code>
+<code>lintr</code> configuration: <code>.lintr</code>
 </li>
 </ul></div>
 <div class="section level3">
 <h3 id="spelling">Spelling<a class="anchor" aria-label="anchor" href="#spelling"></a></h3>
 <p>Check spelling using the <a href="https://docs.ropensci.org/spelling/" class="external-link">spelling</a> package.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Run spell check</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">Rscript</span> tests/spelling.R</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Update wordlist interactively (adds new words found in documentation)</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'spelling::update_wordlist()'</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Run spell check</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">Rscript</span> tests/spelling.R</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Update wordlist interactively (adds new words found in documentation)</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'spelling::update_wordlist()'</span></span></code></pre></div>
 <p>The custom wordlist is stored in <code>inst/WORDLIST</code> and contains project-specific terms like: - Package names (ggplot, vdiffr, pkgdown) - Theme names (fivethirtyeight, solarized, stata) - Author names and proper nouns - Technical terms specific to this project</p>
 <p>When spell check finds new valid words, add them to <code>inst/WORDLIST</code> using <code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code>.</p>
 </div>
@@ -213,7 +191,6 @@ chore: update pkgdown configuration</code></pre>
 <p><strong>theme_foundation()</strong>: Located in <code>base.R</code>, this is the minimal base theme that other themes extend. It sets basic defaults for all ggplot2 elements.</p>
 <p><strong>Color Extraction</strong>: The <code>get_colors()</code> utility in <code>utils.R</code> filters <code>ggthemes_data</code> by color names and extracts hex values.</p>
 <p><strong>Shape Encoding</strong>: Shapes use negative integers as pch codes, converted from UTF-8 using <code>utf_8_to_pch()</code> in <code>data-raw/build.R</code>.</p>
-<p><strong>README Generation</strong>: README.md is auto-generated from README.Rmd and should never be edited directly. The first line of README.md indicates this.</p>
 </div>
 </div>
 

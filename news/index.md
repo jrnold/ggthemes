@@ -95,6 +95,39 @@
   measures the default font and the warning names the font it actually
   measured.
 
+- Discrete colour palettes now reject a negative `n` with an error
+  naming the argument and the palette that was called. Palettes built on
+  [`scales::manual_pal()`](https://scales.r-lib.org/reference/pal_manual.html)
+  — including
+  [`calc_pal()`](https://jrnold.github.io/ggthemes/reference/calc_pal.md),
+  [`canva_pal()`](https://jrnold.github.io/ggthemes/reference/canva_pal.md),
+  [`colorblind_pal()`](https://jrnold.github.io/ggthemes/reference/colorblind.md),
+  [`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md),
+  [`excel_new_pal()`](https://jrnold.github.io/ggthemes/reference/excel_new_pal.md),
+  [`fivethirtyeight_pal()`](https://jrnold.github.io/ggthemes/reference/fivethirtyeight_pal.md),
+  [`gdocs_pal()`](https://jrnold.github.io/ggthemes/reference/gdocs_pal.md),
+  [`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md),
+  [`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md)
+  and
+  [`wsj_pal()`](https://jrnold.github.io/ggthemes/reference/wsj_pal.md)
+  — previously failed with R’s internal
+  `argument must be coercible to non-negative integer` from
+  [`seq_len()`](https://rdrr.io/r/base/seq.html). This raises the
+  minimum version of scales to 1.4.0, which is where
+  [`scales::new_discrete_palette()`](https://scales.r-lib.org/reference/new_continuous_palette.html)
+  was introduced.
+
+- [`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+  and
+  [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
+  report an invalid `method`, and
+  [`tableau_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
+  an invalid `palette`, with a message naming the argument and the value
+  supplied instead of
+  [`match.arg()`](https://rdrr.io/r/base/match.arg.html)’s
+  `'arg' should be one of ...`. Misspellings now get a “Did you mean”
+  hint.
+
 - Deprecate
   [`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md),
   [`scale_colour_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md),
