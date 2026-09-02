@@ -45,4 +45,11 @@ p + geom_rug() + theme_tufte(ticks = FALSE)
 Tufte, Edward R. (2001) The Visual Display of
 Quantitative Information, Chapter 6.
 }
+\seealso{
+Other tufte:
+\code{\link[=extended_range_breaks_]{extended_range_breaks_()}},
+\code{\link[=geom_rangeframe]{geom_rangeframe()}},
+\code{\link[=geom_tufteboxplot]{geom_tufteboxplot()}}
+}
 \concept{themes tufte}
+\concept{tufte}

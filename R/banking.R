@@ -25,7 +25,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' slopes to 45 degrees as suggested by W.S. Cleveland. This
 #' maximizes the ability to visually differentiate differences in
 #' slope. This function will calculate the optimal aspect ratio for
-#' a line plot using any of the methods described in Herr and Argwala
+#' a line plot using any of the methods described in Heer and Agrawala
 #' (2006). In their review of the methods they suggest using median
 #' absolute slope banking ('ms'), which produces aspect ratios which
 #' are generally the median of the various methods provided here.
@@ -35,7 +35,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @param cull \code{logical}. Remove all slopes of 0 or \code{Inf}.
 #' @param method One of 'ms' (Median Absolute Slope), 'as' (Average
 #' Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
-#' Average Absolute Slope).
+#' Average Absolute Orientation).
 #' @param weight No longer used, but kept for backwards compatibility.
 #' @param ... No longer used, but kept for backwards compatibility.
 #'
@@ -91,18 +91,23 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' This has no closed-form solution and is found numerically with
 #' \code{\link[stats]{uniroot}}.
 #'
-#' \strong{Weighted Average Absolute Slope Banking}
+#' \strong{Weighted Average Absolute Orientation Banking}
 #'
-#' Identical to Average Absolute Slope Banking, except each segment's
-#' contribution is weighted by its horizontal run, \eqn{dx_i}{dx_i}, so
-#' that segments spanning more horizontal (screen) space are weighted more
-#' heavily than segments that happen to be sampled more densely in
-#' \eqn{x}{x}. Using \eqn{s'_i}{s'_i} as above,
+#' This is the weighted version of Average Absolute Orientation Banking from
+#' Heer and Agrawala (2006). Each segment's absolute orientation is weighted
+#' by its length in display space, so both the orientation and its weight
+#' depend on \eqn{\alpha}. With \eqn{s'_i}{s'_i} as above and segment run
+#' \eqn{dx_i}{dx_i}, \eqn{\alpha}{alpha} is chosen such that,
 #' \deqn{
-#'   \alpha = \frac{\sum_i dx_i \left| s'_i \right|}{\sum_i dx_i}
+#'   \frac{\sum_i \left|\arctan(s'_i / \alpha)\right|
+#'   dx_i \sqrt{1 + (s'_i / \alpha)^2}}
+#'   {\sum_i dx_i \sqrt{1 + (s'_i / \alpha)^2}} = \frac{\pi}{4}
 #' }{
-#'  alpha = sum(dx_i * |s'_i|) / sum(dx_i)
+#' sum(|atan(s'_i / alpha)| * dx_i * sqrt(1 + (s'_i / alpha)^2)) /
+#'   sum(dx_i * sqrt(1 + (s'_i / alpha)^2)) = pi / 4
 #' }
+#' This has no closed-form solution and is found numerically with
+#' \code{\link[stats]{uniroot}}.
 #'
 #' Heer and Agrawala (2006) also discuss multi-scale (global and local)
 #' orientation resolution, which extend these single-scale methods by
@@ -130,10 +135,10 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @seealso \code{\link[lattice]{banking}()}, \code{\link{bank_plot}} to bank
 #' a \code{ggplot} using its own data.
 #' @export
-#' @importFrom stats median uniroot weighted.mean
+#' @importFrom stats median uniroot
 #' @example inst/examples/ex-bank_slopes.R
 bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as", "ao", "was"), ...) {
-  method <- match.arg(method)
+  method <- rlang::arg_match(method)
   fun <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y
   xyrat <- fun(calc_slopes(x, y, cull = cull), ...)
@@ -178,7 +183,7 @@ bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"
 #' bank_plot(p)
 bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = FALSE, layer = 1, ...) {
   stopifnot(ggplot2::is_ggplot(plot))
-  method <- match.arg(method)
+  method <- rlang::arg_match(method)
   built <- ggplot2::ggplot_build(plot)
   if (layer < 1 || layer > length(built$data)) {
     cli::cli_abort("{.arg plot} only has {length(built$data)} layer(s), but {.arg layer} = {layer}.")
@@ -238,6 +243,25 @@ bank_slopes_funs[["ao"]] <-
 
 bank_slopes_funs[["was"]] <-
   function(slopes, ...) {
-    s <- abs(slopes$s) * slopes$Rx / slopes$Ry
-    stats::weighted.mean(s, w = slopes$dx)
+    s <- slopes$s * slopes$Rx / slopes$Ry
+    if (length(s) == 0 || !all(is.finite(s))) {
+      return(NaN)
+    }
+    if (all(s == 0)) {
+      return(NaN)
+    }
+    pivot <- stats::median(abs(s))
+    if (pivot == 0) {
+      pivot <- 1
+    }
+    f <- function(alpha) {
+      orientation <- abs(atan(s / alpha))
+      length <- slopes$dx * sqrt(1 + (s / alpha)^2)
+      sum(orientation * length) / sum(length) - FORTY_FIVE
+    }
+    stats::uniroot(
+      f,
+      interval = c(pivot / 1e6, pivot * 1e6),
+      tol = sqrt(.Machine$double.eps)
+    )$root
   }

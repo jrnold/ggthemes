@@ -10,3 +10,7 @@ test_that("theme_clean respects base_size and base_family", {
   expect_equal(thm$axis.title$size, ceiling(20 * 0.8))
   expect_equal(thm$legend.text$family, "sans")
 })
+
+test_that("theme_clean draws correctly", {
+  expect_doppelganger("theme_clean", theme_test_plot() + theme_clean())
+})

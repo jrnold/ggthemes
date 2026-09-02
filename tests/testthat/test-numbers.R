@@ -30,11 +30,11 @@ test_that("numbers_pal converts device-CMYK colors via ColorSync", {
 })
 
 test_that("numbers_pal raises an error for an unknown palette", {
-  expect_error(numbers_pal("Chartreuse"), "must be one of")
+  expect_snapshot(numbers_pal("Chartreuse"), error = TRUE)
 })
 
 test_that("numbers_pal raises a warning for large n", {
-  expect_warning(numbers_pal()(7L), "maximum of 6")
+  expect_snapshot(x <- numbers_pal()(7L))
 })
 
 test_that("numbers_pal has a max_n attribute", {
@@ -84,10 +84,6 @@ test_that("theme_numbers draws only the bottom axis line", {
   expect_s3_class(calc_element("axis.ticks", thm), "element_blank")
 })
 
-test_that("theme_numbers plot works", {
-  p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
-    geom_point() +
-    scale_colour_numbers() +
-    theme_numbers()
-  expect_doppelganger("theme_numbers", p)
+test_that("theme_numbers draws correctly", {
+  expect_doppelganger("theme_numbers", theme_test_plot() + theme_numbers())
 })

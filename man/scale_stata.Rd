@@ -80,4 +80,8 @@ notation.
 \description{
 See \code{\link{stata_pal}()} for details.
 }
+\seealso{
+Other colour stata:
+\code{\link[=stata_pal]{stata_pal()}}
+}
 \concept{colour stata}

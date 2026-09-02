@@ -29,11 +29,9 @@ extended_range_breaks(n = 5, ...)
 \item{...}{other arguments passed to \code{extended_range_breaks_()}}
 }
 \value{
-For \code{extended_range_breaks}, the vector of axis label locations.
-For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
+For \code{extended_range_breaks_}, the vector of axis label locations.
+For \code{extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
   the vector of axis label locations.
-
-A function which returns breaks given a vector.
 }
 \description{
 This function returns pretty axis breaks that always include the extreme values of the data.
@@ -43,13 +41,26 @@ Then, the minimum and maximum labels are moved to the minimum and maximum of the
 range.
 }
 \details{
-\code{extended_range_breaks} implements the algorithm and returns the break values.
-\code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
+\code{extended_range_breaks_} implements the algorithm and returns the break values.
+\code{extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
+
+Note that ggplot2 hands a \code{breaks} function the expanded scale limits, not the data
+range. Passing \code{extended_range_breaks()} directly to \code{breaks} therefore places the
+end labels at the panel edges rather than at the extremes of the data. To label the extremes,
+which is what pairs with \code{\link{geom_rangeframe}()}, apply the function to the data
+instead: \code{scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))}.
 }
 \references{
 Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
   for Positioning Tick Labels on Axes, InfoVis 2010.
 }
+\seealso{
+Other tufte:
+\code{\link[=geom_rangeframe]{geom_rangeframe()}},
+\code{\link[=geom_tufteboxplot]{geom_tufteboxplot()}},
+\code{\link[=theme_tufte]{theme_tufte()}}
+}
 \author{
 Justin Talbot \email{jtalbot@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
 }
+\concept{tufte}

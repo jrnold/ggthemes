@@ -19,7 +19,7 @@ test_that("economist_pal puts red last, reserved for emphasis", {
 })
 
 test_that("economist_pal raises warning with large number", {
-  expect_warning(economist_pal()(10))
+  expect_snapshot(x <- economist_pal()(10))
 })
 
 test_that("scale_colour_economist equals scale_color_economist", {
@@ -178,4 +178,14 @@ test_that("economist_pal(fill=) is deprecated", {
 test_that("economist_pal(fill=) no longer changes the palette", {
   withr::local_options(lifecycle_verbosity = "quiet")
   expect_equal(economist_pal(fill = FALSE)(9), economist_pal()(9))
+})
+
+test_that("theme_economist draws correctly", {
+  expect_doppelganger("theme_economist", theme_test_plot() + theme_economist())
+})
+
+test_that("theme_economist_white draws correctly", {
+  # Deprecated, but still exported, so it keeps a baseline until it is removed.
+  withr::local_options(lifecycle_verbosity = "quiet")
+  expect_doppelganger("theme_economist_white", theme_test_plot() + theme_economist_white())
 })

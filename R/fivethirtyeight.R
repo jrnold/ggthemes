@@ -48,7 +48,7 @@ fivethirtyeight_pal <- function() {
   colors <- deframe(ggthemes::ggthemes_data[["fivethirtyeight"]])
   values <- unname(colors[c("Blue", "Red", "Green")])
   max_n <- length(values)
-  f <- manual_pal(values)
+  f <- manual_pal_checked(values)
   attr(f, "max_n") <- max_n
   f
 }

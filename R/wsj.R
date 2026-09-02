@@ -83,7 +83,7 @@ wsj_pal <- function(palette = "colors6") {
   if (palette %in% names(palettes)) {
     colors <- palettes[[palette]][["value"]]
     max_n <- length(colors)
-    f <- manual_pal(unname(colors))
+    f <- manual_pal_checked(unname(colors))
     attr(f, "max_n") <- max_n
     f
   } else {

@@ -211,10 +211,8 @@ importFrom(scales,
 )
 importFrom(stats,
   median,
-  uniroot,
-  weighted.mean
+  uniroot
 )
-importFrom(stringr,str_replace)
 importFrom(tibble,
   as_tibble,
   deframe

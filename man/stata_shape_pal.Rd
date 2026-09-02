@@ -4,13 +4,28 @@
 \alias{stata_shape_pal}
 \title{Stata shape palette (discrete)}
 \usage{
-stata_shape_pal()
+stata_shape_pal(unicode = FALSE)
+}
+\arguments{
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
+glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
+by the device font, so they render as blank boxes in a font without
+coverage; the default returns base pch codes, which every font can draw.}
 }
 \description{
 Shape palette based on the symbol palette in Stata used in scheme s2mono.
 This palette supports up to 10 values.
 }
+\note{
+Stata's ten plotting symbols all have a base pch equivalent, so this palette
+supports ten values on either branch and nothing is dropped:
+solid and hollow circle, diamond, square and triangle, plus the X and the
+plus sign.
+}
 \seealso{
 See \code{\link{scale_shape_stata}()} for examples.
+
+Other shapes stata:
+\code{\link[=scale_shape_stata]{scale_shape_stata()}}
 }
 \concept{shapes stata}
