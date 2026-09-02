@@ -107,23 +107,11 @@ check_shape_duplicates <- function(shapes, label) {
   }
 }
 
-ggthemes_data <- new_environment()
+# The ten symbolstyles `stata_shape_pal()` selects from the 22-row catalogue.
+# Sourced, not copied, for the same reason as the shape vocabulary above.
+source(here::here("R", "stata-shapes.R"))
 
-# The ten symbolstyles `stata_shape_pal()` selects from the 22-row catalogue;
-# mirrors the list in R/stata.R.
-# nolint next: object_name_linter
-STATA_PALETTE_SHAPES <- c(
-  "circle",
-  "diamond",
-  "square",
-  "triangle",
-  "X",
-  "plus",
-  "circle_hollow",
-  "diamond_hollow",
-  "square_hollow",
-  "triangle_hollow"
-)
+ggthemes_data <- new_environment()
 
 load_stata <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "stata.yml"))
@@ -148,7 +136,7 @@ load_stata <- function() {
     -comment
   )
   check_shape_duplicates(
-    out$shapes[out$shapes[["symbolstyle"]] %in% STATA_PALETTE_SHAPES, ],
+    out$shapes[out$shapes[["symbolstyle"]] %in% stata_palette_shapes, ],
     "stata.yml:shapes (stata_shape_pal)"
   )
   out
