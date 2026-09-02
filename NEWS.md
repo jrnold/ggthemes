@@ -66,6 +66,11 @@
   sequential palette has 20. Plots using `"Red-Gold"` will change appearance.
 - Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
   `tableau.yml`.
+- The test suite no longer requires suggested packages to be installed.
+  `expect_hexcolor()` used **stringr** and **glue** on every palette test,
+  and stringr had moved from `Imports` to `Suggests`; it now uses base
+  equivalents. The tests that genuinely need **withr** or **farver** skip
+  when those are absent instead of erroring.
 - Add vdiffr visual regression baselines for every exported theme, and swatch
   baselines plus property assertions (valid hex, no duplicate colours, stable
   lengths, monotone lightness, no out-of-family colour, monotone grey ramps)

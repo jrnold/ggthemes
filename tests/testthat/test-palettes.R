@@ -60,12 +60,14 @@ test_that("ordered palette lengths are stable", {
 })
 
 test_that("sequential palettes run monotonically in lightness", {
+  skip_if_not_installed("farver")
   pals <- tableau_palette_colours("ordered-sequential")
   bad <- names(pals)[!vapply(pals, is_monotone_lightness, logical(1))]
   expect_equal(bad, character(0))
 })
 
 test_that("ordered palettes contain no out-of-family colour", {
+  skip_if_not_installed("farver")
   for (family in ordered_families) {
     pals <- tableau_palette_colours(family)
     ratios <- vapply(pals, step_outlier_ratio, numeric(1))
@@ -82,6 +84,7 @@ test_that("ordered palettes contain no out-of-family colour", {
 })
 
 test_that("grey ramps stay neutral and monotone in every channel", {
+  skip_if_not_installed("farver")
   pals <- tableau_palette_colours("ordered-sequential")
   expect_true(all(grey_ramps %in% names(pals)))
 
