@@ -1,4 +1,45 @@
+# Highcharts colour palettes.
+#
+# Sources (all verified against the npm tarball of highcharts 13.0.2):
+# - `default` / `default_dark`: css/highcharts.css, `--highcharts-color-0`
+#   through `--highcharts-color-9`. Since v12 the JS default is
+#   `var(--highcharts-color-N)` rather than a literal hex, and two entries
+#   differ under `light-dark()`, hence the separate dark variant.
+# - `classic`: the literal `colors` array shipped in highcharts.src.js for
+#   v5.0.0 through v10.x, replaced by the current default in v11.0.0.
+# - every other palette: the `colors` array in the corresponding
+#   themes/<name>.src.js.
+
+# Highcharts >= 11 default, light mode.
 "default":
+- "#2caffe"
+- "#544fc5"
+- "#00e272"
+- "#fe6a35"
+- "#6b8abc"
+- "#d568fb"
+- "#2ee0ca"
+- "#fa4b42"
+- "#feb56a"
+- "#91e8e1"
+
+# Highcharts >= 11 default, dark mode. Identical to `default` apart from
+# positions 2 and 3, which `light-dark()` swaps for legibility on a dark
+# background.
+"default_dark":
+- "#2caffe"
+- "#00e272"
+- "#efdf00"
+- "#fe6a35"
+- "#6b8abc"
+- "#d568fb"
+- "#2ee0ca"
+- "#fa4b42"
+- "#feb56a"
+- "#91e8e1"
+
+# The Highcharts default from v5.0.0 to v10.x.
+"classic":
 - "#7cb5ec"
 - "#434348"
 - "#90ed7d"
@@ -6,9 +47,10 @@
 - "#8085e9"
 - "#f15c80"
 - "#e4d354"
-- "#8085e8"
-- "#8d4653"
+- "#2b908f"
+- "#f45b5b"
 - "#91e8e1"
+
 "darkunica":
 - "#2b908f"
 - "#90ee7e"
@@ -21,3 +63,70 @@
 - "#DF5353"
 - "#7798BF"
 - "#aaeeee"
+
+"grid_light":
+- "#7cb5ec"
+- "#f7a35c"
+- "#90ee7e"
+- "#7798BF"
+- "#aaeeee"
+- "#ff0066"
+- "#eeaaee"
+- "#55BF3B"
+- "#DF5353"
+- "#7798BF"
+- "#aaeeee"
+
+"sand_signika":
+- "#f45b5b"
+- "#8085e9"
+- "#8d4654"
+- "#7798BF"
+- "#aaeeee"
+- "#ff0066"
+- "#eeaaee"
+- "#55BF3B"
+- "#DF5353"
+- "#7798BF"
+- "#aaeeee"
+
+# Highcharts' own palette, tested for colour blindness and tailored to 3:1
+# contrast against a white (light) or near-black (dark) background. Upstream writes
+# position 2 in CSS three-digit form (`#222`), expanded here to `#222222`
+# because R's colour parsing only accepts #RRGGBB / #RRGGBBAA.
+"high_contrast_light":
+- "#265FB5"
+- "#222222"
+- "#698F01"
+- "#F4693E"
+- "#4C0684"
+- "#0FA388"
+- "#B7104A"
+- "#AF9023"
+- "#1A704C"
+- "#B02FDD"
+
+"high_contrast_dark":
+- "#67B9EE"
+- "#CEEDA5"
+- "#9F6AE1"
+- "#FEA26E"
+- "#6BA48F"
+- "#EA3535"
+- "#8D96B7"
+- "#ECCA15"
+- "#20AA09"
+- "#E0C3E4"
+
+# `avocado` and `sunset` have only four colours upstream.
+"avocado":
+- "#F3E796"
+- "#95C471"
+- "#35729E"
+- "#251735"
+
+"sunset":
+- "#FDD089"
+- "#FF7F79"
+- "#A0446E"
+- "#251535"

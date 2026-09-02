@@ -7,12 +7,22 @@
 hc_pal(palette = "default")
 }
 \arguments{
-\item{palette}{\code{character} The name of the Highcharts theme to use. One of
-\code{"default"}, or \code{"darkunica"}.}
+\item{palette}{\code{character} The name of the Highcharts palette to use.
+One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.}
 }
 \description{
-The Highcharts uses many different color palettes in its
-plots. This collects a few of them.
+Highcharts uses many different color palettes in its plots. This collects
+the palettes shipped with Highcharts 13, plus the default Highcharts used
+before v11.
+}
+\details{
+\code{"default"} and \code{"default_dark"} are the light- and dark-mode
+forms of the palette Highcharts has used by default since v11.0.0; they
+differ only in positions 2 and 3. \code{"classic"} is the default
+Highcharts used from v5.0.0 through v10.x. The remaining palettes come
+from the themes bundled with Highcharts.
+
+Note that \code{"avocado"} and \code{"sunset"} have only four colors.
 }
 \seealso{
 Other colour hc:

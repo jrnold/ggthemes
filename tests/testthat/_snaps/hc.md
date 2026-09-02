@@ -4,7 +4,7 @@
       hc_pal(palette = "asdgasdgasdgas")
     Condition
       Error in `hc_pal()`:
-      ! `palette` must be one of "default" and "darkunica", not "asdgasdgasdgas".
+      ! `palette` must be one of "default", "default_dark", "classic", "darkunica", "grid_light", "sand_signika", "high_contrast_light", "high_contrast_dark", "avocado", and "sunset", not "asdgasdgasdgas".
 
 # bgcolor raises warning
 

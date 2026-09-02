@@ -8,7 +8,9 @@ p <- ggplot(mtcars) +
   )) +
   facet_wrap(~am)
 p + theme_hc() + scale_colour_hc()
-p + theme_hc(bgcolor = "darkunica") + scale_colour_hc("darkunica")
+p + theme_hc(style = "darkunica") + scale_colour_hc("darkunica")
+p + theme_hc(style = "grid_light") + scale_colour_hc("grid_light")
+p + theme_hc(style = "default_dark") + scale_colour_hc("high_contrast_dark")
 
 dtemp <- data.frame(
   months = factor(rep(substr(month.name, 1, 3), 4), levels = substr(month.name, 1, 3)),
@@ -76,5 +78,5 @@ ggplot(dtemp, aes(x = months, y = temp, group = city, color = city)) +
   geom_line() +
   geom_point(size = 1.1) +
   ggtitle("Monthly Average Temperature") +
-  theme_hc(bgcolor = "darkunica") +
-  scale_fill_hc("darkunica")
+  theme_hc(style = "darkunica") +
+  scale_colour_hc("darkunica")

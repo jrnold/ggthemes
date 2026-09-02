@@ -213,6 +213,48 @@
   legend labels `#1a1a1a`, and axis titles and the x-axis line `#333333`. The
   chart title (`#757575`) and gridlines (`#cccccc`) are unchanged.
 
+- BREAKING CHANGE: `hc_pal("default")` now returns the palette Highcharts has
+  used by default since v11.0.0 (`#2caffe`, `#544fc5`, `#00e272`, ...). It
+  previously returned the palette used before v11 (`#7cb5ec`, `#434348`, ...),
+  which Highcharts replaced in April 2023. Plots using `scale_colour_hc()` or
+  `scale_fill_hc()` without an explicit `palette` will change appearance. The
+  old palette is still available as `hc_pal("classic")`.
+- BEHAVIOUR CHANGE: two colours in that older palette were wrong, and are
+  corrected in `"classic"`. Position 8 was `#8085e8` (a near-duplicate of
+  `#8085e9` at position 5, differing by one hex digit) and is now `#2b908f`;
+  position 9 was `#8d4653` and is now `#f45b5b`. The old values match
+  Highcharts 4.x; every Highcharts release from v5.0.0 to v10.x shipped the
+  corrected pair.
+- `hc_pal()` and `scale_colour_hc()`/`scale_fill_hc()` gain the palettes
+  bundled with Highcharts 13: `"default_dark"` (the dark-mode form of the
+  default, which Highcharts selects via CSS `light-dark()`),
+  `"high_contrast_light"` and `"high_contrast_dark"` (Highcharts' own palette,
+  tested for colour blindness and tailored to 3:1 contrast), `"grid_light"`,
+  `"sand_signika"`, `"avocado"` and `"sunset"`. Note that `"avocado"` and
+  `"sunset"` have only four colours.
+- `hc_pal()` now reports a `max_n` attribute and warns when asked for more
+  colours than the palette holds, matching the other ggthemes palettes.
+- `theme_hc()`'s horizontal grid lines are now `#e6e6e6`, matching Highcharts'
+  `--highcharts-neutral-color-10`, rather than `#D8D8D8`.
+- `theme_hc()` gains the `"default_dark"`, `"grid_light"` and `"sand_signika"`
+  styles. `"grid_light"` is the one Highcharts theme that draws vertical grid
+  lines. The `"high_contrast"`, `"avocado"` and `"sunset"` themes are not
+  included as styles: upstream they change nothing but the series colours, so
+  they are available through `hc_pal()` and are meant to be combined with
+  `theme_hc("default")` or `theme_hc("default_dark")`.
+- BEHAVIOUR CHANGE: `theme_hc("darkunica")` drew all text in `#A0A0A3` and
+  titles in `#FFFFFF`. Highcharts uses `#E0E0E3` for axis labels, titles and
+  axis titles in this theme, so text is now `#E0E0E3` throughout. The grid
+  colour `#707073` was already correct and is unchanged.
+- Fix unreadable axis labels in `theme_hc("darkunica")`. `theme_hc()` is a
+  partial theme, and it never set `axis.text`, so the axis labels kept
+  `theme_grey()`'s `"grey30"` and were drawn in dark grey on the near-black
+  background. They now use the same colour as the rest of the theme's text.
+- Remove `data-raw/theme-data/highcharts.yml`, an unused duplicate of `hc.yml`
+  that still held the palettes from before v11.
+- `theme_hc()`'s examples now pass `style` rather than the deprecated
+  `bgcolor`, and the last example uses `scale_colour_hc()` instead of
+  `scale_fill_hc()`, which had no effect on its colour-mapped lines.
 - BREAKING CHANGE: `theme_economist()` and `economist_pal()` now follow the
   chart design *The Economist* introduced in 2017 and still publishes,
   replacing the pre-2017 style ggthemes had shipped since 2013. Existing
