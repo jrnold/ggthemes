@@ -85,4 +85,8 @@ p <- ggplot(mtcars) +
 p + theme_stata(scheme = "s2color") + scale_shape_stata()
 }
 }
-\concept{shape stata}
+\seealso{
+Other shapes stata:
+\code{\link[=stata_shape_pal]{stata_shape_pal()}}
+}
+\concept{shapes stata}

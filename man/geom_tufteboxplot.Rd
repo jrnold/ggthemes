@@ -195,5 +195,11 @@ box plots. The American Statistician 32, 12-16.
 
 Other geom tufte:
 \code{\link[=geom_rangeframe]{geom_rangeframe()}}
+
+Other tufte:
+\code{\link[=extended_range_breaks_]{extended_range_breaks_()}},
+\code{\link[=geom_rangeframe]{geom_rangeframe()}},
+\code{\link[=theme_tufte]{theme_tufte()}}
 }
 \concept{geom tufte}
+\concept{tufte}

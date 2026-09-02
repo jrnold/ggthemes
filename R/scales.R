@@ -64,21 +64,28 @@
 #' Then, the minimum and maximum labels are moved to the minimum and maximum of the data
 #' range.
 #'
-#' \code{extended_range_breaks} implements the algorithm and returns the break values.
-#' \code{scales_extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
+#' \code{extended_range_breaks_} implements the algorithm and returns the break values.
+#' \code{extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
+#'
+#' Note that ggplot2 hands a \code{breaks} function the expanded scale limits, not the data
+#' range. Passing \code{extended_range_breaks()} directly to \code{breaks} therefore places the
+#' end labels at the panel edges rather than at the extremes of the data. To label the extremes,
+#' which is what pairs with \code{\link{geom_rangeframe}()}, apply the function to the data
+#' instead: \code{scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))}.
 #'
 #' @param dmin minimum of the data range
 #' @param dmax maximum of the data range
 #' @param n desired number of breaks
 #' @param Q set of nice numbers
 #' @param w weights applied to the four optimization components (simplicity, coverage, density, and legibility)
-#' @return For \code{extended_range_breaks}, the vector of axis label locations.
-#' For \code{scales_extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
+#' @return For \code{extended_range_breaks_}, the vector of axis label locations.
+#' For \code{extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
 #'   the vector of axis label locations.
 #' @references
 #' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
 #'   for Positioning Tick Labels on Axes, InfoVis 2010.
 #' @author Justin Talbot \email{jtalbot@@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
+#' @family tufte
 #' @rdname range_breaks
 #' @export
 extended_range_breaks_ <- function(
@@ -184,7 +191,6 @@ extended_range_breaks_ <- function(
 
 #' @rdname range_breaks
 #' @param ... other arguments passed to \code{extended_range_breaks_()}
-#' @return A function which returns breaks given a vector.
 #' @export
 extended_range_breaks <- function(n = 5, ...) {
   function(x) {

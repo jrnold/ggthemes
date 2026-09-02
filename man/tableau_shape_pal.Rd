@@ -52,7 +52,7 @@ show_shapes(tableau_shape_pal()(8))
 }
 }
 \seealso{
-Other shape tableau:
+Other shapes tableau:
 \code{\link[=scale_shape_tableau]{scale_shape_tableau()}}
 }
-\concept{shape tableau}
+\concept{shapes tableau}

@@ -27,7 +27,7 @@ show_col(solarized_pal()(3))
 show_col(solarized_pal("red")(4))
 }
 \seealso{
-Other solarized colour:
+Other colour solarized:
 \code{\link[=scale_fill_solarized]{scale_fill_solarized()}}
 }
-\concept{solarized colour}
+\concept{colour solarized}
