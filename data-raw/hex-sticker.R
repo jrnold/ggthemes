@@ -15,10 +15,12 @@ solarized <- c(
   blue = "#268bd2", cyan = "#2aa198"
 )
 
+set.seed(20260901)
+scatter_x <- sort(runif(16, 0.85, 5.05))
 points <- data.frame(
-  x = c(1.0, 1.4, 1.8, 2.1, 2.5, 2.8, 3.2, 3.5, 3.9, 4.2, 4.6, 4.9),
-  y = c(1.2, 1.9, 1.7, 2.7, 2.4, 3.5, 3.0, 4.1, 3.8, 4.8, 4.5, 5.3),
-  colour = rep(c("cyan", "blue", "orange"), 4)
+  x = scatter_x,
+  y = pmax(0.9, pmin(5.5, 1 + 0.7 * scatter_x + rnorm(16, sd = 0.8))),
+  colour = sample(rep(c("cyan", "blue", "orange"), length.out = 16))
 )
 
 scatter_plot <- function(light = TRUE, transparent = FALSE) {
@@ -103,8 +105,15 @@ grid.text("ggthemes", x = 0, y = 0.5, just = "centre",
 )
 popViewport()
 
-grid.lines(c(0.5, 0.5), c(0.04, 0.96), default.units = "npc", gp = gpar(col = solarized[["blue"]], lwd = 2.4))
-grid.polygon(hex[, 1], hex[, 2], default.units = "npc", gp = gpar(fill = NA, col = solarized[["blue"]], lwd = 5))
+# Match each border half to its background's Solarized foreground colour.
+grid.lines(
+  c(0.5, 0.08, 0.08, 0.5), c(0.02, 0.26, 0.74, 0.98),
+  default.units = "npc", gp = gpar(col = solarized[["base1"]], lwd = 5)
+)
+grid.lines(
+  c(0.5, 0.92, 0.92, 0.5), c(0.02, 0.26, 0.74, 0.98),
+  default.units = "npc", gp = gpar(col = solarized[["base01"]], lwd = 5)
+)
 }
 
 # `logo.png` follows the conventional 240 x 278 px package-logo size used by
