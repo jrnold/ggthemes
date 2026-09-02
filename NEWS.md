@@ -41,10 +41,14 @@
   the vocabulary, a `character` that disagrees with its own `unicode`, or two
   shapes in one palette sharing a pch all fail the build, and the same checks
   run as tests against the built data.
-- `warn_unicode_pch()`'s locale guess is replaced by a real font-coverage check
+- `warn_unicode_pch()`'s locale guess is joined by a real font-coverage check
   using `systemfonts::glyph_info()` when `systemfonts` is installed, naming the
-  glyphs the current device font cannot draw. `systemfonts` is used in
-  `Suggests`; the locale heuristic remains as the fallback.
+  glyphs the device font cannot draw. `systemfonts` is used in `Suggests`. The
+  locale and coverage checks are independent failure modes and both run: a
+  UTF-8 session can still meet a font with no glyph, and a font with full
+  coverage still fails with `mbcsToSbcs` on a non-UTF-8 session. Note that R
+  exposes no way to read back a device's `family=`, so the probe measures the
+  default font and the warning names the font it actually measured.
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
   actual colour order (blue, red, brown). The old name still works but warns.

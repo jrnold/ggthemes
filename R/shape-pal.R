@@ -38,6 +38,13 @@ shape_font_cache <- new.env(parent = emptyenv())
 #' which is common: a palette is usually constructed before anything is drawn.
 #' Querying `grid` would open the default device as a side effect, so the null
 #' device is short-circuited instead.
+#'
+#' Note that R exposes no way to read back a device's own `family=`: after
+#' `png(family = "Times")` both `par("family")` and grid's `fontfamily` are
+#' still `""`. So this returns `""` in almost every real call, and the probe
+#' below measures whatever `""` resolves to. That is the right guess for a
+#' default-font session and wrong for a session that set a family; the warning
+#' text says which font it actually measured so the guess is visible.
 #' @noRd
 current_font_family <- function() {
   if (grDevices::dev.cur() == 1L) {
@@ -59,8 +66,15 @@ current_font_family <- function() {
 #' guess, but a guess.
 #' @noRd
 warn_shape_font <- function(shapes) {
+  # Locale and glyph coverage are independent failure modes, so both are
+  # checked rather than one standing in for the other. A UTF-8 session can
+  # still meet a font with no glyph, and a font with full coverage still hits
+  # `mbcsToSbcs` on a non-UTF-8 session. Because `systemfonts` ships with
+  # `ragg`, making these alternatives would drop the locale check on the
+  # common path.
+  warn_unicode_pch(shapes[["pch_unicode"]])
   if (!rlang::is_installed("systemfonts")) {
-    return(warn_unicode_pch(shapes[["pch_unicode"]]))
+    return(invisible(NULL))
   }
   characters <- shapes[["character"]]
   family <- current_font_family()
@@ -73,16 +87,29 @@ warn_shape_font <- function(shapes) {
   if (!length(missing)) {
     return(invisible(NULL))
   }
+  # `family` is `""` in almost every call (see `current_font_family()`), and
+  # interpolating that prints a bare `("")` at the reader.
+  measured <- if (nzchar(family)) {
+    "The current device font ({.val {family}})"
+  } else {
+    "The default device font"
+  }
   cli::cli_warn(c(
     paste0(
-      "The current device font ({.val {family}}) lacks glyphs for ",
+      measured,
+      " lacks glyphs for ",
       "{length(missing)} of {length(characters)} shapes in this palette: ",
       "{paste(missing, collapse = ' ')}"
     ),
     "i" = "These will render as blank boxes.",
+    # The font has to be set on the *device*: `geom_point()` draws points
+    # through `gg_par()`, which sets no `fontfamily`, so a ggplot2 theme's
+    # `base_family` does not reach them. `ragg::agg_png()` takes no `family`
+    # argument at all.
     "i" = paste0(
-      "Try a font with wider symbol coverage, e.g. ",
-      "{.code ragg::agg_png(family = \"DejaVu Sans\")}."
+      "Set the device's font family to one with wider symbol coverage, e.g. ",
+      "{.code png(family = \"DejaVu Sans\")} or ",
+      "{.code cairo_pdf(family = \"DejaVu Sans\")}."
     ),
     "i" = "Or use {.code unicode = FALSE} for font-independent base pch shapes."
   ))
