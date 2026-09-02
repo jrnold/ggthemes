@@ -7,12 +7,22 @@
 ptol_pal()
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+\code{ptol_pal()} was deprecated in ggthemes 7.0.0. Use the
+\href{https://CRAN.R-project.org/package=khroma}{khroma} package instead, which
+tracks Paul Tol's colour schemes as he revises them.
+
+This palette is the 12-colour qualitative scheme from Tol's 2012 technical
+note, and has not followed the revisions he has made since. His current
+schemes are at \url{https://sronpersonalpages.nl/~pault/}; the closest successor
+to this palette is \code{khroma::colour("muted")}.
+
 Qualitative color palettes from Paul Tol,
 \href{https://sronpersonalpages.nl/~pault/}{"Colour Schemes"}.
-}
-\details{
+
 Incorporation of the palette into an R package was originally inspired by
-Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
+Peter Carl's \href{https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/}{Paul Tol 21 Gun Salute}
 }
 \examples{
 library("scales")
@@ -23,7 +33,7 @@ show_col(ptol_pal()(12))
 }
 \references{
 Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
- \url{https://sronpersonalpages.nl/~pault/data/colourschemes.pdf}
+\url{https://sronpersonalpages.nl/~pault/data/colourschemes.pdf}
 }
 \seealso{
 Other colour ptol:
