@@ -7,6 +7,11 @@
 # all under one normalised schema so the §4.3 validation can be asserted over
 # every table at once rather than one call site at a time.
 
+# Columns are referenced through the `.data` pronoun, which ggplot2 resolves
+# from the data mask. The local binding exists only so that lintr's
+# object_usage_linter can see where those names come from.
+.data <- rlang::.data
+
 # Every shape table in `ggthemes_data`, as a named list of data frames.
 shape_tables <- function() {
   data <- ggthemes::ggthemes_data

@@ -75,6 +75,11 @@
   than silently drawing nothing. `sides` packs side letters into one string, so
   a typo such as `sides = "xy"` previously produced an empty layer with no
   message. Valid values are strings made up of `"t"`, `"r"`, `"b"` and `"l"`.
+- Fix `theme_economist_white()` failing on installations without **dplyr**.
+  The internal `get_colors()` helper called `dplyr::filter()`, but dplyr is a
+  suggested package, not an import; it now uses base subsetting. The test
+  suite no longer uses dplyr either, so `R CMD check` passes with only the
+  hard dependencies installed.
 - Add vdiffr visual regression baselines for every exported theme, and swatch
   baselines plus property assertions (valid hex, no duplicate colours, stable
   lengths, monotone lightness, no out-of-family colour, monotone grey ramps)
