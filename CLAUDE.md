@@ -59,6 +59,9 @@ Rscript -e 'knitr::knit("README.Rmd", output = "README.md", quiet = TRUE)'
 
 ## Commit Conventions
 
+Update `NEWS.md` for any user-facing change as part of the commit that
+makes it.
+
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
 
 ### Format

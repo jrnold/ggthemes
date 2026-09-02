@@ -64,6 +64,8 @@
   `fivethirtyeight_pal()`, `gdocs_pal()`, `hc_pal()`, `stata_pal()` and
   `wsj_pal()` --- previously failed with R's internal
   `argument must be coercible to non-negative integer` from `seq_len()`.
+  This raises the minimum version of scales to 1.4.0, which is where
+  `scales::new_discrete_palette()` was introduced.
 - `bank_slopes()` and `bank_plot()` report an invalid `method`, and
   `tableau_shape_pal()` an invalid `palette`, with a message naming the
   argument and the value supplied instead of `match.arg()`'s
