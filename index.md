@@ -1,4 +1,4 @@
-# ggthemes
+# ggthemes [![ggthemes hex stickers, one per point colour palette, animated](reference/figures/stickers/ggthemes-theme-stickers.gif)](https://jrnold.github.io/ggthemes/)
 
 [![R-CMD-check](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml)
 [![Code Coverage
