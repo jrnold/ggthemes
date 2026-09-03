@@ -180,3 +180,61 @@ p1 + scale_color_tableau()
 ```
 
 ![](reference/figures/README-scale_color_tableau-1.png)
+
+## Color palettes
+
+Every colour palette shipped with ggthemes is shown below. Each row is
+one palette; the swatches are in the order returned by the corresponding
+palette function. This compact, data-derived gallery follows the
+palette-overview approach used by
+[ggpalettes](https://github.com/cran/ggpalettes) and the
+one-palette-per-row display in
+[sjPlot](https://github.com/strengejacke/sjPlot).
+
+### General
+
+[TABLE]
+
+### Canva
+
+[TABLE]
+
+### Excel
+
+[TABLE]
+
+### Few
+
+[TABLE]
+
+### Highcharts
+
+[TABLE]
+
+### Numbers
+
+[TABLE]
+
+### Solarized
+
+[TABLE]
+
+### Stata
+
+[TABLE]
+
+### Tableau — discrete
+
+[TABLE]
+
+### Tableau — diverging
+
+[TABLE]
+
+### Tableau — sequential
+
+[TABLE]
+
+### Wall Street Journal
+
+[TABLE]
