@@ -138,3 +138,104 @@ p1 + scale_color_colorblind()
 ```{r,scale_color_tableau}
 p1 + scale_color_tableau()
 ```
+
+## Color palettes
+
+Every colour palette shipped with ggthemes is shown below. Each row is one
+palette; the swatches are in the order returned by the corresponding palette
+function. This compact, data-derived gallery follows the palette-overview
+approach used by [ggpalettes](https://github.com/cran/ggpalettes) and the
+one-palette-per-row display in [sjPlot](https://github.com/strengejacke/sjPlot).
+
+```{r palettes, echo = FALSE, results = "asis", warning = FALSE}
+# Keep this gallery tied to the package data, so palette additions and colour
+# changes appear here automatically. Tableau's sequential and diverging rows
+# show the colour stops used by its continuous scales.
+pkgload::load_all(quiet = TRUE)
+
+palette_rows <- list(
+  "General" = list(
+    "colorblind_pal(black = TRUE)" = colorblind_pal(black = TRUE)(8),
+    "calc_pal()" = calc_pal()(12),
+    "economist_pal(fill = FALSE)" = economist_pal(fill = FALSE)(9),
+    "economist_pal(fill = TRUE)" = economist_pal(fill = TRUE)(9),
+    "fivethirtyeight_pal()" = fivethirtyeight_pal()(3),
+    "gdocs_pal()" = gdocs_pal()(24),
+    "palette_pander(random_order = FALSE)" = palette_pander(8),
+    "ptol_pal()" = ptol_pal()(12)
+  ),
+  "Canva" = setNames(
+    lapply(names(canva_palettes), function(palette) canva_pal(palette)(4)),
+    sprintf('canva_pal("%s")', names(canva_palettes))
+  ),
+  "Excel" = c(
+    list("excel_pal(line = TRUE)" = excel_pal(TRUE)(7),
+         "excel_pal(line = FALSE)" = excel_pal(FALSE)(7)),
+    setNames(lapply(names(ggthemes_data$excel$themes), function(theme) {
+      excel_new_pal(theme)(6)
+    }), sprintf('excel_new_pal("%s")', names(ggthemes_data$excel$themes)))
+  ),
+  "Few" = setNames(
+    lapply(names(ggthemes_data$few$colors), function(palette) few_pal(palette)(8)),
+    sprintf('few_pal("%s")', names(ggthemes_data$few$colors))
+  ),
+  "Highcharts" = setNames(
+    lapply(names(ggthemes_data$hc), function(palette) hc_pal(palette)(length(ggthemes_data$hc[[palette]]))),
+    sprintf('hc_pal("%s")', names(ggthemes_data$hc))
+  ),
+  "Numbers" = setNames(
+    lapply(names(ggthemes_data$numbers), function(palette) numbers_pal(palette)(6)),
+    sprintf('numbers_pal("%s")', names(ggthemes_data$numbers))
+  ),
+  "Solarized" = setNames(
+    lapply(names(ggthemes_data$solarized$palettes), function(accent) solarized_pal(accent)(8)),
+    sprintf('solarized_pal("%s")', names(ggthemes_data$solarized$palettes))
+  ),
+  "Stata" = setNames(
+    lapply(names(ggthemes_data$stata$colors$schemes), function(scheme) stata_pal(scheme)(15)),
+    sprintf('stata_pal("%s")', names(ggthemes_data$stata$colors$schemes))
+  ),
+  "Tableau — discrete" = setNames(
+    lapply(names(ggthemes_data$tableau$`color-palettes`$regular), function(palette) {
+      x <- ggthemes_data$tableau$`color-palettes`$regular[[palette]]
+      tableau_color_pal(palette, type = "regular")(nrow(x))
+    }), sprintf('tableau_color_pal("%s")', names(ggthemes_data$tableau$`color-palettes`$regular))
+  ),
+  "Tableau — diverging" = setNames(
+    lapply(ggthemes_data$tableau$`color-palettes`$`ordered-diverging`, `[[`, "value"),
+    sprintf('tableau_div_gradient_pal("%s")', names(ggthemes_data$tableau$`color-palettes`$`ordered-diverging`))
+  ),
+  "Tableau — sequential" = setNames(
+    lapply(ggthemes_data$tableau$`color-palettes`$`ordered-sequential`, `[[`, "value"),
+    sprintf('tableau_seq_gradient_pal("%s")', names(ggthemes_data$tableau$`color-palettes`$`ordered-sequential`))
+  ),
+  "Wall Street Journal" = setNames(
+    lapply(names(ggthemes_data$wsj$palettes), function(palette) {
+      x <- ggthemes_data$wsj$palettes[[palette]]
+      wsj_pal(palette)(nrow(x))
+    }), sprintf('wsj_pal("%s")', names(ggthemes_data$wsj$palettes))
+  )
+)
+
+html_escape <- function(x) {
+  x <- gsub("&", "&amp;", x, fixed = TRUE)
+  x <- gsub("<", "&lt;", x, fixed = TRUE)
+  gsub(">", "&gt;", x, fixed = TRUE)
+}
+
+for (group in names(palette_rows)) {
+  cat(sprintf("<h3>%s</h3>\n<table>\n", html_escape(group)))
+  for (name in names(palette_rows[[group]])) {
+    colours <- palette_rows[[group]][[name]]
+    swatches <- paste(sprintf(
+      '<td width="16" height="20" bgcolor="%s" title="%s">&nbsp;</td>',
+      colours, colours
+    ), collapse = "")
+    cat(sprintf(
+      '<tr><td><code>%s</code></td><td><table cellspacing="0" cellpadding="0"><tr>%s</tr></table></td></tr>\n',
+      html_escape(name), swatches
+    ))
+  }
+  cat("</table>\n")
+}
+```

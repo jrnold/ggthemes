@@ -164,3 +164,18496 @@ p1 + scale_color_tableau()
 ```
 
 ![](man/figures/README-scale_color_tableau-1.png)<!-- -->
+
+## Color palettes
+
+Every colour palette shipped with ggthemes is shown below. Each row is
+one palette; the swatches are in the order returned by the corresponding
+palette function. This compact, data-derived gallery follows the
+palette-overview approach used by
+[ggpalettes](https://github.com/cran/ggpalettes) and the
+one-palette-per-row display in
+[sjPlot](https://github.com/strengejacke/sjPlot).
+
+<h3>
+
+General
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>colorblind_pal(black = TRUE)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E69F00" title="#E69F00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#56B4E9" title="#56B4E9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#009E73" title="#009E73">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F0E442" title="#F0E442">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0072B2" title="#0072B2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D55E00" title="#D55E00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CC79A7" title="#CC79A7">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>calc_pal()</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#004586" title="#004586">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff420e" title="#ff420e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd320" title="#ffd320">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#579d1c" title="#579d1c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7e0021" title="#7e0021">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#83caff" title="#83caff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#314004" title="#314004">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aecf00" title="#aecf00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4b1f6f" title="#4b1f6f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff950e" title="#ff950e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c5000b" title="#c5000b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0084d1" title="#0084d1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>economist_pal(fill = FALSE)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#006ba2" title="#006ba2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3ebcd2" title="#3ebcd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#379a8b" title="#379a8b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebb434" title="#ebb434">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b4ba39" title="#b4ba39">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9a607f" title="#9a607f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d1b07c" title="#d1b07c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#758d99" title="#758d99">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#db444b" title="#db444b">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>economist_pal(fill = TRUE)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#006ba2" title="#006ba2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3ebcd2" title="#3ebcd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#379a8b" title="#379a8b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebb434" title="#ebb434">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b4ba39" title="#b4ba39">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9a607f" title="#9a607f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d1b07c" title="#d1b07c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#758d99" title="#758d99">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#db444b" title="#db444b">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>fivethirtyeight_pal()</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#008FD5" title="#008FD5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FF2700" title="#FF2700">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#77AB43" title="#77AB43">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>gdocs_pal()</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4285f4" title="#4285f4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ea4335" title="#ea4335">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fbbc04" title="#fbbc04">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#34a853" title="#34a853">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff6d01" title="#ff6d01">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#46bdc6" title="#46bdc6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7baaf7" title="#7baaf7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f07b72" title="#f07b72">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcd04f" title="#fcd04f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#71c287" title="#71c287">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff994d" title="#ff994d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7ed1d7" title="#7ed1d7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b3cefb" title="#b3cefb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7b4ae" title="#f7b4ae">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fde49b" title="#fde49b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aedcba" title="#aedcba">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffc599" title="#ffc599">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b5e5e8" title="#b5e5e8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ecf3fe" title="#ecf3fe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdeceb" title="#fdeceb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fff8e6" title="#fff8e6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebf6ee" title="#ebf6ee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fff0e6" title="#fff0e6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#edf8f9" title="#edf8f9">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>palette_pander(random_order = FALSE)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#56B4E9" title="#56B4E9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#009E73" title="#009E73">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F0E442" title="#F0E442">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0072B2" title="#0072B2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D55E00" title="#D55E00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CC79A7" title="#CC79A7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#999999" title="#999999">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E69F00" title="#E69F00">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>ptol_pal()</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#332288" title="#332288">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6699CC" title="#6699CC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#88CCEE" title="#88CCEE">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#44AA99" title="#44AA99">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#117733" title="#117733">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#999933" title="#999933">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DDCC77" title="#DDCC77">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#661100" title="#661100">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CC6677" title="#CC6677">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#AA4466" title="#AA4466">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#882255" title="#882255">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#AA4499" title="#AA4499">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Canva
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Fresh and bright”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f98866" title="#f98866">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff420e" title="#ff420e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#80bd9e" title="#80bd9e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#89da59" title="#89da59">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Subdued and proffesional”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#90afc5" title="#90afc5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#336b87" title="#336b87">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2a3132" title="#2a3132">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#763626" title="#763626">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Dark and earthy”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#46211a" title="#46211a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#693d3d" title="#693d3d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ba5536" title="#ba5536">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a43820" title="#a43820">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Crisp and dramatic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#505160" title="#505160">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#68829e" title="#68829e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aebd38" title="#aebd38">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#598234" title="#598234">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cool blues”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#003b46" title="#003b46">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#07575b" title="#07575b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#66a5ad" title="#66a5ad">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c4dfe6" title="#c4dfe6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Outdoorsy and Natural”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2e4600" title="#2e4600">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#486b00" title="#486b00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2c523" title="#a2c523">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7d4427" title="#7d4427">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Watery blue-greens”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#021c1e" title="#021c1e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#004445" title="#004445">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2c7873" title="#2c7873">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6fb98f" title="#6fb98f">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Primary colors with a vibrant twist”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#375e97" title="#375e97">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fb6542" title="#fb6542">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffbb00" title="#ffbb00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3f681c" title="#3f681c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Refreshing and pretty”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#98dbc6" title="#98dbc6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5bc8ac" title="#5bc8ac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e6d72a" title="#e6d72a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f18d9e" title="#f18d9e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Playful greens and blues”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#324851" title="#324851">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#86ac41" title="#86ac41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#34675c" title="#34675c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7da3a1" title="#7da3a1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Fresh and energetic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4cb5f5" title="#4cb5f5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b7b8b6" title="#b7b8b6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#34675c" title="#34675c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b3c100" title="#b3c100">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Surf and turf”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f4cc70" title="#f4cc70">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#de7a22" title="#de7a22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#20948b" title="#20948b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6ab187" title="#6ab187">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Autumn in vermont”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#8d230f" title="#8d230f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e434c" title="#1e434c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9b4f0f" title="#9b4f0f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c99e10" title="#c99e10">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Icy blues and grays”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f1f1f2" title="#f1f1f2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bcbabe" title="#bcbabe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a1d6e2" title="#a1d6e2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1995ad" title="#1995ad">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Birds and berries”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9a9eab" title="#9a9eab">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5d535e" title="#5d535e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ec96a4" title="#ec96a4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dfe166" title="#dfe166">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Day and night”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#011a27" title="#011a27">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#063852" title="#063852">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0810f" title="#f0810f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e6df44" title="#e6df44">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Stylish and retro”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#75b1a9" title="#75b1a9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d9b44a" title="#d9b44a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4f6457" title="#4f6457">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#acd0c0" title="#acd0c0">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Shades of citrus”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#eb8a44" title="#eb8a44">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9dc24" title="#f9dc24">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4b7447" title="#4b7447">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8eba43" title="#8eba43">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Sunset to dusk”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#363237" title="#363237">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2d4262" title="#2d4262">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#73605b" title="#73605b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d09683" title="#d09683">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bright and tropical”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f52549" title="#f52549">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa6775" title="#fa6775">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd64d" title="#ffd64d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9bc01c" title="#9bc01c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Warm naturals”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2e2300" title="#2e2300">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6e6702" title="#6e6702">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c05805" title="#c05805">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#db9501" title="#db9501">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bold berries”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#50312f" title="#50312f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb0000" title="#cb0000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e4ea8c" title="#e4ea8c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3f6c45" title="#3f6c45">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Summer sunflower”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#34888c" title="#34888c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7caa2d" title="#7caa2d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5e356" title="#f5e356">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb6318" title="#cb6318">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Modern and crisp”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#0f1b07" title="#0f1b07">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5c821a" title="#5c821a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c6d166" title="#c6d166">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Timeless and nautical”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#00293c" title="#00293c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e656d" title="#1e656d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f1f3ce" title="#f1f3ce">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f62a00" title="#f62a00">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Neutral and versatile”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#626d71" title="#626d71">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdcdc0" title="#cdcdc0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ddbc95" title="#ddbc95">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b38867" title="#b38867">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cheerful brights”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#258039" title="#258039">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5be41" title="#f5be41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#31a9b8" title="#31a9b8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cf3721" title="#cf3721">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Garden fresh”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ee693f" title="#ee693f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f69454" title="#f69454">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcfdfe" title="#fcfdfe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#739f3d" title="#739f3d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Summer barbeque”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b9d9c3" title="#b9d9c3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#752a07" title="#752a07">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fbcb7b" title="#fbcb7b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eb5e30" title="#eb5e30">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Berry blues”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1e1f26" title="#1e1f26">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#283655" title="#283655">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4d648d" title="#4d648d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d0e1f9" title="#d0e1f9">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Lemonade stand”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f70025" title="#f70025">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7efe2" title="#f7efe2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f25c00" title="#f25c00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9a603" title="#f9a603">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Serene and spa like”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a1be95" title="#a1be95">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e2dfa2" title="#e2dfa2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#92aac7" title="#92aac7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ed5752" title="#ed5752">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Fun and tropical”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4897d8" title="#4897d8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffdb5c" title="#ffdb5c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa6e59" title="#fa6e59">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8a055" title="#f8a055">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Spicy neutrals”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#af4425" title="#af4425">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#662e1c" title="#662e1c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebdcb2" title="#ebdcb2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c9a66b" title="#c9a66b">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Pastels”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c1e1dc" title="#c1e1dc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffccac" title="#ffccac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffeb94" title="#ffeb94">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdd475" title="#fdd475">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bold and cultured”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4c3f54" title="#4c3f54">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d13525" title="#d13525">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f2c057" title="#f2c057">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#486824" title="#486824">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Sunny citrus”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#faaf08" title="#faaf08">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa812f" title="#fa812f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa4032" title="#fa4032">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fef3e2" title="#fef3e2">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Crisp complementary colors”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f4ec6a" title="#f4ec6a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bbcf4a" title="#bbcf4a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e73f0b" title="#e73f0b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a11f0c" title="#a11f0c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Warm and rustic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#fef2e4" title="#fef2e4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd974f" title="#fd974f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c60000" title="#c60000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#805a3b" title="#805a3b">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Neon night”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f77604" title="#f77604">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b8d20b" title="#b8d20b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f56c57" title="#f56c57">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#231b12" title="#231b12">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Jewel tones”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7f152e" title="#7f152e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d61800" title="#d61800">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#edae01" title="#edae01">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e94f08" title="#e94f08">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Polished and inviting”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#eae2d6" title="#eae2d6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5c3aa" title="#d5c3aa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#867666" title="#867666">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e1b80d" title="#e1b80d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Fresh greens”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#265c00" title="#265c00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#68a225" title="#68a225">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b3de81" title="#b3de81">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdffff" title="#fdffff">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Wintery reds”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a10115" title="#a10115">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d72c16" title="#d72c16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0efea" title="#f0efea">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c0b2b5" title="#c0b2b5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Summer fiesta”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c7db00" title="#c7db00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7aa802" title="#7aa802">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f78b2d" title="#f78b2d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e4b600" title="#e4b600">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Chocolaty browns”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#301b28" title="#301b28">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#523634" title="#523634">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b6452c" title="#b6452c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ddc5a2" title="#ddc5a2">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Naturally elegant”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ebdf00" title="#ebdf00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7e7b15" title="#7e7b15">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#563e20" title="#563e20">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b38540" title="#b38540">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cozy and warm”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#662225" title="#662225">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b51d0a" title="#b51d0a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ead39c" title="#ead39c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7d5e3c" title="#7d5e3c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Violet sunset”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4b4345" title="#4b4345">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#556dac" title="#556dac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f79b77" title="#f79b77">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#755248" title="#755248">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Strawberries and cream”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d8412f" title="#d8412f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fe7a47" title="#fe7a47">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcfdfe" title="#fcfdfe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5ca99" title="#f5ca99">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Grecian holiday”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2988bc" title="#2988bc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2f496e" title="#2f496e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f4eade" title="#f4eade">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ed8c72" title="#ed8c72">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bold and basic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#000b29" title="#000b29">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d70026" title="#d70026">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8f5f2" title="#f8f5f2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#edb83d" title="#edb83d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Vineyard neutrals”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1e0000" title="#1e0000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#500805" title="#500805">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9d331f" title="#9d331f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bc6d4f" title="#bc6d4f">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Modern and urban”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f9ba32" title="#f9ba32">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#426e86" title="#426e86">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8f1e5" title="#f8f1e5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2f3131" title="#2f3131">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Misty greens”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#04202c" title="#04202c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#304040" title="#304040">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5b7065" title="#5b7065">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c9d1c8" title="#c9d1c8">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Sunkissed village”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d24136" title="#d24136">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eb8a3e" title="#eb8a3e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebb582" title="#ebb582">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#785a46" title="#785a46">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Sun and sky”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#217ca3" title="#217ca3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e29930" title="#e29930">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#32384d" title="#32384d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#211f30" title="#211f30">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Aqua blues”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#004d47" title="#004d47">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#128277" title="#128277">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#52958b" title="#52958b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b9c4c9" title="#b9c4c9">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Urban oasis”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#506d2f" title="#506d2f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2a2922" title="#2a2922">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f3ebdd" title="#f3ebdd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7d5642" title="#7d5642">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Candy coated brights”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f47d4a" title="#f47d4a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e1315b" title="#e1315b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffec5c" title="#ffec5c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#008dcb" title="#008dcb">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Muted and antique”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a4cabc" title="#a4cabc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eab364" title="#eab364">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b2473e" title="#b2473e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#acbd78" title="#acbd78">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Classy and timeless”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#16253d" title="#16253d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#002c54" title="#002c54">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#efb509" title="#efb509">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cd7213" title="#cd7213">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cosmopolitan”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#8593ae" title="#8593ae">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5a4e4d" title="#5a4e4d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7e675e" title="#7e675e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dda288" title="#dda288">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cheerful and friendly”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2b616d" title="#2b616d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b2dbd5" title="#b2dbd5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa8d62" title="#fa8d62">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Nightlife”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#00cffa" title="#00cffa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff0038" title="#ff0038">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffce38" title="#ffce38">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#020509" title="#020509">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Coastal”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a5c3cf" title="#a5c3cf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f3d3b8" title="#f3d3b8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e59d5c" title="#e59d5c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a99f3c" title="#a99f3c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Maritime brights”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#257985" title="#257985">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5ea8a7" title="#5ea8a7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff4447" title="#ff4447">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Vintage charm”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#fcc875" title="#fcc875">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#baa896" title="#baa896">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e6ccb5" title="#e6ccb5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e38b75" title="#e38b75">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Understated and versatile”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#335252" title="#335252">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d4dde1" title="#d4dde1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aa4b41" title="#aa4b41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2d3033" title="#2d3033">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Artic sunrise”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffccbb" title="#ffccbb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6eb5c0" title="#6eb5c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#006c84" title="#006c84">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e2e8e4" title="#e2e8e4">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Mediterranean afternoon”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#8c0004" title="#8c0004">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c8000a" title="#c8000a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e8a735" title="#e8a735">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e2c499" title="#e2c499">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Hazy grays”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2c4a52" title="#2c4a52">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#537072" title="#537072">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8e9b97" title="#8e9b97">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f4ebdb" title="#f4ebdb">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“City sights”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c5001a" title="#c5001a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e4e3db" title="#e4e3db">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#113743" title="#113743">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c5beba" title="#c5beba">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Retro and relaxing”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d35c37" title="#d35c37">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bf9a77" title="#bf9a77">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d6c6b9" title="#d6c6b9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#97b8c2" title="#97b8c2">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Green fields”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#919636" title="#919636">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#524a3a" title="#524a3a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fffae1" title="#fffae1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5a5f37" title="#5a5f37">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Distintive and unexpected”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#52908b" title="#52908b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e5e2ca" title="#e5e2ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ddbc95" title="#ddbc95">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e7472e" title="#e7472e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Sleek and modern”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2f2e33" title="#2f2e33">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5d6d2" title="#d5d6d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3a5199" title="#3a5199">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Orange accent”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#756867" title="#756867">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dad9d3" title="#dad9d3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#353c3f" title="#353c3f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff8d3f" title="#ff8d3f">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Beyond black and white”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#31a2ac" title="#31a2ac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#af1c1c" title="#af1c1c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0eff0" title="#f0eff0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2f2f28" title="#2f2f28">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Shabby chic neutrals”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6c5f5b" title="#6c5f5b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdab81" title="#cdab81">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dac3b3" title="#dac3b3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4f4a45" title="#4f4a45">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Warm and cool”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#444c5c" title="#444c5c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ce5a57" title="#ce5a57">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#78a5a3" title="#78a5a3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e1b16a" title="#e1b16a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Industrial and in control”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#20232a" title="#20232a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#acbebe" title="#acbebe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f4f4ef" title="#f4f4ef">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a01d26" title="#a01d26">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Autumn oranges and complemtentary neutrals”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d55448" title="#d55448">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffa577" title="#ffa577">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9f9ff" title="#f9f9ff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#896e69" title="#896e69">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Pool party”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#344d90" title="#344d90">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5cc5ef" title="#5cc5ef">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffb745" title="#ffb745">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e7552c" title="#e7552c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Classic metallics”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#080706" title="#080706">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#efefef" title="#efefef">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d1b280" title="#d1b280">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#594d46" title="#594d46">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Subtle and versatile”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#5f968e" title="#5f968e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bfdccf" title="#bfdccf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e05858" title="#e05858">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5c9b1" title="#d5c9b1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Professional and traditional”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#962715" title="#962715">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e1e20" title="#1e1e20">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bbc3c6" title="#bbc3c6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Light and natural”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#688b8a" title="#688b8a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0b084" title="#a0b084">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#faefd4" title="#faefd4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a57c65" title="#a57c65">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Shadowy and dramatic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#262f34" title="#262f34">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f34a4a" title="#f34a4a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f1d3bc" title="#f1d3bc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#615049" title="#615049">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Golden afternoon”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#882426" title="#882426">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdbea7" title="#cdbea7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#323030" title="#323030">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c29545" title="#c29545">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Dark and handsome”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#42313a" title="#42313a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c2d2c" title="#6c2d2c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9f4636" title="#9f4636">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f1dcc9" title="#f1dcc9">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Technology meets nature”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#fbcd4b" title="#fbcd4b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a3a599" title="#a3a599">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#282623" title="#282623">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#88a550" title="#88a550">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cheerful blues and pink”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffbebd" title="#ffbebd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcfcfa" title="#fcfcfa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#337bae" title="#337bae">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1a405f" title="#1a405f">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Exotic and high impact”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#0f1f38" title="#0f1f38">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8e7970" title="#8e7970">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f55449" title="#f55449">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1b4b5a" title="#1b4b5a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Back to school”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#81715e" title="#81715e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#faae3d" title="#faae3d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e38533" title="#e38533">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e4535e" title="#e4535e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bright and painterly”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#061283" title="#061283">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd3c3c" title="#fd3c3c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffb74c" title="#ffb74c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#138d90" title="#138d90">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Urban living”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#dddede" title="#dddede">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#232122" title="#232122">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a5c05b" title="#a5c05b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7ba4a8" title="#7ba4a8">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“1950s kitchen”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b3dbc0" title="#b3dbc0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fe0000" title="#fe0000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdf6f6" title="#fdf6f6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67baca" title="#67baca">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Smoky purples”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a49592" title="#a49592">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#727077" title="#727077">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eed8c9" title="#eed8c9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e99787" title="#e99787">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Trendy and metropolitan”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#488a99" title="#488a99">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dbae58" title="#dbae58">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fbe9e7" title="#fbe9e7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b4b4b4" title="#b4b4b4">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Fun and professional”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4abdac" title="#4abdac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fc4a1a" title="#fc4a1a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7b733" title="#f7b733">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dfdce3" title="#dfdce3">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Art history inspired”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffce00" title="#ffce00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0375b4" title="#0375b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#007849" title="#007849">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#262228" title="#262228">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Muted tones”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c0b283" title="#c0b283">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dcd0c0" title="#dcd0c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f4f4f4" title="#f4f4f4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#373737" title="#373737">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Modern and clean”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#e37222" title="#e37222">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#07889b" title="#07889b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#66b9bf" title="#66b9bf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eeaa7b" title="#eeaa7b">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Neon tones and sharp contrast”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#0e0b16" title="#0e0b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a239ca" title="#a239ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4717f6" title="#4717f6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e7dfdd" title="#e7dfdd">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Muted and minimal”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#96858f" title="#96858f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6d7993" title="#6d7993">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9099a2" title="#9099a2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5d5d5" title="#d5d5d5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Warm and bold”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#062f4f" title="#062f4f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#813772" title="#813772">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b82601" title="#b82601">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Clean and highlighted”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#caebf2" title="#caebf2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a9a9a9" title="#a9a9a9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff3b3f" title="#ff3b3f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#efefef" title="#efefef">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Warm tones”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d7cec7" title="#d7cec7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#565656" title="#565656">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#76323f" title="#76323f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c09f80" title="#c09f80">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Sharp and modern”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#3cc47c" title="#3cc47c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e392a" title="#1e392a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9c893" title="#e9c893">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#828081" title="#828081">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cool vs warm”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#18121e" title="#18121e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#233237" title="#233237">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#984b43" title="#984b43">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eac67a" title="#eac67a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Pretty pastels”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#bfd8d2" title="#bfd8d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fedcd2" title="#fedcd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#df744a" title="#df744a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dcb239" title="#dcb239">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bold and punchy”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#e24e42" title="#e24e42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9b000" title="#e9b000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eb6e80" title="#eb6e80">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#008f95" title="#008f95">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Tints and tones”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#94618e" title="#94618e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#49274a" title="#49274a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f4decb" title="#f4decb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8eee7" title="#f8eee7">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Splash of color”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4484ce" title="#4484ce">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d9d9d9" title="#d9d9d9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9cf00" title="#f9cf00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f19f4d" title="#f19f4d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Elegant and sophisticated”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#0b83c5" title="#0b83c5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#328cc1" title="#328cc1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d9b310" title="#d9b310">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1d2731" title="#1d2731">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Summer inspired”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#286da8" title="#286da8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cd5360" title="#cd5360">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b37d4e" title="#b37d4e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#438496" title="#438496">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Professional and modern”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c5c1c0" title="#c5c1c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0a1612" title="#0a1612">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1a2930" title="#1a2930">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7ce3e" title="#f7ce3e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bold blacks and vibrand highlights”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ec576b" title="#ec576b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4ec5c1" title="#4ec5c1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e5e338" title="#e5e338">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Clean gradient and fresh blues”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#77c9d4" title="#77c9d4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#57bc90" title="#57bc90">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#015249" title="#015249">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a5a5af" title="#a5a5af">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cheerful and sleek”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6b7a8f" title="#6b7a8f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7882f" title="#f7882f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7c331" title="#f7c331">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dcc7aa" title="#dcc7aa">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Luxurious and modern”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#0f1626" title="#0f1626">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ab987a" title="#ab987a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff533d" title="#ff533d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5f5f5" title="#f5f5f5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Unique and striking”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#cf6766" title="#cf6766">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#30415d" title="#30415d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#031424" title="#031424">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8eaebd" title="#8eaebd">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Unexpected color combinations”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6e3667" title="#6e3667">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#88d317" title="#88d317">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1a0315" title="#1a0315">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#535353" title="#535353">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Retro inspired”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#fedc3d" title="#fedc3d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#01abaa" title="#01abaa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fea680" title="#fea680">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Antique and clean”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b56357" title="#b56357">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b4dbc0" title="#b4dbc0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eae3ea" title="#eae3ea">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a7b3a5" title="#a7b3a5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Striking and energetic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f81b84" title="#f81b84">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5ce28" title="#f5ce28">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#43c0f6" title="#43c0f6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f2eee2" title="#f2eee2">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Fresh and lively”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4cdef5" title="#4cdef5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a4d555" title="#a4d555">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff5992" title="#ff5992">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#841983" title="#841983">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Clean and crisp”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#99d3df" title="#99d3df">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#88bbd6" title="#88bbd6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdcdcd" title="#cdcdcd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9e9e9" title="#e9e9e9">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Colorful without clashing”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#fa7c92" title="#fa7c92">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6ec4d8" title="#6ec4d8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fff7c0" title="#fff7c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#66ab8c" title="#66ab8c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cool and calm”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6bbaa7" title="#6bbaa7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fba100" title="#fba100">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c648b" title="#6c648b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b6a19e" title="#b6a19e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Modern and muted”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a9b7c0" title="#a9b7c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c7d8c6" title="#c7d8c6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#efd9c1" title="#efd9c1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cccbc6" title="#cccbc6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Earthy and fresh”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#945d60" title="#945d60">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#626e60" title="#626e60">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#af473c" title="#af473c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3c3c3c" title="#3c3c3c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“High saturation and high energy”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#fe65b7" title="#fe65b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9c904" title="#e9c904">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8fc33a" title="#8fc33a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#62edd6" title="#62edd6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Warm and wonderful”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7cd8d5" title="#7cd8d5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f53240" title="#f53240">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9be02" title="#f9be02">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#02c8a7" title="#02c8a7">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Vintage charm 2”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#cda34f" title="#cda34f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9e7da" title="#e9e7da">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#636b46" title="#636b46">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#373f27" title="#373f27">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Cool jewel tones”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#67aeca" title="#67aeca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#675682" title="#675682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5f0f4e" title="#5f0f4e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e52a6f" title="#e52a6f">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Stormy hues”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#494e6b" title="#494e6b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#98878f" title="#98878f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#985e6d" title="#985e6d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#192231" title="#192231">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Clean and collegiate”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4abdac" title="#4abdac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#99ced4" title="#99ced4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eeb6b7" title="#eeb6b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6e7376" title="#6e7376">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Simple and fresh”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#414141" title="#414141">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ccdfcb" title="#ccdfcb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff6a5c" title="#ff6a5c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#056571" title="#056571">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Tropical tones”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1fb58f" title="#1fb58f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eab126" title="#eab126">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f24c4e" title="#f24c4e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1b7b34" title="#1b7b34">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Bold feature colors”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#e14658" title="#e14658">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#22252c" title="#22252c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3f3250" title="#3f3250">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c0b3a0" title="#c0b3a0">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Antique tones”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#155765" title="#155765">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#57652a" title="#57652a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ab9353" title="#ab9353">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4d2c3d" title="#4d2c3d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Neon and bold”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d48cf8" title="#d48cf8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0e8044" title="#0e8044">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b5e582" title="#b5e582">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#08302f" title="#08302f">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Simple but bold”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f7ef6a" title="#f7ef6a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#93c178" title="#93c178">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#465c8b" title="#465c8b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dfdce3" title="#dfdce3">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Corporate and sleek”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f7f5e6" title="#f7f5e6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#333a56" title="#333a56">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#52658f" title="#52658f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e8e8e8" title="#e8e8e8">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Modern and minimal”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c06014" title="#c06014">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eddbc0" title="#eddbc0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdcdcd" title="#cdcdcd">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Fun and cheerful”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a7d2cb" title="#a7d2cb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f2d388" title="#f2d388">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c98474" title="#c98474">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#874c62" title="#874c62">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Sunny and calm”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#cae4db" title="#cae4db">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dcae1d" title="#dcae1d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00303f" title="#00303f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7a9d96" title="#7a9d96">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>canva_pal(“Pop art”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d7dd35" title="#d7dd35">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#575da9" title="#575da9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e42d9f" title="#e42d9f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#02558b" title="#02558b">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Excel
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>excel_pal(line = TRUE)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#FF00FF" title="#FF00FF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FFFF00" title="#FFFF00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00FFFF" title="#00FFFF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#800080" title="#800080">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#800000" title="#800000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#008080" title="#008080">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0000FF" title="#0000FF">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_pal(line = FALSE)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#993366" title="#993366">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FFFFCC" title="#FFFFCC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CCFFFF" title="#CCFFFF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#660066" title="#660066">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FF8080" title="#FF8080">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0066CC" title="#0066CC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CCCCFF" title="#CCCCFF">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Atlas”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#F81B02" title="#F81B02">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FC7715" title="#FC7715">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#AFBF41" title="#AFBF41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#50C49F" title="#50C49F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3B95C4" title="#3B95C4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B560D4" title="#B560D4">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Badge”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#F8B323" title="#F8B323">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#656A59" title="#656A59">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#46B2B5" title="#46B2B5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8CAA7E" title="#8CAA7E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D36F68" title="#D36F68">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#826276" title="#826276">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Berlin”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#F09415" title="#F09415">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C1B56B" title="#C1B56B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4BAF73" title="#4BAF73">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5AA6C0" title="#5AA6C0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D17DF9" title="#D17DF9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FA7E5C" title="#FA7E5C">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Celestial”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#AC3EC1" title="#AC3EC1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#477BD1" title="#477BD1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#46B298" title="#46B298">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90BA4C" title="#90BA4C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DD9D31" title="#DD9D31">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E25247" title="#E25247">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Crop”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#8C8D86" title="#8C8D86">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E6C069" title="#E6C069">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#897B61" title="#897B61">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8DAB8E" title="#8DAB8E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#77A2BB" title="#77A2BB">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E28394" title="#E28394">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Depth”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#41AEBD" title="#41AEBD">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#97E9D5" title="#97E9D5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A2CF49" title="#A2CF49">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#608F3D" title="#608F3D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F4DE3A" title="#F4DE3A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FCB11C" title="#FCB11C">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Droplet”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2FA3EE" title="#2FA3EE">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4BCAAD" title="#4BCAAD">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#86C157" title="#86C157">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D99C3F" title="#D99C3F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CE6633" title="#CE6633">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A35DD1" title="#A35DD1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Facet”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#90C226" title="#90C226">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#54A021" title="#54A021">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E6B91E" title="#E6B91E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E76618" title="#E76618">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C42F1A" title="#C42F1A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#918655" title="#918655">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Feathered”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#606372" title="#606372">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#79A8A4" title="#79A8A4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B2AD8F" title="#B2AD8F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#AD8082" title="#AD8082">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DEC18C" title="#DEC18C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#92A185" title="#92A185">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Gallery”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#B71E42" title="#B71E42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DE478E" title="#DE478E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BC72F0" title="#BC72F0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#795FAF" title="#795FAF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#586EA6" title="#586EA6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6892A0" title="#6892A0">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Headlines”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#439EB7" title="#439EB7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E28B55" title="#E28B55">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DCB64D" title="#DCB64D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4CA198" title="#4CA198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#835B82" title="#835B82">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#645135" title="#645135">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Integral”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1CADE4" title="#1CADE4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2683C6" title="#2683C6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#27CED7" title="#27CED7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#42BA97" title="#42BA97">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3E8853" title="#3E8853">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#62A39F" title="#62A39F">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Ion Boardroom”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#B31166" title="#B31166">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E33D6F" title="#E33D6F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E45F3C" title="#E45F3C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E9943A" title="#E9943A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B6BF2" title="#9B6BF2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D53DD0" title="#D53DD0">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Ion”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#B01513" title="#B01513">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#EA6312" title="#EA6312">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E6B729" title="#E6B729">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6AAC90" title="#6AAC90">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#54849A" title="#54849A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9E5E9B" title="#9E5E9B">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Madison”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#A1D68B" title="#A1D68B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5EC795" title="#5EC795">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4DADCF" title="#4DADCF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CDB756" title="#CDB756">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E29C36" title="#E29C36">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8EC0C1" title="#8EC0C1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Main Event”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#B80E0F" title="#B80E0F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A6987D" title="#A6987D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7F9A71" title="#7F9A71">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#64969F" title="#64969F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B75B2" title="#9B75B2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#80737A" title="#80737A">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Mesh”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6F6F6F" title="#6F6F6F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BFBFA5" title="#BFBFA5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DCD084" title="#DCD084">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E7BF5F" title="#E7BF5F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E9A039" title="#E9A039">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CF7133" title="#CF7133">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Office”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#156082" title="#156082">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E97132" title="#E97132">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#196B24" title="#196B24">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0F9ED5" title="#0F9ED5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A02B93" title="#A02B93">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4EA72E" title="#4EA72E">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Office 2013”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4472C4" title="#4472C4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ED7D31" title="#ED7D31">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A5A5A5" title="#A5A5A5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FFC000" title="#FFC000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5B9BD5" title="#5B9BD5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#70AD47" title="#70AD47">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Organic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#83992A" title="#83992A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3C9770" title="#3C9770">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#44709D" title="#44709D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A23C33" title="#A23C33">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D97828" title="#D97828">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DEB340" title="#DEB340">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Parallax”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#30ACEC" title="#30ACEC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#80C34F" title="#80C34F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E29D3E" title="#E29D3E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D64A3B" title="#D64A3B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D64787" title="#D64787">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A666E1" title="#A666E1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Parcel”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#F6A21D" title="#F6A21D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9BAFB5" title="#9BAFB5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C96731" title="#C96731">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9CA383" title="#9CA383">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#87795D" title="#87795D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A0988C" title="#A0988C">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Retrospect”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#E48312" title="#E48312">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BD582C" title="#BD582C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#865640" title="#865640">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B8357" title="#9B8357">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C2BC80" title="#C2BC80">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94A088" title="#94A088">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Savon”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1CADE4" title="#1CADE4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2683C6" title="#2683C6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#27CED7" title="#27CED7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#42BA97" title="#42BA97">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3E8853" title="#3E8853">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#62A39F" title="#62A39F">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Slice”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#052F61" title="#052F61">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A50E82" title="#A50E82">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#14967C" title="#14967C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6A9E1F" title="#6A9E1F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E87D37" title="#E87D37">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C62324" title="#C62324">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Vapor Trail”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#DF2E28" title="#DF2E28">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FE801A" title="#FE801A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E9BF35" title="#E9BF35">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#81BB42" title="#81BB42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#32C7A9" title="#32C7A9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4A9BDC" title="#4A9BDC">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“View”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6F6F74" title="#6F6F74">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#92A9B9" title="#92A9B9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A7B789" title="#A7B789">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B9A489" title="#B9A489">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8D6374" title="#8D6374">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B7362" title="#9B7362">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Wisp”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#A53010" title="#A53010">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DE7E18" title="#DE7E18">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9F8351" title="#9F8351">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#728653" title="#728653">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#92AA4C" title="#92AA4C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6AAC91" title="#6AAC91">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Wood Type”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#D34817" title="#D34817">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B2D1F" title="#9B2D1F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A28E6A" title="#A28E6A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#956251" title="#956251">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#918485" title="#918485">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#855D5D" title="#855D5D">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Aspect”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#F07F09" title="#F07F09">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9F2936" title="#9F2936">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1B587C" title="#1B587C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4E8542" title="#4E8542">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#604878" title="#604878">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C19859" title="#C19859">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Blue Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#3494BA" title="#3494BA">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#58B6C0" title="#58B6C0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#75BDA7" title="#75BDA7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7A8C8E" title="#7A8C8E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#84ACB6" title="#84ACB6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2683C6" title="#2683C6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Blue II”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1CADE4" title="#1CADE4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2683C6" title="#2683C6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#27CED7" title="#27CED7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#42BA97" title="#42BA97">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3E8853" title="#3E8853">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#62A39F" title="#62A39F">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Blue Warm”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4A66AC" title="#4A66AC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#629DD1" title="#629DD1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#297FD5" title="#297FD5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7F8FA9" title="#7F8FA9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5AA2AE" title="#5AA2AE">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9D90A0" title="#9D90A0">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#0F6FC6" title="#0F6FC6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#009DD9" title="#009DD9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0BD0D9" title="#0BD0D9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#10CF9B" title="#10CF9B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7CCA62" title="#7CCA62">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A5C249" title="#A5C249">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Grayscale”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#DDDDDD" title="#DDDDDD">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B2B2B2" title="#B2B2B2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#969696" title="#969696">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#808080" title="#808080">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5F5F5F" title="#5F5F5F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4D4D4D" title="#4D4D4D">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Green Yellow”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#99CB38" title="#99CB38">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#63A537" title="#63A537">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#37A76F" title="#37A76F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#44C1A3" title="#44C1A3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4EB3CF" title="#4EB3CF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#51C3F9" title="#51C3F9">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#549E39" title="#549E39">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8AB833" title="#8AB833">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C0CF3A" title="#C0CF3A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#029676" title="#029676">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4AB5C4" title="#4AB5C4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0989B1" title="#0989B1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Marquee”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#418AB3" title="#418AB3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A6B727" title="#A6B727">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F69200" title="#F69200">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#838383" title="#838383">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FEC306" title="#FEC306">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DF5327" title="#DF5327">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Median”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#94B6D2" title="#94B6D2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DD8047" title="#DD8047">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A5AB81" title="#A5AB81">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D8B25C" title="#D8B25C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7BA79D" title="#7BA79D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#968C8C" title="#968C8C">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Office 2007”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4F81BD" title="#4F81BD">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C0504D" title="#C0504D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9BBB59" title="#9BBB59">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8064A2" title="#8064A2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4BACC6" title="#4BACC6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F79646" title="#F79646">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Orange Red”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#D34817" title="#D34817">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B2D1F" title="#9B2D1F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A28E6A" title="#A28E6A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#956251" title="#956251">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#918485" title="#918485">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#855D5D" title="#855D5D">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Orange”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#E48312" title="#E48312">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BD582C" title="#BD582C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#865640" title="#865640">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B8357" title="#9B8357">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C2BC80" title="#C2BC80">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94A088" title="#94A088">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Paper”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#A5B592" title="#A5B592">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F3A447" title="#F3A447">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E7BC29" title="#E7BC29">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D092A7" title="#D092A7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9C85C0" title="#9C85C0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#809EC2" title="#809EC2">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Red Orange”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#E84C22" title="#E84C22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FFBD47" title="#FFBD47">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B64926" title="#B64926">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FF8427" title="#FF8427">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CC9900" title="#CC9900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B22600" title="#B22600">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Red Violet”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#E32D91" title="#E32D91">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C830CC" title="#C830CC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4EA6DC" title="#4EA6DC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4775E7" title="#4775E7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8971E1" title="#8971E1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D54773" title="#D54773">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Red”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#A5300F" title="#A5300F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D55816" title="#D55816">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E19825" title="#E19825">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B19C7D" title="#B19C7D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7F5F52" title="#7F5F52">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B27D49" title="#B27D49">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Slipstream”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4E67C8" title="#4E67C8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5ECCF3" title="#5ECCF3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A7EA52" title="#A7EA52">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5DCEAF" title="#5DCEAF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FF8021" title="#FF8021">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F14124" title="#F14124">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Violet II”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#92278F" title="#92278F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9B57D3" title="#9B57D3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#755DD9" title="#755DD9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#665EB8" title="#665EB8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#45A5ED" title="#45A5ED">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5982DB" title="#5982DB">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Violet”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#AD84C6" title="#AD84C6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8784C7" title="#8784C7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5D739A" title="#5D739A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6997AF" title="#6997AF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#84ACB6" title="#84ACB6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6F8183" title="#6F8183">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Yellow Orange”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#F0A22E" title="#F0A22E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A5644E" title="#A5644E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B58B80" title="#B58B80">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C3986D" title="#C3986D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A19574" title="#A19574">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C17529" title="#C17529">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>excel_new_pal(“Yellow”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#FFCA08" title="#FFCA08">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F8931D" title="#F8931D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CE8D3E" title="#CE8D3E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#EC7016" title="#EC7016">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E64823" title="#E64823">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9C6A6A" title="#9C6A6A">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Few
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>few_pal(“Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#88BDE6" title="#88BDE6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FBB258" title="#FBB258">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90CD97" title="#90CD97">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F6AAC9" title="#F6AAC9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BFA554" title="#BFA554">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BC99C7" title="#BC99C7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#EDDD46" title="#EDDD46">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F07E6E" title="#F07E6E">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>few_pal(“Medium”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#5DA5DA" title="#5DA5DA">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FAA43A" title="#FAA43A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#60BD68" title="#60BD68">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F17CB0" title="#F17CB0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B2912F" title="#B2912F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B276B2" title="#B276B2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DECF3F" title="#DECF3F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F15854" title="#F15854">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>few_pal(“Dark”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#265DAB" title="#265DAB">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DF5C24" title="#DF5C24">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#059748" title="#059748">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E5126F" title="#E5126F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9D722A" title="#9D722A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7B3A96" title="#7B3A96">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C7B42E" title="#C7B42E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CB2027" title="#CB2027">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Highcharts
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“default”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2caffe" title="#2caffe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#544fc5" title="#544fc5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00e272" title="#00e272">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fe6a35" title="#fe6a35">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6b8abc" title="#6b8abc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d568fb" title="#d568fb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2ee0ca" title="#2ee0ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa4b42" title="#fa4b42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#feb56a" title="#feb56a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#91e8e1" title="#91e8e1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“default_dark”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2caffe" title="#2caffe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00e272" title="#00e272">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#efdf00" title="#efdf00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fe6a35" title="#fe6a35">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6b8abc" title="#6b8abc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d568fb" title="#d568fb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2ee0ca" title="#2ee0ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa4b42" title="#fa4b42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#feb56a" title="#feb56a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#91e8e1" title="#91e8e1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“classic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7cb5ec" title="#7cb5ec">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#434348" title="#434348">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90ed7d" title="#90ed7d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7a35c" title="#f7a35c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8085e9" title="#8085e9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f15c80" title="#f15c80">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e4d354" title="#e4d354">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2b908f" title="#2b908f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f45b5b" title="#f45b5b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#91e8e1" title="#91e8e1">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“darkunica”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2b908f" title="#2b908f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90ee7e" title="#90ee7e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f45b5b" title="#f45b5b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7798BF" title="#7798BF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aaeeee" title="#aaeeee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff0066" title="#ff0066">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eeaaee" title="#eeaaee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#55BF3B" title="#55BF3B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DF5353" title="#DF5353">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7798BF" title="#7798BF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aaeeee" title="#aaeeee">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“grid_light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7cb5ec" title="#7cb5ec">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7a35c" title="#f7a35c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90ee7e" title="#90ee7e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7798BF" title="#7798BF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aaeeee" title="#aaeeee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff0066" title="#ff0066">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eeaaee" title="#eeaaee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#55BF3B" title="#55BF3B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DF5353" title="#DF5353">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7798BF" title="#7798BF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aaeeee" title="#aaeeee">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“sand_signika”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f45b5b" title="#f45b5b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8085e9" title="#8085e9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8d4654" title="#8d4654">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7798BF" title="#7798BF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aaeeee" title="#aaeeee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff0066" title="#ff0066">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eeaaee" title="#eeaaee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#55BF3B" title="#55BF3B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#DF5353" title="#DF5353">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7798BF" title="#7798BF">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aaeeee" title="#aaeeee">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“high_contrast_light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#265FB5" title="#265FB5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#222222" title="#222222">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#698F01" title="#698F01">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F4693E" title="#F4693E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4C0684" title="#4C0684">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0FA388" title="#0FA388">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B7104A" title="#B7104A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#AF9023" title="#AF9023">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1A704C" title="#1A704C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B02FDD" title="#B02FDD">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“high_contrast_dark”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#67B9EE" title="#67B9EE">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CEEDA5" title="#CEEDA5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9F6AE1" title="#9F6AE1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FEA26E" title="#FEA26E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6BA48F" title="#6BA48F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#EA3535" title="#EA3535">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8D96B7" title="#8D96B7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ECCA15" title="#ECCA15">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#20AA09" title="#20AA09">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E0C3E4" title="#E0C3E4">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“avocado”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#F3E796" title="#F3E796">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#95C471" title="#95C471">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#35729E" title="#35729E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#251735" title="#251735">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>hc_pal(“sunset”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#FDD089" title="#FDD089">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FF7F79" title="#FF7F79">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A0446E" title="#A0446E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#251535" title="#251535">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Numbers
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Blue Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2F7202" title="#2F7202">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0B5AAB" title="#0B5AAB">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5FA804" title="#5FA804">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#258EEB" title="#258EEB">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0C5B19" title="#0C5B19">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1D3178" title="#1D3178">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Blue Violet”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4CAAE8" title="#4CAAE8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6C61B0" title="#6C61B0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#769ECE" title="#769ECE">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8A5C9B" title="#8A5C9B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#57789E" title="#57789E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5F4D78" title="#5F4D78">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#5E86B8" title="#5E86B8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94B9DA" title="#94B9DA">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#002C64" title="#002C64">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5B9AD1" title="#5B9AD1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00070E" title="#00070E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#154C90" title="#154C90">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Brown”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9E7F5F" title="#9E7F5F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#C7B88B" title="#C7B88B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3A291C" title="#3A291C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#AE8E5A" title="#AE8E5A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1B0D00" title="#1B0D00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6F3F21" title="#6F3F21">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Classic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#496063" title="#496063">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6C6F39" title="#6C6F39">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F0B24F" title="#F0B24F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BC5B07" title="#BC5B07">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#892319" title="#892319">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4D2501" title="#4D2501">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Earth Tone”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#D6B243" title="#D6B243">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#AF7319" title="#AF7319">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6F4910" title="#6F4910">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4A4338" title="#4A4338">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B63A04" title="#B63A04">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5B2401" title="#5B2401">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Gray”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#858685" title="#858685">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CCCDCB" title="#CCCDCB">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3C3D3C" title="#3C3D3C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9E9F9E" title="#9E9F9E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5B5C5B" title="#5B5C5B">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#32642C" title="#32642C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#92B976" title="#92B976">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#112D16" title="#112D16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5D9B44" title="#5D9B44">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#000B04" title="#000B04">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#004418" title="#004418">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Jade”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4D8178" title="#4D8178">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#95BC89" title="#95BC89">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2F524F" title="#2F524F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6A8D56" title="#6A8D56">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9BC1AB" title="#9BC1AB">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4A6241" title="#4A6241">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Mid Century”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#D38C07" title="#D38C07">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D44906" title="#D44906">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#554838" title="#554838">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3995D6" title="#3995D6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#868904" title="#868904">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#110D03" title="#110D03">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Showroom”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6D7472" title="#6D7472">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#980605" title="#980605">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A5A5A5" title="#A5A5A5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#66748E" title="#66748E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#CF8616" title="#CF8616">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2F3542" title="#2F3542">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>numbers_pal(“Spectrum”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2E578C" title="#2E578C">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5D9648" title="#5D9648">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E7A13D" title="#E7A13D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BC2D30" title="#BC2D30">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6F3D79" title="#6F3D79">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7D807F" title="#7D807F">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Solarized
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“yellow”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“orange”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“red”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“magenta”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“violet”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“cyan”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>solarized_pal(“green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#859900" title="#859900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b58900" title="#b58900">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cb4b16" title="#cb4b16">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc322f" title="#dc322f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d33682" title="#d33682">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c71c4" title="#6c71c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#268bd2" title="#268bd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2aa198" title="#2aa198">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Stata
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>stata_pal(“s2color”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1a476f" title="#1a476f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90353b" title="#90353b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#55752f" title="#55752f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e37e00" title="#e37e00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6e8e84" title="#6e8e84">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c10534" title="#c10534">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#938dd2" title="#938dd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cac27e" title="#cac27e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0522d" title="#a0522d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7b92a8" title="#7b92a8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2d6d66" title="#2d6d66">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9c8847" title="#9c8847">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bfa19c" title="#bfa19c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd200" title="#ffd200">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d9e6eb" title="#d9e6eb">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>stata_pal(“s1rcolor”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffff00" title="#ffff00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00ff00" title="#00ff00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0080ff" title="#0080ff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff00ff" title="#ff00ff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff7f00" title="#ff7f00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff0000" title="#ff0000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#add8e6" title="#add8e6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffe474" title="#ffe474">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00ff80" title="#00ff80">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c0dcc0" title="#c0dcc0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff4500" title="#ff4500">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0000ff" title="#0000ff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff0080" title="#ff0080">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6e8e84" title="#6e8e84">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0522d" title="#a0522d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>stata_pal(“s1color”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#006000" title="#006000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff4500" title="#ff4500">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1a476f" title="#1a476f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90353b" title="#90353b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6e8e84" title="#6e8e84">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0522d" title="#a0522d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff7f00" title="#ff7f00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff00ff" title="#ff00ff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00ffff" title="#00ffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff0000" title="#ff0000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00ff00" title="#00ff00">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9c8847" title="#9c8847">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#800080" title="#800080">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c0dcc0" title="#c0dcc0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#add8e6" title="#add8e6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>stata_pal(“mono”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#606060" title="#606060">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0a0a0" title="#a0a0a0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#808080" title="#808080">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#404040" title="#404040">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c0c0c0" title="#c0c0c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#202020" title="#202020">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#707070" title="#707070">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#909090" title="#909090">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b0b0b0" title="#b0b0b0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d0d0d0" title="#d0d0d0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#505050" title="#505050">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#303030" title="#303030">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c0c0c0" title="#c0c0c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#505050" title="#505050">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>stata_pal(“stcolor”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1a85ff" title="#1a85ff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d41159" title="#d41159">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00bf7f" title="#00bf7f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd400" title="#ffd400">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4f2c99" title="#4f2c99">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff6333" title="#ff6333">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4db7ff" title="#4db7ff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7c0015" title="#7c0015">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0fefaf" title="#0fefaf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#faa307" title="#faa307">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#758bfd" title="#758bfd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fed9b7" title="#fed9b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#08234c" title="#08234c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f88dad" title="#f88dad">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#0f5156" title="#0f5156">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>stata_pal(“economist”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#3e647d" title="#3e647d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7b92a8" title="#7b92a8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#82c0e9" title="#82c0e9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2d6d66" title="#2d6d66">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bfa19c" title="#bfa19c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#008bbc" title="#008bbc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#97b6b0" title="#97b6b0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d7d29e" title="#d7d29e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1a476f" title="#1a476f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90353b" title="#90353b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9c8847" title="#9c8847">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#938dd2" title="#938dd2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6e8e84" title="#6e8e84">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c10534" title="#c10534">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cac27e" title="#cac27e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Tableau — discrete
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Tableau 10”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4E79A7" title="#4E79A7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F28E2B" title="#F28E2B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E15759" title="#E15759">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#76B7B2" title="#76B7B2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#59A14F" title="#59A14F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#EDC948" title="#EDC948">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B07AA1" title="#B07AA1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FF9DA7" title="#FF9DA7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9C755F" title="#9C755F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BAB0AC" title="#BAB0AC">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Tableau 20”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4E79A7" title="#4E79A7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#A0CBE8" title="#A0CBE8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F28E2B" title="#F28E2B">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FFBE7D" title="#FFBE7D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#59A14F" title="#59A14F">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8CD17D" title="#8CD17D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B6992D" title="#B6992D">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#F1CE63" title="#F1CE63">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#499894" title="#499894">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#86BCB6" title="#86BCB6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#E15759" title="#E15759">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FF9D9A" title="#FF9D9A">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#79706E" title="#79706E">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#BAB0AC" title="#BAB0AC">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D37295" title="#D37295">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#FABFD2" title="#FABFD2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#B07AA1" title="#B07AA1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D4A6C8" title="#D4A6C8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9D7660" title="#9D7660">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#D7B5A6" title="#D7B5A6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Color Blind”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1170aa" title="#1170aa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fc7d0b" title="#fc7d0b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a3acb9" title="#a3acb9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#57606c" title="#57606c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5fa2ce" title="#5fa2ce">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c85200" title="#c85200">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7b848f" title="#7b848f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a3cce9" title="#a3cce9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffbc79" title="#ffbc79">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c8d0d9" title="#c8d0d9">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Seattle Grays”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#767f8b" title="#767f8b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b3b7b8" title="#b3b7b8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5c6068" title="#5c6068">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d3d3d3" title="#d3d3d3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#989ca3" title="#989ca3">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Traffic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b60a1c" title="#b60a1c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e39802" title="#e39802">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#309143" title="#309143">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e03531" title="#e03531">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0bd27" title="#f0bd27">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#51b364" title="#51b364">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff684c" title="#ff684c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffda66" title="#ffda66">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8ace7e" title="#8ace7e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Miller Stone”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4f6980" title="#4f6980">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#849db1" title="#849db1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2ceaa" title="#a2ceaa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#638b66" title="#638b66">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bfbb60" title="#bfbb60">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f47942" title="#f47942">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fbb04e" title="#fbb04e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b66353" title="#b66353">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d7ce9f" title="#d7ce9f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b9aa97" title="#b9aa97">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7e756d" title="#7e756d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Superfishel Stone”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#6388b4" title="#6388b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffae34" title="#ffae34">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ef6f6a" title="#ef6f6a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8cc2ca" title="#8cc2ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#55ad89" title="#55ad89">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c3bc3f" title="#c3bc3f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bb7693" title="#bb7693">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#baa094" title="#baa094">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a9b5ae" title="#a9b5ae">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#767676" title="#767676">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Nuriel Stone”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#8175aa" title="#8175aa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6fb899" title="#6fb899">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#31a1b3" title="#31a1b3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ccb22b" title="#ccb22b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a39fc9" title="#a39fc9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94d0c0" title="#94d0c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#959c9e" title="#959c9e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#027b8e" title="#027b8e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9f8f12" title="#9f8f12">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Jewel Bright”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#eb1e2c" title="#eb1e2c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd6f30" title="#fd6f30">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9a729" title="#f9a729">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9d23c" title="#f9d23c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5fbb68" title="#5fbb68">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#64cdcc" title="#64cdcc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#91dcea" title="#91dcea">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a4a4d5" title="#a4a4d5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bbc9e5" title="#bbc9e5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Summer”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#bfb202" title="#bfb202">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b9ca5d" title="#b9ca5d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cf3e53" title="#cf3e53">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f1788d" title="#f1788d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#00a2b3" title="#00a2b3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#97cfd0" title="#97cfd0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f3a546" title="#f3a546">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7c480" title="#f7c480">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Winter”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#90728f" title="#90728f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b9a0b4" title="#b9a0b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9d983d" title="#9d983d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cecb76" title="#cecb76">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e15759" title="#e15759">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff9888" title="#ff9888">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6b6b6b" title="#6b6b6b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bab2ae" title="#bab2ae">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aa8780" title="#aa8780">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dab6af" title="#dab6af">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Green-Orange-Teal”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#4e9f50" title="#4e9f50">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#87d180" title="#87d180">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ef8a0c" title="#ef8a0c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcc66d" title="#fcc66d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3ca8bc" title="#3ca8bc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#98d9e4" title="#98d9e4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94a323" title="#94a323">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c3ce3d" title="#c3ce3d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a08400" title="#a08400">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7d42a" title="#f7d42a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#26897e" title="#26897e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8dbfa8" title="#8dbfa8">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Blue-Red-Brown”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#466f9d" title="#466f9d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#91b3d7" title="#91b3d7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ed444a" title="#ed444a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#feb5a2" title="#feb5a2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9d7660" title="#9d7660">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d7b5a6" title="#d7b5a6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3896c4" title="#3896c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0d4ee" title="#a0d4ee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ba7e45" title="#ba7e45">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#39b87f" title="#39b87f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c8133b" title="#c8133b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ea8783" title="#ea8783">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Purple-Pink-Gray”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#8074a8" title="#8074a8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c6c1f0" title="#c6c1f0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c46487" title="#c46487">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffbed1" title="#ffbed1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9c9290" title="#9c9290">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c5bfbe" title="#c5bfbe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9b93c9" title="#9b93c9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ddb5d5" title="#ddb5d5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7c7270" title="#7c7270">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f498b6" title="#f498b6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b173a0" title="#b173a0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c799bc" title="#c799bc">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Hue Circle”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1ba3c6" title="#1ba3c6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2cb5c0" title="#2cb5c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#30bcad" title="#30bcad">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#21B087" title="#21B087">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#33a65c" title="#33a65c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#57a337" title="#57a337">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2b627" title="#a2b627">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5bb21" title="#d5bb21">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8b620" title="#f8b620">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f89217" title="#f89217">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f06719" title="#f06719">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e03426" title="#e03426">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f64971" title="#f64971">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fc719e" title="#fc719e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eb73b3" title="#eb73b3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ce69be" title="#ce69be">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a26dc2" title="#a26dc2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7873c0" title="#7873c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4f7cba" title="#4f7cba">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic 10”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1f77b4" title="#1f77b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff7f0e" title="#ff7f0e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2ca02c" title="#2ca02c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d62728" title="#d62728">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9467bd" title="#9467bd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8c564b" title="#8c564b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e377c2" title="#e377c2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7f7f7f" title="#7f7f7f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bcbd22" title="#bcbd22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#17becf" title="#17becf">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic 10 Medium”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#729ece" title="#729ece">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff9e4a" title="#ff9e4a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67bf5c" title="#67bf5c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ed665d" title="#ed665d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ad8bc9" title="#ad8bc9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a8786e" title="#a8786e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ed97ca" title="#ed97ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2a2a2" title="#a2a2a2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdcc5d" title="#cdcc5d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6dccda" title="#6dccda">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic 10 Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#aec7e8" title="#aec7e8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffbb78" title="#ffbb78">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#98df8a" title="#98df8a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff9896" title="#ff9896">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c5b0d5" title="#c5b0d5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c49c94" title="#c49c94">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7b6d2" title="#f7b6d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c7c7c7" title="#c7c7c7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dbdb8d" title="#dbdb8d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9edae5" title="#9edae5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic 20”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1f77b4" title="#1f77b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aec7e8" title="#aec7e8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff7f0e" title="#ff7f0e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffbb78" title="#ffbb78">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2ca02c" title="#2ca02c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#98df8a" title="#98df8a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d62728" title="#d62728">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff9896" title="#ff9896">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9467bd" title="#9467bd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c5b0d5" title="#c5b0d5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8c564b" title="#8c564b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c49c94" title="#c49c94">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e377c2" title="#e377c2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7b6d2" title="#f7b6d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7f7f7f" title="#7f7f7f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c7c7c7" title="#c7c7c7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bcbd22" title="#bcbd22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dbdb8d" title="#dbdb8d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#17becf" title="#17becf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9edae5" title="#9edae5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Gray 5”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#60636a" title="#60636a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a5acaf" title="#a5acaf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#414451" title="#414451">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8f8782" title="#8f8782">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cfcfcf" title="#cfcfcf">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Color Blind”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#006ba4" title="#006ba4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff800e" title="#ff800e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ababab" title="#ababab">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#595959" title="#595959">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5f9ed1" title="#5f9ed1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c85200" title="#c85200">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#898989" title="#898989">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2c8ec" title="#a2c8ec">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffbc79" title="#ffbc79">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cfcfcf" title="#cfcfcf">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Traffic Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b10318" title="#b10318">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dba13a" title="#dba13a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#309343" title="#309343">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d82526" title="#d82526">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffc156" title="#ffc156">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#69b764" title="#69b764">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f26c64" title="#f26c64">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffdd71" title="#ffdd71">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9fcd99" title="#9fcd99">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Purple-Gray 6”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7b66d2" title="#7b66d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc5fbd" title="#dc5fbd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94917b" title="#94917b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#995688" title="#995688">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d098ee" title="#d098ee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d7d5c5" title="#d7d5c5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Purple-Gray 12”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7b66d2" title="#7b66d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a699e8" title="#a699e8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc5fbd" title="#dc5fbd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffc0da" title="#ffc0da">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5f5a41" title="#5f5a41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b4b19b" title="#b4b19b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#995688" title="#995688">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d898ba" title="#d898ba">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ab6ad5" title="#ab6ad5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d098ee" title="#d098ee">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8b7c6e" title="#8b7c6e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dbd4c5" title="#dbd4c5">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Green-Orange 6”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#32a251" title="#32a251">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff7f0f" title="#ff7f0f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3cb7cc" title="#3cb7cc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd94a" title="#ffd94a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#39737c" title="#39737c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b85a0d" title="#b85a0d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Green-Orange 12”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#32a251" title="#32a251">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#acd98d" title="#acd98d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff7f0f" title="#ff7f0f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffb977" title="#ffb977">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3cb7cc" title="#3cb7cc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#98d9e4" title="#98d9e4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b85a0d" title="#b85a0d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd94a" title="#ffd94a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#39737c" title="#39737c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#86b4a9" title="#86b4a9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#82853b" title="#82853b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ccc94d" title="#ccc94d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Blue-Red 6”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2c69b0" title="#2c69b0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f02720" title="#f02720">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ac613c" title="#ac613c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6ba3d6" title="#6ba3d6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ea6b73" title="#ea6b73">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9c39b" title="#e9c39b">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Blue-Red 12”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#2c69b0" title="#2c69b0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b5c8e2" title="#b5c8e2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f02720" title="#f02720">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffb6b0" title="#ffb6b0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ac613c" title="#ac613c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9c39b" title="#e9c39b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6ba3d6" title="#6ba3d6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b5dffd" title="#b5dffd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ac8763" title="#ac8763">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ddc9b4" title="#ddc9b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bd0a36" title="#bd0a36">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f4737a" title="#f4737a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_color_pal(“Classic Cyclic”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#1f83b4" title="#1f83b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#12a2a8" title="#12a2a8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2ca030" title="#2ca030">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#78a641" title="#78a641">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bcbd22" title="#bcbd22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffbf50" title="#ffbf50">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffaa0e" title="#ffaa0e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ff7f0e" title="#ff7f0e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d63a3a" title="#d63a3a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c7519c" title="#c7519c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ba43b4" title="#ba43b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8a60b0" title="#8a60b0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6f63bb" title="#6f63bb">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Tableau — diverging
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Orange-Blue Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9e3d22" title="#9e3d22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d45b21" title="#d45b21">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f69035" title="#f69035">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d9d5c9" title="#d9d5c9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#77acd3" title="#77acd3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4f81af" title="#4f81af">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2b5c8a" title="#2b5c8a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Red-Green Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a3123a" title="#a3123a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e33f43" title="#e33f43">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8816b" title="#f8816b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ced7c3" title="#ced7c3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#73ba67" title="#73ba67">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#44914e" title="#44914e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#24693d" title="#24693d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Green-Blue Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#24693d" title="#24693d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#45934d" title="#45934d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#75bc69" title="#75bc69">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c9dad2" title="#c9dad2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#77a9cf" title="#77a9cf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4e7fab" title="#4e7fab">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2a5783" title="#2a5783">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Red-Blue Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a90c38" title="#a90c38">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e03b42" title="#e03b42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f87f69" title="#f87f69">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dfd4d1" title="#dfd4d1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7eaed3" title="#7eaed3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5383af" title="#5383af">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2e5a87" title="#2e5a87">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Red-Black Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ae123a" title="#ae123a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e33e43" title="#e33e43">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8816b" title="#f8816b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d9d9d9" title="#d9d9d9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0a7a8" title="#a0a7a8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#707c83" title="#707c83">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#49525e" title="#49525e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Gold-Purple Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ad9024" title="#ad9024">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c1a33b" title="#c1a33b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d4b95e" title="#d4b95e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e3d8cf" title="#e3d8cf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d4a3c3" title="#d4a3c3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c189b0" title="#c189b0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ac7299" title="#ac7299">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Red-Green-Gold Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#be2a3e" title="#be2a3e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e25f48" title="#e25f48">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f88f4d" title="#f88f4d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f4d166" title="#f4d166">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90b960" title="#90b960">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4b9b5f" title="#4b9b5f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#22763f" title="#22763f">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Sunset-Sunrise Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#33608c" title="#33608c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9768a5" title="#9768a5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e7718a" title="#e7718a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f6ba57" title="#f6ba57">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ed7846" title="#ed7846">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d54c45" title="#d54c45">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b81840" title="#b81840">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Orange-Blue-White Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9e3d22" title="#9e3d22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e36621" title="#e36621">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcad52" title="#fcad52">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#95c5e1" title="#95c5e1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5b8fbc" title="#5b8fbc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2b5c8a" title="#2b5c8a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Red-Green-White Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ae123a" title="#ae123a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ee574d" title="#ee574d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdac9e" title="#fdac9e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#91d183" title="#91d183">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#539e52" title="#539e52">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#24693d" title="#24693d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Green-Blue-White Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#24693d" title="#24693d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#529c51" title="#529c51">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8fd180" title="#8fd180">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#95c1dd" title="#95c1dd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#598ab5" title="#598ab5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2a5783" title="#2a5783">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Red-Blue-White Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#a90c38" title="#a90c38">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ec534b" title="#ec534b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#feaa9a" title="#feaa9a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9ac4e1" title="#9ac4e1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5c8db8" title="#5c8db8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2e5a87" title="#2e5a87">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Red-Black-White Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ae123a" title="#ae123a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ee574d" title="#ee574d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdac9d" title="#fdac9d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bdc0bf" title="#bdc0bf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7d888d" title="#7d888d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#49525e" title="#49525e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Orange-Blue Light Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffcc9e" title="#ffcc9e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9d4b6" title="#f9d4b6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0dccd" title="#f0dccd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e5e5e5" title="#e5e5e5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dae1ea" title="#dae1ea">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cfdcef" title="#cfdcef">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c4d8f3" title="#c4d8f3">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Temperature Diverging”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#529985" title="#529985">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c9e6e" title="#6c9e6e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#99b059" title="#99b059">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dbcf47" title="#dbcf47">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebc24b" title="#ebc24b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e3a14f" title="#e3a14f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c26b51" title="#c26b51">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9c0824" title="#9c0824">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bd1316" title="#bd1316">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d11719" title="#d11719">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#df513f" title="#df513f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fc8375" title="#fc8375">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cacaca" title="#cacaca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2c18f" title="#a2c18f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#69a761" title="#69a761">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2f8e41" title="#2f8e41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e7735" title="#1e7735">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#09622a" title="#09622a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9c0824" title="#9c0824">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bd1316" title="#bd1316">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d11719" title="#d11719">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#df513f" title="#df513f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fc8375" title="#fc8375">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cacaca" title="#cacaca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67add4" title="#67add4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3a87b7" title="#3a87b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c73b1" title="#1c73b1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c5998" title="#1c5998">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#26456e" title="#26456e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-Black”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9c0824" title="#9c0824">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bd1316" title="#bd1316">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d11719" title="#d11719">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#df513f" title="#df513f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fc8375" title="#fc8375">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cacaca" title="#cacaca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9b9b9b" title="#9b9b9b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#777777" title="#777777">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#565656" title="#565656">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#383838" title="#383838">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e1e1e" title="#1e1e1e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Area Red-Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#bd1100" title="#bd1100">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c82912" title="#c82912">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d23a21" title="#d23a21">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc4930" title="#dc4930">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e6583e" title="#e6583e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ef654d" title="#ef654d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7705b" title="#f7705b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd7e6b" title="#fd7e6b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fe8e7e" title="#fe8e7e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fca294" title="#fca294">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e9dabe" title="#e9dabe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c7e298" title="#c7e298">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b1de7f" title="#b1de7f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a0d571" title="#a0d571">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#90cb68" title="#90cb68">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#82c162" title="#82c162">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#75b65d" title="#75b65d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#69aa56" title="#69aa56">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5ea049" title="#5ea049">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#559633" title="#559633">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4a8c1c" title="#4a8c1c">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Orange-Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7b3014" title="#7b3014">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a33202" title="#a33202">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d74401" title="#d74401">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f06511" title="#f06511">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd8938" title="#fd8938">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdab67" title="#fdab67">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cacaca" title="#cacaca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7bc8e2" title="#7bc8e2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67add4" title="#67add4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3a87b7" title="#3a87b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c73b1" title="#1c73b1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c5998" title="#1c5998">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#26456e" title="#26456e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Green-Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#09622a" title="#09622a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e7735" title="#1e7735">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2f8e41" title="#2f8e41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#69a761" title="#69a761">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2c18f" title="#a2c18f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cacaca" title="#cacaca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67add4" title="#67add4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3a87b7" title="#3a87b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c73b1" title="#1c73b1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c5998" title="#1c5998">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#26456e" title="#26456e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-White-Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9c0824" title="#9c0824">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b41f27" title="#b41f27">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cc312b" title="#cc312b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e86753" title="#e86753">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcb4a5" title="#fcb4a5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b9d7b7" title="#b9d7b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#74af72" title="#74af72">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#428f49" title="#428f49">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#297839" title="#297839">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#09622a" title="#09622a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-White-Black”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#9c0824" title="#9c0824">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b41f27" title="#b41f27">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cc312b" title="#cc312b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e86753" title="#e86753">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcb4a5" title="#fcb4a5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bfbfbf" title="#bfbfbf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#838383" title="#838383">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#575757" title="#575757">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#393939" title="#393939">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e1e1e" title="#1e1e1e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Orange-White-Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#7b3014" title="#7b3014">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a84415" title="#a84415">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d85a13" title="#d85a13">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fb8547" title="#fb8547">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffc2a1" title="#ffc2a1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b7cde2" title="#b7cde2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6a9ec5" title="#6a9ec5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3679a8" title="#3679a8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2e5f8a" title="#2e5f8a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#26456e" title="#26456e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-White-Black Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffc2c5" title="#ffc2c5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd1d3" title="#ffd1d3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffe0e1" title="#ffe0e1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fff0f0" title="#fff0f0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f3f3f3" title="#f3f3f3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e8e8e8" title="#e8e8e8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dddddd" title="#dddddd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d1d1d1" title="#d1d1d1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c6c6c6" title="#c6c6c6">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Orange-White-Blue Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffcc9e" title="#ffcc9e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd6b1" title="#ffd6b1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffe0c5" title="#ffe0c5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffead8" title="#ffead8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fff5eb" title="#fff5eb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f3f7fd" title="#f3f7fd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e8effa" title="#e8effa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dce8f8" title="#dce8f8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d0e0f6" title="#d0e0f6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c4d8f3" title="#c4d8f3">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-White-Green Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffb2b6" title="#ffb2b6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffc2c5" title="#ffc2c5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffd1d3" title="#ffd1d3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffe0e1" title="#ffe0e1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fff0f0" title="#fff0f0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffffff" title="#ffffff">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f1faed" title="#f1faed">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e3f5db" title="#e3f5db">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5f0ca" title="#d5f0ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c6ebb8" title="#c6ebb8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b7e6a7" title="#b7e6a7">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_div_gradient_pal(“Classic Red-Green Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffb2b6" title="#ffb2b6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcbdc0" title="#fcbdc0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8c7c9" title="#f8c7c9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f2d1d2" title="#f2d1d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ecdbdc" title="#ecdbdc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e5e5e5" title="#e5e5e5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dde6d9" title="#dde6d9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d4e6cc" title="#d4e6cc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cae6c0" title="#cae6c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c1e6b4" title="#c1e6b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b7e6a7" title="#b7e6a7">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Tableau — sequential
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Blue-Green Sequential”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#feffd9" title="#feffd9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f2fabf" title="#f2fabf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dff3b2" title="#dff3b2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c4eab1" title="#c4eab1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94d6b7" title="#94d6b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#69c5be" title="#69c5be">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#41b7c4" title="#41b7c4">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Blue Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#e5e5e5" title="#e5e5e5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e0e3e8" title="#e0e3e8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dbe1ea" title="#dbe1ea">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5dfec" title="#d5dfec">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d0dcef" title="#d0dcef">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cadaf1" title="#cadaf1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c4d8f3" title="#c4d8f3">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Orange Light”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#e5e5e5" title="#e5e5e5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebe1d9" title="#ebe1d9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0ddcd" title="#f0ddcd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5d9c2" title="#f5d9c2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9d4b6" title="#f9d4b6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdd0aa" title="#fdd0aa">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ffcc9e" title="#ffcc9e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b9ddf1" title="#b9ddf1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#afd6ed" title="#afd6ed">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a5cfe9" title="#a5cfe9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9bc7e4" title="#9bc7e4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#92c0df" title="#92c0df">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#89b8da" title="#89b8da">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#80b0d5" title="#80b0d5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#79aacf" title="#79aacf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#72a3c9" title="#72a3c9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6a9bc3" title="#6a9bc3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6394be" title="#6394be">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5b8cb8" title="#5b8cb8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5485b2" title="#5485b2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4e7fac" title="#4e7fac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4878a6" title="#4878a6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#437a9f" title="#437a9f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3d6a98" title="#3d6a98">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#376491" title="#376491">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#305d8a" title="#305d8a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2a5783" title="#2a5783">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Orange”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffc685" title="#ffc685">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fcbe75" title="#fcbe75">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9b665" title="#f9b665">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7ae54" title="#f7ae54">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5a645" title="#f5a645">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f59c3c" title="#f59c3c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f49234" title="#f49234">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f2882d" title="#f2882d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f07e27" title="#f07e27">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ee7422" title="#ee7422">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e96b20" title="#e96b20">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e36420" title="#e36420">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#db5e20" title="#db5e20">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d25921" title="#d25921">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ca5422" title="#ca5422">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c14f22" title="#c14f22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b84b23" title="#b84b23">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#af4623" title="#af4623">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a64122" title="#a64122">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9e3d22" title="#9e3d22">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b3e0a6" title="#b3e0a6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a5db96" title="#a5db96">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#98d687" title="#98d687">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8ed07f" title="#8ed07f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#85ca77" title="#85ca77">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7dc370" title="#7dc370">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#75bc69" title="#75bc69">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6eb663" title="#6eb663">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67af5c" title="#67af5c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#61a956" title="#61a956">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#59a253" title="#59a253">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#519c51" title="#519c51">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#49964f" title="#49964f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#428f4d" title="#428f4d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#398949" title="#398949">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#308344" title="#308344">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2b7c40" title="#2b7c40">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#27763d" title="#27763d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#256f3d" title="#256f3d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#24693d" title="#24693d">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Red”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#ffbeb2" title="#ffbeb2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#feb4a6" title="#feb4a6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdab9b" title="#fdab9b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fca290" title="#fca290">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fb9984" title="#fb9984">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa8f79" title="#fa8f79">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9856e" title="#f9856e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f77b66" title="#f77b66">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5715d" title="#f5715d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f36754" title="#f36754">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f05c4d" title="#f05c4d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ec5049" title="#ec5049">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e74545" title="#e74545">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e13b42" title="#e13b42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#da323f" title="#da323f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d3293d" title="#d3293d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ca223c" title="#ca223c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c11a3b" title="#c11a3b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b8163a" title="#b8163a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ae123a" title="#ae123a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Purple”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#eec9e5" title="#eec9e5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eac1df" title="#eac1df">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e6b9d9" title="#e6b9d9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e0b2d2" title="#e0b2d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#daabcb" title="#daabcb">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5a4c4" title="#d5a4c4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cf9dbe" title="#cf9dbe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ca96b8" title="#ca96b8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c48fb2" title="#c48fb2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#be89ac" title="#be89ac">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b882a6" title="#b882a6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b27ba1" title="#b27ba1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aa759d" title="#aa759d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a27099" title="#a27099">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9a6a96" title="#9a6a96">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#926591" title="#926591">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8c5f86" title="#8c5f86">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#865986" title="#865986">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#81537f" title="#81537f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7c4d79" title="#7c4d79">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Brown”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#eedbbd" title="#eedbbd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ecd2ad" title="#ecd2ad">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ebc994" title="#ebc994">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eac085" title="#eac085">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e8b777" title="#e8b777">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e5ae6c" title="#e5ae6c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e2a562" title="#e2a562">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#de9d5a" title="#de9d5a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d99455" title="#d99455">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d38c54" title="#d38c54">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ce8451" title="#ce8451">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c9784d" title="#c9784d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c47247" title="#c47247">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c16941" title="#c16941">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bd6036" title="#bd6036">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b85636" title="#b85636">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b34d34" title="#b34d34">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ad4433" title="#ad4433">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a63d32" title="#a63d32">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9f3632" title="#9f3632">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Gray”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d5d5d5" title="#d5d5d5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdcecd" title="#cdcecd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c5c7c6" title="#c5c7c6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bcbfbe" title="#bcbfbe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b4b7b7" title="#b4b7b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#acb0b1" title="#acb0b1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a4a9ab" title="#a4a9ab">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9ca3a4" title="#9ca3a4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#939c9e" title="#939c9e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8b9598" title="#8b9598">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#848e93" title="#848e93">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7c878d" title="#7c878d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#758087" title="#758087">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6e7a81" title="#6e7a81">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67737c" title="#67737c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#616c77" title="#616c77">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5b6570" title="#5b6570">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#555f6a" title="#555f6a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4f5864" title="#4f5864">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#49525e" title="#49525e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Gray Warm”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#dcd4d0" title="#dcd4d0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d4ccc8" title="#d4ccc8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cdc4c0" title="#cdc4c0">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c5bdb9" title="#c5bdb9">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#beb6b2" title="#beb6b2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b7afab" title="#b7afab">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b0a8a4" title="#b0a8a4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a9a09d" title="#a9a09d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a29996" title="#a29996">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9b938f" title="#9b938f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#948c88" title="#948c88">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8d8481" title="#8d8481">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#867e7b" title="#867e7b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#807774" title="#807774">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#79706e" title="#79706e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#736967" title="#736967">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6c6260" title="#6c6260">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#665c5a" title="#665c5a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5f5654" title="#5f5654">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#59504e" title="#59504e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Blue-Teal”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#bce4d8" title="#bce4d8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#aedcd5" title="#aedcd5">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a1d5d2" title="#a1d5d2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#95cecf" title="#95cecf">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#89c8cc" title="#89c8cc">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7ec1ca" title="#7ec1ca">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#72bac6" title="#72bac6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#66b2c2" title="#66b2c2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#59acbe" title="#59acbe">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4ba5ba" title="#4ba5ba">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#419eb6" title="#419eb6">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3b96b2" title="#3b96b2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#358ead" title="#358ead">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3586a7" title="#3586a7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#347ea1" title="#347ea1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#32779b" title="#32779b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#316f96" title="#316f96">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2f6790" title="#2f6790">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2d608a" title="#2d608a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2c5985" title="#2c5985">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Orange-Gold”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f4d166" title="#f4d166">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f6c760" title="#f6c760">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8bc58" title="#f8bc58">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f8b252" title="#f8b252">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7a84a" title="#f7a84a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f69e41" title="#f69e41">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f49538" title="#f49538">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f38b2f" title="#f38b2f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f28026" title="#f28026">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0751e" title="#f0751e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eb6c1c" title="#eb6c1c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e4641e" title="#e4641e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#de5d1f" title="#de5d1f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d75521" title="#d75521">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cf4f22" title="#cf4f22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c64a22" title="#c64a22">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bc4623" title="#bc4623">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b24223" title="#b24223">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a83e24" title="#a83e24">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9e3a26" title="#9e3a26">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Green-Gold”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f4d166" title="#f4d166">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e3cd62" title="#e3cd62">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d3c95f" title="#d3c95f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c3c55d" title="#c3c55d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b2c25b" title="#b2c25b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a3bd5a" title="#a3bd5a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#93b958" title="#93b958">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#84b457" title="#84b457">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#76af56" title="#76af56">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67a956" title="#67a956">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5aa355" title="#5aa355">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4f9e53" title="#4f9e53">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#479751" title="#479751">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#40914f" title="#40914f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3a8a4d" title="#3a8a4d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#34844a" title="#34844a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#2d7d45" title="#2d7d45">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#257740" title="#257740">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c713b" title="#1c713b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#146c36" title="#146c36">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Red-Gold”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f4d166" title="#f4d166">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f5c75f" title="#f5c75f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f6bc58" title="#f6bc58">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7b254" title="#f7b254">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f9a750" title="#f9a750">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fa9d4f" title="#fa9d4f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fb934d" title="#fb934d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7894b" title="#f7894b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f47f4a" title="#f47f4a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0774a" title="#f0774a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#eb6349" title="#eb6349">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e66549" title="#e66549">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e15c48" title="#e15c48">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#dc5447" title="#dc5447">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d64c45" title="#d64c45">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d04344" title="#d04344">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ca3a42" title="#ca3a42">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c43141" title="#c43141">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bd273f" title="#bd273f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b71d3e" title="#b71d3e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#bccfb4" title="#bccfb4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#94bb83" title="#94bb83">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#69a761" title="#69a761">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#339444" title="#339444">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#27823b" title="#27823b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1a7232" title="#1a7232">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#09622a" title="#09622a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Gray”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c3c3c3" title="#c3c3c3">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b2b2b2" title="#b2b2b2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a2a2a2" title="#a2a2a2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#929292" title="#929292">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#838383" title="#838383">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#747474" title="#747474">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#666666" title="#666666">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#585858" title="#585858">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4b4b4b" title="#4b4b4b">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3f3f3f" title="#3f3f3f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#333333" title="#333333">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#282828" title="#282828">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1e1e1e" title="#1e1e1e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Blue”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#b4d4da" title="#b4d4da">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7bc8e2" title="#7bc8e2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#67add4" title="#67add4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3a87b7" title="#3a87b7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c73b1" title="#1c73b1">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#1c5998" title="#1c5998">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#26456e" title="#26456e">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Red”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#eac0bd" title="#eac0bd">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f89a90" title="#f89a90">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f57667" title="#f57667">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e35745" title="#e35745">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d8392c" title="#d8392c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cf1719" title="#cf1719">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c21417" title="#c21417">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b10c1d" title="#b10c1d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9c0824" title="#9c0824">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Orange”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f0c294" title="#f0c294">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fdab67" title="#fdab67">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd8938" title="#fd8938">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f06511" title="#f06511">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d74401" title="#d74401">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a33202" title="#a33202">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7b3014" title="#7b3014">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Area Red”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f5cac7" title="#f5cac7">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fbb3ab" title="#fbb3ab">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd9c8f" title="#fd9c8f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fe8b7a" title="#fe8b7a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fd7864" title="#fd7864">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f46b55" title="#f46b55">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ea5e45" title="#ea5e45">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e04e35" title="#e04e35">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d43e25" title="#d43e25">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c92b14" title="#c92b14">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bd1100" title="#bd1100">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Area Green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#dbe8b4" title="#dbe8b4">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c3e394" title="#c3e394">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#acdc7a" title="#acdc7a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#9ad26d" title="#9ad26d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#8ac765" title="#8ac765">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#7abc5f" title="#7abc5f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#6cae59" title="#6cae59">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#60a24d" title="#60a24d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#569735" title="#569735">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#4a8c1c" title="#4a8c1c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#3c8200" title="#3c8200">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>tableau_seq_gradient_pal(“Classic Area Brown”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#f3e0c2" title="#f3e0c2">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f6d29c" title="#f6d29c">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f7c577" title="#f7c577">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#f0b763" title="#f0b763">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#e4aa63" title="#e4aa63">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d89c63" title="#d89c63">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#cc8f63" title="#cc8f63">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#c08262" title="#c08262">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bb7359" title="#bb7359">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bb6348" title="#bb6348">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#bb5137" title="#bb5137">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>
+
+Wall Street Journal
+</h3>
+
+<table>
+
+<tr>
+
+<td>
+
+<code>wsj_pal(“rgby”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#d3ba68" title="#d3ba68">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#d5695d" title="#d5695d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#5d8ca8" title="#5d8ca8">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#65a479" title="#65a479">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>wsj_pal(“red_green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#088158" title="#088158">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#ba2f2a" title="#ba2f2a">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>wsj_pal(“black_green”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#595959" title="#595959">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#59a77f" title="#59a77f">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#008856" title="#008856">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>wsj_pal(“dem_rep”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#006a8e" title="#006a8e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#b1283a" title="#b1283a">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#a8a6a7" title="#a8a6a7">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>wsj_pal(“colors6”)</code>
+</td>
+
+<td>
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td width="16" height="20" bgcolor="#c72e29" title="#c72e29">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#016392" title="#016392">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#be9c2e" title="#be9c2e">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#098154" title="#098154">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#fb832d" title="#fb832d">
+
+ 
+</td>
+
+<td width="16" height="20" bgcolor="#000000" title="#000000">
+
+ 
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
