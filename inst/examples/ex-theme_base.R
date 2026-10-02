@@ -9,5 +9,6 @@ p <- ggplot(mtcars) +
   facet_wrap(~am)
 p + theme_base()
 # Change values of par
-par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
+old_par <- par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
 p + theme_base()
+par(old_par)
