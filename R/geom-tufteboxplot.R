@@ -22,6 +22,7 @@
 #' \item y [required]
 #' \item colour
 #' \item size
+#' \item linewidth
 #' \item linetype
 #' \item shape
 #' \item fill
@@ -161,7 +162,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
           xend = data$x,
           y = c(data$upper, data$lower),
           yend = c(data$ymax, data$ymin),
-          size = data$size,
+          linewidth = data$linewidth,
           alpha = data$alpha,
           common,
           stringsAsFactors = FALSE
@@ -197,7 +198,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
           yend = c(data$middle, data$lower) + c(data$voffset / 2, 0),
           x = data$x + data$hoffset,
           xend = data$x + data$hoffset,
-          size = data$size * data$width,
+          linewidth = data$linewidth * data$width,
           alpha = data$alpha,
           common,
           stringsAsFactors = FALSE
@@ -245,6 +246,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
       colour = "black",
       fill = "grey20",
       size = 0.5,
+      linewidth = 0.5,
       alpha = NA,
       shape = 19,
       stroke = 0.5,

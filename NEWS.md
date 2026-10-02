@@ -3,6 +3,13 @@
 - `theme_map()` places its legend with `legend.position = "inside"` and
   `legend.position.inside`, instead of the numeric `legend.position`
   deprecated in ggplot2 3.5.0. The legend is drawn in the same place.
+- `geom_tufteboxplot()` gains a `linewidth` aesthetic for its lines, as in
+  `ggplot2::geom_pointrange()`; `size` now sets only point sizes. This removes
+  the ggplot2 deprecation warnings it emitted on every plot. Setting `size`
+  without `linewidth` still widens the lines too, so existing code draws the
+  same, and plots drawn with the defaults are unchanged.
+- `stat_fivenumber()` declares the aesthetics it drops, so it no longer
+  warns that `y` was dropped during the statistical transformation.
 - Fix `solarized_pal()` storing the palette function instead of the palette
   size in its `max_n` attribute. Requesting more than eight colours now pads
   with `NA` after the usual warning instead of failing with "subscript out of

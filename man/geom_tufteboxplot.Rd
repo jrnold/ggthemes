@@ -162,6 +162,7 @@ This functions provides several box plot variants:
 \item y [required]
 \item colour
 \item size
+\item linewidth
 \item linetype
 \item shape
 \item fill
@@ -177,8 +178,10 @@ p <- ggplot(mtcars, aes(factor(cyl), mpg))
 p + geom_tufteboxplot()
 # with a line for the interquartile range and points for whiskers
 p + geom_tufteboxplot(median.type = "line", whisker.type = "point", hoffset = 0)
-# with a wide line for the interquartile range and lines for whiskers
-p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
+# with a wide line for the interquartile range and lines for whiskers.
+# `width` scales the median line but is also the box width, so use
+# position = "identity" to stop position_dodge() warning about overlaps.
+p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3, position = "identity")
 # with an offset line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type = "line")
 # combined with theme_tufte

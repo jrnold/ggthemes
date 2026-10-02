@@ -64,6 +64,7 @@ StatFivenumber <- ggplot2::ggproto(
   ggplot2::Stat, # nolint: object_name_linter
   required_aes = "y",
   non_missing_aes = "weight",
+  dropped_aes = c("y", "weight"),
   setup_data = function(data, params) {
     data$x <- data$x %||% 0
     data <- remove_missing(
