@@ -1,5 +1,8 @@
 # ggthemes (development version)
 
+- `theme_map()` places its legend with `legend.position = "inside"` and
+  `legend.position.inside`, instead of the numeric `legend.position`
+  deprecated in ggplot2 3.5.0. The legend is drawn in the same place.
 - Fix `solarized_pal()` storing the palette function instead of the palette
   size in its `max_n` attribute. Requesting more than eight colours now pads
   with `NA` after the usual warning instead of failing with "subscript out of
