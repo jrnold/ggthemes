@@ -484,6 +484,8 @@
 
 ## ggthemes 6.0.0
 
+CRAN release: 2026-08-30
+
 - [`circlefill_shape_pal()`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md)
   and
   [`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
@@ -498,10 +500,8 @@
 - chore: Modernize GitHub Actions workflows: bump `actions/checkout`,
   `actions/upload-artifact`, and the pkgdown deploy action to their
   current pinned versions; add explicit `permissions:` blocks; migrate
-  `test-coverage.yaml` from
-  [`covr::codecov()`](http://covr.r-lib.org/reference/codecov.md) to
-  [`covr::package_coverage()`](http://covr.r-lib.org/reference/package_coverage.md) +
-  the official `codecov/codecov-action`
+  `test-coverage.yaml` from `covr::codecov()` to
+  `covr::package_coverage()` + the official `codecov/codecov-action`
 - Fix stale `branch/master` Codecov badge in README (now points at
   `main`)
 - Add `"ao"` (Average Absolute Orientation) and `"was"` (Weighted
