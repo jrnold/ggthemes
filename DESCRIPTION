@@ -19,7 +19,7 @@ Depends:
     R (>= 4.1.0)
 Imports:
     cli,
-    ggplot2 (>= 3.0.0),
+    ggplot2 (>= 3.5.2),
     graphics,
     grDevices,
     grid,
