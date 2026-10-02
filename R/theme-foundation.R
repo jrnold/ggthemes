@@ -22,6 +22,7 @@
 #' @inheritParams ggplot2::theme_grey
 #'
 #' @family themes
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @importFrom ggplot2 theme_grey
 theme_foundation <- function(base_size = 12, base_family = "", ink = "black", paper = "white", accent = "#3366FF") {

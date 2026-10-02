@@ -11,6 +11,9 @@ theme_numbers(base_size = 12, base_family = "sans")
 
 \item{base_family}{base font family}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme similar to the default look of charts in Apple Numbers.
 }

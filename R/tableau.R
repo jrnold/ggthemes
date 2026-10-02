@@ -33,6 +33,8 @@ tableau_resolve_palette <- function(palette) {
 #' \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
 #' }
 #'
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @param palette Palette name. See Details for available palettes.
 #' @param type Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.
@@ -98,6 +100,7 @@ tableau_color_pal <- function(
 #' @param ... Other arguments passed on to \code{\link[ggplot2]{discrete_scale}()}.
 #' @family colour tableau
 #' @rdname scale_color_tableau
+#' @return A ggplot2 scale object.
 #' @export
 #' @seealso \code{\link{tableau_color_pal}()} for references.
 #' @example inst/examples/ex-scale_color_tableau.R
@@ -140,6 +143,9 @@ scale_color_tableau <- scale_colour_tableau
 #' or \code{fill} instead, or use \code{unicode = TRUE} with a font covering
 #' Geometric Shapes, such as DejaVu Sans.
 #'
+#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @param palette Palette name.
 #' @inheritParams cleveland_shape_pal
@@ -155,6 +161,7 @@ tableau_shape_pal <- function(palette = c("default", "filled", "proportions"), u
 #'
 #' See \code{\link{tableau_shape_pal}()} for details.
 #'
+#' @return A ggplot2 scale object.
 #' @export
 #' @inheritParams tableau_shape_pal
 #' @inheritParams ggplot2::scale_x_discrete
@@ -185,6 +192,9 @@ scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
 #' @param ... Arguments passed to \code{tableau_gradient_pal}.
 #' @family colour tableau
 #'
+#' @return A palette function. It takes a numeric vector \code{x} of values between 0 and 1 and returns a character
+#'   vector of hex colours interpolated along the palette, for use as the \code{palette} argument of
+#'   \code{\link[ggplot2]{continuous_scale}()}.
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
 # nolint end
@@ -219,6 +229,7 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
 #' and \funclink{scale_colour_gradient2_tableau} for diverging color
 #' scales.
 #'
+#' @return A ggplot2 scale object.
 #' @export
 #' @inheritParams tableau_seq_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
@@ -273,6 +284,7 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #' @param guide Type of legend. Use \code{'colourbar'} for continuous
 #'   colour bar, or \code{'legend'} for discrete colour legend.
 #' @family colour tableau
+#' @return A ggplot2 scale object.
 #' @export
 #' @rdname scale_colour_gradient2_tableau
 #' @example inst/examples/ex-scale_colour_gradient2_tableau.R

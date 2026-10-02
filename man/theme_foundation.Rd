@@ -19,6 +19,9 @@ theme_foundation(
 
 \item{ink, paper, accent}{colour for foreground, background, and accented elements respectively.}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 This theme is designed to be a foundation from which to build new
 themes, and not meant to be used directly. \code{theme_foundation()}

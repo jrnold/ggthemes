@@ -18,6 +18,9 @@ scale_fill_canva(..., palette = "Fresh and bright")
 \item{palette}{Palette name. See the names of \code{\link{canva_palettes}()}
 for valid names.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Color scale for canva.com color palettes described in
 \code{\link{canva_palettes}()}.

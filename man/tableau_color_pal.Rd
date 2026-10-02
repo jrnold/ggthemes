@@ -18,6 +18,10 @@ tableau_color_pal(
 \item{direction}{If 1, the default, then use the original order of
 colors. If -1, then reverse the order.}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Color palettes used in \href{https://www.tableau.com/}{Tableau}.
 }

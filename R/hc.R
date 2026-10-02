@@ -87,6 +87,7 @@ hc_theme_styles <- list(
 #' @param bgcolor Deprecated
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 theme_hc <- function(
   base_size = 12,
@@ -166,6 +167,8 @@ theme_hc <- function(
 #'   One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.
 #'
 #' @family colour hc
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 hc_pal <- function(palette = "default") {
   # Match on the name rather than indexing directly, so that a non-character
@@ -192,6 +195,7 @@ hc_pal <- function(palette = "default") {
 #' @inheritParams hc_pal
 #' @family colour hc
 #' @rdname scale_hc
+#' @return A ggplot2 scale object.
 #' @export
 scale_colour_hc <- function(palette = "default", ...) {
   discrete_scale("colour", palette = hc_pal(palette), ...)

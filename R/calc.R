@@ -3,6 +3,7 @@
 #' Theme similar to the default settings of LibreOffice Calc charts.
 #'
 #' @inheritParams ggplot2::theme_grey
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @family themes calc
 #' @example inst/examples/ex-theme_calc.R
@@ -34,6 +35,8 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 #' This palette has 12 values.
 #'
 #' @family colour calc
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-calc_pal.R
 calc_pal <- function() {
@@ -51,6 +54,7 @@ calc_pal <- function() {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour calc
 #' @rdname scale_calc
+#' @return A ggplot2 scale object.
 #' @export
 #' @seealso See \code{\link{theme_calc}()} for examples.
 scale_fill_calc <- function(...) {
@@ -84,6 +88,9 @@ scale_color_calc <- scale_colour_calc
 #' Mathematical Symbols-B; Noto Sans Symbols 2 is effectively the only free
 #' font with the last of these.
 #'
+#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @family shapes calc
 #' @example inst/examples/ex-calc_shape_pal.R
@@ -98,6 +105,7 @@ calc_shape_pal <- function(unicode = FALSE) {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams calc_shape_pal
 #' @family shapes calc
+#' @return A ggplot2 scale object.
 #' @export
 #' @seealso \code{\link{theme_calc}()} for examples.
 scale_shape_calc <- function(..., unicode = FALSE) {

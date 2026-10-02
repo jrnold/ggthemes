@@ -6,6 +6,10 @@
 \usage{
 fivethirtyeight_pal()
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 The standard three-color FiveThirtyEight palette for line plots comprises
 blue, red, and green.

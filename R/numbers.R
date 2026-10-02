@@ -9,6 +9,8 @@
 #'   The default, \code{"Classic"}, is the palette Numbers itself uses by
 #'   default.
 #' @family colour numbers
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-numbers_pal.R
 numbers_pal <- function(palette = "Classic") {
@@ -34,6 +36,7 @@ numbers_pal <- function(palette = "Classic") {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour numbers
 #' @rdname scale_numbers
+#' @return A ggplot2 scale object.
 #' @export
 #' @seealso See \code{\link{theme_numbers}()} for examples.
 #' @example inst/examples/ex-scale_numbers.R
@@ -61,6 +64,7 @@ scale_color_numbers <- scale_colour_numbers
 #' chart but not the other three sides, and no tick marks.
 #'
 #' @inheritParams ggplot2::theme_grey
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @family themes numbers
 #' @example inst/examples/ex-theme_numbers.R

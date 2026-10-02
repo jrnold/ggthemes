@@ -74,6 +74,9 @@ glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
 by the device font, so they render as blank boxes in a font without
 coverage; the default returns base pch codes, which every font can draw.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Shape scales from Cleveland "Elements of Graphing Data"
 }

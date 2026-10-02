@@ -24,6 +24,11 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 
 \item{...}{Arguments passed to \code{tableau_gradient_pal}.}
 }
+\value{
+A palette function. It takes a numeric vector \code{x} of values between 0 and 1 and returns a character
+  vector of hex colours interpolated along the palette, for use as the \code{palette} argument of
+  \code{\link[ggplot2]{continuous_scale}()}.
+}
 \description{
 Gradient color palettes using the diverging and sequential continous color
 palettes in Tableau. See \funclink{tableau_color_pal} for discrete color

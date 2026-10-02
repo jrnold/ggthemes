@@ -62,6 +62,7 @@
 #'    away from the hinges (i.e., the first and third quartiles).
 #' @family geom tufte
 #' @family tufte
+#' @return A ggplot2 layer.
 #' @export
 #'
 #' @example inst/examples/ex-geom_tufteboxplot.R

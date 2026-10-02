@@ -11,6 +11,9 @@ theme_fivethirtyeight(base_size = 12, base_family = "sans")
 
 \item{base_family}{base font family}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme inspired by the plots from FiveThirtyEight.com.
 }

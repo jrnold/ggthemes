@@ -23,6 +23,7 @@
 #' @family themes tufte
 #' @family tufte
 #' @example inst/examples/ex-theme_tufte.R
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @importFrom ggplot2 theme_bw
 theme_tufte <- function(base_size = 11, base_family = "serif", ticks = TRUE) {

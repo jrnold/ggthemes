@@ -47,6 +47,9 @@ diverging palette.}
 \item{guide}{Type of legend. Use \code{'colourbar'} for continuous
 colour bar, or \code{'legend'} for discrete colour legend.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Continuous color scales using the diverging color scales in Tableau.
 See \funclink{scale_colour_tableau} for Tabaleau discrete color scales,

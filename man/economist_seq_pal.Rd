@@ -14,6 +14,13 @@ economist_gradient_pal(hue = "blue")
 \code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
 \code{"gold"}, \code{"gray"}, or \code{"red"}.}
 }
+\value{
+\code{economist_seq_pal()} returns a palette function that takes the number of colours \code{n} and
+  returns the first \code{n} of the six hex colours for \code{hue}, for use with
+  \code{\link[ggplot2]{discrete_scale}()}. \code{economist_gradient_pal()} returns a palette function that
+  takes a numeric vector \code{x} of values between 0 and 1 and returns hex colours interpolated between
+  those steps, for use with \code{\link[ggplot2]{continuous_scale}()}.
+}
 \description{
 The Economist's "equal lightness colour scales": six ordered steps for
 each of the nine hues in the main chart palette, running darkest to

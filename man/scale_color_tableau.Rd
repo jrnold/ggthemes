@@ -39,6 +39,9 @@ colors. If -1, then reverse the order.}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2]{discrete_scale}()}.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Categorical (qualitative) color scales used in Tableau.
 Use the function \funclink{scale_colour_gradient_tableau} for the sequential

@@ -45,6 +45,9 @@
 #' \url{https://www.jstor.org/stable/1390760}
 #'
 #' @family shapes
+#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 # nolint end
 cleveland_shape_pal <- function(overlap = TRUE, unicode = FALSE) {
@@ -60,6 +63,7 @@ cleveland_shape_pal <- function(overlap = TRUE, unicode = FALSE) {
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams cleveland_shape_pal
+#' @return A ggplot2 scale object.
 #' @export
 #'
 #' @family shapes
@@ -97,6 +101,9 @@ scale_shape_cleveland <- function(overlap = TRUE, ..., unicode = FALSE) {
 #' the American Statistical Association, \url{https://www.jstor.org/stable/2289649}
 #' @family shapes
 #' @importFrom lifecycle deprecate_warn
+#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 circlefill_shape_pal <- function() {
   deprecate_warn("5.0.0", "circlefill_shape_pal()")
@@ -113,6 +120,7 @@ circlefill_shape_pal <- function() {
 #' @description
 #' `r lifecycle::badge("deprecated")`
 #'
+#' @return A ggplot2 scale object.
 #' @export
 #'
 #' @inheritParams ggplot2::scale_x_discrete
@@ -155,6 +163,9 @@ scale_shape_circlefill <- function(...) {
 #' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
 #' Journal of Computational and Graphical Statistics,
 #' \url{https://www.jstor.org/stable/1390760}
+#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
   max_n <- 3L
@@ -191,6 +202,7 @@ tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
 #' @seealso \code{\link{tremmel_shape_pal}()} for a description of the palette.
 #' @example inst/examples/ex-scale_shape_tremmel.R
 #' @family shapes
+#' @return A ggplot2 scale object.
 #' @export
 scale_shape_tremmel <- function(overlap = FALSE, alt = FALSE, ...) {
   discrete_scale(

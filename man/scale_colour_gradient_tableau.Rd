@@ -57,6 +57,9 @@ scale_fill_continuous_tableau(
 \item{guide}{Type of legend. Use \code{'colourbar'} for continuous
 colour bar, or \code{'legend'} for discrete colour legend.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Continuous color scales using the sequential color palettes in Tableau.
 See \funclink{scale_colour_tableau} for Tableau discrete color scales,

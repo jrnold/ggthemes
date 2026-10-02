@@ -10,6 +10,10 @@ hc_pal(palette = "default")
 \item{palette}{\code{character} The name of the Highcharts palette to use.
 One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Highcharts uses many different color palettes in its plots. This collects
 the palettes shipped with Highcharts 13, plus the default Highcharts used

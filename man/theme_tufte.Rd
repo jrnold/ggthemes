@@ -13,6 +13,9 @@ theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 
 \item{ticks}{\code{logical} Show axis ticks?}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme based on Chapter 6 'Data-Ink Maximization and Graphical
 Design' of Edward Tufte *The Visual Display of Quantitative

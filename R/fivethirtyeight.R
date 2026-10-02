@@ -4,6 +4,7 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @family themes fivethirtyeight
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @example inst/examples/ex-theme_fivethirtyeight.R
 #' @importFrom grid unit
@@ -42,6 +43,8 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
 #' blue, red, and green.
 #'
 #' @family colour fivethirtyeight
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-fivethirtyeight_pal.R
 fivethirtyeight_pal <- function() {
@@ -61,6 +64,7 @@ fivethirtyeight_pal <- function() {
 #' @family colour fivethirtyeight
 #' @rdname scale_fivethirtyeight
 #' @seealso \code{\link{theme_fivethirtyeight}()} for examples.
+#' @return A ggplot2 scale object.
 #' @export
 scale_colour_fivethirtyeight <- function(...) {
   discrete_scale("colour", palette = fivethirtyeight_pal(), ...)

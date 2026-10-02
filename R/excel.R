@@ -7,6 +7,8 @@
 #' @param line If \code{TRUE}, use the palette for lines and points. Otherwise,
 #'    use the palette for area.
 #' @family colour excel
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-excel_pal.R
 excel_pal <- function(line = TRUE) {
@@ -49,6 +51,8 @@ excel_resolve_theme <- function(theme) {
 #'   \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}
 #' @family colour excel
 #' @example inst/examples/ex-excel_new_pal.R
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 excel_new_pal <- function(theme = "Office") {
   allthemes <- ggthemes::ggthemes_data$excel$themes
@@ -70,6 +74,7 @@ excel_new_pal <- function(theme = "Office") {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour excel
 #' @rdname scale_excel
+#' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-theme_excel.R
 scale_fill_excel <- function(...) {
@@ -95,6 +100,7 @@ scale_color_excel <- scale_colour_excel
 #' @family colour excel
 #' @rdname scale_excel_new
 #' @example inst/examples/ex-theme_excel_new.R
+#' @return A ggplot2 scale object.
 #' @export
 scale_colour_excel_new <- function(theme = "Office", ...) {
   discrete_scale("colour", palette = excel_new_pal(theme), ...)

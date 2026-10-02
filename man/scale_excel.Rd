@@ -71,6 +71,9 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 The classic "ugly" color scales from Excel 97.
 }

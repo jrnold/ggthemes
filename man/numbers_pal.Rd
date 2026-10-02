@@ -12,6 +12,10 @@ numbers_pal(palette = "Classic")
 The default, \code{"Classic"}, is the palette Numbers itself uses by
 default.}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Color palettes used by charts in Apple Numbers. Each palette provides
 the six series colors that Numbers assigns to a chart's data series,

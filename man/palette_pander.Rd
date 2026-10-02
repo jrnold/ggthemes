@@ -12,6 +12,10 @@ palette_pander(n, random_order = FALSE)
 \item{random_order}{if the palette should be reordered randomly before
 rendering each plot to get colorful images}
 }
+\value{
+A character vector of \code{n} hex colours, recycled if \code{n} exceeds the number of colours available.
+  Unlike the other \code{*_pal()} functions, this is itself the palette function.
+}
 \description{
 The \pkg{pander} ships with a default colorblind and printer-friendly
 color palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.

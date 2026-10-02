@@ -11,6 +11,9 @@ theme_few(base_size = 12, base_family = "")
 
 \item{base_family}{base font family}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme based on the rules and examples from Stephen Few's
 \emph{Show Me the Numbers} and "Practical Rules for Using Color in Charts".

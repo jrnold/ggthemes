@@ -13,6 +13,9 @@ theme_solid(base_size = 12, base_family = "", fill = NA)
 
 \item{fill}{Background color of the plot.}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme that removes all non-geom elements (lines, text, etc),
 This theme is when only the geometric objects are desired.

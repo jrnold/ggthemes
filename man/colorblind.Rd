@@ -87,6 +87,11 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 }
+\value{
+\code{colorblind_pal()} and \code{colourblind_pal()} return a palette function that takes the number of
+  colours \code{n} and returns a character vector of \code{n} hex colours. The \code{scale_*()} functions
+  return a ggplot2 scale object.
+}
 \description{
 An eight-color colorblind safe qualitative discrete palette.
 

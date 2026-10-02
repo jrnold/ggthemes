@@ -135,6 +135,9 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 }
+\value{
+A ggplot2 layer.
+}
 \description{
 Edward Tufte's revisions of the box plot as described in
 \emph{The Visual Display of Quantitative Information}.

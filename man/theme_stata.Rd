@@ -17,6 +17,9 @@ theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
 "s2color" is used and a deprecation message is issued; this default
 becomes "stcolor" in ggthemes 8.0.0.}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Themes based on Stata graph schemes
 }
