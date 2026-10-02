@@ -12,6 +12,10 @@ excel_new_pal(theme = "Office")
 palette. Available themes include:
 \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Color palettes used by current versions of Microsoft Office and Excel.
 }

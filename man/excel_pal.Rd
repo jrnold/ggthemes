@@ -10,6 +10,10 @@ excel_pal(line = TRUE)
 \item{line}{If \code{TRUE}, use the palette for lines and points. Otherwise,
 use the palette for area.}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 The color palettes used in Microsoft Excel 97 (and up until Excel 2007).
 Use this for that classic ugly look and feel. For ironic purposes only.

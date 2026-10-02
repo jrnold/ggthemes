@@ -21,6 +21,9 @@ theme_hc(
 
 \item{bgcolor}{Deprecated}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Themes based on \href{https://www.highcharts.com/}{Highcharts} plots.
 }

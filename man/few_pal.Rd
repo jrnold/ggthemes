@@ -9,6 +9,10 @@ few_pal(palette = "Medium")
 \arguments{
 \item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Qualitative color palettes from Stephen Few (2012)
 \emph{Show Me the Numbers}. There are three palettes:

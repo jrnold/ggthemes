@@ -21,6 +21,9 @@ theme_wsj(
 
 \item{title_family}{Plot title font family.}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme based on the plots in \emph{The Wall Street Journal}.
 }

@@ -7,6 +7,7 @@
 #' of the CSS style example.
 #'
 #' @keywords internal
+#' @return A named character vector of eight hex colours, named \code{rebase03} to \code{rebase3}.
 solarized_rebase <- function(light = TRUE) {
   basecolors <- deframe(ggthemes::ggthemes_data$solarized$Base)
   rebase <- if (light) {
@@ -35,6 +36,8 @@ solarized_accent_list <- function() {
 #' total Euclidean distance between colors in L*a*b space.
 #'
 #' @param accent \code{character} Starting color.
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @family colour solarized
 #' @example inst/examples/ex-solarized_pal.R
@@ -57,6 +60,7 @@ solarized_pal <- function(accent = "blue") {
 #' @inheritParams solarized_pal
 #' @rdname scale_solarized
 #' @family colour solarized
+#' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_solarized.R
 scale_fill_solarized <- function(accent = "blue", ...) {
@@ -87,6 +91,7 @@ scale_color_solarized <- scale_colour_solarized
 #' @rdname theme_solarized
 #' @inheritParams ggplot2::theme_grey
 #' @param light \code{logical}. Light or dark theme?
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @family themes solarized
 #' @example inst/examples/ex-theme_solarized.R

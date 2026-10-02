@@ -76,6 +76,9 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Discrete color scales using the chart palettes from Apple Numbers.
 }

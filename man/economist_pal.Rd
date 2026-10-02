@@ -9,6 +9,10 @@ economist_pal(fill = deprecated())
 \arguments{
 \item{fill}{`r lifecycle::badge("deprecated")` No longer has any effect.}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 The nine colors \emph{The Economist} uses for chart series: blue,
 cyan, green, yellow, olive, purple, gold, gray, and red, in that

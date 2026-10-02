@@ -11,6 +11,9 @@
 #'
 #' \verb{https://jfly.iam.u-tokyo.ac.jp/color}
 #'
+#' @return \code{colorblind_pal()} and \code{colourblind_pal()} return a palette function that takes the number of
+#'   colours \code{n} and returns a character vector of \code{n} hex colours. The \code{scale_*()} functions
+#'   return a ggplot2 scale object.
 #' @export
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour colorblind

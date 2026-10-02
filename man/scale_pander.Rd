@@ -71,6 +71,9 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 The \pkg{pander} ships with a default colorblind and printer-friendly color
 palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.

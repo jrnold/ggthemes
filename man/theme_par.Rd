@@ -14,6 +14,9 @@ theme_par(base_size = par()$ps, base_family = par()$family)
 
 \item{base_family}{base font family}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Currently this theme uses the values of the parameters:
 \code{"code"}, "\code{"ps"}", \code{"code"} \code{"family"}, \code{"fg"},

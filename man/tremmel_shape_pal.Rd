@@ -17,6 +17,11 @@ triangle. Defaults to \code{FALSE}, the triple Tremmel's Experiment 1
 actually measured; the \code{TRUE} triple is argued on feature-dimension
 grounds that Tremmel flags as not directly supported by the experiments.}
 }
+\value{
+A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+  \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Based on experiments Tremmel (1995) suggests the following shape palettes:
 }

@@ -67,6 +67,9 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 See \code{\link{stata_linetype_pal}()} for details.
 }

@@ -11,6 +11,9 @@ theme_igray(base_size = 12, base_family = "")
 
 \item{base_family}{base font family}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme with white panel and gray background.
 }

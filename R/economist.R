@@ -13,6 +13,8 @@
 #'
 #' @param fill `r lifecycle::badge("deprecated")` No longer has any effect.
 #' @family colour economist
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @importFrom lifecycle deprecated is_present
 #' @example inst/examples/ex-economist_pal.R
@@ -56,6 +58,7 @@ economist_main_colors <- function() {
 #' @family colour economist
 #' @rdname scale_economist
 #' @seealso \code{\link{theme_economist}()} for examples.
+#' @return A ggplot2 scale object.
 #' @export
 scale_colour_economist <- function(...) {
   discrete_scale("colour", palette = economist_pal(), ...)
@@ -87,6 +90,11 @@ scale_fill_economist <- function(...) {
 #'   \code{"gold"}, \code{"gray"}, or \code{"red"}.
 #' @family colour economist
 #' @rdname economist_seq_pal
+#' @return \code{economist_seq_pal()} returns a palette function that takes the number of colours \code{n} and
+#'   returns the first \code{n} of the six hex colours for \code{hue}, for use with
+#'   \code{\link[ggplot2]{discrete_scale}()}. \code{economist_gradient_pal()} returns a palette function that
+#'   takes a numeric vector \code{x} of values between 0 and 1 and returns hex colours interpolated between
+#'   those steps, for use with \code{\link[ggplot2]{continuous_scale}()}.
 #' @export
 #' @example inst/examples/ex-economist_seq_pal.R
 economist_seq_pal <- function(hue = "blue") {
@@ -130,6 +138,7 @@ economist_scale_colors <- function(hue) {
 #' @param ... Other arguments passed on to the underlying scale.
 #' @family colour economist
 #' @rdname scale_economist_seq
+#' @return A ggplot2 scale object.
 #' @export
 scale_colour_economist_c <- function(hue = "blue", guide = "colourbar", ...) {
   continuous_scale(

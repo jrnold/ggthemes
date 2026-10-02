@@ -44,6 +44,8 @@ ptol_deprecation_details <- function() {
 #' Incorporation of the palette into an R package was originally inspired by
 #' Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 #'
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @family colour ptol
 #' @references
@@ -84,6 +86,7 @@ ptol_pal <- function() {
 #' @inheritParams ptol_pal
 #' @family colour ptol
 #' @rdname scale_ptol
+#' @return A ggplot2 scale object.
 #' @export
 #' @importFrom lifecycle deprecate_warn
 #' @example inst/examples/ex-scale_colour_ptol.R

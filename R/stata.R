@@ -55,6 +55,8 @@ stata_default_scheme <- function(scheme, what) {
 #' and a deprecation message is issued; this default becomes \code{"stcolor"}
 #' in ggthemes 8.0.0.
 #'
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @family colour stata
 #' @example inst/examples/ex-stata_pal.R
@@ -78,6 +80,7 @@ stata_pal <- function(scheme = NULL) {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family colour stata
 #' @rdname scale_stata
+#' @return A ggplot2 scale object.
 #' @export
 scale_colour_stata <- function(scheme = NULL, ...) {
   scheme <- stata_default_scheme(scheme, "scale_colour_stata()")
@@ -392,6 +395,7 @@ theme_stata_colors <- function(scheme = "s2color") {
 #'   "s2color" is used and a deprecation message is issued; this default
 #'   becomes "stcolor" in ggthemes 8.0.0.
 #' @inheritParams ggplot2::theme_grey
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @family themes stata
 #'
@@ -470,6 +474,9 @@ stata_shape_rows <- function(statadata, shapes) {
 #' solid and hollow circle, diamond, square and triangle, plus the X and the
 #' plus sign.
 #'
+#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @family shapes stata
 #' @seealso See \code{\link{scale_shape_stata}()} for examples.
@@ -490,6 +497,7 @@ stata_shape_pal <- function(unicode = FALSE) {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams stata_shape_pal
 #' @family shapes stata
+#' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
 #' @importFrom ggplot2 discrete_scale
@@ -503,6 +511,9 @@ scale_shape_stata <- function(..., unicode = FALSE) {
 #' This palette supports up to 15 values.
 #'
 #' @family linetype stata
+#' @return A palette function. It takes the number of linetypes \code{n} and returns a character vector of \code{n}
+#'   linetype specifications, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @seealso \code{\link{scale_linetype_stata}()}
 stata_linetype_pal <- function() {
@@ -520,6 +531,7 @@ stata_linetype_pal <- function() {
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family linetype stata
+#' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_linetype_stata.R
 scale_linetype_stata <- function(...) {

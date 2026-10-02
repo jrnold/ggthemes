@@ -16,6 +16,9 @@ theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 
 \item{light}{\code{logical}. Light or dark theme?}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 See \url{https://ethanschoonover.com/solarized/} for a
 description of the Solarized palette.

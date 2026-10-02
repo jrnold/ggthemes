@@ -6,6 +6,11 @@
 \usage{
 few_shape_pal()
 }
+\value{
+A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+  \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Shape palette from Stephen Few's, "Show Me the Numbers".
 The shape palette consists of five shapes: circle, square, triangle, plus,

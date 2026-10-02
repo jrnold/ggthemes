@@ -9,6 +9,9 @@ scale_shape_few(...)
 \arguments{
 \item{...}{Common \code{\link[ggplot2]{discrete_scale}()} parameters.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 \code{scale_shape_few()} maps discrete variables to up to five easily
 discernible shapes. It is based on the shape palette suggested in

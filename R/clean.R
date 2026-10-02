@@ -9,6 +9,7 @@
 #' @param base_family Base font family.
 #'
 #' @family themes
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #'
 #' @example inst/examples/ex-theme_clean.R

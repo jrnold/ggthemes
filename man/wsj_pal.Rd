@@ -10,6 +10,10 @@ wsj_pal(palette = "colors6")
 \item{palette}{\code{character} The color palette to use: .
 \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 The Wall Street Journal uses many different color palettes in its
 plots. This collects a few of them, but is by no means exhaustive.

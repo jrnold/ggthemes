@@ -6,6 +6,10 @@
 \usage{
 ptol_pal()
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 

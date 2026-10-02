@@ -17,6 +17,7 @@
 #' @param pc panel background color (name or hexa code)
 #' @param lp legend position
 #' @param axis axis angle as defined in \code{par(les)}
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @example inst/examples/ex-theme_pander.R
 theme_pander <- function(
@@ -259,6 +260,8 @@ theme_pander <- function(
 #' @param n number of colors. This palette supports up to eight colors.
 #' @param random_order if the palette should be reordered randomly before
 #'  rendering each plot to get colorful images
+#' @return A character vector of \code{n} hex colours, recycled if \code{n} exceeds the number of colours available.
+#'   Unlike the other \code{*_pal()} functions, this is itself the palette function.
 #' @export
 #' @family colour pander
 #' @example inst/examples/ex-palette_pander.R
@@ -300,6 +303,7 @@ palette_pander <- function(n, random_order = FALSE) {
 #' @family colour pander
 #' @rdname scale_pander
 #' @seealso \code{\link{theme_pander}()}
+#' @return A ggplot2 scale object.
 #' @export
 scale_color_pander <- function(...) {
   discrete_scale("colour", palette = palette_pander, ...)

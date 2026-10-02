@@ -9,6 +9,10 @@ solarized_pal(accent = "blue")
 \arguments{
 \item{accent}{\code{character} Starting color.}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Qualitative color palate based on the Ethan Schoonover's Solarized
 palette, \url{https://ethanschoonover.com/solarized/}. This palette supports

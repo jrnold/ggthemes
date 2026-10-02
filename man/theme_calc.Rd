@@ -11,6 +11,9 @@ theme_calc(base_size = 10, base_family = "sans")
 
 \item{base_family}{base font family}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Theme similar to the default settings of LibreOffice Calc charts.
 }

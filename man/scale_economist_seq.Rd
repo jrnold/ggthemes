@@ -31,6 +31,9 @@ color bars, or \code{"legend"} for discrete color legends.}
 
 \item{...}{Other arguments passed on to the underlying scale.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Color scales built from The Economist's equal-lightness color scales.
 The \code{_c} scales are continuous; the \code{_ordinal} scales are

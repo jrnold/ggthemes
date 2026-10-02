@@ -20,6 +20,8 @@
 #'
 #' \href{https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
 #'
+#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}
 #' @family colour few
@@ -58,6 +60,7 @@ few_pal <- function(palette = "Medium") {
 #' @inheritParams few_pal
 #' @family colour few
 #' @rdname scale_few
+#' @return A ggplot2 scale object.
 #' @export
 scale_colour_few <- function(palette = "Medium", ...) {
   discrete_scale("colour", palette = few_pal(palette), ...)
@@ -87,6 +90,7 @@ scale_fill_few <- function(palette = "Light", ...) {
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @family themes few
+#' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family = "") {
@@ -116,6 +120,9 @@ theme_few <- function(base_size = 12, base_family = "") {
 #'   \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
 #'   Analytics Press, p. 208.
 #'
+#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+#'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 few_shape_pal <- function() {
   # Already font-independent before 6.1.0 -- all five shapes have a base pch --
@@ -135,6 +142,7 @@ few_shape_pal <- function() {
 #'   Analytics Press, p. 208.
 #' @seealso \code{\link{scale_shape_few}()} for the shape palette that this
 #'   scale uses.
+#' @return A ggplot2 scale object.
 #' @export
 scale_shape_few <- function(...) {
   discrete_scale("shape", palette = few_shape_pal(), ...)

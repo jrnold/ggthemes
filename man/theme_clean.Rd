@@ -11,6 +11,9 @@ theme_clean(base_size = 12, base_family = "sans")
 
 \item{base_family}{Base font family.}
 }
+\value{
+A ggplot2 theme object (class \code{theme}).
+}
 \description{
 Clean ggplot theme with no panel background, black axis lines
   and grey fill colour for chart elements.

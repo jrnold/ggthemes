@@ -12,6 +12,11 @@ glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
 by the device font, so they render as blank boxes in a font without
 coverage; the default returns base pch codes, which every font can draw.}
 }
+\value{
+A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
+  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+  \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Shape palette based on the symbol palette in Stata used in scheme s2mono.
 This palette supports up to 10 values.

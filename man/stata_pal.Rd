@@ -13,6 +13,10 @@ stata_pal(scheme = NULL)
 and a deprecation message is issued; this default becomes \code{"stcolor"}
 in ggthemes 8.0.0.}
 }
+\value{
+A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
+  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+}
 \description{
 Stata color palettes. See Stata documentation for a description of
 the schemes, \url{https://www.stata.com/help.cgi?schemes}.

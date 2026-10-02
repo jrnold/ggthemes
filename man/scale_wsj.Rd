@@ -74,6 +74,9 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Colour and fill scales which use the palettes in \code{\link{wsj_pal}()}.
 These scales should be used with \code{\link{theme_wsj}()}.
