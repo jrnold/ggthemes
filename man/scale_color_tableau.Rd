@@ -31,8 +31,8 @@ scale_color_tableau(
 \item{palette}{Palette name. See \funclink{tableau_color_pal}
 for available palettes.}
 
-\item{type}{Palette type. One of \code{"regular"}, \code{"sequential"},
-or \code{"diverging"}. See \funclink{tableau_color_pal}.}
+\item{type}{Palette type. One of \code{"regular"}, \code{"ordered-sequential"},
+or \code{"ordered-diverging"}. See \funclink{tableau_color_pal}.}
 
 \item{direction}{If 1, the default, then use the original order of
 colors. If -1, then reverse the order.}
@@ -46,7 +46,7 @@ A ggplot2 scale object.
 Categorical (qualitative) color scales used in Tableau.
 Use the function \funclink{scale_colour_gradient_tableau} for the sequential
 and \funclink{scale_colour_gradient2_tableau} for the diverging continuous
-color scales from Tableu.
+color scales from Tableau.
 }
 \examples{
 library("ggplot2")

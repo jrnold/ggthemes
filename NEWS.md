@@ -8,6 +8,9 @@
   `character(0)`.
 - Require ggplot2 >= 3.5.2. `bank_plot()` and `bank_plot_multiscale()`
   already called `ggplot2::is_ggplot()`, so older versions failed at run time.
+- Correct the documented values of `type` in `scale_colour_tableau()` and
+  `scale_fill_tableau()`: they are `"regular"`, `"ordered-sequential"` and
+  `"ordered-diverging"`, not `"sequential"` and `"diverging"`.
 - BREAKING CHANGE: `theme_excel_new()` now matches the chart chrome Excel
   actually draws, decoded from the chart XML that Excel writes. Major
   gridlines are `#D9D9D9` rather than `#BFBFBF`; axis lines are drawn in

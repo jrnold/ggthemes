@@ -90,12 +90,12 @@ tableau_color_pal <- function(
 #' Categorical (qualitative) color scales used in Tableau.
 #' Use the function \funclink{scale_colour_gradient_tableau} for the sequential
 #' and \funclink{scale_colour_gradient2_tableau} for the diverging continuous
-#' color scales from Tableu.
+#' color scales from Tableau.
 #'
 #' @param palette Palette name. See \funclink{tableau_color_pal}
 #'   for available palettes.
-#' @param type Palette type. One of \code{"regular"}, \code{"sequential"},
-#'   or \code{"diverging"}. See \funclink{tableau_color_pal}.
+#' @param type Palette type. One of \code{"regular"}, \code{"ordered-sequential"},
+#'   or \code{"ordered-diverging"}. See \funclink{tableau_color_pal}.
 #' @inheritParams tableau_color_pal
 #' @param ... Other arguments passed on to \code{\link[ggplot2]{discrete_scale}()}.
 #' @family colour tableau
