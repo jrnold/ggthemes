@@ -2,6 +2,31 @@
 
 ## ggthemes (development version)
 
+- Fix
+  [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md)
+  on ggplot2 \>= 4.0.0. It is meant to clear every colour and fill
+  inherited from
+  [`theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
+  but ggplot2 4.0.0’s S7 theme elements hid them from the check, so
+  [`theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)’s
+  grey panel, grey strips and white grid lines leaked into every theme
+  built on it. On ggplot2 4.x this changes the appearance of
+  [`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md),
+  [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md),
+  [`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
+  [`theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md),
+  [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+  [`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md),
+  [`theme_numbers()`](https://jrnold.github.io/ggthemes/reference/theme_numbers.md),
+  [`theme_solarized_2()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md),
+  [`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md),
+  [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md)
+  and
+  [`theme_wsj()`](https://jrnold.github.io/ggthemes/reference/theme_wsj.md)
+  back to their intended look, which ggplot2 3.5.x users already saw. In
+  particular, `theme_solid(fill = )` now fills the panel rather than
+  only the area around it.
+
 - Expand the README theme gallery to cover every non-deprecated exported
   theme, pairing each with its matching palette where available.
 
