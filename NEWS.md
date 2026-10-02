@@ -1,5 +1,9 @@
 # ggthemes (development version)
 
+- Fix `solarized_pal()` storing the palette function instead of the palette
+  size in its `max_n` attribute. Requesting more than eight colours now pads
+  with `NA` after the usual warning instead of failing with "subscript out of
+  bounds", and `n = 0` returns `character(0)`.
 - BREAKING CHANGE: `theme_excel_new()` now matches the chart chrome Excel
   actually draws, decoded from the chart XML that Excel writes. Major
   gridlines are `#D9D9D9` rather than `#BFBFBF`; axis lines are drawn in
