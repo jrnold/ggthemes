@@ -14,7 +14,7 @@ reference:
   desc: Provided ggplot2 scales for the `shape` aesthetic. Scales control the details
     of how data values are translated to visual properties.
   contents: starts_with("scale_shape_")
-- title: Lintetype Scales
+- title: Linetype Scales
   desc: Provided ggplot2 scales for the `linetype` aesthetic. Scales control the details
     of how data values are translated to visual properties.
   contents: starts_with("scale_linetype_")

@@ -1,0 +1,165 @@
+---
+title: "Color palettes"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, dev = "png", dpi = 96)
+```
+
+```{r setup}
+library("ggplot2")
+library("ggthemes")
+```
+
+Every color palette shipped with ggthemes is shown below. Each row is one
+palette, labeled with the call that returns it; the swatches are in the order
+the palette function returns them. The gallery is built from the package data,
+so new palettes and color changes appear here automatically. The Tableau
+diverging and sequential rows show the color stops used by
+`scale_colour_gradient2_tableau()` and `scale_colour_gradient_tableau()`.
+
+```{r helpers}
+source("swatches.R")
+
+calls <- function(fmt, names) sprintf(fmt, names)
+tableau <- ggthemes_data$tableau$`color-palettes`
+
+families <- list(
+  general = list(
+    "colorblind_pal(black = TRUE)" = colorblind_pal(black = TRUE)(8),
+    "calc_pal()" = calc_pal()(12),
+    "economist_pal()" = economist_pal()(9),
+    "fivethirtyeight_pal()" = fivethirtyeight_pal()(3),
+    "gdocs_pal()" = gdocs_pal()(24),
+    "palette_pander(8)" = palette_pander(8)
+  ),
+  # The two largest families are labeled by palette name only, so that their
+  # columns leave room for the swatches.
+  canva = setNames(lapply(names(canva_palettes), function(p) canva_pal(p)(4)), names(canva_palettes)),
+  excel = list("excel_pal(line = TRUE)" = excel_pal(TRUE)(7), "excel_pal(line = FALSE)" = excel_pal(FALSE)(7)),
+  excel_new = setNames(
+    lapply(names(ggthemes_data$excel$themes), function(p) excel_new_pal(p)(6)),
+    names(ggthemes_data$excel$themes)
+  ),
+  few = setNames(
+    lapply(names(ggthemes_data$few$colors), function(p) few_pal(p)(8)),
+    calls('few_pal("%s")', names(ggthemes_data$few$colors))
+  ),
+  hc = setNames(
+    lapply(names(ggthemes_data$hc), function(p) hc_pal(p)(length(ggthemes_data$hc[[p]]))),
+    calls('hc_pal("%s")', names(ggthemes_data$hc))
+  ),
+  numbers = setNames(
+    lapply(names(ggthemes_data$numbers), function(p) numbers_pal(p)(6)),
+    calls('numbers_pal("%s")', names(ggthemes_data$numbers))
+  ),
+  solarized = setNames(
+    lapply(names(ggthemes_data$solarized$palettes), function(p) solarized_pal(p)(8)),
+    calls('solarized_pal("%s")', names(ggthemes_data$solarized$palettes))
+  ),
+  stata = setNames(
+    lapply(names(ggthemes_data$stata$colors$schemes), function(p) stata_pal(p)(15)),
+    calls('stata_pal("%s")', names(ggthemes_data$stata$colors$schemes))
+  ),
+  tableau_regular = setNames(
+    lapply(names(tableau$regular), function(p) tableau_color_pal(p)(nrow(tableau$regular[[p]]))),
+    calls('tableau_color_pal("%s")', names(tableau$regular))
+  ),
+  tableau_diverging = setNames(
+    lapply(tableau$`ordered-diverging`, `[[`, "value"),
+    calls('tableau_div_gradient_pal("%s")', names(tableau$`ordered-diverging`))
+  ),
+  tableau_sequential = setNames(
+    lapply(tableau$`ordered-sequential`, `[[`, "value"),
+    calls('tableau_seq_gradient_pal("%s")', names(tableau$`ordered-sequential`))
+  ),
+  wsj = setNames(
+    lapply(names(ggthemes_data$wsj$palettes), function(p) wsj_pal(p)(nrow(ggthemes_data$wsj$palettes[[p]]))),
+    calls('wsj_pal("%s")', names(ggthemes_data$wsj$palettes))
+  )
+)
+```
+
+## General
+
+```{r general, fig.width = swatch_width(families$general), fig.height = swatch_height(families$general), fig.alt = "Swatches of the general-purpose palettes: colorblind, calc, economist, fivethirtyeight, gdocs and pander."}
+swatch_plot(families$general)
+```
+
+## Canva
+
+Each label is the `palette` argument of `canva_pal()`, for example
+`canva_pal("Fresh and bright")`.
+
+```{r canva, fig.width = swatch_width(families$canva, 2), fig.height = swatch_height(families$canva, 2), fig.alt = "Swatches of the 150 four-color Canva palettes, in two columns, labeled by name."}
+swatch_plot(families$canva, ncol = 2)
+```
+
+## Excel
+
+```{r excel, fig.width = swatch_width(families$excel), fig.height = swatch_height(families$excel), fig.alt = "Swatches of the classic Excel line and fill palettes."}
+swatch_plot(families$excel)
+```
+
+Each label below is the `theme` argument of `excel_new_pal()`, for example
+`excel_new_pal("Atlas")`.
+
+```{r excel-new, fig.width = swatch_width(families$excel_new, 3), fig.height = swatch_height(families$excel_new, 3), fig.alt = "Swatches of the 51 Excel theme palettes, in three columns, labeled by theme name."}
+swatch_plot(families$excel_new, ncol = 3)
+```
+
+## Few
+
+```{r few, fig.width = swatch_width(families$few), fig.height = swatch_height(families$few), fig.alt = "Swatches of Stephen Few's light, medium and dark palettes."}
+swatch_plot(families$few)
+```
+
+## Highcharts
+
+```{r hc, fig.width = swatch_width(families$hc), fig.height = swatch_height(families$hc), fig.alt = "Swatches of the Highcharts palettes."}
+swatch_plot(families$hc)
+```
+
+## Numbers
+
+```{r numbers, fig.width = swatch_width(families$numbers), fig.height = swatch_height(families$numbers), fig.alt = "Swatches of the Apple Numbers palettes."}
+swatch_plot(families$numbers)
+```
+
+## Solarized
+
+```{r solarized, fig.width = swatch_width(families$solarized), fig.height = swatch_height(families$solarized), fig.alt = "Swatches of the Solarized palettes, one per accent color."}
+swatch_plot(families$solarized)
+```
+
+## Stata
+
+```{r stata, fig.width = swatch_width(families$stata), fig.height = swatch_height(families$stata), fig.alt = "Swatches of the Stata color schemes."}
+swatch_plot(families$stata)
+```
+
+## Tableau
+
+### Discrete
+
+```{r tableau-regular, fig.width = swatch_width(families$tableau_regular), fig.height = swatch_height(families$tableau_regular), fig.alt = "Swatches of the discrete Tableau palettes."}
+swatch_plot(families$tableau_regular)
+```
+
+### Diverging
+
+```{r tableau-diverging, fig.width = swatch_width(families$tableau_diverging), fig.height = swatch_height(families$tableau_diverging), fig.alt = "Color stops of the diverging Tableau palettes."}
+swatch_plot(families$tableau_diverging)
+```
+
+### Sequential
+
+```{r tableau-sequential, fig.width = swatch_width(families$tableau_sequential), fig.height = swatch_height(families$tableau_sequential), fig.alt = "Color stops of the sequential Tableau palettes."}
+swatch_plot(families$tableau_sequential)
+```
+
+## Wall Street Journal
+
+```{r wsj, fig.width = swatch_width(families$wsj), fig.height = swatch_height(families$wsj), fig.alt = "Swatches of the Wall Street Journal palettes."}
+swatch_plot(families$wsj)
+```

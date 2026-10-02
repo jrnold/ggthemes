@@ -29,3 +29,4 @@
 ^[.]?air[.]toml$
 ^\.vscode$
 ^Rplots\.pdf$
+^vignettes/articles$
