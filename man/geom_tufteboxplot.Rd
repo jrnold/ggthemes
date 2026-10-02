@@ -162,6 +162,7 @@ This functions provides several box plot variants:
 \item y [required]
 \item colour
 \item size
+\item linewidth
 \item linetype
 \item shape
 \item fill
