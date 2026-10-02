@@ -212,6 +212,8 @@ A ggplot2 layer.
 
 - size
 
+- linewidth
+
 - linetype
 
 - shape
@@ -248,48 +250,20 @@ library("ggplot2")
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
 # with a point for the median and lines for whiskers
 p + geom_tufteboxplot()
-#> Warning: The following aesthetics were dropped during statistical transformation: y.
-#> ℹ This can happen when ggplot fails to infer the correct grouping structure in
-#>   the data.
-#> ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-#>   variable into a factor?
-#> Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.
-#> Warning: Using the `size` aesthetic with geom_segment was deprecated in ggplot2 3.4.0.
-#> ℹ Please use the `linewidth` aesthetic instead.
 
 # with a line for the interquartile range and points for whiskers
 p + geom_tufteboxplot(median.type = "line", whisker.type = "point", hoffset = 0)
-#> Warning: The following aesthetics were dropped during statistical transformation: y.
-#> ℹ This can happen when ggplot fails to infer the correct grouping structure in
-#>   the data.
-#> ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-#>   variable into a factor?
 
-# with a wide line for the interquartile range and lines for whiskers
-p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3)
-#> Warning: The following aesthetics were dropped during statistical transformation: y.
-#> ℹ This can happen when ggplot fails to infer the correct grouping structure in
-#>   the data.
-#> ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-#>   variable into a factor?
-#> Warning: `position_dodge()` requires non-overlapping x intervals.
+# with a wide line for the interquartile range and lines for whiskers.
+# `width` scales the median line but is also the box width, so use
+# position = "identity" to stop position_dodge() warning about overlaps.
+p + geom_tufteboxplot(median.type = "line", hoffset = 0, width = 3, position = "identity")
 
 # with an offset line for the interquartile range and lines for whiskers
 p + geom_tufteboxplot(median.type = "line")
-#> Warning: The following aesthetics were dropped during statistical transformation: y.
-#> ℹ This can happen when ggplot fails to infer the correct grouping structure in
-#>   the data.
-#> ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-#>   variable into a factor?
 
 # combined with theme_tufte
 p + geom_tufteboxplot() + theme_tufte() + theme(axis.ticks.x = element_blank())
-#> Warning: The following aesthetics were dropped during statistical transformation: y.
-#> ℹ This can happen when ggplot fails to infer the correct grouping structure in
-#>   the data.
-#> ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-#>   variable into a factor?
 
 # traditional boxplot with whiskers only out to 1.5 IQR, outlier points
 p + geom_tufteboxplot(stat = "boxplot", outlier.shape = 5)

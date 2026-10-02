@@ -7,6 +7,18 @@
   `legend.position.inside`, instead of the numeric `legend.position`
   deprecated in ggplot2 3.5.0. The legend is drawn in the same place.
 
+- [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
+  gains a `linewidth` aesthetic for its lines, as in
+  [`ggplot2::geom_pointrange()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html);
+  `size` now sets only point sizes. This removes the ggplot2 deprecation
+  warnings it emitted on every plot. Setting `size` without `linewidth`
+  still widens the lines too, so existing code draws the same, and plots
+  drawn with the defaults are unchanged.
+
+- [`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
+  declares the aesthetics it drops, so it no longer warns that `y` was
+  dropped during the statistical transformation.
+
 - Fix
   [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
   storing the palette function instead of the palette size in its

@@ -248,6 +248,7 @@ lists which parameters it can accept.</p></li>
 <li><p>y [required]</p></li>
 <li><p>colour</p></li>
 <li><p>size</p></li>
+<li><p>linewidth</p></li>
 <li><p>linetype</p></li>
 <li><p>shape</p></li>
 <li><p>fill</p></li>
@@ -278,48 +279,20 @@ box plots. The American Statistician 32, 12-16.</p>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># with a point for the median and lines for whiskers</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">y</span>.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` in the `default_aes` field and elsewhere instead.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using the `size` aesthetic with geom_segment was deprecated in ggplot2 3.4.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use the `linewidth` aesthetic instead.</span>
 <span class="r-plt img"><img src="geom_tufteboxplot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># with a line for the interquartile range and points for whiskers</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span>median.type <span class="op">=</span> <span class="st">"line"</span>, whisker.type <span class="op">=</span> <span class="st">"point"</span>, hoffset <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">y</span>.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="geom_tufteboxplot-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="co"># with a wide line for the interquartile range and lines for whiskers</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span>median.type <span class="op">=</span> <span class="st">"line"</span>, hoffset <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">y</span>.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`position_dodge()` requires non-overlapping <span style="color: #00BB00;">x</span> intervals.</span>
+<span class="r-in"><span><span class="co"># with a wide line for the interquartile range and lines for whiskers.</span></span></span>
+<span class="r-in"><span><span class="co"># `width` scales the median line but is also the box width, so use</span></span></span>
+<span class="r-in"><span><span class="co"># position = "identity" to stop position_dodge() warning about overlaps.</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span>median.type <span class="op">=</span> <span class="st">"line"</span>, hoffset <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">3</span>, position <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_tufteboxplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># with an offset line for the interquartile range and lines for whiskers</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span>median.type <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">y</span>.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="geom_tufteboxplot-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># combined with theme_tufte</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following aesthetics were dropped during statistical transformation: <span style="color: #00BB00;">y</span>.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This can happen when ggplot fails to infer the correct grouping structure in</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the data.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you forget to specify a `group` aesthetic or to convert a numerical</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   variable into a factor?</span>
 <span class="r-plt img"><img src="geom_tufteboxplot-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># traditional boxplot with whiskers only out to 1.5 IQR, outlier points</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_tufteboxplot</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"boxplot"</span>, outlier.shape <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
