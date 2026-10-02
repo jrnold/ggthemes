@@ -43,9 +43,15 @@ solarized_pal <- function(accent = "blue") {
   max_n <- length(palettes)
   f <- function(n) {
     check_pal_n(n, max_n)
+    if (n == 0L) {
+      return(character())
+    }
+    if (n > max_n) {
+      return(c(palettes[[max_n]], rep(NA_character_, n - max_n)))
+    }
     palettes[[n]]
   }
-  attr(f, "max_n") <- f
+  attr(f, "max_n") <- max_n
   f
 }
 
