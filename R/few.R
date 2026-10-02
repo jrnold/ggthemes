@@ -45,7 +45,7 @@ few_pal <- function(palette = "Medium") {
     if (n == 1L) {
       values[[1L]]
     } else {
-      unname(values[2L:(n + 1L)])
+      unname(values[seq_len(n) + 1L])
     }
   }
   attr(f, "max_n") <- length(values) - 1L
