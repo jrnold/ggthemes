@@ -32,20 +32,13 @@ Imports:
     tibble
 Suggests:
     dplyr,
-    covr,
-    extrafont,
     farver,
-    glue,
-    knitr,
     lattice,
-    lintr,
     maps,
     mapproj,
     pander,
     quantreg,
-    rmarkdown,
     spelling,
-    stringr,
     systemfonts,
     testthat (>= 3.2.0),
     tidyr,
@@ -63,5 +56,9 @@ LazyData: true
 Language: en-US
 Encoding: UTF-8
 Config/testthat/edition: 3
+Config/Needs/coverage: covr
+Config/Needs/data: stringr
+Config/Needs/lint: lintr
+Config/Needs/readme: knitr, rmarkdown
 Config/Needs/website: pkgdown
 Config/roxygen2/version: 8.1.0
