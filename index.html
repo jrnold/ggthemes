@@ -93,69 +93,322 @@
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span>, colour <span class="op">=</span> <span class="va">gear</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Fuel economy declines as weight increases"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"(1973-74)"</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Data from the 1974 Motor Trend US magazine."</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Fuel economy falls with weight"</span>,</span>
 <span>    x <span class="op">=</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Fuel economy (mpg)"</span>,</span>
 <span>    colour <span class="op">=</span> <span class="st">"Gears"</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># `theme_map()` intentionally removes axes, so use geographic data rather than</span></span>
+<span><span class="co"># a scatterplot. `theme_solid()` is likewise intended to leave only geoms.</span></span>
+<span><span class="va">us_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html" class="external-link">map_data</a></span><span class="op">(</span><span class="st">"state"</span><span class="op">)</span></span>
+<span><span class="va">p_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">us_states</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">long</span>, <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">region</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span><span class="st">"albers"</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p_solid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span>, colour <span class="op">=</span> <span class="va">gear</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<tr>
+<th align="left">
+Theme
+</th>
+<th align="left">
+Code
+</th>
+<th align="left">
+Example
+</th>
+</tr>
+<tr>
+<td>
+<code>theme_base</code>
+</td>
+<td>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/scale_calc.html">scale_color_calc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/theme_calc.html">theme_calc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_calc-1.png"><!-- --></p>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_base.html">theme_base</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/colorblind.html">scale_colour_colourblind</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_base-1.png" width="400" alt="theme_base">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_calc</code>
+</td>
+<td>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_clean.html">theme_clean</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_clean-1.png"><!-- --></p>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_calc.html">theme_calc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_calc.html">scale_colour_calc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_calc-1.png" width="400" alt="theme_calc">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_clean</code>
+</td>
+<td>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_clean.html">theme_clean</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_color_tableau.html">scale_colour_tableau</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_clean-1.png" width="400" alt="theme_clean">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_economist</code>
+</td>
+<td>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/scale_economist.html">scale_colour_economist</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_economist-1.png"><!-- --></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+</td>
+<td>
+<img src="reference/figures/README-theme_economist-1.png" width="400" alt="theme_economist">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_excel</code>
+</td>
+<td>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_excel.html">theme_excel</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/scale_excel.html">scale_colour_excel</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_excel-1.png"><!-- --></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+</td>
+<td>
+<img src="reference/figures/README-theme_excel-1.png" width="400" alt="theme_excel">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_excel_new</code>
+</td>
+<td>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_excel_new.html">theme_excel_new</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/scale_excel_new.html">scale_colour_excel_new</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_excel_new-1.png"><!-- --></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_igray.html">theme_igray</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_igray-1.png"><!-- --></p>
+</td>
+<td>
+<img src="reference/figures/README-theme_excel_new-1.png" width="400" alt="theme_excel_new">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_few</code>
+</td>
+<td>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_par.html">theme_par</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_par-1.png"><!-- --></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_fivethirtyeight-1.png"><!-- --></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_few.html">theme_few</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/scale_few.html">scale_colour_few</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_few-1.png"><!-- --></p>
+</td>
+<td>
+<img src="reference/figures/README-theme_few-1.png" width="400" alt="theme_few">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_fivethirtyeight</code>
+</td>
+<td>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_fivethirtyeight.html">scale_colour_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_fivethirtyeight-1.png" width="400" alt="theme_fivethirtyeight">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_foundation</code>
+</td>
+<td>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_foundation.html">theme_foundation</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/colorblind.html">scale_colour_colourblind</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_foundation-1.png" width="400" alt="theme_foundation">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_gdocs</code>
+</td>
+<td>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_gdocs.html">theme_gdocs</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_gdocs.html">scale_colour_gdocs</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_gdocs-1.png" width="400" alt="theme_gdocs">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_hc</code>
+</td>
+<td>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_hc.html">theme_hc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_hc.html">scale_colour_hc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_hc-1.png" width="400" alt="theme_hc">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_igray</code>
+</td>
+<td>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_igray.html">theme_igray</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_igray-1.png" width="400" alt="theme_igray">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_map</code>
+</td>
+<td>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p_map</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_map-1.png" width="400" alt="theme_map">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_numbers</code>
+</td>
+<td>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_numbers.html">theme_numbers</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_numbers.html">scale_colour_numbers</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_numbers-1.png" width="400" alt="theme_numbers">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_pander</code>
+</td>
+<td>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_pander.html">theme_pander</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_pander.html">scale_colour_pander</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_pander-1.png" width="400" alt="theme_pander">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_par</code>
+</td>
+<td>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_par.html">theme_par</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/colorblind.html">scale_colour_colourblind</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_par-1.png" width="400" alt="theme_par">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_solarized</code>
+</td>
+<td>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_solarized.html">theme_solarized</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_solarized-1.png"><!-- --></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_solarized.html">theme_solarized</a></span><span class="op">(</span>light<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+</td>
+<td>
+<img src="reference/figures/README-theme_solarized-1.png" width="400" alt="theme_solarized">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_solarized_2</code>
+</td>
+<td>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_solarized.html">theme_solarized_2</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/scale_solarized.html">scale_colour_solarized</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_solarized_dark-1.png"><!-- --></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_solid.html">theme_solid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_solid-1.png"><!-- --></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_stata-1.png"><!-- --></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_wsj.html">theme_wsj</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="reference/scale_wsj.html">scale_color_wsj</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-theme_wsj-1.png"><!-- --></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/colorblind.html">scale_color_colorblind</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-scale_colorblind-1.png"><!-- --></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/scale_color_tableau.html">scale_color_tableau</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-scale_color_tableau-1.png"><!-- --></p>
+</td>
+<td>
+<img src="reference/figures/README-theme_solarized_2-1.png" width="400" alt="theme_solarized_2">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_solid</code>
+</td>
+<td>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p_solid</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_solid.html">theme_solid</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#202124"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/colorblind.html">scale_colour_colourblind</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_solid-1.png" width="400" alt="theme_solid">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_stata</code>
+</td>
+<td>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_stata.html">theme_stata</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_stata.html">scale_colour_stata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_stata-1.png" width="400" alt="theme_stata">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_tufte</code>
+</td>
+<td>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_few.html">scale_colour_few</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_tufte-1.png" width="400" alt="theme_tufte">
+</td>
+</tr>
+<tr>
+<td>
+<code>theme_wsj</code>
+</td>
+<td>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="reference/theme_wsj.html">theme_wsj</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_wsj.html">scale_colour_wsj</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</td>
+<td>
+<img src="reference/figures/README-theme_wsj-1.png" width="400" alt="theme_wsj">
+</td>
+</tr>
+</table>
 </div>
 <div class="section level2">
 <h2 id="color-palettes">Color palettes<a class="anchor" aria-label="anchor" href="#color-palettes"></a>

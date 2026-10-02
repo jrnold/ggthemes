@@ -52,134 +52,26 @@ mtcars2 <- within(mtcars, {
 p1 <- ggplot(mtcars2) +
   geom_point(aes(x = wt, y = mpg, colour = gear)) +
   labs(
-    title = "Fuel economy declines as weight increases",
-    subtitle = "(1973-74)",
-    caption = "Data from the 1974 Motor Trend US magazine.",
+    title = "Fuel economy falls with weight",
     x = "Weight (1000 lbs)",
     y = "Fuel economy (mpg)",
     colour = "Gears"
   )
+
+# `theme_map()` intentionally removes axes, so use geographic data rather than
+# a scatterplot. `theme_solid()` is likewise intended to leave only geoms.
+us_states <- map_data("state")
+p_map <- ggplot(us_states, aes(long, lat, group = group)) +
+  geom_polygon(aes(fill = region), colour = "white", linewidth = 0.15) +
+  coord_map("albers", lat0 = 39, lat1 = 45) +
+  guides(fill = "none")
+
+p_solid <- ggplot(mtcars2) +
+  geom_point(aes(x = wt, y = mpg, colour = gear), size = 3) +
+  guides(colour = "none")
 ```
 
-``` r
-
-p1 +
-  scale_color_calc() +
-  theme_calc()
-```
-
-![](reference/figures/README-theme_calc-1.png)
-
-``` r
-
-p1 + theme_clean()
-```
-
-![](reference/figures/README-theme_clean-1.png)
-
-``` r
-
-p1 + theme_economist() +
-  scale_colour_economist()
-```
-
-![](reference/figures/README-theme_economist-1.png)
-
-``` r
-
-p1 + theme_excel() +
-  scale_colour_excel()
-```
-
-![](reference/figures/README-theme_excel-1.png)
-
-``` r
-
-p1 + theme_excel_new() +
-  scale_colour_excel_new()
-```
-
-![](reference/figures/README-theme_excel_new-1.png)
-
-``` r
-
-p1 + theme_igray()
-```
-
-![](reference/figures/README-theme_igray-1.png)
-
-``` r
-
-p1 + theme_par()
-```
-
-![](reference/figures/README-theme_par-1.png)
-
-``` r
-
-p1 + theme_fivethirtyeight()
-```
-
-![](reference/figures/README-theme_fivethirtyeight-1.png)
-
-``` r
-
-p1 + theme_few() +
-  scale_colour_few()
-```
-
-![](reference/figures/README-theme_few-1.png)
-
-``` r
-
-p1 + theme_solarized() +
-  scale_colour_solarized()
-```
-
-![](reference/figures/README-theme_solarized-1.png)
-
-``` r
-
-p1 + theme_solarized(light=FALSE) +
-  scale_colour_solarized()
-```
-
-![](reference/figures/README-theme_solarized_dark-1.png)
-
-``` r
-
-p1 + theme_solid()
-```
-
-![](reference/figures/README-theme_solid-1.png)
-
-``` r
-
-p1 + theme_tufte()
-```
-
-![](reference/figures/README-theme_stata-1.png)
-
-``` r
-
-p1 + theme_wsj(base_size = 8) + scale_color_wsj()
-```
-
-![](reference/figures/README-theme_wsj-1.png)
-
-``` r
-
-p1 + scale_color_colorblind()
-```
-
-![](reference/figures/README-scale_colorblind-1.png)
-
-``` r
-
-p1 + scale_color_tableau()
-```
-
-![](reference/figures/README-scale_color_tableau-1.png)
+[TABLE]
 
 ## Color palettes
 
