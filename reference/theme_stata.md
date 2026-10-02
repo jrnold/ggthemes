@@ -26,6 +26,10 @@ theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
   deprecation message is issued; this default becomes "stcolor" in
   ggthemes 8.0.0.
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 These themes approximate Stata schemes using the features ggplot2. The

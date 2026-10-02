@@ -154,6 +154,10 @@ geom_rangeframe(
   plot specification, e.g.
   [`annotation_borders()`](https://ggplot2.tidyverse.org/reference/annotation_borders.html).
 
+## Value
+
+A ggplot2 layer.
+
 ## Details
 
 This should be used with \`coord_cartesian(clip="off")\` in order to

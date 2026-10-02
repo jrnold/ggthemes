@@ -86,6 +86,10 @@ scale_color_gradient2_tableau(
   Type of legend. Use `'colourbar'` for continuous colour bar, or
   `'legend'` for discrete colour legend.
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 Other colour tableau:

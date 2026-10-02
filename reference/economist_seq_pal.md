@@ -20,6 +20,17 @@ economist_gradient_pal(hue = "blue")
   `character`. One of `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
   `"olive"`, `"purple"`, `"gold"`, `"gray"`, or `"red"`.
 
+## Value
+
+`economist_seq_pal()` returns a palette function that takes the number
+of colours `n` and returns the first `n` of the six hex colours for
+`hue`, for use with
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+`economist_gradient_pal()` returns a palette function that takes a
+numeric vector `x` of values between 0 and 1 and returns hex colours
+interpolated between those steps, for use with
+[`continuous_scale()`](https://ggplot2.tidyverse.org/reference/continuous_scale.html).
+
 ## Details
 
 `economist_seq_pal()` returns the six steps themselves, for discrete

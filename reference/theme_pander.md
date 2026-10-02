@@ -88,6 +88,10 @@ theme_pander(
 
   axis angle as defined in `par(les)`
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Examples
 
 ``` r

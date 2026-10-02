@@ -32,6 +32,10 @@ theme_hc(
 
   Deprecated
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 Only the Highcharts themes that restyle the chart itself get a `style`

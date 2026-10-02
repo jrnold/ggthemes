@@ -130,6 +130,10 @@ scale_shape_tableau(palette = "default", ..., unicode = FALSE)
   device font, so they render as blank boxes in a font without coverage;
   the default returns base pch codes, which every font can draw.
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 Other shapes tableau:

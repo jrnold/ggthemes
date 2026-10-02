@@ -125,6 +125,10 @@ scale_fill_wsj(palette = "colors6", ...)
 
   :   The super class to use for the constructed scale
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 Other colour wsj:

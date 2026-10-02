@@ -57,6 +57,13 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 
   Arguments passed to `tableau_gradient_pal`.
 
+## Value
+
+A palette function. It takes a numeric vector `x` of values between 0
+and 1 and returns a character vector of hex colours interpolated along
+the palette, for use as the `palette` argument of
+[`continuous_scale()`](https://ggplot2.tidyverse.org/reference/continuous_scale.html).
+
 ## See also
 
 Other colour tableau:

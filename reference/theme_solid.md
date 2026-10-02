@@ -24,6 +24,10 @@ theme_solid(base_size = 12, base_family = "", fill = NA)
 
   Background color of the plot.
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## See also
 
 Other themes:

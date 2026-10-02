@@ -16,6 +16,13 @@ solarized_pal(accent = "blue")
 
   `character` Starting color.
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Note
 
 For a given starting color and number of colors in the palette, the

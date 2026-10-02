@@ -19,6 +19,13 @@ wsj_pal(palette = "colors6")
   `character` The color palette to use: . `"rgby"`, `"red_green"`,
   `"black_green"`, `"dem_rep"`, `"colors6"`
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Palettes
 
 The following palettes are defined,

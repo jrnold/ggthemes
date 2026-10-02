@@ -198,6 +198,10 @@ geom_tufteboxplot(
     glyphs](https://ggplot2.tidyverse.org/reference/draw_key.html), to
     change the display of the layer in the legend.
 
+## Value
+
+A ggplot2 layer.
+
 ## Aesthetics
 
 - x \[required\]

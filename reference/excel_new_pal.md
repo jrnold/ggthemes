@@ -26,6 +26,13 @@ excel_new_pal(theme = "Office")
   `"Red Orange"`, `"Red Violet"`, `"Red"`, `"Slipstream"`,
   `"Violet II"`, `"Violet"`, `"Yellow Orange"`, `"Yellow"`
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Details
 
 In 2023 Microsoft replaced the long-standing Office theme with a new

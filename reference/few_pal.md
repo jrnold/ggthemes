@@ -18,6 +18,13 @@ few_pal(palette = "Medium")
 
   One of
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Details
 
 Use the light palette for filled areas, such as bar charts. Use the

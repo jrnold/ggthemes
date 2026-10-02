@@ -24,6 +24,13 @@ tableau_shape_pal(
   device font, so they render as blank boxes in a font without coverage;
   the default returns base pch codes, which every font can draw.
 
+## Value
+
+A palette function. It takes the number of shapes `n` and returns an
+integer vector of `n` shape (`pch`) codes, and can be used as the
+`palette` argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Details
 
 Not all shape palettes in Tableau are supported, and these palettes are

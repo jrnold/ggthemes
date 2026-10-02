@@ -4,7 +4,7 @@ Categorical (qualitative) color scales used in Tableau. Use the function
 [`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md)
 for the sequential and
 [`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md)
-for the diverging continuous color scales from Tableu.
+for the diverging continuous color scales from Tableau.
 
 ## Usage
 
@@ -41,8 +41,8 @@ scale_color_tableau(
 
 - type:
 
-  Palette type. One of `"regular"`, `"sequential"`, or `"diverging"`.
-  See
+  Palette type. One of `"regular"`, `"ordered-sequential"`, or
+  `"ordered-diverging"`. See
   [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md).
 
 - direction:
@@ -54,6 +54,10 @@ scale_color_tableau(
 
   Other arguments passed on to
   [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
+## Value
+
+A ggplot2 scale object.
 
 ## See also
 

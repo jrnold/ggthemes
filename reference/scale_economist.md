@@ -117,6 +117,10 @@ scale_fill_economist(...)
 
   :   The super class to use for the constructed scale
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)

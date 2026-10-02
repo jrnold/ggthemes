@@ -17,3 +17,8 @@ solarized_rebase(light = TRUE)
   Creates the base colors for a light or dark solarized theme. See
   <https://ethanschoonover.com/solarized/>. This function is a port of
   the CSS style example.
+
+## Value
+
+A named character vector of eight hex colours, named `rebase03` to
+`rebase3`.

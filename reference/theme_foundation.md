@@ -34,6 +34,10 @@ theme_foundation(
 
   colour for foreground, background, and accented elements respectively.
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 This theme takes

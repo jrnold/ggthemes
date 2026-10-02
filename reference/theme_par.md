@@ -24,6 +24,10 @@ theme_par(base_size = par()$ps, base_family = par()$family)
 
   base font family
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 This theme does not translate the base graphics perfectly, so the graphs

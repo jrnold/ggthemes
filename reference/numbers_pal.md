@@ -19,6 +19,13 @@ numbers_pal(palette = "Classic")
   `"Mid Century"`, `"Showroom"`, `"Spectrum"` . The default,
   `"Classic"`, is the palette Numbers itself uses by default.
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## See also
 
 Other colour numbers:

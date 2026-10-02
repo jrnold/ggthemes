@@ -20,6 +20,12 @@ palette_pander(n, random_order = FALSE)
   if the palette should be reordered randomly before rendering each plot
   to get colorful images
 
+## Value
+
+A character vector of `n` hex colours, recycled if `n` exceeds the
+number of colours available. Unlike the other `*_pal()` functions, this
+is itself the palette function.
+
 ## See also
 
 Other colour pander:

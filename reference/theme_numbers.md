@@ -18,6 +18,10 @@ theme_numbers(base_size = 12, base_family = "sans")
 
   base font family
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 The values used here are those in the `chart-style-default` style of the

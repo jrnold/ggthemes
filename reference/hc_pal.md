@@ -19,6 +19,13 @@ hc_pal(palette = "default")
   `"grid_light"`, `"sand_signika"`, `"high_contrast_light"`,
   `"high_contrast_dark"`, `"avocado"`, `"sunset"` .
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Details
 
 `"default"` and `"default_dark"` are the light- and dark-mode forms of

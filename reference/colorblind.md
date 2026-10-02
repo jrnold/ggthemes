@@ -133,6 +133,13 @@ scale_fill_colourblind(black = TRUE, ...)
 
   :   The super class to use for the constructed scale
 
+## Value
+
+`colorblind_pal()` and `colourblind_pal()` return a palette function
+that takes the number of colours `n` and returns a character vector of
+`n` hex colours. The `scale_*()` functions return a ggplot2 scale
+object.
+
 ## References
 
 Chang, W. "[Cookbook for

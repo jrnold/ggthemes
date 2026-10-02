@@ -9,6 +9,13 @@ palette consists of five shapes: circle, square, triangle, plus, times.
 few_shape_pal()
 ```
 
+## Value
+
+A palette function. It takes the number of shapes `n` and returns an
+integer vector of `n` shape (`pch`) codes, and can be used as the
+`palette` argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## References
 
 Few, S. (2012) *Show Me the Numbers: Designing Tables and Graphs to

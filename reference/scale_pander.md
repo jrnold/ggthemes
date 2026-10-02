@@ -118,6 +118,10 @@ scale_fill_pander(...)
 
   :   The super class to use for the constructed scale
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 [`theme_pander()`](https://jrnold.github.io/ggthemes/reference/theme_pander.md)

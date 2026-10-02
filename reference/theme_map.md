@@ -19,6 +19,10 @@ theme_map(base_size = 9, base_family = "")
 
   base font family
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Examples
 
 ``` r

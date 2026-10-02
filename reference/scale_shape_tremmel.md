@@ -130,6 +130,10 @@ scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
 
   :   The super class to use for the constructed scale
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 [`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)

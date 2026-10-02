@@ -28,6 +28,13 @@ tableau_color_pal(
   If 1, the default, then use the original order of colors. If -1, then
   reverse the order.
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Details
 
 Tableau provides three types of color palettes: `"regular"` (discrete,

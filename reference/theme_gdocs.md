@@ -18,6 +18,10 @@ theme_gdocs(base_size = 12, base_family = "sans")
 
   base font family
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Examples
 
 ``` r

@@ -27,6 +27,10 @@ theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 
   `logical` Show axis ticks?
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Note
 
 The default font family is set to 'serif' as he uses serif fonts for

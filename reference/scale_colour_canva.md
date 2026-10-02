@@ -25,3 +25,7 @@ scale_fill_canva(..., palette = "Fresh and bright")
   Palette name. See the names of
   [`canva_palettes()`](https://jrnold.github.io/ggthemes/reference/canva_palettes.md)
   for valid names.
+
+## Value
+
+A ggplot2 scale object.

@@ -25,6 +25,10 @@ theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 
   `logical`. Light or dark theme?
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 Plots made with this theme integrate seamlessly with the Solarized

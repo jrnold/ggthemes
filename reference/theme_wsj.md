@@ -32,6 +32,10 @@ theme_wsj(
 
   Plot title font family.
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 This theme should be used with

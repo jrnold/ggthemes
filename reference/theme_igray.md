@@ -18,6 +18,10 @@ theme_igray(base_size = 12, base_family = "")
 
   base font family
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## Details
 
 This theme inverts the colors in the

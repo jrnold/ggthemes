@@ -19,6 +19,10 @@ theme_few(base_size = 12, base_family = "")
 
   base font family
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## References
 
 Few, S. (2012) *Show Me the Numbers: Designing Tables and Graphs to

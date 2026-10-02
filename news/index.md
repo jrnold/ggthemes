@@ -2,6 +2,32 @@
 
 ## ggthemes (development version)
 
+- Fix
+  [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
+  storing the palette function instead of the palette size in its
+  `max_n` attribute. Requesting more than eight colours now pads with
+  `NA` after the usual warning instead of failing with “subscript out of
+  bounds”, and `n = 0` returns `character(0)`.
+
+- Fix
+  [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)
+  returning two colours for `n = 0`; it now returns `character(0)`.
+
+- Require ggplot2 \>= 3.5.2.
+  [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
+  and
+  [`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md)
+  already called
+  [`ggplot2::is_ggplot()`](https://ggplot2.tidyverse.org/reference/is_tests.html),
+  so older versions failed at run time.
+
+- Correct the documented values of `type` in
+  [`scale_colour_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md)
+  and
+  [`scale_fill_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md):
+  they are `"regular"`, `"ordered-sequential"` and
+  `"ordered-diverging"`, not `"sequential"` and `"diverging"`.
+
 - BREAKING CHANGE:
   [`theme_excel_new()`](https://jrnold.github.io/ggthemes/reference/theme_excel_new.md)
   now matches the chart chrome Excel actually draws, decoded from the

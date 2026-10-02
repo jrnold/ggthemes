@@ -18,6 +18,13 @@ economist_pal(fill = deprecated())
 
   \`r lifecycle::badge("deprecated")\` No longer has any effect.
 
+## Value
+
+A palette function. It takes the number of colours `n` and returns a
+character vector of `n` hex colours, and can be used as the `palette`
+argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Details
 
 A tenth color, "Econ red", is the brighter masthead red used for the tag

@@ -19,6 +19,10 @@ theme_clean(base_size = 12, base_family = "sans")
 
   Base font family.
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## See also
 
 Other themes:

@@ -24,6 +24,13 @@ tremmel_shape_pal(overlap = FALSE, alt = FALSE)
   grounds that Tremmel flags as not directly supported by the
   experiments.
 
+## Value
+
+A palette function. It takes the number of shapes `n` and returns an
+integer vector of `n` shape (`pch`) codes, and can be used as the
+`palette` argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## Details
 
 If two symbols, then use a solid circle and plus sign.

@@ -117,6 +117,10 @@ scale_fill_fivethirtyeight(...)
 
   :   The super class to use for the constructed scale
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 [`theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md)

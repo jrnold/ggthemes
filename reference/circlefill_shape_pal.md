@@ -18,6 +18,13 @@ This palette supports up to five values.
 circlefill_shape_pal()
 ```
 
+## Value
+
+A palette function. It takes the number of shapes `n` and returns an
+integer vector of `n` shape (`pch`) codes, and can be used as the
+`palette` argument of
+[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 ## References
 
 Lewandowsky, Stephan and Ian Spence (1989) "Discriminating Strata in

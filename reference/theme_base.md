@@ -18,6 +18,10 @@ theme_base(base_size = 16, base_family = "")
 
   base font family
 
+## Value
+
+A ggplot2 theme object (class `theme`).
+
 ## See also
 
 Other themes:

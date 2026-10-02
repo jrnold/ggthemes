@@ -38,6 +38,10 @@ scale_fill_economist_ordinal(hue = "blue", ...)
 
   Other arguments passed on to the underlying scale.
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 Other colour economist:

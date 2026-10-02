@@ -122,6 +122,10 @@ scale_fill_few(palette = "Light", ...)
 
   :   The super class to use for the constructed scale
 
+## Value
+
+A ggplot2 scale object.
+
 ## See also
 
 Other colour few:
