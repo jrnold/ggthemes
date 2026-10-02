@@ -37,6 +37,10 @@ test_that("few_pal works with n = 1", {
   expect_equal(out, ggthemes::ggthemes_data$few$colors$Medium$value[[1]])
 })
 
+test_that("few_pal returns no colours for n = 0", {
+  expect_equal(few_pal("Medium")(0), character())
+})
+
 test_that("few_pal raises error with bad palette", {
   expect_snapshot(few_pal("Foo"), error = TRUE)
 })
