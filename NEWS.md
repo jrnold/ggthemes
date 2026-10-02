@@ -6,6 +6,8 @@
   bounds", and `n = 0` returns `character(0)`.
 - Fix `few_pal()` returning two colours for `n = 0`; it now returns
   `character(0)`.
+- Require ggplot2 >= 3.5.2. `bank_plot()` and `bank_plot_multiscale()`
+  already called `ggplot2::is_ggplot()`, so older versions failed at run time.
 - BREAKING CHANGE: `theme_excel_new()` now matches the chart chrome Excel
   actually draws, decoded from the chart XML that Excel writes. Major
   gridlines are `#D9D9D9` rather than `#BFBFBF`; axis lines are drawn in
