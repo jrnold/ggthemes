@@ -21,6 +21,7 @@ theme_map <- function(base_size = 9, base_family = "") {
       panel.spacing = unit(0, "lines"),
       plot.background = element_blank(),
       legend.justification = c(0, 0),
-      legend.position = c(0, 0)
+      legend.position = "inside",
+      legend.position.inside = c(0, 0)
     )
 }
