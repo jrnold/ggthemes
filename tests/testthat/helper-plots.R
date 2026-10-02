@@ -65,3 +65,9 @@ swatch_plot <- function(palettes, title = NULL) {
       plot.title = ggplot2::element_text(size = 8, face = "bold")
     )
 }
+
+# A Tufte box plot of mtcars, one box per cylinder count; arguments are passed
+# on to geom_tufteboxplot().
+tufteboxplot_plot <- function(...) {
+  ggplot(mtcars, aes(factor(.data$cyl), .data$mpg)) + geom_tufteboxplot(...)
+}

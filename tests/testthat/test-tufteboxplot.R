@@ -2,10 +2,6 @@ test_that("geom_tufteboxplot works", {
   expect_s3_class(geom_tufteboxplot(), "LayerInstance")
 })
 
-tufteboxplot_plot <- function(...) {
-  ggplot(mtcars, aes(factor(cyl), mpg)) + geom_tufteboxplot(...)
-}
-
 test_that("geom_tufteboxplot draws without ggplot2 deprecation warnings", {
   expect_no_warning(ggplot2::ggplotGrob(tufteboxplot_plot()))
   expect_no_warning(ggplot2::ggplotGrob(tufteboxplot_plot(median.type = "line")))
