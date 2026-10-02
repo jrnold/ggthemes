@@ -2,6 +2,11 @@
 
 ## ggthemes (development version)
 
+- [`theme_map()`](https://jrnold.github.io/ggthemes/reference/theme_map.md)
+  places its legend with `legend.position = "inside"` and
+  `legend.position.inside`, instead of the numeric `legend.position`
+  deprecated in ggplot2 3.5.0. The legend is drawn in the same place.
+
 - Fix
   [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
   storing the palette function instead of the palette size in its
