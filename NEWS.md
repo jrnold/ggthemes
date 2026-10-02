@@ -1,5 +1,7 @@
 # ggthemes (development version)
 
+- Expand the README theme gallery to cover every non-deprecated exported
+  theme, pairing each with its matching palette where available.
 - `theme_map()` places its legend with `legend.position = "inside"` and
   `legend.position.inside`, instead of the numeric `legend.position`
   deprecated in ggplot2 3.5.0. The legend is drawn in the same place.
