@@ -45,7 +45,7 @@ For a quick tutorial, check out [Rafael Irizarry's book](http://rafalab.dfci.har
 
 ## Examples
 
-```{r}
+```{r setup-examples}
 library("ggplot2")
 library("ggthemes")
 
@@ -59,84 +59,75 @@ mtcars2 <- within(mtcars, {
 p1 <- ggplot(mtcars2) +
   geom_point(aes(x = wt, y = mpg, colour = gear)) +
   labs(
-    title = "Fuel economy declines as weight increases",
-    subtitle = "(1973-74)",
-    caption = "Data from the 1974 Motor Trend US magazine.",
+    title = "Fuel economy falls with weight",
     x = "Weight (1000 lbs)",
     y = "Fuel economy (mpg)",
     colour = "Gears"
   )
+
+# `theme_map()` intentionally removes axes, so use geographic data rather than
+# a scatterplot. `theme_solid()` is likewise intended to leave only geoms.
+us_states <- map_data("state")
+p_map <- ggplot(us_states, aes(long, lat, group = group)) +
+  geom_polygon(aes(fill = region), colour = "white", linewidth = 0.15) +
+  coord_map("albers", lat0 = 39, lat1 = 45) +
+  guides(fill = "none")
+
+p_solid <- ggplot(mtcars2) +
+  geom_point(aes(x = wt, y = mpg, colour = gear), size = 3) +
+  guides(colour = "none")
 ```
 
-```{r,theme_calc}
-p1 +
-  scale_color_calc() +
-  theme_calc()
-```
+```{r examples, echo = FALSE, results = "asis", message = FALSE, warning = FALSE}
+# One row per exported theme, alphabetically. Each entry is the literal code
+# shown in the table *and* the code evaluated to produce the figure beside it,
+# so the two cannot drift apart. Themes that ship their own palette are paired
+# with it; the rest borrow a general-purpose one.
+examples <- list(
+  theme_base = "p1 + theme_base() +\n  scale_colour_colourblind()",
+  theme_calc = "p1 + theme_calc() +\n  scale_colour_calc()",
+  theme_clean = "p1 + theme_clean() +\n  scale_colour_tableau()",
+  theme_economist = "p1 + theme_economist() +\n  scale_colour_economist()",
+  theme_excel = "p1 + theme_excel() +\n  scale_colour_excel()",
+  theme_excel_new = "p1 + theme_excel_new() +\n  scale_colour_excel_new()",
+  theme_few = "p1 + theme_few() +\n  scale_colour_few()",
+  theme_fivethirtyeight = "p1 + theme_fivethirtyeight() +\n  scale_colour_fivethirtyeight()",
+  theme_foundation = "p1 + theme_foundation() +\n  scale_colour_colourblind()",
+  theme_gdocs = "p1 + theme_gdocs() +\n  scale_colour_gdocs()",
+  theme_hc = "p1 + theme_hc() +\n  scale_colour_hc()",
+  theme_igray = "p1 + theme_igray()",
+  theme_map = "p_map +\n  theme_map()",
+  theme_numbers = "p1 + theme_numbers() +\n  scale_colour_numbers()",
+  theme_pander = "p1 + theme_pander() +\n  scale_colour_pander()",
+  theme_par = "p1 + theme_par() +\n  scale_colour_colourblind()",
+  theme_solarized = "p1 + theme_solarized() +\n  scale_colour_solarized()",
+  theme_solarized_2 = "p1 + theme_solarized_2() +\n  scale_colour_solarized()",
+  theme_solid = "p_solid +\n  theme_solid(fill = \"#202124\") +\n  scale_colour_colourblind()",
+  theme_stata = "p1 + theme_stata() +\n  scale_colour_stata()",
+  theme_tufte = "p1 + theme_tufte() +\n  scale_colour_few()",
+  theme_wsj = "p1 + theme_wsj(base_size = 8) +\n  scale_colour_wsj()"
+)
 
-```{r,theme_clean}
-p1 + theme_clean()
-```
+cat("<table>\n")
+cat("<tr>",
+    "<th align=\"left\">Theme</th>",
+    "<th align=\"left\">Code</th>",
+    "<th align=\"left\">Example</th>",
+    "</tr>\n", sep = "")
 
-```{r,theme_economist}
-p1 + theme_economist() +
-  scale_colour_economist()
-```
+for (nm in names(examples)) {
+  code <- examples[[nm]]
+  path <- paste0("man/figures/README-", nm, "-1.png")
+  # A white background keeps themes that draw none (theme_map(), theme_tufte())
+  # legible on dark-mode pages.
+  ggsave(path, plot = eval(parse(text = code)), width = 6, height = 4, dpi = 96, bg = "white")
+  cat(sprintf(
+    "<tr>\n<td><code>%s</code></td>\n<td>\n\n```r\n%s\n```\n\n</td>\n<td><img src=\"%s\" width=\"400\" alt=\"%s\"></td>\n</tr>\n",
+    nm, code, path, nm
+  ))
+}
 
-```{r,theme_excel}
-p1 + theme_excel() +
-  scale_colour_excel()
-```
-
-```{r,theme_excel_new}
-p1 + theme_excel_new() +
-  scale_colour_excel_new()
-```
-
-```{r,theme_igray}
-p1 + theme_igray()
-```
-
-```{r,theme_par}
-p1 + theme_par()
-```
-
-```{r,theme_fivethirtyeight}
-p1 + theme_fivethirtyeight()
-```
-
-```{r,theme_few}
-p1 + theme_few() +
-  scale_colour_few()
-```
-```{r,theme_solarized}
-p1 + theme_solarized() +
-  scale_colour_solarized()
-```
-
-```{r,theme_solarized_dark}
-p1 + theme_solarized(light=FALSE) +
-  scale_colour_solarized()
-```
-
-```{r,theme_solid}
-p1 + theme_solid()
-```
-
-```{r,theme_stata}
-p1 + theme_tufte()
-```
-
-```{r,theme_wsj}
-p1 + theme_wsj(base_size = 8) + scale_color_wsj()
-```
-
-```{r,scale_colorblind}
-p1 + scale_color_colorblind()
-```
-
-```{r,scale_color_tableau}
-p1 + scale_color_tableau()
+cat("</table>\n")
 ```
 
 ## Color palettes

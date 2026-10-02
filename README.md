@@ -52,118 +52,553 @@ mtcars2 <- within(mtcars, {
 p1 <- ggplot(mtcars2) +
   geom_point(aes(x = wt, y = mpg, colour = gear)) +
   labs(
-    title = "Fuel economy declines as weight increases",
-    subtitle = "(1973-74)",
-    caption = "Data from the 1974 Motor Trend US magazine.",
+    title = "Fuel economy falls with weight",
     x = "Weight (1000 lbs)",
     y = "Fuel economy (mpg)",
     colour = "Gears"
   )
+
+# `theme_map()` intentionally removes axes, so use geographic data rather than
+# a scatterplot. `theme_solid()` is likewise intended to leave only geoms.
+us_states <- map_data("state")
+p_map <- ggplot(us_states, aes(long, lat, group = group)) +
+  geom_polygon(aes(fill = region), colour = "white", linewidth = 0.15) +
+  coord_map("albers", lat0 = 39, lat1 = 45) +
+  guides(fill = "none")
+
+p_solid <- ggplot(mtcars2) +
+  geom_point(aes(x = wt, y = mpg, colour = gear), size = 3) +
+  guides(colour = "none")
 ```
+
+<table>
+
+<tr>
+
+<th align="left">
+
+Theme
+</th>
+
+<th align="left">
+
+Code
+</th>
+
+<th align="left">
+
+Example
+</th>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_base</code>
+</td>
+
+<td>
 
 ``` r
-p1 +
-  scale_color_calc() +
-  theme_calc()
+p1 + theme_base() +
+  scale_colour_colourblind()
 ```
 
-![](man/figures/README-theme_calc-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_base-1.png" width="400" alt="theme_base">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_calc</code>
+</td>
+
+<td>
 
 ``` r
-p1 + theme_clean()
+p1 + theme_calc() +
+  scale_colour_calc()
 ```
 
-![](man/figures/README-theme_clean-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_calc-1.png" width="400" alt="theme_calc">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_clean</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_clean() +
+  scale_colour_tableau()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_clean-1.png" width="400" alt="theme_clean">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_economist</code>
+</td>
+
+<td>
 
 ``` r
 p1 + theme_economist() +
   scale_colour_economist()
 ```
 
-![](man/figures/README-theme_economist-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_economist-1.png" width="400" alt="theme_economist">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_excel</code>
+</td>
+
+<td>
 
 ``` r
 p1 + theme_excel() +
   scale_colour_excel()
 ```
 
-![](man/figures/README-theme_excel-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_excel-1.png" width="400" alt="theme_excel">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_excel_new</code>
+</td>
+
+<td>
 
 ``` r
 p1 + theme_excel_new() +
   scale_colour_excel_new()
 ```
 
-![](man/figures/README-theme_excel_new-1.png)<!-- -->
+</td>
 
-``` r
-p1 + theme_igray()
-```
+<td>
 
-![](man/figures/README-theme_igray-1.png)<!-- -->
+<img src="man/figures/README-theme_excel_new-1.png" width="400" alt="theme_excel_new">
+</td>
 
-``` r
-p1 + theme_par()
-```
+</tr>
 
-![](man/figures/README-theme_par-1.png)<!-- -->
+<tr>
 
-``` r
-p1 + theme_fivethirtyeight()
-```
+<td>
 
-![](man/figures/README-theme_fivethirtyeight-1.png)<!-- -->
+<code>theme_few</code>
+</td>
+
+<td>
 
 ``` r
 p1 + theme_few() +
   scale_colour_few()
 ```
 
-![](man/figures/README-theme_few-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_few-1.png" width="400" alt="theme_few">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_fivethirtyeight</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_fivethirtyeight() +
+  scale_colour_fivethirtyeight()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_fivethirtyeight-1.png" width="400" alt="theme_fivethirtyeight">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_foundation</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_foundation() +
+  scale_colour_colourblind()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_foundation-1.png" width="400" alt="theme_foundation">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_gdocs</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_gdocs() +
+  scale_colour_gdocs()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_gdocs-1.png" width="400" alt="theme_gdocs">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_hc</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_hc() +
+  scale_colour_hc()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_hc-1.png" width="400" alt="theme_hc">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_igray</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_igray()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_igray-1.png" width="400" alt="theme_igray">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_map</code>
+</td>
+
+<td>
+
+``` r
+p_map +
+  theme_map()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_map-1.png" width="400" alt="theme_map">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_numbers</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_numbers() +
+  scale_colour_numbers()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_numbers-1.png" width="400" alt="theme_numbers">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_pander</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_pander() +
+  scale_colour_pander()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_pander-1.png" width="400" alt="theme_pander">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_par</code>
+</td>
+
+<td>
+
+``` r
+p1 + theme_par() +
+  scale_colour_colourblind()
+```
+
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_par-1.png" width="400" alt="theme_par">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_solarized</code>
+</td>
+
+<td>
 
 ``` r
 p1 + theme_solarized() +
   scale_colour_solarized()
 ```
 
-![](man/figures/README-theme_solarized-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_solarized-1.png" width="400" alt="theme_solarized">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_solarized_2</code>
+</td>
+
+<td>
 
 ``` r
-p1 + theme_solarized(light=FALSE) +
+p1 + theme_solarized_2() +
   scale_colour_solarized()
 ```
 
-![](man/figures/README-theme_solarized_dark-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_solarized_2-1.png" width="400" alt="theme_solarized_2">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_solid</code>
+</td>
+
+<td>
 
 ``` r
-p1 + theme_solid()
+p_solid +
+  theme_solid(fill = "#202124") +
+  scale_colour_colourblind()
 ```
 
-![](man/figures/README-theme_solid-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_solid-1.png" width="400" alt="theme_solid">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_stata</code>
+</td>
+
+<td>
 
 ``` r
-p1 + theme_tufte()
+p1 + theme_stata() +
+  scale_colour_stata()
 ```
 
-![](man/figures/README-theme_stata-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_stata-1.png" width="400" alt="theme_stata">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_tufte</code>
+</td>
+
+<td>
 
 ``` r
-p1 + theme_wsj(base_size = 8) + scale_color_wsj()
+p1 + theme_tufte() +
+  scale_colour_few()
 ```
 
-![](man/figures/README-theme_wsj-1.png)<!-- -->
+</td>
+
+<td>
+
+<img src="man/figures/README-theme_tufte-1.png" width="400" alt="theme_tufte">
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<code>theme_wsj</code>
+</td>
+
+<td>
 
 ``` r
-p1 + scale_color_colorblind()
+p1 + theme_wsj(base_size = 8) +
+  scale_colour_wsj()
 ```
 
-![](man/figures/README-scale_colorblind-1.png)<!-- -->
+</td>
 
-``` r
-p1 + scale_color_tableau()
-```
+<td>
 
-![](man/figures/README-scale_color_tableau-1.png)<!-- -->
+<img src="man/figures/README-theme_wsj-1.png" width="400" alt="theme_wsj">
+</td>
+
+</tr>
+
+</table>
 
 ## Color palettes
 
