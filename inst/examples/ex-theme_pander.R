@@ -4,8 +4,10 @@ if (require("pander")) {
     geom_point()
   p + theme_pander()
 
+  old_grid_color <- panderOptions("graph.grid.color")
   panderOptions("graph.grid.color", "red")
   p + theme_pander()
+  panderOptions("graph.grid.color", old_grid_color)
 
   p <- ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
     geom_point()

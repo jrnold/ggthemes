@@ -40,8 +40,9 @@ p <- ggplot(mtcars) +
 p + theme_par()
 
 # theme changes with respect to values of par
-par(font = 2, col.lab = "red", fg = "white", bg = "black")
+old_par <- par(font = 2, col.lab = "red", fg = "white", bg = "black")
 p + theme_par()
+par(old_par)
 }
 \seealso{
 Other themes:
