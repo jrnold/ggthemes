@@ -517,7 +517,7 @@ p1 + theme_solarized_2() +
 ``` r
 p_solid +
   theme_solid(fill = "#202124") +
-  scale_colour_colourblind()
+  scale_colour_tableau()
 ```
 
 </td>

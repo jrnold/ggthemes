@@ -31,11 +31,17 @@ theme_foundation <- function(base_size = 12, base_family = "", ink = "black", pa
   } else {
     thm <- theme_grey(base_size = base_size, base_family = base_family)
   }
+  # Clear every element's colour and fill so they inherit from `line`, `rect`
+  # and `text` below. Test with `$` rather than names(): ggplot2 >= 4.0.0
+  # elements are S7 objects, whose names() is empty.
   for (i in names(thm)) {
-    if ("colour" %in% names(thm[[i]])) {
+    if (!inherits(thm[[i]], "element")) {
+      next
+    }
+    if (!is.null(thm[[i]]$colour)) {
       thm[[i]]["colour"] <- list(NULL)
     }
-    if ("fill" %in% names(thm[[i]])) {
+    if (!is.null(thm[[i]]$fill)) {
       thm[[i]]["fill"] <- list(NULL)
     }
   }

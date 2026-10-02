@@ -102,7 +102,7 @@ examples <- list(
   theme_par = "p1 + theme_par() +\n  scale_colour_colourblind()",
   theme_solarized = "p1 + theme_solarized() +\n  scale_colour_solarized()",
   theme_solarized_2 = "p1 + theme_solarized_2() +\n  scale_colour_solarized()",
-  theme_solid = "p_solid +\n  theme_solid(fill = \"#202124\") +\n  scale_colour_colourblind()",
+  theme_solid = "p_solid +\n  theme_solid(fill = \"#202124\") +\n  scale_colour_tableau()",
   theme_stata = "p1 + theme_stata() +\n  scale_colour_stata()",
   theme_tufte = "p1 + theme_tufte() +\n  scale_colour_few()",
   theme_wsj = "p1 + theme_wsj(base_size = 8) +\n  scale_colour_wsj()"

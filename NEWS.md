@@ -1,5 +1,15 @@
 # ggthemes (development version)
 
+- Fix `theme_foundation()` on ggplot2 >= 4.0.0. It is meant to clear every
+  colour and fill inherited from `theme_grey()`, but ggplot2 4.0.0's S7 theme
+  elements hid them from the check, so `theme_grey()`'s grey panel, grey strips
+  and white grid lines leaked into every theme built on it. On ggplot2 4.x this
+  changes the appearance of `theme_base()`, `theme_calc()`, `theme_clean()`,
+  `theme_fivethirtyeight()`, `theme_foundation()`, `theme_gdocs()`,
+  `theme_numbers()`, `theme_solarized_2()`, `theme_solid()`, `theme_stata()`
+  and `theme_wsj()` back to their intended look, which ggplot2 3.5.x users
+  already saw. In particular, `theme_solid(fill = )` now fills the panel
+  rather than only the area around it.
 - Expand the README theme gallery to cover every non-deprecated exported
   theme, pairing each with its matching palette where available.
 - `theme_map()` places its legend with `legend.position = "inside"` and
