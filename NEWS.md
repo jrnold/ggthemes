@@ -1,5 +1,7 @@
 # ggthemes (development version)
 
+- Fix `palette_pander()` returning a color for `n = 0`; it now returns
+  `character(0)`.
 - The README is reorganized: an overview of what the package provides, a
   two-column theme gallery linked to the reference pages, a geoms section and
   current installation instructions. The full color palette gallery moves to
