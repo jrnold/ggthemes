@@ -290,7 +290,7 @@ palette_pander <- function(n, random_order = FALSE) {
     cols <- rep(cols, length.out = n)
   }
 
-  cols[1:n]
+  cols[seq_len(n)]
 }
 
 
