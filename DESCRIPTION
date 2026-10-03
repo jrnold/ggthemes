@@ -1,7 +1,7 @@
 Package: ggthemes
 Version: 6.0.0.9000
 Title: Extra Themes, Scales and Geoms for 'ggplot2'
-Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre"),
+Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre", "cph"),
     email = "jeffrey.arnold@gmail.com", 
     comment = "<https://orcid.org/0000-0001-9953-3904>"),
     person("Gergely", "Daroczi", role = "ctb"),
