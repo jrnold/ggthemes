@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Jeffrey B. Arnold**. Author, maintainer.  
+- **Jeffrey B. Arnold**. Author, maintainer, copyright holder.  
   \<<https://orcid.org/0000-0001-9953-3904>\>
 
 - **Gergely Daroczi**. Contributor.
@@ -31,13 +31,13 @@ Source:
 [`DESCRIPTION`](https://github.com/jrnold/ggthemes/blob/main/DESCRIPTION)
 
 Arnold J (2026). *ggthemes: Extra Themes, Scales and Geoms for
-'ggplot2'*. R package version 6.0.0.9000,
+'ggplot2'*. R package version 7.0.0,
 <https://jrnold.github.io/ggthemes/>.
 
     @Manual{,
       title = {ggthemes: Extra Themes, Scales and Geoms for 'ggplot2'},
       author = {Jeffrey B. Arnold},
       year = {2026},
-      note = {R package version 6.0.0.9000},
+      note = {R package version 7.0.0},
       url = {https://jrnold.github.io/ggthemes/},
     }

@@ -1,6 +1,6 @@
 # Changelog
 
-## ggthemes (development version)
+## ggthemes 7.0.0
 
 - Fix
   [`palette_pander()`](https://jrnold.github.io/ggthemes/reference/palette_pander.md)
