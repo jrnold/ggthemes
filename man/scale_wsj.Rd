@@ -81,6 +81,13 @@ A ggplot2 scale object.
 Colour and fill scales which use the palettes in \code{\link{wsj_pal}()}.
 These scales should be used with \code{\link{theme_wsj}()}.
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point(size = 3) +
+  scale_colour_wsj("colors6")
+}
 \seealso{
 Other colour wsj:
 \code{\link[=wsj_pal]{wsj_pal()}}

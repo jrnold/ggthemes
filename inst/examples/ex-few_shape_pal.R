@@ -1,4 +1,3 @@
-\dontrun{
-  # need to set a font containing unicode values
-  show_shapes(few_shape_pal()(5))
-}
+few_shape_pal()(5)
+
+show_shapes(few_shape_pal()(5))

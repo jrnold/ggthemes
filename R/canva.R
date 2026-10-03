@@ -51,6 +51,7 @@ canva_pal <- function(palette = "Fresh and bright") {
 #' @inheritParams canva_pal
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_colour_canva.R
 scale_colour_canva <- function(..., palette = "Fresh and bright") {
   discrete_scale("colour", palette = canva_pal(palette), ...)
 }

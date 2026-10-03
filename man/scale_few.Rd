@@ -79,6 +79,13 @@ A ggplot2 scale object.
 \description{
 See \code{\link{few_pal}()}.
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point(size = 3) +
+  scale_colour_few("Dark")
+}
 \seealso{
 Other colour few:
 \code{\link[=few_pal]{few_pal()}}

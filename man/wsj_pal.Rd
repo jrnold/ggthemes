@@ -36,6 +36,11 @@ The following palettes are defined,
 }
 }
 
+\examples{
+wsj_pal()(6)
+
+scales::show_col(wsj_pal("rgby")(4))
+}
 \seealso{
 Other colour wsj:
 \code{\link[=scale_colour_wsj]{scale_colour_wsj()}}

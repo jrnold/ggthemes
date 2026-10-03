@@ -28,6 +28,11 @@ from the themes bundled with Highcharts.
 
 Note that \code{"avocado"} and \code{"sunset"} have only four colors.
 }
+\examples{
+hc_pal()(6)
+
+scales::show_col(hc_pal("darkunica")(4))
+}
 \seealso{
 Other colour hc:
 \code{\link[=scale_colour_hc]{scale_colour_hc()}}

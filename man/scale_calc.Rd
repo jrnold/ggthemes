@@ -77,6 +77,13 @@ A ggplot2 scale object.
 \description{
 Color scales from LibreOffice Calc.
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point(size = 3) +
+  scale_colour_calc()
+}
 \seealso{
 See \code{\link{theme_calc}()} for examples.
 

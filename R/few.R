@@ -62,6 +62,7 @@ few_pal <- function(palette = "Medium") {
 #' @rdname scale_few
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_few.R
 scale_colour_few <- function(palette = "Medium", ...) {
   discrete_scale("colour", palette = few_pal(palette), ...)
 }
@@ -124,6 +125,7 @@ theme_few <- function(base_size = 12, base_family = "") {
 #'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
 #'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
+#' @example inst/examples/ex-few_shape_pal.R
 few_shape_pal <- function() {
   # Already font-independent before 6.1.0 -- all five shapes have a base pch --
   # so this palette gains no `unicode` argument.
@@ -144,6 +146,7 @@ few_shape_pal <- function() {
 #'   scale uses.
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_shape_few.R
 scale_shape_few <- function(...) {
   discrete_scale("shape", palette = few_shape_pal(), ...)
 }

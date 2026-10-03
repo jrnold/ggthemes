@@ -82,6 +82,7 @@ stata_pal <- function(scheme = NULL) {
 #' @rdname scale_stata
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_stata.R
 scale_colour_stata <- function(scheme = NULL, ...) {
   scheme <- stata_default_scheme(scheme, "scale_colour_stata()")
   discrete_scale("colour", palette = stata_pal(scheme), ...)
@@ -482,6 +483,7 @@ stata_shape_rows <- function(statadata, shapes) {
 #' @seealso See \code{\link{scale_shape_stata}()} for examples.
 #' @importFrom purrr map_dfr map
 #' @importFrom tibble as_tibble
+#' @example inst/examples/ex-stata_shape_pal.R
 stata_shape_pal <- function(unicode = FALSE) {
   statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]
   new_shape_pal(
@@ -516,6 +518,7 @@ scale_shape_stata <- function(..., unicode = FALSE) {
 #'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @seealso \code{\link{scale_linetype_stata}()}
+#' @example inst/examples/ex-stata_linetype_pal.R
 stata_linetype_pal <- function() {
   values <- ggthemes::ggthemes_data[["stata"]][["linetypes"]]
   f <- function(n) {

@@ -170,6 +170,7 @@ theme_hc <- function(
 #' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
 #'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
+#' @example inst/examples/ex-hc_pal.R
 hc_pal <- function(palette = "default") {
   # Match on the name rather than indexing directly, so that a non-character
   # `palette` (e.g. `hc_pal(1)`) is rejected instead of silently positionally
@@ -197,6 +198,7 @@ hc_pal <- function(palette = "default") {
 #' @rdname scale_hc
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_hc.R
 scale_colour_hc <- function(palette = "default", ...) {
   discrete_scale("colour", palette = hc_pal(palette), ...)
 }

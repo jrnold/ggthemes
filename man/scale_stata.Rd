@@ -83,6 +83,13 @@ A ggplot2 scale object.
 \description{
 See \code{\link{stata_pal}()} for details.
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point(size = 3) +
+  scale_colour_stata(scheme = "s2color")
+}
 \seealso{
 Other colour stata:
 \code{\link[=stata_pal]{stata_pal()}}

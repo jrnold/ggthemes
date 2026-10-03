@@ -60,6 +60,7 @@ economist_main_colors <- function() {
 #' @seealso \code{\link{theme_economist}()} for examples.
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_economist.R
 scale_colour_economist <- function(...) {
   discrete_scale("colour", palette = economist_pal(), ...)
 }
@@ -140,6 +141,7 @@ economist_scale_colors <- function(hue) {
 #' @rdname scale_economist_seq
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_economist_seq.R
 scale_colour_economist_c <- function(hue = "blue", guide = "colourbar", ...) {
   continuous_scale(
     "colour",

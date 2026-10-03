@@ -57,6 +57,7 @@ calc_pal <- function() {
 #' @return A ggplot2 scale object.
 #' @export
 #' @seealso See \code{\link{theme_calc}()} for examples.
+#' @example inst/examples/ex-scale_calc.R
 scale_fill_calc <- function(...) {
   discrete_scale("fill", palette = calc_pal(), ...)
 }
@@ -108,6 +109,7 @@ calc_shape_pal <- function(unicode = FALSE) {
 #' @return A ggplot2 scale object.
 #' @export
 #' @seealso \code{\link{theme_calc}()} for examples.
+#' @example inst/examples/ex-scale_shape_calc.R
 scale_shape_calc <- function(..., unicode = FALSE) {
   discrete_scale("shape", palette = calc_shape_pal(unicode = unicode), ...)
 }

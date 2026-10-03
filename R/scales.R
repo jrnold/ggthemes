@@ -88,6 +88,7 @@
 #' @family tufte
 #' @rdname range_breaks
 #' @export
+#' @example inst/examples/ex-range_breaks.R
 extended_range_breaks_ <- function(
   dmin,
   dmax,
@@ -246,6 +247,7 @@ precision <- function(x) {
 #' \code{smart_digits_format()} returns a function with a single argument
 #' \code{x}, a numeric vector, that returns a character vector.
 #'
+#' @example inst/examples/ex-smart_digits.R
 #' @rdname smart_digits
 #' @export
 # nolint end

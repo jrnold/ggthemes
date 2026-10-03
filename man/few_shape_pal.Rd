@@ -16,6 +16,11 @@ Shape palette from Stephen Few's, "Show Me the Numbers".
 The shape palette consists of five shapes: circle, square, triangle, plus,
 times.
 }
+\examples{
+few_shape_pal()(5)
+
+show_shapes(few_shape_pal()(5))
+}
 \references{
 Few, S. (2012)
   \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},

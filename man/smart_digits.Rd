@@ -22,6 +22,18 @@ A character vector.
 \description{
 Format numbers with automatic number of digits
 }
+\examples{
+smart_digits(c(0.1234, 0.5, 1.25))
+
+smart_digits(c(1234.5678, 2000, 10000))
+
+# A labelling function for use in a scale
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  scale_y_continuous(labels = smart_digits_format())
+}
 \references{
 Josh O'Brien,
   \url{https://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
