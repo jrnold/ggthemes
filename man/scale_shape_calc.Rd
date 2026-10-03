@@ -78,6 +78,13 @@ A ggplot2 scale object.
 \description{
 See \code{\link{calc_shape_pal}()} for details.
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_calc()
+}
 \seealso{
 \code{\link{theme_calc}()} for examples.
 

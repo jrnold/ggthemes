@@ -17,6 +17,13 @@ A ggplot2 scale object.
 discernible shapes. It is based on the shape palette suggested in
 Few (2012).
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_few()
+}
 \references{
 Few, S. (2012)
   \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},

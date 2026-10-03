@@ -72,6 +72,7 @@ cleveland_shape_pal <- function(overlap = TRUE, unicode = FALSE) {
 #' Cleveland WS. The Elements of Graphing Data. Revised Edition.
 #' Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
+#' @example inst/examples/ex-scale_shape_cleveland.R
 scale_shape_cleveland <- function(overlap = TRUE, ..., unicode = FALSE) {
   discrete_scale(
     "shape",
@@ -105,6 +106,7 @@ scale_shape_cleveland <- function(overlap = TRUE, ..., unicode = FALSE) {
 #'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
 #'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
+#' @example inst/examples/ex-circlefill_shape_pal.R
 circlefill_shape_pal <- function() {
   deprecate_warn("5.0.0", "circlefill_shape_pal()")
   # `pch_unicode`, not `pch`: this palette grades circles by fill fraction,
@@ -128,6 +130,7 @@ circlefill_shape_pal <- function() {
 #' @importFrom lifecycle deprecate_warn
 #' @seealso
 #' \code{\link{circlefill_shape_pal}()} for a description of the palette.
+#' @example inst/examples/ex-scale_shape_circlefill.R
 scale_shape_circlefill <- function(...) {
   deprecate_warn("5.0.0", "scale_shape_circlefill()")
   discrete_scale("shape", palette = circlefill_shape_pal(), ...)
@@ -167,6 +170,7 @@ scale_shape_circlefill <- function(...) {
 #'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
 #'   \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
+#' @example inst/examples/ex-tremmel_shape_pal.R
 tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
   max_n <- 3L
   palettes <- ggthemes::ggthemes_data$shapes$tremmel

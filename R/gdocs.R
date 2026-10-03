@@ -121,6 +121,7 @@ gdocs_pal <- function() {
 #' @return A ggplot2 scale object.
 #' @export
 #' @seealso See \code{\link{theme_gdocs}()} for examples.
+#' @example inst/examples/ex-scale_gdocs.R
 scale_fill_gdocs <- function(...) {
   discrete_scale("fill", palette = gdocs_pal(), ...)
 }

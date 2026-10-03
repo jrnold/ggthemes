@@ -24,6 +24,9 @@ three-quarters, and one-quarter.
 
 This palette supports up to five values.
 }
+\examples{
+circlefill_shape_pal()(3)
+}
 \references{
 Lewandowsky, Stephan and Ian Spence (1989)
 "Discriminating Strata in Scatterplots", Journal of

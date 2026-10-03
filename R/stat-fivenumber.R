@@ -16,6 +16,7 @@
 #'   \item{max}{maximum}
 #' @seealso \code{\link[ggplot2]{stat_boxplot}()}
 #' @export
+#' @example inst/examples/ex-stat_fivenumber.R
 stat_fivenumber <- function(
   mapping = NULL,
   data = NULL,

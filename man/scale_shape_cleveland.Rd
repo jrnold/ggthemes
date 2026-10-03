@@ -80,6 +80,13 @@ A ggplot2 scale object.
 \description{
 Shape scales from Cleveland "Elements of Graphing Data"
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_cleveland()
+}
 \references{
 Cleveland WS. The Elements of Graphing Data. Revised Edition.
 Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.

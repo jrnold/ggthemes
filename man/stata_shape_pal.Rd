@@ -27,6 +27,11 @@ supports ten values on either branch and nothing is dropped:
 solid and hollow circle, diamond, square and triangle, plus the X and the
 plus sign.
 }
+\examples{
+stata_shape_pal()(10)
+
+show_shapes(stata_shape_pal()(10))
+}
 \seealso{
 See \code{\link{scale_shape_stata}()} for examples.
 

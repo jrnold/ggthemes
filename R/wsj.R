@@ -81,6 +81,7 @@ theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", tit
 #' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
 #'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
+#' @example inst/examples/ex-wsj_pal.R
 wsj_pal <- function(palette = "colors6") {
   palettes <- ggthemes::ggthemes_data[["wsj"]][["palettes"]]
   if (palette %in% names(palettes)) {
@@ -105,6 +106,7 @@ wsj_pal <- function(palette = "colors6") {
 #' @rdname scale_wsj
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_wsj.R
 scale_colour_wsj <- function(palette = "colors6", ...) {
   discrete_scale("colour", palette = wsj_pal(palette), ...)
 }

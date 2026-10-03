@@ -66,6 +66,7 @@ fivethirtyeight_pal <- function() {
 #' @seealso \code{\link{theme_fivethirtyeight}()} for examples.
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_fivethirtyeight.R
 scale_colour_fivethirtyeight <- function(...) {
   discrete_scale("colour", palette = fivethirtyeight_pal(), ...)
 }

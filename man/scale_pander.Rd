@@ -78,6 +78,13 @@ A ggplot2 scale object.
 The \pkg{pander} ships with a default colorblind and printer-friendly color
 palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point(size = 3) +
+  scale_colour_pander()
+}
 \seealso{
 \code{\link{theme_pander}()}
 

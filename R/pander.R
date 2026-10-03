@@ -305,6 +305,7 @@ palette_pander <- function(n, random_order = FALSE) {
 #' @seealso \code{\link{theme_pander}()}
 #' @return A ggplot2 scale object.
 #' @export
+#' @example inst/examples/ex-scale_pander.R
 scale_color_pander <- function(...) {
   discrete_scale("colour", palette = palette_pander, ...)
 }

@@ -25,6 +25,7 @@
 #' @return A ggplot2 theme object (class \code{theme}).
 #' @export
 #' @importFrom ggplot2 theme_grey
+#' @example inst/examples/ex-theme_foundation.R
 theme_foundation <- function(base_size = 12, base_family = "", ink = "black", paper = "white", accent = "#3366FF") {
   if (all(c("ink", "paper", "accent") %in% names(formals(theme_grey)))) {
     thm <- theme_grey(base_size = base_size, base_family = base_family, ink = ink, paper = paper, accent = accent)

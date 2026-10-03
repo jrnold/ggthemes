@@ -40,6 +40,19 @@ The \code{_c} scales are continuous; the \code{_ordinal} scales are
 discrete, for ordered factors. See \code{\link{scale_colour_economist}()}
 for the unordered categorical scales.
 }
+\examples{
+library("ggplot2")
+
+# Continuous scale
+ggplot(mtcars, aes(x = wt, y = mpg, colour = disp)) +
+  geom_point(size = 3) +
+  scale_colour_economist_c(hue = "blue")
+
+# Ordinal (discrete) scale for an ordered factor
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(cyl, ordered = TRUE))) +
+  geom_point(size = 3) +
+  scale_colour_economist_ordinal(hue = "red")
+}
 \seealso{
 Other colour economist:
 \code{\link[=economist_pal]{economist_pal()}},

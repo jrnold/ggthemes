@@ -15,6 +15,11 @@ A palette function. It takes the number of linetypes \code{n} and returns a char
 Linetype palette based on the linepattern scheme in Stata.
 This palette supports up to 15 values.
 }
+\examples{
+stata_linetype_pal()(6)
+
+show_linetypes(stata_linetype_pal()(6))
+}
 \seealso{
 \code{\link{scale_linetype_stata}()}
 

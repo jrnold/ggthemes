@@ -77,6 +77,13 @@ A ggplot2 scale object.
 \description{
 Color scales from Google Docs.
 }
+\examples{
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point(size = 3) +
+  scale_colour_gdocs()
+}
 \seealso{
 See \code{\link{theme_gdocs}()} for examples.
 
