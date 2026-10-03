@@ -1,6 +1,7 @@
 ACM
 Agrawala
 Analytics
+Aptos
 BEHAVIOUR
 Banff
 Beamer
@@ -41,6 +42,7 @@ Officina
 Pinterest
 PolicyViz
 README
+README's
 Roboto
 SRON
 STIX
@@ -89,6 +91,7 @@ dplyr
 erroring
 et
 extrafont
+farver
 fivethirtyeight
 gdocs
 geom's
@@ -98,6 +101,7 @@ ggproto
 github
 grey
 gridlines
+hardcoding
 hc
 hexa
 https
@@ -109,9 +113,11 @@ lifecycle
 linepattern
 linetype
 linetypes
+linewidth
 linter
 lintr's
 lty
+luminance
 magrittr
 mbcsToSbcs
 mislabelled
@@ -134,11 +140,13 @@ solarized
 stata
 stcolor
 stmono
+stringr
 stsj
 styleguide
 styleguide's
 styleguide’s
 stylesheet
+symbolstyles
 tibble
 tidyverse
 tufte
@@ -146,4 +154,5 @@ unicode
 unmapped
 vdiffr
 weitzner
+withr
 wsj
