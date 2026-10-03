@@ -1,5 +1,7 @@
 # Changelog
 
+## ggthemes (development version)
+
 ## ggthemes 7.0.0
 
 - Fix

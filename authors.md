@@ -28,16 +28,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/jrnold/ggthemes/blob/v7.0.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/jrnold/ggthemes/blob/main/DESCRIPTION)
 
 Arnold J (2026). *ggthemes: Extra Themes, Scales and Geoms for
-'ggplot2'*. R package version 7.0.0,
+'ggplot2'*. R package version 7.0.0.9000,
 <https://jrnold.github.io/ggthemes/>.
 
     @Manual{,
       title = {ggthemes: Extra Themes, Scales and Geoms for 'ggplot2'},
       author = {Jeffrey B. Arnold},
       year = {2026},
-      note = {R package version 7.0.0},
+      note = {R package version 7.0.0.9000},
       url = {https://jrnold.github.io/ggthemes/},
     }
