@@ -1,41 +1,58 @@
-# ggthemes [![ggthemes hex stickers, one per point colour palette, animated](reference/figures/stickers/ggthemes-theme-stickers.gif)](https://jrnold.github.io/ggthemes/)
+# ggthemes [![Animated ggthemes hex stickers, cycling through stickers drawn in the package's themes](reference/figures/stickers/ggthemes-theme-stickers.gif)](https://jrnold.github.io/ggthemes/)
 
 [![R-CMD-check](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jrnold/ggthemes/actions/workflows/R-CMD-check.yaml)
 [![Code Coverage
 Status](https://codecov.io/gh/jrnold/ggthemes/branch/main/graph/badge.svg)](https://app.codecov.io/github/jrnold/ggthemes?branch=main)
-[![rstudio mirror
-downloads](http://cranlogs.r-pkg.org/badges/ggthemes)](https://github.com/r-hub/cranlogs.app)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/ggthemes)](https://www.r-pkg.org/pkg/ggthemes)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ggthemes)](https://CRAN.R-project.org/package=ggthemes)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 
-Some extra geoms, scales, and themes for
-[ggplot](https://ggplot2.tidyverse.org/).
+ggthemes adds themes, scales and geoms to
+[ggplot2](https://ggplot2.tidyverse.org/) that reproduce the look of
+well-known publications and software, and of the graphics advocated by
+Edward Tufte and Stephen Few:
 
-## Install
+- **Themes** after *The Economist*, *The Wall Street Journal*,
+  FiveThirtyEight, Excel, LibreOffice Calc, Google Docs, Highcharts,
+  Apple Numbers, Stata, Solarized, base R graphics and more.
+- **Color, shape and linetype scales and palettes** to match, including
+  colorblind-safe and Tableau palettes. See the [palette
+  gallery](https://jrnold.github.io/ggthemes/articles/palettes.html).
+- **Geoms** for Tufte’s range frames and minimal box plots, and tools
+  for [banking to
+  45°](https://jrnold.github.io/ggthemes/reference/bank_slopes.html) to
+  choose a plot’s aspect ratio.
 
-To install the stable version from CRAN,
+![The same scatter plot of fuel economy against car weight drawn four
+ways: with theme_economist(), theme_fivethirtyeight(), theme_wsj() and
+theme_solarized(), each with its matching color
+scale.](reference/figures/README-hero-1.png)
+
+## Installation
+
+Install the released version from CRAN:
 
 ``` r
 
-install.packages('ggthemes', dependencies = TRUE)
+install.packages("ggthemes")
 ```
 
-Or, to install the development version from github, use the **devtools**
-package,
+Or the development version from GitHub:
 
 ``` r
 
-library("devtools")
-install_github(c("hadley/ggplot2", "jrnold/ggthemes"))
+# install.packages("pak")
+pak::pak("jrnold/ggthemes")
 ```
 
-## How to use
+## Themes
 
-For a quick tutorial, check out [Rafael Irizarry’s
-book](http://rafalab.dfci.harvard.edu/dsbook/ggplot2.html#add-on-packages).
+Every theme is shown below with its matching color scale, where it has
+one. Each figure links to the theme’s reference page.
 
-## Examples
+Data and base plots used in the examples
 
 ``` r
 
@@ -75,58 +92,50 @@ p_solid <- ggplot(mtcars2) +
 
 ## Color palettes
 
-Every colour palette shipped with ggthemes is shown below. Each row is
-one palette; the swatches are in the order returned by the corresponding
-palette function. This compact, data-derived gallery follows the
-palette-overview approach used by
-[ggpalettes](https://github.com/cran/ggpalettes) and the
-one-palette-per-row display in
-[sjPlot](https://github.com/strengejacke/sjPlot).
+A sample of the color palettes is shown below. The [palette
+gallery](https://jrnold.github.io/ggthemes/articles/palettes.html) shows
+every palette in the package.
 
-### General
+![Swatches of eight palettes: colorblind, Economist, FiveThirtyEight,
+Few, Solarized, Stata, Tableau 10 and Wall Street
+Journal.](reference/figures/README-palettes-1.png)
 
-[TABLE]
+## Geoms
 
-### Canva
+[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+draws Tufte’s range frame, axis lines that span only the range of the
+data.
+[`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
+draws his minimal box plot.
 
-[TABLE]
+``` r
 
-### Excel
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point() +
+  geom_rangeframe() +
+  coord_cartesian(clip = "off") +
+  labs(x = "Weight (1000 lbs)", y = "Miles per gallon") +
+  theme_tufte()
 
-[TABLE]
+ggplot(mtcars, aes(factor(cyl), mpg)) +
+  geom_tufteboxplot() +
+  labs(x = "Cylinders", y = "Miles per gallon") +
+  theme_tufte()
+```
 
-### Few
+![Scatter plot of fuel economy against weight with theme_tufte(), whose
+axis lines span only the range of the
+data.](reference/figures/README-geoms-1.png)![Tufte-style box plots of
+fuel economy by number of cylinders: a point for the median and lines
+for the whiskers.](reference/figures/README-geoms-2.png)
 
-[TABLE]
+## Learn more
 
-### Highcharts
-
-[TABLE]
-
-### Numbers
-
-[TABLE]
-
-### Solarized
-
-[TABLE]
-
-### Stata
-
-[TABLE]
-
-### Tableau — discrete
-
-[TABLE]
-
-### Tableau — diverging
-
-[TABLE]
-
-### Tableau — sequential
-
-[TABLE]
-
-### Wall Street Journal
-
-[TABLE]
+- The [reference pages](https://jrnold.github.io/ggthemes/reference/)
+  document every theme, scale, palette and geom, with examples.
+- The [palette
+  gallery](https://jrnold.github.io/ggthemes/articles/palettes.html)
+  shows every color palette.
+- For a tutorial that uses ggthemes, see the [add-on packages
+  section](http://rafalab.dfci.harvard.edu/dsbook/ggplot2.html#add-on-packages)
+  of Rafael Irizarry’s *Introduction to Data Science*.

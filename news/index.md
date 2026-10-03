@@ -2,6 +2,13 @@
 
 ## ggthemes (development version)
 
+- The README is reorganized: an overview of what the package provides, a
+  two-column theme gallery linked to the reference pages, a geoms
+  section and current installation instructions. The full color palette
+  gallery moves to a new “Color palettes” article on the package
+  website, drawn as images; the README’s HTML swatches rendered as empty
+  cells on GitHub, which strips their colors.
+
 - Fix
   [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md)
   on ggplot2 \>= 4.0.0. It is meant to clear every colour and fill

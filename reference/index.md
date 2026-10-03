@@ -188,7 +188,7 @@ details of how data values are translated to visual properties.
 - [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md)
   : Shape scales from Tremmel (1995)
 
-## Lintetype Scales
+## Linetype Scales
 
 Provided ggplot2 scales for the `linetype` aesthetic. Scales control the
 details of how data values are translated to visual properties.
