@@ -34,7 +34,11 @@ Other colour pander:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  palette_pander(TRUE)
-} # }
+palette_pander(8)
+#> [1] "#56B4E9" "#009E73" "#F0E442" "#0072B2" "#D55E00" "#CC79A7" "#999999"
+#> [8] "#E69F00"
+# the same colors in a random order
+palette_pander(8, random_order = TRUE)
+#> [1] "#D55E00" "#999999" "#0072B2" "#E69F00" "#009E73" "#F0E442" "#56B4E9"
+#> [8] "#CC79A7"
 ```

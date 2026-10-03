@@ -119,8 +119,8 @@ ggplot(mtcars) +
 if (FALSE) { # \dontrun{
 
 ## The Economist sets charts in "Econ Sans", which is not publicly
-## available. Any narrow humanist sans is a reasonable substitute.
-library("extrafont")
+## available. Any narrow humanist sans is a reasonable substitute, if it is
+## installed on your system.
 p + theme_economist(base_family = "Roboto Condensed") +
     scale_colour_economist()
 

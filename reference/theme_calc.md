@@ -33,11 +33,10 @@ ggplot(mtcars) +
   theme_calc() +
   scale_color_calc()
 
-if (FALSE) { # \dontrun{
+
 ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
   facet_wrap(~am) +
   theme_calc() +
   scale_shape_calc()
-} # }
 ```
