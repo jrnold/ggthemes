@@ -28,7 +28,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/jrnold/ggthemes/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/jrnold/ggthemes/blob/v7.0.0/DESCRIPTION)
 
 Arnold J (2026). *ggthemes: Extra Themes, Scales and Geoms for
 'ggplot2'*. R package version 7.0.0,
