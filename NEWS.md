@@ -1,4 +1,4 @@
-# ggthemes (development version)
+# ggthemes 7.0.0
 
 - Fix `palette_pander()` returning a color for `n = 0`; it now returns
   `character(0)`.
