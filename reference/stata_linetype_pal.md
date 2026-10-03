@@ -22,3 +22,12 @@ character vector of `n` linetype specifications, and can be used as the
 
 Other linetype stata:
 [`scale_linetype_stata()`](https://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
+
+## Examples
+
+``` r
+stata_linetype_pal()(6)
+#> [1] "solid" "84"    "23"    "F414"  "F4"    "8414" 
+
+show_linetypes(stata_linetype_pal()(6))
+```

@@ -59,3 +59,16 @@ Other shapes:
 [`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
 [`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md),
 [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md)
+
+## Examples
+
+``` r
+tremmel_shape_pal()(3)
+#> [1] 16  1  2
+
+# Alternative triple: solid circle, plus sign and empty triangle
+tremmel_shape_pal(alt = TRUE)(3)
+#> [1] 16  3  2
+
+show_shapes(tremmel_shape_pal()(3))
+```

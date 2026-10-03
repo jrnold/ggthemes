@@ -62,3 +62,27 @@ Other themes:
 [`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md),
 [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md),
 [`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)
+
+## Examples
+
+``` r
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  theme_foundation()
+
+
+# Extend the foundation to build a new theme
+theme_minimal_box <- function(...) {
+  theme_foundation(...) +
+    theme(
+      panel.grid = element_blank(),
+      axis.ticks = element_line()
+    )
+}
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  theme_minimal_box()
+```

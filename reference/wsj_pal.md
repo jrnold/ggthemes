@@ -55,3 +55,12 @@ The following palettes are defined,
 
 Other colour wsj:
 [`scale_colour_wsj()`](https://jrnold.github.io/ggthemes/reference/scale_wsj.md)
+
+## Examples
+
+``` r
+wsj_pal()(6)
+#> [1] "#c72e29" "#016392" "#be9c2e" "#098154" "#fb832d" "#000000"
+
+scales::show_col(wsj_pal("rgby")(4))
+```

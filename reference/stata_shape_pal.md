@@ -40,3 +40,12 @@ for examples.
 
 Other shapes stata:
 [`scale_shape_stata()`](https://jrnold.github.io/ggthemes/reference/scale_shape_stata.md)
+
+## Examples
+
+``` r
+stata_shape_pal()(10)
+#>  [1] 16 18 15 17  4  3  1  5  0  2
+
+show_shapes(stata_shape_pal()(10))
+```

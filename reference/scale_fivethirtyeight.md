@@ -128,3 +128,13 @@ for examples.
 
 Other colour fivethirtyeight:
 [`fivethirtyeight_pal()`](https://jrnold.github.io/ggthemes/reference/fivethirtyeight_pal.md)
+
+## Examples
+
+``` r
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
+  geom_point(size = 3) +
+  scale_colour_fivethirtyeight()
+```

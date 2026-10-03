@@ -39,3 +39,11 @@ Other shapes:
 [`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md),
 [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md),
 [`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)
+
+## Examples
+
+``` r
+circlefill_shape_pal()(3)
+#> Warning: `circlefill_shape_pal()` was deprecated in ggthemes 5.0.0.
+#> [1] -9675 -9679 -9683
+```

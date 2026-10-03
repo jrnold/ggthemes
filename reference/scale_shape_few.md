@@ -30,3 +30,13 @@ Enlighten*, Analytics Press, p. 208.
 ## See also
 
 `scale_shape_few()` for the shape palette that this scale uses.
+
+## Examples
+
+``` r
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_few()
+```

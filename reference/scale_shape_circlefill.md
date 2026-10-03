@@ -132,3 +132,54 @@ Other shapes:
 [`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md),
 [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md),
 [`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)
+
+## Examples
+
+``` r
+# Deprecated. The palette grades circles by how much of each is filled, which
+# needs Unicode glyphs from the device font, so this example does not draw it.
+scale_shape_circlefill()
+#> Warning: `scale_shape_circlefill()` was deprecated in ggthemes 5.0.0.
+#> <ggproto object: Class ScaleDiscrete, Scale, gg>
+#>     aesthetics: shape
+#>     axis_order: function
+#>     break_info: function
+#>     break_positions: function
+#>     breaks: waiver
+#>     call: call
+#>     clone: function
+#>     dimension: function
+#>     drop: TRUE
+#>     expand: waiver
+#>     fallback_palette: function
+#>     get_breaks: function
+#>     get_breaks_minor: function
+#>     get_labels: function
+#>     get_limits: function
+#>     get_transformation: function
+#>     guide: legend
+#>     is_discrete: function
+#>     is_empty: function
+#>     labels: waiver
+#>     limits: NULL
+#>     make_sec_title: function
+#>     make_title: function
+#>     map: function
+#>     map_df: function
+#>     minor_breaks: waiver
+#>     n.breaks.cache: NULL
+#>     na.translate: TRUE
+#>     na.value: NA
+#>     name: waiver
+#>     palette: function
+#>     palette.cache: NULL
+#>     position: left
+#>     range: environment
+#>     rescale: function
+#>     reset: function
+#>     train: function
+#>     train_df: function
+#>     transform: function
+#>     transform_df: function
+#>     super:  <ggproto object: Class ScaleDiscrete, Scale, gg>
+```

@@ -148,3 +148,13 @@ Other shapes:
 [`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
 [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md),
 [`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)
+
+## Examples
+
+``` r
+library("ggplot2")
+
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_cleveland()
+```

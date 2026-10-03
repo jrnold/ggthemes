@@ -48,3 +48,20 @@ Other colour economist:
 [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md),
 [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md),
 [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
+
+## Examples
+
+``` r
+library("ggplot2")
+
+# Continuous scale
+ggplot(mtcars, aes(x = wt, y = mpg, colour = disp)) +
+  geom_point(size = 3) +
+  scale_colour_economist_c(hue = "blue")
+
+
+# Ordinal (discrete) scale for an ordered factor
+ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(cyl, ordered = TRUE))) +
+  geom_point(size = 3) +
+  scale_colour_economist_ordinal(hue = "red")
+```

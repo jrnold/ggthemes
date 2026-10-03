@@ -40,3 +40,12 @@ Note that `"avocado"` and `"sunset"` have only four colors.
 
 Other colour hc:
 [`scale_colour_hc()`](https://jrnold.github.io/ggthemes/reference/scale_hc.md)
+
+## Examples
+
+``` r
+hc_pal()(6)
+#> [1] "#2caffe" "#544fc5" "#00e272" "#fe6a35" "#6b8abc" "#d568fb"
+
+scales::show_col(hc_pal("darkunica")(4))
+```

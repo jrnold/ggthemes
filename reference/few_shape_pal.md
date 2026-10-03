@@ -20,3 +20,12 @@ integer vector of `n` shape (`pch`) codes, and can be used as the
 
 Few, S. (2012) *Show Me the Numbers: Designing Tables and Graphs to
 Enlighten*, Analytics Press, p. 208.
+
+## Examples
+
+``` r
+few_shape_pal()(5)
+#> [1] 1 0 2 3 4
+
+show_shapes(few_shape_pal()(5))
+```
