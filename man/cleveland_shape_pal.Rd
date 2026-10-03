@@ -50,19 +50,16 @@ slowest pair and the one producing the most errors. The three shapes that
 survive are the better-separating subset.
 }
 \examples{
-###   (discrete).
-
-\dontrun{
 library("ggplot2")
+
 p <- ggplot(mtcars) +
-     geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
-     facet_wrap(~am) +
-     theme_bw()
+  geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
+  facet_wrap(~am) +
+  theme_bw()
 # overlapping symbol palette
 p + scale_shape_cleveland()
 # non-overlapping symbol palette
 p + scale_shape_cleveland(overlap = FALSE)
-}
 }
 \references{
 Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
