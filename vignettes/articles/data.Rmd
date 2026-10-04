@@ -1,0 +1,286 @@
+---
+title: "Package data"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, dev = "ragg_png", dpi = 96)
+```
+
+```{css, echo = FALSE}
+.data-level {
+  margin: 0.25rem 0 0.75rem 0.4rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--bs-border-color, #dee2e6);
+}
+.data-level h3, .data-level h4 { font-size: 1rem; margin-top: 0.75rem; margin-bottom: 0.1rem; }
+.data-level small code { color: var(--bs-secondary-color, #6c757d); }
+```
+
+```{r setup}
+library("ggplot2")
+library("ggthemes")
+```
+
+`ggthemes_data` holds the raw values behind the package's themes, palettes
+and scales: every color, shape and linetype, as transcribed from each
+source. This page draws all of them straight from the data.
+
+The page follows the structure of the list: one section per theme, and an
+indented block for each list inside it, so the deeper a list is nested, the
+further it is indented. Under each heading is the R
+expression that returns that list, and each row is labeled with the last step
+of the expression, so any value shown here can be copied out. Long sets are
+wrapped, with the positions in each row given in brackets.
+
+Where a palette is stored once per number of colors, as the Solarized and
+Paul Tol palettes are, only the largest is shown. For the palette functions
+built on this data, see the [color palettes](palettes.html) gallery.
+
+`ggthemes_data` contains no fonts: themes set their typefaces in code, through
+their `base_family` argument.
+
+```{r helpers}
+source("swatches.R")
+
+is_hex <- function(x) {
+  is.character(x) && length(x) > 0 && all(grepl("^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$", x))
+}
+
+# One step of an R expression that extracts an element: `$name`, quoted with
+# backticks where needed, or `[[i]]` for an element of an unnamed list.
+key_label <- function(key) {
+  if (is.numeric(key)) {
+    return(sprintf("[[%d]]", key))
+  }
+  if (make.names(key) != key) {
+    key <- paste0("`", key, "`")
+  }
+  paste0("$", key)
+}
+
+# The full expression for a path of keys.
+expression_for <- function(keys) {
+  paste0("ggthemes_data", paste(vapply(keys, key_label, character(1)), collapse = ""))
+}
+
+# What a piece of the data holds, or NULL to look inside it. Colors are hex
+# vectors and tables with a hex `value` column, and a list whose i-th element
+# is the palette of i colors is shown at its largest. Shapes are tables with a
+# `pch` column, and linetypes are vectors stored under a `linetypes` name.
+classify <- function(x, keys) {
+  if (is_hex(x)) {
+    return(list(kind = "colors", keys = keys, value = x))
+  }
+  if (is.data.frame(x) && is_hex(x[["value"]])) {
+    return(list(kind = "colors", keys = keys, value = x[["value"]]))
+  }
+  if (is.data.frame(x) && "pch" %in% names(x)) {
+    return(list(kind = "shapes", keys = keys, value = x))
+  }
+  if (is.character(x) && identical(keys[[length(keys)]], "linetypes")) {
+    return(list(kind = "linetypes", keys = keys, value = x))
+  }
+  if (is.list(x) && !is.data.frame(x) && is.null(names(x)) && length(x) > 1 &&
+        all(vapply(x, is_hex, logical(1))) && identical(lengths(x), seq_along(x))) {
+    n <- length(x)
+    return(list(kind = "colors", keys = c(keys, list(n)), value = x[[n]]))
+  }
+  NULL
+}
+
+# Every color, shape and linetype set, in the order the data stores them.
+find_sets <- function(x, keys = list()) {
+  found <- classify(x, keys)
+  if (!is.null(found)) {
+    return(list(found))
+  }
+  if (!is.list(x) || is.data.frame(x)) {
+    return(list())
+  }
+  nms <- names(x) %||% seq_along(x)
+  do.call(c, lapply(nms, function(nm) find_sets(x[[nm]], c(keys, list(nm)))))
+}
+
+# Consecutive sets of one kind in one list are drawn as one figure.
+group_sets <- function(sets) {
+  blocks <- list()
+  for (s in sets) {
+    parent <- s$keys[-length(s$keys)]
+    last <- length(blocks)
+    if (last && identical(blocks[[last]]$parent, parent) && blocks[[last]]$kind == s$kind) {
+      blocks[[last]]$sets <- c(blocks[[last]]$sets, list(s))
+    } else {
+      blocks[[last + 1]] <- list(parent = parent, kind = s$kind, sets = list(s))
+    }
+  }
+  blocks
+}
+
+# Shapes on the swatch grid: the base R symbol where the data gives one, and
+# otherwise the Unicode character, in grey, since it depends on the font.
+shape_plot <- function(sets) {
+  rows <- lapply(sets, function(s) seq_len(nrow(s)))
+  l <- swatch_layout(rows)
+  cells <- do.call(rbind, lapply(seq_along(sets), function(j) {
+    s <- sets[[j]]
+    data.frame(
+      x = l$labels$x[j] + 0.4 + seq_len(nrow(s)) - 0.5,
+      y = l$labels$y[j],
+      pch = s$pch,
+      character = s$character
+    )
+  }))
+  ggplot() +
+    geom_point(
+      aes(x, y, shape = pch),
+      data = cells[!is.na(cells$pch), ],
+      size = 3.5
+    ) +
+    geom_text(
+      aes(x, y, label = character),
+      data = cells[is.na(cells$pch), ],
+      colour = "grey45",
+      size = 11 / .pt
+    ) +
+    geom_text(
+      aes(x, y, label = label),
+      data = l$labels,
+      hjust = 1,
+      family = "mono",
+      size = 9 / .pt
+    ) +
+    scale_shape_identity() +
+    coord_cartesian(xlim = c(0, l$width), ylim = c(-l$height + 0.5, 0.5), expand = FALSE) +
+    theme_void()
+}
+
+# R accepts a named linetype, or a string of 2, 4, 6 or 8 hex digits (1-F)
+# giving dash and gap lengths. Anything else cannot be drawn; flag it instead.
+valid_linetype <- function(x) {
+  x %in% c("blank", "solid", "dashed", "dotted", "dotdash", "longdash", "twodash") |
+    grepl("^([1-9A-Fa-f]{2}){1,4}$", x)
+}
+
+linetype_plot <- function(linetypes) {
+  d <- data.frame(y = -seq_along(linetypes), linetype = linetypes, valid = valid_linetype(linetypes))
+  ggplot(d) +
+    geom_segment(
+      aes(x = 0, xend = 1, y = y, yend = y, linetype = linetype),
+      data = d[d$valid, ],
+      linewidth = 0.6
+    ) +
+    geom_text(
+      aes(x = 0, y = y, label = "not a valid R linetype"),
+      data = d[!d$valid, ],
+      hjust = 0,
+      colour = "firebrick",
+      size = 9 / .pt
+    ) +
+    geom_text(aes(x = -0.05, y = y, label = sprintf('"%s"', linetype)), hjust = 1, family = "mono", size = 9 / .pt) +
+    scale_linetype_identity() +
+    coord_cartesian(xlim = c(-0.6, 1), expand = TRUE) +
+    theme_void()
+}
+
+# Rows labeled with the last step of their expression; sets longer than `n`
+# are wrapped into rows labeled with their positions.
+rows_for <- function(sets, n = 24) {
+  out <- list()
+  for (s in sets) {
+    label <- key_label(s$keys[[length(s$keys)]])
+    x <- s$value
+    if (length(x) <= n) {
+      out[[label]] <- x
+      next
+    }
+    for (i in seq(1, length(x), by = n)) {
+      j <- min(i + n - 1, length(x))
+      out[[sprintf("%s[%d:%d]", label, i, j)]] <- x[i:j]
+    }
+  }
+  out
+}
+
+# Display a figure at its physical size, or the page width if that is less.
+out_width <- function(width) if (width > 7.5) "100%" else paste0(round(width * 96), "px")
+
+# Inline code, with a longer fence when the code itself contains backticks.
+md_code <- function(x) if (grepl("`", x, fixed = TRUE)) paste0("`` ", x, " ``") else paste0("`", x, "`")
+
+# Markdown for one block. Before its figure come the headings of any lists the
+# walk has just entered. Each list below the theme opens an indented block,
+# with a rule down its left side, so the nesting of the data is the nesting of
+# the page; the walk is depth-first, so a block closes when the walk leaves its
+# list. A heading names the last step of the path, and the full expression
+# follows it.
+open_path <- list()
+figure <- 0
+
+close_levels <- function(depth) {
+  n <- max(length(open_path) - max(depth, 1), 0)
+  rep(c(":::", ""), n)
+}
+
+render_block <- function(block) {
+  parent <- block$parent
+  common <- 0
+  while (common < min(length(open_path), length(parent)) &&
+           identical(open_path[[common + 1]], parent[[common + 1]])) {
+    common <- common + 1
+  }
+  out <- close_levels(common)
+  for (d in seq_along(parent)[seq_along(parent) > common]) {
+    path <- expression_for(parent[seq_len(d)])
+    if (d == 1) {
+      out <- c(out, paste("##", md_code(path)), "")
+      next
+    }
+    out <- c(
+      out,
+      "::: {.data-level}",
+      "",
+      paste(strrep("#", min(d + 1, 4)), md_code(key_label(parent[[d]]))),
+      "",
+      paste0("<small>", md_code(path), "</small>"),
+      ""
+    )
+  }
+  open_path <<- parent
+  figure <<- figure + 1
+  rows <- if (block$kind == "shapes") lapply(block$sets, `[[`, "value") else rows_for(block$sets)
+  extent <- if (block$kind == "shapes") lapply(rows, `[[`, "pch") else rows
+  if (block$kind == "shapes") {
+    names(rows) <- vapply(block$sets, function(s) key_label(s$keys[[length(s$keys)]]), character(1))
+    names(extent) <- names(rows)
+  }
+  if (block$kind == "linetypes") {
+    rows <- block$sets[[1]]$value
+    chunk <- c(
+      sprintf("```{r figure-%d, fig.width = 4, fig.height = 0.25 * length(rows) + 0.3, out.width = \"384px\"}", figure),
+      "linetype_plot(rows)",
+      "```"
+    )
+  } else {
+    plot_call <- if (block$kind == "colors") "swatch_plot(rows)" else "shape_plot(rows)"
+    chunk <- c(
+      sprintf(
+        "```{r figure-%d, fig.width = swatch_width(extent), fig.height = swatch_height(extent), out.width = out_width(swatch_width(extent))}",
+        figure
+      ),
+      plot_call,
+      "```"
+    )
+  }
+  c(out, knitr::knit_child(text = chunk, envir = environment(), quiet = TRUE), "")
+}
+```
+
+```{r sections, results = "asis"}
+for (theme in sort(names(ggthemes_data))) {
+  sets <- find_sets(ggthemes_data[[theme]], list(theme))
+  for (block in group_sets(sets)) {
+    cat(render_block(block), sep = "\n")
+  }
+}
+cat(close_levels(0), sep = "\n")
+```
