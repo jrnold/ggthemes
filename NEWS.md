@@ -68,7 +68,14 @@
 - New `economist_2017_furniture()` adds the chart furniture a theme cannot
   set: the red tab above the title, the red rule across the top of a web
   chart, a red marker above each panel heading, and, for web, the key moved
-  beside the title.
+  beside the title. It also takes a `footnote`, set ranged right on the source
+  line, a `number` for the guide's number box, and the `tab` size.
+
+- New `economist_2017_size()` returns the guide's chart sizes (1, 2 and 3
+  columns, leader, Free exchange, Espresso and the special-report grid) in
+  inches or points, for `ggsave()` or knitr, and `economist_2017_footnote()`
+  returns the guide's footnote symbols in order of use (`*`, `†`, `‡`, `§`,
+  `**`, ...).
 
 - New `geom_scale_break()` draws the styleguide's broken-scale mark (p.25), a
   small zigzag on a y-axis that does not start at zero. It is decoration, not
@@ -84,7 +91,7 @@
   works through the guide's examples page by page.
 
 - `ggthemes_data` gains `economist_2017`, the colours of the 2017 styleguide
-  for print and web, and `economist_design_system`, the colour tokens of *The
+  for print and web, with its chart sizes, typefaces and footnote symbols, and `economist_design_system`, the colour tokens of *The
   Economist*'s current Design System and of Marber, with derived lightness
   ramps for nine colour families.
 

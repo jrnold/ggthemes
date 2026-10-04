@@ -4,13 +4,31 @@
 \alias{economist_2017_furniture}
 \title{Add Economist 2017 chart furniture}
 \usage{
-economist_2017_furniture(plot, media = c("print", "web"))
+economist_2017_furniture(
+  plot,
+  media = c("print", "web"),
+  footnote = NULL,
+  number = NULL,
+  tab = c(15, 5)
+)
 }
 \arguments{
 \item{plot}{A ggplot styled with [theme_economist_2017()].}
 
 \item{media}{Either `"print"` or `"web"`. Use the same medium as the
 theme.}
+
+\item{footnote}{Text for the footnote, or `NULL` for none. It is set in
+the style of the source line (the theme's `plot.caption`), ranged right.
+Start it with the symbol from [economist_2017_footnote()] that marks the
+annotated text. A long source and footnote can overprint; break one of
+them over two lines.}
+
+\item{number}{The chart's number, or `NULL` for none, drawn bold in a
+10pt box at the top right of the chart (p.25).}
+
+\item{tab}{Width and height of the red tab, in points. The standard chart
+uses `c(15, 5)` (p.6); a leader block uses a 4pt tab (p.8).}
 }
 \value{
 A grob of class `ggthemes_furniture`. Print it to draw it, or pass
@@ -28,7 +46,10 @@ styled with [theme_economist_2017()]:
 * for web, the red rule across the top of the chart (p.7);
 * a red marker, 10pt by 1pt, above each panel heading (p.10);
 * for web, the key moved up to the right of the title and subtitle
-  (p.7), instead of taking a row of its own above the panel.
+  (p.7), instead of taking a row of its own above the panel;
+* optionally, a footnote set right on the source line (pp.6-7), and a
+  number box at the top right, for charts referred to by number in the
+  text (p.25).
 
 Sizes scale with the plot's base font size, as the theme's do, and the
 tab is placed at the plot's own outer margin.
@@ -65,8 +86,10 @@ Matt McLean), pp.6-7, 10.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
+\code{\link[=economist_2017_size]{economist_2017_size()}},
 \code{\link[=geom_scale_break]{geom_scale_break()}},
 \code{\link[=guide_axis_economist]{guide_axis_economist()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}},

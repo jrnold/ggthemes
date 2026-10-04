@@ -107,3 +107,30 @@ web:
     purple: ['#FFC2E3', '#E6A6C7', '#C98CAC', '#AD7291', '#925977', '#78405F']
     gold: ['#F2CF9A', '#D5B480', '#B99966', '#9D7F4E', '#826636', '#674E1F']
     grey: ['#BFD8E5', '#A4BDC9', '#89A2AE', '#6F8793', '#576E79', '#3F5661']
+# Chart sizes (p.4), in points: print widths, and the web width in pixels
+# where the guide gives one. Charts are free to take any height except the
+# leader / World this Week block (83.5pt, p.4) and the Espresso lead image
+# (160pt: 120pt of chart and 40pt left blank, p.9). Web charts are built at
+# print width and exported at 179.22% (p.7); the leader at 247.86% (p.8).
+sizes:
+- {size: "one_column", layout: "standard print", label: "1 column", width: 160, web_width: 290}
+- {size: "two_column", layout: "standard print", label: "2 column", width: 332, web_width: 595}
+- {size: "three_column", layout: "standard print", label: "3 column", width: 504}
+- {size: "leader", layout: "standard print", label: "Leader / World this Week", width: 117, height: 83.5, web_width: 290, web_height: 207}
+- {size: "free_exchange", layout: "standard print", label: "Free exchange", width: 245}
+- {size: "espresso", layout: "Espresso", label: "Espresso lead image", width: 160, height: 160}
+- {size: "special_half_column", layout: "Special report / TQ / Essay", label: "1/2 column", width: 117}
+- {size: "special_two_thirds_column", layout: "Special report / TQ / Essay", label: "2/3 column", width: 160, web_width: 290}
+- {size: "special_one_column", layout: "Special report / TQ / Essay", label: "1 column", width: 245}
+- {size: "special_two_and_half_column", layout: "Special report / TQ / Essay", label: "2 1/2 column", width: 332, web_width: 595}
+# Typefaces (p.5) and where the guide uses them (p.5, p.6). `face` is how
+# theme_economist_2017() draws the weight, since ggplot2 offers only plain
+# and bold; `elements` are the theme elements set in it.
+typefaces:
+- {typeface: "Econ Sans", weight: "bold", face: "bold", use: "Chart headlines. Oversize numbers and labels. Use rarely.", elements: "plot.title"}
+- {typeface: "Econ Sans Cnd", weight: "bold", face: "bold", use: "Use rarely - prominent labelling only.", elements: ""}
+- {typeface: "Econ Sans Cnd", weight: "medium", face: "plain", use: "Top-level chart labels, panel headings, coloured text.", elements: "legend.title, strip.text"}
+- {typeface: "Econ Sans Cnd", weight: "regular", face: "plain", use: "Subtitle, standard chart labelling.", elements: "plot.subtitle, axis.title"}
+- {typeface: "Econ Sans Cnd", weight: "light", face: "plain", use: "Axis labels, source text.", elements: "axis.text, legend.text, plot.caption"}
+# Footnote symbols in order of use (p.5).
+footnotes: ["*", "†", "‡", "§", "**", "††", "‡‡", "§§"]

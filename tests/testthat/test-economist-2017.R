@@ -2,7 +2,11 @@
 # styleguide, v1.2 (4 May 2017). The expected values below are the guide's own,
 # with the page they come from, so a failure says which rule changed.
 
-economist_2017_spec <- function(media) ggthemes_data$economist_2017[[media]]
+# Columns are referenced through the `.data` pronoun; the local binding lets
+# lintr's object_usage_linter see where the name comes from.
+.data <- rlang::.data
+
+economist_2017_spec <- function(media) ggthemes::ggthemes_data$economist_2017[[media]]
 
 # Size of a theme element in points, with rel() resolved against the theme.
 resolved_size <- function(thm, element) {
@@ -417,6 +421,93 @@ test_that("economist_2017_furniture moves a web key beside the title", {
 test_that("economist_2017_furniture leaves a plot without a key alone", {
   p <- furniture_plot("web") + ggplot2::theme(legend.position = "none")
   expect_no_error(furniture_gtable(p, "web"))
+})
+
+test_that("economist_2017_furniture adds a footnote on the source line", {
+  p <- furniture_plot() + ggplot2::labs(caption = "Source: somewhere")
+  gt <- grid::makeContent(economist_2017_furniture(p, footnote = "*Estimate"))$children[[1]]
+  footnote <- gt$layout[gt$layout$name == "economist-footnote", ]
+  caption <- gt$layout[gt$layout$name == "caption", ]
+  expect_equal(footnote$t, caption$t)
+  text <- gt$grobs[[which(gt$layout$name == "economist-footnote")]]
+  expect_match(paste(unlist(lapply(text$children, `[[`, "label")), collapse = ""), "Estimate")
+})
+
+test_that("economist_2017_furniture gives a plot without a source a line for its footnote", {
+  gt <- furniture_gtable(furniture_plot())
+  expect_false("economist-footnote" %in% gt$layout$name)
+  gt <- grid::makeContent(economist_2017_furniture(furniture_plot(), footnote = "*Estimate"))$children[[1]]
+  expect_true("economist-footnote" %in% gt$layout$name)
+})
+
+test_that("economist_2017_furniture draws a number box in the medium's box colour", {
+  for (media in c("print", "web")) {
+    gt <- grid::makeContent(economist_2017_furniture(furniture_plot(media), media, number = 2))$children[[1]]
+    box <- gt$grobs[[which(gt$layout$name == "economist-number")]]
+    rect <- box$children[[1]]
+    expect_equal(unit_pt(rect$width), 10, info = media)
+    expected <- economist_2017_spec(media)[[if (media == "print") "number_box" else "box"]]
+    expect_equal(rect$gp$fill, expected, info = media)
+    expect_equal(box$children[[2]]$label, "2", info = media)
+  }
+})
+
+test_that("economist_2017_furniture takes a tab size", {
+  gt <- grid::makeContent(economist_2017_furniture(furniture_plot(), tab = c(15, 4)))$children[[1]]
+  tab <- gt$grobs[[which(gt$layout$name == "economist-tab")]]
+  expect_equal(unit_pt(tab$height), 4)
+  expect_error(economist_2017_furniture(furniture_plot(), tab = 5), "tab")
+  expect_error(economist_2017_furniture(furniture_plot(), footnote = c("a", "b")), "footnote")
+})
+
+# Sizes, typefaces and footnotes -----------------------------------------------------
+
+test_that("economist_2017_size returns the guide's widths", {
+  # p.4
+  widths <- c(
+    one_column = 160, two_column = 332, three_column = 504, leader = 117, free_exchange = 245,
+    espresso = 160, special_half_column = 117, special_two_thirds_column = 160,
+    special_one_column = 245, special_two_and_half_column = 332
+  )
+  for (nm in names(widths)) {
+    expect_equal(economist_2017_size(nm, height = 100, units = "pt")[["width"]], widths[[nm]], info = nm)
+  }
+  expect_equal(economist_2017_size("one_column", height = 165), c(width = 160, height = 165) / 72)
+})
+
+test_that("economist_2017_size fixes the leader and Espresso heights", {
+  expect_equal(economist_2017_size("leader", units = "pt"), c(width = 117, height = 83.5))
+  expect_equal(economist_2017_size("espresso", units = "pt"), c(width = 160, height = 160))
+  expect_equal(economist_2017_size("leader", height = 90, units = "pt")[["height"]], 90)
+})
+
+test_that("economist_2017_size needs a height where the guide gives none", {
+  expect_error(economist_2017_size("one_column"), "height")
+  expect_error(economist_2017_size("one_column", height = -1), "height")
+  expect_error(economist_2017_size("tabloid", height = 100))
+})
+
+test_that("economist_2017_footnote follows the guide's order", {
+  # p.5
+  expect_equal(
+    economist_2017_footnote(1:8),
+    c("*", "\u2020", "\u2021", "\u00a7", "**", "\u2020\u2020", "\u2021\u2021", "\u00a7\u00a7")
+  )
+  expect_equal(economist_2017_footnote(1:8), ggthemes_data$economist_2017$footnotes)
+  expect_equal(economist_2017_footnote(c(9, 12)), c("***", "\u00a7\u00a7\u00a7"))
+  expect_error(economist_2017_footnote(0), "positive")
+  expect_error(economist_2017_footnote(1.5), "whole")
+})
+
+test_that("economist_2017 typefaces map each weight to the theme", {
+  typefaces <- ggthemes_data$economist_2017$typefaces
+  expect_equal(typefaces$weight, c("bold", "bold", "medium", "regular", "light"))
+  thm <- theme_economist_2017()
+  for (i in seq_len(nrow(typefaces))) {
+    for (el in strsplit(typefaces$elements[i], ", ")[[1]]) {
+      expect_equal(ggplot2::calc_element(el, thm)$face, typefaces$face[i], info = el)
+    }
+  }
 })
 
 # Visual regression --------------------------------------------------------------
