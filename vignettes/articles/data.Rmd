@@ -42,6 +42,9 @@ their `base_family` argument.
 ```{r helpers}
 source("swatches.R")
 
+# Columns are referenced through the `.data` pronoun, as in swatches.R.
+.data <- rlang::.data
+
 is_hex <- function(x) {
   is.character(x) && length(x) > 0 && all(grepl("^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$", x))
 }
@@ -120,7 +123,7 @@ group_sets <- function(sets) {
 # otherwise the Unicode character, in grey, since it depends on the font.
 shape_plot <- function(sets) {
   rows <- lapply(sets, function(s) seq_len(nrow(s)))
-  l <- swatch_layout(rows)
+  l <- swatch_layout(rows) # nolint: object_usage_linter. Defined in swatches.R.
   cells <- do.call(rbind, lapply(seq_along(sets), function(j) {
     s <- sets[[j]]
     data.frame(
@@ -132,18 +135,18 @@ shape_plot <- function(sets) {
   }))
   ggplot() +
     geom_point(
-      aes(x, y, shape = pch),
+      aes(.data$x, .data$y, shape = .data$pch),
       data = cells[!is.na(cells$pch), ],
       size = 3.5
     ) +
     geom_text(
-      aes(x, y, label = character),
+      aes(.data$x, .data$y, label = .data$character),
       data = cells[is.na(cells$pch), ],
       colour = "grey45",
       size = 11 / .pt
     ) +
     geom_text(
-      aes(x, y, label = label),
+      aes(.data$x, .data$y, label = .data$label),
       data = l$labels,
       hjust = 1,
       family = "mono",
@@ -165,18 +168,23 @@ linetype_plot <- function(linetypes) {
   d <- data.frame(y = -seq_along(linetypes), linetype = linetypes, valid = valid_linetype(linetypes))
   ggplot(d) +
     geom_segment(
-      aes(x = 0, xend = 1, y = y, yend = y, linetype = linetype),
+      aes(x = 0, xend = 1, y = .data$y, yend = .data$y, linetype = .data$linetype),
       data = d[d$valid, ],
       linewidth = 0.6
     ) +
     geom_text(
-      aes(x = 0, y = y, label = "not a valid R linetype"),
+      aes(x = 0, y = .data$y, label = "not a valid R linetype"),
       data = d[!d$valid, ],
       hjust = 0,
       colour = "firebrick",
       size = 9 / .pt
     ) +
-    geom_text(aes(x = -0.05, y = y, label = sprintf('"%s"', linetype)), hjust = 1, family = "mono", size = 9 / .pt) +
+    geom_text(
+      aes(x = -0.05, y = .data$y, label = sprintf('"%s"', .data$linetype)),
+      hjust = 1,
+      family = "mono",
+      size = 9 / .pt
+    ) +
     scale_linetype_identity() +
     coord_cartesian(xlim = c(-0.6, 1), expand = TRUE) +
     theme_void()
@@ -213,19 +221,20 @@ md_code <- function(x) if (grepl("`", x, fixed = TRUE)) paste0("`` ", x, " ``") 
 # the page; the walk is depth-first, so a block closes when the walk leaves its
 # list. A heading names the last step of the path, and the full expression
 # follows it.
-open_path <- list()
-figure <- 0
+state <- new.env()
+state$open_path <- list()
+state$figure <- 0
 
 close_levels <- function(depth) {
-  n <- max(length(open_path) - max(depth, 1), 0)
+  n <- max(length(state$open_path) - max(depth, 1), 0)
   rep(c(":::", ""), n)
 }
 
 render_block <- function(block) {
   parent <- block$parent
   common <- 0
-  while (common < min(length(open_path), length(parent)) &&
-           identical(open_path[[common + 1]], parent[[common + 1]])) {
+  while (common < min(length(state$open_path), length(parent)) &&
+           identical(state$open_path[[common + 1]], parent[[common + 1]])) {
     common <- common + 1
   }
   out <- close_levels(common)
@@ -245,8 +254,9 @@ render_block <- function(block) {
       ""
     )
   }
-  open_path <<- parent
-  figure <<- figure + 1
+  state$open_path <- parent
+  state$figure <- state$figure + 1
+  figure <- state$figure
   rows <- if (block$kind == "shapes") lapply(block$sets, `[[`, "value") else rows_for(block$sets)
   extent <- if (block$kind == "shapes") lapply(rows, `[[`, "pch") else rows
   if (block$kind == "shapes") {
@@ -256,16 +266,20 @@ render_block <- function(block) {
   if (block$kind == "linetypes") {
     rows <- block$sets[[1]]$value
     chunk <- c(
-      sprintf("```{r figure-%d, fig.width = 4, fig.height = 0.25 * length(rows) + 0.3, out.width = \"384px\"}", figure),
+      sprintf(
+        "```{r figure-%d, fig.width = 4, fig.height = 0.25 * length(rows) + 0.3, out.width = \"384px\"}",
+        figure
+      ),
       "linetype_plot(rows)",
       "```"
     )
   } else {
     plot_call <- if (block$kind == "colors") "swatch_plot(rows)" else "shape_plot(rows)"
     chunk <- c(
-      sprintf(
-        "```{r figure-%d, fig.width = swatch_width(extent), fig.height = swatch_height(extent), out.width = out_width(swatch_width(extent))}",
-        figure
+      paste0(
+        sprintf("```{r figure-%d, ", figure),
+        "fig.width = swatch_width(extent), fig.height = swatch_height(extent), ",
+        "out.width = out_width(swatch_width(extent))}"
       ),
       plot_call,
       "```"

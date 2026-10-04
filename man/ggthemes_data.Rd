@@ -36,10 +36,10 @@ ggthemes_data$fivethirtyeight
 show_col(ggthemes_data$fivethirtyeight$value)
 
 ## ... as plain hex vectors ...
-show_col(ggthemes_data$economist$scales$blue)
+show_col(ggthemes_data$manyeyes)
 
 ## ... or once per number of colors
-show_col(ggthemes_data$solarized$palettes$blue[["4"]])
+show_col(ggthemes_data$solarized$palettes$blue[[4]])
 
 ## Shapes give a base R symbol (pch), where there is one, and the Unicode
 ## character they were transcribed from
