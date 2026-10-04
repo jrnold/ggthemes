@@ -42,6 +42,42 @@ test_that("scale_shape_tableau works", {
   expect_s3_class(scale_shape_tableau(), "ScaleDiscrete")
 })
 
+test_that("no two tableau shape palettes draw the same characters", {
+  # Arrows and Thin Arrows once held the same eight characters.
+  shapes <- ggthemes_data$tableau$`shape-palettes`
+  glyphs <- vapply(shapes, function(x) paste(x$character, collapse = " "), character(1))
+  expect_equal(names(glyphs)[duplicated(glyphs)], character(0))
+})
+
+test_that("tableau shape characters match their code points", {
+  # `unicode` documents the whole sequence, including any variation selector
+  # (U+FE0E text, U+FE0F emoji), so a selector recorded there but missing from
+  # the character, or the reverse, changes how the shape draws.
+  for (nm in names(ggthemes_data$tableau$`shape-palettes`)) {
+    shapes <- ggthemes_data$tableau$`shape-palettes`[[nm]]
+    sequences <- vapply(
+      shapes$character,
+      function(ch) paste(sprintf("U+%04X", utf8ToInt(ch)), collapse = " "),
+      character(1),
+      USE.NAMES = FALSE
+    )
+    expect_equal(sequences, shapes$unicode, info = nm)
+  }
+})
+
+test_that("tableau arrow palettes are solid and thin versions of one set", {
+  shapes <- ggthemes_data$tableau$`shape-palettes`
+  expect_equal(shapes$Arrows$name, shapes$`Thin Arrows`$name)
+  expect_equal(
+    shapes$Arrows$unicode,
+    c("U+2B06", "U+2B08", "U+27A1", "U+2B0A", "U+2B07", "U+2B0B", "U+2B05", "U+2B09")
+  )
+  expect_equal(
+    shapes$`Thin Arrows`$unicode,
+    c("U+2191", "U+2197", "U+2192", "U+2198", "U+2193", "U+2199", "U+2190", "U+2196")
+  )
+})
+
 test_that("scale_colour_tableau works", {
   expect_s3_class(scale_colour_tableau(), "ScaleDiscrete")
 })

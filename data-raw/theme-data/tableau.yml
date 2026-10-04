@@ -43,8 +43,8 @@
     - {shape: "pictograph", name: "VERTICAL MALE WITH STROKE SIGN", unicode: "U+26A8", character: "⚨", emoji: false}
     - {shape: "pictograph", name: "MALE WITH STROKE AND MALE AND FEMALE SIGN", unicode: "U+26A7", character: "⚧", emoji: false}
   kpi:
-    - {shape: "check mark", name: "CHECK MARK", unicode: "U+2714 U+FE0E", character: "✔"}
-    - {shape: "cross", name: "MULTIPLICATION X", unicode: "U+2716 U+FE0E", character: "✖"}
+    - {shape: "check mark", name: "CHECK MARK", unicode: "U+2714 U+FE0E", character: "✔︎"}
+    - {shape: "cross", name: "MULTIPLICATION X", unicode: "U+2716 U+FE0E", character: "✖︎"}
     - {shape: "exclamation mark", name: "EXCLAMATION MARK", unicode: "U+0021", character: "!"}
     - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
     - {shape: "triangle", name: "BLACK UP ARROW", unicode: "U+25B2", character: "▲"}
@@ -55,25 +55,28 @@
     - {shape: "pictograph", name: "CLOUD WITH RAIN", unicode: "U+1F327", character: "🌧", emoji: true}
     - {shape: "pictograph", name: "UMBRELLA", unicode: "U+2602", character: "☂", emoji: true}
     - {shape: "pictograph", name: "UMBRELLA WITH RAINDROPS", unicode: "U+2614", character: "☔", emoji: true}
-    - {shape: "pictograph", name: "SNOWMAN", unicode: "U+2603", character: "☃︎", emoji: true}
+    - {shape: "pictograph", name: "SNOWMAN", unicode: "U+2603", character: "☃", emoji: true}
+  # Arrows are solid, Thin Arrows are line arrows, in the same eight
+  # directions. These once held the same eight characters, so the two
+  # palettes drew identically.
   Arrows:
     - {shape: "pictograph", name: "Up Arrow", unicode: "U+2B06", character: "⬆", emoji: true}
-    - {shape: "pictograph", name: "Up Right Arrow", unicode: "U+2197", character: "↗", emoji: true}
+    - {shape: "pictograph", name: "Up Right Arrow", unicode: "U+2B08", character: "⬈", emoji: false}
     - {shape: "pictograph", name: "Right Arrow", unicode: "U+27A1", character: "➡", emoji: true}
-    - {shape: "pictograph", name: "Down Right Arrow", unicode: "U+2198", character: "↘", emoji: true}
+    - {shape: "pictograph", name: "Down Right Arrow", unicode: "U+2B0A", character: "⬊", emoji: false}
     - {shape: "pictograph", name: "Down Arrow", unicode: "U+2B07", character: "⬇", emoji: true}
-    - {shape: "pictograph", name: "Down-Left Arrow", unicode: "U+2199", character: "↙", emoji: true}
+    - {shape: "pictograph", name: "Down-Left Arrow", unicode: "U+2B0B", character: "⬋", emoji: false}
     - {shape: "pictograph", name: "Left Arrow", unicode: "U+2B05", character: "⬅", emoji: true}
-    - {shape: "pictograph", name: "Up-Left Arrow", character: "↖", unicode: "U+2196", emoji: true}
+    - {shape: "pictograph", name: "Up-Left Arrow", unicode: "U+2B09", character: "⬉", emoji: false}
   "Thin Arrows":
-    - {shape: "pictograph", name: "Up Arrow", unicode: "U+2B06", character: "⬆", emoji: false}
-    - {shape: "pictograph", name: "Up Right Arrow", unicode: "U+2197", character: "↗", emoji: false}
-    - {shape: "pictograph", name: "Right Arrow", unicode: "U+27A1", character: "➡", emoji: false}
-    - {shape: "pictograph", name: "Down Right Arrow", unicode: "U+2198", character: "↘", emoji: false}
-    - {shape: "pictograph", name: "Down Arrow", unicode: "U+2B07", character: "⬇", emoji: false}
-    - {shape: "pictograph", name: "Down-Left Arrow", unicode: "U+2199", character: "↙", emoji: false}
-    - {shape: "pictograph", name: "Left Arrow", unicode: "U+2B05", character: "⬅", emoji: false}
-    - {shape: "pictograph", name: "Up-Left Arrow", character: "↖", unicode: "U+2196", emoji: false}
+    - {shape: "pictograph", name: "Up Arrow", unicode: "U+2191", character: "↑", emoji: false}
+    - {shape: "pictograph", name: "Up Right Arrow", unicode: "U+2197", character: "↗", emoji: true}
+    - {shape: "pictograph", name: "Right Arrow", unicode: "U+2192", character: "→", emoji: false}
+    - {shape: "pictograph", name: "Down Right Arrow", unicode: "U+2198", character: "↘", emoji: true}
+    - {shape: "pictograph", name: "Down Arrow", unicode: "U+2193", character: "↓", emoji: false}
+    - {shape: "pictograph", name: "Down-Left Arrow", unicode: "U+2199", character: "↙", emoji: true}
+    - {shape: "pictograph", name: "Left Arrow", unicode: "U+2190", character: "←", emoji: false}
+    - {shape: "pictograph", name: "Up-Left Arrow", unicode: "U+2196", character: "↖", emoji: true}
 "color-palettes":
   regular:
     Tableau 10:
