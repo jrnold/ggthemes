@@ -4,7 +4,7 @@
 # that code written for it keeps drawing the same thing.
 
 economist_bg <- function(name) {
-  bg <- ggthemes_data$economist$bg
+  bg <- ggthemes::ggthemes_data$economist$bg
   bg$value[bg$name == name]
 }
 
