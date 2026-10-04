@@ -3,35 +3,35 @@ library("ggplot2")
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
      facet_wrap(~am) +
-     # The Economist puts the y-axis labels on the right-hand side
-     scale_y_continuous(position = "right") +
-     labs(
-       title = "Heavier, thirstier",
-       subtitle = "Fuel economy v weight, by number of forward gears",
-       caption = "Source: Motor Trend, 1974"
-     )
+     # Economist puts x-axis labels on the right-hand side
+     scale_y_continuous(position = "right")
 
 ## Standard
 p + theme_economist() +
   scale_colour_economist()
 
-# Vertical gridlines, for use with coord_flip()
+# Change axis lines to vertical
 p + theme_economist(horizontal = FALSE) +
     scale_colour_economist() +
     coord_flip()
 
-## Ordered data uses one hue's equal-lightness steps instead
-ggplot(mtcars) +
-  geom_point(aes(x = wt, y = mpg, colour = hp)) +
-  scale_colour_economist_c(hue = "blue") +
-  theme_economist()
+## White panel/light gray background
+p + theme_economist_white() +
+    scale_colour_economist()
+
+## All white variant
+p + theme_economist_white(gray_bg = FALSE) +
+    scale_colour_economist()
 
 \dontrun{
 
-## The Economist sets charts in "Econ Sans", which is not publicly
-## available. Any narrow humanist sans is a reasonable substitute, if it is
-## installed on your system.
-p + theme_economist(base_family = "Roboto Condensed") +
+## The Economist uses ITC Officina Sans
+library("extrafont")
+p + theme_economist(base_family="ITC Officina Sans") +
+    scale_colour_economist()
+
+## Verdana is a widely available substitute
+p + theme_economist(base_family="Verdana") +
     scale_colour_economist()
 
 }

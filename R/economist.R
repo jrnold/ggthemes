@@ -1,52 +1,110 @@
 #' Economist color palette (discrete)
 #'
-#' The nine colors \emph{The Economist} uses for chart series: blue,
-#' cyan, green, yellow, olive, purple, gold, gray, and red, in that
-#' order. Red comes last because the house style reserves it for data
-#' the chart is making a point about, rather than handing it out as an
-#' ordinary series color.
+#' The classic \emph{The Economist} chart palette: blues, grays, and
+#' greens, chosen and ordered for the number of colors requested. Red is
+#' not included in these palettes; \emph{The Economist} reserves it to
+#' mark important data.
 #'
-#' A tenth color, "Econ red", is the brighter masthead red used for the
-#' tag rectangle and for single-series highlights. It is excluded from
-#' this palette; take it from
-#' \code{ggthemes_data$economist$main} when you need it.
-#'
-#' @param fill `r lifecycle::badge("deprecated")` No longer has any effect.
+#' @param fill Use the fill palette. The fill palette (the default) and the
+#'   line palette choose and order the colors differently.
 #' @family colour economist
 #' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
 #'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
-#' @importFrom lifecycle deprecated is_present
 #' @example inst/examples/ex-economist_pal.R
-economist_pal <- function(fill = deprecated()) {
-  if (is_present(fill)) {
-    deprecate_warn(
-      "7.0.0",
-      "economist_pal(fill)",
-      details = c(
-        i = paste0(
-          "The Economist's current chart palette draws no distinction ",
-          "between fill and colour, so `fill` no longer has any effect."
+economist_pal <- function(fill = TRUE) {
+  colors <- deframe(ggthemes::ggthemes_data[["economist"]][["fg"]])
+  if (fill) {
+    max_n <- 9
+    f <- function(n) {
+      check_pal_n(n, max_n)
+      if (n == 0L) {
+        return(character(0))
+      } else if (n == 1L) {
+        i <- "dark blue"
+      } else if (n == 2L) {
+        i <- c("blue", "dark blue")
+      } else if (n == 3L) {
+        i <- c("blue-gray", "dark blue", "blue")
+      } else if (n == 4L) {
+        i <- c("blue-gray", "dark blue", "blue", "gray")
+      } else if (n %in% 5:6) {
+        ## 20120901_woc904
+        i <- c(
+          "blue-gray",
+          "dark blue",
+          "light blue",
+          "blue",
+          "light green",
+          "dark green"
         )
-      )
-    )
-  }
-  colors <- economist_main_colors()
-  max_n <- length(colors)
-  f <- function(n) {
-    check_pal_n(n, max_n)
-    unname(colors[seq_len(n)])
+      } else if (n == 7L) {
+        # 20120818_AMC820
+        i <- c(
+          "blue-gray",
+          "dark blue",
+          "blue",
+          "light blue",
+          "dark green",
+          "light green",
+          "gray"
+        )
+      } else if (n >= 8L) {
+        # 20120915_EUC094
+        i <- c(
+          "blue-gray",
+          "dark blue",
+          "blue",
+          "light blue",
+          "dark green",
+          "light green",
+          "dark red",
+          "pink",
+          "gray"
+        )
+      }
+      unname(colors[i][seq_len(n)])
+    }
+  } else {
+    max_n <- 9
+    f <- function(n) {
+      check_pal_n(n, max_n)
+      if (n <= 3) {
+        # 20120818_AMC20
+        # 20120901_FBC897
+        i <- c("dark blue", "blue", "light blue")
+      } else if (n %in% 4:5) {
+        # i <- c("dark blue", "blue", "light blue", "red", "gray")
+        i <- c("dark blue", "blue", "light blue", "blue-gray", "gray")
+      } else if (n == 6) {
+        # 20120825_IRC829
+        i <- c(
+          "light green",
+          "dark green",
+          "gray",
+          "blue-gray",
+          "light blue",
+          "dark blue"
+        )
+      } else if (n > 6) {
+        # 20120825_IRC829
+        i <- c(
+          "light green",
+          "dark green",
+          "gray",
+          "blue-gray",
+          "light blue",
+          "dark blue",
+          "dark red",
+          "pink",
+          "brown"
+        )
+      }
+      unname(colors[i][seq_len(n)])
+    }
   }
   attr(f, "max_n") <- max_n
   f
-}
-
-# The nine general-purpose series colours, in the order ggthemes hands
-# them out. "Econ red" is excluded: the styleguide reserves it for the
-# tag rectangle and for single-series highlights.
-economist_main_colors <- function() {
-  colors <- deframe(ggthemes::ggthemes_data[["economist"]][["main"]])
-  colors[names(colors) != "econ red"]
 }
 
 #' Economist color scales
@@ -77,10 +135,11 @@ scale_fill_economist <- function(...) {
 
 #' Economist sequential color palettes
 #'
-#' The Economist's "equal lightness colour scales": six ordered steps for
-#' each of the nine hues in the main chart palette, running darkest to
-#' lightest. Use them for ordered data, where the main palette is for
-#' unordered categories.
+#' The "equal lightness colour scales" of \emph{The Economist visual
+#' styleguide} (v1.2, 4 May 2017): six ordered steps for each of nine hues,
+#' running darkest to lightest. Use them for ordered data. They come from
+#' the paper's 2017 chart design, not the classic design of
+#' \code{\link{economist_pal}()} and \code{\link{theme_economist}()}.
 #'
 #' \code{economist_seq_pal()} returns the six steps themselves, for
 #' discrete ordered data. \code{economist_gradient_pal()} interpolates
@@ -127,7 +186,9 @@ economist_scale_colors <- function(hue) {
 
 #' Economist sequential color scales
 #'
-#' Color scales built from The Economist's equal-lightness color scales.
+#' Color scales built from the equal-lightness color scales of \emph{The
+#' Economist visual styleguide} (v1.2, 4 May 2017); see
+#' \code{\link{economist_seq_pal}()}.
 #' The \code{_c} scales are continuous; the \code{_ordinal} scales are
 #' discrete, for ordered factors. See \code{\link{scale_colour_economist}()}
 #' for the unordered categorical scales.
@@ -184,39 +245,28 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 
 #' ggplot color theme based on the Economist
 #'
-#' A theme that approximates the style of charts in \emph{The Economist}.
+#' A theme that approximates the style of \emph{The Economist}.
 #'
-#' This follows the chart design \emph{The Economist} introduced in 2017
-#' and still publishes today: a white plot area on a pale ground, light
-#' horizontal gridlines only, a black x-axis baseline with tick marks
-#' below it, and no y-axis rule or ticks. Use
-#' \code{\link{scale_colour_economist}()} with it.
+#' \code{theme_economist} implements the standard bluish-gray
+#' background theme in the print \emph{The Economist} and
+#' \href{https://www.economist.com/}{economist.com}.
 #'
-#' Two conventions of the house style cannot be expressed as theme
-#' elements, and have to be set on the plot itself:
+#' \code{theme_economist_white} implements a variant with a white
+#' panel and light gray (or white) background often used by \emph{The Economist}
+#' blog \href{https://www.economist.com/topics/graphic-detail}{Graphic Detail}.
 #'
-#' \itemize{
-#' \item \emph{The Economist} puts the y axis on the right. Use
-#' \code{scale_y_continuous(position = "right")}.
-#' \item Charts are tagged with a small red rectangle above the title.
-#' Draw it with \code{\link[ggplot2]{annotate}()} or
-#' \code{\link[grid]{grid.rect}()} in "Econ red", which is
-#' \code{ggthemes_data$economist$main} row \code{"econ red"}.
-#' }
+#' Use \code{\link{scale_color_economist}()} with this theme.
+#' The y axis should be displayed on the right hand side.
 #'
-#' \emph{The Economist} sets charts in "Econ Sans", which is not publicly
-#' available. Any narrow humanist sans is a reasonable substitute; with
-#' the \pkg{extrafont} package, "Roboto Condensed" or "Fira Sans
-#' Condensed" are close.
+#' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
+#' you have access to this font, you can use it with the
+#' \pkg{extrafont} package. "Verdana" is a good substitute.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal \code{logical} Horizontal gridlines? If
-#'   \code{FALSE}, vertical gridlines are drawn instead, for use with
-#'   \code{\link[ggplot2]{coord_flip}()}.
-#' @param dkpanel `r lifecycle::badge("deprecated")` The darker panel was
-#'   a feature of the pre-2017 design and no longer has any effect.
-#' @param gray_bg `r lifecycle::badge("deprecated")` No longer has any
-#'   effect.
+#' @param horizontal \code{logical} Horizontal axis lines?
+#' @param dkpanel \code{logical} Darker background for panel region?
+#' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else
+#'   use white background.
 #'
 #' @return An object of class \code{\link[ggplot2]{theme}()}.
 #'
@@ -226,150 +276,139 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 #' @references
 #' \itemize{
 #' \item \href{https://www.economist.com/}{The Economist}
-#' \item \emph{The Economist visual styleguide}, version 1.2, 4 May 2017.
+#' \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 #' }
 #'
 #' @example inst/examples/ex-theme_economist.R
-theme_economist <- function(
-  base_size = 10,
-  base_family = "sans",
-  horizontal = TRUE,
-  dkpanel = deprecated()
-) {
-  if (is_present(dkpanel)) {
-    deprecate_warn(
-      "7.0.0",
-      "theme_economist(dkpanel)",
-      details = c(
-        i = paste0(
-          "The darker panel belonged to the pre-2017 design, which this ",
-          "theme no longer implements."
+theme_economist <- function(base_size = 10, base_family = "sans", horizontal = TRUE, dkpanel = FALSE) {
+  bgcolors <- deframe(ggthemes::ggthemes_data[["economist"]][["bg"]])
+  # The panel and strips share the plot's blue-gray. Before 7.0.0 they asked
+  # for an "ebg" color the data never defined, so their fill was NA and the
+  # plot background showed through; naming the color draws the same thing.
+  ## From measurements
+  ## Ticks = 1 / 32 in, with margin about 1.5 / 32
+  ## Title = 3 / 32 in (6 pt)
+  ## Legend Labels = 2.5 / 32 in (5pt)
+  ## Axis Labels = 2
+  ## Axis Titles and other text ~ 2
+  ## Margins: Top / Bottom = 6 / 32, sides = 5 / 32
+  ret <-
+    theme(
+      line = element_line(colour = "black"),
+      rect = element_rect(
+        fill = unname(bgcolors["blue-gray"]),
+        colour = NA,
+        linetype = 1
+      ),
+      text = element_text(colour = "black", family = base_family, size = base_size),
+      ## Axis
+      axis.line = element_line(linewidth = rel(0.8)),
+      axis.line.y = element_blank(),
+      axis.text = element_text(size = rel(1)),
+      axis.text.x = element_text(
+        vjust = 0,
+        margin = margin(
+          t = base_size,
+          unit = "pt"
         )
-      )
+      ),
+      axis.text.x.top = element_text(vjust = 0, margin = margin(b = base_size, unit = "pt")),
+      axis.text.y = element_text(
+        hjust = 0,
+        margin = margin(
+          r = base_size,
+          unit = "pt"
+        )
+      ),
+      ## I cannot figure out how to get ggplot to do 2 levels of ticks
+      ## axis.ticks.margin = unit(3 / 72, "in"),
+      axis.ticks = element_line(),
+      axis.ticks.y = element_blank(),
+      axis.title = element_text(size = rel(1)),
+      axis.title.x = element_text(),
+      axis.title.y = element_text(angle = 90),
+      # axis.ticks.length = unit( -1/32, "in"),
+      axis.ticks.length = unit(-base_size * 0.5, "points"),
+      legend.background = element_rect(linetype = 0),
+      legend.spacing = unit(base_size * 1.5, "points"),
+      legend.key = element_rect(linetype = 0),
+      legend.key.size = unit(1.2, "lines"),
+      legend.key.height = NULL,
+      legend.key.width = NULL,
+      legend.text = element_text(size = rel(1.25)),
+      legend.title = element_text(size = rel(1), hjust = 0),
+      legend.position = "top",
+      legend.direction = NULL,
+      legend.justification = "center",
+      ## legend.box = element_rect(fill = palette_economist['bgdk'],
+      ## colour=NA, linetype=0),
+      ## Economist only uses vertical lines
+      panel.background = element_rect(linetype = 0),
+      panel.border = element_blank(),
+      panel.grid.major = element_line(colour = "white", linewidth = rel(1.75)),
+      panel.grid.minor = element_blank(),
+      panel.spacing = unit(0.25, "lines"),
+      strip.background = element_rect(
+        fill = unname(bgcolors["blue-gray"]),
+        colour = NA,
+        linetype = 0
+      ),
+      strip.text = element_text(size = rel(1.25)),
+      strip.text.x = element_text(),
+      strip.text.y = element_text(angle = -90),
+      plot.background = element_rect(
+        fill = unname(bgcolors["blue-gray"]),
+        colour = NA
+      ),
+      plot.title = element_text(
+        size = rel(1.5),
+        hjust = 0,
+        face = "bold",
+        # Without a margin the subtitle runs into the title.
+        margin = margin(b = base_size / 2, unit = "pt")
+      ),
+      plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
+      complete = TRUE
     )
-  }
-  bg <- deframe(ggthemes::ggthemes_data[["economist"]][["bg"]])
-  txt <- deframe(ggthemes::ggthemes_data[["economist"]][["text"]])
-  # Type and spacing follow the styleguide's standard print chart
-  # (p.6): 9.5pt bold headline over 8pt subtitle, 7.5pt labels, source
-  # note at 6.5pt, and tick marks 2-5pt long below the baseline.
-  half_line <- base_size / 2
-  ret <- theme(
-    line = element_line(colour = txt[["title"]]),
-    rect = element_rect(fill = bg[["pale"]], colour = NA, linetype = 0),
-    text = element_text(
-      colour = txt[["body"]],
-      family = base_family,
-      size = base_size
-    ),
-    ## Axes. Only the x axis is ruled; the y axis is carried by the
-    ## gridlines, with its labels on the right.
-    axis.line = element_line(linewidth = rel(0.8), colour = txt[["title"]]),
-    axis.line.y = element_blank(),
-    axis.text = element_text(size = rel(0.95)),
-    axis.text.x = element_text(margin = margin(t = half_line * 0.5)),
-    axis.text.y = element_text(margin = margin(l = half_line * 0.5)),
-    axis.ticks = element_line(linewidth = rel(0.5), colour = txt[["title"]]),
-    axis.ticks.y = element_blank(),
-    axis.ticks.length = unit(base_size * 0.4, "points"),
-    axis.title = element_text(size = rel(0.95)),
-    axis.title.x = element_text(margin = margin(t = half_line)),
-    axis.title.y = element_text(angle = 90, margin = margin(r = half_line)),
-    ## Legend. Keys sit under the subtitle, ranged left, with no frame.
-    legend.background = element_rect(linetype = 0),
-    # No box behind the key: a filled key reads as a white square
-    # sitting on the pale ground.
-    legend.key = element_rect(fill = NA, colour = NA, linetype = 0),
-    legend.key.size = unit(1, "lines"),
-    legend.key.height = unit(base_size, "points"),
-    # Colour bars take their length from the key width; keep it wide
-    # enough that the bar's own labels do not overprint.
-    legend.key.width = unit(base_size * 2, "points"),
-    legend.text = element_text(size = rel(0.95)),
-    legend.title = element_text(size = rel(0.95), hjust = 0),
-    legend.position = "top",
-    legend.justification = "left",
-    legend.margin = margin(b = half_line),
-    ## Panel
-    panel.background = element_rect(
-      fill = bg[["white"]],
-      colour = NA,
-      linetype = 0
-    ),
-    panel.border = element_blank(),
-    panel.grid.major = element_line(
-      colour = bg[["gridline"]],
-      linewidth = rel(0.5)
-    ),
-    panel.grid.minor = element_blank(),
-    panel.spacing = unit(base_size, "points"),
-    ## Facets
-    strip.background = element_rect(
-      fill = bg[["pale"]],
-      colour = NA,
-      linetype = 0
-    ),
-    strip.text = element_text(
-      size = rel(0.95),
-      colour = txt[["title"]],
-      face = "bold"
-    ),
-    strip.text.x = element_text(margin = margin(b = half_line * 0.5)),
-    strip.text.y = element_text(angle = -90),
-    ## Titles and source note, all ranged left against the whole plot.
-    plot.background = element_rect(fill = bg[["pale"]], colour = NA),
-    plot.title = element_text(
-      size = rel(1.4),
-      hjust = 0,
-      face = "bold",
-      colour = txt[["title"]],
-      margin = margin(b = half_line * 0.5)
-    ),
-    plot.subtitle = element_text(
-      size = rel(1),
-      hjust = 0,
-      margin = margin(b = half_line)
-    ),
-    plot.caption = element_text(
-      size = rel(0.8),
-      hjust = 0,
-      margin = margin(t = half_line)
-    ),
-    plot.title.position = "plot",
-    plot.caption.position = "plot",
-    plot.margin = unit(c(6, 5, 6, 5) * 2, "points"),
-    complete = TRUE
-  )
   if (horizontal) {
     ret <- ret + theme(panel.grid.major.x = element_blank())
   } else {
     ret <- ret + theme(panel.grid.major.y = element_blank())
+  }
+  if (dkpanel == TRUE) {
+    ret <- ret +
+      theme(
+        panel.background = element_rect(
+          fill = unname(bgcolors["dark blue-gray"])
+        ),
+        strip.background = element_rect(
+          fill = unname(bgcolors["dark blue-gray"])
+        )
+      )
   }
   ret
 }
 
 #' @rdname theme_economist
 #' @export
-theme_economist_white <- function(
-  base_size = 10,
-  base_family = "sans",
-  gray_bg = deprecated(),
-  horizontal = TRUE
-) {
-  deprecate_warn(
-    "7.0.0",
-    "theme_economist_white()",
-    "theme_economist()",
-    details = c(
-      i = paste0(
-        "The current design already draws a white panel, so the white ",
-        "variant no longer differs from `theme_economist()`."
-      )
-    )
-  )
+theme_economist_white <- function(base_size = 11, base_family = "sans", gray_bg = TRUE, horizontal = TRUE) {
+  if (gray_bg) {
+    bgcolor <- get_colors(c("economist", "bg"), "light gray")
+  } else {
+    bgcolor <- "white"
+  }
   theme_economist(
-    base_size = base_size,
     base_family = base_family,
+    base_size = base_size,
     horizontal = horizontal
-  )
+  ) +
+    theme(
+      rect = element_rect(fill = bgcolor),
+      plot.background = element_rect(fill = bgcolor),
+      panel.background = element_rect(fill = "white"),
+      panel.grid.major = element_line(
+        colour = get_colors(c("economist", "bg"), "dark gray")
+      ),
+      strip.background = element_rect(fill = "white")
+    )
 }

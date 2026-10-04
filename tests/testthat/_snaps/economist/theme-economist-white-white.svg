@@ -18,7 +18,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<rect x='-0.000000000000064' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.07; stroke: none; fill: #EBEBEB;' />
+<rect x='-0.000000000000064' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 </g>
 <defs>
   <clipPath id='cpMzYuODl8MzcxLjY3fDk5LjA2fDUyMC4wMg=='>
@@ -117,7 +117,7 @@
 <text x='19.82' y='121.98' style='font-size: 11.00px; font-family: sans;' textLength='6.12px' lengthAdjust='spacingAndGlyphs'>8</text>
 <text x='373.47' y='549.54' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='29.96px' lengthAdjust='spacingAndGlyphs'>X axis</text>
 <text transform='translate(18.67,309.54) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='29.96px' lengthAdjust='spacingAndGlyphs'>Y axis</text>
-<rect x='316.81' y='47.55' width='113.31' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #EBEBEB;' />
+<rect x='316.81' y='47.55' width='113.31' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <text x='322.29' y='65.45' style='font-size: 11.00px; font-family: sans;' textLength='30.58px' lengthAdjust='spacingAndGlyphs'>Group</text>
 <rect x='358.35' y='53.03' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <circle cx='366.99' cy='61.67' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />

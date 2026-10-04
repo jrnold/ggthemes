@@ -1,25 +1,60 @@
-test_that("economist_pal returns the current Economist chart colours", {
-  expect_equal(
-    economist_pal()(3),
-    c("#006ba2", "#3ebcd2", "#379a8b")
-  )
-})
+# theme_economist(), theme_economist_white() and economist_pal() draw the
+# classic, pre-2017 Economist style, as they did before 7.0.0. 7.0.0 briefly
+# replaced it with the 2017 design; these tests pin the classic behaviour so
+# that code written for it keeps drawing the same thing.
 
-test_that("economist_pal supports up to 9 colours", {
-  p <- economist_pal()
+economist_bg <- function(name) {
+  bg <- ggthemes_data$economist$bg
+  bg$value[bg$name == name]
+}
+
+test_that("economist_pal fill=TRUE works", {
+  p <- economist_pal(fill = TRUE)
   expect_type(p, "closure")
-  expect_equal(attr(p, "max_n"), 9L)
   for (i in 1:9) {
     expect_hexcolor(p(i))
+    expect_length(p(i), i)
   }
 })
 
-test_that("economist_pal puts red last, reserved for emphasis", {
-  expect_equal(economist_pal()(9)[[9]], "#db444b")
+test_that("economist_pal fill=FALSE works", {
+  p <- economist_pal(fill = FALSE)
+  expect_type(p, "closure")
+  for (i in 1:9) {
+    expect_hexcolor(p(i))
+    expect_length(p(i), i)
+  }
+})
+
+test_that("economist_pal returns the classic colours", {
+  # The pre-7.0.0 orders: blues, grays and greens, red held back for emphasis.
+  expect_equal(economist_pal()(1), "#014d64")
+  expect_equal(economist_pal()(3), c("#6794a7", "#014d64", "#01a2d9"))
+  expect_equal(
+    economist_pal()(9),
+    c("#6794a7", "#014d64", "#01a2d9", "#7ad2f6", "#00887d", "#76c0c1", "#7c260b", "#ee8f71", "#adadad")
+  )
+  expect_equal(economist_pal(fill = FALSE)(3), c("#014d64", "#01a2d9", "#7ad2f6"))
+})
+
+test_that("economist_pal fill= changes the palette", {
+  expect_false(identical(economist_pal(fill = TRUE)(6), economist_pal(fill = FALSE)(6)))
+})
+
+test_that("economist_pal returns no colours for n = 0", {
+  # Before 7.0.0, the fill palette failed with "object 'i' not found".
+  expect_equal(economist_pal(fill = TRUE)(0), character(0))
+  expect_equal(economist_pal(fill = FALSE)(0), character(0))
 })
 
 test_that("economist_pal raises warning with large number", {
-  expect_snapshot(x <- economist_pal()(10))
+  expect_warning(economist_pal()(10), "maximum of 9")
+})
+
+test_that("ggthemes_data$economist keeps the classic fg and bg tables", {
+  expect_named(ggthemes_data$economist, c("bg", "fg", "scales"), ignore.order = TRUE)
+  expect_equal(nrow(ggthemes_data$economist$fg), 12)
+  expect_equal(economist_bg("blue-gray"), "#d5e4eb")
 })
 
 test_that("scale_colour_economist equals scale_color_economist", {
@@ -79,6 +114,7 @@ test_that("scale_fill_economist_ordinal is discrete", {
   expect_s3_class(scale_fill_economist_ordinal(), "ScaleDiscrete")
 })
 
+
 test_that("theme economist works", {
   expect_s3_class(theme_economist(), "theme")
 })
@@ -89,103 +125,80 @@ test_that("theme_economist respects base_family and base_size", {
   expect_equal(thm$text$size, 20)
 })
 
+test_that("theme_economist draws the classic blue-gray ground", {
+  thm <- theme_economist()
+  expect_equal(thm$plot.background$fill, economist_bg("blue-gray"))
+  # White gridlines on the ground, ticks drawn into the panel.
+  expect_equal(thm$panel.grid.major$colour, "white")
+  expect_lt(grid::convertUnit(thm$axis.ticks.length, "pt", valueOnly = TRUE), 0)
+})
+
+test_that("theme_economist fills the panel and strips", {
+  # Before 7.0.0 these asked for an undefined "ebg" color and got NA.
+  thm <- theme_economist()
+  expect_equal(thm$rect$fill, economist_bg("blue-gray"))
+  expect_equal(thm$strip.background$fill, economist_bg("blue-gray"))
+})
+
+test_that("theme_economist separates the subtitle from the title", {
+  thm <- theme_economist(base_size = 10)
+  expect_equal(grid::convertUnit(thm$plot.title$margin, "pt", valueOnly = TRUE)[3], 5)
+})
+
 test_that("theme economist with horizontal=FALSE works", {
   thm <- theme_economist(horizontal = FALSE)
   expect_s3_class(thm, "theme")
-  expect_equal(thm$panel.grid.major.y, element_blank())
+  expect_s3_class(thm$panel.grid.major.y, "element_blank")
 })
 
-test_that("theme_economist draws a white panel on a pale ground", {
-  thm <- theme_economist()
-  expect_equal(thm$panel.background$fill, "#ffffff")
-  expect_equal(thm$plot.background$fill, "#e9edf0")
+test_that("theme economist with dark panel works", {
+  thm <- theme_economist(dkpanel = TRUE)
+  expect_s3_class(thm, "theme")
+  expect_equal(thm$panel.background$fill, economist_bg("dark blue-gray"))
+  expect_equal(thm$strip.background$fill, economist_bg("dark blue-gray"))
 })
 
-test_that("theme_economist draws horizontal gridlines only, by default", {
-  thm <- theme_economist()
-  expect_equal(thm$panel.grid.major.x, element_blank())
-  expect_equal(thm$panel.grid.minor, element_blank())
-  expect_equal(thm$panel.grid.major$colour, "#b7c6cf")
+test_that("theme_economist_white respects base_family and base_size", {
+  thm <- theme_economist_white(base_family = "mono", base_size = 20)
+  expect_equal(thm$text$family, "mono")
+  expect_equal(thm$text$size, 20)
 })
 
-test_that("theme_economist points tick marks outward", {
-  # The pre-2017 theme used a negative length to draw ticks inside the
-  # panel; the current design puts them below the x-axis baseline.
-  expect_gt(as.numeric(theme_economist()$axis.ticks.length), 0)
+test_that("theme economist_white works", {
+  thm <- theme_economist_white(gray_bg = FALSE)
+  expect_equal(thm$panel.background$fill, "white")
+  expect_equal(thm$plot.background$fill, "white")
 })
 
-test_that("theme_economist leaves the y axis unruled and unticked", {
-  thm <- theme_economist()
-  expect_equal(thm$axis.line.y, element_blank())
-  expect_equal(thm$axis.ticks.y, element_blank())
+test_that("theme economist_white with gray background works", {
+  thm <- theme_economist_white(gray_bg = TRUE)
+  expect_s3_class(thm, "theme")
+  expect_equal(thm$plot.background$fill, economist_bg("light gray"))
+  expect_equal(thm$panel.grid.major$colour, economist_bg("dark gray"))
 })
 
-test_that("theme_economist uses the styleguide's text colours", {
-  thm <- theme_economist()
-  expect_equal(thm$text$colour, "#3f5661")
-  expect_equal(thm$plot.title$colour, "#0c0c0c")
-  expect_equal(thm$plot.title$face, "bold")
-})
-
-test_that("theme_economist draws legend keys with no box behind them", {
-  # A filled key shows as a white square against the pale plot ground.
-  expect_true(is.na(theme_economist()$legend.key$fill))
-})
-
-test_that("theme_economist gives horizontal colour bars room for labels", {
-  # The bar length follows legend.key.width; too narrow and the bar's
-  # own labels overprint each other.
-  thm <- theme_economist()
-  width <- grid::convertWidth(thm$legend.key.width, "points", valueOnly = TRUE)
-  height <- grid::convertHeight(
-    thm$legend.key.height,
-    "points",
-    valueOnly = TRUE
-  )
-  expect_gt(width, height)
-})
-
-test_that("theme_economist ranges the title against the whole plot", {
-  expect_equal(theme_economist()$plot.title.position, "plot")
-})
-
-test_that("theme_economist left-aligns the source note", {
-  expect_equal(theme_economist()$plot.caption$hjust, 0)
-})
-
-test_that("theme_economist_white is deprecated", {
-  expect_snapshot(x <- theme_economist_white())
-})
-
-test_that("theme_economist_white still returns the current theme", {
-  withr::local_options(lifecycle_verbosity = "quiet")
-  expect_equal(theme_economist_white(), theme_economist())
-})
-
-test_that("theme_economist(dkpanel=) is deprecated", {
-  expect_snapshot(x <- theme_economist(dkpanel = TRUE))
-})
-
-test_that("theme_economist(dkpanel=) no longer changes the theme", {
-  withr::local_options(lifecycle_verbosity = "quiet")
-  expect_equal(theme_economist(dkpanel = TRUE), theme_economist())
-})
-
-test_that("economist_pal(fill=) is deprecated", {
-  expect_snapshot(x <- economist_pal(fill = TRUE))
-})
-
-test_that("economist_pal(fill=) no longer changes the palette", {
-  withr::local_options(lifecycle_verbosity = "quiet")
-  expect_equal(economist_pal(fill = FALSE)(9), economist_pal()(9))
+test_that("classic economist themes do not warn", {
+  # 7.0.0 deprecated theme_economist_white(), dkpanel and fill=.
+  expect_no_warning(theme_economist_white())
+  expect_no_warning(theme_economist(dkpanel = TRUE))
+  expect_no_warning(economist_pal(fill = FALSE))
 })
 
 test_that("theme_economist draws correctly", {
   expect_doppelganger("theme_economist", theme_test_plot() + theme_economist())
 })
 
+test_that("theme_economist(dkpanel = TRUE) draws correctly", {
+  expect_doppelganger("theme_economist-dkpanel", theme_test_plot() + theme_economist(dkpanel = TRUE))
+})
+
 test_that("theme_economist_white draws correctly", {
-  # Deprecated, but still exported, so it keeps a baseline until it is removed.
-  withr::local_options(lifecycle_verbosity = "quiet")
   expect_doppelganger("theme_economist_white", theme_test_plot() + theme_economist_white())
+})
+
+test_that("theme_economist_white(gray_bg = FALSE) draws correctly", {
+  expect_doppelganger(
+    "theme_economist_white-white",
+    theme_test_plot() + theme_economist_white(gray_bg = FALSE)
+  )
 })
