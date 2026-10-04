@@ -1,0 +1,1125 @@
+---
+title: "The Economist chart style guide: 2024 onward"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The Economist chart style guide: 2024 onward}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6.5,
+  fig.height = 4,
+  dpi = 120,
+  out.width = "100%",
+  dev.args = list(bg = "transparent")
+)
+```
+
+This is a reverse-engineered replacement for *The Economist visual
+styleguide*, v1.2 (4 May 2017), covering the standard static chart system used
+from the 2024 redesign onward. It follows the old guide's organisation and
+chart catalogue, but the visual rules and examples come from current work. It
+is not an official Economist specification.
+
+The evidence is:
+
+1. the public [Economist Design System](https://design-system.economist.com/)
+   and [Marber colour foundations](https://marber.economist.com/8e1dcf0b8/p/543b0f-colour/b/37fc5e);
+2. 246 print and web charts from 2024 onward in the local
+   `econ-chart-corpus`, including responsive `ai2html` files with their text
+   styles; and
+3. recurring conventions in [Graphic
+   Detail](https://www.economist.com/topics/graphic-detail) and the [weekly
+   edition](https://www.economist.com/weeklyedition).
+
+Exact colours below are sampled values. Layout and editorial rules are
+repeated observations translated into practical `ggplot2` guidance. Bespoke
+maps, illustrations and interactive graphics are out of scope.
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(ggthemes)
+library(grid)
+library(gtable)
+
+econ <- ggthemes_data$economist_2024
+web <- setNames(economist_2024_pal("web")(6),
+                c("red", "salmon", "blue", "light blue", "dark gray", "light gray"))
+print <- setNames(economist_2024_pal("print")(6), names(web))
+
+caption <- function(source, note = NULL) {
+  paste(c(note, paste0("Source: ", source)), collapse = "\n")
+}
+
+## Add the short red tab that sits outside the plotting panel.
+with_economist_tab <- function(plot, media = c("web", "print")) {
+  media <- match.arg(media)
+  pal <- ggthemes_data$economist_2024[[media]]
+  ground <- pal$bg$value[pal$bg$name == "panel"]
+  g <- ggplotGrob(plot)
+  g <- gtable_add_rows(g, unit(c(4, 5), "pt"), pos = 0)
+  tab <- rectGrob(
+    x = unit(0, "npc"), width = unit(16, "pt"), hjust = 0,
+    gp = gpar(fill = pal$accent, col = NA)
+  )
+  g <- gtable_add_grob(g, tab, t = 1, l = 1, r = ncol(g),
+                       name = "economist-tab")
+  bg <- which(g$layout$name == "background")
+  g$grobs[[bg]]$gp <- gpar(fill = ground, col = NA)
+  g$layout[bg, c("t", "l", "b", "r")] <- c(1, 1, nrow(g), ncol(g))
+  g
+}
+
+draw_economist <- function(plot, media = c("web", "print")) {
+  grid.newpage()
+  grid.draw(with_economist_tab(plot, match.arg(media)))
+}
+```
+
+# The new design
+
+The late-March 2024 redesign replaced the cool blue print ground and
+blue-first palettes with a warm grey print ground and red-first palettes. Web
+charts remain white, but share the red-led hierarchy. The local corpus last
+shows the old cool ground on March 16th and first shows `#ECEBE0` on March
+30th.
+
+| Element | 2017 system | 2024 onward |
+|---|---|---|
+| Print ground | cool pale blue | warm grey `#ECEBE0` |
+| Web ground | white | white |
+| First categorical colour | blue | red |
+| Supporting categories | blue/cyan/gold/teal | salmon, blue, light blue, dark grey, light grey |
+| Text | blue-grey | near-black |
+| Top furniture | tab; formerly a full web rule | short red tab |
+| Pie/doughnut | included | no longer used |
+
+The design still relies on editorial hierarchy: a declarative headline,
+precise subtitle, restrained axes, a clear source and one visual focus.
+
+# Chart sizes
+
+The 2017 guide prescribed named print modules. Current production is better
+understood as two separate responsive compositions:
+
+- **Print:** the entire graphic, including title and source, sits on warm grey
+  `#ECEBE0`. The corpus often contains 608px-wide delivery images; that is an
+  asset size, not a physical-width rule.
+- **Web:** the entire graphic is white. Current `ai2html` assets commonly have
+  700px and 550px artboards, with a narrower layout when the composition needs
+  one. Labels and panels reflow at breakpoints; the desktop chart is not merely
+  shrunk.
+- **Standard proportions:** start around 5:3 for one panel. Rankings, tables
+  and small multiples may be taller. Give right-hand values and direct labels
+  enough space.
+- **Alignment:** tab, headline, subtitle, plot and source share one left edge.
+
+Render print and web separately:
+
+```{r media-pair, fig.width=7, fig.height=3}
+media_data <- data.frame(year = 2021:2025, value = c(18, 21, 28, 35, 42))
+
+media_plot <- function(media) {
+  colour <- economist_2024_pal(media)(1)
+  ggplot(media_data, aes(year, value)) +
+    geom_line(colour = colour, linewidth = 1) +
+    scale_x_continuous(breaks = 2021:2025) +
+    scale_y_continuous(position = "right") +
+    labs(
+      title = paste("A standard", media, "chart"),
+      subtitle = "Index, 2021=100",
+      x = NULL, y = NULL,
+      caption = caption("Illustrative data")
+    ) +
+    theme_economist_2024(media)
+}
+
+draw_economist(media_plot("web"), "web")
+draw_economist(media_plot("print"), "print")
+```
+
+# Chart anatomy
+
+A standard chart reads from top to bottom:
+
+1. a short red tab;
+2. a bold, sentence-case headline that states the finding;
+3. a subtitle giving geography, measure, unit and period;
+4. a key or panel heading, when needed;
+5. the plot;
+6. notes and source below the baseline.
+
+Use a numbered box only when the chart belongs to a numbered sequence. Put
+methodological notes before the source. Footnote symbols follow `*`, `†`, `‡`,
+`§`. The source is part of the graphic, not surrounding article prose.
+
+## Type scale and margins
+
+Standard charts use Economist Sans. Current 700px `ai2html` files repeatedly
+use roughly 20px/24px bold headlines, 17px/20px medium subtitles, 15px axis
+and annotation text, and 15px/20px grey source text. `theme_economist_2024()`
+expresses that hierarchy relative to an 11pt base so it scales with the output.
+Use a neutral sans fallback when Economist Sans is unavailable and inspect
+line wrapping on the final device.
+
+| Role | Treatment |
+|---|---|
+| Headline | bold, about 1.4 times the base size |
+| Subtitle | regular/medium, about 1.05 times base |
+| Axes, keys, annotation | about 0.9 times base |
+| Panel heading | bold, base size |
+| Source and notes | grey, about 0.85 times base |
+
+The implementation deliberately starts from the 2017 theme's layout
+contract. It retains the unboxed panel, right-hand values, horizontal y-axis
+titles, outward baseline ticks, plot-aligned title/key/source, and zero web
+inset. The 2024 layer then changes only the properties supported by current
+evidence: the type ratios and leading above, a tighter responsive panel
+gutter, a slightly heavier rule, darker text, and the white or warm-grey
+ground.
+
+Headlines, subtitles and sources align to the full plot. A print chart has a
+small outer inset; a web chart has none. Keep at least one line of clear space
+between subtitle/key and plotting marks.
+
+## Axes, grids and numbers
+
+- Put continuous y-axis values on the right in a standard single-panel chart.
+- Use light horizontal rules; omit vertical rules unless x-position comparison
+  needs them. Horizontal charts reverse that logic.
+- Draw a dark x baseline with short outward ticks. Do not box the panel.
+- Bars start at zero. Lines may use a non-zero domain when the subtitle and
+  ticks make it unambiguous; show a scale break when omission matters.
+- Keep units horizontal in the subtitle or above the scale.
+- Use tabular numerals and meaningful precision. Abbreviate consistently:
+  `'000`, `m`, `bn`.
+- Label the values that matter, not every mark.
+
+# Standard formats
+
+To make the redesign directly comparable with the superseded guide, the
+examples below reuse its subjects and reconstructed data wherever the chart
+type still belongs to the standard repertoire. The data stay fixed; the
+ground, type hierarchy, chart furniture and colour roles change.
+
+## Leader
+
+A leader is the default single-panel chart: one headline, one clear visual
+claim and one focal series. Red carries the subject; context is neutral.
+
+```{r leader}
+leader <- data.frame(
+  year = 2011:2015,
+  change = c(2.9, 1.7, 1.5, 1.6, 0.1)
+)
+
+p <- ggplot(leader, aes(year, change)) +
+  geom_line(colour = web["red"], linewidth = 1) +
+  geom_hline(yintercept = 2, colour = web["red"], linewidth = 0.35) +
+  annotate("text", x = 2014.9, y = 2.12, label = "Target 2", hjust = 1,
+           colour = web["red"], size = 3) +
+  scale_x_continuous(breaks = 2011:2015,
+                     labels = economist_year_format()) +
+  scale_y_continuous(position = "right", limits = c(0, 3), breaks = 0:3) +
+  labs(
+    title = "US consumer prices",
+    subtitle = "% increase on a year earlier",
+    x = NULL, y = NULL,
+    caption = caption("US Bureau of Labour Statistics")
+  ) +
+  theme_economist_2024("web")
+
+draw_economist(p)
+```
+
+## Espresso
+
+An espresso is a compact, self-contained chart. Remove furniture that does not
+survive the smaller format: keep one short headline, few ticks and direct
+labels. Do not reduce text until it is illegible.
+
+```{r espresso, fig.width=4, fig.height=2.6}
+espresso <- data.frame(
+  year = 2007:2015,
+  change = c(4, 2, -6, 5, 8, 5, 3, 3, 1)
+)
+
+p <- ggplot(espresso, aes(year, change)) +
+  geom_col(fill = web["red"], width = 0.65) +
+  geom_hline(yintercept = 0, colour = web["dark gray"], linewidth = 0.35) +
+  scale_y_continuous(position = "right", limits = c(-8, 8),
+                     breaks = seq(-8, 8, 4)) +
+  scale_x_continuous(breaks = c(2007, 2009, 2011, 2013, 2015),
+                     labels = economist_year_format()) +
+  labs(
+    title = "US retail sales",
+    subtitle = "Excluding motor vehicles and parts,\n% change on a year earlier",
+    x = NULL, y = NULL,
+    caption = caption("US Department of Commerce")
+  ) +
+  theme_economist_2024("web", base_size = 10)
+
+draw_economist(p)
+```
+
+## Panel
+
+Use panels instead of a crowded legend or dual axes. Share scales when readers
+should compare levels; say explicitly when scales differ. Repeat reference
+lines in each panel and keep headings left-aligned.
+
+```{r panel, fig.height=3.5}
+panel_data <- rbind(
+  data.frame(panel = "Media mentions", x = 1:12,
+             series = "Television", value = c(18, 52, 61, 43, 48, 20, 21, 49, 52, 27, 60, 66)),
+  data.frame(panel = "Media mentions", x = 1:12,
+             series = "Polling", value = c(2, 8, 18, 15, 21, 18, 22, 26, 30, 28, 33, 42)),
+  data.frame(panel = "Voter support", x = 1:12,
+             series = "Authoritarianism", value = seq(42, 48, length.out = 12)),
+  data.frame(panel = "Voter support", x = 1:12,
+             series = "Racial resentment", value = seq(2, 54, length.out = 12))
+)
+panel_data$panel <- factor(panel_data$panel,
+                          levels = c("Media mentions", "Voter support"))
+panel_data$series <- factor(
+  panel_data$series,
+  levels = c("Television", "Polling", "Authoritarianism", "Racial resentment")
+)
+
+p <- ggplot(panel_data, aes(x, value, colour = series)) +
+  geom_line(linewidth = 0.9, show.legend = FALSE) +
+  facet_wrap(~panel, nrow = 1) +
+  scale_colour_manual(values = economist_2024_pal("web")(4)) +
+  scale_y_continuous(position = "right", limits = c(0, 70)) +
+  labs(title = "Racy", subtitle = "United States", x = NULL, y = NULL,
+       caption = caption("GDELT; RCP; YouGov")) +
+  theme_economist_2024("web")
+
+draw_economist(p)
+```
+
+# Colour
+
+Colour is semantic. Red establishes focus; salmon is a related or less
+emphatic category; blue and light blue form the main contrast; greys provide
+context. Do not use the whole palette merely because six colours are
+available.
+
+The source tables in `ggthemes_data$economist_design_system$sources` use
+numeric HSL components as their canonical representation. At build time,
+`value` is regenerated from HSL and checked against the published HEX value.
+The published HEX, RGB, rounded HSL and CMYK strings remain available in
+`documented_*` provenance fields.
+
+## Qualitative palettes
+
+The current six-colour order is **red, salmon, blue, light blue, dark grey,
+light grey**. Print and web use separate production values.
+
+```{r qualitative-palettes, fig.height=3.1, fig.width=7}
+palette_table <- rbind(
+  data.frame(media = "Web", name = names(web), colour = unname(web)),
+  data.frame(media = "Print", name = names(print), colour = unname(print))
+)
+palette_table$x <- rep(seq_len(6), 2)
+
+ggplot(palette_table, aes(x, media, fill = colour)) +
+  geom_tile(width = 0.96, height = 0.72) +
+  geom_text(aes(label = paste0(name, "\n", colour)), size = 2.8,
+            colour = rep(c("white", "#0D0D0D", "white", "white",
+                           "white", "#0D0D0D"), 2)) +
+  scale_fill_identity() +
+  scale_x_continuous(breaks = NULL) +
+  labs(x = NULL, y = NULL) +
+  theme_void() +
+  theme(axis.text.y = element_text(size = 10, face = "bold"))
+```
+
+The print colours are `r paste(unname(print), collapse = ", ")`. The web
+colours are `r paste(unname(web), collapse = ", ")`.
+
+## Evidence for separate web and print values
+
+The distinction is visible in the exported assets, not inferred merely from
+the different backgrounds. In the 118 web PNGs from 2026, exact `#E3120B`
+pixels occur in 108 graphics; salmon in 43, blue in 25, light blue in 15,
+dark grey in ten and light grey in 22. The six-series line chart
+`20260606_WOC055` contains all six web values as substantial runs of pixels.
+None of the six print values occurs in those web exports. Conversely,
+`20260829_FNC090`, a print stacked-bar chart, contains all six print values and
+none of the six web values. These are not two renditions of the same graphic,
+so the evidence establishes two recurring production sets but not a
+colour-conversion formula.
+
+Only part of the chart palette is also an exact token in the current
+[Economist foundation palette](https://design-system.economist.com/foundations/colour/palettes):
+
+| Role | Web chart value | Print chart value | Relation to foundation colours |
+|---|---:|---:|---|
+| Red | `#E3120B` | `#ED1C24` | web is exactly Economist Red; print is not |
+| Salmon | `#FBA493` | `#F8AB90` | neither is an exact foundation token |
+| Blue | `#3A4DAC` | `#28479D` | related to Chicago blue, but not an exact token |
+| Light blue | `#7892C5` | `#659BD2` | related to Chicago blue, but not an exact token |
+| Dark grey | `#6A6654` | `#636466` | neither matches the neutral London greys |
+| Light grey | `#BEBCAB` | `#C6C8CA` | neither matches the neutral London greys |
+| Ground | `#FFFFFF` | `#ECEBE0` | web is London 100; print is close to, but not, Los Angeles 90 `#EBE9E0` |
+
+The web grey ramp below does contain exact London grey tokens: `#F2F2F2`,
+`#D9D9D9`, `#B3B3B3` and `#0D0D0D`. The chart blues clearly belong to the
+same visual family as Chicago blue, but treating them as official token values
+would overstate the evidence. The remaining qualitative values are best
+understood as chart-specific production colours sampled from published work.
+
+The expanded five-point HSL ramps make the relationship more precise. These
+are the nearest plausible named stops to the observed **web** categorical
+colours (CIEDE2000 distance in the final column):
+
+| Role | Observed | Most likely expanded stop | Stop value | Distance |
+|---|---:|---|---:|---:|
+| Red | `#E3120B` | Economist Red 45 | `#DB110A` | 1.73 |
+| Light red / salmon | `#FBA493` | Economist Red 80 | `#FAA19E` | 4.93 |
+| Blue | `#3A4DAC` | Chicago 45 | `#2E45B8` | 3.14 |
+| Light blue | `#7892C5` | Chicago 70 | `#8594E0` | 4.28 |
+| Dark grey | `#6A6654` | Los Angeles 35 | `#6D6746` | 5.29 |
+| Light grey | `#BEBCAB` | Los Angeles 70 | `#C3BEA2` | 3.93 |
+
+The exact web red is the documented Economist Red token, even though it lies
+between the generated 45 and 50 stops. The warm Los Angeles canvas ramp fits
+both web greys better than neutral London; the apparently grey categories
+carry a yellow-brown cast.
+
+For **print**, the closest or most semantically plausible stops are:
+
+| Role | Observed | Most likely expanded stop | Stop value | Distance |
+|---|---:|---|---:|---:|
+| Red | `#ED1C24` | Economist Red 55 | `#F52B24` | 2.92 |
+| Light red / salmon | `#F8AB90` | Economist Red 80 | `#FAA19E` | 8.99 |
+| Blue | `#28479D` | Chicago 40 | `#293DA3` | 3.82 |
+| Light blue | `#659BD2` | Chicago 70 | `#8594E0` | 9.04 |
+| Dark grey | `#636466` | London 40 | `#666666` | 1.45 |
+| Light grey | `#C6C8CA` | London 80 | `#CCCCCC` | 1.66 |
+
+The print salmon is mathematically a little closer to Singapore 75, but its
+role and hue make Economist Red 80 the more credible family assignment. The
+larger distances for salmon and light blue indicate that the HSL stops explain
+the families, not an exact production formula.
+
+## Sequential red and grey
+
+Use red for a measure that carries the editorial focus and grey for neutral
+ordered context. Both ramps run from low/light to high/dark by default.
+
+```{r sequential-palettes, fig.height=2.7}
+ramp <- expand.grid(x = seq(0, 1, length.out = 100),
+                    palette = c("Red", "Grey"))
+
+red_ramp <- economist_2024_seq_gradient_pal("red", "web")
+gray_ramp <- economist_2024_seq_gradient_pal("gray", "web")
+ramp$colour <- ifelse(ramp$palette == "Red", red_ramp(ramp$x), gray_ramp(ramp$x))
+
+ggplot(ramp, aes(x, palette, fill = colour)) +
+  geom_tile() +
+  geom_text(data = data.frame(x = c(0.02, 0.98), palette = "Red",
+                              label = c("low", "high")),
+            aes(x = x, y = palette, label = label), hjust = c(0, 1),
+            colour = c("#0D0D0D", "white"),
+            size = 3, inherit.aes = FALSE) +
+  scale_fill_identity() +
+  labs(x = NULL, y = NULL) +
+  theme_void() +
+  theme(axis.text.y = element_text(size = 10, face = "bold"))
+```
+
+Use `scale_fill_gradient_economist_2024("red")` or
+`scale_fill_gradient_economist_2024("gray")`. Never substitute a rainbow for
+ordered magnitude.
+
+## Diverging red and grey
+
+Use the diverging ramp only when the centre has meaning: zero change, parity,
+a target or a long-run average. Grey occupies one side, red the other, and a
+near-white midpoint marks the reference.
+
+```{r diverging-palette, fig.height=1.8}
+diverge <- data.frame(x = seq(-1, 1, length.out = 120), y = 1)
+
+ggplot(diverge, aes(x, y, fill = x)) +
+  geom_tile() +
+  scale_fill_gradient2_economist_2024(midpoint = 0, guide = "none") +
+  annotate("text", x = c(-0.96, 0, 0.96), y = 1,
+           label = c("below", "reference", "above"), hjust = c(0, .5, 1),
+           colour = c("white", "#0D0D0D", "white"), size = 3) +
+  coord_cartesian(expand = FALSE) +
+  theme_void()
+```
+
+# Bar and column charts: side by side
+
+Bars compare magnitude by length. Horizontal bars suit rankings and long
+labels; columns suit short ordered categories such as years. Sort rankings
+unless a natural or editorial order is more important. Every bar starts at
+zero.
+
+## One series with a highlight
+
+```{r bar-highlight}
+doctors <- data.frame(
+  country = c("Sweden", "Denmark", "Britain", "Portugal", "Luxembourg",
+              "France", "Austria", "Spain", "Germany"),
+  visits = c(2.9, 4.3, 5.0, 5.4, 5.9, 6.4, 6.6, 7.3, 8.0)
+)
+doctors$country <- factor(doctors$country, levels = rev(doctors$country))
+doctors$highlight <- doctors$country == "Spain"
+
+p <- ggplot(doctors, aes(visits, country, fill = highlight)) +
+  geom_col(width = 0.62) +
+  scale_fill_manual(values = c(`FALSE` = unname(web["light gray"]),
+                               `TRUE` = unname(web["red"]))) +
+  scale_x_continuous(position = "top", limits = c(0, 8.4),
+                     expand = expansion(mult = c(0, 0.01))) +
+  guides(fill = "none") +
+  labs(title = "Salud",
+       subtitle = "Doctors' consultations per person\nSelected countries, 2009",
+       x = NULL, y = NULL, caption = caption("OECD")) +
+  theme_economist_2024("web", horizontal = FALSE) +
+  theme(axis.line.y = element_line(), axis.ticks.y = element_blank())
+
+draw_economist(p)
+```
+
+## Grouped bars
+
+Keep grouped comparisons to two or three series. Preserve the same left-to-
+right order everywhere and put the key above the plot.
+
+```{r grouped-bars}
+elections <- data.frame(
+  country = rep(c("Chile", "Brazil", "Mexico", "Malaysia", "South Africa",
+                  "Poland", "India", "Egypt", "Russia"), each = 2),
+  income = rep(c("Middle class", "Low income"), 9),
+  pct = c(78, 68, 71, 60, 66, 58, 64, 57, 61, 55,
+          58, 50, 55, 47, 53, 45, 51, 44)
+)
+elections$country <- factor(elections$country,
+                            levels = rev(unique(elections$country)))
+elections$income <- factor(elections$income,
+                           levels = c("Middle class", "Low income"))
+
+p <- ggplot(elections, aes(pct, country, fill = income)) +
+  geom_col(position = position_dodge(width = 0.72), width = 0.64) +
+  scale_fill_manual(values = c(`Middle class` = unname(web["red"]),
+                               `Low income` = unname(web["salmon"]))) +
+  scale_x_continuous(position = "top", limits = c(0, 82),
+                     expand = expansion(mult = c(0, 0.01))) +
+  labs(title = "Defenders of democracy",
+       subtitle = paste("Respondents saying that honest elections held regularly",
+                        "with a choice of at least two political parties are",
+                        "very important, 2007, %"),
+       fill = NULL, x = NULL, y = NULL,
+       caption = caption("Pew Global Attitudes Survey")) +
+  theme_economist_2024("web", horizontal = FALSE) +
+  theme(axis.line.y = element_line(), axis.ticks.y = element_blank())
+
+draw_economist(p)
+```
+
+# Bar and column charts: stacked
+
+Stack bars only for parts of a meaningful whole. Keep segment order fixed. A
+100% stack answers a composition question; a count stack answers a total-plus-
+composition question. Only the baseline segment supports precise comparison,
+so use grouped bars, dots or panels when every category matters equally.
+
+## Shares of a whole
+
+```{r stacked-bars}
+carriers <- data.frame(
+  band = rep(c("All mobiles", "Smartphones"), each = 5),
+  carrier = rep(c("AT&T", "Verizon", "Sprint Nextel", "T-Mobile", "Other"), 2),
+  share = c(30.4, 31.4, 10.0, 11.1, 16.8, 44.1, 30.5, 9.6, 12.9, 8.0)
+)
+carriers$carrier <- factor(carriers$carrier, levels = unique(carriers$carrier))
+carriers$band <- factor(carriers$band, levels = c("Smartphones", "All mobiles"))
+
+p <- ggplot(carriers, aes(share, band, fill = carrier)) +
+  geom_col(width = 0.55, position = position_stack(reverse = TRUE)) +
+  geom_text(aes(label = format(share, nsmall = 1)),
+            position = position_stack(vjust = 0.5, reverse = TRUE),
+            colour = "white", size = 3) +
+  scale_fill_manual(values = economist_2024_pal("web")(5)) +
+  scale_x_continuous(limits = c(0, 106), breaks = c(0, 25, 50, 75, 100),
+                     expand = expansion(mult = c(0, 0))) +
+  labs(title = "The Fed says no to nuptials",
+       subtitle = "Mobile operators' US market share, July 2011, %",
+       fill = NULL, x = NULL, y = NULL, caption = caption("comScore")) +
+  theme_economist_2024("web", horizontal = FALSE) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        axis.line = element_blank(), panel.grid = element_blank(),
+        axis.text.y = element_text(face = "bold"))
+
+draw_economist(p)
+```
+
+## Totals and composition
+
+```{r stacked-counts}
+adspend <- data.frame(
+  year = rep(2008:2017, each = 4),
+  format = rep(c("Paid search", "Display", "Classified", "Online video"), 10),
+  bn = c(
+    12, 6, 4, 1, 16, 8, 4, 2, 21, 11, 5, 3, 27, 15, 5, 5,
+    33, 20, 6, 8, 40, 26, 6, 12, 48, 34, 7, 17, 57, 43, 7, 24,
+    66, 53, 8, 32, 75, 64, 8, 41
+  )
+)
+adspend$format <- factor(adspend$format, levels = unique(adspend$format))
+
+p <- ggplot(adspend, aes(year, bn, fill = format)) +
+  annotate("rect", xmin = 2015.5, xmax = 2017.5, ymin = -Inf, ymax = Inf,
+           fill = web["light gray"], alpha = 0.35) +
+  annotate("text", x = 2016.5, y = 195, label = "FORECAST", size = 3,
+           colour = web["dark gray"]) +
+  geom_col(width = 0.7, position = position_stack(reverse = TRUE)) +
+  scale_fill_manual(values = economist_2024_pal("web")(4)) +
+  scale_y_continuous(position = "right", limits = c(0, 200),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(breaks = seq(2008, 2016, 2), expand = c(0.01, 0)) +
+  labs(title = "Getting sociable",
+       subtitle = "Global internet-advertising spending, $bn", fill = NULL,
+       x = NULL, y = NULL, caption = caption("ZenithOptimedia")) +
+  theme_economist_2024("web")
+
+draw_economist(p)
+```
+
+# Line charts: side by side
+
+Lines show movement over ordered time. Use solid lines for observed values,
+dashes for forecasts or counterfactuals and pale bands for uncertainty. Avoid
+markers on dense time series. Direct-label line ends when space permits.
+
+## Two lines, directly labelled
+
+```{r line-two}
+bond_anchors <- list(
+  Japan = c(8.1, 7.6, 6.8, 6.9, 5.4, 4.6, 4.9, 3.8, 3.2, 2.9,
+            2.1, 1.8, 1.6, 1.2, 0.9),
+  `United States` = c(2.0, 1.9, 1.7, 1.6, 1.4, 1.3, 1.5, 1.2, 1.1,
+                      0.9, 0.7, 0.5, 0.3, 0.2, 0.1)
+)
+set.seed(1501)
+bonds <- do.call(rbind, lapply(seq_along(bond_anchors), function(i) {
+  x <- seq(1, 15, by = 0.25)
+  baseline <- approx(1:15, bond_anchors[[i]], xout = x)$y
+  noise <- rnorm(length(x), 0, c(0.22, 0.08)[i])
+  noise[c(1, length(noise))] <- 0
+  data.frame(year = x, yield = pmax(0, baseline + noise),
+             country = names(bond_anchors)[i])
+}))
+ends <- bonds[bonds$year == 15, ]
+
+p <- ggplot(bonds, aes(year, yield, colour = country)) +
+  geom_line(linewidth = 0.95) +
+  geom_text(data = ends, aes(label = country), hjust = -0.12,
+            fontface = "bold", size = 3.1, show.legend = FALSE) +
+  scale_colour_economist_2024() +
+  scale_x_continuous(breaks = c(1, 5, 10, 15),
+                     expand = expansion(mult = c(0.01, 0.18))) +
+  scale_y_continuous(position = "right", limits = c(0, 8.5)) +
+  coord_cartesian(clip = "off") +
+  guides(colour = "none") +
+  labs(title = "Where Tokyo leads",
+       subtitle = "Ten-year government-bond yields, %",
+       x = "Years since start", y = NULL,
+       caption = caption("Thomson Reuters")) +
+  theme_economist_2024("web")
+
+draw_economist(p)
+```
+
+## Ordered lines in sequential red and grey
+
+Use a sequential line palette only when the series themselves have a clear
+order, such as scenarios, percentiles or intensity bands. Use the qualitative
+palette above for unrelated named series.
+
+```{r line-sequential, fig.height=3.3}
+ordered_lines <- expand.grid(year = 2020:2026, level = 1:4)
+ordered_lines$value <- with(
+  ordered_lines,
+  13 + level * 7 + (year - 2020) * (0.8 + level * 0.55) +
+    sin((year - 2019) / 1.4) * 1.2
+)
+ordered_ends <- subset(ordered_lines, year == 2026)
+
+ordered_line_plot <- function(palette) {
+  ggplot(ordered_lines, aes(year, value, colour = level, group = level)) +
+    geom_line(linewidth = 0.9) +
+    geom_text(data = ordered_ends,
+              aes(label = paste("Level", level)), hjust = -0.12,
+              size = 3, fontface = "bold", show.legend = FALSE) +
+    ## Keep the lightest line above the white endpoint of the ramp.
+    scale_colour_gradient_economist_2024(palette, limits = c(0, 5)) +
+    scale_x_continuous(breaks = c(2020, 2022, 2024, 2026),
+                       expand = expansion(mult = c(0.03, 0.17))) +
+    scale_y_continuous(position = "right") +
+    coord_cartesian(clip = "off") +
+    guides(colour = "none") +
+    labs(title = paste("Ordered series in", palette),
+         subtitle = "Darker lines represent higher ordered levels",
+         x = NULL, y = NULL, caption = caption("Illustrative data")) +
+    theme_economist_2024("web")
+}
+
+draw_economist(ordered_line_plot("red"))
+draw_economist(ordered_line_plot("gray"))
+```
+
+## Filled lines and intervals
+
+A light stop can carry the area or interval while a darker stop carries its
+boundary. This keeps fill and line within one ordered family. Red makes the
+series editorially prominent; grey makes it contextual.
+
+```{r line-filled, fig.height=3.3}
+filled_line <- data.frame(
+  year = 2016:2026,
+  value = c(30, 32, 31, 35, 38, 44, 51, 57, 61, 68, 72),
+  spread = c(3, 3, 4, 4, 5, 5, 6, 7, 7, 8, 9)
+)
+filled_line$lower <- filled_line$value - filled_line$spread
+filled_line$upper <- filled_line$value + filled_line$spread
+
+filled_line_plot <- function(palette) {
+  shades <- economist_2024_seq_gradient_pal(palette, "web")(c(0.2, 0.75))
+  ggplot(filled_line, aes(year, value)) +
+    geom_ribbon(aes(ymin = lower, ymax = upper),
+                fill = shades[1], colour = NA) +
+    geom_line(colour = shades[2], linewidth = 0.95) +
+    scale_x_continuous(breaks = c(2016, 2018, 2020, 2022, 2024, 2026)) +
+    scale_y_continuous(position = "right") +
+    labs(title = paste("A filled line in sequential", palette),
+         subtitle = "Central estimate and illustrative interval",
+         x = NULL, y = NULL,
+         caption = caption("Illustrative data", "Shading shows an interval")) +
+    theme_economist_2024("web")
+}
+
+draw_economist(filled_line_plot("red"))
+draw_economist(filled_line_plot("gray"))
+```
+
+## Six lines in the qualitative order
+
+The full palette is appropriate when six named series must be compared. Use
+end labels so colour recognition is local, not a memory test.
+
+```{r line-six, fig.height=4.5}
+set.seed(1504)
+countries <- c("Hungary", "Lithuania", "Russia", "Japan",
+               "United States", "Britain")
+starts <- c(30, 34, 30, 21, 13, 11)
+ends <- c(20, 29, 20, 18, 13, 7)
+suicides <- do.call(rbind, lapply(seq_along(countries), function(i) {
+  data.frame(
+    year = 1960:2013,
+    country = factor(countries[i], levels = countries),
+    rate = pmax(0.5, approx(
+      seq(1960, 2013, length.out = 8),
+      seq(starts[i], ends[i], length.out = 8) +
+        c(0, cumsum(rnorm(7, 0, 2.2))),
+      xout = 1960:2013
+    )$y + c(0, rnorm(52, 0, 0.75), 0))
+  )
+}))
+line_ends <- do.call(rbind, lapply(split(suicides, suicides$country), function(d) {
+  d[which.max(d$year), ]
+}))
+line_ends$rate <- pmax(
+  1,
+  line_ends$rate + c(
+    Hungary = 1.2, Lithuania = 0.8, Russia = 1.0,
+    Japan = 1.8, `United States` = -1.6, Britain = -0.6
+  )[as.character(line_ends$country)]
+)
+
+p <- ggplot(suicides, aes(year, rate, colour = country)) +
+  geom_line(linewidth = 0.85) +
+  geom_text(data = line_ends, aes(label = country), hjust = 0, nudge_x = 1.5,
+            size = 3, fontface = "bold", show.legend = FALSE) +
+  scale_colour_economist_2024() +
+  scale_x_continuous(limits = c(1960, 2030),
+                     breaks = c(1960, 1970, 1980, 1990, 2000, 2013),
+                     labels = c("1960", "70", "80", "90", "2000", "13")) +
+  scale_y_continuous(position = "right", limits = c(0, 55)) +
+  coord_cartesian(clip = "off") +
+  guides(colour = "none") +
+  labs(title = "Coming down everywhere",
+       subtitle = "Suicides per 100,000 population", x = NULL, y = NULL,
+       caption = caption("ONS; Eurostat")) +
+  theme_economist_2024("web")
+
+draw_economist(p)
+```
+
+## Forecasts and intervals
+
+```{r line-forecast}
+forecast <- data.frame(year = 2019:2028,
+                       value = c(42, 45, 48, 55, 63, 70, 74, 78, 81, 84))
+forecast$phase <- ifelse(forecast$year <= 2025, "Observed", "Forecast")
+
+p <- ggplot(forecast, aes(year, value)) +
+  annotate("rect", xmin = 2025, xmax = Inf, ymin = -Inf, ymax = Inf,
+           fill = web["salmon"], alpha = 0.22) +
+  geom_line(data = subset(forecast, year <= 2025),
+            colour = web["red"], linewidth = 0.95) +
+  geom_line(data = subset(forecast, year >= 2025),
+            colour = web["red"], linewidth = 0.95, linetype = "dashed") +
+  annotate("text", x = 2026.5, y = 48, label = "Forecast", size = 3) +
+  scale_x_continuous(breaks = seq(2020, 2028, 2)) +
+  scale_y_continuous(position = "right") +
+  labs(title = "Growth is expected to slow",
+       subtitle = "Index; dashed line is a forecast",
+       x = NULL, y = NULL, caption = caption("Illustrative forecast")) +
+  theme_economist_2024("web")
+
+draw_economist(p)
+```
+
+# Line charts: stacked
+
+A stacked line chart is a stacked area chart with boundary lines. Use it only
+for components of a real total, with a fixed stacking order and a modest
+number of categories. The reader can compare the total and the baseline
+category accurately; middle layers mainly show composition. Use small
+multiples when individual trends are the question.
+
+```{r stacked-lines}
+reserves <- data.frame(
+  year = rep(2002:2011, 2),
+  trn = c(
+    0.3, 0.4, 0.5, 0.7, 0.9, 1.2, 1.6, 1.9, 2.3, 2.8,
+    0.5, 0.6, 0.8, 1.0, 1.3, 1.6, 1.9, 2.1, 2.4, 2.7
+  ),
+  region = rep(c("China", "Other developing countries"), each = 10)
+)
+reserves$region <- factor(reserves$region,
+                          levels = c("China", "Other developing countries"))
+
+p <- ggplot(reserves, aes(year, trn, fill = region)) +
+  geom_area(position = position_stack(reverse = TRUE),
+            colour = "white", linewidth = 0.25) +
+  annotate("text", x = 2009.5, y = 1.6, label = "China",
+           colour = "white", size = 3.1, hjust = 1) +
+  annotate("text", x = 2009.5, y = 4.3,
+           label = "Other developing\ncountries",
+           colour = web["dark gray"], size = 3.1, hjust = 1) +
+  scale_fill_manual(values = economist_2024_pal("web")(2), guide = "none") +
+  scale_x_continuous(expand = c(0, 0), breaks = seq(2002, 2010, 2),
+                     labels = c("2002", "04", "06", "08", "10*")) +
+  scale_y_continuous(position = "right", limits = c(0, 6),
+                     expand = expansion(mult = c(0, 0))) +
+  labs(title = "Foreign hoards",
+       subtitle = "Developing-country currency reserves\n$trn",
+       fill = NULL, x = NULL, y = NULL,
+       caption = caption("IMF", "*Forecast")) +
+  theme_economist_2024("web")
+
+draw_economist(p)
+```
+
+For proportions, normalise to 100% and label the final composition. Do not use
+a streamgraph or change the order between dates.
+
+# Thermometer plots
+
+The thermometer plot compares two or more values for every category. A thin
+connector shows the span; short terminal rules or dots do the quantitative
+work. It is more compact than grouped bars and makes direction immediately
+visible. As in the 2017 guide, more than four series should trigger a rethink.
+
+```{r thermometer-data, include=FALSE}
+fields <- c("Mathematics", "Economics", "Computer Science", "Business", "Biology",
+            "Philosophy", "English", "Psychology", "History", "Communication")
+base_low <- c(48, 71, 65, 58, 52, 90, 118, 74, 61, 55)
+
+thermo_data <- function(n) {
+  do.call(rbind, lapply(seq_len(n), function(k) {
+    data.frame(
+      field = factor(fields, levels = rev(fields)),
+      series = factor(c("one", "two", "three", "four", "five", "six")[k],
+                      levels = c("one", "two", "three", "four", "five", "six")),
+      value = base_low * (1 + 0.42 * (k - 1))
+    )
+  }))
+}
+
+thermo_plot <- function(n, terminals = c("rule", "dot")) {
+  terminals <- match.arg(terminals)
+  d <- thermo_data(n)
+  spans <- do.call(rbind, lapply(split(d, d$field), function(x) {
+    data.frame(field = x$field[1], lo = min(x$value), hi = max(x$value))
+  }))
+
+  p <- ggplot(d, aes(y = field)) +
+    geom_segment(data = spans,
+                 aes(x = lo, xend = hi, y = field, yend = field),
+                 colour = web["light gray"], linewidth = 0.6)
+  p <- p + if (terminals == "rule") {
+    geom_linerange(aes(x = value, ymin = as.numeric(field) - 0.3,
+                       ymax = as.numeric(field) + 0.3, colour = series),
+                   linewidth = 1)
+  } else {
+    geom_point(aes(x = value, colour = series), size = 2.6)
+  }
+
+  p +
+    scale_x_continuous(position = "top", limits = c(0, 400)) +
+    scale_colour_economist_2024() +
+    labs(title = "The horrible science",
+         subtitle = paste0('Use of a specific "adjective" per million words\n',
+                           "in student reviews on RateMyProfessors.com*"),
+         x = NULL, y = NULL, colour = NULL,
+         caption = caption("Ben Schmidt, Northeastern University")) +
+    theme_economist_2024("web", horizontal = FALSE) +
+    theme(axis.line.y = element_line(), axis.ticks.y = element_blank())
+}
+```
+
+## Two series
+
+```{r thermometer}
+draw_economist(thermo_plot(2))
+```
+
+## Three series with dot terminals
+
+```{r thermometer-range}
+draw_economist(thermo_plot(3, terminals = "dot"))
+```
+
+# Scatterplots
+
+Scatterplots reveal relationships, clusters and exceptions. Use small,
+partially transparent points when marks overlap. Reserve saturated red for
+the focal observations or fitted relationship and label only consequential
+points.
+
+## Relationship and highlights
+
+```{r scatter}
+set.seed(2017)
+metro <- data.frame(
+  period = rep(c("Q1 1990-Q1 2007", "Q1 2012-Q1 2016"), each = 90),
+  employment = c(rnorm(90, 2.4, 1.4), rnorm(90, 2.0, 1.2))
+)
+metro$house_prices <- with(
+  metro,
+  ifelse(period == "Q1 1990-Q1 2007", 1.9 * employment, 1.1 * employment) +
+    rnorm(nrow(metro), 0, 2.2)
+)
+
+p <- ggplot(metro, aes(employment, house_prices, colour = period)) +
+  geom_point(size = 2, alpha = 0.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              linewidth = 0.75, linetype = "22") +
+  geom_hline(yintercept = 0, colour = web["dark gray"], linewidth = 0.35) +
+  geom_vline(xintercept = 0, colour = web["dark gray"], linewidth = 0.35) +
+  scale_colour_manual(values = c(unname(web["red"]), unname(web["blue"]))) +
+  scale_y_continuous(position = "right") +
+  labs(title = "Divergent",
+       subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
+       x = "Employment", y = "House prices", colour = NULL,
+       caption = caption("Freddie Mac; US Bureau of Labour Statistics",
+                         "*At least 100,000 population")) +
+  theme_economist_2024("web") +
+  theme(panel.grid.major.x = element_line(colour = econ$web$grid))
+
+draw_economist(p)
+```
+
+## Bubble scatterplot
+
+When size is essential, scale by area and give the reader a small size key.
+Avoid adding both colour and size unless both variables matter to the story.
+
+```{r scatter-bubble}
+set.seed(4)
+regions <- c("Northeast", "Midwest", "West", "South")
+counties <- do.call(rbind, lapply(seq_along(regions), function(i) {
+  n <- 260
+  health <- rnorm(n, c(48, 44, 50, 41)[i], 7)
+  data.frame(
+    region = factor(regions[i], levels = regions),
+    health = health,
+    swing = -1.6 * (health - 45) + rnorm(n, c(2, 8, -2, 6)[i], 9),
+    pop = rlnorm(n, 1, 0.9)
+  )
+}))
+
+p <- ggplot(counties, aes(health, swing)) +
+  geom_hline(yintercept = 0, colour = web["dark gray"], linewidth = 0.35) +
+  geom_point(aes(fill = region, size = pop), shape = 21, alpha = 0.5,
+             stroke = 0.15, colour = "white") +
+  scale_fill_manual(values = economist_2024_pal("web")(4)) +
+  scale_size_area(max_size = 5, guide = "none") +
+  scale_y_continuous(position = "right") +
+  scale_x_continuous() +
+  coord_cartesian(xlim = c(20, 70), ylim = c(-50, 50)) +
+  labs(title = "Vitality and the vote",
+       subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+       fill = "Region", x = "Index of county health metrics*",
+       y = "Change in Republican margin\nover Democrats, 2012-16, % points",
+       caption = caption(
+         "Atlas of US Presidential Elections; Census Bureau; IPUMS; The Economist",
+         "*Weighted index of obesity, diabetes and heavy drinking, 2010-12"
+       )) +
+  theme_economist_2024("web") +
+  theme(panel.grid.major.x = element_line(colour = econ$web$grid))
+
+draw_economist(p)
+```
+
+# Timelines
+
+Use a horizontal time axis, short labels and thin leaders. Alternate label
+positions if events are close. A timeline explains sequence, not duration;
+use a Gantt-like bar when duration is the data.
+
+```{r timeline, fig.height=3.2}
+events <- data.frame(
+  date = as.Date(c("2024-01-15", "2024-03-30", "2024-07-04", "2024-11-12")),
+  y = c(0.18, -0.18, 0.18, -0.18),
+  label = c("Proposal", "Launch", "First review", "Revision")
+)
+
+p <- ggplot(events, aes(date, 0)) +
+  geom_hline(yintercept = 0, colour = web["dark gray"], linewidth = 0.7) +
+  geom_segment(aes(xend = date, yend = y), colour = web["light gray"]) +
+  geom_point(colour = web["red"], size = 3) +
+  geom_text(aes(y = y, label = label), vjust = ifelse(events$y > 0, -0.25, 1.25),
+            size = 3.1) +
+  scale_x_date(date_breaks = "3 months", date_labels = "%b",
+               expand = expansion(mult = c(.03, .03))) +
+  coord_cartesian(ylim = c(-.32, .32), clip = "off") +
+  labs(title = "A timeline shows sequence cleanly",
+       subtitle = "Selected events in 2024", x = NULL, y = NULL,
+       caption = caption("Illustrative chronology")) +
+  theme_economist_2024("web") +
+  theme(panel.grid = element_blank(), axis.text.y = element_blank(),
+        axis.line.y = element_blank())
+
+draw_economist(p)
+```
+
+# Miscellaneous chart styling
+
+## Editorial emphasis
+
+Every strong treatment should answer a question. Use emphasis in this order:
+position and ordering, a direct label, weight or opacity, then red. Red is a
+signal, not background decoration.
+
+## Time-series conventions
+
+- solid line: observed history;
+- dashed line: projection, scenario or fitted relationship;
+- pale band: interval or uncertainty;
+- thin vertical rule: event date, labelled at the top;
+- grey or pale-red block: a named period such as a recession or forecast;
+- wavy break: an omitted span or broken scale, explicitly labelled.
+
+## Legends and direct labels
+
+Direct-label two to four lines and highlighted scatter points. Use a key when
+endpoints are crowded or the visual encoding needs explanation. Put keys above
+the plot, in reading order, and remove the key title if the subtitle already
+names the grouping variable.
+
+## Maps
+
+Use sequential red or grey for ordered magnitude and the red-grey diverging
+scale only around a meaningful midpoint. Keep water, boundaries and missing
+areas quiet. Use few labelled legend breaks. Do not use colour alone for a
+binary editorial claim when a label or outline can carry it.
+
+## Accessibility
+
+- Do not distinguish important series only by hue.
+- Combine colour with labels, line style, ordering or shape.
+- Check text and thin-line contrast on both white and `#ECEBE0`.
+- Pale salmon and light grey are fills, not small-text colours.
+- Test at the actual responsive sizes and in greyscale.
+- Alternative text should state the main relationship and exceptions, not
+  merely “a chart showing data”.
+
+# Production recipe
+
+```{r production-recipe, eval=FALSE}
+p <- ggplot(data, aes(date, value)) +
+  geom_line(colour = economist_2024_pal("web")(1), linewidth = 0.95) +
+  scale_y_continuous(position = "right") +
+  labs(
+    title = "State the finding in a short headline",
+    subtitle = "Geography, measure, unit and period",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Organisation or dataset"
+  ) +
+  theme_economist_2024(media = "web", base_family = "Economist Sans")
+
+grid.newpage()
+grid.draw(with_economist_tab(p, "web"))
+```
+
+Before export, check:
+
+- Does the headline state what matters?
+- Are geography, unit, period and denominator present?
+- Is this the simplest chart type that answers the question?
+- Does red identify the intended focus?
+- Are series labelled directly where practical?
+- Do bars start at zero?
+- Are uncertainty, forecasts and omitted periods explicit?
+- Do title, plot and source share a left edge?
+- Has web output been checked at 700px, 550px and the actual embed width?
+- Does it work in greyscale and under colour-vision simulation?
+
+# Method and limitations
+
+The local corpus contains issue-organised print PNGs from 2012--2026 and web
+graphics from 2026. Exact colours were counted from the indexed PNG colour
+tables. Original `ai2html` files supplied type families, CSS weights, sizes,
+line heights and responsive artboard widths.
+
+Additional examples inspected for the chart families in this guide include:
+
+- **Lines:** `20260606_WOC055` (six qualitative lines),
+  `20260228_WOC492` (red and grey lines with matching intervals),
+  `20260620_WOC187` (salmon and red filled line) and `20260822_WOC965`
+  (red and grey lines and fills).
+- **Stacked lines:** `20240727_WOC536` (four directly labelled layers),
+  `20240921_WBC092` (three-part share with a forecast interval) and
+  `20250614_EPC634` (three-part historical composition).
+- **Scatterplots:** `20260117_WOC031` (points with fitted lines),
+  `20260117_WOC860` (categorical bubble scatter), `20260307_WOC567`
+  (three coloured point clouds and smooths) and `20260725_WOC925`
+  (connected scatter).
+
+The clearest six-series web example contains, in order, `#E3120B`, `#FBA493`,
+`#3A4DAC`, `#7892C5`, `#6A6654` and `#BEBCAB`. A print stacked-bar example
+contains the parallel production values `#ED1C24`, `#F8AB90`, `#28479D`,
+`#659BD2`, `#636466` and `#C6C8CA`. The red sequential ramp is sampled from a
+published 2026 web map; grey and red-grey ramps combine recurring observed
+neutral steps around the appropriate print or web ground.
+
+The sample is uneven: 2024 has 73 charts, 2025 has 26 and 2026 has 147. Most
+2026 examples are web graphics, whereas much of 2024--25 is print. This is
+enough to establish the ground, qualitative order and recurring grammar, but
+not to turn every rare layout into a rule. The implementation is therefore
+deliberately limited to standard static-chart behaviour.

@@ -23,6 +23,7 @@ Imports:
     graphics,
     grDevices,
     grid,
+    gtable,
     lifecycle,
     methods,
     purrr,

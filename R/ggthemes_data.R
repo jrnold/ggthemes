@@ -13,6 +13,21 @@
 #' article on the package website draws every one of them. `ggthemes_data`
 #' contains no fonts: themes set their typefaces in code.
 #'
+#' `ggthemes_data$economist_2017` contains the colors of *The Economist
+#' visual styleguide* (v1.2, 4 May 2017), one complete set per medium
+#' (`print` and `web`): the ground, gridline, text, baseline, source and
+#' accent colors used by [theme_economist_2017()], the categorical palettes
+#' used by [economist_2017_pal()], and, for web, the equal-lightness ramps
+#' used by [economist_2017_gradient_pal()].
+#'
+#' `ggthemes_data$economist_design_system` contains the complete color
+#' tokens extracted from the current Economist Design System and Marber
+#' documentation. Numeric HSL is the canonical representation; the published
+#' HEX, RGB, HSL, and (where available) CMYK values are retained as documented
+#' source fields. The object also includes derived five-point HSL ramps for the
+#' main color families. These product tokens are kept separate from the
+#' observed chart palettes in `ggthemes_data$economist_2024`.
+#'
 #' @format A `list` object.
 #' @example inst/examples/ex-ggthemes_data.R
 "ggthemes_data"

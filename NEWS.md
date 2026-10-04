@@ -48,6 +48,46 @@
   plot background showing through drew the same color. It also now leaves a
   margin between the title and subtitle, which ran together.
 
+- New `theme_economist_2017()`, `economist_2017_pal()`,
+  `economist_2017_gradient_pal()`, `scale_colour_economist_2017()`,
+  `scale_fill_economist_2017()` and their continuous `_c` versions implement
+  *The Economist visual styleguide* (v1.2, 4 May 2017), the design the paper
+  used from 2017 until its 2024 redesign, for both print and web
+  (`media = c("print", "web")`). They sit alongside `theme_economist()` and
+  `economist_pal()`, which are unchanged. The print palette has the guide's
+  five per-chart-type colour orders (`type`) and its two high-contrast
+  supporting sets (`set`); the continuous scales use the guide's
+  equal-lightness ramps. Every size in the theme, including rule weights,
+  margins and panel spacing, is relative to `base_size`, and is the guide's
+  own at the default `base_size = 10`.
+
+- New `guide_axis_economist()` draws value-axis labels the way *The
+  Economist* does: inside the panel, just above their gridlines and flush
+  with its edge.
+
+- New `economist_2017_furniture()` adds the chart furniture a theme cannot
+  set: the red tab above the title, the red rule across the top of a web
+  chart, a red marker above each panel heading, and, for web, the key moved
+  beside the title.
+
+- New `geom_scale_break()` draws the styleguide's broken-scale mark (p.25), a
+  small zigzag on a y-axis that does not start at zero. It is decoration, not
+  a transformation: truncate the axis with the scale's `limits` and add the
+  layer to declare it.
+
+- New `economist_year()` and `economist_year_format()` label a dated axis as
+  *The Economist* does, with years shortened to two digits except the first
+  label and each century (`1948 52 56 ... 96 2000 04`).
+
+- New articles on the package website: "The Economist, 2017" covers the theme
+  at different chart sizes, and "Reproducing the 2017 Economist styleguide"
+  works through the guide's examples page by page.
+
+- `ggthemes_data` gains `economist_2017`, the colours of the 2017 styleguide
+  for print and web, and `economist_design_system`, the colour tokens of *The
+  Economist*'s current Design System and of Marber, with derived lightness
+  ramps for nine colour families.
+
 # ggthemes 7.0.0
 
 - Fix `palette_pander()` returning a color for `n = 0`; it now returns

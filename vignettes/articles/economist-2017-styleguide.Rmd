@@ -1,0 +1,2779 @@
+---
+title: "Reproducing the 2017 Economist styleguide"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  ## The guide specifies charts at fixed print widths (p.4). These are its
+  ## 2-column size, 332pt wide, converted to inches, so that everything the
+  ## guide measures in points lands at the size it was drawn for.
+  fig.width = 332 / 72,
+  fig.height = 200 / 72,
+  dpi = 150,
+  out.width = "100%"
+)
+```
+
+*The Economist*'s internal *visual styleguide* (v1.2, 4 May 2017; Matt
+McLean) documents the paper's chart redesign in detail: exact palettes, type
+sizes, line weights and per-chart-type colour orders. `theme_economist_2017()`,
+`economist_2017_pal()`, `guide_axis_economist()` and `economist_2017_furniture()`
+implement the parts of it that live in a `ggplot2` theme, scale, guide and
+frame. This article puts them to work on every worked example in the guide's
+own catalogue.
+
+Sections are keyed to the guide's page numbers, so it can be read alongside
+the PDF. Each chart carries the guide's original headline, so the two can be
+compared directly.
+
+**Data note.** The styleguide is a design reference, not a data release. Data
+printed as labels or table entries in the guide are transcribed below (for
+example, the complete trade and investment breakdown on p.20). Values shown
+only as unlabelled marks have been reconstructed to preserve the guide's
+shape, series count and range. Those reconstructed values demonstrate the
+styling only and should not be interpreted as source data.
+
+```{r setup, message = FALSE}
+library(ggthemes)
+library(ggplot2)
+library(grid)
+library(gtable)
+
+## The guide's own colour values, as shipped with the package.
+print_pal <- ggthemes_data$economist_2017$print
+web_pal <- ggthemes_data$economist_2017$web
+
+econ_red <- print_pal$accent
+print_bg <- print_pal$ground
+print_highlight <- print_pal$highlight
+print_numberbox <- print_pal$number_box
+grid_col <- print_pal$grid
+
+## Shorthands for the per-chart-type colour orders (pp.13-20).
+pal_bar <- economist_2017_pal("print", type = "bar_side")
+pal_stack <- economist_2017_pal("print", type = "stacked")
+pal_line <- economist_2017_pal("print", type = "line_side")
+pal_dot <- economist_2017_pal("print", type = "dot")
+pal_pie <- economist_2017_pal("print", type = "pie")
+```
+
+## Chart sizes (p.4)
+
+The guide sizes charts in points, at fixed print widths:
+
+| Size | Print width | Web equivalent |
+|---|---|---|
+| 1 column | 160pt | 290px |
+| 2 column | 332pt | 595px |
+| 3 column | 504pt | -- |
+| Leader / World this Week | 117pt (83.5pt fixed height) | 290px (207px) |
+
+This matters more than it looks. Every type size and line weight in the guide
+is an absolute measurement against those widths, so a chart drawn at some
+other size needs them scaled to keep the same proportions.
+`theme_economist_2017()` handles this through `base_size`: at the default
+`base_size = 10` it reproduces the guide's own numbers, and rules, ticks and
+margins all scale with it. Figures here are drawn at the 2-column width of
+332pt, so they are close to actual size.
+
+## Anatomy of a chart (pp.3, 6-7)
+
+Start with what the theme gives you. The guide puts the value axis on the
+right, with each label sitting just above its gridline, inside the panel, and
+rules the plot horizontally. Two pieces make that look:
+`scale_y_continuous(position = "right")` moves the axis, and
+`guide_axis_economist()` draws its labels on the gridlines rather than in a
+margin beside the panel. Both are part of the look rather than an option.
+
+```{r anatomy-bare}
+bond_anchors <- list(
+  Japan = c(8.1, 7.6, 6.8, 6.9, 5.4, 4.6, 4.9, 3.8, 3.2, 2.9,
+            2.1, 1.8, 1.6, 1.2, 0.9),
+  `United States` = c(2.0, 1.9, 1.7, 1.6, 1.4, 1.3, 1.5, 1.2, 1.1,
+                      0.9, 0.7, 0.5, 0.3, 0.2, 0.1)
+)
+set.seed(1501)
+bonds <- do.call(rbind, lapply(seq_along(bond_anchors), function(i) {
+  x <- seq(1, 15, by = 0.25)
+  baseline <- approx(1:15, bond_anchors[[i]], xout = x)$y
+  noise <- rnorm(length(x), 0, c(0.22, 0.08)[i])
+  noise[c(1, length(noise))] <- 0
+  data.frame(
+    year = x,
+    yield = pmax(0, baseline + noise),
+    country = names(bond_anchors)[i]
+  )
+}))
+
+tokyo <- ggplot(bonds, aes(year, yield, colour = country)) +
+  geom_line(linewidth = 0.6) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 9), breaks = seq(0, 8, 2)) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(
+    title = "Where Tokyo leads",
+    subtitle = "Ten-year government-bond yields, %",
+    x = "Years since start", y = NULL, colour = NULL
+  ) +
+  theme_economist_2017("print")
+
+tokyo
+```
+
+The theme sets everything the guide specifies as type and rules (pp.6-7):
+9.5pt bold title, 8pt subtitle, 7.5pt legend labels, 7pt axis labels, 0.5pt
+gridlines and baseline, 6.5pt source line in 75% black (the theme's
+`plot.caption`, set with `labs(caption = )`), and 0.4pt tick marks 5pt long
+hanging *below* the baseline. Title, legend and caption align to the chart's
+left edge rather than the panel's, and y-axis titles sit horizontally at the
+top of the axis. Econ Sans's medium weight, used for panel and legend
+headings, is drawn plain.
+
+Three things remain, and none of them is a theme element:
+
+* the **red tab**, 15pt by 5pt, above the title (p.6);
+* for web charts, a **red rule** across the full width, with the tab sitting
+  on its left end (pp.3, 7), and the key moved up beside the title (p.7);
+* a 10pt by 1pt **red marker** above each panel heading (p.10).
+
+All of these live outside the panel, which puts them beyond `annotate()`.
+`economist_2017_furniture()` adds them. It takes a finished plot, converts it
+to a `gtable`, draws the furniture into it, and returns a grob you can print
+or save. The theme already leaves room above the title for the tab, so no
+rows need adding.
+
+```{r anatomy-furniture}
+economist_2017_furniture(
+  tokyo + labs(caption = "Source: Thomson Reuters"),
+  media = "print"
+)
+```
+
+## Two helpers
+
+The rest of this article draws every chart through one function, which
+builds on `economist_2017_furniture()` and adds only what the package does
+not provide: a right-aligned italic footnote, the leader layout's smaller tab,
+Espresso's blank 40pt spacer and the number box. Both helpers are local to
+the article, not part of the package.
+
+```{r econ-chart}
+## ggthemes exports `%||%`, but define it here so the helpers can be lifted
+## out of this article on their own.
+`%||%` <- function(x, y) if (is.null(x)) y else x
+
+econ_chart <- function(plot, source = NULL, footnote = NULL,
+                       media = c("print", "web"),
+                       layout = c("standard", "leader", "espresso"),
+                       number = NULL) {
+  media <- match.arg(media)
+  layout <- match.arg(layout)
+  ## The source line is the theme's own caption.
+  if (!is.null(source)) {
+    plot <- plot + labs(caption = source)
+  }
+  thm <- ggplot2::complete_theme(plot$theme)
+
+  ## Espresso lead images have a fixed 160pt depth: 120pt of chart content
+  ## followed by 40pt intentionally left blank (p.9). Extending the bottom
+  ## margin keeps the ground running under the spacer.
+  if (layout == "espresso") {
+    pm <- ggplot2::calc_element("plot.margin", thm)
+    pm[3] <- pm[3] + unit(40, "pt")
+    plot <- plot + theme(plot.margin = pm)
+    thm <- ggplot2::complete_theme(plot$theme)
+  }
+  plot_margin <- ggplot2::calc_element("plot.margin", thm)
+
+  ## Tab, web rule and panel markers come from the package. The grob is built
+  ## lazily, so lay it out now to add the extras to the gtable.
+  grid.newpage()
+  g <- makeContent(economist_2017_furniture(plot, media))$children[[1]]
+
+  ## Leader blocks have a 4pt tab (p.8), where furniture draws 5pt. This is a
+  ## local override: the package has no argument for it. The tab sits at the
+  ## plot margin, which the leader plots set to a 12pt left inset.
+  if (layout == "leader") {
+    i <- which(g$layout$name == "economist-tab")
+    g$grobs[[i]] <- rectGrob(
+      x = plot_margin[4], y = unit(1, "npc") - plot_margin[1],
+      width = unit(15, "pt"), height = unit(4, "pt"), just = c("left", "top"),
+      gp = gpar(fill = print_pal$accent, col = NA)
+    )
+  }
+
+  ## Footnote, right-aligned and italic, in the caption's row and style.
+  if (!is.null(footnote)) {
+    cap <- ggplot2::calc_element("plot.caption", thm)
+    cap$face <- "italic"
+    cap$hjust <- 1
+    row <- g$layout[g$layout$name == "caption", ]
+    ## Short credits share a baseline in the guide. Long pairs use two lines
+    ## so neither is silently overprinted by the other at narrow chart sizes.
+    split_credits <- !is.null(source) && nchar(source) + nchar(footnote) > 90
+    if (split_credits) {
+      g <- gtable_add_rows(g, unit(9, "pt"), pos = row$b)
+      cap$margin <- margin(0, 0, 0, 0)
+      row$t <- row$b <- row$b + 1
+    }
+    g <- gtable_add_grob(
+      g,
+      ggplot2::element_grob(cap, label = footnote, margin_x = TRUE, margin_y = TRUE),
+      t = row$t, l = row$l, b = row$b, r = row$r, clip = "off", name = "econ-footnote"
+    )
+  }
+
+  ## Number boxes are chart furniture, not data. Draw the guide's 10pt square
+  ## at the top-right of the chart instead of positioning it in data units.
+  if (!is.null(number)) {
+    box_centre <- unit(1, "npc") - plot_margin[1] - unit(5 + 11, "pt")
+    right_edge <- unit(1, "npc") - plot_margin[2]
+    number_grob <- gTree(children = gList(
+      rectGrob(
+        x = right_edge, y = box_centre,
+        width = unit(10, "pt"), height = unit(10, "pt"),
+        hjust = 1, gp = gpar(fill = print_pal$number_box, col = NA)
+      ),
+      textGrob(
+        as.character(number), x = right_edge - unit(5, "pt"),
+        y = box_centre,
+        gp = gpar(col = print_pal$text, fontsize = 7.5, fontface = "bold")
+      )
+    ))
+    g <- gtable_add_grob(
+      g, number_grob, t = 1, l = 1, b = nrow(g), r = ncol(g),
+      z = Inf, clip = "off", name = "econ-number"
+    )
+  }
+
+  grid.draw(g)
+  invisible(g)
+}
+
+## Several examples label values directly and drop the value axis entirely
+## (p.14).
+no_value_axis <- function() {
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.line.x = element_blank(),
+    panel.grid.major = element_blank()
+  )
+}
+```
+
+Print and web side by side, the comparison the guide opens with (p.3): the
+print chart sits on a pale blue ground, the web chart on white under a red
+rule.
+
+
+Print and web side by side, the comparison the guide opens with (p.3): the
+print chart sits on a pale blue ground, the web chart on white under a red
+rule.
+
+```{r anatomy-print}
+econ_chart(tokyo, source = "Source: Thomson Reuters", media = "print")
+```
+
+```{r anatomy-web}
+econ_chart(
+  tokyo + scale_colour_economist_2017("web") + theme_economist_2017("web"),
+  source = "Source: Thomson Reuters", media = "web"
+)
+```
+
+## Type scale and margins (pp.6-10)
+
+The default theme is the standard chart specification used by print (p.6),
+web (p.7), Espresso article-body charts (p.9, "DA"), and the outer frame of
+panel charts (p.10). The point size and leading pairs are set independently:
+
+| Element | Standard size / leading | Theme element |
+|---|---:|---|
+| Headline | 9.5 / 11pt | `plot.title` |
+| Subtitle | 8 / 9.5pt | `plot.subtitle` |
+| Legend and panel heading | 7.5 / 9pt | `legend.text`, `strip.text` |
+| Axis numbers | 7 / 9pt | `axis.text` |
+| Axis title | 7 / 7.5pt | `axis.title` |
+| Source | 6.5pt | `plot.caption` |
+
+Standard print charts have 6pt outer margins. Standard web charts have no
+outer margin and their red rule spans the full 332pt build width. Panel charts
+retain the 6pt outer margin and put 24pt between panels. The guide's licensed
+Econ Sans families are not distributed with the package, so the examples use
+the same sizes and leading with the requested `base_family` fallback.
+
+Pages 8 and 9 define two compact exceptions. These are local layout variants,
+not a different colour theme: leader blocks use 8pt headlines, 7pt subtitles
+and 6pt axis text; Espresso lead images use 8pt headlines and subtitles with
+7.5pt detail text.
+
+### Leader block (p.8)
+
+```{r dimensions-leader, fig.width = 117 / 72, fig.height = 83.5 / 72}
+leader_data <- data.frame(
+  year = seq(2011, 2015, length.out = 17),
+  change = c(1.5, 2.7, 2.9, 2.6, 2.4, 1.4, 1.0, 1.7, 1.2,
+             1.3, 0.7, 1.4, 0.6, 1.2, 0.8, -0.1, 0.1)
+)
+leader <- ggplot(leader_data, aes(year, change)) +
+  geom_line(colour = pal_line(1), linewidth = 0.45) +
+  geom_hline(yintercept = 2, colour = econ_red, linewidth = 0.2) +
+  annotate("text", x = 2014.9, y = 2.15, label = "Target 2", hjust = 1,
+           colour = econ_red, size = 6 / ggplot2::.pt) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 3), breaks = 0:3) +
+  scale_x_continuous(breaks = 2011:2015, labels = economist_year_format()) +
+  labs(title = "US consumer prices", subtitle = "% increase on a year earlier",
+       x = NULL, y = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    plot.title = element_text(size = rel(0.8), lineheight = 1),
+    plot.subtitle = element_text(size = rel(0.7), lineheight = 1),
+    axis.text = element_text(size = rel(0.6), lineheight = 1),
+    axis.title = element_text(size = rel(0.6), lineheight = 1),
+    plot.caption = element_text(size = rel(0.6)),
+    plot.margin = margin(6, 6, 5, 12, "pt")
+  )
+
+econ_chart(leader, layout = "leader")
+```
+
+### Espresso lead image (p.9)
+
+```{r dimensions-espresso, fig.width = 160 / 72, fig.height = 160 / 72}
+espresso_data <- data.frame(
+  year = 2007:2015,
+  change = c(4, 2, -6, 5, 8, 5, 3, 3, 1)
+)
+espresso <- ggplot(espresso_data, aes(year, change)) +
+  geom_col(fill = pal_bar(1), width = 0.65) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-8, 8), breaks = seq(-8, 8, 4)) +
+  scale_x_continuous(breaks = 2007:2015, labels = economist_year_format()) +
+  labs(title = "US retail sales",
+       subtitle = "Excluding motor vehicles and parts,\n% change on a year earlier",
+       x = NULL, y = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    plot.title = element_text(size = rel(0.8), lineheight = 1),
+    plot.subtitle = element_text(size = rel(0.8), lineheight = 1),
+    axis.text = element_text(size = rel(0.75), lineheight = 9 / 7.5),
+    axis.title = element_text(size = rel(0.75), lineheight = 9 / 7.5),
+    plot.caption = element_text(size = rel(0.75))
+  )
+
+econ_chart(espresso, source = "Source: US Department of Commerce",
+           layout = "espresso")
+```
+
+### Panel chart (p.10)
+
+```{r dimensions-panel, fig.width = 332 / 72, fig.height = 190 / 72}
+panel_data <- rbind(
+  data.frame(panel = "Media mentions", x = 1:12,
+             series = "Television", value = c(18, 52, 61, 43, 48, 20, 21, 49, 52, 27, 60, 66)),
+  data.frame(panel = "Media mentions", x = 1:12,
+             series = "Polling", value = c(2, 8, 18, 15, 21, 18, 22, 26, 30, 28, 33, 42)),
+  data.frame(panel = "Voter support", x = 1:12,
+             series = "Authoritarianism", value = seq(42, 48, length.out = 12)),
+  data.frame(panel = "Voter support", x = 1:12,
+             series = "Racial resentment", value = seq(2, 54, length.out = 12))
+)
+panel_data$panel <- factor(panel_data$panel,
+                           levels = c("Media mentions", "Voter support"))
+panel_data$series <- factor(panel_data$series,
+                            levels = c("Television", "Polling", "Authoritarianism",
+                                       "Racial resentment"))
+
+panel_chart <- ggplot(panel_data, aes(x, value, colour = series)) +
+  geom_line(linewidth = 0.55, show.legend = FALSE) +
+  facet_wrap(~panel, nrow = 1, axes = "all_y") +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 70)) +
+  scale_colour_manual(values = c(pal_line(1), pal_bar(6)[5],
+                                 pal_line(2)[2], pal_line(1))) +
+  labs(title = "Racy", subtitle = "United States", x = NULL, y = NULL) +
+  theme_economist_2017("print")
+
+stopifnot(
+  convertUnit(theme_economist_2017("print")$panel.spacing.x, "pt", valueOnly = TRUE) == 24
+)
+econ_chart(panel_chart, source = "Sources: GDELT; RCP; YouGov")
+```
+
+## Colour (pp.11-12)
+
+The print palette is specified in CMYK and the web palette in hex. Both ship
+in `ggthemes_data$economist_2017`, as flat per-medium specs: scalar colours
+(`ground`, `grid`, `text`, `baseline`, `source`, `accent`), a `qualitative`
+list of palettes, and for web the `sequential` ramps of p.12.
+
+```{r swatches, fig.height = 260 / 72}
+swatches <- function(sets, title) {
+  df <- do.call(rbind, lapply(names(sets), function(nm) {
+    data.frame(set = nm, i = seq_along(sets[[nm]]), hex = sets[[nm]])
+  }))
+  df$set <- factor(df$set, levels = rev(names(sets)))
+  ## Luminance decides label colour, so a saturated mid-tone still reads.
+  lum <- (t(col2rgb(df$hex)) / 255) %*% c(0.299, 0.587, 0.114)
+  df$ink <- ifelse(lum < 0.5, "white", "black")
+
+  ggplot(df, aes(i, set, fill = hex)) +
+    geom_tile(width = 0.95, height = 0.8) +
+    geom_text(aes(label = hex, colour = ink), size = 1.9, family = "mono") +
+    scale_fill_identity() +
+    scale_colour_identity() +
+    labs(title = title, x = NULL, y = NULL) +
+    theme_minimal(base_size = 7) +
+    theme(axis.text.x = element_blank(), panel.grid = element_blank())
+}
+
+swatches(
+  list(
+    "Print, bar/column side by side" = pal_bar(6),
+    "Print, stacked" = pal_stack(6),
+    "Print, line side by side" = pal_line(6),
+    "Print, thermometer / scatter" = pal_dot(6),
+    "Print, pie / doughnut" = pal_pie(6),
+    "Print, bright (high contrast)" = economist_2017_pal("print", set = "bright")(4),
+    "Print, dark (high contrast)" = economist_2017_pal("print", set = "dark")(3),
+    "Web, main" = economist_2017_pal("web")(9)
+  ),
+  "The 2017 palettes (pp.11-12)"
+)
+```
+
+Pages 13-20 each carry a numbered "COLOUR ORDER" strip, and they are not the
+same strip: the six print hues are reordered per chart-type family. That is
+what `economist_2017_pal()`'s `type` argument selects. The guide shows no
+equivalent variation for web (p.12 has a single "MAIN" row), so `type` has no
+effect when `media = "web"`.
+
+The two high-contrast sets, `set = "bright"` and `set = "dark"`, are for
+"multi-category charts where high contrast is needed" (p.11).
+
+The web page (p.12) also gives nine "equal lightness colour scales": six steps
+of one hue, of even perceived lightness, for ordered and continuous data.
+`economist_2017_gradient_pal(hue)` interpolates one, and
+`scale_fill_economist_2017_c(hue)` and `scale_colour_economist_2017_c(hue)`
+apply it. The guide gives no print equivalent.
+
+```{r gradients, fig.height = 260 / 72}
+hues <- names(web_pal$sequential)
+ramps <- do.call(rbind, lapply(hues, function(h) {
+  x <- seq(0, 1, length.out = 60)
+  data.frame(hue = h, x = x, fill = economist_2017_gradient_pal(h)(x))
+}))
+ramps$hue <- factor(ramps$hue, levels = rev(hues))
+
+ggplot(ramps, aes(x, hue, fill = fill)) +
+  geom_tile(height = 0.8) +
+  scale_fill_identity() +
+  labs(title = "Equal lightness colour scales (p.12)", x = NULL, y = NULL) +
+  theme_economist_2017("web") +
+  theme(
+    axis.text.x = element_blank(), axis.ticks = element_blank(),
+    axis.line = element_blank(), panel.grid = element_blank(),
+    plot.margin = margin(0, 6, 3.5, 6)
+  )
+```
+
+As a scale, low values get the lightest step:
+
+```{r gradient-scale}
+set.seed(2017)
+heat <- expand.grid(x = 1:12, y = 1:5)
+heat$value <- runif(nrow(heat))
+
+ggplot(heat, aes(x, y, fill = value)) +
+  geom_tile() +
+  scale_fill_economist_2017_c("cyan") +
+  labs(title = "Where the blues are", subtitle = "Random values, scaled 0-1") +
+  theme_economist_2017("web") +
+  theme(
+    axis.text = element_blank(), axis.ticks = element_blank(),
+    axis.line = element_blank(), panel.grid = element_blank(),
+    legend.position = "right"
+  )
+```
+
+## Bar / column, side by side (p.13)
+
+Ten examples on one page, covering every variation the guide recognises: one
+trace, two traces, sub-categories, a plus/minus axis, and two colour
+overrides. All use the `bar_side` order except where an override applies.
+
+### "Salud" -- one trace with highlight
+
+```{r salud, fig.height = 210 / 72}
+doctors <- data.frame(
+  country = c("Sweden", "Denmark", "Britain", "Portugal", "Luxembourg",
+              "France", "Austria", "Spain", "Germany"),
+  visits = c(2.9, 4.3, 5.0, 5.4, 5.9, 6.4, 6.6, 7.3, 8.0)
+)
+doctors$country <- factor(doctors$country, levels = doctors$country)
+doctors$highlight <- doctors$country == "Spain"
+
+salud <- ggplot(doctors, aes(country, visits, fill = highlight)) +
+  geom_col(width = 0.7, show.legend = FALSE) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", expand = expansion(mult = c(0, 0.02))) +
+  scale_fill_manual(values = c(`FALSE` = pal_bar(1), `TRUE` = pal_bar(2)[2])) +
+  labs(
+    title = "Salud",
+    subtitle = "Doctors' consultations per person\nSelected countries, 2009",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE) +
+  ## The guide sets the highlighted category's label in bold. The face vector
+  ## follows the scale's breaks, which run in level order.
+  theme(axis.text.y = element_text(
+    face = ifelse(levels(doctors$country) == "Spain", "bold", "plain")
+  ))
+
+econ_chart(salud, source = "Source: OECD")
+```
+
+### "African lion" -- one trace, columns
+
+```{r african-lion, fig.height = 170 / 72}
+ethiopia <- data.frame(
+  year = 2004:2015,
+  growth = c(11.7, 12.6, 11.5, 11.8, 11.2, 10.0, 10.6, 11.4, 8.7, 9.9, 10.3, 9.6)
+)
+
+lion <- ggplot(ethiopia, aes(year, growth)) +
+  geom_col(fill = pal_bar(1), width = 0.65) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", expand = expansion(mult = c(0, 0.05))) +
+  scale_x_continuous(breaks = seq(2004, 2014, 2)) +
+  labs(
+    title = "African lion",
+    subtitle = "Ethiopia's GDP, % change on a year earlier",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(lion, source = "Source: IMF", footnote = "*Estimate")
+```
+
+### "Defenders of democracy" -- two traces
+
+```{r defenders, fig.height = 220 / 72}
+elections <- data.frame(
+  country = rep(c("Chile", "Brazil", "Mexico", "Malaysia", "South Africa",
+                  "Poland", "India", "Egypt", "Russia"), each = 2),
+  income = rep(c("Middle class", "Low income"), 9),
+  pct = c(78, 68, 71, 60, 66, 58, 64, 57, 61, 55,
+          58, 50, 55, 47, 53, 45, 51, 44)
+)
+elections$country <- factor(elections$country, levels = rev(unique(elections$country)))
+elections$income <- factor(elections$income, levels = c("Middle class", "Low income"))
+
+democracy <- ggplot(elections, aes(country, pct, fill = income)) +
+  geom_col(position = position_dodge(width = 0.75), width = 0.7) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", expand = expansion(mult = c(0, 0.02))) +
+  scale_fill_economist_2017("print", type = "bar_side") +
+  labs(
+    title = "Defenders of democracy",
+    subtitle = paste(
+      "Respondents saying that honest elections held regularly with a choice",
+      "of at least\ntwo political parties are very important, 2007, %"
+    ),
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE)
+
+econ_chart(democracy, source = "Source: Pew Global Attitudes Survey")
+```
+
+### "Autumn fall" -- two traces with sub-categories
+
+Sub-categories nest inside a category. `facet_grid()` with `space = "free"`
+and the strip placed outside gives the guide's two-level label column.
+
+```{r autumn-fall, fig.height = 230 / 72}
+forecasts <- data.frame(
+  country = rep(c("Germany", "France", "Euro area", "Spain", "Italy"), each = 4),
+  vintage = rep(rep(c("2013", "2012"), each = 2), 5),
+  made_in = rep(c("June", "September"), 10),
+  gdp = c(2.3, 1.7, 1.5, 0.9, 1.8, 1.3, 1.2, 0.6,
+          1.6, 1.0, 0.9, 0.3, 1.4, 0.7, 0.6, -0.3, 1.1, 0.4, 0.3, -0.9)
+)
+forecasts$country <- factor(forecasts$country, levels = unique(forecasts$country))
+forecasts$made_in <- factor(forecasts$made_in, levels = c("June", "September"))
+
+autumn <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+  coord_flip() +
+  facet_grid(rows = vars(country), scales = "free_y", space = "free", switch = "y") +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right") +
+  scale_fill_economist_2017("print", type = "bar_side") +
+  labs(
+    title = "Autumn fall",
+    subtitle = "GDP, % increase on previous year\nForecasts made in:",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE) +
+  theme(
+    strip.placement = "outside",
+    strip.text.y.left = element_text(angle = 0, hjust = 0),
+    panel.spacing.y = unit(1, "pt")
+  )
+
+econ_chart(autumn, source = "Source: IMF")
+```
+
+### "The mighty jungle" -- two traces with sub-categories, columns
+
+```{r mighty-jungle, fig.height = 190 / 72}
+returns <- data.frame(
+  horizon = rep(c("20 years", "10 years", "5 years"), each = 4),
+  asset = rep(c("Equities", "Rural property", "All property", "Forestry"), 3),
+  pct = c(5.5, 7.5, 6.0, 8.5, 3.5, 6.5, 3.0, 15.5, 6.0, 8.5, 6.5, 20.5)
+)
+returns$horizon <- factor(returns$horizon, levels = c("20 years", "10 years", "5 years"))
+returns$asset <- factor(returns$asset,
+                        levels = c("Equities", "Rural property", "All property", "Forestry"))
+
+jungle <- ggplot(returns, aes(horizon, pct, fill = asset)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", expand = expansion(mult = c(0, 0.05))) +
+  scale_fill_economist_2017("print", type = "bar_side") +
+  labs(
+    title = "The mighty jungle",
+    subtitle = "Britain, annualised rate of return on investment*, %",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(panel.grid.major.x = element_blank())
+
+econ_chart(jungle, source = "Sources: MSCI; JP Morgan", footnote = "*To 2014")
+```
+
+### "Another dotcom boom" -- one trace with a plus/minus axis
+
+The guide's rule here: "Differentiate positive/negative values by colour only
+where there is a meaningful difference i.e. imports / exports." This is one
+series, so it stays one colour, with a red rule on zero.
+
+```{r dotcom, fig.height = 230 / 72}
+capex <- data.frame(
+  sector = c("Internet", "Software", "Tech hardware", "IT services",
+             "Health care", "Total", "Leisure", "Chemicals",
+             "Oil, gas and fuels", "Metals and mining", "Property",
+             "Energy equipment"),
+  change = c(58, 34, 26, 20, 6, 2, -14, -20, -30, -34, -38, -46)
+)
+capex$sector <- factor(capex$sector, levels = rev(capex$sector))
+
+dotcom <- ggplot(capex, aes(sector, change)) +
+  geom_col(fill = pal_bar(1), width = 0.7) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-60, 60),
+                     breaks = seq(-60, 60, 20)) +
+  labs(
+    title = "Another dotcom boom",
+    subtitle = "Change in worldwide capital spending*, %\n2014-17 forecast",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE) +
+  ## "Total" is a summary row, so the guide bolds it.
+  theme(axis.text.y = element_text(
+    face = ifelse(levels(capex$sector) == "Total", "bold", "plain")
+  ))
+
+econ_chart(dotcom, source = "Source: Goldman Sachs", footnote = "*In dollar terms")
+```
+
+### "The money drain" -- plus/minus columns
+
+```{r money-drain, fig.height = 175 / 72}
+capital <- data.frame(
+  year = 1994:2011,
+  flow = c(-10, -22, -18, -30, -26, -14, -8, 20, 45, 30, 12, 55, 80,
+           -140, -35, -28, -18, -12)
+)
+
+drain <- ggplot(capital, aes(year, flow)) +
+  geom_col(fill = pal_bar(1), width = 0.65) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-150, 100),
+                     breaks = seq(-150, 100, 50)) +
+  scale_x_continuous(breaks = c(1994, 1996, 1998, 2000, 2002, 2004, 2006, 2008, 2010)) +
+  labs(
+    title = "The money drain",
+    subtitle = "Net private capital inflows/outflows, $bn",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(drain, source = "Source: Central Bank of Russia", footnote = "*To June 30th")
+```
+
+### "Trader woes" -- colour used for a meaningful positive/negative split
+
+Here the sign *does* mean two different things, so the guide differentiates
+by colour and labels each half in place.
+
+```{r trader-woes, fig.height = 285 / 72}
+trade <- data.frame(
+  year = rep(1995:2016, 4),
+  country = rep(c("China, as % of GDP", "United States, as % of GDP"), each = 44),
+  flow = rep(rep(c("Exports", "Imports"), each = 22), 2),
+  pct = c(
+    4.2, 3.8, 4.3, 4.7, 5.1, 5.8, 6.2, 6.8, 7.3, 8.1, 8.5,
+    8.7, 7.8, 6.7, 6.0, 5.5, 5.0, 4.7, 4.4, 4.1, 3.9, 3.7,
+    -0.7, -0.8, -0.7, -0.9, -0.8, -0.9, -1.0, -1.0, -1.1, -1.0, -1.1,
+    -1.0, -0.9, -0.9, -0.8, -0.8, -0.7, -0.8, -0.7, -0.7, -0.6, -0.6,
+    0.15, 0.18, 0.20, 0.22, 0.25, 0.29, 0.31, 0.35, 0.38, 0.43, 0.48,
+    0.52, 0.55, 0.58, 0.61, 0.63, 0.67, 0.72, 0.75, 0.72, 0.70, 0.68,
+    -0.45, -0.50, -0.55, -0.62, -0.68, -0.75, -0.88, -1.10, -1.35,
+    -1.55, -1.70, -1.78, -1.85, -1.88, -1.92, -1.95, -1.90, -1.85,
+    -1.82, -1.78, -1.72, -1.68
+  )
+)
+trade$country <- factor(
+  trade$country,
+  levels = c("China, as % of GDP", "United States, as % of GDP")
+)
+trade$flow <- factor(trade$flow, levels = c("Exports", "Imports"))
+stopifnot(all(table(trade$country, trade$flow) == 22))
+
+trade_labels <- data.frame(
+  year = c(2001, 2001, 2001, 2001),
+  pct = c(9.8, -1.45, 1.15, -2.45),
+  flow = factor(rep(c("Exports", "Imports"), 2), levels = levels(trade$flow)),
+  country = factor(rep(levels(trade$country), each = 2), levels = levels(trade$country))
+)
+
+woes <- ggplot(trade, aes(year, pct, fill = flow)) +
+  geom_col(width = 0.7) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  geom_blank(
+    data = data.frame(
+      year = 1995,
+      pct = c(-4, 12, -4, 4),
+      country = factor(rep(levels(trade$country), each = 2),
+                       levels = levels(trade$country))
+    ),
+    aes(x = year, y = pct), inherit.aes = FALSE
+  ) +
+  geom_text(
+    data = trade_labels, aes(x = year, y = pct, label = flow, colour = flow),
+    inherit.aes = FALSE, size = 2, fontface = "bold"
+  ) +
+  facet_wrap(~country, ncol = 1, scales = "free_y") +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", breaks = c(-4, 0, 4, 8, 12)) +
+  scale_fill_manual(
+    values = c(Exports = pal_bar(1), Imports = pal_bar(5)[5]),
+    guide = "none"
+  ) +
+  scale_colour_manual(
+    values = c(Exports = pal_bar(1), Imports = pal_bar(5)[5]),
+    guide = "none"
+  ) +
+  scale_x_continuous(
+    breaks = c(1995, 2000, 2005, 2010, 2016),
+    labels = c("1995", "2000", "05", "10", "16*")
+  ) +
+  labs(
+    title = "Trader woes",
+    subtitle = "China-United States trade in goods",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(
+    strip.text = element_text(face = "bold", hjust = 0),
+    panel.spacing.y = unit(8, "pt")
+  )
+
+econ_chart(woes, source = "Sources: Census Bureau; IMF",
+           footnote = "*Jan-Nov annualised")
+```
+
+### Colour override: chronological categories
+
+"Where categories are chronological, use light-to-dark scale" (p.13). The
+ramp stays inside the palette rather than reaching for a new hue.
+
+```{r growth-asia, fig.height = 215 / 72}
+asia <- data.frame(
+  country = rep(c("India", "Cambodia", "Laos", "China", "Malaysia",
+                  "Thailand", "Singapore", "Brunei"), each = 3),
+  period = rep(c("2015", "2016", "2016-20*"), 8),
+  growth = c(7.3, 7.5, 7.7, 7.0, 7.1, 7.2, 6.8, 7.0, 7.1, 6.9, 6.5, 6.0,
+             5.0, 4.5, 5.0, 2.8, 3.0, 3.2, 2.0, 2.2, 2.8, -0.5, 1.0, 2.5)
+)
+asia$country <- factor(asia$country, levels = rev(unique(asia$country)))
+asia$period <- factor(asia$period, levels = c("2015", "2016", "2016-20*"))
+
+## Light to dark, drawn from the palette's own blues and teal.
+chrono <- c("#54C6D2", "#20969C", "#2C6BA6")
+
+growth <- ggplot(asia, aes(country, growth, fill = period)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-2, 8)) +
+  scale_fill_manual(values = chrono) +
+  labs(
+    title = "Growth in Asia",
+    subtitle = "GDP forecasts, % change on a year earlier",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE)
+
+econ_chart(growth, source = "Source: OECD", footnote = "*Annual average")
+```
+
+### Colour override: categories that form meaningful groups
+
+"If categories form meaningful groups, use colour to reinforce that" (p.13).
+Two London categories take the two related reds, two city categories the two
+related blues.
+
+```{r dont-fence, fig.height = 235 / 72}
+segregation <- data.frame(
+  group = rep(c("White British", "Other White", "Mixed", "Bangladeshi",
+                "Pakistani", "Indian", "Chinese", "African", "Caribbean"), each = 4),
+  area = rep(c("Inner London", "Outer London",
+               "Metropolitan areas", "Other large cities"), 9),
+  change = c(
+    2.0, 1.0, 1.5, 0.8, -1.0, -0.5, -0.8, -0.4, -3.0, -2.0, -2.5, -1.5,
+    -6.0, -4.5, -5.0, -3.0, -8.0, -6.0, -7.0, -4.0, -9.0, -7.0, -8.0, -5.0,
+    -5.0, -3.5, -4.0, -2.5, -11.0, -8.0, -9.5, -6.0, -13.0, -9.0, -11.0, -7.0
+  )
+)
+segregation$group <- factor(segregation$group, levels = rev(unique(segregation$group)))
+segregation$area <- factor(segregation$area, levels = c(
+  "Inner London", "Outer London", "Metropolitan areas", "Other large cities"
+))
+
+## Reds for the two London rows, blues for the two city rows.
+grouped <- c(pal_bar(6)[5], pal_bar(6)[6], pal_bar(6)[1], pal_bar(6)[2])
+
+fence <- ggplot(segregation, aes(group, change, fill = area)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-20, 5)) +
+  scale_fill_manual(values = grouped) +
+  labs(
+    title = "Don't fence me in",
+    subtitle = "Britain, % change in segregation index*\n2001-11",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE) +
+  theme(legend.text = element_text(size = rel(0.65)))
+
+econ_chart(
+  fence,
+  source = "Source: University of Manchester",
+  footnote = "*% that needs to move to create an even distribution"
+)
+```
+
+## Bar / column, stacked (p.14)
+
+The stacked order is its own sequence, and the guide adds two rules: label
+segment values directly when there are few categories, and "use grey for
+'other' / 'don't know' etc".
+
+### "The Fed says no to nuptials" -- labelled segments, no axis
+
+```{r fed-nuptials, fig.height = 145 / 72}
+carriers <- data.frame(
+  band = rep(c("All mobiles", "Smartphones"), each = 5),
+  carrier = rep(c("AT&T", "Verizon", "Sprint Nextel", "T-Mobile", "Other"), 2),
+  share = c(30.4, 31.4, 10.0, 11.1, 16.8, 44.1, 30.5, 9.6, 12.9, 8.0)
+)
+carriers$carrier <- factor(carriers$carrier, levels = unique(carriers$carrier))
+carriers$band <- factor(carriers$band, levels = c("Smartphones", "All mobiles"))
+
+fed <- ggplot(carriers, aes(band, share, fill = carrier)) +
+  ## reverse = TRUE so the bar reads in legend order from the left, which is
+  ## how the guide draws it, rather than in ggplot2's default stack order.
+  geom_col(width = 0.55, position = position_stack(reverse = TRUE)) +
+  geom_text(
+    aes(label = format(share, nsmall = 1)),
+    position = position_stack(vjust = 0.5, reverse = TRUE),
+    colour = "white", size = 2.1
+  ) +
+  coord_flip() +
+  scale_fill_economist_2017("print", type = "stacked") +
+  labs(
+    title = "The Fed says no to nuptials",
+    subtitle = "Mobile operators' US market share, July 2011, %",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print") +
+  no_value_axis() +
+  theme(axis.text.y = element_text(face = "bold"))
+
+econ_chart(fed, source = "Source: comScore")
+```
+
+### "No one's a winner" -- a single stacked bar with a threshold
+
+```{r no-winner, fig.height = 140 / 72}
+seats <- data.frame(
+  party = c("ERC", "DiL", "Podemos", "PSOE", "EAJ-PNV", "PP", "Ciudadanos", "Others"),
+  n = c(9, 8, 69, 90, 6, 123, 40, 5)
+)
+seats$party <- factor(seats$party, levels = seats$party)
+seats$mid <- cumsum(seats$n) - seats$n / 2
+seats$label_mid <- seats$mid
+seats$label_mid[1:2] <- c(0, 28)
+
+winner <- ggplot(seats, aes(x = "", y = n, fill = party)) +
+  geom_col(width = 0.4, position = position_stack(reverse = TRUE)) +
+  ## Only the segments with room get a value, as in the guide.
+  geom_text(
+    data = subset(seats, n >= 40),
+    aes(label = paste(party, n)),
+    position = position_stack(vjust = 0.5, reverse = TRUE),
+    colour = "white", size = 2.1
+  ) +
+  ## Keep the small parties visible too: the guide keys them beneath the bar
+  ## because their names cannot fit inside their narrow segments.
+  geom_text(
+    data = subset(seats, n < 40),
+    aes(x = "", y = label_mid, label = paste(party, n)),
+    inherit.aes = FALSE, nudge_x = -0.48, size = 1.65,
+    colour = print_pal$text
+  ) +
+  ## The majority threshold, called out with a rule and a label.
+  geom_hline(yintercept = 176, colour = econ_red, linewidth = 0.2) +
+  annotate("text", x = 1.32, y = 176, label = "176 required for majority",
+           size = 2, colour = econ_red, hjust = 0.5) +
+  coord_flip(clip = "off") +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", breaks = c(0, 350), limits = c(0, 350)) +
+  ## Eight parties against a six-colour order, so the guide's own rule for
+  ## more than four categories applies: swap in extra colours, grey for
+  ## "others" (p.14).
+  scale_fill_manual(values = c(pal_stack(6), "#8FA3AE", "#B7C6CF"), guide = "none") +
+  labs(
+    title = "No one's a winner",
+    subtitle = "Spanish general election 2015, seats won",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text.y = element_blank(),
+    panel.grid.major = element_blank(),
+    plot.margin = margin(6, 6, 6, 6, "pt")
+  )
+
+econ_chart(winner, source = "Sources: Ministry of the Interior; El Pais")
+```
+
+### "Looting the Levant" -- several stacked bars with different totals
+
+```{r looting, fig.height = 220 / 72}
+levant <- rbind(
+  data.frame(
+    band = rep(c("Overall monthly revenue $79.8m",
+                 "Deir al-Zor governorate $8.7m"), each = 4),
+    stream = rep(c("Oil & gas", "Confiscation", "Tax", "Electricity"), 2),
+    value = c(20.1, 14.3, 12.0, 4.0, 4.6, 2.1, 1.6, 0.4)
+  ),
+  ## The guide labels the $5.8m spending breakdown but does not print its
+  ## component values. These reconstructed values retain all six categories
+  ## and sum to the displayed total.
+  data.frame(
+    band = "Monthly spending $5.8m",
+    stream = c("Fighters' salary", "Military camps", "Social services",
+               "Islamic police", "Media", "Treasury"),
+    value = c(1.3, 1.0, 1.1, 0.8, 0.7, 0.9)
+  )
+)
+levant$stream <- factor(levant$stream, levels = unique(levant$stream))
+levant$band <- factor(levant$band, levels = rev(unique(levant$band)))
+stopifnot(isTRUE(all.equal(
+  sum(levant$value[levant$band == "Monthly spending $5.8m"]), 5.8
+)))
+
+levant_cols <- c(pal_stack(6), pal_bar(6)[5:6], pal_line(6)[4:5])
+## The example gives the lower two bars their own 0--10 scale. Express their
+## widths on the top bar's drawing scale while retaining `value` for labels.
+levant$plot_value <- levant$value
+levant$plot_value[levant$band != "Overall monthly revenue $79.8m"] <-
+  levant$value[levant$band != "Overall monthly revenue $79.8m"] * 50.4 / 10
+
+looting <- ggplot(levant, aes(band, plot_value, fill = stream)) +
+  geom_col(width = 0.5, position = position_stack(reverse = TRUE)) +
+  geom_text(
+    data = subset(levant, band != "Monthly spending $5.8m"),
+    aes(label = format(value, nsmall = 1)),
+    position = position_stack(vjust = 0.5, reverse = TRUE),
+    colour = "white", size = 2
+  ) +
+  coord_flip() +
+  scale_fill_manual(
+    values = levant_cols,
+    guide = guide_legend(nrow = 2, byrow = TRUE)
+  ) +
+  labs(
+    title = "Looting the Levant",
+    subtitle = "Islamic State's finances*, January 2015, $m",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print") +
+  no_value_axis() +
+  theme(
+    axis.text.y = element_text(face = "bold", size = rel(0.6)),
+    legend.text = element_text(size = rel(0.56)),
+    legend.key.width = unit(7, "pt"),
+    legend.spacing.x = unit(2, "pt")
+  )
+
+econ_chart(looting, source = "Sources: IHS", footnote = "*Estimates")
+```
+
+### "Getting sociable" -- stacked columns over time, with a forecast panel
+
+```{r getting-sociable, fig.height = 185 / 72}
+adspend <- data.frame(
+  year = rep(2008:2017, each = 4),
+  format = rep(c("Paid search", "Display", "Classified", "Online video"), 10),
+  bn = c(
+    12, 6, 4, 1, 16, 8, 4, 2, 21, 11, 5, 3, 27, 15, 5, 5,
+    33, 20, 6, 8, 40, 26, 6, 12, 48, 34, 7, 17, 57, 43, 7, 24,
+    66, 53, 8, 32, 75, 64, 8, 41
+  )
+)
+adspend$format <- factor(adspend$format, levels = unique(adspend$format))
+
+sociable <- ggplot(adspend, aes(year, bn, fill = format)) +
+  ## The forecast years get the neutral highlight panel (p.25).
+  annotate("rect", xmin = 2015.5, xmax = 2017.5, ymin = -Inf, ymax = Inf,
+           fill = print_highlight) +
+  annotate("text", x = 2016.5, y = 195, label = "FORECAST",
+           size = 1.8, colour = print_pal$text) +
+  geom_col(width = 0.7, position = position_stack(reverse = TRUE)) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 200),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(breaks = seq(2008, 2016, 2), expand = c(0.01, 0)) +
+  scale_fill_economist_2017("print", type = "stacked") +
+  labs(
+    title = "Getting sociable",
+    subtitle = "Global internet-advertising spending, $bn",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(sociable, source = "Source: ZenithOptimedia")
+```
+
+### "More in than out" -- stacked columns below zero
+
+```{r more-in-out, fig.height = 180 / 72}
+deficit <- data.frame(
+  year = rep(1990:2016, 2),
+  region = rep(c("China", "Rest of world"), each = 27),
+  pct = c(
+    -seq(0.1, 2.5, length.out = 18), -seq(2.5, 2.1, length.out = 9),
+    -seq(0.9, 3.4, length.out = 18), -seq(3.4, 1.0, length.out = 9)
+  )
+)
+deficit$region <- factor(deficit$region, levels = c("China", "Rest of world"))
+
+more_in <- ggplot(deficit, aes(year, pct, fill = region)) +
+  geom_col(width = 0.7, position = position_stack(reverse = TRUE)) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-6, 0),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2016)) +
+  scale_fill_economist_2017("print", type = "stacked") +
+  labs(
+    title = "More in than out",
+    subtitle = "United States, merchandise-trade deficit\n% of GDP",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(
+  more_in,
+  source = "Sources: US Census Bureau; US Bureau of Economic Analysis",
+  footnote = "*January-September"
+)
+```
+
+### Colour override: more than four categories, and grey for "other"
+
+"You may need to swap in other colours for charts with more than 4
+categories. Use grey for 'other' / 'don't know' etc" (p.14).
+
+```{r movers-shakers, fig.height = 210 / 72}
+migrants <- data.frame(
+  destination = rep(c("EU-28", "Switzerland", "Germany", "Spain",
+                      "France", "Italy", "Britain"), each = 8),
+  origin = rep(c("Romania", "Portugal", "Poland", "Germany",
+                 "Italy", "Britain", "Other EU", "Other"), 7),
+  pct = c(
+    18, 9, 14, 6, 11, 5, 22, 15, 4, 12, 6, 8, 22, 7, 26, 15,
+    9, 6, 21, 0, 14, 8, 27, 15, 22, 4, 5, 7, 12, 14, 21, 15,
+    7, 22, 9, 5, 16, 6, 20, 15, 24, 3, 7, 9, 0, 11, 31, 15,
+    13, 8, 26, 5, 9, 0, 24, 15
+  )
+)
+migrants$origin <- factor(migrants$origin, levels = unique(migrants$origin))
+migrants$destination <- factor(migrants$destination, levels = rev(unique(migrants$destination)))
+
+## Six palette colours, then two greys for "other EU" and "other" -- the
+## guide's own rule for the categories that carry no story.
+movers_cols <- c(pal_stack(6), "#8FA3AE", "#B7C6CF")
+
+movers <- ggplot(migrants, aes(destination, pct, fill = origin)) +
+  geom_col(width = 0.65, position = position_stack(reverse = TRUE)) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 100),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_fill_manual(values = movers_cols) +
+  labs(
+    title = "Movers and shakers",
+    subtitle = "Intra-European* migrants living elsewhere\n2014, % of total by destination country",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(colour = grid_col),
+    legend.text = element_text(size = rel(0.62))
+  )
+
+econ_chart(movers, source = "Source: European Commission", footnote = "*Including EFTA")
+```
+
+### Colour override: meaningful groups, with number blocks
+
+Positive answers take the blues, negative ones the reds, and "not sure" grey.
+The right-hand figures are the guide's number blocks (p.22), here drawn as
+points with text over them.
+
+```{r trumps-troops, fig.height = 235 / 72}
+troops <- data.frame(
+  group = rep(c("White men, no college", "White women, no college",
+                "White men, college educated", "Non-white men, college educated",
+                "White women, college educated", "Non-white men, no college",
+                "Non-white women, college educated", "Non-white women, no college"),
+              each = 5),
+  answer = rep(c("Enthusiastic", "Satisfied", "Dissatisfied", "Upset", "Not sure"), 8),
+  pct = c(
+    26, 30, 18, 18, 8, 22, 30, 20, 20, 8, 16, 28, 24, 24, 8, 6, 16, 28, 42, 8,
+    12, 24, 26, 30, 8, 8, 18, 28, 38, 8, 5, 14, 28, 45, 8, 4, 12, 28, 48, 8
+  ),
+  share = rep(c(22, 24, 16, 3, 17, 6, 4, 7), each = 5)
+)
+troops$answer <- factor(troops$answer, levels = unique(troops$answer))
+troops$group <- factor(troops$group, levels = rev(unique(troops$group)))
+
+## Two blues for the positive answers, two reds for the negative, grey for
+## "not sure" -- colour reinforcing the grouping.
+troop_cols <- c(pal_stack(6)[1], pal_stack(6)[2], pal_bar(6)[6], pal_bar(6)[5], "#B7C6CF")
+
+trump <- ggplot(troops, aes(group, pct, fill = answer)) +
+  geom_col(width = 0.65, position = position_stack(reverse = TRUE)) +
+  ## Number blocks, sitting to the right of the 100% mark.
+  geom_point(aes(y = 112, size = share), colour = print_numberbox,
+             show.legend = FALSE) +
+  geom_text(aes(y = 112, label = share), size = 1.9, colour = print_pal$text) +
+  coord_flip() +
+  scale_size_area(max_size = 5) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 118),
+                     breaks = seq(0, 100, 20), expand = expansion(mult = c(0, 0))) +
+  scale_fill_manual(values = troop_cols) +
+  labs(
+    title = "Trump's troops",
+    subtitle = paste(
+      "How do you feel about Donald Trump as the 2016 Republican nominee",
+      "for president?*\nRight-hand figures: % of total voters, 2012"
+    ),
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(colour = grid_col),
+    axis.text.y = element_text(size = rel(0.6)),
+    legend.text = element_text(size = rel(0.62))
+  )
+
+econ_chart(
+  trump,
+  source = "Sources: YouGov; CCES; The Economist",
+  footnote = "*5,773 registered voters surveyed June 4th to July 9th 2016"
+)
+```
+
+## Lines, side by side (p.15)
+
+The `line_side` order, and the guide's cap: "Ilex will plot up to 6 colours
+but any more than 4 categories is probably too many and you should have a
+rethink." These examples connect the reconstructed observations directly;
+they do not use a smoothing layer. Where the guide shows monthly or quarterly
+volatility, the reconstruction retains that irregularity instead of replacing
+it with an idealised curve.
+
+### The standard colour order, one to six lines
+
+```{r line-order, fig.height = 210 / 72}
+set.seed(1502)
+line_shapes <- lapply(1:6, function(k) {
+  x <- 1:24
+  data.frame(
+    series = factor(k, levels = 1:6),
+    x = x,
+    y = 5 - k - 0.035 * x +
+      cumsum(rnorm(length(x), 0, 0.07 + 0.012 * k))
+  )
+})
+line_demo <- do.call(rbind, lapply(1:6, function(n) {
+  d <- do.call(rbind, line_shapes[seq_len(n)])
+  d$panel <- factor(
+    paste(n, if (n == 1) "line" else "lines"),
+    levels = paste(1:6, c("line", rep("lines", 5)))
+  )
+  d
+}))
+
+ggplot(line_demo, aes(x, y, colour = series)) +
+  geom_line(linewidth = 0.5, show.legend = FALSE) +
+  facet_wrap(~panel, nrow = 2) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(title = "Standard colour order", x = NULL, y = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.line = element_blank()
+  )
+```
+
+### "Penumbral" -- one line
+
+```{r penumbral, fig.height = 175 / 72}
+shadow <- data.frame(
+  year = seq(2006, 2011.75, by = 0.25),
+  units = c(0.42, 0.44, 0.47, 0.52, 0.60, 0.72, 0.86, 1.02, 1.20, 1.38,
+            1.55, 1.68, 1.80, 1.90, 1.97, 2.00, 1.96, 1.85, 1.72, 1.62,
+            1.55, 1.52, 1.50, 1.48)
+)
+set.seed(1503)
+shadow$units <- pmin(
+  1.98,
+  pmax(0, shadow$units + c(0, rnorm(nrow(shadow) - 2, 0, 0.11), 0))
+)
+
+penumbral <- ggplot(shadow, aes(year, units)) +
+  geom_line(colour = pal_line(1), linewidth = 0.6) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 2.0)) +
+  scale_x_continuous(breaks = 2006:2011, labels = c("2006", "07", "08", "09", "10", "11")) +
+  labs(
+    title = "Penumbral",
+    subtitle = "US shadow housing inventory*\nUnits, m",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(
+  penumbral,
+  source = "Source: CoreLogic",
+  footnote = "*Foreclosed and delinquent homes not yet on the market"
+)
+```
+
+### "Where Tokyo leads" -- two lines
+
+```{r tokyo-two}
+econ_chart(tokyo, source = "Source: Thomson Reuters")
+```
+
+### "Transports of delight" -- four lines, labelled in place, indexed
+
+An index chart: the guide puts a red rule on the index value and a black dot
+on the index point (p.25), and labels lines in place rather than with a key.
+
+```{r transports, fig.height = 190 / 72}
+london <- data.frame(
+  year = rep(2001:2015, 4),
+  mode = rep(c("Bus", "Tube", "Population", "Car"), each = 15),
+  index = c(
+    100, 110, 118, 128, 135, 145, 150, 158, 165, 162, 167, 168, 172, 175, 174,
+    100, 100, 98, 105, 102, 108, 112, 116, 120, 118, 122, 130, 135, 138, 148,
+    100, 100, 101, 101, 102, 103, 104, 105, 106, 108, 109, 111, 112, 114, 115,
+    100, 98, 101, 97, 94, 90, 88, 86, 84, 83, 82, 81, 80, 82, 84
+  )
+)
+london$mode <- factor(london$mode, levels = c("Bus", "Tube", "Population", "Car"))
+
+transports <- ggplot(london, aes(year, index, colour = mode)) +
+  geom_hline(yintercept = 100, colour = econ_red, linewidth = 0.2) +
+  geom_line(linewidth = 0.6, show.legend = FALSE) +
+  geom_point(data = data.frame(year = 2001, index = 100, mode = "Bus"),
+             colour = "black", size = 1.2) +
+  geom_text(
+    data = data.frame(
+      year = c(2010, 2014, 2013.5, 2014),
+      index = c(166, 128, 105, 82),
+      mode = factor(c("Bus", "Tube", "Population", "Car"), levels = levels(london$mode))
+    ),
+    aes(label = mode), size = 2.2, hjust = 1, show.legend = FALSE
+  ) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(80, 180)) +
+  scale_x_continuous(breaks = seq(2001, 2015, 2),
+                     labels = c("2001", "03", "05", "07", "09", "11", "13", "15")) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(
+    title = "Transports of delight",
+    subtitle = "London's population and journeys\n2001=100",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(transports, source = "Sources: Transport for London; ONS; The Economist")
+```
+
+### "Coming down everywhere" -- six lines, labelled in place
+
+```{r coming-down, fig.height = 190 / 72}
+set.seed(1504)
+countries <- c("Hungary", "Lithuania", "Russia", "Japan", "United States", "Britain")
+starts <- c(30, 34, 30, 21, 13, 11)
+ends <- c(20, 29, 20, 18, 13, 7)
+suicides <- do.call(rbind, lapply(seq_along(countries), function(i) {
+  data.frame(
+    year = 1960:2013,
+    country = factor(countries[i], levels = countries),
+    rate = pmax(0.5, approx(
+      seq(1960, 2013, length.out = 8),
+      seq(starts[i], ends[i], length.out = 8) +
+        c(0, cumsum(rnorm(7, 0, 2.2))),
+      xout = 1960:2013
+    )$y + c(0, rnorm(52, 0, 0.75), 0))
+  )
+}))
+
+coming_labels <- do.call(rbind, lapply(split(suicides, suicides$country), function(d) {
+  d[which.max(d$year), ]
+}))
+coming_labels$rate <- coming_labels$rate + c(
+  Hungary = 1.2, Lithuania = 0.8, Russia = 1.0,
+  Japan = 1.8, `United States` = -1.6, Britain = -0.6
+)[as.character(coming_labels$country)]
+
+coming_down <- ggplot(suicides, aes(year, rate, colour = country)) +
+  geom_line(linewidth = 0.5, show.legend = FALSE) +
+  geom_text(
+    data = coming_labels,
+    aes(label = country), hjust = 0, nudge_x = 1.5, size = 2, show.legend = FALSE
+  ) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 50)) +
+  scale_x_continuous(limits = c(1960, 2030),
+                     breaks = c(1960, 1970, 1980, 1990, 2000, 2013),
+                     labels = c("1960", "70", "80", "90", "2000", "13")) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(
+    title = "Coming down everywhere",
+    subtitle = "Suicides per 100,000 population",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(coming_down, source = "Sources: ONS; Eurostat")
+```
+
+### "Exodus" -- the high-contrast alternatives
+
+Where six related hues will not separate, the guide swaps in the `bright` and
+`dark` supporting sets (p.11).
+
+```{r exodus, fig.height = 200 / 72}
+mideast <- data.frame(
+  year = rep(c(1910, 1970, 2010, 2025), 7),
+  country = rep(c("Egypt", "Syria", "Palestine", "Israel", "Iraq",
+                  "U.A.E", "Saudi Arabia"), each = 4),
+  pct = c(12, 10, 8, 7, 15, 8, 5, 3, 11, 7, 2, 1,
+          3, 3, 2, 2, 6, 4, 1, 0.5, 0, 2, 9, 12, 0, 0.5, 1, 1.5)
+)
+mideast$country <- factor(mideast$country, levels = unique(mideast$country))
+
+## Four bright plus three dark gives the seven contrasting colours.
+high_contrast <- c(
+  economist_2017_pal("print", set = "bright")(4),
+  economist_2017_pal("print", set = "dark")(3)
+)
+
+exodus <- ggplot(mideast, aes(year, pct, colour = country)) +
+  geom_line(linewidth = 0.6) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 20)) +
+  scale_x_continuous(breaks = c(1910, 1970, 2010, 2025),
+                     labels = c("1910", "70", "2010", "25*")) +
+  scale_colour_manual(values = high_contrast) +
+  labs(
+    title = "Exodus",
+    subtitle = "Christians, as % of population",
+    x = "Available years", y = NULL, colour = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(legend.text = element_text(size = rel(0.65)))
+
+econ_chart(
+  exodus,
+  source = paste('Source: "Ongoing Exodus: Tracking the Emigration of',
+                 'Christians from the Middle East" by T. Johnson and G. Zurlo, 2015'),
+  footnote = "*Forecast"
+)
+```
+
+## Lines, stacked (p.16)
+
+Stacked areas take the `stacked` order. Where a band is wide enough, the
+guide labels it in place in white rather than using a key.
+
+### "Foreign hoards" -- two bands, labelled in place
+
+```{r foreign-hoards}
+reserves <- data.frame(
+  year = rep(2002:2011, 2),
+  trn = c(
+    0.3, 0.4, 0.5, 0.7, 0.9, 1.2, 1.6, 1.9, 2.3, 2.8,
+    0.5, 0.6, 0.8, 1.0, 1.3, 1.6, 1.9, 2.1, 2.4, 2.7
+  ),
+  region = rep(c("China", "Other developing countries"), each = 10)
+)
+reserves$region <- factor(reserves$region,
+                          levels = c("China", "Other developing countries"))
+
+hoards <- ggplot(reserves, aes(year, trn, fill = region)) +
+  geom_area(position = position_stack(reverse = TRUE)) +
+  annotate("text", x = 2009.5, y = 1.6, label = "China",
+           colour = "white", size = 2.3, hjust = 1) +
+  annotate("text", x = 2009.5, y = 4.3, label = "Other\ndeveloping\ncountries",
+           colour = "white", size = 2.3, hjust = 1) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 6),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0), breaks = seq(2002, 2010, 2),
+                     labels = c("2002", "04", "06", "08", "10*")) +
+  scale_fill_economist_2017("print", type = "stacked", guide = "none") +
+  labs(
+    title = "Foreign hoards",
+    subtitle = "Developing-country currency reserves\n$trn",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(hoards, source = "Source: IMF", footnote = "*Forecast")
+```
+
+### "The big shift" -- six bands with a key
+
+```{r big-shift, fig.height = 195 / 72}
+set.seed(3)
+havens <- c("Netherlands", "Bermuda & other Caribbean", "Luxembourg",
+            "Ireland", "Singapore", "Switzerland")
+peaks <- c(14, 12, 9, 8, 5, 7)
+shift <- do.call(rbind, lapply(seq_along(havens), function(i) {
+  data.frame(
+    year = 1982:2013,
+    haven = factor(havens[i], levels = havens),
+    pct = pmax(0, seq(1, peaks[i], length.out = 32) + rnorm(32, 0, 0.5))
+  )
+}))
+
+big_shift <- ggplot(shift, aes(year, pct, fill = haven)) +
+  geom_area(position = position_stack(reverse = TRUE)) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 60),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0),
+                     breaks = c(1982, 1990, 1995, 2000, 2005, 2010, 2013),
+                     labels = c("1982", "90", "95", "2000", "05", "10", "13")) +
+  scale_fill_economist_2017("print", type = "stacked") +
+  labs(
+    title = "The big shift",
+    subtitle = "Tax havens' share of US overseas corporate profits, %",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(legend.text = element_text(size = rel(0.62)))
+
+econ_chart(
+  big_shift,
+  source = paste('Source: "The Hidden Wealth of Nations",',
+                 "by Gabriel Zucman, University of Chicago Press, 2015")
+)
+```
+
+### "In limbo" -- the alternative stacked scheme
+
+The guide supplies a second five-colour order "for use where categories are
+chronological or where primary colour scheme doesn't work" (p.16).
+
+```{r in-limbo, fig.height = 195 / 72}
+set.seed(8)
+tenures <- c("Private rental", "LA/HA*", "Private leased by LA/HA*",
+             "Hostel", "Bed & breakfast")
+limbo <- do.call(rbind, lapply(seq_along(tenures), function(i) {
+  data.frame(
+    year = 1998:2015,
+    tenure = factor(tenures[i], levels = tenures),
+    n = pmax(0, c(8, 12, 18, 23, 25, 26, 25, 22, 18, 14, 11, 10, 10, 11,
+                  13, 15, 17, 19) * c(1.4, 1.0, 0.7, 0.35, 0.25)[i] +
+      rnorm(18, 0, 0.6))
+  )
+}))
+
+## The guide's alternative order: blue, cyan, teal, mauve, maroon.
+alt_stack <- c(pal_stack(6)[1], pal_stack(6)[2], pal_stack(6)[4],
+               pal_bar(6)[6], pal_bar(6)[5])
+
+limbo_plot <- ggplot(limbo, aes(year, n, fill = tenure)) +
+  geom_area(position = position_stack(reverse = TRUE)) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 100),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0),
+                     breaks = c(1998, 2002, 2004, 2006, 2008, 2010, 2012, 2015),
+                     labels = c("1998", "2002", "04", "06", "08", "10", "12", "15")) +
+  scale_fill_manual(values = alt_stack) +
+  labs(
+    title = "In limbo",
+    subtitle = "Households in temporary homes\nEngland, '000",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(legend.text = element_text(size = rel(0.62)))
+
+econ_chart(
+  limbo_plot,
+  source = "Source: DCLG",
+  footnote = "*Local authorities and housing associations"
+)
+```
+
+### "Emerging middle class" -- four bands, labelled in place
+
+```{r emerging-middle, fig.height = 200 / 72}
+classes <- c("Extremely poor\nless than $1.90", "Moderately poor\n$1.90 to $3.10",
+             "Near poor\n$3.11 to $5", "Developing middle class\n$5.01 to $13",
+             "Developed middle\nclass and above over $13")
+ends <- c(0.45, 0.55, 0.62, 0.75, 0.35)
+starts <- c(0.75, 0.62, 0.48, 0.35, 0.12)
+emerging <- do.call(rbind, lapply(seq_along(classes), function(i) {
+  data.frame(
+    year = 1991:2016,
+    class = factor(classes[i], levels = classes),
+    bn = seq(starts[i], ends[i], length.out = 26)
+  )
+}))
+
+emerging_plot <- ggplot(emerging, aes(year, bn, fill = class)) +
+  geom_area(position = position_stack(reverse = TRUE)) +
+  geom_text(
+    data = data.frame(
+      year = c(1996, 2000, 2007, 2010, 2012),
+      bn = c(0.35, 0.95, 1.45, 1.95, 2.55),
+      class = factor(classes, levels = classes)
+    ),
+    aes(label = class), colour = "white", size = 1.9, hjust = 0,
+    show.legend = FALSE
+  ) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 3),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0),
+                     breaks = c(1991, 1995, 2000, 2005, 2010, 2015),
+                     labels = c("1991", "95", "2000", "05", "10", "15")) +
+  scale_fill_manual(values = alt_stack, guide = "none") +
+  labs(
+    title = "Emerging middle class",
+    subtitle = paste("Working population by economic class,",
+                     "emerging and developing countries*\n2011$ at PPP, bn"),
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(
+  emerging_plot,
+  source = "Source: ILO",
+  footnote = "*Excluding most Western developed countries"
+)
+```
+
+## Thermometer (p.17)
+
+Not a `ggplot2` geom, but structurally a range between two or more values per
+category. The guide draws terminals as short vertical rules, and repeats the
+same chart at two, three, four and six series to show the colour order --
+with the note that "any more than 4 categories is probably too many and you
+should have a rethink".
+
+```{r thermometer-data}
+fields <- c("Mathematics", "Economics", "Computer Science", "Business", "Biology",
+            "Philosophy", "English", "Psychology", "History", "Communication")
+base_low <- c(48, 71, 65, 58, 52, 90, 118, 74, 61, 55)
+
+## One row per field per series, each series shifted further right.
+thermo_data <- function(n) {
+  do.call(rbind, lapply(seq_len(n), function(k) {
+    data.frame(
+      field = factor(fields, levels = rev(fields)),
+      series = factor(c("one", "two", "three", "four", "five", "six")[k],
+                      levels = c("one", "two", "three", "four", "five", "six")),
+      value = base_low * (1 + 0.42 * (k - 1))
+    )
+  }))
+}
+
+## The connecting rule runs from the lowest to the highest series.
+thermo_plot <- function(n, terminals = c("rule", "dot")) {
+  terminals <- match.arg(terminals)
+  d <- thermo_data(n)
+  spans <- do.call(rbind, lapply(split(d, d$field), function(x) {
+    data.frame(field = x$field[1], lo = min(x$value), hi = max(x$value))
+  }))
+
+  p <- ggplot(d, aes(y = field)) +
+    geom_segment(data = spans, aes(x = lo, xend = hi, y = field, yend = field),
+                 colour = grid_col, linewidth = 0.3)
+  p <- p + if (terminals == "rule") {
+    ## 0.5pt vertical rules, the guide's default terminal.
+    geom_linerange(aes(x = value, ymin = as.numeric(field) - 0.3,
+                       ymax = as.numeric(field) + 0.3, colour = series),
+                   linewidth = 0.5)
+  } else {
+    geom_point(aes(x = value, colour = series), size = 1.4)
+  }
+
+  p +
+    scale_x_continuous(position = "top", limits = c(0, 400)) +
+    scale_colour_economist_2017("print", type = "dot") +
+    labs(
+      title = "The horrible science",
+      subtitle = paste('Use of a specific "adjective" per million words',
+                       "in student reviews on RateMyProfessors.com*"),
+      x = NULL, y = NULL, colour = NULL
+    ) +
+    theme_economist_2017("print", horizontal = FALSE)
+}
+```
+
+### Two, three, four and six series
+
+```{r thermometer-2, fig.height = 215 / 72}
+econ_chart(thermo_plot(2), source = "Source: Ben Schmidt, Northeastern University")
+```
+
+```{r thermometer-3, fig.height = 215 / 72}
+econ_chart(thermo_plot(3), source = "Source: Ben Schmidt, Northeastern University")
+```
+
+```{r thermometer-4, fig.height = 215 / 72}
+econ_chart(thermo_plot(4), source = "Source: Ben Schmidt, Northeastern University")
+```
+
+```{r thermometer-6, fig.height = 215 / 72}
+econ_chart(thermo_plot(6), source = "Source: Ben Schmidt, Northeastern University")
+```
+
+### Dot terminals
+
+"Use as alternative when lines are unclear" (p.17).
+
+```{r thermometer-dots, fig.height = 215 / 72}
+econ_chart(thermo_plot(3, terminals = "dot"),
+           source = "Source: Ben Schmidt, Northeastern University")
+```
+
+## Scatter (p.18)
+
+The guide is specific about marks: standard dots 4px at 50% opacity "where
+general trend is more important than individual point", highlight dots at
+100% opacity "to label outliers / important data points", category dots with
+a 0.3px stroke and 50% fill for bubble charts, and trend lines at 1px, dashed
+3px/1px.
+
+### Chart elements
+
+```{r scatter-elements, fig.height = 120 / 72}
+elements <- data.frame(
+  kind = factor(c("Standard dot\n4px, 50% opacity", "Highlight dot\n4px, 100% opacity",
+                  "Category dot\n0.3px stroke, 50% fill"),
+                levels = c("Standard dot\n4px, 50% opacity",
+                           "Highlight dot\n4px, 100% opacity",
+                           "Category dot\n0.3px stroke, 50% fill")),
+  x = rep(1:3, each = 3) + rep(c(-0.12, 0, 0.12), 3),
+  y = rep(c(0.06, 0, -0.06), 3),
+  colour = rep(pal_dot(3), each = 3),
+  alpha = rep(c(0.5, 1, 0.5), each = 3)
+)
+
+ggplot(elements, aes(x, y)) +
+  geom_point(aes(colour = colour, alpha = alpha), size = 6) +
+  geom_text(
+    data = data.frame(x = 1:3, y = -0.22,
+                      kind = levels(elements$kind)),
+    aes(label = kind), size = 2, vjust = 1
+  ) +
+  scale_colour_identity() +
+  scale_alpha_identity() +
+  ylim(-0.45, 0.2) +
+  labs(title = "Chart elements", x = NULL, y = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text = element_blank(), axis.ticks = element_blank(),
+    axis.line = element_blank(), panel.grid.major = element_blank()
+  )
+```
+
+### "Divergent" -- standard scatter with trend lines
+
+```{r divergent}
+set.seed(2017)
+metro <- data.frame(
+  period = rep(c("Q1 1990 - Q1 2007", "Q1 2012 - Q1 2016"), each = 90),
+  employment = c(rnorm(90, 2.4, 1.4), rnorm(90, 2.0, 1.2))
+)
+metro$house_prices <- with(
+  metro,
+  ifelse(period == "Q1 1990 - Q1 2007", 1.9 * employment, 1.1 * employment) +
+    rnorm(nrow(metro), 0, 2.2)
+)
+
+divergent <- ggplot(metro, aes(employment, house_prices, colour = period)) +
+  geom_point(size = 1.1, alpha = 0.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              linewidth = 0.35, linetype = "22") +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  geom_vline(xintercept = 0, colour = econ_red, linewidth = 0.2) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right") +
+  scale_colour_economist_2017("print", type = "dot") +
+  labs(
+    title = "Divergent",
+    subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
+    x = "Employment", y = "House prices", colour = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(
+  divergent,
+  source = "Sources: Freddie Mac; US Bureau of Labour Statistics",
+  footnote = "*At least 100,000 population"
+)
+```
+
+### "The best disinfectant" -- labelled outliers
+
+Standard dots carry the cloud; highlight dots at full opacity carry the
+labels. The guide's note here: "sub title should summarise chart, save
+specific units for axis labels".
+
+```{r disinfectant}
+set.seed(11)
+corruption <- data.frame(
+  open = runif(80, 15, 95),
+  stringsAsFactors = FALSE
+)
+corruption$score <- pmin(100, pmax(0, corruption$open * 0.75 + rnorm(80, 8, 14)))
+named <- data.frame(
+  country = c("Britain", "Denmark", "US", "Sweden", "Singapore",
+              "Colombia", "India", "Mexico"),
+  open = c(78, 84, 74, 70, 66, 32, 40, 28),
+  score = c(81, 91, 76, 89, 84, 37, 38, 35)
+)
+
+disinfectant <- ggplot(corruption, aes(open, score)) +
+  geom_point(colour = pal_dot(1), size = 1.1, alpha = 0.5) +
+  geom_point(data = named, colour = pal_dot(2)[2], size = 1.3) +
+  geom_text(data = named, aes(label = country), size = 1.9,
+            hjust = 1, nudge_x = -2) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 100)) +
+  scale_x_continuous(limits = c(0, 100)) +
+  labs(
+    title = "The best disinfectant",
+    subtitle = "Corruption and open data",
+    x = "Corruption-perceptions index score, 2014\n100=least corrupt",
+    y = "Open-data\nindex score, latest\n100=most open"
+  ) +
+  theme_economist_2017("print") +
+  theme(axis.title.x = element_text(hjust = 0.5))
+
+econ_chart(
+  disinfectant,
+  source = "Sources: Transparency International; Open Knowledge Foundation"
+)
+```
+
+### "Right nation" -- connected scatter
+
+Two observations per country, joined. "To avoid obscuring the connecting
+lines and labels, axis lines can be broken" (p.18).
+
+```{r right-nation, fig.height = 215 / 72}
+oecd <- data.frame(
+  country = rep(c("Japan", "France", "Britain", "Germany", "Chile",
+                  "Turkey", "United States"), 2),
+  year = rep(c("2003", "2013*"), each = 7),
+  spend = c(2.1, 2.9, 2.3, 2.9, 0.7, 0.5, 5.7,
+            3.7, 4.4, 3.3, 4.8, 1.6, 1.0, 8.7),
+  life = c(81.8, 79.4, 78.4, 78.6, 77.4, 71.5, 77.1,
+           83.3, 82.3, 81.1, 80.9, 79.2, 76.6, 78.8)
+)
+oecd$year <- factor(oecd$year, levels = c("2003", "2013*"))
+labels <- subset(oecd, year == "2013*" &
+                   country %in% c("Japan", "France", "Germany", "Britain",
+                                  "Chile", "Turkey", "United States"))
+
+right_nation <- ggplot(oecd, aes(spend, life)) +
+  geom_line(aes(group = country), colour = pal_dot(2)[2], linewidth = 0.3) +
+  geom_point(aes(colour = year), size = 1.3) +
+  geom_text(data = labels, aes(label = country), size = 1.9,
+            hjust = 1, nudge_x = -0.2) +
+  ## The 2013 averages, called out with dashed rules and labels.
+  geom_hline(yintercept = 80.5, linetype = "22", linewidth = 0.25) +
+  geom_vline(xintercept = 3.45, linetype = "22", linewidth = 0.25) +
+  annotate("text", x = 3.6, y = 70.5, label = "2013\naverage\n$3,453",
+           size = 1.8, hjust = 0, fontface = "bold") +
+  annotate("text", x = 9, y = 80.9, label = "2013 average 80.5",
+           size = 1.8, hjust = 1, fontface = "bold") +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(69, 84)) +
+  scale_x_continuous(limits = c(0, 9)) +
+  scale_colour_economist_2017("print", type = "dot") +
+  labs(
+    title = "Right nation",
+    subtitle = "Health spending and life expectancy at birth\nOECD countries",
+    x = "Health expenditures per person\nat purchasing-power parity, current prices, $'000",
+    y = "Life expectancy,\nyears", colour = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(axis.title.x = element_text(hjust = 0.5))
+
+econ_chart(right_nation, source = "Source: OECD", footnote = "*Or latest")
+```
+
+### "Vitality and the vote" -- bubble chart, four categories
+
+Category dots: 50% opacity fill with a thin stroke, sized by a second
+variable.
+
+```{r vitality, fig.height = 225 / 72}
+set.seed(4)
+regions <- c("Northeast", "Midwest", "West", "South")
+counties <- do.call(rbind, lapply(seq_along(regions), function(i) {
+  n <- 260
+  health <- rnorm(n, c(48, 44, 50, 41)[i], 7)
+  data.frame(
+    region = factor(regions[i], levels = regions),
+    health = health,
+    swing = -1.6 * (health - 45) + rnorm(n, c(2, 8, -2, 6)[i], 9),
+    pop = rlnorm(n, 1, 0.9)
+  )
+}))
+
+vitality <- ggplot(counties, aes(health, swing)) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  geom_point(aes(fill = region, size = pop), shape = 21, alpha = 0.5,
+             stroke = 0.1, colour = "white") +
+  scale_size_area(max_size = 3.2, guide = "none") +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-50, 50)) +
+  scale_x_continuous(limits = c(20, 70)) +
+  scale_fill_manual(values = c(pal_dot(6)[4], pal_dot(6)[2],
+                               pal_dot(6)[1], pal_dot(6)[3])) +
+  labs(
+    title = "Vitality and the vote",
+    subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+    x = "Index of county health metrics*",
+    y = "Change in Republican margin\nover Democrats, 2012-16, % points",
+    fill = "Region"
+  ) +
+  theme_economist_2017("print") +
+  theme(axis.title.x = element_text(hjust = 0.5),
+        legend.text = element_text(size = rel(0.62)))
+
+econ_chart(
+  vitality,
+  source = paste("Sources: Atlas of US Presidential Elections; Census Bureau;",
+                 "IPUMS; The Economist"),
+  footnote = "*Weighted index of obesity, diabetes, heavy drinking, 2010-12"
+)
+```
+
+### "Vitality and the vote" -- highlighting instead of categorising
+
+"Where colour categories become difficult to distinguish, consider
+highlighting the most significant part of the story" (p.18).
+
+```{r vitality-highlight, fig.height = 225 / 72}
+counties$focus <- ifelse(counties$region == "Midwest", "Midwest", "Other")
+
+vitality_hl <- ggplot(counties, aes(health, swing)) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  geom_point(aes(fill = focus, size = pop), shape = 21, alpha = 0.5,
+             stroke = 0.1, colour = "white", show.legend = FALSE) +
+  annotate("text", x = 44, y = 6, label = "Midwest", size = 2.4,
+           colour = "white", fontface = "bold") +
+  scale_size_area(max_size = 3.2, guide = "none") +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-50, 50)) +
+  scale_x_continuous(limits = c(20, 70)) +
+  scale_fill_manual(values = c(Midwest = pal_dot(2)[2], Other = pal_dot(1))) +
+  labs(
+    title = "Vitality and the vote",
+    subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+    x = "Index of county health metrics*",
+    y = "Change in Republican margin\nover Democrats, 2012-16, % points"
+  ) +
+  theme_economist_2017("print") +
+  theme(axis.title.x = element_text(hjust = 0.5))
+
+econ_chart(
+  vitality_hl,
+  source = paste("Sources: Atlas of US Presidential Elections; Census Bureau;",
+                 "IPUMS; The Economist"),
+  footnote = "*Weighted index of obesity, diabetes, heavy drinking, 2010-12"
+)
+```
+
+## Pie / doughnut (p.20)
+
+The guide carries its own warning: "Use with caution. Should probably be
+abandoned in favour of stacked bar if over 4 categories."
+
+### The standard colour order, one to six segments
+
+```{r pie-order, fig.height = 230 / 72}
+pie_demo <- do.call(rbind, lapply(1:6, function(n) {
+  values <- c(60, 25, 8, 4, 2, 1)[seq_len(n)]
+  data.frame(
+    panel = factor(paste(n), levels = as.character(1:6)),
+    segment = factor(c(seq_len(n), "Other"), levels = c(as.character(1:6), "Other")),
+    value = c(values, 100 - sum(values))
+  )
+}))
+pie_demo <- subset(pie_demo, value > 0)
+
+pie_grid <- function(hole) {
+  ggplot(pie_demo, aes(x = hole, y = value, fill = segment)) +
+    geom_col(width = 0.9, position = position_stack(reverse = TRUE)) +
+    coord_polar(theta = "y") +
+    ## Keep the inner edge of the bar on the scale. The former fixed lower
+    ## limit (0.2) discarded the solid-pie rectangles whose xmin was 0.1.
+    xlim(max(0, hole - 0.45), hole + 0.45) +
+    facet_wrap(~panel, nrow = 1) +
+    scale_fill_manual(
+      values = c(setNames(pal_pie(6), as.character(1:6)), Other = "#C7D3D9"),
+      guide = "none"
+    ) +
+    labs(x = NULL, y = NULL) +
+    theme_economist_2017("print") +
+    theme(
+      axis.text = element_blank(), axis.ticks = element_blank(),
+      axis.line = element_blank(), panel.grid.major = element_blank()
+    )
+}
+
+## Doughnut (hole) above, pie below -- the guide shows both rows.
+pie_grid(2) + labs(title = "Standard colour order", subtitle = "Doughnut")
+```
+
+```{r pie-order-solid, fig.height = 130 / 72}
+pie_grid(0.55) + labs(subtitle = "Pie")
+```
+
+### "Naan bigger" -- a labelled doughnut
+
+```{r naan, fig.height = 225 / 72}
+workforce <- data.frame(
+  division = c("Jaguar Land Rover", "Tata Steel", "Tata Consultancy Services",
+               "TGB (drinks)", "Others", "Tata Chemicals", "Taj (hotels)"),
+  thousands = c(19.0, 19.4, 4.9, 0.7, 0.6, 0.5, 0.4)
+)
+workforce$division <- factor(workforce$division, levels = workforce$division)
+## Label positions round the ring, computed from the cumulative shares.
+workforce$pos <- cumsum(workforce$thousands) - workforce$thousands / 2
+workforce$label <- c(
+  "Jaguar Land Rover\n19.0", "Tata Steel\n19.4",
+  "Tata Consultancy Services\n4.9", "TGB (drinks) 0.7",
+  "Others 0.6", "Tata Chemicals 0.5", "Taj (hotels) 0.4"
+)
+## Spread the four tiny slices around the top of the ring. Their true slice
+## positions remain unchanged; only their labels are moved to avoid collisions.
+workforce$label_pos <- workforce$pos
+workforce$label_pos[3:7] <- c(38.0, 40.2, 42.0, 43.7, 45.25)
+workforce$label_x <- c(2.75, 2.75, 2.65, 2.45, 2.6, 2.8, 3.0)
+
+naan <- ggplot(workforce, aes(x = 2, y = thousands, fill = division)) +
+  geom_col(width = 0.9, position = position_stack(reverse = TRUE)) +
+  coord_polar(theta = "y") +
+  xlim(0.3, 3.1) +
+  geom_text(aes(x = label_x, y = label_pos, label = label),
+            size = 1.55, lineheight = 0.9, show.legend = FALSE) +
+  annotate("text", x = 0.3, y = 0, label = "Total\n45.4", size = 2.2) +
+  scale_fill_economist_2017("print", type = "pie", guide = "none") +
+  labs(
+    title = "Naan bigger",
+    subtitle = "Tata's workforce in Britain, September 2011, '000",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text = element_blank(), axis.ticks = element_blank(),
+    axis.line = element_blank(), panel.grid.major = element_blank()
+  )
+
+econ_chart(naan, source = "Source: Tata")
+```
+
+### "The scramble in Africa" -- two doughnuts, keyed labels
+
+"Where linking lines get too crowded, key the labels with small colour
+block" (p.20). The guide lists eleven trade partners and seven investment
+sources: retain all of them rather than collapsing the smaller entries. Grey
+takes "Rest of world"; repeated hues distinguish the remaining keyed labels.
+
+```{r scramble, fig.height = 250 / 72}
+trade_partners <- c(
+  "Rest of world", "China*", "United States", "France", "India", "Spain",
+  "Italy", "Brazil", "Japan", "Germany", "Britain"
+)
+investment_partners <- c(
+  "Rest of world", "Britain", "United States", "Italy", "China", "France", "India"
+)
+africa <- rbind(
+  data.frame(
+    panel = "Goods trade with Africa, 2013, $bn",
+    partner = trade_partners,
+    value = c(453.8, 156.4, 72.1, 61.6, 57.0, 48.1, 40.9,
+              25.3, 25.3, 40.4, 34.4)
+  ),
+  data.frame(
+    panel = "Foreign direct investment in Africa, 2012, $bn",
+    partner = investment_partners,
+    value = c(38.1, 7.5, 3.7, 3.6, 2.5, 2.1, 1.8)
+  )
+)
+africa$partner <- factor(
+  africa$partner,
+  levels = unique(c(trade_partners, investment_partners))
+)
+africa$panel <- factor(
+  africa$panel,
+  levels = c("Goods trade with Africa, 2013, $bn",
+             "Foreign direct investment in Africa, 2012, $bn")
+)
+
+## The printed trade entries total $1,015.3bn, which rounds to the guide's
+## displayed $1.02trn; investment totals $59.3bn. Keeping the totals as data
+## makes the completeness check explicit without drawing them as a doughnut
+## segment.
+africa_totals <- aggregate(value ~ panel, africa, sum)
+stopifnot(all.equal(unname(africa_totals$value), c(1015.3, 59.3)))
+
+## A doughnut encodes a composition, not an absolute total. Normalising within
+## each facet keeps both panels the same diameter, as on p.20; `value` stays
+## available for the guide's labels and the total check above.
+africa$share <- ave(africa$value, africa$panel, FUN = function(x) x / sum(x))
+stopifnot(all(abs(tapply(africa$share, africa$panel, sum) - 1) < 1e-12))
+africa_centres <- data.frame(
+  panel = factor(levels(africa$panel), levels = levels(africa$panel)),
+  label = c("Total\n$1.02trn", "Total\n$59.3bn")
+)
+
+scramble <- ggplot(africa, aes(x = 2, y = share, fill = partner)) +
+  geom_col(width = 0.9, position = position_stack(reverse = TRUE)) +
+  coord_polar(theta = "y") +
+  xlim(0.4, 2.5) +
+  facet_wrap(~panel) +
+  scale_fill_manual(values = c(
+    "Rest of world" = "#B7C6CF",
+    setNames(rep(pal_pie(6), length.out = length(levels(africa$partner)) - 1),
+             levels(africa$partner)[-1])
+  ), guide = guide_legend(nrow = 3, byrow = TRUE)) +
+  geom_text(
+    data = africa_centres,
+    aes(x = 0.4, y = 0, label = label),
+    inherit.aes = FALSE, size = 1.8, lineheight = 0.9,
+    fontface = "bold"
+  ) +
+  labs(title = "The scramble in Africa", x = NULL, y = NULL, fill = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text = element_blank(), axis.ticks = element_blank(),
+    axis.line = element_blank(), panel.grid.major = element_blank(),
+    strip.text = element_text(size = rel(0.62)),
+    legend.position = "bottom",
+    legend.text = element_text(size = rel(0.58)),
+    legend.key.width = unit(8, "pt"),
+    legend.spacing.x = unit(2, "pt")
+  )
+
+econ_chart(scramble, source = "Sources: UNCTAD; IMF",
+           footnote = "*Including Macau and Hong Kong")
+```
+
+## Double-scale charts (p.21)
+
+"Double scales can be good at showing correlations and are economical with
+space. But they can also be confusing/misleading." The guide asks for
+coloured y-axis labels in Econ Sans Cnd Regular rather than Light, so each
+axis reads with its own series, and gives its own two-colour orders: cyan and
+teal for axis 1, maroon and mauve for axis 2.
+
+`sec_axis()` is the mechanism: the second series is rescaled onto the first
+axis, and `sec_axis()` inverts that transformation for the right-hand labels.
+Both axes take `guide_axis_economist()`, which puts the labels inside the
+panel. The axis titles still sit in a column beside the panel, so they are
+broken over several short lines to keep that column narrow.
+
+### "Out of steam" -- one line on each axis
+
+```{r out-of-steam, fig.height = 185 / 72}
+rail_anchors <- data.frame(
+  year = seq(1955, 2015, by = 5),
+  track = c(30, 27, 24, 22, 20, 19, 18, 17, 16, 16, 16, 16, 16),
+  passengers = c(20, 21, 20, 22, 24, 25, 26, 28, 34, 41, 48, 55, 64)
+)
+set.seed(2101)
+rail <- data.frame(
+  year = 1955:2015,
+  track = approx(rail_anchors$year, rail_anchors$track,
+                 xout = 1955:2015)$y + rnorm(61, 0, 0.28),
+  passengers = approx(rail_anchors$year, rail_anchors$passengers,
+                      xout = 1955:2015)$y + rnorm(61, 0, 0.75)
+)
+axis1 <- pal_dot(6)[1]
+axis2 <- pal_dot(6)[2]
+
+steam <- ggplot(rail, aes(year)) +
+  geom_vline(xintercept = 1994, linetype = "22", linewidth = 0.25) +
+  annotate("text", x = 1993, y = 62, label = "Privatisation begins",
+           size = 1.9, hjust = 1) +
+  geom_line(aes(y = passengers), colour = axis1, linewidth = 0.6) +
+  geom_line(aes(y = track * 70 / 30), colour = axis2, linewidth = 0.6) +
+  scale_y_continuous(
+    guide = guide_axis_economist(),
+    name = "Passenger\nkilometres\nbn", limits = c(0, 70),
+    sec.axis = sec_axis(~ . * 30 / 70, name = "National\nrail track\n'000 km", guide = guide_axis_economist())
+  ) +
+  scale_x_continuous(breaks = c(1955, 1970, 1980, 1990, 2000, 2014),
+                     labels = c("1955", "70", "80", "90", "2000", "14")) +
+  labs(title = "Out of steam", subtitle = "Britain, railways", x = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text.y.left = element_text(colour = axis1),
+    axis.text.y.right = element_text(colour = axis2),
+    axis.title.y.left = element_text(colour = axis1, hjust = 0),
+    axis.title.y.right = element_text(colour = axis2, hjust = 1)
+  )
+
+econ_chart(steam, source = "Source: Department for Transport")
+```
+
+### "Golden triangle" -- three lines on the left-hand axis
+
+```{r golden-triangle, fig.height = 185 / 72}
+nafta_anchors <- data.frame(
+  year = rep(seq(1994, 2015, by = 3), 4),
+  series = rep(c("Mexico", "Canada", "United States", "Total trilateral trade"),
+               each = 8),
+  value = c(
+    76, 84, 88, 86, 82, 80, 79, 81,
+    72, 78, 82, 80, 76, 74, 76, 77,
+    28, 30, 32, 31, 29, 28, 28, 29,
+    0.30, 0.45, 0.62, 0.70, 0.78, 0.72, 0.95, 1.05
+  )
+)
+set.seed(2102)
+nafta <- do.call(rbind, lapply(split(nafta_anchors, nafta_anchors$series), function(d) {
+  x <- 1994:2015
+  is_total <- d$series[1] == "Total trilateral trade"
+  data.frame(
+    year = x,
+    series = d$series[1],
+    value = approx(d$year, d$value, xout = x)$y +
+      rnorm(length(x), 0, if (is_total) 0.025 else 1.1)
+  )
+}))
+nafta$series <- factor(
+  nafta$series,
+  levels = c("Mexico", "Canada", "United States", "Total trilateral trade")
+)
+lefts <- subset(nafta, series != "Total trilateral trade")
+rights <- subset(nafta, series == "Total trilateral trade")
+left_cols <- c(Mexico = pal_dot(6)[1], Canada = pal_dot(6)[5],
+               `United States` = pal_dot(6)[3])
+
+golden <- ggplot(mapping = aes(year)) +
+  geom_line(data = lefts, aes(y = value, colour = series), linewidth = 0.5) +
+  geom_line(data = rights, aes(y = value * 100 / 1.25),
+            colour = pal_dot(6)[2], linewidth = 0.6) +
+  geom_text(
+    data = data.frame(year = c(2001, 2001, 2012),
+                      value = c(92, 70, 24),
+                      series = names(left_cols)),
+    aes(y = value, label = series, colour = series), size = 1.9,
+    hjust = 0, show.legend = FALSE
+  ) +
+  scale_y_continuous(
+    guide = guide_axis_economist(),
+    name = "NAFTA exports\nto each other,\n% of total", limits = c(0, 100),
+    sec.axis = sec_axis(~ . * 1.25 / 100, name = "Total trilateral trade\n$trn", guide = guide_axis_economist())
+  ) +
+  scale_colour_manual(values = left_cols, guide = "none") +
+  scale_x_continuous(breaks = c(1994, 2000, 2005, 2010, 2015),
+                     labels = c("1994", "2000", "05", "10", "15")) +
+  labs(title = "Golden triangle", x = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.title.y.left = element_text(colour = pal_dot(6)[1], hjust = 0),
+    axis.title.y.right = element_text(colour = pal_dot(6)[2], hjust = 1),
+    axis.text.y.right = element_text(colour = pal_dot(6)[2])
+  )
+
+econ_chart(golden, source = "Sources: Thomson Reuters; IMF")
+```
+
+### "Chavismo in action" -- line and column
+
+"Always choose the axis colour order that will visually associate the labels
+best with the corresponding line."
+
+```{r chavismo, fig.height = 185 / 72}
+venezuela <- data.frame(
+  year = 2004:2016,
+  gdp = c(18, 10, 9.9, 8.8, 5.3, -3.2, -1.5, 4.2, 5.6, 1.3, -3.9, -6.2, -18),
+  prices = c(20, 16, 14, 19, 31, 27, 29, 26, 21, 41, 63, 122, 800)
+)
+
+chavismo <- ggplot(venezuela, aes(year)) +
+  geom_col(aes(y = gdp), fill = pal_dot(6)[1], width = 0.65) +
+  geom_line(aes(y = prices * 20 / 800), colour = pal_dot(6)[2], linewidth = 0.6) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  scale_y_continuous(
+    guide = guide_axis_economist(),
+    name = "GDP", limits = c(-20, 20),
+    sec.axis = sec_axis(~ . * 800 / 20, name = "Consumer\nprices,\nyear-end", guide = guide_axis_economist())
+  ) +
+  scale_x_continuous(breaks = seq(2004, 2016, 2),
+                     labels = c("2004", "06", "08", "10", "12", "14", "16*")) +
+  labs(title = "Chavismo in action",
+       subtitle = "Venezuela, % change on a year earlier", x = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.title.y.left = element_text(colour = pal_dot(6)[1], hjust = 0),
+    axis.title.y.right = element_text(colour = pal_dot(6)[2], hjust = 1),
+    axis.text.y.left = element_text(colour = pal_dot(6)[1]),
+    axis.text.y.right = element_text(colour = pal_dot(6)[2])
+  )
+
+econ_chart(chavismo, source = "Sources: IMF; Reuters",
+           footnote = "*Preliminary estimate")
+```
+
+### What to avoid
+
+The guide illustrates three failure modes, reproduced here as the guide draws
+them -- these are the charts *not* to copy. Its closing advice: "If you
+cannot conform to the above rules try splitting the chart into panels or
+indexing the variables."
+
+```{r double-scale-avoid, fig.height = 195 / 72}
+set.seed(6)
+qe <- data.frame(
+  t = 1:48,
+  euro = 1.38 - cumsum(rnorm(48, 0.006, 0.012)),
+  yield = 4.2 - cumsum(rnorm(48, 0.06, 0.08))
+)
+qe$yield <- pmax(qe$yield, 0.6)
+
+## Broken scale on the left axis: the y range starts at 1.0, not 0.
+quantifying <- ggplot(qe, aes(t)) +
+  geom_line(aes(y = euro), colour = pal_dot(6)[1], linewidth = 0.5) +
+  geom_line(aes(y = 1.0 + yield * 0.4 / 5), colour = pal_dot(6)[2],
+            linewidth = 0.5) +
+  scale_y_continuous(
+    guide = guide_axis_economist(),
+    name = "Euro against\nthe dollar,\n$ per euro", limits = c(1.0, 1.4),
+    sec.axis = sec_axis(~ (. - 1.0) * 5 / 0.4,
+                        name = "Ten-year\ngovernment-\nbond yields, %", guide = guide_axis_economist())
+  ) +
+  labs(title = "Quantifying QE",
+       subtitle = "Avoid: a broken scale distorts the data", x = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+    axis.title.y.left = element_text(colour = pal_dot(6)[1], hjust = 0),
+    axis.title.y.right = element_text(colour = pal_dot(6)[2], hjust = 1)
+  )
+
+econ_chart(quantifying, source = "Source: Thomson Reuters")
+```
+
+```{r double-scale-avoid-2, fig.height = 195 / 72}
+set.seed(9)
+beneath <- data.frame(
+  year = 2002:2016,
+  cash = c(20, 35, 55, 75, 90, 95, 88, 30, 40, 45, 42, 20, -15, -40, -25),
+  brent = c(25, 30, 42, 55, 65, 72, 98, 62, 80, 111, 112, 109, 99, 52, 45)
+)
+
+## The two zero lines do not coincide: 0 on the left sits at a different
+## height from 0 on the right.
+lies <- ggplot(beneath, aes(year)) +
+  geom_col(aes(y = cash), fill = pal_dot(6)[1], width = 0.65) +
+  geom_line(aes(y = (brent - 60) * 120 / 120), colour = pal_dot(6)[2],
+            linewidth = 0.5) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  scale_y_continuous(
+    guide = guide_axis_economist(),
+    name = "Big oil\ncompanies' free\ncash flow, $bn",
+    limits = c(-60, 120),
+    sec.axis = sec_axis(~ . + 60, name = "Oil price\nBrent,\n$ per barrel", guide = guide_axis_economist())
+  ) +
+  scale_x_continuous(breaks = seq(2002, 2016, 2),
+                     labels = c("2002", "04", "06", "08", "10", "12", "14", "16")) +
+  labs(title = "What lies beneath",
+       subtitle = "Avoid: misaligned baselines", x = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.title.y.left = element_text(colour = pal_dot(6)[1], hjust = 0),
+    axis.title.y.right = element_text(colour = pal_dot(6)[2], hjust = 1)
+  )
+
+econ_chart(lies, source = "Source: BCG")
+```
+
+```{r double-scale-avoid-3, fig.height = 195 / 72}
+set.seed(12)
+zuma <- data.frame(
+  t = 1:36,
+  rand = 7 + cumsum(rnorm(36, 0.28, 0.5)),
+  sacci = 100 + cumsum(rnorm(36, -0.35, 1.6))
+)
+
+## An index value against an inverted currency scale: two disparate measures
+## forced into visual correlation.
+zuma_plot <- ggplot(zuma, aes(t)) +
+  geom_line(aes(y = rand), colour = pal_dot(6)[2], linewidth = 0.5) +
+  geom_line(aes(y = 6 + (sacci - 80) * 12 / 40), colour = pal_dot(6)[1],
+            linewidth = 0.5) +
+  scale_y_reverse(
+    guide = guide_axis_economist(),
+    name = "Rand per $,\ninverted\nscale", limits = c(18, 6),
+    sec.axis = sec_axis(~ 80 + (. - 6) * 40 / 12,
+                        name = "SACCI\nBusiness\nConfidence\nIndex, 2015=100", guide = guide_axis_economist())
+  ) +
+  labs(title = "The Zuma years",
+       subtitle = "Avoid: mixing disparate measures to force a correlation\nSouth Africa",
+       x = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+    axis.title.y.left = element_text(colour = pal_dot(6)[2], hjust = 0),
+    axis.title.y.right = element_text(colour = pal_dot(6)[1], hjust = 1)
+  )
+
+econ_chart(zuma_plot, source = "Sources: Thomson Reuters; SACCI")
+```
+
+## Blob heads (p.22)
+
+"A secondary data variable added as area-sized bubbles or number boxes. Can
+be used with column or thermometer charts."
+
+### "The Big Mac index" -- numbers inside the bubbles
+
+```{r big-mac, fig.height = 250 / 72}
+bigmac <- data.frame(
+  country = c("Switzerland", "Norway", "Sweden", "Brazil", "United States",
+              "Euro area", "Britain", "Japan", "Turkey", "China",
+              "Vietnam", "India", "Mexico", "Russia"),
+  y2016 = c(30, 8, -12, -32, 0, -18, -22, -38, -42, -45, -50, -58, -55, -60),
+  y2017 = c(38, 12, -8, 6, 0, -20, -26, -34, -40, -44, -48, -54, -56, -62),
+  price = c(6.4, 5.8, 5.3, 5.1, 5.1, 4.1, 3.8, 3.3, 3.0, 2.8, 2.6, 2.5, 2.3, 2.2)
+)
+bigmac$country <- factor(bigmac$country, levels = rev(bigmac$country))
+bigmac_long <- data.frame(
+  country = rep(bigmac$country, 2),
+  year = rep(c("January 2016", "January 2017"), each = nrow(bigmac)),
+  value = c(bigmac$y2016, bigmac$y2017)
+)
+
+big_mac <- ggplot(bigmac, aes(y = country)) +
+  geom_segment(aes(x = pmin(y2016, y2017), xend = pmax(y2016, y2017),
+                   yend = country), colour = grid_col, linewidth = 0.3) +
+  geom_linerange(
+    data = bigmac_long,
+    aes(x = value, ymin = as.numeric(country) - 0.3,
+        ymax = as.numeric(country) + 0.3, colour = year),
+    linewidth = 0.5
+  ) +
+  geom_vline(xintercept = 0, colour = econ_red, linewidth = 0.2) +
+  ## The blob heads: a fixed-fill circle with the value inside (p.22).
+  geom_point(aes(x = 62), size = 4.6, colour = print_numberbox) +
+  geom_text(aes(x = 62, label = format(price, nsmall = 1)), size = 1.7,
+            colour = print_pal$text) +
+  scale_x_continuous(position = "top", limits = c(-85, 68),
+                     breaks = seq(-80, 40, 20)) +
+  scale_colour_economist_2017("print", type = "dot") +
+  labs(
+    title = "The Big Mac index",
+    subtitle = paste("Local currency under (-) / over (+) valuation against",
+                     "the dollar, %\nRight-hand figures: Big Mac price*, $"),
+    x = NULL, y = NULL, colour = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE)
+
+econ_chart(big_mac, source = "Sources: McDonald's; The Economist",
+           footnote = "*At market exchange rates, Jan 11th 2017")
+```
+
+### "Up in the air" -- bubbles and numbers outside the bar
+
+"To avoid awkward alignment, if most numbers won't fit, put them outside
+bubble and align text right."
+
+```{r up-in-air, fig.height = 235 / 72}
+travel <- data.frame(
+  country = c("China", "India", "Germany", "Spain", "United States", "Britain",
+              "South Korea", "Canada", "Brazil", "France", "Italy", "Australia",
+              "Japan", "Netherlands", "Russia"),
+  change = c(14, 11, 9, 8.5, 8, 7, 6.5, 6, 5.5, 5, 4.5, 4, 2, 1, -5),
+  bn = c(261, 26, 58, 18, 288, 44, 32, 23, 32, 36, 31, 21, 62, 18, 21)
+)
+travel$country <- factor(travel$country, levels = rev(travel$country))
+
+air <- ggplot(travel, aes(country, change)) +
+  geom_col(fill = pal_bar(1), width = 0.6) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  ## Bubbles sized by area, with the value set to their right.
+  geom_point(aes(y = 19, size = bn), colour = print_numberbox,
+             show.legend = FALSE) +
+  geom_text(aes(y = 25, label = bn), size = 1.8, hjust = 1,
+            colour = print_pal$text) +
+  coord_flip() +
+  scale_size_area(max_size = 4) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-10, 25),
+                     breaks = seq(-10, 15, 5)) +
+  labs(
+    title = "Up in the air",
+    subtitle = "Business travel spending, 2014\n% change on a year earlier; right-hand figures $bn",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE)
+
+econ_chart(air, source = "Source: GBTA")
+```
+
+### "Starting small" -- equal-sized number blocks
+
+"If number range or positive / negative values rule out bubbles, revert to
+equal-sized number blocks."
+
+```{r starting-small, fig.height = 175 / 72}
+exchanges <- data.frame(
+  exchange = c("Johannesburg", "Nigeria", "Mauritius", "Nairobi", "Namibia", "BRVM*"),
+  listed = c(375, 190, 70, 65, 30, 40),
+  cap = c(943, 29.3, 6.2, 19.9, 2.3, 11.6)
+)
+exchanges$exchange <- factor(exchanges$exchange, levels = rev(exchanges$exchange))
+
+small <- ggplot(exchanges, aes(exchange, listed)) +
+  geom_col(fill = pal_dot(6)[1], width = 0.6) +
+  ## Equal-sized blocks, right-aligned, rather than area-sized bubbles.
+  geom_tile(aes(y = 460), width = 0.55, height = 95, fill = print_numberbox) +
+  geom_text(aes(y = 460, label = cap), size = 1.8, colour = print_pal$text) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 520),
+                     breaks = seq(0, 400, 100)) +
+  labs(
+    title = "Starting small",
+    subtitle = paste("Number of companies listed on stock exchanges,",
+                     "October 2016\nRight-hand figures: market cap, $bn"),
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE)
+
+econ_chart(small, source = "Source: World Federation of Exchanges",
+           footnote = "*West African regional exchange")
+```
+
+## Miscellaneous styling (p.25)
+
+### Number boxes
+
+"Use where multiple charts are referenced in text." A 7.5pt bold numeral on
+the number-box fill, top right.
+
+```{r number-box, fig.height = 190 / 72}
+numbered <- tokyo +
+  labs(caption = NULL)
+
+econ_chart(numbered, source = "Source: Thomson Reuters", number = 1)
+```
+
+### Highlight panels
+
+"For secondary information, like forecast or estimate, use neutral style."
+
+```{r highlight-neutral, fig.height = 190 / 72}
+jobs <- data.frame(
+  year = rep(seq(1950, 2100, by = 10), 4),
+  place = rep(c("Japan", "United States", "European Union", "China"), each = 16),
+  index = c(
+    62, 70, 78, 86, 93, 98, 100, 99, 96, 92, 87, 82, 77, 72, 68, 64,
+    58, 64, 70, 78, 86, 93, 100, 106, 111, 115, 118, 120, 121, 122, 122, 122,
+    76, 82, 88, 93, 97, 99, 100, 99, 96, 92, 87, 82, 77, 73, 69, 66,
+    40, 48, 58, 70, 84, 95, 100, 101, 98, 92, 85, 77, 69, 62, 56, 51
+  )
+)
+jobs$place <- factor(jobs$place, levels = c("Japan", "United States",
+                                            "European Union", "China"))
+
+fill_jobs <- ggplot(jobs, aes(year, index, colour = place)) +
+  annotate("rect", xmin = 2015, xmax = Inf, ymin = -Inf, ymax = Inf,
+           fill = print_highlight) +
+  annotate("text", x = 2057, y = 122, label = "FORECAST", size = 1.7,
+           colour = print_pal$text) +
+  geom_line(linewidth = 0.5, show.legend = FALSE) +
+  geom_point(data = data.frame(year = 2015, index = 100, place = "Japan"),
+             colour = "black", size = 1.2, show.legend = FALSE) +
+  geom_text(
+    data = data.frame(
+      year = c(1990, 2035, 2060, 1980),
+      index = c(96, 118, 74, 46),
+      place = factor(c("Japan", "United States", "European Union", "China"),
+                     levels = levels(jobs$place))
+    ),
+    aes(label = place), size = 1.9, show.legend = FALSE
+  ) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(20, 125)) +
+  scale_x_continuous(breaks = c(1950, 1975, 2000, 2025, 2050, 2075, 2100),
+                     labels = c("1950", "75", "2000", "25", "50", "75", "2100")) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(
+    title = "Who will fill the jobs?",
+    subtitle = "Working-age population*, 2015=100",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(fill_jobs, source = "Source: United Nations Population Division",
+           footnote = "*Aged 15-64")
+```
+
+"For highlights that are central to the message of the chart, use colour" --
+a 30% tint of the guide's own red.
+
+```{r highlight-colour, fig.height = 190 / 72}
+set.seed(2501)
+merkel_anchors <- data.frame(
+  t = seq(2005, 2016.75, by = 0.25),
+  approval = c(
+    62, 64, 66, 70, 72, 71, 69, 67, 65, 66, 68, 70,
+    52, 44, 40, 42, 48, 54, 58, 62, 64, 66, 68, 70,
+    72, 74, 75, 74, 73, 72, 71, 70, 69, 68, 66, 62,
+    54, 44, 38, 36, 40, 46, 50, 54, 56, 58, 60, 62
+  )
+)
+merkel <- data.frame(
+  t = seq(2005, 2016.75, by = 1 / 12)
+)
+merkel$approval <- approx(
+  merkel_anchors$t, merkel_anchors$approval, xout = merkel$t
+)$y + rnorm(nrow(merkel), 0, 1.7)
+merkel$approval <- pmin(78, pmax(32, merkel$approval))
+## The guide's message-critical highlight: c10 m70 y50 at a 30% tint.
+crisis_tint <- "#F6C8C0"
+
+malaise <- ggplot(merkel, aes(t, approval)) +
+  annotate("rect", xmin = 2010.9, xmax = 2012.1, ymin = -Inf, ymax = Inf,
+           fill = crisis_tint) +
+  annotate("rect", xmin = 2015.4, xmax = 2016.1, ymin = -Inf, ymax = Inf,
+           fill = crisis_tint) +
+  annotate("text", x = 2011.5, y = 74, label = "Euro\nCrisis", size = 1.8,
+           colour = "#C0392B") +
+  annotate("text", x = 2015.75, y = 42, label = "Migrant\nCrisis", size = 1.8,
+           colour = "#C0392B") +
+  geom_line(colour = pal_line(1), linewidth = 0.6) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(30, 80)) +
+  scale_x_continuous(breaks = c(2005, 2007, 2009, 2011, 2013, 2015, 2016),
+                     labels = c("2005", "07", "09", "11", "13", "15", "16")) +
+  labs(
+    title = "Mutti's malaise",
+    subtitle = "German approval of Angela Merkel, % polled",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(malaise, source = "Source: ARD DeutschlandTREND/infratest dimap")
+```
+
+"For web-only charts, use print bkgd colour for highlights" -- the same
+chart, on white, with the panels in the print background blue.
+
+```{r highlight-web, fig.height = 190 / 72}
+## The web example keeps the print panel colour for its highlights (p.25),
+## rather than carrying the print chart's red-tinted panels onto white. The
+## first two layers are the two `annotate("rect")` highlight layers above.
+## `malaise` already defines the x scale, so do not add a duplicate one here.
+malaise_web <- malaise
+for (i in 1:2) malaise_web$layers[[i]]$aes_params$fill <- print_bg
+malaise_web <- malaise_web + theme_economist_2017("web")
+
+econ_chart(malaise_web, source = "Source: ARD DeutschlandTREND/infratest dimap",
+           media = "web")
+```
+
+### Highlight labels
+
+"Use to mark specific dates and points on axis" -- a 0.5pt red rule with a
+7pt label. "If there are only 1 or 2 points, and they are key to the chart
+meaning, use colour/medium font."
+
+```{r highlight-labels, fig.height = 190 / 72}
+set.seed(30)
+toshiba <- data.frame(
+  t = seq(2015, 2017.4, by = 0.1),
+  price = c(500, 480, 460, 300, 280, 260, 250, 240, 230, 220, 215, 210,
+            205, 200, 210, 230, 250, 270, 300, 330, 360, 420, 300, 260, 240)
+)
+events <- data.frame(
+  t = c(2015.3, 2015.9, 2016.6, 2017.2),
+  label = c("Accounting\nscandal", "CEO resigns", "$4.6bn\nrecord loss",
+            "CB&I Stone\n& Webster\nwrite-down"),
+  y = c(600, 520, 380, 600)
+)
+
+woes_chart <- ggplot(toshiba, aes(t, price)) +
+  geom_vline(data = events, aes(xintercept = t), colour = econ_red,
+             linewidth = 0.2) +
+  geom_text(data = events, aes(x = t + 0.03, y = y, label = label),
+            hjust = 0, size = 1.7, inherit.aes = FALSE) +
+  geom_line(colour = pal_line(1), linewidth = 0.6) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 650),
+                     breaks = seq(0, 600, 100)) +
+  scale_x_continuous(breaks = c(2015, 2016, 2017), labels = c("2015", "16", "17")) +
+  labs(
+    title = "Westinghouse woes",
+    subtitle = "Toshiba, share price, yen",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(woes_chart, source = "Source: Thomson Reuters")
+```
+
+### Index charts
+
+"0.5pt red line on index line" and a "5pt diameter black circle on index
+point".
+
+```{r index-chart, fig.height = 190 / 72}
+income <- data.frame(
+  year = rep(seq(1979, 2015, by = 3), 3),
+  measure = rep(c("Market income", "plus transfers",
+                  "plus transfers less taxes"), each = 13),
+  index = c(
+    100, 104, 112, 118, 116, 122, 128, 126, 132, 136, 130, 138, 140,
+    100, 103, 109, 114, 113, 118, 123, 122, 127, 131, 127, 134, 136,
+    100, 102, 106, 110, 110, 114, 118, 118, 122, 126, 123, 129, 131
+  )
+)
+income$measure <- factor(income$measure, levels = unique(income$measure))
+set.seed(2502)
+income <- do.call(rbind, lapply(split(income, income$measure), function(d) {
+  years <- 1979:2015
+  data.frame(
+    year = years,
+    measure = d$measure[1],
+    index = approx(d$year, d$index, xout = years)$y +
+      c(0, rnorm(length(years) - 2, 0, 1.1), 0)
+  )
+}))
+income$measure <- factor(
+  income$measure,
+  levels = c("Market income", "plus transfers", "plus transfers less taxes")
+)
+
+pain <- ggplot(income, aes(year, index, colour = measure)) +
+  geom_hline(yintercept = 100, colour = econ_red, linewidth = 0.2) +
+  geom_line(linewidth = 0.5) +
+  geom_point(data = data.frame(year = 1979, index = 100,
+                               measure = factor("Market income",
+                                                levels = levels(income$measure))),
+             colour = "black", size = 1.4, show.legend = FALSE) +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(90, 150)) +
+  scale_x_continuous(breaks = c(1979, 1985, 1990, 1995, 2000, 2005, 2010, 2013),
+                     labels = c("1979", "85", "90", "95", "2000", "05", "10", "13")) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(
+    title = "Easing the pain",
+    subtitle = "United States, median real household income*, 1979=100",
+    x = NULL, y = NULL, colour = NULL
+  ) +
+  theme_economist_2017("print") +
+  theme(legend.text = element_text(size = rel(0.62)))
+
+econ_chart(pain, source = "Source: CBO", footnote = "*Adjusted for household size")
+```
+
+### Truncated year labels
+
+Every dated axis in the guide truncates years to two digits, keeping the
+first label and each century boundary in full -- `1948 52 56 ... 96 2000 04`
+(pp.6, 7, 13, 15, 16, 23). `economist_year_format()` does this, so the charts
+above need not spell their `labels` out by hand:
+
+```{r year-labels}
+economist_year(seq(1948, 2016, 4))
+```
+
+### Broken scales
+
+"Use when breaking y-axis on line, thermometer and scatter charts. Not needed
+on indexed, negative scale or inverted scales" (p.25). The mark is decoration
+only: truncate the axis with `limits` as usual, then add
+`geom_scale_break()` to declare it. The guide never excises a band from the
+middle of an axis, so nothing here rescales the data.
+
+The guide's other rule is emphatic: **don't break the scale on a bar or
+column chart -- use a thermometer instead.** A truncated bar misstates the
+comparison the bar exists to make.
+
+```{r broken-scale, fig.height = 190 / 72}
+broken <- ggplot(merkel, aes(t, approval)) +
+  geom_line(colour = pal_line(1), linewidth = 0.6) +
+  ## Black, 0.4pt stroke, 6pt wide, centred between the baseline and the
+  ## lowest tick -- the guide's own specification.
+  geom_scale_break() +
+  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(30, 80)) +
+  scale_x_continuous(breaks = seq(2005, 2016, 1),
+                     labels = economist_year_format()) +
+  labs(
+    title = "Mutti's malaise",
+    subtitle = "German approval of Angela Merkel, % polled",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+econ_chart(broken, source = "Source: ARD DeutschlandTREND/infratest dimap")
+```
+
+## What this vignette does not reproduce
+
+* **Typefaces (p.5).** The guide is set in Econ Sans and Econ Sans Cnd, which
+  are licensed and not distributable. The themes fall back to `"sans"`, so
+  the type *sizes* match the guide but the letterforms do not. A close free
+  substitute is a condensed grotesque such as Roboto Condensed, via
+  `base_family`.
+* **Tables (p.19)** are not a `ggplot2` geom. The guide's table specification
+  -- 7.5/9 medium headline, 7.5/9 light body, alternating row fills, 3pt
+  internal padding -- belongs to a table package such as `gt` or `flextable`.
+* **Timelines (pp.23-24)** are annotation layouts rather than a chart type:
+  the data layer is an ordinary line or column chart, which the sections
+  above already cover, and everything that makes them timelines is hand-placed
+  text, rules and period bars. The mobile variants (p.24) are a layout
+  problem rather than a plotting one.
+* **Exact publication placement.** The leader, Espresso and panel examples
+  above reproduce the guide's type sizes, outer margins, fixed blank area and
+  panel gutter. Their placement inside an Economist article remains a
+  publication-layout concern rather than a `ggplot2` theme element.
