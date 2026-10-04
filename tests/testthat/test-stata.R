@@ -60,6 +60,30 @@ test_that("scale_linetype_stata works", {
   expect_s3_class(scale_linetype_stata(), "ScaleDiscrete")
 })
 
+test_that("every stata linetype is a valid R linetype", {
+  # R takes a named linetype, or 2, 4, 6 or 8 hex digits (1-F) giving dash and
+  # gap lengths. The eleventh, longdash_shortdash, was once "F434343", which
+  # failed any plot with 11 or more linetypes.
+  values <- stata_linetype_pal()(attr(stata_linetype_pal(), "max_n"))
+  expect_length(values, 15)
+  valid <- values == "solid" | grepl("^([1-9A-F]{2}){1,4}$", values)
+  expect_equal(values[!valid], character(0))
+  expect_equal(values[11], "F434")
+  expect_false(anyDuplicated(values) > 0)
+})
+
+test_that("scale_linetype_stata draws all of its linetypes", {
+  n <- attr(stata_linetype_pal(), "max_n")
+  df <- data.frame(x = rep(1:2, n), y = rep(seq_len(n), each = 2), g = factor(rep(seq_len(n), each = 2)))
+  p <- ggplot2::ggplot(df, ggplot2::aes(.data$x, .data$y, linetype = .data$g)) +
+    ggplot2::geom_line() +
+    scale_linetype_stata()
+  path <- withr::local_tempfile(fileext = ".png")
+  grDevices::png(path)
+  on.exit(grDevices::dev.off(), add = TRUE)
+  expect_no_error(print(p))
+})
+
 # Palette contents verified against the official scheme files shipped in
 # Stata's ado/base/s (see data-raw/theme-data/stata.yml for provenance).
 
