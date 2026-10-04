@@ -409,7 +409,10 @@ economist_2017_linewidth <- function(pt, base_size) {
 #' * for web, the red rule across the top of the chart (p.7);
 #' * a red marker, 10pt by 1pt, above each panel heading (p.10);
 #' * for web, the key moved up to the right of the title and subtitle
-#'   (p.7), instead of taking a row of its own above the panel.
+#'   (p.7), instead of taking a row of its own above the panel;
+#' * optionally, a footnote set right on the source line (pp.6-7), and a
+#'   number box at the top right, for charts referred to by number in the
+#'   text (p.25).
 #'
 #' Sizes scale with the plot's base font size, as the theme's do, and the
 #' tab is placed at the plot's own outer margin.
@@ -417,6 +420,15 @@ economist_2017_linewidth <- function(pt, base_size) {
 #' @param plot A ggplot styled with [theme_economist_2017()].
 #' @param media Either `"print"` or `"web"`. Use the same medium as the
 #'   theme.
+#' @param footnote Text for the footnote, or `NULL` for none. It is set in
+#'   the style of the source line (the theme's `plot.caption`), ranged right.
+#'   Start it with the symbol from [economist_2017_footnote()] that marks the
+#'   annotated text. A long source and footnote can overprint; break one of
+#'   them over two lines.
+#' @param number The chart's number, or `NULL` for none, drawn bold in a
+#'   10pt box at the top right of the chart (p.25).
+#' @param tab Width and height of the red tab, in points. The standard chart
+#'   uses `c(15, 5)` (p.6); a leader block uses a 4pt tab (p.8).
 #'
 #' @return A grob of class `ggthemes_furniture`. Print it to draw it, or pass
 #'   it to [ggplot2::ggsave()]. Like a ggplot, it is laid out when drawn, so
@@ -430,24 +442,52 @@ economist_2017_linewidth <- function(pt, base_size) {
 #' @family economist 2017
 #' @export
 #' @example inst/examples/ex-economist_2017_furniture.R
-economist_2017_furniture <- function(plot, media = c("print", "web")) {
+economist_2017_furniture <- function(
+  plot,
+  media = c("print", "web"),
+  footnote = NULL,
+  number = NULL,
+  tab = c(15, 5)
+) {
   if (!ggplot2::is_ggplot(plot)) {
     cli::cli_abort("{.arg plot} must be a ggplot, not {.obj_type_friendly {plot}}.")
   }
   media <- rlang::arg_match(media)
+  if (!is.null(footnote) && !rlang::is_string(footnote)) {
+    cli::cli_abort("{.arg footnote} must be a single string or {.code NULL}.")
+  }
+  if (!is.null(number) && length(number) != 1) {
+    cli::cli_abort("{.arg number} must be a single value or {.code NULL}.")
+  }
+  if (!is.numeric(tab) || length(tab) != 2 || any(tab < 0)) {
+    cli::cli_abort("{.arg tab} must be two non-negative numbers: a width and a height in points.")
+  }
+  # The footnote shares the source line, so the plot needs one to share.
+  if (!is.null(footnote) && is.null(plot$labels$caption)) {
+    plot <- plot + ggplot2::labs(caption = " ")
+  }
   # Built at draw time, in makeContent(), like a ggplot itself: the plot's
   # text is measured on the device it is drawn on, not on whichever device
   # happens to be open when this function is called.
-  grid::gTree(plot = plot, media = media, cl = "ggthemes_furniture")
+  grid::gTree(
+    plot = plot,
+    media = media,
+    footnote = footnote,
+    number = number,
+    tab = tab,
+    cl = "ggthemes_furniture"
+  )
 }
 
 #' @exportS3Method grid::makeContent
 makeContent.ggthemes_furniture <- function(x) {
-  grid::setChildren(x, grid::gList(economist_2017_layout(x$plot, x$media)))
+  gt <- economist_2017_layout(x$plot, x$media, x$footnote, x$number, x$tab)
+  grid::setChildren(x, grid::gList(gt))
 }
 
-economist_2017_layout <- function(plot, media) {
-  accent <- ggthemes::ggthemes_data[["economist_2017"]][[media]][["accent"]]
+economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, tab = c(15, 5)) {
+  spec <- ggthemes::ggthemes_data[["economist_2017"]][[media]]
+  accent <- spec[["accent"]]
   theme <- ggplot2::complete_theme(plot$theme)
   k <- ggplot2::calc_element("text", theme)$size / 10
   plot_margin <- ggplot2::calc_element("plot.margin", theme)
@@ -482,15 +522,69 @@ economist_2017_layout <- function(plot, media) {
     )
     gt <- everywhere(gt, rule, "economist-rule")
   }
-  tab <- grid::rectGrob(
+  tab_grob <- grid::rectGrob(
     x = plot_margin[4],
     y = grid::unit(1, "npc") - plot_margin[1],
-    width = pt(15),
-    height = pt(5),
+    width = pt(tab[1]),
+    height = pt(tab[2]),
     just = c("left", "top"),
     gp = red
   )
-  gt <- everywhere(gt, tab, "economist-tab")
+  gt <- everywhere(gt, tab_grob, "economist-tab")
+
+  if (!is.null(footnote)) {
+    caption <- which(gt$layout$name == "caption")
+    if (length(caption) == 1) {
+      cell <- gt$layout[caption, ]
+      grob <- ggplot2::element_grob(
+        ggplot2::calc_element("plot.caption", theme),
+        label = footnote,
+        x = grid::unit(1, "npc"),
+        hjust = 1,
+        margin_y = TRUE
+      )
+      gt <- gtable::gtable_add_grob(
+        gt,
+        grob,
+        t = cell$t,
+        l = cell$l,
+        b = cell$b,
+        r = cell$r,
+        clip = "off",
+        name = "economist-footnote"
+      )
+    }
+  }
+
+  if (!is.null(number)) {
+    box_fill <- spec[[if (media == "print") "number_box" else "box"]]
+    box_x <- grid::unit(1, "npc") - plot_margin[2]
+    box_y <- grid::unit(1, "npc") - plot_margin[1] - pt(10)
+    box <- grid::gTree(
+      children = grid::gList(
+        grid::rectGrob(
+          x = box_x,
+          y = box_y,
+          width = pt(10),
+          height = pt(10),
+          just = c("right", "top"),
+          gp = grid::gpar(fill = box_fill, col = NA)
+        ),
+        grid::textGrob(
+          as.character(number),
+          x = box_x - pt(5),
+          y = box_y - pt(5),
+          gp = grid::gpar(
+            col = spec[["text"]],
+            fontsize = 7.5 * k,
+            fontface = "bold",
+            fontfamily = ggplot2::calc_element("text", theme)$family
+          )
+        )
+      )
+    )
+    gt <- everywhere(gt, box, "economist-number")
+  }
 
   for (i in which(grepl("^strip-t", gt$layout$name))) {
     marker <- grid::rectGrob(
@@ -547,4 +641,97 @@ print.ggthemes_furniture <- function(x, newpage = TRUE, ...) {
   }
   grid::grid.draw(x)
   invisible(x)
+}
+
+#' Economist 2017 chart sizes
+#'
+#' The chart sizes of \emph{The Economist visual styleguide} (v1.2, 4 May
+#' 2017, p.4), for drawing a chart at the size the guide specifies: pass the
+#' result to [ggplot2::ggsave()], or use it for a knitr figure's `fig.width`
+#' and `fig.height`.
+#'
+#' The guide fixes the width of every size, and the height of only two: the
+#' leader block (83.5pt, p.4) and the Espresso lead image (160pt, p.9). For
+#' the others, give the height. All the sizes, with the web widths the guide
+#' gives for some of them, are in `ggthemes_data$economist_2017$sizes`.
+#'
+#' | `size` | Width (pt) | Height (pt) |
+#' |---|---|---|
+#' | `"one_column"` | 160 | |
+#' | `"two_column"` | 332 | |
+#' | `"three_column"` | 504 | |
+#' | `"leader"` | 117 | 83.5 |
+#' | `"free_exchange"` | 245 | |
+#' | `"espresso"` | 160 | 160 |
+#' | `"special_half_column"` | 117 | |
+#' | `"special_two_thirds_column"` | 160 | |
+#' | `"special_one_column"` | 245 | |
+#' | `"special_two_and_half_column"` | 332 | |
+#'
+#' The `special_` sizes are for special reports, Technology Quarterly and
+#' essays, which are set on a different grid.
+#'
+#' @param size The chart size; see the table.
+#' @param height The chart's height, in points. Required unless `size` has a
+#'   fixed height, which it then overrides.
+#' @param units The units of the result: `"in"` (inches, as
+#'   [ggplot2::ggsave()] and knitr expect) or `"pt"` (points).
+#'
+#' @return A named numeric vector, `c(width = , height = )`, in `units`.
+#'
+#' @references
+#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' Matt McLean), pp.4, 8-9.
+#'
+#' @family economist 2017
+#' @export
+#' @example inst/examples/ex-economist_2017_size.R
+economist_2017_size <- function(size = "one_column", height = NULL, units = c("in", "pt")) {
+  sizes <- ggthemes::ggthemes_data[["economist_2017"]][["sizes"]]
+  size <- rlang::arg_match(size, sizes[["size"]])
+  units <- rlang::arg_match(units)
+  spec <- sizes[sizes[["size"]] == size, ]
+  if (is.null(height)) {
+    height <- spec[["height"]]
+    if (is.na(height)) {
+      cli::cli_abort(c(
+        "{.arg height} is required for {.val {size}}.",
+        i = "The guide fixes the height only of {.val leader} and {.val espresso} charts."
+      ))
+    }
+  } else if (!is.numeric(height) || length(height) != 1 || height <= 0) {
+    cli::cli_abort("{.arg height} must be a single positive number of points.")
+  }
+  out <- c(width = spec[["width"]], height = height)
+  if (units == "in") {
+    out <- out / 72
+  }
+  out
+}
+
+#' Economist 2017 footnote symbols
+#'
+#' The footnote symbols of \emph{The Economist visual styleguide} (v1.2, 4 May
+#' 2017, p.5), in their order of use: `*`, `†`, `‡`, `§`, then the same four
+#' doubled. The guide stops at eight; beyond that the pattern continues,
+#' tripling the symbols and so on. The symbols are also in
+#' `ggthemes_data$economist_2017$footnotes`.
+#'
+#' @param n Which footnotes, counting from 1.
+#'
+#' @return A character vector of symbols, one for each element of `n`.
+#'
+#' @references
+#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' Matt McLean), p.5.
+#'
+#' @family economist 2017
+#' @export
+#' @example inst/examples/ex-economist_2017_footnote.R
+economist_2017_footnote <- function(n) {
+  if (!is.numeric(n) || anyNA(n) || any(n < 1) || any(n != trunc(n))) {
+    cli::cli_abort("{.arg n} must be positive whole numbers.")
+  }
+  symbols <- ggthemes::ggthemes_data[["economist_2017"]][["footnotes"]][1:4]
+  strrep(symbols[(n - 1) %% 4 + 1], (n - 1) %/% 4 + 1)
 }

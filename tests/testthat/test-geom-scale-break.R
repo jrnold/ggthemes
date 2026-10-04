@@ -3,6 +3,10 @@
 ## the scale is truncated. It transforms nothing -- the axis is truncated by
 ## the scale's own limits.
 
+# Columns are referenced through the `.data` pronoun; the local binding lets
+# lintr's object_usage_linter see where the name comes from.
+.data <- rlang::.data
+
 truncated_plot <- function(...) {
   ggplot2::ggplot(
     data.frame(x = 2005:2016, y = c(62, 70, 68, 52, 44, 58, 70, 74, 71, 66, 44, 54)),

@@ -64,9 +64,11 @@ Matt McLean), pp.6-7.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
 \code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
+\code{\link[=economist_2017_size]{economist_2017_size()}},
 \code{\link[=geom_scale_break]{geom_scale_break()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}

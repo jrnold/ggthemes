@@ -14,6 +14,8 @@ reference:
   - scale_colour_economist_2017
   - guide_axis_economist
   - economist_2017_furniture
+  - economist_2017_size
+  - economist_2017_footnote
   - geom_scale_break
   - economist_year
 - title: Color Scales

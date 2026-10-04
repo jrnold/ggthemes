@@ -178,15 +178,20 @@ load_economist_media <- function(file) {
   })
 }
 
-# economist_2017: one complete spec per medium. Scalars stay strings, a list
-# of name/value pairs becomes a tibble (a colour sequence), a bare hex vector
-# stays a character vector (a ramp), and anything else is a group of these.
+# economist_2017: one complete spec per medium, plus chart sizes, typefaces
+# and footnote symbols. Scalars stay as they are, a list of records (such as
+# name/value pairs: a colour sequence) becomes a tibble, with NA where a record
+# omits a field, a bare vector stays a vector (a ramp, or the footnote
+# symbols), and anything else is a group of these.
 load_economist_era <- function(file) {
+  is_record <- function(x) {
+    is.list(x) && !is.null(names(x)) && all(map_lgl(x, ~ is.atomic(.x) && length(.x) == 1))
+  }
   convert <- function(x) {
     if (!is.list(x)) {
       return(x)
     }
-    if (length(x) && all(map_lgl(x, ~ is.list(.x) && identical(names(.x), c("name", "value"))))) {
+    if (length(x) && is.null(names(x)) && all(map_lgl(x, is_record))) {
       return(map_dfr(x, as_tibble))
     }
     map(x, convert)
@@ -223,6 +228,8 @@ hsl_to_hex <- function(hue, saturation, lightness) {
   })
 }
 
+# Aligned as a table, one ramp per row.
+# nolint start: commas_linter
 economist_ramp_specs <- tribble(
   ~key            , ~name           , ~group      , ~hue , ~saturation ,
   "economist_red" , "Economist Red" , "Brand"     ,    2 ,          91 ,
@@ -235,6 +242,7 @@ economist_ramp_specs <- tribble(
   "los_angeles"   , "Los Angeles"   , "Canvas"    ,   51 ,          22 ,
   "paris"         , "Paris"         , "Canvas"    ,  180 ,          22
 )
+# nolint end
 
 generate_economist_ramps <- function() {
   levels <- seq(5, 100, by = 5)

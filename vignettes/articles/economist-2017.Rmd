@@ -17,6 +17,9 @@ knitr::opts_chunk$set(
 ```{r setup, message = FALSE}
 library(ggplot2)
 library(ggthemes)
+
+# Columns are referenced through the `.data` pronoun inside functions.
+.data <- rlang::.data
 ```
 
 `theme_economist_2017()` and its palettes implement *The Economist visual
@@ -101,7 +104,7 @@ yields <- data.frame(
 )
 
 tokyo <- function(base_size = 10, linewidth = 0.4, key_rows = 1) {
-  p <- ggplot(yields, aes(year, yield, colour = country)) +
+  p <- ggplot(yields, aes(.data$year, .data$yield, colour = .data$country)) +
     geom_line(linewidth = linewidth) +
     scale_x_continuous(breaks = c(1, 5, 10, 13), minor_breaks = 1:13) +
     scale_y_continuous(
