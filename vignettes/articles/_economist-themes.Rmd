@@ -1,0 +1,575 @@
+---
+title: "Three Economist chart eras"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Three Economist chart eras}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6.5,
+  fig.height = 4.2,
+  dpi = 120
+)
+```
+
+## Three eras, two media
+
+`ggthemes` has always had `theme_economist()` and `theme_economist_white()`,
+built from *The Economist*'s house style as it looked around 2012. This
+vignette adds two more eras, each with its own print and web variant:
+
+| Era | Functions | Source |
+|---|---|---|
+| Classic (~2012) | `theme_economist()`, `theme_economist_white()` | already in the package |
+| "New design" (2017) | `theme_economist_new(media = "print"` or `"web")` | *The Economist visual styleguide*, v1.2, 4 May 2017 -- an internal PDF (Matt McLean) that documents this redesign explicitly, including an "OLD DESIGN / NEW DESIGN" comparison that lines up with the classic theme on one side and this one on the other |
+| 2024 redesign | `theme_economist_2024(media = "print"` or `"web")` | no public chart styleguide covers this refresh, so these values are measured from a corpus of 689 published Economist charts (2012-2026), including indexed PNGs and responsive `ai2html` graphics |
+
+The "new design" print and web palettes are genuinely different hues, not
+just different renderings of the same hues -- print's primary order is
+*dark blue, cyan, gold, teal, maroon, mauve*; web's is a nine-colour
+*red, blue, cyan, green, yellow, olive, purple, gold, grey*. The 2024 redesign
+uses a stable six-colour order in both media: *red, salmon, blue, light blue,
+dark grey, light grey*. Print and web have different production values. Red
+and grey sequential ramps and a red-grey diverging ramp cover ordered data.
+
+The 2017 guide is a specification; adoption lagged it. Sarah Leo, a visual
+data journalist at the paper, wrote about the transition from the inside in
+["Mistakes, we've drawn a
+few"](https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368)
+(*The Economist*, 27 March 2019): "Most of the 'original' charts were
+published before our chart redesign. The improved charts are drawn to fit
+our new specs." That "new specs" redesign is the same one this guide
+documents, just observed already in production two years after the guide
+itself -- which lines up with what the measured chart corpus shows too: the
+series-colour shift from `#01A2D9` to `#076FA1` dates to 2019, not 2017.
+
+One chart type from the styleguide's own catalogue isn't included below:
+**tables** aren't a ggplot2 geom. Thermometer charts aren't a built-in geom
+either, but they're really just a range plot -- a segment between two
+values with a mark at each end -- so `geom_segment()` + `geom_point()`
+reproduces them exactly and gets a section of its own.
+
+```{r setup}
+library(ggthemes)
+library(ggplot2)
+```
+
+## All the palettes, side by side
+
+Ten discrete palettes across the three eras -- one row per `media`/`set`/`type`
+combination -- so they can be compared directly rather than reconstructed
+from separate examples further down.
+
+```{r palette-comparison, fig.height=4.2, fig.width=7.5}
+pals <- list(
+  "Classic" = economist_pal()(9),
+  "New, print (bar_side)" = economist_new_pal("print", type = "bar_side")(6),
+  "New, print (stacked)" = economist_new_pal("print", type = "stacked")(6),
+  "New, print (line_side)" = economist_new_pal("print", type = "line_side")(6),
+  "New, print (dot)" = economist_new_pal("print", type = "dot")(6),
+  "New, print (pie)" = economist_new_pal("print", type = "pie")(6),
+  "New, print (bright)" = economist_new_pal("print", set = "bright")(4),
+  "New, print (dark)" = economist_new_pal("print", set = "dark")(3),
+  "New, web" = economist_new_pal("web")(9),
+  "2024, print" = economist_2024_pal("print")(6),
+  "2024, web" = economist_2024_pal("web")(6)
+)
+
+pal_df <- do.call(rbind, lapply(names(pals), function(nm) {
+  hex <- pals[[nm]]
+  data.frame(pal = nm, i = seq_along(hex), hex = hex, stringsAsFactors = FALSE)
+}))
+pal_df$pal <- factor(pal_df$pal, levels = rev(names(pals)))
+## White text on dark tiles, black on light -- relative luminance, not just
+## darkness, so a saturated mid-tone (e.g. the reds) still reads correctly.
+rgb <- t(col2rgb(pal_df$hex)) / 255
+luminance <- rgb %*% c(0.299, 0.587, 0.114)
+pal_df$label_colour <- ifelse(luminance < 0.5, "white", "black")
+
+ggplot(pal_df, aes(x = i, y = pal, fill = hex)) +
+  geom_tile(width = 0.94, height = 0.8, colour = "white", linewidth = 1.2) +
+  geom_text(aes(label = hex, colour = label_colour), size = 2.4, vjust = 2.1, family = "mono") +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(expand = expansion(add = 0.6)) +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(axis.text.x = element_blank(), panel.grid = element_blank())
+```
+
+## The 2024+ palettes: examples and sources
+
+The 2024 redesign has qualitative, sequential and diverging palette families.
+
+| Palette | Functions | Source |
+|---|---|---|
+| Qualitative | `economist_2024_pal()`, `scale_*_economist_2024()` | Six recurring series colours, ordered red, salmon, blue, light blue, dark grey, light grey; separate print and web values. |
+| Sequential | `economist_2024_seq_gradient_pal()`, `scale_*_gradient_economist_2024()` | Light-to-dark red and grey ramps reconstructed from maps, heatmaps and shaded bands. |
+| Diverging | `economist_2024_div_gradient_pal()`, `scale_*_gradient2_economist_2024()` | Grey-to-red around the medium's ground colour, for change or deviation around a meaningful midpoint. |
+
+All three families take `media = "print"` or `"web"`.
+
+```{r economist-2024-palettes, fig.height=2.2, fig.width=7.5}
+categorical <- economist_2024_pal("web")(6)
+sequential <- economist_2024_seq_gradient_pal()(
+  seq(0, 1, length.out = 32)
+)
+
+palette_swatches <- rbind(
+  data.frame(
+    palette = "Discrete: series and highlights",
+    x = (seq_along(categorical) - 0.5) / length(categorical),
+    width = 1 / length(categorical),
+    hex = categorical
+  ),
+  data.frame(
+    palette = "Sequential: low to high",
+    x = (seq_along(sequential) - 0.5) / length(sequential),
+    width = 1 / length(sequential),
+    hex = sequential
+  )
+)
+palette_swatches$palette <- factor(
+  palette_swatches$palette,
+  levels = rev(unique(palette_swatches$palette))
+)
+
+ggplot(palette_swatches, aes(x = x, y = palette, fill = hex, width = width)) +
+  geom_tile(height = 0.68) +
+  scale_fill_identity() +
+  scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
+  labs(x = NULL, y = NULL) +
+  theme_void(base_size = 11) +
+  theme(
+    axis.text.y = element_text(
+      hjust = 1,
+      colour = "#0D0D0D",
+      margin = margin(r = 8)
+    ),
+    plot.margin = margin(5.5, 5.5, 5.5, 5.5)
+  )
+```
+
+Use the discrete palette when colour identifies separate series:
+
+```{r economist-2024-discrete-example, fig.height=3.2, fig.width=6.5}
+series_example <- data.frame(
+  year = rep(2021:2025, 3),
+  value = c(31, 35, 34, 41, 45, 24, 27, 31, 30, 36, 18, 20, 19, 24, 27),
+  series = rep(c("A", "B", "C"), each = 5)
+)
+
+ggplot(series_example, aes(year, value, colour = series)) +
+  geom_line(linewidth = 0.9) +
+  geom_text(
+    data = subset(series_example, year == 2025),
+    aes(label = series),
+    hjust = -0.4,
+    size = 3.2,
+    show.legend = FALSE
+  ) +
+  scale_colour_economist_2024() +
+  scale_x_continuous(
+    breaks = 2021:2025,
+    expand = expansion(mult = c(0.05, 0.12))
+  ) +
+  scale_y_continuous(position = "right") +
+  guides(colour = "none") +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Three series use distinct 2024+ inks",
+    subtitle = "Illustrative data",
+    x = NULL,
+    y = NULL,
+    colour = NULL
+  ) +
+  theme_economist_2024("web")
+```
+
+Use the sequential palette when colour encodes an ordered quantity:
+
+```{r economist-2024-sequential-example, fig.height=3.2, fig.width=6.5}
+surface_example <- expand.grid(x = 1:18, y = 1:8)
+surface_example$exposure <- with(
+  surface_example,
+  16 * exp(-((x - 12)^2 / 32 + (y - 5)^2 / 7))
+)
+
+ggplot(surface_example, aes(x, y, fill = exposure)) +
+  geom_tile() +
+  scale_fill_gradient_economist_2024(
+    name = "Exposure",
+    breaks = c(0, 5, 10, 15)
+  ) +
+  coord_equal(expand = FALSE) +
+  labs(
+    title = "Pale-to-dark red encodes increasing magnitude",
+    subtitle = "Illustrative data",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_economist_2024("web") +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+## Toy data
+
+Each dataset below is built to have the same *shape* as one of the
+styleguide's own named examples, so the same story can be told in five
+styles side by side. None of the numbers are real -- they're illustrative,
+sized and shaped like the original chart, nothing more.
+
+```{r toy-data}
+## Like "Salud" (p.13): one series, one country highlighted
+doctors <- data.frame(
+  country = factor(
+    c("Sweden", "Denmark", "Britain", "Portugal", "Luxembourg",
+      "France", "Austria", "Spain", "Germany"),
+    levels = c("Sweden", "Denmark", "Britain", "Portugal", "Luxembourg",
+               "France", "Austria", "Spain", "Germany")
+  ),
+  visits = c(2.9, 4.3, 5.0, 5.4, 5.9, 6.4, 6.6, 7.3, 8.0),
+  highlight = c(rep(FALSE, 7), TRUE, FALSE)
+)
+
+## Like "Defenders of democracy" (p.13): two series, grouped bars
+elections <- data.frame(
+  country = rep(c("Chile", "Brazil", "Mexico", "Poland", "India"), each = 2),
+  income = rep(c("Middle class", "Low income"), 5),
+  pct = c(78, 68, 71, 60, 66, 58, 55, 47, 51, 44)
+)
+elections$country <- factor(elections$country, levels = rev(unique(elections$country)))
+
+## Like "The Fed says no to nuptials" (p.14): stacked bar, market share
+carriers <- data.frame(
+  carrier = factor(
+    c("AT&T", "Verizon", "Sprint Nextel", "T-Mobile", "Other"),
+    levels = c("Other", "T-Mobile", "Sprint Nextel", "Verizon", "AT&T")
+  ),
+  share = c(30.4, 31.4, 10.0, 11.1, 16.8)
+)
+
+## Like "Where Tokyo leads" (p.6/15): two lines over time
+bonds <- data.frame(
+  year = rep(1:15, 2),
+  yield = c(
+    8.1, 7.6, 6.8, 6.9, 5.4, 4.6, 4.9, 3.8, 3.2, 2.9, 2.1, 1.8, 1.6, 1.2, 0.9,
+    2.0, 1.9, 1.7, 1.6, 1.4, 1.3, 1.5, 1.2, 1.1, 0.9, 0.7, 0.5, 0.3, 0.2, 0.1
+  ),
+  country = rep(c("Japan", "United States"), each = 15)
+)
+
+## Like "Foreign hoards" (p.16): stacked area, currency reserves
+reserves <- data.frame(
+  year = rep(2002:2011, 2),
+  trn = c(
+    0.3, 0.4, 0.5, 0.7, 0.9, 1.2, 1.6, 1.9, 2.3, 2.8,
+    0.5, 0.6, 0.8, 1.0, 1.3, 1.6, 1.9, 2.1, 2.4, 2.7
+  ),
+  region = rep(c("China", "Other developing countries"), each = 10)
+)
+reserves$region <- factor(reserves$region, levels = c("Other developing countries", "China"))
+
+## Like "Divergent" (p.18): scatter with two time periods and trend lines
+metro <- data.frame(
+  employment = c(
+    -1, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5,
+    0, 1, 2, 3, 4, 5, 6, 7
+  ),
+  house_prices = c(
+    -3, -1, 1, 2, 4, 5, 7, 8, 9, 10, 12, 13, 14, 15, 17, 18,
+    -2, 0, 1, 3, 3, 5, 6, 8
+  ),
+  period = c(rep("Q1 1990 - Q1 2007", 16), rep("Q1 2012 - Q1 2016", 8))
+)
+
+## Like "Naan bigger" (p.20): donut chart, workforce by division
+workforce <- data.frame(
+  division = c("Tata Steel", "Jaguar Land Rover", "Tata Consultancy Services",
+               "Others", "Taj (hotels)", "Tata Chemicals"),
+  thousands = c(19.4, 19.0, 4.9, 0.6, 0.4, 0.5)
+)
+workforce$division <- factor(workforce$division, levels = workforce$division)
+
+## Like "The horrible science" (p.17): a thermometer chart -- a range
+## between two values per category, with a mark at each end. Not a
+## built-in geom, but geom_segment() + geom_point() draws it exactly.
+adjectives <- data.frame(
+  field = c("Mathematics", "Economics", "Computer Science", "Business", "Biology",
+            "Philosophy", "English", "Psychology", "History", "Communication"),
+  one = c(48, 71, 65, 58, 52, 90, 118, 74, 61, 55),
+  two = c(112, 168, 140, 121, 133, 149, 205, 143, 139, 128)
+)
+adjectives$field <- factor(adjectives$field, levels = rev(adjectives$field))
+```
+
+## A helper to show all six styles
+
+The same base plot, six ways: classic print, classic web/white, "new
+design" print, "new design" web, 2024 print, 2024 web. The classic era gets
+two variants from the package's original pair of theme functions --
+`theme_economist()` (the bluish-gray print look) and
+`theme_economist_white()` (its white-panel web variant, already documented
+as what *The Economist*'s Graphic Detail blog used) -- both drawing on the
+same `economist_pal()` colours, since that palette was never print/web-split
+in the way `economist_new_pal()` is. This helper is a plain function local
+to the vignette, not part of the package.
+
+`new_type` picks which of `economist_new_pal()`'s five per-chart-type print
+orders to use for the "New design -- print" variant -- see the box below
+each section heading for which one and why.
+
+```{r variant-helper}
+show_variants <- function(p, aes_type = c("colour", "fill"),
+                           new_type = c("bar_side", "stacked", "line_side", "dot", "pie")) {
+  aes_type <- match.arg(aes_type)
+  new_type <- match.arg(new_type)
+  scale_fn <- function(theme_name, ...) {
+    get(paste0("scale_", aes_type, "_economist", theme_name))(...)
+  }
+  variants <- list(
+    "Classic (~2012) -- print" =
+      p + theme_economist() + scale_fn(""),
+    "Classic (~2012) -- web/white" =
+      p + theme_economist_white() + scale_fn(""),
+    "New design (2017) -- print" =
+      p + theme_economist_new(media = "print") + scale_fn("_new", media = "print", type = new_type),
+    "New design (2017) -- web" =
+      p + theme_economist_new(media = "web") + scale_fn("_new", media = "web"),
+    "2024 redesign -- print" =
+      p + theme_economist_2024(media = "print") + scale_fn("_2024", media = "print"),
+    "2024 redesign -- web" =
+      p + theme_economist_2024(media = "web") + scale_fn("_2024", media = "web")
+  )
+  for (nm in names(variants)) {
+    print(variants[[nm]] + labs(caption = nm))
+  }
+}
+```
+
+## Bar / column, side by side, one trace with highlight
+
+```{r bar-highlight, fig.height=4}
+p <- ggplot(doctors, aes(x = country, y = visits, fill = highlight)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_y_continuous(position = "right") +
+  labs(
+    title = "Salud", subtitle = "Doctors' consultations per person, selected countries",
+    x = NULL, y = NULL
+  )
+
+## The highlight uses each theme's own accent/first colour, keeping the
+## point of the original ("one bar picked out") without hard-coding a hex.
+p_classic <- p + theme_economist() +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_pal()(1)))
+p_classic_white <- p + theme_economist_white() +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_pal()(1)))
+p_new_print <- p + theme_economist_new(media = "print") +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_new_pal("print", type = "bar_side")(1)))
+p_new_web <- p + theme_economist_new(media = "web") +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_new_pal("web")(1)))
+p_2024_print <- p + theme_economist_2024(media = "print") +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_2024_pal("print")(1)))
+p_2024_web <- p + theme_economist_2024(media = "web") +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_2024_pal("web")(1)))
+
+p_classic + labs(caption = "Classic (~2012) -- print")
+p_classic_white + labs(caption = "Classic (~2012) -- web/white")
+p_new_print + labs(caption = "New design (2017) -- print")
+p_new_web + labs(caption = "New design (2017) -- web")
+p_2024_print + labs(caption = "2024 redesign -- print")
+p_2024_web + labs(caption = "2024 redesign -- web")
+```
+
+## Bar / column, side by side, two traces
+
+```{r bar-grouped, fig.height=4}
+p <- ggplot(elections, aes(x = country, y = pct, fill = income)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  scale_y_continuous(position = "right") +
+  labs(
+    title = "Defenders of democracy",
+    subtitle = "Say having a choice of at least two parties is very important, %",
+    x = NULL, y = NULL, fill = NULL
+  )
+show_variants(p, aes_type = "fill", new_type = "bar_side")
+```
+
+## Bar / column, stacked
+
+```{r bar-stacked, fig.height=3.6}
+p <- ggplot(carriers, aes(x = "2011", y = share, fill = carrier)) +
+  geom_col() +
+  coord_flip() +
+  scale_y_continuous(position = "right") +
+  labs(
+    title = "The Fed says no to nuptials",
+    subtitle = "Mobile operators' US market share, July 2011, %",
+    x = NULL, y = NULL, fill = NULL
+  )
+show_variants(p, aes_type = "fill", new_type = "stacked")
+```
+
+## Line, side by side
+
+```{r line, fig.height=4}
+p <- ggplot(bonds, aes(x = year, y = yield, colour = country)) +
+  geom_line(linewidth = 1) +
+  scale_y_continuous(position = "right") +
+  labs(
+    title = "Where Tokyo leads", subtitle = "Ten-year government-bond yields, %",
+    x = "Years since start", y = NULL, colour = NULL
+  )
+show_variants(p, aes_type = "colour", new_type = "line_side")
+```
+
+## Line, stacked (area)
+
+```{r area-stacked, fig.height=4}
+p <- ggplot(reserves, aes(x = year, y = trn, fill = region)) +
+  geom_area() +
+  scale_y_continuous(position = "right") +
+  labs(
+    title = "Foreign hoards", subtitle = "Developing-country currency reserves, $trn",
+    x = NULL, y = NULL, fill = NULL
+  )
+show_variants(p, aes_type = "fill", new_type = "stacked")
+```
+
+## Thermometer
+
+Not a built-in ggplot2 geom, but structurally a range plot: a segment
+between two values per category, with a coloured mark at each end (the
+guide's own "dot terminals" variant, p.17, rather than the tick-mark
+default -- cleaner to reproduce, and the guide names it as an accepted
+alternative "when lines are unclear").
+
+```{r thermometer, fig.height=4.2}
+adjectives_long <- data.frame(
+  field = rep(adjectives$field, 2),
+  which = rep(c("one", "two"), each = nrow(adjectives)),
+  value = c(adjectives$one, adjectives$two)
+)
+
+p <- ggplot(adjectives, aes(y = field)) +
+  geom_segment(aes(x = one, xend = two, yend = field), colour = "grey70", linewidth = 3) +
+  geom_point(data = adjectives_long, aes(x = value, y = field, colour = which), size = 3) +
+  scale_x_continuous(position = "top") +
+  labs(
+    title = "The horrible science",
+    subtitle = 'Use of a specific "adjective" per million words in student reviews',
+    x = NULL, y = NULL, colour = NULL
+  )
+show_variants(p, aes_type = "colour", new_type = "dot")
+```
+
+## Scatter, with trend lines
+
+```{r scatter, fig.height=4}
+p <- ggplot(metro, aes(x = employment, y = house_prices, colour = period)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.8) +
+  scale_y_continuous(position = "right") +
+  labs(
+    title = "Divergent",
+    subtitle = "United States, housing and employment, metro-area average annual change, %",
+    x = "Employment", y = "House prices", colour = NULL
+  )
+show_variants(p, aes_type = "colour", new_type = "dot")
+```
+
+## Pie / doughnut
+
+```{r pie, fig.height=4.5}
+p <- ggplot(workforce, aes(x = 2, y = thousands, fill = division)) +
+  geom_col(colour = "white", linewidth = 0.5) +
+  coord_polar(theta = "y") +
+  xlim(0.5, 2.5) +
+  labs(title = "Naan bigger", subtitle = "Tata's workforce in Britain, September 2011, '000", fill = NULL) +
+  theme_void()
+
+## Pie/doughnut charts don't use axes, so only the fill palette and the
+## title styling carry over -- shown here just via the discrete fill scales.
+p + scale_fill_economist() + labs(caption = "Classic (~2012) -- print")
+p + scale_fill_economist() + labs(caption = "Classic (~2012) -- web/white")
+p + scale_fill_economist_new(media = "print", type = "pie") + labs(caption = "New design (2017) -- print")
+p + scale_fill_economist_new(media = "web") + labs(caption = "New design (2017) -- web")
+p + scale_fill_economist_2024(media = "print") + labs(caption = "2024 redesign -- print")
+p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- web")
+```
+
+## Notes
+
+- **Print vs web is a real colour difference for the 2017 design, not just
+  a background swap.** `economist_new_pal(media = "print")` and
+  `economist_new_pal(media = "web")` share no hex values.
+- **The 2024 redesign uses the same six colours in both media** -- only the
+  panel background changes (`#ECEBE0` warm beige for print, white for web) --
+  because that's what the measured chart corpus actually shows: one accent
+  hue carried across media, not a media-specific categorical set.
+- `economist_new_pal(media = "print", set = "bright")` and
+  `set = "dark"` expose the styleguide's two higher-contrast alternates,
+  meant for "multi-category charts where high contrast is needed" (its own
+  words) rather than for everyday use -- not shown above to keep this
+  vignette to one story per chart type.
+
+### Does the colour order depend on chart type? Checked in all three eras
+
+- **2017 "new design" (print): yes, genuinely.** Pages 13-20 of the guide
+  each illustrate one chart-type family and each carries its own numbered
+  "COLOUR ORDER" swatch strip. Pixel-sampling all of them (never trusting a
+  glance) found 5 distinct sequences over the *same* 6 hues -- never a
+  different hue, just a different order -- which is why
+  `economist_new_pal(media = "print")` takes a `type` argument
+  (`"bar_side"`, `"stacked"`, `"line_side"`, `"dot"`, `"pie"`; see above).
+  Two pairs turned out hex-identical: bar/column stacked and line stacked
+  share one order, thermometer and scatter share another.
+- **2017 "new design" (web): no evidence either way.** The guide shows a
+  single "MAIN" swatch row for web (p.12) and never illustrates a web chart
+  type with its own numbered order the way it does for print. `type` has no
+  effect when `media = "web"`.
+- **Classic (~2012): checked directly against the corpus, and it's mixed.**
+  `economist_pal()` predates this vignette and already varies by `fill`
+  (bars/areas vs lines/points), each ordering commented with the chart it
+  was sourced from. Going back to the corpus (224 classic-era charts,
+  2012-2018) to check that against real chart-type families rather than
+  just the fill/colour split: **bar/column side-by-side has a clean,
+  repeated answer** -- three grouped-bar charts with legends
+  ("One stock, big effect", "What's in a letter?", "The best lack all
+  conviction") all order `#01A2D9` (blue) before `#014D65` (dark blue),
+  exactly matching `economist_pal(fill = TRUE)(2)`'s existing
+  `c("blue", "dark blue")` -- a genuine validation of the existing code,
+  not a new finding to add. The other four buckets don't converge the same
+  way: **stacked** charts are blue-family-led but the third-and-later
+  colours differ chart to chart (green+grey in one, coral+maroon in
+  another, a six-step ordinal ramp in a third); **line side-by-side** and
+  **dot/scatter** mostly label series inline rather than with a legend key,
+  so there's no unambiguous reading order to extract -- what *is*
+  consistent is a role, not a position: red/maroon marks whichever series
+  the story is about, blue/cyan is the default; and **pie/doughnut** has
+  zero examples in all 224 classic-era charts checked (not a gap in
+  coverage -- the whole sample was reviewed), so there's nothing to derive
+  an order from at all. `economist_pal()` isn't changed here: the one
+  place the evidence is clean, the package already had it right, and
+  adding a `type` argument for the other four would overstate how
+  consistent real charts actually are.
+- **2024 redesign: checked, no reliable signal.** No public styleguide
+  covers this era, so the only way to check is the measured chart corpus
+  itself: splitting its ~150 post-redesign dominant-ink measurements by the
+  chart's classified type (line/bar/dot/area) gives samples of 6-25 charts
+  per type, all clustered on the same handful of reds regardless of type,
+  with no separable pattern -- and dominant ink is one colour per chart to
+  begin with, not a categorical sequence, so there's nothing to reorder even
+  in principle. `economist_2024_pal()` stays a single order rather than
+  splitting on evidence too thin to trust.

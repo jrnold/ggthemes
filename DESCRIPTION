@@ -23,6 +23,7 @@ Imports:
     graphics,
     grDevices,
     grid,
+    gtable,
     lifecycle,
     rlang,
     scales (>= 1.4.0),

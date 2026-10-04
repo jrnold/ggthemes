@@ -4,6 +4,18 @@ template:
 reference:
 - title: Themes
   contents: starts_with("theme_")
+- title: The Economist, 2017
+  desc: Theme, palettes, scales, axis guide and chart furniture for *The Economist
+    visual styleguide* (v1.2, 4 May 2017).
+  contents:
+  - theme_economist_2017
+  - economist_2017_pal
+  - economist_2017_gradient_pal
+  - scale_colour_economist_2017
+  - guide_axis_economist
+  - economist_2017_furniture
+  - geom_scale_break
+  - economist_year
 - title: Color Scales
   desc: Provided ggplot2 scales for the `color` (`colour`) aesthetic. Scales control
     the details of how data values are translated to visual properties.

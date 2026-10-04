@@ -1,0 +1,109 @@
+# The Economist visual styleguide, v1.2, 4 May 2017 (mattmclean@economist.com).
+#
+# Every colour theme_economist_2017() and economist_2017_pal() use, for each
+# medium, stated in full. Print and web are independent specs: a value that
+# happens to be shared is still written out in both.
+#
+# Print values are pixel-sampled at 300dpi from the guide's own CMYK swatches
+# (p.11); a naive CMYK->RGB formula was tried first and rejected -- it turned
+# BLUE2 (C67 M0 Y18 K0) into a mint green, nothing like the swatch on the
+# page, because uncalibrated conversion doesn't match how press inks actually
+# mix. Pure-black tints (K only) are the exception: they are converted
+# directly, since a single neutral ink has no hue to get wrong. Web values are
+# transcribed from the guide's own hex (p.12).
+#
+# `qualitative`: pp.13-20 ("chart types") each carry their own numbered
+# "COLOUR ORDER" swatch strip, pixel-sampled the same way -- these are NOT
+# all the same sequence. Every page's swatches turned out to be a reordering
+# of the same 6 print hues (never a different hue), and two pairs are
+# hex-identical: bar/column stacked == line stacked, and thermometer ==
+# scatter. That leaves 5 distinct orders. `bright` and `dark` are the
+# "supporting" sets "for multi-category charts where high contrast is needed"
+# (p.11). The web palette page (p.12) shows a single "MAIN" row and no
+# per-chart-type orders, so web has only `primary`, in the order printed.
+#
+# `sequential`: the web page's "equal lightness colour scales" (p.12), six
+# steps per hue, stored lightest first. The guide gives no print equivalent.
+print:
+  ground: '#E2EEF3' # PRINT BKGD, C7.5 K5 (p.11): the whole chart, not just the panel
+  highlight: '#C6DDE7' # HIGHLIGHT, C15 K10 (p.11, p.25)
+  number_box: '#ACCDDB' # NUMBER BOX, C22.5 K15 (p.11, p.25)
+  grid: '#B4C0C6' # GRID LINES, C10 K25 (p.11)
+  text: '#000000' # K100 (p.11 BLACK PALETTE); titles, labels, axis numbers
+  baseline: '#000000' # "use black for zero baseline only" (p.18)
+  source: '#404040' # K75, "Source text 75% black" (p.3, p.6)
+  accent: '#ED1C24' # ECON RED, C0 M100 Y100 K0 (p.11): tab and panel markers
+  qualitative:
+    bar_side: # p.13: bar/column, side by side; also the guide's default reading order
+    - {name: "blue1", value: '#2C6BA6'}
+    - {name: "blue2", value: '#54C6D2'}
+    - {name: "gold", value: '#DDAD4F'}
+    - {name: "teal", value: '#20969C'}
+    - {name: "maroon", value: '#942A44'}
+    - {name: "mauve", value: '#AA8193'}
+    stacked: # p.14 bar/column stacked and p.16 line stacked (hex-identical)
+    - {name: "blue1", value: '#2C6BA6'}
+    - {name: "blue2", value: '#54C6D2'}
+    - {name: "gold", value: '#DDAD4F'}
+    - {name: "teal", value: '#20969C'}
+    - {name: "mint", value: '#78D1C1'}
+    - {name: "navy", value: '#155174'}
+    line_side: # p.15: line, side by side -- swaps maroon/teal vs bar_side
+    - {name: "blue1", value: '#2C6BA6'}
+    - {name: "blue2", value: '#54C6D2'}
+    - {name: "gold", value: '#DDAD4F'}
+    - {name: "maroon", value: '#942A44'}
+    - {name: "teal", value: '#20969C'}
+    - {name: "mauve", value: '#AA8193'}
+    dot: # p.17 thermometer and p.18 scatter (hex-identical); starts on blue2, not blue1
+    - {name: "blue2", value: '#54C6D2'}
+    - {name: "maroon", value: '#942A44'}
+    - {name: "gold", value: '#DDAD4F'}
+    - {name: "blue1", value: '#2C6BA6'}
+    - {name: "teal", value: '#20969C'}
+    - {name: "mauve", value: '#AA8193'}
+    pie: # p.20: pie/doughnut -- same as bar_side except position 6 (mint, not mauve)
+    - {name: "blue1", value: '#2C6BA6'}
+    - {name: "blue2", value: '#54C6D2'}
+    - {name: "gold", value: '#DDAD4F'}
+    - {name: "teal", value: '#20969C'}
+    - {name: "maroon", value: '#942A44'}
+    - {name: "mint", value: '#78D1C1'}
+    bright: # p.11 SUPPORTING / BRIGHT
+    - {name: "purple", value: '#964F7F'}
+    - {name: "coral", value: '#F35C41'}
+    - {name: "orange", value: '#EA9A12'}
+    - {name: "lime", value: '#AABF26'}
+    dark: # p.11 SUPPORTING / DARK
+    - {name: "navy", value: '#155174'}
+    - {name: "teal", value: '#21524C'}
+    - {name: "olive", value: '#7C7C6A'}
+web:
+  ground: '#FFFFFF' # "White background" (p.3)
+  box: '#E9EDF0' # BOXES/NAV (p.12)
+  grid: '#B7C6CF' # p.12, third neutral swatch
+  text: '#0C0C0C' # BLACK (p.12)
+  baseline: '#0C0C0C' # "use black for zero baseline only" (p.18)
+  source: '#404040' # "Source text 75% black" (p.3)
+  accent: '#E3120B' # ECON RED (p.12): tab, top rule and panel markers
+  qualitative:
+    primary: # p.12 MAIN, in the order printed (ECON RED excluded: it is the accent)
+    - {name: "red", value: '#DB444B'}
+    - {name: "blue", value: '#006BA2'}
+    - {name: "cyan", value: '#3EBCD2'}
+    - {name: "green", value: '#379A8B'}
+    - {name: "yellow", value: '#EBB434'}
+    - {name: "olive", value: '#B4BA39'}
+    - {name: "purple", value: '#9A607F'}
+    - {name: "gold", value: '#D1B07C'}
+    - {name: "grey", value: '#758D99'}
+  sequential: # p.12 EQUAL LIGHTNESS COLOUR SCALES, lightest first
+    red: ['#FFA39F', '#FF8785', '#FF6B6C', '#E64E53', '#C7303C', '#A81829']
+    blue: ['#98DAFF', '#7BBFFC', '#5DA4DF', '#3D89C3', '#1270A8', '#00588D']
+    cyan: ['#6FE4FB', '#4EC8DE', '#25ADC2', '#0092A7', '#00788D', '#005F73']
+    green: ['#86E5D4', '#69C9B9', '#4DAD9E', '#2E9284', '#00786B', '#005F52']
+    yellow: ['#FFCB4D', '#E7B030', '#C89608', '#AA7C00', '#8D6300', '#714C00']
+    olive: ['#D7DB5A', '#BAC03F', '#9DA521', '#818A00', '#667100', '#4C5900']
+    purple: ['#FFC2E3', '#E6A6C7', '#C98CAC', '#AD7291', '#925977', '#78405F']
+    gold: ['#F2CF9A', '#D5B480', '#B99966', '#9D7F4E', '#826636', '#674E1F']
+    grey: ['#BFD8E5', '#A4BDC9', '#89A2AE', '#6F8793', '#576E79', '#3F5661']
