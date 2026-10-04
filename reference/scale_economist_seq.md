@@ -1,6 +1,8 @@
 # Economist sequential color scales
 
-Color scales built from The Economist's equal-lightness color scales.
+Color scales built from the equal-lightness color scales of *The
+Economist visual styleguide* (v1.2, 4 May 2017); see
+[`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md).
 The `_c` scales are continuous; the `_ordinal` scales are discrete, for
 ordered factors. See
 [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)

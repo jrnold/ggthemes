@@ -1,9 +1,12 @@
 # Economist sequential color palettes
 
-The Economist's "equal lightness colour scales": six ordered steps for
-each of the nine hues in the main chart palette, running darkest to
-lightest. Use them for ordered data, where the main palette is for
-unordered categories.
+The "equal lightness colour scales" of *The Economist visual styleguide*
+(v1.2, 4 May 2017): six ordered steps for each of nine hues, running
+darkest to lightest. Use them for ordered data. They come from the
+paper's 2017 chart design, not the classic design of
+[`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
+and
+[`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md).
 
 ## Usage
 

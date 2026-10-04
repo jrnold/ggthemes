@@ -1,6 +1,6 @@
 # ggplot color theme based on the Economist
 
-A theme that approximates the style of charts in *The Economist*.
+A theme that approximates the style of *The Economist*.
 
 ## Usage
 
@@ -9,13 +9,13 @@ theme_economist(
   base_size = 10,
   base_family = "sans",
   horizontal = TRUE,
-  dkpanel = deprecated()
+  dkpanel = FALSE
 )
 
 theme_economist_white(
-  base_size = 10,
+  base_size = 11,
   base_family = "sans",
-  gray_bg = deprecated(),
+  gray_bg = TRUE,
   horizontal = TRUE
 )
 ```
@@ -32,18 +32,15 @@ theme_economist_white(
 
 - horizontal:
 
-  `logical` Horizontal gridlines? If `FALSE`, vertical gridlines are
-  drawn instead, for use with
-  [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html).
+  `logical` Horizontal axis lines?
 
 - dkpanel:
 
-  \`r lifecycle::badge("deprecated")\` The darker panel was a feature of
-  the pre-2017 design and no longer has any effect.
+  `logical` Darker background for panel region?
 
 - gray_bg:
 
-  \`r lifecycle::badge("deprecated")\` No longer has any effect.
+  `logical` If `TRUE`, use gray background, else use white background.
 
 ## Value
 
@@ -52,35 +49,28 @@ An object of class
 
 ## Details
 
-This follows the chart design *The Economist* introduced in 2017 and
-still publishes today: a white plot area on a pale ground, light
-horizontal gridlines only, a black x-axis baseline with tick marks below
-it, and no y-axis rule or ticks. Use
-[`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
-with it.
+`theme_economist` implements the standard bluish-gray background theme
+in the print *The Economist* and
+[economist.com](https://www.economist.com/).
 
-Two conventions of the house style cannot be expressed as theme
-elements, and have to be set on the plot itself:
+`theme_economist_white` implements a variant with a white panel and
+light gray (or white) background often used by *The Economist* blog
+[Graphic Detail](https://www.economist.com/topics/graphic-detail).
 
-- *The Economist* puts the y axis on the right. Use
-  `scale_y_continuous(position = "right")`.
+Use
+[`scale_color_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
+with this theme. The y axis should be displayed on the right hand side.
 
-- Charts are tagged with a small red rectangle above the title. Draw it
-  with
-  [`annotate()`](https://ggplot2.tidyverse.org/reference/annotate.html)
-  or [`grid.rect()`](https://rdrr.io/r/grid/grid.rect.html) in "Econ
-  red", which is `ggthemes_data$economist$main` row `"econ red"`.
-
-*The Economist* sets charts in "Econ Sans", which is not publicly
-available. Any narrow humanist sans is a reasonable substitute; with the
-extrafont package, "Roboto Condensed" or "Fira Sans Condensed" are
-close.
+*The Economist* uses "ITC Officina Sans" as its font for graphs. If you
+have access to this font, you can use it with the extrafont package.
+"Verdana" is a good substitute.
 
 ## References
 
 - [The Economist](https://www.economist.com/)
 
-- *The Economist visual styleguide*, version 1.2, 4 May 2017.
+- [Spiekerblog, "ITC Officina Display", January 1,
+  2007.](https://spiekermann.com/en/itc-officina-display/)
 
 ## Examples
 
