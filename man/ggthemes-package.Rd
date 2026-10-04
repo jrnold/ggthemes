@@ -20,11 +20,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jeffrey B. Arnold \email{jeffrey.arnold@gmail.com} (<https://orcid.org/0000-0001-9953-3904>)
+\strong{Maintainer}: Jeffrey B. Arnold \email{jeffrey.arnold@gmail.com} (<https://orcid.org/0000-0001-9953-3904>) [copyright holder]
 
 Authors:
 \itemize{
-  \item Jeffrey B. Arnold \email{jeffrey.arnold@gmail.com} (<https://orcid.org/0000-0001-9953-3904>)
+  \item Jeffrey B. Arnold \email{jeffrey.arnold@gmail.com} (<https://orcid.org/0000-0001-9953-3904>) [copyright holder]
 }
 
 Other contributors:

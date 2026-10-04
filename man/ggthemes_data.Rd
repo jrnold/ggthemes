@@ -19,5 +19,35 @@ themes and palettes. This is undocumented and subject to change.
 named colors: the classic set plus the \code{gs0}--\code{gs16} gray scale,
 and the \code{stc1}--\code{stc15} colors added in Stata 18. See
 \code{\link{stata_pal}()}.
+
+Colors, shapes and linetypes are stored with the theme they belong to. The
+\href{https://jrnold.github.io/ggthemes/articles/data.html}{Package data}
+article on the package website draws every one of them. \code{ggthemes_data}
+contains no fonts: themes set their typefaces in code.
+}
+\examples{
+library("scales")
+
+## One element per theme
+names(ggthemes_data)
+
+## Colors are stored as tables of names and hex values ...
+ggthemes_data$fivethirtyeight
+show_col(ggthemes_data$fivethirtyeight$value)
+
+## ... as plain hex vectors ...
+show_col(ggthemes_data$manyeyes)
+
+## ... or once per number of colors
+show_col(ggthemes_data$solarized$palettes$blue[[4]])
+
+## Shapes give a base R symbol (pch), where there is one, and the Unicode
+## character they were transcribed from
+stata_shapes <- ggthemes_data$stata$shapes
+stata_shapes[c("symbolstyle", "character", "pch")]
+show_shapes(stata_shapes$pch)
+
+## Linetypes are dash patterns
+show_linetypes(ggthemes_data$stata$linetypes[1:10])
 }
 \keyword{datasets}
