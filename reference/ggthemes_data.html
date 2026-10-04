@@ -20,7 +20,8 @@ themes and palettes. This is undocumented and subject to change."><meta property
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/palettes.html">Color palettes</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/data.html">Package data</a></li>
+    <li><a class="dropdown-item" href="../articles/palettes.html">Color palettes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -58,8 +59,71 @@ themes and palettes. This is undocumented and subject to change.</p>
 named colors: the classic set plus the <code>gs0</code>–<code>gs16</code> gray scale,
 and the <code>stc1</code>–<code>stc15</code> colors added in Stata 18. See
 <code><a href="stata_pal.html">stata_pal()</a></code>.</p>
+<p>Colors, shapes and linetypes are stored with the theme they belong to. The
+<a href="https://jrnold.github.io/ggthemes/articles/data.html">Package data</a>
+article on the package website draws every one of them. <code>ggthemes_data</code>
+contains no fonts: themes set their typefaces in code.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://scales.r-lib.org" class="external-link">"scales"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## One element per theme</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ggthemes_data</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "solarized"       "ptol"            "calc"            "numbers"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "tableau"         "few"             "manyeyes"        "gdocs"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "excel"           "wsj"             "colorblind"      "shapes"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "stata"           "hc"              "fivethirtyeight" "economist"      </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Colors are stored as tables of names and hex values ...</span></span></span>
+<span class="r-in"><span><span class="va">ggthemes_data</span><span class="op">$</span><span class="va">fivethirtyeight</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   name        value  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Dark Gray   #3C3C3C</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Medium Gray #D2D2D2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Light Gray  #F0F0F0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Red         #FF2700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Blue        #008FD5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Green       #77AB43</span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="va">ggthemes_data</span><span class="op">$</span><span class="va">fivethirtyeight</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggthemes_data-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## ... as plain hex vectors ...</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="va">ggthemes_data</span><span class="op">$</span><span class="va">manyeyes</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggthemes_data-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## ... or once per number of colors</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="va">ggthemes_data</span><span class="op">$</span><span class="va">solarized</span><span class="op">$</span><span class="va">palettes</span><span class="op">$</span><span class="va">blue</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggthemes_data-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Shapes give a base R symbol (pch), where there is one, and the Unicode</span></span></span>
+<span class="r-in"><span><span class="co">## character they were transcribed from</span></span></span>
+<span class="r-in"><span><span class="va">stata_shapes</span> <span class="op">&lt;-</span> <span class="va">ggthemes_data</span><span class="op">$</span><span class="va">stata</span><span class="op">$</span><span class="va">shapes</span></span></span>
+<span class="r-in"><span><span class="va">stata_shapes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"symbolstyle"</span>, <span class="st">"character"</span>, <span class="st">"pch"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 22 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    symbolstyle character   pch</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> circle      ●            16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> diamond     ⬥            18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> triangle    ▲            17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> square      ■            15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> plus        ➕            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> X           ✖             4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> smcircle    •            16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> smdiamond   ⬩            18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> smsquare    ▪            15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> smtriangle  ▴            17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more rows</span></span>
+<span class="r-in"><span><span class="fu"><a href="show_shapes.html">show_shapes</a></span><span class="op">(</span><span class="va">stata_shapes</span><span class="op">$</span><span class="va">pch</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggthemes_data-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Linetypes are dash patterns</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="show_linetypes.html">show_linetypes</a></span><span class="op">(</span><span class="va">ggthemes_data</span><span class="op">$</span><span class="va">stata</span><span class="op">$</span><span class="va">linetypes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggthemes_data-5.png" alt="" width="700" height="433"></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -19,6 +19,11 @@
   check mark and multiplication sign gain the text-style selector, and
   the weather snowman loses a stray one.
 
+- New “Package data” article on the package website draws every color,
+  shape and linetype in `ggthemes_data`, each labeled with the
+  expression that returns it, and the `ggthemes_data` help page gains
+  examples of reading it.
+
 ## ggthemes 7.0.0
 
 CRAN release: 2026-10-03

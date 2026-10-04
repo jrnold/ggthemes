@@ -18,7 +18,8 @@
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/palettes.html">Color palettes</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/data.html">Package data</a></li>
+    <li><a class="dropdown-item" href="../articles/palettes.html">Color palettes</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -39,6 +40,7 @@
 <h2 class="pkg-version" data-toc-text="development version" id="ggthemes-development-version">ggthemes (development version)<a class="anchor" aria-label="anchor" href="#ggthemes-development-version"></a></h2>
 <ul><li><p>Fix <code><a href="../reference/scale_linetype_stata.html">scale_linetype_stata()</a></code> and <code><a href="../reference/stata_linetype_pal.html">stata_linetype_pal()</a></code> failing with “invalid line type” on plots with 11 or more linetypes. The eleventh, Stata’s longdash_shortdash, was stored as <code>"F434343"</code>, which is not a valid R linetype; it is now <code>"F434"</code>.</p></li>
 <li><p>The Tableau “Arrows” and “Thin Arrows” shape palettes in <code>ggthemes_data$tableau$`shape-palettes`</code> held the same eight characters, so they drew identically. “Arrows” now uses solid arrows (U+2B05 to U+2B0B and U+27A1) and “Thin Arrows” line arrows (U+2190 to U+2199) in the same eight directions. Three other Tableau shapes now carry the variation selector their <code>unicode</code> field records: the kpi check mark and multiplication sign gain the text-style selector, and the weather snowman loses a stray one.</p></li>
+<li><p>New “Package data” article on the package website draws every color, shape and linetype in <code>ggthemes_data</code>, each labeled with the expression that returns it, and the <code>ggthemes_data</code> help page gains examples of reading it.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="7.0.0" id="ggthemes-700">ggthemes 7.0.0<a class="anchor" aria-label="anchor" href="#ggthemes-700"></a></h2><p class="text-muted">CRAN release: 2026-10-03</p>

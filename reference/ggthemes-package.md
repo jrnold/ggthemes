@@ -19,12 +19,12 @@ Useful links:
 ## Author
 
 **Maintainer**: Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
-(\<https://orcid.org/0000-0001-9953-3904\>)
+(\<https://orcid.org/0000-0001-9953-3904\>) \[copyright holder\]
 
 Authors:
 
 - Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
-  (\<https://orcid.org/0000-0001-9953-3904\>)
+  (\<https://orcid.org/0000-0001-9953-3904\>) \[copyright holder\]
 
 Other contributors:
 
