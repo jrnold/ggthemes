@@ -5,6 +5,14 @@
   Stata's longdash_shortdash, was stored as `"F434343"`, which is not a valid
   R linetype; it is now `"F434"`.
 
+- The Tableau "Arrows" and "Thin Arrows" shape palettes in
+  `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters, so
+  they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
+  U+27A1) and "Thin Arrows" line arrows (U+2190 to U+2199) in the same eight
+  directions. Three other Tableau shapes now carry the variation selector their
+  `unicode` field records: the kpi check mark and multiplication sign gain the
+  text-style selector, and the weather snowman loses a stray one.
+
 # ggthemes 7.0.0
 
 - Fix `palette_pander()` returning a color for `n = 0`; it now returns
