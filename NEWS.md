@@ -1,5 +1,10 @@
 # ggthemes (development version)
 
+- Fix `scale_linetype_stata()` and `stata_linetype_pal()` failing with
+  "invalid line type" on plots with 11 or more linetypes. The eleventh,
+  Stata's longdash_shortdash, was stored as `"F434343"`, which is not a valid
+  R linetype; it is now `"F434"`.
+
 # ggthemes 7.0.0
 
 - Fix `palette_pander()` returning a color for `n = 0`; it now returns
