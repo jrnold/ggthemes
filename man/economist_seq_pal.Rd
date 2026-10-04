@@ -22,10 +22,11 @@ economist_gradient_pal(hue = "blue")
   those steps, for use with \code{\link[ggplot2]{continuous_scale}()}.
 }
 \description{
-The Economist's "equal lightness colour scales": six ordered steps for
-each of the nine hues in the main chart palette, running darkest to
-lightest. Use them for ordered data, where the main palette is for
-unordered categories.
+The "equal lightness colour scales" of \emph{The Economist visual
+styleguide} (v1.2, 4 May 2017): six ordered steps for each of nine hues,
+running darkest to lightest. Use them for ordered data. They come from
+the paper's 2017 chart design, not the classic design of
+\code{\link{economist_pal}()} and \code{\link{theme_economist}()}.
 }
 \details{
 \code{economist_seq_pal()} returns the six steps themselves, for

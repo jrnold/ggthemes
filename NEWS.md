@@ -17,6 +17,24 @@
   shape and linetype in `ggthemes_data`, each labeled with the expression that
   returns it, and the `ggthemes_data` help page gains examples of reading it.
 
+- BREAKING CHANGE: `theme_economist()`, `theme_economist_white()`,
+  `economist_pal()`, `scale_colour_economist()` and `scale_fill_economist()`
+  draw the classic Economist style again, as they did before 7.0.0, so code
+  written for them looks as it always did. 7.0.0 had replaced that style with
+  the paper's 2017 design. `theme_economist_white()`, the `dkpanel` argument
+  of `theme_economist()` and the `fill` argument of `economist_pal()` work
+  again, without the deprecation warnings 7.0.0 added. `ggthemes_data$economist` has its classic `fg` and
+  `bg` tables back; the `main` and `text` tables added in 7.0.0 are removed.
+  `economist_seq_pal()`, `economist_gradient_pal()` and the
+  `scale_*_economist_c()` and `scale_*_economist_ordinal()` scales, new in
+  7.0.0, are unchanged.
+- Fix `economist_pal()` failing with "object 'i' not found" for `n = 0`; it
+  now returns `character(0)`.
+- `theme_economist()` fills the panel and strips with its blue-gray ground.
+  It asked for a color the data never defined, so their fill was `NA`; the
+  plot background showing through drew the same color. It also now leaves a
+  margin between the title and subtitle, which ran together.
+
 # ggthemes 7.0.0
 
 - Fix `palette_pander()` returning a color for `n = 0`; it now returns

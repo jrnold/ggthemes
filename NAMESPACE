@@ -192,9 +192,7 @@ importFrom(grid,
 )
 importFrom(lifecycle,
   deprecate_soft,
-  deprecate_warn,
-  deprecated,
-  is_present
+  deprecate_warn
 )
 importFrom(methods,
   as,

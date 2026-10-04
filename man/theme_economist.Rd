@@ -9,13 +9,13 @@ theme_economist(
   base_size = 10,
   base_family = "sans",
   horizontal = TRUE,
-  dkpanel = deprecated()
+  dkpanel = FALSE
 )
 
 theme_economist_white(
-  base_size = 10,
+  base_size = 11,
   base_family = "sans",
-  gray_bg = deprecated(),
+  gray_bg = TRUE,
   horizontal = TRUE
 )
 }
@@ -24,45 +24,34 @@ theme_economist_white(
 
 \item{base_family}{base font family}
 
-\item{horizontal}{\code{logical} Horizontal gridlines? If
-\code{FALSE}, vertical gridlines are drawn instead, for use with
-\code{\link[ggplot2]{coord_flip}()}.}
+\item{horizontal}{\code{logical} Horizontal axis lines?}
 
-\item{dkpanel}{`r lifecycle::badge("deprecated")` The darker panel was
-a feature of the pre-2017 design and no longer has any effect.}
+\item{dkpanel}{\code{logical} Darker background for panel region?}
 
-\item{gray_bg}{`r lifecycle::badge("deprecated")` No longer has any
-effect.}
+\item{gray_bg}{\code{logical} If \code{TRUE}, use gray background, else
+use white background.}
 }
 \value{
 An object of class \code{\link[ggplot2]{theme}()}.
 }
 \description{
-A theme that approximates the style of charts in \emph{The Economist}.
+A theme that approximates the style of \emph{The Economist}.
 }
 \details{
-This follows the chart design \emph{The Economist} introduced in 2017
-and still publishes today: a white plot area on a pale ground, light
-horizontal gridlines only, a black x-axis baseline with tick marks
-below it, and no y-axis rule or ticks. Use
-\code{\link{scale_colour_economist}()} with it.
+\code{theme_economist} implements the standard bluish-gray
+background theme in the print \emph{The Economist} and
+\href{https://www.economist.com/}{economist.com}.
 
-Two conventions of the house style cannot be expressed as theme
-elements, and have to be set on the plot itself:
+\code{theme_economist_white} implements a variant with a white
+panel and light gray (or white) background often used by \emph{The Economist}
+blog \href{https://www.economist.com/topics/graphic-detail}{Graphic Detail}.
 
-\itemize{
-\item \emph{The Economist} puts the y axis on the right. Use
-\code{scale_y_continuous(position = "right")}.
-\item Charts are tagged with a small red rectangle above the title.
-Draw it with \code{\link[ggplot2]{annotate}()} or
-\code{\link[grid]{grid.rect}()} in "Econ red", which is
-\code{ggthemes_data$economist$main} row \code{"econ red"}.
-}
+Use \code{\link{scale_color_economist}()} with this theme.
+The y axis should be displayed on the right hand side.
 
-\emph{The Economist} sets charts in "Econ Sans", which is not publicly
-available. Any narrow humanist sans is a reasonable substitute; with
-the \pkg{extrafont} package, "Roboto Condensed" or "Fira Sans
-Condensed" are close.
+\emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
+you have access to this font, you can use it with the
+\pkg{extrafont} package. "Verdana" is a good substitute.
 }
 \examples{
 library("ggplot2")
@@ -106,7 +95,7 @@ p + theme_economist(base_family = "Roboto Condensed") +
 \references{
 \itemize{
 \item \href{https://www.economist.com/}{The Economist}
-\item \emph{The Economist visual styleguide}, version 1.2, 4 May 2017.
+\item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 }
 }
 \concept{themes economist}

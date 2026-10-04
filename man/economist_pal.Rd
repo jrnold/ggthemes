@@ -4,27 +4,21 @@
 \alias{economist_pal}
 \title{Economist color palette (discrete)}
 \usage{
-economist_pal(fill = deprecated())
+economist_pal(fill = TRUE)
 }
 \arguments{
-\item{fill}{`r lifecycle::badge("deprecated")` No longer has any effect.}
+\item{fill}{Use the fill palette. The fill palette (the default) and the
+line palette choose and order the colors differently.}
 }
 \value{
 A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
-The nine colors \emph{The Economist} uses for chart series: blue,
-cyan, green, yellow, olive, purple, gold, gray, and red, in that
-order. Red comes last because the house style reserves it for data
-the chart is making a point about, rather than handing it out as an
-ordinary series color.
-}
-\details{
-A tenth color, "Econ red", is the brighter masthead red used for the
-tag rectangle and for single-series highlights. It is excluded from
-this palette; take it from
-\code{ggthemes_data$economist$main} when you need it.
+The classic \emph{The Economist} chart palette: blues, grays, and
+greens, chosen and ordered for the number of colors requested. Red is
+not included in these palettes; \emph{The Economist} reserves it to
+mark important data.
 }
 \examples{
 library("scales")
