@@ -2,7 +2,17 @@
 
 ## ggthemes (development version)
 
+- Fix
+  [`scale_linetype_stata()`](https://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
+  and
+  [`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
+  failing with “invalid line type” on plots with 11 or more linetypes.
+  The eleventh, Stata’s longdash_shortdash, was stored as `"F434343"`,
+  which is not a valid R linetype; it is now `"F434"`.
+
 ## ggthemes 7.0.0
+
+CRAN release: 2026-10-03
 
 - Fix
   [`palette_pander()`](https://jrnold.github.io/ggthemes/reference/palette_pander.md)
