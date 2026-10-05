@@ -32,7 +32,7 @@ theme_economist_white(
 use white background.}
 }
 \value{
-An object of class \code{\link[ggplot2]{theme}()}.
+An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 }
 \description{
 A theme that approximates the style of \emph{The Economist}.
@@ -46,12 +46,12 @@ background theme in the print \emph{The Economist} and
 panel and light gray (or white) background often used by \emph{The Economist}
 blog \href{https://www.economist.com/topics/graphic-detail}{Graphic Detail}.
 
-Use \code{\link{scale_color_economist}()} with this theme.
+Use \code{\link[=scale_color_economist]{scale_color_economist()}} with this theme.
 The y axis should be displayed on the right hand side.
 
 \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
 you have access to this font, you can use it with the
-\pkg{extrafont} package. "Verdana" is a good substitute.
+extrafont package. "Verdana" is a good substitute.
 }
 \examples{
 library("ggplot2")

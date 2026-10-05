@@ -16,7 +16,7 @@ scale_fill_excel_new(theme = "Office", ...)
 \item{theme}{The name of the Office theme or color theme
 (not to be confused with ggplot2 themes) from which to derive the color
 palette. Available themes include:
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}}
+\code{"Atlas"}, \code{"Badge"}, \code{"Berlin"}, \code{"Celestial"}, \code{"Crop"}, \code{"Depth"}, \code{"Droplet"}, \code{"Facet"}, \code{"Feathered"}, \code{"Gallery"}, \code{"Headlines"}, \code{"Integral"}, \code{"Ion Boardroom"}, \code{"Ion"}, \code{"Madison"}, \code{"Main Event"}, \code{"Mesh"}, \code{"Office"}, \code{"Office 2013"}, \code{"Organic"}, \code{"Parallax"}, \code{"Parcel"}, \code{"Retrospect"}, \code{"Savon"}, \code{"Slice"}, \code{"Vapor Trail"}, \code{"View"}, \code{"Wisp"}, \code{"Wood Type"}, \code{"Aspect"}, \code{"Blue Green"}, \code{"Blue II"}, \code{"Blue Warm"}, \code{"Blue"}, \code{"Grayscale"}, \code{"Green Yellow"}, \code{"Green"}, \code{"Marquee"}, \code{"Median"}, \code{"Office 2007"}, \code{"Orange Red"}, \code{"Orange"}, \code{"Paper"}, \code{"Red Orange"}, \code{"Red Violet"}, \code{"Red"}, \code{"Slipstream"}, \code{"Violet II"}, \code{"Violet"}, \code{"Yellow Orange"}, \code{"Yellow"}}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}

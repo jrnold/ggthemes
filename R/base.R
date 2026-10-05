@@ -1,9 +1,9 @@
 #' Theme Base
 #'
-#' Theme similar to the default settings of the \sQuote{base} R graphics.
+#' Theme similar to the default settings of the "base" R graphics.
 #'
 #' @inheritParams ggplot2::theme_bw
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @example inst/examples/ex-theme_base.R
@@ -366,27 +366,27 @@ theme_base <- function(base_size = 16, base_family = "") {
 
 # #' Theme Par
 #'
-#' Theme which uses the current \sQuote{base} graphics parameter values
-#' from \code{\link[graphics]{par}()}.
-#' Not all \code{par()} parameters, are supported, and not all are relevant to
-#' \pkg{ggplot2} themes.
+#' Theme which uses the current "base" graphics parameter values
+#' from [graphics::par()].
+#' Not all `par()` parameters are supported, and not all are relevant to
+#' ggplot2 themes.
 #'
 #' Currently this theme uses the values of the parameters:
-#' \code{"code"}, "\code{"ps"}", \code{"code"} \code{"family"}, \code{"fg"},
-#' \code{"bg"}, \code{"adj"}, \code{"font"}, \code{"cex.axis"},
-#' \code{"cex.lab"}, \code{"cex.main"}, \code{"cex.sub"}, \code{"col.axis"},
-#' \code{"col.lab"}, \code{"col.main"}, \code{"col.sub"}, \code{"font"},
-#' \code{"font.axis"}, \code{"font.lab"}, \code{"font.main"},
-#' \code{"font.sub"}, \code{"las"}, \code{"lend"},
-#' \code{"lheight"}, \code{"lty"}, \code{"mar"}, \code{"ps"}, \code{"tcl"},
-#' \code{"tck"}, \code{"xaxt"}, \code{"yaxt"}.
+#' `"code"`, "`"ps"`", `"code"` `"family"`, `"fg"`,
+#' `"bg"`, `"adj"`, `"font"`, `"cex.axis"`,
+#' `"cex.lab"`, `"cex.main"`, `"cex.sub"`, `"col.axis"`,
+#' `"col.lab"`, `"col.main"`, `"col.sub"`, `"font"`,
+#' `"font.axis"`, `"font.lab"`, `"font.main"`,
+#' `"font.sub"`, `"las"`, `"lend"`,
+#' `"lheight"`, `"lty"`, `"mar"`, `"ps"`, `"tcl"`,
+#' `"tck"`, `"xaxt"`, `"yaxt"`.
 #'
 #' This theme does not translate the base graphics perfectly, so the graphs
 #' produced by it will not be identical to those produced by base graphics,
 #' most notably in the spacing of the margins.
 #'
 #' @inheritParams ggplot2::theme_bw
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @example inst/examples/ex-theme_par.R

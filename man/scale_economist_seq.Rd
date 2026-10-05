@@ -37,9 +37,9 @@ A ggplot2 scale object.
 \description{
 Color scales built from the equal-lightness color scales of \emph{The
 Economist visual styleguide} (v1.2, 4 May 2017); see
-\code{\link{economist_seq_pal}()}.
-The \code{_c} scales are continuous; the \code{_ordinal} scales are
-discrete, for ordered factors. See \code{\link{scale_colour_economist}()}
+\code{\link[=economist_seq_pal]{economist_seq_pal()}}.
+The \verb{_c} scales are continuous; the \verb{_ordinal} scales are
+discrete, for ordered factors. See \code{\link[=scale_colour_economist]{scale_colour_economist()}}
 for the unordered categorical scales.
 }
 \examples{

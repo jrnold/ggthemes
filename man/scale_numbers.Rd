@@ -14,7 +14,7 @@ scale_color_numbers(palette = "Classic", ...)
 }
 \arguments{
 \item{palette}{Palette name. One of
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$numbers))}.
+\code{"Blue Green"}, \code{"Blue Violet"}, \code{"Blue"}, \code{"Brown"}, \code{"Classic"}, \code{"Earth Tone"}, \code{"Gray"}, \code{"Green"}, \code{"Jade"}, \code{"Mid Century"}, \code{"Showroom"}, \code{"Spectrum"}.
 The default, \code{"Classic"}, is the palette Numbers itself uses by
 default.}
 
@@ -95,7 +95,7 @@ for (palette in head(names(ggthemes_data[["numbers"]]), 3L)) {
 }
 }
 \seealso{
-See \code{\link{theme_numbers}()} for examples.
+See \code{\link[=theme_numbers]{theme_numbers()}} for examples.
 
 Other color numbers:
 \code{\link[=numbers_pal]{numbers_pal()}}

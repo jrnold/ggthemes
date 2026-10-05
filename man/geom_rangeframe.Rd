@@ -120,22 +120,22 @@ A ggplot2 layer.
 Axis lines which extend to the maximum and minimum of the plotted data.
 }
 \details{
-This should be used with `coord_cartesian(clip="off")` in order to
-  correctly draw the lines.
+This should be used with \code{coord_cartesian(clip="off")} in order to
+correctly draw the lines.
 
-  Secondary axes (\code{\link[ggplot2]{sec_axis}()}) only relabel the
-  existing axis; they do not introduce a separate data range. Because of
-  this, \code{sides = "trbl"} already draws correctly-positioned frames on
-  the top/right edges of a panel that has a secondary axis -- there is no
-  separate "secondary" range for \code{geom_rangeframe()} to draw against.
+Secondary axes (\code{\link[ggplot2:sec_axis]{ggplot2::sec_axis()}}) only relabel the
+existing axis; they do not introduce a separate data range. Because of
+this, \code{sides = "trbl"} already draws correctly-positioned frames on
+the top/right edges of a panel that has a secondary axis -- there is no
+separate "secondary" range for \code{geom_rangeframe()} to draw against.
 }
 \section{Aesthetics}{
 
 \itemize{
-\item colour
-\item size
-\item linetype
-\item alpha
+\item \code{colour}
+\item \code{size}
+\item \code{linetype}
+\item \code{alpha}
 }
 }
 

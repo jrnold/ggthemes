@@ -11,7 +11,7 @@ solarized_pal(accent = "blue")
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Qualitative color palate based on the Ethan Schoonover's Solarized
@@ -21,7 +21,7 @@ up to seven values.
 \note{
 For a given starting color and number of colors in the palette,
 the other colors are the combination of colors that maximizes the
-total Euclidean distance between colors in L*a*b space.
+total Euclidean distance between colors in L\emph{a}b space.
 }
 \examples{
 library("scales")

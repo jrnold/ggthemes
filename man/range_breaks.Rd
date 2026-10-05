@@ -31,7 +31,7 @@ extended_range_breaks(n = 5, ...)
 \value{
 For \code{extended_range_breaks_}, the vector of axis label locations.
 For \code{extended_range_breaks}, a function which takes a single argument, a vector of data, and returns
-  the vector of axis label locations.
+the vector of axis label locations.
 }
 \description{
 This function returns pretty axis breaks that always include the extreme values of the data.
@@ -42,12 +42,12 @@ range.
 }
 \details{
 \code{extended_range_breaks_} implements the algorithm and returns the break values.
-\code{extended_range_breaks} uses the conventions of the \pkg{scales} package, and returns a function.
+\code{extended_range_breaks} uses the conventions of the scales package, and returns a function.
 
 Note that ggplot2 hands a \code{breaks} function the expanded scale limits, not the data
 range. Passing \code{extended_range_breaks()} directly to \code{breaks} therefore places the
 end labels at the panel edges rather than at the extremes of the data. To label the extremes,
-which is what pairs with \code{\link{geom_rangeframe}()}, apply the function to the data
+which is what pairs with \code{\link[=geom_rangeframe]{geom_rangeframe()}}, apply the function to the data
 instead: \code{scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))}.
 }
 \examples{
@@ -68,7 +68,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 }
 \references{
 Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
-  for Positioning Tick Labels on Axes, InfoVis 2010.
+for Positioning Tick Labels on Axes, InfoVis 2010.
 }
 \seealso{
 Other tufte:
@@ -77,6 +77,6 @@ Other tufte:
 \code{\link[=theme_tufte]{theme_tufte()}}
 }
 \author{
-Justin Talbot \email{jtalbot@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
+Justin Talbot \href{mailto:jtalbot@stanford.edu}{jtalbot@stanford.edu}, Jeffrey B. Arnold, Baptiste Auguie
 }
 \concept{tufte}

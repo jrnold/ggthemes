@@ -86,7 +86,7 @@ and have not followed the revisions he has made since. His current schemes
 are at \url{https://sronpersonalpages.nl/~pault/}; the closest successor is
 \code{khroma::scale_colour_muted()}.
 
-See \code{\link{ptol_pal}()}. These palettes support up to 12 values.
+See \code{\link[=ptol_pal]{ptol_pal()}}. These palettes support up to 12 values.
 }
 \examples{
 library("ggplot2")

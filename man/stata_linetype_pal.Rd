@@ -8,8 +8,8 @@ stata_linetype_pal()
 }
 \value{
 A palette function. It takes the number of linetypes \code{n} and returns a character vector of \code{n}
-  linetype specifications, and can be used as the \code{palette} argument of
-  \code{\link[ggplot2]{discrete_scale}()}.
+linetype specifications, and can be used as the \code{palette} argument of
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Linetype palette based on the linepattern scheme in Stata.
@@ -21,7 +21,7 @@ stata_linetype_pal()(6)
 show_linetypes(stata_linetype_pal()(6))
 }
 \seealso{
-\code{\link{scale_linetype_stata}()}
+\code{\link[=scale_linetype_stata]{scale_linetype_stata()}}
 
 Other linetype stata:
 \code{\link[=scale_linetype_stata]{scale_linetype_stata()}}

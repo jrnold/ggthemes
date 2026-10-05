@@ -1,15 +1,15 @@
 #' Economist color palette (discrete)
 #'
-#' The classic \emph{The Economist} chart palette: blues, grays, and
+#' The classic *The Economist* chart palette: blues, grays, and
 #' greens, chosen and ordered for the number of colors requested. Red is
-#' not included in these palettes; \emph{The Economist} reserves it to
+#' not included in these palettes; *The Economist* reserves it to
 #' mark important data.
 #'
 #' @param fill Use the fill palette. The fill palette (the default) and the
 #'   line palette choose and order the colors differently.
 #' @family color economist
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-economist_pal.R
 economist_pal <- function(fill = TRUE) {
@@ -115,7 +115,7 @@ economist_pal <- function(fill = TRUE) {
 #' @inheritParams economist_pal
 #' @family color economist
 #' @rdname scale_economist
-#' @seealso \code{\link{theme_economist}()} for examples.
+#' @seealso [theme_economist()] for examples.
 #' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_economist.R
@@ -135,26 +135,26 @@ scale_fill_economist <- function(...) {
 
 #' Economist sequential color palettes
 #'
-#' The "equal lightness colour scales" of \emph{The Economist visual
-#' styleguide} (v1.2, 4 May 2017): six ordered steps for each of nine hues,
+#' The "equal lightness colour scales" of *The Economist visual
+#' styleguide* (v1.2, 4 May 2017): six ordered steps for each of nine hues,
 #' running darkest to lightest. Use them for ordered data. They come from
 #' the paper's 2017 chart design, not the classic design of
-#' \code{\link{economist_pal}()} and \code{\link{theme_economist}()}.
+#' [economist_pal()] and [theme_economist()].
 #'
-#' \code{economist_seq_pal()} returns the six steps themselves, for
-#' discrete ordered data. \code{economist_gradient_pal()} interpolates
+#' `economist_seq_pal()` returns the six steps themselves, for
+#' discrete ordered data. `economist_gradient_pal()` interpolates
 #' between them, for continuous data.
 #'
-#' @param hue \code{character}. One of \code{"blue"}, \code{"cyan"},
-#'   \code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
-#'   \code{"gold"}, \code{"gray"}, or \code{"red"}.
+#' @param hue `character`. One of `"blue"`, `"cyan"`,
+#'   `"green"`, `"yellow"`, `"olive"`, `"purple"`,
+#'   `"gold"`, `"gray"`, or `"red"`.
 #' @family color economist
 #' @rdname economist_seq_pal
-#' @return \code{economist_seq_pal()} returns a palette function that takes the number of colors \code{n} and
-#'   returns the first \code{n} of the six hex colors for \code{hue}, for use with
-#'   \code{\link[ggplot2]{discrete_scale}()}. \code{economist_gradient_pal()} returns a palette function that
-#'   takes a numeric vector \code{x} of values between 0 and 1 and returns hex colors interpolated between
-#'   those steps, for use with \code{\link[ggplot2]{continuous_scale}()}.
+#' @return `economist_seq_pal()` returns a palette function that takes the number of colors `n` and
+#'   returns the first `n` of the six hex colors for `hue`, for use with
+#'   [ggplot2::discrete_scale()]. `economist_gradient_pal()` returns a palette function that
+#'   takes a numeric vector `x` of values between 0 and 1 and returns hex colors interpolated between
+#'   those steps, for use with [ggplot2::continuous_scale()].
 #' @export
 #' @example inst/examples/ex-economist_seq_pal.R
 economist_seq_pal <- function(hue = "blue") {
@@ -186,17 +186,17 @@ economist_scale_colors <- function(hue) {
 
 #' Economist sequential color scales
 #'
-#' Color scales built from the equal-lightness color scales of \emph{The
-#' Economist visual styleguide} (v1.2, 4 May 2017); see
-#' \code{\link{economist_seq_pal}()}.
-#' The \code{_c} scales are continuous; the \code{_ordinal} scales are
-#' discrete, for ordered factors. See \code{\link{scale_colour_economist}()}
+#' Color scales built from the equal-lightness color scales of *The
+#' Economist visual styleguide* (v1.2, 4 May 2017); see
+#' [economist_seq_pal()].
+#' The `_c` scales are continuous; the `_ordinal` scales are
+#' discrete, for ordered factors. See [scale_colour_economist()]
 #' for the unordered categorical scales.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams economist_seq_pal
-#' @param guide Type of legend. Use \code{"colourbar"} for continuous
-#'   color bars, or \code{"legend"} for discrete color legends.
+#' @param guide Type of legend. Use `"colourbar"` for continuous
+#'   color bars, or `"legend"` for discrete color legends.
 #' @param ... Other arguments passed on to the underlying scale.
 #' @family color economist
 #' @rdname scale_economist_seq
@@ -245,39 +245,37 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 
 #' ggplot color theme based on the Economist
 #'
-#' A theme that approximates the style of \emph{The Economist}.
+#' A theme that approximates the style of *The Economist*.
 #'
-#' \code{theme_economist} implements the standard bluish-gray
-#' background theme in the print \emph{The Economist} and
-#' \href{https://www.economist.com/}{economist.com}.
+#' `theme_economist` implements the standard bluish-gray
+#' background theme in the print *The Economist* and
+#' [economist.com](https://www.economist.com/).
 #'
-#' \code{theme_economist_white} implements a variant with a white
-#' panel and light gray (or white) background often used by \emph{The Economist}
-#' blog \href{https://www.economist.com/topics/graphic-detail}{Graphic Detail}.
+#' `theme_economist_white` implements a variant with a white
+#' panel and light gray (or white) background often used by *The Economist*
+#' blog [Graphic Detail](https://www.economist.com/topics/graphic-detail).
 #'
-#' Use \code{\link{scale_color_economist}()} with this theme.
+#' Use [scale_color_economist()] with this theme.
 #' The y axis should be displayed on the right hand side.
 #'
-#' \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
+#' *The Economist* uses "ITC Officina Sans" as its font for graphs. If
 #' you have access to this font, you can use it with the
-#' \pkg{extrafont} package. "Verdana" is a good substitute.
+#' extrafont package. "Verdana" is a good substitute.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal \code{logical} Horizontal axis lines?
-#' @param dkpanel \code{logical} Darker background for panel region?
-#' @param gray_bg \code{logical} If \code{TRUE}, use gray background, else
+#' @param horizontal `logical` Horizontal axis lines?
+#' @param dkpanel `logical` Darker background for panel region?
+#' @param gray_bg `logical` If `TRUE`, use gray background, else
 #'   use white background.
 #'
-#' @return An object of class \code{\link[ggplot2]{theme}()}.
+#' @return An object of class [ggplot2::theme()].
 #'
 #' @export
 #' @family themes economist
 #'
 #' @references
-#' \itemize{
-#' \item \href{https://www.economist.com/}{The Economist}
-#' \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
-#' }
+#' - [The Economist](https://www.economist.com/)
+#' - [Spiekerblog, "ITC Officina Display", January 1, 2007.](https://spiekermann.com/en/itc-officina-display/)
 #'
 #' @example inst/examples/ex-theme_economist.R
 theme_economist <- function(base_size = 10, base_family = "sans", horizontal = TRUE, dkpanel = FALSE) {

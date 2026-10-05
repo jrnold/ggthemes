@@ -54,13 +54,13 @@ if (require("purrr") && require("scales") && require("dplyr")) {
 }
 \references{
 \itemize{
-\item{Janie Kliever, \href{https://www.canva.com/learn/100-color-combinations/}{100 Brilliant Color Combinations and How to Apply Them to Your Designs},
-  \emph{Canva.com}, June 20, 2015.}
-\item{Mary Stribley, \href{https://www.canva.com/learn/website-color-schemes/}{Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You},
-  \emph{Canva.com}, January 26, 2016.}
-\item{Schwabish, Jonathan.
-   \href{https://policyviz.com/2017/01/12/150-color-palettes-for-excel/}{150+ Color Palettes for Excel},
-    \emph{PolicyViz}, January 12, 2017.}
+\item Janie Kliever, \href{https://www.canva.com/learn/100-color-combinations/}{100 Brilliant Color Combinations and How to Apply Them to Your Designs},
+\emph{Canva.com}, June 20, 2015.
+\item Mary Stribley, \href{https://www.canva.com/learn/website-color-schemes/}{Website Color Schemes: The Palettes of 50 Visually Impactful Websites to Inspire You},
+\emph{Canva.com}, January 26, 2016.
+\item Schwabish, Jonathan.
+\href{https://policyviz.com/2017/01/12/150-color-palettes-for-excel/}{150+ Color Palettes for Excel},
+\emph{PolicyViz}, January 12, 2017.
 }
 }
 \keyword{datasets}

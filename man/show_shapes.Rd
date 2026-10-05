@@ -8,13 +8,13 @@ show_shapes(shapes, labels = TRUE)
 }
 \arguments{
 \item{shapes}{A numeric or character vector of shapes. See
-\code{\link[graphics]{par}()}.}
+\code{\link[graphics:par]{graphics::par()}}.}
 
 \item{labels}{Include the plotting character value of the symbol.}
 }
 \value{
 This function called for the side effect of creating a plot.
-  It returns \code{shapes}.
+It returns \code{shapes}.
 }
 \description{
 A quick and dirty way to show shapes.
@@ -26,5 +26,5 @@ show_shapes(shape_pal()(5))
 show_shapes(shape_pal()(3), labels = TRUE)
 }
 \seealso{
-\code{\link[scales]{show_col}()}, \code{\link{show_linetypes}()}
+\code{\link[scales:show_col]{scales::show_col()}}, \code{\link[=show_linetypes]{show_linetypes()}}
 }

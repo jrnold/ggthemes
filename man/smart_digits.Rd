@@ -12,7 +12,7 @@ smart_digits_format(x, ...)
 \arguments{
 \item{x}{A numeric vector to format}
 
-\item{...}{Parameters passed to \code{\link{format}()}}
+\item{...}{Parameters passed to \code{\link[base:format]{base::format()}}.}
 }
 \value{
 A character vector.
@@ -36,7 +36,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 }
 \references{
 Josh O'Brien,
-  \url{https://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
+\url{https://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858}.
 }
 \author{
 Josh O'Brien, Baptiste Auguie, Jeffrey B. Arnold

@@ -1,23 +1,23 @@
 #' A ggplot theme originated from the pander package
 #'
-#' The \pkg{pander} ships with a default theme when the 'unify plots' option is
-#' enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals},
-#' \code{eval.msgs} or \code{Pandoc.brew}.
+#' The pander package ships with a default theme when the 'unify plots' option is
+#' enabled via `panderOptions`, which is now also available outside of pander internals, like `evals`,
+#' `eval.msgs` or `Pandoc.brew`.
 #' @inheritParams ggplot2::theme_bw
 #' @param nomargin suppress the white space around the plot (boolean)
-#' @param ff font family, like \code{sans}. Deprecated: use \code{base_family} instead.
+#' @param ff font family, like `sans`. Deprecated: use `base_family` instead.
 #' @param fc font color (name or hexa code)
-#' @param fs font size (integer). Deprecated: use \code{base_size} instead.
+#' @param fs font size (integer). Deprecated: use `base_size` instead.
 #' @param gM major grid (boolean)
 #' @param gm minor grid (boolean)
 #' @param gc grid color (name or hexa code)
-#' @param gl grid line type (\code{lty})
+#' @param gl grid line type (`lty`)
 #' @param boxes to render a border around the plot or not
 #' @param bc background color (name or hexa code)
 #' @param pc panel background color (name or hexa code)
 #' @param lp legend position
-#' @param axis axis angle as defined in \code{par(les)}
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @param axis axis angle as defined in `par(les)`
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @example inst/examples/ex-theme_pander.R
 theme_pander <- function(
@@ -254,14 +254,14 @@ theme_pander <- function(
 
 #' Color palette from the pander package
 #'
-#' The \pkg{pander} ships with a default colorblind and printer-friendly
-#' color palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
+#' The pander package ships with a default colorblind and printer-friendly
+#' color palette borrowed from <https://jfly.iam.u-tokyo.ac.jp/color/>.
 #'
 #' @param n number of colors. This palette supports up to eight colors.
 #' @param random_order if the palette should be reordered randomly before
 #'  rendering each plot to get colorful images
-#' @return A character vector of \code{n} hex colors, recycled if \code{n} exceeds the number of colors available.
-#'   Unlike the other \code{*_pal()} functions, this is itself the palette function.
+#' @return A character vector of `n` hex colors, recycled if `n` exceeds the number of colors available.
+#'   Unlike the other `*_pal()` functions, this is itself the palette function.
 #' @export
 #' @family color pander
 #' @example inst/examples/ex-palette_pander.R
@@ -296,13 +296,13 @@ palette_pander <- function(n, random_order = FALSE) {
 
 #' Color scale from the pander package
 #'
-#' The \pkg{pander} ships with a default colorblind and printer-friendly color
-#' palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
+#' The pander package ships with a default colorblind and printer-friendly color
+#' palette borrowed from <https://jfly.iam.u-tokyo.ac.jp/color/>.
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams palette_pander
 #' @family color pander
 #' @rdname scale_pander
-#' @seealso \code{\link{theme_pander}()}
+#' @seealso [theme_pander()]
 #' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_pander.R

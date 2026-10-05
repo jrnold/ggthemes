@@ -71,7 +71,7 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-`r lifecycle::badge("deprecated")`
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
 \examples{
 # Deprecated. The palette grades circles by how much of each is filled, which
@@ -79,7 +79,7 @@ A ggplot2 scale object.
 scale_shape_circlefill()
 }
 \seealso{
-\code{\link{circlefill_shape_pal}()} for a description of the palette.
+\code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}} for a description of the palette.
 
 Other shapes:
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},

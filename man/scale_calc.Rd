@@ -85,7 +85,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   scale_colour_calc()
 }
 \seealso{
-See \code{\link{theme_calc}()} for examples.
+See \code{\link[=theme_calc]{theme_calc()}} for examples.
 
 Other color calc:
 \code{\link[=calc_pal]{calc_pal()}}

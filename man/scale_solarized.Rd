@@ -77,7 +77,7 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-See \code{\link{solarized_pal}()} for details.
+See \code{\link[=solarized_pal]{solarized_pal()}} for details.
 }
 \examples{
 library("ggplot2")

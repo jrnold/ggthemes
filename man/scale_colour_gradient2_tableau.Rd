@@ -31,10 +31,10 @@ scale_color_gradient2_tableau(
 )
 }
 \arguments{
-\item{palette}{Palette name.
-\describe{
-\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
-\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+\item{palette}{Palette name. For each \code{type}:
+\itemize{
+\item \code{"ordered-sequential"}: \code{"Blue-Green Sequential"}, \code{"Blue Light"}, \code{"Orange Light"}, \code{"Blue"}, \code{"Orange"}, \code{"Green"}, \code{"Red"}, \code{"Purple"}, \code{"Brown"}, \code{"Gray"}, \code{"Gray Warm"}, \code{"Blue-Teal"}, \code{"Orange-Gold"}, \code{"Green-Gold"}, \code{"Red-Gold"}, \code{"Classic Green"}, \code{"Classic Gray"}, \code{"Classic Blue"}, \code{"Classic Red"}, \code{"Classic Orange"}, \code{"Classic Area Red"}, \code{"Classic Area Green"}, \code{"Classic Area Brown"}.
+\item \code{"ordered-diverging"}: \code{"Orange-Blue Diverging"}, \code{"Red-Green Diverging"}, \code{"Green-Blue Diverging"}, \code{"Red-Blue Diverging"}, \code{"Red-Black Diverging"}, \code{"Gold-Purple Diverging"}, \code{"Red-Green-Gold Diverging"}, \code{"Sunset-Sunrise Diverging"}, \code{"Orange-Blue-White Diverging"}, \code{"Red-Green-White Diverging"}, \code{"Green-Blue-White Diverging"}, \code{"Red-Blue-White Diverging"}, \code{"Red-Black-White Diverging"}, \code{"Orange-Blue Light Diverging"}, \code{"Temperature Diverging"}, \code{"Classic Red-Green"}, \code{"Classic Red-Blue"}, \code{"Classic Red-Black"}, \code{"Classic Area Red-Green"}, \code{"Classic Orange-Blue"}, \code{"Classic Green-Blue"}, \code{"Classic Red-White-Green"}, \code{"Classic Red-White-Black"}, \code{"Classic Orange-White-Blue"}, \code{"Classic Red-White-Black Light"}, \code{"Classic Orange-White-Blue Light"}, \code{"Classic Red-White-Green Light"}, \code{"Classic Red-Green Light"}.
 }}
 
 \item{...}{Arguments passed to \code{tableau_gradient_pal}.}
@@ -52,8 +52,8 @@ A ggplot2 scale object.
 }
 \description{
 Continuous color scales using the diverging color scales in Tableau.
-See \funclink{scale_colour_tableau} for Tabaleau discrete color scales,
-and \funclink{scale_colour_gradient_tableau} for sequential color scales.
+See \code{\link[=scale_colour_tableau]{scale_colour_tableau()}} for Tableau discrete color scales,
+and \code{\link[=scale_colour_gradient_tableau]{scale_colour_gradient_tableau()}} for sequential color scales.
 }
 \examples{
 library("ggplot2")

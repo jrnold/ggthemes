@@ -8,11 +8,11 @@ circlefill_shape_pal()
 }
 \value{
 A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-  \code{\link[ggplot2]{discrete_scale}()}.
+shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
-`r lifecycle::badge("deprecated")`
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
 This function was deprecated because unicode glyphs used for the circles
 vary in size, making them unusable for plotting.

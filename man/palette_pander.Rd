@@ -14,11 +14,11 @@ rendering each plot to get colorful images}
 }
 \value{
 A character vector of \code{n} hex colors, recycled if \code{n} exceeds the number of colors available.
-  Unlike the other \code{*_pal()} functions, this is itself the palette function.
+Unlike the other \verb{*_pal()} functions, this is itself the palette function.
 }
 \description{
-The \pkg{pander} ships with a default colorblind and printer-friendly
-color palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
+The pander package ships with a default colorblind and printer-friendly
+color palette borrowed from \url{https://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 \examples{
 palette_pander(8)

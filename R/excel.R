@@ -4,11 +4,11 @@
 #' Use this for that classic ugly look and feel. For ironic purposes only.
 #' 3D bars and pies not included. Please never use this color palette.
 #'
-#' @param line If \code{TRUE}, use the palette for lines and points. Otherwise,
+#' @param line If `TRUE`, use the palette for lines and points. Otherwise,
 #'    use the palette for area.
 #' @family color excel
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-excel_pal.R
 excel_pal <- function(line = TRUE) {
@@ -39,20 +39,20 @@ excel_resolve_theme <- function(theme) {
 #' Color palettes used by current versions of Microsoft Office and Excel.
 #'
 #' @details In 2023 Microsoft replaced the long-standing Office theme with a new
-#' default and renamed the old one. The default here, \code{"Office"}, is the
-#' current palette; \code{"Office 2013"} is the palette Excel used from 2013
-#' until 2022. The former ggthemes names \code{"Office Theme"} and
-#' \code{"Office 2007-2010"} still work, and select \code{"Office 2013"} and
-#' \code{"Office 2007"} respectively.
+#' default and renamed the old one. The default here, `"Office"`, is the
+#' current palette; `"Office 2013"` is the palette Excel used from 2013
+#' until 2022. The former ggthemes names `"Office Theme"` and
+#' `"Office 2007-2010"` still work, and select `"Office 2013"` and
+#' `"Office 2007"` respectively.
 #'
 #' @param theme The name of the Office theme or color theme
 #'   (not to be confused with ggplot2 themes) from which to derive the color
 #'   palette. Available themes include:
-#'   \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}
+#'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$excel$themes))`
 #' @family color excel
 #' @example inst/examples/ex-excel_new_pal.R
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 excel_new_pal <- function(theme = "Office") {
   allthemes <- ggthemes::ggthemes_data$excel$themes
@@ -120,12 +120,12 @@ scale_fill_excel_new <- function(theme = "Office", ...) {
 #'
 #' Theme to replicate the ugly monstrosity that was the old
 #' gray-background Excel chart. Please never use this.
-#' This theme should be combined with the \code{\link{scale_colour_excel}()}
+#' This theme should be combined with the [scale_colour_excel()]
 #' color scale.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal \code{logical}. Horizontal axis lines?
-#' @return An object of class \code{\link[ggplot2]{theme}()}.
+#' @param horizontal `logical`. Horizontal axis lines?
+#' @return An object of class [ggplot2::theme()].
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel.R
@@ -161,19 +161,19 @@ theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
 #' Theme for ggplot2 that is similar to the default style of charts in
 #' current versions of Microsoft Excel.
 #'
-#' @details Excel derives its chart grays from the theme's \code{tx1} color
-#' by luminance transform rather than hardcoding them. Since \code{tx1} is
-#' black in every built-in Office theme, these grays---\code{"#D9D9D9"}
-#' gridlines, \code{"#BFBFBF"} axis lines, \code{"#595959"} text---are the
-#' same whichever theme \funclink{scale_colour_excel_new} is set to.
+#' @details Excel derives its chart grays from the theme's `tx1` color
+#' by luminance transform rather than hardcoding them. Since `tx1` is
+#' black in every built-in Office theme, these grays---`"#D9D9D9"`
+#' gridlines, `"#BFBFBF"` axis lines, `"#595959"` text---are the
+#' same whichever theme [scale_colour_excel_new()] is set to.
 #'
-#' Since 2023 the default font in Excel has been Aptos, but \code{base_family}
-#' defaults to \code{"sans"} because Aptos is rarely installed outside of
-#' Office. Pass \code{base_family = "Aptos Narrow"} for a closer match if you
+#' Since 2023 the default font in Excel has been Aptos, but `base_family`
+#' defaults to `"sans"` because Aptos is rarely installed outside of
+#' Office. Pass `base_family = "Aptos Narrow"` for a closer match if you
 #' do have it.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return An object of class \code{\link[ggplot2]{theme}()}.
+#' @return An object of class [ggplot2::theme()].
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel_new.R

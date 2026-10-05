@@ -16,17 +16,17 @@ economist_gradient_pal(hue = "blue")
 }
 \value{
 \code{economist_seq_pal()} returns a palette function that takes the number of colors \code{n} and
-  returns the first \code{n} of the six hex colors for \code{hue}, for use with
-  \code{\link[ggplot2]{discrete_scale}()}. \code{economist_gradient_pal()} returns a palette function that
-  takes a numeric vector \code{x} of values between 0 and 1 and returns hex colors interpolated between
-  those steps, for use with \code{\link[ggplot2]{continuous_scale}()}.
+returns the first \code{n} of the six hex colors for \code{hue}, for use with
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}. \code{economist_gradient_pal()} returns a palette function that
+takes a numeric vector \code{x} of values between 0 and 1 and returns hex colors interpolated between
+those steps, for use with \code{\link[ggplot2:continuous_scale]{ggplot2::continuous_scale()}}.
 }
 \description{
 The "equal lightness colour scales" of \emph{The Economist visual
 styleguide} (v1.2, 4 May 2017): six ordered steps for each of nine hues,
 running darkest to lightest. Use them for ordered data. They come from
 the paper's 2017 chart design, not the classic design of
-\code{\link{economist_pal}()} and \code{\link{theme_economist}()}.
+\code{\link[=economist_pal]{economist_pal()}} and \code{\link[=theme_economist]{theme_economist()}}.
 }
 \details{
 \code{economist_seq_pal()} returns the six steps themselves, for

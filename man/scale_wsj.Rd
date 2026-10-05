@@ -13,8 +13,8 @@ scale_color_wsj(palette = "colors6", ...)
 scale_fill_wsj(palette = "colors6", ...)
 }
 \arguments{
-\item{palette}{\code{character} The color palette to use: .
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}}
+\item{palette}{\code{character} The color palette to use. One of
+\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -78,8 +78,8 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-Color and fill scales which use the palettes in \code{\link{wsj_pal}()}.
-These scales should be used with \code{\link{theme_wsj}()}.
+Color and fill scales which use the palettes in \code{\link[=wsj_pal]{wsj_pal()}}.
+These scales should be used with \code{\link[=theme_wsj]{theme_wsj()}}.
 }
 \examples{
 library("ggplot2")

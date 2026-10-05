@@ -62,32 +62,32 @@ hc_theme_styles <- list(
 
 #' Highcharts Theme
 #'
-#' Themes based on \href{https://www.highcharts.com/}{Highcharts} plots.
+#' Themes based on [Highcharts](https://www.highcharts.com/) plots.
 #'
 #' @details
 #'
-#' Only the Highcharts themes that restyle the chart itself get a \code{style}
-#' here. The \code{"high-contrast"}, \code{"avocado"} and \code{"sunset"}
+#' Only the Highcharts themes that restyle the chart itself get a `style`
+#' here. The `"high-contrast"`, `"avocado"` and `"sunset"`
 #' themes shipped with Highcharts 13 change nothing but the series colors, so
-#' they are available through \code{\link{hc_pal}()} alone; combine them with
-#' \code{theme_hc("default")} or \code{theme_hc("default_dark")}.
+#' they are available through [hc_pal()] alone; combine them with
+#' `theme_hc("default")` or `theme_hc("default_dark")`.
 #'
 #' Highcharts pairs several of these themes with a web font
-#' (\code{darkunica} with Unica One, \code{grid_light} with Dosis,
-#' \code{sand_signika} with Signika). Those are not requested here, since the
-#' font may not be installed; pass \code{base_family} to use one.
+#' (`darkunica` with Unica One, `grid_light` with Dosis,
+#' `sand_signika` with Signika). Those are not requested here, since the
+#' font may not be installed; pass `base_family` to use one.
 #'
 #' @references
 #'
-#' \url{https://www.highcharts.com/demo/highcharts/line-chart}
+#' <https://www.highcharts.com/demo/highcharts/line-chart>
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @param style The Highcharts theme to use. One of
-#'   \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes:::hc_theme_styles))}.
+#'   `r ggthemes:::md_optlist(names(ggthemes:::hc_theme_styles))`.
 #' @param bgcolor Deprecated
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 theme_hc <- function(
   base_size = 12,
@@ -155,20 +155,20 @@ theme_hc <- function(
 #' the palettes shipped with Highcharts 13, plus the default Highcharts used
 #' before v11.
 #'
-#' \code{"default"} and \code{"default_dark"} are the light- and dark-mode
+#' `"default"` and `"default_dark"` are the light- and dark-mode
 #' forms of the palette Highcharts has used by default since v11.0.0; they
-#' differ only in positions 2 and 3. \code{"classic"} is the default
+#' differ only in positions 2 and 3. `"classic"` is the default
 #' Highcharts used from v5.0.0 through v10.x. The remaining palettes come
 #' from the themes bundled with Highcharts.
 #'
-#' Note that \code{"avocado"} and \code{"sunset"} have only four colors.
+#' Note that `"avocado"` and `"sunset"` have only four colors.
 #'
-#' @param palette \code{character} The name of the Highcharts palette to use.
-#'   One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.
+#' @param palette `character` The name of the Highcharts palette to use.
+#'   One of `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$hc))`.
 #'
 #' @family color hc
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-hc_pal.R
 hc_pal <- function(palette = "default") {
@@ -189,8 +189,8 @@ hc_pal <- function(palette = "default") {
 #' Highcharts color and fill scales
 #'
 #' Color and fill scales which use the palettes in
-#' \code{\link{hc_pal}()} and are meant for use with
-#' \code{\link{theme_hc}()}.
+#' [hc_pal()] and are meant for use with
+#' [theme_hc()].
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams hc_pal

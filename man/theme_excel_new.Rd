@@ -12,7 +12,7 @@ theme_excel_new(base_size = 9, base_family = "sans")
 \item{base_family}{base font family}
 }
 \value{
-An object of class \code{\link[ggplot2]{theme}()}.
+An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 }
 \description{
 Theme for ggplot2 that is similar to the default style of charts in
@@ -23,7 +23,7 @@ Excel derives its chart grays from the theme's \code{tx1} color
 by luminance transform rather than hardcoding them. Since \code{tx1} is
 black in every built-in Office theme, these grays---\code{"#D9D9D9"}
 gridlines, \code{"#BFBFBF"} axis lines, \code{"#595959"} text---are the
-same whichever theme \funclink{scale_colour_excel_new} is set to.
+same whichever theme \code{\link[=scale_colour_excel_new]{scale_colour_excel_new()}} is set to.
 
 Since 2023 the default font in Excel has been Aptos, but \code{base_family}
 defaults to \code{"sans"} because Aptos is rarely installed outside of

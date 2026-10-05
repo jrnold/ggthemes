@@ -14,7 +14,7 @@ scale_fill_hc(palette = "default", ...)
 }
 \arguments{
 \item{palette}{\code{character} The name of the Highcharts palette to use.
-One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.}
+One of \code{"default"}, \code{"default_dark"}, \code{"classic"}, \code{"darkunica"}, \code{"grid_light"}, \code{"sand_signika"}, \code{"high_contrast_light"}, \code{"high_contrast_dark"}, \code{"avocado"}, \code{"sunset"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -79,8 +79,8 @@ A ggplot2 scale object.
 }
 \description{
 Color and fill scales which use the palettes in
-\code{\link{hc_pal}()} and are meant for use with
-\code{\link{theme_hc}()}.
+\code{\link[=hc_pal]{hc_pal()}} and are meant for use with
+\code{\link[=theme_hc]{theme_hc()}}.
 }
 \examples{
 library("ggplot2")

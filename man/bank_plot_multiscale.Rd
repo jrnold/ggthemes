@@ -15,7 +15,7 @@ bank_plot_multiscale(
 \arguments{
 \item{plot}{A \code{ggplot} object.}
 
-\item{method, cull, ...}{Passed to \code{\link{bank_slopes_multiscale}}.}
+\item{method, cull, ...}{Passed to \code{\link[=bank_slopes_multiscale]{bank_slopes_multiscale()}}.}
 
 \item{layer}{Integer. Which layer of \code{plot} to extract \code{y} from.
 Defaults to the first layer.}
@@ -25,16 +25,16 @@ A named \code{list} of \code{ggplot} objects, one per retained
 scale, in ascending order of frequency and named by frequency index.
 }
 \description{
-A convenience wrapper around \code{\link{bank_slopes_multiscale}} that
+A convenience wrapper around \code{\link[=bank_slopes_multiscale]{bank_slopes_multiscale()}} that
 extracts \code{y} directly from an already-specified \code{ggplot} and
 returns one copy of the plot per scale of interest, each with the
-appropriate \code{\link[ggplot2]{coord_fixed}} applied. The result is the
+appropriate \code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}} applied. The result is the
 small-multiples display used throughout Heer and Agrawala (2006): the same
 data, banked to reveal trends at different frequencies.
 }
 \details{
 Multi-scale banking is defined on the frequency domain of a single series
-sampled on a regular grid, so unlike \code{\link{bank_plot}} this function
+sampled on a regular grid, so unlike \code{\link[=bank_plot]{bank_plot()}} this function
 requires the chosen layer to hold exactly one series with evenly spaced
 \code{x} values.
 }
@@ -60,5 +60,5 @@ Heer, Jeffrey and Maneesh Agrawala, 2006. "Multi-Scale Banking to 45."
 IEEE Transactions On Visualization And Computer Graphics 12(5).
 }
 \seealso{
-\code{\link{bank_slopes_multiscale}}, \code{\link{bank_plot}}
+\code{\link[=bank_slopes_multiscale]{bank_slopes_multiscale()}}, \code{\link[=bank_plot]{bank_plot()}}
 }

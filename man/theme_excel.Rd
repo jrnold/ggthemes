@@ -14,12 +14,12 @@ theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 \item{horizontal}{\code{logical}. Horizontal axis lines?}
 }
 \value{
-An object of class \code{\link[ggplot2]{theme}()}.
+An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 }
 \description{
 Theme to replicate the ugly monstrosity that was the old
 gray-background Excel chart. Please never use this.
-This theme should be combined with the \code{\link{scale_colour_excel}()}
+This theme should be combined with the \code{\link[=scale_colour_excel]{scale_colour_excel()}}
 color scale.
 }
 \examples{

@@ -8,11 +8,11 @@ hc_pal(palette = "default")
 }
 \arguments{
 \item{palette}{\code{character} The name of the Highcharts palette to use.
-One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.}
+One of \code{"default"}, \code{"default_dark"}, \code{"classic"}, \code{"darkunica"}, \code{"grid_light"}, \code{"sand_signika"}, \code{"high_contrast_light"}, \code{"high_contrast_dark"}, \code{"avocado"}, \code{"sunset"}.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Highcharts uses many different color palettes in its plots. This collects

@@ -2,10 +2,10 @@
 #' Color Palettes Few "Show Me the Numbers"
 #'
 #' Qualitative color palettes from Stephen Few (2012)
-#' \emph{Show Me the Numbers}. There are three palettes:
+#' *Show Me the Numbers*. There are three palettes:
 #' Light, Medium, and Dark. Each palette comprises nine colors:
 #' gray, blue, orange, green, pink, brown, purple, yellow, red.
-#' For \code{n = 1}, gray is used. For \code{n > 1}, the eight non-gray
+#' For `n = 1`, gray is used. For `n > 1`, the eight non-gray
 #' colors are used.
 #'
 #'
@@ -15,15 +15,15 @@
 #' or for small and thin lines and points.
 #'
 #' @references
-#' Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.
+#' Few, S. (2012) *Show Me the Numbers: Designing Tables and Graphs to Enlighten*.
 #' 2nd edition. Analytics Press.
 #'
-#' \href{https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
+#' ["Practical Rules for Using Color in Charts"](https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 #'
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
-#' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}
+#' @param palette One of `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$few$colors))`.
 #' @family color few
 #' @example inst/examples/ex-few_pal.R
 # nolint end
@@ -54,7 +54,7 @@ few_pal <- function(palette = "Medium") {
 
 #' Color scales from Few's "Practical Rules for Using Color in Charts"
 #'
-#' See \code{\link{few_pal}()}.
+#' See [few_pal()].
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams few_pal
@@ -80,18 +80,18 @@ scale_fill_few <- function(palette = "Light", ...) {
 #' Theme based on Few's "Practical Rules for Using Color in Charts"
 #'
 #' Theme based on the rules and examples from Stephen Few's
-#' \emph{Show Me the Numbers} and "Practical Rules for Using Color in Charts".
+#' *Show Me the Numbers* and "Practical Rules for Using Color in Charts".
 #'
 #' @references
-#' Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten}.
+#' Few, S. (2012) *Show Me the Numbers: Designing Tables and Graphs to Enlighten*.
 #' 2nd edition. Analytics Press.
 #'
 #' Stephen Few, "Practical Rules for Using Color in Charts",
-#' \url{https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}.
+#' <https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf>.
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @family themes few
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family = "") {
@@ -118,12 +118,12 @@ theme_few <- function(base_size = 12, base_family = "") {
 #' times.
 #'
 #' @references Few, S. (2012)
-#'   \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
+#'   *Show Me the Numbers: Designing Tables and Graphs to Enlighten*,
 #'   Analytics Press, p. 208.
 #'
-#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-#'   \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#'   shape (`pch`) codes, and can be used as the `palette` argument of
+#'   [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-few_shape_pal.R
 few_shape_pal <- function() {
@@ -134,15 +134,15 @@ few_shape_pal <- function() {
 
 #' Scales for shapes from "Show Me the Numbers"
 #'
-#' \code{scale_shape_few()} maps discrete variables to up to five easily
+#' `scale_shape_few()` maps discrete variables to up to five easily
 #' discernible shapes. It is based on the shape palette suggested in
 #' Few (2012).
 #'
-#' @param ... Common \code{\link[ggplot2]{discrete_scale}()} parameters.
+#' @param ... Common [ggplot2::discrete_scale()] parameters.
 #' @references Few, S. (2012)
-#'   \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
+#'   *Show Me the Numbers: Designing Tables and Graphs to Enlighten*,
 #'   Analytics Press, p. 208.
-#' @seealso \code{\link{scale_shape_few}()} for the shape palette that this
+#' @seealso [scale_shape_few()] for the shape palette that this
 #'   scale uses.
 #' @return A ggplot2 scale object.
 #' @export

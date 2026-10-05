@@ -7,12 +7,12 @@
 wsj_pal(palette = "colors6")
 }
 \arguments{
-\item{palette}{\code{character} The color palette to use: .
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}}
+\item{palette}{\code{character} The color palette to use. One of
+\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 The Wall Street Journal uses many different color palettes in its
@@ -24,15 +24,14 @@ Collections of these plots can be found on the WSJ Graphics
 \section{Palettes}{
 
 
-The following palettes are defined,
-
-\describe{
-\item{rgby}{Red/Green/Blue/Yellow theme.}
-\item{red_green}{Green/red two-color scale for good/bad.}
-\item{green_black}{Black-green 4-color scale for 'Very negative',
-  'Somewhat negative', 'somewhat positive', 'very positive'.}
-\item{dem_rep}{Democrat/Republican/Undecided blue/red/gray scale.}
-\item{colors6}{Red, blue, gold, green, orange, and black palette.}
+The following palettes are defined:
+\itemize{
+\item \code{"rgby"}: red/green/blue/yellow theme.
+\item \code{"red_green"}: green/red two-color scale for good/bad.
+\item \code{"green_black"}: black-green 4-color scale for "very negative",
+"somewhat negative", "somewhat positive", "very positive".
+\item \code{"dem_rep"}: Democrat/Republican/Undecided blue/red/gray scale.
+\item \code{"colors6"}: red, blue, gold, green, orange, and black palette.
 }
 }
 

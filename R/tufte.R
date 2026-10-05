@@ -3,8 +3,8 @@
 #' Theme based on Chapter 6 'Data-Ink Maximization and Graphical
 #' Design' of Edward Tufte *The Visual Display of Quantitative
 #' Information*. No border, no axis lines, no grids. This theme works
-#' best in combination with \code{\link[ggplot2]{geom_rug}()} or
-#' \code{\link{geom_rangeframe}()}.
+#' best in combination with [ggplot2::geom_rug()] or
+#' [geom_rangeframe()].
 #'
 #' @note
 #' The default font family is set to 'serif' as he uses serif fonts
@@ -12,10 +12,10 @@
 #' The serif font used by Tufte in his books is a variant of Bembo,
 #' while the sans serif font is Gill Sans. If these fonts are
 #' installed on your system, then you can use them with the package
-#' \bold{extrafont}.
+#' **extrafont**.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param ticks \code{logical} Show axis ticks?
+#' @param ticks `logical` Show axis ticks?
 #'
 #' @references Tufte, Edward R. (2001) The Visual Display of
 #' Quantitative Information, Chapter 6.
@@ -23,7 +23,7 @@
 #' @family themes tufte
 #' @family tufte
 #' @example inst/examples/ex-theme_tufte.R
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @importFrom ggplot2 theme_bw
 theme_tufte <- function(base_size = 11, base_family = "serif", ticks = TRUE) {

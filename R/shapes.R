@@ -3,15 +3,15 @@
 #'
 #' Shape palettes for overlapping and non-overlapping points.
 #'
-#' @param overlap \code{logical} Use the scale for overlapping points?
-#' @param unicode If \code{TRUE}, return pch codes derived from Unicode
+#' @param overlap `logical` Use the scale for overlapping points?
+#' @param unicode If `TRUE`, return pch codes derived from Unicode
 #'   glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
 #'   by the device font, so they render as blank boxes in a font without
 #'   coverage; the default returns base pch codes, which every font can draw.
 #'
 #' @note
 #'
-#' In the \emph{Elements of Graphing Data}, W.S. Cleveland suggests
+#' In the *Elements of Graphing Data*, W.S. Cleveland suggests
 #' two shape palettes for scatter plots: one for overlapping data and
 #' another for non-overlapping data. The symbols for overlapping data
 #' rely on pattern discrimination, while the symbols for
@@ -20,15 +20,15 @@
 #' Following Tremmel (1995), the circle with a vertical line is replaced by
 #' an encircled plus sign.
 #'
-#' \code{cleveland_shape_pal(overlap = TRUE)} supports four values on either
+#' `cleveland_shape_pal(overlap = TRUE)` supports four values on either
 #' branch.
 #'
-#' \code{cleveland_shape_pal(overlap = FALSE)} supports three values by
-#' default and five with \code{unicode = TRUE}. Its five source symbols encode
-#' \emph{fill fraction}, which base pch cannot express, so the two
+#' `cleveland_shape_pal(overlap = FALSE)` supports three values by
+#' default and five with `unicode = TRUE`. Its five source symbols encode
+#' *fill fraction*, which base pch cannot express, so the two
 #' partially filled circles are dropped rather than approximated by a
-#' different shape. To encode a proportion, map \code{alpha} or \code{fill}
-#' instead; to restore the five glyphs, use \code{unicode = TRUE} with a font
+#' different shape. To encode a proportion, map `alpha` or `fill`
+#' instead; to restore the five glyphs, use `unicode = TRUE` with a font
 #' that covers Mathematical Operators, such as STIX Two Text.
 #'
 #' The truncation is arguably an improvement. Tremmel (1995) Experiment 2
@@ -39,15 +39,15 @@
 #'
 #' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references
-#' Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
+#' Cleveland WS. *The Elements of Graphing Data*. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
-#' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots", \emph{Journal of Computational and Graphical Statistics},
-#' \url{https://www.jstor.org/stable/1390760}
+#' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots", *Journal of Computational and Graphical Statistics*,
+#' <https://www.jstor.org/stable/1390760>
 #'
 #' @family shapes
-#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-#'   \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#'   shape (`pch`) codes, and can be used as the `palette` argument of
+#'   [ggplot2::discrete_scale()].
 #' @export
 # nolint end
 cleveland_shape_pal <- function(overlap = TRUE, unicode = FALSE) {
@@ -67,7 +67,7 @@ cleveland_shape_pal <- function(overlap = TRUE, unicode = FALSE) {
 #' @export
 #'
 #' @family shapes
-#' @seealso \code{\link{cleveland_shape_pal}()} for a description of the palette.
+#' @seealso [cleveland_shape_pal()] for a description of the palette.
 #' @references
 #' Cleveland WS. The Elements of Graphing Data. Revised Edition.
 #' Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
@@ -99,12 +99,12 @@ scale_shape_cleveland <- function(overlap = TRUE, ..., unicode = FALSE) {
 #' @references
 #' Lewandowsky, Stephan and Ian Spence (1989)
 #' "Discriminating Strata in Scatterplots", Journal of
-#' the American Statistical Association, \url{https://www.jstor.org/stable/2289649}
+#' the American Statistical Association, <https://www.jstor.org/stable/2289649>
 #' @family shapes
 #' @importFrom lifecycle deprecate_warn
-#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-#'   \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#'   shape (`pch`) codes, and can be used as the `palette` argument of
+#'   [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-circlefill_shape_pal.R
 circlefill_shape_pal <- function() {
@@ -129,7 +129,7 @@ circlefill_shape_pal <- function() {
 #' @family shapes
 #' @importFrom lifecycle deprecate_warn
 #' @seealso
-#' \code{\link{circlefill_shape_pal}()} for a description of the palette.
+#' [circlefill_shape_pal()] for a description of the palette.
 #' @example inst/examples/ex-scale_shape_circlefill.R
 scale_shape_circlefill <- function(...) {
   deprecate_warn("5.0.0", "scale_shape_circlefill()")
@@ -154,21 +154,21 @@ scale_shape_circlefill <- function(...) {
 #' different plots.
 #'
 #' @param overlap use an empty circle instead of a solid circle when
-#' \code{n == 2}.
-#' @param alt If \code{TRUE}, then when \code{n == 3},
+#' `n == 2`.
+#' @param alt If `TRUE`, then when `n == 3`,
 #'   use a solid circle, plus sign and
 #'   empty triangle. Otherwise use a solid circle, empty circle, and empty
-#'   triangle. Defaults to \code{FALSE}, the triple Tremmel's Experiment 1
-#'   actually measured; the \code{TRUE} triple is argued on feature-dimension
+#'   triangle. Defaults to `FALSE`, the triple Tremmel's Experiment 1
+#'   actually measured; the `TRUE` triple is argued on feature-dimension
 #'   grounds that Tremmel flags as not directly supported by the experiments.
 #' @family shapes
 #' @references
 #' Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots"
 #' Journal of Computational and Graphical Statistics,
-#' \url{https://www.jstor.org/stable/1390760}
-#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-#'   \code{\link[ggplot2]{discrete_scale}()}.
+#' <https://www.jstor.org/stable/1390760>
+#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#'   shape (`pch`) codes, and can be used as the `palette` argument of
+#'   [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-tremmel_shape_pal.R
 tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
@@ -203,7 +203,7 @@ tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams tremmel_shape_pal
 #'
-#' @seealso \code{\link{tremmel_shape_pal}()} for a description of the palette.
+#' @seealso [tremmel_shape_pal()] for a description of the palette.
 #' @example inst/examples/ex-scale_shape_tremmel.R
 #' @family shapes
 #' @return A ggplot2 scale object.

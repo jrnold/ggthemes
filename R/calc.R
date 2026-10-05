@@ -3,7 +3,7 @@
 #' Theme similar to the default settings of LibreOffice Calc charts.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes calc
 #' @example inst/examples/ex-theme_calc.R
@@ -35,8 +35,8 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 #' This palette has 12 values.
 #'
 #' @family color calc
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-calc_pal.R
 calc_pal <- function() {
@@ -56,7 +56,7 @@ calc_pal <- function() {
 #' @rdname scale_calc
 #' @return A ggplot2 scale object.
 #' @export
-#' @seealso See \code{\link{theme_calc}()} for examples.
+#' @seealso See [theme_calc()] for examples.
 #' @example inst/examples/ex-scale_calc.R
 scale_fill_calc <- function(...) {
   discrete_scale("fill", palette = calc_pal(), ...)
@@ -81,17 +81,17 @@ scale_color_calc <- scale_colour_calc
 #' @note
 #'
 #' This palette supports seven values by default and thirteen with
-#' \code{unicode = TRUE}. Six of Calc's thirteen symbols -- the solid down,
+#' `unicode = TRUE`. Six of Calc's thirteen symbols -- the solid down,
 #' left and right triangles, the bowtie, the hourglass and the four-pointed
 #' star -- have no base pch equivalent and are dropped rather than
-#' approximated by a different shape. Restoring them with \code{unicode = TRUE}
+#' approximated by a different shape. Restoring them with `unicode = TRUE`
 #' needs a font covering Geometric Shapes, Dingbats and Miscellaneous
 #' Mathematical Symbols-B; Noto Sans Symbols 2 is effectively the only free
 #' font with the last of these.
 #'
-#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-#'   \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#'   shape (`pch`) codes, and can be used as the `palette` argument of
+#'   [ggplot2::discrete_scale()].
 #' @export
 #' @family shapes calc
 #' @example inst/examples/ex-calc_shape_pal.R
@@ -101,14 +101,14 @@ calc_shape_pal <- function(unicode = FALSE) {
 
 #' Calc shape scale
 #'
-#' See \code{\link{calc_shape_pal}()} for details.
+#' See [calc_shape_pal()] for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams calc_shape_pal
 #' @family shapes calc
 #' @return A ggplot2 scale object.
 #' @export
-#' @seealso \code{\link{theme_calc}()} for examples.
+#' @seealso [theme_calc()] for examples.
 #' @example inst/examples/ex-scale_shape_calc.R
 scale_shape_calc <- function(..., unicode = FALSE) {
   discrete_scale("shape", palette = calc_shape_pal(unicode = unicode), ...)

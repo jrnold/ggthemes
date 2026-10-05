@@ -3,18 +3,18 @@
 #' The five number summary of a sample is the minimum, first quartile,
 #' median, third quartile, and maximum.
 #'
-#' @param na.rm If \code{FALSE} (the default), removes missing values with
-#'    a warning.  If \code{TRUE} silently removes missing values.
+#' @param na.rm If `FALSE` (the default), removes missing values with
+#'    a warning.  If `TRUE` silently removes missing values.
 #' @param probs Quantiles to use for the five number summary.
 #' @inheritParams ggplot2::stat_identity
 #' @return A data frame with additional columns:
-#'   \item{width}{width of boxplot}
-#'   \item{min}{minimum}
-#'   \item{lower}{lower hinge, 25\% quantile}
-#'   \item{middle}{median, 50\% quantile}
-#'   \item{upper}{upper hinge, 75\% quantile}
-#'   \item{max}{maximum}
-#' @seealso \code{\link[ggplot2]{stat_boxplot}()}
+#'   - `width`: width of the box plot.
+#'   - `min`: minimum.
+#'   - `lower`: lower hinge, the 25% quantile.
+#'   - `middle`: median, the 50% quantile.
+#'   - `upper`: upper hinge, the 75% quantile.
+#'   - `max`: maximum.
+#' @seealso [ggplot2::stat_boxplot()]
 #' @export
 #' @example inst/examples/ex-stat_fivenumber.R
 stat_fivenumber <- function(

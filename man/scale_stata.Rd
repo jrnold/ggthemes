@@ -81,7 +81,7 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-See \code{\link{stata_pal}()} for details.
+See \code{\link[=stata_pal]{stata_pal()}} for details.
 }
 \examples{
 library("ggplot2")

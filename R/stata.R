@@ -23,40 +23,38 @@ stata_default_scheme <- function(scheme, what) {
 #' Stata color palettes (discrete)
 #'
 #' Stata color palettes. See Stata documentation for a description of
-#' the schemes, \url{https://www.stata.com/help.cgi?schemes}.
+#' the schemes, <https://www.stata.com/help.cgi?schemes>.
 #'
 #' All these palettes support up to 15 values.
 #'
 #' @details
 #' Stata's palettes come in two generations, and both are included here.
 #'
-#' \describe{
-#' \item{Stata 17 and earlier}{Schemes \code{"s2color"}, \code{"s1color"},
-#' \code{"s1rcolor"}, and \code{"mono"} are built from Stata's classic named
-#' colors (\code{navy}, \code{maroon}, \code{forest_green}, and so on) and the
-#' \code{gs0}--\code{gs16} gray scale. \code{"s2color"} was Stata's factory
-#' default through Stata 17.}
-#' \item{Stata 18 and later}{Scheme \code{"stcolor"} uses the
-#' \code{stc1}--\code{stc15} colors introduced in Stata 18. They are brighter
-#' than the classic palette and chosen to stay distinguishable for readers
-#' with a color vision deficiency. The first four are also available under
-#' the aliases \code{stblue}, \code{stred}, \code{stgreen}, and
-#' \code{styellow}. \code{"stcolor"} has been Stata's factory default since
-#' Stata 18.}
-#' }
+#' - **Stata 17 and earlier:** schemes `"s2color"`, `"s1color"`,
+#'   `"s1rcolor"`, and `"mono"` are built from Stata's classic named
+#'   colors (`navy`, `maroon`, `forest_green`, and so on) and the
+#'   `gs0`--`gs16` gray scale. `"s2color"` was Stata's factory
+#'   default through Stata 17.
+#' - **Stata 18 and later:** scheme `"stcolor"` uses the
+#'   `stc1`--`stc15` colors introduced in Stata 18. They are brighter
+#'   than the classic palette and chosen to stay distinguishable for readers
+#'   with a color vision deficiency. The first four are also available under
+#'   the aliases `stblue`, `stred`, `stgreen`, and
+#'   `styellow`. `"stcolor"` has been Stata's factory default since
+#'   Stata 18.
 #'
-#' \code{"economist"} is not one of Stata's general-purpose schemes; it is the
+#' `"economist"` is not one of Stata's general-purpose schemes; it is the
 #' set of Economist-styled colors that Stata ships in
-#' \code{scheme-economist.scheme}.
+#' `scheme-economist.scheme`.
 #'
-#' @param scheme \code{character}. One of \code{"s2color"},
-#' \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or
-#' \code{"economist"}. If \code{NULL}, the default, \code{"s2color"} is used
-#' and a deprecation message is issued; this default becomes \code{"stcolor"}
+#' @param scheme `character`. One of `"s2color"`,
+#' `"s1rcolor"`, `"s1color"`, `"mono"`, `"stcolor"`, or
+#' `"economist"`. If `NULL`, the default, `"s2color"` is used
+#' and a deprecation message is issued; this default becomes `"stcolor"`
 #' in ggthemes 8.0.0.
 #'
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @family color stata
 #' @example inst/examples/ex-stata_pal.R
@@ -74,7 +72,7 @@ stata_pal <- function(scheme = NULL) {
 
 #' Stata color scales
 #'
-#' See \code{\link{stata_pal}()} for details.
+#' See [stata_pal()] for details.
 #'
 #' @inheritParams stata_pal
 #' @inheritParams ggplot2::scale_colour_hue
@@ -392,16 +390,16 @@ theme_stata_colors <- function(scheme = "s2color") {
 #'
 #' @param scheme One of "stcolor", "stcolor_alt", "stmono1", "stmono2",
 #'   "stsj", "s2color", "s2mono", "s1color", "s1rcolor", "s1mono",
-#'   "s2manual", "s1manual", or "sj". If \code{NULL}, the default,
+#'   "s2manual", "s1manual", or "sj". If `NULL`, the default,
 #'   "s2color" is used and a deprecation message is issued; this default
 #'   becomes "stcolor" in ggthemes 8.0.0.
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes stata
 #'
 #' @details These themes approximate Stata schemes using the features
-#' \pkg{ggplot2}. The graphical models of Stata and ggplot2 differ
+#' ggplot2. The graphical models of Stata and ggplot2 differ
 #' in various ways that make an exact replication impossible (or
 #' more difficult than it is worth).
 #' Some features in Stata schemes not in ggplot2:
@@ -410,9 +408,9 @@ theme_stata_colors <- function(scheme = "s2color") {
 #' defaults, and more effort was made to match the colors and sizes
 #' of major elements than in matching the margins.
 #'
-#' The schemes fall into two generations. \code{"stcolor"},
-#' \code{"stcolor_alt"}, \code{"stmono1"}, \code{"stmono2"} and \code{"stsj"}
-#' are the st family introduced in Stata 18, of which \code{"stcolor"} is
+#' The schemes fall into two generations. `"stcolor"`,
+#' `"stcolor_alt"`, `"stmono1"`, `"stmono2"` and `"stsj"`
+#' are the st family introduced in Stata 18, of which `"stcolor"` is
 #' Stata's current factory default: a white background, a dashed grid on both
 #' axes, horizontal y-axis labels, and a borderless legend beside the plot.
 #' The remaining schemes are the s1/s2 families that were the default through
@@ -420,13 +418,13 @@ theme_stata_colors <- function(scheme = "s2color") {
 #'
 #' Stata expresses text sizes as a percentage of graph height, while ggplot2
 #' uses absolute points, so the two agree only at a particular graph size.
-#' The relative sizes here match Stata exactly; \code{base_size = 12.4}
+#' The relative sizes here match Stata exactly; `base_size = 12.4`
 #' reproduces Stata's absolute sizes at its default 7.5 by 4.5 inch graph.
 #' Two further differences are not expressible in a ggplot2 theme: the number
-#' of legend columns (set by \code{\link[ggplot2]{guide_legend}()} rather than
+#' of legend columns (set by [ggplot2::guide_legend()] rather than
 #' the theme) and Stata's small default marker size (a geom default).
 #'
-#' @references \url{https://www.stata.com/help.cgi?schemes}
+#' @references <https://www.stata.com/help.cgi?schemes>
 #'
 #' @example inst/examples/ex-theme_stata.R
 theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
@@ -475,12 +473,12 @@ stata_shape_rows <- function(statadata, shapes) {
 #' solid and hollow circle, diamond, square and triangle, plus the X and the
 #' plus sign.
 #'
-#' @return A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-#'   shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-#'   \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#'   shape (`pch`) codes, and can be used as the `palette` argument of
+#'   [ggplot2::discrete_scale()].
 #' @export
 #' @family shapes stata
-#' @seealso See \code{\link{scale_shape_stata}()} for examples.
+#' @seealso See [scale_shape_stata()] for examples.
 #' @importFrom purrr map_dfr map
 #' @importFrom tibble as_tibble
 #' @example inst/examples/ex-stata_shape_pal.R
@@ -494,7 +492,7 @@ stata_shape_pal <- function(unicode = FALSE) {
 
 #' Stata shape scale
 #'
-#' See \code{\link{stata_shape_pal}()} for details.
+#' See [stata_shape_pal()] for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams stata_shape_pal
@@ -513,11 +511,11 @@ scale_shape_stata <- function(..., unicode = FALSE) {
 #' This palette supports up to 15 values.
 #'
 #' @family linetype stata
-#' @return A palette function. It takes the number of linetypes \code{n} and returns a character vector of \code{n}
-#'   linetype specifications, and can be used as the \code{palette} argument of
-#'   \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of linetypes `n` and returns a character vector of `n`
+#'   linetype specifications, and can be used as the `palette` argument of
+#'   [ggplot2::discrete_scale()].
 #' @export
-#' @seealso \code{\link{scale_linetype_stata}()}
+#' @seealso [scale_linetype_stata()]
 #' @example inst/examples/ex-stata_linetype_pal.R
 stata_linetype_pal <- function() {
   values <- ggthemes::ggthemes_data[["stata"]][["linetypes"]]
@@ -530,7 +528,7 @@ stata_linetype_pal <- function() {
 
 #' Stata linetype palette (discrete)
 #'
-#' See \code{\link{stata_linetype_pal}()} for details.
+#' See [stata_linetype_pal()] for details.
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family linetype stata

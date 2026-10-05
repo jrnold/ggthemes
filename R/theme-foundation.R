@@ -1,28 +1,28 @@
 #' Foundation Theme
 #'
 #' This theme is designed to be a foundation from which to build new
-#' themes, and not meant to be used directly. \code{theme_foundation()}
+#' themes, and not meant to be used directly. `theme_foundation()`
 #' is a complete theme with only minimal number of elements defined.
 #' It is easier to create new themes by extending this one rather
-#' than \code{\link[ggplot2]{theme_gray}()} or \code{\link[ggplot2]{theme_bw}()},
+#' than [ggplot2::theme_gray()] or [ggplot2::theme_bw()],
 #' because those themes define elements deep in the hierarchy.
 #'
-#' This theme takes \code{\link[ggplot2]{theme_gray}()} and sets all
-#' \code{colour} and \code{fill} values to \code{NULL}, except for the top-level
-#' elements (\code{line}, \code{rect}, and \code{title}), which have
-#' \code{colour = ink}, and \code{fill = paper}. This leaves the spacing
-#' and non-color defaults of the default \pkg{ggplot2} themes in place.
+#' This theme takes [ggplot2::theme_gray()] and sets all
+#' `colour` and `fill` values to `NULL`, except for the top-level
+#' elements (`line`, `rect`, and `title`), which have
+#' `colour = ink`, and `fill = paper`. This leaves the spacing
+#' and non-color defaults of the default ggplot2 themes in place.
 #'
-#' Unlike \code{theme_foundation()}, the other themes in this package (e.g.
-#' \code{\link{theme_economist}()}, \code{\link{theme_excel}()},
-#' \code{\link{theme_hc}()}) intentionally replicate a fixed, published
-#' visual style, so they do not expose \code{ink}/\code{paper}/\code{accent}
+#' Unlike `theme_foundation()`, the other themes in this package (e.g.
+#' [theme_economist()], [theme_excel()],
+#' [theme_hc()]) intentionally replicate a fixed, published
+#' visual style, so they do not expose `ink`/`paper`/`accent`
 #' arguments.
 #'
 #' @inheritParams ggplot2::theme_grey
 #'
 #' @family themes
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @importFrom ggplot2 theme_grey
 #' @example inst/examples/ex-theme_foundation.R

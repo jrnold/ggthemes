@@ -94,7 +94,7 @@ p + scale_shape_tremmel(alt = TRUE)
 p + scale_shape_tremmel(overlap = TRUE)
 }
 \seealso{
-\code{\link{tremmel_shape_pal}()} for a description of the palette.
+\code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}} for a description of the palette.
 
 Other shapes:
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},

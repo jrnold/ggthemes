@@ -17,7 +17,7 @@ bank_slopes_multiscale(
 \arguments{
 \item{y}{\code{numeric} series of evenly spaced observations.}
 
-\item{method, cull}{Passed to \code{\link{bank_slopes}}. The defaults are
+\item{method, cull}{Passed to \code{\link[=bank_slopes]{bank_slopes()}}. The defaults are
 those Heer and Agrawala used for all results reported in their Section 3.2:
 median absolute slope banking with slopeless line culling.}
 
@@ -34,21 +34,21 @@ Raise it to select fewer scales.}
 retained aspect ratios.}
 }
 \value{
-A \code{\link[tibble]{tibble}} with one row per retained scale, in
+A \code{\link[tibble:tibble]{tibble::tibble()}} with one row per retained scale, in
 ascending order of frequency, and columns:
-\describe{
-\item{\code{frequency}}{\code{integer} frequency index, i.e. the number of
-  times the trend repeats across the series.}
-\item{\code{ratio}}{\code{numeric} aspect ratio in the \code{y / x} sense
-  used by \code{\link[ggplot2]{coord_fixed}()}.}
-\item{\code{aspect_ratio}}{\code{numeric} the same value as width / height,
-  the convention in which the banking literature reports aspect ratios.}
+\itemize{
+\item \code{frequency}: \code{integer} frequency index, i.e. the number of
+times the trend repeats across the series.
+\item \code{ratio}: \code{numeric} aspect ratio in the \code{y / x} sense
+used by \code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}}.
+\item \code{aspect_ratio}: \code{numeric} the same value as width / height,
+the convention in which the banking literature reports aspect ratios.
 }
 }
 \description{
 Compute a set of aspect ratios, one per frequency scale present in a
 series, using the multi-scale banking algorithm of Heer and Agrawala
-(2006). Single-scale banking (\code{\link{bank_slopes}}) considers the
+(2006). Single-scale banking (\code{\link[=bank_slopes]{bank_slopes()}}) considers the
 whole series at once, so it accentuates local features and can obscure
 larger-scale trends. Multi-scale banking instead uses spectral analysis to
 find the scales that carry real energy, low-pass filters the data to each
@@ -57,20 +57,19 @@ aspect ratio per scale.
 }
 \details{
 The procedure is Algorithm 1 of Heer and Agrawala (2006):
-
 \enumerate{
 \item Take the discrete Fourier transform of \code{y} and form the power
-  spectrum from the squared coefficient magnitudes.
+spectrum from the squared coefficient magnitudes.
 \item Smooth the spectrum by convolving it with a Gaussian kernel, since
-  spectral energy tends to arrive in "clumps" containing local oscillation.
+spectral energy tends to arrive in "clumps" containing local oscillation.
 \item Threshold the smoothed spectrum. Contiguous runs above the threshold
-  are collapsed to their highest-frequency bin, capturing the total
-  contribution of that region of energy.
+are collapsed to their highest-frequency bin, capturing the total
+contribution of that region of energy.
 \item For each retained scale, low-pass filter \code{y} to remove all
-  higher frequencies and bank the resulting trend curve to 45 degrees using
-  \code{\link{bank_slopes}}.
+higher frequencies and bank the resulting trend curve to 45 degrees using
+\code{\link[=bank_slopes]{bank_slopes()}}.
 \item Discard aspect ratios within \code{scale_factor} of the previous
-  retained ratio, since they would produce visually redundant charts.
+retained ratio, since they would produce visually redundant charts.
 }
 
 The scale corresponding to the data in its entirety is always included.
@@ -116,6 +115,6 @@ Cleveland, W. S. 1993. "A Model for Studying Display Methods of Statistical
 Graphs." Journal of Computational and Statistical Graphics.
 }
 \seealso{
-\code{\link{bank_slopes}} for single-scale banking, and
-\code{\link{bank_plot_multiscale}} to bank a \code{ggplot} at every scale.
+\code{\link[=bank_slopes]{bank_slopes()}} for single-scale banking, and
+\code{\link[=bank_plot_multiscale]{bank_plot_multiscale()}} to bank a \code{ggplot} at every scale.
 }

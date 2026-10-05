@@ -20,7 +20,7 @@ colors. If -1, then reverse the order.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Color palettes used in \href{https://www.tableau.com/}{Tableau}.
@@ -29,11 +29,10 @@ Color palettes used in \href{https://www.tableau.com/}{Tableau}.
 Tableau provides three types of color palettes:
 \code{"regular"} (discrete, qualitative categories),
 \code{"ordered-sequential"}, and \code{"ordered-diverging"}.
-
-\describe{
-\item{\code{"regular"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))}}
-\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
-\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
+\itemize{
+\item \code{"regular"}: \code{"Tableau 10"}, \code{"Tableau 20"}, \code{"Color Blind"}, \code{"Seattle Grays"}, \code{"Traffic"}, \code{"Miller Stone"}, \code{"Superfishel Stone"}, \code{"Nuriel Stone"}, \code{"Jewel Bright"}, \code{"Summer"}, \code{"Winter"}, \code{"Green-Orange-Teal"}, \code{"Blue-Red-Brown"}, \code{"Purple-Pink-Gray"}, \code{"Hue Circle"}, \code{"Classic 10"}, \code{"Classic 10 Medium"}, \code{"Classic 10 Light"}, \code{"Classic 20"}, \code{"Classic Gray 5"}, \code{"Classic Color Blind"}, \code{"Classic Traffic Light"}, \code{"Classic Purple-Gray 6"}, \code{"Classic Purple-Gray 12"}, \code{"Classic Green-Orange 6"}, \code{"Classic Green-Orange 12"}, \code{"Classic Blue-Red 6"}, \code{"Classic Blue-Red 12"}, \code{"Classic Cyclic"}.
+\item \code{"ordered-diverging"}: \code{"Orange-Blue Diverging"}, \code{"Red-Green Diverging"}, \code{"Green-Blue Diverging"}, \code{"Red-Blue Diverging"}, \code{"Red-Black Diverging"}, \code{"Gold-Purple Diverging"}, \code{"Red-Green-Gold Diverging"}, \code{"Sunset-Sunrise Diverging"}, \code{"Orange-Blue-White Diverging"}, \code{"Red-Green-White Diverging"}, \code{"Green-Blue-White Diverging"}, \code{"Red-Blue-White Diverging"}, \code{"Red-Black-White Diverging"}, \code{"Orange-Blue Light Diverging"}, \code{"Temperature Diverging"}, \code{"Classic Red-Green"}, \code{"Classic Red-Blue"}, \code{"Classic Red-Black"}, \code{"Classic Area Red-Green"}, \code{"Classic Orange-Blue"}, \code{"Classic Green-Blue"}, \code{"Classic Red-White-Green"}, \code{"Classic Red-White-Black"}, \code{"Classic Orange-White-Blue"}, \code{"Classic Red-White-Black Light"}, \code{"Classic Orange-White-Blue Light"}, \code{"Classic Red-White-Green Light"}, \code{"Classic Red-Green Light"}.
+\item \code{"ordered-sequential"}: \code{"Blue-Green Sequential"}, \code{"Blue Light"}, \code{"Orange Light"}, \code{"Blue"}, \code{"Orange"}, \code{"Green"}, \code{"Red"}, \code{"Purple"}, \code{"Brown"}, \code{"Gray"}, \code{"Gray Warm"}, \code{"Blue-Teal"}, \code{"Orange-Gold"}, \code{"Green-Gold"}, \code{"Red-Gold"}, \code{"Classic Green"}, \code{"Classic Gray"}, \code{"Classic Blue"}, \code{"Classic Red"}, \code{"Classic Orange"}, \code{"Classic Area Red"}, \code{"Classic Area Green"}, \code{"Classic Area Brown"}.
 }
 }
 \examples{

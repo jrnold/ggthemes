@@ -57,8 +57,8 @@ theme_pander(
 A ggplot2 theme object (class \code{theme}).
 }
 \description{
-The \pkg{pander} ships with a default theme when the 'unify plots' option is
-enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals},
+The pander package ships with a default theme when the 'unify plots' option is
+enabled via \code{panderOptions}, which is now also available outside of pander internals, like \code{evals},
 \code{eval.msgs} or \code{Pandoc.brew}.
 }
 \examples{

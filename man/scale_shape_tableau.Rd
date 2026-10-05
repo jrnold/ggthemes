@@ -78,7 +78,7 @@ coverage; the default returns base pch codes, which every font can draw.}
 A ggplot2 scale object.
 }
 \description{
-See \code{\link{tableau_shape_pal}()} for details.
+See \code{\link[=tableau_shape_pal]{tableau_shape_pal()}} for details.
 }
 \examples{
 library("ggplot2")

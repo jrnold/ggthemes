@@ -16,7 +16,7 @@ A ggplot2 theme object (class \code{theme}).
 }
 \description{
 A clean theme that is good for displaying maps from
-\code{\link[ggplot2]{geom_map}()}.
+\code{\link[ggplot2:geom_map]{ggplot2::geom_map()}}.
 }
 \examples{
 library("ggplot2")

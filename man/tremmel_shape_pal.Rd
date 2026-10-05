@@ -19,8 +19,8 @@ grounds that Tremmel flags as not directly supported by the experiments.}
 }
 \value{
 A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-  \code{\link[ggplot2]{discrete_scale}()}.
+shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Based on experiments Tremmel (1995) suggests the following shape palettes:

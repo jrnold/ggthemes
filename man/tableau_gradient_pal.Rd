@@ -13,10 +13,10 @@ tableau_seq_gradient_pal(palette = "Blue", ...)
 tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 }
 \arguments{
-\item{palette}{Palette name.
-\describe{
-\item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
-\item{\code{"ordered-diverging"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))}}
+\item{palette}{Palette name. For each \code{type}:
+\itemize{
+\item \code{"ordered-sequential"}: \code{"Blue-Green Sequential"}, \code{"Blue Light"}, \code{"Orange Light"}, \code{"Blue"}, \code{"Orange"}, \code{"Green"}, \code{"Red"}, \code{"Purple"}, \code{"Brown"}, \code{"Gray"}, \code{"Gray Warm"}, \code{"Blue-Teal"}, \code{"Orange-Gold"}, \code{"Green-Gold"}, \code{"Red-Gold"}, \code{"Classic Green"}, \code{"Classic Gray"}, \code{"Classic Blue"}, \code{"Classic Red"}, \code{"Classic Orange"}, \code{"Classic Area Red"}, \code{"Classic Area Green"}, \code{"Classic Area Brown"}.
+\item \code{"ordered-diverging"}: \code{"Orange-Blue Diverging"}, \code{"Red-Green Diverging"}, \code{"Green-Blue Diverging"}, \code{"Red-Blue Diverging"}, \code{"Red-Black Diverging"}, \code{"Gold-Purple Diverging"}, \code{"Red-Green-Gold Diverging"}, \code{"Sunset-Sunrise Diverging"}, \code{"Orange-Blue-White Diverging"}, \code{"Red-Green-White Diverging"}, \code{"Green-Blue-White Diverging"}, \code{"Red-Blue-White Diverging"}, \code{"Red-Black-White Diverging"}, \code{"Orange-Blue Light Diverging"}, \code{"Temperature Diverging"}, \code{"Classic Red-Green"}, \code{"Classic Red-Blue"}, \code{"Classic Red-Black"}, \code{"Classic Area Red-Green"}, \code{"Classic Orange-Blue"}, \code{"Classic Green-Blue"}, \code{"Classic Red-White-Green"}, \code{"Classic Red-White-Black"}, \code{"Classic Orange-White-Blue"}, \code{"Classic Red-White-Black Light"}, \code{"Classic Orange-White-Blue Light"}, \code{"Classic Red-White-Green Light"}, \code{"Classic Red-Green Light"}.
 }}
 
 \item{type}{Palette type, either \code{"ordered-sequential"} or
@@ -26,12 +26,12 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 }
 \value{
 A palette function. It takes a numeric vector \code{x} of values between 0 and 1 and returns a character
-  vector of hex colors interpolated along the palette, for use as the \code{palette} argument of
-  \code{\link[ggplot2]{continuous_scale}()}.
+vector of hex colors interpolated along the palette, for use as the \code{palette} argument of
+\code{\link[ggplot2:continuous_scale]{ggplot2::continuous_scale()}}.
 }
 \description{
 Gradient color palettes using the diverging and sequential continous color
-palettes in Tableau. See \funclink{tableau_color_pal} for discrete color
+palettes in Tableau. See \code{\link[=tableau_color_pal]{tableau_color_pal()}} for discrete color
 palettes.
 }
 \examples{

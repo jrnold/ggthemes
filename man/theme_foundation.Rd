@@ -27,19 +27,19 @@ This theme is designed to be a foundation from which to build new
 themes, and not meant to be used directly. \code{theme_foundation()}
 is a complete theme with only minimal number of elements defined.
 It is easier to create new themes by extending this one rather
-than \code{\link[ggplot2]{theme_gray}()} or \code{\link[ggplot2]{theme_bw}()},
+than \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}} or \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}},
 because those themes define elements deep in the hierarchy.
 }
 \details{
-This theme takes \code{\link[ggplot2]{theme_gray}()} and sets all
+This theme takes \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}} and sets all
 \code{colour} and \code{fill} values to \code{NULL}, except for the top-level
 elements (\code{line}, \code{rect}, and \code{title}), which have
 \code{colour = ink}, and \code{fill = paper}. This leaves the spacing
-and non-color defaults of the default \pkg{ggplot2} themes in place.
+and non-color defaults of the default ggplot2 themes in place.
 
 Unlike \code{theme_foundation()}, the other themes in this package (e.g.
-\code{\link{theme_economist}()}, \code{\link{theme_excel}()},
-\code{\link{theme_hc}()}) intentionally replicate a fixed, published
+\code{\link[=theme_economist]{theme_economist()}}, \code{\link[=theme_excel]{theme_excel()}},
+\code{\link[=theme_hc]{theme_hc()}}) intentionally replicate a fixed, published
 visual style, so they do not expose \code{ink}/\code{paper}/\code{accent}
 arguments.
 }
