@@ -43,8 +43,8 @@
 #' @family economist 2017
 #' @importFrom ggplot2 layer
 #' @export
-#' @example inst/examples/ex-geom_scale_break_economist.R
-geom_scale_break_economist <- function(
+#' @example inst/examples/ex-geom_scale_break_economist_2017.R
+geom_scale_break_economist_2017 <- function( # nolint: object_length_linter. Era-specific name.
   side = c("right", "left"),
   width = 6,
   height = 4,
@@ -59,7 +59,7 @@ geom_scale_break_economist <- function(
     data = data.frame(x = 0),
     mapping = NULL,
     stat = "identity",
-    geom = GeomScaleBreakEconomist,
+    geom = GeomScaleBreakEconomist2017,
     position = "identity",
     show.legend = FALSE,
     inherit.aes = FALSE,
@@ -74,15 +74,15 @@ geom_scale_break_economist <- function(
   )
 }
 
-#' @rdname geom_scale_break_economist
+#' @rdname geom_scale_break_economist_2017
 #' @usage NULL
 #' @format NULL
 #' @export
 #' @importFrom ggplot2 ggproto Geom zeroGrob draw_key_blank
 #' @importFrom grid polylineGrob gpar unit
 # nolint start: object_name_linter
-GeomScaleBreakEconomist <- ggproto(
-  "GeomScaleBreakEconomist",
+GeomScaleBreakEconomist2017 <- ggproto(
+  "GeomScaleBreakEconomist2017",
   Geom,
   required_aes = character(),
   draw_key = draw_key_blank,

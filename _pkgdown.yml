@@ -12,15 +12,15 @@ reference:
   - economist_2017_pal
   - economist_2017_gradient_pal
   - scale_colour_economist_2017
-  - guide_axis_economist
+  - guide_axis_economist_2017
   - economist_2017_chart
   - economist_2017_size
   - economist_2017_footnote
   - economist_2017_font
-  - geom_label_economist
-  - geom_timeline_economist
-  - geom_scale_break_economist
-  - economist_year
+  - geom_label_economist_2017
+  - geom_timeline_economist_2017
+  - geom_scale_break_economist_2017
+  - economist_2017_year
 - title: Color Scales
   desc: Provided ggplot2 scales for the `color` (`colour`) aesthetic. Scales control
     the details of how data values are translated to visual properties.

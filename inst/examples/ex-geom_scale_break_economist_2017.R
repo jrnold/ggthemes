@@ -8,8 +8,8 @@ approval <- data.frame(
 
 ggplot(approval, aes(year, pct)) +
   geom_line(colour = economist_2017_pal(type = "line_side")(1)) +
-  geom_scale_break_economist() +
-  scale_y_continuous(position = "right", guide = guide_axis_economist(), limits = c(30, 80)) +
-  scale_x_continuous(labels = economist_year_format()) +
+  geom_scale_break_economist_2017() +
+  scale_y_continuous(position = "right", guide = guide_axis_economist_2017(), limits = c(30, 80)) +
+  scale_x_continuous(labels = economist_2017_year_format()) +
   labs(title = "Mutti's malaise", subtitle = "Approval, % polled", x = NULL, y = NULL) +
   theme_economist_2017()

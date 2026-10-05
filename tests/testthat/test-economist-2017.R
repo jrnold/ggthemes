@@ -362,29 +362,29 @@ test_that("theme_economist_2017 respects base_family and horizontal", {
   expect_s3_class(ggplot2::calc_element("panel.grid.major.x", vertical), "element_line")
 })
 
-# guide_axis_economist() --------------------------------------------------------
+# guide_axis_economist_2017() --------------------------------------------------------
 
 guide_test_plot <- function(...) {
   ggplot2::ggplot(data.frame(x = 1:3, y = c(0, 4, 8)), ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_point() +
-    ggplot2::scale_y_continuous(position = "right", guide = guide_axis_economist(...), breaks = c(0, 4, 8)) +
+    ggplot2::scale_y_continuous(position = "right", guide = guide_axis_economist_2017(...), breaks = c(0, 4, 8)) +
     theme_economist_2017()
 }
 
-test_that("guide_axis_economist returns an axis guide", {
-  guide <- guide_axis_economist()
-  expect_s3_class(guide, "GuideAxisEconomist")
+test_that("guide_axis_economist_2017 returns an axis guide", {
+  guide <- guide_axis_economist_2017()
+  expect_s3_class(guide, "GuideAxisEconomist2017")
   expect_s3_class(guide, "GuideAxis")
-  expect_error(guide_axis_economist(gap = 1), "unit")
+  expect_error(guide_axis_economist_2017(gap = 1), "unit")
 })
 
-test_that("guide_axis_economist takes no width beside the panel", {
+test_that("guide_axis_economist_2017 takes no width beside the panel", {
   gt <- ggplot2::ggplotGrob(guide_test_plot())
   axis <- gt$grobs[[which(gt$layout$name == "axis-r")]]
   expect_equal(unit_pt(grid::grobWidth(axis)), 0)
 })
 
-test_that("guide_axis_economist draws labels above their gridlines, inside the panel", {
+test_that("guide_axis_economist_2017 draws labels above their gridlines, inside the panel", {
   gt <- ggplot2::ggplotGrob(guide_test_plot())
   axis <- gt$grobs[[which(gt$layout$name == "axis-r")]]
   labels <- axis$grobs[[which(axis$layout$name == "labels")]]
@@ -398,10 +398,10 @@ test_that("guide_axis_economist draws labels above their gridlines, inside the p
   expect_true(all(grepl("1points", as.character(text$y))))
 })
 
-test_that("guide_axis_economist draws left axes into the panel too", {
+test_that("guide_axis_economist_2017 draws left axes into the panel too", {
   p <- ggplot2::ggplot(data.frame(x = 1:3, y = 1:3), ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_point() +
-    ggplot2::scale_y_continuous(guide = guide_axis_economist()) +
+    ggplot2::scale_y_continuous(guide = guide_axis_economist_2017()) +
     theme_economist_2017()
   gt <- ggplot2::ggplotGrob(p)
   axis <- gt$grobs[[which(gt$layout$name == "axis-l")]]
@@ -410,17 +410,17 @@ test_that("guide_axis_economist draws left axes into the panel too", {
   expect_equal(grid::convertX(text$x, "npc", valueOnly = TRUE), 1)
 })
 
-test_that("guide_axis_economist takes a custom gap", {
+test_that("guide_axis_economist_2017 takes a custom gap", {
   gt <- ggplot2::ggplotGrob(guide_test_plot(gap = grid::unit(3, "pt")))
   axis <- gt$grobs[[which(gt$layout$name == "axis-r")]]
   text <- axis$grobs[[which(axis$layout$name == "labels")]]$children[[1]]
   expect_true(all(grepl("3points", as.character(text$y))))
 })
 
-test_that("guide_axis_economist falls back to a standard axis on x", {
+test_that("guide_axis_economist_2017 falls back to a standard axis on x", {
   p <- ggplot2::ggplot(data.frame(x = 1:3, y = 1:3), ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_point() +
-    ggplot2::scale_x_continuous(guide = guide_axis_economist()) +
+    ggplot2::scale_x_continuous(guide = guide_axis_economist_2017()) +
     theme_economist_2017()
   gt <- ggplot2::ggplotGrob(p)
   axis <- gt$grobs[[which(gt$layout$name == "axis-b")]]
@@ -565,9 +565,9 @@ test_that("economist_2017_chart moves y-axis titles above the panels", {
     ggplot2::geom_point() +
     ggplot2::scale_y_continuous(
       position = "right",
-      guide = guide_axis_economist(),
+      guide = guide_axis_economist_2017(),
       name = "Right, %",
-      sec.axis = ggplot2::dup_axis(name = "Left, %", guide = guide_axis_economist())
+      sec.axis = ggplot2::dup_axis(name = "Left, %", guide = guide_axis_economist_2017())
     ) +
     theme_economist_2017()
   gt <- chart_gtable(p)
@@ -698,7 +698,7 @@ test_that("theme_economist_2017 defaults to economist_2017_font()", {
 test_that("theme_economist_2017 draws correctly", {
   for (media in c("print", "web")) {
     p <- theme_test_plot() +
-      ggplot2::scale_y_continuous(position = "right", guide = guide_axis_economist()) +
+      ggplot2::scale_y_continuous(position = "right", guide = guide_axis_economist_2017()) +
       scale_colour_economist_2017(media) +
       # Pinned, so the snapshot does not depend on which fonts are installed.
       theme_economist_2017(media, base_family = "sans")

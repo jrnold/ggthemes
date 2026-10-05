@@ -23,7 +23,7 @@
 #' examples).
 #'
 #' @section Aesthetics:
-#' `geom_label_economist()` understands the following aesthetics (required ones
+#' `geom_label_economist_2017()` understands the following aesthetics (required ones
 #' are in bold):
 #'
 #' * **`x`**, **`y`**: the point the pointer touches.
@@ -51,9 +51,9 @@
 #'
 #' @family economist 2017
 #' @export
-#' @example inst/examples/ex-geom_label_economist.R
+#' @example inst/examples/ex-geom_label_economist_2017.R
 # nolint start: object_name_linter. ggplot2's own argument names.
-geom_label_economist <- function(
+geom_label_economist_2017 <- function(
   mapping = NULL,
   data = NULL,
   stat = "identity",
@@ -70,7 +70,7 @@ geom_label_economist <- function(
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomLabelEconomist,
+    geom = GeomLabelEconomist2017,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -79,14 +79,14 @@ geom_label_economist <- function(
 }
 # nolint end
 
-#' @rdname geom_label_economist
+#' @rdname geom_label_economist_2017
 #' @usage NULL
 #' @format NULL
 #' @export
 #' @importFrom ggplot2 ggproto Geom aes draw_key_rect
 # nolint start: object_name_linter
-GeomLabelEconomist <- ggproto(
-  "GeomLabelEconomist",
+GeomLabelEconomist2017 <- ggproto(
+  "GeomLabelEconomist2017",
   Geom,
   required_aes = c("x", "y", "label"),
   default_aes = aes(
@@ -120,7 +120,7 @@ GeomLabelEconomist <- ggproto(
           lineheight = 9.5 / 7.5
         ),
         box_gp = grid::gpar(col = NA, fill = ggplot2::fill_alpha(row$fill, row$alpha)),
-        cl = "ggthemes_label_economist"
+        cl = "ggthemes_label_economist_2017"
       )
     })
     grid::gTree(children = do.call(grid::gList, blocks))
@@ -129,7 +129,7 @@ GeomLabelEconomist <- ggproto(
 # nolint end: object_name_linter
 
 # The guide's text-block geometry, in points.
-label_economist_spec <- list(
+label_2017_spec <- list(
   line = 12, # box height for one line
   extra_line = 11, # added for each further line
   padding = 6, # either side of the text
@@ -141,22 +141,22 @@ label_economist_spec <- list(
 # Where the pointer's centre sits along a side `length` long: at `just` of
 # the way along, but at least `corner` from either end when the side is long
 # enough, and never past the end.
-label_economist_pointer_at <- function(length, just, corner) {
-  half <- label_economist_spec$pointer_width / 2
+label_2017_pointer_at <- function(length, just, corner) {
+  half <- label_2017_spec$pointer_width / 2
   lo <- min(corner + half, length / 2)
   min(max(just * length, lo), length - lo)
 }
 
 # The box outline, pointer included, as (x, y) in points from the point the
 # pointer touches; or, with no pointer, from the box's justification point.
-label_economist_outline <- function(width, height, pointer, hjust, vjust) {
-  s <- label_economist_spec
+label_2017_outline <- function(width, height, pointer, hjust, vjust) {
+  s <- label_2017_spec
   half <- s$pointer_width / 2
   d <- s$pointer_depth
   switch(
     pointer,
     bottom = {
-      p <- label_economist_pointer_at(width, hjust, s$corner)
+      p <- label_2017_pointer_at(width, hjust, s$corner)
       left <- -p
       list(
         x = c(0, -half, left, left, left + width, left + width, half),
@@ -165,7 +165,7 @@ label_economist_outline <- function(width, height, pointer, hjust, vjust) {
       )
     },
     top = {
-      p <- label_economist_pointer_at(width, hjust, s$corner)
+      p <- label_2017_pointer_at(width, hjust, s$corner)
       left <- -p
       list(
         x = c(0, half, left + width, left + width, left, left, -half),
@@ -174,7 +174,7 @@ label_economist_outline <- function(width, height, pointer, hjust, vjust) {
       )
     },
     left = {
-      q <- label_economist_pointer_at(height, vjust, 0)
+      q <- label_2017_pointer_at(height, vjust, 0)
       bottom <- -q
       list(
         x = c(0, d, d, d + width, d + width, d, d),
@@ -183,7 +183,7 @@ label_economist_outline <- function(width, height, pointer, hjust, vjust) {
       )
     },
     right = {
-      q <- label_economist_pointer_at(height, vjust, 0)
+      q <- label_2017_pointer_at(height, vjust, 0)
       bottom <- -q
       list(
         x = c(0, -d, -d, -d - width, -d - width, -d, -d),
@@ -206,15 +206,15 @@ label_economist_outline <- function(width, height, pointer, hjust, vjust) {
 # The text is measured when the block is drawn, so the box fits it on the
 # device it is drawn on.
 #' @exportS3Method grid::makeContent
-makeContent.ggthemes_label_economist <- function(x) {
-  s <- label_economist_spec
+makeContent.ggthemes_label_economist_2017 <- function(x) {
+  s <- label_2017_spec
   lines <- strsplit(x$label, "\n", fixed = TRUE)[[1]]
   n <- max(length(lines), 1)
   text <- grid::textGrob(x$label, gp = x$text_gp)
   padding <- x$padding %||% s$padding
   width <- grid::convertWidth(grid::grobWidth(text), "pt", valueOnly = TRUE) + 2 * padding
   height <- s$line + s$extra_line * (n - 1)
-  shape <- label_economist_outline(width, height, x$pointer, x$hjust, x$vjust)
+  shape <- label_2017_outline(width, height, x$pointer, x$hjust, x$vjust)
   at <- function(npc, pt) grid::unit(npc, "npc") + grid::unit(pt, "pt")
   box <- grid::polygonGrob(at(x$x, shape$x), at(x$y, shape$y), gp = x$box_gp)
   label <- grid::textGrob(

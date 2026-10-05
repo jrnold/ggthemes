@@ -12,7 +12,7 @@ yields <- data.frame(
 p <- ggplot(yields, aes(year, yield, colour = country)) +
   geom_line() +
   scale_x_continuous(breaks = c(1, 5, 10, 13)) +
-  scale_y_continuous(position = "right", guide = guide_axis_economist(), limits = c(0, 8)) +
+  scale_y_continuous(position = "right", guide = guide_axis_economist_2017(), limits = c(0, 8)) +
   labs(
     title = "Where Tokyo leads",
     subtitle = "Ten-year government-bond yields, %",

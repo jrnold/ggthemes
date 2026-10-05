@@ -208,7 +208,7 @@ scale_fill_economist_2017_c <- function(
 #'
 #' * The value axis is on the right, with its labels sitting on their
 #'   gridlines inside the panel. Use
-#'   `scale_y_continuous(position = "right", guide = guide_axis_economist())`.
+#'   `scale_y_continuous(position = "right", guide = guide_axis_economist_2017())`.
 #' * The red tab above the title, the red rule across the top of a web
 #'   chart, and the red marker above each panel heading are added by
 #'   [economist_2017_chart()], which also moves a web chart's key up
@@ -694,7 +694,7 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
 # Move the y-axis titles from columns beside the panels into a row above them,
 # set horizontally over their own axis: a left title ranged left, a right one
 # ranged right (p.10). The row leaves room for the top value label, which
-# guide_axis_economist() draws above the top gridline, and the emptied
+# guide_axis_economist_2017() draws above the top gridline, and the emptied
 # columns close up so the panels take their width.
 economist_2017_titles_up <- function(gt, theme, k) {
   sides <- c(l = "left", r = "right")

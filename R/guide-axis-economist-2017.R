@@ -37,8 +37,8 @@
 #'
 #' @family economist 2017
 #' @export
-#' @example inst/examples/ex-guide_axis_economist.R
-guide_axis_economist <- function(
+#' @example inst/examples/ex-guide_axis_economist_2017.R
+guide_axis_economist_2017 <- function(
   title = ggplot2::waiver(),
   gap = NULL,
   order = 0,
@@ -62,17 +62,17 @@ guide_axis_economist <- function(
     order = order,
     position = position,
     name = "axis",
-    super = GuideAxisEconomist
+    super = GuideAxisEconomist2017
   )
 }
 
-#' @rdname guide_axis_economist
+#' @rdname guide_axis_economist_2017
 #' @format NULL
 #' @usage NULL
 #' @export
 # nolint start: object_name_linter
-GuideAxisEconomist <- ggplot2::ggproto(
-  "GuideAxisEconomist",
+GuideAxisEconomist2017 <- ggplot2::ggproto(
+  "GuideAxisEconomist2017",
   ggplot2::GuideAxis,
   params = c(ggplot2::GuideAxis$params, list(gap = NULL)),
 

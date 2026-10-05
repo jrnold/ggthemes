@@ -14,7 +14,7 @@ local({
 })
 ```
 
-This article reproduces the charts of [The Economist visual styleguide](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf) (Version 1.2, 4 May 2017, by Matt McLean) with *ggthemes*, using `theme_economist_2017()`, `economist_2017_pal()`, `guide_axis_economist()` and `economist_2017_chart()`.
+This article reproduces the charts of [The Economist visual styleguide](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf) (Version 1.2, 4 May 2017, by Matt McLean) with *ggthemes*, using `theme_economist_2017()`, `economist_2017_pal()`, `guide_axis_economist_2017()` and `economist_2017_chart()`.
 
 ```{r setup, message = FALSE}
 library(ggthemes)
@@ -162,7 +162,7 @@ economist_2017_chart(footnote_figure, media = "print")
 
 ## Anatomy of a chart
 
-The value axis sits on the right, with each label just above its gridline inside the panel. `scale_y_continuous(position = "right")` and `guide_axis_economist()` produce this.
+The value axis sits on the right, with each label just above its gridline inside the panel. `scale_y_continuous(position = "right")` and `guide_axis_economist_2017()` produce this.
 
 ```{r anatomy-bare, econ_height = 165}
 ## Monthly yields, in years since the start.
@@ -183,7 +183,7 @@ bonds <- data.frame(
 tokyo <- ggplot(bonds, aes(year, yield, colour = period)) +
   geom_line(linewidth = 0.8) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 8), breaks = seq(0, 8, 2), expand = c(0, 0)
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 8), breaks = seq(0, 8, 2), expand = c(0, 0)
   ) +
   scale_x_continuous(
     limits = c(1, 13.7), breaks = 1:13, labels = ifelse(1:13 %in% c(1, 5, 10, 13), 1:13, ""), expand = c(0, 0)
@@ -267,9 +267,9 @@ anthem <- ggplot(sweeps, aes(year, count, fill = country)) +
                "Other" = web_pal$sequential$grey[1])
   ) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 12), breaks = seq(0, 12, 2), expand = c(0, 0)
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 12), breaks = seq(0, 12, 2), expand = c(0, 0)
   ) +
-  scale_x_continuous(breaks = seq(1948, 2016, 4), labels = economist_year_format(), expand = c(0.01, 0)) +
+  scale_x_continuous(breaks = seq(1948, 2016, 4), labels = economist_2017_year_format(), expand = c(0.01, 0)) +
   guides(fill = guide_legend(ncol = 2)) +
   labs(
     title = "National anthem monopolies", subtitle = "Number of “medal sweeps” by country",
@@ -317,11 +317,11 @@ leader <- ggplot(leader_data, aes(year, change)) +
   annotate("text", x = 2015.95, y = 2.08, label = "Fed target  2", hjust = 1, vjust = 0,
            colour = econ_red, size = 6 / ggplot2::.pt) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 3), breaks = c(0, 1, 3), expand = c(0, 0)
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 3), breaks = c(0, 1, 3), expand = c(0, 0)
   ) +
   ## A tick at each year, with the last marking the end of the data.
   scale_x_continuous(
-    limits = c(2011, 2016), breaks = c(2011:2015, 2015.57), labels = c(economist_year(2011:2015), ""),
+    limits = c(2011, 2016), breaks = c(2011:2015, 2015.57), labels = c(economist_2017_year(2011:2015), ""),
     expand = c(0, 0)
   ) +
   labs(title = "US consumer prices", subtitle = "% increase on a year earlier",
@@ -355,9 +355,9 @@ espresso <- ggplot(espresso_data, aes(year, change)) +
   geom_col(fill = pal_bar(1), width = 0.67) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(-8, 8), breaks = seq(-8, 8, 4), expand = c(0, 0)
+    guide = guide_axis_economist_2017(), position = "right", limits = c(-8, 8), breaks = seq(-8, 8, 4), expand = c(0, 0)
   ) +
-  scale_x_continuous(breaks = 2007:2015, labels = economist_year_format()) +
+  scale_x_continuous(breaks = 2007:2015, labels = economist_2017_year_format()) +
   labs(title = "US retail sales",
        subtitle = "Excluding motor vehicles and parts,\n% change on a year earlier",
        x = NULL, y = NULL) +
@@ -618,7 +618,7 @@ ggplot(steps, aes(col, -step, fill = hex)) +
 
 Examples cover one trace, two traces, sub-categories, a plus/minus axis and color overrides, all in the `bar_side` order unless noted.
 
-### "Salud" -- one trace with highlight
+### One trace with highlight
 
 ```{r salud, econ_height = 165}
 doctors <- data.frame(
@@ -633,7 +633,7 @@ salud <- ggplot(doctors, aes(country, visits, fill = highlight)) +
   geom_col(width = 0.6, show.legend = FALSE) +
   geom_hline(yintercept = 0, colour = print_pal$baseline, linewidth = 0.3) +
   coord_flip() +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", expand = expansion(mult = c(0, 0.02))) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", expand = expansion(mult = c(0, 0.02))) +
   scale_fill_manual(values = c(`FALSE` = pal_bar(1), `TRUE` = pal_bar(2)[2])) +
   labs(
     title = "Salud",
@@ -651,7 +651,7 @@ economist_2017_chart(
 )
 ```
 
-### "African lion" -- one trace, columns
+### One trace, columns
 
 ```{r african-lion, econ_height = 165}
 ethiopia <- data.frame(
@@ -662,7 +662,7 @@ ethiopia <- data.frame(
 lion <- ggplot(ethiopia, aes(year, growth)) +
   geom_col(fill = pal_bar(1), width = 0.6) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 14), breaks = seq(0, 14, 2),
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 14), breaks = seq(0, 14, 2),
     expand = expansion(0)
   ) +
   ## Labels every other year, then the estimate; a tick for every year.
@@ -685,7 +685,7 @@ economist_2017_chart(
 )
 ```
 
-### "Defenders of democracy" -- two traces
+### Two traces
 
 ```{r defenders, econ_height = 235}
 elections <- data.frame(
@@ -703,7 +703,7 @@ democracy <- ggplot(elections, aes(country, pct, fill = income)) +
   geom_hline(yintercept = 0, colour = print_pal$baseline, linewidth = 0.3) +
   coord_flip() +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 80), breaks = seq(0, 80, 20),
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 80), breaks = seq(0, 80, 20),
     expand = expansion(0)
   ) +
   scale_fill_economist_2017("print", type = "bar_side") +
@@ -727,7 +727,7 @@ economist_2017_chart(
 )
 ```
 
-### "Autumn fall" -- two traces with sub-categories
+### Two traces with sub-categories
 
 `facet_grid()` with `space = "free"` gives the two-level label column.
 
@@ -754,7 +754,7 @@ autumn <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
   facet_grid(rows = vars(.data$country), scales = "free_y", space = "free", switch = "y") +
   scale_x_discrete(expand = expansion(add = 0.5)) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", breaks = 0:3, expand = expansion(mult = c(0, 0.02))
+    guide = guide_axis_economist_2017(), position = "right", breaks = 0:3, expand = expansion(mult = c(0, 0.02))
   ) +
   scale_fill_economist_2017("print", type = "bar_side") +
   labs(
@@ -777,7 +777,7 @@ economist_2017_chart(
 )
 ```
 
-### "The mighty jungle" -- two traces with sub-categories, columns
+### Two traces with sub-categories, columns
 
 ```{r mighty-jungle, econ_height = 155}
 returns <- data.frame(
@@ -792,7 +792,7 @@ returns$asset <- factor(returns$asset,
 jungle <- ggplot(returns, aes(horizon, pct, fill = asset)) +
   geom_col(position = position_dodge(width = 0.8), width = 0.8) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", breaks = seq(0, 20, 5),
+    guide = guide_axis_economist_2017(), position = "right", breaks = seq(0, 20, 5),
     expand = expansion(mult = c(0, 0.05))
   ) +
   scale_fill_economist_2017("print", type = "bar_side") +
@@ -814,7 +814,7 @@ economist_2017_chart(
 )
 ```
 
-### "Another dotcom boom" -- one trace with a plus/minus axis
+### One trace with a plus/minus axis
 
 The guide: "Differentiate positive/negative values by colour only where there is a meaningful difference i.e. imports / exports." This is one series, so it stays one color.
 
@@ -831,7 +831,7 @@ dotcom <- ggplot(capex, aes(sector, change)) +
   geom_col(fill = pal_bar(1), width = 0.6) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
   coord_flip() +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-60, 60),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-60, 60),
                      breaks = seq(-60, 60, 20), expand = expansion(0)) +
   labs(
     title = "Another dotcom boom",
@@ -850,7 +850,7 @@ economist_2017_chart(
 )
 ```
 
-### "The money drain" -- plus/minus columns
+### Plus/minus columns
 
 ```{r money-drain, econ_height = 155}
 ## 2005 is missing from the guide's chart.
@@ -863,7 +863,7 @@ capital <- data.frame(
 drain <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
   geom_col(width = 0.68, show.legend = FALSE) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-150, 100),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-150, 100),
                      breaks = seq(-150, 100, 50), expand = expansion(0)) +
   scale_x_continuous(
     breaks = c(seq(1994, 2008, 2), 2011),
@@ -885,7 +885,7 @@ economist_2017_chart(
 )
 ```
 
-### "Trader woes" -- color used for a meaningful positive/negative split
+### Color used for a meaningful positive/negative split
 
 Here the sign is meaningful, so the two halves differ in color.
 
@@ -949,7 +949,7 @@ woes <- ggplot(trade, aes(year, pct, fill = flow)) +
     )
   ) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", breaks = seq(-4, 12, 4), expand = expansion(0)
+    guide = guide_axis_economist_2017(), position = "right", breaks = seq(-4, 12, 4), expand = expansion(0)
   ) +
   scale_fill_manual(values = trade_cols, guide = "none") +
   scale_colour_manual(values = trade_cols, guide = "none") +
@@ -999,7 +999,7 @@ growth <- ggplot(asia, aes(country, growth, fill = period)) +
   geom_col(position = position_dodge(width = 0.76, reverse = TRUE), width = 0.76) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
   coord_flip() +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-2, 8),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-2, 8),
                      breaks = seq(-2, 8, 2), expand = expansion(0)) +
   scale_fill_manual(values = chrono) +
   labs(
@@ -1045,7 +1045,7 @@ fence <- ggplot(segregation, aes(group, change, fill = area)) +
   geom_col(position = position_dodge(width = 0.76, reverse = TRUE), width = 0.76) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
   coord_flip() +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-20, 5),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-20, 5),
                      breaks = seq(-20, 5, 5), expand = expansion(0)) +
   scale_fill_manual(values = grouped) +
   labs(
@@ -1069,7 +1069,7 @@ economist_2017_chart(
 
 Stacked bars use the `stacked` order. Label segment values directly when there are few categories, and "use grey for 'other' / 'don't know' etc".
 
-### "The Fed says no to nuptials" -- labeled segments, no axis
+### Labeled segments, no axis
 
 ```{r fed-nuptials, econ_height = 149}
 carriers <- data.frame(
@@ -1122,7 +1122,7 @@ economist_2017_chart(
 )
 ```
 
-### "No one's a winner" -- a single stacked bar with a threshold
+### A single stacked bar with a threshold
 
 ```{r no-winner, econ_height = 129}
 ## Drawn in the guide's own units, so the leader lines can be placed.
@@ -1228,7 +1228,7 @@ economist_2017_chart(
 )
 ```
 
-### "Looting the Levant" -- several stacked bars with different totals
+### Several stacked bars with different totals
 
 ```{r looting, econ_height = 189}
 ## Drawn in the guide's own units; each bar has its own scale.
@@ -1343,7 +1343,7 @@ economist_2017_chart(
 )
 ```
 
-### "Getting sociable" -- stacked columns over time, with a forecast panel
+### Stacked columns over time, with a forecast panel
 
 ```{r getting-sociable, econ_height = 178}
 adspend <- data.frame(
@@ -1367,7 +1367,7 @@ sociable <- ggplot(adspend, aes(year, bn, fill = format)) +
   annotate("text", x = 2016, y = 215, label = "FORECAST", size = 6.8 / ggplot2::.pt, colour = "#7F98A4") +
   geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 228),
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 228),
     breaks = seq(0, 200, 50), expand = expansion(0)
   ) +
   scale_x_continuous(
@@ -1396,7 +1396,7 @@ economist_2017_chart(
 )
 ```
 
-### "More in than out" -- stacked columns below zero
+### Stacked columns below zero
 
 ```{r more-in-out, econ_height = 179}
 ## China's share, and the total.
@@ -1423,7 +1423,7 @@ more_in <- ggplot(deficit, aes(year, pct, fill = region)) +
   geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(-6, 0),
+    guide = guide_axis_economist_2017(), position = "right", limits = c(-6, 0),
     breaks = -6:0, expand = expansion(mult = c(0, 0))
   ) +
   scale_x_continuous(
@@ -1478,7 +1478,7 @@ movers <- ggplot(migrants, aes(destination, pct, fill = origin)) +
   annotate("text", x = 7, y = 78, label = "Other", hjust = 0.5, size = 8 / ggplot2::.pt, colour = print_pal$text) +
   coord_flip() +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 100),
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 100),
     breaks = seq(0, 100, 20), expand = expansion(mult = c(0, 0))
   ) +
   scale_fill_manual(values = setNames(movers_cols, c(origins, "Other")), breaks = origins) +
@@ -1552,14 +1552,15 @@ trump <- ggplot(bars, aes(row, pct, fill = answer)) +
     colour = block_col, fontface = "bold", size = 6.8 / ggplot2::.pt
   ) +
   ## The heading of the number blocks: a text block pointing down at them.
-  annotate("label_economist", x = 9.6, y = 120, label = "% of total voters\n2012", pointer = "bottom", hjust = 0.82,
+  annotate("label_economist_2017", x = 9.6, y = 120, label = "% of total voters\n2012", pointer = "bottom",
+    hjust = 0.82,
     padding = 2, fill = block_col, colour = "white", fontface = "bold", size = 6.8 / ggplot2::.pt
   ) +
   coord_flip(xlim = c(0.55, 8.45), clip = "off") +
   scale_x_continuous(breaks = NULL) +
   scale_size_area(max_size = 7.9, guide = "none") +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(left, 134),
+    guide = guide_axis_economist_2017(), position = "right", limits = c(left, 134),
     breaks = seq(0, 100, 20), expand = expansion(mult = c(0, 0))
   ) +
   scale_fill_manual(values = troop_cols) +
@@ -1650,7 +1651,7 @@ ggplot(line_demo, aes(x, y, colour = series)) +
   )
 ```
 
-### "Penumbral" -- one line
+### One line
 
 ```{r penumbral, econ_height = 165}
 ## Quarterly (or finer) steps.
@@ -1679,7 +1680,7 @@ shadow <- data.frame(
 penumbral <- ggplot(shadow, aes(year, units)) +
   geom_line(colour = pal_line(1), linewidth = 0.9) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 2.05),
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 2.05),
     breaks = seq(0, 2, 0.5), labels = c("0", "0.5", "1.0", "1.5", "2.0")
   ) +
   scale_x_continuous(
@@ -1702,7 +1703,7 @@ economist_2017_chart(
 )
 ```
 
-### "Where Tokyo leads" -- two lines
+### Two lines
 
 ```{r tokyo-two, econ_height = 165}
 ## Both lines start from the same yield.
@@ -1728,7 +1729,7 @@ bonds_guide <- data.frame(
 tokyo_guide <- ggplot(bonds_guide, aes(year, yield, colour = period)) +
   geom_line(linewidth = 0.85) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(0, 8.1), breaks = seq(0, 8, 2)
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 8.1), breaks = seq(0, 8, 2)
   ) +
   scale_x_continuous(
     limits = c(1, 14.7), expand = c(0, 0), guide = span_axis,
@@ -1750,7 +1751,7 @@ economist_2017_chart(
 )
 ```
 
-### "Transports of delight" -- four lines, labeled in place, indexed
+### Four lines, labeled in place, indexed
 
 An index chart: a red rule on the index value, a black dot on the index point, and lines labeled in place.
 
@@ -1791,7 +1792,7 @@ transports <- ggplot(london, aes(year, index, colour = mode)) +
     aes(label = mode), size = 2.6, colour = c(ink, ink, ink, pal_line(4)[4]), show.legend = FALSE
   ) +
   scale_y_continuous(
-    guide = guide_axis_economist(), position = "right", limits = c(80, 180), breaks = seq(80, 180, 20)
+    guide = guide_axis_economist_2017(), position = "right", limits = c(80, 180), breaks = seq(80, 180, 20)
   ) +
   scale_x_continuous(
     limits = c(1999.55, 2018.2), expand = c(0, 0), breaks = seq(2001, 2015, 2), minor_breaks = 2001:2015,
@@ -1812,7 +1813,7 @@ economist_2017_chart(
 )
 ```
 
-### "Coming down everywhere" -- six lines, labeled in place
+### Six lines, labeled in place
 
 ```{r coming-down, econ_height = 165}
 ## The series start and end in different years.
@@ -1877,7 +1878,7 @@ coming_down <- ggplot(suicides, aes(year, rate, colour = country)) +
     colour = ink, size = 2.6, fontface = c("plain", "plain", "plain", "bold", "plain", "plain", "plain"),
     show.legend = FALSE
   ) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 50)) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 50)) +
   scale_x_continuous(
     limits = c(1956.9, 2023.3), expand = c(0, 0), minor_breaks = seq(1960, 2010, 5),
     breaks = c(1960, 1970, 1980, 1990, 2000, 2013), labels = c("1960", "70", "80", "90", "2000", "13"),
@@ -1898,7 +1899,7 @@ economist_2017_chart(
 )
 ```
 
-### "Exodus" -- the high-contrast alternatives
+### The high-contrast alternatives
 
 Where six related hues will not separate, use the `bright` and `dark` sets.
 
@@ -1923,7 +1924,7 @@ country_cols <- c(
 
 exodus <- ggplot(mideast, aes(date, pct, colour = country)) +
   geom_line(linewidth = 0.7, key_glyph = "rect") +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 20)) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 20)) +
   scale_x_continuous(
     limits = c(172, 650), expand = c(0, 0), breaks = dates, labels = c("1910", "70", "2010", "25*")
   ) +
@@ -1955,7 +1956,7 @@ economist_2017_chart(
 
 Stacked areas use the `stacked` order, labeled in place where a band is wide enough.
 
-### "Foreign hoards" -- two bands, labeled in place
+### Two bands, labeled in place
 
 ```{r foreign-hoards, econ_height = 154}
 china <- c(
@@ -1978,7 +1979,7 @@ hoards <- ggplot(reserves, aes(year, trn, fill = region, colour = region)) +
            colour = "white", size = 2.8, fontface = "bold") +
   annotate("text", x = 2009.4, y = 4.3, label = "Other\ndeveloping\ncountries",
            colour = "white", size = 2.8, fontface = "bold", lineheight = 0.95) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 6.8),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 6.8),
                      breaks = seq(0, 6, 2), expand = expansion(mult = c(0, 0))) +
   scale_x_continuous(expand = c(0, 0), limits = c(2001.52, 2012), breaks = c(2002, 2004, 2006, 2008, 2010, 2011),
                      labels = c("2002", "04", "06", "08", "10*", "11*")) +
@@ -1999,7 +2000,7 @@ economist_2017_chart(
 )
 ```
 
-### "The big shift" -- six bands with a key
+### Six bands with a key
 
 ```{r big-shift, econ_height = 178}
 ## Band thicknesses, bottom to top.
@@ -2042,7 +2043,7 @@ big_shift <- ggplot(shift, aes(year, pct, fill = haven, colour = haven)) +
   annotate("rect", xmin = 1980.2, xmax = 2005.5, ymin = 56, ymax = 60.5, fill = print_bg) +
   annotate("rect", xmin = 1980.2, xmax = 1994, ymin = 28, ymax = 54.5, fill = print_bg) +
   geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = 0.3) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 60.6),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 60.6),
                      breaks = seq(0, 60, 10), expand = expansion(mult = c(0, 0))) +
   scale_x_continuous(expand = c(0, 0), limits = c(1980.2, 2016.5),
                      breaks = c(1982, 1985, 1990, 1995, 2000, 2005, 2010, 2013),
@@ -2071,7 +2072,7 @@ economist_2017_chart(
 )
 ```
 
-### "In limbo" -- the alternative stacked scheme
+### The alternative stacked scheme
 
 A second stacked order, "for use where categories are chronological or where primary colour scheme doesn't work".
 
@@ -2108,7 +2109,7 @@ alt_stack <- c(pal_stack(6)[1], pal_stack(6)[2], pal_stack(6)[4],
 
 limbo_plot <- ggplot(limbo, aes(year, n, fill = tenure, colour = tenure)) +
   geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = 0.3) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 102),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 102),
                      breaks = seq(0, 100, 20), expand = expansion(mult = c(0, 0))) +
   scale_x_continuous(expand = c(0, 0), limits = c(1997.56, 2017.1),
                      breaks = c(1998, 2002, 2004, 2006, 2008, 2010, 2012, 2015), minor_breaks = 1998:2015,
@@ -2133,7 +2134,7 @@ economist_2017_chart(
 )
 ```
 
-### "Emerging middle class" -- four bands, labeled in place
+### Four bands, labeled in place
 
 ```{r emerging-middle, econ_size = "two_column", econ_height = 234}
 fn <- economist_2017_footnote(1:3)
@@ -2191,7 +2192,7 @@ emerging_plot <- ggplot(emerging, aes(year, bn, fill = class, colour = class)) +
     data = band_ranges, aes(year, bn, label = label),
     colour = band_ranges$colour, size = 2.6, hjust = 0, inherit.aes = FALSE
   ) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 3),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 3),
                      breaks = seq(0, 3, 0.5), labels = c("0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0"),
                      expand = expansion(mult = c(0, 0))) +
   scale_x_continuous(expand = c(0, 0), limits = c(1990.41, 2017.5), minor_breaks = 1991:2016,
@@ -2430,7 +2431,7 @@ ggplot() +
         plot.margin = margin(0, 0, 0, 0))
 ```
 
-### "Divergent" -- standard scatter with trend lines
+### Standard scatter with trend lines
 
 ```{r divergent, econ_height = 195}
 set.seed(2017)
@@ -2466,7 +2467,7 @@ divergent <- ggplot(metro, aes(employment, house_prices, colour = period)) +
   geom_vline(xintercept = 0, colour = econ_red, linewidth = 0.2) +
   coord_cartesian(xlim = c(-2.4, 8.8), ylim = c(-5, 20), expand = FALSE) +
   scale_x_continuous(breaks = seq(-2, 8, 2)) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", breaks = seq(-5, 20, 5)) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", breaks = seq(-5, 20, 5)) +
   scale_colour_manual(values = c("Q1 1990 - Q1 2007" = pal_dot(2)[2], "Q1 2012 - Q1 2016" = pal_dot(1))) +
   guides(colour = guide_legend(ncol = 1, override.aes = list(size = 2.2, alpha = 1))) +
   labs(
@@ -2486,7 +2487,7 @@ economist_2017_chart(
 )
 ```
 
-### "The best disinfectant" -- labeled outliers
+### Labeled outliers
 
 Highlight dots carry the labels. The guide: "sub title should summarise chart, save specific units for axis labels".
 
@@ -2517,7 +2518,7 @@ disinfectant <- ggplot(corruption, aes(open, score)) +
                linewidth = 0.2) +
   geom_point(data = named, colour = pal_dot(2)[2], size = 1.4) +
   geom_text(data = named, aes(x = lx, y = ly, label = country, hjust = hjust), size = 2.3, colour = "#5B6770") +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(0, 100),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 100),
                      breaks = seq(0, 100, 20), expand = c(0, 0)) +
   scale_x_continuous(limits = c(0, 115), breaks = seq(0, 100, 20), expand = c(0, 0)) +
   labs(
@@ -2537,7 +2538,7 @@ economist_2017_chart(
 )
 ```
 
-### "Right nation" -- connected scatter
+### Connected scatter
 
 Two observations per country, joined. "To avoid obscuring the connecting lines and labels, axis lines can be broken".
 
@@ -2608,7 +2609,7 @@ right_nation <- ggplot(oecd, aes(spend, life)) +
   annotate("text", x = 2.8, y = 85.2, label = "2013*", hjust = 0, size = 2.5, colour = pal_dot(2)[2]) +
   coord_cartesian(xlim = c(-0.8, 10), ylim = c(68, 84), expand = FALSE, clip = "off") +
   ## 80 is left off, where the average label sits.
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", breaks = c(70, 72, 74, 76, 78, 82, 84)) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", breaks = c(70, 72, 74, 76, 78, 82, 84)) +
   scale_x_continuous(breaks = 0:9) +
   scale_colour_economist_2017("print", type = "dot", guide = "none") +
   labs(
@@ -2629,7 +2630,7 @@ economist_2017_chart(
 )
 ```
 
-### "Vitality and the vote" -- bubble chart, four categories
+### Bubble chart, four categories
 
 Category dots have a 50% fill and a thin stroke, and are sized by a second variable.
 
@@ -2707,7 +2708,7 @@ vitality_key <- function(show_regions = TRUE) {
 vitality_frame <- list(
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2),
   scale_size_area(max_size = 6.6, guide = "none"),
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(-50.5, 50),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-50.5, 50),
                      breaks = seq(-50, 50, 25), expand = c(0, 0)),
   scale_x_continuous(limits = c(20, 73), breaks = seq(20, 70, 10), expand = c(0, 0)),
   annotation_custom(arrow_note("MORE REPUBLICAN", 0.75, TRUE)),
@@ -2744,7 +2745,7 @@ economist_2017_chart(
 )
 ```
 
-### "Vitality and the vote" -- highlighting instead of categorizing
+### Highlighting instead of categorizing
 
 "Where colour categories become difficult to distinguish, consider highlighting the most significant part of the story".
 
@@ -3175,7 +3176,7 @@ pie_grid(0.52) + labs(title = "Standard colour order")
 pie_grid(0) + theme(strip.text = element_blank())
 ```
 
-### "Naan bigger" -- a labeled doughnut
+### A labeled doughnut
 
 ```{r naan, econ_height = 155}
 ## Doughnuts labelled directly, in the guide's own coordinates.
@@ -3269,7 +3270,7 @@ economist_2017_chart(
 )
 ```
 
-### "The scramble in Africa" -- two doughnuts, keyed labels
+### Two doughnuts, keyed labels
 
 "Where linking lines get too crowded, key the labels with small colour block". Gray takes "Rest of world".
 
@@ -3385,9 +3386,9 @@ economist_2017_chart(
 
 "Double scales can be good at showing correlations and are economical with space. But they can also be confusing/misleading." Axis labels are colored to match their series: cyan and teal for axis 1, maroon and mauve for axis 2.
 
-`sec_axis()` rescales the second series onto the first axis. Both axes use `guide_axis_economist()`.
+`sec_axis()` rescales the second series onto the first axis. Both axes use `guide_axis_economist_2017()`.
 
-### "Out of steam" -- one line on each axis
+### One line on each axis
 
 ```{r out-of-steam, econ_height = 175}
 ## Series in pixel coordinates, converted to years and values.
@@ -3420,9 +3421,11 @@ steam <- ggplot(rail, aes(.data$year, .data$value, colour = .data$series)) +
   geom_line(linewidth = 0.9) +
   scale_colour_manual(values = c(track = maroon, passengers = cyan), guide = "none") +
   scale_y_continuous(
-    guide = guide_axis_economist(),
+    guide = guide_axis_economist_2017(),
     name = "National rail track\n'000 km", limits = c(0, 70), breaks = seq(0, 70, 10), expand = c(0, 0),
-    sec.axis = sec_axis(~., name = "Passenger kilometres\nbn", breaks = seq(0, 70, 10), guide = guide_axis_economist())
+    sec.axis = sec_axis(
+      ~., name = "Passenger kilometres\nbn", breaks = seq(0, 70, 10), guide = guide_axis_economist_2017()
+    )
   ) +
   scale_x_continuous(
     breaks = c(1955, 1970, 1980, 1990, 2000, 2014),
@@ -3444,7 +3447,7 @@ economist_2017_chart(
 )
 ```
 
-### "Golden triangle" -- three lines on the left-hand axis
+### Three lines on the left-hand axis
 
 ```{r golden-triangle, econ_height = 165}
 ## As for "Out of steam"; the trade series is on the left scale.
@@ -3492,12 +3495,12 @@ golden <- ggplot(nafta, aes(.data$year, .data$value, colour = .data$series)) +
     aes(label = .data$series, hjust = .data$hjust), size = 2.3, show.legend = FALSE
   ) +
   scale_y_continuous(
-    guide = guide_axis_economist(),
+    guide = guide_axis_economist_2017(),
     name = "NAFTA countries' exports\nto each other, % of total", limits = c(0, 100), breaks = seq(0, 100, 20),
     expand = c(0, 0),
     sec.axis = sec_axis(
       ~ . * 1.25 / 100, name = "Total trilateral trade\n$trn", breaks = seq(0, 1.25, 0.25),
-      labels = c("0", "0.25", "0.50", "0.75", "1.00", "1.25"), guide = guide_axis_economist()
+      labels = c("0", "0.25", "0.50", "0.75", "1.00", "1.25"), guide = guide_axis_economist_2017()
     )
   ) +
   scale_colour_manual(values = nafta_cols, guide = "none") +
@@ -3521,7 +3524,7 @@ economist_2017_chart(
 )
 ```
 
-### "Chavismo in action" -- line and column
+### Line and column
 
 "Always choose the axis colour order that will visually associate the labels
 best with the corresponding line."
@@ -3539,11 +3542,11 @@ chavismo <- ggplot(venezuela, aes(year)) +
   geom_line(aes(y = prices * 20 / 800), colour = pal_dot(6)[2], linewidth = 0.9) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
   scale_y_continuous(
-    guide = guide_axis_economist(),
+    guide = guide_axis_economist_2017(),
     name = "GDP", limits = c(-20, 20), breaks = seq(-20, 20, 5), expand = c(0, 0),
     sec.axis = sec_axis(
       ~ . * 800 / 20, name = "Consumer prices, year-end", breaks = seq(-800, 800, 200),
-      guide = guide_axis_economist()
+      guide = guide_axis_economist_2017()
     )
   ) +
   scale_x_continuous(
@@ -3599,12 +3602,12 @@ quantifying <- ggplot(qe, aes(.data$year, .data$value, colour = .data$series)) +
   annotate("text", x = 2014.05, y = 1.03, label = "Euro area", colour = pal_dot(6)[1], size = 2.4, fontface = "bold") +
   scale_colour_manual(values = qe_cols, guide = "none") +
   scale_y_continuous(
-    guide = guide_axis_economist(),
+    guide = guide_axis_economist_2017(),
     name = "Euro against the\ndollar, $ per €", limits = c(0.9, 1.4001), breaks = seq(1, 1.4, 0.1),
     labels = function(x) sprintf("%.1f", x), expand = c(0, 0),
     sec.axis = sec_axis(
       ~ (. - 0.9) * 10, name = "Ten-year government-\nbond yields, %", breaks = 0:5,
-      guide = guide_axis_economist()
+      guide = guide_axis_economist_2017()
     )
   ) +
   scale_x_continuous(
@@ -3650,12 +3653,12 @@ lies <- ggplot() +
   geom_line(data = brent, aes(.data$year, .data$price - 60), colour = pal_dot(6)[2], linewidth = 0.9) +
   geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
   scale_y_continuous(
-    guide = guide_axis_economist(),
+    guide = guide_axis_economist_2017(),
     name = "Big oil companies' enterprise\nfree cash flow, $bn",
     limits = c(-60, 120), breaks = seq(-60, 120, 30), labels = function(x) abs(x), expand = c(0, 0),
     sec.axis = sec_axis(
       ~ . + 60, name = "Oil price\nBrent, $ per barrel", breaks = seq(0, 180, 30),
-      guide = guide_axis_economist()
+      guide = guide_axis_economist_2017()
     )
   ) +
   scale_x_continuous(
@@ -3705,11 +3708,11 @@ zuma_plot <- ggplot(zuma, aes(.data$year, .data$value, colour = .data$series)) +
   geom_line(linewidth = 0.8) +
   scale_colour_manual(values = c(rand = pal_dot(6)[2], sacci = pal_dot(6)[1]), guide = "none") +
   scale_y_reverse(
-    guide = guide_axis_economist(),
+    guide = guide_axis_economist_2017(),
     name = "Rand per $, inverted scale", limits = c(18, 6), breaks = seq(6, 18, 3), expand = c(0, 0),
     sec.axis = sec_axis(
       ~ 120 - (. - 6) * 40 / 12, name = "SACCI Business\nConfidence Index,\n2015=100", breaks = seq(80, 120, 10),
-      guide = guide_axis_economist()
+      guide = guide_axis_economist_2017()
     )
   ) +
   scale_x_continuous(
@@ -3736,7 +3739,7 @@ economist_2017_chart(
 "A secondary data variable added as area-sized bubbles or number boxes. Can
 be used with column or thermometer charts."
 
-### "The Big Mac index" -- numbers inside the bubbles
+### Numbers inside the bubbles
 
 ```{r big-mac, econ_height = 335}
 ## Values from the guide's marks.
@@ -3811,7 +3814,7 @@ economist_2017_chart(
 )
 ```
 
-### "Up in the air" -- bubbles and numbers outside the bar
+### Bubbles and numbers outside the bar
 
 "To avoid awkward alignment, if most numbers won't fit, put them outside
 bubble and align text right."
@@ -3835,13 +3838,13 @@ air <- ggplot(travel, aes(country, change)) +
   geom_text(aes(y = 31.5, label = bn), size = 7 / ggplot2::.pt, hjust = 1,
             colour = print_pal$text) +
   ## The "$bn" key: a text block above the axis, pointing down at the bubbles.
-  annotate("label_economist", x = 15.7, y = 25.1, label = "$bn", pointer = "bottom", fill = blob_fill) +
+  annotate("label_economist_2017", x = 15.7, y = 25.1, label = "$bn", pointer = "bottom", fill = blob_fill) +
   ## Fixed limits keep the key above the axis out of the panel's range.
   coord_flip(xlim = c(0.45, 15.5), ylim = c(-10.5, 31.7), expand = FALSE, clip = "off") +
   scale_fill_manual(values = c(`FALSE` = pal_bar(2)[1], `TRUE` = pal_bar(2)[2])) +
   scale_size_area(max_size = 7.3) +
   ## "-10" and "-5" run together in the fallback font; leave -5 unlabelled.
-  scale_y_continuous(guide = guide_axis_economist(), position = "right",
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right",
                      breaks = seq(-10, 15, 5), labels = c("-10", "", "0", "5", "10", "15")) +
   labs(
     title = "Up in the air",
@@ -3857,7 +3860,7 @@ economist_2017_chart(
 )
 ```
 
-### "Starting small" -- equal-sized number blocks
+### Equal-sized number blocks
 
 "If number range or positive / negative values rule out bubbles, revert to
 equal-sized number blocks."
@@ -3883,11 +3886,11 @@ small <- ggplot(exchanges, aes(exchange, listed)) +
   geom_tile(data = caps, aes(y = 500, height = 82), width = 0.6, fill = blob_fill) +
   geom_text(data = caps, aes(y = 500, label = cap), size = 7 / ggplot2::.pt, colour = print_pal$text) +
   ## The "Market cap, $bn" key: a text block pointing right at the last block.
-  annotate("label_economist", x = 1, y = 445, label = "Market cap, $bn", pointer = "right", fill = blob_fill) +
+  annotate("label_economist_2017", x = 1, y = 445, label = "Market cap, $bn", pointer = "right", fill = blob_fill) +
   coord_flip(xlim = c(0.45, 6.55), ylim = c(0, 548), expand = FALSE) +
   scale_fill_manual(values = c(Domestic = pal_bar(2)[2], Foreign = pal_bar(2)[1]),
                     limits = c("Domestic", "Foreign")) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", breaks = seq(0, 400, 100)) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", breaks = seq(0, 400, 100)) +
   labs(
     title = "Starting small",
     subtitle = "Number of companies\nlisted on stock exchanges\nOctober 2016",
@@ -3908,9 +3911,9 @@ economist_2017_chart(
 
 ### Text blocks
 
-`geom_label_economist()` draws the guide's text blocks: 7.5pt text in a box 12pt
+`geom_label_economist_2017()` draws the guide's text blocks: 7.5pt text in a box 12pt
 tall for one line and 23pt for two, with a pointer centred on one side, or
-moved along it but kept 6pt from the corners. `annotate("label_economist", ...)`
+moved along it but kept 6pt from the corners. `annotate("label_economist_2017", ...)`
 adds a single one.
 
 ```{r text-blocks, econ_size = "two_column", econ_height = 95}
@@ -3925,7 +3928,7 @@ blocks <- data.frame(
 ggplot(blocks, aes(x, y)) +
   ## One layer per pointer side; x and y are where each pointer touches.
   lapply(split(blocks, blocks$pointer), function(d) {
-    geom_label_economist(aes(label = label, hjust = hjust), data = d, pointer = d$pointer[1], fill = blob_fill)
+    geom_label_economist_2017(aes(label = label, hjust = hjust), data = d, pointer = d$pointer[1], fill = blob_fill)
   }) +
   geom_point(colour = econ_red, size = 0.6) +
   coord_cartesian(xlim = c(0.4, 4.4), ylim = c(-0.2, 3), expand = FALSE) +
@@ -3939,13 +3942,13 @@ ggplot(blocks, aes(x, y)) +
 Timelines add dated events and periods to a chart of a year axis. ggthemes has
 a layer for each part:
 
-* `geom_event_economist()`: a specific date event, a rule with an arrowhead
+* `geom_event_economist_2017()`: a specific date event, a rule with an arrowhead
   up (or down) to its label;
-* `geom_span_economist()`: a time period in the panel, shaded, with its label
+* `geom_span_economist_2017()`: a time period in the panel, shaded, with its label
   over a rule along the top;
-* `geom_period_economist()`: thin bars of alternating color below the axis
+* `geom_period_economist_2017()`: thin bars of alternating color below the axis
   for successive periods, such as terms of office;
-* `geom_year_band_economist()`: the band of year cells that serves as the
+* `geom_year_band_economist_2017()`: the band of year cells that serves as the
   x-axis.
 
 All four take positions in data units and sizes in points.
@@ -4007,19 +4010,19 @@ philippines_coups <- c(1986.62, 1987.06, 1987.58, 1989.75, 1990.23, 1990.76, 200
 philippines <- ggplot() +
   ## Martial law and the "People Power" revolution, as thin blue spans.
   annotate(
-    "span_economist", xmin = c(1972.46, 1983.50), xmax = c(1981.19, 1986.26), ymin = 1.6, ymax = 2.6,
+    "span_economist_2017", xmin = c(1972.46, 1983.50), xmax = c(1981.19, 1986.26), ymin = 1.6, ymax = 2.6,
     label = c("Marcos imposes\nmartial law", "“People\nPower”\nrevolution"),
     fill = tl_blue1, colour = tl_blue1, text_colour = tl_blue1, linewidth = 0
   ) +
-  geom_event_economist(
+  geom_event_economist_2017(
     aes(x = year, y = from, yend = to, label = label, hjust = hjust),
     data = philippines_events, colour = tl_blue1
   ) +
-  geom_year_band_economist(from = 1965, to = 2016, height = 15) +
+  geom_year_band_economist_2017(from = 1965, to = 2016, height = 15) +
   ## Coup attempts are keyed, not labelled: a dot on the band for each.
   annotate("point", x = philippines_coups, y = -15, shape = 21, size = 4.5 / ggplot2::.pt, stroke = 0.3,
            fill = swatch("grey text"), colour = print_bg) +
-  geom_period_economist(
+  geom_period_economist_2017(
     aes(xmin = start, xmax = end, y = -18.7, label = label), data = presidents, fontface = "bold"
   ) +
   annotate("point", x = c(1969.60, 1981.30, 2004.51), y = -22.4, shape = 25, size = 4.8 / ggplot2::.pt,
@@ -4029,7 +4032,7 @@ philippines <- ggplot() +
            colour = swatch("mauve"), size = 6.5 / ggplot2::.pt, lineheight = 0.9) +
   ## Duterte is the president-elect, labelled at the foot of the chart.
   annotate(
-    "event_economist", x = 2016.57, y = -21.6, yend = -62, label = "Duterte President Elect", hjust = 1,
+    "event_economist_2017", x = 2016.57, y = -21.6, yend = -62, label = "Duterte President Elect", hjust = 1,
     colour = tl_maroon, text_colour = tl_maroon, fontface = "bold", arrow = FALSE
   ) +
   ## The key.
@@ -4099,17 +4102,19 @@ iran_presidents <- data.frame(
 )
 
 iran_oil <- ggplot(iran) +
-  annotate("span_economist", xmin = 1980.72, xmax = 1988.98, ymin = 0, ymax = 4.06, label = "Iran/Iraq war",
+  annotate("span_economist_2017", xmin = 1980.72, xmax = 1988.98, ymin = 0, ymax = 4.06, label = "Iran/Iraq war",
            fontface = "bold") +
   gridline_stubs(seq(0, 6, 2), 1962.34, 2018.82, 2.1,
                  labels_right = c("0", "100", "200", "300")) +
   ## GDP is drawn on the production scale: $50bn to one million barrels a day.
   geom_line(aes(year + 0.5, gdp / 50), colour = tl_maroon, linewidth = pt_line(1.75)) +
   geom_line(aes(year + 0.5, production), colour = swatch("blue2"), linewidth = pt_line(1.75)) +
-  geom_event_economist(aes(x = year, y = 0, yend = top, label = label, hjust = hjust), data = iran_events) +
-  geom_year_band_economist(from = 1965, to = 2015) +
-  geom_period_economist(aes(xmin = start, xmax = end, y = -1.54, label = label, fill = I(fill)), data = iran_leaders) +
-  geom_period_economist(aes(xmin = start, xmax = end, y = -2.56, label = label), data = iran_presidents) +
+  geom_event_economist_2017(aes(x = year, y = 0, yend = top, label = label, hjust = hjust), data = iran_events) +
+  geom_year_band_economist_2017(from = 1965, to = 2015) +
+  geom_period_economist_2017(
+    aes(xmin = start, xmax = end, y = -1.54, label = label, fill = I(fill)), data = iran_leaders
+  ) +
+  geom_period_economist_2017(aes(xmin = start, xmax = end, y = -2.56, label = label), data = iran_presidents) +
   annotate("text", x = 1962.45, y = 7.42, label = "Oil production, m bpd", hjust = 0, vjust = 1,
            colour = swatch("blue2 text"), size = 6.5 / ggplot2::.pt) +
   annotate("text", x = 2018.97, y = 8.07, label = "GDP, $bn\n2005 prices", hjust = 1, vjust = 1,
@@ -4184,18 +4189,18 @@ caliphate_events <- data.frame(
 
 caliphate <- ggplot() +
   annotate(
-    "span_economist", xmin = 2007.96, xmax = 2011.98, ymin = 0, ymax = 2.97,
+    "span_economist_2017", xmin = 2007.96, xmax = 2011.98, ymin = 0, ymax = 2.97,
     label = "Withdrawal of American\nforces from Iraq", fill = print_highlight, text_colour = swatch("grey box")
   ) +
   gridline_stubs(0:6, 1997.9, 2016.3, 0.7, labels_left = NULL, labels_right = as.character(0:6)) +
   geom_rect(aes(xmin = month, xmax = month + 0.055, ymin = 0, ymax = deaths), data = iraq, fill = tl_blue1) +
   geom_rect(aes(xmin = month, xmax = month + 0.055, ymin = 0, ymax = deaths), data = syria, fill = swatch("blue2")) +
-  geom_event_economist(
+  geom_event_economist_2017(
     aes(x = year, y = from, yend = to, label = label, hjust = hjust, vjust = vjust),
     data = caliphate_events, colour = tl_maroon, linetype = "22", arrow = FALSE
   ) +
   annotate("point", x = caliphate_events$year, y = caliphate_events$to, colour = tl_maroon, size = 0.5) +
-  geom_year_band_economist(from = 1998, to = 2015, label_every = 1) +
+  geom_year_band_economist_2017(from = 1998, to = 2015, label_every = 1) +
   ## The key, in the subtitle line.
   annotate("rect", xmin = c(2002.2, 2003.9), xmax = c(2002.85, 2004.55), ymin = 6.55, ymax = 6.75,
            fill = c(tl_blue1, swatch("blue2"))) +
@@ -4270,7 +4275,7 @@ putin_election_cols <- c("Presidential election" = tl_blue1, "Parliamentary elec
 
 putin <- ggplot(putin_approval) +
   annotate(
-    "span_economist", xmin = 2008.54, xmax = 2009.64, ymin = 0.15, ymax = 97.34,
+    "span_economist_2017", xmin = 2008.54, xmax = 2009.64, ymin = 0.15, ymax = 97.34,
     label = "“Great recession”\nFinancial crisis; GDP shrinks 8%"
   ) +
   gridline_stubs(c(0, 25, 75, 100), 1999.27, 2017.33, 0.5, labels_left = NULL,
@@ -4280,13 +4285,13 @@ putin <- ggplot(putin_approval) +
   annotate("text", x = 2017.33, y = 50, label = "50", hjust = 1, vjust = -0.3, size = 6.5 / ggplot2::.pt) +
   geom_line(aes(month, government), colour = swatch("blue2"), linewidth = pt_line(1.5)) +
   geom_line(aes(month, putin), colour = tl_maroon, linewidth = pt_line(1.5)) +
-  geom_event_economist(aes(x = year, y = from, yend = to, label = label, hjust = hjust), data = putin_events) +
-  geom_year_band_economist(from = 2000, to = 2016, y = -1.4, height = 10, label_every = 1) +
+  geom_event_economist_2017(aes(x = year, y = from, yend = to, label = label, hjust = hjust), data = putin_events) +
+  geom_year_band_economist_2017(from = 2000, to = 2016, y = -1.4, height = 10, label_every = 1) +
   geom_point(aes(year, 1.7, colour = I(putin_election_cols[type])), data = putin_elections, size = 6 / ggplot2::.pt) +
   ## Putin's offices: across the top, labelled, and again below the band.
-  geom_period_economist(aes(xmin = start, xmax = end, y = 137.1, label = label), data = putin_offices,
+  geom_period_economist_2017(aes(xmin = start, xmax = end, y = 137.1, label = label), data = putin_offices,
                         size = 5.5 / ggplot2::.pt) +
-  geom_period_economist(aes(xmin = start, xmax = end, y = -13.05), data = putin_offices) +
+  geom_period_economist_2017(aes(xmin = start, xmax = end, y = -13.05), data = putin_offices) +
   annotate("segment", x = c(2000.35, 2008.40, 2012.39), y = 122.97, yend = 137.11, colour = tl_maroon,
            linewidth = 0.1) +
   annotate("text", x = 1999.83, y = 146.3, label = "Putin is:", hjust = 0, vjust = 1, colour = tl_maroon,
@@ -4502,7 +4507,7 @@ mexican_waves <- function(media, event_top, war_labels, event_labels = mexico_ev
   ggplot(mexico_yields, aes(.data$year, .data$yield)) +
     annotate("rect", xmin = mexico_wars$start, xmax = mexico_wars$end, ymin = 0.52, ymax = 200, fill = war_fill) +
     geom_line(aes(group = .data$run), colour = tl_blue1, linewidth = pt_line(1)) +
-    geom_event_economist(
+    geom_event_economist_2017(
       aes(x = year, y = 0.52, yend = event_top, label = event_labels), data = mexico_events,
       inherit.aes = FALSE, colour = tl_maroon
     ) +
@@ -4511,15 +4516,15 @@ mexican_waves <- function(media, event_top, war_labels, event_labels = mexico_ev
     annotate("text", x = 1961.6, y = 6.35, label = "*", size = 7 / ggplot2::.pt) +
     ## The default track, below the year labels, out of the panel.
     annotate("rect", xmin = 1820.8, xmax = 2015.8, ymin = 0.13, ymax = 0.185, fill = print_highlight) +
-    geom_period_economist(aes(xmin = start, xmax = end, y = 0.185), data = mexico_defaults, inherit.aes = FALSE,
+    geom_period_economist_2017(aes(xmin = start, xmax = end, y = 0.185), data = mexico_defaults, inherit.aes = FALSE,
                           fills = swatch("teal"), height = 5) +
     annotate("text", x = 1927.7, y = 0.12, label = "Periods of default on external debt", vjust = 1,
              colour = swatch("teal"), size = 6 / ggplot2::.pt) +
     annotate("text", x = 2015.6, y = 760, label = "log scale", hjust = 1, fontface = "italic",
              size = 6 / ggplot2::.pt) +
-    scale_x_continuous(breaks = c(1824, seq(1830, 2010, 10), 2015), labels = economist_year_format()) +
+    scale_x_continuous(breaks = c(1824, seq(1830, 2010, 10), 2015), labels = economist_2017_year_format()) +
     scale_y_log10(breaks = c(1, 2, 4, 10, 20, 40, 100, 200, 400), position = "right",
-                  guide = guide_axis_economist()) +
+                  guide = guide_axis_economist_2017()) +
     coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 800), expand = FALSE, clip = "off") +
     labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %",
          x = NULL, y = NULL, caption = caption) +
@@ -4573,7 +4578,7 @@ mexico_rotated <- ggplot(mexico_yields, aes(yield, year)) +
            fill = swatch("teal")) +
   annotate("text", x = 0.2, y = 1811, label = "Periods of default on external debt", hjust = 0,
            colour = swatch("teal"), size = 6 / ggplot2::.pt) +
-  scale_y_reverse(breaks = c(1824, seq(1840, 2000, 10), 2015), labels = economist_year_format()) +
+  scale_y_reverse(breaks = c(1824, seq(1840, 2000, 10), 2015), labels = economist_2017_year_format()) +
   scale_x_log10(breaks = c(1, 10, 100), position = "top",
                 sec.axis = dup_axis(), guide = guide_axis(cap = "both")) +
   coord_cartesian(xlim = c(0.2, 500), ylim = c(2018, 1820), expand = FALSE, clip = "off") +
@@ -4604,9 +4609,9 @@ mexico_compressed <- ggplot(mexico_yields, aes(year, yield)) +
            fill = swatch("teal")) +
   annotate("text", x = 1918, y = 0.115, label = "Periods of default on external debt", vjust = 1,
            colour = swatch("teal"), size = 6 / ggplot2::.pt) +
-  scale_x_continuous(breaks = c(1824, 1850, 1900, 1950, 2000, 2015), labels = economist_year_format()) +
+  scale_x_continuous(breaks = c(1824, 1850, 1900, 1950, 2000, 2015), labels = economist_2017_year_format()) +
   scale_y_log10(breaks = c(1, 2, 4, 10, 20, 40, 100, 200, 400), position = "right",
-                guide = guide_axis_economist()) +
+                guide = guide_axis_economist_2017()) +
   coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 3500), expand = FALSE, clip = "off") +
   labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %", x = NULL, y = NULL) +
   theme_economist_2017("web") +
@@ -4700,10 +4705,10 @@ fill_jobs <- ggplot(jobs, aes(year, index, colour = place)) +
   ## The 5pt black circle on the index point.
   geom_point(data = data.frame(year = 2015, index = 100), aes(year, index), colour = "black",
              size = 5 / 0.75 / ggplot2::.pt, stroke = 0, inherit.aes = FALSE) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(20, 137),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(20, 137),
                      breaks = seq(20, 120, 20), expand = c(0, 0)) +
   scale_x_continuous(limits = c(1933, 2141), expand = c(0, 0), breaks = seq(1950, 2100, 25),
-                     minor_breaks = seq(1950, 2100, 5), labels = economist_year_format(),
+                     minor_breaks = seq(1950, 2100, 5), labels = economist_2017_year_format(),
                      guide = guide_axis(minor.ticks = TRUE)) +
   scale_colour_economist_2017("print", type = "line_side") +
   labs(
@@ -4761,12 +4766,12 @@ malaise_plot <- function(tint, ink, line, media) {
              colour = ink, lineheight = 0.9) +
     geom_hline(yintercept = 50, colour = "black", linewidth = 0.2) +
     geom_line(colour = line, linewidth = 0.6) +
-    geom_scale_break_economist() +
-    scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(24, 80),
+    geom_scale_break_economist_2017() +
+    scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(24, 80),
                        breaks = seq(30, 80, 10), expand = c(0, 0)) +
     scale_x_continuous(limits = c(2003.8, 2018.3), expand = c(0, 0),
                        breaks = c(2005, 2007, 2009, 2011, 2013, 2015, 2016),
-                       minor_breaks = 2005:2016, labels = economist_year_format(),
+                       minor_breaks = 2005:2016, labels = economist_2017_year_format(),
                        guide = guide_axis(minor.ticks = TRUE, cap = "upper")) +
     labs(
       title = "Mutti's malaise",
@@ -4840,7 +4845,7 @@ woes_chart <- ggplot(toshiba, aes(t, price)) +
              inherit.aes = FALSE) +
   geom_line(colour = pal_line(1), linewidth = 0.8) +
   coord_cartesian(ylim = c(0, 650), clip = "off") +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", breaks = seq(0, 600, 100),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", breaks = seq(0, 600, 100),
                      expand = c(0, 0)) +
   scale_x_continuous(limits = c(2014.89, 2017.46), expand = c(0, 0), breaks = c(2015.5, 2016.5, 2017.06),
                      minor_breaks = seq(2015, 2017, by = 1 / 12), labels = c("2015", "16", "17"),
@@ -4889,11 +4894,11 @@ pain <- ggplot(income, aes(year, index, colour = measure)) +
   geom_line(linewidth = 0.8) +
   geom_point(data = data.frame(year = 1979, index = 100), aes(year, index), colour = "black",
              size = 5 / 0.75 / ggplot2::.pt, stroke = 0, inherit.aes = FALSE) +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(90, 150),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(90, 150),
                      breaks = seq(90, 150, 10), expand = c(0, 0)) +
   scale_x_continuous(limits = c(1976.8, 2018.2), expand = c(0, 0),
                      breaks = c(1979, 1985, 1990, 1995, 2000, 2005, 2010, 2013), minor_breaks = 1979:2013,
-                     labels = economist_year_format(),
+                     labels = economist_2017_year_format(),
                      guide = guide_axis(minor.ticks = TRUE)) +
   scale_colour_manual(values = c(pal_line(4)[1], pal_dot(6)[6], pal_line(4)[4])) +
   labs(
@@ -4914,15 +4919,15 @@ economist_2017_chart(
 
 ### Truncated year labels
 
-Dated axes truncate years to two digits, keeping the first label and each century boundary in full: `1948 52 56 ... 96 2000 04`. `economist_year_format()` does this.
+Dated axes truncate years to two digits, keeping the first label and each century boundary in full: `1948 52 56 ... 96 2000 04`. `economist_2017_year_format()` does this.
 
 ```{r year-labels}
-economist_year(seq(1948, 2016, 4))
+economist_2017_year(seq(1948, 2016, 4))
 ```
 
 ### Broken scales
 
-"Use when breaking y-axis on line, thermometer and scatter charts. Not needed on indexed, negative scale or inverted scales". Truncate the axis with `limits`, then add `geom_scale_break_economist()`.
+"Use when breaking y-axis on line, thermometer and scatter charts. Not needed on indexed, negative scale or inverted scales". Truncate the axis with `limits`, then add `geom_scale_break_economist_2017()`.
 
 Don't break the scale on a bar or column chart; use a thermometer instead.
 
@@ -4930,12 +4935,12 @@ Don't break the scale on a bar or column chart; use a thermometer instead.
 broken <- ggplot(merkel, aes(t, approval)) +
   geom_line(colour = pal_line(1), linewidth = 0.8) +
   ## Black, 0.4pt, 6pt wide, between the baseline and the lowest tick.
-  geom_scale_break_economist() +
-  scale_y_continuous(guide = guide_axis_economist(), position = "right", limits = c(24, 80),
+  geom_scale_break_economist_2017() +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(24, 80),
                      breaks = seq(30, 80, 10), expand = c(0, 0)) +
   scale_x_continuous(limits = c(2003.8, 2018.3), expand = c(0, 0),
                      breaks = c(2005, 2007, 2009, 2011, 2013, 2015, 2016),
-                     minor_breaks = 2005:2016, labels = economist_year_format(),
+                     minor_breaks = 2005:2016, labels = economist_2017_year_format(),
                      guide = guide_axis(minor.ticks = TRUE, cap = "upper")) +
   labs(
     title = "Mutti's malaise",

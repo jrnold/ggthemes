@@ -67,7 +67,7 @@ library("ggplot2")
 
 p <- ggplot(economics, aes(date, psavert)) +
   geom_line(colour = economist_2017_pal("web")(1)) +
-  scale_y_continuous(position = "right", guide = guide_axis_economist()) +
+  scale_y_continuous(position = "right", guide = guide_axis_economist_2017()) +
   labs(
     title = "Saving grace",
     subtitle = "United States, personal saving rate, \%",
@@ -83,7 +83,7 @@ economist_2017_chart(
   ggplot(mpg, aes(displ, hwy)) +
     geom_point(colour = economist_2017_pal()(1)) +
     facet_wrap(~year) +
-    scale_y_continuous(position = "right", guide = guide_axis_economist()) +
+    scale_y_continuous(position = "right", guide = guide_axis_economist_2017()) +
     labs(title = "Thirst quenched", subtitle = "Highway miles per gallon v engine size") +
     theme_economist_2017()
 )
@@ -99,10 +99,11 @@ Other economist 2017:
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
-\code{\link[=geom_label_economist]{geom_label_economist()}},
-\code{\link[=geom_scale_break_economist]{geom_scale_break_economist()}},
-\code{\link{geom_timeline_economist}},
-\code{\link[=guide_axis_economist]{guide_axis_economist()}},
+\code{\link[=economist_2017_year]{economist_2017_year()}},
+\code{\link[=geom_label_economist_2017]{geom_label_economist_2017()}},
+\code{\link[=geom_scale_break_economist_2017]{geom_scale_break_economist_2017()}},
+\code{\link{geom_timeline_economist_2017}},
+\code{\link[=guide_axis_economist_2017]{guide_axis_economist_2017()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}
 }
