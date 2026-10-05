@@ -45,7 +45,7 @@ scale_colour_colourblind <- function(black = TRUE, ...) {
 #' @export
 #' @importFrom lifecycle deprecate_soft
 scale_colour_colorblind <- function(black = TRUE, ...) {
-  deprecate_soft("5.2.0", "scale_color_colorblind()")
+  deprecate_soft("5.2.0", "scale_colour_colorblind()", "scale_colour_colourblind()")
   scale_colour_colourblind(black = black, ...)
 }
 
@@ -60,10 +60,12 @@ scale_color_colorblind <- scale_colour_colourblind
 #' @export
 #' @importFrom lifecycle deprecate_soft
 scale_fill_colorblind <- function(black = TRUE, ...) {
-  deprecate_soft("5.2.0", "scale_fill_colorblind()")
-  discrete_scale("fill", palette = colorblind_pal(black = black), ...)
+  deprecate_soft("5.2.0", "scale_fill_colorblind()", "scale_fill_colourblind()")
+  scale_fill_colourblind(black = black, ...)
 }
 
 #' @rdname colorblind
 #' @export
-scale_fill_colourblind <- scale_fill_colorblind
+scale_fill_colourblind <- function(black = TRUE, ...) {
+  discrete_scale("fill", palette = colorblind_pal(black = black), ...)
+}

@@ -5,6 +5,7 @@
 \alias{scale_fill_gradient_tableau}
 \alias{scale_color_gradient_tableau}
 \alias{scale_color_continuous_tableau}
+\alias{scale_colour_continuous_tableau}
 \alias{scale_fill_continuous_tableau}
 \title{Tableau sequential color scales (continuous)}
 \usage{
@@ -30,6 +31,13 @@ scale_color_gradient_tableau(
 )
 
 scale_color_continuous_tableau(
+  palette = "Blue",
+  ...,
+  na.value = "grey50",
+  guide = "colourbar"
+)
+
+scale_colour_continuous_tableau(
   palette = "Blue",
   ...,
   na.value = "grey50",

@@ -23,8 +23,26 @@ test_that("scale_colour_colourblind(black = FALSE) works", {
   expect_s3_class(scale_colour_colourblind(black = FALSE), "ScaleDiscrete")
 })
 
-test_that("scale_colour_colorblind is deprecated", {
-  lifecycle::expect_deprecated(scale_colour_colorblind())
+# Forcing `lifecycle_verbosity` keeps the deprecation warning in the record
+# whatever ran before it.
+test_that("scale_colour_colorblind is deprecated in favor of scale_colour_colourblind", {
+  skip_if_not_installed("withr")
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_snapshot(x <- scale_colour_colorblind())
+  expect_equal_scale(x, scale_colour_colourblind())
+})
+
+test_that("scale_fill_colorblind is deprecated in favor of scale_fill_colourblind", {
+  skip_if_not_installed("withr")
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_snapshot(x <- scale_fill_colorblind())
+  expect_equal_scale(x, scale_fill_colourblind())
+})
+
+test_that("scale_fill_colourblind is not deprecated", {
+  skip_if_not_installed("withr")
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_no_warning(scale_fill_colourblind())
 })
 
 test_that("scale_color_colorblind works", {

@@ -6,3 +6,21 @@
       Warning:
       This manual palette can handle a maximum of 8 values. You have supplied 20
 
+# scale_colour_colorblind is deprecated in favor of scale_colour_colourblind
+
+    Code
+      x <- scale_colour_colorblind()
+    Condition
+      Warning:
+      `scale_colour_colorblind()` was deprecated in ggthemes 5.2.0.
+      i Please use `scale_colour_colourblind()` instead.
+
+# scale_fill_colorblind is deprecated in favor of scale_fill_colourblind
+
+    Code
+      x <- scale_fill_colorblind()
+    Condition
+      Warning:
+      `scale_fill_colorblind()` was deprecated in ggthemes 5.2.0.
+      i Please use `scale_fill_colourblind()` instead.
+
