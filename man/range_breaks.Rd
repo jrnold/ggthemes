@@ -42,8 +42,8 @@ Then, the minimum and maximum labels are moved to the minimum and maximum of the
 range.
 }
 \details{
-\code{extended_range_breaks_} implements the algorithm and returns the break values.
-\code{extended_range_breaks} uses the conventions of the scales package, and returns a function.
+\code{extended_range_breaks_()} implements the algorithm and returns the break values.
+\code{extended_range_breaks()} uses the conventions of the scales package, and returns a function.
 
 Note that ggplot2 hands a \code{breaks} function the expanded scale limits, not the data
 range. Passing \code{extended_range_breaks()} directly to \code{breaks} therefore places the

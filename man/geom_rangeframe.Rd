@@ -3,7 +3,7 @@
 \name{geom_rangeframe}
 \alias{geom_rangeframe}
 \alias{GeomRangeFrame}
-\title{Range Frames}
+\title{Range frames}
 \usage{
 geom_rangeframe(
   mapping = NULL,
@@ -93,7 +93,7 @@ lists which parameters it can accept.
 }}
 
 \item{sides}{A string that controls which sides of the plot the frames appear on.
-It can be set to a string containing any of \code{'trbl'}, for top, right,
+It can be set to a string containing any of \code{"t"}, \code{"r"}, \code{"b"}, and \code{"l"} (for example, \code{"trbl"}), for top, right,
 bottom, and left. Any other value is an error: a frame cannot be drawn on a
 side that was not named, so a typo would otherwise silently draw nothing.}
 

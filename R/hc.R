@@ -60,7 +60,7 @@ hc_theme_styles <- list(
   )
 )
 
-#' Highcharts Theme
+#' Highcharts theme
 #'
 #' Themes based on [Highcharts](https://www.highcharts.com/) plots.
 #'
@@ -163,7 +163,7 @@ theme_hc <- function(
 #'
 #' Note that `"avocado"` and `"sunset"` have only four colors.
 #'
-#' @param palette `character` The name of the Highcharts palette to use.
+#' @param palette A string, the name of the Highcharts palette to use.
 #'   One of `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$hc))`.
 #'
 #' @family color hc

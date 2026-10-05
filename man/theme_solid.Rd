@@ -7,18 +7,19 @@
 theme_solid(base_size = 12, base_family = "", fill = NA)
 }
 \arguments{
-\item{base_size}{Base font size.}
+\item{base_size}{base font size, given in pts.}
 
-\item{base_family}{Ignored, kept for consistency with \code{\link[ggplot2:theme]{ggplot2::theme()}}.}
+\item{base_family}{base font family}
 
-\item{fill}{Background color of the plot.}
+\item{fill}{The background color of the plot.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
 }
 \description{
-Theme that removes all non-geom elements (lines, text, etc),
-This theme is when only the geometric objects are desired.
+Theme that removes all non-geom elements (lines, text, etc.). Use it when
+only the geometric objects are desired. The \code{base_family} argument is
+ignored; it is kept for consistency with \code{\link[ggplot2:theme_grey]{ggplot2::theme_grey()}}.
 }
 \examples{
 library("ggplot2")
@@ -37,6 +38,7 @@ Other themes:
 \code{\link[=theme_clean]{theme_clean()}},
 \code{\link[=theme_foundation]{theme_foundation()}},
 \code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_map]{theme_map()}},
 \code{\link[=theme_par]{theme_par()}}
 }
 \concept{themes}

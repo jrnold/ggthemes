@@ -19,6 +19,7 @@
 #' @param axis Axis label angle, as defined by `par("las")`.
 #' @return A ggplot2 theme object (class `theme`).
 #' @export
+#' @family themes pander
 #' @example inst/examples/ex-theme_pander.R
 theme_pander <- function(
   base_size = 12, # nolint: cyclocomp_linter

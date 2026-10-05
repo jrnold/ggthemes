@@ -83,3 +83,4 @@ if (require("pander")) {
     theme_pander()
 }
 }
+\concept{themes pander}

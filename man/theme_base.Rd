@@ -2,7 +2,7 @@
 % Please edit documentation in R/base.R
 \name{theme_base}
 \alias{theme_base}
-\title{Theme Base}
+\title{Base R graphics theme}
 \usage{
 theme_base(base_size = 16, base_family = "")
 }
@@ -38,6 +38,7 @@ Other themes:
 \code{\link[=theme_clean]{theme_clean()}},
 \code{\link[=theme_foundation]{theme_foundation()}},
 \code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_map]{theme_map()}},
 \code{\link[=theme_par]{theme_par()}},
 \code{\link[=theme_solid]{theme_solid()}}
 }

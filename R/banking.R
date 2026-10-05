@@ -19,7 +19,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
   )
 }
 
-#' Bank Slopes to 45 degrees
+#' Bank slopes to 45 degrees
 #'
 #' Calculate the optimal aspect ratio of a line graph by banking the
 #' slopes to 45 degrees as suggested by W.S. Cleveland. This
@@ -27,22 +27,13 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' slope. This function will calculate the optimal aspect ratio for
 #' a line plot using any of the methods described in Heer and Agrawala
 #' (2006). In their review of the methods they suggest using median
-#' absolute slope banking ('ms'), which produces aspect ratios which
+#' absolute slope banking (`"ms"`), which produces aspect ratios which
 #' are generally the median of the various methods provided here.
 #'
-#' @param x A numeric vector of x values.
-#' @param y A numeric vector of y values.
-#' @param cull If `TRUE` (the default), drop segments with a slope of 0 or `Inf` before banking.
-#' @param method One of 'ms' (Median Absolute Slope), 'as' (Average
-#' Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
-#' Average Absolute Orientation).
-#' @param weight No longer used, but kept for backwards compatibility.
-#' @param ... No longer used, but kept for backwards compatibility.
-#'
-#' @section Methods:
+#' # Methods
 #'
 #' As written, all of these methods calculate the aspect ratio (x
-#' /y), but `bank_slopes` will return (y / x) to be compatible
+#' /y), but [bank_slopes()] will return (y / x) to be compatible
 #' with [ggplot2::coord_fixed()].
 #'
 #' **Median Absolute Slopes Banking**
@@ -116,6 +107,19 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' each one separately; see [bank_slopes_multiscale()] and
 #' [bank_plot_multiscale()].
 #'
+#' @param x A numeric vector of x values.
+#' @param y A numeric vector of y values.
+#' @param cull If `TRUE` (the default), drop segments with a slope of 0 or `Inf` before banking.
+#' @param method The banking method, one of:
+#'   * `"ms"`, the default: median absolute slope.
+#'   * `"as"`: average absolute slope.
+#'   * `"ao"`: average absolute orientation.
+#'   * `"was"`: weighted average absolute orientation.
+#' @param weight `r lifecycle::badge("deprecated")` No longer used, but kept
+#'   for backwards compatibility.
+#' @param ... `r lifecycle::badge("deprecated")` No longer used, but kept for
+#'   backwards compatibility.
+#'
 #' @references
 #' Cleveland, W. S., M. E. McGill, and R. McGill. The Shape Parameter
 #' of a Two-Variable Graph.  Journal of the American Statistical
@@ -129,7 +133,8 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #'
 #' Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 #'
-#' @return `numeric` The aspect ratio (x , y).
+#' @return A number, the aspect ratio `y / x`, for use as `ratio` in
+#'   [ggplot2::coord_fixed()].
 #'
 #' @seealso [lattice::banking()], [bank_plot()] to bank
 #' a `ggplot` using its own data, and

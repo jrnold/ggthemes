@@ -44,8 +44,8 @@ diverging palette.}
 
 \item{na.value}{Colour to use for missing values}
 
-\item{guide}{Type of legend. Use \code{'colourbar'} for continuous
-color bar, or \code{'legend'} for discrete color legend.}
+\item{guide}{Type of legend. Use \code{"colourbar"} for a continuous
+color bar, or \code{"legend"} for a discrete color legend.}
 }
 \value{
 A ggplot2 scale object.

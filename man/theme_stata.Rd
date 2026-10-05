@@ -11,11 +11,12 @@ theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
 
 \item{base_family}{base font family}
 
-\item{scheme}{One of "stcolor", "stcolor_alt", "stmono1", "stmono2",
-"stsj", "s2color", "s2mono", "s1color", "s1rcolor", "s1mono",
-"s2manual", "s1manual", or "sj". If \code{NULL}, the default,
-"s2color" is used and a deprecation message is issued; this default
-becomes "stcolor" in ggthemes 8.0.0.}
+\item{scheme}{A string, the Stata scheme. One of: \code{"stcolor"},
+\code{"stcolor_alt"}, \code{"stmono1"}, \code{"stmono2"}, \code{"stsj"}, \code{"s2color"},
+\code{"s2mono"}, \code{"s1color"}, \code{"s1rcolor"}, \code{"s1mono"}, \code{"s2manual"},
+\code{"s1manual"}, or \code{"sj"}. If \code{NULL}, the default, \code{"s2color"} is used and a
+deprecation message is issued; this default becomes \code{"stcolor"} in
+ggthemes 8.0.0.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).

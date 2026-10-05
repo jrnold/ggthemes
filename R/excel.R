@@ -124,7 +124,7 @@ scale_fill_excel_new <- function(theme = "Office", ...) {
 #' color scale.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal `logical`. Horizontal axis lines?
+#' @param horizontal If `TRUE` (the default), draw horizontal grid lines.
 #' @return An object of class [ggplot2::theme()].
 #' @export
 #' @family themes excel

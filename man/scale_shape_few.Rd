@@ -30,6 +30,10 @@ Few, S. (2012)
 Analytics Press, p. 208.
 }
 \seealso{
-\code{\link[=scale_shape_few]{scale_shape_few()}} for the shape palette that this
+\code{\link[=few_shape_pal]{few_shape_pal()}} for the shape palette that this
 scale uses.
+
+Other shapes few:
+\code{\link[=few_shape_pal]{few_shape_pal()}}
 }
+\concept{shapes few}

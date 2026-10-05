@@ -33,11 +33,15 @@ for available palettes.}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.}
 
-\item{type}{Palette type. One of \code{"regular"}, \code{"ordered-sequential"},
-or \code{"ordered-diverging"}. See \code{\link[=tableau_color_pal]{tableau_color_pal()}}.}
+\item{type}{The type of palette, one of:
+\itemize{
+\item \code{"regular"}, the default: discrete, qualitative palettes.
+\item \code{"ordered-sequential"}: sequential palettes.
+\item \code{"ordered-diverging"}: diverging palettes.
+}}
 
-\item{direction}{If 1, the default, then use the original order of
-colors. If -1, then reverse the order.}
+\item{direction}{If \code{1} (the default), use the original order of
+colors. If \code{-1}, reverse the order.}
 }
 \value{
 A ggplot2 scale object.

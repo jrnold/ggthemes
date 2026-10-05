@@ -14,11 +14,12 @@ theme_wsj(
 \arguments{
 \item{base_size}{base font size, given in pts.}
 
-\item{color}{The background color of plot. One of \verb{'brown', 'gray', 'green', 'blue'}.}
+\item{color}{A string, the background color of the plot. One of
+\code{"gray"}, \code{"green"}, \code{"blue"}, \code{"brown"}.}
 
 \item{base_family}{base font family}
 
-\item{title_family}{Plot title font family.}
+\item{title_family}{A string, the font family of the plot title.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).

@@ -12,7 +12,7 @@ shape (\code{pch}) codes, and can be used as the \code{palette} argument of
 \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
-Shape palette from Stephen Few's, "Show Me the Numbers".
+Shape palette from Stephen Few's "Show Me the Numbers".
 The shape palette consists of five shapes: circle, square, triangle, plus,
 times.
 }
@@ -26,3 +26,8 @@ Few, S. (2012)
 \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
 Analytics Press, p. 208.
 }
+\seealso{
+Other shapes few:
+\code{\link[=scale_shape_few]{scale_shape_few()}}
+}
+\concept{shapes few}
