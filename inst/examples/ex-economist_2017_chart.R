@@ -1,7 +1,7 @@
 library("ggplot2")
 
 p <- ggplot(economics, aes(date, psavert)) +
-  geom_line(colour = economist_2017_pal("web")(2)[2]) +
+  geom_line(colour = economist_2017_pal("web")(1)) +
   scale_y_continuous(position = "right", guide = guide_axis_economist()) +
   labs(
     title = "Saving grace",

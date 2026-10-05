@@ -2,10 +2,16 @@
 
 S3method(grid::makeContent,ggthemes_economist_chart)
 S3method(grid::makeContent,ggthemes_edge_text)
+S3method(grid::makeContent,ggthemes_label_economist)
 S3method(print,ggthemes_economist_chart)
+export(GeomEventEconomist)
+export(GeomLabelEconomist)
+export(GeomPeriodEconomist)
 export(GeomRangeFrame)
-export(GeomScaleBreak)
+export(GeomScaleBreakEconomist)
+export(GeomSpanEconomist)
 export(GeomTufteboxplot)
+export(GeomYearBandEconomist)
 export(GuideAxisEconomist)
 export(StatFivenumber)
 export(bank_plot)
@@ -20,6 +26,7 @@ export(cleveland_shape_pal)
 export(colorblind_pal)
 export(colourblind_pal)
 export(economist_2017_chart)
+export(economist_2017_font)
 export(economist_2017_footnote)
 export(economist_2017_gradient_pal)
 export(economist_2017_pal)
@@ -37,9 +44,14 @@ export(few_pal)
 export(few_shape_pal)
 export(fivethirtyeight_pal)
 export(gdocs_pal)
+export(geom_event_economist)
+export(geom_label_economist)
+export(geom_period_economist)
 export(geom_rangeframe)
-export(geom_scale_break)
+export(geom_scale_break_economist)
+export(geom_span_economist)
 export(geom_tufteboxplot)
+export(geom_year_band_economist)
 export(guide_axis_economist)
 export(hc_pal)
 export(numbers_pal)
@@ -180,6 +192,7 @@ importFrom(ggplot2,
   draw_key_blank,
   draw_key_path,
   draw_key_pointrange,
+  draw_key_rect,
   element_blank,
   element_line,
   element_rect,

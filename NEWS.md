@@ -54,12 +54,26 @@
   *The Economist visual styleguide* (v1.2, 4 May 2017), the design the paper
   used from 2017 until its 2024 redesign, for both print and web
   (`media = c("print", "web")`). They sit alongside `theme_economist()` and
-  `economist_pal()`, which are unchanged. The print palette has the guide's
-  five per-chart-type color orders (`type`) and its two high-contrast
-  supporting sets (`set`); the continuous scales use the guide's
-  equal-lightness ramps. Every size in the theme, including rule weights,
+  `economist_pal()`, which are unchanged. Print and web use the same
+  palettes, as the guide's own web charts do: the guide's five
+  per-chart-type color orders (`type`) and its two high-contrast supporting
+  sets (`set`); the continuous scales use the guide's equal-lightness ramps. Every size in the theme, including rule weights,
   margins and panel spacing, is relative to `base_size`, and is the guide's
-  own at the default `base_size = 10`.
+  own at the default `base_size = 10`. The default font is
+  `economist_2017_font()`: the first installed of Fira Sans Condensed and
+  Roboto Condensed, the closest open substitutes for the guide's Econ Sans
+  Condensed, and otherwise `"sans"`.
+
+- New `geom_label_economist()` draws the 2017 styleguide's text blocks: a label in
+  a shaded box with a pointer on one side, sized in points to the guide's
+  specification. `annotate("label_economist", ...)` adds a single one.
+
+- New timeline layers for the 2017 styleguide's timelines:
+  `geom_event_economist()` (a dated event: a rule with an arrowhead to its
+  label), `geom_span_economist()` (a shaded period in the panel),
+  `geom_period_economist()` (thin alternating bars for successive periods,
+  such as terms of office) and `geom_year_band_economist()` (the year band used as
+  a timeline's x-axis).
 
 - New `guide_axis_economist()` draws value-axis labels the way *The
   Economist* does: inside the panel, just above their gridlines and flush
@@ -79,7 +93,7 @@
   returns the guide's footnote symbols in order of use (`*`, `†`, `‡`, `§`,
   `**`, ...).
 
-- New `geom_scale_break()` draws the styleguide's broken-scale mark (p.25), a
+- New `geom_scale_break_economist()` draws the styleguide's broken-scale mark (p.25), a
   small zigzag on a y-axis that does not start at zero. It is decoration, not
   a transformation: truncate the axis with the scale's `limits` and add the
   layer to declare it.
@@ -93,9 +107,12 @@
   works through the guide's examples page by page.
 
 - `ggthemes_data` gains `economist_2017`, the colors of the 2017 styleguide
-  for print and web, with its chart sizes, typefaces and footnote symbols, and `economist_design_system`, the color tokens of *The
-  Economist*'s current Design System and of Marber, with derived lightness
-  ramps for nine color families.
+  for print and web, with its chart sizes, typefaces and footnote symbols,
+  and every swatch of the print palette on p.11 with the CMYK it specifies
+  and its sRGB conversion through ISO Coated v2 (FOGRA39), the guide's own
+  color space, from which the print palettes and theme colors are drawn; and `economist_design_system`, the color tokens of
+  *The Economist*'s current Design System and of Marber, with derived
+  lightness ramps for nine color families.
 
 # ggthemes 7.0.0
 

@@ -29,9 +29,18 @@ contains no fonts: themes set their typefaces in code.
 Economist visual styleguide} (v1.2, 4 May 2017), one complete set per
 medium (\code{print} and \code{web}): the ground, gridline, text, baseline,
 source and accent colors used by \code{\link{theme_economist_2017}()}, the
-categorical palettes used by \code{\link{economist_2017_pal}()}, and, for
-web, the equal-lightness ramps used by
-\code{\link{economist_2017_gradient_pal}()}.
+categorical palettes used by \code{\link{economist_2017_pal}()}, and the
+equal-lightness ramps used by \code{\link{economist_2017_gradient_pal}()}.
+The palettes and ramps are the same for both media.
+\code{ggthemes_data$economist_2017$print$swatches} lists every swatch of
+the guide's print chart palette (p.11): its name and group as the guide
+gives them, the CMYK it specifies (\code{c}, \code{m}, \code{y},
+\code{k}, in percent), and that CMYK converted to sRGB through ISO Coated v2
+(FOGRA39), relative colorimetric with black-point compensation. The print
+colors are drawn from these swatches, except the black text and source
+text, which convert their K percentage directly.
+\code{ggthemes_data$economist_2017$web$swatches} lists the hex swatches of
+the guide's web palette page (p.12), for reference.
 
 \code{ggthemes_data$economist_design_system} contains the complete color
 tokens extracted from the current Economist Design System and Marber

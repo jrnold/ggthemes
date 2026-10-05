@@ -46,8 +46,8 @@ test_that("economist_2017_pal print orders reuse the same six hues", {
 })
 
 test_that("economist_2017_pal has the supporting print sets", {
-  expect_equal(economist_2017_pal(set = "bright")(4), c("#964F7F", "#F35C41", "#EA9A12", "#AABF26"))
-  expect_equal(economist_2017_pal(set = "dark")(3), c("#155174", "#21524C", "#7C7C6A"))
+  expect_equal(economist_2017_pal(set = "bright")(4), c("#A15E7F", "#ED6D46", "#ECA300", "#BBBC22"))
+  expect_equal(economist_2017_pal(set = "dark")(3), c("#00597A", "#125B55", "#8D8B7A"))
   # type has no effect on a supporting set
   expect_equal(
     economist_2017_pal(set = "bright", type = "dot")(4),
@@ -55,20 +55,31 @@ test_that("economist_2017_pal has the supporting print sets", {
   )
 })
 
-test_that("economist_2017_pal web is the p.12 main row", {
-  pal <- economist_2017_pal("web")
-  expect_equal(attr(pal, "max_n"), 9)
+test_that("economist_2017_pal is the same for print and web", {
+  for (type in c("bar_side", "stacked", "line_side", "dot", "pie")) {
+    expect_equal(economist_2017_pal("web", type = type)(6), economist_2017_pal("print", type = type)(6), info = type)
+  }
+  for (set in c("bright", "dark")) {
+    pal <- economist_2017_pal("print", set = set)
+    expect_equal(economist_2017_pal("web", set = set)(attr(pal, "max_n")), pal(attr(pal, "max_n")), info = set)
+  }
+  # The guide's web charts (pp.3, 7, 9) open blue1, blue2, gold, as print does.
+  expect_equal(economist_2017_pal("web")(3), c("#006AA0", "#3DBCD2", "#E5B65F"))
   expect_equal(
-    pal(9),
-    c("#DB444B", "#006BA2", "#3EBCD2", "#379A8B", "#EBB434", "#B4BA39", "#9A607F", "#D1B07C", "#758D99")
+    economist_2017_gradient_pal("red", media = "web")(seq(0, 1, 0.25)),
+    economist_2017_gradient_pal("red", media = "print")(seq(0, 1, 0.25))
   )
-  # The web palette has one order, so type is ignored
-  expect_equal(economist_2017_pal("web", type = "dot")(9), pal(9))
 })
 
-test_that("economist_2017_pal rejects the supporting sets for web", {
-  expect_error(economist_2017_pal("web", set = "bright"), "print")
-  expect_error(economist_2017_pal("web", set = "dark"), "print")
+test_that("economist_2017 web swatches list p.12", {
+  sw <- ggthemes_data$economist_2017$web$swatches
+  expect_named(sw, c("name", "group", "value"))
+  expect_equal(as.vector(table(factor(sw$group, unique(sw$group)))), c(10, 4))
+  expect_equal(
+    sw$value[sw$group == "main"],
+    c("#E3120B", "#DB444B", "#006BA2", "#3EBCD2", "#379A8B", "#EBB434", "#B4BA39", "#9A607F", "#D1B07C", "#758D99")
+  )
+  expect_false(anyDuplicated(sw$name) > 0)
 })
 
 test_that("economist_2017_pal rejects unknown arguments", {
@@ -88,6 +99,7 @@ test_that("economist_2017 palettes are valid hex with no repeats", {
   colour_sets <- c(
     lapply(spec$print$qualitative, `[[`, "value"),
     lapply(spec$web$qualitative, `[[`, "value"),
+    spec$print$sequential,
     spec$web$sequential
   )
   for (nm in names(colour_sets)) {
@@ -96,9 +108,59 @@ test_that("economist_2017 palettes are valid hex with no repeats", {
   }
 })
 
+test_that("economist_2017 print swatches cover p.11", {
+  sw <- ggthemes_data$economist_2017$print$swatches
+  expect_named(sw, c("name", "group", "c", "m", "y", "k", "value"))
+  expect_equal(nrow(sw), 28)
+  expect_equal(
+    as.vector(table(factor(sw$group, unique(sw$group)))),
+    c(6, 5, 4, 3, 3, 3, 4)
+  )
+  for (ink in c("c", "m", "y", "k")) {
+    expect_type(sw[[ink]], "double")
+    expect_true(all(sw[[ink]] >= 0 & sw[[ink]] <= 100), info = ink)
+  }
+  expect_match(sw$value, "^#[0-9A-F]{6}$", all = TRUE)
+  expect_false(anyDuplicated(sw$name) > 0)
+  # CMYK as printed on p.11, and its FOGRA39 conversion.
+  cmyk <- function(nm) unlist(sw[sw$name == nm, c("c", "m", "y", "k")], use.names = FALSE)
+  expect_equal(cmyk("blue2"), c(67, 0, 18, 0))
+  expect_equal(cmyk("print bkgd"), c(7.5, 0, 0, 5))
+  expect_equal(sw$value[sw$name == "econ red"], "#E3000F")
+  # K-only swatches are neutral grey under FOGRA39, darkening with K.
+  greys <- sw[sw$group == "black", ]
+  rgb <- grDevices::col2rgb(greys$value)
+  expect_true(all(apply(rgb, 2, function(x) diff(range(x)) <= 2)))
+  expect_true(all(diff(rgb[1, ]) < 0))
+  # The palette and theme colours are drawn from the swatches.
+  print_spec <- ggthemes_data$economist_2017$print
+  palette <- unlist(lapply(print_spec$qualitative, `[[`, "value"))
+  expect_true(all(palette %in% sw$value))
+  backgrounds <- c(print_spec$ground, print_spec$highlight, print_spec$number_box, print_spec$grid, print_spec$accent)
+  expect_true(all(backgrounds %in% sw$value))
+})
+
+test_that("economist_2017 FOGRA39 print colours reproduce the web palette", {
+  skip_if_not_installed("farver")
+  sw <- ggthemes_data$economist_2017$print$swatches
+  web <- ggthemes_data$economist_2017$web
+  web_main <- setNames(web$swatches$value, web$swatches$name)
+  pairs <- c(
+    "econ red" = web$accent, "blue1" = web_main[["blue"]],
+    "blue2" = web_main[["cyan"]], "grey box" = web_main[["grey"]]
+  )
+  print_cols <- sw$value[match(names(pairs), sw$name)]
+  de <- diag(farver::compare_colour(
+    farver::decode_colour(print_cols), farver::decode_colour(unname(pairs)),
+    from_space = "rgb", method = "cie2000"
+  ))
+  expect_true(all(de < 1.5), info = paste(names(pairs), round(de, 2), collapse = "; "))
+})
+
 test_that("economist_2017 ramps run from light to dark", {
   skip_if_not_installed("farver")
-  ramps <- ggthemes_data$economist_2017$web$sequential
+  ramps <- ggthemes_data$economist_2017$print$sequential
+  expect_identical(ggthemes_data$economist_2017$web$sequential, ramps)
   expect_named(ramps, c("red", "blue", "cyan", "green", "yellow", "olive", "purple", "gold", "grey"))
   for (nm in names(ramps)) {
     expect_length(ramps[[nm]], 6)
@@ -226,7 +288,7 @@ test_that("theme_economist_2017 uses each medium's colours", {
     expect_equal(ggplot2::calc_element("plot.title", thm)$colour, spec$text, info = media)
     expect_equal(ggplot2::calc_element("plot.caption", thm)$colour, spec$source, info = media)
   }
-  expect_equal(economist_2017_spec("print")$ground, "#E2EEF3")
+  expect_equal(economist_2017_spec("print")$ground, "#E7F0F5")
   expect_equal(economist_2017_spec("web")$ground, "#FFFFFF")
   # "Source text 75% black" (p.3)
   expect_equal(economist_2017_spec("print")$source, "#404040")
@@ -615,6 +677,22 @@ test_that("economist_2017 typefaces map each weight to the theme", {
   }
 })
 
+test_that("economist_2017_font picks the first installed family", {
+  skip_if_not_installed("systemfonts")
+  installed <- systemfonts::system_fonts()[["family"]][1]
+  expect_equal(economist_2017_font(c("No Such Font 2017", installed)), installed)
+  expect_equal(economist_2017_font("No Such Font 2017"), "sans")
+  expect_equal(economist_2017_font("No Such Font 2017", fallback = "serif"), "serif")
+  expect_equal(economist_2017_font(character()), "sans")
+  expect_error(economist_2017_font(1), "families")
+  expect_error(economist_2017_font(fallback = c("a", "b")), "fallback")
+  expect_true(rlang::is_string(economist_2017_font()))
+})
+
+test_that("theme_economist_2017 defaults to economist_2017_font()", {
+  expect_equal(theme_economist_2017()$text$family, economist_2017_font())
+})
+
 # Visual regression --------------------------------------------------------------
 
 test_that("theme_economist_2017 draws correctly", {
@@ -622,7 +700,8 @@ test_that("theme_economist_2017 draws correctly", {
     p <- theme_test_plot() +
       ggplot2::scale_y_continuous(position = "right", guide = guide_axis_economist()) +
       scale_colour_economist_2017(media) +
-      theme_economist_2017(media)
+      # Pinned, so the snapshot does not depend on which fonts are installed.
+      theme_economist_2017(media, base_family = "sans")
     expect_doppelganger(paste0("theme_economist_2017-", media), p)
     expect_doppelganger(
       paste0("economist_2017_chart-", media),
@@ -643,8 +722,7 @@ test_that("economist_2017 palettes draw correctly", {
         print_orders,
         list(
           bright = economist_2017_pal(set = "bright")(4),
-          dark = economist_2017_pal(set = "dark")(3),
-          web = economist_2017_pal("web")(9)
+          dark = economist_2017_pal(set = "dark")(3)
         )
       ),
       "economist_2017_pal()"

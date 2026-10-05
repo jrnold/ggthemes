@@ -4,99 +4,85 @@
 # medium, stated in full. Print and web are independent specs: a value that
 # happens to be shared is still written out in both.
 #
-# Print values are pixel-sampled at 300dpi from the guide's own CMYK swatches
-# (p.11); a naive CMYK->RGB formula was tried first and rejected -- it turned
-# BLUE2 (C67 M0 Y18 K0) into a mint green, nothing like the swatch on the
-# page, because uncalibrated conversion doesn't match how press inks actually
-# mix. Pure-black tints (K only) are the exception: they are converted
-# directly, since a single neutral ink has no hue to get wrong. Web values are
-# transcribed from the guide's own hex (p.12).
+# Print values are the guide's CMYK swatches (p.11) converted to sRGB through
+# ISO Coated v2 (FOGRA39), the guide's own document colour space: the PDF
+# stores every colour as unprofiled CMYK, and converting its p.12 web swatches
+# back through FOGRA39 recovers their printed hex (see `swatches` below).
+# Pure-black role colours (`text`, `source`) are the exception: they convert
+# the K percentage directly. Web values are transcribed from the guide's own
+# hex (p.12).
 #
 # `qualitative`: pp.13-20 ("chart types") each carry their own numbered
-# "COLOUR ORDER" swatch strip, pixel-sampled the same way -- these are NOT
-# all the same sequence. Every page's swatches turned out to be a reordering
-# of the same 6 print hues (never a different hue), and two pairs are
-# hex-identical: bar/column stacked == line stacked, and thermometer ==
-# scatter. That leaves 5 distinct orders. `bright` and `dark` are the
-# "supporting" sets "for multi-category charts where high contrast is needed"
-# (p.11). The web palette page (p.12) shows a single "MAIN" row and no
-# per-chart-type orders, so web has only `primary`, in the order printed.
+# "COLOUR ORDER" swatch strip -- these are NOT all the same sequence. Every
+# page's swatches turned out to be a reordering of the same 6 print hues
+# (never a different hue), and two pairs are hex-identical: bar/column
+# stacked == line stacked, and thermometer == scatter. That leaves 5 distinct
+# orders. `bright` and `dark` are the "supporting" sets "for multi-category
+# charts where high contrast is needed" (p.11).
 #
-# `sequential`: the web page's "equal lightness colour scales" (p.12), six
-# steps per hue, stored lightest first. The guide gives no print equivalent.
+# `sequential`: the "equal lightness colour scales" (p.12), six steps per
+# hue, stored lightest first.
+#
+# Print and web use the same `qualitative` palettes and `sequential` ramps.
+# The guide's own web charts (pp.3, 7, 9, 24) are drawn in the print
+# swatches and follow the print colour orders -- blue1, blue2, gold first --
+# and never the p.12 MAIN row's order; through FOGRA39 the print main
+# colours are also the p.12 web ones (blue1 = blue, blue2 = cyan). The p.12
+# swatches are kept, for reference, as `web$swatches`.
 print:
-  ground: '#E2EEF3' # PRINT BKGD, C7.5 K5 (p.11): the whole chart, not just the panel
-  highlight: '#C6DDE7' # HIGHLIGHT, C15 K10 (p.11, p.25)
-  number_box: '#ACCDDB' # NUMBER BOX, C22.5 K15 (p.11, p.25)
-  grid: '#B4C0C6' # GRID LINES, C10 K25 (p.11)
+  ground: '#E7F0F5' # PRINT BKGD, C7.5 K5 (p.11): the whole chart, not just the panel
+  highlight: '#CFE0EB' # HIGHLIGHT, C15 K10 (p.11, p.25)
+  number_box: '#B8D2E0' # NUMBER BOX, C22.5 K15 (p.11, p.25)
+  grid: '#BFC9CF' # GRID LINES, C10 K25 (p.11)
   text: '#000000' # K100 (p.11 BLACK PALETTE); titles, labels, axis numbers
   baseline: '#000000' # "use black for zero baseline only" (p.18)
   source: '#404040' # K75, "Source text 75% black" (p.3, p.6)
-  accent: '#ED1C24' # ECON RED, C0 M100 Y100 K0 (p.11): tab and panel markers
+  accent: '#E3000F' # ECON RED, C0 M100 Y100 K0 (p.11): tab and panel markers
   qualitative:
     bar_side: # p.13: bar/column, side by side; also the guide's default reading order
-    - {name: "blue1", value: '#2C6BA6'}
-    - {name: "blue2", value: '#54C6D2'}
-    - {name: "gold", value: '#DDAD4F'}
-    - {name: "teal", value: '#20969C'}
-    - {name: "maroon", value: '#942A44'}
-    - {name: "mauve", value: '#AA8193'}
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "mauve", value: '#B6939D'}
     stacked: # p.14 bar/column stacked and p.16 line stacked (hex-identical)
-    - {name: "blue1", value: '#2C6BA6'}
-    - {name: "blue2", value: '#54C6D2'}
-    - {name: "gold", value: '#DDAD4F'}
-    - {name: "teal", value: '#20969C'}
-    - {name: "mint", value: '#78D1C1'}
-    - {name: "navy", value: '#155174'}
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "mint", value: '#7EC9C7'}
+    - {name: "navy", value: '#00597A'}
     line_side: # p.15: line, side by side -- swaps maroon/teal vs bar_side
-    - {name: "blue1", value: '#2C6BA6'}
-    - {name: "blue2", value: '#54C6D2'}
-    - {name: "gold", value: '#DDAD4F'}
-    - {name: "maroon", value: '#942A44'}
-    - {name: "teal", value: '#20969C'}
-    - {name: "mauve", value: '#AA8193'}
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "mauve", value: '#B6939D'}
     dot: # p.17 thermometer and p.18 scatter (hex-identical); starts on blue2, not blue1
-    - {name: "blue2", value: '#54C6D2'}
-    - {name: "maroon", value: '#942A44'}
-    - {name: "gold", value: '#DDAD4F'}
-    - {name: "blue1", value: '#2C6BA6'}
-    - {name: "teal", value: '#20969C'}
-    - {name: "mauve", value: '#AA8193'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "mauve", value: '#B6939D'}
     pie: # p.20: pie/doughnut -- same as bar_side except position 6 (mint, not mauve)
-    - {name: "blue1", value: '#2C6BA6'}
-    - {name: "blue2", value: '#54C6D2'}
-    - {name: "gold", value: '#DDAD4F'}
-    - {name: "teal", value: '#20969C'}
-    - {name: "maroon", value: '#942A44'}
-    - {name: "mint", value: '#78D1C1'}
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "mint", value: '#7EC9C7'}
     bright: # p.11 SUPPORTING / BRIGHT
-    - {name: "purple", value: '#964F7F'}
-    - {name: "coral", value: '#F35C41'}
-    - {name: "orange", value: '#EA9A12'}
-    - {name: "lime", value: '#AABF26'}
+    - {name: "purple", value: '#A15E7F'}
+    - {name: "coral", value: '#ED6D46'}
+    - {name: "orange", value: '#ECA300'}
+    - {name: "lime", value: '#BBBC22'}
     dark: # p.11 SUPPORTING / DARK
-    - {name: "navy", value: '#155174'}
-    - {name: "teal", value: '#21524C'}
-    - {name: "olive", value: '#7C7C6A'}
-web:
-  ground: '#FFFFFF' # "White background" (p.3)
-  box: '#E9EDF0' # BOXES/NAV (p.12)
-  grid: '#B7C6CF' # p.12, third neutral swatch
-  text: '#0C0C0C' # BLACK (p.12)
-  baseline: '#0C0C0C' # "use black for zero baseline only" (p.18)
-  source: '#404040' # "Source text 75% black" (p.3)
-  accent: '#E3120B' # ECON RED (p.12): tab, top rule and panel markers
-  qualitative:
-    primary: # p.12 MAIN, in the order printed (ECON RED excluded: it is the accent)
-    - {name: "red", value: '#DB444B'}
-    - {name: "blue", value: '#006BA2'}
-    - {name: "cyan", value: '#3EBCD2'}
-    - {name: "green", value: '#379A8B'}
-    - {name: "yellow", value: '#EBB434'}
-    - {name: "olive", value: '#B4BA39'}
-    - {name: "purple", value: '#9A607F'}
-    - {name: "gold", value: '#D1B07C'}
-    - {name: "grey", value: '#758D99'}
+    - {name: "navy", value: '#00597A'}
+    - {name: "teal", value: '#125B55'}
+    - {name: "olive", value: '#8D8B7A'}
   sequential: # p.12 EQUAL LIGHTNESS COLOUR SCALES, lightest first
     red: ['#FFA39F', '#FF8785', '#FF6B6C', '#E64E53', '#C7303C', '#A81829']
     blue: ['#98DAFF', '#7BBFFC', '#5DA4DF', '#3D89C3', '#1270A8', '#00588D']
@@ -107,6 +93,125 @@ web:
     purple: ['#FFC2E3', '#E6A6C7', '#C98CAC', '#AD7291', '#925977', '#78405F']
     gold: ['#F2CF9A', '#D5B480', '#B99966', '#9D7F4E', '#826636', '#674E1F']
     grey: ['#BFD8E5', '#A4BDC9', '#89A2AE', '#6F8793', '#576E79', '#3F5661']
+  # Every swatch on p.11, the print chart palette, as the guide groups and
+  # names it, with the CMYK it specifies (c, m, y, k, in percent) and that
+  # CMYK converted to sRGB through ISO Coated v2 (FOGRA39), relative
+  # colorimetric with black-point compensation (data-raw/economist_2017_fogra39.R).
+  # The colours above are drawn from these, except `text` and `source`, which
+  # convert the black-palette K100 and K75 exactly (#000000, #404040) where
+  # FOGRA39 gives #1A1A18 and #636362.
+  swatches:
+  - {name: "econ red", group: "main", "c": 0, "m": 100, "y": 100, "k": 0, value: '#E3000F'}
+  - {name: "red1", group: "main", "c": 10, "m": 70, "y": 50, "k": 0, value: '#DD686A'}
+  - {name: "red text", group: "main", "c": 12, "m": 80, "y": 60, "k": 0, value: '#D74F54'}
+  - {name: "blue1", group: "main", "c": 90, "m": 50, "y": 15, "k": 5, value: '#006AA0'}
+  - {name: "blue2", group: "main", "c": 67, "m": 0, "y": 18, "k": 0, value: '#3DBCD2'}
+  - {name: "blue2 text", group: "main", "c": 82, "m": 0, "y": 18, "k": 8, value: '#00A3C2'}
+  - {name: "gold", group: "secondary", "c": 12, "m": 30, "y": 70, "k": 0, value: '#E5B65F'}
+  - {name: "maroon", group: "secondary", "c": 0, "m": 75, "y": 35, "k": 45, value: '#9A3F4F'}
+  - {name: "mauve", group: "secondary", "c": 27, "m": 42, "y": 25, "k": 10, value: '#B6939D'}
+  - {name: "teal", group: "secondary", "c": 85, "m": 0, "y": 30, "k": 20, value: '#00919E'}
+  - {name: "mint", group: "secondary", "c": 53, "m": 0, "y": 26, "k": 0, value: '#7EC9C7'}
+  - {name: "purple", group: "bright", "c": 40, "m": 70, "y": 30, "k": 6, value: '#A15E7F'}
+  - {name: "coral", group: "bright", "c": 0, "m": 68, "y": 73, "k": 0, value: '#ED6D46'}
+  - {name: "orange", group: "bright", "c": 6, "m": 40, "y": 100, "k": 0, value: '#ECA300'}
+  - {name: "lime", group: "bright", "c": 33, "m": 13, "y": 95, "k": 2, value: '#BBBC22'}
+  - {name: "navy", group: "dark", "c": 85, "m": 10, "y": 0, "k": 58, value: '#00597A'}
+  - {name: "dark teal", group: "dark", "c": 80, "m": 25, "y": 50, "k": 50, value: '#125B55'}
+  - {name: "olive", group: "dark", "c": 38, "m": 30, "y": 43, "k": 26, value: '#8D8B7A'}
+  - {name: "print bkgd", group: "background", "c": 7.5, "m": 0, "y": 0, "k": 5, value: '#E7F0F5'}
+  - {name: "highlight", group: "background", "c": 15, "m": 0, "y": 0, "k": 10, value: '#CFE0EB'}
+  - {name: "number box", group: "background", "c": 22.5, "m": 0, "y": 0, "k": 15, value: '#B8D2E0'}
+  - {name: "grid lines", group: "neutral", "c": 10, "m": 0, "y": 0, "k": 25, value: '#BFC9CF'}
+  - {name: "grey box", group: "neutral", "c": 30, "m": 0, "y": 0, "k": 50, value: '#748D99'}
+  - {name: "grey text", group: "neutral", "c": 20, "m": 0, "y": 0, "k": 80, value: '#485155'}
+  - {name: "black 25", group: "black", "c": 0, "m": 0, "y": 0, "k": 25, value: '#CFD0D0'}
+  - {name: "black 50", group: "black", "c": 0, "m": 0, "y": 0, "k": 50, value: '#9C9D9D'}
+  - {name: "black 75", group: "black", "c": 0, "m": 0, "y": 0, "k": 75, value: '#636362'}
+  - {name: "black 100", group: "black", "c": 0, "m": 0, "y": 0, "k": 100, value: '#1A1A18'}
+
+web:
+  ground: '#FFFFFF' # "White background" (p.3)
+  box: '#E9EDF0' # BOXES/NAV (p.12)
+  grid: '#B7C6CF' # p.12, third neutral swatch
+  text: '#0C0C0C' # BLACK (p.12)
+  baseline: '#0C0C0C' # "use black for zero baseline only" (p.18)
+  source: '#404040' # "Source text 75% black" (p.3)
+  accent: '#E3120B' # ECON RED (p.12): tab, top rule and panel markers
+  qualitative:
+    bar_side: # p.13: bar/column, side by side; also the guide's default reading order
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "mauve", value: '#B6939D'}
+    stacked: # p.14 bar/column stacked and p.16 line stacked (hex-identical)
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "mint", value: '#7EC9C7'}
+    - {name: "navy", value: '#00597A'}
+    line_side: # p.15: line, side by side -- swaps maroon/teal vs bar_side
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "mauve", value: '#B6939D'}
+    dot: # p.17 thermometer and p.18 scatter (hex-identical); starts on blue2, not blue1
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "mauve", value: '#B6939D'}
+    pie: # p.20: pie/doughnut -- same as bar_side except position 6 (mint, not mauve)
+    - {name: "blue1", value: '#006AA0'}
+    - {name: "blue2", value: '#3DBCD2'}
+    - {name: "gold", value: '#E5B65F'}
+    - {name: "teal", value: '#00919E'}
+    - {name: "maroon", value: '#9A3F4F'}
+    - {name: "mint", value: '#7EC9C7'}
+    bright: # p.11 SUPPORTING / BRIGHT
+    - {name: "purple", value: '#A15E7F'}
+    - {name: "coral", value: '#ED6D46'}
+    - {name: "orange", value: '#ECA300'}
+    - {name: "lime", value: '#BBBC22'}
+    dark: # p.11 SUPPORTING / DARK
+    - {name: "navy", value: '#00597A'}
+    - {name: "teal", value: '#125B55'}
+    - {name: "olive", value: '#8D8B7A'}
+  sequential: # p.12 EQUAL LIGHTNESS COLOUR SCALES, lightest first
+    red: ['#FFA39F', '#FF8785', '#FF6B6C', '#E64E53', '#C7303C', '#A81829']
+    blue: ['#98DAFF', '#7BBFFC', '#5DA4DF', '#3D89C3', '#1270A8', '#00588D']
+    cyan: ['#6FE4FB', '#4EC8DE', '#25ADC2', '#0092A7', '#00788D', '#005F73']
+    green: ['#86E5D4', '#69C9B9', '#4DAD9E', '#2E9284', '#00786B', '#005F52']
+    yellow: ['#FFCB4D', '#E7B030', '#C89608', '#AA7C00', '#8D6300', '#714C00']
+    olive: ['#D7DB5A', '#BAC03F', '#9DA521', '#818A00', '#667100', '#4C5900']
+    purple: ['#FFC2E3', '#E6A6C7', '#C98CAC', '#AD7291', '#925977', '#78405F']
+    gold: ['#F2CF9A', '#D5B480', '#B99966', '#9D7F4E', '#826636', '#674E1F']
+    grey: ['#BFD8E5', '#A4BDC9', '#89A2AE', '#6F8793', '#576E79', '#3F5661']
+  # Every swatch on p.12, the web chart palette, with the hex the guide gives:
+  # the MAIN row, and the neutral column beside it (whose fourth swatch,
+  # #758D99, is the MAIN row's grey). These are reference values: web charts
+  # use the same palettes and ramps as print (above).
+  swatches:
+  - {name: "econ red", group: "main", value: '#E3120B'}
+  - {name: "red", group: "main", value: '#DB444B'}
+  - {name: "blue", group: "main", value: '#006BA2'}
+  - {name: "cyan", group: "main", value: '#3EBCD2'}
+  - {name: "green", group: "main", value: '#379A8B'}
+  - {name: "yellow", group: "main", value: '#EBB434'}
+  - {name: "olive", group: "main", value: '#B4BA39'}
+  - {name: "purple", group: "main", value: '#9A607F'}
+  - {name: "gold", group: "main", value: '#D1B07C'}
+  - {name: "grey", group: "main", value: '#758D99'}
+  - {name: "black", group: "neutral", value: '#0C0C0C'}
+  - {name: "boxes/nav", group: "neutral", value: '#E9EDF0'}
+  - {name: "grid", group: "neutral", value: '#B7C6CF'}
+  - {name: "text", group: "neutral", value: '#3F5661'}
 # Chart sizes (p.4), in points: print widths, and the web width in pixels
 # where the guide gives one. Charts are free to take any height except the
 # leader / World this Week block (83.5pt, p.4) and the Espresso lead image

@@ -4,7 +4,11 @@
 \alias{economist_2017_gradient_pal}
 \title{Economist 2017 continuous color palette}
 \usage{
-economist_2017_gradient_pal(hue = "blue", direction = 1)
+economist_2017_gradient_pal(
+  hue = "blue",
+  direction = 1,
+  media = c("print", "web")
+)
 }
 \arguments{
 \item{hue}{One of `"red"`, `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
@@ -12,6 +16,9 @@ economist_2017_gradient_pal(hue = "blue", direction = 1)
 
 \item{direction}{`1` maps low values to the lightest step; `-1` reverses
 the ramp.}
+
+\item{media}{Either `"print"` or `"web"`. Both media have the same
+palettes; each reads its own complete spec in [ggthemes_data].}
 }
 \value{
 A palette function. It takes a numeric vector of values between
@@ -22,8 +29,8 @@ A palette function. It takes a numeric vector of values between
 Interpolates one of the "equal lightness colour scales" of \emph{The
 Economist visual styleguide} (v1.2, 4 May 2017, p.12): six steps of one
 hue, of even perceived lightness, for ordered and continuous data. Low
-values get the lightest step. These are the guide's web ramps; it gives
-none for print.
+values get the lightest step. The guide gives them on its web palette page;
+print and web use the same ramps.
 }
 \examples{
 library("scales")
@@ -38,10 +45,13 @@ Matt McLean), p.12.
 \seealso{
 Other economist 2017:
 \code{\link[=economist_2017_chart]{economist_2017_chart()}},
+\code{\link[=economist_2017_font]{economist_2017_font()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
-\code{\link[=geom_scale_break]{geom_scale_break()}},
+\code{\link[=geom_label_economist]{geom_label_economist()}},
+\code{\link[=geom_scale_break_economist]{geom_scale_break_economist()}},
+\code{\link{geom_timeline_economist}},
 \code{\link[=guide_axis_economist]{guide_axis_economist()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}

@@ -51,10 +51,13 @@ Matt McLean), p.5.
 \seealso{
 Other economist 2017:
 \code{\link[=economist_2017_chart]{economist_2017_chart()}},
+\code{\link[=economist_2017_font]{economist_2017_font()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
-\code{\link[=geom_scale_break]{geom_scale_break()}},
+\code{\link[=geom_label_economist]{geom_label_economist()}},
+\code{\link[=geom_scale_break_economist]{geom_scale_break_economist()}},
+\code{\link{geom_timeline_economist}},
 \code{\link[=guide_axis_economist]{guide_axis_economist()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}

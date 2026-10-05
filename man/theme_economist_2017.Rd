@@ -7,7 +7,7 @@
 theme_economist_2017(
   media = c("print", "web"),
   base_size = 10,
-  base_family = "sans",
+  base_family = economist_2017_font(),
   horizontal = TRUE
 )
 }
@@ -17,7 +17,11 @@ theme_economist_2017(
 \item{base_size}{Base font size, in points. Every size in the theme is
 relative to it.}
 
-\item{base_family}{Base font family.}
+\item{base_family}{Base font family. The default, [economist_2017_font()],
+is Fira Sans Condensed or Roboto Condensed if either is installed, and
+otherwise `"sans"`. Base R's `pdf()` and `postscript()` devices know only
+their own font database; with them, use [grDevices::cairo_pdf()] or a
+'ragg' device, or pass `base_family = "sans"`.}
 
 \item{horizontal}{Draw horizontal gridlines, the guide's convention?
 Use `FALSE` for vertical gridlines on a horizontal bar chart.}
@@ -56,8 +60,9 @@ Several conventions of the guide are not theme elements:
   beside the title, and the y-axis titles from beside the panel to above
   it, where the guide sets them (p.10).
 * The guide sets charts in Econ Sans, which is not publicly available.
-  Pass a narrow sans serif as `base_family`. Econ Sans's medium weight,
-  used for panel and legend headings, is drawn plain.
+  By default the theme uses the closest installed substitute, chosen by
+  [economist_2017_font()]. Econ Sans's medium weight, used for panel and
+  legend headings, is drawn plain.
 }
 \examples{
 library("ggplot2")
@@ -106,11 +111,14 @@ Matt McLean), pp.3-12.
 \seealso{
 Other economist 2017:
 \code{\link[=economist_2017_chart]{economist_2017_chart()}},
+\code{\link[=economist_2017_font]{economist_2017_font()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
-\code{\link[=geom_scale_break]{geom_scale_break()}},
+\code{\link[=geom_label_economist]{geom_label_economist()}},
+\code{\link[=geom_scale_break_economist]{geom_scale_break_economist()}},
+\code{\link{geom_timeline_economist}},
 \code{\link[=guide_axis_economist]{guide_axis_economist()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}}
 }
