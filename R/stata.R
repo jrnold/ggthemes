@@ -519,10 +519,12 @@ scale_shape_stata <- function(..., unicode = FALSE) {
 #' @example inst/examples/ex-stata_linetype_pal.R
 stata_linetype_pal <- function() {
   values <- ggthemes::ggthemes_data[["stata"]][["linetypes"]]
+  max_n <- length(values)
   f <- function(n) {
+    check_pal_n(n, max_n)
     values[seq_len(n)]
   }
-  attr(f, "max_n") <- length(values)
+  attr(f, "max_n") <- max_n
   f
 }
 
@@ -582,7 +584,7 @@ stata_linewidths <-
     thick = 0.8,
     thin = 0.2,
     vthick = 1.4,
-    thin = 0.15,
+    vthin = 0.15,
     vvthick = 2.6,
     vvthin = 0.01,
     vvvthick = 4.2,

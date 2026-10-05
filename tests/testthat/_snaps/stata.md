@@ -22,3 +22,11 @@
       Warning:
       This palette can handle a maximum of 10 values. You have supplied 100.
 
+# stata_linetype_pal() checks n like the other palettes
+
+    Code
+      pal(-1)
+    Condition
+      Error in `pal()`:
+      ! `n` must be a non-negative integer, not -1.
+

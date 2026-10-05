@@ -136,7 +136,9 @@ GeomTufteboxplot <- # nolint: object_name_linter
       varwidth = FALSE,
       median.type = c("point", "line"), # nolint: object_name_linter
       whisker.type = c("line", "point"), # nolint: object_name_linter
-      hoffset = 0.01,
+      # Not read here: setup_data() scales them into `data`. They are formals so
+      # ggplot2 treats them as geom parameters, so keep the constructor's defaults.
+      hoffset = 0.005,
       voffset = 0.01
     ) {
       median.type <- match.arg(median.type) # nolint: object_name_linter
@@ -206,7 +208,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
         )
       }
 
-      if (!is.null(data$outliers) && length(data$outliers[[1]] >= 1)) {
+      if (!is.null(data$outliers) && length(data$outliers[[1]]) >= 1) {
         outliers <- data.frame(
           y = data$outliers[[1]],
           x = data$x[1],
