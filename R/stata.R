@@ -47,11 +47,10 @@ stata_default_scheme <- function(scheme, what) {
 #' set of Economist-styled colors that Stata ships in
 #' `scheme-economist.scheme`.
 #'
-#' @param scheme `character`. One of `"s2color"`,
-#' `"s1rcolor"`, `"s1color"`, `"mono"`, `"stcolor"`, or
-#' `"economist"`. If `NULL`, the default, `"s2color"` is used
-#' and a deprecation message is issued; this default becomes `"stcolor"`
-#' in ggthemes 8.0.0.
+#' @param scheme A string, the Stata scheme. One of: `"s2color"`,
+#'   `"s1rcolor"`, `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`.
+#'   If `NULL`, the default, `"s2color"` is used and a deprecation message is
+#'   issued; this default becomes `"stcolor"` in ggthemes 8.0.0.
 #'
 #' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
@@ -388,11 +387,12 @@ theme_stata_colors <- function(scheme = "s2color") {
 
 #' Themes based on Stata graph schemes
 #'
-#' @param scheme One of "stcolor", "stcolor_alt", "stmono1", "stmono2",
-#'   "stsj", "s2color", "s2mono", "s1color", "s1rcolor", "s1mono",
-#'   "s2manual", "s1manual", or "sj". If `NULL`, the default,
-#'   "s2color" is used and a deprecation message is issued; this default
-#'   becomes "stcolor" in ggthemes 8.0.0.
+#' @param scheme A string, the Stata scheme. One of: `"stcolor"`,
+#'   `"stcolor_alt"`, `"stmono1"`, `"stmono2"`, `"stsj"`, `"s2color"`,
+#'   `"s2mono"`, `"s1color"`, `"s1rcolor"`, `"s1mono"`, `"s2manual"`,
+#'   `"s1manual"`, or `"sj"`. If `NULL`, the default, `"s2color"` is used and a
+#'   deprecation message is issued; this default becomes `"stcolor"` in
+#'   ggthemes 8.0.0.
 #' @inheritParams ggplot2::theme_grey
 #' @return A ggplot2 theme object (class `theme`).
 #' @export

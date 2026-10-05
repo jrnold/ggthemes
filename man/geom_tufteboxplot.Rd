@@ -75,11 +75,11 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \item{outlier.stroke}{Stroke width of outlying points.}
 
 \item{voffset}{Controls the size of the gap in the line representing the
-median when \code{median.type = 'line'}. This is a fraction of the range
+median when \code{median.type = "line"}. This is a fraction of the range
 of \code{y}.}
 
 \item{hoffset}{Controls how much the interquartile line is offset from the
-whiskers when \code{median.type = 'line'}. This is a fraction of the
+whiskers when \code{median.type = "line"}. This is a fraction of the
 range of \code{x}.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
@@ -98,14 +98,19 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{annotation_borders()}}.}
 
-\item{median.type}{If \code{'point'}, then the median is represented by a
-point, and the interquartile range by a gap in the line. If
-\code{median.type='line'}, then the interquartile range is represented by
-a line, possibly offset, and the median by a gap in the line.}
+\item{median.type}{How to represent the median, one of:
+\itemize{
+\item \code{"point"}, the default: the median is a point, and the interquartile
+range is a gap in the line.
+\item \code{"line"}: the interquartile range is a line, possibly offset, and the
+median is a gap in the line.
+}}
 
-\item{whisker.type}{If \code{'line'}, then whiskers are represented by lines.
-If \code{'point'}, then whiskers are represented by points at
-\code{ymin} and \code{ymax}.}
+\item{whisker.type}{How to represent the whiskers, one of:
+\itemize{
+\item \code{"line"}, the default: whiskers are lines.
+\item \code{"point"}: whiskers are points at \code{ymin} and \code{ymax}.
+}}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}'s \code{params} argument. These
 arguments broadly fall into one of 4 categories below. Notably, further

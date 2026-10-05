@@ -7,7 +7,7 @@
 wsj_pal(palette = "colors6")
 }
 \arguments{
-\item{palette}{\code{character} The color palette to use. One of
+\item{palette}{A string, the color palette to use. One of
 \code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}.}
 }
 \value{
@@ -22,13 +22,11 @@ Collections of these plots can be found on the WSJ Graphics
 \href{https://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
 }
 \section{Palettes}{
-
-
 The following palettes are defined:
 \itemize{
 \item \code{"rgby"}: red/green/blue/yellow theme.
 \item \code{"red_green"}: green/red two-color scale for good/bad.
-\item \code{"green_black"}: black-green 4-color scale for "very negative",
+\item \code{"black_green"}: black-green 4-color scale for "very negative",
 "somewhat negative", "somewhat positive", "very positive".
 \item \code{"dem_rep"}: Democrat/Republican/Undecided blue/red/gray scale.
 \item \code{"colors6"}: red, blue, gold, green, orange, and black palette.

@@ -43,9 +43,9 @@ scale_colour_colourblind <- function(black = TRUE, ...) {
 
 #' @rdname colorblind
 #' @description
-#' `r lifecycle::badge("deprecated")` `scale_colour_colorblind()` mixes British
-#' and American spelling; use `scale_colour_colourblind()` or
-#' `scale_color_colorblind()` instead.
+#' `r lifecycle::badge("deprecated")` `scale_colour_colorblind()` is
+#' deprecated in favor of `scale_colour_colourblind()` and
+#' `scale_color_colorblind()`.
 #'
 #' @export
 #' @importFrom lifecycle deprecate_soft

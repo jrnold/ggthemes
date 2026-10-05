@@ -2,7 +2,7 @@
 % Please edit documentation in R/hc.R
 \name{theme_hc}
 \alias{theme_hc}
-\title{Highcharts Theme}
+\title{Highcharts theme}
 \usage{
 theme_hc(
   base_size = 12,

@@ -1,7 +1,8 @@
 #' Palette and theme data
 #'
-#' The `ggthemes` environment contains various values used in
-#' themes and palettes. This is undocumented and subject to change.
+#' `ggthemes_data` is a list of the colors, shapes, and other values used in
+#' the themes and palettes of this package. Its structure is internal and
+#' subject to change.
 #'
 #' `ggthemes_data$stata$colors$names` spans both generations of Stata's
 #' named colors: the classic set plus the `gs0`--`gs16` gray scale,

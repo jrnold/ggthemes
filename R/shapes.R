@@ -117,10 +117,14 @@ circlefill_shape_pal <- function() {
   )
 }
 
-#' Filled Circle Shape palette (discrete)
+#' Filled circle shape scale (deprecated)
 #'
 #' @description
 #' `r lifecycle::badge("deprecated")`
+#'
+#' This scale has no direct replacement. For circles that vary by amount of
+#' fill, use `scale_shape_tableau(palette = "proportions", unicode = TRUE)`;
+#' see [scale_shape_tableau()].
 #'
 #' @return A ggplot2 scale object.
 #' @export

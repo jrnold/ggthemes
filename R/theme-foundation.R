@@ -1,4 +1,4 @@
-#' Foundation Theme
+#' Foundation theme
 #'
 #' This theme is designed to be a foundation from which to build new
 #' themes, and not meant to be used directly. `theme_foundation()`

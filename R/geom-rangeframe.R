@@ -1,4 +1,4 @@
-#' Range Frames
+#' Range frames
 #'
 #' Axis lines which extend to the maximum and minimum of the plotted data.
 #'
@@ -10,7 +10,7 @@
 #'
 #' @inheritParams ggplot2::geom_point
 #' @param sides A string that controls which sides of the plot the frames appear on.
-#'   It can be set to a string containing any of `'trbl'`, for top, right,
+#'   It can be set to a string containing any of `"t"`, `"r"`, `"b"`, and `"l"` (for example, `"trbl"`), for top, right,
 #'   bottom, and left. Any other value is an error: a frame cannot be drawn on a
 #'   side that was not named, so a typo would otherwise silently draw nothing.
 #' @return A ggplot2 layer.

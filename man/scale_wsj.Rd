@@ -13,7 +13,7 @@ scale_color_wsj(palette = "colors6", ...)
 scale_fill_wsj(palette = "colors6", ...)
 }
 \arguments{
-\item{palette}{\code{character} The color palette to use. One of
+\item{palette}{A string, the color palette to use. One of
 \code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}.}
 
 \item{...}{

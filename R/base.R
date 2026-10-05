@@ -1,4 +1,4 @@
-#' Theme Base
+#' Base R graphics theme
 #'
 #' Theme similar to the default settings of the "base" R graphics.
 #'

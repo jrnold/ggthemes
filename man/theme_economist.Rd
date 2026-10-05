@@ -24,12 +24,13 @@ theme_economist_white(
 
 \item{base_family}{base font family}
 
-\item{horizontal}{\code{logical} Horizontal axis lines?}
+\item{horizontal}{If \code{TRUE} (the default), draw horizontal grid lines.}
 
-\item{dkpanel}{\code{logical} Darker background for panel region?}
+\item{dkpanel}{If \code{TRUE}, use a darker background for the panel region. The
+default is \code{FALSE}.}
 
-\item{gray_bg}{\code{logical} If \code{TRUE}, use gray background, else
-use white background.}
+\item{gray_bg}{If \code{TRUE} (the default), use a gray background; otherwise,
+use a white background.}
 }
 \value{
 An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.
@@ -38,11 +39,11 @@ An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 A theme that approximates the style of \emph{The Economist}.
 }
 \details{
-\code{theme_economist} implements the standard bluish-gray
+\code{\link[=theme_economist]{theme_economist()}} implements the standard bluish-gray
 background theme in the print \emph{The Economist} and
 \href{https://www.economist.com/}{economist.com}.
 
-\code{theme_economist_white} implements a variant with a white
+\code{\link[=theme_economist_white]{theme_economist_white()}} implements a variant with a white
 panel and light gray (or white) background often used by \emph{The Economist}
 blog \href{https://www.economist.com/topics/graphic-detail}{Graphic Detail}.
 

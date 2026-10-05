@@ -113,7 +113,7 @@ theme_few <- function(base_size = 12, base_family = "") {
 
 #' Shape palette from "Show Me the Numbers" (discrete)
 #'
-#' Shape palette from Stephen Few's, "Show Me the Numbers".
+#' Shape palette from Stephen Few's "Show Me the Numbers".
 #' The shape palette consists of five shapes: circle, square, triangle, plus,
 #' times.
 #'
@@ -125,6 +125,7 @@ theme_few <- function(base_size = 12, base_family = "") {
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
 #' @export
+#' @family shapes few
 #' @example inst/examples/ex-few_shape_pal.R
 few_shape_pal <- function() {
   # Already font-independent before 6.1.0 -- all five shapes have a base pch --
@@ -142,10 +143,11 @@ few_shape_pal <- function() {
 #' @references Few, S. (2012)
 #'   *Show Me the Numbers: Designing Tables and Graphs to Enlighten*,
 #'   Analytics Press, p. 208.
-#' @seealso [scale_shape_few()] for the shape palette that this
+#' @seealso [few_shape_pal()] for the shape palette that this
 #'   scale uses.
 #' @return A ggplot2 scale object.
 #' @export
+#' @family shapes few
 #' @example inst/examples/ex-scale_shape_few.R
 scale_shape_few <- function(...) {
   discrete_scale("shape", palette = few_shape_pal(), ...)

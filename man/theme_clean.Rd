@@ -7,9 +7,9 @@
 theme_clean(base_size = 12, base_family = "sans")
 }
 \arguments{
-\item{base_size}{Base font size.}
+\item{base_size}{base font size, given in pts.}
 
-\item{base_family}{Base font family.}
+\item{base_family}{base font family}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
@@ -32,6 +32,7 @@ Other themes:
 \code{\link[=theme_base]{theme_base()}},
 \code{\link[=theme_foundation]{theme_foundation()}},
 \code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_map]{theme_map()}},
 \code{\link[=theme_par]{theme_par()}},
 \code{\link[=theme_solid]{theme_solid()}}
 }

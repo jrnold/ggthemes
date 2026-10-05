@@ -7,8 +7,9 @@
 economist_pal(fill = TRUE)
 }
 \arguments{
-\item{fill}{Use the fill palette. The fill palette (the default) and the
-line palette choose and order the colors differently.}
+\item{fill}{If \code{TRUE} (the default), use the fill palette; otherwise, use
+the line palette. The two palettes choose and order the colors
+differently.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}

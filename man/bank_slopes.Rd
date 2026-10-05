@@ -2,7 +2,7 @@
 % Please edit documentation in R/banking.R
 \name{bank_slopes}
 \alias{bank_slopes}
-\title{Bank Slopes to 45 degrees}
+\title{Bank slopes to 45 degrees}
 \usage{
 bank_slopes(
   x,
@@ -20,16 +20,23 @@ bank_slopes(
 
 \item{cull}{If \code{TRUE} (the default), drop segments with a slope of 0 or \code{Inf} before banking.}
 
-\item{weight}{No longer used, but kept for backwards compatibility.}
+\item{weight}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} No longer used, but kept
+for backwards compatibility.}
 
-\item{method}{One of 'ms' (Median Absolute Slope), 'as' (Average
-Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
-Average Absolute Orientation).}
+\item{method}{The banking method, one of:
+\itemize{
+\item \code{"ms"}, the default: median absolute slope.
+\item \code{"as"}: average absolute slope.
+\item \code{"ao"}: average absolute orientation.
+\item \code{"was"}: weighted average absolute orientation.
+}}
 
-\item{...}{No longer used, but kept for backwards compatibility.}
+\item{...}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} No longer used, but kept for
+backwards compatibility.}
 }
 \value{
-\code{numeric} The aspect ratio (x , y).
+A number, the aspect ratio \code{y / x}, for use as \code{ratio} in
+\code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}}.
 }
 \description{
 Calculate the optimal aspect ratio of a line graph by banking the
@@ -38,14 +45,12 @@ maximizes the ability to visually differentiate differences in
 slope. This function will calculate the optimal aspect ratio for
 a line plot using any of the methods described in Heer and Agrawala
 (2006). In their review of the methods they suggest using median
-absolute slope banking ('ms'), which produces aspect ratios which
+absolute slope banking (\code{"ms"}), which produces aspect ratios which
 are generally the median of the various methods provided here.
 }
 \section{Methods}{
-
-
 As written, all of these methods calculate the aspect ratio (x
-/y), but \code{bank_slopes} will return (y / x) to be compatible
+/y), but \code{\link[=bank_slopes]{bank_slopes()}} will return (y / x) to be compatible
 with \code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}}.
 
 \strong{Median Absolute Slopes Banking}

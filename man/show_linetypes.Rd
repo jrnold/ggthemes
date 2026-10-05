@@ -10,11 +10,12 @@ show_linetypes(linetypes, labels = TRUE)
 \item{linetypes}{A character vector of linetypes. See
 \code{\link[graphics:par]{graphics::par()}}.}
 
-\item{labels}{Label each line with its linetype (lty) value.}
+\item{labels}{If \code{TRUE} (the default), label each line with its linetype
+(\code{lty}) value.}
 }
 \value{
-This function called for the side effect of creating a plot.
-It returns \code{linetypes}.
+Called for its side effect of creating a plot; returns \code{linetypes}
+invisibly.
 }
 \description{
 A quick and dirty way to show linetypes.
@@ -26,5 +27,5 @@ show_linetypes(linetype_pal()(3))
 show_linetypes(linetype_pal()(3), labels = TRUE)
 }
 \seealso{
-\code{\link[scales:show_col]{scales::show_col()}}, \code{\link[=show_linetypes]{show_linetypes()}}
+\code{\link[scales:show_col]{scales::show_col()}}, \code{\link[=show_shapes]{show_shapes()}}
 }

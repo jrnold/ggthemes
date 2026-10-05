@@ -7,7 +7,7 @@
 hc_pal(palette = "default")
 }
 \arguments{
-\item{palette}{\code{character} The name of the Highcharts palette to use.
+\item{palette}{A string, the name of the Highcharts palette to use.
 One of \code{"default"}, \code{"default_dark"}, \code{"classic"}, \code{"darkunica"}, \code{"grid_light"}, \code{"sand_signika"}, \code{"high_contrast_light"}, \code{"high_contrast_dark"}, \code{"avocado"}, \code{"sunset"}.}
 }
 \value{

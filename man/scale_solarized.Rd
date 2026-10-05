@@ -13,7 +13,7 @@ scale_colour_solarized(accent = "blue", ...)
 scale_color_solarized(accent = "blue", ...)
 }
 \arguments{
-\item{accent}{\code{character} Starting color.}
+\item{accent}{A string, the name of the starting color.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}

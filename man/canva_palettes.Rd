@@ -5,7 +5,7 @@
 \alias{canva_palettes}
 \title{150 color palettes from Canva}
 \format{
-A named \code{list} of character vector.
+A named \code{list} of character vectors.
 The names are the palette names. The values of the character vectors
 are hex colors, e.g. \code{"#f98866"}.
 }

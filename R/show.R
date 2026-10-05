@@ -5,10 +5,11 @@
 #' @export
 #' @param shapes A numeric or character vector of shapes. See
 #'   [graphics::par()].
-#' @param labels Include the plotting character value of the symbol.
+#' @param labels If `TRUE` (the default), label each symbol with its plotting
+#'   character value.
 #' @seealso [scales::show_col()], [show_linetypes()]
-#' @return This function called for the side effect of creating a plot.
-#'   It returns `shapes`.
+#' @return Called for its side effect of creating a plot; returns `shapes`
+#'   invisibly.
 #' @example inst/examples/ex-show_shapes.R
 show_shapes <- function(shapes, labels = TRUE) {
   n <- length(shapes)
@@ -36,13 +37,14 @@ show_shapes <- function(shapes, labels = TRUE) {
 #' @export
 #' @param linetypes A character vector of linetypes. See
 #' [graphics::par()].
-#' @param labels Label each line with its linetype (lty) value.
+#' @param labels If `TRUE` (the default), label each line with its linetype
+#'   (`lty`) value.
 #'
-#' @seealso [scales::show_col()], [show_linetypes()]
+#' @seealso [scales::show_col()], [show_shapes()]
 #'
 #' @example inst/examples/ex-show_linetypes.R
-#' @return This function called for the side effect of creating a plot.
-#'   It returns `linetypes`.
+#' @return Called for its side effect of creating a plot; returns `linetypes`
+#'   invisibly.
 #' @importFrom graphics plot
 show_linetypes <- function(linetypes, labels = TRUE) {
   n <- length(linetypes)

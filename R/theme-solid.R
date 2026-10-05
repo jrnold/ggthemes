@@ -1,11 +1,11 @@
 #' Theme with nothing other than a background color
 #'
-#' Theme that removes all non-geom elements (lines, text, etc),
-#' This theme is when only the geometric objects are desired.
+#' Theme that removes all non-geom elements (lines, text, etc.). Use it when
+#' only the geometric objects are desired. The `base_family` argument is
+#' ignored; it is kept for consistency with [ggplot2::theme_grey()].
 #'
-#' @param base_size Base font size.
-#' @param base_family Ignored, kept for consistency with [ggplot2::theme()].
-#' @param fill Background color of the plot.
+#' @inheritParams ggplot2::theme_grey
+#' @param fill The background color of the plot.
 #' @family themes
 #' @example inst/examples/ex-theme_solid.R
 #' @return A ggplot2 theme object (class `theme`).

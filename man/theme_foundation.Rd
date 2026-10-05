@@ -2,7 +2,7 @@
 % Please edit documentation in R/theme-foundation.R
 \name{theme_foundation}
 \alias{theme_foundation}
-\title{Foundation Theme}
+\title{Foundation theme}
 \usage{
 theme_foundation(
   base_size = 12,
@@ -68,6 +68,7 @@ Other themes:
 \code{\link[=theme_base]{theme_base()}},
 \code{\link[=theme_clean]{theme_clean()}},
 \code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_map]{theme_map()}},
 \code{\link[=theme_par]{theme_par()}},
 \code{\link[=theme_solid]{theme_solid()}}
 }

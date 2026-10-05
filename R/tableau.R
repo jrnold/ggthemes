@@ -36,10 +36,14 @@ tableau_resolve_palette <- function(palette) {
 #' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
-#' @param palette Palette name. See Details for available palettes.
-#' @param type Type of palette. One of `"regular"`, `"ordered-diverging"`, or `"ordered-sequential"`.
-#' @param direction If 1, the default, then use the original order of
-#'   colors. If -1, then reverse the order.
+#' @param palette A string, the palette name. See Details for available
+#'   palettes.
+#' @param type The type of palette, one of:
+#'   * `"regular"`, the default: discrete, qualitative palettes.
+#'   * `"ordered-sequential"`: sequential palettes.
+#'   * `"ordered-diverging"`: diverging palettes.
+#' @param direction If `1` (the default), use the original order of
+#'   colors. If `-1`, reverse the order.
 #'
 #' @references
 #' <http://vis.stanford.edu/color-names/analyzer/>
@@ -98,8 +102,6 @@ tableau_colour_pal <- tableau_color_pal
 #'
 #' @param palette Palette name. See [tableau_color_pal()]
 #'   for available palettes.
-#' @param type Palette type. One of `"regular"`, `"ordered-sequential"`,
-#'   or `"ordered-diverging"`. See [tableau_color_pal()].
 #' @inheritParams tableau_color_pal
 #' @param ... Other arguments passed on to [ggplot2::discrete_scale()].
 #' @family color tableau
@@ -184,15 +186,16 @@ scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
 # nolint start
 #' Tableau color gradient palettes (continuous)
 #'
-#' Gradient color palettes using the diverging and sequential continous color
+#' Gradient color palettes using the diverging and sequential continuous color
 #' palettes in Tableau. See [tableau_color_pal()] for discrete color
 #' palettes.
 #'
 #' @param palette Palette name. For each `type`:
 #'   - `"ordered-sequential"`: `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))`.
 #'   - `"ordered-diverging"`: `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))`.
-#' @param type Palette type, either `"ordered-sequential"` or
-#'   `"ordered-diverging"`.
+#' @param type The type of palette, one of:
+#'   * `"ordered-sequential"`, the default: sequential palettes.
+#'   * `"ordered-diverging"`: diverging palettes.
 #' @param ... Arguments passed to `tableau_gradient_pal`.
 #' @family color tableau
 #'
@@ -237,8 +240,8 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
 #' @export
 #' @inheritParams tableau_seq_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
-#' @param guide Type of legend. Use `'colourbar'` for continuous
-#'   color bar, or `'legend'` for discrete color legend.
+#' @param guide Type of legend. Use `"colourbar"` for a continuous
+#'   color bar, or `"legend"` for a discrete color legend.
 #' @family color tableau
 #' @rdname scale_colour_gradient_tableau
 #' @example inst/examples/ex-scale_colour_gradient_tableau.R
@@ -287,10 +290,9 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #'
 #' @inheritParams tableau_div_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
+#' @inheritParams scale_colour_gradient_tableau
 #' @param midpoint The data value that corresponds to the middle color of the
 #'   diverging palette.
-#' @param guide Type of legend. Use `'colourbar'` for continuous
-#'   color bar, or `'legend'` for discrete color legend.
 #' @family color tableau
 #' @return A ggplot2 scale object.
 #' @export
