@@ -42,6 +42,11 @@ scale_colour_colourblind <- function(black = TRUE, ...) {
 }
 
 #' @rdname colorblind
+#' @description
+#' `r lifecycle::badge("deprecated")` `scale_colour_colorblind()` mixes British
+#' and American spelling; use `scale_colour_colourblind()` or
+#' `scale_color_colorblind()` instead.
+#'
 #' @export
 #' @importFrom lifecycle deprecate_soft
 scale_colour_colorblind <- function(black = TRUE, ...) {
@@ -54,18 +59,11 @@ scale_colour_colorblind <- function(black = TRUE, ...) {
 scale_color_colorblind <- scale_colour_colourblind
 
 #' @rdname colorblind
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' @export
-#' @importFrom lifecycle deprecate_soft
-scale_fill_colorblind <- function(black = TRUE, ...) {
-  deprecate_soft("5.2.0", "scale_fill_colorblind()", "scale_fill_colourblind()")
-  scale_fill_colourblind(black = black, ...)
-}
-
-#' @rdname colorblind
 #' @export
 scale_fill_colourblind <- function(black = TRUE, ...) {
   discrete_scale("fill", palette = colorblind_pal(black = black), ...)
 }
+
+#' @rdname colorblind
+#' @export
+scale_fill_colorblind <- scale_fill_colourblind

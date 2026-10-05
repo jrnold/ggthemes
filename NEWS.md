@@ -3,11 +3,10 @@
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so
   every exported `color` function now also has a `colour` spelling.
 
-- Deprecation warnings for the colorblind scales now name the right function
-  and its replacement. `scale_colour_colorblind()` warned that
-  `scale_color_colorblind()` was deprecated; it now points to
-  `scale_colour_colourblind()`. `scale_fill_colorblind()` now points to
-  `scale_fill_colourblind()`, which no longer raises the same warning itself.
+- `scale_fill_colorblind()` and `scale_fill_colourblind()` are no longer
+  deprecated. Only `scale_colour_colorblind()`, which mixes spellings, remains
+  deprecated, and its warning now points to `scale_colour_colourblind()`
+  instead of wrongly naming `scale_color_colorblind()` as deprecated.
 
 - Documentation is now written in roxygen markdown. This fixes deprecation
   badges that showed as raw `` `r lifecycle::badge()` `` text in

@@ -6,8 +6,8 @@
 \alias{scale_colour_colourblind}
 \alias{scale_colour_colorblind}
 \alias{scale_color_colorblind}
-\alias{scale_fill_colorblind}
 \alias{scale_fill_colourblind}
+\alias{scale_fill_colorblind}
 \title{Colorblind color palette (discrete) and scales}
 \usage{
 colorblind_pal(black = TRUE)
@@ -20,9 +20,9 @@ scale_colour_colorblind(black = TRUE, ...)
 
 scale_color_colorblind(black = TRUE, ...)
 
-scale_fill_colorblind(black = TRUE, ...)
-
 scale_fill_colourblind(black = TRUE, ...)
+
+scale_fill_colorblind(black = TRUE, ...)
 }
 \arguments{
 \item{black}{If \code{FALSE}, drop black from the palette. Black is often
@@ -95,7 +95,9 @@ return a ggplot2 scale object.
 \description{
 An eight-color colorblind safe qualitative discrete palette.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{scale_colour_colorblind()} mixes British
+and American spelling; use \code{scale_colour_colourblind()} or
+\code{scale_color_colorblind()} instead.
 }
 \examples{
 library("ggplot2")
