@@ -7,7 +7,7 @@
 bank_slopes(
   x,
   y,
-  cull = FALSE,
+  cull = TRUE,
   weight = NULL,
   method = c("ms", "as", "ao", "was"),
   ...
@@ -18,7 +18,7 @@ bank_slopes(
 
 \item{y}{A numeric vector of y values.}
 
-\item{cull}{\code{logical}. Remove all slopes of 0 or \code{Inf}.}
+\item{cull}{If \code{TRUE} (the default), drop segments with a slope of 0 or \code{Inf} before banking.}
 
 \item{weight}{No longer used, but kept for backwards compatibility.}
 

@@ -19,6 +19,12 @@
     `scale_*_economist_c()` and `scale_*_economist_ordinal()` scales, new in
     7.0.0, are unchanged (#266).
 
+- `bank_slopes()` and `bank_plot()` now default to `cull = TRUE`, matching
+  `bank_slopes_multiscale()` and `bank_plot_multiscale()`, so segments with a
+  slope of 0 or `Inf` no longer count toward the aspect ratio. Results change
+  for data that has such segments; use `cull = FALSE` for the previous ones
+  (#274).
+
 ## New features
 
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so
@@ -35,6 +41,10 @@
   `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"` and
   `"Classic Area-Brown"` now come from lifecycle, so they name the release
   that deprecated them (#273).
+
+- `bank_plot()` and `bank_plot_multiscale()` now report a `plot` that is not a
+  ggplot object, and a `layer` that is not a whole number within range, with
+  errors that name the argument (#274).
 
 - `economist_pal(n = 0)` no longer fails with "object 'i' not found"; it now
   returns `character(0)` (#266).

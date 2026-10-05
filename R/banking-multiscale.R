@@ -302,12 +302,10 @@ bank_slopes_multiscale <- function(
 #' @export
 #' @example inst/examples/ex-bank_plot_multiscale.R
 bank_plot_multiscale <- function(plot, method = c("ms", "as", "ao", "was"), cull = TRUE, layer = 1, ...) {
-  stopifnot(ggplot2::is_ggplot(plot))
+  check_ggplot(plot)
   method <- rlang::arg_match(method)
   built <- ggplot2::ggplot_build(plot)
-  if (layer < 1 || layer > length(built$data)) {
-    cli::cli_abort("{.arg plot} only has {length(built$data)} layer(s), but {.arg layer} = {layer}.")
-  }
+  check_layer(layer, length(built$data))
   data <- built$data[[layer]]
   check_bank_plot_data(data, fn = "bank_plot_multiscale")
   data <- check_multiscale_series(data)
