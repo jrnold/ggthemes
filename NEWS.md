@@ -1,52 +1,68 @@
 # ggthemes (development version)
 
+## Breaking changes
+
+- `theme_economist()`, `theme_economist_white()`, `economist_pal()`,
+  `scale_colour_economist()` and `scale_fill_economist()` draw the classic
+  Economist style again, as they did before 7.0.0, so code written for them
+  looks as it always did. 7.0.0 had replaced that style with the paper's 2017
+  design, so plots made with these functions changed when you updated. In
+  detail:
+
+  - `theme_economist_white()`, the `dkpanel` argument of `theme_economist()`
+    and the `fill` argument of `economist_pal()` work again, without the
+    deprecation warnings 7.0.0 added.
+  - `ggthemes_data$economist` has its classic `fg` and `bg` tables back, and
+    the `main` and `text` tables added in 7.0.0 are removed, so code that
+    reads those two tables must change.
+  - `economist_seq_pal()`, `economist_gradient_pal()` and the
+    `scale_*_economist_c()` and `scale_*_economist_ordinal()` scales, new in
+    7.0.0, are unchanged (#266).
+
+## New features
+
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so
-  every exported `color` function now also has a `colour` spelling.
+  every exported `color` function now also has a `colour` spelling (#269).
+
+- New "Package data" article on the package website draws every color, shape
+  and linetype in `ggthemes_data`, each labeled with the expression that
+  returns it, and the `ggthemes_data` help page gains examples of reading it
+  (#265).
+
+## Minor improvements and fixes
+
+- `economist_pal(n = 0)` no longer fails with "object 'i' not found"; it now
+  returns `character(0)` (#266).
+
+- `few_pal()`'s `palette` argument now lists its options in the help page, and
+  the deprecation badges in `?circlefill_shape_pal`, `?colorblind` and
+  `?scale_shape_circlefill` now render instead of showing raw
+  `` `r lifecycle::badge()` `` text (#268).
 
 - `scale_fill_colorblind()` and `scale_fill_colourblind()` are no longer
   deprecated. Only `scale_colour_colorblind()`, which mixes spellings, remains
   deprecated, and its warning now points to `scale_colour_colourblind()`
-  instead of wrongly naming `scale_color_colorblind()` as deprecated.
+  instead of wrongly naming `scale_color_colorblind()` as deprecated (#269).
 
-- Documentation is now written in roxygen markdown. This fixes deprecation
-  badges that showed as raw `` `r lifecycle::badge()` `` text in
-  `?circlefill_shape_pal`, `?colorblind` and `?scale_shape_circlefill`, and
-  `few_pal()`'s `palette` argument now lists its options, which were missing.
-
-- Fix `scale_linetype_stata()` and `stata_linetype_pal()` failing with
+- `scale_linetype_stata()` and `stata_linetype_pal()` no longer fail with
   "invalid line type" on plots with 11 or more linetypes. The eleventh,
   Stata's longdash_shortdash, was stored as `"F434343"`, which is not a valid
-  R linetype; it is now `"F434"`.
+  R linetype; it is now `"F434"` (#263).
 
 - The Tableau "Arrows" and "Thin Arrows" shape palettes in
-  `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters, so
-  they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
+  `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters,
+  so they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
   U+27A1) and "Thin Arrows" line arrows (U+2190 to U+2199) in the same eight
   directions. Three other Tableau shapes now carry the variation selector their
   `unicode` field records: the kpi check mark and multiplication sign gain the
-  text-style selector, and the weather snowman loses a stray one.
+  text-style selector, and the weather snowman loses a stray one (#264).
 
-- New "Package data" article on the package website draws every color,
-  shape and linetype in `ggthemes_data`, each labeled with the expression that
-  returns it, and the `ggthemes_data` help page gains examples of reading it.
+- `theme_economist()` now gives the panel and strips the blue-gray fill the
+  theme intends. It asked for a color the data never defined, so their fill was
+  `NA` and the plot background showed through (#266).
 
-- BREAKING CHANGE: `theme_economist()`, `theme_economist_white()`,
-  `economist_pal()`, `scale_colour_economist()` and `scale_fill_economist()`
-  draw the classic Economist style again, as they did before 7.0.0, so code
-  written for them looks as it always did. 7.0.0 had replaced that style with
-  the paper's 2017 design. `theme_economist_white()`, the `dkpanel` argument
-  of `theme_economist()` and the `fill` argument of `economist_pal()` work
-  again, without the deprecation warnings 7.0.0 added. `ggthemes_data$economist` has its classic `fg` and
-  `bg` tables back; the `main` and `text` tables added in 7.0.0 are removed.
-  `economist_seq_pal()`, `economist_gradient_pal()` and the
-  `scale_*_economist_c()` and `scale_*_economist_ordinal()` scales, new in
-  7.0.0, are unchanged.
-- Fix `economist_pal()` failing with "object 'i' not found" for `n = 0`; it
-  now returns `character(0)`.
-- `theme_economist()` fills the panel and strips with its blue-gray ground.
-  It asked for a color the data never defined, so their fill was `NA`; the
-  plot background showing through drew the same color. It also now leaves a
-  margin between the title and subtitle, which ran together.
+- `theme_economist()` now leaves a margin between the title and subtitle, which
+  ran together (#266).
 
 # ggthemes 7.0.0
 
