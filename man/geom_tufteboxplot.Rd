@@ -66,7 +66,7 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \link[ggplot2:layer_positions]{layer position} documentation.
 }}
 
-\item{outlier.colour}{colour for outlying points}
+\item{outlier.colour}{color for outlying points}
 
 \item{outlier.shape}{shape of outlying points}
 

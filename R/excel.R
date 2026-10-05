@@ -6,9 +6,9 @@
 #'
 #' @param line If \code{TRUE}, use the palette for lines and points. Otherwise,
 #'    use the palette for area.
-#' @family colour excel
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color excel
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-excel_pal.R
 excel_pal <- function(line = TRUE) {
@@ -49,10 +49,10 @@ excel_resolve_theme <- function(theme) {
 #'   (not to be confused with ggplot2 themes) from which to derive the color
 #'   palette. Available themes include:
 #'   \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}
-#' @family colour excel
+#' @family color excel
 #' @example inst/examples/ex-excel_new_pal.R
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 excel_new_pal <- function(theme = "Office") {
   allthemes <- ggthemes::ggthemes_data$excel$themes
@@ -72,7 +72,7 @@ excel_new_pal <- function(theme = "Office") {
 #'
 #' @inheritParams excel_pal
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour excel
+#' @family color excel
 #' @rdname scale_excel
 #' @return A ggplot2 scale object.
 #' @export
@@ -97,7 +97,7 @@ scale_color_excel <- scale_colour_excel
 #'
 #' @inheritParams excel_new_pal
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour excel
+#' @family color excel
 #' @rdname scale_excel_new
 #' @example inst/examples/ex-theme_excel_new.R
 #' @return A ggplot2 scale object.
@@ -161,9 +161,9 @@ theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
 #' Theme for ggplot2 that is similar to the default style of charts in
 #' current versions of Microsoft Excel.
 #'
-#' @details Excel derives its chart greys from the theme's \code{tx1} colour
+#' @details Excel derives its chart grays from the theme's \code{tx1} color
 #' by luminance transform rather than hardcoding them. Since \code{tx1} is
-#' black in every built-in Office theme, these greys---\code{"#D9D9D9"}
+#' black in every built-in Office theme, these grays---\code{"#D9D9D9"}
 #' gridlines, \code{"#BFBFBF"} axis lines, \code{"#595959"} text---are the
 #' same whichever theme \funclink{scale_colour_excel_new} is set to.
 #'

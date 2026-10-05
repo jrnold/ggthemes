@@ -35,7 +35,7 @@ This theme takes \code{\link[ggplot2]{theme_gray}()} and sets all
 \code{colour} and \code{fill} values to \code{NULL}, except for the top-level
 elements (\code{line}, \code{rect}, and \code{title}), which have
 \code{colour = ink}, and \code{fill = paper}. This leaves the spacing
-and-non colour defaults of the default \pkg{ggplot2} themes in place.
+and non-color defaults of the default \pkg{ggplot2} themes in place.
 
 Unlike \code{theme_foundation()}, the other themes in this package (e.g.
 \code{\link{theme_economist}()}, \code{\link{theme_excel}()},

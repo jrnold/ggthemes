@@ -15,10 +15,10 @@ economist_gradient_pal(hue = "blue")
 \code{"gold"}, \code{"gray"}, or \code{"red"}.}
 }
 \value{
-\code{economist_seq_pal()} returns a palette function that takes the number of colours \code{n} and
-  returns the first \code{n} of the six hex colours for \code{hue}, for use with
+\code{economist_seq_pal()} returns a palette function that takes the number of colors \code{n} and
+  returns the first \code{n} of the six hex colors for \code{hue}, for use with
   \code{\link[ggplot2]{discrete_scale}()}. \code{economist_gradient_pal()} returns a palette function that
-  takes a numeric vector \code{x} of values between 0 and 1 and returns hex colours interpolated between
+  takes a numeric vector \code{x} of values between 0 and 1 and returns hex colors interpolated between
   those steps, for use with \code{\link[ggplot2]{continuous_scale}()}.
 }
 \description{
@@ -44,9 +44,9 @@ show_col(economist_seq_pal("red")(6))
 show_col(economist_gradient_pal("green")(seq(0, 1, length.out = 10)))
 }
 \seealso{
-Other colour economist:
+Other color economist:
 \code{\link[=economist_pal]{economist_pal()}},
 \code{\link[=scale_colour_economist]{scale_colour_economist()}},
 \code{\link[=scale_colour_economist_c]{scale_colour_economist_c()}}
 }
-\concept{colour economist}
+\concept{color economist}

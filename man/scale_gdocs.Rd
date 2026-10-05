@@ -87,7 +87,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
 \seealso{
 See \code{\link{theme_gdocs}()} for examples.
 
-Other colour gdocs:
+Other color gdocs:
 \code{\link[=gdocs_pal]{gdocs_pal()}}
 }
-\concept{colour gdocs}
+\concept{color gdocs}

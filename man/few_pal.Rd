@@ -10,8 +10,8 @@ few_pal(palette = "Medium")
 \item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}}
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 Qualitative color palettes from Stephen Few (2012)
@@ -41,7 +41,7 @@ Few, S. (2012) \emph{Show Me the Numbers: Designing Tables and Graphs to Enlight
 \href{https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
 }
 \seealso{
-Other colour few:
+Other color few:
 \code{\link[=scale_colour_few]{scale_colour_few()}}
 }
-\concept{colour few}
+\concept{color few}

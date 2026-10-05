@@ -87,7 +87,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
 \seealso{
 \code{\link{theme_fivethirtyeight}()} for examples.
 
-Other colour fivethirtyeight:
+Other color fivethirtyeight:
 \code{\link[=fivethirtyeight_pal]{fivethirtyeight_pal()}}
 }
-\concept{colour fivethirtyeight}
+\concept{color fivethirtyeight}

@@ -1,7 +1,7 @@
 #' @title Clean ggplot theme
 #'
 #' @description Clean ggplot theme with no panel background, black axis lines
-#'   and grey fill colour for chart elements.
+#'   and gray fill color for chart elements.
 #'
 #' @author Konrad Zdeb \email{name.surname@@me.com}
 #'

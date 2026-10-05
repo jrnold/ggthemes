@@ -7,17 +7,17 @@
 ptol_pal()
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
 \code{ptol_pal()} was deprecated in ggthemes 7.0.0. Use the
 \href{https://CRAN.R-project.org/package=khroma}{khroma} package instead, which
-tracks Paul Tol's colour schemes as he revises them.
+tracks Paul Tol's color schemes as he revises them.
 
-This palette is the 12-colour qualitative scheme from Tol's 2012 technical
+This palette is the 12-color qualitative scheme from Tol's 2012 technical
 note, and has not followed the revisions he has made since. His current
 schemes are at \url{https://sronpersonalpages.nl/~pault/}; the closest successor
 to this palette is \code{khroma::colour("muted")}.
@@ -41,7 +41,7 @@ Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
 \url{https://sronpersonalpages.nl/~pault/data/colourschemes.pdf}
 }
 \seealso{
-Other colour ptol:
+Other color ptol:
 \code{\link[=scale_colour_ptol]{scale_colour_ptol()}}
 }
-\concept{colour ptol}
+\concept{color ptol}

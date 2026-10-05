@@ -11,8 +11,8 @@ hc_pal(palette = "default")
 One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.}
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 Highcharts uses many different color palettes in its plots. This collects
@@ -34,7 +34,7 @@ hc_pal()(6)
 scales::show_col(hc_pal("darkunica")(4))
 }
 \seealso{
-Other colour hc:
+Other color hc:
 \code{\link[=scale_colour_hc]{scale_colour_hc()}}
 }
-\concept{colour hc}
+\concept{color hc}

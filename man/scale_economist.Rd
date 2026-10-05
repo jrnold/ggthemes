@@ -87,9 +87,9 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
 \seealso{
 \code{\link{theme_economist}()} for examples.
 
-Other colour economist:
+Other color economist:
 \code{\link[=economist_pal]{economist_pal()}},
 \code{\link[=economist_seq_pal]{economist_seq_pal()}},
 \code{\link[=scale_colour_economist_c]{scale_colour_economist_c()}}
 }
-\concept{colour economist}
+\concept{color economist}

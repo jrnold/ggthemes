@@ -37,7 +37,7 @@
 #'
 #' @seealso \code{\link[ggplot2]{geom_boxplot}()}
 #' @inheritParams ggplot2::geom_point
-#' @param outlier.colour colour for outlying points
+#' @param outlier.colour color for outlying points
 #' @param outlier.shape shape of outlying points
 #' @param outlier.size size of outlying points
 #' @param outlier.stroke stroke for outlying points

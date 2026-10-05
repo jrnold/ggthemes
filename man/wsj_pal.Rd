@@ -11,8 +11,8 @@ wsj_pal(palette = "colors6")
 \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}}
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 The Wall Street Journal uses many different color palettes in its
@@ -42,7 +42,7 @@ wsj_pal()(6)
 scales::show_col(wsj_pal("rgby")(4))
 }
 \seealso{
-Other colour wsj:
+Other color wsj:
 \code{\link[=scale_colour_wsj]{scale_colour_wsj()}}
 }
-\concept{colour wsj}
+\concept{color wsj}

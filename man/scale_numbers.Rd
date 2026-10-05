@@ -97,7 +97,7 @@ for (palette in head(names(ggthemes_data[["numbers"]]), 3L)) {
 \seealso{
 See \code{\link{theme_numbers}()} for examples.
 
-Other colour numbers:
+Other color numbers:
 \code{\link[=numbers_pal]{numbers_pal()}}
 }
-\concept{colour numbers}
+\concept{color numbers}

@@ -20,11 +20,11 @@
 #'
 #' \href{https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf}{"Practical Rules for Using Color in Charts"}.
 #'
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @param palette One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}
-#' @family colour few
+#' @family color few
 #' @example inst/examples/ex-few_pal.R
 # nolint end
 few_pal <- function(palette = "Medium") {
@@ -58,7 +58,7 @@ few_pal <- function(palette = "Medium") {
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams few_pal
-#' @family colour few
+#' @family color few
 #' @rdname scale_few
 #' @return A ggplot2 scale object.
 #' @export

@@ -6,7 +6,7 @@
 \alias{scale_color_gradient_tableau}
 \alias{scale_color_continuous_tableau}
 \alias{scale_fill_continuous_tableau}
-\title{Tableau sequential colour scales (continuous)}
+\title{Tableau sequential color scales (continuous)}
 \usage{
 scale_colour_gradient_tableau(
   palette = "Blue",
@@ -55,7 +55,7 @@ scale_fill_continuous_tableau(
 \item{na.value}{Colour to use for missing values}
 
 \item{guide}{Type of legend. Use \code{'colourbar'} for continuous
-colour bar, or \code{'legend'} for discrete colour legend.}
+color bar, or \code{'legend'} for discrete color legend.}
 }
 \value{
 A ggplot2 scale object.
@@ -87,10 +87,10 @@ for (palette in head(names(palettes))) {
 }
 }
 \seealso{
-Other colour tableau:
+Other color tableau:
 \code{\link[=scale_colour_gradient2_tableau]{scale_colour_gradient2_tableau()}},
 \code{\link[=scale_colour_tableau]{scale_colour_tableau()}},
 \code{\link[=tableau_color_pal]{tableau_color_pal()}},
 \code{\link[=tableau_gradient_pal]{tableau_gradient_pal()}}
 }
-\concept{colour tableau}
+\concept{color tableau}

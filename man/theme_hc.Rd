@@ -30,7 +30,7 @@ Themes based on \href{https://www.highcharts.com/}{Highcharts} plots.
 \details{
 Only the Highcharts themes that restyle the chart itself get a \code{style}
 here. The \code{"high-contrast"}, \code{"avocado"} and \code{"sunset"}
-themes shipped with Highcharts 13 change nothing but the series colours, so
+themes shipped with Highcharts 13 change nothing but the series colors, so
 they are available through \code{\link{hc_pal}()} alone; combine them with
 \code{theme_hc("default")} or \code{theme_hc("default_dark")}.
 

@@ -7,9 +7,9 @@
 #'
 #' @param fill Use the fill palette. The fill palette (the default) and the
 #'   line palette choose and order the colors differently.
-#' @family colour economist
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color economist
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-economist_pal.R
 economist_pal <- function(fill = TRUE) {
@@ -113,7 +113,7 @@ economist_pal <- function(fill = TRUE) {
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams economist_pal
-#' @family colour economist
+#' @family color economist
 #' @rdname scale_economist
 #' @seealso \code{\link{theme_economist}()} for examples.
 #' @return A ggplot2 scale object.
@@ -148,12 +148,12 @@ scale_fill_economist <- function(...) {
 #' @param hue \code{character}. One of \code{"blue"}, \code{"cyan"},
 #'   \code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
 #'   \code{"gold"}, \code{"gray"}, or \code{"red"}.
-#' @family colour economist
+#' @family color economist
 #' @rdname economist_seq_pal
-#' @return \code{economist_seq_pal()} returns a palette function that takes the number of colours \code{n} and
-#'   returns the first \code{n} of the six hex colours for \code{hue}, for use with
+#' @return \code{economist_seq_pal()} returns a palette function that takes the number of colors \code{n} and
+#'   returns the first \code{n} of the six hex colors for \code{hue}, for use with
 #'   \code{\link[ggplot2]{discrete_scale}()}. \code{economist_gradient_pal()} returns a palette function that
-#'   takes a numeric vector \code{x} of values between 0 and 1 and returns hex colours interpolated between
+#'   takes a numeric vector \code{x} of values between 0 and 1 and returns hex colors interpolated between
 #'   those steps, for use with \code{\link[ggplot2]{continuous_scale}()}.
 #' @export
 #' @example inst/examples/ex-economist_seq_pal.R
@@ -198,7 +198,7 @@ economist_scale_colors <- function(hue) {
 #' @param guide Type of legend. Use \code{"colourbar"} for continuous
 #'   color bars, or \code{"legend"} for discrete color legends.
 #' @param ... Other arguments passed on to the underlying scale.
-#' @family colour economist
+#' @family color economist
 #' @rdname scale_economist_seq
 #' @return A ggplot2 scale object.
 #' @export

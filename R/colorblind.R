@@ -12,11 +12,11 @@
 #' \verb{https://jfly.iam.u-tokyo.ac.jp/color}
 #'
 #' @return \code{colorblind_pal()} and \code{colourblind_pal()} return a palette function that takes the number of
-#'   colours \code{n} and returns a character vector of \code{n} hex colours. The \code{scale_*()} functions
+#'   colors \code{n} and returns a character vector of \code{n} hex colors. The \code{scale_*()} functions
 #'   return a ggplot2 scale object.
 #' @export
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour colorblind
+#' @family color colorblind
 #' @seealso The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}()},
 #'   and \code{\link{scale_color_tableau}()} for other colorblind palettes.
 #' @example inst/examples/ex-colorblind.R

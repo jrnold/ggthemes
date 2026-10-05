@@ -4,7 +4,7 @@
 \alias{tableau_gradient_pal}
 \alias{tableau_seq_gradient_pal}
 \alias{tableau_div_gradient_pal}
-\title{Tableau colour gradient palettes (continuous)}
+\title{Tableau color gradient palettes (continuous)}
 \usage{
 tableau_gradient_pal(palette = "Blue", type = "ordered-sequential")
 
@@ -26,7 +26,7 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 }
 \value{
 A palette function. It takes a numeric vector \code{x} of values between 0 and 1 and returns a character
-  vector of hex colours interpolated along the palette, for use as the \code{palette} argument of
+  vector of hex colors interpolated along the palette, for use as the \code{palette} argument of
   \code{\link[ggplot2]{continuous_scale}()}.
 }
 \description{
@@ -48,10 +48,10 @@ for (palname in names(palettes)) {
 }
 }
 \seealso{
-Other colour tableau:
+Other color tableau:
 \code{\link[=scale_colour_gradient2_tableau]{scale_colour_gradient2_tableau()}},
 \code{\link[=scale_colour_gradient_tableau]{scale_colour_gradient_tableau()}},
 \code{\link[=scale_colour_tableau]{scale_colour_tableau()}},
 \code{\link[=tableau_color_pal]{tableau_color_pal()}}
 }
-\concept{colour tableau}
+\concept{color tableau}

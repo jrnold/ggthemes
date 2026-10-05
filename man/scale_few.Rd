@@ -87,7 +87,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   scale_colour_few("Dark")
 }
 \seealso{
-Other colour few:
+Other color few:
 \code{\link[=few_pal]{few_pal()}}
 }
-\concept{colour few}
+\concept{color few}

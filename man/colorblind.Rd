@@ -89,7 +89,7 @@ notation.
 }
 \value{
 \code{colorblind_pal()} and \code{colourblind_pal()} return a palette function that takes the number of
-  colours \code{n} and returns a character vector of \code{n} hex colours. The \code{scale_*()} functions
+  colors \code{n} and returns a character vector of \code{n} hex colors. The \code{scale_*()} functions
   return a ggplot2 scale object.
 }
 \description{
@@ -121,4 +121,4 @@ Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind
 The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}()},
   and \code{\link{scale_color_tableau}()} for other colorblind palettes.
 }
-\concept{colour colorblind}
+\concept{color colorblind}

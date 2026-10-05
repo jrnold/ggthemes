@@ -55,10 +55,10 @@ stata_default_scheme <- function(scheme, what) {
 #' and a deprecation message is issued; this default becomes \code{"stcolor"}
 #' in ggthemes 8.0.0.
 #'
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
-#' @family colour stata
+#' @family color stata
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme = NULL) {
   scheme <- stata_default_scheme(scheme, "stata_pal()")
@@ -78,7 +78,7 @@ stata_pal <- function(scheme = NULL) {
 #'
 #' @inheritParams stata_pal
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour stata
+#' @family color stata
 #' @rdname scale_stata
 #' @return A ggplot2 scale object.
 #' @export

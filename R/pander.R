@@ -260,10 +260,10 @@ theme_pander <- function(
 #' @param n number of colors. This palette supports up to eight colors.
 #' @param random_order if the palette should be reordered randomly before
 #'  rendering each plot to get colorful images
-#' @return A character vector of \code{n} hex colours, recycled if \code{n} exceeds the number of colours available.
+#' @return A character vector of \code{n} hex colors, recycled if \code{n} exceeds the number of colors available.
 #'   Unlike the other \code{*_pal()} functions, this is itself the palette function.
 #' @export
-#' @family colour pander
+#' @family color pander
 #' @example inst/examples/ex-palette_pander.R
 palette_pander <- function(n, random_order = FALSE) {
   ## default (colorblind and printer-friendly) colors
@@ -300,7 +300,7 @@ palette_pander <- function(n, random_order = FALSE) {
 #' palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams palette_pander
-#' @family colour pander
+#' @family color pander
 #' @rdname scale_pander
 #' @seealso \code{\link{theme_pander}()}
 #' @return A ggplot2 scale object.
