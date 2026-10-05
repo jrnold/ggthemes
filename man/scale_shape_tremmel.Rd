@@ -4,18 +4,11 @@
 \alias{scale_shape_tremmel}
 \title{Shape scales from Tremmel (1995)}
 \usage{
-scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
+scale_shape_tremmel(overlap = FALSE, ..., alt = FALSE)
 }
 \arguments{
 \item{overlap}{Use an empty circle instead of a solid circle when
 \code{n == 2}.}
-
-\item{alt}{If \code{TRUE}, then when \code{n == 3},
-use a solid circle, plus sign and
-empty triangle. Otherwise use a solid circle, empty circle, and empty
-triangle. Defaults to \code{FALSE}, the triple Tremmel's Experiment 1
-actually measured; the \code{TRUE} triple is argued on feature-dimension
-grounds that Tremmel flags as not directly supported by the experiments.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -76,6 +69,13 @@ notation.
     \item{\code{call}}{The \code{call} used to construct the scale for reporting messages.}
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
+
+\item{alt}{If \code{TRUE}, then when \code{n == 3},
+use a solid circle, plus sign and
+empty triangle. Otherwise use a solid circle, empty circle, and empty
+triangle. Defaults to \code{FALSE}, the triple Tremmel's Experiment 1
+actually measured; the \code{TRUE} triple is argued on feature-dimension
+grounds that Tremmel flags as not directly supported by the experiments.}
 }
 \value{
 A ggplot2 scale object.

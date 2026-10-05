@@ -25,6 +25,12 @@
   for data that has such segments; use `cull = FALSE` for the previous ones
   (#274).
 
+- `scale_colour_tableau()`, `scale_fill_tableau()`,
+  `scale_colour_economist_c()`, `scale_fill_economist_c()` and
+  `scale_shape_tremmel()` now take `...` right after their first argument, as
+  ggplot2's scales do. `type`, `direction`, `guide` and `alt` must be named,
+  and passing them by position is an error that says so (#275).
+
 ## New features
 
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so

@@ -234,3 +234,9 @@ test_that("tableau gradient palette helpers reject extra arguments", {
   expect_snapshot(tableau_seq_gradient_pal("Blue", extra = 1), error = TRUE)
   expect_snapshot(tableau_div_gradient_pal(extra = 1), error = TRUE)
 })
+
+test_that("scale_colour_tableau() takes type and direction by name only", {
+  expect_s3_class(scale_colour_tableau("Tableau 20", type = "regular", direction = -1), "ScaleDiscrete")
+  expect_snapshot(scale_colour_tableau("Tableau 20", "regular"), error = TRUE)
+  expect_snapshot(scale_fill_tableau("Tableau 20", "regular"), error = TRUE)
+})

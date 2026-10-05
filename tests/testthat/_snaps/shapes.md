@@ -23,3 +23,12 @@
       i Rendering may fail with a low-level error (e.g. "conversion failure ... in 'mbcsToSbcs'").
       i Try a UTF-8 locale, or a Cairo-based graphics device (e.g. cairo_pdf(), agg_png()).
 
+# scale_shape_tremmel() takes alt by name only
+
+    Code
+      scale_shape_tremmel(TRUE, TRUE)
+    Condition
+      Error in `scale_shape_tremmel()`:
+      ! Arguments in `...` must be named.
+      x Unnamed argument in position 1.
+

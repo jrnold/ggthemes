@@ -91,3 +91,8 @@ test_that("warn_unicode_pch is silent on UTF-8 locales", {
   testthat::local_mocked_bindings(l10n_info = function() list(`UTF-8` = TRUE), .package = "base")
   expect_no_warning(warn_unicode_pch(c(-9675, -9679)))
 })
+
+test_that("scale_shape_tremmel() takes alt by name only", {
+  expect_s3_class(scale_shape_tremmel(overlap = TRUE, alt = TRUE), "ScaleDiscrete")
+  expect_snapshot(scale_shape_tremmel(TRUE, TRUE), error = TRUE)
+})

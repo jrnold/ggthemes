@@ -76,6 +76,24 @@ check_layer <- function(layer, n_layers, call = rlang::caller_env()) {
   }
 }
 
+# Arguments after `...` used to be positional. Now that `...` comes first, an
+# old positional call would silently pass its values on as scale options (e.g.
+# `name`), so reject unnamed arguments instead.
+check_dots_named <- function(..., call = rlang::caller_env()) {
+  nms <- rlang::names2(rlang::enexprs(...))
+  if (all(nzchar(nms))) {
+    return(invisible())
+  }
+  position <- which(!nzchar(nms)) # nolint: object_usage_linter (used in the message below)
+  cli::cli_abort(
+    c(
+      "Arguments in {.arg ...} must be named.",
+      "x" = "Unnamed {cli::qty(position)}argument{?s} in position{?s} {position}."
+    ),
+    call = call
+  )
+}
+
 check_pal_n <- function(n, max_n) {
   check_pal_n_negative(n, call = rlang::caller_env())
   if (n > max_n) {
