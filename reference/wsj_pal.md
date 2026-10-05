@@ -21,8 +21,8 @@ wsj_pal(palette = "colors6")
 
 ## Value
 
-A palette function. It takes the number of colours `n` and returns a
-character vector of `n` hex colours, and can be used as the `palette`
+A palette function. It takes the number of colors `n` and returns a
+character vector of `n` hex colors, and can be used as the `palette`
 argument of
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
@@ -53,7 +53,7 @@ The following palettes are defined,
 
 ## See also
 
-Other colour wsj:
+Other color wsj:
 [`scale_colour_wsj()`](https://jrnold.github.io/ggthemes/reference/scale_wsj.md)
 
 ## Examples

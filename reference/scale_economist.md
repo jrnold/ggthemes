@@ -126,7 +126,7 @@ A ggplot2 scale object.
 [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
 for examples.
 
-Other colour economist:
+Other color economist:
 [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md),
 [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md),
 [`scale_colour_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)

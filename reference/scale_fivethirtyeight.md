@@ -126,7 +126,7 @@ A ggplot2 scale object.
 [`theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md)
 for examples.
 
-Other colour fivethirtyeight:
+Other color fivethirtyeight:
 [`fivethirtyeight_pal()`](https://jrnold.github.io/ggthemes/reference/fivethirtyeight_pal.md)
 
 ## Examples

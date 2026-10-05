@@ -132,7 +132,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour stata:
+Other color stata:
 [`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md)
 
 ## Examples

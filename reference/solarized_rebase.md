@@ -20,5 +20,5 @@ solarized_rebase(light = TRUE)
 
 ## Value
 
-A named character vector of eight hex colours, named `rebase03` to
+A named character vector of eight hex colors, named `rebase03` to
 `rebase3`.

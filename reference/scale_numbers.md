@@ -134,7 +134,7 @@ See
 [`theme_numbers()`](https://jrnold.github.io/ggthemes/reference/theme_numbers.md)
 for examples.
 
-Other colour numbers:
+Other color numbers:
 [`numbers_pal()`](https://jrnold.github.io/ggthemes/reference/numbers_pal.md)
 
 ## Examples

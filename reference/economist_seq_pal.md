@@ -26,11 +26,11 @@ economist_gradient_pal(hue = "blue")
 ## Value
 
 `economist_seq_pal()` returns a palette function that takes the number
-of colours `n` and returns the first `n` of the six hex colours for
-`hue`, for use with
+of colors `n` and returns the first `n` of the six hex colors for `hue`,
+for use with
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 `economist_gradient_pal()` returns a palette function that takes a
-numeric vector `x` of values between 0 and 1 and returns hex colours
+numeric vector `x` of values between 0 and 1 and returns hex colors
 interpolated between those steps, for use with
 [`continuous_scale()`](https://ggplot2.tidyverse.org/reference/continuous_scale.html).
 
@@ -42,7 +42,7 @@ continuous data.
 
 ## See also
 
-Other colour economist:
+Other color economist:
 [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md),
 [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md),
 [`scale_colour_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)

@@ -126,7 +126,7 @@ A ggplot2 scale object.
 
 [`theme_pander()`](https://jrnold.github.io/ggthemes/reference/theme_pander.md)
 
-Other colour pander:
+Other color pander:
 [`palette_pander()`](https://jrnold.github.io/ggthemes/reference/palette_pander.md)
 
 ## Examples

@@ -22,13 +22,13 @@ palette_pander(n, random_order = FALSE)
 
 ## Value
 
-A character vector of `n` hex colours, recycled if `n` exceeds the
-number of colours available. Unlike the other `*_pal()` functions, this
-is itself the palette function.
+A character vector of `n` hex colors, recycled if `n` exceeds the number
+of colors available. Unlike the other `*_pal()` functions, this is
+itself the palette function.
 
 ## See also
 
-Other colour pander:
+Other color pander:
 [`scale_color_pander()`](https://jrnold.github.io/ggthemes/reference/scale_pander.md)
 
 ## Examples

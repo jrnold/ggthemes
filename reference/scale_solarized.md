@@ -129,7 +129,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour solarized:
+Other color solarized:
 [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
 
 ## Examples

@@ -46,7 +46,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour economist:
+Other color economist:
 [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md),
 [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md),
 [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)

@@ -136,9 +136,8 @@ scale_fill_colourblind(black = TRUE, ...)
 ## Value
 
 `colorblind_pal()` and `colourblind_pal()` return a palette function
-that takes the number of colours `n` and returns a character vector of
-`n` hex colours. The `scale_*()` functions return a ggplot2 scale
-object.
+that takes the number of colors `n` and returns a character vector of
+`n` hex colors. The `scale_*()` functions return a ggplot2 scale object.
 
 ## References
 

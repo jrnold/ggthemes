@@ -1,7 +1,7 @@
 # Clean ggplot theme
 
-Clean ggplot theme with no panel background, black axis lines and grey
-fill colour for chart elements.
+Clean ggplot theme with no panel background, black axis lines and gray
+fill color for chart elements.
 
 ## Usage
 

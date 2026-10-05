@@ -20,14 +20,14 @@ economist_pal(fill = TRUE)
 
 ## Value
 
-A palette function. It takes the number of colours `n` and returns a
-character vector of `n` hex colours, and can be used as the `palette`
+A palette function. It takes the number of colors `n` and returns a
+character vector of `n` hex colors, and can be used as the `palette`
 argument of
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## See also
 
-Other colour economist:
+Other color economist:
 [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md),
 [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md),
 [`scale_colour_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
@@ -39,7 +39,6 @@ library("scales")
 
 show_col(economist_pal()(6))
 
-
-## the full set of nine series colours
-show_col(economist_pal()(9))
+## fill palette
+show_col(economist_pal(fill = TRUE)(6))
 ```

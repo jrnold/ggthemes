@@ -128,7 +128,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour few:
+Other color few:
 [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)
 
 ## Examples

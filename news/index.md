@@ -75,12 +75,12 @@ CRAN release: 2026-10-03
 
 - Fix
   [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md)
-  on ggplot2 \>= 4.0.0. It is meant to clear every colour and fill
+  on ggplot2 \>= 4.0.0. It is meant to clear every color and fill
   inherited from
   [`theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
   but ggplot2 4.0.0’s S7 theme elements hid them from the check, so
   [`theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)’s
-  grey panel, grey strips and white grid lines leaked into every theme
+  gray panel, gray strips and white grid lines leaked into every theme
   built on it. On ggplot2 4.x this changes the appearance of
   [`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md),
   [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md),
@@ -121,13 +121,13 @@ CRAN release: 2026-10-03
 - Fix
   [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
   storing the palette function instead of the palette size in its
-  `max_n` attribute. Requesting more than eight colours now pads with
+  `max_n` attribute. Requesting more than eight colors now pads with
   `NA` after the usual warning instead of failing with “subscript out of
   bounds”, and `n = 0` returns `character(0)`.
 
 - Fix
   [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)
-  returning two colours for `n = 0`; it now returns `character(0)`.
+  returning two colors for `n = 0`; it now returns `character(0)`.
 
 - Require ggplot2 \>= 3.5.2.
   [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
@@ -170,12 +170,12 @@ CRAN release: 2026-10-03
   now default to `theme = "Office"` instead of `"Office Theme"`, so they
   again match a default chart in current Excel. Plots that relied on the
   default will change appearance. Pass `theme = "Office 2013"` to keep
-  the previous colours.
+  the previous colors.
 
 - The Excel themes `"Office Theme"` and `"Office 2007-2010"` have been
   renamed `"Office 2013"` and `"Office 2007"`, following Microsoft’s own
   renaming of the built-in themes. The old names still work and select
-  the same colours as before.
+  the same colors as before.
 
 - Add
   [`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
@@ -288,8 +288,8 @@ CRAN release: 2026-10-03
   measures the default font and the warning names the font it actually
   measured.
 
-- Discrete colour palettes now reject a negative `n` with an error
-  naming the argument and the palette that was called. Palettes built on
+- Discrete color palettes now reject a negative `n` with an error naming
+  the argument and the palette that was called. Palettes built on
   [`scales::manual_pal()`](https://scales.r-lib.org/reference/pal_manual.html)
   — including
   [`calc_pal()`](https://jrnold.github.io/ggthemes/reference/calc_pal.md),
@@ -328,8 +328,8 @@ CRAN release: 2026-10-03
   and
   [`scale_fill_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md).
   Use the [khroma](https://CRAN.R-project.org/package=khroma) package
-  instead, which tracks Paul Tol’s colour schemes as he revises them.
-  The ggthemes palette is the original 12-colour qualitative scheme from
+  instead, which tracks Paul Tol’s color schemes as he revises them. The
+  ggthemes palette is the original 12-color qualitative scheme from
   Tol’s 2012 technical note and has not followed the revisions on his
   current site, <https://sronpersonalpages.nl/~pault/>; the closest
   successor is `khroma::colour("muted")`. The functions still work, but
@@ -337,7 +337,7 @@ CRAN release: 2026-10-03
 
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been
   renamed to `"Blue-Red-Brown"`, matching both the name Tableau uses and
-  the palette’s actual colour order (blue, red, brown). The old name
+  the palette’s actual color order (blue, red, brown). The old name
   still works but warns.
 
 - BREAKING CHANGE: The Tableau palette `"Classic Area-Brown"` has been
@@ -345,14 +345,14 @@ CRAN release: 2026-10-03
   `"Classic Area Red"` and `"Classic Area Green"`. The old name still
   works but warns.
 
-- Fix two corrupted colours in the `"Gray Warm"` ordered-sequential
-  Tableau palette. Position 7 was `#b047a4` (a magenta, in a warm-grey
+- Fix two corrupted colors in the `"Gray Warm"` ordered-sequential
+  Tableau palette. Position 7 was `#b047a4` (a magenta, in a warm-gray
   ramp) and is now `#b0a8a4`; position 18 was `#665c51`, which broke the
   ramp’s monotonic blue channel, and is now `#665c5a`. Plots using
   `scale_colour_gradient_tableau("Gray Warm")` will change appearance.
 
-- Fix a duplicated colour (`#fa9d4f`) in the `"Red-Gold"`
-  ordered-sequential Tableau palette, which gave it 21 colours where
+- Fix a duplicated color (`#fa9d4f`) in the `"Red-Gold"`
+  ordered-sequential Tableau palette, which gave it 21 colors where
   every other 20-step Tableau sequential palette has 20. Plots using
   `"Red-Gold"` will change appearance.
 
@@ -410,8 +410,8 @@ CRAN release: 2026-10-03
 
 - Add vdiffr visual regression baselines for every exported theme, and
   swatch baselines plus property assertions (valid hex, no duplicate
-  colours, stable lengths, monotone lightness, no out-of-family colour,
-  monotone grey ramps) for the Tableau palette families. These are
+  colors, stable lengths, monotone lightness, no out-of-family color,
+  monotone gray ramps) for the Tableau palette families. These are
   development-only tests and do not run on CRAN; `vdiffr (>= 1.0.6)` and
   `farver` are now used in `Suggests`
   ([\#219](https://github.com/jrnold/ggthemes/issues/219)).
@@ -421,14 +421,14 @@ CRAN release: 2026-10-03
   [`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md)
   and
   [`scale_colour_stata()`](https://jrnold.github.io/ggthemes/reference/scale_stata.md)
-  gain the `"stcolor"` scheme (the `stc1`–`stc15` colours), and
+  gain the `"stcolor"` scheme (the `stc1`–`stc15` colors), and
   [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md)
   gains the `"stcolor"`, `"stcolor_alt"`, `"stmono1"`, `"stmono2"` and
   `"stsj"` schemes. `stgcolor` and `stgcolor_alt` are not included: they
   differ from `stcolor` only in physical graph dimensions, which a
   ggplot2 theme does not carry.
 
-- The 19 named colours Stata 18 added (`stc1`–`stc15` plus the `stblue`,
+- The 19 named colors Stata 18 added (`stc1`–`stc15` plus the `stblue`,
   `stred`, `stgreen` and `styellow` aliases) are now in
   `ggthemes_data$stata$colors$names`.
 
@@ -442,14 +442,14 @@ CRAN release: 2026-10-03
   default will change to `"stcolor"` in ggthemes 8.0.0, following Stata.
   Pass `scheme` explicitly to keep the current appearance.
 
-- BEHAVIOUR CHANGE: `stata_pal("mono")` returned the wrong colours at
+- BEHAVIOR CHANGE: `stata_pal("mono")` returned the wrong colors at
   positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It
   now matches Stata’s `s1mono`/`s2mono` exactly, including the fact that
   Stata repeats `gs12` and `gs5` at positions 14 and 15. Plots using
   `"mono"` with six or more levels will change.
 
-- Fix `stata_pal("economist")`, which returned `NA` as its first colour
-  because the scheme referred to a non-existent colour `dkblue`. It is
+- Fix `stata_pal("economist")`, which returned `NA` as its first color
+  because the scheme referred to a non-existent color `dkblue`. It is
   now `edkblue`, matching Stata’s `scheme-economist.scheme`.
 
 - Fix `attr(stata_pal(scheme), "max_n")`, which reported `2` rather than
@@ -479,8 +479,8 @@ CRAN release: 2026-10-03
   that was never wired into `data-raw/build.R` and held iWork-era colors
   matching no current Numbers palette.
 
-- Fix two incorrect colours in the Google Docs palette, checked against
-  the series colours a current Google Sheets chart actually renders.
+- Fix two incorrect colors in the Google Docs palette, checked against
+  the series colors a current Google Sheets chart actually renders.
   `teal 2` was `#ff994d`, a duplicate of `orange 2`, and is now
   `#7ed1d7`; `teal 3` was `#c9e4e7` and is now `#b5e5e8`. This changes
   the output of
@@ -488,11 +488,11 @@ CRAN release: 2026-10-03
   [`scale_colour_gdocs()`](https://jrnold.github.io/ggthemes/reference/scale_gdocs.md),
   and
   [`scale_fill_gdocs()`](https://jrnold.github.io/ggthemes/reference/scale_gdocs.md)
-  for more than 11 colours. The other 22 colours were already correct.
+  for more than 11 colors. The other 22 colors were already correct.
 
 - [`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md)
-  now matches the text colours Google Sheets uses. Sheets applies a
-  graded hierarchy rather than one grey: axis tick labels are black,
+  now matches the text colors Google Sheets uses. Sheets applies a
+  graded hierarchy rather than one gray: axis tick labels are black,
   legend labels `#1a1a1a`, and axis titles and the x-axis line
   `#333333`. The chart title (`#757575`) and gridlines (`#cccccc`) are
   unchanged.
@@ -508,12 +508,12 @@ CRAN release: 2026-10-03
   without an explicit `palette` will change appearance. The old palette
   is still available as `hc_pal("classic")`.
 
-- BEHAVIOUR CHANGE: two colours in that older palette were wrong, and
-  are corrected in `"classic"`. Position 8 was `#8085e8` (a
-  near-duplicate of `#8085e9` at position 5, differing by one hex digit)
-  and is now `#2b908f`; position 9 was `#8d4653` and is now `#f45b5b`.
-  The old values match Highcharts 4.x; every Highcharts release from
-  v5.0.0 to v10.x shipped the corrected pair.
+- BEHAVIOR CHANGE: two colors in that older palette were wrong, and are
+  corrected in `"classic"`. Position 8 was `#8085e8` (a near-duplicate
+  of `#8085e9` at position 5, differing by one hex digit) and is now
+  `#2b908f`; position 9 was `#8d4653` and is now `#f45b5b`. The old
+  values match Highcharts 4.x; every Highcharts release from v5.0.0 to
+  v10.x shipped the corrected pair.
 
 - [`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md)
   and
@@ -521,13 +521,13 @@ CRAN release: 2026-10-03
   gain the palettes bundled with Highcharts 13: `"default_dark"` (the
   dark-mode form of the default, which Highcharts selects via CSS
   `light-dark()`), `"high_contrast_light"` and `"high_contrast_dark"`
-  (Highcharts’ own palette, tested for colour blindness and tailored to
+  (Highcharts’ own palette, tested for color blindness and tailored to
   3:1 contrast), `"grid_light"`, `"sand_signika"`, `"avocado"` and
   `"sunset"`. Note that `"avocado"` and `"sunset"` have only four
-  colours.
+  colors.
 
 - [`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md)
-  now reports a `max_n` attribute and warns when asked for more colours
+  now reports a `max_n` attribute and warns when asked for more colors
   than the palette holds, matching the other ggthemes palettes.
 
 - [`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md)‘s
@@ -539,15 +539,15 @@ CRAN release: 2026-10-03
   styles. `"grid_light"` is the one Highcharts theme that draws vertical
   grid lines. The `"high_contrast"`, `"avocado"` and `"sunset"` themes
   are not included as styles: upstream they change nothing but the
-  series colours, so they are available through
+  series colors, so they are available through
   [`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md)
   and are meant to be combined with `theme_hc("default")` or
   `theme_hc("default_dark")`.
 
-- BEHAVIOUR CHANGE: `theme_hc("darkunica")` drew all text in `#A0A0A3`
+- BEHAVIOR CHANGE: `theme_hc("darkunica")` drew all text in `#A0A0A3`
   and titles in `#FFFFFF`. Highcharts uses `#E0E0E3` for axis labels,
   titles and axis titles in this theme, so text is now `#E0E0E3`
-  throughout. The grid colour `#707073` was already correct and is
+  throughout. The grid color `#707073` was already correct and is
   unchanged.
 
 - Fix unreadable axis labels in `theme_hc("darkunica")`.
@@ -555,8 +555,8 @@ CRAN release: 2026-10-03
   is a partial theme, and it never set `axis.text`, so the axis labels
   kept
   [`theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)’s
-  `"grey30"` and were drawn in dark grey on the near-black background.
-  They now use the same colour as the rest of the theme’s text.
+  `"grey30"` and were drawn in dark gray on the near-black background.
+  They now use the same color as the rest of the theme’s text.
 
 - Remove `data-raw/theme-data/highcharts.yml`, an unused duplicate of
   `hc.yml` that still held the palettes from before v11.
@@ -567,7 +567,7 @@ CRAN release: 2026-10-03
   [`scale_colour_hc()`](https://jrnold.github.io/ggthemes/reference/scale_hc.md)
   instead of
   [`scale_fill_hc()`](https://jrnold.github.io/ggthemes/reference/scale_hc.md),
-  which had no effect on its colour-mapped lines.
+  which had no effect on its color-mapped lines.
 
 - BREAKING CHANGE:
   [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
@@ -619,7 +619,7 @@ CRAN release: 2026-10-03
 
 - Fix:
   [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
-  previously looked up a background colour named `"ebg"`, which
+  previously looked up a background color named `"ebg"`, which
   `economist.yml` did not define, so `rect` and `strip.background`
   silently received a fill of `NA`. The rewritten theme sets both
   explicitly.
@@ -1056,7 +1056,7 @@ CRAN release: 2016-01-10
 - Bugfix: Remove border around legends in
   [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md).
 
-- Bugfix: Add colour and fill values to
+- Bugfix: Add color and fill values to
   [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md).
   This restores its behavior to version 2.2.1. Fixes Issue
   [\#56](https://github.com/jrnold/ggthemes/issues/56).
@@ -1236,11 +1236,11 @@ CRAN release: 2013-10-20
 
 ## ggthemes 1.3.4
 
-- added Tableau sequential colour palettes:
+- added Tableau sequential color palettes:
   [`tableau_seq_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md),
   [`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
   [`scale_fill_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md).
-- added Tableau diverging colour palettes:
+- added Tableau diverging color palettes:
   [`tableau_div_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md),
   [`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
   [`scale_fill_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md).

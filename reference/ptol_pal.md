@@ -4,9 +4,9 @@
 
 `ptol_pal()` was deprecated in ggthemes 7.0.0. Use the
 [khroma](https://CRAN.R-project.org/package=khroma) package instead,
-which tracks Paul Tol's colour schemes as he revises them.
+which tracks Paul Tol's color schemes as he revises them.
 
-This palette is the 12-colour qualitative scheme from Tol's 2012
+This palette is the 12-color qualitative scheme from Tol's 2012
 technical note, and has not followed the revisions he has made since.
 His current schemes are at <https://sronpersonalpages.nl/~pault/>; the
 closest successor to this palette is `khroma::colour("muted")`.
@@ -22,8 +22,8 @@ ptol_pal()
 
 ## Value
 
-A palette function. It takes the number of colours `n` and returns a
-character vector of `n` hex colours, and can be used as the `palette`
+A palette function. It takes the number of colors `n` and returns a
+character vector of `n` hex colors, and can be used as the `palette`
 argument of
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
@@ -41,7 +41,7 @@ SRON/EPS/TN/09-002.
 
 ## See also
 
-Other colour ptol:
+Other color ptol:
 [`scale_colour_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
 
 ## Examples

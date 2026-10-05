@@ -1,12 +1,12 @@
-# Color Scales from Paul Tol's "Colour Schemes
+# Color Scales from Paul Tol's "Colour Schemes"
 
 **\[deprecated\]**
 
 These scales were deprecated in ggthemes 7.0.0. Use the
 [khroma](https://CRAN.R-project.org/package=khroma) package instead,
-which tracks Paul Tol's colour schemes as he revises them.
+which tracks Paul Tol's color schemes as he revises them.
 
-They draw the 12-colour qualitative scheme from Tol's 2012 technical
+They draw the 12-color qualitative scheme from Tol's 2012 technical
 note, and have not followed the revisions he has made since. His current
 schemes are at <https://sronpersonalpages.nl/~pault/>; the closest
 successor is `khroma::scale_colour_muted()`.
@@ -136,7 +136,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour ptol:
+Other color ptol:
 [`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md)
 
 ## Examples

@@ -40,7 +40,7 @@ A ggplot2 theme object (class `theme`).
 
 Only the Highcharts themes that restyle the chart itself get a `style`
 here. The `"high-contrast"`, `"avocado"` and `"sunset"` themes shipped
-with Highcharts 13 change nothing but the series colours, so they are
+with Highcharts 13 change nothing but the series colors, so they are
 available through
 [`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md)
 alone; combine them with `theme_hc("default")` or

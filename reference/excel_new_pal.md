@@ -28,8 +28,8 @@ excel_new_pal(theme = "Office")
 
 ## Value
 
-A palette function. It takes the number of colours `n` and returns a
-character vector of `n` hex colours, and can be used as the `palette`
+A palette function. It takes the number of colors `n` and returns a
+character vector of `n` hex colors, and can be used as the `palette`
 argument of
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
@@ -44,7 +44,7 @@ until 2022. The former ggthemes names `"Office Theme"` and
 
 ## See also
 
-Other colour excel:
+Other color excel:
 [`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md),
 [`scale_colour_excel_new()`](https://jrnold.github.io/ggthemes/reference/scale_excel_new.md),
 [`scale_fill_excel()`](https://jrnold.github.io/ggthemes/reference/scale_excel.md)

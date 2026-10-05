@@ -127,7 +127,7 @@ See
 [`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md)
 for examples.
 
-Other colour gdocs:
+Other color gdocs:
 [`gdocs_pal()`](https://jrnold.github.io/ggthemes/reference/gdocs_pal.md)
 
 ## Examples

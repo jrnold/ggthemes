@@ -1,6 +1,6 @@
 # Highcharts color and fill scales
 
-Colour and fill scales which use the palettes in
+Color and fill scales which use the palettes in
 [`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md) and
 are meant for use with
 [`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md).
@@ -133,7 +133,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour hc:
+Other color hc:
 [`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md)
 
 ## Examples

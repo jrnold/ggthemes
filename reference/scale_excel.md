@@ -123,7 +123,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour excel:
+Other color excel:
 [`excel_new_pal()`](https://jrnold.github.io/ggthemes/reference/excel_new_pal.md),
 [`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md),
 [`scale_colour_excel_new()`](https://jrnold.github.io/ggthemes/reference/scale_excel_new.md)

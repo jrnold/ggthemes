@@ -102,7 +102,7 @@ geom_tufteboxplot(
 
 - outlier.colour:
 
-  colour for outlying points
+  color for outlying points
 
 - outlier.shape:
 

@@ -18,8 +18,8 @@ solarized_pal(accent = "blue")
 
 ## Value
 
-A palette function. It takes the number of colours `n` and returns a
-character vector of `n` hex colours, and can be used as the `palette`
+A palette function. It takes the number of colors `n` and returns a
+character vector of `n` hex colors, and can be used as the `palette`
 argument of
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
@@ -31,7 +31,7 @@ Euclidean distance between colors in L\*a\*b space.
 
 ## See also
 
-Other colour solarized:
+Other color solarized:
 [`scale_fill_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
 
 ## Examples

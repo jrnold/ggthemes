@@ -127,7 +127,7 @@ See
 [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md)
 for examples.
 
-Other colour calc:
+Other color calc:
 [`calc_pal()`](https://jrnold.github.io/ggthemes/reference/calc_pal.md)
 
 ## Examples

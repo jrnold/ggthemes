@@ -44,8 +44,8 @@ This theme takes
 [`theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 and sets all `colour` and `fill` values to `NULL`, except for the
 top-level elements (`line`, `rect`, and `title`), which have
-`colour = ink`, and `fill = paper`. This leaves the spacing and-non
-colour defaults of the default ggplot2 themes in place.
+`colour = ink`, and `fill = paper`. This leaves the spacing and
+non-color defaults of the default ggplot2 themes in place.
 
 Unlike `theme_foundation()`, the other themes in this package (e.g.
 [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),

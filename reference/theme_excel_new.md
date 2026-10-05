@@ -26,9 +26,9 @@ An object of class
 
 ## Details
 
-Excel derives its chart greys from the theme's `tx1` colour by luminance
+Excel derives its chart grays from the theme's `tx1` color by luminance
 transform rather than hardcoding them. Since `tx1` is black in every
-built-in Office theme, these greys—`"#D9D9D9"` gridlines, `"#BFBFBF"`
+built-in Office theme, these grays—`"#D9D9D9"` gridlines, `"#BFBFBF"`
 axis lines, `"#595959"` text—are the same whichever theme
 [`scale_colour_excel_new()`](https://jrnold.github.io/ggthemes/reference/scale_excel_new.md)
 is set to.

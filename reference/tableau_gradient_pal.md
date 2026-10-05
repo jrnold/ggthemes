@@ -1,4 +1,4 @@
-# Tableau colour gradient palettes (continuous)
+# Tableau color gradient palettes (continuous)
 
 Gradient color palettes using the diverging and sequential continous
 color palettes in Tableau. See
@@ -60,13 +60,13 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 ## Value
 
 A palette function. It takes a numeric vector `x` of values between 0
-and 1 and returns a character vector of hex colours interpolated along
+and 1 and returns a character vector of hex colors interpolated along
 the palette, for use as the `palette` argument of
 [`continuous_scale()`](https://ggplot2.tidyverse.org/reference/continuous_scale.html).
 
 ## See also
 
-Other colour tableau:
+Other color tableau:
 [`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
 [`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
 [`scale_colour_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),

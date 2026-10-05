@@ -1,4 +1,4 @@
-# Tableau diverging colour scales (continuous)
+# Tableau diverging color scales (continuous)
 
 Continuous color scales using the diverging color scales in Tableau. See
 [`scale_colour_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md)
@@ -83,8 +83,8 @@ scale_color_gradient2_tableau(
 
 - guide:
 
-  Type of legend. Use `'colourbar'` for continuous colour bar, or
-  `'legend'` for discrete colour legend.
+  Type of legend. Use `'colourbar'` for continuous color bar, or
+  `'legend'` for discrete color legend.
 
 ## Value
 
@@ -92,7 +92,7 @@ A ggplot2 scale object.
 
 ## See also
 
-Other colour tableau:
+Other color tableau:
 [`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
 [`scale_colour_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),
 [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md),

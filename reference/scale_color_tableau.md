@@ -64,7 +64,7 @@ A ggplot2 scale object.
 [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
 for references.
 
-Other colour tableau:
+Other color tableau:
 [`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
 [`scale_colour_gradient_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md),
 [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md),

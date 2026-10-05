@@ -21,8 +21,8 @@ hc_pal(palette = "default")
 
 ## Value
 
-A palette function. It takes the number of colours `n` and returns a
-character vector of `n` hex colours, and can be used as the `palette`
+A palette function. It takes the number of colors `n` and returns a
+character vector of `n` hex colors, and can be used as the `palette`
 argument of
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
@@ -38,7 +38,7 @@ Note that `"avocado"` and `"sunset"` have only four colors.
 
 ## See also
 
-Other colour hc:
+Other color hc:
 [`scale_colour_hc()`](https://jrnold.github.io/ggthemes/reference/scale_hc.md)
 
 ## Examples

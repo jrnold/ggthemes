@@ -20,8 +20,8 @@ few_pal(palette = "Medium")
 
 ## Value
 
-A palette function. It takes the number of colours `n` and returns a
-character vector of `n` hex colours, and can be used as the `palette`
+A palette function. It takes the number of colors `n` and returns a
+character vector of `n` hex colors, and can be used as the `palette`
 argument of
 [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
@@ -41,7 +41,7 @@ Charts"](https://www.perceptualedge.com/articles/visual_business_intelligence/ru
 
 ## See also
 
-Other colour few:
+Other color few:
 [`scale_colour_few()`](https://jrnold.github.io/ggthemes/reference/scale_few.md)
 
 ## Examples
