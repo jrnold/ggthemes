@@ -5,7 +5,11 @@ p <- ggplot(economics, aes(date, unemploy / 1000)) +
   theme_economist_2017()
 
 ## A one-line callout pointing down at a point on the line
-p + annotate("label_economist_2017", x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks")
+p +
+  annotate(
+    "label_economist_2017",
+    x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks"
+  )
 
 ## Two lines, pointing left, with the pointer off-centre
 p +
