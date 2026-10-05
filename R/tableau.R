@@ -10,8 +10,10 @@ tableau_deprecated_palettes <- c(
 tableau_resolve_palette <- function(palette) {
   if (length(palette) == 1L && palette %in% names(tableau_deprecated_palettes)) {
     canonical <- unname(tableau_deprecated_palettes[[palette]])
-    cli::cli_warn(
-      "Tableau palette {.val {palette}} is deprecated; use {.val {canonical}} instead."
+    lifecycle::deprecate_warn(
+      "7.0.0",
+      I(paste0("The Tableau palette name \"", palette, "\"")),
+      I(paste0("the name \"", canonical, "\""))
     )
     return(canonical)
   }

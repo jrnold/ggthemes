@@ -31,6 +31,11 @@
 
 ## Minor improvements and fixes
 
+- The deprecation warnings from `theme_hc(bgcolor)`, `theme_pander(ff)`,
+  `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"` and
+  `"Classic Area-Brown"` now come from lifecycle, so they name the release
+  that deprecated them (#273).
+
 - `economist_pal(n = 0)` no longer fails with "object 'i' not found"; it now
   returns `character(0)` (#266).
 

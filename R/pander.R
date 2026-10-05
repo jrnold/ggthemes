@@ -5,9 +5,9 @@
 #' `eval.msgs` or `Pandoc.brew`.
 #' @inheritParams ggplot2::theme_bw
 #' @param nomargin Whether to suppress the white space around the plot.
-#' @param ff Font family, like `"sans"`. Deprecated: use `base_family` instead.
+#' @param ff Font family, like `"sans"`. `r lifecycle::badge("deprecated")` Use `base_family` instead.
 #' @param fc Font color, as a name or hex code.
-#' @param fs Font size (integer). Deprecated: use `base_size` instead.
+#' @param fs Font size (integer). `r lifecycle::badge("deprecated")` Use `base_size` instead.
 #' @param gM Whether to draw the major grid.
 #' @param gm Whether to draw the minor grid.
 #' @param gc Grid color, as a name or hex code.
@@ -39,11 +39,11 @@ theme_pander <- function(
 ) {
   if (hasArg(ff)) {
     base_family <- ff
-    cli::cli_warn("{.arg ff} is deprecated. Use {.arg base_family} instead.")
+    lifecycle::deprecate_warn("2.0.0", "theme_pander(ff)", "theme_pander(base_family)")
   }
   if (hasArg(fs)) {
     base_size <- fs
-    cli::cli_warn("{.arg fs} is deprecated. Use {.arg base_size} instead.")
+    lifecycle::deprecate_warn("2.0.0", "theme_pander(fs)", "theme_pander(base_size)")
   }
 
   if (requireNamespace("pander", quietly = TRUE)) {
