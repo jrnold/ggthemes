@@ -12,24 +12,24 @@ economist_2017_font(
 \arguments{
 \item{families}{Font families to try, in order of preference.}
 
-\item{fallback}{The family to use if none of `families` is installed.}
+\item{fallback}{The family to use if none of \code{families} is installed.}
 }
 \value{
-A single font family name, for `base_family` of
-  [theme_economist_2017()] or the `family` of a text geom.
+A single font family name, for \code{base_family} of
+\code{\link[=theme_economist_2017]{theme_economist_2017()}} or the \code{family} of a text geom.
 }
 \description{
 The guide sets charts in Econ Sans Condensed, which is not publicly
-available. `economist_2017_font()` returns the first of `families` that
-is installed, and `fallback` if none is. The defaults are the closest
+available. \code{economist_2017_font()} returns the first of \code{families} that
+is installed, and \code{fallback} if none is. The defaults are the closest
 openly licensed substitutes: Fira Sans Condensed, a humanist sans of the
 same width class, then Roboto Condensed.
 }
 \details{
-A font counts as installed if \pkg{systemfonts}, which the 'ragg' and
+A font counts as installed if 'systemfonts', which the 'ragg' and
 'svglite' devices use to find fonts, lists it among the system fonts or
-the fonts registered with [systemfonts::register_font()]. Without
-\pkg{systemfonts}, the result is always `fallback`.
+the fonts registered with \code{\link[systemfonts:register_font]{systemfonts::register_font()}}. Without
+'systemfonts', the result is always \code{fallback}.
 }
 \examples{
 economist_2017_font()

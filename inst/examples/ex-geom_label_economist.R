@@ -17,5 +17,12 @@ p +
 ## The guide multiplies the box color over the print background
 ground <- ggthemes_data$economist_2017$print$ground
 box <- ggthemes_data$economist_2017$print$number_box
-multiply <- grDevices::rgb(t(grDevices::col2rgb(box) * grDevices::col2rgb(ground) / 255), maxColorValue = 255)
-p + annotate("label_economist", x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks", fill = multiply)
+multiply <- grDevices::rgb(
+  t(grDevices::col2rgb(box) * grDevices::col2rgb(ground) / 255),
+  maxColorValue = 255
+)
+p +
+  annotate(
+    "label_economist",
+    x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks", fill = multiply
+  )

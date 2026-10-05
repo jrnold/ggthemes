@@ -139,7 +139,7 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 
-\item{arrow}{Draw an arrowhead at the label end of each rule?}
+\item{arrow}{Whether to draw an arrowhead at the label end of each rule.}
 
 \item{gap}{Space between the end of a rule (or the top of a span or the
 bottom of a bar) and its label, in points.}
@@ -160,69 +160,76 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{annotation_borders()}}.}
 
-\item{fills}{For `geom_period_economist()`, the colors the bars alternate
-through, in order of `xmin`, when `fill` is not mapped. The default is
+\item{fills}{For \code{geom_period_economist()}, the colors the bars alternate
+through, in order of \code{xmin}, when \code{fill} is not mapped. The default is
 the guide's maroon and mauve.}
 
-\item{height}{Height of the bars (`geom_period_economist()`) or of the
-year band (`geom_year_band_economist()`), in points.}
+\item{height}{Height of the bars (\code{geom_period_economist()}) or of the
+year band (\code{geom_year_band_economist()}), in points.}
 
-\item{from, to}{For `geom_year_band_economist()`, the first and last years in the
+\item{from, to}{For \code{geom_year_band_economist()}, the first and last years in the
 band. Each year's cell runs from the year to the next.}
 
-\item{y}{For `geom_year_band_economist()`, the data value at the top of the band.}
+\item{y}{For \code{geom_year_band_economist()}, the data value at the top of the band.}
 
 \item{label_every}{Label the years divisible by this, and the first year,
-in the guide's style (see [economist_year()]).}
+in the guide's style (see \code{\link[=economist_year]{economist_year()}}).}
 
-\item{colour}{For `geom_year_band_economist()`, the color of the year labels.}
+\item{colour}{For \code{geom_year_band_economist()}, the color of the year labels.}
+
+\item{size, family}{For \code{geom_year_band_economist()}, the size (in mm, as for
+\code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}) and font family of the year labels.}
 }
 \value{
-A [ggplot2::layer()].
+A \code{\link[ggplot2:layer]{ggplot2::layer()}}.
 }
 \description{
-Layers for the timelines of *The Economist*'s 2017 styleguide, which add
+Layers for the timelines of \emph{The Economist}'s 2017 styleguide, which add
 events and periods to an ordinary chart of a year axis:
 }
 \details{
-* `geom_event_economist()` marks a **specific date event**: a 0.5pt rule
-  from the data (or the axis) to a label, with an arrowhead at the label's
-  end. Draw it dashed, with `linetype = "dashed"`, to set labels apart from
-  the bars of a bar chart.
-* `geom_span_economist()` marks a **time period** in the panel: a pale
-  shaded span with a 1pt rule along its top and its label centred above.
-* `geom_period_economist()` draws the thin bars below the axis that mark
-  out successive periods, such as terms of office, in alternating colors,
-  each labelled in its own color.
-* `geom_year_band_economist()` draws the year band the guide uses as a
-  timeline's x-axis: a cell for each year, every fifth one darker, with the
-  years labelled inside it.
+\itemize{
+\item \code{geom_event_economist()} marks a \strong{specific date event}: a 0.5pt rule
+from the data (or the axis) to a label, with an arrowhead at the label's
+end. Draw it dashed, with \code{linetype = "dashed"}, to set labels apart from
+the bars of a bar chart.
+\item \code{geom_span_economist()} marks a \strong{time period} in the panel: a pale
+shaded span with a 1pt rule along its top and its label centred above.
+\item \code{geom_period_economist()} draws the thin bars below the axis that mark
+out successive periods, such as terms of office, in alternating colors,
+each labelled in its own color.
+\item \code{geom_year_band_economist()} draws the year band the guide uses as a
+timeline's x-axis: a cell for each year, every fifth one darker, with the
+years labelled inside it.
+}
 
-Positions are in data units -- years along `x`, the chart's own values up
-`y` -- so periods and the year band, which sit below the data, take values
+Positions are in data units -- years along \code{x}, the chart's own values up
+\code{y} -- so periods and the year band, which sit below the data, take values
 below the lowest gridline. Rules, bars, the band's height and the type are
 in points, and keep the guide's sizes whatever the size of the figure.
 }
 \section{Aesthetics}{
 
-`geom_event_economist()`: **`x`**, **`y`** (where the rule starts),
-**`yend`** (where it ends, at the label), **`label`**, `colour` (the
-rule's), `linewidth`, `linetype`, `hjust` (0, the default, sets the label
+\code{geom_event_economist()}: \strong{\code{x}}, \strong{\code{y}} (where the rule starts),
+\strong{\code{yend}} (where it ends, at the label), \strong{\code{label}}, \code{colour} (the
+rule's), \code{linewidth}, \code{linetype}, \code{hjust} (0, the default, sets the label
 to the right of the rule; 1 to its left; 0.5 centres it beyond the rule's
-end), `size`, `family`, `fontface`.
+end), \code{vjust} (for a label beside the rule: 1, the default, hangs it from
+the rule's end, its first line level with it; 0 stands it on the end, its
+last line level with it), \code{text_colour}, \code{size}, \code{family}, \code{fontface}.
 
-`geom_span_economist()`: **`xmin`**, **`xmax`**, `ymin`, `ymax` (default
-the whole panel), `label`, `fill`, `colour` (the top rule's), `linewidth`,
-`size`, `family`, `fontface`.
+\code{geom_span_economist()}: \strong{\code{xmin}}, \strong{\code{xmax}}, \code{ymin}, \code{ymax} (default
+the whole panel), \code{label}, \code{fill}, \code{colour} (the top rule's), \code{linewidth},
+\code{text_colour}, \code{size}, \code{family}, \code{fontface}.
 
-`geom_period_economist()`: **`xmin`**, **`xmax`**, **`y`** (the top of the
-bar), `label`, `fill` (by default, alternating through `fills`),
-`colour` (the label's; by default the bar's color), `size`, `family`,
-`fontface`.
+\code{geom_period_economist()}: \strong{\code{xmin}}, \strong{\code{xmax}}, \strong{\code{y}} (the top of the
+bar), \code{label}, \code{fill} (by default, alternating through \code{fills}),
+\code{colour} (the label's; by default the bar's color), \code{size}, \code{family},
+\code{fontface}.
 
-`geom_year_band_economist()` takes no aesthetics.
+\code{geom_year_band_economist()} takes no aesthetics.
 
-Text `size` is in mm, as for [ggplot2::geom_text()]; the default is the
+Text \code{size} is in mm, as for \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}; the default is the
 guide's 6.5pt.
 }
 
@@ -232,15 +239,18 @@ library("ggplot2")
 oil <- data.frame(
   year = 1965:2015,
   production = c(
-    1.9, 2.1, 2.6, 2.8, 3.4, 3.8, 4.6, 5.1, 5.9, 6.1, 5.4, 5.9, 5.7, 5.3, 3.2, 1.5, 1.3, 2.4, 2.4, 2.0,
-    2.2, 2.0, 2.3, 2.3, 2.9, 3.3, 3.5, 3.5, 3.7, 3.7, 3.7, 3.8, 3.8, 3.9, 3.6, 3.8, 3.8, 3.6, 4.0,
-    4.2, 4.2, 4.3, 4.3, 4.4, 4.2, 4.3, 4.3, 3.8, 3.6, 3.7, 3.6
+    1.9, 2.1, 2.6, 2.8, 3.4, 3.8, 4.6, 5.1, 5.9, 6.1, 5.4, 5.9, 5.7, 5.3, 3.2, 1.5, 1.3,
+    2.4, 2.4, 2.0, 2.2, 2.0, 2.3, 2.3, 2.9, 3.3, 3.5, 3.5, 3.7, 3.7, 3.7, 3.8, 3.8, 3.9,
+    3.6, 3.8, 3.8, 3.6, 4.0, 4.2, 4.2, 4.3, 4.3, 4.4, 4.2, 4.3, 4.3, 3.8, 3.6, 3.7, 3.6
   )
 )
 events <- data.frame(
   year = c(1968.8, 1979.9, 1988.5, 2001.6, 2014.6),
-  label = c("Iran signs\nNon-proliferation\nTreaty", "Iranian revolution.\nShah overthrown",
-            "USS Vincennes shoots\ndown Iranian civil airliner", "US invades Afghanistan", "IS takes\nMosul"),
+  label = c(
+    "Iran signs\nNon-proliferation\nTreaty", "Iranian revolution.\nShah overthrown",
+    "USS Vincennes shoots\ndown Iranian civil airliner", "US invades Afghanistan",
+    "IS takes\nMosul"
+  ),
   top = c(4.1, 7.1, 1.3, 4.1, 1.8),
   hjust = c(0.5, 0, 0, 1, 0.5)
 )
@@ -268,9 +278,15 @@ ggplot(oil, aes(year, production)) +
   ) +
   scale_y_continuous(limits = c(-2.6, 7.6), breaks = seq(0, 6, 2), expand = c(0, 0)) +
   coord_cartesian(clip = "off") +
-  labs(title = "More than an oil giant", subtitle = "Iran, oil production, m bpd", x = NULL, y = NULL) +
+  labs(
+    title = "More than an oil giant", subtitle = "Iran, oil production, m bpd",
+    x = NULL, y = NULL
+  ) +
   theme_economist_2017() +
-  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.line.x = element_blank())
+  theme(
+    axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+    axis.line.x = element_blank()
+  )
 }
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;

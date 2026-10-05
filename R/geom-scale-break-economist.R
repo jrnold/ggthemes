@@ -37,7 +37,7 @@
 #' @return A [ggplot2::layer()].
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), p.25.
 #'
 #' @family economist 2017

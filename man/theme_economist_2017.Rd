@@ -12,22 +12,22 @@ theme_economist_2017(
 )
 }
 \arguments{
-\item{media}{Either `"print"` or `"web"`.}
+\item{media}{Either \code{"print"} or \code{"web"}.}
 
 \item{base_size}{Base font size, in points. Every size in the theme is
 relative to it.}
 
-\item{base_family}{Base font family. The default, [economist_2017_font()],
+\item{base_family}{Base font family. The default, \code{\link[=economist_2017_font]{economist_2017_font()}},
 is Fira Sans Condensed or Roboto Condensed if either is installed, and
-otherwise `"sans"`. Base R's `pdf()` and `postscript()` devices know only
-their own font database; with them, use [grDevices::cairo_pdf()] or a
-'ragg' device, or pass `base_family = "sans"`.}
+otherwise \code{"sans"}. Base R's \code{pdf()} and \code{postscript()} devices know only
+their own font database; with them, use \code{\link[grDevices:cairo_pdf]{grDevices::cairo_pdf()}} or a
+'ragg' device, or pass \code{base_family = "sans"}.}
 
 \item{horizontal}{Draw horizontal gridlines, the guide's convention?
-Use `FALSE` for vertical gridlines on a horizontal bar chart.}
+Use \code{FALSE} for vertical gridlines on a horizontal bar chart.}
 }
 \value{
-An object of class [ggplot2::theme()].
+An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 }
 \description{
 A theme for \emph{The Economist visual styleguide} (v1.2, 4 May 2017),
@@ -38,31 +38,32 @@ pale blue ground with a 6pt margin, web charts on white with none.
 \details{
 The guide specifies a standard chart in points (pp.6-7): a 9.5pt bold
 title, 8pt subtitle, 7.5pt legend and panel headings, 7pt axis labels and
-a 6.5pt source line in 75% black; 0.5pt gridlines and baseline; and 0.4pt
+a 6.5pt source line in 75\% black; 0.5pt gridlines and baseline; and 0.4pt
 tick marks, 5pt long, hanging below the baseline. Every size here,
 including rule weights, margins and spacing, is expressed relative to
-`base_size`, so these are the guide's sizes at the default
-`base_size = 10` and keep their proportions at any other.
+\code{base_size}, so these are the guide's sizes at the default
+\code{base_size = 10} and keep their proportions at any other.
 
-At `base_size = 10` the type is the size the guide sets it, which suits a
+At \code{base_size = 10} the type is the size the guide sets it, which suits a
 chart drawn at the guide's own widths -- 160pt (2.2in) for one print
-column, 332pt (4.6in) for two. On a larger figure, raise `base_size` in
+column, 332pt (4.6in) for two. On a larger figure, raise \code{base_size} in
 proportion.
 
 Several conventions of the guide are not theme elements:
-
-* The value axis is on the right, with its labels sitting on their
-  gridlines inside the panel. Use
-  `scale_y_continuous(position = "right", guide = guide_axis_economist())`.
-* The red tab above the title, the red rule across the top of a web
-  chart, and the red marker above each panel heading are added by
-  [economist_2017_chart()], which also moves a web chart's key up
-  beside the title, and the y-axis titles from beside the panel to above
-  it, where the guide sets them (p.10).
-* The guide sets charts in Econ Sans, which is not publicly available.
-  By default the theme uses the closest installed substitute, chosen by
-  [economist_2017_font()]. Econ Sans's medium weight, used for panel and
-  legend headings, is drawn plain.
+\itemize{
+\item The value axis is on the right, with its labels sitting on their
+gridlines inside the panel. Use
+\code{scale_y_continuous(position = "right", guide = guide_axis_economist())}.
+\item The red tab above the title, the red rule across the top of a web
+chart, and the red marker above each panel heading are added by
+\code{\link[=economist_2017_chart]{economist_2017_chart()}}, which also moves a web chart's key up
+beside the title, and the y-axis titles from beside the panel to above
+it, where the guide sets them (p.10).
+\item The guide sets charts in Econ Sans, which is not publicly available.
+By default the theme uses the closest installed substitute, chosen by
+\code{\link[=economist_2017_font]{economist_2017_font()}}. Econ Sans's medium weight, used for panel and
+legend headings, is drawn plain.
+}
 }
 \examples{
 library("ggplot2")

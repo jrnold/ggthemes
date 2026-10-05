@@ -13,49 +13,51 @@ economist_2017_chart(
 )
 }
 \arguments{
-\item{plot}{A ggplot styled with [theme_economist_2017()].}
+\item{plot}{A ggplot styled with \code{\link[=theme_economist_2017]{theme_economist_2017()}}.}
 
-\item{media}{Either `"print"` or `"web"`. Use the same medium as the
+\item{media}{Either \code{"print"} or \code{"web"}. Use the same medium as the
 theme.}
 
-\item{footnote}{Text for the footnote, or `NULL` for none. It is set in
-the style of the source line (the theme's `plot.caption`), ranged right.
-Start it with the symbol from [economist_2017_footnote()] that marks the
+\item{footnote}{Text for the footnote, or \code{NULL} for none. It is set in
+the style of the source line (the theme's \code{plot.caption}), ranged right.
+Start it with the symbol from \code{\link[=economist_2017_footnote]{economist_2017_footnote()}} that marks the
 annotated text. A long source and footnote can overprint; break one of
 them over two lines.}
 
-\item{number}{The chart's number, or `NULL` for none, drawn bold in a
+\item{number}{The chart's number, or \code{NULL} for none, drawn bold in a
 10pt box at the top right of the chart, white on the box colour (p.25).}
 
 \item{tab}{Width and height of the red tab, in points. The standard chart
-uses `c(15, 5)` (p.6); a leader block uses a 4pt tab (p.8).}
+uses \code{c(15, 5)} (p.6); a leader block uses a 4pt tab (p.8).}
 }
 \value{
-A grob of class `ggthemes_economist_chart`. Print it to draw it, or pass
-  it to [ggplot2::ggsave()]. Like a ggplot, it is laid out when drawn, so
-  text is measured on the device it is drawn on. It is no longer a ggplot,
-  though: add layers, scales and themes before calling this function.
+A grob of class \code{ggthemes_economist_chart}. Print it to draw it, or pass
+it to \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}. Like a ggplot, it is laid out when drawn, so
+text is measured on the device it is drawn on. It is no longer a ggplot,
+though: add layers, scales and themes before calling this function.
 }
 \description{
-Finishes a plot styled with [theme_economist_2017()] as a chart of
+Finishes a plot styled with \code{\link[=theme_economist_2017]{theme_economist_2017()}} as a chart of
 \emph{The Economist visual styleguide} (v1.2, 4 May 2017). It draws what
-sits outside anything [ggplot2::theme()] can set, and lays the plot out as
+sits outside anything \code{\link[ggplot2:theme]{ggplot2::theme()}} can set, and lays the plot out as
 the guide does:
 }
 \details{
-* the red tab, 15pt by 5pt, above the title (pp.6-7);
-* for web, the red rule across the top of the chart (p.7);
-* a red marker, 10pt by 1pt, above each panel heading (p.10);
-* for web, the key moved up to the right of the title and subtitle
-  (p.7), instead of taking a row of its own above the panel;
-* the y-axis titles moved from beside the panels to above them, set
-  horizontally over their own axis: a left-hand title ranged left and a
-  right-hand one ranged right (p.10);
-* an x-axis label that would hang past the panel's edge ranged in flush
-  with it, as when the data run to the edge of an area chart;
-* optionally, a footnote set right on the source line (pp.6-7), and a
-  number box at the top right, for charts referred to by number in the
-  text (p.25).
+\itemize{
+\item the red tab, 15pt by 5pt, above the title (pp.6-7);
+\item for web, the red rule across the top of the chart (p.7);
+\item a red marker, 10pt by 1pt, above each panel heading (p.10);
+\item for web, the key moved up to the right of the title and subtitle
+(p.7), instead of taking a row of its own above the panel;
+\item the y-axis titles moved from beside the panels to above them, set
+horizontally over their own axis: a left-hand title ranged left and a
+right-hand one ranged right (p.10);
+\item an x-axis label that would hang past the panel's edge ranged in flush
+with it, as when the data run to the edge of an area chart;
+\item optionally, a footnote set right on the source line (pp.6-7), and a
+number box at the top right, for charts referred to by number in the
+text (p.25).
+}
 
 Sizes scale with the plot's base font size, as the theme's do, and the
 tab is placed at the plot's own outer margin.

@@ -15,9 +15,9 @@ geom_scale_break_economist(
 )
 }
 \arguments{
-\item{side}{Which edge of the panel the symbol sits on. `"right"` matches
+\item{side}{Which edge of the panel the symbol sits on. \code{"right"} matches
 the styleguide's usual placement, since it puts axis labels on the right;
-`"left"` is for a double-scale chart whose broken axis is the left one.}
+\code{"left"} is for a double-scale chart whose broken axis is the left one.}
 
 \item{width, height}{Size of the symbol in points. The guide specifies a
 6pt width (p.25).}
@@ -27,36 +27,37 @@ axis or text color.}
 
 \item{stroke}{Stroke weight in points. The guide specifies 0.4pt.}
 
-\item{...}{Other arguments passed to [ggplot2::layer()].}
+\item{...}{Other arguments passed to \code{\link[ggplot2:layer]{ggplot2::layer()}}.}
 }
 \value{
-A [ggplot2::layer()].
+A \code{\link[ggplot2:layer]{ggplot2::layer()}}.
 }
 \description{
-The mark *The Economist* puts on a y-axis that does not reach zero: a small
+The mark \emph{The Economist} puts on a y-axis that does not reach zero: a small
 zigzag sitting between the x-axis baseline and the lowest y-axis tick,
 announcing that the scale is truncated.
 }
 \details{
 The symbol is decoration, not a transformation. Truncate the axis in the
-usual way -- `scale_y_continuous(limits = ...)` or
-[ggplot2::coord_cartesian()] -- and add this layer to declare it. The
+usual way -- \code{scale_y_continuous(limits = ...)} or
+\code{\link[ggplot2:coord_cartesian]{ggplot2::coord_cartesian()}} -- and add this layer to declare it. The
 styleguide never excises a band from the middle of an axis, so there is
 nothing here that rescales the data.
 
 The styleguide (p.25) attaches two rules to this mark:
-
-* Use it when breaking the y-axis on **line, thermometer and scatter**
-  charts. Never on a bar or column chart -- a truncated bar misstates the
-  comparison the bar is making, and the guide's instruction there is to use
-  a thermometer chart instead.
-* It is **not needed** on indexed, negative or inverted scales, where no
-  reader expects the axis to start at zero.
+\itemize{
+\item Use it when breaking the y-axis on \strong{line, thermometer and scatter}
+charts. Never on a bar or column chart -- a truncated bar misstates the
+comparison the bar is making, and the guide's instruction there is to use
+a thermometer chart instead.
+\item It is \strong{not needed} on indexed, negative or inverted scales, where no
+reader expects the axis to start at zero.
+}
 }
 \section{Aesthetics}{
 
 None. The layer draws one symbol per panel and takes no data, so its
-appearance is set through the `colour`, `stroke`, `width` and `height`
+appearance is set through the \code{colour}, \code{stroke}, \code{width} and \code{height}
 arguments rather than through mapped aesthetics.
 }
 

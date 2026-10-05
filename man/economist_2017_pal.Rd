@@ -11,26 +11,26 @@ economist_2017_pal(
 )
 }
 \arguments{
-\item{media}{Either `"print"` or `"web"`. Both media have the same
-palettes; each reads its own complete spec in [ggthemes_data].}
+\item{media}{Either \code{"print"} or \code{"web"}. Both media have the same
+palettes; each reads its own complete spec in \link{ggthemes_data}.}
 
-\item{set}{`"primary"` is the six-color palette, in the order given by
-`type`. `"bright"` (four colors) and
-`"dark"` (three colors) are the guide's supporting sets "for
+\item{set}{\code{"primary"} is the six-color palette, in the order given by
+\code{type}. \code{"bright"} (four colors) and
+\code{"dark"} (three colors) are the guide's supporting sets "for
 multi-category charts where high contrast is needed" (p.11); they have
-no per-chart-type order, so `type` is ignored for them.}
+no per-chart-type order, so \code{type} is ignored for them.}
 
-\item{type}{For `set = "primary"` only: which chart
-type's color order to use. `"bar_side"` is bar or column, side by side
-(p.13), and is the guide's default reading order; `"stacked"` is
-bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
-side (p.15); `"dot"` is thermometer or scatter (pp.17-18); and `"pie"` is
+\item{type}{For \code{set = "primary"} only: which chart
+type's color order to use. \code{"bar_side"} is bar or column, side by side
+(p.13), and is the guide's default reading order; \code{"stacked"} is
+bar, column or line, stacked (pp.14, 16); \code{"line_side"} is line, side by
+side (p.15); \code{"dot"} is thermometer or scatter (pp.17-18); and \code{"pie"} is
 pie or doughnut (p.20).}
 }
 \value{
-A palette function. It takes the number of colors `n` and
-  returns a character vector of `n` hex colors, and can be used as the
-  `palette` argument of [ggplot2::discrete_scale()].
+A palette function. It takes the number of colors \code{n} and
+returns a character vector of \code{n} hex colors, and can be used as the
+\code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 The categorical palettes of \emph{The Economist visual styleguide}
@@ -43,7 +43,7 @@ print colors and follow the print color orders.
 The palette is not one fixed order. Each chart-type page of the guide
 (pp.13-20) carries its own numbered color order. They are reorderings of
 the same six hues, and come in five distinct sequences, chosen with
-`type`.
+\code{type}.
 }
 \examples{
 library("scales")

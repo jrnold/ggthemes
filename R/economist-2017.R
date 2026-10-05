@@ -1,7 +1,7 @@
 #' Economist 2017 color palette
 #'
-#' The categorical palettes of \emph{The Economist visual styleguide}
-#' (v1.2, 4 May 2017), the design \emph{The Economist} introduced in 2017
+#' The categorical palettes of *The Economist visual styleguide*
+#' (v1.2, 4 May 2017), the design *The Economist* introduced in 2017
 #' and used until its 2024 redesign. Print and web charts use the same
 #' palettes: the guide's own web charts (pp.3, 7, 9, 24) are drawn in the
 #' print colors and follow the print color orders.
@@ -30,7 +30,7 @@
 #'   `palette` argument of [ggplot2::discrete_scale()].
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.11-20.
 #'
 #' @family economist 2017
@@ -58,8 +58,8 @@ economist_2017_pal <- function(
 
 #' Economist 2017 continuous color palette
 #'
-#' Interpolates one of the "equal lightness colour scales" of \emph{The
-#' Economist visual styleguide} (v1.2, 4 May 2017, p.12): six steps of one
+#' Interpolates one of the "equal lightness colour scales" of *The
+#' Economist visual styleguide* (v1.2, 4 May 2017, p.12): six steps of one
 #' hue, of even perceived lightness, for ordered and continuous data. Low
 #' values get the lightest step. The guide gives them on its web palette page;
 #' print and web use the same ramps.
@@ -75,7 +75,7 @@ economist_2017_pal <- function(
 #'   argument of [ggplot2::continuous_scale()].
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), p.12.
 #'
 #' @family economist 2017
@@ -97,7 +97,7 @@ economist_2017_gradient_pal <- function(hue = "blue", direction = 1, media = c("
 
 #' Economist 2017 color scales
 #'
-#' Color and fill scales for \emph{The Economist visual styleguide}
+#' Color and fill scales for *The Economist visual styleguide*
 #' (v1.2, 4 May 2017). The discrete scales use [economist_2017_pal()]; the
 #' `_c` scales are continuous and use [economist_2017_gradient_pal()].
 #'
@@ -186,8 +186,8 @@ scale_fill_economist_2017_c <- function(
 
 #' Economist 2017 theme
 #'
-#' A theme for \emph{The Economist visual styleguide} (v1.2, 4 May 2017),
-#' the chart design \emph{The Economist} introduced in 2017 and used until
+#' A theme for *The Economist visual styleguide* (v1.2, 4 May 2017),
+#' the chart design *The Economist* introduced in 2017 and used until
 #' its 2024 redesign. It has print and web variants: print charts sit on a
 #' pale blue ground with a 6pt margin, web charts on white with none.
 #'
@@ -233,7 +233,7 @@ scale_fill_economist_2017_c <- function(
 #' @return An object of class [ggplot2::theme()].
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.3-12.
 #'
 #' @family economist 2017
@@ -412,7 +412,7 @@ economist_2017_linewidth <- function(pt, base_size) {
 #' Finish an Economist 2017 chart
 #'
 #' Finishes a plot styled with [theme_economist_2017()] as a chart of
-#' \emph{The Economist visual styleguide} (v1.2, 4 May 2017). It draws what
+#' *The Economist visual styleguide* (v1.2, 4 May 2017). It draws what
 #' sits outside anything [ggplot2::theme()] can set, and lays the plot out as
 #' the guide does:
 #'
@@ -452,7 +452,7 @@ economist_2017_linewidth <- function(pt, base_size) {
 #'   though: add layers, scales and themes before calling this function.
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.6-7, 10.
 #'
 #' @family economist 2017
@@ -811,10 +811,10 @@ print.ggthemes_economist_chart <- function(x, newpage = TRUE, ...) {
 #' openly licensed substitutes: Fira Sans Condensed, a humanist sans of the
 #' same width class, then Roboto Condensed.
 #'
-#' A font counts as installed if \pkg{systemfonts}, which the 'ragg' and
+#' A font counts as installed if 'systemfonts', which the 'ragg' and
 #' 'svglite' devices use to find fonts, lists it among the system fonts or
 #' the fonts registered with [systemfonts::register_font()]. Without
-#' \pkg{systemfonts}, the result is always `fallback`.
+#' 'systemfonts', the result is always `fallback`.
 #'
 #' @param families Font families to try, in order of preference.
 #' @param fallback The family to use if none of `families` is installed.
@@ -848,7 +848,7 @@ economist_2017_font <- function(
 
 #' Economist 2017 chart sizes
 #'
-#' The chart sizes of \emph{The Economist visual styleguide} (v1.2, 4 May
+#' The chart sizes of *The Economist visual styleguide* (v1.2, 4 May
 #' 2017, p.4), for drawing a chart at the size the guide specifies: pass the
 #' result to [ggplot2::ggsave()], or use it for a knitr figure's `fig.width`
 #' and `fig.height`.
@@ -883,7 +883,7 @@ economist_2017_font <- function(
 #' @return A named numeric vector, `c(width = , height = )`, in `units`.
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.4, 8-9.
 #'
 #' @family economist 2017
@@ -914,7 +914,7 @@ economist_2017_size <- function(size = "one_column", height = NULL, units = c("i
 
 #' Economist 2017 footnote symbols
 #'
-#' The footnote symbols of \emph{The Economist visual styleguide} (v1.2, 4 May
+#' The footnote symbols of *The Economist visual styleguide* (v1.2, 4 May
 #' 2017, p.5), in their order of use: `*`, `†`, `‡`, `§`, then the same four
 #' doubled. The guide stops at eight; beyond that the pattern continues,
 #' tripling the symbols and so on. The symbols are also in
@@ -925,7 +925,7 @@ economist_2017_size <- function(size = "one_column", height = NULL, units = c("i
 #' @return A character vector of symbols, one for each element of `n`.
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), p.5.
 #'
 #' @family economist 2017

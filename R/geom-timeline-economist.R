@@ -45,7 +45,7 @@
 #' guide's 6.5pt.
 #'
 #' @inheritParams ggplot2::geom_text
-#' @param arrow Draw an arrowhead at the label end of each rule?
+#' @param arrow Whether to draw an arrowhead at the label end of each rule.
 #' @param gap Space between the end of a rule (or the top of a span or the
 #'   bottom of a bar) and its label, in points.
 #' @param fills For `geom_period_economist()`, the colors the bars alternate
@@ -59,11 +59,13 @@
 #' @param label_every Label the years divisible by this, and the first year,
 #'   in the guide's style (see [economist_year()]).
 #' @param colour For `geom_year_band_economist()`, the color of the year labels.
+#' @param size,family For `geom_year_band_economist()`, the size (in mm, as for
+#'   [ggplot2::geom_text()]) and font family of the year labels.
 #'
 #' @return A [ggplot2::layer()].
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean).
 #'
 #' @family economist 2017

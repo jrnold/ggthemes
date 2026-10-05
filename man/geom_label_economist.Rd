@@ -93,9 +93,9 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 
-\item{pointer}{Which side of the box the pointer is on: `"bottom"` (the
-default; the box sits above `x`, `y`), `"top"`, `"left"`, `"right"`, or
-`"none"` for a plain box.}
+\item{pointer}{Which side of the box the pointer is on: \code{"bottom"} (the
+default; the box sits above \code{x}, \code{y}), \code{"top"}, \code{"left"}, \code{"right"}, or
+\code{"none"} for a plain box.}
 
 \item{padding}{Space either side of the text, in points. The guide
 specifies 6pt; a smaller value fits a block into a tight corner.}
@@ -117,10 +117,10 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{annotation_borders()}}.}
 }
 \value{
-A [ggplot2::layer()].
+A \code{\link[ggplot2:layer]{ggplot2::layer()}}.
 }
 \description{
-The labelled box *The Economist*'s 2017 styleguide uses to annotate a
+The labelled box \emph{The Economist}'s 2017 styleguide uses to annotate a
 chart, such as a "Market cap, $bn" key above a column of number blocks or
 an "ECB announces QE" callout on a line: text set in a shaded box, with a
 small pointer on one side aimed at the thing it labels.
@@ -130,33 +130,34 @@ The box follows the guide's specification in points, whatever the size of
 the figure: 12pt tall for one line of text, 23pt for two, and 11pt more for
 each further line, with 6pt of padding either side of the text. The pointer
 is a triangle 5pt across and 3.75pt deep. It is centred on its side of the
-box unless `hjust` (for a pointer on the top or bottom) or `vjust` (for one
+box unless \code{hjust} (for a pointer on the top or bottom) or \code{vjust} (for one
 on the left or right) moves it, and then stays at least 6pt in from the
 box's corners where the box is big enough.
 
-`x` and `y` are the point the pointer touches, so the box sits beside the
-data it labels. With `pointer = "none"`, they place the box itself, and
-`hjust` and `vjust` justify it as they would text.
+\code{x} and \code{y} are the point the pointer touches, so the box sits beside the
+data it labels. With \code{pointer = "none"}, they place the box itself, and
+\code{hjust} and \code{vjust} justify it as they would text.
 
-The guide fills the box with its number-box color (C22.5 K15) at 100%
-multiply. The default `fill` is that color; on the pale blue print
+The guide fills the box with its number-box color (C22.5 K15) at 100\%
+multiply. The default \code{fill} is that color; on the pale blue print
 background, pass the multiplied color for an exact match (see the
 examples).
 }
 \section{Aesthetics}{
 
-`geom_label_economist()` understands the following aesthetics (required ones
+\code{geom_label_economist()} understands the following aesthetics (required ones
 are in bold):
-
-* **`x`**, **`y`**: the point the pointer touches.
-* **`label`**: the text. Use `"\\n"` for a line break.
-* `colour`: text color. Default black.
-* `fill`: box color. Default the guide's number-box color.
-* `alpha`: box transparency.
-* `size`: text size in mm. Default 7.5pt, the guide's.
-* `family`, `fontface`: the text's font.
-* `hjust`, `vjust`: where the pointer sits along its side of the box,
-  from 0 to 1; or, with `pointer = "none"`, the box's justification.
+\itemize{
+\item \strong{\code{x}}, \strong{\code{y}}: the point the pointer touches.
+\item \strong{\code{label}}: the text. Use \code{"\\\\n"} for a line break.
+\item \code{colour}: text color. Default black.
+\item \code{fill}: box color. Default the guide's number-box color.
+\item \code{alpha}: box transparency.
+\item \code{size}: text size in mm. Default 7.5pt, the guide's.
+\item \code{family}, \code{fontface}: the text's font.
+\item \code{hjust}, \code{vjust}: where the pointer sits along its side of the box,
+from 0 to 1; or, with \code{pointer = "none"}, the box's justification.
+}
 }
 
 \examples{
@@ -179,8 +180,15 @@ p +
 ## The guide multiplies the box color over the print background
 ground <- ggthemes_data$economist_2017$print$ground
 box <- ggthemes_data$economist_2017$print$number_box
-multiply <- grDevices::rgb(t(grDevices::col2rgb(box) * grDevices::col2rgb(ground) / 255), maxColorValue = 255)
-p + annotate("label_economist", x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks", fill = multiply)
+multiply <- grDevices::rgb(
+  t(grDevices::col2rgb(box) * grDevices::col2rgb(ground) / 255),
+  maxColorValue = 255
+)
+p +
+  annotate(
+    "label_economist",
+    x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks", fill = multiply
+  )
 }
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;

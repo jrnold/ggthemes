@@ -12,16 +12,16 @@ economist_year_format(...)
 \arguments{
 \item{x}{A numeric vector of years to format.}
 
-\item{...}{Passed to [format()], used for the years shown in full.}
+\item{...}{Passed to \code{\link[=format]{format()}}, used for the years shown in full.}
 }
 \value{
-`economist_year()` returns a character vector.
-  `economist_year_format()` returns a function of a single argument `x`
-  that returns a character vector, for use as a scale's `labels`.
+\code{economist_year()} returns a character vector.
+\code{economist_year_format()} returns a function of a single argument \code{x}
+that returns a character vector, for use as a scale's \code{labels}.
 }
 \description{
 Truncates year labels to their last two digits, keeping the first labeled
-year and every century boundary in full: `1948 52 56 ... 96 2000 04 08`.
+year and every century boundary in full: \verb{1948 52 56 ... 96 2000 04 08}.
 This is the convention on every dated axis in \emph{The Economist visual
 styleguide} (v1.2, 4 May 2017) -- see pp.6, 7, 13, 15, 16 and 23 -- and it
 keeps a crowded time axis readable without losing the reader's anchor.

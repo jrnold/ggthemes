@@ -11,19 +11,19 @@ economist_2017_gradient_pal(
 )
 }
 \arguments{
-\item{hue}{One of `"red"`, `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
-`"olive"`, `"purple"`, `"gold"` or `"grey"`.}
+\item{hue}{One of \code{"red"}, \code{"blue"}, \code{"cyan"}, \code{"green"}, \code{"yellow"},
+\code{"olive"}, \code{"purple"}, \code{"gold"} or \code{"grey"}.}
 
-\item{direction}{`1` maps low values to the lightest step; `-1` reverses
+\item{direction}{\code{1} maps low values to the lightest step; \code{-1} reverses
 the ramp.}
 
-\item{media}{Either `"print"` or `"web"`. Both media have the same
-palettes; each reads its own complete spec in [ggthemes_data].}
+\item{media}{Either \code{"print"} or \code{"web"}. Both media have the same
+palettes; each reads its own complete spec in \link{ggthemes_data}.}
 }
 \value{
 A palette function. It takes a numeric vector of values between
-  0 and 1 and returns hex colors, and can be used as the `palette`
-  argument of [ggplot2::continuous_scale()].
+0 and 1 and returns hex colors, and can be used as the \code{palette}
+argument of \code{\link[ggplot2:continuous_scale]{ggplot2::continuous_scale()}}.
 }
 \description{
 Interpolates one of the "equal lightness colour scales" of \emph{The
