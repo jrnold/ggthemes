@@ -2,7 +2,7 @@
 % Please edit documentation in R/tableau.R
 \name{tableau_shape_pal}
 \alias{tableau_shape_pal}
-\title{Tableau Shape Palettes (discrete)}
+\title{Tableau shape palettes (discrete)}
 \usage{
 tableau_shape_pal(
   palette = c("default", "filled", "proportions"),
@@ -19,8 +19,8 @@ coverage; the default returns base pch codes, which every font can draw.}
 }
 \value{
 A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-  \code{\link[ggplot2]{discrete_scale}()}.
+shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Shape palettes used by

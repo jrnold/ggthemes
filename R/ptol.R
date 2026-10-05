@@ -22,7 +22,7 @@ ptol_deprecation_details <- function() {
   )
 }
 
-#' Color Palettes from Paul Tol's "Colour Schemes"
+#' Color palettes from Paul Tol's "Colour Schemes"
 #'
 #' @md
 #' @description
@@ -38,19 +38,19 @@ ptol_deprecation_details <- function() {
 #' to this palette is `khroma::colour("muted")`.
 #'
 #' Qualitative color palettes from Paul Tol,
-#' \href{https://sronpersonalpages.nl/~pault/}{"Colour Schemes"}.
+#' ["Colour Schemes"](https://sronpersonalpages.nl/~pault/).
 #'
 #' @details
 #' Incorporation of the palette into an R package was originally inspired by
 #' Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 #'
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @family color ptol
 #' @references
 #' Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
-#'  \url{https://sronpersonalpages.nl/~pault/data/colourschemes.pdf}
+#'  <https://sronpersonalpages.nl/~pault/data/colourschemes.pdf>
 #' @importFrom lifecycle deprecate_warn
 #' @example inst/examples/ex-ptol_pal.R
 ptol_pal <- function() {
@@ -65,7 +65,7 @@ ptol_pal <- function() {
   f
 }
 
-#' Color Scales from Paul Tol's "Colour Schemes"
+#' Color scales from Paul Tol's "Colour Schemes"
 #'
 #' @md
 #' @description
@@ -80,7 +80,7 @@ ptol_pal <- function() {
 #' are at <https://sronpersonalpages.nl/~pault/>; the closest successor is
 #' `khroma::scale_colour_muted()`.
 #'
-#' See \code{\link{ptol_pal}()}. These palettes support up to 12 values.
+#' See [ptol_pal()]. These palettes support up to 12 values.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams ptol_pal

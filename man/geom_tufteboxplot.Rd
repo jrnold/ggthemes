@@ -3,7 +3,7 @@
 \name{geom_tufteboxplot}
 \alias{geom_tufteboxplot}
 \alias{GeomTufteboxplot}
-\title{Tufte's Box Plot}
+\title{Tufte's box plot}
 \usage{
 geom_tufteboxplot(
   mapping = NULL,
@@ -47,9 +47,9 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{stat}{The statistical transformation to use on the data for this
 layer, as a string. The default (\code{stat = 'fivenumber'}) calls
-\code{\link{stat_fivenumber}} and produces whiskers that extend
+\code{\link[=stat_fivenumber]{stat_fivenumber()}} and produces whiskers that extend
 from the interquartile range to the extremes of the data; specifying
-\code{\link[ggplot2]{stat_boxplot}} will produce a more traditional boxplot
+\code{\link[ggplot2:stat_boxplot]{ggplot2::stat_boxplot()}} will produce a more traditional boxplot
 with whiskers extending to the most extreme points that are < 1.5 IQR
 away from the hinges (i.e., the first and third quartiles).}
 
@@ -66,19 +66,19 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \link[ggplot2:layer_positions]{layer position} documentation.
 }}
 
-\item{outlier.colour}{color for outlying points}
+\item{outlier.colour}{Color of outlying points.}
 
-\item{outlier.shape}{shape of outlying points}
+\item{outlier.shape}{Shape of outlying points.}
 
-\item{outlier.size}{size of outlying points}
+\item{outlier.size}{Size of outlying points.}
 
-\item{outlier.stroke}{stroke for outlying points}
+\item{outlier.stroke}{Stroke width of outlying points.}
 
-\item{voffset}{controls the size of the gap in the line representing the
+\item{voffset}{Controls the size of the gap in the line representing the
 median when \code{median.type = 'line'}. This is a fraction of the range
 of \code{y}.}
 
-\item{hoffset}{controls how much the interquartile line is offset from the
+\item{hoffset}{Controls how much the interquartile line is offset from the
 whiskers when \code{median.type = 'line'}. This is a fraction of the
 range of \code{x}.}
 
@@ -141,32 +141,32 @@ A ggplot2 layer.
 \description{
 Edward Tufte's revisions of the box plot as described in
 \emph{The Visual Display of Quantitative Information}.
-This functions provides several box plot variants:
+This function provides several box plot variants:
 \itemize{
-\item{A point indicating the median, a gap indicating the
-  interquartile range, and lines for whiskers.}
-\item{An offset line indicating the interquartile range
-      and a gap indicating the median.}
-\item{A line indicating the interquartile range,
-      a gap indicating the median, and points indicating
-      the minimum and maximum values}
-\item{A  wide line indicating the interquartile range,
-      a gap indicating the median, and lines indicating the minimum and
-      maximum.}
+\item A point indicating the median, a gap indicating the
+interquartile range, and lines for whiskers.
+\item An offset line indicating the interquartile range
+and a gap indicating the median.
+\item A line indicating the interquartile range,
+a gap indicating the median, and points indicating
+the minimum and maximum values.
+\item A wide line indicating the interquartile range,
+a gap indicating the median, and lines indicating the minimum and
+maximum.
 }
 }
 \section{Aesthetics}{
 
 \itemize{
-\item x [required]
-\item y [required]
-\item colour
-\item size
-\item linewidth
-\item linetype
-\item shape
-\item fill
-\item alpha
+\item \code{x} (required)
+\item \code{y} (required)
+\item \code{colour}
+\item \code{size}
+\item \code{linewidth}
+\item \code{linetype}
+\item \code{shape}
+\item \code{fill}
+\item \code{alpha}
 }
 }
 
@@ -197,7 +197,7 @@ McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 box plots. The American Statistician 32, 12-16.
 }
 \seealso{
-\code{\link[ggplot2]{geom_boxplot}()}
+\code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}
 
 Other geom tufte:
 \code{\link[=geom_rangeframe]{geom_rangeframe()}}

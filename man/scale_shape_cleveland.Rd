@@ -92,7 +92,7 @@ Cleveland WS. The Elements of Graphing Data. Revised Edition.
 Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 }
 \seealso{
-\code{\link{cleveland_shape_pal}()} for a description of the palette.
+\code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}} for a description of the palette.
 
 Other shapes:
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},

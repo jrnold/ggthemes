@@ -14,8 +14,8 @@ coverage; the default returns base pch codes, which every font can draw.}
 }
 \value{
 A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-  \code{\link[ggplot2]{discrete_scale}()}.
+shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Shape palette based on the symbol palette in Stata used in scheme s2mono.
@@ -33,7 +33,7 @@ stata_shape_pal()(10)
 show_shapes(stata_shape_pal()(10))
 }
 \seealso{
-See \code{\link{scale_shape_stata}()} for examples.
+See \code{\link[=scale_shape_stata]{scale_shape_stata()}} for examples.
 
 Other shapes stata:
 \code{\link[=scale_shape_stata]{scale_shape_stata()}}

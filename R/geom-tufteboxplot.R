@@ -1,33 +1,29 @@
-#' Tufte's Box Plot
+#' Tufte's box plot
 #'
 #' Edward Tufte's revisions of the box plot as described in
-#' \emph{The Visual Display of Quantitative Information}.
-#' This functions provides several box plot variants:
-#' \itemize{
-#' \item{A point indicating the median, a gap indicating the
-#'   interquartile range, and lines for whiskers.}
-#' \item{An offset line indicating the interquartile range
-#'       and a gap indicating the median.}
-#' \item{A line indicating the interquartile range,
-#'       a gap indicating the median, and points indicating
-#'       the minimum and maximum values}
-#' \item{A  wide line indicating the interquartile range,
-#'       a gap indicating the median, and lines indicating the minimum and
-#'       maximum.}
-#' }
+#' *The Visual Display of Quantitative Information*.
+#' This function provides several box plot variants:
+#' - A point indicating the median, a gap indicating the
+#'   interquartile range, and lines for whiskers.
+#' - An offset line indicating the interquartile range
+#'   and a gap indicating the median.
+#' - A line indicating the interquartile range,
+#'   a gap indicating the median, and points indicating
+#'   the minimum and maximum values.
+#' - A wide line indicating the interquartile range,
+#'   a gap indicating the median, and lines indicating the minimum and
+#'   maximum.
 #'
 #' @section Aesthetics:
-#' \itemize{
-#' \item x [required]
-#' \item y [required]
-#' \item colour
-#' \item size
-#' \item linewidth
-#' \item linetype
-#' \item shape
-#' \item fill
-#' \item alpha
-#' }
+#' - `x` (required)
+#' - `y` (required)
+#' - `colour`
+#' - `size`
+#' - `linewidth`
+#' - `linetype`
+#' - `shape`
+#' - `fill`
+#' - `alpha`
 #'
 #' @references Tufte, Edward R. (2001) The Visual Display of
 #' Quantitative Information, Chapter 6.
@@ -35,30 +31,30 @@
 #' McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
 #' box plots. The American Statistician 32, 12-16.
 #'
-#' @seealso \code{\link[ggplot2]{geom_boxplot}()}
+#' @seealso [ggplot2::geom_boxplot()]
 #' @inheritParams ggplot2::geom_point
-#' @param outlier.colour color for outlying points
-#' @param outlier.shape shape of outlying points
-#' @param outlier.size size of outlying points
-#' @param outlier.stroke stroke for outlying points
-#' @param median.type If \code{'point'}, then the median is represented by a
+#' @param outlier.colour Color of outlying points.
+#' @param outlier.shape Shape of outlying points.
+#' @param outlier.size Size of outlying points.
+#' @param outlier.stroke Stroke width of outlying points.
+#' @param median.type If `'point'`, then the median is represented by a
 #'   point, and the interquartile range by a gap in the line. If
-#'   \code{median.type='line'}, then the interquartile range is represented by
+#'   `median.type='line'`, then the interquartile range is represented by
 #'   a line, possibly offset, and the median by a gap in the line.
-#' @param whisker.type If \code{'line'}, then whiskers are represented by lines.
-#'    If \code{'point'}, then whiskers are represented by points at
-#'    \code{ymin} and \code{ymax}.
-#' @param voffset controls the size of the gap in the line representing the
-#'    median when \code{median.type = 'line'}. This is a fraction of the range
-#'    of \code{y}.
-#' @param hoffset controls how much the interquartile line is offset from the
-#'    whiskers when \code{median.type = 'line'}. This is a fraction of the
-#'    range of \code{x}.
+#' @param whisker.type If `'line'`, then whiskers are represented by lines.
+#'    If `'point'`, then whiskers are represented by points at
+#'    `ymin` and `ymax`.
+#' @param voffset Controls the size of the gap in the line representing the
+#'    median when `median.type = 'line'`. This is a fraction of the range
+#'    of `y`.
+#' @param hoffset Controls how much the interquartile line is offset from the
+#'    whiskers when `median.type = 'line'`. This is a fraction of the
+#'    range of `x`.
 #' @param  stat The statistical transformation to use on the data for this
-#'    layer, as a string. The default (\code{stat = 'fivenumber'}) calls
-#'    \code{\link{stat_fivenumber}} and produces whiskers that extend
+#'    layer, as a string. The default (`stat = 'fivenumber'`) calls
+#'    [stat_fivenumber()] and produces whiskers that extend
 #'    from the interquartile range to the extremes of the data; specifying
-#'    \code{\link[ggplot2]{stat_boxplot}} will produce a more traditional boxplot
+#'    [ggplot2::stat_boxplot()] will produce a more traditional boxplot
 #'    with whiskers extending to the most extreme points that are < 1.5 IQR
 #'    away from the hinges (i.e., the first and third quartiles).
 #' @family geom tufte

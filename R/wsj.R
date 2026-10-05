@@ -1,22 +1,22 @@
 #' Wall Street Journal theme
 #'
-#' Theme based on the plots in \emph{The Wall Street Journal}.
+#' Theme based on the plots in *The Wall Street Journal*.
 #'
-#' This theme should be used with \code{\link{scale_color_wsj}()}.
+#' This theme should be used with [scale_color_wsj()].
 #'
 #' @references
 #'
-#' \url{https://x.com/WSJGraphics}
+#' <https://x.com/WSJGraphics>
 #'
-#' \url{https://pinterest.com/wsjgraphics/wsj-graphics/}
+#' <https://pinterest.com/wsjgraphics/wsj-graphics/>
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param color The background color of plot. One of \code{'brown',
-#' 'gray', 'green', 'blue'}.
+#' @param color The background color of plot. One of `'brown',
+#' 'gray', 'green', 'blue'`.
 #' @param title_family Plot title font family.
 #' @family themes wsj
 #' @example inst/examples/ex-theme_wsj.R
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @importFrom ggplot2 element_line element_rect element_text element_blank rel
 theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", title_family = "mono") {
@@ -58,28 +58,26 @@ theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", tit
 #' The Wall Street Journal uses many different color palettes in its
 #' plots. This collects a few of them, but is by no means exhaustive.
 #' Collections of these plots can be found on the WSJ Graphics
-#' \href{https://x.com/WSJGraphics}{X (formerly Twitter)} feed and
-#' \href{https://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
+#' [X (formerly Twitter)](https://x.com/WSJGraphics) feed and
+#' [Pinterest](https://pinterest.com/wsjgraphics/wsj-graphics/).
 #'
 #' @section Palettes:
 #'
-#' The following palettes are defined,
+#' The following palettes are defined:
 #'
-#' \describe{
-#' \item{rgby}{Red/Green/Blue/Yellow theme.}
-#' \item{red_green}{Green/red two-color scale for good/bad.}
-#' \item{green_black}{Black-green 4-color scale for 'Very negative',
-#'   'Somewhat negative', 'somewhat positive', 'very positive'.}
-#' \item{dem_rep}{Democrat/Republican/Undecided blue/red/gray scale.}
-#' \item{colors6}{Red, blue, gold, green, orange, and black palette.}
-#' }
+#' - `"rgby"`: red/green/blue/yellow theme.
+#' - `"red_green"`: green/red two-color scale for good/bad.
+#' - `"green_black"`: black-green 4-color scale for "very negative",
+#'   "somewhat negative", "somewhat positive", "very positive".
+#' - `"dem_rep"`: Democrat/Republican/Undecided blue/red/gray scale.
+#' - `"colors6"`: red, blue, gold, green, orange, and black palette.
 #'
-#' @param palette \code{character} The color palette to use: .
-#' \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}
+#' @param palette `character` The color palette to use. One of
+#'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$wsj$palettes))`.
 #'
 #' @family color wsj
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-wsj_pal.R
 wsj_pal <- function(palette = "colors6") {
@@ -97,8 +95,8 @@ wsj_pal <- function(palette = "colors6") {
 
 #' Wall Street Journal color and fill scales
 #'
-#' Color and fill scales which use the palettes in \code{\link{wsj_pal}()}.
-#' These scales should be used with \code{\link{theme_wsj}()}.
+#' Color and fill scales which use the palettes in [wsj_pal()].
+#' These scales should be used with [theme_wsj()].
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams wsj_pal

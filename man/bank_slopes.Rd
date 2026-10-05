@@ -14,9 +14,9 @@ bank_slopes(
 )
 }
 \arguments{
-\item{x}{x values}
+\item{x}{A numeric vector of x values.}
 
-\item{y}{y values}
+\item{y}{A numeric vector of y values.}
 
 \item{cull}{\code{logical}. Remove all slopes of 0 or \code{Inf}.}
 
@@ -46,7 +46,7 @@ are generally the median of the various methods provided here.
 
 As written, all of these methods calculate the aspect ratio (x
 /y), but \code{bank_slopes} will return (y / x) to be compatible
-with \code{link[ggplot2]{coord_fixed()}}.
+with \code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}}.
 
 \strong{Median Absolute Slopes Banking}
 
@@ -92,7 +92,7 @@ that,
  mean |atan(s'_i / alpha)| = pi / 4
 }
 This has no closed-form solution and is found numerically with
-\code{\link[stats]{uniroot}}.
+\code{\link[stats:uniroot]{stats::uniroot()}}.
 
 \strong{Weighted Average Absolute Orientation Banking}
 
@@ -110,14 +110,14 @@ sum(|atan(s'_i / alpha)| * dx_i * sqrt(1 + (s'_i / alpha)^2)) /
   sum(dx_i * sqrt(1 + (s'_i / alpha)^2)) = pi / 4
 }
 This has no closed-form solution and is found numerically with
-\code{\link[stats]{uniroot}}.
+\code{\link[stats:uniroot]{stats::uniroot()}}.
 
 All of these methods consider the entirety of the data at once, so they
 accentuate local features and can obscure larger-scale trends. Heer and
 Agrawala (2006) address this with multi-scale banking, which uses spectral
 analysis to identify the frequency scales present in the data and banks
-each one separately; see \code{\link{bank_slopes_multiscale}} and
-\code{\link{bank_plot_multiscale}}.
+each one separately; see \code{\link[=bank_slopes_multiscale]{bank_slopes_multiscale()}} and
+\code{\link[=bank_plot_multiscale]{bank_plot_multiscale()}}.
 }
 
 \examples{
@@ -163,8 +163,8 @@ Graphs.' Journal of Computational and Statistical Graphics.
 Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 }
 \seealso{
-\code{\link[lattice]{banking}()}, \code{\link{bank_plot}} to bank
+\code{\link[lattice:banking]{lattice::banking()}}, \code{\link[=bank_plot]{bank_plot()}} to bank
 a \code{ggplot} using its own data, and
-\code{\link{bank_slopes_multiscale}} to bank each frequency scale in the
+\code{\link[=bank_slopes_multiscale]{bank_slopes_multiscale()}} to bank each frequency scale in the
 data separately.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/shapes.R
 \name{cleveland_shape_pal}
 \alias{cleveland_shape_pal}
-\title{Shape palette from Cleveland "Elements of Graphing Data" (discrete).}
+\title{Shape palette from Cleveland's "Elements of Graphing Data"}
 \usage{
 cleveland_shape_pal(overlap = TRUE, unicode = FALSE)
 }
@@ -16,8 +16,8 @@ coverage; the default returns base pch codes, which every font can draw.}
 }
 \value{
 A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
-  shape (\code{pch}) codes, and can be used as the \code{palette} argument of
-  \code{\link[ggplot2]{discrete_scale}()}.
+shape (\code{pch}) codes, and can be used as the \code{palette} argument of
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Shape palettes for overlapping and non-overlapping points.

@@ -17,9 +17,9 @@ theme_hc(
 \item{base_family}{base font family}
 
 \item{style}{The Highcharts theme to use. One of
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes:::hc_theme_styles))}.}
+\code{"default"}, \code{"default_dark"}, \code{"darkunica"}, \code{"grid_light"}, \code{"sand_signika"}.}
 
-\item{bgcolor}{Deprecated}
+\item{bgcolor}{Deprecated.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
@@ -31,7 +31,7 @@ Themes based on \href{https://www.highcharts.com/}{Highcharts} plots.
 Only the Highcharts themes that restyle the chart itself get a \code{style}
 here. The \code{"high-contrast"}, \code{"avocado"} and \code{"sunset"}
 themes shipped with Highcharts 13 change nothing but the series colors, so
-they are available through \code{\link{hc_pal}()} alone; combine them with
+they are available through \code{\link[=hc_pal]{hc_pal()}} alone; combine them with
 \code{theme_hc("default")} or \code{theme_hc("default_dark")}.
 
 Highcharts pairs several of these themes with a web font

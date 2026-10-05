@@ -2,7 +2,7 @@
 % Please edit documentation in R/banking.R
 \name{bank_plot}
 \alias{bank_plot}
-\title{Bank a Plot's Own Data to 45 Degrees}
+\title{Bank a plot's own data to 45 degrees}
 \usage{
 bank_plot(
   plot,
@@ -15,22 +15,22 @@ bank_plot(
 \arguments{
 \item{plot}{A \code{ggplot} object.}
 
-\item{method, cull, ...}{Passed to \code{\link{bank_slopes}}.}
+\item{method, cull, ...}{Passed to \code{\link[=bank_slopes]{bank_slopes()}}.}
 
 \item{layer}{Integer. Which layer of \code{plot} to extract \code{x}/
 \code{y} from. Defaults to the first layer.}
 }
 \value{
-The \code{plot}, with \code{\link[ggplot2]{coord_fixed}} added.
+The \code{plot}, with \code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}} added.
 }
 \description{
-A convenience wrapper around \code{\link{bank_slopes}} that extracts
+A convenience wrapper around \code{\link[=bank_slopes]{bank_slopes()}} that extracts
 \code{x}/\code{y} directly from an already-specified \code{ggplot}, so
 you do not have to separately reconstruct the plotted vectors by hand.
-It builds \code{plot} with \code{\link[ggplot2]{ggplot_build}}, computes
+It builds \code{plot} with \code{\link[ggplot2:ggplot_build]{ggplot2::ggplot_build()}}, computes
 the banking ratio from one layer's fully resolved data (i.e. after
 stats, position adjustments, and faceting have been applied), and
-returns \code{plot + \link[ggplot2]{coord_fixed}(ratio = ...)}.
+returns \code{plot + coord_fixed(ratio = ...)} (see \code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}}).
 }
 \details{
 Segments are never averaged across a group or facet panel boundary:
@@ -39,7 +39,7 @@ slopes are computed within each combination of \code{group} and
 facets) is banked correctly rather than picking up spurious slopes
 between the end of one line and the start of the next.
 
-Note that \code{\link[ggplot2]{coord_fixed}} applies a single ratio to
+Note that \code{\link[ggplot2:coord_fixed]{ggplot2::coord_fixed()}} applies a single ratio to
 every panel, so faceted plots are banked using the combined data from
 all panels rather than a ratio tailored to each one individually.
 }
@@ -52,5 +52,5 @@ p <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +
 bank_plot(p)
 }
 \seealso{
-\code{\link{bank_slopes}}
+\code{\link[=bank_slopes]{bank_slopes()}}
 }

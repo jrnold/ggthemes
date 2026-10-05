@@ -8,7 +8,7 @@
 \alias{scale_color_colorblind}
 \alias{scale_fill_colorblind}
 \alias{scale_fill_colourblind}
-\title{Colorblind Color Palette (Discrete) and Scales}
+\title{Colorblind color palette (discrete) and scales}
 \usage{
 colorblind_pal(black = TRUE)
 
@@ -89,13 +89,13 @@ notation.
 }
 \value{
 \code{colorblind_pal()} and \code{colourblind_pal()} return a palette function that takes the number of
-  colors \code{n} and returns a character vector of \code{n} hex colors. The \code{scale_*()} functions
-  return a ggplot2 scale object.
+colors \code{n} and returns a character vector of \code{n} hex colors. The \verb{scale_*()} functions
+return a ggplot2 scale object.
 }
 \description{
 An eight-color colorblind safe qualitative discrete palette.
 
-`r lifecycle::badge("deprecated")`
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
 \examples{
 library("ggplot2")
@@ -115,10 +115,10 @@ p + theme_igray() + scale_colour_colourblind()
 \references{
 Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook for R}"
 
-\verb{https://jfly.iam.u-tokyo.ac.jp/color}
+\url{https://jfly.iam.u-tokyo.ac.jp/color/}
 }
 \seealso{
-The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}()},
-  and \code{\link{scale_color_tableau}()} for other colorblind palettes.
+The dichromat package, \code{\link[scales:dichromat_pal]{scales::dichromat_pal()}},
+and \code{\link[=scale_color_tableau]{scale_color_tableau()}} for other colorblind palettes.
 }
 \concept{color colorblind}

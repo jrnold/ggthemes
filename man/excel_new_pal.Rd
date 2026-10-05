@@ -10,11 +10,11 @@ excel_new_pal(theme = "Office")
 \item{theme}{The name of the Office theme or color theme
 (not to be confused with ggplot2 themes) from which to derive the color
 palette. Available themes include:
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}}
+\code{"Atlas"}, \code{"Badge"}, \code{"Berlin"}, \code{"Celestial"}, \code{"Crop"}, \code{"Depth"}, \code{"Droplet"}, \code{"Facet"}, \code{"Feathered"}, \code{"Gallery"}, \code{"Headlines"}, \code{"Integral"}, \code{"Ion Boardroom"}, \code{"Ion"}, \code{"Madison"}, \code{"Main Event"}, \code{"Mesh"}, \code{"Office"}, \code{"Office 2013"}, \code{"Organic"}, \code{"Parallax"}, \code{"Parcel"}, \code{"Retrospect"}, \code{"Savon"}, \code{"Slice"}, \code{"Vapor Trail"}, \code{"View"}, \code{"Wisp"}, \code{"Wood Type"}, \code{"Aspect"}, \code{"Blue Green"}, \code{"Blue II"}, \code{"Blue Warm"}, \code{"Blue"}, \code{"Grayscale"}, \code{"Green Yellow"}, \code{"Green"}, \code{"Marquee"}, \code{"Median"}, \code{"Office 2007"}, \code{"Orange Red"}, \code{"Orange"}, \code{"Paper"}, \code{"Red Orange"}, \code{"Red Violet"}, \code{"Red"}, \code{"Slipstream"}, \code{"Violet II"}, \code{"Violet"}, \code{"Yellow Orange"}, \code{"Yellow"}.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Color palettes used by current versions of Microsoft Office and Excel.

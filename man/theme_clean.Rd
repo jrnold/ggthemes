@@ -16,7 +16,7 @@ A ggplot2 theme object (class \code{theme}).
 }
 \description{
 Clean ggplot theme with no panel background, black axis lines
-  and gray fill color for chart elements.
+and gray fill color for chart elements.
 }
 \examples{
 library("ggplot2")
@@ -36,6 +36,6 @@ Other themes:
 \code{\link[=theme_solid]{theme_solid()}}
 }
 \author{
-Konrad Zdeb \email{name.surname@me.com}
+Konrad Zdeb \href{mailto:name.surname@me.com}{name.surname@me.com}
 }
 \concept{themes}

@@ -2,13 +2,13 @@
 % Please edit documentation in R/ptol.R
 \name{ptol_pal}
 \alias{ptol_pal}
-\title{Color Palettes from Paul Tol's "Colour Schemes"}
+\title{Color palettes from Paul Tol's "Colour Schemes"}
 \usage{
 ptol_pal()
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}

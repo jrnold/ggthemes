@@ -8,13 +8,13 @@ numbers_pal(palette = "Classic")
 }
 \arguments{
 \item{palette}{Palette name. One of
-\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$numbers))}.
+\code{"Blue Green"}, \code{"Blue Violet"}, \code{"Blue"}, \code{"Brown"}, \code{"Classic"}, \code{"Earth Tone"}, \code{"Gray"}, \code{"Green"}, \code{"Jade"}, \code{"Mid Century"}, \code{"Showroom"}, \code{"Spectrum"}.
 The default, \code{"Classic"}, is the palette Numbers itself uses by
 default.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Color palettes used by charts in Apple Numbers. Each palette provides

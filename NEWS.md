@@ -1,5 +1,10 @@
 # ggthemes (development version)
 
+- Documentation is now written in roxygen markdown. This fixes deprecation
+  badges that showed as raw `` `r lifecycle::badge()` `` text in
+  `?circlefill_shape_pal`, `?colorblind` and `?scale_shape_circlefill`, and
+  `few_pal()`'s `palette` argument now lists its options, which were missing.
+
 - Fix `scale_linetype_stata()` and `stata_linetype_pal()` failing with
   "invalid line type" on plots with 11 or more linetypes. The eleventh,
   Stata's longdash_shortdash, was stored as `"F434343"`, which is not a valid

@@ -3,16 +3,14 @@
 #' Axis lines which extend to the maximum and minimum of the plotted data.
 #'
 #' @section Aesthetics:
-#' \itemize{
-#' \item colour
-#' \item size
-#' \item linetype
-#' \item alpha
-#' }
+#' - `colour`
+#' - `size`
+#' - `linetype`
+#' - `alpha`
 #'
 #' @inheritParams ggplot2::geom_point
 #' @param sides A string that controls which sides of the plot the frames appear on.
-#'   It can be set to a string containing any of \code{'trbl'}, for top, right,
+#'   It can be set to a string containing any of `'trbl'`, for top, right,
 #'   bottom, and left. Any other value is an error: a frame cannot be drawn on a
 #'   side that was not named, so a typo would otherwise silently draw nothing.
 #' @return A ggplot2 layer.
@@ -21,11 +19,11 @@
 #' @details This should be used with `coord_cartesian(clip="off")` in order to
 #'   correctly draw the lines.
 #'
-#'   Secondary axes (\code{\link[ggplot2]{sec_axis}()}) only relabel the
+#'   Secondary axes ([ggplot2::sec_axis()]) only relabel the
 #'   existing axis; they do not introduce a separate data range. Because of
-#'   this, \code{sides = "trbl"} already draws correctly-positioned frames on
+#'   this, `sides = "trbl"` already draws correctly-positioned frames on
 #'   the top/right edges of a panel that has a secondary axis -- there is no
-#'   separate "secondary" range for \code{geom_rangeframe()} to draw against.
+#'   separate "secondary" range for `geom_rangeframe()` to draw against.
 #'
 #' @references Tufte, Edward R. (2001) The Visual Display of
 #' Quantitative Information, Chapter 6.

@@ -5,12 +5,12 @@
 #' in order.
 #'
 #' @param palette Palette name. One of
-#'   \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$numbers))}.
-#'   The default, \code{"Classic"}, is the palette Numbers itself uses by
+#'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$numbers))`.
+#'   The default, `"Classic"`, is the palette Numbers itself uses by
 #'   default.
 #' @family color numbers
-#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-numbers_pal.R
 numbers_pal <- function(palette = "Classic") {
@@ -38,7 +38,7 @@ numbers_pal <- function(palette = "Classic") {
 #' @rdname scale_numbers
 #' @return A ggplot2 scale object.
 #' @export
-#' @seealso See \code{\link{theme_numbers}()} for examples.
+#' @seealso See [theme_numbers()] for examples.
 #' @example inst/examples/ex-scale_numbers.R
 scale_fill_numbers <- function(palette = "Classic", ...) {
   discrete_scale("fill", palette = numbers_pal(palette), ...)
@@ -58,13 +58,13 @@ scale_color_numbers <- scale_colour_numbers
 #'
 #' Theme similar to the default look of charts in Apple Numbers.
 #'
-#' The values used here are those in the \code{chart-style-default} style of
+#' The values used here are those in the `chart-style-default` style of
 #' the theme stylesheet that ships inside Numbers: no chart background fill,
 #' gridlines in the value direction only, a border along the bottom of the
 #' chart but not the other three sides, and no tick marks.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes numbers
 #' @example inst/examples/ex-theme_numbers.R

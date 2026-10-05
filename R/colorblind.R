@@ -1,24 +1,24 @@
-#' Colorblind Color Palette (Discrete) and Scales
+#' Colorblind color palette (discrete) and scales
 #'
 #' An eight-color colorblind safe qualitative discrete palette.
 #'
 #' @rdname colorblind
-#' @param black If \code{FALSE}, drop black from the palette. Black is often
+#' @param black If `FALSE`, drop black from the palette. Black is often
 #'   used elsewhere in a figure (e.g. text, axes), so including it as a data
 #'   color can wrongly suggest that group is a default or baseline.
 #' @references
-#' Chang, W. "\href{http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette}{Cookbook for R}"
+#' Chang, W. "[Cookbook for R](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette)"
 #'
-#' \verb{https://jfly.iam.u-tokyo.ac.jp/color}
+#' <https://jfly.iam.u-tokyo.ac.jp/color/>
 #'
-#' @return \code{colorblind_pal()} and \code{colourblind_pal()} return a palette function that takes the number of
-#'   colors \code{n} and returns a character vector of \code{n} hex colors. The \code{scale_*()} functions
+#' @return `colorblind_pal()` and `colourblind_pal()` return a palette function that takes the number of
+#'   colors `n` and returns a character vector of `n` hex colors. The `scale_*()` functions
 #'   return a ggplot2 scale object.
 #' @export
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family color colorblind
-#' @seealso The \pkg{dichromat} package, \code{\link[scales]{dichromat_pal}()},
-#'   and \code{\link{scale_color_tableau}()} for other colorblind palettes.
+#' @seealso The dichromat package, [scales::dichromat_pal()],
+#'   and [scale_color_tableau()] for other colorblind palettes.
 #' @example inst/examples/ex-colorblind.R
 colorblind_pal <- function(black = TRUE) {
   values <- ggthemes::ggthemes_data[["colorblind"]]

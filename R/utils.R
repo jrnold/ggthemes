@@ -26,8 +26,9 @@ mid_rescaler <- function(mid) {
   }
 }
 
-rd_optlist <- function(x) {
-  paste0("\\code{\"", as.character(x), "\"}", collapse = ", ")
+# Markdown list of option values, for inline R in roxygen.
+md_optlist <- function(x) {
+  paste0("`\"", as.character(x), "\"`", collapse = ", ")
 }
 
 #' Warn about shape palettes using pch codes derived from Unicode symbols
@@ -85,7 +86,7 @@ manual_pal_checked <- function(values, type = NULL) {
 
 #' Extract colors from ggthemes data
 #'
-#' @param path A character vector of the path in \code{ggthemes_data}.
+#' @param path A character vector of the path in `ggthemes_data`.
 #' @param colors A character vector of color names.
 #' @noRd
 get_colors <- function(path, colors) {

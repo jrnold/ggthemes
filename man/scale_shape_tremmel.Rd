@@ -7,7 +7,7 @@
 scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
 }
 \arguments{
-\item{overlap}{use an empty circle instead of a solid circle when
+\item{overlap}{Use an empty circle instead of a solid circle when
 \code{n == 2}.}
 
 \item{alt}{If \code{TRUE}, then when \code{n == 3},
@@ -94,7 +94,7 @@ p + scale_shape_tremmel(alt = TRUE)
 p + scale_shape_tremmel(overlap = TRUE)
 }
 \seealso{
-\code{\link{tremmel_shape_pal}()} for a description of the palette.
+\code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}} for a description of the palette.
 
 Other shapes:
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},

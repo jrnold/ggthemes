@@ -27,38 +27,38 @@ theme_pander(
 
 \item{base_family}{base font family}
 
-\item{nomargin}{suppress the white space around the plot (boolean)}
+\item{nomargin}{Whether to suppress the white space around the plot.}
 
-\item{ff}{font family, like \code{sans}. Deprecated: use \code{base_family} instead.}
+\item{ff}{Font family, like \code{"sans"}. Deprecated: use \code{base_family} instead.}
 
-\item{fc}{font color (name or hexa code)}
+\item{fc}{Font color, as a name or hex code.}
 
-\item{fs}{font size (integer). Deprecated: use \code{base_size} instead.}
+\item{fs}{Font size (integer). Deprecated: use \code{base_size} instead.}
 
-\item{gM}{major grid (boolean)}
+\item{gM}{Whether to draw the major grid.}
 
-\item{gm}{minor grid (boolean)}
+\item{gm}{Whether to draw the minor grid.}
 
-\item{gc}{grid color (name or hexa code)}
+\item{gc}{Grid color, as a name or hex code.}
 
-\item{gl}{grid line type (\code{lty})}
+\item{gl}{Grid line type (\code{lty}).}
 
-\item{boxes}{to render a border around the plot or not}
+\item{boxes}{Whether to draw a border around the plot.}
 
-\item{bc}{background color (name or hexa code)}
+\item{bc}{Background color, as a name or hex code.}
 
-\item{pc}{panel background color (name or hexa code)}
+\item{pc}{Panel background color, as a name or hex code.}
 
-\item{lp}{legend position}
+\item{lp}{Legend position.}
 
-\item{axis}{axis angle as defined in \code{par(les)}}
+\item{axis}{Axis label angle, as defined by \code{par("las")}.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
 }
 \description{
-The \pkg{pander} ships with a default theme when the 'unify plots' option is
-enabled via \code{panderOptions}, which is now also available outside of \pkg{pander} internals, like \code{evals},
+The pander package ships with a default theme when the 'unify plots' option is
+enabled via \code{panderOptions}, which is now also available outside of pander internals, like \code{evals},
 \code{eval.msgs} or \code{Pandoc.brew}.
 }
 \examples{

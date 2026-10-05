@@ -7,7 +7,7 @@
 scale_shape_few(...)
 }
 \arguments{
-\item{...}{Common \code{\link[ggplot2]{discrete_scale}()} parameters.}
+\item{...}{Common \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}} parameters.}
 }
 \value{
 A ggplot2 scale object.
@@ -26,10 +26,10 @@ ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
 }
 \references{
 Few, S. (2012)
-  \emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
-  Analytics Press, p. 208.
+\emph{Show Me the Numbers: Designing Tables and Graphs to Enlighten},
+Analytics Press, p. 208.
 }
 \seealso{
-\code{\link{scale_shape_few}()} for the shape palette that this
-  scale uses.
+\code{\link[=scale_shape_few]{scale_shape_few()}} for the shape palette that this
+scale uses.
 }

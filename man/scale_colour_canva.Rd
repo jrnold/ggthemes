@@ -13,9 +13,9 @@ scale_color_canva(..., palette = "Fresh and bright")
 scale_fill_canva(..., palette = "Fresh and bright")
 }
 \arguments{
-\item{...}{Arguments passed to \code{\link[ggplot2]{discrete_scale}()}.}
+\item{...}{Arguments passed to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.}
 
-\item{palette}{Palette name. See the names of \code{\link{canva_palettes}()}
+\item{palette}{Palette name. See the names of \link{canva_palettes}
 for valid names.}
 }
 \value{
@@ -23,7 +23,7 @@ A ggplot2 scale object.
 }
 \description{
 Color scale for canva.com color palettes described in
-\code{\link{canva_palettes}()}.
+\link{canva_palettes}.
 }
 \examples{
 library("ggplot2")

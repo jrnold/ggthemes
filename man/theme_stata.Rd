@@ -25,7 +25,7 @@ Themes based on Stata graph schemes
 }
 \details{
 These themes approximate Stata schemes using the features
-\pkg{ggplot2}. The graphical models of Stata and ggplot2 differ
+ggplot2. The graphical models of Stata and ggplot2 differ
 in various ways that make an exact replication impossible (or
 more difficult than it is worth).
 Some features in Stata schemes not in ggplot2:
@@ -47,7 +47,7 @@ uses absolute points, so the two agree only at a particular graph size.
 The relative sizes here match Stata exactly; \code{base_size = 12.4}
 reproduces Stata's absolute sizes at its default 7.5 by 4.5 inch graph.
 Two further differences are not expressible in a ggplot2 theme: the number
-of legend columns (set by \code{\link[ggplot2]{guide_legend}()} rather than
+of legend columns (set by \code{\link[ggplot2:guide_legend]{ggplot2::guide_legend()}} rather than
 the theme) and Stata's small default marker size (a geom default).
 }
 \examples{

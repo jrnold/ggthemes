@@ -3,13 +3,13 @@
 #' @description Clean ggplot theme with no panel background, black axis lines
 #'   and gray fill color for chart elements.
 #'
-#' @author Konrad Zdeb \email{name.surname@@me.com}
+#' @author Konrad Zdeb <name.surname@@me.com>
 #'
 #' @param base_size Base font size.
 #' @param base_family Base font family.
 #'
 #' @family themes
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #'
 #' @example inst/examples/ex-theme_clean.R

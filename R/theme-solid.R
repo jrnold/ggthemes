@@ -4,11 +4,11 @@
 #' This theme is when only the geometric objects are desired.
 #'
 #' @param base_size Base font size.
-#' @param base_family Ignored, kept for consistency with \code{\link[ggplot2]{theme}()}.
+#' @param base_family Ignored, kept for consistency with [ggplot2::theme()].
 #' @param fill Background color of the plot.
 #' @family themes
 #' @example inst/examples/ex-theme_solid.R
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 theme_solid <- function(base_size = 12, base_family = "", fill = NA) {
   theme_foundation() +

@@ -15,7 +15,7 @@ theme_base(base_size = 16, base_family = "")
 A ggplot2 theme object (class \code{theme}).
 }
 \description{
-Theme similar to the default settings of the \sQuote{base} R graphics.
+Theme similar to the default settings of the "base" R graphics.
 }
 \examples{
 library("ggplot2")

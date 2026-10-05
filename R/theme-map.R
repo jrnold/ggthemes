@@ -1,11 +1,11 @@
 #' Clean theme for maps
 #'
 #' A clean theme that is good for displaying maps from
-#' \code{\link[ggplot2]{geom_map}()}.
+#' [ggplot2::geom_map()].
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @example inst/examples/ex-theme_map.R
-#' @return A ggplot2 theme object (class \code{theme}).
+#' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @importFrom ggplot2 %+replace%
 theme_map <- function(base_size = 9, base_family = "") {

@@ -14,8 +14,7 @@ theme_wsj(
 \arguments{
 \item{base_size}{base font size, given in pts.}
 
-\item{color}{The background color of plot. One of \code{'brown',
-'gray', 'green', 'blue'}.}
+\item{color}{The background color of plot. One of \verb{'brown', 'gray', 'green', 'blue'}.}
 
 \item{base_family}{base font family}
 
@@ -28,7 +27,7 @@ A ggplot2 theme object (class \code{theme}).
 Theme based on the plots in \emph{The Wall Street Journal}.
 }
 \details{
-This theme should be used with \code{\link{scale_color_wsj}()}.
+This theme should be used with \code{\link[=scale_color_wsj]{scale_color_wsj()}}.
 }
 \examples{
 library("ggplot2")

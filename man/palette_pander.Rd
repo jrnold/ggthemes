@@ -7,18 +7,18 @@
 palette_pander(n, random_order = FALSE)
 }
 \arguments{
-\item{n}{number of colors. This palette supports up to eight colors.}
+\item{n}{Number of colors. This palette supports up to eight colors.}
 
-\item{random_order}{if the palette should be reordered randomly before
-rendering each plot to get colorful images}
+\item{random_order}{Whether to shuffle the palette randomly before
+rendering each plot.}
 }
 \value{
 A character vector of \code{n} hex colors, recycled if \code{n} exceeds the number of colors available.
-  Unlike the other \code{*_pal()} functions, this is itself the palette function.
+Unlike the other \verb{*_pal()} functions, this is itself the palette function.
 }
 \description{
-The \pkg{pander} ships with a default colorblind and printer-friendly
-color palette borrowed from \verb{https://jfly.iam.u-tokyo.ac.jp/color/}.
+The pander package ships with a default colorblind and printer-friendly
+color palette borrowed from \url{https://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 \examples{
 palette_pander(8)

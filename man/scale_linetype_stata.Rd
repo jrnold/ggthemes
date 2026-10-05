@@ -71,7 +71,7 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-See \code{\link{stata_linetype_pal}()} for details.
+See \code{\link[=stata_linetype_pal]{stata_linetype_pal()}} for details.
 }
 \examples{
 require("ggplot2")

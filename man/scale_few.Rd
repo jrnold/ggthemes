@@ -4,7 +4,7 @@
 \alias{scale_colour_few}
 \alias{scale_color_few}
 \alias{scale_fill_few}
-\title{Color scales from Few's "Practical Rules for Using Color in Charts"}
+\title{Color scales from Stephen Few}
 \usage{
 scale_colour_few(palette = "Medium", ...)
 
@@ -13,7 +13,7 @@ scale_color_few(palette = "Medium", ...)
 scale_fill_few(palette = "Light", ...)
 }
 \arguments{
-\item{palette}{One of \Sexpr[results=rd]{names(ggthemes:::rd_optlist(ggthemes::ggthemes_data$few$colors))}}
+\item{palette}{One of \code{"Light"}, \code{"Medium"}, \code{"Dark"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -77,7 +77,7 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-See \code{\link{few_pal}()}.
+See \code{\link[=few_pal]{few_pal()}}.
 }
 \examples{
 library("ggplot2")

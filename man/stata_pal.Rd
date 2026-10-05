@@ -15,7 +15,7 @@ in ggthemes 8.0.0.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Stata color palettes. See Stata documentation for a description of
@@ -24,22 +24,20 @@ the schemes, \url{https://www.stata.com/help.cgi?schemes}.
 \details{
 All these palettes support up to 15 values.
 
-
 Stata's palettes come in two generations, and both are included here.
-
-\describe{
-\item{Stata 17 and earlier}{Schemes \code{"s2color"}, \code{"s1color"},
+\itemize{
+\item \strong{Stata 17 and earlier:} schemes \code{"s2color"}, \code{"s1color"},
 \code{"s1rcolor"}, and \code{"mono"} are built from Stata's classic named
 colors (\code{navy}, \code{maroon}, \code{forest_green}, and so on) and the
 \code{gs0}--\code{gs16} gray scale. \code{"s2color"} was Stata's factory
-default through Stata 17.}
-\item{Stata 18 and later}{Scheme \code{"stcolor"} uses the
+default through Stata 17.
+\item \strong{Stata 18 and later:} scheme \code{"stcolor"} uses the
 \code{stc1}--\code{stc15} colors introduced in Stata 18. They are brighter
 than the classic palette and chosen to stay distinguishable for readers
 with a color vision deficiency. The first four are also available under
 the aliases \code{stblue}, \code{stred}, \code{stgreen}, and
 \code{styellow}. \code{"stcolor"} has been Stata's factory default since
-Stata 18.}
+Stata 18.
 }
 
 \code{"economist"} is not one of Stata's general-purpose schemes; it is the

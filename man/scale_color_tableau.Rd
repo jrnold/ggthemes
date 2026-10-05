@@ -28,24 +28,24 @@ scale_color_tableau(
 )
 }
 \arguments{
-\item{palette}{Palette name. See \funclink{tableau_color_pal}
+\item{palette}{Palette name. See \code{\link[=tableau_color_pal]{tableau_color_pal()}}
 for available palettes.}
 
 \item{type}{Palette type. One of \code{"regular"}, \code{"ordered-sequential"},
-or \code{"ordered-diverging"}. See \funclink{tableau_color_pal}.}
+or \code{"ordered-diverging"}. See \code{\link[=tableau_color_pal]{tableau_color_pal()}}.}
 
 \item{direction}{If 1, the default, then use the original order of
 colors. If -1, then reverse the order.}
 
-\item{...}{Other arguments passed on to \code{\link[ggplot2]{discrete_scale}()}.}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.}
 }
 \value{
 A ggplot2 scale object.
 }
 \description{
 Categorical (qualitative) color scales used in Tableau.
-Use the function \funclink{scale_colour_gradient_tableau} for the sequential
-and \funclink{scale_colour_gradient2_tableau} for the diverging continuous
+Use the function \code{\link[=scale_colour_gradient_tableau]{scale_colour_gradient_tableau()}} for the sequential
+and \code{\link[=scale_colour_gradient2_tableau]{scale_colour_gradient2_tableau()}} for the diverging continuous
 color scales from Tableau.
 }
 \examples{
@@ -65,7 +65,7 @@ for (palette in head(names(palettes), 3L)) {
 p + scale_color_tableau(direction = -1)
 }
 \seealso{
-\code{\link{tableau_color_pal}()} for references.
+\code{\link[=tableau_color_pal]{tableau_color_pal()}} for references.
 
 Other color tableau:
 \code{\link[=scale_colour_gradient2_tableau]{scale_colour_gradient2_tableau()}},

@@ -76,7 +76,7 @@ coverage; the default returns base pch codes, which every font can draw.}
 A ggplot2 scale object.
 }
 \description{
-See \code{\link{calc_shape_pal}()} for details.
+See \code{\link[=calc_shape_pal]{calc_shape_pal()}} for details.
 }
 \examples{
 library("ggplot2")
@@ -86,7 +86,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
   scale_shape_calc()
 }
 \seealso{
-\code{\link{theme_calc}()} for examples.
+\code{\link[=theme_calc]{theme_calc()}} for examples.
 
 Other shapes calc:
 \code{\link[=calc_shape_pal]{calc_shape_pal()}}
