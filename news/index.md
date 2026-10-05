@@ -30,6 +30,18 @@
     scales, new in 7.0.0, are unchanged
     ([\#266](https://github.com/jrnold/ggthemes/issues/266)).
 
+- [`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+  and
+  [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
+  now default to `cull = TRUE`, matching
+  [`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
+  and
+  [`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md),
+  so segments with a slope of 0 or `Inf` no longer count toward the
+  aspect ratio. Results change for data that has such segments; use
+  `cull = FALSE` for the previous ones
+  ([\#274](https://github.com/jrnold/ggthemes/issues/274)).
+
 ### New features
 
 - New
@@ -52,6 +64,13 @@
   and `"Classic Area-Brown"` now come from lifecycle, so they name the
   release that deprecated them
   ([\#273](https://github.com/jrnold/ggthemes/issues/273)).
+
+- [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
+  and
+  [`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md)
+  now report a `plot` that is not a ggplot object, and a `layer` that is
+  not a whole number within range, with errors that name the argument
+  ([\#274](https://github.com/jrnold/ggthemes/issues/274)).
 
 - `economist_pal(n = 0)` no longer fails with “object ‘i’ not found”; it
   now returns `character(0)`

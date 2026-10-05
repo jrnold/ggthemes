@@ -67,7 +67,7 @@ are generally the median of the various methods provided here.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bank_slopes</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">y</span>,</span>
-<span>  cull <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  cull <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  weight <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ms"</span>, <span class="st">"as"</span>, <span class="st">"ao"</span>, <span class="st">"was"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -87,7 +87,7 @@ are generally the median of the various methods provided here.</p>
 
 
 <dt id="arg-cull">cull<a class="anchor" aria-label="anchor" href="#arg-cull"></a></dt>
-<dd><p><code>logical</code>. Remove all slopes of 0 or <code>Inf</code>.</p></dd>
+<dd><p>If <code>TRUE</code> (the default), drop segments with a slope of 0 or <code>Inf</code> before banking.</p></dd>
 
 
 <dt id="arg-weight">weight<a class="anchor" aria-label="anchor" href="#arg-weight"></a></dt>

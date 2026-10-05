@@ -15,7 +15,7 @@ methods provided here.
 bank_slopes(
   x,
   y,
-  cull = FALSE,
+  cull = TRUE,
   weight = NULL,
   method = c("ms", "as", "ao", "was"),
   ...
@@ -34,7 +34,8 @@ bank_slopes(
 
 - cull:
 
-  `logical`. Remove all slopes of 0 or `Inf`.
+  If `TRUE` (the default), drop segments with a slope of 0 or `Inf`
+  before banking.
 
 - weight:
 
