@@ -8,36 +8,36 @@
 \usage{
 scale_colour_tableau(
   palette = "Tableau 10",
+  ...,
   type = "regular",
-  direction = 1,
-  ...
+  direction = 1
 )
 
 scale_fill_tableau(
   palette = "Tableau 10",
+  ...,
   type = "regular",
-  direction = 1,
-  ...
+  direction = 1
 )
 
 scale_color_tableau(
   palette = "Tableau 10",
+  ...,
   type = "regular",
-  direction = 1,
-  ...
+  direction = 1
 )
 }
 \arguments{
 \item{palette}{Palette name. See \code{\link[=tableau_color_pal]{tableau_color_pal()}}
 for available palettes.}
 
+\item{...}{Other arguments passed on to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.}
+
 \item{type}{Palette type. One of \code{"regular"}, \code{"ordered-sequential"},
 or \code{"ordered-diverging"}. See \code{\link[=tableau_color_pal]{tableau_color_pal()}}.}
 
 \item{direction}{If 1, the default, then use the original order of
 colors. If -1, then reverse the order.}
-
-\item{...}{Other arguments passed on to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.}
 }
 \value{
 A ggplot2 scale object.

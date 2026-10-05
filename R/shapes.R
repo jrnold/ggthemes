@@ -208,7 +208,8 @@ tremmel_shape_pal <- function(overlap = FALSE, alt = FALSE) {
 #' @family shapes
 #' @return A ggplot2 scale object.
 #' @export
-scale_shape_tremmel <- function(overlap = FALSE, alt = FALSE, ...) {
+scale_shape_tremmel <- function(overlap = FALSE, ..., alt = FALSE) {
+  check_dots_named(...)
   discrete_scale(
     "shape",
     palette = tremmel_shape_pal(

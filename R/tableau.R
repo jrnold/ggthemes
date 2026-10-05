@@ -108,13 +108,15 @@ tableau_colour_pal <- tableau_color_pal
 #' @export
 #' @seealso [tableau_color_pal()] for references.
 #' @example inst/examples/ex-scale_color_tableau.R
-scale_colour_tableau <- function(palette = "Tableau 10", type = "regular", direction = 1, ...) {
+scale_colour_tableau <- function(palette = "Tableau 10", ..., type = "regular", direction = 1) {
+  check_dots_named(...)
   discrete_scale("colour", palette = tableau_color_pal(palette, type, direction), ...)
 }
 
 #' @export
 #' @rdname scale_color_tableau
-scale_fill_tableau <- function(palette = "Tableau 10", type = "regular", direction = 1, ...) {
+scale_fill_tableau <- function(palette = "Tableau 10", ..., type = "regular", direction = 1) {
+  check_dots_named(...)
   discrete_scale("fill", palette = tableau_color_pal(palette, type, direction), ...)
 }
 

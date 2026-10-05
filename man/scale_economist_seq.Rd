@@ -9,11 +9,11 @@
 \alias{scale_fill_economist_ordinal}
 \title{Economist sequential color scales}
 \usage{
-scale_colour_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_colour_economist_c(hue = "blue", ..., guide = "colourbar")
 
-scale_color_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_color_economist_c(hue = "blue", ..., guide = "colourbar")
 
-scale_fill_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_fill_economist_c(hue = "blue", ..., guide = "colourbar")
 
 scale_colour_economist_ordinal(hue = "blue", ...)
 
@@ -26,10 +26,10 @@ scale_fill_economist_ordinal(hue = "blue", ...)
 \code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
 \code{"gold"}, \code{"gray"}, or \code{"red"}.}
 
+\item{...}{Other arguments passed on to the underlying scale.}
+
 \item{guide}{Type of legend. Use \code{"colourbar"} for continuous
 color bars, or \code{"legend"} for discrete color legends.}
-
-\item{...}{Other arguments passed on to the underlying scale.}
 }
 \value{
 A ggplot2 scale object.

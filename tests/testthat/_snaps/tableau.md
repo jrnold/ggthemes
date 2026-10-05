@@ -68,3 +68,21 @@
       x Problematic argument:
       * extra = 1
 
+# scale_colour_tableau() takes type and direction by name only
+
+    Code
+      scale_colour_tableau("Tableau 20", "regular")
+    Condition
+      Error in `scale_colour_tableau()`:
+      ! Arguments in `...` must be named.
+      x Unnamed argument in position 1.
+
+---
+
+    Code
+      scale_fill_tableau("Tableau 20", "regular")
+    Condition
+      Error in `scale_fill_tableau()`:
+      ! Arguments in `...` must be named.
+      x Unnamed argument in position 1.
+

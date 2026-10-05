@@ -203,7 +203,8 @@ economist_scale_colors <- function(hue) {
 #' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_economist_seq.R
-scale_colour_economist_c <- function(hue = "blue", guide = "colourbar", ...) {
+scale_colour_economist_c <- function(hue = "blue", ..., guide = "colourbar") {
+  check_dots_named(...)
   continuous_scale(
     "colour",
     palette = economist_gradient_pal(hue),
@@ -218,7 +219,8 @@ scale_color_economist_c <- scale_colour_economist_c
 
 #' @rdname scale_economist_seq
 #' @export
-scale_fill_economist_c <- function(hue = "blue", guide = "colourbar", ...) {
+scale_fill_economist_c <- function(hue = "blue", ..., guide = "colourbar") {
+  check_dots_named(...)
   continuous_scale(
     "fill",
     palette = economist_gradient_pal(hue),
