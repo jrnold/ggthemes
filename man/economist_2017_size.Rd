@@ -9,41 +9,41 @@ economist_2017_size(size = "one_column", height = NULL, units = c("in", "pt"))
 \arguments{
 \item{size}{The chart size; see the table.}
 
-\item{height}{The chart's height, in points. Required unless `size` has a
+\item{height}{The chart's height, in points. Required unless \code{size} has a
 fixed height, which it then overrides.}
 
-\item{units}{The units of the result: `"in"` (inches, as
-[ggplot2::ggsave()] and knitr expect) or `"pt"` (points).}
+\item{units}{The units of the result: \code{"in"} (inches, as
+\code{\link[ggplot2:ggsave]{ggplot2::ggsave()}} and knitr expect) or \code{"pt"} (points).}
 }
 \value{
-A named numeric vector, `c(width = , height = )`, in `units`.
+A named numeric vector, \code{c(width = , height = )}, in \code{units}.
 }
 \description{
 The chart sizes of \emph{The Economist visual styleguide} (v1.2, 4 May
 2017, p.4), for drawing a chart at the size the guide specifies: pass the
-result to [ggplot2::ggsave()], or use it for a knitr figure's `fig.width`
-and `fig.height`.
+result to \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}, or use it for a knitr figure's \code{fig.width}
+and \code{fig.height}.
 }
 \details{
 The guide fixes the width of every size, and the height of only two: the
 leader block (83.5pt, p.4) and the Espresso lead image (160pt, p.9). For
 the others, give the height. All the sizes, with the web widths the guide
-gives for some of them, are in `ggthemes_data$economist_2017$sizes`.
+gives for some of them, are in \code{ggthemes_data$economist_2017$sizes}.\tabular{lll}{
+   \code{size} \tab Width (pt) \tab Height (pt) \cr
+   \code{"one_column"} \tab 160 \tab  \cr
+   \code{"two_column"} \tab 332 \tab  \cr
+   \code{"three_column"} \tab 504 \tab  \cr
+   \code{"leader"} \tab 117 \tab 83.5 \cr
+   \code{"free_exchange"} \tab 245 \tab  \cr
+   \code{"espresso"} \tab 160 \tab 160 \cr
+   \code{"special_half_column"} \tab 117 \tab  \cr
+   \code{"special_two_thirds_column"} \tab 160 \tab  \cr
+   \code{"special_one_column"} \tab 245 \tab  \cr
+   \code{"special_two_and_half_column"} \tab 332 \tab  \cr
+}
 
-| `size` | Width (pt) | Height (pt) |
-|---|---|---|
-| `"one_column"` | 160 | |
-| `"two_column"` | 332 | |
-| `"three_column"` | 504 | |
-| `"leader"` | 117 | 83.5 |
-| `"free_exchange"` | 245 | |
-| `"espresso"` | 160 | 160 |
-| `"special_half_column"` | 117 | |
-| `"special_two_thirds_column"` | 160 | |
-| `"special_one_column"` | 245 | |
-| `"special_two_and_half_column"` | 332 | |
 
-The `special_` sizes are for special reports, Technology Quarterly and
+The \code{special_} sizes are for special reports, Technology Quarterly and
 essays, which are set on a different grid.
 }
 \examples{

@@ -14,21 +14,21 @@ guide_axis_economist(
 }
 \arguments{
 \item{title}{A character string or expression for the axis title. The
-default, [ggplot2::waiver()], takes the title from the scale.}
+default, \code{\link[ggplot2:waiver]{ggplot2::waiver()}}, takes the title from the scale.}
 
 \item{gap}{Distance between a label's baseline and its gridline, as a
-[grid::unit()]. The default, `NULL`, is one seventh of the label's font
+\code{\link[grid:unit]{grid::unit()}}. The default, \code{NULL}, is one seventh of the label's font
 size: the 1pt the styleguide gives 7pt axis labels (p.6).}
 
 \item{order}{A positive integer giving the order of this guide among
-multiple guides, or `0` to let ggplot2 decide.}
+multiple guides, or \code{0} to let ggplot2 decide.}
 
-\item{position}{Where the axis is drawn, `"left"` or `"right"`. The
-default, [ggplot2::waiver()], uses the scale's position.}
+\item{position}{Where the axis is drawn, \code{"left"} or \code{"right"}. The
+default, \code{\link[ggplot2:waiver]{ggplot2::waiver()}}, uses the scale's position.}
 }
 \value{
-A guide object, for the `guide` argument of a position scale or
-  for [ggplot2::guides()].
+A guide object, for the \code{guide} argument of a position scale or
+for \code{\link[ggplot2:guides]{ggplot2::guides()}}.
 }
 \description{
 A y-axis guide that draws each value label inside the panel, just above
@@ -38,16 +38,16 @@ so the axis takes up no width of its own and the panel fills it instead.
 }
 \details{
 The labels take their font, size and color from the theme's
-`axis.text.y.left` or `axis.text.y.right` element. Their alignment comes
-from the guide, so the element's `hjust`, `vjust` and `margin` have no
+\code{axis.text.y.left} or \code{axis.text.y.right} element. Their alignment comes
+from the guide, so the element's \code{hjust}, \code{vjust} and \code{margin} have no
 effect. Only the labels are drawn: there are no ticks and no axis line,
 which the styleguide omits on the value axis.
 
 The top label sits above the top gridline, so it extends a little above
-the panel. Leave room for it, as [theme_economist_2017()] does.
+the panel. Leave room for it, as \code{\link[=theme_economist_2017]{theme_economist_2017()}} does.
 
 Only vertical axes are drawn this way. On an x axis the guide falls back
-to [ggplot2::guide_axis()], dropping any label that would overprint its
+to \code{\link[ggplot2:guide_axis]{ggplot2::guide_axis()}}, dropping any label that would overprint its
 neighbour, as when a horizontal bar chart's value axis runs along the top.
 }
 \examples{

@@ -55,41 +55,41 @@ scale_fill_economist_2017_c(
 )
 }
 \arguments{
-\item{media}{Either `"print"` or `"web"`. Both media have the same
-palettes; each reads its own complete spec in [ggthemes_data].}
+\item{media}{Either \code{"print"} or \code{"web"}. Both media have the same
+palettes; each reads its own complete spec in \link{ggthemes_data}.}
 
-\item{set}{`"primary"` is the six-color palette, in the order given by
-`type`. `"bright"` (four colors) and
-`"dark"` (three colors) are the guide's supporting sets "for
+\item{set}{\code{"primary"} is the six-color palette, in the order given by
+\code{type}. \code{"bright"} (four colors) and
+\code{"dark"} (three colors) are the guide's supporting sets "for
 multi-category charts where high contrast is needed" (p.11); they have
-no per-chart-type order, so `type` is ignored for them.}
+no per-chart-type order, so \code{type} is ignored for them.}
 
-\item{type}{For `set = "primary"` only: which chart
-type's color order to use. `"bar_side"` is bar or column, side by side
-(p.13), and is the guide's default reading order; `"stacked"` is
-bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
-side (p.15); `"dot"` is thermometer or scatter (pp.17-18); and `"pie"` is
+\item{type}{For \code{set = "primary"} only: which chart
+type's color order to use. \code{"bar_side"} is bar or column, side by side
+(p.13), and is the guide's default reading order; \code{"stacked"} is
+bar, column or line, stacked (pp.14, 16); \code{"line_side"} is line, side by
+side (p.15); \code{"dot"} is thermometer or scatter (pp.17-18); and \code{"pie"} is
 pie or doughnut (p.20).}
 
-\item{...}{Other arguments passed on to [ggplot2::discrete_scale()] or
-[ggplot2::continuous_scale()].}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}} or
+\code{\link[ggplot2:continuous_scale]{ggplot2::continuous_scale()}}.}
 
-\item{hue}{One of `"red"`, `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
-`"olive"`, `"purple"`, `"gold"` or `"grey"`.}
+\item{hue}{One of \code{"red"}, \code{"blue"}, \code{"cyan"}, \code{"green"}, \code{"yellow"},
+\code{"olive"}, \code{"purple"}, \code{"gold"} or \code{"grey"}.}
 
-\item{direction}{`1` maps low values to the lightest step; `-1` reverses
+\item{direction}{\code{1} maps low values to the lightest step; \code{-1} reverses
 the ramp.}
 
-\item{guide}{Type of legend. Use `"colourbar"` for a continuous color
-bar, or `"legend"` for a discrete legend.}
+\item{guide}{Type of legend. Use \code{"colourbar"} for a continuous color
+bar, or \code{"legend"} for a discrete legend.}
 }
 \value{
 A ggplot2 scale object.
 }
 \description{
 Color and fill scales for \emph{The Economist visual styleguide}
-(v1.2, 4 May 2017). The discrete scales use [economist_2017_pal()]; the
-`_c` scales are continuous and use [economist_2017_gradient_pal()].
+(v1.2, 4 May 2017). The discrete scales use \code{\link[=economist_2017_pal]{economist_2017_pal()}}; the
+\verb{_c} scales are continuous and use \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}}.
 }
 \examples{
 library("ggplot2")

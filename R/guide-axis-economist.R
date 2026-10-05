@@ -1,7 +1,7 @@
 #' Axis guide with labels sitting on their gridlines
 #'
 #' A y-axis guide that draws each value label inside the panel, just above
-#' its gridline and flush with the panel's edge, as \emph{The Economist}
+#' its gridline and flush with the panel's edge, as *The Economist*
 #' does. The gridlines run underneath the labels to the edge of the chart,
 #' so the axis takes up no width of its own and the panel fills it instead.
 #'
@@ -32,7 +32,7 @@
 #'   for [ggplot2::guides()].
 #'
 #' @references
-#' \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
+#' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.6-7.
 #'
 #' @family economist 2017

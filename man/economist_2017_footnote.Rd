@@ -10,14 +10,14 @@ economist_2017_footnote(n)
 \item{n}{Which footnotes, counting from 1.}
 }
 \value{
-A character vector of symbols, one for each element of `n`.
+A character vector of symbols, one for each element of \code{n}.
 }
 \description{
 The footnote symbols of \emph{The Economist visual styleguide} (v1.2, 4 May
-2017, p.5), in their order of use: `*`, `†`, `‡`, `§`, then the same four
+2017, p.5), in their order of use: \code{*}, \verb{†}, \verb{‡}, \verb{§}, then the same four
 doubled. The guide stops at eight; beyond that the pattern continues,
 tripling the symbols and so on. The symbols are also in
-`ggthemes_data$economist_2017$footnotes`.
+\code{ggthemes_data$economist_2017$footnotes}.
 }
 \examples{
 ## The first eight, as the guide gives them
