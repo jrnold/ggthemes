@@ -201,25 +201,25 @@ scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
 tableau_gradient_pal <- function(palette = "Blue", type = "ordered-sequential") {
   type <- match.arg(type, c("ordered-sequential", "ordered-diverging"))
   palette <- tableau_resolve_palette(palette)
-  pal <- ggthemes::ggthemes_data[[c(
-    "tableau",
-    "color-palettes",
-    type,
-    palette
-  )]]
-  scales::gradient_n_pal(colours = pal[["value"]])
+  palettes <- ggthemes::ggthemes_data[["tableau"]][["color-palettes"]][[type]]
+  if (!is.character(palette) || length(palette) != 1L || !palette %in% names(palettes)) {
+    cli::cli_abort("{.arg palette} must be one of {.val {names(palettes)}}, not {.val {palette}}.")
+  }
+  scales::gradient_n_pal(colours = palettes[[palette]][["value"]])
 }
 
 #' @export
 #' @rdname tableau_gradient_pal
 tableau_seq_gradient_pal <- function(palette = "Blue", ...) {
-  tableau_gradient_pal(palette = palette, type = "ordered-sequential", ...)
+  rlang::check_dots_empty()
+  tableau_gradient_pal(palette = palette, type = "ordered-sequential")
 }
 
 #' @export
 #' @rdname tableau_gradient_pal
 tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
-  tableau_gradient_pal(palette = palette, type = "ordered-diverging", ...)
+  rlang::check_dots_empty()
+  tableau_gradient_pal(palette = palette, type = "ordered-diverging")
 }
 
 #' Tableau sequential color scales (continuous)

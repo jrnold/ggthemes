@@ -30,3 +30,39 @@
       Warning:
       Tableau palette "Classic Area-Brown" is deprecated; use "Classic Area Brown" instead.
 
+# tableau_gradient_pal() rejects an unknown palette
+
+    Code
+      tableau_gradient_pal("Chartreuse")
+    Condition
+      Error in `tableau_gradient_pal()`:
+      ! `palette` must be one of "Blue-Green Sequential", "Blue Light", "Orange Light", "Blue", "Orange", "Green", "Red", "Purple", "Brown", "Gray", "Gray Warm", "Blue-Teal", "Orange-Gold", "Green-Gold", "Red-Gold", "Classic Green", "Classic Gray", "Classic Blue", ..., "Classic Area Green", and "Classic Area Brown", not "Chartreuse".
+
+---
+
+    Code
+      tableau_seq_gradient_pal("Chartreuse")
+    Condition
+      Error in `tableau_gradient_pal()`:
+      ! `palette` must be one of "Blue-Green Sequential", "Blue Light", "Orange Light", "Blue", "Orange", "Green", "Red", "Purple", "Brown", "Gray", "Gray Warm", "Blue-Teal", "Orange-Gold", "Green-Gold", "Red-Gold", "Classic Green", "Classic Gray", "Classic Blue", ..., "Classic Area Green", and "Classic Area Brown", not "Chartreuse".
+
+# tableau gradient palette helpers reject extra arguments
+
+    Code
+      tableau_seq_gradient_pal("Blue", extra = 1)
+    Condition
+      Error in `tableau_seq_gradient_pal()`:
+      ! `...` must be empty.
+      x Problematic argument:
+      * extra = 1
+
+---
+
+    Code
+      tableau_div_gradient_pal(extra = 1)
+    Condition
+      Error in `tableau_div_gradient_pal()`:
+      ! `...` must be empty.
+      x Problematic argument:
+      * extra = 1
+

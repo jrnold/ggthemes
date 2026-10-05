@@ -49,6 +49,19 @@
   Stata's longdash_shortdash, was stored as `"F434343"`, which is not a valid
   R linetype; it is now `"F434"` (#263).
 
+- `solarized_pal()` and `theme_wsj()` now give an error that lists the valid
+  values when `accent` or `color` is unknown. Before, `solarized_pal()` returned
+  a palette with no colors and `theme_wsj()` a theme with no background fill
+  (#272).
+
+- `stata_linetype_pal()` now warns when asked for more than its 11 linetypes
+  and errors for a negative `n`, as the other palettes do (#272).
+
+- `tableau_gradient_pal()` now gives an error that lists the valid palettes
+  when `palette` is unknown, instead of "subscript out of bounds".
+  `tableau_seq_gradient_pal()` and `tableau_div_gradient_pal()` now say so when
+  given arguments they ignore (#272).
+
 - The Tableau "Arrows" and "Thin Arrows" shape palettes in
   `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters,
   so they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
@@ -63,6 +76,9 @@
 
 - `theme_economist()` now leaves a margin between the title and subtitle, which
   ran together (#266).
+
+- `theme_solarized_2()` now colors its axis lines. A typo in the color name left
+  them unset (#272).
 
 # ggthemes 7.0.0
 

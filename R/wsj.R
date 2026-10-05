@@ -20,6 +20,10 @@
 #' @export
 #' @importFrom ggplot2 element_line element_rect element_text element_blank rel
 theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", title_family = "mono") {
+  bg_names <- names(ggthemes::ggthemes_data$wsj$bg)
+  if (!is.character(color) || length(color) != 1L || !color %in% bg_names) {
+    cli::cli_abort("{.arg color} must be one of {.val {bg_names}}, not {.val {color}}.")
+  }
   colorhex <- ggthemes::ggthemes_data$wsj$bg[color]
   theme_foundation(base_size = base_size, base_family = base_family) +
     theme(

@@ -54,3 +54,12 @@ test_that("theme_solarized draws correctly", {
 test_that("theme_solarized_2 draws correctly", {
   expect_doppelganger("theme_solarized_2", theme_test_plot() + theme_solarized_2())
 })
+
+test_that("theme_solarized_2() colors its axis lines", {
+  expect_false(is.na(theme_solarized_2()$axis.line$colour))
+  expect_false(is.na(theme_solarized_2(light = FALSE)$axis.line$colour))
+})
+
+test_that("solarized_pal() rejects an unknown accent", {
+  expect_snapshot(solarized_pal("chartreuse"), error = TRUE)
+})

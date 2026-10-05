@@ -224,3 +224,13 @@ test_that("tableau_gradient_pal accepts a deprecated palette name with a warning
     tableau_gradient_pal("Classic Area Brown", type = "ordered-sequential")(c(0, 1))
   )
 })
+
+test_that("tableau_gradient_pal() rejects an unknown palette", {
+  expect_snapshot(tableau_gradient_pal("Chartreuse"), error = TRUE)
+  expect_snapshot(tableau_seq_gradient_pal("Chartreuse"), error = TRUE)
+})
+
+test_that("tableau gradient palette helpers reject extra arguments", {
+  expect_snapshot(tableau_seq_gradient_pal("Blue", extra = 1), error = TRUE)
+  expect_snapshot(tableau_div_gradient_pal(extra = 1), error = TRUE)
+})

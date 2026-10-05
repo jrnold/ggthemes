@@ -42,6 +42,10 @@ solarized_accent_list <- function() {
 #' @family color solarized
 #' @example inst/examples/ex-solarized_pal.R
 solarized_pal <- function(accent = "blue") {
+  accents <- names(ggthemes::ggthemes_data[["solarized"]][["palettes"]])
+  if (!is.character(accent) || length(accent) != 1L || !accent %in% accents) {
+    cli::cli_abort("{.arg accent} must be one of {.val {accents}}, not {.val {accent}}.")
+  }
   palettes <- ggthemes::ggthemes_data[["solarized"]][["palettes"]][[accent]]
   max_n <- length(palettes)
   f <- function(n) {
@@ -151,7 +155,7 @@ theme_solarized_2 <- function(base_size = 12, base_family = "", light = TRUE) {
       ),
       axis.ticks = element_line(color = rebase["rebase01"]),
       axis.line = element_line(
-        color = rebase["reabase01"],
+        color = rebase["rebase01"],
         linetype = 1
       ),
       axis.title.y = element_text(angle = 90),

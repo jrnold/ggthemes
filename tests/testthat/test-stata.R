@@ -203,3 +203,15 @@ test_that("theme_stata draws correctly", {
     theme_test_plot() + theme_stata(scheme = "s2color")
   )
 })
+
+test_that("stata_linewidths has one value per style name", {
+  expect_false(anyDuplicated(names(stata_linewidths)) > 0)
+  expect_equal(stata_linewidths[["thin"]], 0.2 / 0.3)
+  expect_equal(stata_linewidths[["vthin"]], 0.15 / 0.3)
+})
+
+test_that("stata_linetype_pal() checks n like the other palettes", {
+  pal <- stata_linetype_pal()
+  expect_snapshot(pal(-1), error = TRUE)
+  expect_warning(pal(attr(pal, "max_n") + 1), "maximum of")
+})
