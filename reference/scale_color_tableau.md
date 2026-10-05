@@ -11,23 +11,23 @@ for the diverging continuous color scales from Tableau.
 ``` r
 scale_colour_tableau(
   palette = "Tableau 10",
+  ...,
   type = "regular",
-  direction = 1,
-  ...
+  direction = 1
 )
 
 scale_fill_tableau(
   palette = "Tableau 10",
+  ...,
   type = "regular",
-  direction = 1,
-  ...
+  direction = 1
 )
 
 scale_color_tableau(
   palette = "Tableau 10",
+  ...,
   type = "regular",
-  direction = 1,
-  ...
+  direction = 1
 )
 ```
 
@@ -39,6 +39,11 @@ scale_color_tableau(
   [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
   for available palettes.
 
+- ...:
+
+  Other arguments passed on to
+  [`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+
 - type:
 
   Palette type. One of `"regular"`, `"ordered-sequential"`, or
@@ -49,11 +54,6 @@ scale_color_tableau(
 
   If 1, the default, then use the original order of colors. If -1, then
   reverse the order.
-
-- ...:
-
-  Other arguments passed on to
-  [`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Value
 

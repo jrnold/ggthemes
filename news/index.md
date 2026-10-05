@@ -42,6 +42,17 @@
   `cull = FALSE` for the previous ones
   ([\#274](https://github.com/jrnold/ggthemes/issues/274)).
 
+- [`scale_colour_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),
+  [`scale_fill_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md),
+  [`scale_colour_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md),
+  [`scale_fill_economist_c()`](https://jrnold.github.io/ggthemes/reference/scale_economist_seq.md)
+  and
+  [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md)
+  now take `...` right after their first argument, as ggplot2’s scales
+  do. `type`, `direction`, `guide` and `alt` must be named, and passing
+  them by position is an error that says so
+  ([\#275](https://github.com/jrnold/ggthemes/issues/275)).
+
 ### New features
 
 - New

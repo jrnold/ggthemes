@@ -5,7 +5,7 @@ Shape scales from Tremmel (1995)
 ## Usage
 
 ``` r
-scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
+scale_shape_tremmel(overlap = FALSE, ..., alt = FALSE)
 ```
 
 ## Arguments
@@ -13,15 +13,6 @@ scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
 - overlap:
 
   Use an empty circle instead of a solid circle when `n == 2`.
-
-- alt:
-
-  If `TRUE`, then when `n == 3`, use a solid circle, plus sign and empty
-  triangle. Otherwise use a solid circle, empty circle, and empty
-  triangle. Defaults to `FALSE`, the triple Tremmel's Experiment 1
-  actually measured; the `TRUE` triple is argued on feature-dimension
-  grounds that Tremmel flags as not directly supported by the
-  experiments.
 
 - ...:
 
@@ -129,6 +120,15 @@ scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
   `super`
 
   :   The super class to use for the constructed scale
+
+- alt:
+
+  If `TRUE`, then when `n == 3`, use a solid circle, plus sign and empty
+  triangle. Otherwise use a solid circle, empty circle, and empty
+  triangle. Defaults to `FALSE`, the triple Tremmel's Experiment 1
+  actually measured; the `TRUE` triple is argued on feature-dimension
+  grounds that Tremmel flags as not directly supported by the
+  experiments.
 
 ## Value
 

@@ -11,11 +11,11 @@ for the unordered categorical scales.
 ## Usage
 
 ``` r
-scale_colour_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_colour_economist_c(hue = "blue", ..., guide = "colourbar")
 
-scale_color_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_color_economist_c(hue = "blue", ..., guide = "colourbar")
 
-scale_fill_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_fill_economist_c(hue = "blue", ..., guide = "colourbar")
 
 scale_colour_economist_ordinal(hue = "blue", ...)
 
@@ -31,14 +31,14 @@ scale_fill_economist_ordinal(hue = "blue", ...)
   `character`. One of `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
   `"olive"`, `"purple"`, `"gold"`, `"gray"`, or `"red"`.
 
+- ...:
+
+  Other arguments passed on to the underlying scale.
+
 - guide:
 
   Type of legend. Use `"colourbar"` for continuous color bars, or
   `"legend"` for discrete color legends.
-
-- ...:
-
-  Other arguments passed on to the underlying scale.
 
 ## Value
 
