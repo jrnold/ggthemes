@@ -16,40 +16,30 @@ wsj_pal(palette = "colors6")
 
 - palette:
 
-  `character` The color palette to use: . `"rgby"`, `"red_green"`,
-  `"black_green"`, `"dem_rep"`, `"colors6"`
+  `character` The color palette to use. One of `"rgby"`, `"red_green"`,
+  `"black_green"`, `"dem_rep"`, `"colors6"`.
 
 ## Value
 
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Palettes
 
-The following palettes are defined,
+The following palettes are defined:
 
-- rgby:
+- `"rgby"`: red/green/blue/yellow theme.
 
-  Red/Green/Blue/Yellow theme.
+- `"red_green"`: green/red two-color scale for good/bad.
 
-- red_green:
+- `"green_black"`: black-green 4-color scale for "very negative",
+  "somewhat negative", "somewhat positive", "very positive".
 
-  Green/red two-color scale for good/bad.
+- `"dem_rep"`: Democrat/Republican/Undecided blue/red/gray scale.
 
-- green_black:
-
-  Black-green 4-color scale for 'Very negative', 'Somewhat negative',
-  'somewhat positive', 'very positive'.
-
-- dem_rep:
-
-  Democrat/Republican/Undecided blue/red/gray scale.
-
-- colors6:
-
-  Red, blue, gold, green, orange, and black palette.
+- `"colors6"`: red, blue, gold, green, orange, and black palette.
 
 ## See also
 

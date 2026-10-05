@@ -13,7 +13,7 @@ tremmel_shape_pal(overlap = FALSE, alt = FALSE)
 
 - overlap:
 
-  use an empty circle instead of a solid circle when `n == 2`.
+  Use an empty circle instead of a solid circle when `n == 2`.
 
 - alt:
 
@@ -29,7 +29,7 @@ tremmel_shape_pal(overlap = FALSE, alt = FALSE)
 A palette function. It takes the number of shapes `n` and returns an
 integer vector of `n` shape (`pch`) codes, and can be used as the
 `palette` argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Details
 

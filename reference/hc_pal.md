@@ -17,14 +17,14 @@ hc_pal(palette = "default")
   `character` The name of the Highcharts palette to use. One of
   `"default"`, `"default_dark"`, `"classic"`, `"darkunica"`,
   `"grid_light"`, `"sand_signika"`, `"high_contrast_light"`,
-  `"high_contrast_dark"`, `"avocado"`, `"sunset"` .
+  `"high_contrast_dark"`, `"avocado"`, `"sunset"`.
 
 ## Value
 
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Details
 

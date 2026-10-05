@@ -1,15 +1,15 @@
-# Bank a Plot's Own Data to 45 Degrees
+# Bank a plot's own data to 45 degrees
 
 A convenience wrapper around
-[`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+[`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
 that extracts `x`/`y` directly from an already-specified `ggplot`, so
 you do not have to separately reconstruct the plotted vectors by hand.
 It builds `plot` with
-[`ggplot_build`](https://ggplot2.tidyverse.org/reference/ggplot_build.html),
+[`ggplot2::ggplot_build()`](https://ggplot2.tidyverse.org/reference/ggplot_build.html),
 computes the banking ratio from one layer's fully resolved data (i.e.
 after stats, position adjustments, and faceting have been applied), and
-returns
-`plot + `[`coord_fixed`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)`(ratio = ...)`.
+returns `plot + coord_fixed(ratio = ...)` (see
+[`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)).
 
 ## Usage
 
@@ -32,7 +32,7 @@ bank_plot(
 - method, cull, ...:
 
   Passed to
-  [`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md).
+  [`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md).
 
 - layer:
 
@@ -42,7 +42,7 @@ bank_plot(
 ## Value
 
 The `plot`, with
-[`coord_fixed`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
+[`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
 added.
 
 ## Details
@@ -54,14 +54,14 @@ correctly rather than picking up spurious slopes between the end of one
 line and the start of the next.
 
 Note that
-[`coord_fixed`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
+[`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
 applies a single ratio to every panel, so faceted plots are banked using
 the combined data from all panels rather than a ratio tailored to each
 one individually.
 
 ## See also
 
-[`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+[`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
 
 ## Examples
 

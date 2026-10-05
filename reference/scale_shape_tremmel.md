@@ -12,7 +12,7 @@ scale_shape_tremmel(overlap = FALSE, alt = FALSE, ...)
 
 - overlap:
 
-  use an empty circle instead of a solid circle when `n == 2`.
+  Use an empty circle instead of a solid circle when `n == 2`.
 
 - alt:
 

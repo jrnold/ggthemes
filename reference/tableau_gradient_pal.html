@@ -61,14 +61,9 @@ palettes.</p>
 
 
 <dl><dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
-<dd><p>Palette name.</p><dl><dt><code>"ordered-sequential"</code></dt>
-<dd><p><code>"Blue-Green Sequential"</code>, <code>"Blue Light"</code>, <code>"Orange Light"</code>, <code>"Blue"</code>, <code>"Orange"</code>, <code>"Green"</code>, <code>"Red"</code>, <code>"Purple"</code>, <code>"Brown"</code>, <code>"Gray"</code>, <code>"Gray Warm"</code>, <code>"Blue-Teal"</code>, <code>"Orange-Gold"</code>, <code>"Green-Gold"</code>, <code>"Red-Gold"</code>, <code>"Classic Green"</code>, <code>"Classic Gray"</code>, <code>"Classic Blue"</code>, <code>"Classic Red"</code>, <code>"Classic Orange"</code>, <code>"Classic Area Red"</code>, <code>"Classic Area Green"</code>, <code>"Classic Area Brown"</code></p></dd>
-
-<dt><code>"ordered-diverging"</code></dt>
-<dd><p><code>"Orange-Blue Diverging"</code>, <code>"Red-Green Diverging"</code>, <code>"Green-Blue Diverging"</code>, <code>"Red-Blue Diverging"</code>, <code>"Red-Black Diverging"</code>, <code>"Gold-Purple Diverging"</code>, <code>"Red-Green-Gold Diverging"</code>, <code>"Sunset-Sunrise Diverging"</code>, <code>"Orange-Blue-White Diverging"</code>, <code>"Red-Green-White Diverging"</code>, <code>"Green-Blue-White Diverging"</code>, <code>"Red-Blue-White Diverging"</code>, <code>"Red-Black-White Diverging"</code>, <code>"Orange-Blue Light Diverging"</code>, <code>"Temperature Diverging"</code>, <code>"Classic Red-Green"</code>, <code>"Classic Red-Blue"</code>, <code>"Classic Red-Black"</code>, <code>"Classic Area Red-Green"</code>, <code>"Classic Orange-Blue"</code>, <code>"Classic Green-Blue"</code>, <code>"Classic Red-White-Green"</code>, <code>"Classic Red-White-Black"</code>, <code>"Classic Orange-White-Blue"</code>, <code>"Classic Red-White-Black Light"</code>, <code>"Classic Orange-White-Blue Light"</code>, <code>"Classic Red-White-Green Light"</code>, <code>"Classic Red-Green Light"</code></p></dd>
-
-
-</dl></dd>
+<dd><p>Palette name. For each <code>type</code>:</p><ul><li><p><code>"ordered-sequential"</code>: <code>"Blue-Green Sequential"</code>, <code>"Blue Light"</code>, <code>"Orange Light"</code>, <code>"Blue"</code>, <code>"Orange"</code>, <code>"Green"</code>, <code>"Red"</code>, <code>"Purple"</code>, <code>"Brown"</code>, <code>"Gray"</code>, <code>"Gray Warm"</code>, <code>"Blue-Teal"</code>, <code>"Orange-Gold"</code>, <code>"Green-Gold"</code>, <code>"Red-Gold"</code>, <code>"Classic Green"</code>, <code>"Classic Gray"</code>, <code>"Classic Blue"</code>, <code>"Classic Red"</code>, <code>"Classic Orange"</code>, <code>"Classic Area Red"</code>, <code>"Classic Area Green"</code>, <code>"Classic Area Brown"</code>.</p></li>
+<li><p><code>"ordered-diverging"</code>: <code>"Orange-Blue Diverging"</code>, <code>"Red-Green Diverging"</code>, <code>"Green-Blue Diverging"</code>, <code>"Red-Blue Diverging"</code>, <code>"Red-Black Diverging"</code>, <code>"Gold-Purple Diverging"</code>, <code>"Red-Green-Gold Diverging"</code>, <code>"Sunset-Sunrise Diverging"</code>, <code>"Orange-Blue-White Diverging"</code>, <code>"Red-Green-White Diverging"</code>, <code>"Green-Blue-White Diverging"</code>, <code>"Red-Blue-White Diverging"</code>, <code>"Red-Black-White Diverging"</code>, <code>"Orange-Blue Light Diverging"</code>, <code>"Temperature Diverging"</code>, <code>"Classic Red-Green"</code>, <code>"Classic Red-Blue"</code>, <code>"Classic Red-Black"</code>, <code>"Classic Area Red-Green"</code>, <code>"Classic Orange-Blue"</code>, <code>"Classic Green-Blue"</code>, <code>"Classic Red-White-Green"</code>, <code>"Classic Red-White-Black"</code>, <code>"Classic Orange-White-Blue"</code>, <code>"Classic Red-White-Black Light"</code>, <code>"Classic Orange-White-Blue Light"</code>, <code>"Classic Red-White-Green Light"</code>, <code>"Classic Red-Green Light"</code>.</p></li>
+</ul></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
@@ -83,8 +78,8 @@ palettes.</p>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A palette function. It takes a numeric vector <code>x</code> of values between 0 and 1 and returns a character
-  vector of hex colors interpolated along the palette, for use as the <code>palette</code> argument of
-  <code><a href="https://ggplot2.tidyverse.org/reference/continuous_scale.html" class="external-link">continuous_scale()</a></code>.</p>
+vector of hex colors interpolated along the palette, for use as the <code>palette</code> argument of
+<code><a href="https://ggplot2.tidyverse.org/reference/continuous_scale.html" class="external-link">ggplot2::continuous_scale()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

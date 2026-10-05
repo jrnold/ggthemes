@@ -1,10 +1,11 @@
-# Tufte Maximal Data, Minimal Ink Theme
+# Tufte maximal data, minimal ink theme
 
 Theme based on Chapter 6 'Data-Ink Maximization and Graphical Design' of
-Edward Tufte \*The Visual Display of Quantitative Information\*. No
+Edward Tufte *The Visual Display of Quantitative Information*. No
 border, no axis lines, no grids. This theme works best in combination
 with
-[`geom_rug()`](https://ggplot2.tidyverse.org/reference/geom_rug.html) or
+[`ggplot2::geom_rug()`](https://ggplot2.tidyverse.org/reference/geom_rug.html)
+or
 [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md).
 
 ## Usage

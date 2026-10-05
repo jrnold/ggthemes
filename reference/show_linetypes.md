@@ -13,7 +13,7 @@ show_linetypes(linetypes, labels = TRUE)
 - linetypes:
 
   A character vector of linetypes. See
-  [`par()`](https://rdrr.io/r/graphics/par.html).
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html).
 
 - labels:
 
@@ -26,7 +26,7 @@ This function called for the side effect of creating a plot. It returns
 
 ## See also
 
-[`show_col()`](https://scales.r-lib.org/reference/show_col.html),
+[`scales::show_col()`](https://scales.r-lib.org/reference/show_col.html),
 `show_linetypes()`
 
 ## Examples

@@ -1,9 +1,9 @@
-# Multi-Scale Banking to 45 Degrees
+# Multi-scale banking to 45 degrees
 
 Compute a set of aspect ratios, one per frequency scale present in a
 series, using the multi-scale banking algorithm of Heer and Agrawala
 (2006). Single-scale banking
-([`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md))
+([`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md))
 considers the whole series at once, so it accentuates local features and
 can obscure larger-scale trends. Multi-scale banking instead uses
 spectral analysis to find the scales that carry real energy, low-pass
@@ -33,7 +33,7 @@ bank_slopes_multiscale(
 - method, cull:
 
   Passed to
-  [`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md).
+  [`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md).
   The defaults are those Heer and Agrawala used for all results reported
   in their Section 3.2: median absolute slope banking with slopeless
   line culling.
@@ -59,24 +59,19 @@ bank_slopes_multiscale(
 
 ## Value
 
-A [`tibble`](https://tibble.tidyverse.org/reference/tibble.html) with
-one row per retained scale, in ascending order of frequency, and
+A
+[`tibble::tibble()`](https://tibble.tidyverse.org/reference/tibble.html)
+with one row per retained scale, in ascending order of frequency, and
 columns:
 
-- `frequency`:
+- `frequency`: `integer` frequency index, i.e. the number of times the
+  trend repeats across the series.
 
-  `integer` frequency index, i.e. the number of times the trend repeats
-  across the series.
+- `ratio`: `numeric` aspect ratio in the `y / x` sense used by
+  [`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html).
 
-- `ratio`:
-
-  `numeric` aspect ratio in the `y / x` sense used by
-  [`coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html).
-
-- `aspect_ratio`:
-
-  `numeric` the same value as width / height, the convention in which
-  the banking literature reports aspect ratios.
+- `aspect_ratio`: `numeric` the same value as width / height, the
+  convention in which the banking literature reports aspect ratios.
 
 ## Details
 
@@ -95,7 +90,7 @@ The procedure is Algorithm 1 of Heer and Agrawala (2006):
 
 4.  For each retained scale, low-pass filter `y` to remove all higher
     frequencies and bank the resulting trend curve to 45 degrees using
-    [`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md).
+    [`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md).
 
 5.  Discard aspect ratios within `scale_factor` of the previous retained
     ratio, since they would produce visually redundant charts.
@@ -116,9 +111,9 @@ Statistical Graphs." Journal of Computational and Statistical Graphics.
 
 ## See also
 
-[`bank_slopes`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
+[`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
 for single-scale banking, and
-[`bank_plot_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md)
+[`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md)
 to bank a `ggplot` at every scale.
 
 ## Examples

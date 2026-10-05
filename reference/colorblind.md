@@ -1,8 +1,8 @@
-# Colorblind Color Palette (Discrete) and Scales
+# Colorblind color palette (discrete) and scales
 
 An eight-color colorblind safe qualitative discrete palette.
 
-\`r lifecycle::badge("deprecated")\`
+**\[deprecated\]**
 
 ## Usage
 
@@ -144,12 +144,12 @@ that takes the number of colors `n` and returns a character vector of
 Chang, W. "[Cookbook for
 R](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette)"
 
-`https://jfly.iam.u-tokyo.ac.jp/color`
+<https://jfly.iam.u-tokyo.ac.jp/color/>
 
 ## See also
 
 The dichromat package,
-[`dichromat_pal()`](https://scales.r-lib.org/reference/pal_dichromat.html),
+[`scales::dichromat_pal()`](https://scales.r-lib.org/reference/pal_dichromat.html),
 and
 [`scale_color_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_color_tableau.md)
 for other colorblind palettes.

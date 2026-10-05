@@ -160,11 +160,11 @@ A ggplot2 layer.
 
 ## Details
 
-This should be used with \`coord_cartesian(clip="off")\` in order to
+This should be used with `coord_cartesian(clip="off")` in order to
 correctly draw the lines.
 
 Secondary axes
-([`sec_axis()`](https://ggplot2.tidyverse.org/reference/sec_axis.html))
+([`ggplot2::sec_axis()`](https://ggplot2.tidyverse.org/reference/sec_axis.html))
 only relabel the existing axis; they do not introduce a separate data
 range. Because of this, `sides = "trbl"` already draws
 correctly-positioned frames on the top/right edges of a panel that has a
@@ -173,13 +173,13 @@ secondary axis – there is no separate "secondary" range for
 
 ## Aesthetics
 
-- colour
+- `colour`
 
-- size
+- `size`
 
-- linetype
+- `linetype`
 
-- alpha
+- `alpha`
 
 ## References
 

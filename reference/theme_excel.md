@@ -29,7 +29,7 @@ theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 ## Value
 
 An object of class
-[`theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
+[`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
 
 ## See also
 

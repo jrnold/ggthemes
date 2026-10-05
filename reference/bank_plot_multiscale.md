@@ -1,11 +1,11 @@
-# Bank a Plot's Own Data at Every Scale
+# Bank a plot's own data at every scale
 
 A convenience wrapper around
-[`bank_slopes_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
+[`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
 that extracts `y` directly from an already-specified `ggplot` and
 returns one copy of the plot per scale of interest, each with the
 appropriate
-[`coord_fixed`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
+[`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html)
 applied. The result is the small-multiples display used throughout Heer
 and Agrawala (2006): the same data, banked to reveal trends at different
 frequencies.
@@ -31,7 +31,7 @@ bank_plot_multiscale(
 - method, cull, ...:
 
   Passed to
-  [`bank_slopes_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md).
+  [`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md).
 
 - layer:
 
@@ -47,7 +47,7 @@ order of frequency and named by frequency index.
 
 Multi-scale banking is defined on the frequency domain of a single
 series sampled on a regular grid, so unlike
-[`bank_plot`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
+[`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
 this function requires the chosen layer to hold exactly one series with
 evenly spaced `x` values.
 
@@ -58,8 +58,8 @@ IEEE Transactions On Visualization And Computer Graphics 12(5).
 
 ## See also
 
-[`bank_slopes_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md),
-[`bank_plot`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
+[`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md),
+[`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
 
 ## Examples
 

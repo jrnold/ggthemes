@@ -14,11 +14,12 @@ smart_digits_format(x, ...)
 
 - x:
 
-  A numeric vector to format
+  A numeric vector to format.
 
 - ...:
 
-  Parameters passed to [`format()`](https://rdrr.io/r/base/format.html)
+  Parameters passed to
+  [`base::format()`](https://rdrr.io/r/base/format.html).
 
 ## Value
 

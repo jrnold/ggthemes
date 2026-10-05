@@ -71,39 +71,40 @@ range.</p>
 
 
 <dl><dt id="arg-dmin">dmin<a class="anchor" aria-label="anchor" href="#arg-dmin"></a></dt>
-<dd><p>minimum of the data range</p></dd>
+<dd><p>Minimum of the data range.</p></dd>
 
 
 <dt id="arg-dmax">dmax<a class="anchor" aria-label="anchor" href="#arg-dmax"></a></dt>
-<dd><p>maximum of the data range</p></dd>
+<dd><p>Maximum of the data range.</p></dd>
 
 
 <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
-<dd><p>desired number of breaks</p></dd>
+<dd><p>Desired number of breaks.</p></dd>
 
 
 <dt id="arg-q">Q<a class="anchor" aria-label="anchor" href="#arg-q"></a></dt>
-<dd><p>set of nice numbers</p></dd>
+<dd><p>Set of nice numbers.</p></dd>
 
 
 <dt id="arg-w">w<a class="anchor" aria-label="anchor" href="#arg-w"></a></dt>
-<dd><p>weights applied to the four optimization components (simplicity, coverage, density, and legibility)</p></dd>
+<dd><p>Weights applied to the four optimization components (simplicity,
+coverage, density, and legibility).</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>other arguments passed to <code>extended_range_breaks_()</code></p></dd>
+<dd><p>Other arguments passed to <code>extended_range_breaks_()</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>For <code>extended_range_breaks_</code>, the vector of axis label locations.
 For <code>extended_range_breaks</code>, a function which takes a single argument, a vector of data, and returns
-  the vector of axis label locations.</p>
+the vector of axis label locations.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>extended_range_breaks_</code> implements the algorithm and returns the break values.
-<code>extended_range_breaks</code> uses the conventions of the <span class="pkg">scales</span> package, and returns a function.</p>
+<code>extended_range_breaks</code> uses the conventions of the scales package, and returns a function.</p>
 <p>Note that ggplot2 hands a <code>breaks</code> function the expanded scale limits, not the data
 range. Passing <code>extended_range_breaks()</code> directly to <code>breaks</code> therefore places the
 end labels at the panel edges rather than at the extremes of the data. To label the extremes,
@@ -113,7 +114,7 @@ instead: <code>scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))</
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
-  for Positioning Tick Labels on Axes, InfoVis 2010.</p>
+for Positioning Tick Labels on Axes, InfoVis 2010.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

@@ -19,8 +19,8 @@ scale_fill_wsj(palette = "colors6", ...)
 
 - palette:
 
-  `character` The color palette to use: . `"rgby"`, `"red_green"`,
-  `"black_green"`, `"dem_rep"`, `"colors6"`
+  `character` The color palette to use. One of `"rgby"`, `"red_green"`,
+  `"black_green"`, `"dem_rep"`, `"colors6"`.
 
 - ...:
 

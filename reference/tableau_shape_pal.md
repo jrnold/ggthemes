@@ -1,4 +1,4 @@
-# Tableau Shape Palettes (discrete)
+# Tableau shape palettes (discrete)
 
 Shape palettes used by [Tableau](https://www.tableau.com/).
 
@@ -29,7 +29,7 @@ tableau_shape_pal(
 A palette function. It takes the number of shapes `n` and returns an
 integer vector of `n` shape (`pch`) codes, and can be used as the
 `palette` argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Details
 

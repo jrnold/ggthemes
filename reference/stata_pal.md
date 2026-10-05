@@ -23,7 +23,7 @@ stata_pal(scheme = NULL)
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Details
 
@@ -31,21 +31,17 @@ All these palettes support up to 15 values.
 
 Stata's palettes come in two generations, and both are included here.
 
-- Stata 17 and earlier:
+- **Stata 17 and earlier:** schemes `"s2color"`, `"s1color"`,
+  `"s1rcolor"`, and `"mono"` are built from Stata's classic named colors
+  (`navy`, `maroon`, `forest_green`, and so on) and the `gs0`–`gs16`
+  gray scale. `"s2color"` was Stata's factory default through Stata 17.
 
-  Schemes `"s2color"`, `"s1color"`, `"s1rcolor"`, and `"mono"` are built
-  from Stata's classic named colors (`navy`, `maroon`, `forest_green`,
-  and so on) and the `gs0`–`gs16` gray scale. `"s2color"` was Stata's
-  factory default through Stata 17.
-
-- Stata 18 and later:
-
-  Scheme `"stcolor"` uses the `stc1`–`stc15` colors introduced in
-  Stata 18. They are brighter than the classic palette and chosen to
-  stay distinguishable for readers with a color vision deficiency. The
-  first four are also available under the aliases `stblue`, `stred`,
-  `stgreen`, and `styellow`. `"stcolor"` has been Stata's factory
-  default since Stata 18.
+- **Stata 18 and later:** scheme `"stcolor"` uses the `stc1`–`stc15`
+  colors introduced in Stata 18. They are brighter than the classic
+  palette and chosen to stay distinguishable for readers with a color
+  vision deficiency. The first four are also available under the aliases
+  `stblue`, `stred`, `stgreen`, and `styellow`. `"stcolor"` has been
+  Stata's factory default since Stata 18.
 
 `"economist"` is not one of Stata's general-purpose schemes; it is the
 set of Economist-styled colors that Stata ships in

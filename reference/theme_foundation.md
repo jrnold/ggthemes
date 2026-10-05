@@ -4,8 +4,9 @@ This theme is designed to be a foundation from which to build new
 themes, and not meant to be used directly. `theme_foundation()` is a
 complete theme with only minimal number of elements defined. It is
 easier to create new themes by extending this one rather than
-[`theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
-or [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
+[`ggplot2::theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+or
+[`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
 because those themes define elements deep in the hierarchy.
 
 ## Usage
@@ -41,7 +42,7 @@ A ggplot2 theme object (class `theme`).
 ## Details
 
 This theme takes
-[`theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+[`ggplot2::theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 and sets all `colour` and `fill` values to `NULL`, except for the
 top-level elements (`line`, `rect`, and `title`), which have
 `colour = ink`, and `fill = paper`. This leaves the spacing and

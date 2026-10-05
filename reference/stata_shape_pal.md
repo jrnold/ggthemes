@@ -23,7 +23,7 @@ stata_shape_pal(unicode = FALSE)
 A palette function. It takes the number of shapes `n` and returns an
 integer vector of `n` shape (`pch`) codes, and can be used as the
 `palette` argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Note
 

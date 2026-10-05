@@ -64,31 +64,24 @@ in ggthemes 8.0.0.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A palette function. It takes the number of colors <code>n</code> and returns a character vector of <code>n</code>
-  hex colors, and can be used as the <code>palette</code> argument of <code><a href="https://ggplot2.tidyverse.org/reference/discrete_scale.html" class="external-link">discrete_scale()</a></code>.</p>
+hex colors, and can be used as the <code>palette</code> argument of <code><a href="https://ggplot2.tidyverse.org/reference/discrete_scale.html" class="external-link">ggplot2::discrete_scale()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>All these palettes support up to 15 values.</p>
-
-<p>Stata's palettes come in two generations, and both are included here.</p>
-<dl><dt>Stata 17 and earlier</dt>
-<dd><p>Schemes <code>"s2color"</code>, <code>"s1color"</code>,
+<p>Stata's palettes come in two generations, and both are included here.</p><ul><li><p><strong>Stata 17 and earlier:</strong> schemes <code>"s2color"</code>, <code>"s1color"</code>,
 <code>"s1rcolor"</code>, and <code>"mono"</code> are built from Stata's classic named
 colors (<code>navy</code>, <code>maroon</code>, <code>forest_green</code>, and so on) and the
 <code>gs0</code>–<code>gs16</code> gray scale. <code>"s2color"</code> was Stata's factory
-default through Stata 17.</p></dd>
-
-<dt>Stata 18 and later</dt>
-<dd><p>Scheme <code>"stcolor"</code> uses the
+default through Stata 17.</p></li>
+<li><p><strong>Stata 18 and later:</strong> scheme <code>"stcolor"</code> uses the
 <code>stc1</code>–<code>stc15</code> colors introduced in Stata 18. They are brighter
 than the classic palette and chosen to stay distinguishable for readers
 with a color vision deficiency. The first four are also available under
 the aliases <code>stblue</code>, <code>stred</code>, <code>stgreen</code>, and
 <code>styellow</code>. <code>"stcolor"</code> has been Stata's factory default since
-Stata 18.</p></dd>
-
-
-</dl><p><code>"economist"</code> is not one of Stata's general-purpose schemes; it is the
+Stata 18.</p></li>
+</ul><p><code>"economist"</code> is not one of Stata's general-purpose schemes; it is the
 set of Economist-styled colors that Stata ships in
 <code>scheme-economist.scheme</code>.</p>
     </div>

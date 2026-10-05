@@ -21,13 +21,13 @@ solarized_pal(accent = "blue")
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Note
 
 For a given starting color and number of colors in the palette, the
 other colors are the combination of colors that maximizes the total
-Euclidean distance between colors in L\*a\*b space.
+Euclidean distance between colors in L*a*b space.
 
 ## See also
 

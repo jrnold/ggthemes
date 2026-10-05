@@ -1,4 +1,4 @@
-# 150 Color Palettes from Canva
+# 150 color palettes from Canva
 
 150 four-color palettes by the [canva.com](https://www.canva.com/learn/)
 design school. These palettes were derived from photos and "impactful

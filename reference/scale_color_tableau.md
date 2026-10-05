@@ -53,7 +53,7 @@ scale_color_tableau(
 - ...:
 
   Other arguments passed on to
-  [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+  [`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Value
 

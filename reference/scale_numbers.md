@@ -18,8 +18,8 @@ scale_color_numbers(palette = "Classic", ...)
 
   Palette name. One of `"Blue Green"`, `"Blue Violet"`, `"Blue"`,
   `"Brown"`, `"Classic"`, `"Earth Tone"`, `"Gray"`, `"Green"`, `"Jade"`,
-  `"Mid Century"`, `"Showroom"`, `"Spectrum"` . The default,
-  `"Classic"`, is the palette Numbers itself uses by default.
+  `"Mid Century"`, `"Showroom"`, `"Spectrum"`. The default, `"Classic"`,
+  is the palette Numbers itself uses by default.
 
 - ...:
 

@@ -14,7 +14,7 @@ stata_linetype_pal()
 A palette function. It takes the number of linetypes `n` and returns a
 character vector of `n` linetype specifications, and can be used as the
 `palette` argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## See also
 

@@ -1,6 +1,6 @@
 # Filled Circle Shape palette (discrete)
 
-\`r lifecycle::badge("deprecated")\`
+**\[deprecated\]**
 
 ## Usage
 

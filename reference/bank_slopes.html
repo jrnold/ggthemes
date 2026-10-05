@@ -79,11 +79,11 @@ are generally the median of the various methods provided here.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>x values</p></dd>
+<dd><p>A numeric vector of x values.</p></dd>
 
 
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
-<dd><p>y values</p></dd>
+<dd><p>A numeric vector of y values.</p></dd>
 
 
 <dt id="arg-cull">cull<a class="anchor" aria-label="anchor" href="#arg-cull"></a></dt>
@@ -115,7 +115,7 @@ Average Absolute Orientation).</p></dd>
 
 <p>As written, all of these methods calculate the aspect ratio (x
 /y), but <code>bank_slopes</code> will return (y / x) to be compatible
-with <code>link[ggplot2]{coord_fixed()}</code>.</p>
+with <code><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">ggplot2::coord_fixed()</a></code>.</p>
 <p><strong>Median Absolute Slopes Banking</strong></p>
 <p>Let the aspect ratio be \(\alpha = \frac{w}{h}\)
 then the median absolute slop banking is the
@@ -146,7 +146,7 @@ $$
   mean \left| \arctan \left( \frac{s'_i}{\alpha} \right) \right| = \frac{\pi}{4}
 $$
 This has no closed-form solution and is found numerically with
-<code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code>.</p>
+<code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">stats::uniroot()</a></code>.</p>
 <p><strong>Weighted Average Absolute Orientation Banking</strong></p>
 <p>This is the weighted version of Average Absolute Orientation Banking from
 Heer and Agrawala (2006). Each segment's absolute orientation is weighted
@@ -159,13 +159,13 @@ $$
   {\sum_i dx_i \sqrt{1 + (s'_i / \alpha)^2}} = \frac{\pi}{4}
 $$
 This has no closed-form solution and is found numerically with
-<code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code>.</p>
+<code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">stats::uniroot()</a></code>.</p>
 <p>All of these methods consider the entirety of the data at once, so they
 accentuate local features and can obscure larger-scale trends. Heer and
 Agrawala (2006) address this with multi-scale banking, which uses spectral
 analysis to identify the frequency scales present in the data and banks
-each one separately; see <code><a href="bank_slopes_multiscale.html">bank_slopes_multiscale</a></code> and
-<code><a href="bank_plot_multiscale.html">bank_plot_multiscale</a></code>.</p>
+each one separately; see <code><a href="bank_slopes_multiscale.html">bank_slopes_multiscale()</a></code> and
+<code><a href="bank_plot_multiscale.html">bank_plot_multiscale()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -180,9 +180,9 @@ Graphs.' Journal of Computational and Statistical Graphics.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/lattice/man/banking.html" class="external-link">banking()</a></code>, <code><a href="bank_plot.html">bank_plot</a></code> to bank
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/lattice/man/banking.html" class="external-link">lattice::banking()</a></code>, <code><a href="bank_plot.html">bank_plot()</a></code> to bank
 a <code>ggplot</code> using its own data, and
-<code><a href="bank_slopes_multiscale.html">bank_slopes_multiscale</a></code> to bank each frequency scale in the
+<code><a href="bank_slopes_multiscale.html">bank_slopes_multiscale()</a></code> to bank each frequency scale in the
 data separately.</p></div>
     </div>
 

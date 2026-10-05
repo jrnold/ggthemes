@@ -18,7 +18,7 @@ theme_solid(base_size = 12, base_family = "", fill = NA)
 - base_family:
 
   Ignored, kept for consistency with
-  [`theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
+  [`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
 
 - fill:
 

@@ -1,6 +1,6 @@
 # Theme Base
 
-Theme similar to the default settings of the ‘base’ R graphics.
+Theme similar to the default settings of the "base" R graphics.
 
 ## Usage
 

@@ -1,12 +1,9 @@
-# Theme which uses the current ‘base’ graphics parameter values from [`par()`](https://rdrr.io/r/graphics/par.html). Not all `par()` parameters, are supported, and not all are relevant to ggplot2 themes.
+# Theme based on base graphics parameters
 
-Currently this theme uses the values of the parameters: `"code"`,
-"`"ps"`", `"code"` `"family"`, `"fg"`, `"bg"`, `"adj"`, `"font"`,
-`"cex.axis"`, `"cex.lab"`, `"cex.main"`, `"cex.sub"`, `"col.axis"`,
-`"col.lab"`, `"col.main"`, `"col.sub"`, `"font"`, `"font.axis"`,
-`"font.lab"`, `"font.main"`, `"font.sub"`, `"las"`, `"lend"`,
-`"lheight"`, `"lty"`, `"mar"`, `"ps"`, `"tcl"`, `"tck"`, `"xaxt"`,
-`"yaxt"`.
+Theme which uses the current "base" graphics parameter values from
+[`graphics::par()`](https://rdrr.io/r/graphics/par.html). Not all
+[`par()`](https://rdrr.io/r/graphics/par.html) parameters are supported,
+and not all are relevant to ggplot2 themes.
 
 ## Usage
 
@@ -29,6 +26,13 @@ theme_par(base_size = par()$ps, base_family = par()$family)
 A ggplot2 theme object (class `theme`).
 
 ## Details
+
+Currently this theme uses the values of the parameters: `"ps"`,
+`"family"`, `"fg"`, `"bg"`, `"col"`, `"adj"`, `"font"`, `"cex.axis"`,
+`"cex.lab"`, `"cex.main"`, `"cex.sub"`, `"col.axis"`, `"col.lab"`,
+`"col.main"`, `"col.sub"`, `"font.axis"`, `"font.lab"`, `"font.main"`,
+`"font.sub"`, `"las"`, `"lend"`, `"lheight"`, `"lty"`, `"mar"`, `"tcl"`,
+`"tck"`, `"xaxt"`, `"yaxt"`.
 
 This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,

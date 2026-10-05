@@ -1,7 +1,7 @@
 # Color scale from the pander package
 
-The pander ships with a default colorblind and printer-friendly color
-palette borrowed from `https://jfly.iam.u-tokyo.ac.jp/color/`.
+The pander package ships with a default colorblind and printer-friendly
+color palette borrowed from <https://jfly.iam.u-tokyo.ac.jp/color/>.
 
 ## Usage
 

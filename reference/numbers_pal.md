@@ -16,15 +16,15 @@ numbers_pal(palette = "Classic")
 
   Palette name. One of `"Blue Green"`, `"Blue Violet"`, `"Blue"`,
   `"Brown"`, `"Classic"`, `"Earth Tone"`, `"Gray"`, `"Green"`, `"Jade"`,
-  `"Mid Century"`, `"Showroom"`, `"Spectrum"` . The default,
-  `"Classic"`, is the palette Numbers itself uses by default.
+  `"Mid Century"`, `"Showroom"`, `"Spectrum"`. The default, `"Classic"`,
+  is the palette Numbers itself uses by default.
 
 ## Value
 
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## See also
 

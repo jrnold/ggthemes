@@ -26,11 +26,11 @@ bank_slopes(
 
 - x:
 
-  x values
+  A numeric vector of x values.
 
 - y:
 
-  y values
+  A numeric vector of y values.
 
 - cull:
 
@@ -58,7 +58,7 @@ bank_slopes(
 
 As written, all of these methods calculate the aspect ratio (x /y), but
 `bank_slopes` will return (y / x) to be compatible with
-`link[ggplot2]{coord_fixed()}`.
+[`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html).
 
 **Median Absolute Slopes Banking**
 
@@ -84,7 +84,7 @@ are more closely related to angle than to the raw ratio \\dy/dx\\. Let
 \\\alpha\\ is chosen such that, \$\$ mean \left\| \arctan \left(
 \frac{s'\_i}{\alpha} \right) \right\| = \frac{\pi}{4} \$\$ This has no
 closed-form solution and is found numerically with
-[`uniroot`](https://rdrr.io/r/stats/uniroot.html).
+[`stats::uniroot()`](https://rdrr.io/r/stats/uniroot.html).
 
 **Weighted Average Absolute Orientation Banking**
 
@@ -96,16 +96,16 @@ weight depend on \\\alpha\\. With \\s'\_i\\ as above and segment run
 \left\|\arctan(s'\_i / \alpha)\right\| dx_i \sqrt{1 + (s'\_i /
 \alpha)^2}} {\sum_i dx_i \sqrt{1 + (s'\_i / \alpha)^2}} = \frac{\pi}{4}
 \$\$ This has no closed-form solution and is found numerically with
-[`uniroot`](https://rdrr.io/r/stats/uniroot.html).
+[`stats::uniroot()`](https://rdrr.io/r/stats/uniroot.html).
 
 All of these methods consider the entirety of the data at once, so they
 accentuate local features and can obscure larger-scale trends. Heer and
 Agrawala (2006) address this with multi-scale banking, which uses
 spectral analysis to identify the frequency scales present in the data
 and banks each one separately; see
-[`bank_slopes_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
+[`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
 and
-[`bank_plot_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md).
+[`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md).
 
 ## References
 
@@ -123,10 +123,10 @@ Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 
 ## See also
 
-[`banking()`](https://rdrr.io/pkg/lattice/man/banking.html),
-[`bank_plot`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
+[`lattice::banking()`](https://rdrr.io/pkg/lattice/man/banking.html),
+[`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
 to bank a `ggplot` using its own data, and
-[`bank_slopes_multiscale`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
+[`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
 to bank each frequency scale in the data separately.
 
 ## Examples

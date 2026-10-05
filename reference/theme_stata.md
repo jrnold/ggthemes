@@ -54,7 +54,7 @@ graph size. The relative sizes here match Stata exactly;
 `base_size = 12.4` reproduces Stata's absolute sizes at its default 7.5
 by 4.5 inch graph. Two further differences are not expressible in a
 ggplot2 theme: the number of legend columns (set by
-[`guide_legend()`](https://ggplot2.tidyverse.org/reference/guide_legend.html)
+[`ggplot2::guide_legend()`](https://ggplot2.tidyverse.org/reference/guide_legend.html)
 rather than the theme) and Stata's small default marker size (a geom
 default).
 

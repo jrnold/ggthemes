@@ -1,8 +1,8 @@
-# Tufte's Box Plot
+# Tufte's box plot
 
 Edward Tufte's revisions of the box plot as described in *The Visual
-Display of Quantitative Information*. This functions provides several
-box plot variants:
+Display of Quantitative Information*. This function provides several box
+plot variants:
 
 - A point indicating the median, a gap indicating the interquartile
   range, and lines for whiskers.
@@ -11,7 +11,7 @@ box plot variants:
   the median.
 
 - A line indicating the interquartile range, a gap indicating the
-  median, and points indicating the minimum and maximum values
+  median, and points indicating the minimum and maximum values.
 
 - A wide line indicating the interquartile range, a gap indicating the
   median, and lines indicating the minimum and maximum.
@@ -71,10 +71,10 @@ geom_tufteboxplot(
 
   The statistical transformation to use on the data for this layer, as a
   string. The default (`stat = 'fivenumber'`) calls
-  [`stat_fivenumber`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
+  [`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
   and produces whiskers that extend from the interquartile range to the
   extremes of the data; specifying
-  [`stat_boxplot`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
+  [`ggplot2::stat_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
   will produce a more traditional boxplot with whiskers extending to the
   most extreme points that are \< 1.5 IQR away from the hinges (i.e.,
   the first and third quartiles).
@@ -102,28 +102,28 @@ geom_tufteboxplot(
 
 - outlier.colour:
 
-  color for outlying points
+  Color of outlying points.
 
 - outlier.shape:
 
-  shape of outlying points
+  Shape of outlying points.
 
 - outlier.size:
 
-  size of outlying points
+  Size of outlying points.
 
 - outlier.stroke:
 
-  stroke for outlying points
+  Stroke width of outlying points.
 
 - voffset:
 
-  controls the size of the gap in the line representing the median when
+  Controls the size of the gap in the line representing the median when
   `median.type = 'line'`. This is a fraction of the range of `y`.
 
 - hoffset:
 
-  controls how much the interquartile line is offset from the whiskers
+  Controls how much the interquartile line is offset from the whiskers
   when `median.type = 'line'`. This is a fraction of the range of `x`.
 
 - na.rm:
@@ -204,23 +204,23 @@ A ggplot2 layer.
 
 ## Aesthetics
 
-- x \[required\]
+- `x` (required)
 
-- y \[required\]
+- `y` (required)
 
-- colour
+- `colour`
 
-- size
+- `size`
 
-- linewidth
+- `linewidth`
 
-- linetype
+- `linetype`
 
-- shape
+- `shape`
 
-- fill
+- `fill`
 
-- alpha
+- `alpha`
 
 ## References
 
@@ -232,7 +232,7 @@ plots. The American Statistician 32, 12-16.
 
 ## See also
 
-[`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
+[`ggplot2::geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
 
 Other geom tufte:
 [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)

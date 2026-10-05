@@ -24,28 +24,28 @@ extended_range_breaks(n = 5, ...)
 
 - dmin:
 
-  minimum of the data range
+  Minimum of the data range.
 
 - dmax:
 
-  maximum of the data range
+  Maximum of the data range.
 
 - n:
 
-  desired number of breaks
+  Desired number of breaks.
 
 - Q:
 
-  set of nice numbers
+  Set of nice numbers.
 
 - w:
 
-  weights applied to the four optimization components (simplicity,
-  coverage, density, and legibility)
+  Weights applied to the four optimization components (simplicity,
+  coverage, density, and legibility).
 
 - ...:
 
-  other arguments passed to `extended_range_breaks_()`
+  Other arguments passed to `extended_range_breaks_()`.
 
 ## Value
 

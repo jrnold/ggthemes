@@ -22,7 +22,7 @@ theme_excel_new(base_size = 9, base_family = "sans")
 ## Value
 
 An object of class
-[`theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
+[`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
 
 ## Details
 

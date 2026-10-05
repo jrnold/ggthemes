@@ -146,71 +146,46 @@ for the whiskers.](reference/figures/README-geoms-2.png)
 
 - [`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md)
   : Theme Base
-
 - [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md)
   : Theme Calc
-
 - [`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md)
   : Clean ggplot theme
-
 - [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
   [`theme_economist_white()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
   : ggplot color theme based on the Economist
-
 - [`theme_excel()`](https://jrnold.github.io/ggthemes/reference/theme_excel.md)
   : ggplot theme based on old Excel plots
-
 - [`theme_excel_new()`](https://jrnold.github.io/ggthemes/reference/theme_excel_new.md)
   : ggplot theme similar to current Excel plot defaults
-
 - [`theme_few()`](https://jrnold.github.io/ggthemes/reference/theme_few.md)
   : Theme based on Few's "Practical Rules for Using Color in Charts"
-
 - [`theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md)
   : Theme inspired by FiveThirtyEight plots
-
 - [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md)
   : Foundation Theme
-
 - [`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md)
-  : Theme with Google Docs Chart defaults
-
+  : Theme with Google Docs chart defaults
 - [`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md)
   : Highcharts Theme
-
 - [`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md)
   : Inverse gray theme
-
 - [`theme_map()`](https://jrnold.github.io/ggthemes/reference/theme_map.md)
   : Clean theme for maps
-
 - [`theme_numbers()`](https://jrnold.github.io/ggthemes/reference/theme_numbers.md)
   : Theme with Apple Numbers chart defaults
-
 - [`theme_pander()`](https://jrnold.github.io/ggthemes/reference/theme_pander.md)
   : A ggplot theme originated from the pander package
-
 - [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
-  :
-
-  Theme which uses the current ‘base’ graphics parameter values from
-  [`par()`](https://rdrr.io/r/graphics/par.html). Not all
-  [`par()`](https://rdrr.io/r/graphics/par.html) parameters, are
-  supported, and not all are relevant to ggplot2 themes.
-
+  : Theme based on base graphics parameters
 - [`theme_solarized()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
   [`theme_solarized_2()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
   : ggplot color themes based on the Solarized palette
-
 - [`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)
   : Theme with nothing other than a background color
-
 - [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md)
   : Themes based on Stata graph schemes
-
 - [`theme_tufte()`](https://jrnold.github.io/ggthemes/reference/theme_tufte.md)
-  : Tufte Maximal Data, Minimal Ink Theme
-
+  : Tufte maximal data, minimal ink theme
 - [`theme_wsj()`](https://jrnold.github.io/ggthemes/reference/theme_wsj.md)
   : Wall Street Journal theme
 
@@ -227,7 +202,7 @@ properties.
   [`scale_color_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_fill_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_fill_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
-  : Colorblind Color Palette (Discrete) and Scales
+  **\[deprecated\]** : Colorblind color palette (discrete) and scales
 - [`scale_fill_calc()`](https://jrnold.github.io/ggthemes/reference/scale_calc.md)
   [`scale_colour_calc()`](https://jrnold.github.io/ggthemes/reference/scale_calc.md)
   [`scale_color_calc()`](https://jrnold.github.io/ggthemes/reference/scale_calc.md)
@@ -272,7 +247,7 @@ properties.
 - [`scale_colour_few()`](https://jrnold.github.io/ggthemes/reference/scale_few.md)
   [`scale_color_few()`](https://jrnold.github.io/ggthemes/reference/scale_few.md)
   [`scale_fill_few()`](https://jrnold.github.io/ggthemes/reference/scale_few.md)
-  : Color scales from Few's "Practical Rules for Using Color in Charts"
+  : Color scales from Stephen Few
 - [`scale_colour_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/scale_fivethirtyeight.md)
   [`scale_color_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/scale_fivethirtyeight.md)
   [`scale_fill_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/scale_fivethirtyeight.md)
@@ -296,7 +271,7 @@ properties.
 - [`scale_colour_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
   [`scale_color_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
   [`scale_fill_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
-  **\[deprecated\]** : Color Scales from Paul Tol's "Colour Schemes"
+  **\[deprecated\]** : Color scales from Paul Tol's "Colour Schemes"
 - [`scale_fill_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
   [`scale_colour_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
   [`scale_color_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
@@ -318,7 +293,7 @@ details of how data values are translated to visual properties.
 - [`scale_shape_calc()`](https://jrnold.github.io/ggthemes/reference/scale_shape_calc.md)
   : Calc shape scale
 - [`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md)
-  : Filled Circle Shape palette (discrete)
+  **\[deprecated\]** : Filled Circle Shape palette (discrete)
 - [`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md)
   : Shape scales from Cleveland "Elements of Graphing Data"
 - [`scale_shape_few()`](https://jrnold.github.io/ggthemes/reference/scale_shape_few.md)
@@ -349,9 +324,9 @@ Color, shape, and linetype palettes.
 - [`canva_pal()`](https://jrnold.github.io/ggthemes/reference/canva_pal.md)
   : Canva.com color palettes
 - [`circlefill_shape_pal()`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md)
-  : Filled Circle Shape palette (discrete)
+  **\[deprecated\]** : Filled Circle Shape palette (discrete)
 - [`cleveland_shape_pal()`](https://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md)
-  : Shape palette from Cleveland "Elements of Graphing Data" (discrete).
+  : Shape palette from Cleveland's "Elements of Graphing Data"
 - [`colorblind_pal()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`colourblind_pal()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_colour_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
@@ -359,7 +334,7 @@ Color, shape, and linetype palettes.
   [`scale_color_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_fill_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_fill_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
-  : Colorblind Color Palette (Discrete) and Scales
+  **\[deprecated\]** : Colorblind color palette (discrete) and scales
 - [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
   : Economist color palette (discrete)
 - [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md)
@@ -370,7 +345,7 @@ Color, shape, and linetype palettes.
 - [`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md)
   : Excel 97 ugly color palettes (discrete)
 - [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)
-  : Color Palettes Few "Show Me the Numbers"
+  : Color palettes from Few's "Show Me the Numbers"
 - [`few_shape_pal()`](https://jrnold.github.io/ggthemes/reference/few_shape_pal.md)
   : Shape palette from "Show Me the Numbers" (discrete)
 - [`fivethirtyeight_pal()`](https://jrnold.github.io/ggthemes/reference/fivethirtyeight_pal.md)
@@ -382,7 +357,7 @@ Color, shape, and linetype palettes.
 - [`numbers_pal()`](https://jrnold.github.io/ggthemes/reference/numbers_pal.md)
   : Apple Numbers color palettes (discrete)
 - [`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md)
-  **\[deprecated\]** : Color Palettes from Paul Tol's "Colour Schemes"
+  **\[deprecated\]** : Color palettes from Paul Tol's "Colour Schemes"
 - [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
   : Solarized color palette (discrete)
 - [`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
@@ -392,13 +367,13 @@ Color, shape, and linetype palettes.
 - [`stata_shape_pal()`](https://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
   : Stata shape palette (discrete)
 - [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
-  : Tableau Color Palettes (discrete)
+  : Tableau color palettes (discrete)
 - [`tableau_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
   [`tableau_seq_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
   [`tableau_div_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
   : Tableau color gradient palettes (continuous)
 - [`tableau_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_shape_pal.md)
-  : Tableau Shape Palettes (discrete)
+  : Tableau shape palettes (discrete)
 - [`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)
   : Shape palette from Tremmel (1995) (discrete)
 - [`wsj_pal()`](https://jrnold.github.io/ggthemes/reference/wsj_pal.md)
@@ -413,7 +388,7 @@ ggplot2 geom and stat layers.
 - [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
   : Range Frames
 - [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
-  : Tufte's Box Plot
+  : Tufte's box plot
 - [`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
   : Calculate components of a five-number summary
 
@@ -422,11 +397,11 @@ ggplot2 geom and stat layers.
 - [`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
   : Bank Slopes to 45 degrees
 - [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
-  : Bank a Plot's Own Data to 45 Degrees
+  : Bank a plot's own data to 45 degrees
 - [`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)
-  : Multi-Scale Banking to 45 Degrees
+  : Multi-scale banking to 45 degrees
 - [`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md)
-  : Bank a Plot's Own Data at Every Scale
+  : Bank a plot's own data at every scale
 - [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
   [`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
   : Pretty axis breaks inclusive of extreme values
@@ -443,7 +418,7 @@ ggplot2 geom and stat layers.
 - [`ggthemes_data`](https://jrnold.github.io/ggthemes/reference/ggthemes_data.md)
   : Palette and theme data
 - [`canva_palettes`](https://jrnold.github.io/ggthemes/reference/canva_palettes.md)
-  : 150 Color Palettes from Canva
+  : 150 color palettes from Canva
 
 # Articles
 

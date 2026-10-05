@@ -24,14 +24,14 @@ excel_new_pal(theme = "Office")
   `"Grayscale"`, `"Green Yellow"`, `"Green"`, `"Marquee"`, `"Median"`,
   `"Office 2007"`, `"Orange Red"`, `"Orange"`, `"Paper"`,
   `"Red Orange"`, `"Red Violet"`, `"Red"`, `"Slipstream"`,
-  `"Violet II"`, `"Violet"`, `"Yellow Orange"`, `"Yellow"`
+  `"Violet II"`, `"Violet"`, `"Yellow Orange"`, `"Yellow"`.
 
 ## Value
 
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Details
 

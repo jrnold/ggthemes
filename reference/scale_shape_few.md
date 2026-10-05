@@ -15,7 +15,7 @@ scale_shape_few(...)
 - ...:
 
   Common
-  [`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html)
+  [`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html)
   parameters.
 
 ## Value

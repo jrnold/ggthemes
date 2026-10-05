@@ -1,4 +1,4 @@
-# Color scales from Few's "Practical Rules for Using Color in Charts"
+# Color scales from Stephen Few
 
 See
 [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md).
@@ -17,7 +17,7 @@ scale_fill_few(palette = "Light", ...)
 
 - palette:
 
-  One of
+  One of `"Light"`, `"Medium"`, `"Dark"`.
 
 - ...:
 

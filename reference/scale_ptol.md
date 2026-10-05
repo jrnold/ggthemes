@@ -1,4 +1,4 @@
-# Color Scales from Paul Tol's "Colour Schemes"
+# Color scales from Paul Tol's "Colour Schemes"
 
 **\[deprecated\]**
 

@@ -26,11 +26,11 @@ theme_hc(
 - style:
 
   The Highcharts theme to use. One of `"default"`, `"default_dark"`,
-  `"darkunica"`, `"grid_light"`, `"sand_signika"` .
+  `"darkunica"`, `"grid_light"`, `"sand_signika"`.
 
 - bgcolor:
 
-  Deprecated
+  Deprecated.
 
 ## Value
 

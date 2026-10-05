@@ -3,12 +3,12 @@
 themes, and not meant to be used directly. theme_foundation()
 is a complete theme with only minimal number of elements defined.
 It is easier to create new themes by extending this one rather
-than theme_gray() or theme_bw(),
+than ggplot2::theme_gray() or ggplot2::theme_bw(),
 because those themes define elements deep in the hierarchy."><meta property="og:description" content="This theme is designed to be a foundation from which to build new
 themes, and not meant to be used directly. theme_foundation()
 is a complete theme with only minimal number of elements defined.
 It is easier to create new themes by extending this one rather
-than theme_gray() or theme_bw(),
+than ggplot2::theme_gray() or ggplot2::theme_bw(),
 because those themes define elements deep in the hierarchy."><meta property="og:image" content="https://jrnold.github.io/ggthemes/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -52,7 +52,7 @@ because those themes define elements deep in the hierarchy."><meta property="og:
 themes, and not meant to be used directly. <code>theme_foundation()</code>
 is a complete theme with only minimal number of elements defined.
 It is easier to create new themes by extending this one rather
-than <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_gray()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>,
+than <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_gray()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>,
 because those themes define elements deep in the hierarchy.</p>
     </div>
 
@@ -89,11 +89,11 @@ because those themes define elements deep in the hierarchy.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This theme takes <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_gray()</a></code> and sets all
+    <p>This theme takes <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_gray()</a></code> and sets all
 <code>colour</code> and <code>fill</code> values to <code>NULL</code>, except for the top-level
 elements (<code>line</code>, <code>rect</code>, and <code>title</code>), which have
 <code>colour = ink</code>, and <code>fill = paper</code>. This leaves the spacing
-and non-color defaults of the default <span class="pkg">ggplot2</span> themes in place.</p>
+and non-color defaults of the default ggplot2 themes in place.</p>
 <p>Unlike <code>theme_foundation()</code>, the other themes in this package (e.g.
 <code><a href="theme_economist.html">theme_economist()</a></code>, <code><a href="theme_excel.html">theme_excel()</a></code>,
 <code><a href="theme_hc.html">theme_hc()</a></code>) intentionally replicate a fixed, published

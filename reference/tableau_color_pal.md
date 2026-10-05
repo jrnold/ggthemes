@@ -1,4 +1,4 @@
-# Tableau Color Palettes (discrete)
+# Tableau color palettes (discrete)
 
 Color palettes used in [Tableau](https://www.tableau.com/).
 
@@ -33,7 +33,7 @@ tableau_color_pal(
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Details
 
@@ -41,45 +41,41 @@ Tableau provides three types of color palettes: `"regular"` (discrete,
 qualitative categories), `"ordered-sequential"`, and
 `"ordered-diverging"`.
 
-- `"regular"`:
+- `"regular"`: `"Tableau 10"`, `"Tableau 20"`, `"Color Blind"`,
+  `"Seattle Grays"`, `"Traffic"`, `"Miller Stone"`,
+  `"Superfishel Stone"`, `"Nuriel Stone"`, `"Jewel Bright"`, `"Summer"`,
+  `"Winter"`, `"Green-Orange-Teal"`, `"Blue-Red-Brown"`,
+  `"Purple-Pink-Gray"`, `"Hue Circle"`, `"Classic 10"`,
+  `"Classic 10 Medium"`, `"Classic 10 Light"`, `"Classic 20"`,
+  `"Classic Gray 5"`, `"Classic Color Blind"`,
+  `"Classic Traffic Light"`, `"Classic Purple-Gray 6"`,
+  `"Classic Purple-Gray 12"`, `"Classic Green-Orange 6"`,
+  `"Classic Green-Orange 12"`, `"Classic Blue-Red 6"`,
+  `"Classic Blue-Red 12"`, `"Classic Cyclic"`.
 
-  `"Tableau 10"`, `"Tableau 20"`, `"Color Blind"`, `"Seattle Grays"`,
-  `"Traffic"`, `"Miller Stone"`, `"Superfishel Stone"`,
-  `"Nuriel Stone"`, `"Jewel Bright"`, `"Summer"`, `"Winter"`,
-  `"Green-Orange-Teal"`, `"Blue-Red-Brown"`, `"Purple-Pink-Gray"`,
-  `"Hue Circle"`, `"Classic 10"`, `"Classic 10 Medium"`,
-  `"Classic 10 Light"`, `"Classic 20"`, `"Classic Gray 5"`,
-  `"Classic Color Blind"`, `"Classic Traffic Light"`,
-  `"Classic Purple-Gray 6"`, `"Classic Purple-Gray 12"`,
-  `"Classic Green-Orange 6"`, `"Classic Green-Orange 12"`,
-  `"Classic Blue-Red 6"`, `"Classic Blue-Red 12"`, `"Classic Cyclic"`
-
-- `"ordered-diverging"`:
-
-  `"Orange-Blue Diverging"`, `"Red-Green Diverging"`,
-  `"Green-Blue Diverging"`, `"Red-Blue Diverging"`,
-  `"Red-Black Diverging"`, `"Gold-Purple Diverging"`,
-  `"Red-Green-Gold Diverging"`, `"Sunset-Sunrise Diverging"`,
-  `"Orange-Blue-White Diverging"`, `"Red-Green-White Diverging"`,
-  `"Green-Blue-White Diverging"`, `"Red-Blue-White Diverging"`,
-  `"Red-Black-White Diverging"`, `"Orange-Blue Light Diverging"`,
-  `"Temperature Diverging"`, `"Classic Red-Green"`,
-  `"Classic Red-Blue"`, `"Classic Red-Black"`,
+- `"ordered-diverging"`: `"Orange-Blue Diverging"`,
+  `"Red-Green Diverging"`, `"Green-Blue Diverging"`,
+  `"Red-Blue Diverging"`, `"Red-Black Diverging"`,
+  `"Gold-Purple Diverging"`, `"Red-Green-Gold Diverging"`,
+  `"Sunset-Sunrise Diverging"`, `"Orange-Blue-White Diverging"`,
+  `"Red-Green-White Diverging"`, `"Green-Blue-White Diverging"`,
+  `"Red-Blue-White Diverging"`, `"Red-Black-White Diverging"`,
+  `"Orange-Blue Light Diverging"`, `"Temperature Diverging"`,
+  `"Classic Red-Green"`, `"Classic Red-Blue"`, `"Classic Red-Black"`,
   `"Classic Area Red-Green"`, `"Classic Orange-Blue"`,
   `"Classic Green-Blue"`, `"Classic Red-White-Green"`,
   `"Classic Red-White-Black"`, `"Classic Orange-White-Blue"`,
   `"Classic Red-White-Black Light"`,
   `"Classic Orange-White-Blue Light"`,
-  `"Classic Red-White-Green Light"`, `"Classic Red-Green Light"`
+  `"Classic Red-White-Green Light"`, `"Classic Red-Green Light"`.
 
-- `"ordered-sequential"`:
-
-  `"Blue-Green Sequential"`, `"Blue Light"`, `"Orange Light"`, `"Blue"`,
-  `"Orange"`, `"Green"`, `"Red"`, `"Purple"`, `"Brown"`, `"Gray"`,
-  `"Gray Warm"`, `"Blue-Teal"`, `"Orange-Gold"`, `"Green-Gold"`,
-  `"Red-Gold"`, `"Classic Green"`, `"Classic Gray"`, `"Classic Blue"`,
-  `"Classic Red"`, `"Classic Orange"`, `"Classic Area Red"`,
-  `"Classic Area Green"`, `"Classic Area Brown"`
+- `"ordered-sequential"`: `"Blue-Green Sequential"`, `"Blue Light"`,
+  `"Orange Light"`, `"Blue"`, `"Orange"`, `"Green"`, `"Red"`,
+  `"Purple"`, `"Brown"`, `"Gray"`, `"Gray Warm"`, `"Blue-Teal"`,
+  `"Orange-Gold"`, `"Green-Gold"`, `"Red-Gold"`, `"Classic Green"`,
+  `"Classic Gray"`, `"Classic Blue"`, `"Classic Red"`,
+  `"Classic Orange"`, `"Classic Area Red"`, `"Classic Area Green"`,
+  `"Classic Area Brown"`.
 
 ## References
 

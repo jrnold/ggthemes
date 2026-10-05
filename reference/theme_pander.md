@@ -1,8 +1,8 @@
 # A ggplot theme originated from the pander package
 
-The pander ships with a default theme when the 'unify plots' option is
-enabled via `panderOptions`, which is now also available outside of
-pander internals, like `evals`, `eval.msgs` or `Pandoc.brew`.
+The pander package ships with a default theme when the 'unify plots'
+option is enabled via `panderOptions`, which is now also available
+outside of pander internals, like `evals`, `eval.msgs` or `Pandoc.brew`.
 
 ## Usage
 
@@ -38,55 +38,55 @@ theme_pander(
 
 - nomargin:
 
-  suppress the white space around the plot (boolean)
+  Whether to suppress the white space around the plot.
 
 - ff:
 
-  font family, like `sans`. Deprecated: use `base_family` instead.
+  Font family, like `"sans"`. Deprecated: use `base_family` instead.
 
 - fc:
 
-  font color (name or hexa code)
+  Font color, as a name or hex code.
 
 - fs:
 
-  font size (integer). Deprecated: use `base_size` instead.
+  Font size (integer). Deprecated: use `base_size` instead.
 
 - gM:
 
-  major grid (boolean)
+  Whether to draw the major grid.
 
 - gm:
 
-  minor grid (boolean)
+  Whether to draw the minor grid.
 
 - gc:
 
-  grid color (name or hexa code)
+  Grid color, as a name or hex code.
 
 - gl:
 
-  grid line type (`lty`)
+  Grid line type (`lty`).
 
 - boxes:
 
-  to render a border around the plot or not
+  Whether to draw a border around the plot.
 
 - bc:
 
-  background color (name or hexa code)
+  Background color, as a name or hex code.
 
 - pc:
 
-  panel background color (name or hexa code)
+  Panel background color, as a name or hex code.
 
 - lp:
 
-  legend position
+  Legend position.
 
 - axis:
 
-  axis angle as defined in `par(les)`
+  Axis label angle, as defined by `par("las")`.
 
 ## Value
 

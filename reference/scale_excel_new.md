@@ -29,7 +29,7 @@ scale_fill_excel_new(theme = "Office", ...)
   `"Grayscale"`, `"Green Yellow"`, `"Green"`, `"Marquee"`, `"Median"`,
   `"Office 2007"`, `"Orange Red"`, `"Orange"`, `"Paper"`,
   `"Red Orange"`, `"Red Violet"`, `"Red"`, `"Slipstream"`,
-  `"Violet II"`, `"Violet"`, `"Yellow Orange"`, `"Yellow"`
+  `"Violet II"`, `"Violet"`, `"Yellow Orange"`, `"Yellow"`.
 
 - ...:
 

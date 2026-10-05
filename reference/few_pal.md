@@ -1,4 +1,4 @@
-# Color Palettes Few "Show Me the Numbers"
+# Color palettes from Few's "Show Me the Numbers"
 
 Qualitative color palettes from Stephen Few (2012) *Show Me the
 Numbers*. There are three palettes: Light, Medium, and Dark. Each
@@ -16,14 +16,14 @@ few_pal(palette = "Medium")
 
 - palette:
 
-  One of
+  One of `"Light"`, `"Medium"`, `"Dark"`.
 
 ## Value
 
 A palette function. It takes the number of colors `n` and returns a
 character vector of `n` hex colors, and can be used as the `palette`
 argument of
-[`discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
+[`ggplot2::discrete_scale()`](https://ggplot2.tidyverse.org/reference/discrete_scale.html).
 
 ## Details
 

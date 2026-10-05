@@ -50,35 +50,31 @@ scale_fill_continuous_tableau(
 
 - palette:
 
-  Palette name.
+  Palette name. For each `type`:
 
-  `"ordered-sequential"`
+  - `"ordered-sequential"`: `"Blue-Green Sequential"`, `"Blue Light"`,
+    `"Orange Light"`, `"Blue"`, `"Orange"`, `"Green"`, `"Red"`,
+    `"Purple"`, `"Brown"`, `"Gray"`, `"Gray Warm"`, `"Blue-Teal"`,
+    `"Orange-Gold"`, `"Green-Gold"`, `"Red-Gold"`, `"Classic Green"`,
+    `"Classic Gray"`, `"Classic Blue"`, `"Classic Red"`,
+    `"Classic Orange"`, `"Classic Area Red"`, `"Classic Area Green"`,
+    `"Classic Area Brown"`.
 
-  :   `"Blue-Green Sequential"`, `"Blue Light"`, `"Orange Light"`,
-      `"Blue"`, `"Orange"`, `"Green"`, `"Red"`, `"Purple"`, `"Brown"`,
-      `"Gray"`, `"Gray Warm"`, `"Blue-Teal"`, `"Orange-Gold"`,
-      `"Green-Gold"`, `"Red-Gold"`, `"Classic Green"`, `"Classic Gray"`,
-      `"Classic Blue"`, `"Classic Red"`, `"Classic Orange"`,
-      `"Classic Area Red"`, `"Classic Area Green"`,
-      `"Classic Area Brown"`
-
-  `"ordered-diverging"`
-
-  :   `"Orange-Blue Diverging"`, `"Red-Green Diverging"`,
-      `"Green-Blue Diverging"`, `"Red-Blue Diverging"`,
-      `"Red-Black Diverging"`, `"Gold-Purple Diverging"`,
-      `"Red-Green-Gold Diverging"`, `"Sunset-Sunrise Diverging"`,
-      `"Orange-Blue-White Diverging"`, `"Red-Green-White Diverging"`,
-      `"Green-Blue-White Diverging"`, `"Red-Blue-White Diverging"`,
-      `"Red-Black-White Diverging"`, `"Orange-Blue Light Diverging"`,
-      `"Temperature Diverging"`, `"Classic Red-Green"`,
-      `"Classic Red-Blue"`, `"Classic Red-Black"`,
-      `"Classic Area Red-Green"`, `"Classic Orange-Blue"`,
-      `"Classic Green-Blue"`, `"Classic Red-White-Green"`,
-      `"Classic Red-White-Black"`, `"Classic Orange-White-Blue"`,
-      `"Classic Red-White-Black Light"`,
-      `"Classic Orange-White-Blue Light"`,
-      `"Classic Red-White-Green Light"`, `"Classic Red-Green Light"`
+  - `"ordered-diverging"`: `"Orange-Blue Diverging"`,
+    `"Red-Green Diverging"`, `"Green-Blue Diverging"`,
+    `"Red-Blue Diverging"`, `"Red-Black Diverging"`,
+    `"Gold-Purple Diverging"`, `"Red-Green-Gold Diverging"`,
+    `"Sunset-Sunrise Diverging"`, `"Orange-Blue-White Diverging"`,
+    `"Red-Green-White Diverging"`, `"Green-Blue-White Diverging"`,
+    `"Red-Blue-White Diverging"`, `"Red-Black-White Diverging"`,
+    `"Orange-Blue Light Diverging"`, `"Temperature Diverging"`,
+    `"Classic Red-Green"`, `"Classic Red-Blue"`, `"Classic Red-Black"`,
+    `"Classic Area Red-Green"`, `"Classic Orange-Blue"`,
+    `"Classic Green-Blue"`, `"Classic Red-White-Green"`,
+    `"Classic Red-White-Black"`, `"Classic Orange-White-Blue"`,
+    `"Classic Red-White-Black Light"`,
+    `"Classic Orange-White-Blue Light"`,
+    `"Classic Red-White-Green Light"`, `"Classic Red-Green Light"`.
 
 - ...:
 

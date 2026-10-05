@@ -35,9 +35,9 @@ Plots made with this theme integrate seamlessly with the Solarized
 Beamer color theme.
 <https://github.com/jrnold/beamercolorthemesolarized>. There are two
 variations: `theme_solarized` is similar to to
-[`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
+[`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
 while `theme_solarized_2()` is similar to
-[`theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+[`ggplot2::theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 ## Examples
 

@@ -155,33 +155,21 @@ stat_fivenumber(
 
 A data frame with additional columns:
 
-- width:
+- `width`: width of the box plot.
 
-  width of boxplot
+- `min`: minimum.
 
-- min:
+- `lower`: lower hinge, the 25% quantile.
 
-  minimum
+- `middle`: median, the 50% quantile.
 
-- lower:
+- `upper`: upper hinge, the 75% quantile.
 
-  lower hinge, 25% quantile
-
-- middle:
-
-  median, 50% quantile
-
-- upper:
-
-  upper hinge, 75% quantile
-
-- max:
-
-  maximum
+- `max`: maximum.
 
 ## See also
 
-[`stat_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
+[`ggplot2::stat_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
 
 ## Examples
 

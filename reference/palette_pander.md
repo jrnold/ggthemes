@@ -1,7 +1,7 @@
 # Color palette from the pander package
 
-The pander ships with a default colorblind and printer-friendly color
-palette borrowed from `https://jfly.iam.u-tokyo.ac.jp/color/`.
+The pander package ships with a default colorblind and printer-friendly
+color palette borrowed from <https://jfly.iam.u-tokyo.ac.jp/color/>.
 
 ## Usage
 
@@ -13,12 +13,11 @@ palette_pander(n, random_order = FALSE)
 
 - n:
 
-  number of colors. This palette supports up to eight colors.
+  Number of colors. This palette supports up to eight colors.
 
 - random_order:
 
-  if the palette should be reordered randomly before rendering each plot
-  to get colorful images
+  Whether to shuffle the palette randomly before rendering each plot.
 
 ## Value
 

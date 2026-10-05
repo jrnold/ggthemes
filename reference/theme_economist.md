@@ -45,7 +45,7 @@ theme_economist_white(
 ## Value
 
 An object of class
-[`theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
+[`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
 
 ## Details
 

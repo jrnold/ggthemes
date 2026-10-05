@@ -2,6 +2,16 @@
 
 ## ggthemes (development version)
 
+- Documentation is now written in roxygen markdown. This fixes
+  deprecation badges that showed as raw `` `r lifecycle::badge()` ``
+  text in
+  [`?circlefill_shape_pal`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md),
+  `?colorblind` and
+  [`?scale_shape_circlefill`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
+  and
+  [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)’s
+  `palette` argument now lists its options, which were missing.
+
 - Fix
   [`scale_linetype_stata()`](https://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
   and

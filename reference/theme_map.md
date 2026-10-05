@@ -1,7 +1,7 @@
 # Clean theme for maps
 
 A clean theme that is good for displaying maps from
-[`geom_map()`](https://ggplot2.tidyverse.org/reference/geom_map.html).
+[`ggplot2::geom_map()`](https://ggplot2.tidyverse.org/reference/geom_map.html).
 
 ## Usage
 
