@@ -7,10 +7,10 @@
 palette_pander(n, random_order = FALSE)
 }
 \arguments{
-\item{n}{number of colors. This palette supports up to eight colors.}
+\item{n}{Number of colors. This palette supports up to eight colors.}
 
-\item{random_order}{if the palette should be reordered randomly before
-rendering each plot to get colorful images}
+\item{random_order}{Whether to shuffle the palette randomly before
+rendering each plot.}
 }
 \value{
 A character vector of \code{n} hex colors, recycled if \code{n} exceeds the number of colors available.

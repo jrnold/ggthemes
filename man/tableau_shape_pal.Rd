@@ -2,7 +2,7 @@
 % Please edit documentation in R/tableau.R
 \name{tableau_shape_pal}
 \alias{tableau_shape_pal}
-\title{Tableau Shape Palettes (discrete)}
+\title{Tableau shape palettes (discrete)}
 \usage{
 tableau_shape_pal(
   palette = c("default", "filled", "proportions"),

@@ -2,7 +2,7 @@
 % Please edit documentation in R/banking-multiscale.R
 \name{bank_plot_multiscale}
 \alias{bank_plot_multiscale}
-\title{Bank a Plot's Own Data at Every Scale}
+\title{Bank a plot's own data at every scale}
 \usage{
 bank_plot_multiscale(
   plot,

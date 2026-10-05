@@ -2,7 +2,7 @@
 % Please edit documentation in R/shapes.R
 \name{cleveland_shape_pal}
 \alias{cleveland_shape_pal}
-\title{Shape palette from Cleveland "Elements of Graphing Data" (discrete).}
+\title{Shape palette from Cleveland's "Elements of Graphing Data"}
 \usage{
 cleveland_shape_pal(overlap = TRUE, unicode = FALSE)
 }

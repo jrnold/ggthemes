@@ -1,4 +1,4 @@
-#' Tufte Maximal Data, Minimal Ink Theme
+#' Tufte maximal data, minimal ink theme
 #'
 #' Theme based on Chapter 6 'Data-Ink Maximization and Graphical
 #' Design' of Edward Tufte *The Visual Display of Quantitative

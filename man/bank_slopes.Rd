@@ -14,9 +14,9 @@ bank_slopes(
 )
 }
 \arguments{
-\item{x}{x values}
+\item{x}{A numeric vector of x values.}
 
-\item{y}{y values}
+\item{y}{A numeric vector of y values.}
 
 \item{cull}{\code{logical}. Remove all slopes of 0 or \code{Inf}.}
 

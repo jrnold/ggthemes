@@ -8,7 +8,7 @@
 \alias{scale_color_colorblind}
 \alias{scale_fill_colorblind}
 \alias{scale_fill_colourblind}
-\title{Colorblind Color Palette (Discrete) and Scales}
+\title{Colorblind color palette (discrete) and scales}
 \usage{
 colorblind_pal(black = TRUE)
 

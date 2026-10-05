@@ -19,7 +19,7 @@ tableau_resolve_palette <- function(palette) {
 }
 
 # nolint start
-#' Tableau Color Palettes (discrete)
+#' Tableau color palettes (discrete)
 #'
 #' Color palettes used in [Tableau](https://www.tableau.com/).
 #'
@@ -116,7 +116,7 @@ scale_fill_tableau <- function(palette = "Tableau 10", type = "regular", directi
 #' @rdname scale_color_tableau
 scale_color_tableau <- scale_colour_tableau
 
-#' Tableau Shape Palettes (discrete)
+#' Tableau shape palettes (discrete)
 #'
 #' Shape palettes used by
 #' [Tableau](https://www.tableau.com/).

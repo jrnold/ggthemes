@@ -364,7 +364,7 @@ theme_base <- function(base_size = 16, base_family = "") {
 # $ylbias
 # [1] 0.2
 
-# #' Theme Par
+#' Theme based on base graphics parameters
 #'
 #' Theme which uses the current "base" graphics parameter values
 #' from [graphics::par()].
@@ -372,14 +372,11 @@ theme_base <- function(base_size = 16, base_family = "") {
 #' ggplot2 themes.
 #'
 #' Currently this theme uses the values of the parameters:
-#' `"code"`, "`"ps"`", `"code"` `"family"`, `"fg"`,
-#' `"bg"`, `"adj"`, `"font"`, `"cex.axis"`,
-#' `"cex.lab"`, `"cex.main"`, `"cex.sub"`, `"col.axis"`,
-#' `"col.lab"`, `"col.main"`, `"col.sub"`, `"font"`,
-#' `"font.axis"`, `"font.lab"`, `"font.main"`,
-#' `"font.sub"`, `"las"`, `"lend"`,
-#' `"lheight"`, `"lty"`, `"mar"`, `"ps"`, `"tcl"`,
-#' `"tck"`, `"xaxt"`, `"yaxt"`.
+#' `"ps"`, `"family"`, `"fg"`, `"bg"`, `"col"`, `"adj"`, `"font"`,
+#' `"cex.axis"`, `"cex.lab"`, `"cex.main"`, `"cex.sub"`, `"col.axis"`,
+#' `"col.lab"`, `"col.main"`, `"col.sub"`, `"font.axis"`, `"font.lab"`,
+#' `"font.main"`, `"font.sub"`, `"las"`, `"lend"`, `"lheight"`, `"lty"`,
+#' `"mar"`, `"tcl"`, `"tck"`, `"xaxt"`, `"yaxt"`.
 #'
 #' This theme does not translate the base graphics perfectly, so the graphs
 #' produced by it will not be identical to those produced by base graphics,

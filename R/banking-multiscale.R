@@ -176,7 +176,7 @@ lowpass <- function(y, cutoff) {
   Re(stats::fft(coefs, inverse = TRUE)) / n
 }
 
-#' Multi-Scale Banking to 45 Degrees
+#' Multi-scale banking to 45 degrees
 #'
 #' Compute a set of aspect ratios, one per frequency scale present in a
 #' series, using the multi-scale banking algorithm of Heer and Agrawala
@@ -272,7 +272,7 @@ bank_slopes_multiscale <- function(
   )
 }
 
-#' Bank a Plot's Own Data at Every Scale
+#' Bank a plot's own data at every scale
 #'
 #' A convenience wrapper around [bank_slopes_multiscale()] that
 #' extracts `y` directly from an already-specified `ggplot` and

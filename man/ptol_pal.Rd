@@ -2,7 +2,7 @@
 % Please edit documentation in R/ptol.R
 \name{ptol_pal}
 \alias{ptol_pal}
-\title{Color Palettes from Paul Tol's "Colour Schemes"}
+\title{Color palettes from Paul Tol's "Colour Schemes"}
 \usage{
 ptol_pal()
 }

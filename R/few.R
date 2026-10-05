@@ -1,5 +1,5 @@
 # nolint start
-#' Color Palettes Few "Show Me the Numbers"
+#' Color palettes from Few's "Show Me the Numbers"
 #'
 #' Qualitative color palettes from Stephen Few (2012)
 #' *Show Me the Numbers*. There are three palettes:
@@ -52,7 +52,7 @@ few_pal <- function(palette = "Medium") {
   f
 }
 
-#' Color scales from Few's "Practical Rules for Using Color in Charts"
+#' Color scales from Stephen Few
 #'
 #' See [few_pal()].
 #'

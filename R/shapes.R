@@ -1,5 +1,5 @@
 # nolint start
-#' Shape palette from Cleveland "Elements of Graphing Data" (discrete).
+#' Shape palette from Cleveland's "Elements of Graphing Data"
 #'
 #' Shape palettes for overlapping and non-overlapping points.
 #'
@@ -153,7 +153,7 @@ scale_shape_circlefill <- function(...) {
 #' If more than three groups of data, then separate the groups into
 #' different plots.
 #'
-#' @param overlap use an empty circle instead of a solid circle when
+#' @param overlap Use an empty circle instead of a solid circle when
 #' `n == 2`.
 #' @param alt If `TRUE`, then when `n == 3`,
 #'   use a solid circle, plus sign and

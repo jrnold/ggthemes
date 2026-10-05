@@ -4,7 +4,7 @@
 \alias{scale_colour_ptol}
 \alias{scale_color_ptol}
 \alias{scale_fill_ptol}
-\title{Color Scales from Paul Tol's "Colour Schemes"}
+\title{Color scales from Paul Tol's "Colour Schemes"}
 \usage{
 scale_colour_ptol(...)
 

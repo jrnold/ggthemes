@@ -73,7 +73,7 @@ theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", tit
 #' - `"colors6"`: red, blue, gold, green, orange, and black palette.
 #'
 #' @param palette `character` The color palette to use. One of
-#'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$wsj$palettes))`
+#'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$wsj$palettes))`.
 #'
 #' @family color wsj
 #' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`

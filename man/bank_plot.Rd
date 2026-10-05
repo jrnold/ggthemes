@@ -2,7 +2,7 @@
 % Please edit documentation in R/banking.R
 \name{bank_plot}
 \alias{bank_plot}
-\title{Bank a Plot's Own Data to 45 Degrees}
+\title{Bank a plot's own data to 45 degrees}
 \usage{
 bank_plot(
   plot,

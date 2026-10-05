@@ -1,4 +1,4 @@
-#' Tufte's Box Plot
+#' Tufte's box plot
 #'
 #' Edward Tufte's revisions of the box plot as described in
 #' *The Visual Display of Quantitative Information*.
@@ -33,10 +33,10 @@
 #'
 #' @seealso [ggplot2::geom_boxplot()]
 #' @inheritParams ggplot2::geom_point
-#' @param outlier.colour color for outlying points
-#' @param outlier.shape shape of outlying points
-#' @param outlier.size size of outlying points
-#' @param outlier.stroke stroke for outlying points
+#' @param outlier.colour Color of outlying points.
+#' @param outlier.shape Shape of outlying points.
+#' @param outlier.size Size of outlying points.
+#' @param outlier.stroke Stroke width of outlying points.
 #' @param median.type If `'point'`, then the median is represented by a
 #'   point, and the interquartile range by a gap in the line. If
 #'   `median.type='line'`, then the interquartile range is represented by
@@ -44,10 +44,10 @@
 #' @param whisker.type If `'line'`, then whiskers are represented by lines.
 #'    If `'point'`, then whiskers are represented by points at
 #'    `ymin` and `ymax`.
-#' @param voffset controls the size of the gap in the line representing the
+#' @param voffset Controls the size of the gap in the line representing the
 #'    median when `median.type = 'line'`. This is a fraction of the range
 #'    of `y`.
-#' @param hoffset controls how much the interquartile line is offset from the
+#' @param hoffset Controls how much the interquartile line is offset from the
 #'    whiskers when `median.type = 'line'`. This is a fraction of the
 #'    range of `x`.
 #' @param  stat The statistical transformation to use on the data for this

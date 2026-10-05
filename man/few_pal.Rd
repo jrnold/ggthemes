@@ -2,7 +2,7 @@
 % Please edit documentation in R/few.R
 \name{few_pal}
 \alias{few_pal}
-\title{Color Palettes Few "Show Me the Numbers"}
+\title{Color palettes from Few's "Show Me the Numbers"}
 \usage{
 few_pal(palette = "Medium")
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gdocs.R
 \name{theme_gdocs}
 \alias{theme_gdocs}
-\title{Theme with Google Docs Chart defaults}
+\title{Theme with Google Docs chart defaults}
 \usage{
 theme_gdocs(base_size = 12, base_family = "sans")
 }

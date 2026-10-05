@@ -48,7 +48,7 @@ excel_resolve_theme <- function(theme) {
 #' @param theme The name of the Office theme or color theme
 #'   (not to be confused with ggplot2 themes) from which to derive the color
 #'   palette. Available themes include:
-#'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$excel$themes))`
+#'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$excel$themes))`.
 #' @family color excel
 #' @example inst/examples/ex-excel_new_pal.R
 #' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`

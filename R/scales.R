@@ -73,11 +73,12 @@
 #' which is what pairs with [geom_rangeframe()], apply the function to the data
 #' instead: `scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))`.
 #'
-#' @param dmin minimum of the data range
-#' @param dmax maximum of the data range
-#' @param n desired number of breaks
-#' @param Q set of nice numbers
-#' @param w weights applied to the four optimization components (simplicity, coverage, density, and legibility)
+#' @param dmin Minimum of the data range.
+#' @param dmax Maximum of the data range.
+#' @param n Desired number of breaks.
+#' @param Q Set of nice numbers.
+#' @param w Weights applied to the four optimization components (simplicity,
+#'   coverage, density, and legibility).
 #' @return For `extended_range_breaks_`, the vector of axis label locations.
 #' For `extended_range_breaks`, a function which takes a single argument, a vector of data, and returns
 #'   the vector of axis label locations.
@@ -191,7 +192,7 @@ extended_range_breaks_ <- function(
 }
 
 #' @rdname range_breaks
-#' @param ... other arguments passed to `extended_range_breaks_()`
+#' @param ... Other arguments passed to `extended_range_breaks_()`.
 #' @export
 extended_range_breaks <- function(n = 5, ...) {
   function(x) {
@@ -237,7 +238,7 @@ precision <- function(x) {
 # nolint start
 #' Format numbers with automatic number of digits
 #'
-#' @param x A numeric vector to format
+#' @param x A numeric vector to format.
 #' @param ... Parameters passed to [base::format()].
 #'
 #' @references Josh O'Brien,

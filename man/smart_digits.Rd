@@ -10,7 +10,7 @@ smart_digits(x, ...)
 smart_digits_format(x, ...)
 }
 \arguments{
-\item{x}{A numeric vector to format}
+\item{x}{A numeric vector to format.}
 
 \item{...}{Parameters passed to \code{\link[base:format]{base::format()}}.}
 }

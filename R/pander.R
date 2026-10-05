@@ -4,19 +4,19 @@
 #' enabled via `panderOptions`, which is now also available outside of pander internals, like `evals`,
 #' `eval.msgs` or `Pandoc.brew`.
 #' @inheritParams ggplot2::theme_bw
-#' @param nomargin suppress the white space around the plot (boolean)
-#' @param ff font family, like `sans`. Deprecated: use `base_family` instead.
-#' @param fc font color (name or hexa code)
-#' @param fs font size (integer). Deprecated: use `base_size` instead.
-#' @param gM major grid (boolean)
-#' @param gm minor grid (boolean)
-#' @param gc grid color (name or hexa code)
-#' @param gl grid line type (`lty`)
-#' @param boxes to render a border around the plot or not
-#' @param bc background color (name or hexa code)
-#' @param pc panel background color (name or hexa code)
-#' @param lp legend position
-#' @param axis axis angle as defined in `par(les)`
+#' @param nomargin Whether to suppress the white space around the plot.
+#' @param ff Font family, like `"sans"`. Deprecated: use `base_family` instead.
+#' @param fc Font color, as a name or hex code.
+#' @param fs Font size (integer). Deprecated: use `base_size` instead.
+#' @param gM Whether to draw the major grid.
+#' @param gm Whether to draw the minor grid.
+#' @param gc Grid color, as a name or hex code.
+#' @param gl Grid line type (`lty`).
+#' @param boxes Whether to draw a border around the plot.
+#' @param bc Background color, as a name or hex code.
+#' @param pc Panel background color, as a name or hex code.
+#' @param lp Legend position.
+#' @param axis Axis label angle, as defined by `par("las")`.
 #' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @example inst/examples/ex-theme_pander.R
@@ -257,9 +257,9 @@ theme_pander <- function(
 #' The pander package ships with a default colorblind and printer-friendly
 #' color palette borrowed from <https://jfly.iam.u-tokyo.ac.jp/color/>.
 #'
-#' @param n number of colors. This palette supports up to eight colors.
-#' @param random_order if the palette should be reordered randomly before
-#'  rendering each plot to get colorful images
+#' @param n Number of colors. This palette supports up to eight colors.
+#' @param random_order Whether to shuffle the palette randomly before
+#'   rendering each plot.
 #' @return A character vector of `n` hex colors, recycled if `n` exceeds the number of colors available.
 #'   Unlike the other `*_pal()` functions, this is itself the palette function.
 #' @export

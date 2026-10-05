@@ -1,4 +1,4 @@
-#' Theme with Google Docs Chart defaults
+#' Theme with Google Docs chart defaults
 #'
 #' Theme similar to the default look of charts in Google Docs.
 #'

@@ -84,7 +84,7 @@ hc_theme_styles <- list(
 #' @inheritParams ggplot2::theme_bw
 #' @param style The Highcharts theme to use. One of
 #'   `r ggthemes:::md_optlist(names(ggthemes:::hc_theme_styles))`.
-#' @param bgcolor Deprecated
+#' @param bgcolor Deprecated.
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
 #' @return A ggplot2 theme object (class `theme`).

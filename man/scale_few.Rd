@@ -4,7 +4,7 @@
 \alias{scale_colour_few}
 \alias{scale_color_few}
 \alias{scale_fill_few}
-\title{Color scales from Few's "Practical Rules for Using Color in Charts"}
+\title{Color scales from Stephen Few}
 \usage{
 scale_colour_few(palette = "Medium", ...)
 

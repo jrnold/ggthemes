@@ -16,17 +16,18 @@ extended_range_breaks_(
 extended_range_breaks(n = 5, ...)
 }
 \arguments{
-\item{dmin}{minimum of the data range}
+\item{dmin}{Minimum of the data range.}
 
-\item{dmax}{maximum of the data range}
+\item{dmax}{Maximum of the data range.}
 
-\item{n}{desired number of breaks}
+\item{n}{Desired number of breaks.}
 
-\item{Q}{set of nice numbers}
+\item{Q}{Set of nice numbers.}
 
-\item{w}{weights applied to the four optimization components (simplicity, coverage, density, and legibility)}
+\item{w}{Weights applied to the four optimization components (simplicity,
+coverage, density, and legibility).}
 
-\item{...}{other arguments passed to \code{extended_range_breaks_()}}
+\item{...}{Other arguments passed to \code{extended_range_breaks_()}.}
 }
 \value{
 For \code{extended_range_breaks_}, the vector of axis label locations.

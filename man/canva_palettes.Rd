@@ -3,7 +3,7 @@
 \docType{data}
 \name{canva_palettes}
 \alias{canva_palettes}
-\title{150 Color Palettes from Canva}
+\title{150 color palettes from Canva}
 \format{
 A named \code{list} of character vector.
 The names are the palette names. The values of the character vectors

@@ -8,7 +8,7 @@ wsj_pal(palette = "colors6")
 }
 \arguments{
 \item{palette}{\code{character} The color palette to use. One of
-\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}}
+\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}

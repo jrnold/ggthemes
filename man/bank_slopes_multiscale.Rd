@@ -2,7 +2,7 @@
 % Please edit documentation in R/banking-multiscale.R
 \name{bank_slopes_multiscale}
 \alias{bank_slopes_multiscale}
-\title{Multi-Scale Banking to 45 Degrees}
+\title{Multi-scale banking to 45 degrees}
 \usage{
 bank_slopes_multiscale(
   y,

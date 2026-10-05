@@ -2,10 +2,7 @@
 % Please edit documentation in R/base.R
 \name{theme_par}
 \alias{theme_par}
-\title{Theme which uses the current "base" graphics parameter values
-from \code{\link[graphics:par]{graphics::par()}}.
-Not all \code{par()} parameters are supported, and not all are relevant to
-ggplot2 themes.}
+\title{Theme based on base graphics parameters}
 \usage{
 theme_par(base_size = par()$ps, base_family = par()$family)
 }
@@ -18,17 +15,19 @@ theme_par(base_size = par()$ps, base_family = par()$family)
 A ggplot2 theme object (class \code{theme}).
 }
 \description{
-Currently this theme uses the values of the parameters:
-\code{"code"}, "\code{"ps"}", \code{"code"} \code{"family"}, \code{"fg"},
-\code{"bg"}, \code{"adj"}, \code{"font"}, \code{"cex.axis"},
-\code{"cex.lab"}, \code{"cex.main"}, \code{"cex.sub"}, \code{"col.axis"},
-\code{"col.lab"}, \code{"col.main"}, \code{"col.sub"}, \code{"font"},
-\code{"font.axis"}, \code{"font.lab"}, \code{"font.main"},
-\code{"font.sub"}, \code{"las"}, \code{"lend"},
-\code{"lheight"}, \code{"lty"}, \code{"mar"}, \code{"ps"}, \code{"tcl"},
-\code{"tck"}, \code{"xaxt"}, \code{"yaxt"}.
+Theme which uses the current "base" graphics parameter values
+from \code{\link[graphics:par]{graphics::par()}}.
+Not all \code{par()} parameters are supported, and not all are relevant to
+ggplot2 themes.
 }
 \details{
+Currently this theme uses the values of the parameters:
+\code{"ps"}, \code{"family"}, \code{"fg"}, \code{"bg"}, \code{"col"}, \code{"adj"}, \code{"font"},
+\code{"cex.axis"}, \code{"cex.lab"}, \code{"cex.main"}, \code{"cex.sub"}, \code{"col.axis"},
+\code{"col.lab"}, \code{"col.main"}, \code{"col.sub"}, \code{"font.axis"}, \code{"font.lab"},
+\code{"font.main"}, \code{"font.sub"}, \code{"las"}, \code{"lend"}, \code{"lheight"}, \code{"lty"},
+\code{"mar"}, \code{"tcl"}, \code{"tck"}, \code{"xaxt"}, \code{"yaxt"}.
+
 This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.

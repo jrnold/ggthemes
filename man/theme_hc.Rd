@@ -19,7 +19,7 @@ theme_hc(
 \item{style}{The Highcharts theme to use. One of
 \code{"default"}, \code{"default_dark"}, \code{"darkunica"}, \code{"grid_light"}, \code{"sand_signika"}.}
 
-\item{bgcolor}{Deprecated}
+\item{bgcolor}{Deprecated.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).

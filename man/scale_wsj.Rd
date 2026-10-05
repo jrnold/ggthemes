@@ -14,7 +14,7 @@ scale_fill_wsj(palette = "colors6", ...)
 }
 \arguments{
 \item{palette}{\code{character} The color palette to use. One of
-\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}}
+\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}

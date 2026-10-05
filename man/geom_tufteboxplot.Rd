@@ -3,7 +3,7 @@
 \name{geom_tufteboxplot}
 \alias{geom_tufteboxplot}
 \alias{GeomTufteboxplot}
-\title{Tufte's Box Plot}
+\title{Tufte's box plot}
 \usage{
 geom_tufteboxplot(
   mapping = NULL,
@@ -66,19 +66,19 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \link[ggplot2:layer_positions]{layer position} documentation.
 }}
 
-\item{outlier.colour}{color for outlying points}
+\item{outlier.colour}{Color of outlying points.}
 
-\item{outlier.shape}{shape of outlying points}
+\item{outlier.shape}{Shape of outlying points.}
 
-\item{outlier.size}{size of outlying points}
+\item{outlier.size}{Size of outlying points.}
 
-\item{outlier.stroke}{stroke for outlying points}
+\item{outlier.stroke}{Stroke width of outlying points.}
 
-\item{voffset}{controls the size of the gap in the line representing the
+\item{voffset}{Controls the size of the gap in the line representing the
 median when \code{median.type = 'line'}. This is a fraction of the range
 of \code{y}.}
 
-\item{hoffset}{controls how much the interquartile line is offset from the
+\item{hoffset}{Controls how much the interquartile line is offset from the
 whiskers when \code{median.type = 'line'}. This is a fraction of the
 range of \code{x}.}
 

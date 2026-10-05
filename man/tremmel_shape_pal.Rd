@@ -7,7 +7,7 @@
 tremmel_shape_pal(overlap = FALSE, alt = FALSE)
 }
 \arguments{
-\item{overlap}{use an empty circle instead of a solid circle when
+\item{overlap}{Use an empty circle instead of a solid circle when
 \code{n == 2}.}
 
 \item{alt}{If \code{TRUE}, then when \code{n == 3},

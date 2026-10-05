@@ -30,8 +30,8 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' absolute slope banking ('ms'), which produces aspect ratios which
 #' are generally the median of the various methods provided here.
 #'
-#' @param x x values
-#' @param y y values
+#' @param x A numeric vector of x values.
+#' @param y A numeric vector of y values.
 #' @param cull `logical`. Remove all slopes of 0 or `Inf`.
 #' @param method One of 'ms' (Median Absolute Slope), 'as' (Average
 #' Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
@@ -147,7 +147,7 @@ bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"
   1 / xyrat
 }
 
-#' Bank a Plot's Own Data to 45 Degrees
+#' Bank a plot's own data to 45 degrees
 #'
 #' A convenience wrapper around [bank_slopes()] that extracts
 #' `x`/`y` directly from an already-specified `ggplot`, so

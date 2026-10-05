@@ -2,7 +2,7 @@
 % Please edit documentation in R/tableau.R
 \name{tableau_color_pal}
 \alias{tableau_color_pal}
-\title{Tableau Color Palettes (discrete)}
+\title{Tableau color palettes (discrete)}
 \usage{
 tableau_color_pal(
   palette = "Tableau 10",

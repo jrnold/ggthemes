@@ -22,7 +22,7 @@ ptol_deprecation_details <- function() {
   )
 }
 
-#' Color Palettes from Paul Tol's "Colour Schemes"
+#' Color palettes from Paul Tol's "Colour Schemes"
 #'
 #' @md
 #' @description
@@ -65,7 +65,7 @@ ptol_pal <- function() {
   f
 }
 
-#' Color Scales from Paul Tol's "Colour Schemes"
+#' Color scales from Paul Tol's "Colour Schemes"
 #'
 #' @md
 #' @description

@@ -2,7 +2,7 @@
 % Please edit documentation in R/tufte.R
 \name{theme_tufte}
 \alias{theme_tufte}
-\title{Tufte Maximal Data, Minimal Ink Theme}
+\title{Tufte maximal data, minimal ink theme}
 \usage{
 theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 }
