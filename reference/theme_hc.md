@@ -9,7 +9,7 @@ theme_hc(
   base_size = 12,
   base_family = "sans",
   style = c("default", "default_dark", "darkunica", "grid_light", "sand_signika"),
-  bgcolor = NULL
+  bgcolor = lifecycle::deprecated()
 )
 ```
 
@@ -30,7 +30,7 @@ theme_hc(
 
 - bgcolor:
 
-  Deprecated.
+  **\[deprecated\]** Use `style` instead.
 
 ## Value
 

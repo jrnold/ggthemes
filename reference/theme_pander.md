@@ -42,7 +42,8 @@ theme_pander(
 
 - ff:
 
-  Font family, like `"sans"`. Deprecated: use `base_family` instead.
+  Font family, like `"sans"`. **\[deprecated\]** Use `base_family`
+  instead.
 
 - fc:
 
@@ -50,7 +51,7 @@ theme_pander(
 
 - fs:
 
-  Font size (integer). Deprecated: use `base_size` instead.
+  Font size (integer). **\[deprecated\]** Use `base_size` instead.
 
 - gM:
 

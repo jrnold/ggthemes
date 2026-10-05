@@ -47,6 +47,12 @@
 
 ### Minor improvements and fixes
 
+- The deprecation warnings from `theme_hc(bgcolor)`, `theme_pander(ff)`,
+  `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"`
+  and `"Classic Area-Brown"` now come from lifecycle, so they name the
+  release that deprecated them
+  ([\#273](https://github.com/jrnold/ggthemes/issues/273)).
+
 - `economist_pal(n = 0)` no longer fails with “object ‘i’ not found”; it
   now returns `character(0)`
   ([\#266](https://github.com/jrnold/ggthemes/issues/266)).
@@ -81,6 +87,31 @@
   `"F434343"`, which is not a valid R linetype; it is now `"F434"`
   ([\#263](https://github.com/jrnold/ggthemes/issues/263)).
 
+- [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
+  and
+  [`theme_wsj()`](https://jrnold.github.io/ggthemes/reference/theme_wsj.md)
+  now give an error that lists the valid values when `accent` or `color`
+  is unknown. Before,
+  [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
+  returned a palette with no colors and
+  [`theme_wsj()`](https://jrnold.github.io/ggthemes/reference/theme_wsj.md)
+  a theme with no background fill
+  ([\#272](https://github.com/jrnold/ggthemes/issues/272)).
+
+- [`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
+  now warns when asked for more than its 11 linetypes and errors for a
+  negative `n`, as the other palettes do
+  ([\#272](https://github.com/jrnold/ggthemes/issues/272)).
+
+- [`tableau_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
+  now gives an error that lists the valid palettes when `palette` is
+  unknown, instead of “subscript out of bounds”.
+  [`tableau_seq_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
+  and
+  [`tableau_div_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md)
+  now say so when given arguments they ignore
+  ([\#272](https://github.com/jrnold/ggthemes/issues/272)).
+
 - The Tableau “Arrows” and “Thin Arrows” shape palettes in
   `` ggthemes_data$tableau$`shape-palettes` `` held the same eight
   characters, so they drew identically. “Arrows” now uses solid arrows
@@ -100,6 +131,10 @@
 - [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
   now leaves a margin between the title and subtitle, which ran together
   ([\#266](https://github.com/jrnold/ggthemes/issues/266)).
+
+- [`theme_solarized_2()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
+  now colors its axis lines. A typo in the color name left them unset
+  ([\#272](https://github.com/jrnold/ggthemes/issues/272)).
 
 ## ggthemes 7.0.0
 
