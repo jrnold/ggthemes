@@ -3,16 +3,16 @@
 #' Layers for the timelines of *The Economist*'s 2017 styleguide, which add
 #' events and periods to an ordinary chart of a year axis:
 #'
-#' * `geom_event_economist()` marks a **specific date event**: a 0.5pt rule
+#' * `geom_event_economist_2017()` marks a **specific date event**: a 0.5pt rule
 #'   from the data (or the axis) to a label, with an arrowhead at the label's
 #'   end. Draw it dashed, with `linetype = "dashed"`, to set labels apart from
 #'   the bars of a bar chart.
-#' * `geom_span_economist()` marks a **time period** in the panel: a pale
+#' * `geom_span_economist_2017()` marks a **time period** in the panel: a pale
 #'   shaded span with a 1pt rule along its top and its label centred above.
-#' * `geom_period_economist()` draws the thin bars below the axis that mark
+#' * `geom_period_economist_2017()` draws the thin bars below the axis that mark
 #'   out successive periods, such as terms of office, in alternating colors,
 #'   each labelled in its own color.
-#' * `geom_year_band_economist()` draws the year band the guide uses as a
+#' * `geom_year_band_economist_2017()` draws the year band the guide uses as a
 #'   timeline's x-axis: a cell for each year, every fifth one darker, with the
 #'   years labelled inside it.
 #'
@@ -22,7 +22,7 @@
 #' in points, and keep the guide's sizes whatever the size of the figure.
 #'
 #' @section Aesthetics:
-#' `geom_event_economist()`: **`x`**, **`y`** (where the rule starts),
+#' `geom_event_economist_2017()`: **`x`**, **`y`** (where the rule starts),
 #' **`yend`** (where it ends, at the label), **`label`**, `colour` (the
 #' rule's), `linewidth`, `linetype`, `hjust` (0, the default, sets the label
 #' to the right of the rule; 1 to its left; 0.5 centres it beyond the rule's
@@ -30,16 +30,16 @@
 #' the rule's end, its first line level with it; 0 stands it on the end, its
 #' last line level with it), `text_colour`, `size`, `family`, `fontface`.
 #'
-#' `geom_span_economist()`: **`xmin`**, **`xmax`**, `ymin`, `ymax` (default
+#' `geom_span_economist_2017()`: **`xmin`**, **`xmax`**, `ymin`, `ymax` (default
 #' the whole panel), `label`, `fill`, `colour` (the top rule's), `linewidth`,
 #' `text_colour`, `size`, `family`, `fontface`.
 #'
-#' `geom_period_economist()`: **`xmin`**, **`xmax`**, **`y`** (the top of the
+#' `geom_period_economist_2017()`: **`xmin`**, **`xmax`**, **`y`** (the top of the
 #' bar), `label`, `fill` (by default, alternating through `fills`),
 #' `colour` (the label's; by default the bar's color), `size`, `family`,
 #' `fontface`.
 #'
-#' `geom_year_band_economist()` takes no aesthetics.
+#' `geom_year_band_economist_2017()` takes no aesthetics.
 #'
 #' Text `size` is in mm, as for [ggplot2::geom_text()]; the default is the
 #' guide's 6.5pt.
@@ -48,18 +48,18 @@
 #' @param arrow Whether to draw an arrowhead at the label end of each rule.
 #' @param gap Space between the end of a rule (or the top of a span or the
 #'   bottom of a bar) and its label, in points.
-#' @param fills For `geom_period_economist()`, the colors the bars alternate
+#' @param fills For `geom_period_economist_2017()`, the colors the bars alternate
 #'   through, in order of `xmin`, when `fill` is not mapped. The default is
 #'   the guide's maroon and mauve.
-#' @param height Height of the bars (`geom_period_economist()`) or of the
-#'   year band (`geom_year_band_economist()`), in points.
-#' @param from,to For `geom_year_band_economist()`, the first and last years in the
+#' @param height Height of the bars (`geom_period_economist_2017()`) or of the
+#'   year band (`geom_year_band_economist_2017()`), in points.
+#' @param from,to For `geom_year_band_economist_2017()`, the first and last years in the
 #'   band. Each year's cell runs from the year to the next.
-#' @param y For `geom_year_band_economist()`, the data value at the top of the band.
+#' @param y For `geom_year_band_economist_2017()`, the data value at the top of the band.
 #' @param label_every Label the years divisible by this, and the first year,
-#'   in the guide's style (see [economist_year()]).
-#' @param colour For `geom_year_band_economist()`, the color of the year labels.
-#' @param size,family For `geom_year_band_economist()`, the size (in mm, as for
+#'   in the guide's style (see [economist_2017_year()]).
+#' @param colour For `geom_year_band_economist_2017()`, the color of the year labels.
+#' @param size,family For `geom_year_band_economist_2017()`, the size (in mm, as for
 #'   [ggplot2::geom_text()]) and font family of the year labels.
 #'
 #' @return A [ggplot2::layer()].
@@ -69,8 +69,8 @@
 #' Matt McLean).
 #'
 #' @family economist 2017
-#' @name geom_timeline_economist
-#' @example inst/examples/ex-geom_timeline_economist.R
+#' @name geom_timeline_economist_2017
+#' @example inst/examples/ex-geom_timeline_economist_2017.R
 NULL
 
 # Sizes the timeline layers share, in points.
@@ -81,9 +81,9 @@ timeline_text_size <- 6.5 / ggplot2::.pt
 
 # nolint start: object_name_linter. ggplot2's own argument and class names.
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @export
-geom_event_economist <- function(
+geom_event_economist_2017 <- function(
   mapping = NULL,
   data = NULL,
   stat = "identity",
@@ -99,7 +99,7 @@ geom_event_economist <- function(
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomEventEconomist,
+    geom = GeomEventEconomist2017,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -107,12 +107,12 @@ geom_event_economist <- function(
   )
 }
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @usage NULL
 #' @format NULL
 #' @export
-GeomEventEconomist <- ggproto(
-  "GeomEventEconomist",
+GeomEventEconomist2017 <- ggproto(
+  "GeomEventEconomist2017",
   Geom,
   required_aes = c("x", "y", "yend", "label"),
   default_aes = aes(
@@ -170,9 +170,9 @@ GeomEventEconomist <- ggproto(
   }
 )
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @export
-geom_span_economist <- function(
+geom_span_economist_2017 <- function(
   mapping = NULL,
   data = NULL,
   stat = "identity",
@@ -187,7 +187,7 @@ geom_span_economist <- function(
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomSpanEconomist,
+    geom = GeomSpanEconomist2017,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -195,12 +195,12 @@ geom_span_economist <- function(
   )
 }
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @usage NULL
 #' @format NULL
 #' @export
-GeomSpanEconomist <- ggproto(
-  "GeomSpanEconomist",
+GeomSpanEconomist2017 <- ggproto(
+  "GeomSpanEconomist2017",
   Geom,
   required_aes = c("xmin", "xmax"),
   optional_aes = "label",
@@ -250,9 +250,9 @@ GeomSpanEconomist <- ggproto(
   }
 )
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @export
-geom_period_economist <- function(
+geom_period_economist_2017 <- function(
   mapping = NULL,
   data = NULL,
   stat = "identity",
@@ -269,7 +269,7 @@ geom_period_economist <- function(
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomPeriodEconomist,
+    geom = GeomPeriodEconomist2017,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -277,12 +277,12 @@ geom_period_economist <- function(
   )
 }
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @usage NULL
 #' @format NULL
 #' @export
-GeomPeriodEconomist <- ggproto(
-  "GeomPeriodEconomist",
+GeomPeriodEconomist2017 <- ggproto(
+  "GeomPeriodEconomist2017",
   Geom,
   required_aes = c("xmin", "xmax", "y"),
   optional_aes = "label",
@@ -333,9 +333,9 @@ GeomPeriodEconomist <- ggproto(
   }
 )
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @export
-geom_year_band_economist <- function(
+geom_year_band_economist_2017 <- function(
   from,
   to,
   y = 0,
@@ -353,7 +353,7 @@ geom_year_band_economist <- function(
     data = data.frame(x = from),
     mapping = NULL,
     stat = "identity",
-    geom = GeomYearBandEconomist,
+    geom = GeomYearBandEconomist2017,
     position = "identity",
     show.legend = FALSE,
     inherit.aes = FALSE,
@@ -364,12 +364,12 @@ geom_year_band_economist <- function(
   )
 }
 
-#' @rdname geom_timeline_economist
+#' @rdname geom_timeline_economist_2017
 #' @usage NULL
 #' @format NULL
 #' @export
-GeomYearBandEconomist <- ggproto(
-  "GeomYearBandEconomist",
+GeomYearBandEconomist2017 <- ggproto(
+  "GeomYearBandEconomist2017",
   Geom,
   required_aes = character(),
   draw_key = ggplot2::draw_key_blank,
@@ -405,7 +405,7 @@ GeomYearBandEconomist <- ggproto(
     )
     labelled <- years %% label_every == 0 | years == from
     text <- grid::textGrob(
-      economist_year(years[labelled]),
+      economist_2017_year(years[labelled]),
       x = grid::unit(left[labelled], "npc") + timeline_pt(1),
       y = grid::unit(top, "npc") - timeline_pt(height / 2),
       just = c("left", "centre"),

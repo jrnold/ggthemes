@@ -53,7 +53,7 @@ Several conventions of the guide are not theme elements:
 \itemize{
 \item The value axis is on the right, with its labels sitting on their
 gridlines inside the panel. Use
-\code{scale_y_continuous(position = "right", guide = guide_axis_economist())}.
+\code{scale_y_continuous(position = "right", guide = guide_axis_economist_2017())}.
 \item The red tab above the title, the red rule across the top of a web
 chart, and the red marker above each panel heading are added by
 \code{\link[=economist_2017_chart]{economist_2017_chart()}}, which also moves a web chart's key up
@@ -80,7 +80,7 @@ yields <- data.frame(
 p <- ggplot(yields, aes(year, yield, colour = country)) +
   geom_line() +
   scale_x_continuous(breaks = c(1, 5, 10, 13)) +
-  scale_y_continuous(position = "right", guide = guide_axis_economist(), limits = c(0, 8)) +
+  scale_y_continuous(position = "right", guide = guide_axis_economist_2017(), limits = c(0, 8)) +
   labs(
     title = "Where Tokyo leads",
     subtitle = "Ten-year government-bond yields, \%",
@@ -117,10 +117,11 @@ Other economist 2017:
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
-\code{\link[=geom_label_economist]{geom_label_economist()}},
-\code{\link[=geom_scale_break_economist]{geom_scale_break_economist()}},
-\code{\link{geom_timeline_economist}},
-\code{\link[=guide_axis_economist]{guide_axis_economist()}},
+\code{\link[=economist_2017_year]{economist_2017_year()}},
+\code{\link[=geom_label_economist_2017]{geom_label_economist_2017()}},
+\code{\link[=geom_scale_break_economist_2017]{geom_scale_break_economist_2017()}},
+\code{\link{geom_timeline_economist_2017}},
+\code{\link[=guide_axis_economist_2017]{guide_axis_economist_2017()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}}
 }
 \concept{economist 2017}

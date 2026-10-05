@@ -223,7 +223,7 @@ p <- ggplot(leader, aes(year, change)) +
   annotate("text", x = 2014.9, y = 2.12, label = "Target 2", hjust = 1,
            colour = web["red"], size = 3) +
   scale_x_continuous(breaks = 2011:2015,
-                     labels = economist_year_format()) +
+                     labels = economist_2017_year_format()) +
   scale_y_continuous(position = "right", limits = c(0, 3), breaks = 0:3) +
   labs(
     title = "US consumer prices",
@@ -254,7 +254,7 @@ p <- ggplot(espresso, aes(year, change)) +
   scale_y_continuous(position = "right", limits = c(-8, 8),
                      breaks = seq(-8, 8, 4)) +
   scale_x_continuous(breaks = c(2007, 2009, 2011, 2013, 2015),
-                     labels = economist_year_format()) +
+                     labels = economist_2017_year_format()) +
   labs(
     title = "US retail sales",
     subtitle = "Excluding motor vehicles and parts,\n% change on a year earlier",

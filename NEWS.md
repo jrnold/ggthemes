@@ -64,18 +64,18 @@
   Roboto Condensed, the closest open substitutes for the guide's Econ Sans
   Condensed, and otherwise `"sans"`.
 
-- New `geom_label_economist()` draws the 2017 styleguide's text blocks: a label in
+- New `geom_label_economist_2017()` draws the 2017 styleguide's text blocks: a label in
   a shaded box with a pointer on one side, sized in points to the guide's
-  specification. `annotate("label_economist", ...)` adds a single one.
+  specification. `annotate("label_economist_2017", ...)` adds a single one.
 
 - New timeline layers for the 2017 styleguide's timelines:
-  `geom_event_economist()` (a dated event: a rule with an arrowhead to its
-  label), `geom_span_economist()` (a shaded period in the panel),
-  `geom_period_economist()` (thin alternating bars for successive periods,
-  such as terms of office) and `geom_year_band_economist()` (the year band used as
+  `geom_event_economist_2017()` (a dated event: a rule with an arrowhead to its
+  label), `geom_span_economist_2017()` (a shaded period in the panel),
+  `geom_period_economist_2017()` (thin alternating bars for successive periods,
+  such as terms of office) and `geom_year_band_economist_2017()` (the year band used as
   a timeline's x-axis).
 
-- New `guide_axis_economist()` draws value-axis labels the way *The
+- New `guide_axis_economist_2017()` draws value-axis labels the way *The
   Economist* does: inside the panel, just above their gridlines and flush
   with its edge.
 
@@ -93,12 +93,12 @@
   returns the guide's footnote symbols in order of use (`*`, `†`, `‡`, `§`,
   `**`, ...).
 
-- New `geom_scale_break_economist()` draws the styleguide's broken-scale mark (p.25), a
+- New `geom_scale_break_economist_2017()` draws the styleguide's broken-scale mark (p.25), a
   small zigzag on a y-axis that does not start at zero. It is decoration, not
   a transformation: truncate the axis with the scale's `limits` and add the
   layer to declare it.
 
-- New `economist_year()` and `economist_year_format()` label a dated axis as
+- New `economist_2017_year()` and `economist_2017_year_format()` label a dated axis as
   *The Economist* does, with years shortened to two digits except the first
   label and each century (`1948 52 56 ... 96 2000 04`).
 

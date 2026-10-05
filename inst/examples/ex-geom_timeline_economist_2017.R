@@ -25,17 +25,17 @@ leaders <- data.frame(
 )
 
 ggplot(oil, aes(year, production)) +
-  geom_span_economist(
+  geom_span_economist_2017(
     aes(xmin = 1980.7, xmax = 1989, ymin = 0, ymax = 4.06, label = "Iran/Iraq war"),
     data = data.frame(), inherit.aes = FALSE
   ) +
   geom_line(colour = "#3DBCD2", linewidth = 0.8) +
-  geom_event_economist(
+  geom_event_economist_2017(
     aes(x = year, y = 0, yend = top, label = label, hjust = hjust),
     data = events, inherit.aes = FALSE
   ) +
-  geom_year_band_economist(from = 1965, to = 2016, y = 0) +
-  geom_period_economist(
+  geom_year_band_economist_2017(from = 1965, to = 2016, y = 0) +
+  geom_period_economist_2017(
     aes(xmin = start, xmax = end, y = -1.6, label = leader),
     data = leaders, inherit.aes = FALSE,
     fills = c("#748D99", "#00919E", "#7EC9C7")

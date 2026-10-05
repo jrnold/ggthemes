@@ -269,7 +269,7 @@ smart_digits_format <- function(x, ...) {
 
 # nolint end: object_name_linter
 
-#' Label a dated axis the way The Economist does
+#' Label a dated axis in the Economist 2017 style
 #'
 #' Truncates year labels to their last two digits, keeping the first labeled
 #' year and every century boundary in full: `1948 52 56 ... 96 2000 04 08`.
@@ -283,17 +283,17 @@ smart_digits_format <- function(x, ...) {
 #' @param x A numeric vector of years to format.
 #' @param ... Passed to [format()], used for the years shown in full.
 #'
-#' @return `economist_year()` returns a character vector.
-#'   `economist_year_format()` returns a function of a single argument `x`
+#' @return `economist_2017_year()` returns a character vector.
+#'   `economist_2017_year_format()` returns a function of a single argument `x`
 #'   that returns a character vector, for use as a scale's `labels`.
 #'
 #' @examples
-#' economist_year(c(1948, 1952, 1956, 2000, 2004))
+#' economist_2017_year(c(1948, 1952, 1956, 2000, 2004))
 #'
-#' @family economist
-#' @rdname economist_year
+#' @family economist 2017
+#' @rdname economist_2017_year
 #' @export
-economist_year <- function(x, ...) {
+economist_2017_year <- function(x, ...) {
   if (length(x) == 0) {
     return(character())
   }
@@ -324,8 +324,8 @@ economist_year <- function(x, ...) {
   out
 }
 
-#' @rdname economist_year
+#' @rdname economist_2017_year
 #' @export
-economist_year_format <- function(...) {
-  function(x) economist_year(x, ...)
+economist_2017_year_format <- function(...) {
+  function(x) economist_2017_year(x, ...)
 }
