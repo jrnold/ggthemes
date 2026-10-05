@@ -14,4 +14,4 @@ p <- ggplot(economics, aes(date, unemploy / 1000)) +
   theme_economist_2017()
 size <- economist_2017_size("two_column", height = 200)
 path <- tempfile(fileext = ".png")
-ggsave(path, economist_2017_furniture(p), width = size[["width"]], height = size[["height"]])
+ggsave(path, economist_2017_chart(p), width = size[["width"]], height = size[["height"]])

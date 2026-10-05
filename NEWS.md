@@ -55,7 +55,7 @@
   used from 2017 until its 2024 redesign, for both print and web
   (`media = c("print", "web")`). They sit alongside `theme_economist()` and
   `economist_pal()`, which are unchanged. The print palette has the guide's
-  five per-chart-type colour orders (`type`) and its two high-contrast
+  five per-chart-type color orders (`type`) and its two high-contrast
   supporting sets (`set`); the continuous scales use the guide's
   equal-lightness ramps. Every size in the theme, including rule weights,
   margins and panel spacing, is relative to `base_size`, and is the guide's
@@ -65,11 +65,13 @@
   Economist* does: inside the panel, just above their gridlines and flush
   with its edge.
 
-- New `economist_2017_furniture()` adds the chart furniture a theme cannot
-  set: the red tab above the title, the red rule across the top of a web
-  chart, a red marker above each panel heading, and, for web, the key moved
-  beside the title. It also takes a `footnote`, set ranged right on the source
-  line, a `number` for the guide's number box, and the `tab` size.
+- New `economist_2017_chart()` finishes a plot as an Economist chart. It
+  draws what a theme cannot set: the red tab above the title, the red rule
+  across the top of a web chart and a red marker above each panel heading. It
+  also lays the plot out as the guide does: a web chart's key beside the
+  title, y-axis titles above the panel, and end-of-axis labels kept within
+  it. It takes a `footnote`, set ranged right on the source line, a `number`
+  for the guide's number box, and the `tab` size.
 
 - New `economist_2017_size()` returns the guide's chart sizes (1, 2 and 3
   columns, leader, Free exchange, Espresso and the special-report grid) in
@@ -90,10 +92,10 @@
   at different chart sizes, and "Reproducing the 2017 Economist styleguide"
   works through the guide's examples page by page.
 
-- `ggthemes_data` gains `economist_2017`, the colours of the 2017 styleguide
-  for print and web, with its chart sizes, typefaces and footnote symbols, and `economist_design_system`, the colour tokens of *The
+- `ggthemes_data` gains `economist_2017`, the colors of the 2017 styleguide
+  for print and web, with its chart sizes, typefaces and footnote symbols, and `economist_design_system`, the color tokens of *The
   Economist*'s current Design System and of Marber, with derived lightness
-  ramps for nine colour families.
+  ramps for nine color families.
 
 # ggthemes 7.0.0
 

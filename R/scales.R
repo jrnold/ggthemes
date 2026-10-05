@@ -271,7 +271,7 @@ smart_digits_format <- function(x, ...) {
 
 #' Label a dated axis the way The Economist does
 #'
-#' Truncates year labels to their last two digits, keeping the first labelled
+#' Truncates year labels to their last two digits, keeping the first labeled
 #' year and every century boundary in full: `1948 52 56 ... 96 2000 04 08`.
 #' This is the convention on every dated axis in \emph{The Economist visual
 #' styleguide} (v1.2, 4 May 2017) -- see pp.6, 7, 13, 15, 16 and 23 -- and it

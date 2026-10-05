@@ -5,7 +5,7 @@
 #' does. The gridlines run underneath the labels to the edge of the chart,
 #' so the axis takes up no width of its own and the panel fills it instead.
 #'
-#' The labels take their font, size and colour from the theme's
+#' The labels take their font, size and color from the theme's
 #' `axis.text.y.left` or `axis.text.y.right` element. Their alignment comes
 #' from the guide, so the element's `hjust`, `vjust` and `margin` have no
 #' effect. Only the labels are drawn: there are no ticks and no axis line,
@@ -15,7 +15,8 @@
 #' the panel. Leave room for it, as [theme_economist_2017()] does.
 #'
 #' Only vertical axes are drawn this way. On an x axis the guide falls back
-#' to [ggplot2::guide_axis()].
+#' to [ggplot2::guide_axis()], dropping any label that would overprint its
+#' neighbour, as when a horizontal bar chart's value axis runs along the top.
 #'
 #' @param title A character string or expression for the axis title. The
 #'   default, [ggplot2::waiver()], takes the title from the scale.
@@ -49,7 +50,9 @@ guide_axis_economist <- function(
   ggplot2::new_guide(
     title = title,
     theme = NULL,
-    check.overlap = FALSE,
+    # A horizontal axis falls back to guide_axis(); there, drop a label that
+    # would overprint its neighbour rather than draw both.
+    check.overlap = TRUE,
     angle = NULL,
     n.dodge = 1,
     minor.ticks = FALSE,
