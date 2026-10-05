@@ -10,6 +10,12 @@ tableau_color_pal(
   type = c("regular", "ordered-sequential", "ordered-diverging"),
   direction = 1
 )
+
+tableau_colour_pal(
+  palette = "Tableau 10",
+  type = c("regular", "ordered-sequential", "ordered-diverging"),
+  direction = 1
+)
 ```
 
 ## Arguments

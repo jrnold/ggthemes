@@ -38,6 +38,13 @@ scale_color_continuous_tableau(
   guide = "colourbar"
 )
 
+scale_colour_continuous_tableau(
+  palette = "Blue",
+  ...,
+  na.value = "grey50",
+  guide = "colourbar"
+)
+
 scale_fill_continuous_tableau(
   palette = "Blue",
   ...,

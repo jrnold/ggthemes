@@ -2,7 +2,9 @@
 
 An eight-color colorblind safe qualitative discrete palette.
 
-**\[deprecated\]**
+**\[deprecated\]** `scale_colour_colorblind()` mixes British and
+American spelling; use `scale_colour_colourblind()` or
+`scale_color_colorblind()` instead.
 
 ## Usage
 
@@ -17,9 +19,9 @@ scale_colour_colorblind(black = TRUE, ...)
 
 scale_color_colorblind(black = TRUE, ...)
 
-scale_fill_colorblind(black = TRUE, ...)
-
 scale_fill_colourblind(black = TRUE, ...)
+
+scale_fill_colorblind(black = TRUE, ...)
 ```
 
 ## Arguments

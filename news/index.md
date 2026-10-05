@@ -2,6 +2,25 @@
 
 ## ggthemes (development version)
 
+- New
+  [`scale_colour_continuous_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md)
+  and
+  [`tableau_colour_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
+  aliases, so every exported `color` function now also has a `colour`
+  spelling.
+
+- [`scale_fill_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
+  and
+  [`scale_fill_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
+  are no longer deprecated. Only
+  [`scale_colour_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md),
+  which mixes spellings, remains deprecated, and its warning now points
+  to
+  [`scale_colour_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
+  instead of wrongly naming
+  [`scale_color_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
+  as deprecated.
+
 - Documentation is now written in roxygen markdown. This fixes
   deprecation badges that showed as raw `` `r lifecycle::badge()` ``
   text in
@@ -1254,7 +1273,8 @@ CRAN release: 2013-10-20
   [`tableau_div_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_gradient_pal.md),
   [`scale_colour_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md),
   [`scale_fill_gradient2_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient2_tableau.md).
-- `tableau_colour_pal()`: added palette “cyclical
+- [`tableau_colour_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md):
+  added palette “cyclical
 
 ## ggthemes 1.3.3
 
