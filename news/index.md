@@ -2,12 +2,63 @@
 
 ## ggthemes (development version)
 
+### Breaking changes
+
+- [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
+  [`theme_economist_white()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
+  [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md),
+  [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
+  and
+  [`scale_fill_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
+  draw the classic Economist style again, as they did before 7.0.0, so
+  code written for them looks as it always did. 7.0.0 had replaced that
+  style with the paper’s 2017 design, so plots made with these functions
+  changed when you updated. In detail:
+
+  - [`theme_economist_white()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
+    the `dkpanel` argument of
+    [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
+    and the `fill` argument of
+    [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
+    work again, without the deprecation warnings 7.0.0 added.
+  - `ggthemes_data$economist` has its classic `fg` and `bg` tables back,
+    and the `main` and `text` tables added in 7.0.0 are removed, so code
+    that reads those two tables must change.
+  - [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md),
+    [`economist_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md)
+    and the `scale_*_economist_c()` and `scale_*_economist_ordinal()`
+    scales, new in 7.0.0, are unchanged
+    ([\#266](https://github.com/jrnold/ggthemes/issues/266)).
+
+### New features
+
 - New
   [`scale_colour_continuous_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md)
   and
   [`tableau_colour_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
   aliases, so every exported `color` function now also has a `colour`
-  spelling.
+  spelling ([\#269](https://github.com/jrnold/ggthemes/issues/269)).
+
+- New “Package data” article on the package website draws every color,
+  shape and linetype in `ggthemes_data`, each labeled with the
+  expression that returns it, and the `ggthemes_data` help page gains
+  examples of reading it
+  ([\#265](https://github.com/jrnold/ggthemes/issues/265)).
+
+### Minor improvements and fixes
+
+- `economist_pal(n = 0)` no longer fails with “object ‘i’ not found”; it
+  now returns `character(0)`
+  ([\#266](https://github.com/jrnold/ggthemes/issues/266)).
+
+- [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)’s
+  `palette` argument now lists its options in the help page, and the
+  deprecation badges in
+  [`?circlefill_shape_pal`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md),
+  `?colorblind` and
+  [`?scale_shape_circlefill`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md)
+  now render instead of showing raw `` `r lifecycle::badge()` `` text
+  ([\#268](https://github.com/jrnold/ggthemes/issues/268)).
 
 - [`scale_fill_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   and
@@ -19,25 +70,16 @@
   [`scale_colour_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   instead of wrongly naming
   [`scale_color_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
-  as deprecated.
+  as deprecated
+  ([\#269](https://github.com/jrnold/ggthemes/issues/269)).
 
-- Documentation is now written in roxygen markdown. This fixes
-  deprecation badges that showed as raw `` `r lifecycle::badge()` ``
-  text in
-  [`?circlefill_shape_pal`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md),
-  `?colorblind` and
-  [`?scale_shape_circlefill`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
-  and
-  [`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)’s
-  `palette` argument now lists its options, which were missing.
-
-- Fix
-  [`scale_linetype_stata()`](https://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
+- [`scale_linetype_stata()`](https://jrnold.github.io/ggthemes/reference/scale_linetype_stata.md)
   and
   [`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
-  failing with “invalid line type” on plots with 11 or more linetypes.
-  The eleventh, Stata’s longdash_shortdash, was stored as `"F434343"`,
-  which is not a valid R linetype; it is now `"F434"`.
+  no longer fail with “invalid line type” on plots with 11 or more
+  linetypes. The eleventh, Stata’s longdash_shortdash, was stored as
+  `"F434343"`, which is not a valid R linetype; it is now `"F434"`
+  ([\#263](https://github.com/jrnold/ggthemes/issues/263)).
 
 - The Tableau “Arrows” and “Thin Arrows” shape palettes in
   `` ggthemes_data$tableau$`shape-palettes` `` held the same eight
@@ -46,46 +88,18 @@
   U+2199) in the same eight directions. Three other Tableau shapes now
   carry the variation selector their `unicode` field records: the kpi
   check mark and multiplication sign gain the text-style selector, and
-  the weather snowman loses a stray one.
-
-- New “Package data” article on the package website draws every color,
-  shape and linetype in `ggthemes_data`, each labeled with the
-  expression that returns it, and the `ggthemes_data` help page gains
-  examples of reading it.
-
-- BREAKING CHANGE:
-  [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
-  [`theme_economist_white()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
-  [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md),
-  [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
-  and
-  [`scale_fill_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)
-  draw the classic Economist style again, as they did before 7.0.0, so
-  code written for them looks as it always did. 7.0.0 had replaced that
-  style with the paper’s 2017 design.
-  [`theme_economist_white()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
-  the `dkpanel` argument of
-  [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
-  and the `fill` argument of
-  [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
-  work again, without the deprecation warnings 7.0.0 added.
-  `ggthemes_data$economist` has its classic `fg` and `bg` tables back;
-  the `main` and `text` tables added in 7.0.0 are removed.
-  [`economist_seq_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md),
-  [`economist_gradient_pal()`](https://jrnold.github.io/ggthemes/reference/economist_seq_pal.md)
-  and the `scale_*_economist_c()` and `scale_*_economist_ordinal()`
-  scales, new in 7.0.0, are unchanged.
-
-- Fix
-  [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
-  failing with “object ‘i’ not found” for `n = 0`; it now returns
-  `character(0)`.
+  the weather snowman loses a stray one
+  ([\#264](https://github.com/jrnold/ggthemes/issues/264)).
 
 - [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
-  fills the panel and strips with its blue-gray ground. It asked for a
-  color the data never defined, so their fill was `NA`; the plot
-  background showing through drew the same color. It also now leaves a
-  margin between the title and subtitle, which ran together.
+  now gives the panel and strips the blue-gray fill the theme intends.
+  It asked for a color the data never defined, so their fill was `NA`
+  and the plot background showed through
+  ([\#266](https://github.com/jrnold/ggthemes/issues/266)).
+
+- [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
+  now leaves a margin between the title and subtitle, which ran together
+  ([\#266](https://github.com/jrnold/ggthemes/issues/266)).
 
 ## ggthemes 7.0.0
 
