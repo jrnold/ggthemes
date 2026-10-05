@@ -88,7 +88,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
 \seealso{
 \code{\link{theme_pander}()}
 
-Other colour pander:
+Other color pander:
 \code{\link[=palette_pander]{palette_pander()}}
 }
-\concept{colour pander}
+\concept{color pander}

@@ -91,7 +91,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   scale_colour_stata(scheme = "s2color")
 }
 \seealso{
-Other colour stata:
+Other color stata:
 \code{\link[=stata_pal]{stata_pal()}}
 }
-\concept{colour stata}
+\concept{color stata}

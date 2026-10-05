@@ -11,8 +11,8 @@ economist_pal(fill = TRUE)
 line palette choose and order the colors differently.}
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 The classic \emph{The Economist} chart palette: blues, grays, and
@@ -24,14 +24,13 @@ mark important data.
 library("scales")
 
 show_col(economist_pal()(6))
-
-## the full set of nine series colours
-show_col(economist_pal()(9))
+## fill palette
+show_col(economist_pal(fill = TRUE)(6))
 }
 \seealso{
-Other colour economist:
+Other color economist:
 \code{\link[=economist_seq_pal]{economist_seq_pal()}},
 \code{\link[=scale_colour_economist]{scale_colour_economist()}},
 \code{\link[=scale_colour_economist_c]{scale_colour_economist_c()}}
 }
-\concept{colour economist}
+\concept{color economist}

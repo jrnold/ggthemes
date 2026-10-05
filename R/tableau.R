@@ -33,8 +33,8 @@ tableau_resolve_palette <- function(palette) {
 #' \item{\code{"ordered-sequential"}}{\Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))}}
 #' }
 #'
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @param palette Palette name. See Details for available palettes.
 #' @param type Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.
@@ -53,7 +53,7 @@ tableau_resolve_palette <- function(palette) {
 #' Factors in Computing Systems (CHI)
 #' \url{http://vis.stanford.edu/files/2012-ColorNameModels-CHI.pdf}.
 #'
-#' @family colour tableau
+#' @family color tableau
 #' @example inst/examples/ex-tableau_color_pal.R
 # nolint end
 tableau_color_pal <- function(
@@ -98,7 +98,7 @@ tableau_color_pal <- function(
 #'   or \code{"ordered-diverging"}. See \funclink{tableau_color_pal}.
 #' @inheritParams tableau_color_pal
 #' @param ... Other arguments passed on to \code{\link[ggplot2]{discrete_scale}()}.
-#' @family colour tableau
+#' @family color tableau
 #' @rdname scale_color_tableau
 #' @return A ggplot2 scale object.
 #' @export
@@ -176,7 +176,7 @@ scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
 }
 
 # nolint start
-#' Tableau colour gradient palettes (continuous)
+#' Tableau color gradient palettes (continuous)
 #'
 #' Gradient color palettes using the diverging and sequential continous color
 #' palettes in Tableau. See \funclink{tableau_color_pal} for discrete color
@@ -190,10 +190,10 @@ scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
 #' @param type Palette type, either \code{"ordered-sequential"} or
 #'   \code{"ordered-diverging"}.
 #' @param ... Arguments passed to \code{tableau_gradient_pal}.
-#' @family colour tableau
+#' @family color tableau
 #'
 #' @return A palette function. It takes a numeric vector \code{x} of values between 0 and 1 and returns a character
-#'   vector of hex colours interpolated along the palette, for use as the \code{palette} argument of
+#'   vector of hex colors interpolated along the palette, for use as the \code{palette} argument of
 #'   \code{\link[ggplot2]{continuous_scale}()}.
 #' @export
 #' @example inst/examples/ex-tableau_seq_gradient_pal.R
@@ -222,7 +222,7 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
   tableau_gradient_pal(palette = palette, type = "ordered-diverging", ...)
 }
 
-#' Tableau sequential colour scales (continuous)
+#' Tableau sequential color scales (continuous)
 #'
 #' Continuous color scales using the sequential color palettes in Tableau.
 #' See \funclink{scale_colour_tableau} for Tableau discrete color scales,
@@ -234,8 +234,8 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
 #' @inheritParams tableau_seq_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
 #' @param guide Type of legend. Use \code{'colourbar'} for continuous
-#'   colour bar, or \code{'legend'} for discrete colour legend.
-#' @family colour tableau
+#'   color bar, or \code{'legend'} for discrete color legend.
+#' @family color tableau
 #' @rdname scale_colour_gradient_tableau
 #' @example inst/examples/ex-scale_colour_gradient_tableau.R
 #' @importFrom ggplot2 continuous_scale
@@ -271,7 +271,7 @@ scale_color_continuous_tableau <- scale_colour_gradient_tableau
 #' @rdname scale_colour_gradient_tableau
 scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 
-#' Tableau diverging colour scales (continuous)
+#' Tableau diverging color scales (continuous)
 #'
 #' Continuous color scales using the diverging color scales in Tableau.
 #' See \funclink{scale_colour_tableau} for Tabaleau discrete color scales,
@@ -282,8 +282,8 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #' @param midpoint The data value that corresponds to the middle color of the
 #'   diverging palette.
 #' @param guide Type of legend. Use \code{'colourbar'} for continuous
-#'   colour bar, or \code{'legend'} for discrete colour legend.
-#' @family colour tableau
+#'   color bar, or \code{'legend'} for discrete color legend.
+#' @family color tableau
 #' @return A ggplot2 scale object.
 #' @export
 #' @rdname scale_colour_gradient2_tableau

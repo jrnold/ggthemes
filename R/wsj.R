@@ -77,9 +77,9 @@ theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", tit
 #' @param palette \code{character} The color palette to use: .
 #' \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$wsj$palettes))}
 #'
-#' @family colour wsj
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color wsj
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-wsj_pal.R
 wsj_pal <- function(palette = "colors6") {
@@ -97,12 +97,12 @@ wsj_pal <- function(palette = "colors6") {
 
 #' Wall Street Journal color and fill scales
 #'
-#' Colour and fill scales which use the palettes in \code{\link{wsj_pal}()}.
+#' Color and fill scales which use the palettes in \code{\link{wsj_pal}()}.
 #' These scales should be used with \code{\link{theme_wsj}()}.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams wsj_pal
-#' @family colour wsj
+#' @family color wsj
 #' @rdname scale_wsj
 #' @return A ggplot2 scale object.
 #' @export

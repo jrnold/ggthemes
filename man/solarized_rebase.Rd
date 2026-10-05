@@ -14,7 +14,7 @@ Creates the base colors for a light or dark solarized theme. See
 of the CSS style example.}
 }
 \value{
-A named character vector of eight hex colours, named \code{rebase03} to \code{rebase3}.
+A named character vector of eight hex colors, named \code{rebase03} to \code{rebase3}.
 }
 \description{
 Base colors for Solarized light and dark themes

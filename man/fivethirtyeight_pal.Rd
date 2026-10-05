@@ -7,8 +7,8 @@
 fivethirtyeight_pal()
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 The standard three-color FiveThirtyEight palette for line plots comprises
@@ -20,7 +20,7 @@ library("scales")
 show_col(fivethirtyeight_pal()(3))
 }
 \seealso{
-Other colour fivethirtyeight:
+Other color fivethirtyeight:
 \code{\link[=scale_colour_fivethirtyeight]{scale_colour_fivethirtyeight()}}
 }
-\concept{colour fivethirtyeight}
+\concept{color fivethirtyeight}

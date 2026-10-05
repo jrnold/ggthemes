@@ -56,9 +56,9 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(cyl, ordered = TRUE))) +
   scale_colour_economist_ordinal(hue = "red")
 }
 \seealso{
-Other colour economist:
+Other color economist:
 \code{\link[=economist_pal]{economist_pal()}},
 \code{\link[=economist_seq_pal]{economist_seq_pal()}},
 \code{\link[=scale_colour_economist]{scale_colour_economist()}}
 }
-\concept{colour economist}
+\concept{color economist}

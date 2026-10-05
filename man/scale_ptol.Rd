@@ -4,7 +4,7 @@
 \alias{scale_colour_ptol}
 \alias{scale_color_ptol}
 \alias{scale_fill_ptol}
-\title{Color Scales from Paul Tol's "Colour Schemes}
+\title{Color Scales from Paul Tol's "Colour Schemes"}
 \usage{
 scale_colour_ptol(...)
 
@@ -79,9 +79,9 @@ A ggplot2 scale object.
 
 These scales were deprecated in ggthemes 7.0.0. Use the
 \href{https://CRAN.R-project.org/package=khroma}{khroma} package instead, which
-tracks Paul Tol's colour schemes as he revises them.
+tracks Paul Tol's color schemes as he revises them.
 
-They draw the 12-colour qualitative scheme from Tol's 2012 technical note,
+They draw the 12-color qualitative scheme from Tol's 2012 technical note,
 and have not followed the revisions he has made since. His current schemes
 are at \url{https://sronpersonalpages.nl/~pault/}; the closest successor is
 \code{khroma::scale_colour_muted()}.
@@ -104,7 +104,7 @@ ggplot(diamonds, aes(x = clarity, fill = cut)) +
   theme_minimal()
 }
 \seealso{
-Other colour ptol:
+Other color ptol:
 \code{\link[=ptol_pal]{ptol_pal()}}
 }
-\concept{colour ptol}
+\concept{color ptol}

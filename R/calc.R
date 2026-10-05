@@ -34,9 +34,9 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 #' Color palettes from LibreOffice Calc.
 #' This palette has 12 values.
 #'
-#' @family colour calc
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color calc
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-calc_pal.R
 calc_pal <- function() {
@@ -52,7 +52,7 @@ calc_pal <- function() {
 #' Color scales from LibreOffice Calc.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour calc
+#' @family color calc
 #' @rdname scale_calc
 #' @return A ggplot2 scale object.
 #' @export

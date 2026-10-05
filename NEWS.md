@@ -46,8 +46,8 @@
   README's HTML swatches rendered as empty cells on GitHub, which strips their
   colors.
 - Fix `theme_foundation()` on ggplot2 >= 4.0.0. It is meant to clear every
-  colour and fill inherited from `theme_grey()`, but ggplot2 4.0.0's S7 theme
-  elements hid them from the check, so `theme_grey()`'s grey panel, grey strips
+  color and fill inherited from `theme_grey()`, but ggplot2 4.0.0's S7 theme
+  elements hid them from the check, so `theme_grey()`'s gray panel, gray strips
   and white grid lines leaked into every theme built on it. On ggplot2 4.x this
   changes the appearance of `theme_base()`, `theme_calc()`, `theme_clean()`,
   `theme_fivethirtyeight()`, `theme_foundation()`, `theme_gdocs()`,
@@ -68,10 +68,10 @@
 - `stat_fivenumber()` declares the aesthetics it drops, so it no longer
   warns that `y` was dropped during the statistical transformation.
 - Fix `solarized_pal()` storing the palette function instead of the palette
-  size in its `max_n` attribute. Requesting more than eight colours now pads
+  size in its `max_n` attribute. Requesting more than eight colors now pads
   with `NA` after the usual warning instead of failing with "subscript out of
   bounds", and `n = 0` returns `character(0)`.
-- Fix `few_pal()` returning two colours for `n = 0`; it now returns
+- Fix `few_pal()` returning two colors for `n = 0`; it now returns
   `character(0)`.
 - Require ggplot2 >= 3.5.2. `bank_plot()` and `bank_plot_multiscale()`
   already called `ggplot2::is_ggplot()`, so older versions failed at run time.
@@ -94,10 +94,10 @@
   `scale_fill_excel_new()` now default to `theme = "Office"` instead of
   `"Office Theme"`, so they again match a default chart in current Excel.
   Plots that relied on the default will change appearance. Pass
-  `theme = "Office 2013"` to keep the previous colours.
+  `theme = "Office 2013"` to keep the previous colors.
 - The Excel themes `"Office Theme"` and `"Office 2007-2010"` have been renamed
   `"Office 2013"` and `"Office 2007"`, following Microsoft's own renaming of
-  the built-in themes. The old names still work and select the same colours as
+  the built-in themes. The old names still work and select the same colors as
   before.
 - Add `bank_slopes_multiscale()` and `bank_plot_multiscale()`, implementing
   multi-scale banking to 45 degrees (Heer and Agrawala 2006, section 3).
@@ -168,7 +168,7 @@
   coverage still fails with `mbcsToSbcs` on a non-UTF-8 session. Note that R
   exposes no way to read back a device's `family=`, so the probe measures the
   default font and the warning names the font it actually measured.
-- Discrete colour palettes now reject a negative `n` with an error naming the
+- Discrete color palettes now reject a negative `n` with an error naming the
   argument and the palette that was called. Palettes built on
   `scales::manual_pal()` --- including `calc_pal()`, `canva_pal()`,
   `colorblind_pal()`, `excel_pal()`, `excel_new_pal()`,
@@ -184,25 +184,25 @@
 - Deprecate `ptol_pal()`, `scale_colour_ptol()`, `scale_color_ptol()` and
   `scale_fill_ptol()`. Use the
   [khroma](https://CRAN.R-project.org/package=khroma) package instead, which
-  tracks Paul Tol's colour schemes as he revises them. The ggthemes palette is
-  the original 12-colour qualitative scheme from Tol's 2012 technical note and
+  tracks Paul Tol's color schemes as he revises them. The ggthemes palette is
+  the original 12-color qualitative scheme from Tol's 2012 technical note and
   has not followed the revisions on his current site,
   <https://sronpersonalpages.nl/~pault/>; the closest successor is
   `khroma::colour("muted")`. The functions still work, but warn.
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
-  actual colour order (blue, red, brown). The old name still works but warns.
+  actual color order (blue, red, brown). The old name still works but warns.
 - BREAKING CHANGE: The Tableau palette `"Classic Area-Brown"` has been renamed
   to `"Classic Area Brown"`, for consistency with its siblings
   `"Classic Area Red"` and `"Classic Area Green"`. The old name still works but
   warns.
-- Fix two corrupted colours in the `"Gray Warm"` ordered-sequential Tableau
-  palette. Position 7 was `#b047a4` (a magenta, in a warm-grey ramp) and is now
+- Fix two corrupted colors in the `"Gray Warm"` ordered-sequential Tableau
+  palette. Position 7 was `#b047a4` (a magenta, in a warm-gray ramp) and is now
   `#b0a8a4`; position 18 was `#665c51`, which broke the ramp's monotonic blue
   channel, and is now `#665c5a`. Plots using
   `scale_colour_gradient_tableau("Gray Warm")` will change appearance.
-- Fix a duplicated colour (`#fa9d4f`) in the `"Red-Gold"` ordered-sequential
-  Tableau palette, which gave it 21 colours where every other 20-step Tableau
+- Fix a duplicated color (`#fa9d4f`) in the `"Red-Gold"` ordered-sequential
+  Tableau palette, which gave it 21 colors where every other 20-step Tableau
   sequential palette has 20. Plots using `"Red-Gold"` will change appearance.
 - Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
   `tableau.yml`.
@@ -235,20 +235,20 @@
   `geom_tufteboxplot()`, which it is meant to be used with; those four now
   cross-reference each other.
 - Add vdiffr visual regression baselines for every exported theme, and swatch
-  baselines plus property assertions (valid hex, no duplicate colours, stable
-  lengths, monotone lightness, no out-of-family colour, monotone grey ramps)
+  baselines plus property assertions (valid hex, no duplicate colors, stable
+  lengths, monotone lightness, no out-of-family color, monotone gray ramps)
   for the Tableau palette families. These are development-only tests and do not
   run on CRAN; `vdiffr (>= 1.0.6)` and `farver` are now used in `Suggests`
   (#219).
 
 - Add support for Stata's `st` scheme family, which has been Stata's factory
   default since Stata 18. `stata_pal()` and `scale_colour_stata()` gain the
-  `"stcolor"` scheme (the `stc1`--`stc15` colours), and `theme_stata()` gains
+  `"stcolor"` scheme (the `stc1`--`stc15` colors), and `theme_stata()` gains
   the `"stcolor"`, `"stcolor_alt"`, `"stmono1"`, `"stmono2"` and `"stsj"`
   schemes. `stgcolor` and `stgcolor_alt` are not included: they differ from
   `stcolor` only in physical graph dimensions, which a ggplot2 theme does not
   carry.
-- The 19 named colours Stata 18 added (`stc1`--`stc15` plus the `stblue`,
+- The 19 named colors Stata 18 added (`stc1`--`stc15` plus the `stblue`,
   `stred`, `stgreen` and `styellow` aliases) are now in
   `ggthemes_data$stata$colors$names`.
 - Omitting `scheme` in `stata_pal()`, `scale_colour_stata()`,
@@ -256,13 +256,13 @@
   resolves to `"s2color"`, but the default will change to `"stcolor"` in
   ggthemes 8.0.0, following Stata. Pass `scheme` explicitly to keep the
   current appearance.
-- BEHAVIOUR CHANGE: `stata_pal("mono")` returned the wrong colours at
+- BEHAVIOR CHANGE: `stata_pal("mono")` returned the wrong colors at
   positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It now
   matches Stata's `s1mono`/`s2mono` exactly, including the fact that Stata
   repeats `gs12` and `gs5` at positions 14 and 15. Plots using `"mono"` with
   six or more levels will change.
-- Fix `stata_pal("economist")`, which returned `NA` as its first colour
-  because the scheme referred to a non-existent colour `dkblue`. It is now
+- Fix `stata_pal("economist")`, which returned `NA` as its first color
+  because the scheme referred to a non-existent color `dkblue`. It is now
   `edkblue`, matching Stata's `scheme-economist.scheme`.
 - Fix `attr(stata_pal(scheme), "max_n")`, which reported `2` rather than `15`
   because it measured the columns of the palette table instead of its rows.
@@ -280,14 +280,14 @@
   that was never wired into `data-raw/build.R` and held iWork-era colors
   matching no current Numbers palette.
 
-- Fix two incorrect colours in the Google Docs palette, checked against the
-  series colours a current Google Sheets chart actually renders. `teal 2` was
+- Fix two incorrect colors in the Google Docs palette, checked against the
+  series colors a current Google Sheets chart actually renders. `teal 2` was
   `#ff994d`, a duplicate of `orange 2`, and is now `#7ed1d7`; `teal 3` was
   `#c9e4e7` and is now `#b5e5e8`. This changes the output of `gdocs_pal()`,
-  `scale_colour_gdocs()`, and `scale_fill_gdocs()` for more than 11 colours.
-  The other 22 colours were already correct.
-- `theme_gdocs()` now matches the text colours Google Sheets uses. Sheets
-  applies a graded hierarchy rather than one grey: axis tick labels are black,
+  `scale_colour_gdocs()`, and `scale_fill_gdocs()` for more than 11 colors.
+  The other 22 colors were already correct.
+- `theme_gdocs()` now matches the text colors Google Sheets uses. Sheets
+  applies a graded hierarchy rather than one gray: axis tick labels are black,
   legend labels `#1a1a1a`, and axis titles and the x-axis line `#333333`. The
   chart title (`#757575`) and gridlines (`#cccccc`) are unchanged.
 
@@ -297,7 +297,7 @@
   which Highcharts replaced in April 2023. Plots using `scale_colour_hc()` or
   `scale_fill_hc()` without an explicit `palette` will change appearance. The
   old palette is still available as `hc_pal("classic")`.
-- BEHAVIOUR CHANGE: two colours in that older palette were wrong, and are
+- BEHAVIOR CHANGE: two colors in that older palette were wrong, and are
   corrected in `"classic"`. Position 8 was `#8085e8` (a near-duplicate of
   `#8085e9` at position 5, differing by one hex digit) and is now `#2b908f`;
   position 9 was `#8d4653` and is now `#f45b5b`. The old values match
@@ -307,32 +307,32 @@
   bundled with Highcharts 13: `"default_dark"` (the dark-mode form of the
   default, which Highcharts selects via CSS `light-dark()`),
   `"high_contrast_light"` and `"high_contrast_dark"` (Highcharts' own palette,
-  tested for colour blindness and tailored to 3:1 contrast), `"grid_light"`,
+  tested for color blindness and tailored to 3:1 contrast), `"grid_light"`,
   `"sand_signika"`, `"avocado"` and `"sunset"`. Note that `"avocado"` and
-  `"sunset"` have only four colours.
+  `"sunset"` have only four colors.
 - `hc_pal()` now reports a `max_n` attribute and warns when asked for more
-  colours than the palette holds, matching the other ggthemes palettes.
+  colors than the palette holds, matching the other ggthemes palettes.
 - `theme_hc()`'s horizontal grid lines are now `#e6e6e6`, matching Highcharts'
   `--highcharts-neutral-color-10`, rather than `#D8D8D8`.
 - `theme_hc()` gains the `"default_dark"`, `"grid_light"` and `"sand_signika"`
   styles. `"grid_light"` is the one Highcharts theme that draws vertical grid
   lines. The `"high_contrast"`, `"avocado"` and `"sunset"` themes are not
-  included as styles: upstream they change nothing but the series colours, so
+  included as styles: upstream they change nothing but the series colors, so
   they are available through `hc_pal()` and are meant to be combined with
   `theme_hc("default")` or `theme_hc("default_dark")`.
-- BEHAVIOUR CHANGE: `theme_hc("darkunica")` drew all text in `#A0A0A3` and
+- BEHAVIOR CHANGE: `theme_hc("darkunica")` drew all text in `#A0A0A3` and
   titles in `#FFFFFF`. Highcharts uses `#E0E0E3` for axis labels, titles and
   axis titles in this theme, so text is now `#E0E0E3` throughout. The grid
-  colour `#707073` was already correct and is unchanged.
+  color `#707073` was already correct and is unchanged.
 - Fix unreadable axis labels in `theme_hc("darkunica")`. `theme_hc()` is a
   partial theme, and it never set `axis.text`, so the axis labels kept
-  `theme_grey()`'s `"grey30"` and were drawn in dark grey on the near-black
-  background. They now use the same colour as the rest of the theme's text.
+  `theme_grey()`'s `"grey30"` and were drawn in dark gray on the near-black
+  background. They now use the same color as the rest of the theme's text.
 - Remove `data-raw/theme-data/highcharts.yml`, an unused duplicate of `hc.yml`
   that still held the palettes from before v11.
 - `theme_hc()`'s examples now pass `style` rather than the deprecated
   `bgcolor`, and the last example uses `scale_colour_hc()` instead of
-  `scale_fill_hc()`, which had no effect on its colour-mapped lines.
+  `scale_fill_hc()`, which had no effect on its color-mapped lines.
 - BREAKING CHANGE: `theme_economist()` and `economist_pal()` now follow the
   chart design *The Economist* introduced in 2017 and still publishes,
   replacing the pre-2017 style ggthemes had shipped since 2013. Existing
@@ -359,7 +359,7 @@
 - Deprecate the `dkpanel` argument of `theme_economist()` and the `fill`
   argument of `economist_pal()`. Both were features of the pre-2017 design
   and are now ignored.
-- Fix: `theme_economist()` previously looked up a background colour named
+- Fix: `theme_economist()` previously looked up a background color named
   `"ebg"`, which `economist.yml` did not define, so `rect` and
   `strip.background` silently received a fill of `NA`. The rewritten theme
   sets both explicitly.
@@ -611,7 +611,7 @@
 
 - Bugfix: Remove border around legends in `theme_calc()`.
 
-- Bugfix: Add colour and fill values to `theme_foundation()`. This restores
+- Bugfix: Add color and fill values to `theme_foundation()`. This restores
   its behavior to version 2.2.1. Fixes Issue #56.
 
 # ggthemes 3.0.0
@@ -718,8 +718,8 @@
 
 # ggthemes 1.3.4
 
-- added Tableau sequential colour palettes: `tableau_seq_gradient_pal()`, `scale_colour_gradient_tableau()`, `scale_fill_gradient_tableau()`.
-- added Tableau diverging colour palettes: `tableau_div_gradient_pal()`, `scale_colour_gradient2_tableau()`, `scale_fill_gradient2_tableau()`.
+- added Tableau sequential color palettes: `tableau_seq_gradient_pal()`, `scale_colour_gradient_tableau()`, `scale_fill_gradient_tableau()`.
+- added Tableau diverging color palettes: `tableau_div_gradient_pal()`, `scale_colour_gradient2_tableau()`, `scale_fill_gradient2_tableau()`.
 - `tableau_colour_pal()`: added palette "cyclical
 
 # ggthemes 1.3.3

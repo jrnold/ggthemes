@@ -11,8 +11,8 @@ excel_pal(line = TRUE)
 use the palette for area.}
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 The color palettes used in Microsoft Excel 97 (and up until Excel 2007).
@@ -26,9 +26,9 @@ show_col(excel_pal()(7))
 show_col(excel_pal(line = FALSE)(7))
 }
 \seealso{
-Other colour excel:
+Other color excel:
 \code{\link[=excel_new_pal]{excel_new_pal()}},
 \code{\link[=scale_colour_excel_new]{scale_colour_excel_new()}},
 \code{\link[=scale_fill_excel]{scale_fill_excel()}}
 }
-\concept{colour excel}
+\concept{color excel}

@@ -30,9 +30,9 @@ ptol_deprecation_details <- function() {
 #'
 #' `ptol_pal()` was deprecated in ggthemes 7.0.0. Use the
 #' [khroma](https://CRAN.R-project.org/package=khroma) package instead, which
-#' tracks Paul Tol's colour schemes as he revises them.
+#' tracks Paul Tol's color schemes as he revises them.
 #'
-#' This palette is the 12-colour qualitative scheme from Tol's 2012 technical
+#' This palette is the 12-color qualitative scheme from Tol's 2012 technical
 #' note, and has not followed the revisions he has made since. His current
 #' schemes are at <https://sronpersonalpages.nl/~pault/>; the closest successor
 #' to this palette is `khroma::colour("muted")`.
@@ -44,10 +44,10 @@ ptol_deprecation_details <- function() {
 #' Incorporation of the palette into an R package was originally inspired by
 #' Peter Carl's [Paul Tol 21 Gun Salute](https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/)
 #'
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
-#' @family colour ptol
+#' @family color ptol
 #' @references
 #' Paul Tol. 2012. "Colour Schemes." SRON Technical Note, SRON/EPS/TN/09-002.
 #'  \url{https://sronpersonalpages.nl/~pault/data/colourschemes.pdf}
@@ -65,7 +65,7 @@ ptol_pal <- function() {
   f
 }
 
-#' Color Scales from Paul Tol's "Colour Schemes
+#' Color Scales from Paul Tol's "Colour Schemes"
 #'
 #' @md
 #' @description
@@ -73,9 +73,9 @@ ptol_pal <- function() {
 #'
 #' These scales were deprecated in ggthemes 7.0.0. Use the
 #' [khroma](https://CRAN.R-project.org/package=khroma) package instead, which
-#' tracks Paul Tol's colour schemes as he revises them.
+#' tracks Paul Tol's color schemes as he revises them.
 #'
-#' They draw the 12-colour qualitative scheme from Tol's 2012 technical note,
+#' They draw the 12-color qualitative scheme from Tol's 2012 technical note,
 #' and have not followed the revisions he has made since. His current schemes
 #' are at <https://sronpersonalpages.nl/~pault/>; the closest successor is
 #' `khroma::scale_colour_muted()`.
@@ -84,7 +84,7 @@ ptol_pal <- function() {
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams ptol_pal
-#' @family colour ptol
+#' @family color ptol
 #' @rdname scale_ptol
 #' @return A ggplot2 scale object.
 #' @export

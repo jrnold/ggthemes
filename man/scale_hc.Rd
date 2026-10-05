@@ -78,7 +78,7 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-Colour and fill scales which use the palettes in
+Color and fill scales which use the palettes in
 \code{\link{hc_pal}()} and are meant for use with
 \code{\link{theme_hc}()}.
 }
@@ -90,7 +90,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   scale_colour_hc(palette = "darkunica")
 }
 \seealso{
-Other colour hc:
+Other color hc:
 \code{\link[=hc_pal]{hc_pal()}}
 }
-\concept{colour hc}
+\concept{color hc}

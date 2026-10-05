@@ -68,7 +68,7 @@ hc_theme_styles <- list(
 #'
 #' Only the Highcharts themes that restyle the chart itself get a \code{style}
 #' here. The \code{"high-contrast"}, \code{"avocado"} and \code{"sunset"}
-#' themes shipped with Highcharts 13 change nothing but the series colours, so
+#' themes shipped with Highcharts 13 change nothing but the series colors, so
 #' they are available through \code{\link{hc_pal}()} alone; combine them with
 #' \code{theme_hc("default")} or \code{theme_hc("default_dark")}.
 #'
@@ -166,9 +166,9 @@ theme_hc <- function(
 #' @param palette \code{character} The name of the Highcharts palette to use.
 #'   One of \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$hc))}.
 #'
-#' @family colour hc
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color hc
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-hc_pal.R
 hc_pal <- function(palette = "default") {
@@ -188,13 +188,13 @@ hc_pal <- function(palette = "default") {
 
 #' Highcharts color and fill scales
 #'
-#' Colour and fill scales which use the palettes in
+#' Color and fill scales which use the palettes in
 #' \code{\link{hc_pal}()} and are meant for use with
 #' \code{\link{theme_hc}()}.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams hc_pal
-#' @family colour hc
+#' @family color hc
 #' @rdname scale_hc
 #' @return A ggplot2 scale object.
 #' @export

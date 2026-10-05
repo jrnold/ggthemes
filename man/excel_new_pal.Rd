@@ -13,8 +13,8 @@ palette. Available themes include:
 \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$excel$themes))}}
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 Color palettes used by current versions of Microsoft Office and Excel.
@@ -35,9 +35,9 @@ for (i in names(ggthemes::ggthemes_data$excel$themes)) {
 }
 }
 \seealso{
-Other colour excel:
+Other color excel:
 \code{\link[=excel_pal]{excel_pal()}},
 \code{\link[=scale_colour_excel_new]{scale_colour_excel_new()}},
 \code{\link[=scale_fill_excel]{scale_fill_excel()}}
 }
-\concept{colour excel}
+\concept{color excel}

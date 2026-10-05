@@ -78,7 +78,7 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-Colour and fill scales which use the palettes in \code{\link{wsj_pal}()}.
+Color and fill scales which use the palettes in \code{\link{wsj_pal}()}.
 These scales should be used with \code{\link{theme_wsj}()}.
 }
 \examples{
@@ -89,7 +89,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   scale_colour_wsj("colors6")
 }
 \seealso{
-Other colour wsj:
+Other color wsj:
 \code{\link[=wsj_pal]{wsj_pal()}}
 }
-\concept{colour wsj}
+\concept{color wsj}

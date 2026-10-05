@@ -7,8 +7,8 @@
 calc_pal()
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 Color palettes from LibreOffice Calc.
@@ -20,7 +20,7 @@ library("scales")
 show_col(calc_pal()(12))
 }
 \seealso{
-Other colour calc:
+Other color calc:
 \code{\link[=scale_fill_calc]{scale_fill_calc()}}
 }
-\concept{colour calc}
+\concept{color calc}

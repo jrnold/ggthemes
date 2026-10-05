@@ -7,7 +7,7 @@
 #' of the CSS style example.
 #'
 #' @keywords internal
-#' @return A named character vector of eight hex colours, named \code{rebase03} to \code{rebase3}.
+#' @return A named character vector of eight hex colors, named \code{rebase03} to \code{rebase3}.
 solarized_rebase <- function(light = TRUE) {
   basecolors <- deframe(ggthemes::ggthemes_data$solarized$Base)
   rebase <- if (light) {
@@ -36,10 +36,10 @@ solarized_accent_list <- function() {
 #' total Euclidean distance between colors in L*a*b space.
 #'
 #' @param accent \code{character} Starting color.
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
-#' @family colour solarized
+#' @family color solarized
 #' @example inst/examples/ex-solarized_pal.R
 solarized_pal <- function(accent = "blue") {
   palettes <- ggthemes::ggthemes_data[["solarized"]][["palettes"]][[accent]]
@@ -65,7 +65,7 @@ solarized_pal <- function(accent = "blue") {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams solarized_pal
 #' @rdname scale_solarized
-#' @family colour solarized
+#' @family color solarized
 #' @return A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_solarized.R

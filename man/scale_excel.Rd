@@ -93,9 +93,9 @@ ggplot(mpg, aes(x = class, fill = drv)) +
   theme_excel()
 }
 \seealso{
-Other colour excel:
+Other color excel:
 \code{\link[=excel_new_pal]{excel_new_pal()}},
 \code{\link[=excel_pal]{excel_pal()}},
 \code{\link[=scale_colour_excel_new]{scale_colour_excel_new()}}
 }
-\concept{colour excel}
+\concept{color excel}

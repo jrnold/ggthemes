@@ -8,9 +8,9 @@
 #'   \Sexpr[results=rd]{ggthemes:::rd_optlist(names(ggthemes::ggthemes_data$numbers))}.
 #'   The default, \code{"Classic"}, is the palette Numbers itself uses by
 #'   default.
-#' @family colour numbers
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color numbers
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-numbers_pal.R
 numbers_pal <- function(palette = "Classic") {
@@ -34,7 +34,7 @@ numbers_pal <- function(palette = "Classic") {
 #'
 #' @inheritParams numbers_pal
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour numbers
+#' @family color numbers
 #' @rdname scale_numbers
 #' @return A ggplot2 scale object.
 #' @export

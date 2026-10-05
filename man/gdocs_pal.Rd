@@ -7,8 +7,8 @@
 gdocs_pal()
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 Color palettes from Google Docs.
@@ -20,7 +20,7 @@ library("scales")
 show_col(gdocs_pal()(24))
 }
 \seealso{
-Other colour gdocs:
+Other color gdocs:
 \code{\link[=scale_fill_gdocs]{scale_fill_gdocs()}}
 }
-\concept{colour gdocs}
+\concept{color gdocs}

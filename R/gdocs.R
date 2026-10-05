@@ -99,9 +99,9 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
 #' Color palettes from Google Docs.
 #' This palette includes 20 colors.
 #'
-#' @family colour gdocs
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color gdocs
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-gdocs_pal.R
 gdocs_pal <- function() {
@@ -116,7 +116,7 @@ gdocs_pal <- function() {
 #' Color scales from Google Docs.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour gdocs
+#' @family color gdocs
 #' @rdname scale_gdocs
 #' @return A ggplot2 scale object.
 #' @export

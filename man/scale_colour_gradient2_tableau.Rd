@@ -4,7 +4,7 @@
 \alias{scale_colour_gradient2_tableau}
 \alias{scale_fill_gradient2_tableau}
 \alias{scale_color_gradient2_tableau}
-\title{Tableau diverging colour scales (continuous)}
+\title{Tableau diverging color scales (continuous)}
 \usage{
 scale_colour_gradient2_tableau(
   palette = "Orange-Blue Diverging",
@@ -45,7 +45,7 @@ diverging palette.}
 \item{na.value}{Colour to use for missing values}
 
 \item{guide}{Type of legend. Use \code{'colourbar'} for continuous
-colour bar, or \code{'legend'} for discrete colour legend.}
+color bar, or \code{'legend'} for discrete color legend.}
 }
 \value{
 A ggplot2 scale object.
@@ -77,10 +77,10 @@ for (palette in head(names(palettes))) {
 p + scale_colour_gradient2_tableau(trans = "reverse")
 }
 \seealso{
-Other colour tableau:
+Other color tableau:
 \code{\link[=scale_colour_gradient_tableau]{scale_colour_gradient_tableau()}},
 \code{\link[=scale_colour_tableau]{scale_colour_tableau()}},
 \code{\link[=tableau_color_pal]{tableau_color_pal()}},
 \code{\link[=tableau_gradient_pal]{tableau_gradient_pal()}}
 }
-\concept{colour tableau}
+\concept{color tableau}

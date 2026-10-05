@@ -13,8 +13,8 @@ The default, \code{"Classic"}, is the palette Numbers itself uses by
 default.}
 }
 \value{
-A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-  hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+  hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 }
 \description{
 Color palettes used by charts in Apple Numbers. Each palette provides
@@ -28,7 +28,7 @@ show_col(numbers_pal()(6))
 show_col(numbers_pal("Spectrum")(6))
 }
 \seealso{
-Other colour numbers:
+Other color numbers:
 \code{\link[=scale_fill_numbers]{scale_fill_numbers()}}
 }
-\concept{colour numbers}
+\concept{color numbers}

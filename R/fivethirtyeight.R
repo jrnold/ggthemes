@@ -42,9 +42,9 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
 #' The standard three-color FiveThirtyEight palette for line plots comprises
 #' blue, red, and green.
 #'
-#' @family colour fivethirtyeight
-#' @return A palette function. It takes the number of colours \code{n} and returns a character vector of \code{n}
-#'   hex colours, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
+#' @family color fivethirtyeight
+#' @return A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
+#'   hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2]{discrete_scale}()}.
 #' @export
 #' @example inst/examples/ex-fivethirtyeight_pal.R
 fivethirtyeight_pal <- function() {
@@ -61,7 +61,7 @@ fivethirtyeight_pal <- function() {
 #' Color scales using the colors in the FiveThirtyEight graphics.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
-#' @family colour fivethirtyeight
+#' @family color fivethirtyeight
 #' @rdname scale_fivethirtyeight
 #' @seealso \code{\link{theme_fivethirtyeight}()} for examples.
 #' @return A ggplot2 scale object.

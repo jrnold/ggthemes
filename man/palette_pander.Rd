@@ -13,7 +13,7 @@ palette_pander(n, random_order = FALSE)
 rendering each plot to get colorful images}
 }
 \value{
-A character vector of \code{n} hex colours, recycled if \code{n} exceeds the number of colours available.
+A character vector of \code{n} hex colors, recycled if \code{n} exceeds the number of colors available.
   Unlike the other \code{*_pal()} functions, this is itself the palette function.
 }
 \description{
@@ -26,7 +26,7 @@ palette_pander(8)
 palette_pander(8, random_order = TRUE)
 }
 \seealso{
-Other colour pander:
+Other color pander:
 \code{\link[=scale_color_pander]{scale_color_pander()}}
 }
-\concept{colour pander}
+\concept{color pander}
