@@ -110,9 +110,7 @@
   for print and web, with its chart sizes, typefaces and footnote symbols,
   and every swatch of the print palette on p.11 with the CMYK it specifies
   and its sRGB conversion through ISO Coated v2 (FOGRA39), the guide's own
-  color space, from which the print palettes and theme colors are drawn; and `economist_design_system`, the color tokens of
-  *The Economist*'s current Design System and of Marber, with derived
-  lightness ramps for nine color families.
+  color space, from which the print palettes and theme colors are drawn.
 
 # ggthemes 7.0.0
 

@@ -1,6 +1,5 @@
 suppressPackageStartupMessages({
   library("dplyr")
-  library("jsonlite")
   library("purrr")
   library("tibble")
   library("rlang")
@@ -160,24 +159,6 @@ load_economist <- function() {
 
 ggthemes_data$economist <- load_economist()
 
-# economist_2024: nested print/web palettes, each with a
-# fixed set of named fields (bg, fg, and optionally bright/dark/orders, plus
-# scalar accent/grid/text), unlike economist.yml's flat bg/fg. Convert each
-# color-list field to a tibble (or, for `orders`, a named list of tibbles --
-# one color sequence per chart-type family) and leave the scalars as plain
-# strings.
-load_economist_media <- function(file) {
-  out <- yaml.load_file(here::here("data-raw", "theme-data", file))
-  map(out, function(media) {
-    is_list_field <- map_lgl(media, ~ is.list(.x) && !is.null(names(.x[[1]])))
-    media[is_list_field] <- map(media[is_list_field], ~ map_dfr(., as_tibble))
-    if (!is.null(media[["orders"]])) {
-      media[["orders"]] <- map(media[["orders"]], ~ map_dfr(., as_tibble))
-    }
-    media
-  })
-}
-
 # economist_2017: one complete spec per medium, plus chart sizes, typefaces
 # and footnote symbols. Scalars stay as they are, a list of records (such as
 # name/value pairs: a colour sequence) becomes a tibble, with NA where a record
@@ -205,105 +186,6 @@ ggthemes_data$economist_2017$print$swatches <- mutate(
   ggthemes_data$economist_2017$print$swatches,
   across(c("c", "m", "y", "k"), as.numeric)
 )
-ggthemes_data$economist_2024 <- load_economist_media("economist_2024.yml")
-
-# Current Economist design-system colour tokens -----------------------------
-#
-# These are deliberately separate from economist_2024: the latter contains
-# observed chart-production palettes, whereas these data reproduce product
-# design-system tokens and regular five-point HSL ramps derived from them.
-hsl_to_hex <- function(hue, saturation, lightness) {
-  map_chr(lightness, function(level) {
-    h <- (hue %% 360) / 60
-    s <- saturation / 100
-    l <- level / 100
-    chroma <- (1 - abs(2 * l - 1)) * s
-    x <- chroma * (1 - abs(h %% 2 - 1))
-    rgb1 <- switch(
-      as.character(floor(h) %% 6),
-      `0` = c(chroma, x, 0),
-      `1` = c(x, chroma, 0),
-      `2` = c(0, chroma, x),
-      `3` = c(0, x, chroma),
-      `4` = c(x, 0, chroma),
-      `5` = c(chroma, 0, x)
-    )
-    rgb <- floor((rgb1 + l - chroma / 2) * 255 + 0.5)
-    sprintf("#%02X%02X%02X", rgb[[1]], rgb[[2]], rgb[[3]])
-  })
-}
-
-# Aligned as a table, one ramp per row.
-# nolint start: commas_linter
-economist_ramp_specs <- tribble(
-  ~key            , ~name           , ~group      , ~hue , ~saturation ,
-  "economist_red" , "Economist Red" , "Brand"     ,    2 ,          91 ,
-  "chicago"       , "Chicago"       , "Base"      ,  230 ,          60 ,
-  "hong_kong"     , "Hong Kong"     , "Base"      ,  167 ,          75 ,
-  "tokyo"         , "Tokyo"         , "Base"      ,  347 ,          75 ,
-  "singapore"     , "Singapore"     , "Base"      ,   25 ,          95 ,
-  "new_york"      , "New York"      , "Base"      ,   45 ,          95 ,
-  "london"        , "London"        , "Greyscale" ,    0 ,           0 ,
-  "los_angeles"   , "Los Angeles"   , "Canvas"    ,   51 ,          22 ,
-  "paris"         , "Paris"         , "Canvas"    ,  180 ,          22
-)
-# nolint end
-
-generate_economist_ramps <- function() {
-  levels <- seq(5, 100, by = 5)
-  ramps <- pmap(
-    economist_ramp_specs,
-    function(key, name, group, hue, saturation) {
-      tibble(
-        family = name,
-        name = paste(name, levels),
-        level = levels,
-        value = hsl_to_hex(hue, saturation, levels),
-        hue = hue,
-        saturation = saturation,
-        lightness = levels,
-        group = group
-      )
-    }
-  )
-  set_names(ramps, economist_ramp_specs$key)
-}
-
-read_economist_tokens <- function(file) {
-  out <- read_json(
-    here::here("data-raw", file),
-    simplifyVector = TRUE
-  )
-  out$tokens <- as_tibble(out$tokens)
-  out$tokens$value <- pmap_chr(
-    out$tokens[c("hue", "saturation", "lightness")],
-    hsl_to_hex
-  )
-
-  mismatch <- which(out$tokens$value != toupper(out$tokens$documented_hex))
-  if (length(mismatch)) {
-    abort(paste0(
-      file,
-      ": canonical HSL does not reproduce documented HEX for:\n",
-      paste0("  ", out$tokens$name[mismatch], collapse = "\n")
-    ))
-  }
-  out
-}
-
-load_economist_design_system <- function() {
-  list(
-    sources = list(
-      economist_design_system = read_economist_tokens(
-        "economist-design-system-colour-tokens.json"
-      ),
-      marber = read_economist_tokens("marber-colour-values.json")
-    ),
-    ramps = generate_economist_ramps()
-  )
-}
-
-ggthemes_data$economist_design_system <- load_economist_design_system()
 
 load_few <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "few.yml"))
