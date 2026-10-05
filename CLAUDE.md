@@ -218,6 +218,69 @@ Enforced by [air](https://tidyverse.org/blog/2025/02/air/) and
 - `air` configuration: `air.toml`
 - `lintr` configuration: `.lintr`
 
+#### Code review checklist (not lintable)
+
+`air` and `lintr` catch whitespace, line length, `<-`, naming case, and similar. A reviewer should check
+what they cannot, drawn from the [tidyverse style guide](https://style.tidyverse.org/) and the
+[tidy design principles](https://design.tidyverse.org/). The 120-column limit above overrides the style
+guide's 80; treat a function that is hard to fit in 80 as a design smell, not a violation.
+
+**Names and structure**
+
+- Functions are verbs, variables are nouns. Names are concise but meaningful; nothing shadows a base or
+  ggplot2 function.
+- No dots in new function or class names outside S3 methods.
+- Don't encode data in names (`model_2018`, `model_2019`); use a list or data frame.
+- No assignment inside calls except to capture a side effect.
+- `return()` only for early exits. Control-flow modifiers (`return()`, `stop()`, `next`) get their own braced
+  line, and `if` conditions use `&&`/`||`, not `&`/`|`.
+- Prefer early returns or a helper over deep nesting.
+
+**Comments**
+
+- Comments explain why (a decision, a surprising finding, a source), not what the code does. If a comment
+  restates the code, delete it or rename something.
+
+**Pipes**
+
+- Pipe a sequence of steps on one primary object. Don't pipe across several objects, and break the chain
+  into a named intermediate when the name aids the reader.
+- Do data filtering and reshaping before `ggplot()`, not inside its `data` argument.
+
+**Function design**
+
+- The primary input (the thing being transformed) comes first; required arguments have no default and
+  optional ones do; `...` goes after required arguments, before optional ones.
+- Defaults are short and not magical: the function must behave the same whether a default is passed
+  explicitly or omitted (use `NULL` and resolve inside; avoid `missing()`).
+- Prefer an enum (`match.arg()`/`arg_match()`) over a boolean when the argument selects a strategy, even
+  with two choices.
+- Return type depends on input types, never on input values (type stability).
+- Side-effect functions (printing, saving) return their first argument invisibly. Keep computation and side
+  effects in separate functions, and restore any changed global state with `on.exit()`/`withr`.
+- Don't introduce a new argument whose meaning depends on another argument's value.
+
+**Error messages** (use `cli`; see the `cli` skill)
+
+- Lead with a short sentence-case problem statement ending in a period. Use "must" when you know what was
+  expected (`` `n` must be a number, not a string. ``); use "Can't" when you can't say.
+- Put detail in bullets (`x` for problems, `i` for context), singular, with argument names in backticks.
+  Give a hint last, and only when the fix is clear and common.
+- Don't blame an argument, or guess at a cause, you haven't verified.
+
+**Docs and NEWS** (also see the `roxygen-style` skill)
+
+- Titles are sentence case with no final period. `@param` and `@returns` start with a capital and end in a
+  period. Use `@inheritParams` and `@family` rather than copy text.
+- Link a function on first mention; backtick `TRUE`, `NULL`, and argument names.
+- NEWS bullets address users, not developers: function name near the front, present tense, say what now
+  happens, end with a period, one line while in development.
+
+**Tests**
+
+- The test file mirrors the `R/` file where the project allows it; here it is per theme (see Testing
+  Strategy). Test names say the behaviour being checked.
+
 ### Spelling
 
 Check spelling using the [spelling](https://docs.ropensci.org/spelling/) package.
