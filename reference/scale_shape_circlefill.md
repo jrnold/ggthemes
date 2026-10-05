@@ -1,6 +1,11 @@
-# Filled Circle Shape palette (discrete)
+# Filled circle shape scale (deprecated)
 
 **\[deprecated\]**
+
+This scale has no direct replacement. For circles that vary by amount of
+fill, use
+`scale_shape_tableau(palette = "proportions", unicode = TRUE)`; see
+[`scale_shape_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tableau.md).
 
 ## Usage
 

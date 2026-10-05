@@ -2,9 +2,8 @@
 
 An eight-color colorblind safe qualitative discrete palette.
 
-**\[deprecated\]** `scale_colour_colorblind()` mixes British and
-American spelling; use `scale_colour_colourblind()` or
-`scale_color_colorblind()` instead.
+**\[deprecated\]** `scale_colour_colorblind()` is deprecated in favor of
+`scale_colour_colourblind()` and `scale_color_colorblind()`.
 
 ## Usage
 

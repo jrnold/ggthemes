@@ -24,10 +24,10 @@ A ggplot2 theme object (class `theme`).
 
 ## Details
 
-This theme inverts the colors in the
+This theme inverts the colors of
 [`ggplot2::theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
-a white panel and a light gray area around it. This keeps a white
-background for the color scales like
+with a white panel and a light gray area around it. This keeps a white
+background for the color scales, like
 [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 But by using a gray background, the plot is closer to the typographical
 color of the document, which is the motivation for using a gray panel in
@@ -43,6 +43,7 @@ Other themes:
 [`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md),
 [`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
 [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+[`theme_map()`](https://jrnold.github.io/ggthemes/reference/theme_map.md),
 [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md),
 [`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)
 

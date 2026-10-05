@@ -21,6 +21,11 @@ canva_pal(palette = "Fresh and bright")
 
 A function that takes a single value, the number of colors to use.
 
+## See also
+
+Other color canva:
+[`scale_colour_canva()`](https://jrnold.github.io/ggthemes/reference/scale_colour_canva.md)
+
 ## Examples
 
 ``` r

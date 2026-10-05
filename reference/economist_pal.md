@@ -15,8 +15,8 @@ economist_pal(fill = TRUE)
 
 - fill:
 
-  Use the fill palette. The fill palette (the default) and the line
-  palette choose and order the colors differently.
+  If `TRUE` (the default), use the fill palette; otherwise, use the line
+  palette. The two palettes choose and order the colors differently.
 
 ## Value
 

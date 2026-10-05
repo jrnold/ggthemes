@@ -16,7 +16,7 @@ wsj_pal(palette = "colors6")
 
 - palette:
 
-  `character` The color palette to use. One of `"rgby"`, `"red_green"`,
+  A string, the color palette to use. One of `"rgby"`, `"red_green"`,
   `"black_green"`, `"dem_rep"`, `"colors6"`.
 
 ## Value
@@ -34,7 +34,7 @@ The following palettes are defined:
 
 - `"red_green"`: green/red two-color scale for good/bad.
 
-- `"green_black"`: black-green 4-color scale for "very negative",
+- `"black_green"`: black-green 4-color scale for "very negative",
   "somewhat negative", "somewhat positive", "very positive".
 
 - `"dem_rep"`: Democrat/Republican/Undecided blue/red/gray scale.

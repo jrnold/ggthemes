@@ -1,6 +1,6 @@
 # Tableau color gradient palettes (continuous)
 
-Gradient color palettes using the diverging and sequential continous
+Gradient color palettes using the diverging and sequential continuous
 color palettes in Tableau. See
 [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md)
 for discrete color palettes.
@@ -47,7 +47,11 @@ tableau_div_gradient_pal(palette = "Orange-Blue Diverging", ...)
 
 - type:
 
-  Palette type, either `"ordered-sequential"` or `"ordered-diverging"`.
+  The type of palette, one of:
+
+  - `"ordered-sequential"`, the default: sequential palettes.
+
+  - `"ordered-diverging"`: diverging palettes.
 
 - ...:
 

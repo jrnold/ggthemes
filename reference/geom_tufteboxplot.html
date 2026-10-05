@@ -168,13 +168,13 @@ to use <code><a href="https://ggplot2.tidyverse.org/reference/position_jitter.ht
 
 <dt id="arg-voffset">voffset<a class="anchor" aria-label="anchor" href="#arg-voffset"></a></dt>
 <dd><p>Controls the size of the gap in the line representing the
-median when <code>median.type = 'line'</code>. This is a fraction of the range
+median when <code>median.type = "line"</code>. This is a fraction of the range
 of <code>y</code>.</p></dd>
 
 
 <dt id="arg-hoffset">hoffset<a class="anchor" aria-label="anchor" href="#arg-hoffset"></a></dt>
 <dd><p>Controls how much the interquartile line is offset from the
-whiskers when <code>median.type = 'line'</code>. This is a fraction of the
+whiskers when <code>median.type = "line"</code>. This is a fraction of the
 range of <code>x</code>.</p></dd>
 
 
@@ -201,16 +201,17 @@ the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.or
 
 
 <dt id="arg-median-type">median.type<a class="anchor" aria-label="anchor" href="#arg-median-type"></a></dt>
-<dd><p>If <code>'point'</code>, then the median is represented by a
-point, and the interquartile range by a gap in the line. If
-<code>median.type='line'</code>, then the interquartile range is represented by
-a line, possibly offset, and the median by a gap in the line.</p></dd>
+<dd><p>How to represent the median, one of:</p><ul><li><p><code>"point"</code>, the default: the median is a point, and the interquartile
+range is a gap in the line.</p></li>
+<li><p><code>"line"</code>: the interquartile range is a line, possibly offset, and the
+median is a gap in the line.</p></li>
+</ul></dd>
 
 
 <dt id="arg-whisker-type">whisker.type<a class="anchor" aria-label="anchor" href="#arg-whisker-type"></a></dt>
-<dd><p>If <code>'line'</code>, then whiskers are represented by lines.
-If <code>'point'</code>, then whiskers are represented by points at
-<code>ymin</code> and <code>ymax</code>.</p></dd>
+<dd><p>How to represent the whiskers, one of:</p><ul><li><p><code>"line"</code>, the default: whiskers are lines.</p></li>
+<li><p><code>"point"</code>: whiskers are points at <code>ymin</code> and <code>ymax</code>.</p></li>
+</ul></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

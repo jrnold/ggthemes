@@ -1,11 +1,11 @@
-# Bank Slopes to 45 degrees
+# Bank slopes to 45 degrees
 
 Calculate the optimal aspect ratio of a line graph by banking the slopes
 to 45 degrees as suggested by W.S. Cleveland. This maximizes the ability
 to visually differentiate differences in slope. This function will
 calculate the optimal aspect ratio for a line plot using any of the
 methods described in Heer and Agrawala (2006). In their review of the
-methods they suggest using median absolute slope banking ('ms'), which
+methods they suggest using median absolute slope banking (`"ms"`), which
 produces aspect ratios which are generally the median of the various
 methods provided here.
 
@@ -39,26 +39,35 @@ bank_slopes(
 
 - weight:
 
-  No longer used, but kept for backwards compatibility.
+  **\[deprecated\]** No longer used, but kept for backwards
+  compatibility.
 
 - method:
 
-  One of 'ms' (Median Absolute Slope), 'as' (Average Absolute Slope),
-  'ao' (Average Absolute Orientation), or 'was' (Weighted Average
-  Absolute Orientation).
+  The banking method, one of:
+
+  - `"ms"`, the default: median absolute slope.
+
+  - `"as"`: average absolute slope.
+
+  - `"ao"`: average absolute orientation.
+
+  - `"was"`: weighted average absolute orientation.
 
 - ...:
 
-  No longer used, but kept for backwards compatibility.
+  **\[deprecated\]** No longer used, but kept for backwards
+  compatibility.
 
 ## Value
 
-`numeric` The aspect ratio (x , y).
+A number, the aspect ratio `y / x`, for use as `ratio` in
+[`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html).
 
 ## Methods
 
 As written, all of these methods calculate the aspect ratio (x /y), but
-`bank_slopes` will return (y / x) to be compatible with
+`bank_slopes()` will return (y / x) to be compatible with
 [`ggplot2::coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html).
 
 **Median Absolute Slopes Banking**

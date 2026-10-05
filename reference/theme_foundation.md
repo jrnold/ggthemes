@@ -1,4 +1,4 @@
-# Foundation Theme
+# Foundation theme
 
 This theme is designed to be a foundation from which to build new
 themes, and not meant to be used directly. `theme_foundation()` is a
@@ -61,6 +61,7 @@ Other themes:
 [`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md),
 [`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
 [`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md),
+[`theme_map()`](https://jrnold.github.io/ggthemes/reference/theme_map.md),
 [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md),
 [`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)
 

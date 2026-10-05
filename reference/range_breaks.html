@@ -103,8 +103,8 @@ the vector of axis label locations.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>extended_range_breaks_</code> implements the algorithm and returns the break values.
-<code>extended_range_breaks</code> uses the conventions of the scales package, and returns a function.</p>
+    <p><code>extended_range_breaks_()</code> implements the algorithm and returns the break values.
+<code>extended_range_breaks()</code> uses the conventions of the scales package, and returns a function.</p>
 <p>Note that ggplot2 hands a <code>breaks</code> function the expanded scale limits, not the data
 range. Passing <code>extended_range_breaks()</code> directly to <code>breaks</code> therefore places the
 end labels at the panel edges rather than at the extremes of the data. To label the extremes,

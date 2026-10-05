@@ -55,9 +55,9 @@ vector of data, and returns the vector of axis label locations.
 
 ## Details
 
-`extended_range_breaks_` implements the algorithm and returns the break
-values. `extended_range_breaks` uses the conventions of the scales
-package, and returns a function.
+`extended_range_breaks_()` implements the algorithm and returns the
+break values. `extended_range_breaks()` uses the conventions of the
+scales package, and returns a function.
 
 Note that ggplot2 hands a `breaks` function the expanded scale limits,
 not the data range. Passing `extended_range_breaks()` directly to

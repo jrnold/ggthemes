@@ -1,4 +1,4 @@
-# Highcharts Theme
+# Highcharts theme
 
 Themes based on [Highcharts](https://www.highcharts.com/) plots.
 

@@ -1,7 +1,9 @@
 # Theme with nothing other than a background color
 
-Theme that removes all non-geom elements (lines, text, etc), This theme
-is when only the geometric objects are desired.
+Theme that removes all non-geom elements (lines, text, etc.). Use it
+when only the geometric objects are desired. The `base_family` argument
+is ignored; it is kept for consistency with
+[`ggplot2::theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 ## Usage
 
@@ -13,16 +15,15 @@ theme_solid(base_size = 12, base_family = "", fill = NA)
 
 - base_size:
 
-  Base font size.
+  base font size, given in pts.
 
 - base_family:
 
-  Ignored, kept for consistency with
-  [`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
+  base font family
 
 - fill:
 
-  Background color of the plot.
+  The background color of the plot.
 
 ## Value
 
@@ -35,6 +36,7 @@ Other themes:
 [`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
 [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
 [`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md),
+[`theme_map()`](https://jrnold.github.io/ggthemes/reference/theme_map.md),
 [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
 
 ## Examples

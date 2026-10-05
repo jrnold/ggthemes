@@ -1,8 +1,8 @@
 # Solarized color palette (discrete)
 
-Qualitative color palate based on the Ethan Schoonover's Solarized
-palette, <https://ethanschoonover.com/solarized/>. This palette supports
-up to seven values.
+Qualitative color palette based on Ethan Schoonover's Solarized palette,
+<https://ethanschoonover.com/solarized/>. This palette supports up to
+seven values.
 
 ## Usage
 
@@ -14,7 +14,7 @@ solarized_pal(accent = "blue")
 
 - accent:
 
-  `character` Starting color.
+  A string, the name of the starting color.
 
 ## Value
 

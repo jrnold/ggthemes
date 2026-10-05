@@ -1,4 +1,4 @@
-# Theme Calc
+# LibreOffice Calc theme
 
 Theme similar to the default settings of LibreOffice Calc charts.
 

@@ -23,6 +23,16 @@ theme_map(base_size = 9, base_family = "")
 
 A ggplot2 theme object (class `theme`).
 
+## See also
+
+Other themes:
+[`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md),
+[`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md),
+[`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+[`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md),
+[`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md),
+[`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)
+
 ## Examples
 
 ``` r

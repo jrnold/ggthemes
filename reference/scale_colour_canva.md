@@ -30,6 +30,11 @@ scale_fill_canva(..., palette = "Fresh and bright")
 
 A ggplot2 scale object.
 
+## See also
+
+Other color canva:
+[`canva_pal()`](https://jrnold.github.io/ggthemes/reference/canva_pal.md)
+
 ## Examples
 
 ``` r

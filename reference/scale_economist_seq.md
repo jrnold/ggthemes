@@ -28,8 +28,9 @@ scale_fill_economist_ordinal(hue = "blue", ...)
 
 - hue:
 
-  `character`. One of `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
-  `"olive"`, `"purple"`, `"gold"`, `"gray"`, or `"red"`.
+  A string, the hue of the color scale. One of `"blue"` (the default),
+  `"cyan"`, `"green"`, `"yellow"`, `"olive"`, `"purple"`, `"gold"`,
+  `"gray"`, or `"red"`.
 
 - ...:
 
@@ -37,8 +38,9 @@ scale_fill_economist_ordinal(hue = "blue", ...)
 
 - guide:
 
-  Type of legend. Use `"colourbar"` for continuous color bars, or
-  `"legend"` for discrete color legends.
+  A function used to create a guide or its name. See
+  [`guides()`](https://ggplot2.tidyverse.org/reference/guides.html) for
+  more information.
 
 ## Value
 

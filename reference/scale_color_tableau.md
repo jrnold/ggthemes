@@ -46,13 +46,17 @@ scale_color_tableau(
 
 - type:
 
-  Palette type. One of `"regular"`, `"ordered-sequential"`, or
-  `"ordered-diverging"`. See
-  [`tableau_color_pal()`](https://jrnold.github.io/ggthemes/reference/tableau_color_pal.md).
+  The type of palette, one of:
+
+  - `"regular"`, the default: discrete, qualitative palettes.
+
+  - `"ordered-sequential"`: sequential palettes.
+
+  - `"ordered-diverging"`: diverging palettes.
 
 - direction:
 
-  If 1, the default, then use the original order of colors. If -1, then
+  If `1` (the default), use the original order of colors. If `-1`,
   reverse the order.
 
 ## Value

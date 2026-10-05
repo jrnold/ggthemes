@@ -20,8 +20,9 @@ economist_gradient_pal(hue = "blue")
 
 - hue:
 
-  `character`. One of `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
-  `"olive"`, `"purple"`, `"gold"`, `"gray"`, or `"red"`.
+  A string, the hue of the color scale. One of `"blue"` (the default),
+  `"cyan"`, `"green"`, `"yellow"`, `"olive"`, `"purple"`, `"gold"`,
+  `"gray"`, or `"red"`.
 
 ## Value
 

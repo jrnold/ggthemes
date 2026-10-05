@@ -17,12 +17,13 @@ show_shapes(shapes, labels = TRUE)
 
 - labels:
 
-  Include the plotting character value of the symbol.
+  If `TRUE` (the default), label each symbol with its plotting character
+  value.
 
 ## Value
 
-This function called for the side effect of creating a plot. It returns
-`shapes`.
+Called for its side effect of creating a plot; returns `shapes`
+invisibly.
 
 ## See also
 

@@ -26,7 +26,7 @@ theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 
 - ticks:
 
-  `logical` Show axis ticks?
+  If `TRUE` (the default), show axis ticks.
 
 ## Value
 
@@ -38,7 +38,7 @@ The default font family is set to 'serif' as he uses serif fonts for
 labels in 'The Visual Display of Quantitative Information'. The serif
 font used by Tufte in his books is a variant of Bembo, while the sans
 serif font is Gill Sans. If these fonts are installed on your system,
-then you can use them with the package **extrafont**.
+then you can use them with the package extrafont.
 
 ## References
 

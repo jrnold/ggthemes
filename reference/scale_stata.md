@@ -18,10 +18,10 @@ scale_color_stata(scheme = NULL, ...)
 
 - scheme:
 
-  `character`. One of `"s2color"`, `"s1rcolor"`, `"s1color"`, `"mono"`,
-  `"stcolor"`, or `"economist"`. If `NULL`, the default, `"s2color"` is
-  used and a deprecation message is issued; this default becomes
-  `"stcolor"` in ggthemes 8.0.0.
+  A string, the Stata scheme. One of: `"s2color"`, `"s1rcolor"`,
+  `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`. If `NULL`, the
+  default, `"s2color"` is used and a deprecation message is issued; this
+  default becomes `"stcolor"` in ggthemes 8.0.0.
 
 - ...:
 

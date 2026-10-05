@@ -24,7 +24,7 @@ theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 
 - horizontal:
 
-  `logical`. Horizontal axis lines?
+  If `TRUE` (the default), draw horizontal grid lines.
 
 ## Value
 

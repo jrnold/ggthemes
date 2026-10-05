@@ -12,8 +12,8 @@ canva_palettes
 
 ## Format
 
-A named `list` of character vector. The names are the palette names. The
-values of the character vectors are hex colors, e.g. `"#f98866"`.
+A named `list` of character vectors. The names are the palette names.
+The values of the character vectors are hex colors, e.g. `"#f98866"`.
 
 ## References
 

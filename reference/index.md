@@ -3,9 +3,9 @@
 ## Themes
 
 - [`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md)
-  : Theme Base
+  : Base R graphics theme
 - [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md)
-  : Theme Calc
+  : LibreOffice Calc theme
 - [`theme_clean()`](https://jrnold.github.io/ggthemes/reference/theme_clean.md)
   : Clean ggplot theme
 - [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)
@@ -20,11 +20,11 @@
 - [`theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md)
   : Theme inspired by FiveThirtyEight plots
 - [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md)
-  : Foundation Theme
+  : Foundation theme
 - [`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md)
   : Theme with Google Docs chart defaults
 - [`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md)
-  : Highcharts Theme
+  : Highcharts theme
 - [`theme_igray()`](https://jrnold.github.io/ggthemes/reference/theme_igray.md)
   : Inverse gray theme
 - [`theme_map()`](https://jrnold.github.io/ggthemes/reference/theme_map.md)
@@ -152,7 +152,7 @@ details of how data values are translated to visual properties.
 - [`scale_shape_calc()`](https://jrnold.github.io/ggthemes/reference/scale_shape_calc.md)
   : Calc shape scale
 - [`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md)
-  **\[deprecated\]** : Filled Circle Shape palette (discrete)
+  **\[deprecated\]** : Filled circle shape scale (deprecated)
 - [`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md)
   : Shape scales from Cleveland "Elements of Graphing Data"
 - [`scale_shape_few()`](https://jrnold.github.io/ggthemes/reference/scale_shape_few.md)
@@ -246,7 +246,7 @@ Color, shape, and linetype palettes.
 ggplot2 geom and stat layers.
 
 - [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
-  : Range Frames
+  : Range frames
 - [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
   : Tufte's box plot
 - [`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
@@ -255,7 +255,7 @@ ggplot2 geom and stat layers.
 ## Other functions
 
 - [`bank_slopes()`](https://jrnold.github.io/ggthemes/reference/bank_slopes.md)
-  : Bank Slopes to 45 degrees
+  : Bank slopes to 45 degrees
 - [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
   : Bank a plot's own data to 45 degrees
 - [`bank_slopes_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_slopes_multiscale.md)

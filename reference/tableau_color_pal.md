@@ -22,16 +22,21 @@ tableau_colour_pal(
 
 - palette:
 
-  Palette name. See Details for available palettes.
+  A string, the palette name. See Details for available palettes.
 
 - type:
 
-  Type of palette. One of `"regular"`, `"ordered-diverging"`, or
-  `"ordered-sequential"`.
+  The type of palette, one of:
+
+  - `"regular"`, the default: discrete, qualitative palettes.
+
+  - `"ordered-sequential"`: sequential palettes.
+
+  - `"ordered-diverging"`: diverging palettes.
 
 - direction:
 
-  If 1, the default, then use the original order of colors. If -1, then
+  If `1` (the default), use the original order of colors. If `-1`,
   reverse the order.
 
 ## Value

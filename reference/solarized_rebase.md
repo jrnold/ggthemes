@@ -1,6 +1,8 @@
 # Base colors for Solarized light and dark themes
 
-Base colors for Solarized light and dark themes
+Creates the base colors for a light or dark solarized theme. See
+<https://ethanschoonover.com/solarized/>. This function is a port of the
+CSS style example.
 
 ## Usage
 
@@ -12,11 +14,8 @@ solarized_rebase(light = TRUE)
 
 - light:
 
-  `logical` Light theme?
-
-  Creates the base colors for a light or dark solarized theme. See
-  <https://ethanschoonover.com/solarized/>. This function is a port of
-  the CSS style example.
+  If `TRUE` (the default), use the light theme; otherwise, use the dark
+  theme.
 
 ## Value
 

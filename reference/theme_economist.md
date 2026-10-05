@@ -32,15 +32,17 @@ theme_economist_white(
 
 - horizontal:
 
-  `logical` Horizontal axis lines?
+  If `TRUE` (the default), draw horizontal grid lines.
 
 - dkpanel:
 
-  `logical` Darker background for panel region?
+  If `TRUE`, use a darker background for the panel region. The default
+  is `FALSE`.
 
 - gray_bg:
 
-  `logical` If `TRUE`, use gray background, else use white background.
+  If `TRUE` (the default), use a gray background; otherwise, use a white
+  background.
 
 ## Value
 
@@ -49,11 +51,11 @@ An object of class
 
 ## Details
 
-`theme_economist` implements the standard bluish-gray background theme
+`theme_economist()` implements the standard bluish-gray background theme
 in the print *The Economist* and
 [economist.com](https://www.economist.com/).
 
-`theme_economist_white` implements a variant with a white panel and
+`theme_economist_white()` implements a variant with a white panel and
 light gray (or white) background often used by *The Economist* blog
 [Graphic Detail](https://www.economist.com/topics/graphic-detail).
 

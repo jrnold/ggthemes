@@ -21,8 +21,8 @@ theme_wsj(
 
 - color:
 
-  The background color of plot. One of
-  `'brown', 'gray', 'green', 'blue'`.
+  A string, the background color of the plot. One of `"gray"`,
+  `"green"`, `"blue"`, `"brown"`.
 
 - base_family:
 
@@ -30,7 +30,7 @@ theme_wsj(
 
 - title_family:
 
-  Plot title font family.
+  A string, the font family of the plot title.
 
 ## Value
 

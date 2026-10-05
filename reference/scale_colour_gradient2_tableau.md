@@ -79,8 +79,8 @@ scale_color_gradient2_tableau(
 
 - guide:
 
-  Type of legend. Use `'colourbar'` for continuous color bar, or
-  `'legend'` for discrete color legend.
+  Type of legend. Use `"colourbar"` for a continuous color bar, or
+  `"legend"` for a discrete color legend.
 
 ## Value
 

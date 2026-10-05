@@ -23,7 +23,8 @@ theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 
 - light:
 
-  `logical`. Light or dark theme?
+  If `TRUE` (the default), use the light theme; otherwise, use the dark
+  theme.
 
 ## Value
 
@@ -34,7 +35,7 @@ A ggplot2 theme object (class `theme`).
 Plots made with this theme integrate seamlessly with the Solarized
 Beamer color theme.
 <https://github.com/jrnold/beamercolorthemesolarized>. There are two
-variations: `theme_solarized` is similar to to
+variations: `theme_solarized()` is similar to
 [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
 while `theme_solarized_2()` is similar to
 [`ggplot2::theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).

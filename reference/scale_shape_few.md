@@ -29,7 +29,11 @@ Enlighten*, Analytics Press, p. 208.
 
 ## See also
 
-`scale_shape_few()` for the shape palette that this scale uses.
+[`few_shape_pal()`](https://jrnold.github.io/ggthemes/reference/few_shape_pal.md)
+for the shape palette that this scale uses.
+
+Other shapes few:
+[`few_shape_pal()`](https://jrnold.github.io/ggthemes/reference/few_shape_pal.md)
 
 ## Examples
 

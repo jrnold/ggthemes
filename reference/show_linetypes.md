@@ -17,17 +17,18 @@ show_linetypes(linetypes, labels = TRUE)
 
 - labels:
 
-  Label each line with its linetype (lty) value.
+  If `TRUE` (the default), label each line with its linetype (`lty`)
+  value.
 
 ## Value
 
-This function called for the side effect of creating a plot. It returns
-`linetypes`.
+Called for its side effect of creating a plot; returns `linetypes`
+invisibly.
 
 ## See also
 
 [`scales::show_col()`](https://scales.r-lib.org/reference/show_col.html),
-`show_linetypes()`
+[`show_shapes()`](https://jrnold.github.io/ggthemes/reference/show_shapes.md)
 
 ## Examples
 
