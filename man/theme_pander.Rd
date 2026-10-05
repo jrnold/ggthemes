@@ -29,11 +29,11 @@ theme_pander(
 
 \item{nomargin}{Whether to suppress the white space around the plot.}
 
-\item{ff}{Font family, like \code{"sans"}. Deprecated: use \code{base_family} instead.}
+\item{ff}{Font family, like \code{"sans"}. \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{base_family} instead.}
 
 \item{fc}{Font color, as a name or hex code.}
 
-\item{fs}{Font size (integer). Deprecated: use \code{base_size} instead.}
+\item{fs}{Font size (integer). \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{base_size} instead.}
 
 \item{gM}{Whether to draw the major grid.}
 

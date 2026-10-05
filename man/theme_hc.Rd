@@ -8,7 +8,7 @@ theme_hc(
   base_size = 12,
   base_family = "sans",
   style = c("default", "default_dark", "darkunica", "grid_light", "sand_signika"),
-  bgcolor = NULL
+  bgcolor = lifecycle::deprecated()
 )
 }
 \arguments{
@@ -19,7 +19,7 @@ theme_hc(
 \item{style}{The Highcharts theme to use. One of
 \code{"default"}, \code{"default_dark"}, \code{"darkunica"}, \code{"grid_light"}, \code{"sand_signika"}.}
 
-\item{bgcolor}{Deprecated.}
+\item{bgcolor}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{style} instead.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).

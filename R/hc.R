@@ -84,7 +84,7 @@ hc_theme_styles <- list(
 #' @inheritParams ggplot2::theme_bw
 #' @param style The Highcharts theme to use. One of
 #'   `r ggthemes:::md_optlist(names(ggthemes:::hc_theme_styles))`.
-#' @param bgcolor Deprecated.
+#' @param bgcolor `r lifecycle::badge("deprecated")` Use `style` instead.
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
 #' @return A ggplot2 theme object (class `theme`).
@@ -93,10 +93,10 @@ theme_hc <- function(
   base_size = 12,
   base_family = "sans",
   style = c("default", "default_dark", "darkunica", "grid_light", "sand_signika"),
-  bgcolor = NULL
+  bgcolor = lifecycle::deprecated()
 ) {
-  if (!is.null(bgcolor)) {
-    cli::cli_warn("{.arg bgcolor} is deprecated. Use {.arg style} instead.")
+  if (lifecycle::is_present(bgcolor)) {
+    lifecycle::deprecate_warn("4.2.0", "theme_hc(bgcolor)", "theme_hc(style)")
     style <- bgcolor
   }
   style <- match.arg(style)
