@@ -37,6 +37,17 @@ jobs:
           extra-packages: any::pkgdown, local::.
           needs: website
 
+      # Fira Sans Condensed is the closest open substitute for The Economist's
+      # Econ Sans Condensed; economist_2017_font() uses it when it is installed.
+      - name: Install chart fonts
+        run: |
+          mkdir -p ~/.local/share/fonts
+          for weight in Light Regular Medium Bold Italic; do
+            curl -fsSL -o ~/.local/share/fonts/FiraSansCondensed-$weight.ttf \
+              https://github.com/google/fonts/raw/main/ofl/firasanscondensed/FiraSansCondensed-$weight.ttf
+          done
+          fc-cache -f
+
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}

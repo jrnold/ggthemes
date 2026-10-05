@@ -159,6 +159,34 @@ load_economist <- function() {
 
 ggthemes_data$economist <- load_economist()
 
+# economist_2017: one complete spec per medium, plus chart sizes, typefaces
+# and footnote symbols. Scalars stay as they are, a list of records (such as
+# name/value pairs: a colour sequence) becomes a tibble, with NA where a record
+# omits a field, a bare vector stays a vector (a ramp, or the footnote
+# symbols), and anything else is a group of these.
+load_economist_era <- function(file) {
+  is_record <- function(x) {
+    is.list(x) && !is.null(names(x)) && all(map_lgl(x, ~ is.atomic(.x) && length(.x) == 1))
+  }
+  convert <- function(x) {
+    if (!is.list(x)) {
+      return(x)
+    }
+    if (length(x) && is.null(names(x)) && all(map_lgl(x, is_record))) {
+      return(map_dfr(x, as_tibble))
+    }
+    map(x, convert)
+  }
+  convert(yaml.load_file(here::here("data-raw", "theme-data", file)))
+}
+
+ggthemes_data$economist_2017 <- load_economist_era("economist_2017.yml")
+# CMYK percentages: YAML reads 100 as an integer and 7.5 as a double.
+ggthemes_data$economist_2017$print$swatches <- mutate(
+  ggthemes_data$economist_2017$print$swatches,
+  across(c("c", "m", "y", "k"), as.numeric)
+)
+
 load_few <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "few.yml"))
   out$colors <- map(out$colors, ~ map_dfr(., as_tibble))

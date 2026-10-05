@@ -101,6 +101,70 @@
 - `theme_solarized_2()` now colors its axis lines. A typo in the color name left
   them unset (#272).
 
+- New `theme_economist_2017()`, `economist_2017_pal()`,
+  `economist_2017_gradient_pal()`, `scale_colour_economist_2017()`,
+  `scale_fill_economist_2017()` and their continuous `_c` versions implement
+  *The Economist visual styleguide* (v1.2, 4 May 2017), the design the paper
+  used from 2017 until its 2024 redesign, for both print and web
+  (`media = c("print", "web")`). They sit alongside `theme_economist()` and
+  `economist_pal()`, which are unchanged. Print and web use the same
+  palettes, as the guide's own web charts do: the guide's five
+  per-chart-type color orders (`type`) and its two high-contrast supporting
+  sets (`set`); the continuous scales use the guide's equal-lightness ramps. Every size in the theme, including rule weights,
+  margins and panel spacing, is relative to `base_size`, and is the guide's
+  own at the default `base_size = 10`. The default font is
+  `economist_2017_font()`: the first installed of Fira Sans Condensed and
+  Roboto Condensed, the closest open substitutes for the guide's Econ Sans
+  Condensed, and otherwise `"sans"`.
+
+- New `geom_label_economist_2017()` draws the 2017 styleguide's text blocks: a label in
+  a shaded box with a pointer on one side, sized in points to the guide's
+  specification. `annotate("label_economist_2017", ...)` adds a single one.
+
+- New timeline layers for the 2017 styleguide's timelines:
+  `geom_event_economist_2017()` (a dated event: a rule with an arrowhead to its
+  label), `geom_span_economist_2017()` (a shaded period in the panel),
+  `geom_period_economist_2017()` (thin alternating bars for successive periods,
+  such as terms of office) and `geom_year_band_economist_2017()` (the year band used as
+  a timeline's x-axis).
+
+- New `guide_axis_economist_2017()` draws value-axis labels the way *The
+  Economist* does: inside the panel, just above their gridlines and flush
+  with its edge.
+
+- New `economist_2017_chart()` finishes a plot as an Economist chart. It
+  draws what a theme cannot set: the red tab above the title, the red rule
+  across the top of a web chart and a red marker above each panel heading. It
+  also lays the plot out as the guide does: a web chart's key beside the
+  title, y-axis titles above the panel, and end-of-axis labels kept within
+  it. It takes a `footnote`, set ranged right on the source line, a `number`
+  for the guide's number box, and the `tab` size.
+
+- New `economist_2017_size()` returns the guide's chart sizes (1, 2 and 3
+  columns, leader, Free exchange, Espresso and the special-report grid) in
+  inches or points, for `ggsave()` or knitr, and `economist_2017_footnote()`
+  returns the guide's footnote symbols in order of use (`*`, `†`, `‡`, `§`,
+  `**`, ...).
+
+- New `geom_scale_break_economist_2017()` draws the styleguide's broken-scale mark (p.25), a
+  small zigzag on a y-axis that does not start at zero. It is decoration, not
+  a transformation: truncate the axis with the scale's `limits` and add the
+  layer to declare it.
+
+- New `economist_2017_year()` and `economist_2017_year_format()` label a dated axis as
+  *The Economist* does, with years shortened to two digits except the first
+  label and each century (`1948 52 56 ... 96 2000 04`).
+
+- New articles on the package website: "The Economist, 2017" covers the theme
+  at different chart sizes, and "Reproducing the 2017 Economist styleguide"
+  works through the guide's examples page by page.
+
+- `ggthemes_data` gains `economist_2017`, the colors of the 2017 styleguide
+  for print and web, with its chart sizes, typefaces and footnote symbols,
+  and every swatch of the print palette on p.11 with the CMYK it specifies
+  and its sRGB conversion through ISO Coated v2 (FOGRA39), the guide's own
+  color space, from which the print palettes and theme colors are drawn.
+
 # ggthemes 7.0.0
 
 - Fix `palette_pander()` returning a color for `n = 0`; it now returns

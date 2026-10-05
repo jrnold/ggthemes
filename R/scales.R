@@ -268,3 +268,64 @@ smart_digits_format <- function(x, ...) {
 }
 
 # nolint end: object_name_linter
+
+#' Label a dated axis in the Economist 2017 style
+#'
+#' Truncates year labels to their last two digits, keeping the first labeled
+#' year and every century boundary in full: `1948 52 56 ... 96 2000 04 08`.
+#' This is the convention on every dated axis in *The Economist visual
+#' styleguide* (v1.2, 4 May 2017) -- see pp.6, 7, 13, 15, 16 and 23 -- and it
+#' keeps a crowded time axis readable without losing the reader's anchor.
+#'
+#' Values that are not whole years are left in full rather than truncated,
+#' since a two-digit form would be misleading for them.
+#'
+#' @param x A numeric vector of years to format.
+#' @param ... Passed to [format()], used for the years shown in full.
+#'
+#' @return `economist_2017_year()` returns a character vector.
+#'   `economist_2017_year_format()` returns a function of a single argument `x`
+#'   that returns a character vector, for use as a scale's `labels`.
+#'
+#' @examples
+#' economist_2017_year(c(1948, 1952, 1956, 2000, 2004))
+#'
+#' @family economist 2017
+#' @rdname economist_2017_year
+#' @export
+economist_2017_year <- function(x, ...) {
+  if (length(x) == 0) {
+    return(character())
+  }
+  out <- rep(NA_character_, length(x))
+  labelled <- !is.na(x)
+  whole <- labelled & x == trunc(x)
+
+  # Full for the first labelled break and at every century boundary; ggplot2
+  # passes out-of-range breaks as NA, so the first non-NA entry is the first
+  # break the reader actually sees.
+  full <- whole & x %% 100 == 0
+  first <- which(labelled)[1]
+  if (length(first)) {
+    full[first] <- TRUE
+  }
+
+  # Formatted one at a time: a shared call would pad every year to the widest
+  # format in the vector, so a single fractional break would turn 2010 into
+  # "2010.0".
+  spelled <- labelled & (!whole | full)
+  out[spelled] <- vapply(
+    x[spelled],
+    function(year) format(year, trim = TRUE, ...),
+    character(1)
+  )
+  truncated <- whole & !full
+  out[truncated] <- sprintf("%02d", as.integer(x[truncated] %% 100))
+  out
+}
+
+#' @rdname economist_2017_year
+#' @export
+economist_2017_year_format <- function(...) {
+  function(x) economist_2017_year(x, ...)
+}
