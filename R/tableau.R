@@ -83,6 +83,10 @@ tableau_color_pal <- function(
   f
 }
 
+#' @export
+#' @rdname tableau_color_pal
+tableau_colour_pal <- tableau_color_pal
+
 #' Tableau color scales (discrete)
 #'
 #' Categorical (qualitative) color scales used in Tableau.
@@ -262,6 +266,10 @@ scale_color_gradient_tableau <- scale_colour_gradient_tableau
 #' @export
 #' @rdname scale_colour_gradient_tableau
 scale_color_continuous_tableau <- scale_colour_gradient_tableau
+
+#' @export
+#' @rdname scale_colour_gradient_tableau
+scale_colour_continuous_tableau <- scale_colour_gradient_tableau # nolint: object_length_linter.
 
 #' @export
 #' @rdname scale_colour_gradient_tableau
