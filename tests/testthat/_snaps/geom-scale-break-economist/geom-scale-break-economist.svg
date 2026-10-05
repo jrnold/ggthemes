@@ -18,7 +18,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<rect x='0.000000000000064' y='0.00' width='720.00' height='576.00' style='stroke-width: 0.50; stroke: none; fill: #E2EEF3;' />
+<rect x='0.000000000000064' y='0.00' width='720.00' height='576.00' style='stroke-width: 0.50; stroke: none; fill: #E7F0F5;' />
 </g>
 <defs>
   <clipPath id='cpMjIuMjV8NzE0LjAyfDIxLjk2fDU1MC41MQ=='>
@@ -26,12 +26,12 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMjIuMjV8NzE0LjAyfDIxLjk2fDU1MC41MQ==)'>
-<polyline points='22.25,526.48 714.02,526.48 ' style='stroke-width: 0.50; stroke: #B4C0C6; stroke-linecap: butt;' />
-<polyline points='22.25,430.38 714.02,430.38 ' style='stroke-width: 0.50; stroke: #B4C0C6; stroke-linecap: butt;' />
-<polyline points='22.25,334.28 714.02,334.28 ' style='stroke-width: 0.50; stroke: #B4C0C6; stroke-linecap: butt;' />
-<polyline points='22.25,238.18 714.02,238.18 ' style='stroke-width: 0.50; stroke: #B4C0C6; stroke-linecap: butt;' />
-<polyline points='22.25,142.08 714.02,142.08 ' style='stroke-width: 0.50; stroke: #B4C0C6; stroke-linecap: butt;' />
-<polyline points='22.25,45.98 714.02,45.98 ' style='stroke-width: 0.50; stroke: #B4C0C6; stroke-linecap: butt;' />
+<polyline points='22.25,526.48 714.02,526.48 ' style='stroke-width: 0.50; stroke: #BFC9CF; stroke-linecap: butt;' />
+<polyline points='22.25,430.38 714.02,430.38 ' style='stroke-width: 0.50; stroke: #BFC9CF; stroke-linecap: butt;' />
+<polyline points='22.25,334.28 714.02,334.28 ' style='stroke-width: 0.50; stroke: #BFC9CF; stroke-linecap: butt;' />
+<polyline points='22.25,238.18 714.02,238.18 ' style='stroke-width: 0.50; stroke: #BFC9CF; stroke-linecap: butt;' />
+<polyline points='22.25,142.08 714.02,142.08 ' style='stroke-width: 0.50; stroke: #BFC9CF; stroke-linecap: butt;' />
+<polyline points='22.25,45.98 714.02,45.98 ' style='stroke-width: 0.50; stroke: #BFC9CF; stroke-linecap: butt;' />
 <polyline points='53.69,218.96 110.86,142.08 168.04,161.30 225.21,315.06 282.38,391.94 339.55,257.40 396.72,142.08 453.89,103.64 511.06,132.47 568.24,180.52 625.41,391.94 682.58,295.84 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='708.04,538.49 709.54,538.49 710.73,536.50 711.33,540.49 712.53,538.49 714.02,538.49 ' style='stroke-width: 0.40; stroke-linecap: butt;' />
 </g>
@@ -53,6 +53,6 @@
 <text x='682.58' y='561.80' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>2016</text>
 <text x='368.14' y='569.30' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='3.50px' lengthAdjust='spacingAndGlyphs'>x</text>
 <text x='7.73' y='26.78' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='3.50px' lengthAdjust='spacingAndGlyphs'>y</text>
-<text x='5.98' y='16.50' style='font-size: 9.50px; font-weight: bold; font-family: sans;' textLength='80.29px' lengthAdjust='spacingAndGlyphs'>geom_scale_break</text>
+<text x='5.98' y='16.50' style='font-size: 9.50px; font-weight: bold; font-family: sans;' textLength='128.88px' lengthAdjust='spacingAndGlyphs'>geom_scale_break_economist</text>
 </g>
 </svg>

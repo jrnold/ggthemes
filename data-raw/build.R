@@ -200,6 +200,11 @@ load_economist_era <- function(file) {
 }
 
 ggthemes_data$economist_2017 <- load_economist_era("economist_2017.yml")
+# CMYK percentages: YAML reads 100 as an integer and 7.5 as a double.
+ggthemes_data$economist_2017$print$swatches <- mutate(
+  ggthemes_data$economist_2017$print$swatches,
+  across(c("c", "m", "y", "k"), as.numeric)
+)
 ggthemes_data$economist_2024 <- load_economist_media("economist_2024.yml")
 
 # Current Economist design-system colour tokens -----------------------------

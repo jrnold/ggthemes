@@ -11,15 +11,16 @@ economist_2017_pal(
 )
 }
 \arguments{
-\item{media}{Either `"print"` or `"web"`.}
+\item{media}{Either `"print"` or `"web"`. Both media have the same
+palettes; each reads its own complete spec in [ggthemes_data].}
 
-\item{set}{For `media = "print"` only. `"primary"` is the six-color
-palette, in the order given by `type`. `"bright"` (four colors) and
+\item{set}{`"primary"` is the six-color palette, in the order given by
+`type`. `"bright"` (four colors) and
 `"dark"` (three colors) are the guide's supporting sets "for
 multi-category charts where high contrast is needed" (p.11); they have
 no per-chart-type order, so `type` is ignored for them.}
 
-\item{type}{For `media = "print"` and `set = "primary"` only: which chart
+\item{type}{For `set = "primary"` only: which chart
 type's color order to use. `"bar_side"` is bar or column, side by side
 (p.13), and is the guide's default reading order; `"stacked"` is
 bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
@@ -34,31 +35,31 @@ A palette function. It takes the number of colors `n` and
 \description{
 The categorical palettes of \emph{The Economist visual styleguide}
 (v1.2, 4 May 2017), the design \emph{The Economist} introduced in 2017
-and used until its 2024 redesign. Print and web use different hues, not
-just different backgrounds, so pick the medium the chart is for.
+and used until its 2024 redesign. Print and web charts use the same
+palettes: the guide's own web charts (pp.3, 7, 9, 24) are drawn in the
+print colors and follow the print color orders.
 }
 \details{
-The print palette is not one fixed order. Each chart-type page of the
-guide (pp.13-20) carries its own numbered color order. They are
-reorderings of the same six hues, and come in five distinct sequences,
-chosen with `type`. The guide gives the web palette (p.12) as a single
-row of nine colors, so `type` has no effect when `media = "web"`.
+The palette is not one fixed order. Each chart-type page of the guide
+(pp.13-20) carries its own numbered color order. They are reorderings of
+the same six hues, and come in five distinct sequences, chosen with
+`type`.
 }
 \examples{
 library("scales")
 
-## Print: the side-by-side bar order, the guide's default
+## The side-by-side bar order, the guide's default
 show_col(economist_2017_pal()(6))
 
-## Print, ordered for a line chart
+## Ordered for a line chart
 show_col(economist_2017_pal(type = "line_side")(6))
 
-## Print, the high-contrast supporting sets
+## The high-contrast supporting sets
 show_col(economist_2017_pal(set = "bright")(4))
 show_col(economist_2017_pal(set = "dark")(3))
 
-## Web: nine colours
-show_col(economist_2017_pal("web")(9))
+## Web charts use the same palettes
+identical(economist_2017_pal("web")(6), economist_2017_pal("print")(6))
 }
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
@@ -67,10 +68,13 @@ Matt McLean), pp.11-20.
 \seealso{
 Other economist 2017:
 \code{\link[=economist_2017_chart]{economist_2017_chart()}},
+\code{\link[=economist_2017_font]{economist_2017_font()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
-\code{\link[=geom_scale_break]{geom_scale_break()}},
+\code{\link[=geom_label_economist]{geom_label_economist()}},
+\code{\link[=geom_scale_break_economist]{geom_scale_break_economist()}},
+\code{\link{geom_timeline_economist}},
 \code{\link[=guide_axis_economist]{guide_axis_economist()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}

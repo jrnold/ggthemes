@@ -60,6 +60,6 @@ Config/Needs/coverage: covr
 Config/Needs/data: purrr, stringr
 Config/Needs/lint: lintr, cyclocomp
 Config/Needs/readme: knitr, rmarkdown
-Config/Needs/website: pkgdown
+Config/Needs/website: gt, pkgdown
 Config/roxygen2/version: 8.1.0
 Roxygen: list(markdown = TRUE)

@@ -16,7 +16,10 @@ reference:
   - economist_2017_chart
   - economist_2017_size
   - economist_2017_footnote
-  - geom_scale_break
+  - economist_2017_font
+  - geom_label_economist
+  - geom_timeline_economist
+  - geom_scale_break_economist
   - economist_year
 - title: Color Scales
   desc: Provided ggplot2 scales for the `color` (`colour`) aesthetic. Scales control

@@ -33,6 +33,7 @@ scale_fill_economist_2017(
 scale_colour_economist_2017_c(
   hue = "blue",
   direction = 1,
+  media = c("print", "web"),
   guide = "colourbar",
   ...
 )
@@ -40,6 +41,7 @@ scale_colour_economist_2017_c(
 scale_color_economist_2017_c(
   hue = "blue",
   direction = 1,
+  media = c("print", "web"),
   guide = "colourbar",
   ...
 )
@@ -47,20 +49,22 @@ scale_color_economist_2017_c(
 scale_fill_economist_2017_c(
   hue = "blue",
   direction = 1,
+  media = c("print", "web"),
   guide = "colourbar",
   ...
 )
 }
 \arguments{
-\item{media}{Either `"print"` or `"web"`.}
+\item{media}{Either `"print"` or `"web"`. Both media have the same
+palettes; each reads its own complete spec in [ggthemes_data].}
 
-\item{set}{For `media = "print"` only. `"primary"` is the six-color
-palette, in the order given by `type`. `"bright"` (four colors) and
+\item{set}{`"primary"` is the six-color palette, in the order given by
+`type`. `"bright"` (four colors) and
 `"dark"` (three colors) are the guide's supporting sets "for
 multi-category charts where high contrast is needed" (p.11); they have
 no per-chart-type order, so `type` is ignored for them.}
 
-\item{type}{For `media = "print"` and `set = "primary"` only: which chart
+\item{type}{For `set = "primary"` only: which chart
 type's color order to use. `"bar_side"` is bar or column, side by side
 (p.13), and is the guide's default reading order; `"stacked"` is
 bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
@@ -107,11 +111,14 @@ ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
 \seealso{
 Other economist 2017:
 \code{\link[=economist_2017_chart]{economist_2017_chart()}},
+\code{\link[=economist_2017_font]{economist_2017_font()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
-\code{\link[=geom_scale_break]{geom_scale_break()}},
+\code{\link[=geom_label_economist]{geom_label_economist()}},
+\code{\link[=geom_scale_break_economist]{geom_scale_break_economist()}},
+\code{\link{geom_timeline_economist}},
 \code{\link[=guide_axis_economist]{guide_axis_economist()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}
 }

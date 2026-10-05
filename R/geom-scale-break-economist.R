@@ -43,8 +43,8 @@
 #' @family economist 2017
 #' @importFrom ggplot2 layer
 #' @export
-#' @example inst/examples/ex-geom_scale_break.R
-geom_scale_break <- function(
+#' @example inst/examples/ex-geom_scale_break_economist.R
+geom_scale_break_economist <- function(
   side = c("right", "left"),
   width = 6,
   height = 4,
@@ -59,7 +59,7 @@ geom_scale_break <- function(
     data = data.frame(x = 0),
     mapping = NULL,
     stat = "identity",
-    geom = GeomScaleBreak,
+    geom = GeomScaleBreakEconomist,
     position = "identity",
     show.legend = FALSE,
     inherit.aes = FALSE,
@@ -74,15 +74,15 @@ geom_scale_break <- function(
   )
 }
 
-#' @rdname geom_scale_break
+#' @rdname geom_scale_break_economist
 #' @usage NULL
 #' @format NULL
 #' @export
 #' @importFrom ggplot2 ggproto Geom zeroGrob draw_key_blank
 #' @importFrom grid polylineGrob gpar unit
 # nolint start: object_name_linter
-GeomScaleBreak <- ggproto(
-  "GeomScaleBreak",
+GeomScaleBreakEconomist <- ggproto(
+  "GeomScaleBreakEconomist",
   Geom,
   required_aes = character(),
   draw_key = draw_key_blank,

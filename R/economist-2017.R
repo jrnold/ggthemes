@@ -2,22 +2,23 @@
 #'
 #' The categorical palettes of \emph{The Economist visual styleguide}
 #' (v1.2, 4 May 2017), the design \emph{The Economist} introduced in 2017
-#' and used until its 2024 redesign. Print and web use different hues, not
-#' just different backgrounds, so pick the medium the chart is for.
+#' and used until its 2024 redesign. Print and web charts use the same
+#' palettes: the guide's own web charts (pp.3, 7, 9, 24) are drawn in the
+#' print colors and follow the print color orders.
 #'
-#' The print palette is not one fixed order. Each chart-type page of the
-#' guide (pp.13-20) carries its own numbered color order. They are
-#' reorderings of the same six hues, and come in five distinct sequences,
-#' chosen with `type`. The guide gives the web palette (p.12) as a single
-#' row of nine colors, so `type` has no effect when `media = "web"`.
+#' The palette is not one fixed order. Each chart-type page of the guide
+#' (pp.13-20) carries its own numbered color order. They are reorderings of
+#' the same six hues, and come in five distinct sequences, chosen with
+#' `type`.
 #'
-#' @param media Either `"print"` or `"web"`.
-#' @param set For `media = "print"` only. `"primary"` is the six-color
-#'   palette, in the order given by `type`. `"bright"` (four colors) and
+#' @param media Either `"print"` or `"web"`. Both media have the same
+#'   palettes; each reads its own complete spec in [ggthemes_data].
+#' @param set `"primary"` is the six-color palette, in the order given by
+#'   `type`. `"bright"` (four colors) and
 #'   `"dark"` (three colors) are the guide's supporting sets "for
 #'   multi-category charts where high contrast is needed" (p.11); they have
 #'   no per-chart-type order, so `type` is ignored for them.
-#' @param type For `media = "print"` and `set = "primary"` only: which chart
+#' @param type For `set = "primary"` only: which chart
 #'   type's color order to use. `"bar_side"` is bar or column, side by side
 #'   (p.13), and is the guide's default reading order; `"stacked"` is
 #'   bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
@@ -43,18 +44,7 @@ economist_2017_pal <- function(
   media <- rlang::arg_match(media)
   set <- rlang::arg_match(set)
   type <- rlang::arg_match(type)
-  if (media == "web" && set != "primary") {
-    cli::cli_abort(
-      '{.arg set} {.val {set}} is only defined for {.code media = "print"}.'
-    )
-  }
-  key <- if (media == "web") {
-    "primary"
-  } else if (set == "primary") {
-    type
-  } else {
-    set
-  }
+  key <- if (set == "primary") type else set
   spec <- ggthemes::ggthemes_data[["economist_2017"]][[media]]
   colors <- spec[["qualitative"]][[key]][["value"]]
   max_n <- length(colors)
@@ -71,9 +61,10 @@ economist_2017_pal <- function(
 #' Interpolates one of the "equal lightness colour scales" of \emph{The
 #' Economist visual styleguide} (v1.2, 4 May 2017, p.12): six steps of one
 #' hue, of even perceived lightness, for ordered and continuous data. Low
-#' values get the lightest step. These are the guide's web ramps; it gives
-#' none for print.
+#' values get the lightest step. The guide gives them on its web palette page;
+#' print and web use the same ramps.
 #'
+#' @inheritParams economist_2017_pal
 #' @param hue One of `"red"`, `"blue"`, `"cyan"`, `"green"`, `"yellow"`,
 #'   `"olive"`, `"purple"`, `"gold"` or `"grey"`.
 #' @param direction `1` maps low values to the lightest step; `-1` reverses
@@ -90,8 +81,9 @@ economist_2017_pal <- function(
 #' @family economist 2017
 #' @export
 #' @example inst/examples/ex-economist_2017_gradient_pal.R
-economist_2017_gradient_pal <- function(hue = "blue", direction = 1) {
-  ramps <- ggthemes::ggthemes_data[["economist_2017"]][["web"]][["sequential"]]
+economist_2017_gradient_pal <- function(hue = "blue", direction = 1, media = c("print", "web")) {
+  media <- rlang::arg_match(media)
+  ramps <- ggthemes::ggthemes_data[["economist_2017"]][[media]][["sequential"]]
   hue <- rlang::arg_match(hue, names(ramps))
   if (!direction %in% c(-1, 1)) {
     cli::cli_abort("{.arg direction} must be 1 or -1, not {.val {direction}}.")
@@ -159,12 +151,13 @@ scale_fill_economist_2017 <- function(
 scale_colour_economist_2017_c <- function(
   hue = "blue",
   direction = 1,
+  media = c("print", "web"),
   guide = "colourbar",
   ...
 ) {
   continuous_scale(
     "colour",
-    palette = economist_2017_gradient_pal(hue = hue, direction = direction),
+    palette = economist_2017_gradient_pal(hue = hue, direction = direction, media = media),
     guide = guide,
     ...
   )
@@ -179,12 +172,13 @@ scale_color_economist_2017_c <- scale_colour_economist_2017_c
 scale_fill_economist_2017_c <- function(
   hue = "blue",
   direction = 1,
+  media = c("print", "web"),
   guide = "colourbar",
   ...
 ) {
   continuous_scale(
     "fill",
-    palette = economist_2017_gradient_pal(hue = hue, direction = direction),
+    palette = economist_2017_gradient_pal(hue = hue, direction = direction, media = media),
     guide = guide,
     ...
   )
@@ -221,13 +215,18 @@ scale_fill_economist_2017_c <- function(
 #'   beside the title, and the y-axis titles from beside the panel to above
 #'   it, where the guide sets them (p.10).
 #' * The guide sets charts in Econ Sans, which is not publicly available.
-#'   Pass a narrow sans serif as `base_family`. Econ Sans's medium weight,
-#'   used for panel and legend headings, is drawn plain.
+#'   By default the theme uses the closest installed substitute, chosen by
+#'   [economist_2017_font()]. Econ Sans's medium weight, used for panel and
+#'   legend headings, is drawn plain.
 #'
 #' @param media Either `"print"` or `"web"`.
 #' @param base_size Base font size, in points. Every size in the theme is
 #'   relative to it.
-#' @param base_family Base font family.
+#' @param base_family Base font family. The default, [economist_2017_font()],
+#'   is Fira Sans Condensed or Roboto Condensed if either is installed, and
+#'   otherwise `"sans"`. Base R's `pdf()` and `postscript()` devices know only
+#'   their own font database; with them, use [grDevices::cairo_pdf()] or a
+#'   'ragg' device, or pass `base_family = "sans"`.
 #' @param horizontal Draw horizontal gridlines, the guide's convention?
 #'   Use `FALSE` for vertical gridlines on a horizontal bar chart.
 #'
@@ -243,7 +242,7 @@ scale_fill_economist_2017_c <- function(
 theme_economist_2017 <- function(
   media = c("print", "web"),
   base_size = 10,
-  base_family = "sans",
+  base_family = economist_2017_font(),
   horizontal = TRUE
 ) {
   media <- rlang::arg_match(media)
@@ -802,6 +801,49 @@ print.ggthemes_economist_chart <- function(x, newpage = TRUE, ...) {
   }
   grid::grid.draw(x)
   invisible(x)
+}
+
+#' Choose a font for the Economist 2017 theme
+#'
+#' The guide sets charts in Econ Sans Condensed, which is not publicly
+#' available. `economist_2017_font()` returns the first of `families` that
+#' is installed, and `fallback` if none is. The defaults are the closest
+#' openly licensed substitutes: Fira Sans Condensed, a humanist sans of the
+#' same width class, then Roboto Condensed.
+#'
+#' A font counts as installed if \pkg{systemfonts}, which the 'ragg' and
+#' 'svglite' devices use to find fonts, lists it among the system fonts or
+#' the fonts registered with [systemfonts::register_font()]. Without
+#' \pkg{systemfonts}, the result is always `fallback`.
+#'
+#' @param families Font families to try, in order of preference.
+#' @param fallback The family to use if none of `families` is installed.
+#'
+#' @return A single font family name, for `base_family` of
+#'   [theme_economist_2017()] or the `family` of a text geom.
+#'
+#' @family economist 2017
+#' @export
+#' @examples
+#' economist_2017_font()
+#' # Prefer another font, falling back to the defaults
+#' economist_2017_font(c("Source Sans 3", "Fira Sans Condensed", "Roboto Condensed"))
+economist_2017_font <- function(
+  families = c("Fira Sans Condensed", "Roboto Condensed"),
+  fallback = "sans"
+) {
+  if (!is.character(families)) {
+    cli::cli_abort("{.arg families} must be a character vector.")
+  }
+  if (!rlang::is_string(fallback)) {
+    cli::cli_abort("{.arg fallback} must be a single string.")
+  }
+  if (!length(families) || !rlang::is_installed("systemfonts")) {
+    return(fallback)
+  }
+  installed <- c(systemfonts::system_fonts()[["family"]], systemfonts::registry_fonts()[["family"]])
+  found <- families[families %in% installed]
+  if (length(found)) found[[1]] else fallback
 }
 
 #' Economist 2017 chart sizes

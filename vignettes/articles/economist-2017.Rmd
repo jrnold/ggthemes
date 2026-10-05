@@ -25,9 +25,9 @@ library(ggthemes)
 `theme_economist_2017()` and its palettes implement *The Economist visual
 styleguide* (v1.2, 4 May 2017), the chart design *The Economist* introduced in
 2017 and used until its 2024 redesign. The guide specifies two media, print
-and web, which differ in more than background: they use different hues, and
-web charts have no outer margin, a red rule across the top and the key beside
-the title.
+and web. They share their palettes but differ in more than background: web
+charts are on white, with no outer margin, a red rule across the top and the
+key beside the title.
 
 For a page-by-page reproduction of the guide's own examples, see
 [Reproducing the 2017 Economist styleguide](economist-2017-styleguide.html).
@@ -38,7 +38,7 @@ A standard chart takes four pieces from ggthemes:
 
 ```{r savings}
 savings <- ggplot(economics, aes(date, psavert)) +
-  geom_line(colour = economist_2017_pal("web")(2)[2], linewidth = 0.6) +
+  geom_line(colour = economist_2017_pal()(1), linewidth = 0.6) +
   scale_y_continuous(
     position = "right",
     guide = guide_axis_economist(),
@@ -78,7 +78,7 @@ economist_2017_chart(savings + theme_economist_2017("print"), "print")
 
 ## Chart sizes
 
-The guide gives every size in points, for charts of fixed width (p.4):
+The guide gives every size in points, for charts of fixed width:
 
 | Size | Print width | Web |
 |---|---|---|
@@ -131,7 +131,7 @@ tokyo <- function(base_size = 10, linewidth = 0.4, key_rows = 1) {
 
 ### One column, 160pt
 
-The guide's standard print chart (p.6), at actual size. The guide fits both
+The guide's standard print chart, at actual size. The guide fits both
 keys on one line in Econ Sans Condensed; a full-width sans serif needs two.
 
 ```{r one-column, fig.width = 160 / 72, fig.height = 180 / 72, out.width = "213px"}
@@ -173,7 +173,7 @@ part of the theme, so scale their `linewidth` yourself.
 ## Panel charts
 
 Facet strips are the guide's panel headings: flush left, 24pt apart side by
-side and 15pt stacked (p.10). `economist_2017_chart()` adds the short red
+side and 15pt stacked. `economist_2017_chart()` adds the short red
 marker above each heading.
 
 ```{r panels, fig.width = 332 / 72, fig.height = 220 / 72, out.width = "443px"}
@@ -194,8 +194,8 @@ economist_2017_chart(p)
 
 ## Color
 
-The print palette comes in five orders of the same six hues, one per chart
-type (pp.13-20), plus two high-contrast supporting sets. Pick the order with
+The palette comes in five orders of the same six hues, one per chart
+type, plus two high-contrast supporting sets. Pick the order with
 `type`, or a supporting set with `set`:
 
 ```{r swatch-setup}
@@ -209,28 +209,39 @@ print_swatches <- list(
   'economist_2017_pal(set = "bright")' = economist_2017_pal(set = "bright")(4),
   'economist_2017_pal(set = "dark")' = economist_2017_pal(set = "dark")(3)
 )
-ramps <- ggthemes_data$economist_2017$web$sequential
-web_swatches <- c(
-  list('economist_2017_pal("web")' = economist_2017_pal("web")(9)),
-  setNames(ramps, sprintf('economist_2017_gradient_pal("%s")', names(ramps)))
-)
+ramps <- ggthemes_data$economist_2017$print$sequential
+ramp_swatches <- setNames(ramps, sprintf('economist_2017_gradient_pal("%s")', names(ramps)))
 ```
 
 ```{r print-palettes, echo = FALSE, fig.width = swatch_width(print_swatches), fig.height = swatch_height(print_swatches), out.width = paste0(round(swatch_width(print_swatches) * 96), "px")}
 swatch_plot(print_swatches)
 ```
 
-The web palette has nine colors in one order (p.12), and the guide's
-"equal lightness colour scales" give a six-step ramp for each, used by
+Web charts use the same palettes: the guide's own web charts are drawn in
+the print colors and follow the print orders, so `economist_2017_pal("web")`
+gives the same colors as `economist_2017_pal()`.
+
+For ordered and continuous data, the guide's "equal lightness colour scales"
+give a six-step ramp for each of nine hues, used by
 `scale_colour_economist_2017_c()` and `scale_fill_economist_2017_c()`:
 
-```{r web-palettes, echo = FALSE, fig.width = swatch_width(web_swatches), fig.height = swatch_height(web_swatches), out.width = paste0(round(swatch_width(web_swatches) * 96), "px")}
-swatch_plot(web_swatches)
+```{r ramps, echo = FALSE, fig.width = swatch_width(ramp_swatches), fig.height = swatch_height(ramp_swatches), out.width = paste0(round(swatch_width(ramp_swatches) * 96), "px")}
+swatch_plot(ramp_swatches)
 ```
 
 ## Type
 
-The guide sets charts in Econ Sans, which is not publicly available. Pass a
-narrow sans serif as `base_family`, such as "Roboto Condensed" or "Arial
-Narrow". Econ Sans uses a medium weight for panel and legend headings, which
-ggplot2 cannot select, so the theme draws them plain.
+The guide sets charts in Econ Sans Condensed, which is not publicly
+available. By default the theme uses `economist_2017_font()`, which returns the
+first installed of Fira Sans Condensed and Roboto Condensed, both free from
+Google Fonts, and otherwise `"sans"`. Pass your own preferences to it, or any
+family as `base_family`:
+
+```{r font, eval = FALSE}
+theme_economist_2017(base_family = economist_2017_font(c("Source Sans 3", "Fira Sans Condensed")))
+```
+
+Base R's `pdf()` device knows only its own font database, so save with
+`cairo_pdf()` or a ragg device, or pass `base_family = "sans"`. Econ Sans uses
+a medium weight for panel and legend headings, which ggplot2 cannot select, so
+the theme draws them plain.
