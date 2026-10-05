@@ -32,7 +32,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #'
 #' @param x A numeric vector of x values.
 #' @param y A numeric vector of y values.
-#' @param cull `logical`. Remove all slopes of 0 or `Inf`.
+#' @param cull If `TRUE` (the default), drop segments with a slope of 0 or `Inf` before banking.
 #' @param method One of 'ms' (Median Absolute Slope), 'as' (Average
 #' Absolute Slope), 'ao' (Average Absolute Orientation), or 'was' (Weighted
 #' Average Absolute Orientation).
@@ -138,7 +138,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #' @export
 #' @importFrom stats median uniroot
 #' @example inst/examples/ex-bank_slopes.R
-bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as", "ao", "was"), ...) {
+bank_slopes <- function(x, y, cull = TRUE, weight = NULL, method = c("ms", "as", "ao", "was"), ...) {
   method <- rlang::arg_match(method)
   fun <- bank_slopes_funs[[method]]
   # Heer produces functions with the target alpha = w/h = x/y
@@ -182,13 +182,11 @@ bank_slopes <- function(x, y, cull = FALSE, weight = NULL, method = c("ms", "as"
 #' p <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +
 #'   geom_line()
 #' bank_plot(p)
-bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = FALSE, layer = 1, ...) {
-  stopifnot(ggplot2::is_ggplot(plot))
+bank_plot <- function(plot, method = c("ms", "as", "ao", "was"), cull = TRUE, layer = 1, ...) {
+  check_ggplot(plot)
   method <- rlang::arg_match(method)
   built <- ggplot2::ggplot_build(plot)
-  if (layer < 1 || layer > length(built$data)) {
-    cli::cli_abort("{.arg plot} only has {length(built$data)} layer(s), but {.arg layer} = {layer}.")
-  }
+  check_layer(layer, length(built$data))
   data <- built$data[[layer]]
   check_bank_plot_data(data)
 
