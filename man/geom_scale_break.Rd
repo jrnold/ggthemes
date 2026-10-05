@@ -22,8 +22,8 @@ the styleguide's usual placement, since it puts axis labels on the right;
 \item{width, height}{Size of the symbol in points. The guide specifies a
 6pt width (p.25).}
 
-\item{colour}{Colour of the symbol. The guide draws it in black, not in the
-axis or text colour.}
+\item{colour}{Color of the symbol. The guide draws it in black, not in the
+axis or text color.}
 
 \item{stroke}{Stroke weight in points. The guide specifies 0.4pt.}
 
@@ -83,8 +83,8 @@ Matt McLean), p.25.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_chart]{economist_2017_chart()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
-\code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},

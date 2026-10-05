@@ -1,4 +1,4 @@
-#' Economist 2017 colour palette
+#' Economist 2017 color palette
 #'
 #' The categorical palettes of \emph{The Economist visual styleguide}
 #' (v1.2, 4 May 2017), the design \emph{The Economist} introduced in 2017
@@ -6,26 +6,26 @@
 #' just different backgrounds, so pick the medium the chart is for.
 #'
 #' The print palette is not one fixed order. Each chart-type page of the
-#' guide (pp.13-20) carries its own numbered colour order. They are
+#' guide (pp.13-20) carries its own numbered color order. They are
 #' reorderings of the same six hues, and come in five distinct sequences,
 #' chosen with `type`. The guide gives the web palette (p.12) as a single
-#' row of nine colours, so `type` has no effect when `media = "web"`.
+#' row of nine colors, so `type` has no effect when `media = "web"`.
 #'
 #' @param media Either `"print"` or `"web"`.
-#' @param set For `media = "print"` only. `"primary"` is the six-colour
-#'   palette, in the order given by `type`. `"bright"` (four colours) and
-#'   `"dark"` (three colours) are the guide's supporting sets "for
+#' @param set For `media = "print"` only. `"primary"` is the six-color
+#'   palette, in the order given by `type`. `"bright"` (four colors) and
+#'   `"dark"` (three colors) are the guide's supporting sets "for
 #'   multi-category charts where high contrast is needed" (p.11); they have
 #'   no per-chart-type order, so `type` is ignored for them.
 #' @param type For `media = "print"` and `set = "primary"` only: which chart
-#'   type's colour order to use. `"bar_side"` is bar or column, side by side
+#'   type's color order to use. `"bar_side"` is bar or column, side by side
 #'   (p.13), and is the guide's default reading order; `"stacked"` is
 #'   bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
 #'   side (p.15); `"dot"` is thermometer or scatter (pp.17-18); and `"pie"` is
 #'   pie or doughnut (p.20).
 #'
-#' @return A palette function. It takes the number of colours `n` and
-#'   returns a character vector of `n` hex colours, and can be used as the
+#' @return A palette function. It takes the number of colors `n` and
+#'   returns a character vector of `n` hex colors, and can be used as the
 #'   `palette` argument of [ggplot2::discrete_scale()].
 #'
 #' @references
@@ -66,7 +66,7 @@ economist_2017_pal <- function(
   f
 }
 
-#' Economist 2017 continuous colour palette
+#' Economist 2017 continuous color palette
 #'
 #' Interpolates one of the "equal lightness colour scales" of \emph{The
 #' Economist visual styleguide} (v1.2, 4 May 2017, p.12): six steps of one
@@ -80,7 +80,7 @@ economist_2017_pal <- function(
 #'   the ramp.
 #'
 #' @return A palette function. It takes a numeric vector of values between
-#'   0 and 1 and returns hex colours, and can be used as the `palette`
+#'   0 and 1 and returns hex colors, and can be used as the `palette`
 #'   argument of [ggplot2::continuous_scale()].
 #'
 #' @references
@@ -103,15 +103,15 @@ economist_2017_gradient_pal <- function(hue = "blue", direction = 1) {
   scales::pal_gradient_n(colors)
 }
 
-#' Economist 2017 colour scales
+#' Economist 2017 color scales
 #'
-#' Colour and fill scales for \emph{The Economist visual styleguide}
+#' Color and fill scales for \emph{The Economist visual styleguide}
 #' (v1.2, 4 May 2017). The discrete scales use [economist_2017_pal()]; the
 #' `_c` scales are continuous and use [economist_2017_gradient_pal()].
 #'
 #' @inheritParams economist_2017_pal
 #' @inheritParams economist_2017_gradient_pal
-#' @param guide Type of legend. Use `"colourbar"` for a continuous colour
+#' @param guide Type of legend. Use `"colourbar"` for a continuous color
 #'   bar, or `"legend"` for a discrete legend.
 #' @param ... Other arguments passed on to [ggplot2::discrete_scale()] or
 #'   [ggplot2::continuous_scale()].
@@ -217,8 +217,9 @@ scale_fill_economist_2017_c <- function(
 #'   `scale_y_continuous(position = "right", guide = guide_axis_economist())`.
 #' * The red tab above the title, the red rule across the top of a web
 #'   chart, and the red marker above each panel heading are added by
-#'   [economist_2017_furniture()], which also moves a web chart's key up
-#'   beside the title.
+#'   [economist_2017_chart()], which also moves a web chart's key up
+#'   beside the title, and the y-axis titles from beside the panel to above
+#'   it, where the guide sets them (p.10).
 #' * The guide sets charts in Econ Sans, which is not publicly available.
 #'   Pass a narrow sans serif as `base_family`. Econ Sans's medium weight,
 #'   used for panel and legend headings, is drawn plain.
@@ -255,11 +256,13 @@ theme_economist_2017 <- function(
     margin(t * k, r * k, b * k, l * k, "pt")
   }
   rule <- economist_2017_linewidth(0.5, base_size)
-  # Outer margin: 6pt on every side for print (p.6); none at the sides for
-  # web, with 5pt below the source line (p.7).
+  # Outer margin: 6pt at the sides and bottom for print (p.6); none at the
+  # sides for web, with 5pt below the source line (p.7). Neither has one at
+  # the top: the red tab sits on the chart's top edge, and the title's own
+  # top margin leaves room for it.
   plot_margin <- switch(
     media,
-    print = m(6, 6, 6, 6),
+    print = m(0, 6, 6, 6),
     web = m(0, 0, 3.5, 0)
   )
   ret <- theme(
@@ -288,12 +291,20 @@ theme_economist_2017 <- function(
     axis.ticks.length = pt(5),
     axis.ticks.length.y = unit(0, "pt"),
     axis.minor.ticks.length = rel(0.6),
+    ## A value axis along the top, as on a horizontal bar chart, is numbers
+    ## over gridlines only: no rule and no ticks (p.13).
+    axis.line.x.top = element_blank(),
+    axis.ticks.x.top = element_blank(),
+    axis.ticks.length.x.top = unit(0, "pt"),
+    axis.minor.ticks.length.x.top = unit(0, "pt"),
     ## Axis numbers: Econ Sans Cnd light 7pt. Axis label: Cnd regular 7/7.5,
     ## centred under the axis.
     axis.text = element_text(size = rel(0.7)),
     axis.text.x = element_text(vjust = 1, margin = m(t = 1.5)),
-    axis.text.x.top = element_text(vjust = 0, margin = m(b = 1.5)),
-    axis.text.y = element_text(hjust = 1, margin = m(r = 2)),
+    axis.text.x.top = element_text(vjust = 0, margin = m(b = 2)),
+    ## Category labels on a left axis are ranged left, flush with the chart's
+    ## edge (p.13).
+    axis.text.y = element_text(hjust = 0, margin = m(r = 2)),
     axis.text.y.right = element_text(hjust = 0, margin = m(l = 2)),
     axis.title = element_text(size = rel(0.7), lineheight = 7.5 / 7),
     axis.title.x = element_text(margin = m(t = 0.5)),
@@ -334,7 +345,7 @@ theme_economist_2017 <- function(
     panel.spacing.x = pt(24),
     panel.spacing.y = pt(15),
     ## Panel headings (p.10): Cnd medium 7.5/9, flush left. The 3.5pt above
-    ## leaves room for the red marker economist_2017_furniture() draws.
+    ## leaves room for the red marker economist_2017_chart() draws.
     strip.background = element_blank(),
     strip.clip = "off",
     strip.placement = "outside",
@@ -399,17 +410,23 @@ economist_2017_linewidth <- function(pt, base_size) {
   pt * (base_size / 10) / (ggplot2::.pt * 0.75)
 }
 
-#' Add Economist 2017 chart furniture
+#' Finish an Economist 2017 chart
 #'
-#' Draws the parts of \emph{The Economist visual styleguide} (v1.2, 4 May
-#' 2017) that sit outside anything [ggplot2::theme()] can set, around a plot
-#' styled with [theme_economist_2017()]:
+#' Finishes a plot styled with [theme_economist_2017()] as a chart of
+#' \emph{The Economist visual styleguide} (v1.2, 4 May 2017). It draws what
+#' sits outside anything [ggplot2::theme()] can set, and lays the plot out as
+#' the guide does:
 #'
 #' * the red tab, 15pt by 5pt, above the title (pp.6-7);
 #' * for web, the red rule across the top of the chart (p.7);
 #' * a red marker, 10pt by 1pt, above each panel heading (p.10);
 #' * for web, the key moved up to the right of the title and subtitle
 #'   (p.7), instead of taking a row of its own above the panel;
+#' * the y-axis titles moved from beside the panels to above them, set
+#'   horizontally over their own axis: a left-hand title ranged left and a
+#'   right-hand one ranged right (p.10);
+#' * an x-axis label that would hang past the panel's edge ranged in flush
+#'   with it, as when the data run to the edge of an area chart;
 #' * optionally, a footnote set right on the source line (pp.6-7), and a
 #'   number box at the top right, for charts referred to by number in the
 #'   text (p.25).
@@ -426,11 +443,11 @@ economist_2017_linewidth <- function(pt, base_size) {
 #'   annotated text. A long source and footnote can overprint; break one of
 #'   them over two lines.
 #' @param number The chart's number, or `NULL` for none, drawn bold in a
-#'   10pt box at the top right of the chart (p.25).
+#'   10pt box at the top right of the chart, white on the box colour (p.25).
 #' @param tab Width and height of the red tab, in points. The standard chart
 #'   uses `c(15, 5)` (p.6); a leader block uses a 4pt tab (p.8).
 #'
-#' @return A grob of class `ggthemes_furniture`. Print it to draw it, or pass
+#' @return A grob of class `ggthemes_economist_chart`. Print it to draw it, or pass
 #'   it to [ggplot2::ggsave()]. Like a ggplot, it is laid out when drawn, so
 #'   text is measured on the device it is drawn on. It is no longer a ggplot,
 #'   though: add layers, scales and themes before calling this function.
@@ -441,8 +458,8 @@ economist_2017_linewidth <- function(pt, base_size) {
 #'
 #' @family economist 2017
 #' @export
-#' @example inst/examples/ex-economist_2017_furniture.R
-economist_2017_furniture <- function(
+#' @example inst/examples/ex-economist_2017_chart.R
+economist_2017_chart <- function(
   plot,
   media = c("print", "web"),
   footnote = NULL,
@@ -475,14 +492,70 @@ economist_2017_furniture <- function(
     footnote = footnote,
     number = number,
     tab = tab,
-    cl = "ggthemes_furniture"
+    cl = "ggthemes_economist_chart"
   )
 }
 
 #' @exportS3Method grid::makeContent
-makeContent.ggthemes_furniture <- function(x) {
+makeContent.ggthemes_economist_chart <- function(x) {
   gt <- economist_2017_layout(x$plot, x$media, x$footnote, x$number, x$tab)
+  gt <- economist_2017_edge_labels(gt)
   grid::setChildren(x, grid::gList(gt))
+}
+
+# A label at the end of an x axis is centred on its break, so when the data
+# reach the panel's edge -- an area chart, say -- half of it hangs past the
+# panel. The outer margin is narrower than half a year label, so it is cut
+# off at the chart's edge; and the guide never lets labels hang past the
+# panel anyway. Wrap the labels of every top and bottom axis so that, when
+# drawn, a label that would cross the panel's edge is ranged in flush with it
+# instead: the first ranged left, the last ranged right. Labels that fit are
+# untouched.
+economist_2017_edge_labels <- function(gt) {
+  wrap <- function(grob) {
+    if (inherits(grob, "text")) {
+      return(grid::gTree(text = grob, name = "economist-axis-labels", cl = "ggthemes_edge_text"))
+    }
+    if (inherits(grob, "gtable")) {
+      grob$grobs <- lapply(grob$grobs, wrap)
+    } else if (inherits(grob, "gTree")) {
+      grob$children <- do.call(grid::gList, lapply(grob$children, wrap))
+    }
+    grob
+  }
+  axes <- which(grepl("^axis-[bt]", gt$layout$name))
+  gt$grobs[axes] <- lapply(gt$grobs[axes], wrap)
+  gt
+}
+
+#' @exportS3Method grid::makeContent
+makeContent.ggthemes_edge_text <- function(x) {
+  text <- x$text
+  n <- length(text$label)
+  rotated <- !is.null(text$rot) && any(text$rot %% 360 != 0)
+  if (n == 0 || rotated) {
+    return(grid::setChildren(x, grid::gList(text)))
+  }
+  inches <- function(u) grid::convertX(u, "in", valueOnly = TRUE)
+  # The axis is drawn in the panel's column, so 0 and 1 npc are the panel's
+  # edges.
+  at <- inches(text$x)
+  panel <- inches(grid::unit(c(0, 1), "npc"))
+  width <- vapply(
+    seq_len(n),
+    function(i) {
+      label <- grid::textGrob(text$label[i], gp = text$gp)
+      grid::convertWidth(grid::grobWidth(label), "in", valueOnly = TRUE)
+    },
+    numeric(1)
+  )
+  hjust <- rep_len(text$hjust %||% 0.5, n)
+  left <- at - width * hjust < panel[1]
+  hjust[left] <- pmax(0, pmin(hjust[left], (at[left] - panel[1]) / width[left]))
+  right <- at + width * (1 - hjust) > panel[2]
+  hjust[right] <- pmin(1, pmax(hjust[right], 1 - (panel[2] - at[right]) / width[right]))
+  text$hjust <- hjust
+  grid::setChildren(x, grid::gList(text))
 }
 
 economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, tab = c(15, 5)) {
@@ -498,6 +571,7 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
   if (media == "web") {
     gt <- economist_2017_key_up(gt)
   }
+  gt <- economist_2017_titles_up(gt, theme, k)
   everywhere <- function(gt, grob, name) {
     gtable::gtable_add_grob(
       gt,
@@ -524,7 +598,8 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
   }
   tab_grob <- grid::rectGrob(
     x = plot_margin[4],
-    y = grid::unit(1, "npc") - plot_margin[1],
+    # On the chart's top edge, whatever the top margin (pp.6-7).
+    y = grid::unit(1, "npc"),
     width = pt(tab[1]),
     height = pt(tab[2]),
     just = c("left", "top"),
@@ -536,13 +611,18 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
     caption <- which(gt$layout$name == "caption")
     if (length(caption) == 1) {
       cell <- gt$layout[caption, ]
+      # The source starts on the first line of its row and the footnote ends
+      # on the last (pp.6-7, 15): a one-line footnote sits level with the last
+      # line of a two-line source. The row grows to the taller of the two.
       grob <- ggplot2::element_grob(
         ggplot2::calc_element("plot.caption", theme),
         label = footnote,
         x = grid::unit(1, "npc"),
         hjust = 1,
+        vjust = 0,
         margin_y = TRUE
       )
+      gt$heights[cell$t] <- grid::unit.pmax(gt$heights[cell$t], grid::grobHeight(grob))
       gt <- gtable::gtable_add_grob(
         gt,
         grob,
@@ -574,8 +654,9 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
           as.character(number),
           x = box_x - pt(5),
           y = box_y - pt(5),
+          # A white numeral on the box, as on p.25.
           gp = grid::gpar(
-            col = spec[["text"]],
+            col = "white",
             fontsize = 7.5 * k,
             fontface = "bold",
             fontfamily = ggplot2::calc_element("text", theme)$family
@@ -611,6 +692,86 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
   gt
 }
 
+# Move the y-axis titles from columns beside the panels into a row above them,
+# set horizontally over their own axis: a left title ranged left, a right one
+# ranged right (p.10). The row leaves room for the top value label, which
+# guide_axis_economist() draws above the top gridline, and the emptied
+# columns close up so the panels take their width.
+economist_2017_titles_up <- function(gt, theme, k) {
+  sides <- c(l = "left", r = "right")
+  found <- lapply(names(sides), function(side) {
+    i <- which(gt$layout$name == paste0("ylab-", side))
+    if (length(i) != 1 || inherits(gt$grobs[[i]], "zeroGrob")) {
+      return(NULL)
+    }
+    label <- economist_2017_grob_label(gt$grobs[[i]])
+    if (is.null(label) || !nzchar(paste(label, collapse = ""))) {
+      return(NULL)
+    }
+    list(index = i, side = sides[[side]], label = label)
+  })
+  found <- Filter(Negate(is.null), found)
+  if (!length(found)) {
+    return(gt)
+  }
+  panels <- gt$layout[grepl("^panel", gt$layout$name), ]
+  top <- min(panels$t)
+  left <- min(panels$l)
+  right <- max(panels$r)
+
+  titles <- lapply(found, function(f) {
+    element <- ggplot2::calc_element(paste0("axis.title.y.", f$side), theme)
+    ggplot2::element_grob(
+      element,
+      label = f$label,
+      x = grid::unit(if (f$side == "left") 0 else 1, "npc"),
+      y = grid::unit(9 * k, "pt"),
+      hjust = if (f$side == "left") 0 else 1,
+      vjust = 0,
+      angle = 0,
+      margin_x = FALSE,
+      margin_y = FALSE
+    )
+  })
+  # 9pt clears the top value label: 7pt type set 1pt above the gridline.
+  heights <- do.call(grid::unit.c, lapply(titles, grid::grobHeight))
+  gt <- gtable::gtable_add_rows(gt, max(heights) + grid::unit(9 * k, "pt"), pos = top - 1)
+
+  # Close the side columns and drop the old titles.
+  old <- vapply(found, `[[`, integer(1), "index")
+  gt$widths[gt$layout$l[old]] <- grid::unit(0, "pt")
+  gt$grobs <- gt$grobs[-old]
+  gt$layout <- gt$layout[-old, ]
+
+  for (j in seq_along(found)) {
+    gt <- gtable::gtable_add_grob(
+      gt,
+      titles[[j]],
+      t = top,
+      l = left,
+      b = top,
+      r = right,
+      clip = "off",
+      name = paste0("economist-ylab-", found[[j]]$side)
+    )
+  }
+  gt
+}
+
+# The text of an axis title grob, wherever ggplot2 nests it.
+economist_2017_grob_label <- function(grob) {
+  if (!is.null(grob$label)) {
+    return(grob$label)
+  }
+  for (child in grob$children) {
+    label <- economist_2017_grob_label(child)
+    if (!is.null(label)) {
+      return(label)
+    }
+  }
+  NULL
+}
+
 # Move a top key from its own row into the rows of the title and subtitle,
 # and close the row it leaves behind. The theme already justifies the key
 # to the right, so it lands beside the title.
@@ -635,7 +796,7 @@ economist_2017_key_up <- function(gt) {
 }
 
 #' @export
-print.ggthemes_furniture <- function(x, newpage = TRUE, ...) {
+print.ggthemes_economist_chart <- function(x, newpage = TRUE, ...) {
   if (newpage) {
     grid::grid.newpage()
   }

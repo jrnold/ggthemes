@@ -16,7 +16,7 @@ p <- ggplot(economics, aes(date, psavert)) +
     y = NULL
   ) +
   theme_economist_2017()
-economist_2017_furniture(
+economist_2017_chart(
   p,
   footnote = paste0(economist_2017_footnote(1), "Seasonally adjusted"),
   number = 1

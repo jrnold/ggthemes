@@ -7,7 +7,7 @@
 \alias{scale_colour_economist_2017_c}
 \alias{scale_color_economist_2017_c}
 \alias{scale_fill_economist_2017_c}
-\title{Economist 2017 colour scales}
+\title{Economist 2017 color scales}
 \usage{
 scale_colour_economist_2017(
   media = c("print", "web"),
@@ -54,14 +54,14 @@ scale_fill_economist_2017_c(
 \arguments{
 \item{media}{Either `"print"` or `"web"`.}
 
-\item{set}{For `media = "print"` only. `"primary"` is the six-colour
-palette, in the order given by `type`. `"bright"` (four colours) and
-`"dark"` (three colours) are the guide's supporting sets "for
+\item{set}{For `media = "print"` only. `"primary"` is the six-color
+palette, in the order given by `type`. `"bright"` (four colors) and
+`"dark"` (three colors) are the guide's supporting sets "for
 multi-category charts where high contrast is needed" (p.11); they have
 no per-chart-type order, so `type` is ignored for them.}
 
 \item{type}{For `media = "print"` and `set = "primary"` only: which chart
-type's colour order to use. `"bar_side"` is bar or column, side by side
+type's color order to use. `"bar_side"` is bar or column, side by side
 (p.13), and is the guide's default reading order; `"stacked"` is
 bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
 side (p.15); `"dot"` is thermometer or scatter (pp.17-18); and `"pie"` is
@@ -76,14 +76,14 @@ pie or doughnut (p.20).}
 \item{direction}{`1` maps low values to the lightest step; `-1` reverses
 the ramp.}
 
-\item{guide}{Type of legend. Use `"colourbar"` for a continuous colour
+\item{guide}{Type of legend. Use `"colourbar"` for a continuous color
 bar, or `"legend"` for a discrete legend.}
 }
 \value{
 A ggplot2 scale object.
 }
 \description{
-Colour and fill scales for \emph{The Economist visual styleguide}
+Color and fill scales for \emph{The Economist visual styleguide}
 (v1.2, 4 May 2017). The discrete scales use [economist_2017_pal()]; the
 `_c` scales are continuous and use [economist_2017_gradient_pal()].
 }
@@ -106,8 +106,8 @@ ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_chart]{economist_2017_chart()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
-\code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},

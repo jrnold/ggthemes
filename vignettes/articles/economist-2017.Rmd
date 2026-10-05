@@ -60,19 +60,20 @@ savings <- ggplot(economics, aes(date, psavert)) +
 2. **The value axis on the right**, with `guide_axis_economist()`, which sets
    each label just above its gridline, inside the panel, as the guide does.
 3. **The theme**, `theme_economist_2017()`, for type, rules, spacing and
-   colours.
-4. **The furniture**, `economist_2017_furniture()`: the red tab above the
-   title, and for web the red rule across the top. These sit outside anything
-   a ggplot2 theme can set, so the helper draws them around the finished plot.
+   colors.
+4. **The chart**, `economist_2017_chart()`: the red tab above the title,
+   and for web the red rule across the top. These sit outside anything a
+   ggplot2 theme can set, so it draws them around the finished plot, and lays
+   the plot out as the guide does, with y-axis titles above the panel.
 
 ```{r savings-web, fig.width = 332 / 72, fig.height = 200 / 72, out.width = "443px"}
-economist_2017_furniture(savings + theme_economist_2017("web"), "web")
+economist_2017_chart(savings + theme_economist_2017("web"), "web")
 ```
 
 The same chart for print sits on the pale print ground, with a 6pt margin:
 
 ```{r savings-print, fig.width = 332 / 72, fig.height = 200 / 72, out.width = "443px"}
-economist_2017_furniture(savings + theme_economist_2017("print"), "print")
+economist_2017_chart(savings + theme_economist_2017("print"), "print")
 ```
 
 ## Chart sizes
@@ -124,7 +125,7 @@ tokyo <- function(base_size = 10, linewidth = 0.4, key_rows = 1) {
       caption = "Source: Thomson Reuters"
     ) +
     theme_economist_2017(base_size = base_size)
-  economist_2017_furniture(p)
+  economist_2017_chart(p)
 }
 ```
 
@@ -166,13 +167,13 @@ tokyo(base_size = 15, linewidth = 0.6)
 ```
 
 The theme scales the rules and ticks with the type, and
-`economist_2017_furniture()` scales the tab to match. The data lines are not
+`economist_2017_chart()` scales the tab to match. The data lines are not
 part of the theme, so scale their `linewidth` yourself.
 
 ## Panel charts
 
 Facet strips are the guide's panel headings: flush left, 24pt apart side by
-side and 15pt stacked (p.10). `economist_2017_furniture()` adds the short red
+side and 15pt stacked (p.10). `economist_2017_chart()` adds the short red
 marker above each heading.
 
 ```{r panels, fig.width = 332 / 72, fig.height = 220 / 72, out.width = "443px"}
@@ -188,10 +189,10 @@ p <- ggplot(mpg, aes(displ, hwy)) +
     caption = "Source: US Environmental Protection Agency"
   ) +
   theme_economist_2017()
-economist_2017_furniture(p)
+economist_2017_chart(p)
 ```
 
-## Colour
+## Color
 
 The print palette comes in five orders of the same six hues, one per chart
 type (pp.13-20), plus two high-contrast supporting sets. Pick the order with
@@ -219,7 +220,7 @@ web_swatches <- c(
 swatch_plot(print_swatches)
 ```
 
-The web palette has nine colours in one order (p.12), and the guide's
+The web palette has nine colors in one order (p.12), and the guide's
 "equal lightness colour scales" give a six-step ramp for each, used by
 `scale_colour_economist_2017_c()` and `scale_fill_economist_2017_c()`:
 

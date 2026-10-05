@@ -2,7 +2,7 @@
 % Please edit documentation in R/economist-2017.R
 \name{economist_2017_gradient_pal}
 \alias{economist_2017_gradient_pal}
-\title{Economist 2017 continuous colour palette}
+\title{Economist 2017 continuous color palette}
 \usage{
 economist_2017_gradient_pal(hue = "blue", direction = 1)
 }
@@ -15,7 +15,7 @@ the ramp.}
 }
 \value{
 A palette function. It takes a numeric vector of values between
-  0 and 1 and returns hex colours, and can be used as the `palette`
+  0 and 1 and returns hex colors, and can be used as the `palette`
   argument of [ggplot2::continuous_scale()].
 }
 \description{
@@ -37,8 +37,8 @@ Matt McLean), p.12.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_chart]{economist_2017_chart()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
-\code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
 \code{\link[=geom_scale_break]{geom_scale_break()}},

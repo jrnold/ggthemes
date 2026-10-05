@@ -28,7 +28,7 @@ is not an official Economist specification.
 The evidence is:
 
 1. the public [Economist Design System](https://design-system.economist.com/)
-   and [Marber colour foundations](https://marber.economist.com/8e1dcf0b8/p/543b0f-colour/b/37fc5e);
+   and [Marber color foundations](https://marber.economist.com/8e1dcf0b8/p/543b0f-colour/b/37fc5e);
 2. 246 print and web charts from 2024 onward in the local
    `econ-chart-corpus`, including responsive `ai2html` files with their text
    styles; and
@@ -36,7 +36,7 @@ The evidence is:
    Detail](https://www.economist.com/topics/graphic-detail) and the [weekly
    edition](https://www.economist.com/weeklyedition).
 
-Exact colours below are sampled values. Layout and editorial rules are
+Exact colors below are sampled values. Layout and editorial rules are
 repeated observations translated into practical `ggplot2` guidance. Bespoke
 maps, illustrations and interactive graphics are out of scope.
 
@@ -83,18 +83,18 @@ draw_economist <- function(plot, media = c("web", "print")) {
 # The new design
 
 The late-March 2024 redesign replaced the cool blue print ground and
-blue-first palettes with a warm grey print ground and red-first palettes. Web
+blue-first palettes with a warm gray print ground and red-first palettes. Web
 charts remain white, but share the red-led hierarchy. The local corpus last
 shows the old cool ground on March 16th and first shows `#ECEBE0` on March
 30th.
 
 | Element | 2017 system | 2024 onward |
 |---|---|---|
-| Print ground | cool pale blue | warm grey `#ECEBE0` |
+| Print ground | cool pale blue | warm gray `#ECEBE0` |
 | Web ground | white | white |
-| First categorical colour | blue | red |
-| Supporting categories | blue/cyan/gold/teal | salmon, blue, light blue, dark grey, light grey |
-| Text | blue-grey | near-black |
+| First categorical color | blue | red |
+| Supporting categories | blue/cyan/gold/teal | salmon, blue, light blue, dark gray, light gray |
+| Text | blue-gray | near-black |
 | Top furniture | tab; formerly a full web rule | short red tab |
 | Pie/doughnut | included | no longer used |
 
@@ -106,7 +106,7 @@ precise subtitle, restrained axes, a clear source and one visual focus.
 The 2017 guide prescribed named print modules. Current production is better
 understood as two separate responsive compositions:
 
-- **Print:** the entire graphic, including title and source, sits on warm grey
+- **Print:** the entire graphic, including title and source, sits on warm gray
   `#ECEBE0`. The corpus often contains 608px-wide delivery images; that is an
   asset size, not a physical-width rule.
 - **Web:** the entire graphic is white. Current `ai2html` assets commonly have
@@ -161,7 +161,7 @@ methodological notes before the source. Footnote symbols follow `*`, `†`, `‡
 
 Standard charts use Economist Sans. Current 700px `ai2html` files repeatedly
 use roughly 20px/24px bold headlines, 17px/20px medium subtitles, 15px axis
-and annotation text, and 15px/20px grey source text. `theme_economist_2024()`
+and annotation text, and 15px/20px gray source text. `theme_economist_2024()`
 expresses that hierarchy relative to an 11pt base so it scales with the output.
 Use a neutral sans fallback when Economist Sans is unavailable and inspect
 line wrapping on the final device.
@@ -172,14 +172,14 @@ line wrapping on the final device.
 | Subtitle | regular/medium, about 1.05 times base |
 | Axes, keys, annotation | about 0.9 times base |
 | Panel heading | bold, base size |
-| Source and notes | grey, about 0.85 times base |
+| Source and notes | gray, about 0.85 times base |
 
 The implementation deliberately starts from the 2017 theme's layout
 contract. It retains the unboxed panel, right-hand values, horizontal y-axis
 titles, outward baseline ticks, plot-aligned title/key/source, and zero web
 inset. The 2024 layer then changes only the properties supported by current
 evidence: the type ratios and leading above, a tighter responsive panel
-gutter, a slightly heavier rule, darker text, and the white or warm-grey
+gutter, a slightly heavier rule, darker text, and the white or warm-gray
 ground.
 
 Headlines, subtitles and sources align to the full plot. A print chart has a
@@ -204,7 +204,7 @@ between subtitle/key and plotting marks.
 To make the redesign directly comparable with the superseded guide, the
 examples below reuse its subjects and reconstructed data wherever the chart
 type still belongs to the standard repertoire. The data stay fixed; the
-ground, type hierarchy, chart furniture and colour roles change.
+ground, type hierarchy, chart furniture and color roles change.
 
 ## Leader
 
@@ -302,11 +302,11 @@ p <- ggplot(panel_data, aes(x, value, colour = series)) +
 draw_economist(p)
 ```
 
-# Colour
+# Color
 
-Colour is semantic. Red establishes focus; salmon is a related or less
-emphatic category; blue and light blue form the main contrast; greys provide
-context. Do not use the whole palette merely because six colours are
+Color is semantic. Red establishes focus; salmon is a related or less
+emphatic category; blue and light blue form the main contrast; grays provide
+context. Do not use the whole palette merely because six colors are
 available.
 
 The source tables in `ggthemes_data$economist_design_system$sources` use
@@ -317,8 +317,8 @@ The published HEX, RGB, rounded HSL and CMYK strings remain available in
 
 ## Qualitative palettes
 
-The current six-colour order is **red, salmon, blue, light blue, dark grey,
-light grey**. Print and web use separate production values.
+The current six-color order is **red, salmon, blue, light blue, dark gray,
+light gray**. Print and web use separate production values.
 
 ```{r qualitative-palettes, fig.height=3.1, fig.width=7}
 palette_table <- rbind(
@@ -339,44 +339,44 @@ ggplot(palette_table, aes(x, media, fill = colour)) +
   theme(axis.text.y = element_text(size = 10, face = "bold"))
 ```
 
-The print colours are `r paste(unname(print), collapse = ", ")`. The web
-colours are `r paste(unname(web), collapse = ", ")`.
+The print colors are `r paste(unname(print), collapse = ", ")`. The web
+colors are `r paste(unname(web), collapse = ", ")`.
 
 ## Evidence for separate web and print values
 
 The distinction is visible in the exported assets, not inferred merely from
 the different backgrounds. In the 118 web PNGs from 2026, exact `#E3120B`
 pixels occur in 108 graphics; salmon in 43, blue in 25, light blue in 15,
-dark grey in ten and light grey in 22. The six-series line chart
+dark gray in ten and light gray in 22. The six-series line chart
 `20260606_WOC055` contains all six web values as substantial runs of pixels.
 None of the six print values occurs in those web exports. Conversely,
 `20260829_FNC090`, a print stacked-bar chart, contains all six print values and
 none of the six web values. These are not two renditions of the same graphic,
 so the evidence establishes two recurring production sets but not a
-colour-conversion formula.
+color-conversion formula.
 
 Only part of the chart palette is also an exact token in the current
 [Economist foundation palette](https://design-system.economist.com/foundations/colour/palettes):
 
-| Role | Web chart value | Print chart value | Relation to foundation colours |
+| Role | Web chart value | Print chart value | Relation to foundation colors |
 |---|---:|---:|---|
 | Red | `#E3120B` | `#ED1C24` | web is exactly Economist Red; print is not |
 | Salmon | `#FBA493` | `#F8AB90` | neither is an exact foundation token |
 | Blue | `#3A4DAC` | `#28479D` | related to Chicago blue, but not an exact token |
 | Light blue | `#7892C5` | `#659BD2` | related to Chicago blue, but not an exact token |
-| Dark grey | `#6A6654` | `#636466` | neither matches the neutral London greys |
-| Light grey | `#BEBCAB` | `#C6C8CA` | neither matches the neutral London greys |
+| Dark gray | `#6A6654` | `#636466` | neither matches the neutral London grays |
+| Light gray | `#BEBCAB` | `#C6C8CA` | neither matches the neutral London grays |
 | Ground | `#FFFFFF` | `#ECEBE0` | web is London 100; print is close to, but not, Los Angeles 90 `#EBE9E0` |
 
-The web grey ramp below does contain exact London grey tokens: `#F2F2F2`,
+The web gray ramp below does contain exact London gray tokens: `#F2F2F2`,
 `#D9D9D9`, `#B3B3B3` and `#0D0D0D`. The chart blues clearly belong to the
 same visual family as Chicago blue, but treating them as official token values
 would overstate the evidence. The remaining qualitative values are best
-understood as chart-specific production colours sampled from published work.
+understood as chart-specific production colors sampled from published work.
 
 The expanded five-point HSL ramps make the relationship more precise. These
 are the nearest plausible named stops to the observed **web** categorical
-colours (CIEDE2000 distance in the final column):
+colors (CIEDE2000 distance in the final column):
 
 | Role | Observed | Most likely expanded stop | Stop value | Distance |
 |---|---:|---|---:|---:|
@@ -384,12 +384,12 @@ colours (CIEDE2000 distance in the final column):
 | Light red / salmon | `#FBA493` | Economist Red 80 | `#FAA19E` | 4.93 |
 | Blue | `#3A4DAC` | Chicago 45 | `#2E45B8` | 3.14 |
 | Light blue | `#7892C5` | Chicago 70 | `#8594E0` | 4.28 |
-| Dark grey | `#6A6654` | Los Angeles 35 | `#6D6746` | 5.29 |
-| Light grey | `#BEBCAB` | Los Angeles 70 | `#C3BEA2` | 3.93 |
+| Dark gray | `#6A6654` | Los Angeles 35 | `#6D6746` | 5.29 |
+| Light gray | `#BEBCAB` | Los Angeles 70 | `#C3BEA2` | 3.93 |
 
 The exact web red is the documented Economist Red token, even though it lies
 between the generated 45 and 50 stops. The warm Los Angeles canvas ramp fits
-both web greys better than neutral London; the apparently grey categories
+both web grays better than neutral London; the apparently gray categories
 carry a yellow-brown cast.
 
 For **print**, the closest or most semantically plausible stops are:
@@ -400,17 +400,17 @@ For **print**, the closest or most semantically plausible stops are:
 | Light red / salmon | `#F8AB90` | Economist Red 80 | `#FAA19E` | 8.99 |
 | Blue | `#28479D` | Chicago 40 | `#293DA3` | 3.82 |
 | Light blue | `#659BD2` | Chicago 70 | `#8594E0` | 9.04 |
-| Dark grey | `#636466` | London 40 | `#666666` | 1.45 |
-| Light grey | `#C6C8CA` | London 80 | `#CCCCCC` | 1.66 |
+| Dark gray | `#636466` | London 40 | `#666666` | 1.45 |
+| Light gray | `#C6C8CA` | London 80 | `#CCCCCC` | 1.66 |
 
 The print salmon is mathematically a little closer to Singapore 75, but its
 role and hue make Economist Red 80 the more credible family assignment. The
 larger distances for salmon and light blue indicate that the HSL stops explain
 the families, not an exact production formula.
 
-## Sequential red and grey
+## Sequential red and gray
 
-Use red for a measure that carries the editorial focus and grey for neutral
+Use red for a measure that carries the editorial focus and gray for neutral
 ordered context. Both ramps run from low/light to high/dark by default.
 
 ```{r sequential-palettes, fig.height=2.7}
@@ -438,10 +438,10 @@ Use `scale_fill_gradient_economist_2024("red")` or
 `scale_fill_gradient_economist_2024("gray")`. Never substitute a rainbow for
 ordered magnitude.
 
-## Diverging red and grey
+## Diverging red and gray
 
-Use the diverging ramp only when the centre has meaning: zero change, parity,
-a target or a long-run average. Grey occupies one side, red the other, and a
+Use the diverging ramp only when the center has meaning: zero change, parity,
+a target or a long-run average. Gray occupies one side, red the other, and a
 near-white midpoint marks the reference.
 
 ```{r diverging-palette, fig.height=1.8}
@@ -602,7 +602,7 @@ Lines show movement over ordered time. Use solid lines for observed values,
 dashes for forecasts or counterfactuals and pale bands for uncertainty. Avoid
 markers on dense time series. Direct-label line ends when space permits.
 
-## Two lines, directly labelled
+## Two lines, directly labeled
 
 ```{r line-two}
 bond_anchors <- list(
@@ -641,7 +641,7 @@ p <- ggplot(bonds, aes(year, yield, colour = country)) +
 draw_economist(p)
 ```
 
-## Ordered lines in sequential red and grey
+## Ordered lines in sequential red and gray
 
 Use a sequential line palette only when the series themselves have a clear
 order, such as scenarios, percentiles or intensity bands. Use the qualitative
@@ -683,7 +683,7 @@ draw_economist(ordered_line_plot("gray"))
 
 A light stop can carry the area or interval while a darker stop carries its
 boundary. This keeps fill and line within one ordered family. Red makes the
-series editorially prominent; grey makes it contextual.
+series editorially prominent; gray makes it contextual.
 
 ```{r line-filled, fig.height=3.3}
 filled_line <- data.frame(
@@ -716,7 +716,7 @@ draw_economist(filled_line_plot("gray"))
 ## Six lines in the qualitative order
 
 The full palette is appropriate when six named series must be compared. Use
-end labels so colour recognition is local, not a memory test.
+end labels so color recognition is local, not a memory test.
 
 ```{r line-six, fig.height=4.5}
 set.seed(1504)
@@ -833,7 +833,7 @@ p <- ggplot(reserves, aes(year, trn, fill = region)) +
 draw_economist(p)
 ```
 
-For proportions, normalise to 100% and label the final composition. Do not use
+For proportions, normalize to 100% and label the final composition. Do not use
 a streamgraph or change the order between dates.
 
 # Thermometer plots
@@ -946,7 +946,7 @@ draw_economist(p)
 ## Bubble scatterplot
 
 When size is essential, scale by area and give the reader a small size key.
-Avoid adding both colour and size unless both variables matter to the story.
+Avoid adding both color and size unless both variables matter to the story.
 
 ```{r scatter-bubble}
 set.seed(4)
@@ -1030,9 +1030,9 @@ signal, not background decoration.
 - solid line: observed history;
 - dashed line: projection, scenario or fitted relationship;
 - pale band: interval or uncertainty;
-- thin vertical rule: event date, labelled at the top;
-- grey or pale-red block: a named period such as a recession or forecast;
-- wavy break: an omitted span or broken scale, explicitly labelled.
+- thin vertical rule: event date, labeled at the top;
+- gray or pale-red block: a named period such as a recession or forecast;
+- wavy break: an omitted span or broken scale, explicitly labeled.
 
 ## Legends and direct labels
 
@@ -1043,18 +1043,18 @@ names the grouping variable.
 
 ## Maps
 
-Use sequential red or grey for ordered magnitude and the red-grey diverging
+Use sequential red or gray for ordered magnitude and the red-gray diverging
 scale only around a meaningful midpoint. Keep water, boundaries and missing
-areas quiet. Use few labelled legend breaks. Do not use colour alone for a
+areas quiet. Use few labeled legend breaks. Do not use color alone for a
 binary editorial claim when a label or outline can carry it.
 
 ## Accessibility
 
 - Do not distinguish important series only by hue.
-- Combine colour with labels, line style, ordering or shape.
+- Combine color with labels, line style, ordering or shape.
 - Check text and thin-line contrast on both white and `#ECEBE0`.
-- Pale salmon and light grey are fills, not small-text colours.
-- Test at the actual responsive sizes and in greyscale.
+- Pale salmon and light gray are fills, not small-text colors.
+- Test at the actual responsive sizes and in grayscale.
 - Alternative text should state the main relationship and exceptions, not
   merely “a chart showing data”.
 
@@ -1083,43 +1083,43 @@ Before export, check:
 - Are geography, unit, period and denominator present?
 - Is this the simplest chart type that answers the question?
 - Does red identify the intended focus?
-- Are series labelled directly where practical?
+- Are series labeled directly where practical?
 - Do bars start at zero?
 - Are uncertainty, forecasts and omitted periods explicit?
 - Do title, plot and source share a left edge?
 - Has web output been checked at 700px, 550px and the actual embed width?
-- Does it work in greyscale and under colour-vision simulation?
+- Does it work in grayscale and under color-vision simulation?
 
 # Method and limitations
 
-The local corpus contains issue-organised print PNGs from 2012--2026 and web
-graphics from 2026. Exact colours were counted from the indexed PNG colour
+The local corpus contains issue-organized print PNGs from 2012--2026 and web
+graphics from 2026. Exact colors were counted from the indexed PNG color
 tables. Original `ai2html` files supplied type families, CSS weights, sizes,
 line heights and responsive artboard widths.
 
 Additional examples inspected for the chart families in this guide include:
 
 - **Lines:** `20260606_WOC055` (six qualitative lines),
-  `20260228_WOC492` (red and grey lines with matching intervals),
+  `20260228_WOC492` (red and gray lines with matching intervals),
   `20260620_WOC187` (salmon and red filled line) and `20260822_WOC965`
-  (red and grey lines and fills).
-- **Stacked lines:** `20240727_WOC536` (four directly labelled layers),
+  (red and gray lines and fills).
+- **Stacked lines:** `20240727_WOC536` (four directly labeled layers),
   `20240921_WBC092` (three-part share with a forecast interval) and
   `20250614_EPC634` (three-part historical composition).
 - **Scatterplots:** `20260117_WOC031` (points with fitted lines),
   `20260117_WOC860` (categorical bubble scatter), `20260307_WOC567`
-  (three coloured point clouds and smooths) and `20260725_WOC925`
+  (three colored point clouds and smooths) and `20260725_WOC925`
   (connected scatter).
 
 The clearest six-series web example contains, in order, `#E3120B`, `#FBA493`,
 `#3A4DAC`, `#7892C5`, `#6A6654` and `#BEBCAB`. A print stacked-bar example
 contains the parallel production values `#ED1C24`, `#F8AB90`, `#28479D`,
 `#659BD2`, `#636466` and `#C6C8CA`. The red sequential ramp is sampled from a
-published 2026 web map; grey and red-grey ramps combine recurring observed
+published 2026 web map; gray and red-gray ramps combine recurring observed
 neutral steps around the appropriate print or web ground.
 
 The sample is uneven: 2024 has 73 charts, 2025 has 26 and 2026 has 147. Most
 2026 examples are web graphics, whereas much of 2024--25 is print. This is
 enough to establish the ground, qualitative order and recurring grammar, but
 not to turn every rare layout into a rule. The implementation is therefore
-deliberately limited to standard static-chart behaviour.
+deliberately limited to standard static-chart behavior.

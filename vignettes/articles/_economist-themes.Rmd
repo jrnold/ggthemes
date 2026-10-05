@@ -31,11 +31,11 @@ vignette adds two more eras, each with its own print and web variant:
 
 The "new design" print and web palettes are genuinely different hues, not
 just different renderings of the same hues -- print's primary order is
-*dark blue, cyan, gold, teal, maroon, mauve*; web's is a nine-colour
-*red, blue, cyan, green, yellow, olive, purple, gold, grey*. The 2024 redesign
-uses a stable six-colour order in both media: *red, salmon, blue, light blue,
-dark grey, light grey*. Print and web have different production values. Red
-and grey sequential ramps and a red-grey diverging ramp cover ordered data.
+*dark blue, cyan, gold, teal, maroon, mauve*; web's is a nine-color
+*red, blue, cyan, green, yellow, olive, purple, gold, gray*. The 2024 redesign
+uses a stable six-color order in both media: *red, salmon, blue, light blue,
+dark gray, light gray*. Print and web have different production values. Red
+and gray sequential ramps and a red-gray diverging ramp cover ordered data.
 
 The 2017 guide is a specification; adoption lagged it. Sarah Leo, a visual
 data journalist at the paper, wrote about the transition from the inside in
@@ -46,7 +46,7 @@ published before our chart redesign. The improved charts are drawn to fit
 our new specs." That "new specs" redesign is the same one this guide
 documents, just observed already in production two years after the guide
 itself -- which lines up with what the measured chart corpus shows too: the
-series-colour shift from `#01A2D9` to `#076FA1` dates to 2019, not 2017.
+series-color shift from `#01A2D9` to `#076FA1` dates to 2019, not 2017.
 
 One chart type from the styleguide's own catalogue isn't included below:
 **tables** aren't a ggplot2 geom. Thermometer charts aren't a built-in geom
@@ -108,9 +108,9 @@ The 2024 redesign has qualitative, sequential and diverging palette families.
 
 | Palette | Functions | Source |
 |---|---|---|
-| Qualitative | `economist_2024_pal()`, `scale_*_economist_2024()` | Six recurring series colours, ordered red, salmon, blue, light blue, dark grey, light grey; separate print and web values. |
-| Sequential | `economist_2024_seq_gradient_pal()`, `scale_*_gradient_economist_2024()` | Light-to-dark red and grey ramps reconstructed from maps, heatmaps and shaded bands. |
-| Diverging | `economist_2024_div_gradient_pal()`, `scale_*_gradient2_economist_2024()` | Grey-to-red around the medium's ground colour, for change or deviation around a meaningful midpoint. |
+| Qualitative | `economist_2024_pal()`, `scale_*_economist_2024()` | Six recurring series colors, ordered red, salmon, blue, light blue, dark gray, light gray; separate print and web values. |
+| Sequential | `economist_2024_seq_gradient_pal()`, `scale_*_gradient_economist_2024()` | Light-to-dark red and gray ramps reconstructed from maps, heatmaps and shaded bands. |
+| Diverging | `economist_2024_div_gradient_pal()`, `scale_*_gradient2_economist_2024()` | Gray-to-red around the medium's ground color, for change or deviation around a meaningful midpoint. |
 
 All three families take `media = "print"` or `"web"`.
 
@@ -155,7 +155,7 @@ ggplot(palette_swatches, aes(x = x, y = palette, fill = hex, width = width)) +
   )
 ```
 
-Use the discrete palette when colour identifies separate series:
+Use the discrete palette when color identifies separate series:
 
 ```{r economist-2024-discrete-example, fig.height=3.2, fig.width=6.5}
 series_example <- data.frame(
@@ -191,7 +191,7 @@ ggplot(series_example, aes(year, value, colour = series)) +
   theme_economist_2024("web")
 ```
 
-Use the sequential palette when colour encodes an ordered quantity:
+Use the sequential palette when color encodes an ordered quantity:
 
 ```{r economist-2024-sequential-example, fig.height=3.2, fig.width=6.5}
 surface_example <- expand.grid(x = 1:18, y = 1:8)
@@ -320,7 +320,7 @@ two variants from the package's original pair of theme functions --
 `theme_economist()` (the bluish-gray print look) and
 `theme_economist_white()` (its white-panel web variant, already documented
 as what *The Economist*'s Graphic Detail blog used) -- both drawing on the
-same `economist_pal()` colours, since that palette was never print/web-split
+same `economist_pal()` colors, since that palette was never print/web-split
 in the way `economist_new_pal()` is. This helper is a plain function local
 to the vignette, not part of the package.
 
@@ -450,7 +450,7 @@ show_variants(p, aes_type = "fill", new_type = "stacked")
 ## Thermometer
 
 Not a built-in ggplot2 geom, but structurally a range plot: a segment
-between two values per category, with a coloured mark at each end (the
+between two values per category, with a colored mark at each end (the
 guide's own "dot terminals" variant, p.17, rather than the tick-mark
 default -- cleaner to reproduce, and the guide names it as an accepted
 alternative "when lines are unclear").
@@ -511,10 +511,10 @@ p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- 
 
 ## Notes
 
-- **Print vs web is a real colour difference for the 2017 design, not just
+- **Print vs web is a real color difference for the 2017 design, not just
   a background swap.** `economist_new_pal(media = "print")` and
   `economist_new_pal(media = "web")` share no hex values.
-- **The 2024 redesign uses the same six colours in both media** -- only the
+- **The 2024 redesign uses the same six colors in both media** -- only the
   panel background changes (`#ECEBE0` warm beige for print, white for web) --
   because that's what the measured chart corpus actually shows: one accent
   hue carried across media, not a media-specific categorical set.
@@ -524,7 +524,7 @@ p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- 
   words) rather than for everyday use -- not shown above to keep this
   vignette to one story per chart type.
 
-### Does the colour order depend on chart type? Checked in all three eras
+### Does the color order depend on chart type? Checked in all three eras
 
 - **2017 "new design" (print): yes, genuinely.** Pages 13-20 of the guide
   each illustrate one chart-type family and each carries its own numbered
@@ -544,7 +544,7 @@ p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- 
   (bars/areas vs lines/points), each ordering commented with the chart it
   was sourced from. Going back to the corpus (224 classic-era charts,
   2012-2018) to check that against real chart-type families rather than
-  just the fill/colour split: **bar/column side-by-side has a clean,
+  just the fill/color split: **bar/column side-by-side has a clean,
   repeated answer** -- three grouped-bar charts with legends
   ("One stock, big effect", "What's in a letter?", "The best lack all
   conviction") all order `#01A2D9` (blue) before `#014D65` (dark blue),
@@ -552,7 +552,7 @@ p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- 
   `c("blue", "dark blue")` -- a genuine validation of the existing code,
   not a new finding to add. The other four buckets don't converge the same
   way: **stacked** charts are blue-family-led but the third-and-later
-  colours differ chart to chart (green+grey in one, coral+maroon in
+  colors differ chart to chart (green+gray in one, coral+maroon in
   another, a six-step ordinal ramp in a third); **line side-by-side** and
   **dot/scatter** mostly label series inline rather than with a legend key,
   so there's no unambiguous reading order to extract -- what *is*
@@ -569,7 +569,7 @@ p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- 
   itself: splitting its ~150 post-redesign dominant-ink measurements by the
   chart's classified type (line/bar/dot/area) gives samples of 6-25 charts
   per type, all clustered on the same handful of reds regardless of type,
-  with no separable pattern -- and dominant ink is one colour per chart to
+  with no separable pattern -- and dominant ink is one color per chart to
   begin with, not a categorical sequence, so there's nothing to reorder even
   in principle. `economist_2024_pal()` stays a single order rather than
   splitting on evidence too thin to trust.

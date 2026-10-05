@@ -52,8 +52,9 @@ Several conventions of the guide are not theme elements:
   `scale_y_continuous(position = "right", guide = guide_axis_economist())`.
 * The red tab above the title, the red rule across the top of a web
   chart, and the red marker above each panel heading are added by
-  [economist_2017_furniture()], which also moves a web chart's key up
-  beside the title.
+  [economist_2017_chart()], which also moves a web chart's key up
+  beside the title, and the y-axis titles from beside the panel to above
+  it, where the guide sets them (p.10).
 * The guide sets charts in Econ Sans, which is not publicly available.
   Pass a narrow sans serif as `base_family`. Econ Sans's medium weight,
   used for panel and legend headings, is drawn plain.
@@ -104,8 +105,8 @@ Matt McLean), pp.3-12.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_chart]{economist_2017_chart()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
-\code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},

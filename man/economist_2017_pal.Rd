@@ -2,7 +2,7 @@
 % Please edit documentation in R/economist-2017.R
 \name{economist_2017_pal}
 \alias{economist_2017_pal}
-\title{Economist 2017 colour palette}
+\title{Economist 2017 color palette}
 \usage{
 economist_2017_pal(
   media = c("print", "web"),
@@ -13,22 +13,22 @@ economist_2017_pal(
 \arguments{
 \item{media}{Either `"print"` or `"web"`.}
 
-\item{set}{For `media = "print"` only. `"primary"` is the six-colour
-palette, in the order given by `type`. `"bright"` (four colours) and
-`"dark"` (three colours) are the guide's supporting sets "for
+\item{set}{For `media = "print"` only. `"primary"` is the six-color
+palette, in the order given by `type`. `"bright"` (four colors) and
+`"dark"` (three colors) are the guide's supporting sets "for
 multi-category charts where high contrast is needed" (p.11); they have
 no per-chart-type order, so `type` is ignored for them.}
 
 \item{type}{For `media = "print"` and `set = "primary"` only: which chart
-type's colour order to use. `"bar_side"` is bar or column, side by side
+type's color order to use. `"bar_side"` is bar or column, side by side
 (p.13), and is the guide's default reading order; `"stacked"` is
 bar, column or line, stacked (pp.14, 16); `"line_side"` is line, side by
 side (p.15); `"dot"` is thermometer or scatter (pp.17-18); and `"pie"` is
 pie or doughnut (p.20).}
 }
 \value{
-A palette function. It takes the number of colours `n` and
-  returns a character vector of `n` hex colours, and can be used as the
+A palette function. It takes the number of colors `n` and
+  returns a character vector of `n` hex colors, and can be used as the
   `palette` argument of [ggplot2::discrete_scale()].
 }
 \description{
@@ -39,10 +39,10 @@ just different backgrounds, so pick the medium the chart is for.
 }
 \details{
 The print palette is not one fixed order. Each chart-type page of the
-guide (pp.13-20) carries its own numbered colour order. They are
+guide (pp.13-20) carries its own numbered color order. They are
 reorderings of the same six hues, and come in five distinct sequences,
 chosen with `type`. The guide gives the web palette (p.12) as a single
-row of nine colours, so `type` has no effect when `media = "web"`.
+row of nine colors, so `type` has no effect when `media = "web"`.
 }
 \examples{
 library("scales")
@@ -66,8 +66,8 @@ Matt McLean), pp.11-20.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_chart]{economist_2017_chart()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
-\code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
 \code{\link[=geom_scale_break]{geom_scale_break()}},

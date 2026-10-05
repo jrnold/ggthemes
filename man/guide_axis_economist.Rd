@@ -37,7 +37,7 @@ does. The gridlines run underneath the labels to the edge of the chart,
 so the axis takes up no width of its own and the panel fills it instead.
 }
 \details{
-The labels take their font, size and colour from the theme's
+The labels take their font, size and color from the theme's
 `axis.text.y.left` or `axis.text.y.right` element. Their alignment comes
 from the guide, so the element's `hjust`, `vjust` and `margin` have no
 effect. Only the labels are drawn: there are no ticks and no axis line,
@@ -47,7 +47,8 @@ The top label sits above the top gridline, so it extends a little above
 the panel. Leave room for it, as [theme_economist_2017()] does.
 
 Only vertical axes are drawn this way. On an x axis the guide falls back
-to [ggplot2::guide_axis()].
+to [ggplot2::guide_axis()], dropping any label that would overprint its
+neighbour, as when a horizontal bar chart's value axis runs along the top.
 }
 \examples{
 library("ggplot2")
@@ -64,8 +65,8 @@ Matt McLean), pp.6-7.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_chart]{economist_2017_chart()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
-\code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},

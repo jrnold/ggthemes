@@ -29,8 +29,8 @@
 #'   `"left"` is for a double-scale chart whose broken axis is the left one.
 #' @param width,height Size of the symbol in points. The guide specifies a
 #'   6pt width (p.25).
-#' @param colour Colour of the symbol. The guide draws it in black, not in the
-#'   axis or text colour.
+#' @param colour Color of the symbol. The guide draws it in black, not in the
+#'   axis or text color.
 #' @param stroke Stroke weight in points. The guide specifies 0.4pt.
 #' @param ... Other arguments passed to [ggplot2::layer()].
 #'

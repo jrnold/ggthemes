@@ -63,7 +63,7 @@ p <- ggplot(economics, aes(date, unemploy / 1000)) +
   theme_economist_2017()
 size <- economist_2017_size("two_column", height = 200)
 path <- tempfile(fileext = ".png")
-ggsave(path, economist_2017_furniture(p), width = size[["width"]], height = size[["height"]])
+ggsave(path, economist_2017_chart(p), width = size[["width"]], height = size[["height"]])
 }
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
@@ -71,8 +71,8 @@ Matt McLean), pp.4, 8-9.
 }
 \seealso{
 Other economist 2017:
+\code{\link[=economist_2017_chart]{economist_2017_chart()}},
 \code{\link[=economist_2017_footnote]{economist_2017_footnote()}},
-\code{\link[=economist_2017_furniture]{economist_2017_furniture()}},
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=geom_scale_break]{geom_scale_break()}},

@@ -5,7 +5,7 @@ reference:
 - title: Themes
   contents: starts_with("theme_")
 - title: The Economist, 2017
-  desc: Theme, palettes, scales, axis guide and chart furniture for *The Economist
+  desc: Theme, palettes, scales, axis guide, chart layout and sizes for *The Economist
     visual styleguide* (v1.2, 4 May 2017).
   contents:
   - theme_economist_2017
@@ -13,7 +13,7 @@ reference:
   - economist_2017_gradient_pal
   - scale_colour_economist_2017
   - guide_axis_economist
-  - economist_2017_furniture
+  - economist_2017_chart
   - economist_2017_size
   - economist_2017_footnote
   - geom_scale_break

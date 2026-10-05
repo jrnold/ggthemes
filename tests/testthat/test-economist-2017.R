@@ -199,6 +199,24 @@ test_that("theme_economist_2017 rules only the x axis", {
   }
 })
 
+test_that("theme_economist_2017 draws a top value axis without rule or ticks", {
+  # p.13: a horizontal bar chart's value axis is numbers over gridlines.
+  for (media in c("print", "web")) {
+    thm <- theme_economist_2017(media)
+    expect_s3_class(ggplot2::calc_element("axis.line.x.top", thm), "element_blank")
+    expect_s3_class(ggplot2::calc_element("axis.ticks.x.top", thm), "element_blank")
+    expect_equal(unit_pt(ggplot2::calc_element("axis.ticks.length.x.top", thm)), 0)
+    # The bottom axis keeps its baseline and ticks.
+    expect_s3_class(ggplot2::calc_element("axis.line.x.bottom", thm), "element_line")
+    expect_s3_class(ggplot2::calc_element("axis.ticks.x.bottom", thm), "element_line")
+  }
+})
+
+test_that("theme_economist_2017 ranges left-axis labels left", {
+  # p.13: the categories of a horizontal bar chart start at the chart's edge.
+  expect_equal(ggplot2::calc_element("axis.text.y.left", theme_economist_2017())$hjust, 0)
+})
+
 test_that("theme_economist_2017 uses each medium's colours", {
   for (media in c("print", "web")) {
     spec <- economist_2017_spec(media)
@@ -215,10 +233,11 @@ test_that("theme_economist_2017 uses each medium's colours", {
 })
 
 test_that("theme_economist_2017 uses print and web outer margins", {
-  # p.6: 6pt all round for print. p.7: none at the sides for web.
+  # p.6: 6pt at the sides and bottom for print. p.7: none at the sides for
+  # web. Neither has a top margin: the tab sits on the top edge.
   print_margin <- unit_pt(ggplot2::calc_element("plot.margin", theme_economist_2017("print")))
   web_margin <- unit_pt(ggplot2::calc_element("plot.margin", theme_economist_2017("web")))
-  expect_equal(print_margin, c(6, 6, 6, 6))
+  expect_equal(print_margin, c(0, 6, 6, 6))
   expect_equal(web_margin[c(2, 4)], c(0, 0))
   expect_equal(web_margin[1], 0)
 })
@@ -346,9 +365,9 @@ test_that("guide_axis_economist falls back to a standard axis on x", {
   expect_gt(unit_pt(grid::grobHeight(axis)), 0)
 })
 
-# economist_2017_furniture() ----------------------------------------------------
+# economist_2017_chart() ----------------------------------------------------
 
-furniture_plot <- function(media = "print", facet = FALSE) {
+chart_plot <- function(media = "print", facet = FALSE) {
   df <- data.frame(x = 1:4, y = 1:4, g = c("a", "b"))
   p <- ggplot2::ggplot(df, ggplot2::aes(.data$x, .data$y, colour = .data$g)) +
     ggplot2::geom_point() +
@@ -360,22 +379,22 @@ furniture_plot <- function(media = "print", facet = FALSE) {
   p
 }
 
-# The furniture is laid out at draw time; build it as makeContent() would.
-furniture_gtable <- function(p, media = "print") {
-  grid::makeContent(economist_2017_furniture(p, media))$children[[1]]
+# The chart is laid out at draw time; build it as makeContent() would.
+chart_gtable <- function(p, media = "print") {
+  grid::makeContent(economist_2017_chart(p, media))$children[[1]]
 }
 
-test_that("economist_2017_furniture returns a drawable grob", {
-  out <- economist_2017_furniture(furniture_plot())
-  expect_s3_class(out, "ggthemes_furniture")
+test_that("economist_2017_chart returns a drawable grob", {
+  out <- economist_2017_chart(chart_plot())
+  expect_s3_class(out, "ggthemes_economist_chart")
   expect_s3_class(out, "grob")
-  expect_error(economist_2017_furniture(1), "ggplot")
-  expect_error(economist_2017_furniture(furniture_plot(), "screen"))
+  expect_error(economist_2017_chart(1), "ggplot")
+  expect_error(economist_2017_chart(chart_plot(), "screen"))
 })
 
-test_that("economist_2017_furniture adds the tab, and the rule for web", {
-  print_gt <- furniture_gtable(furniture_plot("print"), "print")
-  web_gt <- furniture_gtable(furniture_plot("web"), "web")
+test_that("economist_2017_chart adds the tab, and the rule for web", {
+  print_gt <- chart_gtable(chart_plot("print"), "print")
+  web_gt <- chart_gtable(chart_plot("web"), "web")
   expect_true("economist-tab" %in% print_gt$layout$name)
   expect_false("economist-rule" %in% print_gt$layout$name)
   expect_true(all(c("economist-tab", "economist-rule") %in% web_gt$layout$name))
@@ -384,19 +403,20 @@ test_that("economist_2017_furniture adds the tab, and the rule for web", {
   expect_equal(unit_pt(tab$width), 15)
   expect_equal(unit_pt(tab$height), 5)
   expect_equal(tab$gp$fill, economist_2017_spec("print")$accent)
-  # Placed at the print chart's 6pt margin
+  # Placed at the print chart's 6pt side margin, on the top edge (p.6)
   expect_equal(unit_pt(tab$x), 6)
+  expect_equal(grid::convertY(tab$y, "npc", valueOnly = TRUE), 1)
 })
 
-test_that("economist_2017_furniture scales with the plot's base size", {
-  p <- furniture_plot() + theme_economist_2017(base_size = 20)
-  tab <- furniture_gtable(p)$grobs
+test_that("economist_2017_chart scales with the plot's base size", {
+  p <- chart_plot() + theme_economist_2017(base_size = 20)
+  tab <- chart_gtable(p)$grobs
   tab <- tab[[length(tab)]]
   expect_equal(unit_pt(tab$width), 30)
 })
 
-test_that("economist_2017_furniture marks each panel heading", {
-  gt <- furniture_gtable(furniture_plot(facet = TRUE))
+test_that("economist_2017_chart marks each panel heading", {
+  gt <- chart_gtable(chart_plot(facet = TRUE))
   markers <- grep("^economist-marker-", gt$layout$name, value = TRUE)
   expect_length(markers, 2)
   marker <- gt$grobs[[which(gt$layout$name == markers[1])]]
@@ -405,27 +425,27 @@ test_that("economist_2017_furniture marks each panel heading", {
   expect_equal(unit_pt(marker$height), 1)
 })
 
-test_that("economist_2017_furniture moves a web key beside the title", {
-  gt <- furniture_gtable(furniture_plot("web"), "web")
+test_that("economist_2017_chart moves a web key beside the title", {
+  gt <- chart_gtable(chart_plot("web"), "web")
   key <- gt$layout[gt$layout$name == "guide-box-top", ]
   title <- gt$layout[gt$layout$name == "title", ]
   subtitle <- gt$layout[gt$layout$name == "subtitle", ]
   expect_equal(key$t, title$t)
   expect_equal(key$b, subtitle$b)
   # Print keeps its key under the subtitle
-  print_gt <- furniture_gtable(furniture_plot("print"), "print")
+  print_gt <- chart_gtable(chart_plot("print"), "print")
   print_key <- print_gt$layout[print_gt$layout$name == "guide-box-top", ]
   expect_gt(print_key$t, print_gt$layout$b[print_gt$layout$name == "subtitle"])
 })
 
-test_that("economist_2017_furniture leaves a plot without a key alone", {
-  p <- furniture_plot("web") + ggplot2::theme(legend.position = "none")
-  expect_no_error(furniture_gtable(p, "web"))
+test_that("economist_2017_chart leaves a plot without a key alone", {
+  p <- chart_plot("web") + ggplot2::theme(legend.position = "none")
+  expect_no_error(chart_gtable(p, "web"))
 })
 
-test_that("economist_2017_furniture adds a footnote on the source line", {
-  p <- furniture_plot() + ggplot2::labs(caption = "Source: somewhere")
-  gt <- grid::makeContent(economist_2017_furniture(p, footnote = "*Estimate"))$children[[1]]
+test_that("economist_2017_chart adds a footnote on the source line", {
+  p <- chart_plot() + ggplot2::labs(caption = "Source: somewhere")
+  gt <- grid::makeContent(economist_2017_chart(p, footnote = "*Estimate"))$children[[1]]
   footnote <- gt$layout[gt$layout$name == "economist-footnote", ]
   caption <- gt$layout[gt$layout$name == "caption", ]
   expect_equal(footnote$t, caption$t)
@@ -433,31 +453,116 @@ test_that("economist_2017_furniture adds a footnote on the source line", {
   expect_match(paste(unlist(lapply(text$children, `[[`, "label")), collapse = ""), "Estimate")
 })
 
-test_that("economist_2017_furniture gives a plot without a source a line for its footnote", {
-  gt <- furniture_gtable(furniture_plot())
+test_that("economist_2017_chart ends the footnote on the source line's last line", {
+  # pp.6-7, 15: a one-line footnote sits level with the last line of a
+  # two-line source, and a two-line footnote under a one-line source fits.
+  two_line_source <- chart_plot() + ggplot2::labs(caption = "Sources: one;\ntwo")
+  gt <- grid::makeContent(economist_2017_chart(two_line_source, footnote = "*Note"))$children[[1]]
+  footnote <- gt$grobs[[which(gt$layout$name == "economist-footnote")]]
+  expect_equal(footnote$children[[1]]$vjust, 0)
+
+  one_line_source <- chart_plot() + ggplot2::labs(caption = "Source: one")
+  gt <- grid::makeContent(economist_2017_chart(one_line_source, footnote = "*First\nsecond"))$children[[1]]
+  row <- gt$layout$t[gt$layout$name == "caption"]
+  footnote <- gt$grobs[[which(gt$layout$name == "economist-footnote")]]
+  expect_gte(unit_pt(gt$heights[row]), unit_pt(grid::grobHeight(footnote)))
+})
+
+test_that("economist_2017_chart gives a plot without a source a line for its footnote", {
+  gt <- chart_gtable(chart_plot())
   expect_false("economist-footnote" %in% gt$layout$name)
-  gt <- grid::makeContent(economist_2017_furniture(furniture_plot(), footnote = "*Estimate"))$children[[1]]
+  gt <- grid::makeContent(economist_2017_chart(chart_plot(), footnote = "*Estimate"))$children[[1]]
   expect_true("economist-footnote" %in% gt$layout$name)
 })
 
-test_that("economist_2017_furniture draws a number box in the medium's box colour", {
+test_that("economist_2017_chart draws a number box in the medium's box colour", {
   for (media in c("print", "web")) {
-    gt <- grid::makeContent(economist_2017_furniture(furniture_plot(media), media, number = 2))$children[[1]]
+    gt <- grid::makeContent(economist_2017_chart(chart_plot(media), media, number = 2))$children[[1]]
     box <- gt$grobs[[which(gt$layout$name == "economist-number")]]
     rect <- box$children[[1]]
     expect_equal(unit_pt(rect$width), 10, info = media)
     expected <- economist_2017_spec(media)[[if (media == "print") "number_box" else "box"]]
     expect_equal(rect$gp$fill, expected, info = media)
     expect_equal(box$children[[2]]$label, "2", info = media)
+    # A white numeral on the box (p.25)
+    expect_equal(box$children[[2]]$gp$col, "white", info = media)
   }
 })
 
-test_that("economist_2017_furniture takes a tab size", {
-  gt <- grid::makeContent(economist_2017_furniture(furniture_plot(), tab = c(15, 4)))$children[[1]]
+test_that("economist_2017_chart takes a tab size", {
+  gt <- grid::makeContent(economist_2017_chart(chart_plot(), tab = c(15, 4)))$children[[1]]
   tab <- gt$grobs[[which(gt$layout$name == "economist-tab")]]
   expect_equal(unit_pt(tab$height), 4)
-  expect_error(economist_2017_furniture(furniture_plot(), tab = 5), "tab")
-  expect_error(economist_2017_furniture(furniture_plot(), footnote = c("a", "b")), "footnote")
+  expect_error(economist_2017_chart(chart_plot(), tab = 5), "tab")
+  expect_error(economist_2017_chart(chart_plot(), footnote = c("a", "b")), "footnote")
+})
+
+test_that("economist_2017_chart moves y-axis titles above the panels", {
+  # p.10: units sit horizontally over their axis, not in a column beside it.
+  p <- ggplot2::ggplot(data.frame(x = 1:3, y = 1:3), ggplot2::aes(.data$x, .data$y)) +
+    ggplot2::geom_point() +
+    ggplot2::scale_y_continuous(
+      position = "right",
+      guide = guide_axis_economist(),
+      name = "Right, %",
+      sec.axis = ggplot2::dup_axis(name = "Left, %", guide = guide_axis_economist())
+    ) +
+    theme_economist_2017()
+  gt <- chart_gtable(p)
+  expect_false(any(c("ylab-l", "ylab-r") %in% gt$layout$name))
+  panel <- gt$layout[gt$layout$name == "panel", ]
+  for (side in c("left", "right")) {
+    title <- gt$layout[gt$layout$name == paste0("economist-ylab-", side), ]
+    expect_equal(nrow(title), 1, info = side)
+    # In the row directly above the panel, across the panel's width.
+    expect_equal(title$t, panel$t - 1, info = side)
+    expect_equal(c(title$l, title$r), c(panel$l, panel$r), info = side)
+  }
+  right <- gt$grobs[[which(gt$layout$name == "economist-ylab-right")]]
+  expect_match(economist_2017_grob_label(right), "Right, %")
+})
+
+test_that("economist_2017_chart leaves a plot without y-axis titles alone", {
+  p <- chart_plot() + ggplot2::labs(y = NULL)
+  gt <- chart_gtable(p)
+  expect_false(any(grepl("^economist-ylab", gt$layout$name)))
+})
+
+# The x-axis labels of a finished chart as they are drawn: draw it, then
+# grid.force() runs every makeContent() in its viewport, as drawing does.
+drawn_axis_labels <- function(p, width = 160 / 72, height = 120 / 72) {
+  path <- withr::local_tempfile(fileext = ".png")
+  grDevices::png(path, width = width, height = height, units = "in", res = 72)
+  on.exit(grDevices::dev.off(), add = TRUE)
+  grid::grid.newpage()
+  grid::grid.draw(economist_2017_chart(p))
+  grid::grid.force()
+  labels <- grid::grid.get("economist-axis-labels", global = TRUE)
+  if (inherits(labels, "grob")) {
+    labels <- list(labels)
+  }
+  labels[[1]]$children[[1]]
+}
+
+test_that("economist_2017_chart keeps end-of-axis labels within the panel", {
+  # An area chart reaches the panel's edges, so its first and last labels are
+  # centred on them; centred, "1991" hangs past a 6pt margin and is cut off.
+  d <- data.frame(x = 1991:2016, y = seq_len(26))
+  p <- ggplot2::ggplot(d, ggplot2::aes(.data$x, .data$y)) +
+    ggplot2::geom_area() +
+    ggplot2::scale_x_continuous(expand = c(0, 0), breaks = c(1991, 2000, 2016)) +
+    theme_economist_2017()
+  text <- drawn_axis_labels(p)
+  expect_equal(text$label, c("1991", "2000", "2016"))
+  expect_equal(text$hjust, c(0, 0.5, 1))
+})
+
+test_that("economist_2017_chart leaves axis labels that fit centred", {
+  p <- ggplot2::ggplot(data.frame(x = 1:10, y = 1:10), ggplot2::aes(.data$x, .data$y)) +
+    ggplot2::geom_point() +
+    ggplot2::scale_x_continuous(breaks = c(2, 5, 8)) +
+    theme_economist_2017()
+  expect_equal(drawn_axis_labels(p)$hjust, c(0.5, 0.5, 0.5))
 })
 
 # Sizes, typefaces and footnotes -----------------------------------------------------
@@ -520,8 +625,8 @@ test_that("theme_economist_2017 draws correctly", {
       theme_economist_2017(media)
     expect_doppelganger(paste0("theme_economist_2017-", media), p)
     expect_doppelganger(
-      paste0("economist_2017_furniture-", media),
-      economist_2017_furniture(p, media)
+      paste0("economist_2017_chart-", media),
+      economist_2017_chart(p, media)
     )
   }
 })
