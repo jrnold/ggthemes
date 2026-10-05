@@ -1,0 +1,88 @@
+# Reverse-engineered from standard Economist graphics published after the
+# March 2024 redesign. Values below are sampled from the local chart corpus,
+# not carried over from the package's earlier experimental implementation.
+#
+# The six-colour qualitative order is stable across the clearest six-series
+# examples: red, salmon, blue, light blue, dark grey, light grey. Print and
+# web use distinct production values. Sequential and diverging ramps are
+# reduced to perceptually useful stops sampled from maps, heatmaps and shaded
+# bands; ggplot2 interpolates between them for continuous data.
+print:
+  bg:
+  - {name: "panel", value: '#ECEBE0'}
+  - {name: "panel alternate", value: '#F3F1E6'}
+  qualitative:
+  - {name: "red", value: '#ED1C24'}
+  - {name: "salmon", value: '#F8AB90'}
+  - {name: "blue", value: '#28479D'}
+  - {name: "light blue", value: '#659BD2'}
+  - {name: "dark gray", value: '#636466'}
+  - {name: "light gray", value: '#C6C8CA'}
+  sequential_red:
+  - {name: "red 0", value: '#F3F1E6'}
+  - {name: "red 1", value: '#F0D3C1'}
+  - {name: "red 2", value: '#F8AB90'}
+  - {name: "red 3", value: '#F04F38'}
+  - {name: "red 4", value: '#ED1C24'}
+  - {name: "red 5", value: '#8E0D15'}
+  sequential_gray:
+  - {name: "gray 0", value: '#F3F1E6'}
+  - {name: "gray 1", value: '#D8D6C8'}
+  - {name: "gray 2", value: '#ABABA4'}
+  - {name: "gray 3", value: '#7A7A75'}
+  - {name: "gray 4", value: '#4B4946'}
+  - {name: "gray 5", value: '#24211E'}
+  diverging:
+  - {name: "gray 3", value: '#24211E'}
+  - {name: "gray 2", value: '#7A7A75'}
+  - {name: "gray 1", value: '#D8D6C8'}
+  - {name: "neutral", value: '#F3F1E6'}
+  - {name: "red 1", value: '#F0D3C1'}
+  - {name: "red 2", value: '#F04F38'}
+  - {name: "red 3", value: '#ED1C24'}
+  accent: '#ED1C24'
+  grid: '#CCCCC3'
+  text: '#24211E'
+  source: '#636466'
+web:
+  bg:
+  - {name: "panel", value: '#FFFFFF'}
+  - {name: "panel alternate", value: '#F5F4EF'}
+  qualitative:
+  - {name: "red", value: '#E3120B'}
+  - {name: "salmon", value: '#FBA493'}
+  - {name: "blue", value: '#3A4DAC'}
+  - {name: "light blue", value: '#7892C5'}
+  - {name: "dark gray", value: '#6A6654'}
+  - {name: "light gray", value: '#BEBCAB'}
+  sequential_red:
+  - {name: "red 0", value: '#FFF5F0'}
+  - {name: "red 1", value: '#FEE5D9'}
+  - {name: "red 2", value: '#FDCCB8'}
+  - {name: "red 3", value: '#FCAE93'}
+  - {name: "red 4", value: '#FC8B6C'}
+  - {name: "red 5", value: '#FA6547'}
+  - {name: "red 6", value: '#F34935'}
+  - {name: "red 7", value: '#D72522'}
+  - {name: "red 8", value: '#B01117'}
+  - {name: "red 9", value: '#71030F'}
+  sequential_gray:
+  - {name: "gray 0", value: '#F2F2F2'}
+  - {name: "gray 1", value: '#D9D9D9'}
+  - {name: "gray 2", value: '#B3B3B3'}
+  - {name: "gray 3", value: '#868686'}
+  - {name: "gray 4", value: '#666666'}
+  - {name: "gray 5", value: '#4D4D4D'}
+  - {name: "gray 6", value: '#0D0D0D'}
+  diverging:
+  - {name: "gray 3", value: '#0D0D0D'}
+  - {name: "gray 2", value: '#666666'}
+  - {name: "gray 1", value: '#D9D9D9'}
+  - {name: "neutral", value: '#FFFFFF'}
+  - {name: "red 1", value: '#FDD0CE'}
+  - {name: "red 2", value: '#F6423C'}
+  - {name: "red 3", value: '#E3120B'}
+  accent: '#E3120B'
+  grid: '#D9D9D9'
+  text: '#0D0D0D'
+  source: '#666666'
