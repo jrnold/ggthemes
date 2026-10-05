@@ -39,6 +39,14 @@ colorimetric with black-point compensation. The print colors are drawn
 from these swatches, except the black text and source text, which convert
 their K percentage directly. \code{ggthemes_data$economist_2017$web$swatches}
 lists the hex swatches of the guide's web palette page, for reference.
+
+\code{ggthemes_data$economist_design_system} contains the complete color
+tokens extracted from the current Economist Design System and Marber
+documentation. Numeric HSL is the canonical representation; the published
+HEX, RGB, HSL, and (where available) CMYK values are retained as documented
+source fields. The object also includes derived five-point HSL ramps for the
+main color families. These product tokens are kept separate from the
+observed chart palettes in \code{ggthemes_data$economist_2024}.
 }
 \examples{
 library("scales")

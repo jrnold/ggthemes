@@ -202,3 +202,75 @@ test_that("theme_economist_white(gray_bg = FALSE) draws correctly", {
     theme_test_plot() + theme_economist_white(gray_bg = FALSE)
   )
 })
+
+test_that("current Economist design-system tokens are complete", {
+  tokens <- ggthemes_data$economist_design_system
+
+  expect_equal(
+    nrow(tokens$sources$economist_design_system$tokens),
+    38
+  )
+  expect_equal(nrow(tokens$sources$marber$tokens), 61)
+  expect_named(
+    tokens$ramps,
+    c(
+      "economist_red",
+      "chicago",
+      "hong_kong",
+      "tokyo",
+      "singapore",
+      "new_york",
+      "london",
+      "los_angeles",
+      "paris"
+    )
+  )
+})
+
+test_that("current Economist source tokens use HSL canonically", {
+  sources <- ggthemes_data$economist_design_system$sources
+
+  for (source in sources) {
+    tokens <- source$tokens
+    expect_type(tokens$hue, "double")
+    expect_type(tokens$saturation, "double")
+    expect_type(tokens$lightness, "double")
+    expect_equal(tokens$value, tokens$documented_hex)
+  }
+})
+
+test_that("current Economist colour ramps use five-point lightness steps", {
+  ramps <- ggthemes_data$economist_design_system$ramps
+  expected_levels <- seq(5, 100, by = 5)
+
+  for (nm in names(ramps)) {
+    expect_equal(ramps[[nm]]$level, expected_levels, info = nm)
+    expect_equal(ramps[[nm]]$lightness, expected_levels, info = nm)
+    expect_match(ramps[[nm]]$value, "^#[0-9A-F]{6}$", all = TRUE, info = nm)
+  }
+})
+
+test_that("generated Economist ramps reproduce documented anchor colours", {
+  data <- ggthemes_data$economist_design_system
+  documented <- data$sources$marber$tokens
+  generated <- do.call(rbind, unname(data$ramps))
+
+  documented$level <- suppressWarnings(
+    as.integer(sub("^.* ([0-9]+)$", "\\1", documented$name))
+  )
+  documented <- documented[
+    documented$product == "The Economist" &
+      documented$group %in% c("Brand", "Base", "Greyscale", "Canvas") &
+      documented$family %in% unique(generated$family) &
+      documented$level %% 5 == 0,
+  ]
+  merged <- merge(
+    documented,
+    generated,
+    by = c("family", "group", "level"),
+    suffixes = c("_documented", "_generated")
+  )
+
+  expect_gt(nrow(merged), 30)
+  expect_equal(merged$documented_hex, merged$value_generated)
+})
