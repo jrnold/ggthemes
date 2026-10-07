@@ -14,8 +14,9 @@ theme_economist_2017(
 \arguments{
 \item{media}{Either \code{"print"} or \code{"web"}.}
 
-\item{base_size}{Base font size, in points. Every size in the theme is
-relative to it.}
+\item{base_size}{Base font size, in points: the size of the axis labels.
+Every size in the theme is relative to it. The guide's own sizes are at
+\code{base_size = 7}.}
 
 \item{base_family}{Base font family. The default, \code{\link[=economist_2017_font]{economist_2017_font()}},
 is Fira Sans Condensed or Roboto Condensed if either is installed, and
@@ -39,15 +40,15 @@ pale blue ground with a 6pt margin, web charts on white with none.
 The guide specifies a standard chart in points (pp.6-7): a 9.5pt bold
 title, 8pt subtitle, 7.5pt legend and panel headings, 7pt axis labels and
 a 6.5pt source line in 75\% black; 0.5pt gridlines and baseline; and 0.4pt
-tick marks, 5pt long, hanging below the baseline. Every size here,
-including rule weights, margins and spacing, is expressed relative to
-\code{base_size}, so these are the guide's sizes at the default
-\code{base_size = 10} and keep their proportions at any other.
+tick marks, 5pt long, hanging below the baseline. \code{base_size} is the size
+of the axis labels, as it is in \code{\link[=theme_economist]{theme_economist()}}, so at the default
+\code{base_size = 10} the axis labels are 10pt. Every other size, including
+rule weights, margins and spacing, is the guide's size relative to its 7pt
+axis labels, so a chart keeps its proportions at any \code{base_size}.
 
-At \code{base_size = 10} the type is the size the guide sets it, which suits a
-chart drawn at the guide's own widths -- 160pt (2.2in) for one print
-column, 332pt (4.6in) for two. On a larger figure, raise \code{base_size} in
-proportion.
+The guide's own sizes are those at \code{base_size = 7}, which suits a chart
+drawn at the guide's own widths -- 160pt (2.2in) for one print column,
+332pt (4.6in) for two. On a larger figure, raise \code{base_size} in proportion.
 
 Several conventions of the guide are not theme elements:
 \itemize{
@@ -90,20 +91,22 @@ p <- ggplot(yields, aes(year, yield, colour = country)) +
     caption = "Source: Thomson Reuters"
   )
 
-## Print
-p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017()
+## Print, at the guide's own sizes: base_size is the size of the axis labels,
+## which are 7pt in the guide
+p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017(base_size = 7)
 
 ## Web
-p + scale_colour_economist_2017("web") + theme_economist_2017("web")
+p + scale_colour_economist_2017("web") + theme_economist_2017("web", base_size = 7)
 
 ## Vertical gridlines, for a horizontal bar chart
 ggplot(mpg, aes(hwy, class)) +
   geom_boxplot() +
-  theme_economist_2017(horizontal = FALSE)
+  theme_economist_2017(horizontal = FALSE, base_size = 7)
 
 ## The guide's sizes suit its own chart widths. On a larger figure, scale
-## everything up with base_size.
-p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017(base_size = 14)
+## everything up with base_size: 10 makes the axis labels 10pt and every other
+## size follows in proportion.
+p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017(base_size = 10)
 }
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;

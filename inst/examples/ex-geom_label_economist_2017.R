@@ -2,7 +2,7 @@ library("ggplot2")
 
 p <- ggplot(economics, aes(date, unemploy / 1000)) +
   geom_line() +
-  theme_economist_2017()
+  theme_economist_2017(base_size = 7)
 
 ## A one-line callout pointing down at a point on the line
 p +
