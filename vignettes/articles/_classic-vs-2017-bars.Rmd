@@ -1,0 +1,1375 @@
+## Bar / column, side by side
+
+```{r bars-setup, include = FALSE}
+## The classic palette's colours by name, for the charts that override the colour order.
+classic_fg <- setNames(ggthemes_data$economist$fg$value, ggthemes_data$economist$fg$name)
+
+## Fixes for a small figure: the classic theme sets the legend keys in "lines" (14pt, whatever the base size), its
+## legend is boxed to the panel, whose width is cut by the axis labels, its legend text is 1.25 times the base size, and it aligns the title with the panel, so a long title runs off the edge.
+classic_fit <- theme(
+  legend.key.size = unit(classic_size * 1.2, "pt"),
+  legend.text = element_text(size = rel(1), margin = margin(l = 2)),
+  legend.key.spacing.x = unit(classic_size / 2, "pt"),
+  legend.location = "plot",
+  legend.justification = "left",
+  plot.title.position = "plot",
+  plot.caption.position = "plot"
+)
+```
+
+Every classic chart in this section adds `classic_fit` (defined in the hidden setup chunk above): legend keys of 1.2 times the base size in points, legend text at the base size rather than 1.25 times, the legend justified left and located at the plot's edge, and the title and caption aligned to the plot rather than the panel. Where a chart sets anything more (`strip.text`, `axis.text.y`), its note says so. Examples cover one trace, two traces, sub-categories, a plus/minus axis and color overrides, all in the `bar_side` order unless noted.
+
+### One trace with highlight
+
+```{r bars-salud, econ_height = 165}
+doctors <- data.frame(
+  country = c("Sweden", "Denmark", "Britain", "Portugal", "Luxembourg",
+              "France", "Austria", "Spain", "Germany"),
+  visits = c(2.9, 4.6, 5.0, 5.7, 6.3, 6.9, 6.9, 7.5, 8.2)
+)
+doctors$country <- factor(doctors$country, levels = doctors$country)
+doctors$highlight <- doctors$country == "Spain"
+
+salud <- ggplot(doctors, aes(country, visits, fill = highlight)) +
+  geom_col(width = 0.6, show.legend = FALSE) +
+  geom_hline(yintercept = 0, colour = print_pal$baseline, linewidth = 0.3) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", expand = expansion(mult = c(0, 0.02))) +
+  scale_fill_manual(values = c(`FALSE` = pal_bar(1), `TRUE` = pal_bar(2)[2])) +
+  labs(
+    title = "Salud",
+    subtitle = "Doctors’ consultations per person\nSelected countries, 2009",
+    x = NULL, y = NULL
+  ) +
+  ## The guide sets the highlighted category's label in bold.
+  scale_x_discrete(labels = bold_label("Spain")) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
+
+modern <- economist_2017_chart(
+  salud +
+    labs(caption = "Source: OECD"),
+  media = "print"
+)
+
+classic <- ggplot(doctors, aes(country, visits, fill = highlight)) +
+  geom_col(width = 0.6, show.legend = FALSE) +
+  coord_flip() +
+  scale_y_continuous(position = "right", expand = expansion(mult = c(0, 0.02))) +
+  scale_fill_economist() +
+  labs(
+    title = "Salud",
+    subtitle = "Doctors’ consultations per person\nSelected countries, 2009",
+    caption = "Source: OECD",
+    x = NULL, y = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic chart has no counterpart for the highlight: Spain is drawn in the palette's second colour, which is *darker* than the other bars (the guide's highlight is a lighter cyan), and the bold "Spain" label cannot be done by the theme. The classic value axis sits on top with a heavy black rule and inward ticks, with white vertical gridlines behind the bars; the 2017 chart has a thin rule and thin grey gridlines, also behind the bars. The classic caption is tiny (5.2pt) and right-aligned under the plot.
+
+### One trace, columns
+
+```{r bars-african-lion, econ_height = 165}
+ethiopia <- data.frame(
+  year = 2004:2015,
+  growth = c(11.7, 12.7, 11.5, 11.8, 11.2, 10.0, 10.6, 11.4, 8.7, 9.8, 10.3, 8.7)
+)
+
+lion <- ggplot(ethiopia, aes(year, growth)) +
+  geom_col(fill = pal_bar(1), width = 0.6) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 14), breaks = seq(0, 14, 2),
+    expand = expansion(0)
+  ) +
+  ## Labels every other year, then the estimate; a tick for every year.
+  scale_x_continuous(
+    breaks = c(seq(2004, 2014, 2), 2015), labels = c("2004", "06", "08", "10", "12", "14", "15*"),
+    minor_breaks = 2004:2015, guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  labs(
+    title = "African lion",
+    subtitle = "Ethiopia’s GDP, % change on a year earlier",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  lion +
+    labs(caption = "Source: IMF"),
+  media = "print",
+  footnote = "*Estimate"
+)
+
+classic <- ggplot(ethiopia, aes(year, growth)) +
+  geom_col(fill = economist_pal()(1), width = 0.6) +
+  scale_y_continuous(limits = c(0, 14), breaks = seq(0, 14, 2), position = "right", expand = expansion(0)) +
+  scale_x_continuous(breaks = c(seq(2004, 2014, 2), 2015), labels = c("2004", "06", "08", "10", "12", "14", "15*")) +
+  labs(
+    title = "African lion",
+    subtitle = "Ethiopia’s GDP, % change on a year earlier",
+    caption = "Source: IMF\n*Estimate",
+    x = NULL, y = NULL
+  ) +
+  theme_economist(base_size = classic_size) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic columns are the palette's single dark blue, against the 2017 mid-blue. The classic chart has white horizontal gridlines behind the columns and a heavy black base rule. The paper's own classic column charts had no black baseline and no ticks under the columns (checked in the chart corpus, 2012 to 2018); the rule and ticks are `theme_economist()`'s line-chart axis, which the theme cannot leave off for columns without extra settings. It draws no minor ticks, so only the labelled years are ticked, where the 2017 chart ticks every year. Both value axes sit on the right.
+
+### Two traces
+
+```{r bars-defenders, econ_height = 235}
+elections <- data.frame(
+  country = rep(c("Chile", "Brazil", "Mexico", "Malaysia", "South Africa",
+                  "Poland", "India", "Egypt", "Russia"), each = 2),
+  income = rep(c("Middle class", "Low income"), 9),
+  pct = c(80, 66, 69, 62, 64, 55, 61, 52, 59, 49,
+          54, 44, 53, 51, 51, 48, 51, 37)
+)
+elections$country <- factor(elections$country, levels = rev(unique(elections$country)))
+elections$income <- factor(elections$income, levels = c("Middle class", "Low income"))
+
+democracy <- ggplot(elections, aes(country, pct, fill = income)) +
+  geom_col(position = position_dodge(width = 0.74, reverse = TRUE), width = 0.74) +
+  geom_hline(yintercept = 0, colour = print_pal$baseline, linewidth = 0.3) +
+  coord_flip() +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 80), breaks = seq(0, 80, 20),
+    expand = expansion(0)
+  ) +
+  scale_fill_economist_2017("print", type = "bar_side") +
+  labs(
+    title = "Defenders of democracy",
+    subtitle = paste(
+      "Respondents saying that honest elections",
+      "held regularly with a choice of at least two",
+      "political parties are very important,",
+      "2007, %",
+      sep = "\n"
+    ),
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
+
+modern <- economist_2017_chart(
+  democracy +
+    labs(caption = "Source: Pew Global Attitudes Survey"),
+  media = "print"
+)
+
+classic <- ggplot(elections, aes(country, pct, fill = income)) +
+  geom_col(position = position_dodge(width = 0.74, reverse = TRUE), width = 0.74) +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 80), breaks = seq(0, 80, 20), position = "right", expand = expansion(0)) +
+  scale_fill_economist() +
+  labs(
+    title = "Defenders of democracy",
+    subtitle = paste(
+      "Respondents saying that honest elections",
+      "held regularly with a choice of at least two",
+      "political parties are very important,",
+      "2007, %",
+      sep = "\n"
+    ),
+    caption = "Source: Pew Global Attitudes Survey",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+Both draw two dodged bars per country. The classic palette gives the first series a bright blue and the second a very dark blue, so "Low income" is the darker bar; the 2017 order makes the first series the darker one.
+
+### Two traces with sub-categories
+
+`facet_grid()` with `space = "free"` gives the two-level label column.
+
+```{r bars-autumn-fall, econ_height = 185}
+forecasts <- data.frame(
+  country = rep(c("Germany", "France", "Euro area", "Spain", "Italy"), each = 4),
+  vintage = rep(rep(c("2011", "2012"), each = 2), 5),
+  made_in = rep(c("June", "September"), 10),
+  gdp = c(3.2, 2.7, 2.0, 1.3, 2.1, 1.7, 1.9, 1.4, 2.0, 1.6,
+          1.7, 1.1, 0.8, 0.8, 1.6, 1.1, 1.0, 0.6, 1.3, 0.3)
+)
+forecasts$country <- factor(forecasts$country, levels = unique(forecasts$country))
+forecasts$vintage <- factor(forecasts$vintage, levels = c("2012", "2011"))
+forecasts$made_in <- factor(forecasts$made_in, levels = c("June", "September"))
+
+## A rule above every group but the first.
+autumn_rules <- data.frame(country = factor(levels(forecasts$country)[-1], levels = levels(forecasts$country)))
+
+autumn <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
+  geom_col(position = position_dodge(width = 0.7, reverse = TRUE), width = 0.7) +
+  geom_vline(data = autumn_rules, aes(xintercept = 2.5), colour = grid_col, linewidth = 0.3) +
+  geom_hline(yintercept = 0, colour = print_pal$baseline, linewidth = 0.3) +
+  coord_flip() +
+  facet_grid(rows = vars(.data$country), scales = "free_y", space = "free", switch = "y") +
+  scale_x_discrete(expand = expansion(add = 0.5)) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", breaks = 0:3, expand = expansion(mult = c(0, 0.02))
+  ) +
+  scale_fill_economist_2017("print", type = "bar_side") +
+  labs(
+    title = "Autumn fall",
+    subtitle = "GDP, % increase on previous year",
+    x = NULL, y = NULL, fill = "Forecasts made in:"
+  ) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7) +
+  theme(
+    strip.placement = "outside",
+    strip.text.y.left = element_text(angle = 0, hjust = 0, vjust = 1),
+    panel.spacing.y = unit(0, "pt")
+  ) +
+  guides(fill = guide_legend(title.position = "left"))
+
+modern <- economist_2017_chart(
+  autumn +
+    labs(caption = "Source: IMF"),
+  media = "print"
+)
+
+classic <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
+  geom_col(position = position_dodge(width = 0.7, reverse = TRUE), width = 0.7) +
+  coord_flip() +
+  facet_grid(rows = vars(.data$country), scales = "free_y", space = "free", switch = "y") +
+  scale_y_continuous(breaks = 0:3, position = "right", expand = expansion(mult = c(0, 0.02))) +
+  scale_fill_economist() +
+  labs(
+    title = "Autumn fall",
+    subtitle = "GDP, % increase on previous year",
+    caption = "Source: IMF",
+    x = NULL, y = NULL, fill = "Forecasts made in:"
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit +
+  theme(strip.placement = "outside", strip.text.y.left = element_text(angle = 0, hjust = 0, vjust = 1))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic theme has no two-level label column: the groups are `facet_grid()` strips, and its strip text is rotated -90 degrees by default (unreadable here) until set horizontal. There are no rules between the country groups and the group names are larger than the year labels, where the 2017 chart sets them as a column of the same size.
+
+### Two traces with sub-categories, columns
+
+```{r bars-mighty-jungle, econ_height = 155}
+returns <- data.frame(
+  horizon = rep(c("20 years", "10 years", "5 years"), each = 4),
+  asset = rep(c("Equities", "All property", "Rural property", "Forestry"), 3),
+  pct = c(7.1, 8.7, 12.5, 9.5, 6.7, 6.1, 11.8, 18.8, 7.7, 10.9, 11.3, 21.1)
+)
+returns$horizon <- factor(returns$horizon, levels = c("20 years", "10 years", "5 years"))
+returns$asset <- factor(returns$asset,
+                        levels = c("Equities", "All property", "Rural property", "Forestry"))
+
+jungle <- ggplot(returns, aes(horizon, pct, fill = asset)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.8) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", breaks = seq(0, 20, 5),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  scale_fill_economist_2017("print", type = "bar_side") +
+  labs(
+    title = "The mighty jungle",
+    subtitle = "Britain, annualised rate of return\non investment*, %",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  ## The guide draws no x axis line or ticks on this chart.
+  theme(panel.grid.major.x = element_blank(), axis.line.x = element_blank(), axis.ticks.x = element_blank()) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+modern <- economist_2017_chart(
+  jungle +
+    labs(caption = "Sources: MSCI; JP Morgan"),
+  media = "print",
+  footnote = "*To 2014"
+)
+
+classic <- ggplot(returns, aes(horizon, pct, fill = asset)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.8) +
+  scale_y_continuous(breaks = seq(0, 20, 5), position = "right", expand = expansion(mult = c(0, 0.05))) +
+  scale_fill_economist() +
+  labs(
+    title = "The mighty jungle",
+    subtitle = "Britain, annualised rate of return\non investment*, %",
+    caption = "Sources: MSCI; JP Morgan\n*To 2014",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size) +
+  classic_fit +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic four-colour palette ends in a grey, so "Forestry" is grey, which in the 2017 style would signal "other". The two-row key leaves the classic panel very short, so its value labels (20, 15, 10, 5) nearly touch.
+
+### One trace with a plus/minus axis
+
+The guide: "Differentiate positive/negative values by colour only where there is a meaningful difference i.e. imports / exports." This is one series, so it stays one color.
+
+```{r bars-dotcom, econ_height = 195}
+capex <- data.frame(
+  sector = c("Internet", "Software", "Tech hardware", "IT services", "Health care", "Total",
+             "Leisure", "Chemicals", "Oil, gas and fuels", "Metals and mining", "Property",
+             "Energy equipment"),
+  change = c(52, 36, 26, 22, 9, -17, -19, -23, -32, -34, -35, -53)
+)
+capex$sector <- factor(capex$sector, levels = rev(capex$sector))
+
+dotcom <- ggplot(capex, aes(sector, change)) +
+  geom_col(fill = pal_bar(1), width = 0.6) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-60, 60),
+                     breaks = seq(-60, 60, 20), expand = expansion(0)) +
+  labs(
+    title = "Another dotcom boom",
+    subtitle = "Change in worldwide capital spending*, %\n2014-17 forecast",
+    x = NULL, y = NULL
+  ) +
+  ## "Total" is a summary row, so the guide bolds it.
+  scale_x_discrete(labels = bold_label("Total")) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
+
+modern <- economist_2017_chart(
+  dotcom +
+    labs(caption = "Source: Goldman Sachs"),
+  media = "print",
+  footnote = "*In dollar terms"
+)
+
+classic <- ggplot(capex, aes(sector, change)) +
+  geom_col(fill = economist_pal()(1), width = 0.6) +
+  coord_flip() +
+  scale_y_continuous(limits = c(-60, 60), breaks = seq(-60, 60, 20), position = "right", expand = expansion(0)) +
+  labs(
+    title = "Another dotcom boom",
+    subtitle = "Change in worldwide capital spending*, %\n2014-17 forecast",
+    caption = "Source: Goldman Sachs\n*In dollar terms",
+    x = NULL, y = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+Same data, one colour. The classic chart has no red zero line (the heavy value-axis rule is black and at the top) and no bold "Total" row. The theme cannot draw a zero line, but the paper did: from 2014 about one classic chart in five carries a thin red rule at zero or at an index value (corpus), so this is a gap in the theme, not a feature the classic style lacked. The classic gridlines are white bands at the tick values; the 2017 chart has thin grey ones.
+
+### Plus/minus columns
+
+```{r bars-money-drain, econ_height = 155}
+## 2005 is missing from the guide's chart.
+capital <- data.frame(
+  year = c(1994:2004, 2006:2011),
+  flow = c(-14, -4, -24, -18.5, -22, -21, -25, -15, -8, -1.5, -8,
+           42, 82, -134, -57, -34, -31.5)
+)
+
+drain <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
+  geom_col(width = 0.68, show.legend = FALSE) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-150, 100),
+                     breaks = seq(-150, 100, 50), expand = expansion(0)) +
+  scale_x_continuous(
+    breaks = c(seq(1994, 2008, 2), 2011),
+    labels = c("1994", "96", "98", "2000", "02", "04", "06", "08", "11*")
+  ) +
+  scale_fill_manual(values = c(`TRUE` = pal_bar(1), `FALSE` = pal_bar(2)[2])) +
+  labs(
+    title = "The money drain",
+    subtitle = "Net private capital inflows/outflows, $bn",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  drain +
+    labs(caption = "Source: Central Bank of Russia"),
+  media = "print",
+  footnote = "*To June 30th"
+)
+
+classic <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
+  geom_col(width = 0.68, show.legend = FALSE) +
+  scale_y_continuous(limits = c(-150, 100), breaks = seq(-150, 100, 50), position = "right", expand = expansion(0)) +
+  scale_x_continuous(
+    breaks = c(seq(1994, 2008, 2), 2011),
+    labels = c("1994", "96", "98", "2000", "02", "04", "06", "08", "11*")
+  ) +
+  scale_fill_economist() +
+  labs(
+    title = "The money drain",
+    subtitle = "Net private capital inflows/outflows, $bn",
+    caption = "Source: Central Bank of Russia\n*To June 30th",
+    x = NULL, y = NULL
+  ) +
+  theme_economist(base_size = classic_size) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The sign split uses the palette's two blues (bright for outflows, dark for inflows); the 2017 chart uses the `bar_side` blue and cyan. There is no red zero line in the classic chart (the theme cannot draw one; the paper's charts from 2014 on did), and its year labels at this size are close enough to crowd ("1994 96").
+
+### Color used for a meaningful positive/negative split
+
+Here the sign is meaningful, so the two halves differ in color.
+
+```{r bars-trader-woes, econ_height = 215}
+trade <- data.frame(
+  year = rep(1995:2016, 4),
+  country = rep(c("China, as % of GDP", "United States, as % of GDP"), each = 44),
+  flow = rep(rep(c("Exports", "Imports"), each = 22), 2),
+  pct = c(
+    6.2, 5.9, 6.5, 6.9, 7.5, 8.2, 7.6, 8.5, 9.1, 10.0, 10.5,
+    10.4, 9.0, 7.3, 5.8, 6.0, 5.3, 5.0, 4.7, 4.4, 4.3, 4.1,
+    -1.5, -1.4, -1.2, -1.3, -1.2, -1.3, -1.4, -1.5, -1.7, -1.8, -1.7,
+    -1.9, -1.8, -1.4, -1.4, -1.4, -1.3, -1.2, -1.2, -1.1, -0.95, -0.95,
+    0.1, 0.1, 0.1, 0.15, 0.15, 0.2, 0.2, 0.2, 0.25, 0.3, 0.35,
+    0.4, 0.5, 0.55, 0.5, 0.6, 0.7, 0.7, 0.75, 0.75, 0.7, 0.7,
+    -0.7, -0.75, -0.8, -0.9, -0.9, -1.1, -1.1, -1.2, -1.4,
+    -1.6, -1.9, -2.1, -2.2, -2.3, -2.1, -2.5, -2.7, -2.7,
+    -2.7, -2.75, -2.8, -2.6
+  )
+)
+trade$country <- factor(
+  trade$country,
+  levels = c("China, as % of GDP", "United States, as % of GDP")
+)
+trade$flow <- factor(trade$flow, levels = c("Exports", "Imports"))
+stopifnot(all(table(trade$country, trade$flow) == 22))
+
+## Only the China panel names its two series, in the colour of their bars.
+trade_labels <- data.frame(
+  year = 1999.6,
+  pct = c(9.9, -2.5),
+  flow = factor(c("Exports", "Imports"), levels = levels(trade$flow)),
+  country = factor(levels(trade$country)[1], levels = levels(trade$country))
+)
+
+## The guide draws imports in a lighter red than the palette's maroon.
+trade_cols <- c(Exports = pal_bar(1), Imports = swatch("red1"))
+
+woes <- ggplot(trade, aes(year, pct, fill = flow)) +
+  geom_col(width = 0.68) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  geom_blank(
+    data = data.frame(
+      year = 1995,
+      pct = c(-4, 12, -4, 4),
+      country = factor(rep(levels(trade$country), each = 2),
+                       levels = levels(trade$country))
+    ),
+    aes(x = year, y = pct), inherit.aes = FALSE
+  ) +
+  geom_text(
+    data = trade_labels, aes(x = year, y = pct, label = flow, colour = flow),
+    inherit.aes = FALSE, size = 2.5, fontface = "bold"
+  ) +
+  facet_wrap(
+    ~country, ncol = 1, scales = "free_y", space = "free_y", axes = "all",
+    labeller = as_labeller(
+      c(`China, as % of GDP` = 'bold("China,")~"as % of GDP"',
+        `United States, as % of GDP` = 'bold("United States,")~"as % of GDP"'),
+      label_parsed
+    )
+  ) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", breaks = seq(-4, 12, 4), expand = expansion(0)
+  ) +
+  scale_fill_manual(values = trade_cols, guide = "none") +
+  scale_colour_manual(values = trade_cols, guide = "none") +
+  scale_x_continuous(
+    breaks = c(1995, 2000, 2005, 2010, 2016),
+    labels = c("1995", "2000", "05", "10", "16*"),
+    minor_breaks = 1995:2016, guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  labs(
+    title = "Trader woes",
+    subtitle = "China-United States trade in goods",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    strip.text = element_text(hjust = 0),
+    panel.spacing.y = unit(8, "pt")
+  )
+
+modern <- economist_2017_chart(
+  woes +
+    labs(caption = "Sources: Census Bureau;\nIMF"),
+  media = "print",
+  footnote = "*Jan-Nov annualised"
+)
+
+classic <- ggplot(trade, aes(year, pct, fill = flow)) +
+  geom_col(width = 0.68) +
+  facet_wrap(~country, ncol = 1, scales = "free_y") +
+  scale_y_continuous(position = "right", expand = expansion(mult = 0.02)) +
+  scale_x_continuous(breaks = c(1995, 2000, 2005, 2010, 2016), labels = c("1995", "2000", "05", "10", "16*")) +
+  scale_fill_economist() +
+  labs(
+    title = "Trader woes",
+    subtitle = "China-United States trade in goods",
+    caption = "Sources: Census Bureau; IMF\n*Jan-Nov annualised",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+Classic facet strips are centred plain text, not a bold lead-in over a red marker, and there is no way to name the series in place, so the classic chart carries a key (Imports is dark blue, not a lighter red). The classic panels pick their own tick values (0.0, 2.5, 5.0) where the 2017 chart fixes whole-number steps.
+
+### Color override: chronological categories
+
+"Where categories are chronological, use light-to-dark scale".
+
+```{r bars-growth-asia, econ_height = 225}
+asia <- data.frame(
+  country = rep(c("India", "Cambodia", "Laos", "China", "Malaysia",
+                  "Thailand", "Singapore", "Brunei"), each = 3),
+  period = rep(c("2015", "2016", "2016-20*"), 8),
+  growth = c(7.2, 7.3, 7.3, 7.0, 7.1, 7.3, 6.9, 7.0, 7.3, 6.8, 6.5, 6.0,
+             4.6, 4.6, 5.0, 2.7, 3.1, 3.6, 2.1, 2.4, 2.6, -1.4, 0.5, 1.8)
+)
+asia$country <- factor(asia$country, levels = rev(unique(asia$country)))
+asia$period <- factor(asia$period, levels = c("2015", "2016", "2016-20*"))
+
+## Light to dark: the palette's two cyans, then the guide's navy.
+chrono <- c(swatch("blue2"), swatch("teal"), swatch("navy"))
+
+growth <- ggplot(asia, aes(country, growth, fill = period)) +
+  geom_col(position = position_dodge(width = 0.76, reverse = TRUE), width = 0.76) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-2, 8),
+                     breaks = seq(-2, 8, 2), expand = expansion(0)) +
+  scale_fill_manual(values = chrono) +
+  labs(
+    title = "Growth in Asia",
+    subtitle = "GDP forecasts, % change on a year earlier",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
+
+modern <- economist_2017_chart(
+  growth +
+    labs(caption = "Source: OECD"),
+  media = "print",
+  footnote = "*Annual average"
+)
+
+classic <- ggplot(asia, aes(country, growth, fill = period)) +
+  geom_col(position = position_dodge(width = 0.76, reverse = TRUE), width = 0.76) +
+  coord_flip() +
+  scale_y_continuous(limits = c(-2, 8), breaks = seq(-2, 8, 2), position = "right", expand = expansion(0)) +
+  ## The classic palette has no light-to-dark ramp: its three blues, light to dark.
+  scale_fill_manual(values = unname(classic_fg[c("light blue", "blue", "dark blue")])) +
+  labs(
+    title = "Growth in Asia",
+    subtitle = "GDP forecasts, % change on a year earlier",
+    caption = "Source: OECD\n*Annual average",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic palette has no light-to-dark ramp, so the override is drawn from three of its own blues (light, bright, dark). That gives a recognisable chronological ramp, but the middle step is much more saturated than the 2017 teal.
+
+### Color override: categories that form meaningful groups
+
+"If categories form meaningful groups, use colour to reinforce that".
+
+```{r bars-dont-fence, econ_height = 235}
+segregation <- data.frame(
+  group = rep(c("White British", "Other White", "Mixed", "Bangladeshi",
+                "Pakistani", "Indian", "Chinese", "African", "Caribbean"), each = 4),
+  area = rep(c("Inner London", "Outer London",
+               "Metropolitan areas", "Other large cities"), 9),
+  change = c(
+    3.0, 1.7, 1.6, 0.4, -2.7, -0.7, -1.7, 0, -6.3, -8.3, -10.4, -9.3,
+    -0.1, -11.8, -3.7, -3.1, -1.0, -4.6, -3.0, -5.3, 0, -1.5, -5.3, -5.2,
+    -6.1, -11.5, -11.9, -10.2, 0.3, -3.8, -14.8, -19.9, 1.3, -4.8, -4.7, -7.1
+  )
+)
+segregation$group <- factor(segregation$group, levels = rev(unique(segregation$group)))
+segregation$area <- factor(segregation$area, levels = c(
+  "Inner London", "Outer London", "Metropolitan areas", "Other large cities"
+))
+
+## Reds for the two London rows, blues for the two city rows.
+grouped <- c(pal_bar(6)[5], pal_bar(6)[6], pal_bar(6)[1], pal_bar(6)[2])
+
+fence <- ggplot(segregation, aes(group, change, fill = area)) +
+  geom_col(position = position_dodge(width = 0.76, reverse = TRUE), width = 0.76) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  coord_flip() +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-20, 5),
+                     breaks = seq(-20, 5, 5), expand = expansion(0)) +
+  scale_fill_manual(values = grouped) +
+  labs(
+    title = "Don’t fence me in",
+    subtitle = "Britain, % change in segregation index*\n2001-11",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7) +
+  ## The guide reads the key down its columns.
+  guides(fill = guide_legend(nrow = 2, byrow = FALSE))
+
+modern <- economist_2017_chart(
+  fence +
+    labs(caption = "Source: University\nof Manchester"),
+  media = "print",
+  footnote = "* % that needs to move to\ncreate an even distribution"
+)
+
+classic <- ggplot(segregation, aes(group, change, fill = area)) +
+  geom_col(position = position_dodge(width = 0.76, reverse = TRUE), width = 0.76) +
+  coord_flip() +
+  scale_y_continuous(limits = c(-20, 5), breaks = seq(-20, 5, 5), position = "right", expand = expansion(0)) +
+  ## Reds for the two London rows, blues for the two city rows, from the classic palette.
+  scale_fill_manual(values = unname(classic_fg[c("dark red", "pink", "dark blue", "blue")])) +
+  labs(
+    title = "Don’t fence me in",
+    subtitle = "Britain, % change in segregation index*\n2001-11",
+    caption = "Source: University of Manchester\n* % that needs to move to create an even distribution",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit +
+  guides(fill = guide_legend(nrow = 2, byrow = FALSE))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic palette's reds are a dark brown-red and a salmon pink, not the guide's crimson and mauve, so the London pair reads as brown and salmon next to the bright and dark blues of the cities. The classic key runs down its columns with the same two-row layout.
+
+## Bar / column, stacked
+
+Stacked bars use the `stacked` order. Label segment values directly when there are few categories, and "use grey for 'other' / 'don't know' etc".
+
+### Labeled segments, no axis
+
+```{r bars-fed-nuptials, econ_height = 149}
+carriers <- data.frame(
+  band = rep(c("All mobiles", "Smartphones"), each = 5),
+  carrier = rep(c("AT&T", "T-Mobile", "Sprint Nextel", "Verizon", "Other"), 2),
+  share = c(30.4, 10.0, 31.4, 11.1, 16.8, 44.1, 9.6, 30.5, 12.9, 8.0),
+  ## Segment widths as drawn in the guide.
+  width = c(26.5, 10.1, 31.5, 11.0, 20.9, 35.1, 12.2, 29.6, 14.8, 8.3)
+)
+carriers$carrier <- factor(carriers$carrier, levels = unique(carriers$carrier))
+carriers$band <- factor(carriers$band, levels = c("Smartphones", "All mobiles"))
+## Each bar is headed by its name, ranged left above it, in place of axis labels.
+bands <- data.frame(band = levels(carriers$band), row = 1:2)
+
+fed <- ggplot(carriers, aes(band, width, fill = carrier)) +
+  ## reverse = TRUE so the bar reads in color order from the left.
+  geom_col(width = 0.55, position = position_stack(reverse = TRUE)) +
+  ## Segment values start at the segment's left edge.
+  geom_text(
+    aes(label = sprintf("%.1f", share)),
+    position = position_stack(vjust = 0, reverse = TRUE),
+    hjust = -0.12, colour = "white", fontface = "bold", size = 6.8 / ggplot2::.pt
+  ) +
+  geom_text(
+    data = bands, aes(x = row + 0.29, y = 0, label = band), inherit.aes = FALSE,
+    hjust = 0, vjust = 0, fontface = "bold", size = 6.5 / ggplot2::.pt, colour = print_pal$text
+  ) +
+  coord_flip(clip = "off") +
+  scale_x_discrete(expand = expansion(add = c(0.3, 0.45))) +
+  scale_y_continuous(limits = c(0, 100), expand = expansion(0)) +
+  ## The key is ordered alphabetically, down its columns, not in bar order.
+  scale_fill_economist_2017(
+    "print", type = "stacked",
+    breaks = c("AT&T", "Sprint Nextel", "T-Mobile", "Verizon", "Other")
+  ) +
+  labs(
+    title = "The Fed says no to nuptials",
+    subtitle = "Mobile operators' US market share\nJuly 2011, %",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  no_value_axis() +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  guides(fill = guide_legend(nrow = 2, byrow = FALSE))
+
+modern <- economist_2017_chart(
+  fed +
+    labs(caption = "Source: comScore"),
+  media = "print"
+)
+
+classic <- ggplot(carriers, aes(band, width, fill = carrier)) +
+  geom_col(width = 0.55, position = position_stack(reverse = TRUE)) +
+  geom_text(
+    aes(label = sprintf("%.1f", share)),
+    position = position_stack(vjust = 0.5, reverse = TRUE),
+    colour = "white", fontface = "bold", size = 2
+  ) +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 100), expand = expansion(0)) +
+  scale_fill_economist(breaks = c("AT&T", "Sprint Nextel", "T-Mobile", "Verizon", "Other")) +
+  labs(
+    title = "The Fed says no to nuptials",
+    subtitle = "Mobile operators' US market share\nJuly 2011, %",
+    caption = "Source: comScore",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit +
+  guides(fill = guide_legend(nrow = 2, byrow = FALSE))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic theme keeps a value axis (the 2017 chart drops it) and names the bars on the category axis instead of a bold heading above each bar. Segment values are centred in the segment, where the guide starts them at its left edge, and the small segments (9.6, 10.0, 11.1) crowd their labels. "Other" takes the palette's pale green rather than grey.
+
+### A single stacked bar with a threshold
+
+```{r bars-no-winner, econ_height = 129}
+## Drawn in the guide's own units, so the leader lines can be placed.
+seats <- data.frame(
+  party = c("ERC", "DiL", "EAJ-PNV", "Others", "Podemos", "PSOE", "Ciudadanos", "PP"),
+  n = c(9, 8, 6, 5, 69, 90, 40, 123),
+  ## Color order with swaps: red and mauve from bar, navy from stacked, grey for others.
+  fill = c(pal_bar(6)[5], pal_stack(6)[3], pal_stack(6)[6], "#97AFBA", pal_stack(6)[2],
+           pal_stack(6)[1], pal_bar(6)[6], pal_stack(6)[4])
+)
+seats$xmax <- cumsum(seats$n)
+seats$xmin <- seats$xmax - seats$n
+seats$mid <- (seats$xmin + seats$xmax) / 2
+sx <- function(px) (px - 40) / 591 * 350
+bar_top <- 226
+bar_bottom <- 321
+
+## Leader lines from the small segments to the names beneath the bar, as
+## (x, y) corners of each path.
+leaders <- list(
+  ERC = list(x = c(seats$mid[1], seats$mid[1]), y = c(bar_bottom, 392)),
+  DiL = list(x = c(seats$mid[2], seats$mid[2], sx(157), sx(157)), y = c(bar_bottom, 378, 378, 392)),
+  `EAJ-PNV` = list(x = c(seats$mid[3], seats$mid[3], sx(256), sx(256)), y = c(bar_bottom, 363, 363, 392)),
+  Others = list(x = c(seats$mid[4], seats$mid[4], sx(414), sx(414)), y = c(bar_bottom, 351, 351, 392)),
+  Ciudadanos = list(x = c(seats$mid[7], seats$mid[7], sx(437)), y = c((bar_top + bar_bottom) / 2, 345, 345))
+)
+paths <- do.call(rbind, lapply(names(leaders), function(nm) {
+  data.frame(party = nm, x = leaders[[nm]]$x, y = leaders[[nm]]$y)
+}))
+## Where each key square sits, and its name.
+keys <- data.frame(
+  party = c("ERC", "DiL", "EAJ-PNV", "Others", "Ciudadanos"),
+  x = sx(c(43, 152, 251, 410, 437)),
+  y = c(405, 405, 405, 405, 345)
+)
+keys$fill <- seats$fill[match(keys$party, seats$party)]
+keys$label <- paste(keys$party, seats$n[match(keys$party, seats$party)])
+dots <- data.frame(
+  x = seats$mid[c(1, 2, 3, 4, 7)],
+  y = c(rep(bar_bottom - 4, 4), (bar_top + bar_bottom) / 2)
+)
+axis_y <- 179
+axis_breaks <- data.frame(x = c(0, 176, 350), label = c("0", "176 required for majority", "350"))
+
+winner <- ggplot() +
+  geom_rect(
+    data = seats,
+    aes(xmin = xmin, xmax = xmax, ymin = bar_top, ymax = bar_bottom, fill = fill),
+    colour = print_bg, linewidth = 0.15
+  ) +
+  geom_path(data = paths, aes(x, y, group = party), colour = print_pal$text, linewidth = 0.2) +
+  geom_point(data = dots, aes(x, y), size = 0.5) +
+  geom_rect(data = keys, aes(xmin = x, xmax = x + 6, ymin = y - 10, ymax = y + 10, fill = fill)) +
+  geom_text(
+    data = keys, aes(x + 10, y, label = label), hjust = 0, size = 6.5 / ggplot2::.pt,
+    colour = print_pal$text
+  ) +
+  ## Values inside the big segments: the name in bold, the seats beneath.
+  geom_text(
+    data = subset(seats, party %in% c("Podemos", "PSOE")),
+    aes(mid, 260, label = party), colour = "white", fontface = "bold", size = 6.5 / ggplot2::.pt
+  ) +
+  geom_text(
+    data = subset(seats, party %in% c("Podemos", "PSOE")),
+    aes(mid, 292, label = n), colour = "white", size = 6.5 / ggplot2::.pt
+  ) +
+  geom_text(
+    data = subset(seats, party == "PP"), aes(mid, 276, label = 'bold("PP")~"123"'), parse = TRUE,
+    colour = "white", size = 6.5 / ggplot2::.pt
+  ) +
+  ## The value axis is drawn by hand: a tick at each end and at the majority,
+  ## which is named where it falls.
+  geom_segment(
+    data = axis_breaks, aes(x = x, xend = x, y = 200, yend = 218), colour = print_pal$text,
+    linewidth = 0.3, lineend = "butt"
+  ) +
+  geom_text(
+    data = axis_breaks, aes(x, axis_y, label = label), size = 6.8 / ggplot2::.pt,
+    colour = print_pal$text
+  ) +
+  scale_fill_identity() +
+  scale_x_continuous(limits = c(0, 350), expand = expansion(0)) +
+  scale_y_reverse(limits = c(425, 165), expand = expansion(0)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "No one's a winner",
+    subtitle = "Spanish general election 2015, Seats won",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.line = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+
+modern <- economist_2017_chart(
+  winner +
+    labs(caption = "Sources: Ministry of the Interior; El País"),
+  media = "print"
+)
+
+seats$party <- factor(seats$party, levels = seats$party)
+classic <- ggplot(seats, aes(1, n, fill = party)) +
+  geom_col(width = 0.5, position = position_stack(reverse = TRUE)) +
+  geom_text(
+    aes(label = ifelse(n > 20, n, "")), position = position_stack(vjust = 0.5, reverse = TRUE),
+    colour = "white", fontface = "bold", size = 2
+  ) +
+  geom_hline(yintercept = 176, linetype = "dashed") +
+  annotate("text", x = 1.55, y = 176, label = "176 required for majority", size = 2) +
+  coord_flip() +
+  scale_x_continuous(breaks = NULL, limits = c(0.6, 1.7)) +
+  scale_y_continuous(limits = c(0, 350), breaks = c(0, 176, 350), expand = expansion(0)) +
+  scale_fill_economist() +
+  labs(
+    title = "No one's a winner",
+    subtitle = "Spanish general election 2015, Seats won",
+    caption = "Sources: Ministry of the Interior; El País",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+No counterpart for the leader lines, the in-bar names or the threshold tick: here the party names are in a key, only the larger segments carry their seat count, and the 176 majority is a dashed line with a text label. The classic palette's eight colours are not party-coded.
+
+### Several stacked bars with different totals
+
+```{r bars-looting, econ_height = 189}
+## Drawn in the guide's own units; each bar has its own scale.
+bars <- rbind(
+  data.frame(
+    row = 1, stream = c("Oil & gas", "Confiscation", "Tax", "Electricity"),
+    value = c(20.1, 14.3, 12.0, 4.0), scale = 617 / 50.4, x0 = 33,
+    fill = pal_stack(6)[1:4]
+  ),
+  data.frame(
+    row = 2, stream = c("Oil & gas", "Confiscation", "Tax", "Electricity"),
+    value = c(2.3, 3.8, 1.9, 0.4), scale = 61.2, x0 = 37, fill = pal_stack(6)[1:4]
+  ),
+  data.frame(
+    row = 3, stream = c("Fighters' salary", "Military camps", "Social services", "Islamic police", "Treasury", "Media"),
+    value = c(2.5, 1.15, 1.0, 0.6, 0.35, 0.2), scale = 61.2, x0 = 37,
+    ## The spending bar's own colours, as printed.
+    fill = c(swatch("red1"), "#EDA510", swatch("purple"), "#2EB3C6", swatch("lime"), "#23635E")
+  )
+)
+bars$xmax <- unlist(lapply(split(bars, bars$row), function(d) d$x0 + cumsum(d$value) * d$scale))
+bars$xmin <- bars$xmax - bars$value * bars$scale
+bars$ymin <- c(258, 452, 592)[bars$row]
+bars$ymax <- c(312, 497, 632)[bars$row]
+bars$mid <- (bars$xmin + bars$xmax) / 2
+
+## Panel headings: a bold lead-in, then the rest, under a red marker.
+headings <- data.frame(
+  y = c(188, 380, 560),
+  label = c(
+    'bold("Overall")~"Monthly revenue $79.8m"',
+    'bold("Deir al-Zor governorate")~"Monthly revenue $8.7m"',
+    'bold("Monthly spending")~"$5.8m"'
+  )
+)
+markers <- data.frame(y = c(163, 353))
+## The first bar's key runs along its heading; the third bar's names have leader lines.
+keys <- data.frame(
+  x = c(38, 221, 428, 521, 40, 170, 640, 640, 640, 640),
+  y = c(237, 237, 237, 237, 655, 655, 571, 610, 646, 686),
+  label = c("Oil & gas", "Confiscation", "Tax", "Electricity", "Fighters'\nsalary", "Military\ncamps",
+            "Treasury", "Media", "Islamic police", "Social services"),
+  fill = c(pal_stack(6)[1:4], bars$fill[bars$row == 3][c(1, 2, 5, 6, 4, 3)])
+)
+keys$left <- keys$x < 600
+## Leader lines from the segments to the names on the right, as (x, y) corners.
+lead <- list(
+  Treasury = list(x = c(365, 365, 495), y = c(600, 571, 571)),
+  Media = list(x = c(380, 525), y = c(612, 610)),
+  Police = list(x = c(337, 337, 435), y = c(632, 646, 646)),
+  Social = list(x = c(288, 288, 415), y = c(625, 686, 686))
+)
+lead_paths <- do.call(rbind, lapply(names(lead), function(nm) {
+  data.frame(id = nm, x = lead[[nm]]$x, y = lead[[nm]]$y)
+}))
+## The middle bar's own 0--10 axis: labels above, rules through the bar.
+ticks <- data.frame(x = 37 + 61.2 * seq(0, 10, 2), label = seq(0, 10, 2))
+ticks$colour <- ifelse(ticks$x == 37, print_pal$text, grid_col)
+
+looting <- ggplot() +
+  geom_segment(
+    data = ticks, aes(x = x, xend = x, y = 437, yend = 510, colour = colour), linewidth = 0.25
+  ) +
+  geom_text(data = ticks, aes(x, 422, label = label), size = 6.8 / ggplot2::.pt, colour = print_pal$text) +
+  geom_rect(data = bars, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = fill)) +
+  geom_text(
+    data = subset(bars, row == 1), aes(mid, 285, label = c("20.1", "14.3", "12.0", "4")),
+    colour = "white", fontface = "bold", size = 6.8 / ggplot2::.pt
+  ) +
+  geom_segment(
+    data = markers, aes(x = 33, xend = 33 + 42, y = y, yend = y), colour = econ_red, linewidth = 0.4
+  ) +
+  geom_text(
+    data = headings, aes(33, y, label = label), parse = TRUE, hjust = 0, size = 6.8 / ggplot2::.pt,
+    colour = print_pal$text
+  ) +
+  geom_path(data = lead_paths, aes(x, y, group = id), colour = print_pal$text, linewidth = 0.2) +
+  geom_point(data = data.frame(x = c(365, 380, 337, 288), y = c(600, 612, 632, 625)), aes(x, y), size = 0.5) +
+  geom_rect(data = keys, aes(xmin = x, xmax = x + 10, ymin = y - 10, ymax = y + 10, fill = fill)) +
+  geom_text(
+    data = subset(keys, left), aes(x + 16, y + ifelse(y > 600, 16, 0), label = label), hjust = 0,
+    lineheight = 1.1, size = 6.5 / ggplot2::.pt, colour = print_pal$text
+  ) +
+  geom_text(
+    data = subset(keys, !left), aes(x - 9, y, label = label), hjust = 1, size = 6.5 / ggplot2::.pt,
+    colour = print_pal$text
+  ) +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(limits = c(32, 652), expand = expansion(0)) +
+  scale_y_reverse(limits = c(705, 150), expand = expansion(0)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Looting the Levant",
+    subtitle = "Islamic State's finances*, January 2015, $m",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.line = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+
+modern <- economist_2017_chart(
+  looting +
+    labs(caption = "Sources: IHS"),
+  media = "print",
+  footnote = "*Estimates"
+)
+
+loot <- bars[c("row", "stream", "value")]
+loot$panel <- factor(loot$row, labels = c(
+  "Overall: revenue $79.8m a month",
+  "Deir al-Zor: revenue $8.7m a month",
+  "Spending $5.8m a month"
+))
+loot$stream <- factor(loot$stream, levels = unique(loot$stream))
+## Name the segments that are wide enough to hold a name; the rest go unnamed.
+loot$name <- ifelse(loot$value / ave(loot$value, loot$row, FUN = sum) > 0.2, as.character(loot$stream), "")
+
+## Ten streams but nine colours: the last one repeats the first, in another panel.
+classic <- ggplot(loot, aes(value, panel, fill = stream)) +
+  geom_col(width = 0.5, position = position_stack(reverse = TRUE)) +
+  geom_text(
+    aes(label = name), position = position_stack(vjust = 0.5, reverse = TRUE),
+    colour = "white", fontface = "bold", size = 1.8
+  ) +
+  facet_wrap(~panel, ncol = 1, scales = "free") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.02))) +
+  scale_fill_manual(values = rep_len(economist_pal()(9), 10)) +
+  labs(
+    title = "Looting the Levant",
+    subtitle = "Islamic State's finances*, January 2015, $m",
+    caption = "Sources: IHS\n*Estimates",
+    x = NULL, y = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit +
+  theme(
+    axis.text.y = element_blank(), axis.ticks.y = element_blank(), legend.position = "none",
+    strip.text = element_text(hjust = 0, face = "bold")
+  )
+
+chart_pair(classic_chart(classic), modern)
+```
+
+Three bars with their own scales are drawn as three free-scale facets, so each has a value axis; there are no headings with red markers, no leader lines and no keys beside the bars. Only the wide segments are named, inside the bar, and the ten streams outrun the nine-colour palette (the last colour repeats the first, in a different panel). The facet headings are set left-aligned and bold, which the classic theme does not do by default.
+
+### Stacked columns over time, with a forecast panel
+
+```{r bars-getting-sociable, econ_height = 178}
+adspend <- data.frame(
+  year = rep(2008:2017, each = 4),
+  format = rep(c("Paid search", "Display", "Classified", "Online video"), 10),
+  bn = c(
+    24, 15, 9, 4, 27, 16, 9, 4, 32, 19, 9, 6, 37, 19, 10, 10,
+    43, 21, 11, 15, 48, 25, 11, 20, 56, 27, 13, 27, 62, 31, 15, 36,
+    72, 33, 16, 44, 79, 35, 17, 54
+  )
+)
+adspend$format <- factor(adspend$format, levels = unique(adspend$format))
+tick_years <- 2008:2017
+tick_labels <- ifelse(tick_years %in% c(2008, 2010, 2012, 2014, 2016, 2017), substring(tick_years, 3), "")
+tick_labels[1] <- "2008"
+
+sociable <- ggplot(adspend, aes(year, bn, fill = format)) +
+  ## The forecast years get a neutral panel with a rule and a name.
+  annotate("rect", xmin = 2014.5, xmax = 2017.5, ymin = 0, ymax = 228, fill = print_highlight) +
+  annotate("segment", x = 2014.5, xend = 2017.5, y = 228, yend = 228, colour = "#7F98A4", linewidth = 0.3) +
+  annotate("text", x = 2016, y = 215, label = "FORECAST", size = 6.8 / ggplot2::.pt, colour = "#7F98A4") +
+  geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 228),
+    breaks = seq(0, 200, 50), expand = expansion(0)
+  ) +
+  scale_x_continuous(
+    breaks = tick_years, labels = tick_labels, limits = c(2007.45, 2018.4), expand = expansion(0)
+  ) +
+  scale_fill_economist_2017("print", type = "stacked") +
+  labs(
+    title = "Getting sociable",
+    subtitle = "Global internet-advertising spending, $bn",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  ## The key stands inside the panel, over the gridlines, which stop at its edge.
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0, 1),
+    legend.justification = c(0, 1),
+    legend.direction = "vertical",
+    legend.background = element_rect(fill = print_bg, colour = NA)
+  )
+
+modern <- economist_2017_chart(
+  sociable +
+    labs(caption = "Source: ZenithOptimedia"),
+  media = "print"
+)
+
+classic <- ggplot(adspend, aes(year, bn, fill = format)) +
+  ## The classic style has no forecast panel; a pale rule-less band stands in.
+  annotate("rect", xmin = 2014.5, xmax = 2017.5, ymin = 0, ymax = Inf, fill = "white", alpha = 0.4) +
+  annotate("text", x = 2016, y = 215, label = "FORECAST", size = 2) +
+  geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
+  scale_y_continuous(limits = c(0, 228), breaks = seq(0, 200, 50), position = "right", expand = expansion(0)) +
+  scale_x_continuous(breaks = tick_years, labels = tick_labels) +
+  scale_fill_economist() +
+  labs(
+    title = "Getting sociable",
+    subtitle = "Global internet-advertising spending, $bn",
+    caption = "Source: ZenithOptimedia",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size) +
+  classic_fit +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The forecast panel is a pale overlay with a text label; there is no panel tint, rule or in-panel key. The classic gridlines (thick white bands) pass behind the columns and the key is above the plot in two rows, where the 2017 key stands inside the panel.
+
+### Stacked columns below zero
+
+```{r bars-more-in-out, econ_height = 179}
+## China's share, and the total.
+china <- c(
+  0.15, 0.18, 0.26, 0.29, 0.37, 0.40, 0.46, 0.55, 0.61, 0.68, 0.79, 0.75, 0.92, 1.05,
+  1.30, 1.52, 1.67, 1.76, 1.80, 1.54, 1.80, 1.87, 1.93, 1.89, 1.96, 2.02, 1.83
+)
+total <- c(
+  1.67, 1.05, 1.27, 1.65, 2.04, 2.06, 2.07, 2.07, 2.50, 3.38, 4.22, 3.85, 4.24, 4.61,
+  5.32, 5.89, 5.96, 5.58, 5.52, 3.47, 4.22, 4.66, 4.50, 4.11, 4.20, 4.11, 3.87
+)
+deficit <- data.frame(
+  year = rep(1990:2016, 2),
+  region = rep(c("China", "Rest of world"), each = 27),
+  pct = c(-china, -(total - china))
+)
+deficit$region <- factor(deficit$region, levels = c("China", "Rest of world"))
+## Every year is ticked; only some are named.
+tick_years <- 1990:2016
+tick_labels <- rep("", length(tick_years))
+tick_labels[match(c(1990, 1995, 2000, 2005, 2010, 2016), tick_years)] <- c("1990", "95", "2000", "05", "10", "16*")
+
+more_in <- ggplot(deficit, aes(year, pct, fill = region)) +
+  geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(-6, 0),
+    breaks = -6:0, expand = expansion(mult = c(0, 0))
+  ) +
+  scale_x_continuous(
+    breaks = tick_years, labels = tick_labels, limits = c(1988.8, 2018.9), expand = expansion(0)
+  ) +
+  scale_fill_economist_2017("print", type = "stacked") +
+  labs(
+    title = "More in than out",
+    subtitle = "United States, merchandise-trade deficit\n% of GDP",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  more_in +
+    labs(caption = "Sources: US Census Bureau;\nUS Bureau of Economic\nAnalysis"),
+  media = "print",
+  footnote = "*January-September"
+)
+
+classic <- ggplot(deficit, aes(year, pct, fill = region)) +
+  geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
+  scale_y_continuous(limits = c(-6, 0), breaks = -6:0, position = "right", expand = expansion(0)) +
+  scale_x_continuous(breaks = c(1990, 1995, 2000, 2005, 2010, 2016), labels = c("1990", "95", "2000", "05", "10", "16*")) +
+  scale_fill_economist() +
+  labs(
+    title = "More in than out",
+    subtitle = "United States, merchandise-trade deficit\n% of GDP",
+    caption = "Sources: US Census Bureau; US Bureau of Economic Analysis\n*January-September",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size) +
+  classic_fit
+
+chart_pair(classic_chart(classic), modern)
+```
+
+Negative columns work the same way in both. The classic chart has no tick for every year (no minor ticks), and its caption runs on one line instead of being wrapped to a narrow column.
+
+### Color override: more than four categories, and gray for "other"
+
+"You may need to swap in other colours for charts with more than 4 categories. Use grey for 'other' / 'don't know' etc".
+
+```{r bars-movers-shakers, econ_height = 179}
+## Origins in stack order; a bar skips origins it lacks.
+origins <- c("Romania", "Poland", "Italy", "Portugal", "Germany", "Britain")
+shares <- rbind(
+  `EU-28` = c(20, 15, 9, 7.5, 5, 0),
+  Switzerland = c(0, 0, 20.5, 21, 24, 0),
+  Germany = c(5.5, 17.5, 18.5, 0, 0, 0),
+  Spain = c(46.5, 0, 9.5, 6, 0, 8),
+  France = c(0, 0, 7.5, 42, 0, 8),
+  Italy = c(76, 7.5, 0, 0, 0, 0),
+  Britain = c(5.5, 29.5, 0, 5.5, 0, 0)
+)
+migrants <- data.frame(
+  destination = rep(rownames(shares), times = ncol(shares) + 1),
+  origin = rep(c(origins, "Other"), each = nrow(shares)),
+  pct = c(shares, 100 - rowSums(shares))
+)
+migrants$origin <- factor(migrants$origin, levels = c(origins, "Other"))
+migrants$destination <- factor(migrants$destination, levels = rev(rownames(shares)))
+
+## Blue, cyan, gold and teal from the stacked order, then red and navy, with grey for "other".
+movers_cols <- c(pal_stack(6)[1:4], pal_bar(6)[5], pal_stack(6)[6], "#97AFBA")
+
+movers <- ggplot(migrants, aes(destination, pct, fill = origin)) +
+  geom_col(width = 0.75, position = position_stack(reverse = TRUE)) +
+  geom_hline(yintercept = 0, colour = print_pal$text, linewidth = 0.2) +
+  annotate("text", x = 7, y = 78, label = "Other", hjust = 0.5, size = 8 / ggplot2::.pt, colour = print_pal$text) +
+  coord_flip() +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 100),
+    breaks = seq(0, 100, 20), expand = expansion(mult = c(0, 0))
+  ) +
+  scale_fill_manual(values = setNames(movers_cols, c(origins, "Other")), breaks = origins) +
+  labs(
+    title = "Movers and shakers",
+    subtitle = "Intra-European* migrants living elsewhere\n2014, % of total by destination country",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(panel.grid.major = element_blank()) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+modern <- economist_2017_chart(
+  movers +
+    labs(caption = "Source: European Commission"),
+  media = "print",
+  footnote = "*Including EFTA"
+)
+
+classic <- ggplot(migrants, aes(destination, pct, fill = origin)) +
+  geom_col(width = 0.75, position = position_stack(reverse = TRUE)) +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), position = "right", expand = expansion(0)) +
+  ## Six classic colours, then the classic grey for "other".
+  scale_fill_manual(values = c(economist_pal()(6), classic_fg[["gray"]]), breaks = origins) +
+  labs(
+    title = "Movers and shakers",
+    subtitle = "Intra-European* migrants living elsewhere\n2014, % of total by destination country",
+    caption = "Source: European Commission\n*Including EFTA",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The classic palette gives six categories and a grey, so the override is nearly the default order plus its own grey for "Other". The classic chart has no in-bar "Other" label, and with the key above the bars the panel is short and the bars are thin.
+
+### Color override: meaningful groups, with number blocks
+
+Positive answers take the blues, negative ones the reds, and "not sure" gray. The right-hand figures are number blocks.
+
+```{r bars-trumps-troops, econ_height = 249}
+answers <- c("Enthusiastic", "Satisfied", "Dissatisfied", "Upset", "Not sure")
+## Rows top to bottom, with segment widths and number blocks.
+troops <- data.frame(
+  head = c("White men", "White women", "White men", "Non-white men", "White women", "Non-white men",
+           "Non-white women", "Non-white women"),
+  tail = c("no college", "no college", "college educated", "college educated", "college educated",
+           "no college", "college educated", "no college"),
+  share = c(22, 24, 16, 3, 17, 6, 4, 7)
+)
+troops$row <- rev(seq_len(nrow(troops)))
+pct <- rbind(
+  c(29, 24, 14, 31, 2), c(25, 19, 13, 40, 3), c(18, 17, 17, 47, 1), c(18, 12, 11, 51, 8),
+  c(13, 15, 14, 57, 1), c(11, 12, 19, 52, 6), c(4, 9, 15, 70, 2), c(5, 7, 17, 67, 4)
+)
+bars <- data.frame(
+  row = rep(troops$row, times = length(answers)),
+  answer = factor(rep(answers, each = nrow(troops)), levels = answers),
+  pct = c(pct)
+)
+
+## Positive answers take the blues, negative ones the reds, "not sure" grey.
+troop_cols <- c(pal_stack(6)[1:2], pal_bar(6)[6], pal_bar(6)[5], "#97AFBA")
+block_col <- "#7F98A4"
+left <- -83
+
+trump <- ggplot(bars, aes(row, pct, fill = answer)) +
+  geom_col(width = 0.55, position = position_stack(reverse = TRUE)) +
+  geom_hline(yintercept = 0, colour = print_pal$text, linewidth = 0.2) +
+  ## Each row is named in two lines, the first bold.
+  geom_text(
+    data = troops, aes(row + 0.2, left, label = head), inherit.aes = FALSE, hjust = 0,
+    fontface = "bold", size = 6.8 / ggplot2::.pt, colour = print_pal$text
+  ) +
+  geom_text(
+    data = troops, aes(row - 0.2, left, label = tail), inherit.aes = FALSE, hjust = 0,
+    size = 6.8 / ggplot2::.pt, colour = print_pal$text
+  ) +
+  ## Number blocks right of the 100% mark; the smallest figure sits beside its block.
+  geom_point(data = troops, aes(row, 120, size = share), inherit.aes = FALSE, colour = block_col) +
+  geom_text(
+    data = subset(troops, share != 3), aes(row, 120, label = share), inherit.aes = FALSE,
+    colour = "white", fontface = "bold", size = 6.8 / ggplot2::.pt
+  ) +
+  geom_text(
+    data = subset(troops, share == 3), aes(row, 125, label = share), inherit.aes = FALSE, hjust = 0,
+    colour = block_col, fontface = "bold", size = 6.8 / ggplot2::.pt
+  ) +
+  ## The heading of the number blocks: a text block pointing down at them.
+  annotate("label_economist_2017", x = 9.6, y = 120, label = "% of total voters\n2012", pointer = "bottom",
+    hjust = 0.82,
+    padding = 2, fill = block_col, colour = "white", fontface = "bold", size = 6.8 / ggplot2::.pt
+  ) +
+  coord_flip(xlim = c(0.55, 8.45), clip = "off") +
+  scale_x_continuous(breaks = NULL) +
+  scale_size_area(max_size = 7.9, guide = "none") +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(left, 134),
+    breaks = seq(0, 100, 20), expand = expansion(mult = c(0, 0))
+  ) +
+  scale_fill_manual(values = troop_cols) +
+  labs(
+    title = "Trump's troops",
+    subtitle = "How do you feel about Donald Trump as\nthe 2016 Republican nominee\nfor president?*",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(panel.grid.major = element_blank()) +
+  guides(fill = guide_legend(ncol = 2, byrow = TRUE))
+
+modern <- economist_2017_chart(
+  trump +
+    labs(caption = "Sources: YouGov;\nCCES;\nThe Economist"),
+  media = "print",
+  footnote = "*5,773 registered voters surveyed\nJune 4th to July 9th 2016"
+)
+
+classic <- ggplot(bars, aes(row, pct, fill = answer)) +
+  geom_col(width = 0.55, position = position_stack(reverse = TRUE)) +
+  ## Number blocks right of the 100% mark, as plain points.
+  geom_point(data = troops, aes(row, 112, size = share), inherit.aes = FALSE, colour = classic_fg[["blue-gray"]]) +
+  geom_text(
+    data = troops, aes(row, 112, label = share), inherit.aes = FALSE,
+    colour = "white", fontface = "bold", size = 2
+  ) +
+  coord_flip() +
+  scale_x_continuous(breaks = troops$row, labels = paste(troops$head, troops$tail, sep = "
+")) +
+  scale_size_area(max_size = 6, guide = "none") +
+  scale_y_continuous(limits = c(0, 125), breaks = c(0, 50, 100), position = "right", expand = expansion(0)) +
+  scale_fill_manual(values = unname(classic_fg[c("dark blue", "blue", "pink", "dark red", "gray")])) +
+  labs(
+    title = "Trump's troops",
+    subtitle = "How do you feel about Donald Trump as\nthe 2016 Republican nominee\nfor president?*",
+    caption = "Sources: YouGov; CCES; The Economist\n*5,773 registered voters surveyed June 4th to July 9th 2016",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_fit +
+  theme(axis.text.y = element_text(size = rel(0.85), lineheight = 0.9)) +
+  guides(fill = guide_legend(ncol = 2, byrow = TRUE))
+
+chart_pair(classic_chart(classic), modern)
+```
+
+The number blocks are plain sized points, and there is no pointer label ("% of total voters, 2012") above them. The row names are two lines on the category axis in one weight, instead of a bold lead-in over a regular second line. The classic palette's blues and reds are a dark blue, bright blue, salmon, brown-red and grey, so "Enthusiastic" is the darkest segment rather than the strongest blue. The classic row names are set at 85% of the base size (`axis.text.y`) so that they fit in the chart.
+
+### Checklist
+
+| Chart | Done | Notes |
+|---|---|---|
+| One trace with highlight | partial | highlight in palette colour 2 (darker, not lighter); no bold label |
+| One trace, columns | yes | no tick for every year |
+| Two traces | yes | series order of colours reversed in darkness |
+| Two traces with sub-categories | partial | facet strips instead of label column; no group rules |
+| Two traces with sub-categories, columns | yes | fourth palette colour is grey |
+| One trace with a plus/minus axis | partial | no red zero line (a theme gap; the paper drew one from 2014), no bold total |
+| Plus/minus columns | partial | no red zero line (a theme gap; the paper drew one from 2014) |
+| Colour for a positive/negative split | partial | key instead of in-place names; no bold lead-in strips |
+| Colour override: chronological | partial | ramp from three classic blues |
+| Colour override: meaningful groups | partial | classic reds are brown and salmon |
+| Labeled segments, no axis | partial | value axis kept; centred labels; no headings |
+| Single stacked bar with a threshold | partial | no leader lines or in-bar names; dashed threshold |
+| Several stacked bars, different totals | partial | facets with own axes; names in wide segments only |
+| Stacked columns, forecast panel | partial | overlay instead of forecast panel; key above |
+| Stacked columns below zero | yes | no tick for every year |
+| Colour override: >4 categories, grey for other | partial | own grey; no in-bar label |
+| Colour override: meaningful groups, number blocks | partial | plain points; no pointer label |
