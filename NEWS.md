@@ -16,9 +16,13 @@
   sizes throughout: the margins, which were fixed at 12pt and 10pt, and the
   legend keys, which were sized in lines, now scale with `base_size`, and the
   white gridlines are thinner: 0.8pt at the default `base_size` of 10, where
-  they were 1.9pt at every size. Charts drawn with the default `base_size` look
+  they were 1.9pt at every size. Ticks and the margins around axis titles now
+  have the sizes of the 2017 style guide, in base sizes: ticks 0.7 base sizes
+  long (still pointing into the panel) and 0.06 wide, where they were 0.5 long
+  with ggplot2's default weight, and axis titles sit 0.07 base sizes from an x
+  axis and 0.43 from a y axis. Charts drawn with the default `base_size` look
   different: larger side margins, a larger subtitle and source line, thinner
-  gridlines.
+  gridlines and ticks.
 
 - `theme_economist()` gains `lightpanel`, which draws the panels paler than a
   deeper blue-gray ground, as many Economist charts of 2015 to 2018 did.

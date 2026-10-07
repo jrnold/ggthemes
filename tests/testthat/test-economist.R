@@ -205,6 +205,35 @@ test_that("theme_economist's side margins are 1.9 base sizes, 12.2pt at the corp
   expect_equal(margin[c(2, 4)], rep(12.35, 2), tolerance = 0.02)
 })
 
+test_that("theme_economist has the 2017 guide's tick sizes, pointing into the panel", {
+  # The guide's ticks are 0.4pt wide and 5pt long beside 7pt axis labels.
+  pts <- function(x) grid::convertUnit(x, "pt", valueOnly = TRUE)
+  thm <- theme_economist(base_size = 7)
+  expect_equal(pts(thm$axis.ticks.length), -5)
+  expect_equal(thm$axis.ticks$linewidth * ggplot2::.pt * 0.75, 0.4)
+  expect_equal(as.numeric(thm$axis.minor.ticks.length), 0.6)
+  # Scaled with base_size, and drawn into the panel (negative), as the classic charts do.
+  big <- theme_economist(base_size = 14)
+  expect_equal(pts(big$axis.ticks.length), -10)
+  expect_equal(big$axis.ticks$linewidth, 2 * thm$axis.ticks$linewidth)
+  expect_s3_class(thm$axis.ticks.y, "element_blank")
+})
+
+test_that("theme_economist has the 2017 guide's margins for axis titles", {
+  # 0.5pt between an x axis and its title, 3pt between a y axis and its title,
+  # beside 7pt axis labels; margin() is top, right, bottom, left.
+  pts <- function(x) grid::convertUnit(x, "pt", valueOnly = TRUE)
+  thm <- theme_economist(base_size = 7)
+  expect_equal(pts(thm$axis.title.x$margin)[1], 0.5)
+  expect_equal(pts(thm$axis.title.x.top$margin)[3], 0.5)
+  expect_equal(pts(thm$axis.title.y$margin)[2], 3)
+  expect_equal(pts(thm$axis.title.y.right$margin)[4], 3)
+  # The titles are still rotated along their axes.
+  expect_equal(thm$axis.title.y$angle, 90)
+  expect_equal(thm$axis.title.y.right$angle, -90)
+  expect_equal(pts(theme_economist(base_size = 14)$axis.title.y$margin)[2], 6)
+})
+
 test_that("theme economist with horizontal=FALSE works", {
   thm <- theme_economist(horizontal = FALSE)
   expect_s3_class(thm, "theme")

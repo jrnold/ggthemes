@@ -63,8 +63,10 @@ in a corpus of \emph{The Economist}'s charts, whose one-column charts are 160pt
 wide and set in a base size of about 6.5pt: the title is 1.45 base sizes, the
 subtitle 1.15 and the source line 0.95, all flush left with the chart; the
 margins at the sides are 1.9 base sizes; and the white gridlines are 0.08
-base sizes wide. Use \code{base_size = 6.5} for a chart 160pt (2.2in) across and
-scale it up in proportion for a larger one.
+base sizes wide. Ticks and the margins around axis titles are those of the
+2017 style guide, in base sizes (see \code{\link[=theme_economist_2017]{theme_economist_2017()}}), but the ticks
+point into the panel. Use \code{base_size = 6.5} for a chart 160pt (2.2in) across
+and scale it up in proportion for a larger one.
 
 \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
 you have access to this font, you can use it with the

@@ -264,8 +264,10 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 #' wide and set in a base size of about 6.5pt: the title is 1.45 base sizes, the
 #' subtitle 1.15 and the source line 0.95, all flush left with the chart; the
 #' margins at the sides are 1.9 base sizes; and the white gridlines are 0.08
-#' base sizes wide. Use `base_size = 6.5` for a chart 160pt (2.2in) across and
-#' scale it up in proportion for a larger one.
+#' base sizes wide. Ticks and the margins around axis titles are those of the
+#' 2017 style guide, in base sizes (see [theme_economist_2017()]), but the ticks
+#' point into the panel. Use `base_size = 6.5` for a chart 160pt (2.2in) across
+#' and scale it up in proportion for a larger one.
 #'
 #' *The Economist* uses "ITC Officina Sans" as its font for graphs. If
 #' you have access to this font, you can use it with the
@@ -353,13 +355,20 @@ theme_economist <- function(
       ),
       ## I cannot figure out how to get ggplot to do 2 levels of ticks
       ## axis.ticks.margin = unit(3 / 72, "in"),
-      axis.ticks = element_line(),
+      # Ticks have the size of the 2017 guide's (0.4pt wide, 5pt long beside 7pt
+      # axis labels, 3pt for the minor ticks), but point into the panel, as the
+      # classic charts' do.
+      axis.ticks = element_line(linewidth = lw(0.4 / 7 * base_size)),
       axis.ticks.y = element_blank(),
+      axis.ticks.length = unit(-base_size * 5 / 7, "points"),
+      axis.minor.ticks.length = rel(0.6),
+      # Axis titles are set off from their labels by the 2017 guide's margins,
+      # in base sizes: 0.5pt above or below an x axis, 3pt beside a y axis.
       axis.title = element_text(size = rel(1)),
-      axis.title.x = element_text(),
-      axis.title.y = element_text(angle = 90),
-      # axis.ticks.length = unit( -1/32, "in"),
-      axis.ticks.length = unit(-base_size * 0.5, "points"),
+      axis.title.x = element_text(margin = margin(t = base_size * 0.5 / 7, unit = "pt")),
+      axis.title.x.top = element_text(margin = margin(b = base_size * 0.5 / 7, unit = "pt")),
+      axis.title.y = element_text(angle = 90, margin = margin(r = base_size * 3 / 7, unit = "pt")),
+      axis.title.y.right = element_text(angle = -90, margin = margin(l = base_size * 3 / 7, unit = "pt")),
       legend.background = element_rect(linetype = 0),
       legend.spacing = unit(base_size * 1.5, "points"),
       legend.key = element_rect(linetype = 0),
