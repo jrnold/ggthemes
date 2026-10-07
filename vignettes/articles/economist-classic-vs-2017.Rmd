@@ -1,0 +1,227 @@
+---
+title: "The classic and 2017 Economist styles, side by side"
+---
+
+```{r, include = FALSE}
+## ragg writes plain sRGB PNGs; the macOS default device embeds a profile that darkens colors.
+knitr::opts_chunk$set(comment = "#>", dpi = 192, dev = "ragg_png")
+## Fold each chunk's code behind a "Code" toggle; output stays visible.
+local({
+  source_hook <- knitr::knit_hooks$get("source")
+  knitr::knit_hooks$set(source = function(x, options) {
+    paste0("\n\n<details><summary>Code</summary>\n\n", source_hook(x, options), "\n\n</details>\n\n")
+  })
+})
+```
+
+ggthemes has two Economist styles. `theme_economist()` is the classic style, the look of the paper's charts before 2017, approximated from published charts. `theme_economist_2017()` implements *The Economist visual styleguide* ([Version 1.2, 4 May 2017](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf), by Matt McLean), which was written down measurement by measurement. This article sets the two against each other: first the differences, then every example chart of the guide drawn in both styles, and finally, in [a second article](economist-mistakes.html), the Economist's own before-and-after charts from "Mistakes, we've drawn a few".
+
+The classic style is the one under test. The 2017 style is the reference, because the guide gives its numbers. Where the two disagree, the question is whether the classic style is deliberately different, as the guide says it is on p.3, or simply wrong.
+
+```{r setup, message = FALSE}
+library(ggthemes)
+library(ggplot2)
+library(grid)
+library(gtable)
+
+## The guide's own colour values, as shipped with the package.
+print_pal <- ggthemes_data$economist_2017$print
+web_pal <- ggthemes_data$economist_2017$web
+swatch <- function(name) print_pal$swatches$value[print_pal$swatches$name == name]
+
+econ_red <- print_pal$accent
+print_bg <- print_pal$ground
+print_highlight <- print_pal$highlight
+print_numberbox <- print_pal$number_box
+grid_col <- print_pal$grid
+
+## Color orders per chart type.
+pal_bar <- economist_2017_pal("print", type = "bar_side")
+pal_stack <- economist_2017_pal("print", type = "stacked")
+pal_line <- economist_2017_pal("print", type = "line_side")
+pal_dot <- economist_2017_pal("print", type = "dot")
+pal_pie <- economist_2017_pal("print", type = "pie")
+
+## The aesthetics of the helper functions below are columns of their data.
+.data <- rlang::.data
+
+## The red tab and the side-by-side layout of the classic and 2017 charts; see the file for what it does.
+source("economist-classic-helpers.R")
+
+## Set the labels of some categories in bold.
+bold_label <- function(which) {
+  function(x) as.expression(lapply(x, function(l) if (l %in% which) bquote(bold(.(l))) else l))
+}
+
+no_value_axis <- function() {
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.line.x = element_blank(),
+    panel.grid.major = element_blank()
+  )
+}
+```
+
+## What the guide says changed
+
+The guide's own "What's changed" page (p.3) sets an old and a new web chart next to each other and lists eight changes. Four of them (the tab, the white background, the margins and the source text) are things a `ggplot2` theme sets or a finishing function draws; the rest are the palette, the typeface, and the panel conventions.
+
+| Guide's label | Classic | 2017 |
+|:--|:--|:--|
+| Rotated tag | A vertical red tab, flush with the chart's left edge | A horizontal red tab, above the title |
+| White background | Print and web share one blue-gray ground | Print is pale blue; web is white |
+| No margins | A margin on all four sides | Print has 6pt at the right, bottom and left and none at the top; web has none, except 3.5pt at the bottom |
+| Source text 75% black | Black | `#404040` |
+| 24pt spacer between panels | A fixed small gap | 24pt between panels side by side, 15pt between stacked panels |
+| Marker for panels | None | A 10pt by 1pt red marker above each panel heading |
+| New colour palette | Blues, greens and grays sampled from 2012 charts | The guide's palettes, in a set order for each chart type |
+| New typeface | ITC Officina Sans (any sans substitutes) | Econ Sans and Econ Sans Cnd, with Fira Sans Condensed as the substitute |
+
+## What the two themes set
+
+The table below reads each element from the two themes at their default `base_size` of 10, so any difference in type size or rule weight shows up here, whatever the guide says. Sizes are in points. A rule weight is the width it is drawn at, in points.
+
+```{r theme-table}
+## A theme leaves some elements unset, and a plot fills them from ggplot2's defaults. Read each theme as a plot
+## uses it, or an unset element (the classic caption, say) would show the wrong value.
+as_drawn <- function(theme) {
+  built <- ggplot_build(ggplot() + theme)
+  if (isS4(built$plot)) built$plot@theme else built$plot$theme
+}
+classic <- as_drawn(theme_economist())
+modern <- as_drawn(theme_economist_2017("print", base_family = "sans"))
+
+## ggplot2 draws `linewidth` mm as `lwd = linewidth * .pt`, and grid draws a `lwd` of 1 at 0.75pt.
+drawn_pt <- function(linewidth) linewidth * .pt * 0.75
+
+describe <- function(theme, name) {
+  e <- calc_element(name, theme)
+  if (inherits(e, "element_blank")) {
+    return("none")
+  }
+  parts <- c(
+    if (!is.null(e$size) && !inherits(e, "element_line") && !inherits(e, "element_rect")) {
+      paste0(format(round(e$size, 1)), "pt")
+    },
+    if (inherits(e, "element_line") && !is.null(e$linewidth) && !is.na(e$linewidth)) {
+      paste0(format(round(drawn_pt(e$linewidth), 2)), "pt")
+    },
+    if (!is.null(e$face) && e$face != "plain") e$face,
+    if (inherits(e, "element_text") && !is.null(e$hjust)) paste0("hjust ", e$hjust),
+    if (inherits(e, "element_text") && !is.null(e$angle) && e$angle != 0) paste0("angle ", e$angle),
+    if (!is.null(e$colour) && !is.na(e$colour)) e$colour,
+    if (inherits(e, "element_rect") && !is.null(e$fill) && !is.na(e$fill)) paste0("fill ", e$fill)
+  )
+  paste(parts, collapse = ", ")
+}
+
+elements <- c(
+  "Title" = "plot.title",
+  "Subtitle" = "plot.subtitle",
+  "Source (caption)" = "plot.caption",
+  "Axis numbers, x" = "axis.text.x",
+  "Axis numbers, y" = "axis.text.y",
+  "Axis title, y" = "axis.title.y",
+  "Legend labels" = "legend.text",
+  "Legend title" = "legend.title",
+  "Panel heading" = "strip.text",
+  "Gridlines" = "panel.grid.major.y",
+  "Baseline" = "axis.line.x",
+  "Ticks" = "axis.ticks.x",
+  "Plot background" = "plot.background",
+  "Panel background" = "panel.background"
+)
+
+knitr::kable(
+  data.frame(
+    Element = names(elements),
+    Classic = vapply(elements, function(n) describe(classic, n), character(1)),
+    `2017 (print)` = vapply(elements, function(n) describe(modern, n), character(1)),
+    check.names = FALSE,
+    row.names = NULL
+  )
+)
+```
+
+```{r theme-lengths}
+pts <- function(x) round(grid::convertUnit(x, "pt", valueOnly = TRUE), 1)
+
+knitr::kable(
+  data.frame(
+    Setting = c(
+      "Outer margin, top / right / bottom / left (pt)",
+      "Tick length (pt; negative points into the panel)",
+      "Space between panels, x / y (pt)",
+      "Where the title and source are aligned",
+      "Legend position and justification"
+    ),
+    Classic = c(
+      paste(pts(classic$plot.margin), collapse = " / "),
+      pts(classic$axis.ticks.length),
+      paste(pts(grid::unit(0.25, "lines")), "(0.25 lines) for both"),
+      paste0(classic$plot.title.position %||% "panel", " (the default)"),
+      paste(classic$legend.position, "/", classic$legend.justification)
+    ),
+    `2017 (print)` = c(
+      paste(pts(modern$plot.margin), collapse = " / "),
+      pts(modern$axis.ticks.length),
+      paste(pts(modern$panel.spacing.x), "/", pts(modern$panel.spacing.y)),
+      modern$plot.title.position,
+      paste(modern$legend.position, "/", modern$legend.justification)
+    ),
+    check.names = FALSE
+  )
+)
+```
+
+Both themes now express every length relative to `base_size`, so a chart drawn at twice the size is the same chart. Until the classic theme was matched to the chart corpus it did not: it scaled its type but not its margins, which were fixed at 12pt and 10pt, nor its gridlines, nor its legend keys. Its default `base_size` is still 10, where `theme_economist_white()` defaults to 11.
+
+## The palettes
+
+```{r palettes, fig.width = 7, fig.height = 2.6}
+classic_pal <- ggthemes_data$economist$fg
+rows <- list(
+  "classic, fills (n = 6)" = economist_pal()(6),
+  "classic, lines (n = 6)" = economist_pal(fill = FALSE)(6),
+  "2017, bars (n = 6)" = economist_2017_pal("print", type = "bar_side")(6),
+  "2017, stacked (n = 6)" = economist_2017_pal("print", type = "stacked")(6),
+  "2017, lines (n = 6)" = economist_2017_pal("print", type = "line_side")(6)
+)
+swatches <- data.frame(
+  row = factor(rep(names(rows), lengths(rows)), levels = rev(names(rows))),
+  x = unlist(lapply(rows, seq_along)),
+  colour = unlist(rows)
+)
+ggplot(swatches, aes(x, row, fill = colour)) +
+  geom_tile(colour = "white", linewidth = 1, width = 0.95, height = 0.9) +
+  scale_fill_identity() +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_size = 9) +
+  theme(panel.grid = element_blank(), axis.text.x = element_blank())
+```
+
+The classic palette is mostly blues, grays and greens. Its documentation says red is kept out, to mark the important data, but its eight- and nine-colour versions add a dark red and a pink. The 2017 palettes start with blue and cyan. No colour appears in both families.
+
+## What the classic charts are adjusted for
+
+The classic charts below use `theme_economist(base_size = classic_size)`, with `classic_size` set to `r classic_size`, the base size the chart corpus gives for a chart 160pt across. The notes below the charts were written when `theme_economist()` still failed at this size, and each file added settings of its own to compensate: a smaller legend set flush left, the title and source line aligned with the plot and not the panel, a left-aligned source line, and a few charts drawn wider than the guide's width. The theme now sets all of those itself, from the measurements in the corpus (`?theme_economist` lists them), so the settings in the files are harmless repeats, and notes that blame the theme for a legend cut off at the right, a title aligned with the panel, a right-aligned source line, margins that do not scale or heavy gridlines describe the theme as it was. What remains true of the classic theme is the missing pieces: no zero line, no panel marker, no footnote, no web variant, and a palette and a line-palette scale that fall short of the paper's.
+
+## Every chart of the guide, in both styles
+
+Each chart below is the guide's own example. The right-hand chart is the 2017 version, drawn exactly as in [the 2017 article](economist-2017-styleguide.html). The left-hand one is the same data in the classic style: `theme_economist()` at a `base_size` of `r classic_size` to match the size of the 2017 type, `scale_*_economist()`, and a red tab drawn by `classic_chart()`, a helper local to this article. Where the classic style has no equivalent of something in the guide, the note below the chart says what is missing.
+
+```{r anatomy, child = "_classic-vs-2017-anatomy.Rmd"}
+```
+
+```{r bars, child = "_classic-vs-2017-bars.Rmd"}
+```
+
+```{r lines, child = "_classic-vs-2017-lines-scatter.Rmd"}
+```
+
+```{r tables, child = "_classic-vs-2017-tables-pie-dual.Rmd"}
+```
+
+```{r timelines, child = "_classic-vs-2017-timelines-misc.Rmd"}
+```

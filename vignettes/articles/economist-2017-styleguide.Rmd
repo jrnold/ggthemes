@@ -80,7 +80,7 @@ no_value_axis <- function() {
 
 ## Chart sizes
 
-In print, charts come in fixed print widths, in points. Only the leader block and the Espresso lead image have a fixed height.  The theme, `theme_economist_2017()`, derives the relative scaling of plot elements from the absolute numbers, but allows them to scale with `base_size`. The default, 10, gives the guide's own numbers.
+In print, charts come in fixed print widths, in points. Only the leader block and the Espresso lead image have a fixed height.  The theme, `theme_economist_2017()`, derives the relative scaling of plot elements from the absolute numbers, but allows them to scale with `base_size`, the size of the axis labels. The guide's own numbers are at `base_size = 7`, the guide's axis-label size, which is what every chart here uses.
 
 ```{r sizes-table}
 options(knitr.kable.NA = "")
@@ -157,7 +157,7 @@ footnote_figure <- ggplot(symbols, aes(x, 0)) +
   scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-1, 1.8), expand = c(0, 0)) +
   labs(x = NULL, y = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank(),
     panel.grid.major = element_blank()
@@ -203,7 +203,7 @@ tokyo <- ggplot(bonds, aes(year, yield, colour = period)) +
   ) +
   ## The fallback font is wider, so the keys take two rows.
   guides(colour = guide_legend(nrow = 2)) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 tokyo
 ```
@@ -281,7 +281,7 @@ anthem <- ggplot(sweeps, aes(year, count, fill = country)) +
     x = NULL, y = NULL, fill = NULL,
     caption = "Sources: International Olympic Committee;\nSports Reference; The Economist"
   ) +
-  theme_economist_2017("web")
+  theme_economist_2017("web", base_size = 7)
 
 economist_2017_chart(anthem, media = "web", footnote = "*Unified team of ex-Soviet republics")
 ```
@@ -331,7 +331,7 @@ leader <- ggplot(leader_data, aes(year, change)) +
   ) +
   labs(title = "US consumer prices", subtitle = "% increase on a year earlier",
        x = NULL, y = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     plot.title = element_text(size = rel(0.8), lineheight = 1),
     plot.subtitle = element_text(size = rel(0.7), lineheight = 1),
@@ -366,7 +366,7 @@ espresso <- ggplot(espresso_data, aes(year, change)) +
   labs(title = "US retail sales",
        subtitle = "Excluding motor vehicles and parts,\n% change on a year earlier",
        x = NULL, y = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     plot.title = element_text(size = rel(0.8), lineheight = 1),
     plot.subtitle = element_text(size = rel(0.8), lineheight = 1),
@@ -498,13 +498,13 @@ panel_plot <- function(panel_pt) {
       "TV mentions" = teal, "Polling average" = maroon, "Authoritarianism" = teal, "Racial resentment" = pal_line(1)
     )) +
     labs(title = "Racy", subtitle = "United States", x = " ", y = NULL) +
-    theme_economist_2017("print") +
+    theme_economist_2017("print", base_size = 7) +
     theme(axis.text.y = element_blank(), strip.text = element_text(margin = margin(3.5, 0, 18, 0)))
 }
 panel_chart <- panel_plot(60)
 
 stopifnot(
-  convertUnit(theme_economist_2017("print")$panel.spacing.x, "pt", valueOnly = TRUE) == 24
+  convertUnit(theme_economist_2017("print", base_size = 7)$panel.spacing.x, "pt", valueOnly = TRUE) == 24
 )
 economist_2017_chart(
   panel_chart +
@@ -521,7 +521,7 @@ Portrait panel charts are one column wide, with the panels stacked 15pt apart.
 
 ```{r dimensions-panel-portrait, econ_height = 350}
 stopifnot(
-  convertUnit(theme_economist_2017("print")$panel.spacing.y, "pt", valueOnly = TRUE) == 15
+  convertUnit(theme_economist_2017("print", base_size = 7)$panel.spacing.y, "pt", valueOnly = TRUE) == 15
 )
 economist_2017_chart(
   panel_plot(68) +
@@ -582,7 +582,7 @@ ggplot(swatch_data, aes(col, -row)) +
   scale_fill_identity() +
   scale_x_continuous(limits = c(-1.5, 9.5), expand = c(0, 0)) +
   labs(title = "Chart palette, print and web", x = NULL, y = NULL) +
-  theme_economist_2017("web") +
+  theme_economist_2017("web", base_size = 7) +
   theme(
     axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank(),
     panel.grid = element_blank()
@@ -608,7 +608,7 @@ ggplot(steps, aes(col, -step, fill = hex)) +
   scale_x_continuous(expand = c(0.01, 0)) +
   scale_y_continuous(expand = c(0, 0), limits = c(-6.9, -0.6)) +
   labs(title = "Equal lightness colour scales ", x = NULL, y = NULL) +
-  theme_economist_2017("web") +
+  theme_economist_2017("web", base_size = 7) +
   theme(
     axis.text = element_blank(), axis.ticks = element_blank(),
     axis.line = element_blank(), panel.grid = element_blank(),
@@ -642,7 +642,7 @@ lion <- ggplot(ethiopia, aes(year, growth)) +
     subtitle = "Ethiopia’s GDP, % change on a year earlier",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   lion +
@@ -676,7 +676,7 @@ salud <- ggplot(doctors, aes(country, visits, fill = highlight)) +
   ) +
   ## The guide sets the highlighted category's label in bold.
   scale_x_discrete(labels = bold_label("Spain")) +
-  theme_economist_2017("print", horizontal = FALSE)
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
 
 economist_2017_chart(
   salud +
@@ -719,7 +719,7 @@ democracy <- ggplot(elections, aes(country, pct, fill = income)) +
     ),
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print", horizontal = FALSE)
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
 
 economist_2017_chart(
   democracy +
@@ -761,7 +761,7 @@ autumn <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
     subtitle = "GDP, % increase on previous year",
     x = NULL, y = NULL, fill = "Forecasts made in:"
   ) +
-  theme_economist_2017("print", horizontal = FALSE) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7) +
   theme(
     strip.placement = "outside",
     strip.text.y.left = element_text(angle = 0, hjust = 0, vjust = 1),
@@ -798,7 +798,7 @@ jungle <- ggplot(returns, aes(horizon, pct, fill = asset)) +
     subtitle = "Britain, annualised rate of return\non investment*, %",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   ## The guide draws no x axis line or ticks on this chart.
   theme(panel.grid.major.x = element_blank(), axis.line.x = element_blank(), axis.ticks.x = element_blank()) +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
@@ -835,7 +835,7 @@ dotcom <- ggplot(capex, aes(sector, change)) +
   ) +
   ## "Total" is a summary row, so the guide bolds it.
   scale_x_discrete(labels = bold_label("Total")) +
-  theme_economist_2017("print", horizontal = FALSE)
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
 
 economist_2017_chart(
   dotcom +
@@ -871,7 +871,7 @@ drain <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
     subtitle = "Net private capital inflows/outflows, $bn",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   drain +
@@ -955,7 +955,7 @@ woes <- ggplot(trade, aes(year, pct, fill = flow)) +
     subtitle = "China-United States trade in goods",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     strip.text = element_text(hjust = 0),
     panel.spacing.y = unit(8, "pt")
@@ -999,7 +999,7 @@ growth <- ggplot(asia, aes(country, growth, fill = period)) +
     subtitle = "GDP forecasts, % change on a year earlier",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print", horizontal = FALSE)
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
 
 economist_2017_chart(
   growth +
@@ -1043,7 +1043,7 @@ fence <- ggplot(segregation, aes(group, change, fill = area)) +
     subtitle = "Britain, % change in segregation index*\n2001-11",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print", horizontal = FALSE) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7) +
   ## The guide reads the key down its columns.
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
 
@@ -1101,7 +1101,7 @@ fed <- ggplot(carriers, aes(band, width, fill = carrier)) +
     subtitle = "Mobile operators' US market share\nJuly 2011, %",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   no_value_axis() +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
@@ -1201,7 +1201,7 @@ winner <- ggplot() +
     subtitle = "Spanish general election 2015, Seats won",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text = element_blank(),
     axis.ticks = element_blank(),
@@ -1313,7 +1313,7 @@ looting <- ggplot() +
     subtitle = "Islamic State's finances*, January 2015, $m",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text = element_blank(),
     axis.ticks = element_blank(),
@@ -1365,7 +1365,7 @@ sociable <- ggplot(adspend, aes(year, bn, fill = format)) +
     subtitle = "Global internet-advertising spending, $bn",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   ## The key stands inside the panel, over the gridlines, which stop at its edge.
   theme(
     legend.position = "inside",
@@ -1420,7 +1420,7 @@ more_in <- ggplot(deficit, aes(year, pct, fill = region)) +
     subtitle = "United States, merchandise-trade deficit\n% of GDP",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   more_in +
@@ -1474,7 +1474,7 @@ movers <- ggplot(migrants, aes(destination, pct, fill = origin)) +
     subtitle = "Intra-European* migrants living elsewhere\n2014, % of total by destination country",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(panel.grid.major = element_blank()) +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
@@ -1555,7 +1555,7 @@ trump <- ggplot(bars, aes(row, pct, fill = answer)) +
     subtitle = "How do you feel about Donald Trump as\nthe 2016 Republican nominee\nfor president?*",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(panel.grid.major = element_blank()) +
   guides(fill = guide_legend(ncol = 2, byrow = TRUE))
 
@@ -1571,8 +1571,8 @@ economist_2017_chart(
 
 ```{r penumbral, econ_height = 165}
 ## Quarterly (or finer) steps.
-ink <- theme_economist_2017("print")$text$colour
-tick_col <- theme_economist_2017("print")$axis.ticks$colour
+ink <- theme_economist_2017("print", base_size = 7)$text$colour
+tick_col <- theme_economist_2017("print", base_size = 7)$axis.ticks$colour
 
 ## Year-boundary ticks are minor ticks drawn full length; the label's own tick is hidden.
 span_axis <- guide_axis(
@@ -1609,7 +1609,7 @@ penumbral <- ggplot(shadow, aes(year, units)) +
     subtitle = "US shadow housing inventory*\nUnits, m",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   penumbral +
@@ -1655,7 +1655,7 @@ tokyo_guide <- ggplot(bonds_guide, aes(year, yield, colour = period)) +
     subtitle = "Ten-year government-bond yields, %",
     x = "Years since start", y = NULL, colour = "Period beginning"
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(legend.text = element_text(size = rel(0.72)))
 
 economist_2017_chart(
@@ -1714,7 +1714,7 @@ transports <- ggplot(london, aes(year, index, colour = mode)) +
     subtitle = "London\u2019s population and journeys\n2001=100",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   transports +
@@ -1798,7 +1798,7 @@ coming_down <- ggplot(suicides, aes(year, rate, colour = country)) +
     subtitle = "Suicides per 100,000 population",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   coming_down +
@@ -1866,7 +1866,7 @@ ggplot(line_demo, aes(x, y, colour = series)) +
   scale_y_continuous(limits = c(-0.76, 4.69), breaks = 0:4, expand = c(0, 0)) +
   scale_colour_economist_2017("print", type = "line_side") +
   labs(title = "Standard colour order", x = NULL, y = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text = element_blank(),
     axis.ticks = element_blank(),
@@ -1909,7 +1909,7 @@ exodus <- ggplot(mideast, aes(date, pct, colour = country)) +
     subtitle = "Christians, as % of population",
     x = "Available years", y = NULL, colour = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     legend.position = "left", legend.direction = "vertical", legend.justification = "top",
     legend.key.spacing.y = unit(6, "pt")
@@ -1962,7 +1962,7 @@ hoards <- ggplot(reserves, aes(year, trn, fill = region, colour = region)) +
     subtitle = "Developing-country currency reserves\n$trn",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   hoards +
@@ -2025,7 +2025,7 @@ big_shift <- ggplot(shift, aes(year, pct, fill = haven, colour = haven)) +
     subtitle = "Tax havens\u2019 share of US overseas\ncorporate profits, %",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     legend.direction = "vertical", legend.key.spacing.y = unit(3.5, "pt"),
     legend.box.spacing = unit(-46, "pt")
@@ -2093,7 +2093,7 @@ limbo_plot <- ggplot(limbo, aes(year, n, fill = tenure, colour = tenure)) +
     subtitle = "Households in temporary homes\nEngland, \u2019000",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(legend.text = element_text(size = rel(0.7))) +
   guides(fill = guide_legend(ncol = 2, byrow = TRUE))
 
@@ -2178,7 +2178,7 @@ emerging_plot <- ggplot(emerging, aes(year, bn, fill = class, colour = class)) +
                       ", 2011$ at PPP", fn[2], ", bn"),
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   emerging_plot +
@@ -2286,7 +2286,7 @@ thermo_plot <- function(n, terminals = c("rule", "dot")) {
                         "RateMyProfessors.com*"),
       x = NULL, y = NULL, colour = NULL
     ) +
-    theme_economist_2017("print", horizontal = FALSE) +
+    theme_economist_2017("print", horizontal = FALSE, base_size = 7) +
     theme(axis.line.y = element_line(colour = "black", linewidth = 0.25))
 }
 ```
@@ -2456,7 +2456,7 @@ divergent <- ggplot(metro, aes(employment, house_prices, colour = period)) +
     subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
     x = "Employment", y = "House prices", colour = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(panel.grid.major.x = element_line(colour = grid_col), axis.line.x = element_blank(),
         axis.ticks.x = element_blank())
 
@@ -2508,7 +2508,7 @@ disinfectant <- ggplot(corruption, aes(open, score)) +
     x = "Corruption-perceptions index score, 2014\n100=least corrupt",
     y = "Open-data index score,\nlatest, 100=most open"
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(axis.title.x = element_text(hjust = 0.5), panel.grid.major.x = element_line(colour = grid_col),
         axis.line.x = element_blank(), axis.ticks.x = element_blank())
 
@@ -2597,7 +2597,7 @@ right_nation <- ggplot(oecd, aes(spend, life)) +
     x = "Health expenditures per person\nat purchasing-power parity, current prices, $'000",
     y = "Life expectancy,\nyears"
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(axis.title.x = element_text(hjust = 0.5), panel.grid = element_blank(),
         axis.line.x = element_blank(), axis.ticks.x = element_blank())
 
@@ -2695,7 +2695,7 @@ vitality_frame <- list(
   annotation_custom(health_note("WORSE HEALTH", TRUE)),
   annotation_custom(health_note("BETTER HEALTH", FALSE)),
   coord_cartesian(clip = "off"),
-  theme_economist_2017("print"),
+  theme_economist_2017("print", base_size = 7),
   theme(axis.title.x = element_text(hjust = 0.5), panel.grid.major.x = element_line(colour = grid_col),
         axis.line.x = element_blank(), axis.ticks.x = element_blank())
 )
@@ -3147,7 +3147,7 @@ pie_grid <- function(hole) {
     facet_wrap(~panel, nrow = 1) +
     scale_fill_manual(values = c(setNames(pal_pie(6), as.character(1:6)), O = "#CCD8DD"), guide = "none") +
     labs(x = NULL, y = NULL) +
-    theme_economist_2017("print") +
+    theme_economist_2017("print", base_size = 7) +
     theme(
       axis.text = element_blank(), axis.ticks = element_blank(),
       axis.line = element_blank(), panel.grid.major = element_blank(),
@@ -3244,7 +3244,7 @@ naan <- ggplot() +
   scale_fill_manual(values = naan_cols, guide = "none") +
   coord_fixed(xlim = c(35, 655), ylim = c(-600, -190), expand = FALSE) +
   labs(title = "Naan bigger", subtitle = "Tata's workforce in Britain,\nSeptember 2011, '000", x = NULL, y = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text = element_blank(), axis.ticks = element_blank(),
     axis.line = element_blank(), panel.grid.major = element_blank()
@@ -3353,7 +3353,7 @@ scramble <- ggplot() +
   ) +
   coord_fixed(xlim = c(25, 1385), ylim = c(-690, -100), expand = FALSE) +
   labs(title = "The scramble in Africa", x = NULL, y = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text = element_blank(), axis.ticks = element_blank(),
     axis.line = element_blank(), panel.grid.major = element_blank()
@@ -3419,7 +3419,7 @@ steam <- ggplot(rail, aes(.data$year, .data$value, colour = .data$series)) +
     labels = c("1955", "70", "80", "90", "2000", "14"), limits = c(1945, 2022), expand = c(0, 0)
   ) +
   labs(title = "Out of steam", subtitle = "Britain, railways", x = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text.y.left = element_text(colour = maroon),
     axis.text.y.right = element_text(colour = cyan_text),
@@ -3496,7 +3496,7 @@ golden <- ggplot(nafta, aes(.data$year, .data$value, colour = .data$series)) +
     limits = c(1989.3, 2019.3), expand = c(0, 0)
   ) +
   labs(title = "Golden triangle", x = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text.y.left = element_text(colour = cyan_text),
     axis.text.y.right = element_text(colour = pal_dot(6)[2]),
@@ -3542,7 +3542,7 @@ chavismo <- ggplot(venezuela, aes(year)) +
   ) +
   labs(title = "Chavismo in action",
        subtitle = "Venezuela, % change on a year earlier", x = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.title.y.left = element_text(colour = cyan_text, hjust = 0),
     axis.title.y.right = element_text(colour = pal_dot(6)[2], hjust = 1),
@@ -3609,7 +3609,7 @@ quantifying <- ggplot(qe, aes(.data$year, .data$value, colour = .data$series)) +
     breaks = c(2014, 2015), labels = c("2014", "2015"), limits = c(2013.19, 2015.69), expand = c(0, 0)
   ) +
   labs(title = "Quantifying QE", x = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text.y.left = element_text(colour = pal_dot(6)[2]),
     axis.text.y.right = element_text(colour = cyan_text),
@@ -3661,7 +3661,7 @@ lies <- ggplot() +
     limits = c(2000.1, 2018.3), expand = c(0, 0)
   ) +
   labs(title = "What lies beneath", x = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text.y.left = element_text(colour = cyan_text),
     axis.text.y.right = element_text(colour = pal_dot(6)[2]),
@@ -3714,7 +3714,7 @@ zuma_plot <- ggplot(zuma, aes(.data$year, .data$value, colour = .data$series)) +
     breaks = 2008.5 + 0:8, labels = c("2008", sprintf("%02d", 9:16)), limits = c(2007.04, 2018.2), expand = c(0, 0)
   ) +
   labs(title = "The Zuma years", subtitle = "South Africa", x = NULL) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(
     axis.text.y.left = element_text(colour = pal_dot(6)[2]),
     axis.text.y.right = element_text(colour = cyan_text),
@@ -3795,7 +3795,7 @@ big_mac <- ggplot(bigmac, aes(y = country)) +
                       "Right-hand figures: Big Mac price*, $"),
     x = NULL, y = NULL, colour = NULL
   ) +
-  theme_economist_2017("print", horizontal = FALSE)
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
 
 economist_2017_chart(
   big_mac +
@@ -3845,7 +3845,7 @@ air <- ggplot(travel, aes(country, change)) +
     subtitle = "Business travel spending, 2014\n% change on a year earlier",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print", horizontal = FALSE)
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
 
 economist_2017_chart(
   air +
@@ -3890,7 +3890,7 @@ small <- ggplot(exchanges, aes(exchange, listed)) +
     subtitle = "Number of companies\nlisted on stock exchanges\nOctober 2016",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist_2017("print", horizontal = FALSE) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7) +
   ## The key sits at the right of the subtitle, which a negative margin tucks up into.
   theme(legend.position = "top", legend.justification = "right", legend.direction = "vertical",
         legend.margin = margin(t = -28, b = 0))
@@ -3926,7 +3926,7 @@ ggplot(blocks, aes(x, y)) +
   }) +
   geom_point(colour = econ_red, size = 0.6) +
   coord_cartesian(xlim = c(0.4, 4.4), ylim = c(-0.2, 3), expand = FALSE) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme_void() +
   theme(plot.background = element_rect(fill = print_bg, colour = NA))
 ```
@@ -4043,7 +4043,7 @@ philippines <- ggplot() +
   coord_cartesian(xlim = c(1964.9, 2017.04), ylim = c(-64, 74), expand = FALSE, clip = "off") +
   labs(title = "The Philippines", subtitle = "Selected events", x = NULL, y = NULL,
        caption = "Source: The Economist") +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   timeline_theme()
 economist_2017_chart(philippines)
 ```
@@ -4124,7 +4124,7 @@ iran_oil <- ggplot(iran) +
   coord_cartesian(xlim = c(1962.3, 2018.97), ylim = c(-3.9, 8.3), expand = FALSE, clip = "off") +
   labs(title = "More than an oil giant", subtitle = "Iran", x = NULL, y = NULL,
        caption = "Sources: World Bank; Thomson Reuters") +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   timeline_theme()
 economist_2017_chart(iran_oil)
 ```
@@ -4205,7 +4205,7 @@ caliphate <- ggplot() +
   coord_cartesian(xlim = c(1997.9, 2016.3), ylim = c(-4.2, 7.2), expand = FALSE, clip = "off") +
   labs(title = "Causation of a caliphate", subtitle = "Civilian death toll, ‘000:", x = NULL, y = NULL,
        caption = "Sources: Iraq Body Count; Violation Documentation Centre in Syria; The Economist") +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   timeline_theme()
 economist_2017_chart(caliphate)
 ```
@@ -4303,7 +4303,7 @@ putin <- ggplot(putin_approval) +
   labs(title = "I wanna be adored",
        subtitle = "Approval rating of Vladimir Putin and the Russian government, % polled",
        x = NULL, y = NULL, caption = "Sources: Levada Centre; The Economist") +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   timeline_theme()
 economist_2017_chart(putin)
 ```
@@ -4526,7 +4526,7 @@ mexican_waves <- function(media, event_top, war_labels, event_labels = mexico_ev
     coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 800), expand = FALSE, clip = "off") +
     labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %",
          x = NULL, y = NULL, caption = caption) +
-    theme_economist_2017(media) +
+    theme_economist_2017(media, base_size = 7) +
     ## Room between the year labels and the source line for the default track.
     theme(axis.text.x = element_text(size = rel(0.8)), plot.caption = element_text(margin = margin(t = 30)))
 }
@@ -4584,7 +4584,7 @@ mexico_rotated <- ggplot(mexico_yields, aes(yield, year)) +
   coord_cartesian(xlim = c(0.2, 500), ylim = c(2018, 1820), expand = FALSE, clip = "off") +
   labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %",
        x = NULL, y = NULL, caption = "Sources: Global Financial Data;\nThomson Reuters; Haver Analytics") +
-  theme_economist_2017("web") +
+  theme_economist_2017("web", base_size = 7) +
   theme(panel.grid.major = element_blank(), axis.text.y = element_text(hjust = 0))
 economist_2017_chart(mexico_rotated, "web")
 ```
@@ -4617,7 +4617,7 @@ mexico_compressed <- ggplot(mexico_yields, aes(year, yield)) +
                 guide = guide_axis_economist_2017()) +
   coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 3500), expand = FALSE, clip = "off") +
   labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %", x = NULL, y = NULL) +
-  theme_economist_2017("web") +
+  theme_economist_2017("web", base_size = 7) +
   theme(axis.text.x = element_text(size = rel(0.8)), plot.margin = margin(0, 0, 22, 0))
 economist_2017_chart(mexico_compressed, "web")
 ```
@@ -4720,7 +4720,7 @@ fill_jobs <- ggplot(jobs, aes(year, index, colour = place)) +
     subtitle = "Working-age population*, 2015=100",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   theme(legend.position = "none")
 
 economist_2017_chart(
@@ -4784,7 +4784,7 @@ malaise_plot <- function(tint, ink, line, media) {
       subtitle = "German approval of Angela\nMerkel, % polled",
       x = NULL, y = NULL
     ) +
-    theme_economist_2017(media)
+    theme_economist_2017(media, base_size = 7)
 }
 
 malaise <- malaise_plot(crisis_tint, crisis_ink, pal_line(1), "print")
@@ -4865,7 +4865,7 @@ woes_chart <- ggplot(toshiba, aes(t, price)) +
     subtitle = "Toshiba, share price, yen",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   woes_chart +
@@ -4917,7 +4917,7 @@ pain <- ggplot(income, aes(year, index, colour = measure)) +
     subtitle = "United States, median real\nhousehold income*, 1979=100",
     x = NULL, y = NULL, colour = NULL
   ) +
-  theme_economist_2017("print") +
+  theme_economist_2017("print", base_size = 7) +
   guides(colour = guide_legend(nrow = 2, byrow = TRUE))
 
 economist_2017_chart(
@@ -4961,7 +4961,7 @@ broken <- ggplot(merkel, aes(t, approval)) +
     subtitle = "German approval of Angela\nMerkel, % polled",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017("print")
+  theme_economist_2017("print", base_size = 7)
 
 economist_2017_chart(
   broken +

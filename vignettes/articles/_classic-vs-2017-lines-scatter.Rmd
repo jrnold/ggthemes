@@ -1,0 +1,1673 @@
+## Lines, side by side
+
+The `line_side` order, with the guide's cap: "Ilex will plot up to 6 colours but any more than 4 categories is probably too many and you should have a rethink."
+
+The classic charts take their line colours from `economist_pal(fill = FALSE)`, which `scale_colour_economist()` does not use (it draws from the fill palette), so the lines here use `discrete_scale("colour", palette = economist_pal(fill = FALSE))`. Classic has no footnote line, so the footnotes of the 2017 charts are printed under the source.
+
+Local adjustments, so that the classic charts fit the guide's one-column width: `lines_classic()` sets the classic theme at `base_size = 6.5` and then trims its legend (smaller text and keys), adds axis-title margins and a left-aligned, wrapped caption, none of which `theme_economist()` does itself; the thermometers also set `plot.title.position = "plot"`; the 2017 side is the existing article's code unchanged.
+
+```{r lines-setup}
+## Classic lines take the line palette; fills and points take the fill palette of scale_*_economist().
+lines_classic_scale <- function(...) discrete_scale("colour", palette = economist_pal(fill = FALSE), ...)
+
+## Finish a classic plot: source and footnote in the caption, the classic theme, the red tab. At one-column size
+## the theme's legend needs trimming, the axis titles need a margin and the caption needs both a style (the
+## classic theme draws none) and wrapping, since ggplot2 prints it on one line; see the gaps at the end.
+lines_classic <- function(plot, caption = NULL, footnote = NULL, theme = theme_economist(base_size = classic_size),
+                          tweaks = NULL, wrap = 44) {
+  caption <- paste(vapply(c(caption, footnote), function(x) paste(strwrap(x, wrap), collapse = "\n"), ""),
+                   collapse = "\n")
+  classic_chart(
+    plot + labs(caption = caption) + theme +
+      theme(
+        plot.caption = element_text(hjust = 0, size = rel(0.9), margin = margin(t = 5)),
+        legend.text = element_text(size = rel(0.9)), legend.key.size = unit(0.7, "lines"),
+        legend.key.spacing = unit(2, "pt"), legend.spacing = unit(2, "pt"), legend.margin = margin(0, 0, 0, 0),
+        axis.title.y = element_text(margin = margin(r = 4)), axis.title.x = element_text(margin = margin(t = 3))
+      ) +
+      tweaks
+  )
+}
+```
+
+### The standard color order, one to six lines
+
+```{r lines-order, econ_size = "three_column", econ_height = 300}
+## Shapes per panel, one value per step.
+line_shape <- list(
+  A = c(
+    3.62, 3.59, 3.52, 3.51, 3.48, 3.46, 3.44, 3.4, 3.34, 3.34, 3.27, 3.15, 3.09, 3.07, 3.06, 2.97,
+    2.93, 2.89, 2.83, 2.8, 2.78, 2.73, 2.68, 2.68
+  ),
+  B = c(
+    2.61, 2.66, 2.67, 2.7, 2.66, 2.63, 2.65, 2.65, 2.72, 2.78, 2.81, 2.82, 2.8, 2.75, 2.66, 2.62,
+    2.48, 2.39, 2.32, 2.23, 2.13, 2.05, 1.98, 1.97
+  ),
+  C = c(
+    2.11, 2.11, 2.08, 1.97, 1.95, 1.96, 1.92, 1.84, 1.77, 1.68, 1.65, 1.62, 1.59, 1.49, 1.46, 1.41,
+    1.37, 1.35, 1.31, 1.28, 1.25, 1.25, 1.23, 1.23
+  ),
+  D = c(
+    0.22, 0.24, 0.42, 0.51, 0.61, 0.65, 0.73, 0.93, 1.07, 1.23, 1.63, 1.48, 1.5, 1.69, 1.77, 1.92,
+    1.89, 1.72, 1.66, 1.64, 1.62, 1.6, 1.57, 1.48
+  ),
+  E = c(
+    -0.18, -0.14, -0.1, -0.09, -0.1, -0.11, -0.1, -0.09, -0.06, -0.04, 0, 0.05, 0.09, 0.12, 0.16,
+    0.23, 0.27, 0.31, 0.38, 0.46, 0.51, 0.54, 0.56, 0.56
+  ),
+  F = c(
+    2.06, 1.98, 1.98, 1.97, 1.96, 1.98, 2.01, 2.01, 2.01, 2.04, 2.03, 2.02, 2.01, 2.01, 2.02, 2.03,
+    2.02, 1.96, 1.9, 1.86, 1.85, 1.85, 1.86, 1.85
+  )
+)
+## Which shape each series (in colour order) takes in the 1- to 6-line panels.
+line_panels <- list(
+  c("B"),
+  c("A", "B"),
+  c("A", "B", "D"),
+  c("A", "C", "B", "D"),
+  c("A", "B", "F", "E", "D"),
+  c("A", "B", "F", "D", "C", "E")
+)
+line_demo <- do.call(rbind, lapply(seq_along(line_panels), function(n) {
+  do.call(rbind, lapply(seq_along(line_panels[[n]]), function(k) {
+    data.frame(
+      panel = paste(n, if (n == 1) "line" else "lines"),
+      series = factor(k, levels = 1:6),
+      x = 1:24,
+      y = line_shape[[line_panels[[n]][k]]]
+    )
+  }))
+}))
+line_demo$panel <- factor(line_demo$panel, levels = unique(line_demo$panel))
+
+modern <- ggplot(line_demo, aes(x, y, colour = series)) +
+  geom_line(linewidth = 1.4, show.legend = FALSE) +
+  facet_wrap(~panel, nrow = 2) +
+  scale_x_continuous(limits = c(-0.8, 25.6), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-0.76, 4.69), breaks = 0:4, expand = c(0, 0)) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(title = "Standard colour order", x = NULL, y = NULL) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.line = element_blank()
+  )
+
+## Classic picks colours by the number of lines, so each panel gets its own palette.
+line_demo$classic <- unlist(lapply(split(line_demo, line_demo$panel), function(d) {
+  economist_pal(fill = FALSE)(max(as.integer(d$series)))[as.integer(d$series)]
+}))
+
+classic <- lines_classic(
+  ggplot(line_demo, aes(x, y, colour = classic)) +
+    geom_line(linewidth = 0.8, show.legend = FALSE) +
+    facet_wrap(~panel, nrow = 2) +
+    scale_colour_identity() +
+    labs(title = "Standard colour order", x = NULL, y = NULL),
+  tweaks = theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank())
+)
+chart_pair(classic, ggplotGrob(modern))
+```
+
+The classic palette depends on the number of lines, so a line's colour changes when another is added: it starts with three blues (dark, mid, light), adds a blue-gray and a gray for four and five lines, and jumps to a different set, starting with light green, at six. The 2017 order is fixed (each panel takes the first colours of the same run), starting with blue and cyan, then gold and maroon, so the extra lines differ in hue and not just in lightness. Classic also draws white gridlines on a blue-gray panel, where the 2017 charts have thin grey rules on a lighter ground.
+
+### One line
+
+```{r lines-penumbral, econ_height = 165}
+## Quarterly (or finer) steps.
+ink <- theme_economist_2017("print", base_size = 7)$text$colour
+tick_col <- theme_economist_2017("print", base_size = 7)$axis.ticks$colour
+
+## Year-boundary ticks are minor ticks drawn full length; the label's own tick is hidden.
+span_axis <- guide_axis(
+  minor.ticks = TRUE,
+  theme = theme(
+    axis.ticks.x.bottom = element_line(colour = "transparent"),
+    axis.minor.ticks.x.bottom = element_line(colour = tick_col),
+    axis.minor.ticks.length.x.bottom = unit(5, "pt")
+  )
+)
+
+shadow <- data.frame(
+  year = 2006 + 0.125 * (0:42),
+  units = c(
+    0.4, 0.39, 0.38, 0.39, 0.42, 0.43, 0.46, 0.5, 0.54, 0.55, 0.59, 0.65, 0.71, 0.79, 0.88, 0.98, 1.09, 1.14, 1.19,
+    1.24, 1.3, 1.35, 1.39, 1.47, 1.55, 1.56, 1.54, 1.6, 1.64, 1.75, 1.88, 1.96, 2.02, 1.99, 1.95, 1.91, 1.86, 1.87,
+    1.9, 1.86, 1.79, 1.73, 1.68
+  )
+)
+
+penumbral <- ggplot(shadow, aes(year, units)) +
+  geom_line(colour = pal_line(1), linewidth = 0.9) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 2.05),
+    breaks = seq(0, 2, 0.5), labels = c("0", "0.5", "1.0", "1.5", "2.0")
+  ) +
+  scale_x_continuous(
+    limits = c(2006, 2012.05), expand = c(0, 0), guide = span_axis,
+    breaks = 2006:2011 + 0.5, minor_breaks = 2006:2011,
+    labels = c("2006", "07", "08", "09", "10", "11")
+  ) +
+  labs(
+    title = "Penumbral",
+    subtitle = "US shadow housing inventory*\nUnits, m",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  penumbral +
+    labs(caption = "Source: CoreLogic"),
+  media = "print",
+  footnote = "*Foreclosed and delinquent\nhomes not yet on the market"
+)
+
+classic <- lines_classic(
+  ggplot(shadow, aes(year, units)) +
+    geom_line(colour = economist_pal(fill = FALSE)(1), linewidth = 0.7) +
+    scale_x_continuous(limits = c(2006, 2012), breaks = 2006:2012, expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 2.05), breaks = seq(0, 2, 0.5)) +
+    labs(title = "Penumbral", subtitle = "US shadow housing inventory*\nUnits, m", x = NULL, y = NULL),
+  caption = "Source: CoreLogic",
+  footnote = "*Foreclosed and delinquent homes not yet on the market"
+)
+chart_pair(classic, modern)
+```
+
+The classic chart has a left-hand axis with white gridlines, a heavy black x-axis rule with ticks, and a line in its dark blue. The 2017 chart puts the scale on the right, labels the years between the year-boundary ticks and abbreviates them ("07"), and sets the footnote at the right of the source line; classic has no footnote, so it is a second line under the source.
+
+### Two lines
+
+```{r lines-tokyo-two, econ_height = 165}
+## Both lines start from the same yield.
+japan_yield <- c(
+  4.97, 5.22, 5.09, 5.34, 6.22, 6.78, 7.2, 7.21, 6.49, 6.67, 6.53, 6, 5.5, 5.68, 5.13, 4.82, 4.42, 4.53, 4.31, 3.67,
+  3.57, 4, 4.45, 4.65, 4.47, 3.44, 3.08, 2.91, 3.16, 3.27, 3.14, 2.65, 2.61, 2.55, 2.32, 1.96, 1.93, 1.68, 1.42, 1.06,
+  1.95, 1.55, 1.83, 1.8, 1.78, 1.73, 1.84, 1.76, 1.4, 1.28
+)
+us_yield <- c(
+  5.22, 5.53, 5.9, 6.08, 6.7, 6.21, 5.97, 5.65, 5.16, 5.22, 5.06, 4.68, 5, 5.16, 4.34, 3.98, 3.95, 3.7, 3.97, 4.29,
+  4.09, 4.45, 4.19, 4.16, 4.14, 4.23, 4.25, 4.51, 4.54, 5.04, 4.93, 4.65, 4.72, 4.81, 4.78, 4.31, 3.7, 3.82, 3.86,
+  3.26, 2.67, 3.22, 3.53, 3.44, 3.7, 3.55, 2.8, 2.86, 3.48, 3.35
+)
+bonds_guide <- data.frame(
+  year = rep(1.125 + 0.25 * (0:49), 2),
+  period = factor(
+    rep(c("January 1989 (Japan)", "January 1999 (US)"), each = 50),
+    levels = c("January 1989 (Japan)", "January 1999 (US)")
+  ),
+  yield = c(japan_yield, us_yield)
+)
+
+tokyo_guide <- ggplot(bonds_guide, aes(year, yield, colour = period)) +
+  geom_line(linewidth = 0.85) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 8.1), breaks = seq(0, 8, 2)
+  ) +
+  scale_x_continuous(
+    limits = c(1, 14.7), expand = c(0, 0), guide = span_axis,
+    breaks = c(1, 5, 10, 13) + 0.5, minor_breaks = 2:14, labels = c("1", "5", "10", "13")
+  ) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(
+    title = "Where Tokyo leads",
+    subtitle = "Ten-year government-bond yields, %",
+    x = "Years since start", y = NULL, colour = "Period beginning"
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(legend.text = element_text(size = rel(0.72)))
+
+modern <- economist_2017_chart(
+  tokyo_guide +
+    labs(caption = "Source: Thomson Reuters"),
+  media = "print"
+)
+
+classic <- lines_classic(
+  ggplot(bonds_guide, aes(year, yield, colour = period)) +
+    geom_line(linewidth = 0.7) +
+    scale_x_continuous(limits = c(1, 14.7), breaks = c(1, 5, 10, 13), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 8.1), breaks = seq(0, 8, 2)) +
+    lines_classic_scale() +
+    labs(
+      title = "Where Tokyo leads",
+      subtitle = "Ten-year government-bond yields, %",
+      x = "Years since start", y = NULL, colour = "Period beginning"
+    ) +
+    guides(colour = guide_legend(nrow = 2)),
+  caption = "Source: Thomson Reuters"
+)
+chart_pair(classic, modern)
+```
+
+Classic puts the legend above the panel in two rows with its title to the left of the keys, and its two lines are dark blue and blue; the 2017 lines are blue and a paler cyan, with the legend left-aligned over the panel. Both charts label the years 1, 5, 10 and 13, but classic has no minor ticks at the year boundaries.
+
+### Four lines, labeled in place, indexed
+
+An index chart: a red rule on the index value, a black dot on the index point, and lines labeled in place.
+
+```{r lines-transports, econ_height = 165}
+bus <- c(
+  100, 106.9, 117.8, 127.5, 127.1, 132.6, 150.1, 158.1, 162.5, 161.3, 165.3, 166.4, 168.7, 168.7, 168
+)
+tube <- c(
+  100, 99.6, 98.2, 103, 101.6, 104.8, 111, 114, 112.9, 115.6, 121, 127.9, 132.7, 133.4, 142.1
+)
+car <- c(
+  100, 99.3, 96.7, 96.6, 95.5, 94.5, 92.8, 90.8, 91.1, 89.9, 88, 87.1, 86.5, 87.3, NA
+)
+population <- c(
+  100, 101.1, 101, 101.1, 103.1, 103.3, 105.2, 106.7, 109.5, 110.2, 112, 113.5, 114.9, 116.3, 116.9
+)
+modes <- c("Bus", "Tube", "Car", "Population")
+london <- data.frame(
+  year = rep(2001:2015, 4),
+  mode = factor(rep(modes, each = 15), levels = modes),
+  index = c(bus, tube, car, population)
+)
+london <- london[!is.na(london$index), ]
+
+transports <- ggplot(london, aes(year, index, colour = mode)) +
+  geom_hline(yintercept = 100, colour = econ_red, linewidth = 0.2) +
+  geom_line(linewidth = 0.85, show.legend = FALSE) +
+  geom_point(
+    aes(year, index), data = data.frame(year = 2001, index = 100),
+    colour = "black", size = 2.2, inherit.aes = FALSE
+  ) +
+  geom_text(
+    data = data.frame(
+      year = c(2008.2, 2010.9, 2013, 2013.35),
+      index = c(167.6, 132.5, 93.3, 107.2),
+      mode = factor(modes, levels = modes)
+    ),
+    aes(label = mode), size = 2.6, colour = c(ink, ink, ink, pal_line(4)[4]), show.legend = FALSE
+  ) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(80, 180), breaks = seq(80, 180, 20)
+  ) +
+  scale_x_continuous(
+    limits = c(1999.55, 2018.2), expand = c(0, 0), breaks = seq(2001, 2015, 2), minor_breaks = 2001:2015,
+    labels = c("2001", "03", "05", "07", "09", "11", "13", "15"), guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(
+    title = "Transports of delight",
+    subtitle = "London\u2019s population and journeys\n2001=100",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  transports +
+    labs(caption = "Sources: Transport for London; ONS;\nThe Economist"),
+  media = "print"
+)
+
+transport_cols <- economist_pal(fill = FALSE)(4)
+classic <- lines_classic(
+  ggplot(london, aes(year, index, colour = mode)) +
+    geom_hline(yintercept = 100, linewidth = 0.3) +
+    geom_line(linewidth = 0.7, show.legend = FALSE) +
+    geom_point(
+      aes(year, index), data = data.frame(year = 2001, index = 100),
+      colour = "black", size = 1.8, inherit.aes = FALSE
+    ) +
+    geom_text(
+      data = data.frame(
+        year = c(2008.2, 2010.9, 2013, 2013.35),
+        index = c(167.6, 132.5, 93.3, 107.2),
+        mode = factor(modes, levels = modes)
+      ),
+      aes(label = mode), size = 2.2, colour = transport_cols, show.legend = FALSE
+    ) +
+    scale_x_continuous(limits = c(2000, 2016), breaks = seq(2001, 2015, 2), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(80, 180), breaks = seq(80, 180, 20)) +
+    lines_classic_scale() +
+    labs(
+      title = "Transports of delight", subtitle = "London\u2019s population and journeys\n2001=100",
+      x = NULL, y = NULL
+    ),
+  caption = "Sources: Transport for London; ONS; The Economist"
+)
+chart_pair(classic, modern)
+```
+
+Classic has no index rule, so the rule at 100 is a plain black line (the 2017 rule is red), and the labels take their lines' colours where 2017 sets them in black. The light-blue "Car" line is faint on the blue-gray panel; in 2017 it is gold.
+
+### Six lines, labeled in place
+
+```{r lines-coming-down, econ_height = 165}
+## The series start and end in different years.
+rates <- list(
+  Hungary = c(
+    25.2, 25.4, 25.2, 26.7, 28.7, 29.7, 29.8, 31.4, 33.5, 33.4, 34.8, 36.1, 36.9, 37.4, 40, 38.9, 40.4, 40.7, 43.1,
+    44.6, 44.9, 45.3, 44, 45.7, 45.8, 44.6, 45.3, 44.6, 41.9, 41.7, 40, 38.7, 38.6, 36.7, 34.9, 33.1, 33, 31.5, 31.7,
+    32.4, 31.7, 29.5, 28.1, 27.6, 27.1, 26, 24.7, 24.7, 24.7, 24.8, 25, 24.4, 23.5, 22.1
+  ),
+  Lithuania = c(
+    34, 34, 34, 34.1, 32.4, 26.9, 28.5, 27, 27.1, 27.1, 30.8, 35.5, 42.3, 46.1, 46.8, 47.4, 45.7, 44, 44.3, 46.2,
+    44.6, 44.7, 42.6, 41, 38.7, 33.4, 32.2, 34.6, 35.6, 33.3, 33.3, 31.6
+  ),
+  Russia = c(
+    34.3, 34.4, 34.7, 33.2, 32.4, 28.7, 24, 23.4, 24.4, 25.8, 26.5, 27.2, 31.1, 37.6, 41.2, 41, 39, 37.1, 35.8, 38.3,
+    38.9, 39.1, 37.9, 35.8, 34.2, 32.2, 30.3, 28.8, 27.4, 26, 24.1
+  ),
+  Japan = c(
+    20.8, 19.6, 17.7, 16.2, 15.2, 14.8, 15.1, 14.2, 14.4, 14.6, 15.2, 15.7, 16.8, 17.4, 17.4, 17.9, 17.6, 17.8, 17.6,
+    17.9, 17.6, 17.1, 18, 20.5, 20.3, 19.7, 20.9, 19.6, 18.6, 17.2, 16.3, 16.1, 16.7, 16.5, 16.8, 17.1, 17.7, 19.7,
+    24.2, 24.8, 23.8, 23.1, 23.7, 25, 23.8, 23.9, 23.5, 24.2, 23.8, 24, 23.1, 22.4, 21, 20.6
+  ),
+  `South Korea` = c(
+    8, 7.6, 7.2, 7, 7.2, 7.1, 8.7, 9.4, 9.6, 10.7, 12.8, 14, 17.6, 15.6, 13.9, 15.1, 18.3, 22.4, 24.6, 24.9, 22.4,
+    25.2, 27, 30.6, 31.6, 31.3, 29.1
+  ),
+  US = c(
+    10.2, 10.1, 10.6, 10.9, 10.5, 11.3, 11, 10.8, 10.7, 11.1, 11.5, 11.7, 12, 11.9, 12.1, 12.6, 12.4, 13, 12.4, 12.1,
+    11.9, 12.1, 12.2, 12.1, 12.5, 12.5, 12.9, 12.8, 12.5, 12.3, 12.4, 12.2, 12, 12.1, 11.9, 11.8, 11.5, 11.2, 11.1,
+    10.6, 10.4, 10.8, 11, 10.9, 11.1, 11.1, 11.2, 11.5, 11.9, 12.1
+  ),
+  Britain = c(
+    10.7, 10.9, 11.5, 11.7, 11.2, 10.5, 10.1, 9.6, 9.2, 8.7, 8, 7.9, 7.6, 7.8, 7.9, 7.5, 7.8, 7.9, 8.1, 8.5, 8.8, 9,
+    8.8, 8.8, 8.8, 9, 8.6, 8.1, 8.7, 7.8, 8.1, 8, 8.1, 7.8, 7.6, 7.5, 7.2, 7.2, 7.5, 7.6, 7.4, 7, 7, 6.7, 7, 6.7, 6.9,
+    6.5, 6.9, 6.9, 6.7, 7, 7.1, 7.4
+  )
+)
+first_year <- c(Hungary = 1960, Lithuania = 1981, Russia = 1980, Japan = 1960, `South Korea` = 1986, US = 1960,
+                Britain = 1960)
+suicides <- do.call(rbind, lapply(names(rates), function(country) {
+  data.frame(
+    year = first_year[[country]] + seq_along(rates[[country]]) - 1,
+    country = factor(country, levels = names(rates)),
+    rate = rates[[country]]
+  )
+}))
+## The guide's line colors, with mint for the US.
+country_cols <- c(
+  Hungary = pal_line(6)[2], Lithuania = pal_line(6)[1], Russia = pal_line(6)[3], Japan = pal_line(6)[4],
+  `South Korea` = pal_line(6)[6], US = pal_stack(6)[5], Britain = pal_line(6)[5]
+)
+
+coming_down <- ggplot(suicides, aes(year, rate, colour = country)) +
+  geom_line(linewidth = 0.8, show.legend = FALSE) +
+  geom_text(
+    data = data.frame(
+      year = c(1971.6, 2009.1, 1980.5, 1966.7, 2010.7, 1985.4, 1982.2),
+      rate = c(45.4, 46, 27.1, 19.8, 16.5, 15.1, 4.9),
+      country = factor(names(rates), levels = names(rates))
+    ),
+    aes(label = country),
+    colour = ink, size = 2.6, fontface = c("plain", "plain", "plain", "bold", "plain", "plain", "plain"),
+    show.legend = FALSE
+  ) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 50)) +
+  scale_x_continuous(
+    limits = c(1956.9, 2023.3), expand = c(0, 0), minor_breaks = seq(1960, 2010, 5),
+    breaks = c(1960, 1970, 1980, 1990, 2000, 2013), labels = c("1960", "70", "80", "90", "2000", "13"),
+    guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_colour_manual(values = country_cols) +
+  labs(
+    title = "Coming down everywhere",
+    subtitle = "Suicides per 100,000 population",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  coming_down +
+    labs(caption = "Sources: ONS; Eurostat"),
+  media = "print"
+)
+
+classic <- lines_classic(
+  ggplot(suicides, aes(year, rate, colour = country)) +
+    geom_line(linewidth = 0.6, show.legend = FALSE) +
+    geom_text(
+      data = data.frame(
+        year = c(1971.6, 2009.1, 1980.5, 1966.7, 2010.7, 1985.4, 1982.2),
+        rate = c(45.4, 46, 27.1, 19.8, 16.5, 15.1, 4.9),
+        country = factor(names(rates), levels = names(rates))
+      ),
+      aes(label = country), colour = "black", size = 2.1, show.legend = FALSE
+    ) +
+    scale_x_continuous(limits = c(1957, 2023), breaks = seq(1960, 2010, 10), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 50)) +
+    lines_classic_scale() +
+    labs(title = "Coming down everywhere", subtitle = "Suicides per 100,000 population", x = NULL, y = NULL),
+  caption = "Sources: ONS; Eurostat"
+)
+chart_pair(classic, modern)
+```
+
+With seven lines classic runs out of blues and takes light green, dark green, gray, blue-gray, light blue, dark blue and dark red, so several lines are told apart by lightness only (Hungary in light green against the greens, Russia in gray). The 2017 chart gets the same separation from hue, and sets Japan in bold; the classic chart sets all labels alike.
+
+### The high-contrast alternatives
+
+Where six related hues will not separate, use the `bright` and `dark` sets. Classic has no such sets: seven lines take the seven colours of `economist_pal(fill = FALSE)`, where the 2017 chart mixes the line, stacked and `bright` sets.
+
+```{r lines-exodus, econ_height = 185}
+## Positions follow the chart, not years.
+dates <- c(172, 406, 522.5, 584)
+countries <- c("Egypt", "Syria", "Palestine", "Israel", "Iraq", "U.A.E", "Saudi Arabia")
+mideast <- data.frame(
+  date = rep(dates, 7),
+  country = factor(rep(countries, each = 4), levels = countries),
+  pct = c(
+    18.7, 15.9, 10.2, 8.6, 15.6, 9.7, 5.2, 2.6, 11.6, 4.7, 1.9, 1.1, 8.1, 2.8, 2.5, 1.8,
+    6.3, 3.7, 1.4, 0.7, 0.1, 5.9, 12.7, 12.7, 0, 0.4, 4.4, 4.5
+  )
+)
+
+## The chart's own colours: cyan, teal, purple (bright 1), blue, mint, pink, orange (bright 3).
+country_cols <- c(
+  pal_line(2)[2], pal_line(5)[5], economist_2017_pal("print", set = "bright")(1), pal_line(1),
+  pal_stack(6)[5], swatch("red1"), economist_2017_pal("print", set = "bright")(3)[3]
+)
+
+exodus <- ggplot(mideast, aes(date, pct, colour = country)) +
+  geom_line(linewidth = 0.7, key_glyph = "rect") +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 20)) +
+  scale_x_continuous(
+    limits = c(172, 650), expand = c(0, 0), breaks = dates, labels = c("1910", "70", "2010", "25*")
+  ) +
+  scale_colour_manual(values = country_cols, labels = c(countries[-7], "Saudi\nArabia")) +
+  guides(colour = guide_legend(ncol = 1)) +
+  labs(
+    title = "Exodus",
+    subtitle = "Christians, as % of population",
+    x = "Available years", y = NULL, colour = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    legend.position = "left", legend.direction = "vertical", legend.justification = "top",
+    legend.key.spacing.y = unit(6, "pt")
+  )
+
+modern <- economist_2017_chart(
+  exodus +
+    labs(caption = paste0(
+      "Source: \u201cOngoing Exodus: Tracking the\nEmigration of Christians from the Middle\n",
+      "East\u201d by T. Johnson and G. Zurlo, 2015"
+    )),
+  media = "print",
+  footnote = "*Forecast"
+)
+
+classic <- lines_classic(
+  ggplot(mideast, aes(date, pct, colour = country)) +
+    geom_line(linewidth = 0.6) +
+    scale_x_continuous(
+      limits = c(172, 650), breaks = dates, labels = c("1910", "70", "2010", "25*"), expand = c(0, 0)
+    ) +
+    scale_y_continuous(limits = c(0, 20)) +
+    lines_classic_scale() +
+    labs(
+      title = "Exodus", subtitle = "Christians, as % of population", x = "Available years", y = NULL, colour = NULL
+    ) +
+    guides(colour = guide_legend(nrow = 3)),
+  caption = paste0(
+    "Source: \u201cOngoing Exodus: Tracking the Emigration of Christians from the Middle East\u201d ",
+    "by T. Johnson and G. Zurlo, 2015"
+  ),
+  footnote = "*Forecast"
+)
+chart_pair(classic, modern)
+```
+
+Classic has no counterpart of the `bright` and `dark` sets: its seven lines are light green, dark green, gray, blue-gray, light blue, dark blue and dark red, and Egypt (light green) and Iraq (light blue) are close. The 2017 chart takes pink, orange and purple from the other sets, and puts a vertical key at the left with rectangular glyphs; classic's key is the usual row above the panel, in three lines.
+
+## Lines, stacked
+
+Stacked areas use the `stacked` order, labeled in place where a band is wide enough. The classic areas take `scale_fill_economist()`, and keep a legend where the 2017 charts label the bands.
+
+### Two bands, labeled in place
+
+```{r lines-foreign-hoards, econ_height = 154}
+china <- c(
+  0.26, 0.36, 0.56, 0.77, 1.02, 1.49, 1.91, 2.3, 2.64, 2.96
+)
+other <- c(
+  0.77, 0.98, 1.23, 1.51, 2.03, 2.86, 3.02, 3.19, 3.54, 3.77
+)
+reserves <- data.frame(
+  year = rep(2002:2011, 2),
+  trn = c(china, other),
+  region = factor(rep(c("China", "Other developing countries"), each = 10),
+                  levels = c("China", "Other developing countries"))
+)
+
+## A white rule along the top of every band but the last.
+hoards <- ggplot(reserves, aes(year, trn, fill = region, colour = region)) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = 0.3) +
+  annotate("text", x = 2010, y = 1.18, label = "China",
+           colour = "white", size = 2.8, fontface = "bold") +
+  annotate("text", x = 2009.4, y = 4.3, label = "Other\ndeveloping\ncountries",
+           colour = "white", size = 2.8, fontface = "bold", lineheight = 0.95) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 6.8),
+                     breaks = seq(0, 6, 2), expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0), limits = c(2001.52, 2012), breaks = c(2002, 2004, 2006, 2008, 2010, 2011),
+                     labels = c("2002", "04", "06", "08", "10*", "11*")) +
+  scale_fill_economist_2017("print", type = "stacked", guide = "none") +
+  scale_colour_manual(values = c("white", NA), guide = "none") +
+  labs(
+    title = "Foreign hoards",
+    subtitle = "Developing-country currency reserves\n$trn",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  hoards +
+    labs(caption = "Source: IMF"),
+  media = "print",
+  footnote = "*Forecast"
+)
+
+classic <- lines_classic(
+  ggplot(reserves, aes(year, trn, fill = region)) +
+    geom_area(position = position_stack(reverse = TRUE)) +
+    scale_x_continuous(limits = c(2002, 2011), breaks = c(2002, 2006, 2010), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 6.8), breaks = seq(0, 6, 2), expand = c(0, 0)) +
+    scale_fill_economist() +
+    labs(
+      title = "Foreign hoards", subtitle = "Developing-country currency reserves\n$trn",
+      x = NULL, y = NULL, fill = NULL
+    ),
+  caption = "Source: IMF",
+  footnote = "*Forecast"
+)
+chart_pair(classic, modern)
+```
+
+Classic draws two plain areas, blue below and dark blue above, with a legend in place of the in-band labels, no white rule between the bands, and no "10*" and "11*" forecast marks on the years. The 2017 bands are dark blue below and cyan above, labeled in white inside the bands.
+
+### Six bands with a key
+
+```{r lines-big-shift, econ_height = 178}
+## Band thicknesses, bottom to top.
+shift_bands <- list(
+  Netherlands = c(
+    4.3, 5.2, 3.8, 5.2, 7.3, 7.3, 5.5, 5.7, 6.9, 6.8, 5.9, 4, 8, 8.3, 10.1, 11, 11, 11.7, 9.9, 9.8, 9.2, 9.9, 12.9,
+    12.4, 11.7, 12.6, 12.2, 16.4, 15.7, 17, 16.3, 16.4
+  ),
+  `Bermuda & other Caribbean` = c(
+    7.2, 1.9, 0.3, 1.1, 1.9, 1.1, 3.9, 5.1, 5.3, 6.2, 8.1, 6.5, 7.7, 6.2, 5.8, 6.7, 7.6, 8.3, 8.1, 10.5, 8.4, 8.3,
+    9.5, 10, 9.3, 11.8, 12.8, 14.8, 13.4, 13, 12.5, 13
+  ),
+  Luxembourg = c(
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1.8, 1.6, 1.6, 1.4, 1.9, 3, 2.1, 4.6, 6, 5.8, 4, 4.4,
+    5.6, 5.6, 5.3, 6, 7.6, 5.4, 6.5, 7.9
+  ),
+  Ireland = c(
+    2.2, 2.2, 2.6, 2.5, 2.5, 2.5, 2.2, 2.3, 2.5, 3, 3.6, 3.2, 2.3, 2.3, 2.1, 2.3, 4.9, 3.7, 4.4, 4.7, 5.1, 5.4, 6.2,
+    6.3, 6, 6.2, 7.6, 7.4, 6.3, 7, 8.8, 7.9
+  ),
+  Singapore = c(
+    1.9, 1.9, 1.8, 1.4, 1.6, 1.9, 1.6, 1.4, 1.9, 2.3, 3.2, 3.3, 3.2, 3, 3, 3.3, 1.9, 2.3, 3, 3, 3.5, 3.5, 3.7, 5.8,
+    5.1, 5.4, 4.4, 3, 4, 4.9, 4.9, 5.1
+  ),
+  Switzerland = c(
+    6, 5.4, 5.4, 5.3, 5.6, 6.9, 5.4, 7.2, 7.7, 6.3, 5.6, 7.4, 6.9, 4.9, 4.9, 4.9, 7, 6, 4, 6.3, 8.8, 7.9, 6.7, 5.8,
+    4.7, 4.4, 5.3, 5.3, 4.6, 4.4, 4.6, 4.9
+  )
+)
+shift <- do.call(rbind, lapply(names(shift_bands), function(haven) {
+  data.frame(
+    year = 1982:2013,
+    haven = factor(haven, levels = names(shift_bands)),
+    pct = shift_bands[[haven]]
+  )
+}))
+
+## The key runs into the panel, with gridlines stopped at its edge.
+big_shift <- ggplot(shift, aes(year, pct, fill = haven, colour = haven)) +
+  annotate("rect", xmin = 1980.2, xmax = 2005.5, ymin = 56, ymax = 60.5, fill = print_bg) +
+  annotate("rect", xmin = 1980.2, xmax = 1994, ymin = 28, ymax = 54.5, fill = print_bg) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = 0.3) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 60.6),
+                     breaks = seq(0, 60, 10), expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0), limits = c(1980.2, 2016.5),
+                     breaks = c(1982, 1985, 1990, 1995, 2000, 2005, 2010, 2013),
+                     labels = c("1982", "", "90", "95", "2000", "05", "10", "13")) +
+  scale_fill_economist_2017("print", type = "stacked") +
+  scale_colour_manual(values = c(rep("white", 5), NA), guide = "none") +
+  labs(
+    title = "The big shift",
+    subtitle = "Tax havens\u2019 share of US overseas\ncorporate profits, %",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    legend.direction = "vertical", legend.key.spacing.y = unit(3.5, "pt"),
+    legend.box.spacing = unit(-46, "pt")
+  ) +
+  guides(fill = guide_legend(ncol = 1))
+
+modern <- economist_2017_chart(
+  big_shift +
+    labs(caption = paste0(
+      "Source: \u201cThe Hidden Wealth of Nations\u201d,\n",
+      "by Gabriel Zucman, University of Chicago\nPress, 2015"
+    )),
+  media = "print"
+)
+
+classic <- lines_classic(
+  ggplot(shift, aes(year, pct, fill = haven)) +
+    geom_area(position = position_stack(reverse = TRUE)) +
+    scale_x_continuous(limits = c(1982, 2013), breaks = c(1982, 1990, 2000, 2010), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 60.6), breaks = seq(0, 60, 10), expand = c(0, 0)) +
+    scale_fill_economist() +
+    guides(fill = guide_legend(nrow = 3)) +
+    labs(
+      title = "The big shift",
+      subtitle = "Tax havens\u2019 share of US overseas\ncorporate profits, %",
+      x = NULL, y = NULL, fill = NULL
+    ),
+  caption = "Source: \u201cThe Hidden Wealth of Nations\u201d, by Gabriel Zucman, University of Chicago Press, 2015"
+)
+chart_pair(classic, modern)
+```
+
+The classic palette gives blue-gray, dark navy, pale blue, blue, light green and dark green: the legend is in two columns above the panel and the bands touch without a white rule, so neighbouring bands of similar lightness (light green and blue-gray against pale blue) run together. The 2017 key is a vertical list running into the panel, with the bands in blue, cyan, gold, teal, mint and navy.
+
+### The alternative stacked scheme
+
+A second stacked order, "for use where categories are chronological or where primary colour scheme doesn't work". Classic has no second scheme, so the classic chart uses its one fill palette.
+
+```{r lines-in-limbo, econ_height = 185}
+## Band thicknesses, bottom to top.
+tenure_bands <- list(
+  `Private rental` = c(
+    6.4, 4.8, 7.3, 5.8, 8.6, 9.2, 8.9, 10.2, 9.8, 10.2, 11.4, 8.3, 6.1, 6.1, 7, 9.2, 13, 17.7
+  ),
+  `Private leased by LA/HA*` = c(
+    12.5, 15.9, 16.9, 21.9, 20.6, 27.5, 40.9, 46.6, 49.7, 47.2, 40.9, 38.1, 31.6, 27.5, 25.9, 26.2, 25.3, 23.4
+  ),
+  `LA/HA*` = c(
+    14.1, 18.4, 21.2, 25.3, 27.2, 27.8, 27.8, 26.9, 23.1, 18.1, 15.3, 10.9, 8.1, 7.2, 8.1, 9.1, 9.7, 10.3
+  ),
+  Hostel = c(
+    9.7, 10, 10, 10.6, 10, 10, 10.6, 10.3, 9.1, 7.8, 6.6, 5.3, 4.1, 4.4, 4.4, 4.4, 4.7, 5
+  ),
+  `Bed & breakfast` = c(
+    5.3, 7.2, 9.1, 11.2, 12.8, 13.4, 8.1, 6.9, 5.6, 4.7, 4.4, 3.1, 2.5, 2.8, 3.8, 4.1, 4.4, 5
+  )
+)
+limbo <- do.call(rbind, lapply(names(tenure_bands), function(tenure) {
+  data.frame(
+    year = 1998:2015,
+    tenure = factor(tenure, levels = names(tenure_bands)),
+    n = tenure_bands[[tenure]]
+  )
+}))
+
+## The guide's alternative order: blue, cyan, teal, mauve, maroon.
+alt_stack <- c(pal_stack(6)[1], pal_stack(6)[2], pal_stack(6)[4],
+               pal_bar(6)[6], pal_bar(6)[5])
+
+limbo_plot <- ggplot(limbo, aes(year, n, fill = tenure, colour = tenure)) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = 0.3) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 102),
+                     breaks = seq(0, 100, 20), expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0), limits = c(1997.56, 2017.1),
+                     breaks = c(1998, 2002, 2004, 2006, 2008, 2010, 2012, 2015), minor_breaks = 1998:2015,
+                     labels = c("1998", "2002", "04", "06", "08", "10", "12", "15"),
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  scale_fill_manual(values = alt_stack) +
+  scale_colour_manual(values = c(rep("white", 4), NA), guide = "none") +
+  labs(
+    title = "In limbo",
+    subtitle = "Households in temporary homes\nEngland, \u2019000",
+    x = NULL, y = NULL, fill = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(legend.text = element_text(size = rel(0.7))) +
+  guides(fill = guide_legend(ncol = 2, byrow = TRUE))
+
+modern <- economist_2017_chart(
+  limbo_plot +
+    labs(caption = "Source: DCLG"),
+  media = "print",
+  footnote = "*Local authorities and\nhousing associations"
+)
+
+classic <- lines_classic(
+  ggplot(limbo, aes(year, n, fill = tenure)) +
+    geom_area(position = position_stack(reverse = TRUE)) +
+    scale_x_continuous(limits = c(1998, 2015), breaks = c(1998, 2002, 2006, 2010, 2015), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 102), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+    scale_fill_economist() +
+    guides(fill = guide_legend(nrow = 3)) +
+    labs(
+      title = "In limbo", subtitle = "Households in temporary homes\nEngland, \u2019000",
+      x = NULL, y = NULL, fill = NULL
+    ),
+  caption = "Source: DCLG",
+  footnote = "*Local authorities and housing associations"
+)
+chart_pair(classic, modern)
+```
+
+Classic has no second scheme, so this is the same five fill colours as above; the bands are all blues and blue-greens, where the 2017 alternative brings in mauve and maroon at the top. The classic legend runs over three rows above the chart; the 2017 key is two columns.
+
+### Four bands, labeled in place
+
+```{r lines-emerging-middle, econ_size = "two_column", econ_height = 234}
+fn <- economist_2017_footnote(1:3)
+extremely_poor <- c(
+  0.88, 0.88, 0.87, 0.79, 0.7, 0.72, 0.73, 0.74, 0.72, 0.71, 0.7, 0.67, 0.61, 0.57, 0.52, 0.51, 0.48, 0.47, 0.45,
+  0.43, 0.38, 0.35, 0.34, 0.33, 0.32, 0.31
+)
+moderately_poor <- c(
+  0.35, 0.37, 0.39, 0.44, 0.48, 0.5, 0.5, 0.49, 0.51, 0.52, 0.53, 0.53, 0.54, 0.53, 0.53, 0.53, 0.52, 0.5, 0.5, 0.48,
+  0.47, 0.46, 0.45, 0.44, 0.43, 0.43
+)
+near_poor <- c(
+  0.2, 0.22, 0.24, 0.28, 0.32, 0.32, 0.33, 0.34, 0.36, 0.37, 0.39, 0.41, 0.44, 0.47, 0.49, 0.5, 0.5, 0.5, 0.5, 0.5,
+  0.52, 0.53, 0.53, 0.53, 0.53, 0.53
+)
+developing_middle <- c(
+  0.27, 0.28, 0.29, 0.3, 0.33, 0.33, 0.35, 0.36, 0.39, 0.41, 0.44, 0.47, 0.52, 0.57, 0.61, 0.65, 0.7, 0.73, 0.77,
+  0.81, 0.87, 0.9, 0.94, 0.97, 1, 1.01
+)
+developed_middle <- c(
+  0.14, 0.13, 0.13, 0.13, 0.14, 0.14, 0.14, 0.14, 0.14, 0.15, 0.15, 0.16, 0.17, 0.2, 0.21, 0.23, 0.26, 0.28, 0.29,
+  0.31, 0.33, 0.37, 0.39, 0.42, 0.44, 0.47
+)
+classes <- c("Extremely poor", "Moderately poor", "Near poor", "Developing middle class", "Developed middle class")
+emerging <- data.frame(
+  year = rep(1991:2016, 5),
+  class = factor(rep(classes, each = 26), levels = classes),
+  bn = c(extremely_poor, moderately_poor, near_poor, developing_middle, developed_middle)
+)
+
+## Each band is named in bold with its income range under it.
+band_labels <- data.frame(
+  year = c(1992.02, 1997.67, 2003.43, 2007.2, 2013.1, 2015.73, 2015.73),
+  bn = c(0.43, 1.04, 1.42, 1.91, 2.37, 2.52, 2.37),
+  label = c("Extremely poor", "Moderately poor", "Near poor", "Developing middle class",
+            "class and above", "Developed middle", "over $13"),
+  face = c(rep("bold", 6), "plain"),
+  colour = c("white", ink, "white", ink, "white", "white", "white"),
+  hjust = c(0, 0, 0, 0, 1, 1, 1)
+)
+band_ranges <- data.frame(
+  year = c(1992.02, 1997.67, 2003.43, 2007.2),
+  bn = c(0.28, 0.9, 1.27, 1.77),
+  label = c("less than $1.90", "$1.90 to $3.10", "$3.11 to $5", "$5.01 to $13"),
+  colour = c("white", ink, "white", ink)
+)
+
+emerging_plot <- ggplot(emerging, aes(year, bn, fill = class, colour = class)) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = 0.3) +
+  geom_text(
+    data = band_labels, aes(year, bn, label = label, hjust = hjust, fontface = face),
+    colour = band_labels$colour, size = 2.6, inherit.aes = FALSE
+  ) +
+  geom_text(
+    data = band_ranges, aes(year, bn, label = label),
+    colour = band_ranges$colour, size = 2.6, hjust = 0, inherit.aes = FALSE
+  ) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 3),
+                     breaks = seq(0, 3, 0.5), labels = c("0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0"),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_continuous(expand = c(0, 0), limits = c(1990.41, 2017.5), minor_breaks = 1991:2016,
+                     breaks = c(1991, 1995, 2000, 2005, 2010, 2015, 2016),
+                     ## The fallback font is too wide, so 2015 keeps its tick but not its label.
+                     labels = c("1991", "95", "2000", "05", "10", "", paste0("16", fn[3])),
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  scale_fill_manual(values = alt_stack, guide = "none") +
+  scale_colour_manual(values = c(rep("white", 4), NA), guide = "none") +
+  labs(
+    title = "Emerging middle class",
+    subtitle = paste0("Working population by economic class, emerging and developing countries", fn[1],
+                      ", 2011$ at PPP", fn[2], ", bn"),
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7)
+
+modern <- economist_2017_chart(
+  emerging_plot +
+    labs(caption = "Source: ILO"),
+  media = "print",
+  footnote = paste0(
+    fn[1], "Excluding most Western developed countries  ",
+    fn[2], "Purchasing-power parity  ", fn[3], "Estimate"
+  )
+)
+
+classic <- lines_classic(
+  ggplot(emerging, aes(year, bn, fill = class)) +
+    geom_area(position = position_stack(reverse = TRUE)) +
+    scale_x_continuous(limits = c(1991, 2016), breaks = c(1991, seq(1995, 2015, 5)), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 3), breaks = seq(0, 3, 0.5), expand = c(0, 0)) +
+    scale_fill_economist() +
+    guides(fill = guide_legend(nrow = 3)) +
+    labs(
+      title = "Emerging middle class",
+      subtitle = paste0(
+        "Working population by economic class, emerging and developing countries\u00b9, 2011$ at PPP\u00b2, bn"
+      ),
+      x = NULL, y = NULL, fill = NULL
+    ),
+  caption = "Source: ILO",
+  footnote = "\u00b9Excluding most Western developed countries  \u00b2Purchasing-power parity  \u00b3Estimate"
+)
+chart_pair(classic, modern)
+```
+
+Classic has no band labels and no income ranges, so the five classes are named in a legend, and every class is a blue, blue-gray or pale green. The 2017 chart names each band in place, with its range under it in the white or black type the band needs. Footnote marks are superscript digits in classic and symbols in 2017.
+
+## Thermometer
+
+A range between values per category, with short vertical terminals. The chart is repeated for two, three, four and six series, with the note that "any more than 4 categories is probably too many and you should have a rethink". Classic has no thermometer, so the classic charts are plain `geom_segment()` and `geom_linerange()` layers on the classic theme.
+
+```{r lines-thermometer-data}
+fields <- c("Mathematics", "Economics", "Computer Science", "Business", "Biology",
+            "Philosophy", "English", "Psychology", "History", "Communication")
+series_names <- c("one", "two", "three", "four", "five", "six")
+
+## One table of values per series count.
+thermo_values <- list(
+  `2` = list(
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33),
+    c(416, 398, 382, 316, 308, 275, 290, 239, 283, 251)
+  ),
+  `3` = list(
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33),
+    c(418, 398, 382, 316, 308, 275, 290, 239, 283, 251),
+    c(395, 316, 292, 266, 257, 215, 201, 199, 197, 187)
+  ),
+  `4` = list(
+    c(280, 249, 117, 191, 84, 148, 80, 60, 134, 121),
+    c(402, 316, 292, 266, 257, 214, 201, 199, 197, 187),
+    c(339, 397, 381, 315, 307, 275, 290, 239, 283, 250),
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33)
+  ),
+  `6` = list(
+    c(222, 191, 172, 133, 16, 180, 152, 104, 233, 109),
+    c(405, 398, 382, 316, 308, 276, 290, 238, 284, 251),
+    c(280, 249, 117, 192, 84, 147, 80, 60, 135, 121),
+    c(31, 40, 72, 37, 39, 43, 35, 15, 21, 34),
+    c(335, 294, 134, 236, 129, 196, 52, 199, 260, 156),
+    c(375, 317, 292, 266, 257, 214, 201, 199, 197, 187)
+  ),
+  dot = list(
+    c(31, 41, 72, 37, 39, 43, 35, 15, 21, 34),
+    c(419, 398, 382, 280, 308, 276, 290, 239, 284, 251),
+    c(396, 317, 364, 263, 257, 215, 201, 222, 197, 187)
+  )
+)
+
+thermo_data <- function(key) {
+  values <- thermo_values[[key]]
+  do.call(rbind, lapply(seq_along(values), function(k) {
+    data.frame(
+      field = factor(fields, levels = rev(fields)),
+      series = factor(series_names[k], levels = series_names),
+      value = values[[k]]
+    )
+  }))
+}
+
+## The connecting rule runs from the zero axis to the highest series.
+thermo_plot <- function(n, terminals = c("rule", "dot")) {
+  terminals <- match.arg(terminals)
+  d <- thermo_data(if (terminals == "dot") "dot" else as.character(n))
+  spans <- aggregate(value ~ field, d, max)
+
+  ## The rule is the grid's own blue, a step darker; darker again under dots.
+  p <- ggplot(d, aes(y = .data$field)) +
+    geom_segment(data = spans, aes(x = 0, xend = .data$value, y = .data$field, yend = .data$field),
+                 colour = if (terminals == "rule") "#92A9B4" else swatch("grey box"), linewidth = 0.47)
+  p <- p + if (terminals == "rule") {
+    ## Vertical rules, the default terminal.
+    geom_linerange(aes(x = .data$value, ymin = as.numeric(.data$field) - 0.41,
+                       ymax = as.numeric(.data$field) + 0.41, colour = .data$series),
+                   linewidth = 1, key_glyph = "vline")
+  } else {
+    geom_point(aes(x = .data$value, colour = .data$series), size = 1.6)
+  }
+
+  ## "Horrible" sits on the axis-number row, left of the category labels.
+  label_gp <- gpar(fontsize = 7, fontface = "bold")
+  p +
+    annotation_custom(textGrob(
+      "\u201cHorrible\u201d", gp = label_gp, hjust = 0, vjust = 0,
+      x = unit(0, "npc") - grobWidth(textGrob("Computer Science", gp = gpar(fontsize = 7))) + unit(1.5, "pt"),
+      y = unit(1, "npc") + unit(2, "pt")
+    )) +
+    coord_cartesian(clip = "off") +
+    scale_x_continuous(position = "top", limits = c(0, 425), breaks = seq(0, 400, 100),
+                       expand = expansion(0)) +
+    scale_colour_economist_2017("print", type = "dot") +
+    labs(
+      title = "The horrible science",
+      subtitle = paste0("Use of specific \u201cadjective\u201d per million\n",
+                        "words in student reviews on\n",
+                        "RateMyProfessors.com*"),
+      x = NULL, y = NULL, colour = NULL
+    ) +
+    theme_economist_2017("print", horizontal = FALSE, base_size = 7) +
+    theme(axis.line.y = element_line(colour = "black", linewidth = 0.25))
+}
+
+## The classic thermometer: the same rule and terminals on the classic theme and line palette.
+lines_thermo_classic <- function(n, terminals = c("rule", "dot")) {
+  terminals <- match.arg(terminals)
+  d <- thermo_data(if (terminals == "dot") "dot" else as.character(n))
+  spans <- aggregate(value ~ field, d, max)
+
+  p <- ggplot(d, aes(y = .data$field)) +
+    geom_segment(
+      data = spans, aes(x = 0, xend = .data$value, y = .data$field, yend = .data$field),
+      colour = "grey60", linewidth = 0.4
+    )
+  p <- p + if (terminals == "rule") {
+    geom_linerange(
+      aes(x = .data$value, ymin = as.numeric(.data$field) - 0.41, ymax = as.numeric(.data$field) + 0.41,
+          colour = .data$series),
+      linewidth = 1, key_glyph = "vline"
+    )
+  } else {
+    geom_point(aes(x = .data$value, colour = .data$series), size = 1.6)
+  }
+  p +
+    coord_cartesian(clip = "off") +
+    scale_x_continuous(position = "top", limits = c(0, 425), breaks = seq(0, 400, 100), expand = expansion(0)) +
+    lines_classic_scale() +
+    labs(
+      title = "The horrible science",
+      subtitle = paste0(
+        "Use of specific \u201cadjective\u201d per million\n",
+        "words in student reviews on\nRateMyProfessors.com*"
+      ),
+      x = NULL, y = NULL, colour = NULL
+    )
+}
+lines_thermo_theme <- theme_economist(base_size = classic_size, horizontal = FALSE)
+lines_thermo_tweaks <- theme(plot.title.position = "plot", plot.caption.position = "plot")
+```
+
+### Two, three, four and six series
+
+```{r lines-thermometer-2, econ_height = 185}
+modern <- economist_2017_chart(
+  thermo_plot(2) +
+    labs(caption = "Source: Ben Schmidt, Northeastern University"),
+  media = "print"
+)
+classic <- lines_classic(
+  lines_thermo_classic(2), "Source: Ben Schmidt, Northeastern University",
+  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+)
+chart_pair(classic, modern)
+```
+
+```{r lines-thermometer-3, econ_height = 185}
+modern <- economist_2017_chart(
+  thermo_plot(3) +
+    labs(caption = "Source: Ben Schmidt, Northeastern University"),
+  media = "print"
+)
+classic <- lines_classic(
+  lines_thermo_classic(3), "Source: Ben Schmidt, Northeastern University",
+  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+)
+chart_pair(classic, modern)
+```
+
+```{r lines-thermometer-4, econ_height = 185}
+modern <- economist_2017_chart(
+  thermo_plot(4) +
+    labs(caption = "Source: Ben Schmidt, Northeastern University"),
+  media = "print"
+)
+classic <- lines_classic(
+  lines_thermo_classic(4), "Source: Ben Schmidt, Northeastern University",
+  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+)
+chart_pair(classic, modern)
+```
+
+```{r lines-thermometer-6, econ_height = 185}
+modern <- economist_2017_chart(
+  thermo_plot(6) +
+    labs(caption = "Source: Ben Schmidt, Northeastern University"),
+  media = "print"
+)
+classic <- lines_classic(
+  lines_thermo_classic(6), "Source: Ben Schmidt, Northeastern University",
+  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+)
+chart_pair(classic, modern)
+```
+
+Classic has no thermometer, so the rule and terminals are plain ggplot2 layers on the classic theme. They read well for two and three series, but the classic series colours are a run of blues (and, from five series, grays, with greens at six), so terminals that overlap are hard to tell apart; the 2017 terminals use cyan, maroon, gold and then blue, teal and mauve. Classic also draws a heavy black rule and ticks along the top axis with white gridlines, and has no "Horrible" marker row, which the 2017 charts set in the axis-number row.
+
+### Dot terminals
+
+"Use as alternative when lines are unclear".
+
+```{r lines-thermometer-dots, econ_height = 185}
+modern <- economist_2017_chart(
+  thermo_plot(3, terminals = "dot") +
+    labs(caption = "Source: Ben Schmidt, Northeastern University"),
+  media = "print"
+)
+classic <- lines_classic(
+  lines_thermo_classic(3, terminals = "dot"), "Source: Ben Schmidt, Northeastern University",
+  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+)
+chart_pair(classic, modern)
+```
+
+As above, the classic dots are three blues, so where dots overlap (Business, Psychology) they are hard to tell apart; the 2017 dots are cyan, maroon and gold and keep their identity when they overlap. Classic has no dot terminals, so these are `geom_point()`.
+
+## Scatter
+
+Standard dots are 4px at 50% opacity "where general trend is more important than individual point". Highlight dots are 100% opaque "to label outliers / important data points". Category dots have a 0.3px stroke and 50% fill. Trend lines are 1px, dashed 3px/1px.
+
+### Chart elements
+
+The guide's specimen of the dot types and the trend line. It specifies the 2017 style, and classic has nothing to set beside it, so it is drawn once.
+
+```{r lines-scatter-elements, econ_size = "one_column", econ_height = 410, econ_pair = FALSE}
+## The specimen is laid out in points from its top left.
+spec_x <- function(px) (px - 30) * 0.2566
+spec_y <- function(py) 410 - (py - 15) * 0.2566
+blue <- pal_dot(6)[4]
+red <- pal_dot(6)[2]
+gold <- pal_dot(6)[3]
+cyan <- pal_dot(6)[1]
+
+## Dot specimens: three overlapping dots per row. Diameters are the guide's, in points.
+dots <- data.frame(
+  x = spec_x(rep(c(66, 102, 139), 6)),
+  y = spec_y(rep(c(289, 665, 766, 1061, 1168, 1275), each = 3)),
+  size = c(rep(72, 3 * 3), rep(c(36, 52, 76), 3)) * 0.2566 / 0.75 / ggplot2::.pt,
+  colour = rep(c(cyan, blue, red, blue, red, gold), each = 3),
+  kind = rep(c("standard", "highlight", "highlight", "category", "category", "category"), each = 3)
+)
+standard <- dots$kind == "standard"
+highlight <- dots$kind == "highlight"
+category <- dots$kind == "category"
+
+notes <- data.frame(
+  x = spec_x(219),
+  y = spec_y(c(286, 337, 392, 445, 489, 531, 663, 714, 768, 822, 865,
+               1055, 1105, 1160, 1214, 1257, 1483, 1533, 1588)),
+  label = c("Standard dot", "4px width", "50% opacity",
+            "use where general trend", "is more important than", "individual point",
+            "highlight dot", "4px width", "100% opacity",
+            "use to label outliers /", "important data points",
+            "Category dot", "0.3px stroke", "50% opacity fill",
+            "use for bubble charts", "to differential colours",
+            "trend lines", "1px stroke", "dashed 3px, 1px"),
+  face = c("bold", "plain", "plain", rep("italic", 3), "bold", "plain", "plain", rep("italic", 2),
+           "bold", "plain", "plain", rep("italic", 2), "bold", "plain", "plain")
+)
+
+ggplot() +
+  ## Standard dots, 50% opacity, so overlaps darken.
+  geom_point(data = dots[standard, ], aes(x, y, size = size), colour = "transparent", fill = alpha(cyan, 0.5),
+             shape = 21) +
+  ## Highlight dots, 100% opacity with a hairline white edge to separate overlaps.
+  geom_point(data = dots[highlight, ], aes(x, y, size = size, fill = colour), colour = "white",
+             shape = 21, stroke = 0.2) +
+  ## Category dots, 50% fill with a 0.3px stroke in the full colour.
+  geom_point(data = dots[category, ], aes(x, y, size = size, colour = colour), shape = 21,
+             fill = NA, stroke = 0.2) +
+  geom_point(data = dots[category, ], aes(x, y, size = size, fill = alpha(colour, 0.5)),
+             colour = "transparent", shape = 21) +
+  geom_segment(aes(x = spec_x(58), xend = spec_x(193), y = spec_y(1485), yend = spec_y(1485)),
+               colour = red, linewidth = 0.3, linetype = "31") +
+  geom_text(data = notes, aes(x, y, label = label, fontface = face), hjust = 0, size = 3) +
+  annotate("text", x = 0, y = spec_y(42), label = "Chart elements", hjust = 0, fontface = "bold", size = 4.9) +
+  scale_size_identity() +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(limits = c(0, 160), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 410), expand = c(0, 0)) +
+  coord_fixed(clip = "off") +
+  theme_void() +
+  theme(plot.background = element_rect(fill = "white", colour = NA),
+        plot.margin = margin(0, 0, 0, 0))
+```
+
+### Standard scatter with trend lines
+
+```{r lines-divergent, econ_height = 195}
+set.seed(2017)
+## The 1990-2007 cloud is tight and steep; the 2012-16 cloud is wide and flat.
+## Five 1990-2007 outliers sit out to the right.
+metro_old <- data.frame(employment = rnorm(240, 1.6, 1.1))
+metro_old$house_prices <- 1.3 + 2.2 * metro_old$employment + rnorm(240, 0, 1.8)
+metro_old <- rbind(metro_old, data.frame(employment = c(4.4, 4.8, 5.1, 5.9, 8.2),
+                                         house_prices = c(2.8, 8.2, 7.9, 7.6, 6.6)))
+metro_new <- data.frame(employment = rnorm(210, 2.1, 1.6))
+metro_new$house_prices <- 3.5 + 0.67 * metro_new$employment + rnorm(210, 0, 3.9)
+
+periods <- c("Q1 1990 - Q1 2007", "Q1 2012 - Q1 2016")
+metro <- rbind(
+  cbind(period = periods[2], metro_new),
+  cbind(period = periods[1], metro_old)
+)
+metro$period <- factor(metro$period, levels = periods)
+
+## Trend lines run over the span the guide draws them.
+trends <- data.frame(
+  period = factor(periods, levels = periods),
+  x = c(-1.5, -0.7), xend = c(5.8, 8.2),
+  y = c(-2, 3), yend = c(14.2, 9)
+)
+
+divergent <- ggplot(metro, aes(employment, house_prices, colour = period)) +
+  geom_point(size = 1.4, alpha = 0.5) +
+  geom_segment(data = trends, aes(x = x, xend = xend, y = y, yend = yend), linewidth = 0.5) +
+  geom_segment(data = trends, aes(x = x, xend = xend, y = y, yend = yend), colour = "black",
+               linewidth = 0.3, linetype = "31") +
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2) +
+  geom_vline(xintercept = 0, colour = econ_red, linewidth = 0.2) +
+  coord_cartesian(xlim = c(-2.4, 8.8), ylim = c(-5, 20), expand = FALSE) +
+  scale_x_continuous(breaks = seq(-2, 8, 2)) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", breaks = seq(-5, 20, 5)) +
+  scale_colour_manual(values = c("Q1 1990 - Q1 2007" = pal_dot(2)[2], "Q1 2012 - Q1 2016" = pal_dot(1))) +
+  guides(colour = guide_legend(ncol = 1, override.aes = list(size = 2.2, alpha = 1))) +
+  labs(
+    title = "Divergent",
+    subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
+    x = "Employment", y = "House prices", colour = NULL
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(panel.grid.major.x = element_line(colour = grid_col), axis.line.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+modern <- economist_2017_chart(
+  divergent +
+    labs(caption = "Sources: Freddie Mac;\nUS Bureau of Labour Statistics"),
+  media = "print",
+  footnote = "*At least\n100,000 population"
+)
+
+classic <- lines_classic(
+  ggplot(metro, aes(employment, house_prices, colour = period)) +
+    geom_point(size = 1.2, alpha = 0.5) +
+    geom_segment(
+      data = trends, aes(x = x, xend = xend, y = y, yend = yend), colour = "black", linewidth = 0.3,
+      linetype = "31", inherit.aes = FALSE
+    ) +
+    geom_hline(yintercept = 0, linewidth = 0.3) +
+    geom_vline(xintercept = 0, linewidth = 0.3) +
+    coord_cartesian(xlim = c(-2.4, 8.8), ylim = c(-5, 20), expand = FALSE) +
+    scale_x_continuous(breaks = seq(-2, 8, 2)) +
+    scale_y_continuous(breaks = seq(-5, 20, 5)) +
+    scale_colour_economist() +
+    guides(colour = guide_legend(override.aes = list(size = 2.2, alpha = 1))) +
+    labs(
+      title = "Divergent",
+      subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
+      x = "Employment", y = "House prices", colour = NULL
+    ),
+  caption = "Sources: Freddie Mac; US Bureau of Labour Statistics",
+  footnote = "*At least 100,000 population"
+)
+chart_pair(classic, modern)
+```
+
+Classic has the same cloud in two blues (blue for the tight 1990-2007 cloud, drawn over the dark blue 2012-16 cloud), which are closer to each other than the 2017 pair of maroon and cyan. Classic's zero rules are black and its gridlines white, where 2017 uses red rules and thin grey gridlines with no x-axis line; classic's legend is a row above the panel rather than a column.
+
+### Labeled outliers
+
+Highlight dots carry the labels. The guide: "sub title should summarise chart, save specific units for axis labels". Classic has no highlight dot; the classic chart uses its second fill colour for them.
+
+```{r lines-disinfectant, econ_height = 166}
+set.seed(11)
+## A diffuse cloud of countries, plus a denser band of more open, less corrupt ones.
+corruption <- data.frame(open = c(runif(55, 19, 63), runif(24, 60, 92)))
+corruption$score <- c(
+  pmin(55, pmax(5, 0.55 * (corruption$open[1:55] - 19) + 10 + rnorm(55, 0, 13))),
+  runif(24, 33, 70)
+)
+named <- data.frame(
+  country = c("Britain", "Denmark", "India", "Colombia", "US", "Sweden", "Mexico", "Singapore"),
+  open = c(77.5, 91.7, 37.8, 37, 73.8, 86.8, 34.9, 83.7),
+  score = c(96.5, 82.5, 67.4, 66, 69.6, 65.6, 53, 34.4),
+  ## Where each label sits, relative to its dot, in data units.
+  lx = c(76, 84.5, 42.8, 34.1, 70.9, 95.2, 19.6, 83.7),
+  ly = c(91, 91, 75.4, 67.4, 70.2, 50, 52.6, 26.7),
+  hjust = c(1, 0, 0.5, 1, 1, 0.5, 1, 0.5)
+)
+## Leader lines for the two labels that sit away from their dots.
+leaders <- data.frame(x = c(20.5, 86.8, 92.6), xend = c(34.9, 92.6, 92.6),
+                      y = c(53, 65.6, 65.6), yend = c(53, 65.6, 55))
+
+disinfectant <- ggplot(corruption, aes(open, score)) +
+  geom_point(colour = pal_dot(1), size = 1.4) +
+  geom_segment(data = leaders, aes(x = x, xend = xend, y = y, yend = yend), colour = pal_dot(2)[2],
+               linewidth = 0.2) +
+  geom_point(data = named, colour = pal_dot(2)[2], size = 1.4) +
+  geom_text(data = named, aes(x = lx, y = ly, label = country, hjust = hjust), size = 2.3, colour = "#5B6770") +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(0, 100),
+                     breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(0, 115), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  labs(
+    title = "The best disinfectant",
+    subtitle = "Corruption and open data",
+    x = "Corruption-perceptions index score, 2014\n100=least corrupt",
+    y = "Open-data index score,\nlatest, 100=most open"
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(axis.title.x = element_text(hjust = 0.5), panel.grid.major.x = element_line(colour = grid_col),
+        axis.line.x = element_blank(), axis.ticks.x = element_blank())
+
+modern <- economist_2017_chart(
+  disinfectant +
+    labs(caption = "Sources: Transparency International;\nOpen Knowledge Foundation"),
+  media = "print"
+)
+
+classic <- lines_classic(
+  ggplot(corruption, aes(open, score)) +
+    geom_point(colour = economist_pal()(2)[1], size = 1.2) +
+    geom_segment(
+      data = leaders, aes(x = x, xend = xend, y = y, yend = yend), colour = economist_pal()(2)[2],
+      linewidth = 0.2
+    ) +
+    geom_point(data = named, colour = economist_pal()(2)[2], size = 1.2) +
+    geom_text(data = named, aes(x = lx, y = ly, label = country, hjust = hjust), size = 2, colour = "grey30") +
+    scale_x_continuous(limits = c(0, 115), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+    labs(
+      title = "The best disinfectant",
+      subtitle = "Corruption and open data",
+      x = "Corruption-perceptions index score, 2014\n100=least corrupt",
+      y = "Open-data index score,\nlatest, 100=most open"
+    ),
+  caption = "Sources: Transparency International; Open Knowledge Foundation"
+)
+chart_pair(classic, modern)
+```
+
+Classic has no highlight dot, so the named countries take its second fill colour (dark blue) against the blue of the rest; the leader lines and labels are the same layers as in 2017. Classic lays its y-axis title along the left side and the gridlines are white; 2017 puts the title horizontally over the right-hand scale.
+
+### Connected scatter
+
+Two observations per country, joined. "To avoid obscuring the connecting lines and labels, axis lines can be broken". The classic chart does not break its gridlines (that takes hand-drawn segments, as in 2017), so they run behind the lines and labels, and the key is the ordinary legend.
+
+```{r lines-right-nation, econ_size = "two_column", econ_height = 234}
+## The seven labelled countries, joined from 2003 to 2013.
+oecd <- data.frame(
+  country = rep(c("Japan", "France", "Britain", "Germany", "Chile", "Turkey", "United States"), 2),
+  year = rep(c("2003", "2013*"), each = 7),
+  spend = c(2.2, 2.83, 2.35, 3.06, 0.78, 0.44, 5.76,
+            3.7, 4.11, 3.35, 4.78, 1.6, 0.94, 8.72),
+  life = c(81.3, 78.7, 77.9, 78.1, 76.7, 71.8, 76.6,
+           83.0, 81.8, 80.6, 80.4, 78.3, 76.0, 78.3)
+)
+oecd$year <- factor(oecd$year, levels = c("2003", "2013*"))
+
+## The other OECD countries, as faint dots.
+others <- rbind(
+  data.frame(year = "2003", spend = c(3.19, 3.78, 2.55, 2.8, 2.23, 1.66, 1.85, 1.95, 2.92, 3.59, 2.84, 2.84, 2.16,
+                                      3.36, 1.76, 2.78, 1.0, 1.69, 1.29, 0.68, 0.76, 0.78, 1.27, 0.65),
+             life = c(80.5, 80.1, 80.0, 80.0, 79.6, 79.2, 79.3, 78.7, 79.2, 79.1, 78.2, 77.6, 78.0,
+                      77.3, 77.0, 76.9, 76.8, 75.9, 74.8, 74.2, 74.1, 73.3, 72.1, 71.3)),
+  data.frame(year = "2013*", spend = c(2.9, 6.26, 3.06, 3.86, 2.39, 3.67, 4.9, 4.37, 5.86, 2.36, 4.35, 2.35, 3.32,
+                                       5.13, 4.55, 3.68, 2.51, 4.25, 4.55, 2.03, 1.55, 2.01, 1.72, 1.05, 2.33),
+             life = c(82.7, 82.4, 82.4, 81.7, 81.7, 81.6, 81.5, 81.4, 81.3, 81.3, 81.0, 80.9, 81.0,
+                      80.9, 80.7, 80.5, 80.3, 80.2, 79.8, 77.8, 76.9, 76.0, 75.2, 74.1, 73.6))
+)
+others$year <- factor(others$year, levels = levels(oecd$year))
+
+## Labels, ranged against their dots as the guide sets them.
+nation_labels <- data.frame(
+  country = c("Japan", "France", "Britain", "Germany", "Chile", "Turkey", "United States"),
+  x = c(2.05, 4.48, 2.31, 5.2, 0.65, 0.38, 5.63),
+  y = c(81.4, 82.3, 77.05, 79.1, 76.5, 72.4, 76.5),
+  hjust = c(1, 0.5, 0.5, 0.5, 1, 1, 1),
+  face = c(rep("plain", 6), "bold")
+)
+
+## Gridlines are broken to leave the lines and labels clear: the top and bottom
+## rules run the full width, the rest only in the margins.
+rule_y <- c(70, 72, 74, 76, 78, 82)
+broken_grid <- data.frame(
+  x = rep(c(-0.8, 9.35), each = length(rule_y)), xend = rep(c(-0.2, 10), each = length(rule_y)),
+  y = rep(rule_y, 2)
+)
+
+right_nation <- ggplot(oecd, aes(spend, life)) +
+  geom_hline(yintercept = c(68, 84), colour = grid_col, linewidth = 0.3) +
+  geom_segment(data = broken_grid, aes(x = x, xend = xend, y = y, yend = y), colour = grid_col,
+               linewidth = 0.3, inherit.aes = FALSE) +
+  geom_point(data = others, aes(colour = year), size = 1.6, alpha = 0.5) +
+  geom_line(aes(group = country), colour = "#6F909D", linewidth = 0.3) +
+  geom_point(aes(colour = year), size = 1.6) +
+  geom_text(data = nation_labels, aes(x = x, y = y, label = country, hjust = hjust, fontface = face),
+            size = 2.3, colour = "#5B6770", inherit.aes = FALSE) +
+  annotate("segment", x = 4.82, xend = 4.82, y = 80.3, yend = 79.5, linewidth = 0.2, colour = "#5B6770") +
+  ## The 2013 averages, called out with dashed rules and labels.
+  geom_hline(yintercept = 80.5, linetype = "22", linewidth = 0.25) +
+  geom_vline(xintercept = 3.45, linetype = "22", linewidth = 0.25) +
+  annotate("text", x = 10, y = 80.85, label = "bold('2013 average')~'80.5'", parse = TRUE,
+           size = 2.5, hjust = 1) +
+  annotate("text", x = 3.55, y = c(70.5, 69.6), label = c("2013", "average"), size = 2.5, hjust = 0,
+           fontface = "bold") +
+  annotate("text", x = 3.55, y = 68.7, label = "$3,453", size = 2.5, hjust = 0) +
+  ## A connected key, in place of a legend.
+  annotate("segment", x = 1.98, xend = 2.65, y = 85.2, yend = 85.2, colour = "#8E3150", linewidth = 0.25) +
+  annotate("point", x = c(1.98, 2.65), y = 85.2, colour = pal_dot(2)[c(1, 2)], size = 1.6) +
+  annotate("text", x = 1.87, y = 85.2, label = "2003", hjust = 1, size = 2.5, colour = pal_dot(2)[1]) +
+  annotate("text", x = 2.8, y = 85.2, label = "2013*", hjust = 0, size = 2.5, colour = pal_dot(2)[2]) +
+  coord_cartesian(xlim = c(-0.8, 10), ylim = c(68, 84), expand = FALSE, clip = "off") +
+  ## 80 is left off, where the average label sits.
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", breaks = c(70, 72, 74, 76, 78, 82, 84)) +
+  scale_x_continuous(breaks = 0:9) +
+  scale_colour_economist_2017("print", type = "dot", guide = "none") +
+  labs(
+    title = "Right nation",
+    subtitle = "Health spending and life expectancy at birth\nOECD countries",
+    x = "Health expenditures per person\nat purchasing-power parity, current prices, $'000",
+    y = "Life expectancy,\nyears"
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(axis.title.x = element_text(hjust = 0.5), panel.grid = element_blank(),
+        axis.line.x = element_blank(), axis.ticks.x = element_blank())
+
+modern <- economist_2017_chart(
+  right_nation +
+    labs(caption = "Source: OECD"),
+  media = "print",
+  footnote = "*Or latest"
+)
+
+classic <- lines_classic(
+  ggplot(oecd, aes(spend, life)) +
+    geom_point(data = others, aes(colour = year), size = 1.4, alpha = 0.5) +
+    geom_line(aes(group = country), colour = "grey50", linewidth = 0.3) +
+    geom_point(aes(colour = year), size = 1.4) +
+    geom_text(
+      data = nation_labels, aes(x = x, y = y, label = country, hjust = hjust, fontface = face),
+      size = 2, colour = "grey30", inherit.aes = FALSE
+    ) +
+    geom_hline(yintercept = 80.5, linetype = "22", linewidth = 0.25) +
+    geom_vline(xintercept = 3.45, linetype = "22", linewidth = 0.25) +
+    annotate("text", x = 10, y = 80.85, label = "bold('2013 average')~'80.5'", parse = TRUE, size = 2.2, hjust = 1) +
+    annotate(
+      "text", x = 3.55, y = c(70.5, 69.6), label = c("2013", "average"), size = 2.2, hjust = 0, fontface = "bold"
+    ) +
+    annotate("text", x = 3.55, y = 68.7, label = "$3,453", size = 2.2, hjust = 0) +
+    coord_cartesian(xlim = c(-0.8, 10), ylim = c(68, 84), expand = FALSE) +
+    scale_x_continuous(breaks = 0:9) +
+    scale_y_continuous(breaks = seq(68, 84, 2)) +
+    scale_colour_economist() +
+    labs(
+      title = "Right nation",
+      subtitle = "Health spending and life expectancy at birth\nOECD countries",
+      x = "Health expenditures per person\nat purchasing-power parity, current prices, $'000",
+      y = "Life expectancy,\nyears", colour = NULL
+    ),
+  caption = "Source: OECD",
+  footnote = "*Or latest"
+)
+chart_pair(classic, modern)
+```
+
+The classic chart does not break its gridlines or axis lines, so the white gridlines run behind the connecting lines and labels, and the key is the ordinary legend of two dots, without the line joining them. The 2003 and 2013 dots are blue and dark blue (cyan and maroon in 2017), and the faint dots of the other countries are drawn in the same two blues.
+
+### Bubble chart, four categories
+
+Category dots have a 50% fill and a thin stroke, and are sized by a second variable. Classic specifies no category-dot stroke or in-panel key, so it draws translucent circles (with the 2017 stroke width) and the ordinary legends.
+
+```{r lines-vitality, econ_size = "two_column", econ_height = 275}
+set.seed(4)
+regions <- c("Northeast", "Midwest", "West", "South")
+## Per region: number of counties, health score mean and spread, swing at the mean health, and
+## how large the counties are (log-mean of voting-eligible population).
+region_spec <- data.frame(
+  region = regions, n = c(150, 700, 70, 450),
+  health_mean = c(42, 37.5, 50, 47), health_sd = c(6, 5, 8, 9),
+  swing_mean = c(12, 15, -2, 5), swing_sd = c(7, 9, 11, 8), size_mean = c(1.2, 0.2, 1.6, 0.8)
+)
+counties <- do.call(rbind, lapply(seq_len(nrow(region_spec)), function(i) {
+  r <- region_spec[i, ]
+  health <- pmin(66, pmax(22, rnorm(r$n, r$health_mean, r$health_sd)))
+  data.frame(
+    region = r$region,
+    health = health,
+    swing = r$swing_mean - 1 * (health - r$health_mean) + rnorm(r$n, 0, r$swing_sd),
+    pop = rlnorm(r$n, r$size_mean, 0.75)
+  )
+}))
+## Drawn from the southern cloud up, so the Midwest and Northeast lie on top.
+counties$region <- factor(counties$region, levels = c("South", "West", "Midwest", "Northeast"))
+counties <- counties[order(counties$region), ]
+counties$region <- factor(counties$region, levels = regions)
+
+region_cols <- c(Northeast = pal_dot(6)[4], Midwest = pal_dot(6)[2], West = pal_dot(6)[3], South = pal_dot(6)[1])
+
+## Arrows along the swing axis and at either end of the health axis; offsets in points.
+note_col <- "#7C8F9B"
+note_gp <- gpar(fontsize = 5.5, col = note_col)
+arrow_note <- function(label, y, up) {
+  grobTree(
+    textGrob(label, x = unit(0, "npc") + unit(5, "pt"), y = unit(y, "npc"), rot = 90, gp = note_gp),
+    polygonGrob(
+      x = unit(0, "npc") + unit(5, "pt") + unit(c(-2.2, 2.2, 0), "pt"),
+      y = unit(if (up) 0.985 else 0.015, "npc") + unit(if (up) c(0, 0, 4.4) else c(4.4, 4.4, 0), "pt") -
+        unit(if (up) 4.4 else 2.2, "pt"),
+      gp = gpar(fill = note_col, col = NA)
+    )
+  )
+}
+health_note <- function(label, left) {
+  tip <- if (left) 0 else 1
+  grobTree(
+    textGrob(label, x = unit(tip, "npc") + unit(if (left) 7 else -7, "pt"), y = unit(0, "npc") - unit(14, "pt"),
+             hjust = if (left) 0 else 1, gp = note_gp),
+    polygonGrob(
+      x = unit(tip, "npc") + unit(if (left) c(0, 4.4, 4.4) else c(0, -4.4, -4.4), "pt"),
+      y = unit(0, "npc") + unit(c(-14, -11.8, -16.2), "pt"),
+      gp = gpar(fill = note_col, col = NA)
+    )
+  )
+}
+
+## The key, drawn inside the panel at the top right: regions, then dot size.
+vitality_key <- function(show_regions = TRUE) {
+  region_key <- if (show_regions) {
+    list(
+      annotate("text", x = 61.1, y = 43.6, label = "Region", hjust = 0, fontface = "bold", size = 2.5),
+      annotate("point", x = 61.1, y = c(38, 32.9, 27.4, 22.7), shape = 21, size = 3, stroke = 0.3,
+               colour = region_cols[c(1, 2, 3, 4)], fill = alpha(region_cols[c(1, 2, 3, 4)], 0.5)),
+      annotate("text", x = 62.4, y = c(38, 32.9, 27.4, 22.7), label = regions, hjust = 0, size = 2.5)
+    )
+  }
+  c(region_key, list(
+    annotate("point", x = 62.8, y = c(13, 9.6), shape = 1, size = c(6.6, 1.9), stroke = 0.3),
+    annotate("text", x = 64.4, y = c(14.5, 10.2, 5.6), label = c("Voting", "eligible", "population"),
+             hjust = 0, size = 2.5)
+  ))
+}
+
+vitality_frame <- list(
+  geom_hline(yintercept = 0, colour = econ_red, linewidth = 0.2),
+  scale_size_area(max_size = 6.6, guide = "none"),
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right", limits = c(-50.5, 50),
+                     breaks = seq(-50, 50, 25), expand = c(0, 0)),
+  scale_x_continuous(limits = c(20, 73), breaks = seq(20, 70, 10), expand = c(0, 0)),
+  annotation_custom(arrow_note("MORE REPUBLICAN", 0.75, TRUE)),
+  annotation_custom(arrow_note("LESS REPUBLICAN", 0.25, FALSE)),
+  annotation_custom(health_note("WORSE HEALTH", TRUE)),
+  annotation_custom(health_note("BETTER HEALTH", FALSE)),
+  coord_cartesian(clip = "off"),
+  theme_economist_2017("print", base_size = 7),
+  theme(axis.title.x = element_text(hjust = 0.5), panel.grid.major.x = element_line(colour = grid_col),
+        axis.line.x = element_blank(), axis.ticks.x = element_blank())
+)
+
+vitality <- ggplot(counties, aes(health, swing)) +
+  geom_point(aes(fill = region, size = pop), shape = 21, alpha = 0.5, colour = "transparent") +
+  geom_point(aes(colour = region, size = pop), shape = 21, fill = NA, alpha = 0.8, stroke = 0.3) +
+  scale_fill_manual(values = region_cols, guide = "none") +
+  scale_colour_manual(values = region_cols, guide = "none") +
+  vitality_key() +
+  vitality_frame +
+  labs(
+    title = "Vitality and the vote",
+    subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+    x = "Index of county health metrics*",
+    y = "Change in Republican margin\nover Democrats, 2012-16, % points"
+  )
+
+modern <- economist_2017_chart(
+  vitality +
+    labs(caption = paste0("Sources: Atlas of US Presidential Elections; Census Bureau;\n",
+                          "IPUMS, University of Minnesota; Institute for Health Metrics\n",
+                          "and Evaluation; The Economist")),
+  media = "print",
+  footnote = "*Weighted index of obesity, diabetes,\nheavy drinking, physical exercise and\nlife expectancy, 2010-12"
+)
+
+classic <- lines_classic(
+  ggplot(counties, aes(health, swing)) +
+    geom_hline(yintercept = 0, linewidth = 0.3) +
+    geom_point(aes(fill = region, colour = region, size = pop), shape = 21, alpha = 0.5, stroke = 0.3) +
+    scale_size_area(max_size = 6.6, breaks = c(10, 30)) +
+    scale_fill_economist() +
+    scale_colour_economist() +
+    scale_x_continuous(limits = c(20, 73), breaks = seq(20, 70, 10), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(-50.5, 50), breaks = seq(-50, 50, 25), expand = c(0, 0)) +
+    guides(
+      fill = guide_legend(order = 1, override.aes = list(size = 3)),
+      colour = guide_legend(order = 1)
+    ) +
+    labs(
+      title = "Vitality and the vote",
+      subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+      x = "Index of county health metrics*",
+      y = "Change in Republican margin\nover Democrats, 2012-16, % points",
+      fill = "Region", colour = "Region", size = "Voting-eligible population"
+    ),
+  caption = paste0(
+    "Sources: Atlas of US Presidential Elections; Census Bureau; IPUMS, University of Minnesota; ",
+    "Institute for Health Metrics and Evaluation; The Economist"
+  ),
+  footnote = "*Weighted index of obesity, diabetes, heavy drinking, physical exercise and life expectancy, 2010-12"
+)
+chart_pair(classic, modern)
+```
+
+Classic specifies no category-dot stroke (the classic dots here borrow the 2017 stroke width and 50% fill), no in-panel key and no arrow notes. Its first four fills are blue-gray, dark blue, blue and gray, so the large Northeast and Midwest clouds merge into one dark mass and the South (gray) fades into the panel; the 2017 maroon, blue, gold and cyan separate. The region and size legends are an ordinary row above the panel.
+
+### Highlighting instead of categorizing
+
+"Where colour categories become difficult to distinguish, consider highlighting the most significant part of the story".
+
+```{r lines-vitality-highlight, econ_size = "two_column", econ_height = 275}
+counties$focus <- ifelse(counties$region == "Midwest", "Midwest", "Other")
+counties <- counties[order(counties$focus == "Midwest"), ]
+focus_cols <- c(Midwest = pal_dot(6)[2], Other = pal_dot(6)[1])
+## The two labelled counties, in Ohio: each has a leader line from its label down to its dot.
+called_out <- data.frame(
+  label = c("Jefferson, OH", "Knox, OH"), health = c(32.2, 46), swing = c(30.3, 13),
+  label_y = c(46.4, 39.1), line_top = c(44.4, 36.7)
+)
+
+vitality_hl <- ggplot(counties, aes(health, swing)) +
+  geom_point(aes(fill = focus, size = pop), shape = 21, alpha = 0.5, colour = "transparent") +
+  geom_point(aes(colour = focus, size = pop), shape = 21, fill = NA, alpha = 0.8, stroke = 0.3) +
+  geom_segment(data = called_out, aes(x = health, xend = health, y = line_top, yend = swing), linewidth = 0.2,
+               inherit.aes = FALSE) +
+  geom_point(data = called_out, aes(health, swing), shape = 21, size = 1.3, fill = focus_cols[["Midwest"]],
+             colour = "white", stroke = 0.4, inherit.aes = FALSE) +
+  geom_text(data = called_out, aes(health, label_y, label = label), size = 2.5, inherit.aes = FALSE) +
+  annotate("text", x = 38.9, y = 18.4, label = "Midwest", size = 2.8, colour = "white", fontface = "bold") +
+  scale_fill_manual(values = focus_cols, guide = "none") +
+  scale_colour_manual(values = focus_cols, guide = "none") +
+  vitality_key(show_regions = FALSE) +
+  vitality_frame +
+  labs(
+    title = "Vitality and the vote",
+    subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+    x = "Index of county health metrics*",
+    y = "Change in Republican margin over\nDemocrats, 2012-16, % points"
+  )
+
+modern <- economist_2017_chart(
+  vitality_hl +
+    labs(caption = paste0("Sources: Atlas of US Presidential Elections; Census Bureau;\n",
+                          "IPUMS, University of Minnesota; Institute for Health Metrics\n",
+                          "and Evaluation; The Economist")),
+  media = "print",
+  footnote = "*Weighted index of obesity, diabetes,\nheavy drinking, physical exercise and\nlife expectancy, 2010-12"
+)
+
+classic_focus <- c(Midwest = economist_pal()(9)[7], Other = economist_pal()(9)[9])
+classic <- lines_classic(
+  ggplot(counties, aes(health, swing)) +
+    geom_hline(yintercept = 0, linewidth = 0.3) +
+    geom_point(aes(fill = focus, colour = focus, size = pop), shape = 21, alpha = 0.5, stroke = 0.3) +
+    geom_segment(
+      data = called_out, aes(x = health, xend = health, y = line_top, yend = swing), linewidth = 0.2,
+      inherit.aes = FALSE
+    ) +
+    geom_point(
+      data = called_out, aes(health, swing), shape = 21, size = 1.3, fill = classic_focus[["Midwest"]],
+      colour = "white", stroke = 0.4, inherit.aes = FALSE
+    ) +
+    geom_text(data = called_out, aes(health, label_y, label = label), size = 2.2, inherit.aes = FALSE) +
+    scale_size_area(max_size = 6.6, breaks = c(10, 30)) +
+    scale_fill_manual(values = classic_focus) +
+    scale_colour_manual(values = classic_focus) +
+    scale_x_continuous(limits = c(20, 73), breaks = seq(20, 70, 10), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(-50.5, 50), breaks = seq(-50, 50, 25), expand = c(0, 0)) +
+    guides(
+      fill = guide_legend(order = 1, override.aes = list(size = 3)),
+      colour = guide_legend(order = 1)
+    ) +
+    labs(
+      title = "Vitality and the vote",
+      subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+      x = "Index of county health metrics*",
+      y = "Change in Republican margin over\nDemocrats, 2012-16, % points",
+      fill = NULL, colour = NULL, size = "Voting-eligible population"
+    ),
+  caption = paste0(
+    "Sources: Atlas of US Presidential Elections; Census Bureau; IPUMS, University of Minnesota; ",
+    "Institute for Health Metrics and Evaluation; The Economist"
+  ),
+  footnote = "*Weighted index of obesity, diabetes, heavy drinking, physical exercise and life expectancy, 2010-12"
+)
+chart_pair(classic, modern)
+```
+
+Classic has no highlight scheme, so Midwest is its dark red against gray for the rest; that does the job here, and it is closer to the 2017 chart than the four-category version is. The leader lines and the two labelled counties are the same layers; the "Midwest" label in the cloud is replaced by a legend.
+
+## Checklist
+
+| Chart | Done | Notes |
+|:---|:---:|:---|
+| Standard colour order, one to six lines | yes | Classic palette depends on the number of lines (starts with three blues); 2017 order is fixed |
+| One line | yes | Classic has no footnote line or right-hand scale |
+| Two lines | yes | Classic uses the line palette via `discrete_scale()` |
+| Four lines, labeled in place, indexed | yes | Classic has no red index rule; drawn in black |
+| Six lines, labeled in place | yes | Seven series; classic separates by lightness more than hue |
+| High-contrast alternatives | partly | No `bright`/`dark` sets in classic; drawn with the line palette |
+| Two bands, labeled in place | yes | Legend instead of in-band labels; no white rule |
+| Six bands with a key | yes | Legend above the panel; no in-panel key |
+| Alternative stacked scheme | partly | No second scheme in classic; same fill palette as above |
+| Four bands, labeled in place | yes | No band labels or ranges in classic |
+| Thermometer, two, three, four and six series | partly | No thermometer geom or "Horrible" marker; drawn with plain layers |
+| Dot terminals | partly | No dot terminals; `geom_point()` |
+| Chart elements | 2017 only | A specimen of 2017 dot types; no classic counterpart |
+| Standard scatter with trend lines | yes | Classic draws only the dashed black rule; 2017 adds a coloured rule under it |
+| Labeled outliers | partly | No highlight dots; second fill colour used |
+| Connected scatter | partly | No broken gridlines or connected key |
+| Bubble chart, four categories | partly | No specified category-dot stroke, arrows or in-panel key |
+| Highlighting instead of categorizing | partly | No highlight scheme; dark red against gray |
+

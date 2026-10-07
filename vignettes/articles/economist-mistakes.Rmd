@@ -1,0 +1,1667 @@
+---
+title: "Replicating \"Mistakes, we've drawn a few\""
+---
+
+```{r, include = FALSE}
+## ragg writes plain sRGB PNGs; the macOS default device embeds a profile that darkens colors.
+knitr::opts_chunk$set(comment = "#>", dpi = 192, dev = "ragg_png")
+## Fold each chunk's code behind a "Code" toggle; output stays visible.
+local({
+  source_hook <- knitr::knit_hooks$get("source")
+  knitr::knit_hooks$set(source = function(x, options) {
+    paste0(
+      "\n\n<details><summary>Code</summary>\n\n",
+      source_hook(x, options),
+      "\n\n</details>\n\n"
+    )
+  })
+})
+```
+
+In March 2019 the data team of *The Economist* published ["Mistakes, we've drawn a few"](https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368) (Sarah Leo; [archived copy](https://web.archive.org/web/20191113221119/https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368)). It looks back at seven charts the paper had published and shows six of them next to a redrawn version in the style of the 2017 styleguide; the seventh, it says, could not be redrawn in the same space. The charts, text and images belong to *The Economist*; this article reproduces none of them. It redraws each chart from values read off the published images and compares the result with the originals.
+
+That makes the article a test of the two *ggthemes* implementations against real charts:
+
+* the **classic** style, `theme_economist()`, `scale_*_economist()` and `economist_pal()`, plus the article-local helper `classic_chart()` for the red vertical tab, is compared with the article's *Original* charts;
+* the **2017** style, `theme_economist_2017()`, `scale_*_economist_2017()`, `guide_axis_economist_2017()` and `economist_2017_chart()`, is compared with its *Better* charts.
+
+Each section shows the pair side by side, states in one sentence what was wrong with the original, and ends with a **Fidelity** note on what the *ggthemes* chart gets right and what it cannot reproduce. The gaps are the point of the exercise, so they are listed bluntly, and gathered in a table at the end.
+
+Two caveats apply throughout.
+
+* **The data are approximate.** The *Economist* did not publish them, so every value here was read off the published charts by eye. Shapes and orderings are right; individual values are good to a few percent at best.
+* **Fonts differ.** The *Economist* sets its charts in Econ Sans and a serif family of its own, neither of which is available. Both sides here are set in `economist_2017_font()`, which is Fira Sans Condensed or Roboto Condensed when installed and `"sans"` otherwise, so line breaks and text widths never match exactly, and hand-wrapped labels may break differently on another machine.
+
+```{r setup, message = FALSE}
+library(ggthemes)
+library(ggplot2)
+library(grid)
+library(gtable)
+
+## The helpers `classic_chart()`, `chart_pair()` and `classic_size`, and the chunk options that size each pair.
+source("economist-classic-helpers.R")
+
+## Colors: the classic palette by name, and the 2017 swatches.
+classic_fg <- setNames(
+  ggthemes_data$economist$fg$value,
+  ggthemes_data$economist$fg$name
+)
+classic_col <- function(...) unname(classic_fg[c(...)])
+classic_bg <- ggthemes_data$economist$bg$value[1]
+classic_red <- ggthemes_data$economist$bg$value[3]
+print_pal <- ggthemes_data$economist_2017$print
+swatch <- function(name) {
+  print_pal$swatches$value[print_pal$swatches$name == name]
+}
+pal_bar <- economist_2017_pal("print", type = "bar_side")
+pal_stack <- economist_2017_pal("print", type = "stacked")
+
+## The classic charts are set in the typeface of the 2017 charts, Econ Sans, so use its closest substitute here too.
+classic_family <- economist_2017_font()
+pt <- function(x) x / ggplot2::.pt
+
+## `theme_economist()` at the base size of the helper file, with three changes the theme does not make:
+## titles, subtitle and source line flush with the plot's left edge, a slightly larger gap (the base size, not 5.5pt) above the source line, legend text the size
+## of the axis text and set from the plot's left edge, and gridlines and rules of the published weight (the theme's do not scale with `base_size`).
+classic_theme <- function(base_size = classic_size, ...) {
+  theme_economist(base_size = base_size, base_family = classic_family, ...) +
+    theme(
+      line = element_line(linewidth = 0.2),
+      plot.title.position = "plot",
+      plot.caption.position = "plot",
+      plot.caption = element_text(hjust = 0, margin = margin(t = base_size)),
+      plot.subtitle = element_text(
+        hjust = 0,
+        lineheight = 1,
+        margin = margin(b = base_size)
+      ),
+      legend.text = element_text(size = rel(1)),
+      legend.location = "plot"
+    )
+}
+
+## A footnote ranged right on the source line, which `theme_economist()` has no element for. The caption must
+## have as many lines as the footnote.
+classic_footnote <- function(chart, text, size = classic_size) {
+  grobTree(
+    chart,
+    textGrob(
+      text,
+      x = unit(1, "npc") - unit(10, "pt"),
+      y = unit(12, "pt"),
+      just = c("right", "bottom"),
+      gp = gpar(fontsize = size, fontfamily = classic_family, lineheight = 1)
+    )
+  )
+}
+
+## Axis labels for a few categories in bold or italic, as the charts do.
+face_labels <- function(bold = character(), italic = character()) {
+  function(x) {
+    as.expression(lapply(x, function(l) {
+      if (l %in% bold) {
+        bquote(bold(.(l)))
+      } else if (l %in% italic) {
+        bquote(italic(.(l)))
+      } else {
+        l
+      }
+    }))
+  }
+}
+
+## The classic mark of a broken scale, a small N, at (x, y) in data units.
+classic_break <- function(x, y, dx, dy, colour = "black") {
+  annotate(
+    "path",
+    x = x + dx * c(-1, -1, 1, 1),
+    y = y + dy * c(-1, 1, -1, 1),
+    colour = colour,
+    linewidth = 0.3
+  )
+}
+
+## A y-axis title set horizontally above its axis, as the classic charts do: `side` is the edge of the panel.
+classic_axis_title <- function(
+  label,
+  side = c("left", "right"),
+  size = classic_size,
+  colour = "black",
+  offset = 20
+) {
+  side <- match.arg(side)
+  annotation_custom(
+    textGrob(
+      label,
+      x = if (side == "left") {
+        unit(0, "npc") - unit(offset, "pt")
+      } else {
+        unit(1, "npc") + unit(offset, "pt")
+      },
+      y = unit(1, "npc") + unit(size * 0.9, "pt"),
+      just = c(if (side == "left") "left" else "right", "bottom"),
+      gp = gpar(fontsize = size, fontfamily = classic_family, col = colour)
+    ),
+    xmin = -Inf,
+    xmax = Inf,
+    ymin = -Inf,
+    ymax = Inf
+  )
+}
+```
+
+## 1. Left-click
+
+*What was wrong:* one bar is more than five times longer than any other, so the original cut it short with a break mark and a printed number. The Economist says this downplays Jeremy Corbyn's likes and exaggerates everyone else's, and that the three shades of red were never explained.
+
+```{r mistakes-1, econ_height = 136}
+likes <- data.frame(
+  who = c(
+    "Jeremy Corbyn",
+    "Labour Party",
+    "Momentum",
+    "Owen Smith",
+    "Andy Burnham",
+    "Saving Labour"
+  ),
+  likes = c(5210, 843, 233, 129, 105, 57)
+)
+likes$who <- factor(likes$who, levels = rev(likes$who))
+likes_labels <- face_labels(
+  bold = "Jeremy Corbyn",
+  italic = c("Labour Party", "Momentum", "Saving Labour")
+)
+
+## Classic: the long bar is cut at the panel's edge, marked by a zigzag in the ground color and its value.
+cut_at <- 1480
+likes_classic <- ggplot(likes, aes(pmin(likes, cut_at), who, fill = who)) +
+  geom_col(width = 0.62, show.legend = FALSE) +
+  annotate(
+    "path",
+    x = 1150 + 30 * c(0, -1, 1, -1, 1, -1, 0),
+    y = 6 + 0.34 * seq(-1, 1, length.out = 7),
+    colour = classic_bg,
+    linewidth = 1.1
+  ) +
+  annotate(
+    "text",
+    x = 1215,
+    y = 6,
+    label = "5,210",
+    hjust = 0,
+    fontface = "bold",
+    colour = "white",
+    size = pt(classic_size * 1.1),
+    family = classic_family
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Jeremy Corbyn" = classic_col("dark red"),
+      "Labour Party" = "#F4553F",
+      "Momentum" = "#F4553F",
+      "Saving Labour" = "#F4553F",
+      "Owen Smith" = classic_col("pink"),
+      "Andy Burnham" = classic_col("pink")
+    )
+  ) +
+  scale_x_continuous(
+    limits = c(0, cut_at),
+    breaks = seq(0, 1000, 250),
+    labels = scales::label_comma(),
+    expand = c(0, 0),
+    position = "top"
+  ) +
+  scale_y_discrete(labels = likes_labels) +
+  labs(
+    title = "Left-click",
+    subtitle = "Average number of likes per Facebook post\n2016",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Facebook"
+  ) +
+  classic_theme(horizontal = FALSE) +
+  theme(axis.ticks = element_blank(), axis.line = element_blank())
+
+## 2017: values in thousands, the highlighted row picked out by a pale band behind its label and bar.
+likes_2017 <- ggplot(likes, aes(who, likes / 1000)) +
+  annotation_custom(
+    rectGrob(
+      x = unit(0, "npc") - unit(1, "strwidth", "Jeremy Corbyn") - unit(4, "pt"),
+      width = unit(1, "npc") +
+        unit(1, "strwidth", "Jeremy Corbyn") +
+        unit(4, "pt"),
+      just = "left",
+      gp = gpar(
+        fill = print_pal$highlight,
+        col = NA,
+        fontsize = 7,
+        fontface = "bold",
+        fontfamily = economist_2017_font()
+      )
+    ),
+    xmin = 5.55,
+    xmax = 6.45,
+    ymin = -Inf,
+    ymax = Inf
+  ) +
+  geom_col(fill = pal_bar(1), width = 0.62) +
+  geom_hline(yintercept = 0, colour = print_pal$baseline, linewidth = 0.3) +
+  coord_flip(clip = "off") +
+  scale_y_continuous(
+    position = "right",
+    limits = c(0, 6.2),
+    breaks = 0:6,
+    expand = c(0, 0)
+  ) +
+  scale_x_discrete(labels = likes_labels) +
+  labs(
+    title = "Left-click",
+    subtitle = "Average number of likes per Facebook post\n2016, '000",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Facebook"
+  ) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
+
+chart_pair(
+  classic_chart(likes_classic),
+  economist_2017_chart(likes_2017, media = "print")
+)
+```
+
+**Fidelity.**
+
+* *Classic.* Close on structure: the bars, the white vertical gridlines, the value axis on top with comma-separated labels, bold and italic category labels, the left-aligned title block and the red vertical tab all come out as published, and the bar colors (dark red, pink) are in `economist_pal()` (from `n = 8`). Three things are hand work. The vivid red-orange of the Labour, Momentum and Saving Labour bars is not in the classic palette. The zigzag that cuts the long bar, and the white "5,210" inside it, are drawn with `annotate()`, since nothing in the package draws a classic scale break. And the Original sets its second subtitle line (`2016`) smaller than the first, which `labs(subtitle = )` cannot do.
+
+* *2017.* The value axis on top, the grey gridlines, the black baseline, the `blue1` bars, the red tab and the thousands-scaled subtitle match the Better chart. The pale band behind the highlighted row is not a theme feature: it takes a custom grob that reaches left over the label column, sized from the label's width. The band is drawn behind the label here, as in the Better chart, only because the grob is allowed to leave the panel (`coord_flip(clip = "off")`).
+
+## 2. Fit as a butcher's dog
+
+*What was wrong:* both axes fall by three units (21 to 18 kg, 45 to 42 cm), which is 14% on one and 7% on the other, so the two lines look perfectly correlated.
+
+```{r mistakes-2, econ_height = 164}
+dogs <- data.frame(
+  year = 2006:2015,
+  weight = c(20.5, 20.05, 19.42, 19.2, 19.15, 19.05, 18.62, 18.5, 18.38, 18.1),
+  neck = c(44.3, 43.9, 43.4, 43.2, 43.17, 43.07, 42.8, 42.77, 42.68, 42.5)
+)
+year_labels <- c("2006", sprintf("%02d", 7:15))
+dogs_footnote <- "*Where at least 50 are\nregistered per year †Where\nat least 100 are registered per year"
+dogs_sub <- "Characteristics of dogs registered with the\nUK's Kennel Club, average when fully grown"
+
+## Classic: both axes on one grid, neck size from 42 to 45 beside weight from 18 to 21.
+dogs_classic <- ggplot(dogs, aes(year)) +
+  geom_line(
+    aes(y = neck - 42 + 18),
+    colour = classic_col("dark red"),
+    linewidth = 1.1
+  ) +
+  geom_line(aes(y = weight), colour = classic_col("blue"), linewidth = 1.1) +
+  classic_axis_title(
+    expression(italic("Weight")^"*" * italic(", kg")),
+    "left",
+    colour = classic_col("blue")
+  ) +
+  classic_axis_title(
+    expression(italic("Neck size")^"†" * italic(", cm")),
+    "right",
+    colour = classic_col("dark red")
+  ) +
+  classic_break(2005.35, 17.7, 0.15, 0.12, classic_col("blue")) +
+  classic_break(2015.65, 17.7, 0.15, 0.12, classic_col("dark red")) +
+  coord_cartesian(clip = "off") +
+  scale_y_continuous(
+    limits = c(17.42, 21.05),
+    breaks = 18:21,
+    expand = c(0, 0),
+    sec.axis = sec_axis(~ . + 42 - 18, breaks = 42:45)
+  ) +
+  scale_x_continuous(
+    breaks = 2006:2015,
+    labels = year_labels,
+    expand = expansion(add = 0.5)
+  ) +
+  labs(
+    title = "Fit as a butcher's dog",
+    subtitle = dogs_sub,
+    x = NULL,
+    y = NULL,
+    caption = "Sources: Kennel Club;\nThe Economist\n "
+  ) +
+  classic_theme() +
+  theme(
+    axis.text.y.left = element_text(colour = classic_col("blue")),
+    axis.text.y.right = element_text(
+      colour = classic_col("dark red"),
+      margin = margin(l = classic_size)
+    ),
+    plot.subtitle = element_text(margin = margin(b = classic_size * 3))
+  )
+
+## 2017: neck size on the left from 38 to 44, weight on the right from 18 to 21.
+dogs_2017 <- ggplot(dogs, aes(year)) +
+  geom_line(
+    aes(y = 18 + (neck - 38) / 2),
+    colour = swatch("maroon"),
+    linewidth = 0.8
+  ) +
+  geom_line(aes(y = weight), colour = swatch("blue2"), linewidth = 0.8) +
+  geom_scale_break_economist_2017("left", colour = swatch("maroon")) +
+  geom_scale_break_economist_2017("right", colour = swatch("blue2")) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(),
+    position = "right",
+    limits = c(17.4, 21.3),
+    breaks = 18:21,
+    expand = c(0, 0),
+    name = expression("Weight"^"*" * ", kg"),
+    sec.axis = sec_axis(
+      ~ 38 + (. - 18) * 2,
+      breaks = seq(38, 44, 2),
+      name = expression("Neck size"^"†" * ", cm"),
+      guide = guide_axis_economist_2017()
+    )
+  ) +
+  scale_x_continuous(
+    breaks = 2006:2015,
+    labels = year_labels,
+    expand = expansion(add = 0.5)
+  ) +
+  labs(
+    title = "Fit as a butcher's dog",
+    subtitle = dogs_sub,
+    x = NULL,
+    caption = "Sources: Kennel Club;\nThe Economist\n "
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    axis.title.y.left = element_text(colour = swatch("maroon")),
+    axis.title.y.right = element_text(colour = swatch("blue2")),
+    axis.text.y.left = element_text(colour = swatch("maroon")),
+    axis.text.y.right = element_text(colour = swatch("blue2"))
+  )
+
+chart_pair(
+  classic_footnote(classic_chart(dogs_classic), dogs_footnote),
+  economist_2017_chart(dogs_2017, media = "print", footnote = dogs_footnote)
+)
+```
+
+**Fidelity.**
+
+* *Classic.* This is the closest of the classic charts. Both value axes are colored to match their lines, the ticks point up from the x axis as published, and the white gridlines and the line weights are right once the line width is reset (see Gaps). The axis titles above each axis, the small broken-scale marks and the footnote ranged right on the source line are hand-built: the theme can only rotate an axis title beside the axis, has no break mark, and has no second source slot, so `classic_axis_title()`, `classic_break()` and `classic_footnote()` in the setup chunk do the work. The Original's second axis uses the same grid for 42-45 cm as for 18-21 kg, which is the mistake itself and is reproduced. The Original also sets *The Economist* in the source line in italics; here it is plain, as `labs(caption = )` takes one style.
+
+* *2017.* The 2017 functions cover this chart almost completely. `guide_axis_economist_2017()` puts the labels on the gridlines on both sides, `economist_2017_chart()` lifts the two axis titles above their axes and ranges the footnote right, and `geom_scale_break_economist_2017()` draws the break mark on each side in its axis color. What remains is by hand: the neck-size axis is a rescaled copy of the weight axis (`sec_axis()`), the dagger and asterisk in the axis titles are plotmath superscripts since `economist_2017_footnote()` returns plain symbols, and the footnote is wrapped by hand because a long footnote overprints the source line in a font as wide as the substitute.
+
+## 3. Bremorse
+
+*What was wrong:* joining every poll makes the noise look like movement, so the series looks erratic; the Economist says a smoothed trend through the polls is the right method, and that the broken scale spread the data wider than it should.
+
+```{r mistakes-3, econ_height = 164}
+bremorse <- data.frame(
+  t = seq(2015.75, 2018.55, length.out = 82),
+  right = c(
+    46,
+    45,
+    46,
+    45,
+    47,
+    46,
+    46,
+    45,
+    45,
+    46,
+    46,
+    44,
+    44,
+    43,
+    46,
+    47,
+    45,
+    46,
+    44,
+    44,
+    45,
+    43,
+    46,
+    44,
+    44,
+    43,
+    46,
+    44,
+    44,
+    42,
+    45,
+    45,
+    45,
+    44,
+    43,
+    43,
+    44,
+    44,
+    44,
+    44,
+    42,
+    42,
+    43,
+    42,
+    42,
+    44,
+    41,
+    43,
+    42,
+    42,
+    43,
+    42,
+    45,
+    44,
+    42,
+    42,
+    42,
+    43,
+    43,
+    41,
+    43,
+    42,
+    42,
+    40,
+    42,
+    43,
+    43,
+    42,
+    40,
+    43,
+    42,
+    41,
+    42,
+    42,
+    42,
+    42,
+    41,
+    43,
+    42,
+    42,
+    41,
+    41
+  ),
+  wrong = c(
+    42,
+    43,
+    44,
+    43,
+    43,
+    44,
+    43,
+    43,
+    44,
+    43,
+    43,
+    44,
+    43,
+    43,
+    42,
+    44,
+    43,
+    43,
+    42,
+    42,
+    42,
+    44,
+    41,
+    42,
+    43,
+    42,
+    43,
+    42,
+    42,
+    45,
+    44,
+    44,
+    45,
+    44,
+    45,
+    45,
+    44,
+    43,
+    44,
+    44,
+    45,
+    44,
+    45,
+    44,
+    43,
+    44,
+    45,
+    46,
+    45,
+    46,
+    47,
+    45,
+    45,
+    44,
+    45,
+    46,
+    44,
+    45,
+    46,
+    45,
+    46,
+    46,
+    47,
+    47,
+    46,
+    45,
+    46,
+    45,
+    47,
+    46,
+    47,
+    46,
+    46,
+    46,
+    47,
+    46,
+    47,
+    46,
+    47,
+    47,
+    46,
+    48
+  )
+)
+bremorse_long <- rbind(
+  data.frame(t = bremorse$t, pct = bremorse$right, answer = "Right"),
+  data.frame(t = bremorse$t, pct = bremorse$wrong, answer = "Wrong")
+)
+bremorse_x <- function(guide, upper = 2018.6) {
+  scale_x_continuous(
+    limits = c(2015.75, upper),
+    expand = c(0, 0),
+    breaks = c(2016.3, 2017.3, 2018.3),
+    labels = c("2016", "17", "18"),
+    minor_breaks = seq(2015.8, 2018.5, by = 0.25),
+    guide = guide
+  )
+}
+bremorse_sub <- "“In hindsight, do you think Britain was right or wrong\nto vote to leave the EU?”\n% responding"
+
+## Classic: the polls joined as they came, in the two classic colors nearest to the originals'.
+bremorse_classic <- ggplot(bremorse_long, aes(t, pct, colour = answer)) +
+  geom_line(linewidth = 1) +
+  annotate(
+    "text",
+    x = 2017.9,
+    y = 48.4,
+    label = "Wrong",
+    size = pt(classic_size * 1.4),
+    family = classic_family
+  ) +
+  annotate(
+    "text",
+    x = 2017.45,
+    y = 40.5,
+    label = "Right",
+    size = pt(classic_size * 1.4),
+    family = classic_family
+  ) +
+  classic_break(2018.72, 39.2, 0.04, 0.2) +
+  coord_cartesian(clip = "off") +
+  scale_colour_manual(
+    values = c(Right = classic_col("dark blue"), Wrong = classic_col("pink")),
+    guide = "none"
+  ) +
+  scale_y_continuous(
+    limits = c(38.5, 50),
+    breaks = seq(40, 50, 2),
+    expand = c(0, 0),
+    position = "right"
+  ) +
+  bremorse_x(guide_axis(minor.ticks = TRUE)) +
+  labs(
+    title = "Bremorse",
+    subtitle = bremorse_sub,
+    x = NULL,
+    y = NULL,
+    caption = "Source: NatCen Social Research"
+  ) +
+  classic_theme()
+
+## 2017: the polls as faint dots, with a smooth trend line through each series.
+bremorse_2017 <- ggplot(bremorse_long, aes(t, pct, colour = answer)) +
+  geom_point(alpha = 0.4, size = 1.3, shape = 16) +
+  geom_smooth(
+    method = "loess",
+    formula = y ~ x,
+    span = 0.6,
+    se = FALSE,
+    linewidth = 0.9
+  ) +
+  annotate(
+    "text",
+    x = 2017.7,
+    y = 47.5,
+    label = "Wrong",
+    size = pt(9),
+    colour = swatch("red1"),
+    fontface = "bold"
+  ) +
+  annotate(
+    "text",
+    x = 2017.2,
+    y = 40.4,
+    label = "Right",
+    size = pt(9),
+    colour = swatch("blue1"),
+    fontface = "bold"
+  ) +
+  geom_scale_break_economist_2017() +
+  scale_colour_manual(
+    values = c(Right = swatch("blue1"), Wrong = swatch("red1")),
+    guide = "none"
+  ) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(),
+    position = "right",
+    limits = c(36.5, 48.6),
+    breaks = seq(38, 48, 2),
+    expand = c(0, 0)
+  ) +
+  bremorse_x(guide_axis(minor.ticks = TRUE, cap = "upper"), upper = 2018.85) +
+  labs(
+    title = "Bremorse",
+    subtitle = bremorse_sub,
+    x = NULL,
+    y = NULL,
+    caption = "Source: NatCen Social Research"
+  ) +
+  theme_economist_2017("web", base_size = 7)
+
+chart_pair(
+  classic_chart(bremorse_classic),
+  economist_2017_chart(bremorse_2017, media = "web")
+)
+```
+
+**Fidelity.**
+
+* *Classic.* The jagged polls, the two direct labels, the minor ticks and the three-line subtitle are all there. The palette is the main miss: the Original's mid-blue and coral are not in `economist_pal()`, so this uses `dark blue` and `pink`, which are visibly different. The Original is a web chart, with a white ground, a red rule across the top and grey gridlines; this chart keeps the classic blue-gray ground and white gridlines, as no classic web variant exists. The break mark at the foot of the right axis is hand-drawn. The y-axis labels sit centered on their gridlines, where the Original sets them just above, and the theme gives a right-hand axis no gap between labels and panel except through a manual margin.
+
+* *2017.* Faint dots for the polls, a smooth line through each series, the web layout with its red rule and the right-hand axis labels over the gridlines are reproduced, and `geom_scale_break_economist_2017()` supplies the mark under the axis. Two things need care. The web layout has no outer margin, so the labels sit flush with the chart's edge and any data running to the edge of the panel lies under them; the panel's x range is extended by hand to leave room. The Economist does not say how it smoothed the series, so the loess span here is a guess.
+
+## 4. Free markets and free workers
+
+*What was wrong:* the deficit is all negative and employment all positive, so one grid carries two unrelated axes with no common baseline: the deficit's is at the top, employment's at the bottom.
+
+```{r mistakes-4, econ_height = 164}
+years <- 1995:2016
+china <- c(
+  34,
+  40,
+  50,
+  57,
+  68,
+  83,
+  83,
+  103,
+  124,
+  162,
+  202,
+  234,
+  258,
+  268,
+  227,
+  273,
+  295,
+  315,
+  318,
+  343,
+  367,
+  322
+)
+jobs <- c(
+  17.3,
+  17.3,
+  17.5,
+  17.7,
+  17.4,
+  17.3,
+  16.4,
+  15.9,
+  14.9,
+  14.5,
+  14.3,
+  14.2,
+  14.0,
+  13.6,
+  12.0,
+  11.6,
+  11.9,
+  12.1,
+  12.2,
+  12.4,
+  12.5,
+  12.4
+)
+trade_names <- c(
+  "Trade deficit with\nChina in goods, $bn",
+  "Manufacturing\nemployment, m"
+)
+year_breaks <- c(1995, 2000, 2005, 2010, 2016)
+
+## Classic: one grid. Employment is read on the right; the deficit is drawn upside down and read on the left.
+trade_classic <- ggplot(
+  data.frame(year = years, china = china, jobs = jobs),
+  aes(year)
+) +
+  geom_line(
+    aes(y = 20 - china / 20),
+    colour = classic_col("dark red"),
+    linewidth = 1.1
+  ) +
+  geom_line(aes(y = jobs), colour = classic_col("blue"), linewidth = 1.1) +
+  annotate(
+    "segment",
+    x = 1995,
+    xend = 2005.7,
+    y = 20,
+    yend = 20,
+    colour = classic_red,
+    linewidth = 0.3
+  ) +
+  annotate(
+    "text",
+    x = 2004.5,
+    y = 16.8,
+    label = "Manufacturing\nemployment, m",
+    hjust = 0,
+    fontface = "italic",
+    colour = classic_col("blue"),
+    size = pt(classic_size * 1.15),
+    family = classic_family,
+    lineheight = 0.95
+  ) +
+  annotate(
+    "text",
+    x = 1995.2,
+    y = 6.2,
+    label = "Trade deficit with\nChina in goods, $bn",
+    hjust = 0,
+    fontface = "italic",
+    colour = classic_col("dark red"),
+    size = pt(classic_size * 1.15),
+    family = classic_family,
+    lineheight = 0.95
+  ) +
+  scale_y_continuous(
+    limits = c(0, 20.3),
+    breaks = seq(0, 20, 5),
+    expand = c(0, 0),
+    position = "right",
+    sec.axis = sec_axis(
+      ~ (20 - .) * 20,
+      breaks = c(0, 50, 100, 200, 300, 400),
+      labels = c("0", "–", "100", "200", "300", "400")
+    )
+  ) +
+  scale_x_continuous(
+    breaks = year_breaks,
+    labels = c("1995", "2000", "05", "10", "16"),
+    expand = expansion(add = 1.5),
+    minor_breaks = years,
+    guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  labs(
+    title = "Free markets and free workers",
+    subtitle = "United States",
+    x = NULL,
+    y = NULL,
+    caption = "Sources: US Census Bureau; BLS"
+  ) +
+  classic_theme() +
+  theme(
+    axis.text.y.right = element_text(
+      colour = classic_col("blue"),
+      hjust = 0,
+      margin = margin(l = classic_size)
+    ),
+    axis.text.y.left = element_text(
+      colour = classic_col("dark red"),
+      hjust = 1,
+      margin = margin(r = classic_size)
+    ),
+    plot.subtitle = element_text(margin = margin(b = classic_size * 1.5))
+  )
+
+## 2017: the series are split into two panels, each on its own axis from zero, and the deficit's sign is restored.
+trade_data <- rbind(
+  data.frame(panel = trade_names[1], year = years, value = -china),
+  data.frame(panel = trade_names[2], year = years, value = jobs)
+)
+trade_data$panel <- factor(trade_data$panel, levels = trade_names)
+trade_2017 <- ggplot(trade_data, aes(year, value)) +
+  geom_col(
+    data = ~ subset(.x, panel == trade_names[1]),
+    fill = pal_bar(1),
+    width = 0.5
+  ) +
+  geom_line(
+    data = ~ subset(.x, panel == trade_names[2]),
+    colour = pal_bar(1),
+    linewidth = 0.8
+  ) +
+  geom_hline(
+    data = data.frame(panel = factor(trade_names[1], levels = trade_names)),
+    aes(yintercept = 0),
+    colour = swatch("econ red"),
+    linewidth = 0.3
+  ) +
+  facet_wrap(~panel, nrow = 1, scales = "free_y") +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(),
+    position = "right",
+    expand = c(0, 0),
+    limits = function(l) if (l[1] < -100) c(-420, 0) else c(0, 20.5),
+    breaks = function(l) if (l[1] < -100) seq(-400, 0, 100) else seq(0, 20, 5)
+  ) +
+  scale_x_continuous(
+    breaks = c(1995, 2000, 2005, 2010, 2016),
+    labels = c("1995", "", "2005", "", "16"),
+    expand = expansion(add = c(1, 4))
+  ) +
+  labs(
+    title = "Free markets and free workers",
+    subtitle = "United States",
+    x = NULL,
+    y = NULL,
+    caption = "Sources: US Census Bureau; BLS"
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(
+    strip.text = element_text(
+      hjust = 0,
+      face = "bold",
+      margin = margin(3.5, 0, 14, 0)
+    )
+  )
+
+chart_pair(
+  classic_chart(trade_classic),
+  economist_2017_chart(trade_2017, media = "print")
+)
+```
+
+**Fidelity.**
+
+* *Classic.* The reversed axis on the left and the ordinary one on the right are `sec_axis()` with a flipped transformation, each colored to match its line, and this reproduces the layout. By hand: the dash that stands for 50 on the deficit axis (an axis label), the thin red zero line that runs only as far as the data, and the italic direct labels, which the Original colors to match the lines. The classic `horizontal = TRUE` default gives the right gridlines here.
+
+* *2017.* Two panels, each with its own headed axis, is what `facet_wrap(scales = "free_y")` plus `economist_2017_chart()` is built for: the red marker over each heading is added automatically and the axis labels sit on the gridlines. The deficit panel's axis runs from 0 down to -400 and carries the red zero rule. Per-panel limits and breaks have to be written as functions of the panel's range, and the strip text needs its left alignment and margin set by hand. The x range is widened on the right by hand, as in chart 6, because the labels sit on the gridlines inside the panel and would otherwise overprint the last bars.
+
+## 5. Brazil's golden oldie blowout
+
+*What was wrong:* a change of colour usually means a change of category, but here the electric-blue dots and the pale-blue one only mean "this country is labelled", and the rest are dark blue.
+
+```{r mistakes-5, econ_height = 175}
+## Population aged 65 and over, % of total (x) and public pension spending, % of GDP (y).
+pensions <- data.frame(
+  country = c(
+    "Brazil",
+    "Poland",
+    "France",
+    "Italy",
+    "Greece",
+    "Japan",
+    "Turkey",
+    "Mexico",
+    "China",
+    "South Korea",
+    "United States",
+    "OECD average"
+  ),
+  x = c(7.8, 15.5, 19.1, 22.4, 21.4, 26.3, 7.5, 6.5, 10.0, 13.1, 14.8, 16.1),
+  y = c(12.0, 10.8, 14.2, 16.0, 14.7, 11.9, 7.6, 1.8, 3.2, 2.3, 6.7, 8.5),
+  ## Where the label sits: its horizontal justification and offsets from the dot, in data units.
+  hjust = c(1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0),
+  dx = c(-0.9, -0.9, -0.9, 0, 0.8, 0.9, -0.9, -0.9, -0.9, -1.5, -1.0, 0.9),
+  dy = c(0.4, 0, 0.2, 1.3, -0.9, 0.4, -1.3, -0.5, 0.7, -1.0, 2.4, 0)
+)
+others <- data.frame(
+  x = c(
+    11.2,
+    11.0,
+    13.1,
+    13.9,
+    14.0,
+    14.8,
+    14.8,
+    16.0,
+    13.6,
+    16.3,
+    17.6,
+    17.8,
+    18.3,
+    18.9,
+    18.1,
+    17.7,
+    18.7,
+    19.0,
+    18.9,
+    20.0,
+    20.6,
+    20.6,
+    21.2,
+    19.8,
+    19.0,
+    18.6
+  ),
+  y = c(
+    4.8,
+    3.2,
+    5.8,
+    7.5,
+    7.1,
+    5.2,
+    4.8,
+    4.3,
+    2.6,
+    7.5,
+    6.5,
+    6.2,
+    6.7,
+    7.2,
+    10.5,
+    11.5,
+    11.2,
+    13.8,
+    10.4,
+    10.7,
+    13.1,
+    11.6,
+    10.5,
+    9.9,
+    8.4,
+    8.0
+  )
+)
+pension_face <- function(country) {
+  ifelse(
+    country == "Brazil",
+    "bold",
+    ifelse(country == "OECD average", "italic", "plain")
+  )
+}
+pension_y <- "Government spending on\npension benefits, % of GDP"
+
+## Classic: labelled countries in blue, the OECD average in light blue and the rest in dark blue.
+pensions_classic <- ggplot(others, aes(x, y)) +
+  geom_point(colour = classic_col("dark blue"), size = 2.1) +
+  geom_point(
+    data = pensions[pensions$country != "OECD average", ],
+    colour = classic_col("blue"),
+    size = 2.1
+  ) +
+  geom_point(
+    data = pensions[pensions$country == "OECD average", ],
+    colour = classic_col("light blue"),
+    size = 2.1
+  ) +
+  geom_text(
+    data = pensions,
+    aes(
+      x + dx,
+      y + dy,
+      label = country,
+      hjust = hjust,
+      fontface = pension_face(country)
+    ),
+    size = pt(classic_size * 1.15),
+    family = classic_family
+  ) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(
+    limits = c(-0.8, 33),
+    breaks = seq(0, 30, 5),
+    expand = c(0, 0)
+  ) +
+  scale_y_continuous(
+    limits = c(0, 20.4),
+    breaks = seq(0, 20, 5),
+    expand = c(0, 0)
+  ) +
+  labs(
+    title = "Brazil's golden oldie blowout",
+    subtitle = "Latest available",
+    x = "Population aged 65 years and over, as % of total",
+    y = pension_y,
+    caption = "Sources: OECD; World Bank; Previdência Social"
+  ) +
+  classic_theme(horizontal = TRUE) +
+  theme(
+    axis.title = element_text(face = "italic"),
+    plot.subtitle = element_text(margin = margin(b = classic_size * 1.5))
+  )
+
+## 2017: the same, with the unlabelled countries faded, the labelled ones outlined and the axis title above the axis.
+pensions_2017 <- ggplot(others, aes(x, y)) +
+  geom_point(colour = swatch("blue2"), alpha = 0.4, size = 2.1) +
+  geom_point(
+    data = pensions,
+    shape = 21,
+    fill = swatch("blue2"),
+    colour = "black",
+    size = 2.6,
+    stroke = 0.4
+  ) +
+  geom_text(
+    data = pensions,
+    aes(
+      x + dx,
+      y + dy,
+      label = country,
+      hjust = hjust,
+      fontface = pension_face(country)
+    ),
+    size = pt(7.5)
+  ) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(
+    limits = c(0, 33),
+    breaks = seq(0, 30, 5),
+    expand = c(0, 0)
+  ) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(),
+    position = "right",
+    limits = c(0, 20.4),
+    breaks = seq(0, 20, 5),
+    expand = c(0, 0)
+  ) +
+  labs(
+    title = "Brazil's golden oldie blowout",
+    subtitle = "Latest available",
+    x = "Population aged 65 years and over, % of total",
+    y = "Government spending\non pension benefits\n% of GDP",
+    caption = "Sources: OECD; World Bank; Previdência Social"
+  ) +
+  theme_economist_2017("print", base_size = 7) +
+  theme(panel.grid.major.x = element_line())
+
+chart_pair(
+  classic_chart(pensions_classic),
+  economist_2017_chart(pensions_2017, media = "print")
+)
+```
+
+**Fidelity.**
+
+* *Classic.* The dots, the gridlines, the italic axis titles and the bold label for Brazil match. The y-axis title is rotated with the theme's default; the Original wraps it onto two lines, as here. Label placement is by hand (offsets per country): there is no repelling and no leader line, so the Original's thin line from "United States" to its dot is missing. The blues are in the classic palette.
+
+* *2017.* The faded context dots, the outlined highlighted dots, the three-line y-axis title above its axis and the labels in a larger size are as published. The 2017 theme draws horizontal gridlines only, so the vertical lines of the Better chart are added back with `theme(panel.grid.major.x = element_line())`. Label placement is again by hand.
+
+## 6. Surfeit of surpluses
+
+*What was wrong:* ten countries in ten colors, some too small to see, make the message impossible to read, and stacking makes no sense when only a selection of euro-area countries is plotted.
+
+The two panels are drawn here at about the width of the published image, 176pt each, with the type scaled down to match (the height, about 200pt, is not matched: the published panels are shorter), because at the guide's two-column width the type would look much larger beside the Originals.
+
+```{r mistakes-6, econ_size = "custom", fig.width = 4.89, fig.height = 2.75, out.width = "469px"}
+countries <- c(
+  "Austria",
+  "Belgium",
+  "France",
+  "Germany",
+  "Greece",
+  "Ireland",
+  "Italy",
+  "Netherlands",
+  "Portugal",
+  "Spain"
+)
+## Budget balance and current-account balance, EUR bn, one row per year, 2009-15.
+budget <- data.frame(
+  year = 2009:2015,
+  Austria = c(-15, -13, -8, -8, -5, -8, -3),
+  Belgium = c(-18, -13, -14, -15, -11, -8, -10),
+  France = c(-138, -135, -105, -100, -84, -86, -77),
+  Germany = c(-80, -109, -26, -3, -4, 9, 22),
+  Greece = c(-36, -25, -22, -16, -24, -7, -14),
+  Ireland = c(-23, -54, -21, -14, -9, -7, -4),
+  Italy = c(-84, -69, -58, -48, -47, -48, -43),
+  Netherlands = c(-33, -31, -26, -24, -16, -16, -13),
+  Portugal = c(-18, -20, -13, -9, -9, -13, -9),
+  Spain = c(-118, -102, -102, -109, -71, -60, -55)
+)
+current <- data.frame(
+  year = 2009:2015,
+  Austria = c(8, 8, 5, 5, 6, 6, 9),
+  Belgium = c(0, 8, 0, 0, 0, 0, 0),
+  France = c(-18, -16, -22, -25, -20, -23, -3),
+  Germany = c(141, 145, 165, 193, 191, 214, 255),
+  Greece = c(-31, -27, -23, -10, -3, -4, 0),
+  Ireland = c(-7, 0, -3, -5, 3, 3, 26),
+  Italy = c(-30, -56, -48, -4, 16, 30, 37),
+  Netherlands = c(33, 43, 56, 67, 62, 59, 57),
+  Portugal = c(-19, -18, -10, -3, 3, 0, 0),
+  Spain = c(-46, -43, -34, 0, 15, 10, 16)
+)
+panel_names <- c("Budget balances", "Current-account balances")
+
+## Stacks from zero outward in a fixed order, positives up and negatives down, as the originals do.
+stack_bars <- function(wide, order) {
+  out <- lapply(seq_len(nrow(wide)), function(i) {
+    up <- 0
+    down <- 0
+    do.call(
+      rbind,
+      lapply(order, function(k) {
+        v <- wide[[k]][i]
+        if (v >= 0) {
+          row <- data.frame(ymin = up, ymax = up + v)
+          up <<- up + v
+        } else {
+          row <- data.frame(ymin = down + v, ymax = down)
+          down <<- down + v
+        }
+        cbind(data.frame(year = wide$year[i], series = k), row)
+      })
+    )
+  })
+  do.call(rbind, out)
+}
+## Several countries combined into one series.
+combine <- function(wide, groups) {
+  data.frame(
+    year = wide$year,
+    sapply(groups, function(g) rowSums(wide[, g, drop = FALSE]))
+  )
+}
+budget_order <- c(
+  "Belgium",
+  "Germany",
+  "Ireland",
+  "Greece",
+  "Spain",
+  "France",
+  "Italy",
+  "Netherlands",
+  "Austria",
+  "Portugal"
+)
+current_order <- c(
+  "Austria",
+  "Belgium",
+  "Germany",
+  "France",
+  "Greece",
+  "Ireland",
+  "Italy",
+  "Netherlands",
+  "Portugal",
+  "Spain"
+)
+bars_classic <- rbind(
+  cbind(panel = panel_names[1], stack_bars(budget, budget_order)),
+  cbind(panel = panel_names[2], stack_bars(current, current_order))
+)
+bars_classic$panel <- factor(bars_classic$panel, levels = panel_names)
+bars_classic$series <- factor(bars_classic$series, levels = countries)
+
+## Classic: ten countries, the budget axis running down from zero in the originals' hundreds.
+classic_fills <- c(
+  Austria = classic_col("dark blue"),
+  Belgium = classic_col("blue"),
+  France = classic_col("pink"),
+  Germany = "#EEA11F",
+  Greece = classic_col("light blue"),
+  Ireland = classic_col("light green"),
+  Italy = classic_col("dark green"),
+  Netherlands = "#F4553F",
+  Portugal = "#B5B83C",
+  Spain = classic_col("gray")
+)
+axis_marks <- function(limits) {
+  if (limits[1] < -300) {
+    list(
+      breaks = c(100, 50, 0, -50, seq(-100, -600, -100)),
+      labels = c("100", "+", "0", "−", seq(100, 600, 100))
+    )
+  } else {
+    list(
+      breaks = c(500, 400, 300, 200, 100, 50, 0, -50, -100, -200),
+      labels = c(seq(500, 100, -100), "+", "0", "−", "100", "200")
+    )
+  }
+}
+classic_rules <- data.frame(
+  panel = factor(rep(panel_names, c(8, 8)), levels = panel_names),
+  y = c(seq(-600, 100, 100), seq(-200, 500, 100))
+)
+surplus_classic <- ggplot(bars_classic) +
+  geom_hline(
+    data = classic_rules,
+    aes(yintercept = y),
+    colour = "white",
+    linewidth = 0.5
+  ) +
+  geom_rect(aes(
+    xmin = year - 0.38,
+    xmax = year + 0.38,
+    ymin = ymin,
+    ymax = ymax,
+    fill = series
+  )) +
+  geom_hline(yintercept = 0, colour = classic_red, linewidth = 0.25) +
+  facet_wrap(~panel, nrow = 1, scales = "free_y") +
+  scale_fill_manual(values = classic_fills, name = NULL) +
+  scale_x_continuous(
+    breaks = 2009:2015,
+    labels = c("2009", sprintf("%02d", 10:15)),
+    expand = expansion(add = 0.5)
+  ) +
+  scale_y_continuous(
+    position = "right",
+    expand = c(0, 0),
+    limits = function(l) if (l[1] < -300) c(-600, 100) else c(-200, 500),
+    breaks = function(l) axis_marks(l)$breaks,
+    labels = function(b) axis_marks(c(min(b), max(b)))$labels
+  ) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+  labs(
+    title = "Surfeit of surpluses",
+    subtitle = "Selected euro-area countries, €bn",
+    x = NULL,
+    y = NULL,
+    caption = "Sources: Eurostat; National statistics"
+  ) +
+  classic_theme(classic_size * 0.8, lightpanel = TRUE) +
+  theme(
+    panel.grid.major = element_blank(),
+    strip.text = element_text(
+      hjust = 0,
+      face = "bold",
+      size = rel(1),
+      margin = margin(b = 8)
+    ),
+    legend.justification = "left",
+    legend.key.width = unit(8, "pt"),
+    legend.key.height = unit(4.5, "pt"),
+    legend.text = element_text(size = rel(1), margin = margin(l = 2)),
+    legend.key.spacing.x = unit(3, "pt"),
+    legend.key.spacing.y = unit(2, "pt"),
+    axis.text.x = element_text(
+      size = rel(0.85),
+      margin = margin(t = classic_size * 0.8)
+    ),
+    panel.spacing.x = unit(1.5, "lines")
+  )
+
+## 2017: five series, Germany, Greece, the Netherlands, Spain and the rest, with a tidier key.
+groups <- list(
+  Germany = "Germany",
+  Greece = "Greece",
+  Netherlands = "Netherlands",
+  Spain = "Spain",
+  Others = c("Austria", "Belgium", "France", "Ireland", "Italy", "Portugal")
+)
+bars_2017 <- rbind(
+  cbind(
+    panel = "Budget balance",
+    stack_bars(combine(budget, groups), names(groups))
+  ),
+  cbind(
+    panel = "Current-account balance",
+    stack_bars(combine(current, groups), names(groups))
+  )
+)
+bars_2017$panel <- factor(
+  bars_2017$panel,
+  levels = c("Budget balance", "Current-account balance")
+)
+bars_2017$series <- factor(bars_2017$series, levels = names(groups))
+fills_2017 <- c(
+  Germany = swatch("blue1"),
+  Greece = swatch("blue2"),
+  Netherlands = swatch("gold"),
+  Spain = swatch("teal"),
+  Others = print_pal$sequential$grey[2]
+)
+surplus_2017 <- ggplot(bars_2017) +
+  geom_rect(aes(
+    xmin = year - 0.38,
+    xmax = year + 0.38,
+    ymin = ymin,
+    ymax = ymax,
+    fill = series
+  )) +
+  geom_hline(yintercept = 0, colour = swatch("econ red"), linewidth = 0.3) +
+  facet_wrap(~panel, nrow = 1, scales = "free_y") +
+  scale_fill_manual(values = fills_2017, name = NULL) +
+  scale_x_continuous(
+    breaks = 2009:2015,
+    labels = c("2009", sprintf("%02d", 10:15)),
+    expand = expansion(add = c(0.5, 1.3))
+  ) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(),
+    position = "right",
+    expand = c(0, 0),
+    limits = function(l) if (l[1] < -300) c(-620, 110) else c(-220, 430),
+    breaks = function(l) {
+      if (l[1] < -300) seq(-600, 100, 100) else seq(-200, 400, 100)
+    }
+  ) +
+  guides(fill = guide_legend(nrow = 1)) +
+  labs(
+    title = "Surfeit of surpluses",
+    subtitle = "Euro-area, €bn",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Eurostat"
+  ) +
+  theme_economist_2017("print", base_size = 5.6) +
+  theme(
+    strip.text = element_text(
+      hjust = 0,
+      face = "bold",
+      margin = margin(3.5, 0, 10, 0)
+    )
+  )
+
+chart_pair(
+  classic_chart(surplus_classic),
+  economist_2017_chart(surplus_2017, media = "print")
+)
+```
+
+**Fidelity.**
+
+* *Classic.* Structure, colors and the `+`/`-` convention on the axis come out well, and the ten-country key is a two-row legend. Three of the ten colors (orange, olive and the red-orange) are hard-coded, since they are not in the classic palette, and Spain's blue-grey is approximated by the palette's neutral `gray`. The axis labels `100 + 0 - 100` and the white gridlines are drawn by hand because the theme draws a gridline at every break, including the `+` and `-` marks. The panel headings are bold strip text. Type sizes are reduced to 80% to match the published image. The Original draws its two panels paler than the ground, which `theme_economist(lightpanel = TRUE)` does: a deep ground, `#B8D0DC`, and pale panels, `#CDDEE7`, the pair measured in this chart, with the headings and the key on the ground. The chart corpus has about ten classic charts of 2015 to 2018 with panels of this kind, against most with no distinct panel at all. The red line at zero is added by hand, since the theme draws none.
+
+* *2017.* The five-series version, with the key in one row, the headed panels and the red markers, reads like the Better chart. The values on the left panel's axis are signed, as in the Better chart. The Better chart's gridlines extend a bit past the last bar; here the x range is widened by hand so the labels do not overprint it.
+
+## 7. Still a man's world
+
+*What was wrong:* four research fields and the share of inventors, for twelve countries, are crammed into a space too small for them, so the information is hard to take in. This is the one chart the Economist did not redraw: it suggests cutting something instead.
+
+```{r mistakes-7, econ_height = 245}
+women <- data.frame(
+  country = c(
+    "Portugal",
+    "Brazil",
+    "Australia",
+    "Canada",
+    "France",
+    "EU28",
+    "Denmark",
+    "Mexico",
+    "United States",
+    "Britain",
+    "Chile",
+    "Japan"
+  ),
+  health = c(57, 57, 50, 49, 48, 48, 47, 46, 46, 45, 43, 24),
+  physical = c(37, 33, 23, 21, 24, 25, 22, 25, 20, 21.2, 23, 11.5),
+  engineering = c(32, 29, 25, 22, 23.5, 23.5, 23, 24, 21, 20.5, 20, 10),
+  computing = c(27, 24, 24, 22.5, 22, 22, 18, 22, 22, 20.7, 16, 11.2),
+  inventors = c(26, 19, 12, 13, 17, 12, 13, 18, 14, 12, 19, 8)
+)
+women$country <- factor(women$country, levels = rev(women$country))
+women_long <- data.frame(
+  country = rep(women$country, 5),
+  measure = factor(
+    rep(
+      c(
+        "health sciences",
+        "physical sciences",
+        "engineering",
+        "computer science, maths",
+        "Inventors†"
+      ),
+      each = nrow(women)
+    ),
+    levels = c(
+      "health sciences",
+      "physical sciences",
+      "engineering",
+      "computer science, maths",
+      "Inventors†"
+    )
+  ),
+  pct = unlist(women[, c(
+    "health",
+    "physical",
+    "engineering",
+    "computing",
+    "inventors"
+  )])
+)
+women_range <- data.frame(
+  country = women$country,
+  lo = do.call(
+    pmin,
+    women[, c("health", "physical", "engineering", "computing")]
+  ),
+  hi = do.call(
+    pmax,
+    women[, c("health", "physical", "engineering", "computing")]
+  )
+)
+women_sub <- "Women among researchers with papers published*\n2011-15, % of total, in:"
+women_labels <- face_labels(italic = "EU28")
+women_foot <- "*Indexed in Scopus\n†Who filed patent\napplications"
+
+## Classic: short bars for the four fields, rings for inventors, and a grey line joining the fields' extremes.
+women_classic_cols <- c(
+  "health sciences" = classic_col("dark green"),
+  "physical sciences" = "#F4553F",
+  "engineering" = classic_col("blue"),
+  "computer science, maths" = classic_col("dark blue"),
+  "Inventors†" = classic_col("dark red")
+)
+## A legend key is drawn only for the measure it belongs to, since both layers share one color scale.
+key_for <- function(keep, draw) {
+  function(data, params, size) {
+    if (keep(data$colour)) draw(data, params, size) else zeroGrob()
+  }
+}
+key_bar <- function(data, params, size) {
+  rectGrob(
+    width = unit(4, "pt"),
+    height = unit(0.95, "npc"),
+    gp = gpar(fill = data$colour, col = NA)
+  )
+}
+key_ring <- function(data, params, size) {
+  pointsGrob(
+    0.5,
+    0.5,
+    pch = 21,
+    size = unit(5, "pt"),
+    gp = gpar(col = data$colour, fill = "white", lwd = 1.6)
+  )
+}
+women_classic <- ggplot(women_long, aes(pct, country)) +
+  geom_vline(xintercept = 0, linewidth = 0.3) +
+  geom_vline(
+    xintercept = 50,
+    colour = classic_col("dark red"),
+    linewidth = 0.2
+  ) +
+  geom_segment(
+    data = women_range,
+    aes(x = lo, xend = hi, y = country, yend = country),
+    colour = classic_col("blue-gray"),
+    alpha = 0.55,
+    linewidth = 1.2
+  ) +
+  geom_segment(
+    data = subset(women_long, measure != "Inventors†"),
+    aes(
+      x = pct,
+      xend = pct,
+      y = as.numeric(country) - 0.3,
+      yend = as.numeric(country) + 0.3,
+      colour = measure
+    ),
+    linewidth = 0.55,
+    lineend = "butt",
+    key_glyph = key_for(function(x) x != women_classic_cols[5], key_bar)
+  ) +
+  geom_point(
+    data = subset(women_long, measure == "Inventors†"),
+    aes(colour = measure),
+    shape = 21,
+    fill = "white",
+    size = 2,
+    stroke = 0.7,
+    key_glyph = key_for(function(x) x == women_classic_cols[5], key_ring)
+  ) +
+  scale_colour_manual(values = women_classic_cols, name = NULL) +
+  scale_x_continuous(
+    limits = c(0, 62),
+    breaks = seq(0, 60, 10),
+    expand = c(0, 0),
+    position = "top"
+  ) +
+  scale_y_discrete(labels = women_labels) +
+  guides(colour = guide_legend(nrow = 3, byrow = TRUE)) +
+  labs(
+    title = "Still a man's world",
+    subtitle = women_sub,
+    x = NULL,
+    y = NULL,
+    caption = "Sources: “Gender in the Global\nResearch Landscape” by Elsevier;\nThe Economist"
+  ) +
+  classic_theme(horizontal = FALSE) +
+  theme(
+    axis.ticks = element_blank(),
+    axis.line = element_blank(),
+    legend.justification = "left",
+    legend.text = element_text(size = rel(1), margin = margin(l = 2)),
+    legend.key.width = unit(7, "pt"),
+    legend.key.height = unit(9, "pt"),
+    legend.key.spacing.x = unit(3, "pt"),
+    legend.key.spacing.y = unit(3, "pt")
+  )
+
+## 2017: dots in the guide's dot-chart order, the fields joined by a grey rule, inventors as rings.
+women_2017_cols <- c(
+  "health sciences" = swatch("teal"),
+  "physical sciences" = swatch("coral"),
+  "engineering" = swatch("blue2"),
+  "computer science, maths" = swatch("navy"),
+  "Inventors†" = "black"
+)
+women_2017 <- ggplot(women_long, aes(pct, country)) +
+  geom_vline(xintercept = 50, colour = swatch("econ red"), linewidth = 0.3) +
+  geom_segment(
+    data = women_range,
+    aes(x = lo, xend = hi, y = country, yend = country),
+    colour = print_pal$grid,
+    linewidth = 0.8
+  ) +
+  geom_point(
+    data = subset(women_long, measure != "Inventors†"),
+    aes(colour = measure),
+    size = 2.2
+  ) +
+  geom_point(
+    data = subset(women_long, measure == "Inventors†"),
+    aes(colour = measure),
+    shape = 21,
+    fill = print_pal$ground,
+    size = 2.4,
+    stroke = 0.8
+  ) +
+  scale_colour_manual(values = women_2017_cols, name = NULL) +
+  scale_x_continuous(
+    limits = c(0, 62),
+    breaks = seq(0, 60, 10),
+    expand = c(0, 0),
+    position = "top"
+  ) +
+  scale_y_discrete(labels = women_labels) +
+  guides(
+    colour = guide_legend(
+      nrow = 3,
+      byrow = TRUE,
+      override.aes = list(shape = c(16, 16, 16, 16, 21))
+    )
+  ) +
+  labs(
+    title = "Still a man's world",
+    subtitle = women_sub,
+    x = NULL,
+    y = NULL,
+    caption = "Sources: “Gender in the Global\nResearch Landscape” by Elsevier;\nThe Economist"
+  ) +
+  theme_economist_2017("print", horizontal = FALSE, base_size = 7)
+
+chart_pair(
+  classic_footnote(classic_chart(women_classic), women_foot),
+  economist_2017_chart(women_2017, media = "print", footnote = women_foot),
+  headings = c("Classic", "2017 (no Better published)")
+)
+```
+
+**Fidelity.**
+
+* *Classic.* The grey range, the short bars and the rings are drawn with segments and points, and a custom legend glyph keeps each key to its own mark. Nothing in the classic scales draws these marks. The legend has to be rebuilt as the Original has it, with `key_glyph` functions. The footnote is hand-placed, and the Original's italic *The Economist* in the source line is plain here, because `labs(caption = )` takes one style.
+
+* *2017.* The Economist published no Better version of this chart, so there is nothing to compare with. This is our own attempt in the guide's dot-chart idiom: dots in place of bars, a grey rule for the range, and rings for inventors. It shows the original's problem as clearly as the Original does, which is that five markers on one line overlap.
+
+## Summary of gaps
+
+What each implementation could not reproduce from the seven pairs, and how this article worked around it.
+
+```{r gaps-table, echo = FALSE}
+gaps <- data.frame(
+  Style = c(
+    rep("Classic", 11),
+    rep("2017", 6)
+  ),
+  Gap = c(
+    "Subtitle is set at the base size, the same as the axis text; the Originals' is about 1.15 times larger",
+    "Title and source line align with the panel, not the plot; the source line is right-aligned, with only 5.5pt above it",
+    "Line weights do not scale with `base_size`: gridlines are about 1.9pt at `base_size = 6.5`, where the Originals' are about 1pt",
+    "Legend text is 1.25 times the axis text; in the Originals the two are equal",
+    "Legend is placed against the panel, not the plot's left edge",
+    "A right-hand axis keeps ggplot2's 2.2pt label margin where the left axis gets 10pt, so its labels sit close to the panel",
+    "No red tab (`classic_chart()` in the helper file draws it)",
+    "No broken-scale mark, second source slot, footnote, or axis titles set above the axis",
+    "No gridline control per break (the `+` and `-` marks on the axis of chart 6 get a gridline too)",
+    "Palette lacks the published coral, red-orange, orange, olive and mid-blue",
+    "Only one text style for the subtitle and source, so a smaller second line, or an italic source, is impossible",
+    "Highlight band behind a category label",
+    "Axis-title superscripts: `economist_2017_footnote()` returns plain symbols",
+    "Footnote and source overprint when long, so the footnote is wrapped by hand",
+    "Right-hand labels sit on the data when it runs to the panel edge (web charts have no margin); the panel is widened by hand",
+    "Panel limits and breaks must be written as functions of the panel range",
+    "No leader lines or label placement for scatter charts"
+  ),
+  Where = c(
+    "all",
+    "all",
+    "all",
+    "6, 7",
+    "6, 7",
+    "2, 3, 4, 6",
+    "all",
+    "1, 2, 3, 7",
+    "6",
+    "1, 3, 6, 7",
+    "1, 2, 3, 7",
+    "1",
+    "2",
+    "2, 7",
+    "3, 4, 6",
+    "4, 6",
+    "5"
+  )
+)
+names(gaps) <- c("Style", "What is missing or wrong", "Charts")
+knitr::kable(gaps)
+```
+
+### Type size
+
+`classic_size`, the `base_size` used for the classic charts, is 6.5. It was judged by setting the width of text against the width of the whole chart in each Original, using a condensed substitute font of about the right width: the titles come out within about 4% of the Originals' (a title of 9.75pt is right for a 160pt chart), axis labels and the source line within 7% either way, and the subtitle about 14% too small, because the theme gives a subtitle the same size as body text where the Originals use about 1.15 times that. A larger `base_size` would fix the subtitle at the cost of a title that is too large, so 6.5 is a fair compromise. A re-measurement at review, against the Originals in charts 1 to 5, agrees: title widths come out 2 to 4% too wide, the source line about 5% too wide, the axis title about right, and the subtitle 14 to 15% too narrow. The font is the largest uncertainty: all of these are comparisons of text widths in a font that is not the Economist's.
