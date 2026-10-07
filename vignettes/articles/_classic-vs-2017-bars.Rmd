@@ -43,19 +43,20 @@ classic <- ggplot(doctors, aes(country, visits, fill = highlight)) +
   geom_col(width = 0.6, show.legend = FALSE) +
   coord_flip() +
   scale_y_continuous(position = "right", expand = expansion(mult = c(0, 0.02))) +
-  scale_fill_economist() +
+  ## The highlighted bar is the palette's light blue, the others its dark blue.
+  scale_fill_manual(values = c(`FALSE` = classic_fg[["dark blue"]], `TRUE` = classic_fg[["light blue"]])) +
   labs(
     title = "Salud",
     subtitle = "Doctors’ consultations per person\nSelected countries, 2009",
     caption = "Source: OECD",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic chart has no counterpart for the highlight: Spain is drawn in the palette's second colour, which is *darker* than the other bars (the guide's highlight is a lighter cyan), and the bold "Spain" label cannot be done by the theme. The classic value axis sits on top with a thin black rule and ticks pointing down into the panel, with thin white vertical gridlines behind the bars; the 2017 chart has a rule of its own and thin grey gridlines, also behind the bars. The classic source line is flush left with the chart, at 0.95 of the axis-label size (6.2pt), where the 2017 one is 6.5pt.
+The classic chart draws the highlighted bar, Spain, in the palette's light blue and the other bars in its dark blue (set with `scale_fill_manual()`, since `scale_fill_economist()` has no highlight order); the guide's highlight is a lighter cyan on a mid-blue. The bold "Spain" label cannot be done by the theme. The classic value axis sits on top with a thin black rule and no ticks (`classic_no_ticks()` takes them off, as the paper's bar charts had none), with thin white vertical gridlines behind the bars; the 2017 chart has a rule of its own and thin grey gridlines, also behind the bars. The classic source line is flush left with the chart, at 0.95 of the axis-label size (6.2pt), where the 2017 one is 6.5pt.
 
 ### One trace, columns
 
@@ -100,12 +101,12 @@ classic <- ggplot(ethiopia, aes(year, growth)) +
     caption = "Source: IMF\n*Estimate",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size) 
+  theme_economist(base_size = classic_size) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic columns are the palette's single dark blue, against the 2017 mid-blue. The classic chart has thin white horizontal gridlines behind the columns and a thin black base rule. The paper's own classic column charts had no black baseline and no ticks under the columns (checked in the chart corpus, 2012 to 2018); the rule and the ticks, which point up into the foot of the columns, are `theme_economist()`'s line-chart axis, so this is a gap in the theme, not a feature of the style, and the theme has no option to leave them off for columns. It draws no minor ticks, so only the labelled years are ticked, where the 2017 chart ticks every year. Both value axes sit on the right.
+The classic columns are the palette's single dark blue, against the 2017 mid-blue. The classic chart has thin white horizontal gridlines behind the columns and a thin black base rule. The paper's own classic column charts had no black baseline and no ticks under the columns (checked in the chart corpus, 2012 to 2018); the rule is `theme_economist()`'s line-chart axis, so it is a gap in the theme, not a feature of the style, and the theme has no option to leave it off for columns. The ticks, which would point up into the foot of the columns, are taken off by `classic_no_ticks()`, which every classic bar and column chart in this article adds. It draws no minor ticks, so only the labelled years are ticked, where the 2017 chart ticks every year. Both value axes sit on the right.
 
 ### Two traces
 
@@ -165,7 +166,7 @@ classic <- ggplot(elections, aes(country, pct, fill = income)) +
     caption = "Source: Pew Global Attitudes Survey",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -235,7 +236,7 @@ classic <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
     caption = "Source: IMF",
     x = NULL, y = NULL, fill = "Forecasts made in:"
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   theme(strip.placement = "outside", strip.text.y.left = element_text(angle = 0, vjust = 1))
 
 chart_pair(classic_chart(classic), modern)
@@ -289,13 +290,13 @@ classic <- ggplot(returns, aes(horizon, pct, fill = asset)) +
     caption = "Sources: MSCI; JP Morgan\n*To 2014",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) +
+  theme_economist(base_size = classic_size) + classic_no_ticks() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic four-colour palette ends in a grey, so "Forestry" is grey, which in the 2017 style would signal "other". The two-row key, which the four entries need at this width, leaves the classic panel very short, so its value labels (20, 15, 10, 5) nearly touch. The black ticks under the columns, which the paper's column charts did not have, show at the foot of the bars.
+The classic four-colour palette ends in a grey, so "Forestry" is grey, which in the 2017 style would signal "other". The two-row key, which the four entries need at this width, leaves the classic panel very short, so its value labels (20, 15, 10, 5) nearly touch. The black rule along the foot of the columns, which the paper's column charts did not have, is the theme's.
 
 ### One trace with a plus/minus axis
 
@@ -342,7 +343,7 @@ classic <- ggplot(capex, aes(sector, change)) +
     caption = "Source: Goldman Sachs\n*In dollar terms",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -397,7 +398,7 @@ classic <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
     caption = "Source: Central Bank of Russia\n*To June 30th",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size) 
+  theme_economist(base_size = classic_size) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -507,7 +508,7 @@ classic <- ggplot(trade, aes(year, pct, fill = flow)) +
     caption = "Sources: Census Bureau; IMF\n*Jan-Nov annualised",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) 
+  theme_economist(base_size = classic_size) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -565,7 +566,7 @@ classic <- ggplot(asia, aes(country, growth, fill = period)) +
     caption = "Source: OECD\n*Annual average",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -631,7 +632,7 @@ classic <- ggplot(segregation, aes(group, change, fill = area)) +
     caption = "Source: University of Manchester\n* % that needs to move to create an even distribution",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
 
 chart_pair(classic_chart(classic), modern)
@@ -711,7 +712,7 @@ classic <- ggplot(carriers, aes(band, width, fill = carrier)) +
     caption = "Source: comScore",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
 
 chart_pair(classic_chart(classic), modern)
@@ -843,7 +844,7 @@ classic <- ggplot(seats, aes(1, n, fill = party)) +
     caption = "Sources: Ministry of the Interior; El País",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
@@ -991,7 +992,7 @@ classic <- ggplot(loot, aes(value, panel, fill = stream)) +
     caption = "Sources: IHS\n*Estimates",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   theme(
     axis.text.y = element_blank(), axis.ticks.y = element_blank(), legend.position = "none",
     strip.text = element_text(face = "bold")
@@ -1068,7 +1069,7 @@ classic <- ggplot(adspend, aes(year, bn, fill = format)) +
     caption = "Source: ZenithOptimedia",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) +
+  theme_economist(base_size = classic_size) + classic_no_ticks() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
@@ -1135,7 +1136,7 @@ classic <- ggplot(deficit, aes(year, pct, fill = region)) +
     caption = "Sources: US Census Bureau;\nUS Bureau of Economic Analysis\n*January-September",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) 
+  theme_economist(base_size = classic_size) + classic_no_ticks() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -1207,7 +1208,7 @@ classic <- ggplot(migrants, aes(destination, pct, fill = origin)) +
     caption = "Source: European Commission\n*Including EFTA",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
@@ -1316,7 +1317,7 @@ classic <- ggplot(bars, aes(row, pct, fill = answer)) +
     caption = "Sources: YouGov; CCES; The Economist\n*5,773 registered voters surveyed\nJune 4th to July 9th 2016",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   ## Two-line row names overprint at the theme's size: set them smaller.
   theme(axis.text.y = element_text(size = rel(0.85), lineheight = 0.9)) +
   guides(fill = guide_legend(ncol = 2, byrow = TRUE))
@@ -1330,8 +1331,8 @@ The number blocks are plain sized points, and there is no pointer label ("% of t
 
 | Chart | Done | Notes |
 |---|---|---|
-| One trace with highlight | partial | highlight in palette colour 2 (darker, not lighter); no bold label |
-| One trace, columns | yes | no tick for every year; black base rule and ticks (a theme gap: the paper's columns had none) |
+| One trace with highlight | partial | highlight in the palette's light blue on dark blue bars; no bold label |
+| One trace, columns | yes | no tick for every year; black base rule (a theme gap: the paper's columns had none); ticks taken off |
 | Two traces | yes | series order of colours reversed in darkness |
 | Two traces with sub-categories | partial | facet strips instead of label column; no group rules |
 | Two traces with sub-categories, columns | yes | fourth palette colour is grey |

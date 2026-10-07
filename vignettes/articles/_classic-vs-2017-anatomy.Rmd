@@ -288,12 +288,12 @@ classic_espresso <- ggplot(espresso_data, aes(year, change)) +
     title = "US retail sales", subtitle = "Excluding motor vehicles and parts,\n% change on a year earlier",
     x = NULL, y = NULL, caption = "Source: US Department of Commerce"
   ) +
-  theme_economist(base_size = 0.8 * classic_size)
+  theme_economist(base_size = 0.8 * classic_size) + classic_no_ticks()
 
 chart_pair(classic_chart(classic_espresso), modern)
 ```
 
-Again the classic chart is the standard classic theme at 80% of the base size. The 2017 chart carries a pale ground and a thin red zero line over thin grey rules; the classic chart has thin white rules on the blue-gray ground and a black axis line at the bottom with ticks pointing up into the foot of the columns, which the paper's column charts did not have (a gap in the theme); the thin red zero line is drawn by the chart, over the white gridline at 0. The 2017 chart also leaves the 40pt blank under the bars that the guide specifies; the classic chart has none.
+Again the classic chart is the standard classic theme at 80% of the base size. The 2017 chart carries a pale ground and a thin red zero line over thin grey rules; the classic chart has thin white rules on the blue-gray ground and a black axis line at the bottom without ticks (`classic_no_ticks()` takes them off; the line itself, which the paper's column charts did not have, is a gap in the theme); the thin red zero line is drawn by the chart, over the white gridline at 0. The 2017 chart also leaves the 40pt blank under the bars that the guide specifies; the classic chart has none.
 
 ### Panel chart
 

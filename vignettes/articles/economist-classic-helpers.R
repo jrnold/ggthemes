@@ -50,6 +50,12 @@ classic_chart <- function(plot, tab = c(5, 15), colour = classic_tab_colour()) {
 # guide's axis labels (see `?theme_economist_2017`).
 classic_size <- 6.5
 
+# Bar and column charts have no ticks. The charts of the chart corpus (2012 to
+# 2018) have neither a baseline nor ticks under their bars, where the line
+# charts' ticks point into the panel; `theme_economist()` draws ticks on every
+# chart, so the classic bar and column charts take them off.
+classic_no_ticks <- function() ggplot2::theme(axis.ticks = ggplot2::element_blank())
+
 # Draw a classic chart and its 2017 counterpart side by side on one device,
 # each in its own half under a heading. Both arguments are grobs: the result of
 # `classic_chart()` and of `economist_2017_chart()`.
