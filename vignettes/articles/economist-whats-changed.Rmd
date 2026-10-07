@@ -1,0 +1,392 @@
+---
+title: "What's changed: web charts, on p.3 of the 2017 styleguide"
+---
+
+```{r, include = FALSE}
+## ragg writes plain sRGB PNGs; the macOS default device embeds a profile that darkens colors.
+knitr::opts_chunk$set(comment = "#>", dpi = 192, dev = "ragg_png")
+## Fold each chunk's code behind a "Code" toggle; output stays visible.
+local({
+  source_hook <- knitr::knit_hooks$get("source")
+  knitr::knit_hooks$set(source = function(x, options) {
+    paste0("\n\n<details><summary>Code</summary>\n\n", source_hook(x, options), "\n\n</details>\n\n")
+  })
+})
+```
+
+Page 3 of [The Economist visual styleguide](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf) (Version 1.2, 4 May 2017) is headed "What's changed: Web charts". It sets one chart, "The real deal", in the old design beside the same chart in the new, and labels eight changes. This article redraws both charts with ggthemes: the old one in the classic style, with `theme_economist()`, and the new one in the 2017 style, with `theme_economist_2017()`, `guide_axis_economist_2017()` and `economist_2017_chart()`. The old chart is the harder of the two, because ggthemes has no web variant of the classic style: most of it is drawn by hand, and the notes say which parts.
+
+Both charts are the guide's two-column size, 332pt wide. The old chart's red tab measures 5pt by 15pt on the page and the new chart's 15pt by 5pt, which fixes the scale: one pixel of the old chart in the guide's PDF, rendered at 300 dpi, is 0.16pt.
+
+```{r setup, message = FALSE}
+library(ggthemes)
+library(ggplot2)
+library(grid)
+source("economist-classic-helpers.R")
+
+## ggplot2 draws `linewidth` mm as `lwd = linewidth * .pt`, and grid draws a `lwd` of 1 at 0.75pt.
+lw <- function(pt) pt / (.pt * 0.75)
+```
+
+## The data
+
+The guide prints no data, so both series are read off the page. The real interest rate is the dark line in the old chart, traced from the pixels of the page and sampled monthly from January 1985 (382 values, to October 2016); the values are in percent, calibrated on the chart's gridlines. The eight drivers are the segments of the stacked bar, measured the same way, in percentage points; they sum to 4.6. These are approximations: the traced line is smoother than the original at its sharpest spikes, because it is the median of three pixel columns for each month.
+
+```{r whats-changed-data}
+series <- c(
+  4.16, 4.14, 4.13, 4.13, 4.18, 4.26, 4.28, 4.31, 4.38, 4.38, 4.38, 4.43, 4.47, 4.51, 4.56, 4.61, 4.51, 4.39,
+  4.36, 4.32, 4.24, 4.25, 4.29, 4.38, 4.43, 4.36, 4.27, 4.22, 4.17, 4.15, 4.19, 4.25, 4.39, 4.5, 4.54, 4.48,
+  4.42, 4.33, 4.24, 4.14, 4.08, 4.01, 3.99, 4.04, 4.1, 4.14, 4.17, 4.24, 4.29, 4.26, 4.22, 4.19, 4.17, 4.14,
+  4.14, 4.16, 4.15, 4.08, 4.0, 3.88, 3.82, 3.79, 3.87, 3.92, 3.98, 4.08, 4.08, 4.08, 4.18, 4.2, 4.24, 4.35,
+  4.37, 4.34, 4.3, 4.26, 4.28, 4.3, 4.34, 4.43, 4.51, 4.57, 4.63, 4.73, 4.82, 4.88, 4.9, 4.93, 4.93, 4.91, 4.88,
+  4.8, 4.71, 4.67, 4.64, 4.56, 4.38, 4.18, 4.04, 3.97, 3.87, 3.67, 3.57, 3.6, 3.66, 3.57, 3.48, 3.33, 3.27,
+  3.19, 3.17, 3.28, 3.45, 3.67, 3.75, 3.87, 3.99, 4.09, 4.13, 4.19, 4.21, 4.25, 4.29, 4.33, 4.31, 4.28, 4.25,
+  4.21, 4.17, 4.11, 4.08, 4.03, 4.0, 3.98, 4.01, 4.04, 4.08, 4.15, 4.19, 4.18, 4.12, 4.1, 4.08, 4.02, 3.98,
+  3.99, 4.0, 4.02, 4.05, 4.08, 4.08, 4.04, 3.97, 3.93, 3.89, 3.79, 3.7, 3.63, 3.59, 3.53, 3.49, 3.44, 3.4, 3.33,
+  3.25, 3.22, 3.19, 3.14, 3.13, 3.15, 3.14, 3.12, 3.1, 3.12, 3.14, 3.2, 3.26, 3.3, 3.33, 3.38, 3.4, 3.4, 3.41,
+  3.42, 3.42, 3.43, 3.43, 3.44, 3.45, 3.46, 3.44, 3.39, 3.36, 3.32, 3.29, 3.24, 3.26, 3.29, 3.3, 3.33, 3.36,
+  3.38, 3.38, 3.37, 3.36, 3.34, 3.33, 3.3, 3.26, 3.21, 3.14, 3.02, 2.89, 2.83, 2.78, 2.69, 2.56, 2.47, 2.42,
+  2.37, 2.3, 2.21, 2.16, 2.11, 2.1, 2.11, 2.13, 2.15, 2.17, 2.1, 2.06, 2.03, 1.98, 1.91, 1.88, 1.84, 1.79, 1.78,
+  1.75, 1.69, 1.68, 1.67, 1.63, 1.61, 1.58, 1.54, 1.51, 1.49, 1.47, 1.45, 1.44, 1.43, 1.46, 1.52, 1.56, 1.61,
+  1.69, 1.78, 1.81, 1.86, 1.86, 1.85, 1.83, 1.83, 1.84, 1.87, 1.89, 1.95, 2.01, 2.07, 2.08, 2.12, 2.11, 2.04,
+  1.97, 1.85, 1.77, 1.68, 1.61, 1.53, 1.5, 1.54, 1.6, 1.72, 1.84, 1.94, 2.03, 2.18, 2.28, 2.33, 2.28, 2.23,
+  2.15, 2.03, 1.95, 1.84, 1.75, 1.65, 1.57, 1.45, 1.39, 1.33, 1.34, 1.36, 1.4, 1.46, 1.48, 1.44, 1.4, 1.34,
+  1.29, 1.21, 1.09, 0.93, 0.83, 0.75, 0.7, 0.84, 0.84, 0.92, 1.07, 1.08, 0.98, 0.85, 0.77, 0.64, 0.54, 0.4,
+  0.33, 0.27, 0.21, 0.13, 0.06, 0.03, -0.01, -0.08, -0.14, -0.17, -0.19, -0.17, -0.0, 0.15, 0.16, 0.26, 0.41,
+  0.53, 0.5, 0.43, 0.38, 0.29, 0.22, 0.11, 0.04, -0.02, -0.06, -0.1, -0.13, -0.19, -0.23, -0.28, -0.31, -0.35,
+  -0.38, -0.4, -0.36, -0.32, -0.3, -0.26, -0.22, -0.18, -0.17, -0.18, -0.22, -0.26, -0.29, -0.35, -0.42, -0.5,
+  -0.53, -0.56, -0.59, -0.63
+)
+rate <- data.frame(t = 1985 + (seq_along(series) - 1) / 12, v = series)
+```
+
+## The old design, in the classic style
+
+```{r whats-changed-old, econ_size = "two_column", econ_height = 187, econ_pair = FALSE}
+old_chart <- local({
+  k <- 0.16
+  px <- function(x) x * k
+  family <- economist_2017_font()
+
+  ground <- "#E1E2E3"
+  band_col <- "#D8D9DA"
+  grid_col <- "#BCBEC0"
+  red <- "#ED1C24"
+  teal <- "#00516D"
+
+
+  text_width <- function(label, size, face = "plain") {
+    ragg::agg_png(tempfile(fileext = ".png"), width = 4, height = 2, units = "in", res = 100)
+    on.exit(dev.off())
+    convertWidth(grobWidth(textGrob(label, gp = gpar(fontfamily = family, fontsize = size, fontface = face))), "pt", valueOnly = TRUE)
+  }
+
+  # Reference geometry, in px from the ground's top left corner (the ground is 2076 x 1171 px).
+  chart_w <- px(2076)
+  chart_h <- px(1171)
+  left_box <- list(x = px(73), y = px(188), w = px(1145), h = px(847))
+  right_box <- list(x = px(1272), y = px(188), w = px(728), h = px(847))
+
+  base <- 6.5
+  panel_theme <- function() {
+    theme_economist(base_size = base, base_family = family) +
+      theme(
+        plot.background = element_rect(fill = "white", colour = NA),
+        panel.background = element_rect(fill = "white", colour = NA),
+        panel.grid = element_blank(),
+        plot.margin = margin(0, 0, 0, 0),
+        axis.title = element_blank(),
+        legend.position = "none"
+      )
+  }
+
+  # ---- left panel: the real interest rate
+  years <- 1985:2016
+  x_labels <- ifelse(years %in% c(1985, 1990, 1995, 2000, 2005, 2010, 2016), ifelse(years == 1985 | years == 2000, as.character(years), sprintf("%02d", years %% 100)), "")
+  x_hjust <- 0
+  y_top <- 5 + (337 - 203) / 108.7
+  left <- ggplot(rate, aes(t, v)) +
+    annotate("rect", xmin = 2014, xmax = 2017.06, ymin = -1, ymax = 5, fill = band_col) +
+    annotate("segment", x = 1984.33, xend = 2018.1, y = 1:5, yend = 1:5, colour = grid_col, linewidth = lw(0.8)) +
+    annotate("segment", x = 1984.33, xend = 2018.1, y = 0, yend = 0, colour = red, linewidth = lw(0.64)) +
+    geom_line(colour = teal, linewidth = lw(2), lineend = "butt") +
+    annotate("text", x = 2015.5, y = 4.6, label = "*", family = family, size = 7 / .pt) +
+    annotate("text", x = 1984.33 + 0.06, y = 5 + (337 - 218) / 108.7, label = "Average ten-year inflation-indexed bond yield, %", hjust = 0, family = family, fontface = "bold", size = 6.85 / .pt) +
+    annotate("text", x = 1984.33 + 0.06, y = 5 + (337 - 270) / 108.7, label = "G7 countries, excluding Italy", hjust = 0, family = family, size = 6 / .pt) +
+    scale_x_continuous(breaks = years, labels = NULL) +
+    annotate("text", x = years[x_labels != ""] - ifelse(nchar(x_labels[x_labels != ""]) == 4, 0.28 * 59 / 33 * 0.25, 0), y = -1 - 0.32, label = x_labels[x_labels != ""], hjust = 0, vjust = 1, family = family, size = 6.5 / .pt) +
+    coord_cartesian(xlim = c(1984.33, 2018.1), ylim = c(-1, y_top), expand = FALSE, clip = "off") +
+    scale_y_continuous(
+      position = "right",
+      breaks = c(5, 4, 3, 2, 1, 0.5, 0, -0.5, -1),
+      labels = c("5", "4", "3", "2", "1", "+", "0", "−", "1"),
+      expand = c(0, 0)
+    ) +
+    panel_theme() +
+    theme(
+      axis.line.x = element_line(colour = "black", linewidth = lw(0.48)),
+      axis.ticks.x = element_line(colour = "black", linewidth = lw(0.48)),
+      axis.ticks.length.x = unit(1.9, "pt"),
+      plot.margin = margin(b = 7.9),
+      axis.text.y.right = element_text(hjust = 0, margin = margin(l = 1.5))
+    )
+
+  # ---- right panel: the stacked bar
+  drivers <- data.frame(
+    name = c("Growth", "Demographics", "Spreads", "Relative price of capital", "Inequality", "Global savings glut", "Public investment", "Unexplained"),
+    size = c(0.99, 0.91, 0.67, 0.59, 0.45, 0.24, 0.14, 0.61),
+    fill = c("#5E91A8", "#00516D", "#00A4DC", "#A7A9AC", "#7B2814", "#ECA221", "#008A84", "#E98F74"),
+    label_px = c(363, 503, 630, 719, 794, 848, 903, 952)
+  )
+  drivers$ymax <- -cumsum(c(0, drivers$size[-8]))
+  drivers$ymin <- -cumsum(drivers$size)
+  unit_px <- 151.2
+  drivers$label_y <- -(drivers$label_px - 281.5) / unit_px
+  bar_x <- c(px(504), px(674))
+  gap <- 1.1
+  end_x <- vapply(drivers$name, text_width, numeric(1), size = 6.7) + 0.3 + gap
+  leaders <- data.frame(x = end_x, xend = bar_x[1], y = drivers$label_y, yend = drivers$label_y)
+  pub <- which(drivers$name == "Public investment")
+  elbow_x <- px(447)
+  seg_mid <- (drivers$ymax[pub] + drivers$ymin[pub]) / 2
+  leaders <- rbind(
+    leaders[-pub, ],
+    data.frame(x = end_x[pub], xend = elbow_x, y = drivers$label_y[pub], yend = drivers$label_y[pub]),
+    data.frame(x = elbow_x, xend = elbow_x, y = drivers$label_y[pub], yend = seg_mid),
+    data.frame(x = elbow_x, xend = bar_x[1], y = seg_mid, yend = seg_mid)
+  )
+  dots <- data.frame(y = c(drivers$label_y[-pub], seg_mid))
+  right <- ggplot() +
+    geom_rect(data = drivers, aes(xmin = bar_x[1], xmax = bar_x[2], ymin = ymin, ymax = ymax), fill = drivers$fill) +
+    annotate("segment", x = bar_x[2], xend = px(695), y = -1:-4, yend = -1:-4, colour = grid_col, linewidth = lw(0.8)) +
+    annotate("segment", x = bar_x[1], xend = px(695), y = -5, yend = -5, colour = grid_col, linewidth = lw(0.8)) +
+    annotate("segment", x = bar_x[1], xend = px(695), y = 0, yend = 0, colour = red, linewidth = lw(0.64)) +
+    geom_segment(data = leaders, aes(x = x, xend = xend, y = y, yend = yend), colour = "black", linewidth = lw(0.5)) +
+    geom_point(data = dots, aes(x = bar_x[1], y = y), size = 0.35, colour = "black") +
+    geom_text(data = drivers, aes(x = 0.3, y = label_y, label = name), hjust = 0, family = family, size = 6.7 / .pt) +
+    annotate("text", x = 0.3, y = (281.5 - 221) / unit_px, label = "Drivers of the change in interest rates", hjust = 0, family = family, fontface = "bold", size = 6.8 / .pt) +
+    annotate("text", x = 0.3, y = (281.5 - 278) / unit_px, label = "1980-2015, percentage points", hjust = 0, family = family, size = 6 / .pt) +
+    scale_x_continuous(limits = c(0, px(698)), expand = c(0, 0)) +
+    scale_y_continuous(
+      position = "right",
+      breaks = c(0, -0.5, -1, -2, -3, -4, -5),
+      labels = c("0", "–", "1", "2", "3", "4", "5"),
+      limits = c(-(1050 - 281.5) / unit_px, (281.5 - 203) / unit_px),
+      expand = c(0, 0)
+    ) +
+    panel_theme() +
+    theme(
+      axis.line.x = element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank(),
+      axis.text.y.right = element_text(hjust = 0, margin = margin(l = 1.5), size = 6.8)
+    )
+
+  # ---- the chart: ground, tab, title block, the two white boxes, the source lines
+  old_web_chart <- function() {
+    place <- function(plot, box) {
+      vp <- viewport(
+        x = unit(box$x, "pt"), y = unit(chart_h, "pt") - unit(box$y, "pt"),
+        width = unit(box$w, "pt"), height = unit(box$h, "pt"), just = c("left", "top")
+      )
+      grobTree(ggplotGrob(plot), vp = vp)
+    }
+    txt <- function(label, x, y, size, face = "plain", hjust = 0) {
+      textGrob(
+        label, x = unit(x, "pt"), y = unit(chart_h, "pt") - unit(y, "pt"), hjust = hjust, vjust = 1,
+        gp = gpar(fontfamily = family, fontsize = size, fontface = face, col = "#231F20")
+      )
+    }
+    gTree(children = gList(
+      rectGrob(gp = gpar(fill = ground, col = NA)),
+      rectGrob(x = 0, y = unit(1, "npc"), width = unit(5, "pt"), height = unit(15, "pt"), just = c("left", "top"), gp = gpar(fill = red, col = NA)),
+      txt("The real deal", 12, 8.8, 8.9, "bold"),
+      txt("“World” real interest rate", 12, 19.7, 6.9),
+      place(left, left_box),
+      place(right, right_box),
+      txt("Sources: “Measuring the ‘world’ real interest rate”, by M. King and D. Low, NBER working paper, Feb 2014; “Secular drivers", 12, px(1062), 5.2),
+      txt(expression(paste("of the global real interest rate” by L. Rachel and T. Smith, Bank of England working paper, Dec 2015; ", italic("The Economist"))), 12, px(1106), 5.2),
+      txt(expression(paste("*", italic("The Economist"), " estimate")), 320, px(1106), 5.2, hjust = 1)
+    ))
+  }
+
+  old_web_chart()
+})
+grid.newpage()
+grid.draw(old_chart)
+```
+
+What the classic theme provides here: the type sizes and the title block's proportions at `base_size = 6.5`, the blue-gray series colours (by name, from `economist_pal()`'s table; the page's own values differ by a few units, probably a CMYK-to-RGB conversion), the right-hand value axis with its labels, and the x axis's outward ticks, which are set by hand: the classic theme's ticks point into the panel.
+
+What the theme cannot do, and was drawn by hand:
+
+* **The web layout.** The chart sits on a light grey ground, `#E1E2E3`, and each panel is a white box that holds its own heading, subtitle, plot and axis labels. `theme_economist()` has one ground for the whole plot, and its facet strips sit outside the panels. Here each plot is drawn on a white background and placed in a viewport on the ground, with the red tab and the title block drawn as grobs. `theme_economist_white()`, whose ground is `#ebebeb` and whose panels are white, is the nearest thing in the package.
+* **Gridlines.** They are grey, `#BCBEC0`, 0.8pt wide, on a white panel, and run through the shaded band. The theme draws them white and 0.5pt wide at this size, for a coloured ground, so they are drawn as segments.
+* **Ticks.** In this web chart they hang below the black axis rule, 1.9pt long, with a label under every fifth tick, set from the tick's left edge (the four-digit labels sit left of their tick). The theme's ticks point into the panel, which is what the print corpus (2012 to 2018) shows, so print and web classic charts differ here.
+* **Headings in the panels, the leader lines and the band.** The panel headings are drawn inside each panel as text; the leader lines and dots are segments and points. `theme_economist()` has nothing for either. The grey band with its asterisk is a rectangle.
+* **The red zero line**, as in the paper's print charts from 2014, is drawn with a segment; the theme draws none.
+* **Fonts.** The guide's Econ Sans Condensed is narrower than the substitute, Fira Sans Condensed, so the sizes of the source lines and the panel text are set 6 to 12% smaller than the page's to fit.
+
+## The new design, in the 2017 style
+
+```{r whats-changed-new, econ_size = "two_column", econ_height = 219, econ_pair = FALSE}
+new_chart <- local({
+  family <- economist_2017_font()
+  grid_col <- "#B1C0C9"
+  band_col <- "#DCE9F1"
+  red <- "#ED1C24"
+  blue <- "#076EA0"
+  leader_col <- "#648696"
+
+
+  left_name <- "Average ten-year inflation-indexed bond yield, %"
+  right_name <- "Drivers of the change in interest rates"
+  panels <- c(left_name, right_name)
+  rate$panel <- factor(left_name, levels = panels)
+
+  drivers <- data.frame(
+    name = c("Growth", "Demographics", "Spreads", "Relative price of capital", "Inequality", "Global savings glut", "Public investment", "Unexplained"),
+    size = c(1.01, 0.90, 0.665, 0.593, 0.441, 0.244, 0.171, 0.58),
+    fill = c("#076EA0", "#2DC0D2", "#E0B265", "#00969F", "#71CAC6", "#973D4C", "#AC8B96", "#8FBBD0"),
+    label_px = c(570, 710, 837, 923, 1000, 1055, 1125, 1192)
+  )
+  drivers$ymax <- -cumsum(c(0, drivers$size[-8]))
+  drivers$ymin <- -cumsum(drivers$size)
+  drivers$panel <- factor(right_name, levels = panels)
+  unit_px <- 151.8
+  drivers$label_y <- -(drivers$label_px - 485.5) / unit_px
+
+  # The right panel's x is in the same units as the left's years, so that free-spaced facets give it the width it has.
+  bar <- c(2279, 2447)
+  right_x0 <- 1785
+  xu <- function(px) (px - right_x0) / (2521 - right_x0) * 21.0
+  bar_x <- xu(bar)
+  label_x <- 0.05
+  years <- 1985:2016
+  yr_labels <- function(b) {
+    ifelse(b %in% c(1985, 1990, 1995, 2000, 2005, 2010, 2016), ifelse(b %in% c(1985, 2000), as.character(b), sprintf("%02d", b %% 100)), "")
+  }
+
+  # 1 x-unit of the right panel = (736px / 21) px = 35.05px = 5.62pt
+  pt_per_x <- (2521 - right_x0) / 21.0 / 6.24
+  end_x <- label_x + vapply(drivers$name, function(n) {
+    ragg::agg_png(tempfile(fileext = ".png"), width = 4, height = 2, units = "in", res = 100)
+    on.exit(dev.off())
+    convertWidth(grobWidth(textGrob(n, gp = gpar(fontfamily = family, fontsize = 7.3))), "pt", valueOnly = TRUE)
+  }, numeric(1)) / pt_per_x + 0.25
+  pub <- which(drivers$name == "Public investment")
+  une <- which(drivers$name == "Unexplained")
+  seg_mid <- (drivers$ymax + drivers$ymin) / 2
+  elbow <- c(pub = xu(1550 + 628), une = xu(1550 + 662))
+  leaders <- data.frame(x = end_x, xend = bar_x[1] - 0.15, y = drivers$label_y, yend = drivers$label_y)
+  leaders <- leaders[-c(pub, une), ]
+  leaders <- rbind(
+    leaders,
+    data.frame(x = end_x[pub], xend = elbow["pub"], y = drivers$label_y[pub], yend = drivers$label_y[pub]),
+    data.frame(x = elbow["pub"], xend = elbow["pub"], y = drivers$label_y[pub], yend = seg_mid[pub]),
+    data.frame(x = elbow["pub"], xend = bar_x[1] - 0.15, y = seg_mid[pub], yend = seg_mid[pub]),
+    data.frame(x = end_x[une], xend = elbow["une"], y = drivers$label_y[une], yend = drivers$label_y[une]),
+    data.frame(x = elbow["une"], xend = elbow["une"], y = drivers$label_y[une], yend = seg_mid[une]),
+    data.frame(x = elbow["une"], xend = bar_x[1] - 0.15, y = seg_mid[une], yend = seg_mid[une])
+  )
+  leaders$panel <- factor(right_name, levels = panels)
+  dots <- data.frame(y = c(seg_mid[-c(pub, une)], seg_mid[c(pub, une)]), panel = factor(right_name, levels = panels))
+  dots$y[1:6] <- drivers$label_y[1:6]
+
+  limits <- data.frame(
+    panel = factor(panels, levels = panels),
+    x = c(1984.0, 0), xend = c(2018.4, 21),
+    y = c(-1, -(1244 - 485.5) / unit_px - 0.0), yend = c(5.25, 0.45)
+  )
+  blank <- data.frame(
+    panel = rep(factor(panels, levels = panels), each = 2),
+    x = c(1984.0, 2018.4, 0, 21),
+    y = c(-1, 5.97, -(1170 - 485.5) / unit_px, (485.5 - 380) / unit_px)
+  )
+  subtitles <- data.frame(
+    panel = factor(panels, levels = panels),
+    x = c(1984.0 + 0.1, 0.05),
+    y = c(5 + (490 - 408) / 113.6, (485.5 - 410) / unit_px),
+    label = c("G7 countries, excluding Italy", "1980-2015, percentage points")
+  )
+
+  left_rules <- data.frame(panel = factor(left_name, levels = panels), y = 1:5)
+  right_rules <- data.frame(panel = factor(right_name, levels = panels), y = -1:-4)
+
+  new_web <- function() {
+    ggplot() +
+      geom_blank(data = blank, aes(x, y)) +
+      geom_rect(data = data.frame(panel = factor(left_name, levels = panels)), aes(xmin = 2014, xmax = 2017.06, ymin = -1, ymax = 5), fill = band_col) +
+      geom_hline(data = left_rules, aes(yintercept = y), colour = grid_col, linewidth = lw(0.5)) +
+      geom_segment(data = right_rules, aes(x = bar_x[2], xend = 21, y = y, yend = y), colour = grid_col, linewidth = lw(0.5)) +
+      geom_line(data = rate, aes(t, v), colour = blue, linewidth = lw(1.9), lineend = "butt") +
+      geom_hline(data = data.frame(panel = factor(panels, levels = panels)), aes(yintercept = 0), colour = red, linewidth = lw(0.5)) +
+      geom_text(data = data.frame(panel = factor(left_name, levels = panels)), aes(2015.5, 4.55, label = "*"), family = family, size = 7 / .pt) +
+      geom_rect(data = drivers, aes(xmin = bar_x[1], xmax = bar_x[2], ymin = ymin, ymax = ymax), fill = drivers$fill) +
+      geom_segment(data = leaders, aes(x = x, xend = xend, y = y, yend = yend), colour = leader_col, linewidth = lw(0.5)) +
+      geom_point(data = dots, aes(bar_x[1] - 0.15, y), size = 0.35, colour = leader_col) +
+      geom_text(data = drivers, aes(label_x, label_y, label = name), hjust = 0, family = family, size = 7.3 / .pt, colour = "#231F20") +
+      geom_text(data = subtitles, aes(x, y, label = label), hjust = 0, family = family, size = 6.9 / .pt, colour = "#231F20") +
+      facet_wrap(~panel, nrow = 1, scales = "free") +
+      scale_x_continuous(
+        breaks = function(l) if (l[2] > 100) years else numeric(0),
+        labels = function(b) yr_labels(b),
+        expand = c(0, 0)
+      ) +
+      scale_y_continuous(
+        position = "right",
+        guide = guide_axis_economist_2017(),
+        breaks = function(l) if (l[1] < -3) seq(-5, 0) else seq(-1, 5),
+        expand = c(0, 0)
+      ) +
+      labs(
+        title = "The real deal",
+        subtitle = "“World” real interest rate",
+        caption = "Sources: “Measuring the ‘world’ real interest rate”, by M. King and D. Low,\nNBER working paper, Feb 2014; “Secular drivers of the global real interest rate”\nby L. Rachel and T. Smith, Bank of England working paper, Dec 2015; The Economist",
+        x = NULL, y = NULL
+      ) +
+      coord_cartesian(clip = "off") +
+      theme_economist_2017("web", base_size = 7) +
+      theme(
+        strip.text = element_text(face = "bold"),
+        axis.line.y = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.ticks.length.x = unit(1.9, "pt"),
+        axis.text.x = element_text(hjust = 0),
+        panel.spacing.x = unit(24, "pt"),
+        panel.widths = unit(c(190, 118), "pt"),
+        plot.caption = element_text(size = 6.1, colour = "#636466"),
+        plot.subtitle = element_text(margin = margin(b = 6)),
+        plot.title = element_text(colour = "#231F20")
+      )
+  }
+
+  economist_2017_chart(new_web(), media = "web", footnote = "*The Economist estimate")
+})
+grid.newpage()
+grid.draw(new_chart)
+```
+
+The 2017 functions do much more of this chart. `theme_economist_2017("web")` gives the white ground, the zero margins and the type; `guide_axis_economist_2017()` puts each value label above its gridline at the right of the panel; `economist_2017_chart()` adds the red rule across the top, the horizontal tab, the red marker over each panel heading and the footnote on the source line; and the 24pt spacer between the panels is `panel.spacing.x`.
+
+What was still drawn by hand:
+
+* **Panel widths and value ranges.** The guide's panels are not equal, so the panels are set to 190pt and 118pt with ggplot2 4.0's `panel.widths`, and each panel's y range is set so that the line and the bar have the page's relative scales.
+* **Panel subtitles, the leader lines and the band** are text, segments and a rectangle. The bar's labels and leaders are drawn as in the old chart, with elbows for "Public investment" and "Unexplained".
+* **Colours** are the page's own values, which are probably the guide's CMYK colours converted for the page: the series is `#076EA0`, the gridlines `#B1C0C9` and the source text `#636466`.
+* **What is not matched:** the right panel's last rule and label (-5) lie below the left panel's axis, which ggplot2 cannot draw outside the panel's range here; the `0` labels are bold in the guide and plain here; and the guide's figure has a thin grey frame that is not part of the chart.
+
+## The eight changes, measured on the page
+
+The guide labels eight differences. Measured on the two charts of the page:
+
+| The guide's label | Old design | New design |
+|:--|:--|:--|
+| Rotated tag | Vertical tab, flush with the left edge and the top, 5pt by 15pt | Horizontal tab, 15pt by 5pt, under a red rule across the whole top |
+| White background | Light grey ground `#E1E2E3`, white panels | White |
+| No margins | 12pt at both sides | None |
+| Source text 75% black | Black, `#231F20` | `#636466`, which is what 75% black converts to in CMYK |
+| 24pt spacer between panels | About 9pt between the white boxes | 24pt |
+| Marker for panels | None | A red marker about 10pt wide and 1pt tall above each panel heading |
+| New colour palette | Blue-gray, dark blue, blue, grey, dark red, orange, teal, pink | Blue, cyan, gold, teal, light teal, maroon, mauve, light blue |
+| New typeface | A narrow sans, different from the new Econ Sans | Econ Sans and Econ Sans Cnd |
+
+Two of these show a difference between the page and the package. The source text of the new design renders at `#636466`, which is what 75% black converts to in CMYK, but ggthemes sets `plot.caption` to `#404040`, which is 75% of black in RGB and noticeably darker: the guide's own web charts are lighter than the theme's. And the old web chart's ticks point outward, where the classic theme, following the print charts, points them inward.
