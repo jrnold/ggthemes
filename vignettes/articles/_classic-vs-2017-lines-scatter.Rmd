@@ -564,6 +564,12 @@ modern <- economist_2017_chart(
 classic <- lines_classic(
   ggplot(reserves, aes(year, trn, fill = region)) +
     geom_area(position = position_stack(reverse = TRUE)) +
+    # The rules are a layer of their own, over every band, or the band above covers half of the rule under it.
+    geom_area(
+      position = position_stack(reverse = TRUE), outline.type = "upper", alpha = 0, colour = "white", linewidth = 0.4,
+      show.legend = FALSE
+    ) +
+    classic_stack_top("year", "trn") +
     scale_x_continuous(limits = c(2002, 2011), breaks = c(2002, 2006, 2010), expand = c(0, 0)) +
     scale_y_continuous(limits = c(0, 6.8), breaks = seq(0, 6, 2), expand = c(0, 0)) +
     scale_fill_economist() +
@@ -577,7 +583,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic draws two plain areas, blue below and dark blue above, with a legend in place of the in-band labels, no white rule between the bands, and no "10*" and "11*" forecast marks on the years. The 2017 bands are dark blue below and cyan above, labeled in white inside the bands.
+Classic draws two plain areas, blue below and dark blue above, with a legend in place of the in-band labels, a thin white rule between the bands as in 2017 under a thin black line along the top, and no "10*" and "11*" forecast marks on the years. The 2017 bands are dark blue below and cyan above, labeled in white inside the bands.
 
 ### Six bands with a key
 
@@ -653,6 +659,12 @@ modern <- economist_2017_chart(
 classic <- lines_classic(
   ggplot(shift, aes(year, pct, fill = haven)) +
     geom_area(position = position_stack(reverse = TRUE)) +
+    # The rules are a layer of their own, over every band, or the band above covers half of the rule under it.
+    geom_area(
+      position = position_stack(reverse = TRUE), outline.type = "upper", alpha = 0, colour = "white", linewidth = 0.4,
+      show.legend = FALSE
+    ) +
+    classic_stack_top("year", "pct") +
     scale_x_continuous(limits = c(1982, 2013), breaks = c(1982, 1990, 2000, 2010), expand = c(0, 0)) +
     scale_y_continuous(limits = c(0, 60.6), breaks = seq(0, 60, 10), expand = c(0, 0)) +
     scale_fill_economist() +
@@ -669,7 +681,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-The classic palette gives blue-gray, dark navy, pale blue, blue, light green and dark green: the legend is in two columns flush left above the panel (its text is set smaller than the theme's, or the second column would run off the chart) and the bands touch without a white rule, so neighbouring bands of similar lightness (light green and blue-gray against pale blue) run together. The 2017 key is a vertical list running into the panel, with the bands in blue, cyan, gold, teal, mint and navy.
+The classic palette gives blue-gray, dark navy, pale blue, blue, light green and dark green: the legend is in two columns flush left above the panel (its text is set smaller than the theme's, or the second column would run off the chart) and a thin white rule separates the bands under a thin black line along the top, as the paper's stacked areas have, so neighbouring bands of similar lightness (light green and blue-gray against pale blue) stay apart. The 2017 key is a vertical list running into the panel, with the bands in blue, cyan, gold, teal, mint and navy.
 
 ### The alternative stacked scheme
 
@@ -735,6 +747,12 @@ modern <- economist_2017_chart(
 classic <- lines_classic(
   ggplot(limbo, aes(year, n, fill = tenure)) +
     geom_area(position = position_stack(reverse = TRUE)) +
+    # The rules are a layer of their own, over every band, or the band above covers half of the rule under it.
+    geom_area(
+      position = position_stack(reverse = TRUE), outline.type = "upper", alpha = 0, colour = "white", linewidth = 0.4,
+      show.legend = FALSE
+    ) +
+    classic_stack_top("year", "n") +
     scale_x_continuous(limits = c(1998, 2015), breaks = c(1998, 2002, 2006, 2010, 2015), expand = c(0, 0)) +
     scale_y_continuous(limits = c(0, 102), breaks = seq(0, 100, 20), expand = c(0, 0)) +
     scale_fill_economist() +
@@ -842,6 +860,12 @@ modern <- economist_2017_chart(
 classic <- lines_classic(
   ggplot(emerging, aes(year, bn, fill = class)) +
     geom_area(position = position_stack(reverse = TRUE)) +
+    # The rules are a layer of their own, over every band, or the band above covers half of the rule under it.
+    geom_area(
+      position = position_stack(reverse = TRUE), outline.type = "upper", alpha = 0, colour = "white", linewidth = 0.4,
+      show.legend = FALSE
+    ) +
+    classic_stack_top("year", "bn") +
     scale_x_continuous(limits = c(1991, 2016), breaks = c(1991, seq(1995, 2015, 5)), expand = c(0, 0)) +
     scale_y_continuous(limits = c(0, 3), breaks = seq(0, 3, 0.5), expand = c(0, 0)) +
     scale_fill_economist() +
@@ -1198,8 +1222,8 @@ modern <- economist_2017_chart(
 )
 
 classic <- lines_classic(
-  ggplot(metro, aes(employment, house_prices, colour = period)) +
-    geom_point(size = 1.2, alpha = 0.5) +
+  ggplot(metro, aes(employment, house_prices, fill = period, colour = period)) +
+    classic_dot(size = 1.3, stroke = 0.3, alpha = 0.7) +
     geom_segment(
       data = trends, aes(x = x, xend = xend, y = y, yend = yend), colour = "black", linewidth = 0.3,
       linetype = "31", inherit.aes = FALSE
@@ -1209,12 +1233,15 @@ classic <- lines_classic(
     coord_cartesian(xlim = c(-2.4, 8.8), ylim = c(-5, 20), expand = FALSE) +
     scale_x_continuous(breaks = seq(-2, 8, 2)) +
     scale_y_continuous(breaks = seq(-5, 20, 5)) +
-    scale_colour_economist() +
-    guides(colour = guide_legend(nrow = 2, override.aes = list(size = 2.2, alpha = 1))) +
+    classic_scatter_scales(2) +
+    guides(
+      fill = guide_legend(nrow = 2, override.aes = list(size = 2.2, alpha = 1)),
+      colour = guide_legend(nrow = 2, override.aes = list(size = 2.2, alpha = 1))
+    ) +
     labs(
       title = "Divergent",
       subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
-      x = "Employment", y = "House prices", colour = NULL
+      x = "Employment", y = "House prices", colour = NULL, fill = NULL
     ),
   caption = "Sources: Freddie Mac; US Bureau of Labour Statistics",
   footnote = "*At least 100,000 population"
@@ -1222,7 +1249,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic has the same cloud in two blues (blue for the tight 1990-2007 cloud, drawn over the dark blue 2012-16 cloud), which are closer to each other than the 2017 pair of maroon and cyan. The theme draws no zero rules, so the classic chart adds black ones (the corpus's classic scatters mostly have none, and where they have, from 2014, they are red), and its gridlines are white, where 2017 uses red rules and thin grey gridlines with no x-axis line; classic's legend is two rows above the panel rather than a column.
+Classic has the same cloud in two outlined looks, a light blue dot with a dark blue outline for the tight 1990-2007 cloud, drawn over a pink dot with a dark red outline for the 2012-16 cloud, as the paper draws its scatters, where 2017 has solid maroon and cyan. The theme draws no zero rules, so the classic chart adds black ones (the corpus's classic scatters mostly have none, and where they have, from 2014, they are red), and its gridlines are white, where 2017 uses red rules and thin grey gridlines with no x-axis line; classic's legend is two rows above the panel rather than a column.
 
 ### Labeled outliers
 
@@ -1276,7 +1303,7 @@ modern <- economist_2017_chart(
 
 classic <- lines_classic(
   ggplot(corruption, aes(open, score)) +
-    geom_point(colour = economist_pal()(2)[1], size = 1.2) +
+    classic_dot(fill = classic_scatter_looks()$fill[1], colour = classic_scatter_looks()$outline[1], size = 1.3, stroke = 0.3) +
     geom_segment(
       data = leaders, aes(x = x, xend = xend, y = y, yend = yend), colour = economist_pal()(2)[2],
       linewidth = 0.2
@@ -1391,7 +1418,7 @@ modern <- economist_2017_chart(
 
 classic <- lines_classic(
   ggplot(oecd, aes(spend, life)) +
-    geom_point(data = others, aes(colour = year), size = 1.4, alpha = 0.5) +
+    classic_dot(data = others, aes(fill = year, colour = year), size = 1.3, stroke = 0.3, alpha = 0.5) +
     geom_line(aes(group = country), colour = "grey50", linewidth = 0.3) +
     classic_dot(aes(fill = year, colour = year)) +
     geom_text(
@@ -1540,10 +1567,9 @@ modern <- economist_2017_chart(
 classic <- lines_classic(
   ggplot(counties, aes(health, swing)) +
     geom_hline(yintercept = 0, linewidth = 0.3) +
-    geom_point(aes(fill = region, colour = region, size = pop), shape = 21, alpha = 0.5, stroke = 0.3) +
+    geom_point(aes(fill = region, colour = region, size = pop), shape = 21, alpha = 0.75, stroke = 0.4) +
     scale_size_area(max_size = 6.6, breaks = c(10, 30)) +
-    scale_fill_economist() +
-    scale_colour_economist() +
+    classic_scatter_scales(4) +
     scale_x_continuous(limits = c(20, 73), breaks = seq(20, 70, 10), expand = c(0, 0)) +
     scale_y_continuous(limits = c(-50.5, 50), breaks = seq(-50, 50, 25), expand = c(0, 0)) +
     guides(
@@ -1568,7 +1594,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic specifies no category-dot stroke (the classic dots here borrow the 2017 stroke width and 50% fill), no in-panel key and no arrow notes. Its first four fills are blue-gray, dark blue, blue and gray, so the large Northeast and Midwest clouds merge into one dark mass and the South (gray) fades into the panel; the 2017 maroon, blue, gold and cyan separate. The region and size legends are ordinary legends above the panel, stacked one above the other because side by side they ran off the chart's right edge.
+Classic specifies no category-dot stroke (the classic dots here take the paper's outlined dot, with a thin outline and a lighter interior), no in-panel key and no arrow notes. The four regions are the pairs light blue with dark blue, pink with dark red, light green with dark green, and white with blue-gray, so the clouds keep an outline of their own where they overlap; the 2017 maroon, blue, gold and cyan are solid. The region and size legends are ordinary legends above the panel, stacked one above the other because side by side they ran off the chart's right edge.
 
 ### Highlighting instead of categorizing
 
@@ -1613,23 +1639,25 @@ modern <- economist_2017_chart(
   footnote = "*Weighted index of obesity, diabetes,\nheavy drinking, physical exercise and\nlife expectancy, 2010-12"
 )
 
-classic_focus <- c(Midwest = economist_pal()(9)[7], Other = economist_pal()(9)[9])
+## Midwest in the pink-and-dark-red look; the rest in a pale gray with a gray outline.
+classic_focus_fill <- c(Midwest = classic_scatter_looks()$fill[2], Other = "#e3e3e3")
+classic_focus_outline <- c(Midwest = classic_scatter_looks()$outline[2], Other = economist_pal()(9)[9])
 classic <- lines_classic(
   ggplot(counties, aes(health, swing)) +
     geom_hline(yintercept = 0, linewidth = 0.3) +
-    geom_point(aes(fill = focus, colour = focus, size = pop), shape = 21, alpha = 0.5, stroke = 0.3) +
+    geom_point(aes(fill = focus, colour = focus, size = pop), shape = 21, alpha = 0.75, stroke = 0.4) +
     geom_segment(
       data = called_out, aes(x = health, xend = health, y = line_top, yend = swing), linewidth = 0.2,
       inherit.aes = FALSE
     ) +
     geom_point(
-      data = called_out, aes(health, swing), shape = 21, size = 1.3, fill = classic_focus[["Midwest"]],
-      colour = "white", stroke = 0.4, inherit.aes = FALSE
+      data = called_out, aes(health, swing), shape = 21, size = 1.3, fill = classic_focus_fill[["Midwest"]],
+      colour = classic_focus_outline[["Midwest"]], stroke = 0.5, inherit.aes = FALSE
     ) +
     geom_text(data = called_out, aes(health, label_y, label = label), size = 2.2, inherit.aes = FALSE) +
     scale_size_area(max_size = 6.6, breaks = c(10, 30)) +
-    scale_fill_manual(values = classic_focus) +
-    scale_colour_manual(values = classic_focus) +
+    scale_fill_manual(values = classic_focus_fill) +
+    scale_colour_manual(values = classic_focus_outline) +
     scale_x_continuous(limits = c(20, 73), breaks = seq(20, 70, 10), expand = c(0, 0)) +
     scale_y_continuous(limits = c(-50.5, 50), breaks = seq(-50, 50, 25), expand = c(0, 0)) +
     guides(
@@ -1652,7 +1680,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic has no highlight scheme, so Midwest is its dark red against gray for the rest; that does the job here, and it is closer to the 2017 chart than the four-category version is. The leader lines and the two labelled counties are the same layers; the "Midwest" label in the cloud is replaced by a legend.
+Classic has no highlight scheme, so Midwest is a pink dot with a dark red outline against pale gray dots with a gray outline for the rest; that does the job here, and it is closer to the 2017 chart than the four-category version is. The leader lines and the two labelled counties are the same layers; the "Midwest" label in the cloud is replaced by a legend.
 
 ## Checklist
 
