@@ -2,7 +2,7 @@
 
 Tables use [gt](https://gt.rstudio.com/): 7.5/9 type, 75% black explanatory text, thin rules, alternating row fills "to help with reading", and the usual chart furniture.
 
-The classic style has no table styling in ggthemes: `theme_economist()` is a ggplot2 theme and says nothing about gt, so each table is shown in the 2017 style alone. The tables below are the same as in the 2017 article.
+ggthemes has no table styling for either style: `theme_economist()` and `theme_economist_2017()` are ggplot2 themes and say nothing about gt. Here each table is drawn twice, in the classic style on the left and in the 2017 style on the right, except the one with charts inside its cells, which has no classic counterpart, with `classic_table()` and `econ_table()`, two gt styles written for this article. The 2017 tables are the same as in the 2017 article. The classic style is taken from two tables the paper printed in 2012, "Uncertain, for sure" and "Biggest money-laundering settlements with US authorities", redrawn first below.
 
 ```{r tables-setup}
 library(gt)
@@ -96,9 +96,223 @@ econ_table <- function(data, id, width = 160) {
 classic_bg <- stats::setNames(ggthemes_data$economist$bg$value, ggthemes_data$economist$bg$name)
 classic_fg <- stats::setNames(ggthemes_data$economist$fg$value, ggthemes_data$economist$fg$name)
 classic_blob <- "white"
+## The thin near-black outline of the classic number boxes.
+classic_box_outline <- "#231F20"
 
 ## The classic legend is the theme's own; this only lays its keys out in `nrow` rows.
 classic_rows <- function(nrow = 1) guides(colour = guide_legend(nrow = nrow), fill = guide_legend(nrow = nrow))
+
+classic_rule <- "#8D9A9E"
+classic_red <- classic_bg[["red"]]
+
+# The vertical red tab at the top left, then the title (bold) and subtitle, 12pt in from the left edge.
+classic_heading <- function(title, subtitle = NULL) {
+  gt::html(paste0(
+    sprintf('<div style="position:absolute;left:0;top:0;width:5pt;height:15pt;background:%s"></div>', classic_red),
+    sprintf('<div style="font-weight:700;font-size:9.4pt;line-height:11pt">%s</div>', title),
+    if (!is.null(subtitle)) sprintf('<div style="font-size:7.5pt;line-height:9pt;font-weight:400">%s</div>', subtitle)
+  ))
+}
+
+# The source line, flush left, in black, with any footnotes ranged right.
+classic_source <- function(source, footnote = "") {
+  gt::html(sprintf(
+    paste0(
+      '<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:6pt">',
+      '<span>%s</span><span style="text-align:right">%s</span></div>'
+    ),
+    source, footnote
+  ))
+}
+
+# Everything the classic tables share: the blue-gray ground, black type, a bold header over a rule, dotted rules
+# between the rows and no fills.
+classic_highlights <- c(
+  "blue-gray" = classic_bg[["dark blue-gray"]],
+  "pale blue-gray" = classic_bg[["deep blue-gray"]]
+)
+classic_table <- function(data, id, width = 160, ground = classic_bg[["blue-gray"]]) {
+  data |>
+    gt::tab_options(
+      table.width = sprintf("%gpt", width),
+      table.background.color = ground,
+      table.font.size = "6.5pt",
+      table.font.color = "black",
+      table.font.weight = "400",
+      table.border.top.style = "none",
+      table.border.bottom.style = "none",
+      table.margin.left = "0",
+      heading.align = "left",
+      heading.border.bottom.style = "none",
+      heading.padding = "0",
+      heading.padding.horizontal = "12pt",
+      column_labels.font.weight = "700",
+      column_labels.vlines.style = "none",
+      column_labels.border.top.style = "none",
+      column_labels.border.bottom.style = "solid",
+      column_labels.border.bottom.width = "0.7pt",
+      column_labels.border.bottom.color = classic_rule,
+      column_labels.padding = "2pt",
+      row_group.font.weight = "700",
+      row_group.border.top.style = "none",
+      row_group.border.bottom.style = "solid",
+      row_group.border.bottom.width = "0.7pt",
+      row_group.border.bottom.color = classic_rule,
+      row_group.background.color = ground,
+      row_group.padding = "2pt",
+      table_body.border.top.style = "none",
+      table_body.border.bottom.style = "solid",
+      table_body.border.bottom.width = "0.7pt",
+      table_body.border.bottom.color = classic_rule,
+      table_body.hlines.style = "dotted",
+      table_body.hlines.width = "0.6pt",
+      table_body.hlines.color = classic_rule,
+      data_row.padding = "2.5pt",
+      source_notes.font.size = "6.2pt",
+      source_notes.padding = "4pt",
+      source_notes.border.bottom.style = "none",
+      container.padding.x = "0",
+      container.padding.y = "0"
+    ) |>
+    gt::opt_table_font(font = econ_table_font) |>
+    gt::opt_css(gsub("ID", id, "
+      #ID .gt_table { position: relative; line-height: 8.2pt; margin: 0 !important; }
+      #ID .gt_heading { padding-bottom: 8pt !important; padding-top: 3pt !important; }
+      #ID .gt_title, #ID .gt_subtitle { padding: 0 12pt 0 12pt !important; }
+      #ID .gt_col_heading { vertical-align: bottom; line-height: 8.2pt; white-space: nowrap; }
+      #ID .gt_row { vertical-align: top; line-height: 8.2pt; }
+      #ID .gt_col_heading:first-child, #ID .gt_row:first-child { padding-left: 12pt !important; }
+      #ID .gt_sourcenote { padding-left: 12pt !important; padding-right: 6pt !important; }
+      #ID .gt_group_heading { padding-left: 12pt !important; }
+      #ID .nowrap { white-space: nowrap; }
+    ", fixed = TRUE))
+}
+
+
+## Two tables side by side, the classic one on the left and the 2017 one on the right, as HTML.
+table_pair <- function(classic, modern, headings = c("Classic", "2017")) {
+  html <- vapply(list(classic, modern), function(x) gt::as_raw_html(x, inline_css = TRUE), "")
+  cell <- '<div><div style="font:600 10pt sans-serif;color:#404040;margin:0 0 4px 0">%s</div>%s</div>'
+  knitr::asis_output(sprintf(
+    '<div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">%s</div>',
+    paste(sprintf(cell, headings, html), collapse = "")
+  ))
+}
+```
+
+### The classic table
+
+The paper's classic tables, drawn here from two printed in 2012, differ from the 2017 style in these ways, which `classic_table()` sets:
+
+* the table sits on the chart's blue-gray ground, `#d5e4eb`, with the same vertical red tab at the top left, 5pt by 15pt, and the title block 12pt in from the left edge;
+* the title is bold and the subtitle plain, in black, and all the table's text is black: there is no 75% black for explanatory text or the source line;
+* the column headings are bold, set on the bottom line of the heading block, with a rule under them; the rows are separated by thin dotted rules, or thin solid ones in a wide table, and the last rule is solid;
+* there is no alternating row fill, which the 2017 guide uses "to help with reading": a classic table is rules and type, and picks out chosen rows with a highlight, a band a shade darker than the ground across the whole row (see "China’s rise, Japan’s fall" below).
+
+The data of these two replicas are read off small images of the printed tables, so a value may be misread.
+
+```{r tables-classic-examples, econ_pair = FALSE}
+problems <- data.frame(
+  rank = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"),
+  was = c("(1)", "(-)", "(2)", "(-)", "(6)", "(3)", "(5)", "(15)", "(4)", "(7)"),
+  problem = c(
+    "Cost of health insurance", "Uncertainty over<br>economic conditions", "Cost of fuel",
+    "Uncertainty over<br>government actions", "Unreasonable government<br>regulation",
+    "Federal taxes on<br>business income", "Tax complexity", "Frequent changes to<br>federal rules",
+    "Property taxes", "State taxes on business income"
+  ),
+  pct = c(52, 38, 35, 35, 34, 30, 29, 24, 24, 24)
+)
+problems$rank <- sprintf("<b>%s</b> <i>%s</i>", problems$rank, problems$was)
+problems$was <- NULL
+uncertain <- gt::gt(problems, id = "uncertain") |>
+  gt::fmt_markdown(c(rank, problem)) |>
+  gt::cols_label(
+    rank = gt::html("Rank,<br>2012<br><i style=\"font-weight:400\">(2008)</i>"),
+    problem = "Problem",
+    pct = gt::html("Respondents<br>saying problem<br>is \u201ccritical\u201d, %")
+  ) |>
+  gt::cols_align("left", c(rank, problem)) |>
+  gt::cols_align("right", pct) |>
+  gt::cols_width(rank ~ gt::pct(21), problem ~ gt::pct(50), pct ~ gt::pct(29)) |>
+  gt::tab_header(classic_heading("Uncertain, for sure", "Biggest problems for small businesses in US")) |>
+  gt::tab_source_note(classic_source("Source: National Federation of Independent Business")) |>
+  classic_table("uncertain", width = 160)
+
+settle <- data.frame(
+  bank = c("HSBC", "Standard Chartered", "ING", "Credit Suisse", "RBS (ABN Amro)", "Lloyds Banking Group", "Barclays"),
+  amount = c(1921, 667, 619, 536, 500, 350, 298),
+  date = c("December 2012", "August/December 2012", "June 2012", "December 2009", "May 2010", "January 2009", "August 2010"),
+  countries = c(
+    "Cuba, Iran, Libya, Mexico, Myanmar and Sudan", "Iran, Libya, Myanmar and Sudan", "Cuba and Iran",
+    "Cuba, Iran, Libya, Myanmar and Sudan", "Iran and Libya", "Iran and Sudan", "Cuba, Iran, Myanmar and Sudan"
+  )
+)
+laundering <- gt::gt(settle, id = "laundering") |>
+  gt::fmt_number(amount, decimals = 0) |>
+  gt::cols_label(bank = "Bank", amount = "Settlement, $m", date = "Date", countries = "Countries involved in allegation") |>
+  gt::cols_align("left") |>
+  gt::cols_align("right", amount) |>
+  gt::tab_header(classic_heading("Biggest money-laundering settlements with US authorities")) |>
+  gt::tab_source_note(classic_source("Sources: Company reports; national sources")) |>
+  classic_table("laundering", width = 332) |>
+  gt::tab_options(table_body.hlines.style = "solid", table_body.hlines.width = "0.4pt")
+
+table_pair(uncertain, laundering, headings = c("Narrow, dotted rules", "Wide, solid rules"))
+```
+
+### The classic table with highlights
+
+"China’s rise, Japan’s fall", also from the paper, puts two tables in one frame, and highlights the Chinese firms in the first and the Japanese ones in the second. The highlight is a band across the row in the next shade of the ground: here the ground is `pale blue-gray`, `#cddee7`, and the band `deep blue-gray`, `#b8d0dc`; on the 2012 ground the band is `dark blue-gray`, `#c3d6df`. The dotted rules run on across the band. Its two tables are one gt table here, with a narrow empty column between them.
+
+```{r tables-classic-highlight, econ_pair = FALSE}
+construction <- data.frame(
+  rank = 1:10,
+  firm = paste0("<span class=\"nowrap\">", c(
+    "China State Construction & Engineering", "China Railway Construction", "China Railway Engineering", "Vinci",
+    "China Communications Construction", "ACS", "China Metallurgical Group", "Bouygues*", "Bechtel",
+    "Hochtief<sup>†</sup>"
+  ), "</span>"),
+  country = c("China", "China", "China", "France", "China", "Spain", "China", "France", "United States", "Germany"),
+  revenue = c(72.6, 68.8, 68.4, 52.4, 45.5, 39.7, 34.4, 34.4, 32.9, 32.4),
+  gap = "",
+  firm_2003 = c("Vinci", "Skanska", "Kajima", "Taisei", "Bouygues*", "Shimizu", "Hochtief", "Bechtel", "Obayashi", "Fluor"),
+  country_2003 = c(
+    "France", "Sweden", "Japan", "Japan", "France", "Japan", "Germany", "United States", "Japan", "United States"
+  )
+)
+ground <- classic_bg[["pale blue-gray"]]
+band <- classic_highlights[["pale blue-gray"]]
+china <- which(construction$country == "China")
+japan <- which(construction$country_2003 == "Japan")
+left_columns <- c("rank", "firm", "country", "revenue")
+right_columns <- c("firm_2003", "country_2003")
+
+china_table <- gt::gt(construction, id = "china") |>
+  gt::fmt_markdown(c(firm, firm_2003)) |>
+  gt::fmt_number(revenue, decimals = 1) |>
+  gt::cols_label(
+    rank = "Rank", firm = "2012", country = "Country", revenue = gt::html("Revenue, latest<br>year, $bn"),
+    gap = "", firm_2003 = "2003", country_2003 = "Country"
+  ) |>
+  gt::cols_align("left") |>
+  gt::cols_align("right", revenue) |>
+  gt::cols_width(
+    rank ~ "26pt", firm ~ "112pt", country ~ "50pt", revenue ~ "46pt", gap ~ "10pt", firm_2003 ~ "38pt",
+    country_2003 ~ "50pt"
+  ) |>
+  gt::tab_header(classic_heading("China’s rise, Japan’s fall", "World’s biggest construction firms by revenue")) |>
+  gt::tab_source_note(classic_source(
+    "Source: <i>International Construction</i> magazine",
+    "*Construction divisions only &nbsp; <sup>†</sup>ACS now owns a majority stake in Hochtief"
+  )) |>
+  classic_table("china", width = 332, ground = ground) |>
+  gt::tab_style(gt::cell_fill(color = band), gt::cells_body(columns = all_of(left_columns), rows = china)) |>
+  gt::tab_style(gt::cell_fill(color = band), gt::cells_body(columns = all_of(right_columns), rows = japan)) |>
+  gt::tab_style(gt::cell_borders(sides = c("top", "bottom"), style = "hidden"), gt::cells_body(columns = gap)) |>
+  gt::tab_style(gt::cell_borders(sides = "bottom", style = "hidden"), gt::cells_column_labels(columns = gap))
+
+china_table
 ```
 
 ### Standard table
@@ -118,10 +332,11 @@ startups <- data.frame(
   value = c(25.5, 10, 5, 4.5, 2, 1.1),
   joined = c(2009, 2007, 2010, 2013, 2012, 2010)
 )
+classic_startups <- startups
 startups$company <- paste0(medium(startups$company), "<br>", detail(startups$about))
 startups$about <- NULL
 
-gt::gt(startups, id = "greatest-hits") |>
+modern <- gt::gt(startups, id = "greatest-hits") |>
   gt::fmt_markdown(company) |>
   gt::fmt_currency(value, decimals = 1) |>
   gt::cols_label(company = "Company", value = gt::html("Value*<br>$bn"), joined = gt::html("Date of<br>joining")) |>
@@ -132,6 +347,22 @@ gt::gt(startups, id = "greatest-hits") |>
   econ_table("greatest-hits", width = 160) |>
   gt::tab_style(stripe, gt::cells_body(rows = c(2, 4, 6))) |>
   gt::tab_style(gt::cell_text(weight = 500), gt::cells_body(columns = c(value, joined)))
+
+## Classic: the company in bold over its description in black, with dotted rules and no fills.
+classic_startups$company <- paste0("<b>", classic_startups$company, "</b><br>", classic_startups$about)
+classic_startups$about <- NULL
+classic <- gt::gt(classic_startups, id = "greatest-hits-classic") |>
+  gt::fmt_markdown(company) |>
+  gt::fmt_currency(value, decimals = 1) |>
+  gt::cols_label(company = "Company", value = gt::html("Value*<br>$bn"), joined = gt::html("Date of<br>joining")) |>
+  gt::cols_align("left") |>
+  gt::cols_align("right", c(value, joined)) |>
+  gt::cols_width(company ~ gt::pct(52), value ~ gt::pct(24), joined ~ gt::pct(24)) |>
+  gt::tab_header(classic_heading("Greatest hits", "Largest Y Combinator-funded startups")) |>
+  gt::tab_source_note(classic_source("Sources: CB Insights;<br>CrunchBase", "*Latest funding round")) |>
+  classic_table("greatest-hits-classic", width = 160)
+
+table_pair(classic, modern)
 ```
 
 ```{r tables-divided-by-a-dozen, econ_pair = FALSE}
@@ -155,14 +386,22 @@ questions <- data.frame(
     "Is the government doing enough to combat climate change?"
   )
 )
-gt::gt(questions, groupname_col = "group", id = "divided") |>
+modern <- gt::gt(questions, groupname_col = "group", id = "divided") |>
   gt::tab_header(econ_heading("Divided by a dozen", "Policy choices in our political proximity model")) |>
   econ_table("divided", width = 160) |>
   gt::tab_options(column_labels.hidden = TRUE) |>
   gt::tab_style(stripe, gt::cells_body(rows = c(1, 3, 4, 6, 8, 10, 12)))
+
+## Classic: each group's name in bold over a rule, dotted rules between the questions, no fills.
+classic <- gt::gt(questions, groupname_col = "group", id = "divided-classic") |>
+  gt::tab_header(classic_heading("Divided by a dozen", "Policy choices in our political proximity model")) |>
+  classic_table("divided-classic", width = 160) |>
+  gt::tab_options(column_labels.hidden = TRUE)
+
+table_pair(classic, modern)
 ```
 
-Classic has nothing to compare here. The 2017 tables are a different kind of object (HTML, not a plot), and the classic palette, rules and type are not defined for them.
+The classic table has the group names over a rule and a dotted rule between the questions, where the 2017 table fills every second row, starting again with each group.
 
 ### With colour highlight
 
@@ -183,7 +422,7 @@ bill <- data.frame(
 totals <- which(startsWith(bill$item, "Total"))
 section <- which(bill$item == "Paid for by")
 
-gt::gt(bill, id = "jobs-bill") |>
+modern <- gt::gt(bill, id = "jobs-bill") |>
   gt::fmt_markdown(item) |>
   gt::sub_missing(bn, missing_text = "") |>
   gt::cols_label(item = "New stimulus measures", bn = "$bn") |>
@@ -197,7 +436,24 @@ gt::gt(bill, id = "jobs-bill") |>
     gt::cells_body(rows = totals)
   ) |>
   gt::tab_style(list(gt::cell_text(weight = 500), rule_heavy), gt::cells_body(rows = section))
+
+## Classic: the totals are highlighted with a band a shade darker than the ground, and "Paid for by" is bold.
+classic <- gt::gt(bill, id = "jobs-bill-classic") |>
+  gt::fmt_markdown(item) |>
+  gt::sub_missing(bn, missing_text = "") |>
+  gt::cols_label(item = "New stimulus measures", bn = "$bn") |>
+  gt::cols_align("right", bn) |>
+  gt::tab_header(classic_heading("Obama\u2019s jobs bill")) |>
+  gt::tab_source_note(classic_source("Source: White House", "*Figures may not sum<br>due to rounding")) |>
+  classic_table("jobs-bill-classic", width = 160) |>
+  gt::tab_style(gt::cell_fill(color = classic_highlights[["blue-gray"]]), gt::cells_body(rows = totals)) |>
+  gt::tab_style(gt::cell_text(weight = "bold"), gt::cells_body(rows = section)) |>
+  gt::tab_style(gt::cell_borders(sides = "top", color = classic_rule, weight = "0.7pt"), gt::cells_body(rows = section))
+
+table_pair(classic, modern)
 ```
+
+The classic table picks out the totals with the classic highlight, a band a shade darker than the ground across the row, with the text as it is, where the 2017 table fills them with a strong blue and inverts the text.
 
 ### Table with integrated charts
 
@@ -347,7 +603,9 @@ gt::gt(cells, id = "what-to-expect") |>
   gt::tab_style(rule_heavy, gt::cells_body(rows = 6))
 ```
 
-The small charts in the table are hand-built SVG, which ggplot2 themes cannot reach. Two of them can be redrawn as ggplot2 charts, the applications and decisions bars and the "accepted" doughnuts, so that the classic and 2017 themes can be compared on the same data. They are plain charts, not table cells.
+The classic style has no counterpart to this table: none of the paper's classic tables has data drawn inside its cells, so the table is shown in 2017 alone.
+
+The 2017 table\'s small charts are hand-built SVG, which ggplot2 themes cannot reach. Two of them can be redrawn as ggplot2 charts, the applications and decisions bars and the "accepted" doughnuts, so that the classic and 2017 themes can be compared on the same data. They are plain charts, not table cells.
 
 ```{r tables-what-to-expect-bars, econ_height = 150}
 asylum_bars <- data.frame(
@@ -1300,7 +1558,7 @@ The classic chart draws the inverted rand scale on the left with the black line 
 "A secondary data variable added as area-sized bubbles or number boxes. Can
 be used with column or thermometer charts."
 
-The classic style has no blob heads or number boxes. The classic charts below are drawn with plain ggplot2 layers on `theme_economist()`, with the bubbles and blocks filled white (the classic gridline colour).
+The classic style has number boxes but no bubbles: the figure sits in a white square box with a thin dark outline, every box the same size whatever the figure, and a boxed key names the column. The classic charts below are drawn with plain ggplot2 layers on `theme_economist()`, with the 2017 chart’s bubbles and blocks drawn as those square boxes, so the bubbles’ sizes, which carry data in 2017, are not drawn.
 
 ### Numbers inside the bubbles
 
@@ -1375,8 +1633,16 @@ big_mac_classic$layers <- lapply(big_mac$layers, function(l) ggplot2::ggproto(NU
 big_mac_classic$layers[[1]]$aes_params$colour <- "white"
 big_mac_classic$layers[[2]]$aes_params$colour <- classic_bg[["dark gray"]]
 big_mac_classic$layers[[4]]$aes_params$colour <- "black"
-big_mac_classic$layers[[5]]$aes_params$colour <- classic_blob
 big_mac_classic$layers[[6]]$aes_params$colour <- "black"
+## Equal-sized square boxes in place of the bubbles (layer 5), under the figures.
+big_mac_classic$layers <- append(
+  big_mac_classic$layers[-5],
+  list(geom_tile(
+    aes(x = 66, y = country), width = 24, height = 0.78, fill = classic_blob, colour = classic_box_outline,
+    linewidth = 0.2
+  )),
+  after = 4
+)
 big_mac_classic <- big_mac_classic +
   scale_colour_economist(name = NULL) +
   theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
@@ -1404,7 +1670,7 @@ chart_pair(
 )
 ```
 
-The classic chart keeps the layout, with white bubbles holding black figures where 2017 has pale blue-gray ones. The dumbbell ends are the palette's blue and dark blue, which at this size are much closer to each other than 2017's cyan and maroon. The classic gridlines are thin white verticals over the blue-gray ground, and the footnotes are not ranged to the right as in 2017 but folded into the caption.
+The classic chart keeps the layout, with equal-sized white square boxes holding black figures where 2017 has pale blue-gray bubbles sized by price. The dumbbell ends are the palette's blue and dark blue, which at this size are much closer to each other than 2017's cyan and maroon. The classic gridlines are thin white verticals over the blue-gray ground, and the footnotes are not ranged to the right as in 2017 but folded into the caption.
 
 ### Bubbles and numbers outside the bar
 
@@ -1449,15 +1715,18 @@ air <- ggplot(travel, aes(country, change)) +
 air_classic <- ggplot(travel, aes(country, change)) +
   geom_col(aes(fill = change < 0), width = 0.65, show.legend = FALSE) +
   geom_hline(yintercept = 0, linewidth = 0.2) +
-  geom_point(aes(y = 22.2, size = bn), colour = classic_blob, stroke = 0, show.legend = FALSE) +
-  geom_text(aes(y = 31.5, label = bn), size = 7 / ggplot2::.pt, hjust = 1) +
+  ## Square number boxes of one size, with the figure inside.
+  geom_tile(
+    aes(y = 27), width = 0.72, height = 9, fill = classic_blob, colour = classic_box_outline, linewidth = 0.2,
+    show.legend = FALSE
+  ) +
+  geom_text(aes(y = 27, label = bn), size = 7 / ggplot2::.pt) +
   annotate(
-    "label", x = 15.7, y = 25.1, label = "$bn", size = 7.5 / ggplot2::.pt, fill = classic_blob,
-    linewidth = 0, label.r = unit(0, "pt")
+    "label", x = 15.7, y = 27, label = "$bn", size = 7.5 / ggplot2::.pt, fill = classic_blob,
+    linewidth = 0.2, border.colour = classic_box_outline, label.r = unit(0, "pt")
   ) +
   coord_flip(xlim = c(0.45, 15.5), ylim = c(-10.5, 31.7), expand = FALSE, clip = "off") +
   scale_fill_economist() +
-  scale_size_area(max_size = 7.3) +
   scale_y_continuous(position = "right", breaks = seq(-10, 15, 5), labels = c("-10", "", "0", "5", "10", "15")) +
   labs(
     title = "Up in the air",
@@ -1476,7 +1745,7 @@ chart_pair(
 )
 ```
 
-Negative bars take the dark blue and positive ones the blue in the classic chart (2017: blue and cyan). The classic "$bn" key is a plain white box with no pointer, and the bubbles are plain white discs.
+Negative bars take the dark blue and positive ones the blue in the classic chart (2017: blue and cyan). The classic "$bn" key is a white box with a thin outline and no pointer, and the figures sit in equal-sized square boxes, the paper’s number boxes, so the bubble sizes of 2017 are not drawn.
 
 ### Equal-sized number blocks
 
@@ -1521,11 +1790,14 @@ small <- ggplot(exchanges, aes(exchange, listed)) +
 
 small_classic <- ggplot(exchanges, aes(exchange, listed)) +
   geom_col(aes(fill = listing), width = 0.65) +
-  geom_tile(data = caps, aes(y = 500, height = 82), width = 0.6, fill = classic_blob) +
-  geom_text(data = caps, aes(y = 500, label = cap), size = 7 / ggplot2::.pt) +
+  geom_tile(
+    data = caps, aes(y = 497, height = 98), width = 0.6, fill = classic_blob, colour = classic_box_outline,
+    linewidth = 0.2
+  ) +
+  geom_text(data = caps, aes(y = 497, label = cap), size = 7 / ggplot2::.pt) +
   annotate(
-    "label", x = 1, y = 445, label = "Market cap, $bn", size = 7.5 / ggplot2::.pt, hjust = 1,
-    fill = classic_blob, linewidth = 0, label.r = unit(0, "pt")
+    "label", x = 1, y = 440, label = "Market cap, $bn", size = 7.5 / ggplot2::.pt, hjust = 1,
+    fill = classic_blob, linewidth = 0.2, border.colour = classic_box_outline, label.r = unit(0, "pt")
   ) +
   coord_flip(xlim = c(0.45, 6.55), ylim = c(0, 548), expand = FALSE) +
   scale_fill_economist(limits = c("Domestic", "Foreign"), name = NULL) +
@@ -1549,7 +1821,7 @@ chart_pair(
 )
 ```
 
-This pair is drawn at the guide's 175pt; the classic title block and legend take more of it than 2017's, so its six bars are tighter, but nothing clips. The number blocks are the same size in both, white in classic and pale blue-gray in 2017. The "Market cap, $bn" key has no pointer in classic, and the footnote sits in the caption.
+This pair is drawn at the guide's 175pt; the classic title block and legend take more of it than 2017's, so its six bars are tighter, but nothing clips. The number blocks are the same size in both, white with a thin outline in classic and pale blue-gray in 2017. The "Market cap, $bn" key has no pointer in classic, and the footnote sits in the caption.
 
 ### Text blocks
 
@@ -1589,7 +1861,8 @@ classic <- ggplot(blocks, aes(x, y)) +
       hjust = c(bottom = 0.5, top = 0.5, right = 1, left = 0)[pointer],
       vjust = c(bottom = 0, top = 1, right = 0.5, left = 0.5)[pointer]
     ),
-    size = 7.5 / ggplot2::.pt, fill = classic_blob, linewidth = 0, label.r = unit(0, "pt")
+    size = 7.5 / ggplot2::.pt, fill = classic_blob, linewidth = 0.2, border.colour = classic_box_outline,
+    label.r = unit(0, "pt")
   ) +
   geom_point(colour = classic_bg[["red"]], size = 0.6) +
   coord_cartesian(xlim = c(0.4, 4.4), ylim = c(-0.2, 3), expand = FALSE) +
@@ -1608,10 +1881,11 @@ chart_pair(classic_chart(classic), ggplotGrob(modern))
 
 | Chart | Done | Notes |
 |:------|:-----|:------|
-| Standard table, "Greatest hits" | yes | 2017 only; classic has no table styling. |
-| Standard table, "Divided by a dozen" | yes | 2017 only. |
-| Colour highlight table, "Obama's jobs bill" | yes | 2017 only. |
-| Table with integrated charts, "What to expect" | yes | Table 2017 only; bars and doughnuts redrawn as ggplot2 in both styles. |
+| Standard table, "Greatest hits" | yes | Both; the classic table is a gt style written here, from three tables the paper printed. |
+| Classic table with highlights, "China's rise, Japan's fall" | yes | Classic only, redrawn from the paper's table. |
+| Standard table, "Divided by a dozen" | yes | Both; no row fills in classic. |
+| Colour highlight table, "Obama's jobs bill" | yes | Both; the classic highlight is a band a shade darker than the ground, as in "China's rise, Japan's fall". |
+| Table with integrated charts, "What to expect" | yes | 2017 only: no classic table has data inside its cells. Bars and doughnuts also redrawn as ggplot2 in both styles. |
 | Pie order, doughnuts and pies, 1 to 6 segments | yes | Classic palette re-chosen per panel. |
 | Labeled doughnut, "Naan bigger" | yes | |
 | Two doughnuts, keyed labels, "The scramble in Africa" | yes | Classic palette runs out at nine colors; two added by hand. |
