@@ -1,20 +1,13 @@
 The charts of the guide's pages 6 to 10, each drawn twice from the same data: on the left in the classic style (`theme_economist()` and `scale_*_economist()`, with the red tab added by `classic_chart()`), on the right in the 2017 style, with the code of the [2017 article](economist-2017-styleguide.html). The classic theme has no counterpart for several of the guide's features, so each note says what is missing.
 
 ```{r anatomy-setup, include = FALSE}
-## The classic tab and rule colour, and a compact legend: the classic keys and text are larger than a chart this
-## size can hold, so the legend is set smaller to keep it inside the chart.
+## The classic red, for the rules of the leader and Espresso charts.
 classic_red <- ggthemes_data$economist$bg[["value"]][3]
-classic_legend <- theme(
-  legend.text = element_text(size = rel(0.9)),
-  legend.key.size = unit(0.8, "lines"),
-  legend.margin = margin(0, 0, 0, 0),
-  legend.spacing = unit(0, "pt")
-)
 ```
 
 ## Anatomy of a chart
 
-Every classic chart below uses `theme_economist(base_size = classic_size)`; those that add `classic_legend` (the legend text at 0.9 of its default size, keys of 0.8 lines, no legend margin or spacing) do so only so the legend fits the chart. The 2017 value axis sits on the right, with each label just above its gridline inside the panel (`scale_y_continuous(position = "right")` and `guide_axis_economist_2017()`). The classic theme draws a left axis with labels beside the gridlines and the legend above the panel.
+Every classic chart below uses `theme_economist(base_size = classic_size)` with nothing added to the theme; where a chart adds a `guide_legend()` layout or a strip size, a comment in its code says why. The 2017 value axis sits on the right, with each label just above its gridline inside the panel (`scale_y_continuous(position = "right")` and `guide_axis_economist_2017()`). The classic theme draws a left axis with labels beside the gridlines and the legend above the panel.
 
 ```{r anatomy-bare, econ_height = 165}
 ## Monthly yields, in years since the start.
@@ -61,13 +54,14 @@ classic_tokyo <- ggplot(bonds, aes(year, yield, colour = period)) +
     subtitle = "Ten-year government-bond yields, %",
     x = "Years since start", y = NULL, colour = NULL
   ) +
-  theme_economist(base_size = classic_size) +
-  classic_legend
+  ## The two keys do not fit side by side in a chart this wide: stack them as the 2017 chart does.
+  guides(colour = guide_legend(nrow = 2)) +
+  theme_economist(base_size = classic_size)
 
 chart_pair(ggplotGrob(classic_tokyo), ggplotGrob(tokyo))
 ```
 
-The classic chart puts the value labels on the left outside the panel and draws the gridlines as thick white rules on a saturated blue ground, with a black baseline and ticks; the 2017 chart has thin grey rules on a paler ground, with the labels inside the panel above each rule. The classic legend is a single row without the "Period beginning:" title (it needed `classic_legend` to fit; at its default size it is wider than the chart), where the 2017 legend is stacked below the subtitle, and the two line colours are a bright blue and a dark teal rather than the 2017 dark blue and cyan.
+The classic chart puts the value labels on the left outside the panel and draws the gridlines as thin white rules on a blue-gray ground, with a black baseline and ticks pointing up into the panel; the 2017 chart has thin grey rules on a paler ground, with the labels inside the panel above each rule. The classic legend is at the top left, without the "Period beginning:" title, in two rows (the chart sets `nrow = 2`: on one row the second key ran off the right edge), where the 2017 legend is stacked below the subtitle, and the two line colours are a bright blue and a dark teal rather than the 2017 dark blue and cyan.
 
 The 2017 theme sets the guide's type and rules, but the red tab, the web red rule and the panel marker are not theme elements; `economist_2017_chart()` adds them, and `classic_chart()` adds the classic vertical tab.
 
@@ -80,11 +74,11 @@ classic <- classic_chart(classic_tokyo + labs(caption = "Source: Thomson Reuters
 chart_pair(classic, modern)
 ```
 
-`classic_chart()` adds the vertical tab flush with the left edge, at the top-left corner of the chart (it sits above the title line, not level with it, as the guide's old design has it); the 2017 tab is horizontal, 15pt by 5pt, above the title. The classic source line is right-aligned and 5.2pt, where the 2017 one is left-aligned at 6.5pt.
+`classic_chart()` adds the vertical tab flush with the left edge, at the top-left corner of the chart (it sits above the title line, not level with it, as the guide's old design has it); the 2017 tab is horizontal, 15pt by 5pt, above the title. Both source lines are flush left with the chart, the classic one at 0.95 of the axis-label size (6.2pt) and the 2017 one at 6.5pt; the classic title and subtitle start at the chart's left edge, as the 2017 ones do.
 
 ## Source, footnote and number box
 
-The 2017 source is the theme's caption and the footnote a separate block under the source; the classic theme has only the caption, so the footnote is set above the source line inside the caption.
+The 2017 source is the theme's caption and the footnote a separate block under the source; the classic theme has only the caption, so the footnote is set above the source line inside the caption, all flush left.
 
 ```{r anatomy-print, econ_height = 165}
 fn <- economist_2017_footnote(1:2)
@@ -108,7 +102,7 @@ classic <- classic_chart(
 chart_pair(classic, modern)
 ```
 
-The classic theme has no footnote element, so the footnote shares the right-aligned caption with the source, with no blank line or separate position; in 2017 the source is at the left and the footnote at the right of the same row. The superscript marker in the subtitle is the same in both.
+The classic theme has no footnote element, so the footnote shares the caption with the source, a line above it, with no blank line or separate position; in 2017 the source is at the left and the footnote at the right of the same row. The superscript marker in the subtitle is the same in both.
 
 ```{r anatomy-web, econ_size = "two_column", econ_height = 190}
 ## Olympic medal sweeps; the 1996 games had none.
@@ -165,13 +159,12 @@ classic_anthem <- ggplot(sweeps, aes(year, count, fill = country)) +
       "Sources: International Olympic Committee; Sports Reference; The Economist"
     )
   ) +
-  theme_economist(base_size = classic_size) +
-  classic_legend
+  theme_economist(base_size = classic_size)
 
 chart_pair(classic_chart(classic_anthem), modern)
 ```
 
-The classic chart has no web variant: it keeps the blue ground, the white gridlines and the vertical tab, and has no red rule across the top, no key beside the title and no white ground. Its legend sits centred under the subtitle, not beside the title, and the value labels are on the left, not inside the panel on the right. Its x axis labels every eighth year, where the 2017 chart labels every fourth, with two-digit years after the first (and 2000 in full).
+The classic chart has no web variant: it keeps the blue ground, the white gridlines and the vertical tab, and has no red rule across the top, no key beside the title and no white ground. Its legend sits at the top left under the subtitle, not beside the title, and the value labels are on the left, not inside the panel on the right. Its x axis labels every eighth year, where the 2017 chart labels every fourth, with two-digit years after the first (and 2000 in full).
 
 ## Type scale and margins
 
@@ -186,7 +179,7 @@ The default theme is the standard chart: print, web, Espresso article-body chart
 | Axis title | 7 / 7.5pt | `axis.title` |
 | Source | 6.5pt | `plot.caption` |
 
-The classic theme scales every element from `base_size` (title 1.5 times, legend and panel-heading text 1.25 times, source 0.8 times, other text 1 times, all fixed ratios), so it cannot reproduce these sizes separately; the classic charts here use `base_size = classic_size`, and a smaller multiple of it in the leader block and Espresso charts.
+The classic theme scales every element from `base_size`, the size of the axis labels, in fixed ratios: title 1.45 times and bold, subtitle and panel heading 1.15 times, legend text 1 times, source 0.95 times. At the `classic_size` of 6.5 that is 9.4pt for the title, 7.5pt for the subtitle and panel heading, 6.5pt for the axis labels and legend and 6.2pt for the source, against the guide's 9.5, 8, 7.5 (legend and panel heading), 7 and 6.5pt. It cannot set the sizes separately; the classic charts here use `base_size = classic_size`, and a smaller multiple of it in the leader block and Espresso charts.
 
 ### Leader block
 
@@ -300,7 +293,7 @@ classic_espresso <- ggplot(espresso_data, aes(year, change)) +
 chart_pair(classic_chart(classic_espresso), modern)
 ```
 
-Again the classic chart is the standard classic theme at 80% of the base size. The 2017 chart carries a pale ground and a thin red zero line over thin grey rules; the classic chart has thick white rules on the blue ground and a black axis line at the bottom, with the thin red zero line drawn over the white gridline at 0. The 2017 chart also leaves the 40pt blank under the bars that the guide specifies; the classic chart has none.
+Again the classic chart is the standard classic theme at 80% of the base size. The 2017 chart carries a pale ground and a thin red zero line over thin grey rules; the classic chart has thin white rules on the blue-gray ground and a black axis line at the bottom with ticks pointing up into the foot of the columns, which the paper's column charts did not have (a gap in the theme); the thin red zero line is drawn by the chart, over the white gridline at 0. The 2017 chart also leaves the 40pt blank under the bars that the guide specifies; the classic chart has none.
 
 ### Panel chart
 
@@ -447,13 +440,12 @@ classic_panel <- ggplot(classic_panel_data, aes(x, value, colour = series)) +
     )
   ) +
   guides(colour = guide_legend(nrow = 2)) +
-  theme_economist(base_size = classic_size) +
-  classic_legend
+  theme_economist(base_size = classic_size)
 
 chart_pair(classic_chart(classic_panel), modern)
 ```
 
-The classic theme has no panel marker, no lettering inside the panel and no direct labels, so the two panels are drawn plainly: facet headings are centred, the polling average shares the left axis with the TV mentions (the 2017 chart gives it its own right-hand axis) and the legend lists all four series although two are in different panels. The classic `panel.spacing` is 0.25 lines (about 3.6pt), far narrower than the guide's 24pt, and the left panel's labels are days from an origin, not months and years.
+The classic theme has no panel marker, no lettering inside the panel and no direct labels, so the two panels are drawn plainly: facet headings are flush left over each panel, in the strip size (1.15 times the axis labels), the polling average shares the left axis with the TV mentions (the 2017 chart gives it its own right-hand axis) and the legend lists all four series although two are in different panels. The classic `panel.spacing` is 0.25 lines, a few points, far narrower than the guide's 24pt, and the left panel's labels are days from an origin, not months and years.
 
 Portrait panel charts are one column wide, with the panels stacked 15pt apart.
 
@@ -472,7 +464,6 @@ modern <- economist_2017_chart(
   )
 )
 
-## The panel headings are wider than the chart at the classic size: set them smaller.
 classic_portrait <- classic_panel +
   facet_wrap(~panel, ncol = 1, scales = "free") +
   labs(
@@ -481,9 +472,10 @@ classic_portrait <- classic_panel +
       "\u2020Poll Jul 30th-Aug 6th 2016\nSources: GDELT;\nRCP; YouGov"
     )
   ) +
+  ## A heading is wider than the chart at the theme's size and clips at the right edge: set it smaller.
   theme(strip.text = element_text(size = rel(0.85)))
 
 chart_pair(classic_chart(classic_portrait), modern)
 ```
 
-The classic chart has the same shortcomings as the landscape one, with a legend taking two rows and centred headings that the 2017 chart sets flush left with a red marker above each. The classic headings were wider than the chart at the classic size, so they are set at 85% of the base size here; without that they clip at the left edge.
+The classic chart has the same shortcomings as the landscape one, with a legend taking two rows and headings that the 2017 chart also sets flush left but with a red marker above each. The longest classic heading is wider than the chart at the theme's size and clips at the right edge, so the chart sets the headings at 85% of the strip size.

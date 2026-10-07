@@ -97,21 +97,8 @@ classic_bg <- stats::setNames(ggthemes_data$economist$bg$value, ggthemes_data$ec
 classic_fg <- stats::setNames(ggthemes_data$economist$fg$value, ggthemes_data$economist$fg$name)
 classic_blob <- "white"
 
-## At the guide's chart sizes the classic legend (8pt text, 1.2-line keys, centred) is wider than the panel;
-## this sets it at the size of the axis text, on the left, over the whole plot.
-## `classic_left` puts the title and caption flush with the plot's left edge: by default they start at the panel,
-## which a wide column of country names pushes well to the right.
-classic_left <- theme(plot.title.position = "plot", plot.caption.position = "plot")
-classic_legend <- function(nrow = 1) {
-  list(
-    theme(
-      legend.text = element_text(size = rel(1)), legend.key.size = unit(0.9, "lines"),
-      legend.key.height = unit(0.7, "lines"), legend.justification = "left", legend.location = "plot"
-    ),
-    classic_left,
-    guides(colour = guide_legend(nrow = nrow), fill = guide_legend(nrow = nrow))
-  )
-}
+## The classic legend is the theme's own; this only lays its keys out in `nrow` rows.
+classic_rows <- function(nrow = 1) guides(colour = guide_legend(nrow = nrow), fill = guide_legend(nrow = nrow))
 ```
 
 ### Standard table
@@ -362,7 +349,7 @@ gt::gt(cells, id = "what-to-expect") |>
 
 The small charts in the table are hand-built SVG, which ggplot2 themes cannot reach. Two of them can be redrawn as ggplot2 charts, the applications and decisions bars and the "accepted" doughnuts, so that the classic and 2017 themes can be compared on the same data. They are plain charts, not table cells.
 
-```{r tables-what-to-expect-bars, econ_height = 190}
+```{r tables-what-to-expect-bars, econ_height = 150}
 asylum_bars <- data.frame(
   country = factor(rep(gsub("<br>", " ", asylum$country), 2), levels = rev(gsub("<br>", " ", asylum$country))),
   measure = factor(
@@ -383,7 +370,7 @@ classic <- asylum_plot +
   scale_fill_economist() +
   scale_y_continuous(position = "right") +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_legend() +
+  classic_rows() +
   labs(caption = "Source: UNHCR")
 
 modern <- asylum_plot +
@@ -396,7 +383,7 @@ modern <- asylum_plot +
 chart_pair(classic_chart(classic), economist_2017_chart(modern, media = "print"))
 ```
 
-In the classic bars the palette's blue and dark blue stand in for the guide's two blues. The classic chart sits on a blue-gray ground with thick white gridlines and a heavy black rule with ticks pointing into the panel along the value axis, where 2017 has thin gray gridlines, no axis line and its own tick guide. The classic legend is set in squares above the panel. It needs more height than the guide's 150pt, so this pair is drawn at 190pt.
+In the classic bars the palette's blue and dark blue stand in for the guide's two blues. The classic chart sits on a blue-gray ground with thin white gridlines and a thin black rule with ticks pointing up into the panel along the value axis (at the top, with the value labels), where 2017 has thin gray gridlines, no axis line and its own tick guide. The classic title, legend and source are flush left with the chart, the legend in small squares above the panel. At the guide's own 150pt the classic rows are tight but nothing clips.
 
 ```{r tables-what-to-expect-doughnuts, econ_size = "two_column", econ_height = 110}
 accepted <- data.frame(
@@ -437,14 +424,14 @@ modern <- accepted_plot +
 chart_pair(classic_chart(classic), economist_2017_chart(modern, media = "print"))
 ```
 
-The classic doughnuts take the palette's dark blue for the accepted share and a gray for the rest, and 2017 takes navy and a pale blue. 2017 puts a short red rule above each label, and the classic strip labels are larger and centred.
+The classic doughnuts take the palette's dark blue for the accepted share and a gray for the rest, and 2017 takes navy and a pale blue. 2017 puts a short red rule above each label, and the classic strip labels are the theme's own: flush left over each doughnut, at the size of the axis labels.
 
 ## Pie / doughnut
 
 The guide carries its own warning: "Use with caution. Should probably be
 abandoned in favour of stacked bar if over 4 categories."
 
-Local adjustments in this and the following sections: the classic side is `theme_economist()` at `base_size = 6.5`; where its legend is too wide for the guide's chart width, `classic_legend()` (defined under Tables) sets it at the size of the axis text and left-aligned, and `classic_left` starts the title and caption at the plot's left edge. None of these is part of the classic theme.
+The classic side is `theme_economist()` at `base_size = 6.5`, with its own title, legend and margins; `classic_rows()` (defined under Tables) only sets the number of rows of a legend's keys.
 
 ### The standard color order, one to six segments
 
@@ -507,7 +494,7 @@ pie_grid_classic <- function(hole) {
     theme(
       axis.text = element_blank(), axis.ticks = element_blank(),
       axis.line = element_blank(), panel.grid.major = element_blank(),
-      strip.text = element_text(face = "bold", size = rel(1.2), hjust = 0.5)
+      strip.text = element_text(face = "bold")
     )
 }
 
@@ -636,7 +623,7 @@ chart_pair(
 )
 ```
 
-The geometry is identical; only the fills and furniture change. The seven classic colours run blue-gray, dark blue, blue, light blue, dark green, light green and gray, so Jaguar Land Rover and Tata Steel are muted blue-gray and light green where 2017 gives them a strong blue and cyan, and "Others" is the classic gray (given the last place so that it falls on it). The classic source line is set to the right in the caption.
+The geometry is identical; only the fills and furniture change. The seven classic colours run blue-gray, dark blue, blue, light blue, dark green, light green and gray, so Jaguar Land Rover and Tata Steel are muted blue-gray and light green where 2017 gives them a strong blue and cyan, and "Others" is the classic gray (given the last place so that it falls on it). The classic source line is flush left with the chart.
 
 ### Two doughnuts, keyed labels
 
@@ -870,7 +857,7 @@ steam_classic <- ggplot(rail, aes(.data$year, .data$value, colour = .data$series
   ) +
   labs(title = "Out of steam", subtitle = "Britain, railways", x = NULL, caption = "Source: Department for Transport") +
   theme_economist(base_size = classic_size) +
-  classic_legend(nrow = 2)
+  classic_rows(nrow = 2)
 
 chart_pair(
   classic_chart(steam_classic),
@@ -882,7 +869,7 @@ chart_pair(
 )
 ```
 
-The classic chart has both axes but no way to tint them to their series, so a legend names the lines (set in two rows to fit); the 2017 chart colours each axis and its title in its line's colour and needs no legend. The classic value labels are left-aligned on both sides, so the left axis reads ragged, and the axis titles are dropped for lack of room (the units are in the legend labels). The classic "00" stands for 2000 because "2000" runs into "90" at this width.
+The classic chart has both axes but no way to tint them to their series, so a legend names the lines (set in two rows); the 2017 chart colours each axis and its title in its line's colour and needs no legend. The classic value labels are left-aligned on both sides (the theme's `axis.text.y` is `hjust = 0`), so the left axis reads ragged, and the classic chart sets no axis titles (the units are in the legend labels). The classic "00" stands for 2000 because "2000" runs into "90" at this width.
 
 ### Three lines on the left-hand axis
 
@@ -979,7 +966,7 @@ golden_classic <- ggplot(nafta, aes(.data$year, .data$value, colour = .data$seri
     caption = "Sources: Thomson Reuters; IMF"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_legend(nrow = 2)
+  classic_rows(nrow = 2)
 
 chart_pair(
   classic_chart(golden_classic),
@@ -1054,7 +1041,7 @@ chavismo_classic <- ggplot(venezuela, aes(year)) +
     caption = "Sources: IMF; Reuters\n*Preliminary estimate"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_legend()
+  classic_rows()
 
 chart_pair(
   classic_chart(chavismo_classic),
@@ -1067,7 +1054,7 @@ chart_pair(
 )
 ```
 
-Column and line take two palette colours by way of a shared set of limits: classic gives the columns the palette blue and the line the dark blue, and 2017 gives cyan and maroon with matching axes. The classic zero line is black where 2017 uses the red rule, and again the legend replaces the coloured axis titles.
+Column and line take two palette colours by way of a shared set of limits: classic gives the columns the palette blue and the line the dark blue, and 2017 gives cyan and maroon with matching axes. The theme draws no zero line, so the classic chart adds a black one (the corpus's classic zero rules, from 2014 on, are red; 2017 uses the red rule), and again the legend replaces the coloured axis titles.
 
 ### What to avoid
 
@@ -1137,7 +1124,7 @@ quantifying_classic <- ggplot(qe, aes(.data$year, .data$value, colour = .data$se
     caption = "Source: Thomson Reuters"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_legend()
+  classic_rows()
 
 chart_pair(
   classic_chart(quantifying_classic),
@@ -1217,7 +1204,7 @@ lies_classic <- ggplot() +
     x = NULL, caption = "Source: BCG"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_legend()
+  classic_rows()
 
 chart_pair(
   classic_chart(lies_classic),
@@ -1291,10 +1278,10 @@ zuma_classic <- ggplot(zuma, aes(.data$year, .data$value, colour = .data$series)
   ) +
   labs(
     title = "The Zuma years", x = NULL, caption = "Sources: Thomson Reuters; SACCI",
-    subtitle = "South Africa; rand per $, inverted scale (left);\nSACCI business confidence index,\n2015=100 (right)"
+    subtitle = "South Africa; rand per $, inverted\nscale (left); SACCI business\nconfidence index, 2015=100 (right)"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_legend()
+  classic_rows()
 
 chart_pair(
   classic_chart(zuma_classic),
@@ -1393,12 +1380,12 @@ big_mac_classic$layers[[6]]$aes_params$colour <- "black"
 big_mac_classic <- big_mac_classic +
   scale_colour_economist(name = NULL) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_legend() +
+  classic_rows() +
   labs(
     subtitle = "Local currency under (-) / over (+) valuation\nagainst the dollar, %; right-hand figures:\nBig Mac price*, $",
     caption = paste0(
       "Sources: McDonald's; The Economist\n*At market exchange rates (Jan 11th 2017)\n",
-      "†Average of four cities ‡Weighted average of member countries\n",
+      "†Average of four cities ‡Weighted average of\nmember countries\n",
       "§Average of five cities **Maharaja Mac"
     )
   )
@@ -1417,7 +1404,7 @@ chart_pair(
 )
 ```
 
-The classic chart keeps the layout, with white bubbles holding black figures where 2017 has pale blue-gray ones. The dumbbell ends are the palette's blue and dark blue, which at this size are much closer to each other than 2017's cyan and maroon. The classic gridlines are thick white verticals over the blue-gray ground, and the footnotes are not ranged to the right as in 2017 but folded into the caption.
+The classic chart keeps the layout, with white bubbles holding black figures where 2017 has pale blue-gray ones. The dumbbell ends are the palette's blue and dark blue, which at this size are much closer to each other than 2017's cyan and maroon. The classic gridlines are thin white verticals over the blue-gray ground, and the footnotes are not ranged to the right as in 2017 but folded into the caption.
 
 ### Bubbles and numbers outside the bar
 
@@ -1472,7 +1459,6 @@ air_classic <- ggplot(travel, aes(country, change)) +
   scale_fill_economist() +
   scale_size_area(max_size = 7.3) +
   scale_y_continuous(position = "right", breaks = seq(-10, 15, 5), labels = c("-10", "", "0", "5", "10", "15")) +
-  classic_left +
   labs(
     title = "Up in the air",
     subtitle = "Business travel spending, 2014\n% change on a year earlier",
@@ -1497,7 +1483,7 @@ Negative bars take the dark blue and positive ones the blue in the classic chart
 "If number range or positive / negative values rule out bubbles, revert to
 equal-sized number blocks."
 
-```{r tables-starting-small, econ_height = 215}
+```{r tables-starting-small, econ_height = 175}
 ## Market caps are printed.
 exchanges <- data.frame(
   exchange = rep(c("Johannesburg", "Nigeria", "Mauritius", "Nairobi", "Namibia", "BRVM*"), 2),
@@ -1550,7 +1536,7 @@ small_classic <- ggplot(exchanges, aes(exchange, listed)) +
     x = NULL, y = NULL, caption = "Source: World Federation of Exchanges\n*West African regional exchange"
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_legend()
+  classic_rows()
 
 chart_pair(
   classic_chart(small_classic),
@@ -1563,7 +1549,7 @@ chart_pair(
 )
 ```
 
-This pair is drawn at 215pt, not the guide's 175pt, because the classic title block, legend and margins leave too little for six bars at the guide's height; the 2017 chart is stretched to match, so it is taller than in the 2017 article. The number blocks are the same size in both, white in classic and pale blue-gray in 2017. The "Market cap, $bn" key has no pointer in classic, and the footnote sits in the caption.
+This pair is drawn at the guide's 175pt; the classic title block and legend take more of it than 2017's, so its six bars are tighter, but nothing clips. The number blocks are the same size in both, white in classic and pale blue-gray in 2017. The "Market cap, $bn" key has no pointer in classic, and the footnote sits in the caption.
 
 ### Text blocks
 

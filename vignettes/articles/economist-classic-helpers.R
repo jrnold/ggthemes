@@ -42,12 +42,12 @@ classic_chart <- function(plot, tab = c(5, 15), colour = classic_tab_colour()) {
   )
 }
 
-# `theme_economist()` is sized for a larger figure than the guide's charts: at
-# its default `base_size = 10` the title is 15pt, where a one-column chart
-# (160pt wide) carries a title of about 9.5pt. The classic charts here use this
-# base size so that type is comparable with the 2017 charts at the same size.
-# 6.5 is a starting point, to be checked against the charts in the Economist's
-# "Mistakes, we've drawn a few" (see economist-mistakes.Rmd).
+# `base_size` of `theme_economist()` is the size of the axis labels. The charts
+# of the chart corpus (2012 to 2018) that are one column wide, 160pt, set them
+# at about 6.5pt, which is the base size the classic charts here use, and the
+# size at which `theme_economist()`'s title, subtitle and source line come out
+# at the corpus's. The 2017 charts at the same width use `base_size = 7`, the
+# guide's axis labels (see `?theme_economist_2017`).
 classic_size <- 6.5
 
 # Draw a classic chart and its 2017 counterpart side by side on one device,

@@ -60,24 +60,12 @@ pal_stack <- economist_2017_pal("print", type = "stacked")
 classic_family <- economist_2017_font()
 pt <- function(x) x / ggplot2::.pt
 
-## `theme_economist()` at the base size of the helper file, with three changes the theme does not make:
-## titles, subtitle and source line flush with the plot's left edge, a slightly larger gap (the base size, not 5.5pt) above the source line, legend text the size
-## of the axis text and set from the plot's left edge, and gridlines and rules of the published weight (the theme's do not scale with `base_size`).
+## `theme_economist()` at the base size of the helper file, in the article's font. The theme itself now sets what the
+## classic charts have: titles, subtitle and source line flush with the chart's left edge, legend text the size of the
+## axis text, the key set from the chart's left edge, gridlines and rules of the published weight, and the 2017
+## guide's ticks and axis-title margins. It sets nothing of its own but the font.
 classic_theme <- function(base_size = classic_size, ...) {
-  theme_economist(base_size = base_size, base_family = classic_family, ...) +
-    theme(
-      line = element_line(linewidth = 0.2),
-      plot.title.position = "plot",
-      plot.caption.position = "plot",
-      plot.caption = element_text(hjust = 0, margin = margin(t = base_size)),
-      plot.subtitle = element_text(
-        hjust = 0,
-        lineheight = 1,
-        margin = margin(b = base_size)
-      ),
-      legend.text = element_text(size = rel(1)),
-      legend.location = "plot"
-    )
+  theme_economist(base_size = base_size, base_family = classic_family, ...)
 }
 
 ## A footnote ranged right on the source line, which `theme_economist()` has no element for. The caption must
@@ -271,7 +259,7 @@ chart_pair(
 
 **Fidelity.**
 
-* *Classic.* Close on structure: the bars, the white vertical gridlines, the value axis on top with comma-separated labels, bold and italic category labels, the left-aligned title block and the red vertical tab all come out as published, and the bar colors (dark red, pink) are in `economist_pal()` (from `n = 8`). Three things are hand work. The vivid red-orange of the Labour, Momentum and Saving Labour bars is not in the classic palette. The zigzag that cuts the long bar, and the white "5,210" inside it, are drawn with `annotate()`, since nothing in the package draws a classic scale break. And the Original sets its second subtitle line (`2016`) smaller than the first, which `labs(subtitle = )` cannot do.
+* *Classic.* Close on structure: the bars, the white vertical gridlines, the value axis on top with comma-separated labels, bold and italic category labels, the title block, flush with the chart's left margin and in line with the category labels, and the red vertical tab all come out as published, and the bar colors (dark red, pink) are in `economist_pal()` (from `n = 8`). Three things are hand work. The vivid red-orange of the Labour, Momentum and Saving Labour bars is not in the classic palette. The zigzag that cuts the long bar, and the white "5,210" inside it, are drawn with `annotate()`, since nothing in the package draws a classic scale break. And the Original sets its second subtitle line (`2016`) smaller than the first, which `labs(subtitle = )` cannot do.
 
 * *2017.* The value axis on top, the grey gridlines, the black baseline, the `blue1` bars, the red tab and the thousands-scaled subtitle match the Better chart. The pale band behind the highlighted row is not a theme feature: it takes a custom grob that reaches left over the label column, sized from the label's width. The band is drawn behind the label here, as in the Better chart, only because the grob is allowed to leave the panel (`coord_flip(clip = "off")`).
 
@@ -335,7 +323,9 @@ dogs_classic <- ggplot(dogs, aes(year)) +
       colour = classic_col("dark red"),
       margin = margin(l = classic_size)
     ),
-    plot.subtitle = element_text(margin = margin(b = classic_size * 3))
+    ## Room for the axis titles above the axes; the Originals' "2006" is narrower than this font's, so the labels are smaller.
+    plot.subtitle = element_text(margin = margin(b = classic_size * 3)),
+    axis.text.x = element_text(size = rel(0.85))
   )
 
 ## 2017: neck size on the left from 38 to 44, weight on the right from 18 to 21.
@@ -389,7 +379,7 @@ chart_pair(
 
 **Fidelity.**
 
-* *Classic.* This is the closest of the classic charts. Both value axes are colored to match their lines, the ticks point up from the x axis as published, and the white gridlines and the line weights are right once the line width is reset (see Gaps). The axis titles above each axis, the small broken-scale marks and the footnote ranged right on the source line are hand-built: the theme can only rotate an axis title beside the axis, has no break mark, and has no second source slot, so `classic_axis_title()`, `classic_break()` and `classic_footnote()` in the setup chunk do the work. The Original's second axis uses the same grid for 42-45 cm as for 18-21 kg, which is the mistake itself and is reproduced. The Original also sets *The Economist* in the source line in italics; here it is plain, as `labs(caption = )` takes one style.
+* *Classic.* This is the closest of the classic charts. Both value axes are colored to match their lines, the ticks point up from the x axis as published, and the white gridlines (0.5pt, from the theme) and the line weights are right. The year labels are set at 85% so that "2006" does not touch "07" in this font. The axis titles above each axis, the small broken-scale marks and the footnote ranged right on the source line are hand-built: the theme can only rotate an axis title beside the axis, has no break mark, and has no second source slot, so `classic_axis_title()`, `classic_break()` and `classic_footnote()` in the setup chunk do the work. The Original's second axis uses the same grid for 42-45 cm as for 18-21 kg, which is the mistake itself and is reproduced. The Original also sets *The Economist* in the source line in italics; here it is plain, as `labs(caption = )` takes one style.
 
 * *2017.* The 2017 functions cover this chart almost completely. `guide_axis_economist_2017()` puts the labels on the gridlines on both sides, `economist_2017_chart()` lifts the two axis titles above their axes and ranges the footnote right, and `geom_scale_break_economist_2017()` draws the break mark on each side in its axis color. What remains is by hand: the neck-size axis is a rescaled copy of the weight axis (`sec_axis()`), the dagger and asterisk in the axis titles are plotmath superscripts since `economist_2017_footnote()` returns plain symbols, and the footnote is wrapped by hand because a long footnote overprints the source line in a font as wide as the substitute.
 
@@ -584,6 +574,8 @@ bremorse_x <- function(guide, upper = 2018.6) {
   )
 }
 bremorse_sub <- "“In hindsight, do you think Britain was right or wrong\nto vote to leave the EU?”\n% responding"
+## The classic subtitle is wrapped a word earlier: in the substitute font its first line runs past the chart's edge.
+bremorse_sub_classic <- "“In hindsight, do you think Britain was right\nor wrong to vote to leave the EU?”\n% responding"
 
 ## Classic: the polls joined as they came, in the two classic colors nearest to the originals'.
 bremorse_classic <- ggplot(bremorse_long, aes(t, pct, colour = answer)) +
@@ -619,7 +611,7 @@ bremorse_classic <- ggplot(bremorse_long, aes(t, pct, colour = answer)) +
   bremorse_x(guide_axis(minor.ticks = TRUE)) +
   labs(
     title = "Bremorse",
-    subtitle = bremorse_sub,
+    subtitle = bremorse_sub_classic,
     x = NULL,
     y = NULL,
     caption = "Source: NatCen Social Research"
@@ -684,7 +676,7 @@ chart_pair(
 
 **Fidelity.**
 
-* *Classic.* The jagged polls, the two direct labels, the minor ticks and the three-line subtitle are all there. The palette is the main miss: the Original's mid-blue and coral are not in `economist_pal()`, so this uses `dark blue` and `pink`, which are visibly different. The Original is a web chart, with a white ground, a red rule across the top and grey gridlines; this chart keeps the classic blue-gray ground and white gridlines, as no classic web variant exists. The break mark at the foot of the right axis is hand-drawn. The y-axis labels sit centered on their gridlines, where the Original sets them just above, and the theme gives a right-hand axis no gap between labels and panel except through a manual margin.
+* *Classic.* The jagged polls, the two direct labels, the minor ticks and the three-line subtitle are all there; the subtitle's first line is wrapped one word earlier than the Original's, because in the substitute font it would run past the chart's right edge. The palette is the main miss: the Original's mid-blue and coral are not in `economist_pal()`, so this uses `dark blue` and `pink`, which are visibly different. The Original is a web chart, with a white ground, a red rule across the top and grey gridlines; this chart keeps the classic blue-gray ground and white gridlines, as no classic web variant exists. The break mark at the foot of the right axis is hand-drawn. The y-axis labels sit centered on their gridlines, where the Original sets them just above, and the theme leaves a right-hand axis with ggplot2's 2.2pt gap between labels and panel (the left axis gets a full base size), which looks tight against the Original's.
 
 * *2017.* Faint dots for the polls, a smooth line through each series, the web layout with its red rule and the right-hand axis labels over the gridlines are reproduced, and `geom_scale_break_economist_2017()` supplies the mark under the axis. Two things need care. The web layout has no outer margin, so the labels sit flush with the chart's edge and any data running to the edge of the panel lies under them; the panel's x range is extended by hand to leave room. The Economist does not say how it smoothed the series, so the loess span here is a guess.
 
@@ -828,8 +820,7 @@ trade_classic <- ggplot(
       colour = classic_col("dark red"),
       hjust = 1,
       margin = margin(r = classic_size)
-    ),
-    plot.subtitle = element_text(margin = margin(b = classic_size * 1.5))
+    )
   )
 
 ## 2017: the series are split into two panels, each on its own axis from zero, and the deficit's sign is restored.
@@ -892,7 +883,7 @@ chart_pair(
 
 **Fidelity.**
 
-* *Classic.* The reversed axis on the left and the ordinary one on the right are `sec_axis()` with a flipped transformation, each colored to match its line, and this reproduces the layout. By hand: the dash that stands for 50 on the deficit axis (an axis label), the thin red zero line that runs only as far as the data, and the italic direct labels, which the Original colors to match the lines. The classic `horizontal = TRUE` default gives the right gridlines here.
+* *Classic.* The reversed axis on the left and the ordinary one on the right are `sec_axis()` with a flipped transformation, each colored to match its line, and this reproduces the layout. By hand: the dash that stands for 50 on the deficit axis (an axis label), the thin red zero line that runs only as far as the data, and the italic direct labels, which the Original colors to match the lines. The classic `horizontal = TRUE` default gives the right gridlines here, and the theme's own spacing under the subtitle and its flush-left title block need no help; the two axes' label margins are set by hand because the right-hand one is tight (see Gaps).
 
 * *2017.* Two panels, each with its own headed axis, is what `facet_wrap(scales = "free_y")` plus `economist_2017_chart()` is built for: the red marker over each heading is added automatically and the axis labels sit on the gridlines. The deficit panel's axis runs from 0 down to -400 and carries the red zero rule. Per-panel limits and breaks have to be written as functions of the panel's range, and the strip text needs its left alignment and margin set by hand. The x range is widened on the right by hand, as in chart 6, because the labels sit on the gridlines inside the panel and would otherwise overprint the last bars.
 
@@ -1036,8 +1027,7 @@ pensions_classic <- ggplot(others, aes(x, y)) +
   ) +
   classic_theme(horizontal = TRUE) +
   theme(
-    axis.title = element_text(face = "italic"),
-    plot.subtitle = element_text(margin = margin(b = classic_size * 1.5))
+    axis.title = element_text(face = "italic")
   )
 
 ## 2017: the same, with the unlabelled countries faded, the labelled ones outlined and the axis title above the axis.
@@ -1275,16 +1265,8 @@ surplus_classic <- ggplot(bars_classic) +
   classic_theme(classic_size * 0.8, lightpanel = TRUE) +
   theme(
     panel.grid.major = element_blank(),
-    strip.text = element_text(
-      hjust = 0,
-      face = "bold",
-      size = rel(1),
-      margin = margin(b = 8)
-    ),
-    legend.justification = "left",
-    legend.key.width = unit(8, "pt"),
-    legend.key.height = unit(4.5, "pt"),
-    legend.text = element_text(size = rel(1), margin = margin(l = 2)),
+    strip.text = element_text(face = "bold", size = rel(1), margin = margin(b = 8)),
+    legend.text = element_text(margin = margin(l = 2)),
     legend.key.spacing.x = unit(3, "pt"),
     legend.key.spacing.y = unit(2, "pt"),
     axis.text.x = element_text(
@@ -1374,7 +1356,7 @@ chart_pair(
 
 **Fidelity.**
 
-* *Classic.* Structure, colors and the `+`/`-` convention on the axis come out well, and the ten-country key is a two-row legend. Three of the ten colors (orange, olive and the red-orange) are hard-coded, since they are not in the classic palette, and Spain's blue-grey is approximated by the palette's neutral `gray`. The axis labels `100 + 0 - 100` and the white gridlines are drawn by hand because the theme draws a gridline at every break, including the `+` and `-` marks. The panel headings are bold strip text. Type sizes are reduced to 80% to match the published image. The Original draws its two panels paler than the ground, which `theme_economist(lightpanel = TRUE)` does: a deep ground, `#B8D0DC`, and pale panels, `#CDDEE7`, the pair measured in this chart, with the headings and the key on the ground. The chart corpus has about ten classic charts of 2015 to 2018 with panels of this kind, against most with no distinct panel at all. The red line at zero is added by hand, since the theme draws none.
+* *Classic.* Structure, colors and the `+`/`-` convention on the axis come out well, and the ten-country key is a two-row legend. Three of the ten colors (orange, olive and the red-orange) are hard-coded, since they are not in the classic palette, and Spain's blue-grey is approximated by the palette's neutral `gray`. The axis labels `100 + 0 - 100` and the white gridlines are drawn by hand because the theme draws a gridline at every break, including the `+` and `-` marks. The panel headings are bold strip text at the axis-text size (the theme's strip text is 1.15 times that, regular weight, flush left; the Original's headings are bold and measure the same as the axis text). Type sizes are reduced to 80% of `classic_size` to match the published image, and that reduction is still needed: at the full size the ten-name key runs past the chart's right edge (Greece and Spain are cut off), the heading "Current-account balances" is clipped and the title is too large. The Original draws its two panels paler than the ground, which `theme_economist(lightpanel = TRUE)` does: a deep ground, `#B8D0DC`, and pale panels, `#CDDEE7`, the pair measured in this chart, with the headings and the key on the ground. The chart corpus has about ten classic charts of 2015 to 2018 with panels of this kind, against most with no distinct panel at all. The red line at zero is added by hand, since the theme draws none.
 
 * *2017.* The five-series version, with the key in one row, the headed panels and the red markers, reads like the Better chart. The values on the left panel's axis are signed, as in the Better chart. The Better chart's gridlines extend a bit past the last bar; here the x range is widened by hand so the labels do not overprint it.
 
@@ -1446,6 +1428,8 @@ women_range <- data.frame(
   )
 )
 women_sub <- "Women among researchers with papers published*\n2011-15, % of total, in:"
+## As in chart 3, the classic first line is wrapped a word earlier, clear of the chart's edge.
+women_sub_classic <- "Women among researchers with papers\npublished*\n2011-15, % of total, in:"
 women_labels <- face_labels(italic = "EU28")
 women_foot <- "*Indexed in Scopus\n†Who filed patent\napplications"
 
@@ -1526,7 +1510,7 @@ women_classic <- ggplot(women_long, aes(pct, country)) +
   guides(colour = guide_legend(nrow = 3, byrow = TRUE)) +
   labs(
     title = "Still a man's world",
-    subtitle = women_sub,
+    subtitle = women_sub_classic,
     x = NULL,
     y = NULL,
     caption = "Sources: “Gender in the Global\nResearch Landscape” by Elsevier;\nThe Economist"
@@ -1535,8 +1519,7 @@ women_classic <- ggplot(women_long, aes(pct, country)) +
   theme(
     axis.ticks = element_blank(),
     axis.line = element_blank(),
-    legend.justification = "left",
-    legend.text = element_text(size = rel(1), margin = margin(l = 2)),
+    legend.text = element_text(margin = margin(l = 2)),
     legend.key.width = unit(7, "pt"),
     legend.key.height = unit(9, "pt"),
     legend.key.spacing.x = unit(3, "pt"),
@@ -1605,7 +1588,7 @@ chart_pair(
 
 **Fidelity.**
 
-* *Classic.* The grey range, the short bars and the rings are drawn with segments and points, and a custom legend glyph keeps each key to its own mark. Nothing in the classic scales draws these marks. The legend has to be rebuilt as the Original has it, with `key_glyph` functions. The footnote is hand-placed, and the Original's italic *The Economist* in the source line is plain here, because `labs(caption = )` takes one style.
+* *Classic.* The grey range, the short bars and the rings are drawn with segments and points, and a custom legend glyph keeps each key to its own mark. Nothing in the classic scales draws these marks. The legend has to be rebuilt as the Original has it, with `key_glyph` functions. The key sizes are set by hand, because the Original's keys are tall bars where the theme's are wide swatches. The subtitle's first line is wrapped a word earlier, as in chart 3. The footnote is hand-placed, and the Original's italic *The Economist* in the source line is plain here, because `labs(caption = )` takes one style.
 
 * *2017.* The Economist published no Better version of this chart, so there is nothing to compare with. This is our own attempt in the guide's dot-chart idiom: dots in place of bars, a grey rule for the range, and rings for inventors. It shows the original's problem as clearly as the Original does, which is that five markers on one line overlap.
 
@@ -1616,21 +1599,20 @@ What each implementation could not reproduce from the seven pairs, and how this 
 ```{r gaps-table, echo = FALSE}
 gaps <- data.frame(
   Style = c(
-    rep("Classic", 11),
+    rep("Classic", 10),
     rep("2017", 6)
   ),
   Gap = c(
-    "Subtitle is set at the base size, the same as the axis text; the Originals' is about 1.15 times larger",
-    "Title and source line align with the panel, not the plot; the source line is right-aligned, with only 5.5pt above it",
-    "Line weights do not scale with `base_size`: gridlines are about 1.9pt at `base_size = 6.5`, where the Originals' are about 1pt",
-    "Legend text is 1.25 times the axis text; in the Originals the two are equal",
-    "Legend is placed against the panel, not the plot's left edge",
-    "A right-hand axis keeps ggplot2's 2.2pt label margin where the left axis gets 10pt, so its labels sit close to the panel",
+    "Font, not theme: the substitute font is about 10% wider than Econ Sans, so a long subtitle line runs past the chart's edge (the theme's subtitle size itself matches the Originals'); the first line is wrapped by hand",
+    "Theme gap: a right-hand axis keeps ggplot2's 2.2pt label margin where the left axis gets a full base size, so its labels sit close to the panel; the Originals also set them above the gridline, not on it",
     "No red tab (`classic_chart()` in the helper file draws it)",
     "No broken-scale mark, second source slot, footnote, or axis titles set above the axis",
     "No gridline control per break (the `+` and `-` marks on the axis of chart 6 get a gridline too)",
     "Palette lacks the published coral, red-orange, orange, olive and mid-blue",
     "Only one text style for the subtitle and source, so a smaller second line, or an italic source, is impossible",
+    "Legend keys are wide swatches; the Original's in chart 7 are tall bars and a ring, so `key_glyph` functions and key sizes are set by hand",
+    "Theme gap: horizontal-bar charts have a black axis line and ticks, where the Originals have neither; both are removed by hand",
+    "Style feature, not in the theme: the red zero and 50 rules (about one classic chart in five, from 2014) are drawn with geoms",
     "Highlight band behind a category label",
     "Axis-title superscripts: `economist_2017_footnote()` returns plain symbols",
     "Footnote and source overprint when long, so the footnote is wrapped by hand",
@@ -1639,17 +1621,16 @@ gaps <- data.frame(
     "No leader lines or label placement for scatter charts"
   ),
   Where = c(
-    "all",
-    "all",
-    "all",
-    "6, 7",
-    "6, 7",
+    "3, 7",
     "2, 3, 4, 6",
     "all",
     "1, 2, 3, 7",
     "6",
     "1, 3, 6, 7",
     "1, 2, 3, 7",
+    "7",
+    "1, 7",
+    "4, 6, 7",
     "1",
     "2",
     "2, 7",
@@ -1664,4 +1645,11 @@ knitr::kable(gaps)
 
 ### Type size
 
-`classic_size`, the `base_size` used for the classic charts, is 6.5. It was judged by setting the width of text against the width of the whole chart in each Original, using a condensed substitute font of about the right width: the titles come out within about 4% of the Originals' (a title of 9.75pt is right for a 160pt chart), axis labels and the source line within 7% either way, and the subtitle about 14% too small, because the theme gives a subtitle the same size as body text where the Originals use about 1.15 times that. A larger `base_size` would fix the subtitle at the cost of a title that is too large, so 6.5 is a fair compromise. A re-measurement at review, against the Originals in charts 1 to 5, agrees: title widths come out 2 to 4% too wide, the source line about 5% too wide, the axis title about right, and the subtitle 14 to 15% too narrow. The font is the largest uncertainty: all of these are comparisons of text widths in a font that is not the Economist's.
+`classic_size`, the `base_size` used for the classic charts, is 6.5, the size at which `theme_economist()` sets the axis labels, and the theme's title (1.45 times), subtitle (1.15) and source line (0.95) scale from it. Chart 6 uses 80% of it, a disclosed choice (see chart 6). Re-measured against the Originals in charts 1 to 5, as the width of each line of text against the width of the whole chart, in a substitute font that is wider than Econ Sans:
+
+* *Title:* 3 to 7% too wide in charts 1, 2, 4 and 5 (mean 5%); chart 3 is the outlier, 19% too wide, and I cannot tell the word's shape in this font from the size.
+* *Subtitle:* 8 to 12% too wide (charts 1, 4 and 5). The 2017 charts, set in the same font from the guide's own sizes, come out 9 to 11% too wide against their Betters, so the excess belongs to the font and the theme's subtitle size is right. Before the theme was changed it came out 14% too narrow.
+* *Source line:* 5 to 6% too wide (charts 1, 4 and 5), which against the font's 10% excess is, if anything, a little small.
+* *Axis title* (chart 5): 12% too wide, again about the font's excess.
+
+All of these are comparisons of text widths in a font that is not the Economist's, and the font is the largest uncertainty. The same excess is why the subtitle's first line of charts 3 and 7 runs past the chart's edge and is wrapped by hand.

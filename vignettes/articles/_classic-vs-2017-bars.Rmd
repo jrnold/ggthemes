@@ -3,21 +3,9 @@
 ```{r bars-setup, include = FALSE}
 ## The classic palette's colours by name, for the charts that override the colour order.
 classic_fg <- setNames(ggthemes_data$economist$fg$value, ggthemes_data$economist$fg$name)
-
-## Fixes for a small figure: the classic theme sets the legend keys in "lines" (14pt, whatever the base size), its
-## legend is boxed to the panel, whose width is cut by the axis labels, its legend text is 1.25 times the base size, and it aligns the title with the panel, so a long title runs off the edge.
-classic_fit <- theme(
-  legend.key.size = unit(classic_size * 1.2, "pt"),
-  legend.text = element_text(size = rel(1), margin = margin(l = 2)),
-  legend.key.spacing.x = unit(classic_size / 2, "pt"),
-  legend.location = "plot",
-  legend.justification = "left",
-  plot.title.position = "plot",
-  plot.caption.position = "plot"
-)
 ```
 
-Every classic chart in this section adds `classic_fit` (defined in the hidden setup chunk above): legend keys of 1.2 times the base size in points, legend text at the base size rather than 1.25 times, the legend justified left and located at the plot's edge, and the title and caption aligned to the plot rather than the panel. Where a chart sets anything more (`strip.text`, `axis.text.y`), its note says so. Examples cover one trace, two traces, sub-categories, a plus/minus axis and color overrides, all in the `bar_side` order unless noted.
+Every classic chart in this section is `theme_economist(base_size = classic_size)` and nothing more: the theme itself sets the type, margins, gridlines and the legend (top left, at the size of the axis labels), and puts the title and source line flush left with the chart. Where a chart adds anything to the theme (a `guide_legend()` layout, `strip.text`, `axis.text.y`), a comment in its code says why, and the note under it says what the theme did not manage. Examples cover one trace, two traces, sub-categories, a plus/minus axis and color overrides, all in the `bar_side` order unless noted.
 
 ### One trace with highlight
 
@@ -62,13 +50,12 @@ classic <- ggplot(doctors, aes(country, visits, fill = highlight)) +
     caption = "Source: OECD",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit
+  theme_economist(base_size = classic_size, horizontal = FALSE) 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic chart has no counterpart for the highlight: Spain is drawn in the palette's second colour, which is *darker* than the other bars (the guide's highlight is a lighter cyan), and the bold "Spain" label cannot be done by the theme. The classic value axis sits on top with a heavy black rule and inward ticks, with white vertical gridlines behind the bars; the 2017 chart has a thin rule and thin grey gridlines, also behind the bars. The classic caption is tiny (5.2pt) and right-aligned under the plot.
+The classic chart has no counterpart for the highlight: Spain is drawn in the palette's second colour, which is *darker* than the other bars (the guide's highlight is a lighter cyan), and the bold "Spain" label cannot be done by the theme. The classic value axis sits on top with a thin black rule and ticks pointing down into the panel, with thin white vertical gridlines behind the bars; the 2017 chart has a rule of its own and thin grey gridlines, also behind the bars. The classic source line is flush left with the chart, at 0.95 of the axis-label size (6.2pt), where the 2017 one is 6.5pt.
 
 ### One trace, columns
 
@@ -113,13 +100,12 @@ classic <- ggplot(ethiopia, aes(year, growth)) +
     caption = "Source: IMF\n*Estimate",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size) +
-  classic_fit
+  theme_economist(base_size = classic_size) 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic columns are the palette's single dark blue, against the 2017 mid-blue. The classic chart has white horizontal gridlines behind the columns and a heavy black base rule. The paper's own classic column charts had no black baseline and no ticks under the columns (checked in the chart corpus, 2012 to 2018); the rule and ticks are `theme_economist()`'s line-chart axis, which the theme cannot leave off for columns without extra settings. It draws no minor ticks, so only the labelled years are ticked, where the 2017 chart ticks every year. Both value axes sit on the right.
+The classic columns are the palette's single dark blue, against the 2017 mid-blue. The classic chart has thin white horizontal gridlines behind the columns and a thin black base rule. The paper's own classic column charts had no black baseline and no ticks under the columns (checked in the chart corpus, 2012 to 2018); the rule and the ticks, which point up into the foot of the columns, are `theme_economist()`'s line-chart axis, so this is a gap in the theme, not a feature of the style, and the theme has no option to leave them off for columns. It draws no minor ticks, so only the labelled years are ticked, where the 2017 chart ticks every year. Both value axes sit on the right.
 
 ### Two traces
 
@@ -179,8 +165,7 @@ classic <- ggplot(elections, aes(country, pct, fill = income)) +
     caption = "Source: Pew Global Attitudes Survey",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit
+  theme_economist(base_size = classic_size, horizontal = FALSE) 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -242,6 +227,8 @@ classic <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
   facet_grid(rows = vars(.data$country), scales = "free_y", space = "free", switch = "y") +
   scale_y_continuous(breaks = 0:3, position = "right", expand = expansion(mult = c(0, 0.02))) +
   scale_fill_economist() +
+  ## The title and the two keys do not fit on one row in a chart this wide.
+  guides(fill = guide_legend(nrow = 2)) +
   labs(
     title = "Autumn fall",
     subtitle = "GDP, % increase on previous year",
@@ -249,13 +236,12 @@ classic <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
     x = NULL, y = NULL, fill = "Forecasts made in:"
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit +
-  theme(strip.placement = "outside", strip.text.y.left = element_text(angle = 0, hjust = 0, vjust = 1))
+  theme(strip.placement = "outside", strip.text.y.left = element_text(angle = 0, vjust = 1))
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic theme has no two-level label column: the groups are `facet_grid()` strips, and its strip text is rotated -90 degrees by default (unreadable here) until set horizontal. There are no rules between the country groups and the group names are larger than the year labels, where the 2017 chart sets them as a column of the same size.
+The classic theme has no two-level label column: the groups are `facet_grid()` strips, and the strip text of a side strip is rotated -90 degrees by default (unreadable here), so the chart sets it horizontal. There are no rules between the country groups and the group names (1.15 times the axis-label size) are larger than the year labels, where the 2017 chart sets them as a column of the same size. The legend title and its two keys take two rows, as in the 2017 chart; on one row the keys ran off the right edge.
 
 ### Two traces with sub-categories, columns
 
@@ -304,13 +290,12 @@ classic <- ggplot(returns, aes(horizon, pct, fill = asset)) +
     x = NULL, y = NULL, fill = NULL
   ) +
   theme_economist(base_size = classic_size) +
-  classic_fit +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic four-colour palette ends in a grey, so "Forestry" is grey, which in the 2017 style would signal "other". The two-row key leaves the classic panel very short, so its value labels (20, 15, 10, 5) nearly touch.
+The classic four-colour palette ends in a grey, so "Forestry" is grey, which in the 2017 style would signal "other". The two-row key, which the four entries need at this width, leaves the classic panel very short, so its value labels (20, 15, 10, 5) nearly touch. The black ticks under the columns, which the paper's column charts did not have, show at the foot of the bars.
 
 ### One trace with a plus/minus axis
 
@@ -357,13 +342,12 @@ classic <- ggplot(capex, aes(sector, change)) +
     caption = "Source: Goldman Sachs\n*In dollar terms",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit
+  theme_economist(base_size = classic_size, horizontal = FALSE) 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-Same data, one colour. The classic chart has no red zero line (the heavy value-axis rule is black and at the top) and no bold "Total" row. The theme cannot draw a zero line, but the paper did: from 2014 about one classic chart in five carries a thin red rule at zero or at an index value (corpus), so this is a gap in the theme, not a feature the classic style lacked. The classic gridlines are white bands at the tick values; the 2017 chart has thin grey ones.
+Same data, one colour. The classic chart has no red zero line (the value-axis rule is black and at the top) and no bold "Total" row. The theme cannot draw a zero line, but the paper did: from 2014 about one classic chart in five carries a thin red rule at zero or at an index value (corpus), so this is a gap in the theme, not a feature the classic style lacked. The classic gridlines are thin white rules at the tick values; the 2017 chart has thin grey ones.
 
 ### Plus/minus columns
 
@@ -413,13 +397,12 @@ classic <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
     caption = "Source: Central Bank of Russia\n*To June 30th",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size) +
-  classic_fit
+  theme_economist(base_size = classic_size) 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The sign split uses the palette's two blues (bright for outflows, dark for inflows); the 2017 chart uses the `bar_side` blue and cyan. There is no red zero line in the classic chart (the theme cannot draw one; the paper's charts from 2014 on did), and its year labels at this size are close enough to crowd ("1994 96").
+The sign split uses the palette's two blues (bright for outflows, dark for inflows); the 2017 chart uses the `bar_side` blue and cyan. There is no red zero line in the classic chart (the theme cannot draw one; the paper's charts from 2014 on did), and its year labels at this size are close enough to crowd ("1994 96"), with black ticks under the columns that the paper's column charts did not have.
 
 ### Color used for a meaningful positive/negative split
 
@@ -524,13 +507,12 @@ classic <- ggplot(trade, aes(year, pct, fill = flow)) +
     caption = "Sources: Census Bureau; IMF\n*Jan-Nov annualised",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) +
-  classic_fit
+  theme_economist(base_size = classic_size) 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-Classic facet strips are centred plain text, not a bold lead-in over a red marker, and there is no way to name the series in place, so the classic chart carries a key (Imports is dark blue, not a lighter red). The classic panels pick their own tick values (0.0, 2.5, 5.0) where the 2017 chart fixes whole-number steps.
+Classic facet strips are plain text set flush left over each panel, in the strip size of 1.15 times the axis labels, not a bold lead-in over a red marker, and there is no way to name the series in place, so the classic chart carries a key (Imports is dark blue, not a lighter red). The classic panels pick their own tick values (0.0, 2.5, 5.0) where the 2017 chart fixes whole-number steps.
 
 ### Color override: chronological categories
 
@@ -583,8 +565,7 @@ classic <- ggplot(asia, aes(country, growth, fill = period)) +
     caption = "Source: OECD\n*Annual average",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit
+  theme_economist(base_size = classic_size, horizontal = FALSE) 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -651,7 +632,6 @@ classic <- ggplot(segregation, aes(group, change, fill = area)) +
     x = NULL, y = NULL, fill = NULL
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
 
 chart_pair(classic_chart(classic), modern)
@@ -732,7 +712,6 @@ classic <- ggplot(carriers, aes(band, width, fill = carrier)) +
     x = NULL, y = NULL, fill = NULL
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
 
 chart_pair(classic_chart(classic), modern)
@@ -853,7 +832,7 @@ classic <- ggplot(seats, aes(1, n, fill = party)) +
     colour = "white", fontface = "bold", size = 2
   ) +
   geom_hline(yintercept = 176, linetype = "dashed") +
-  annotate("text", x = 1.55, y = 176, label = "176 required for majority", size = 2) +
+  annotate("text", x = 1.55, y = 182, label = "176 required for majority", hjust = 0, size = 2) +
   coord_flip() +
   scale_x_continuous(breaks = NULL, limits = c(0.6, 1.7)) +
   scale_y_continuous(limits = c(0, 350), breaks = c(0, 176, 350), expand = expansion(0)) +
@@ -865,7 +844,6 @@ classic <- ggplot(seats, aes(1, n, fill = party)) +
     x = NULL, y = NULL, fill = NULL
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
@@ -1014,16 +992,15 @@ classic <- ggplot(loot, aes(value, panel, fill = stream)) +
     x = NULL, y = NULL
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit +
   theme(
     axis.text.y = element_blank(), axis.ticks.y = element_blank(), legend.position = "none",
-    strip.text = element_text(hjust = 0, face = "bold")
+    strip.text = element_text(face = "bold")
   )
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-Three bars with their own scales are drawn as three free-scale facets, so each has a value axis; there are no headings with red markers, no leader lines and no keys beside the bars. Only the wide segments are named, inside the bar, and the ten streams outrun the nine-colour palette (the last colour repeats the first, in a different panel). The facet headings are set left-aligned and bold, which the classic theme does not do by default.
+Three bars with their own scales are drawn as three free-scale facets, so each has a value axis; there are no headings with red markers, no leader lines and no keys beside the bars. Only the wide segments are named, inside the bar, and the ten streams outrun the nine-colour palette (the last colour repeats the first, in a different panel). The facet headings are flush left, as the theme sets them, and bold, which the chart adds.
 
 ### Stacked columns over time, with a forecast panel
 
@@ -1092,13 +1069,12 @@ classic <- ggplot(adspend, aes(year, bn, fill = format)) +
     x = NULL, y = NULL, fill = NULL
   ) +
   theme_economist(base_size = classic_size) +
-  classic_fit +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The forecast panel is a pale overlay with a text label; there is no panel tint, rule or in-panel key. The classic gridlines (thick white bands) pass behind the columns and the key is above the plot in two rows, where the 2017 key stands inside the panel.
+The forecast panel is a pale overlay with a text label; there is no panel tint, rule or in-panel key. The classic gridlines (thin white rules) pass behind the columns and the key is above the plot in two rows, where the 2017 key stands inside the panel.
 
 ### Stacked columns below zero
 
@@ -1156,16 +1132,15 @@ classic <- ggplot(deficit, aes(year, pct, fill = region)) +
   labs(
     title = "More in than out",
     subtitle = "United States, merchandise-trade deficit\n% of GDP",
-    caption = "Sources: US Census Bureau; US Bureau of Economic Analysis\n*January-September",
+    caption = "Sources: US Census Bureau;\nUS Bureau of Economic Analysis\n*January-September",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) +
-  classic_fit
+  theme_economist(base_size = classic_size) 
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-Negative columns work the same way in both. The classic chart has no tick for every year (no minor ticks), and its caption runs on one line instead of being wrapped to a narrow column.
+Negative columns work the same way in both. The classic chart has no tick for every year (no minor ticks), and its caption is wrapped to three lines by hand, since the theme does not wrap it and the source line ran off the chart.
 
 ### Color override: more than four categories, and gray for "other"
 
@@ -1233,7 +1208,6 @@ classic <- ggplot(migrants, aes(destination, pct, fill = origin)) +
     x = NULL, y = NULL, fill = NULL
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
@@ -1339,25 +1313,25 @@ classic <- ggplot(bars, aes(row, pct, fill = answer)) +
   labs(
     title = "Trump's troops",
     subtitle = "How do you feel about Donald Trump as\nthe 2016 Republican nominee\nfor president?*",
-    caption = "Sources: YouGov; CCES; The Economist\n*5,773 registered voters surveyed June 4th to July 9th 2016",
+    caption = "Sources: YouGov; CCES; The Economist\n*5,773 registered voters surveyed\nJune 4th to July 9th 2016",
     x = NULL, y = NULL, fill = NULL
   ) +
   theme_economist(base_size = classic_size, horizontal = FALSE) +
-  classic_fit +
+  ## Two-line row names overprint at the theme's size: set them smaller.
   theme(axis.text.y = element_text(size = rel(0.85), lineheight = 0.9)) +
   guides(fill = guide_legend(ncol = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
 ```
 
-The number blocks are plain sized points, and there is no pointer label ("% of total voters, 2012") above them. The row names are two lines on the category axis in one weight, instead of a bold lead-in over a regular second line. The classic palette's blues and reds are a dark blue, bright blue, salmon, brown-red and grey, so "Enthusiastic" is the darkest segment rather than the strongest blue. The classic row names are set at 85% of the base size (`axis.text.y`) so that they fit in the chart.
+The number blocks are plain sized points, and there is no pointer label ("% of total voters, 2012") above them. The row names are two lines on the category axis in one weight, instead of a bold lead-in over a regular second line. The classic palette's blues and reds are a dark blue, bright blue, salmon, brown-red and grey, so "Enthusiastic" is the darkest segment rather than the strongest blue. The classic row names are set at 85% of the base size (`axis.text.y`); at the theme's size the two-line names overprint the neighbouring rows. The source note is wrapped by hand for the same reason as above.
 
 ### Checklist
 
 | Chart | Done | Notes |
 |---|---|---|
 | One trace with highlight | partial | highlight in palette colour 2 (darker, not lighter); no bold label |
-| One trace, columns | yes | no tick for every year |
+| One trace, columns | yes | no tick for every year; black base rule and ticks (a theme gap: the paper's columns had none) |
 | Two traces | yes | series order of colours reversed in darkness |
 | Two traces with sub-categories | partial | facet strips instead of label column; no group rules |
 | Two traces with sub-categories, columns | yes | fourth palette colour is grey |
