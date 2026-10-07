@@ -15,6 +15,14 @@ p + theme_economist(horizontal = FALSE) +
     scale_colour_economist() +
     coord_flip()
 
+## Panels darker than the ground, as in the charts of 2012 to 2014
+p + theme_economist(dkpanel = TRUE) +
+    scale_colour_economist()
+
+## Panels lighter than the ground, as in many charts of 2015 to 2018
+p + theme_economist(lightpanel = TRUE) +
+    scale_colour_economist()
+
 ## White panel/light gray background
 p + theme_economist_white() +
     scale_colour_economist()

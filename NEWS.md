@@ -1,5 +1,31 @@
 # ggthemes (development version)
 
+- `theme_economist_2017()`'s `base_size` is now the size of the axis labels, as
+  in `theme_economist()`, so the default of 10 gives 10pt axis labels, like any
+  other ggplot2 theme's body text, where before it gave the guide's own sizes
+  (7pt axis labels, a 9.5pt title). Every other size is still the guide's size
+  relative to its 7pt axis labels. Charts drawn with the default `base_size` are
+  now larger by a factor of 10 / 7; use `base_size = 7` to draw the guide's own
+  sizes, as the examples and articles now do.
+
+- `theme_economist()` now matches the classic Economist charts as measured in a
+  corpus of the print charts of 2012 to 2018. Title, subtitle and source line
+  are flush left with the chart and not with the panel, the source line is left
+  aligned, the legend sits flush left under the subtitle with legend text the
+  size of the axis text, and panel headings are flush left. Sizes are in base
+  sizes throughout: the margins, which were fixed at 12pt and 10pt, and the
+  legend keys, which were sized in lines, now scale with `base_size`, and the
+  white gridlines are thinner: 0.8pt at the default `base_size` of 10, where
+  they were 1.9pt at every size. Charts drawn with the default `base_size` look
+  different: larger side margins, a larger subtitle and source line, thinner
+  gridlines.
+
+- `theme_economist()` gains `lightpanel`, which draws the panels paler than a
+  deeper blue-gray ground, as many Economist charts of 2015 to 2018 did.
+  `dkpanel`, which draws them darker than the ground as in 2012 to 2014, is now
+  documented in the same terms. The two cannot be combined. The new colors are
+  `"deep blue-gray"` and `"pale blue-gray"` in `ggthemes_data$economist$bg`.
+
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so
   every exported `color` function now also has a `colour` spelling.
 

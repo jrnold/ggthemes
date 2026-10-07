@@ -20,6 +20,12 @@ bg:
 - {name: "red", value: '#ed111a'}
 - {name: "light gray", value: '#ebebeb'}
 - {name: "dark gray", value: '#c9c9c9'}
+# Added after the five above, which stay in their old rows. The 2015-18 charts
+# that drew their panels lighter than the ground: a deep ground and a pale
+# panel. The commonest such pair in the chart corpus, which holds about ten of
+# them, is ground #B8D0DC and panel #CDDEE7.
+- {name: "deep blue-gray", value: '#b8d0dc'}
+- {name: "pale blue-gray", value: '#cddee7'}
 
 # Series colours.
 fg:
