@@ -961,11 +961,16 @@ lines_thermo_classic <- function(n, terminals = c("rule", "dot")) {
   d <- thermo_data(if (terminals == "dot") "dot" else as.character(n))
   spans <- aggregate(value ~ field, d, max)
 
-  p <- ggplot(d, aes(y = .data$field)) +
+  p <- ggplot(d, aes(y = .data$field))
+  p <- p + if (terminals == "rule") {
     geom_segment(
       data = spans, aes(x = 0, xend = .data$value, y = .data$field, yend = .data$field),
       colour = "grey60", linewidth = 0.4
     )
+  } else {
+    ## A hollow track under the dots, as in the paper's thermometer charts.
+    classic_tube(spans, aes(x = 0, xend = .data$value, y = .data$field, yend = .data$field))
+  }
   p <- p + if (terminals == "rule") {
     geom_linerange(
       aes(x = .data$value, ymin = as.numeric(.data$field) - 0.41, ymax = as.numeric(.data$field) + 0.41,
@@ -973,19 +978,19 @@ lines_thermo_classic <- function(n, terminals = c("rule", "dot")) {
       linewidth = 1, key_glyph = "vline"
     )
   } else {
-    geom_point(aes(x = .data$value, colour = .data$series), size = 1.6)
+    classic_dot(aes(x = .data$value, fill = .data$series, colour = .data$series))
   }
   p +
     coord_cartesian(clip = "off") +
     scale_x_continuous(position = "top", limits = c(0, 425), breaks = seq(0, 400, 100), expand = expansion(0)) +
-    lines_classic_scale() +
+    (if (terminals == "rule") lines_classic_scale() else classic_dot_scales(n)) +
     labs(
       title = "The horrible science",
       subtitle = paste0(
         "Use of specific \u201cadjective\u201d per million\n",
         "words in student reviews on\nRateMyProfessors.com*"
       ),
-      x = NULL, y = NULL, colour = NULL
+      x = NULL, y = NULL, colour = NULL, fill = NULL
     )
 }
 lines_thermo_theme <- theme_economist(base_size = classic_size, horizontal = FALSE)
@@ -1045,7 +1050,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic has no thermometer, so the rule and terminals are plain ggplot2 layers on the classic theme. They read well for two and three series, but the classic series colours are a run of blues (and, from five series, grays, with greens at six), so terminals that overlap are hard to tell apart; the 2017 terminals use cyan, maroon, gold and then blue, teal and mauve. Classic also draws a thin black rule and ticks along the top axis with white gridlines, and has no "Horrible" marker row, which the 2017 charts set in the axis-number row.
+Classic has no thermometer, so the rule and terminals are plain ggplot2 layers on the classic theme (the dots, below, take the paper's dot style). They read well for two and three series, but the classic series colours are a run of blues (and, from five series, grays, with greens at six), so terminals that overlap are hard to tell apart; the 2017 terminals use cyan, maroon, gold and then blue, teal and mauve. Classic also draws a thin black rule and ticks along the top axis with white gridlines, and has no "Horrible" marker row, which the 2017 charts set in the axis-number row.
 
 ### Dot terminals
 
@@ -1064,7 +1069,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-As above, the classic dots are three blues, so where dots overlap (Business, Psychology) they are hard to tell apart; the 2017 dots are cyan, maroon and gold and keep their identity when they overlap. Classic has no dot terminals, so these are `geom_point()`.
+The classic dots are the paper's: circles with a dark outline over a hollow track, the first white with a dark red outline, the second light blue with a dark blue outline and the third white with a dark blue outline, so where they overlap (Business, Psychology) the outlines still show which is which; the 2017 dots are solid cyan, maroon and gold. Classic has no dot terminals, so these are `geom_point()` with `classic_dot()`, and the track is `classic_tube()`, both helpers in the shared file.
 
 ## Scatter
 
@@ -1276,7 +1281,7 @@ classic <- lines_classic(
       data = leaders, aes(x = x, xend = xend, y = y, yend = yend), colour = economist_pal()(2)[2],
       linewidth = 0.2
     ) +
-    geom_point(data = named, colour = economist_pal()(2)[2], size = 1.2) +
+    classic_dot(data = named, fill = "white", colour = classic_dot_looks()$outline[3]) +
     geom_text(data = named, aes(x = lx, y = ly, label = country, hjust = hjust), size = 2, colour = "grey30") +
     scale_x_continuous(limits = c(0, 115), breaks = seq(0, 100, 20), expand = c(0, 0)) +
     scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), expand = c(0, 0)) +
@@ -1291,7 +1296,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic has no highlight dot, so the named countries take its second fill colour (dark blue) against the blue of the rest; the leader lines and labels are the same layers as in 2017. Classic lays its y-axis title along the left side and the gridlines are white; 2017 puts the title horizontally over the right-hand scale.
+Classic has no highlight dot, so the named countries are drawn as the paper draws a labelled dot, a white circle with a dark blue outline, against the plain blue dots of the rest; the leader lines and labels are the same layers as in 2017. Classic lays its y-axis title along the left side and the gridlines are white; 2017 puts the title horizontally over the right-hand scale.
 
 ### Connected scatter
 
@@ -1388,7 +1393,7 @@ classic <- lines_classic(
   ggplot(oecd, aes(spend, life)) +
     geom_point(data = others, aes(colour = year), size = 1.4, alpha = 0.5) +
     geom_line(aes(group = country), colour = "grey50", linewidth = 0.3) +
-    geom_point(aes(colour = year), size = 1.4) +
+    classic_dot(aes(fill = year, colour = year)) +
     geom_text(
       data = nation_labels, aes(x = x, y = y, label = country, hjust = hjust, fontface = face),
       size = 2, colour = "grey30", inherit.aes = FALSE
@@ -1403,12 +1408,12 @@ classic <- lines_classic(
     coord_cartesian(xlim = c(-0.8, 10), ylim = c(68, 84), expand = FALSE) +
     scale_x_continuous(breaks = 0:9) +
     scale_y_continuous(breaks = seq(68, 84, 2)) +
-    scale_colour_economist() +
+    classic_dot_scales(2) +
     labs(
       title = "Right nation",
       subtitle = "Health spending and life expectancy at birth\nOECD countries",
       x = "Health expenditures per person\nat purchasing-power parity, current prices, $'000",
-      y = "Life expectancy,\nyears", colour = NULL
+      y = "Life expectancy,\nyears", colour = NULL, fill = NULL
     ),
   caption = "Source: OECD",
   footnote = "*Or latest"
@@ -1416,7 +1421,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-The classic chart does not break its gridlines or axis lines, so the white gridlines run behind the connecting lines and labels, and the key is the ordinary legend of two dots, without the line joining them. The 2003 and 2013 dots are blue and dark blue (cyan and maroon in 2017), and the faint dots of the other countries are drawn in the same two blues.
+The classic chart does not break its gridlines or axis lines, so the white gridlines run behind the connecting lines and labels, and the key is the ordinary legend of two dots, without the line joining them. The 2003 and 2013 dots take the paper's first two looks, a white circle with a dark red outline and a light blue one with a dark blue outline (cyan and maroon in 2017), and the faint dots of the other countries are drawn in the two outline colours.
 
 ### Bubble chart, four categories
 
