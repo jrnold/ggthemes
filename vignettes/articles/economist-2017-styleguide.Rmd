@@ -16,6 +16,11 @@ local({
 
 This article reproduces the charts of [The Economist visual styleguide](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf) (Version 1.2, 4 May 2017, by Matt McLean) with *ggthemes*, using `theme_economist_2017()`, `economist_2017_pal()`, `guide_axis_economist_2017()` and `economist_2017_chart()`.
 
+Block quotes are the guide's own words, with its spelling and typos.
+
+The 2017 style guide was an update of the "classic" economist chart style. 
+["Mistakes, "we've drawn a few"](https://www.reddit.com/r/dataisbeautiful/comments/b6g2v8/economist_mistakes_weve_drawn_a_few/) describes the thinking behind the changes.
+
 ```{r setup, message = FALSE}
 library(ggthemes)
 library(ggplot2)
@@ -75,7 +80,7 @@ no_value_axis <- function() {
 
 ## Chart sizes
 
-Charts come in fixed print widths, in points. Only the leader block and the Espresso lead image have a fixed height.
+In print, charts come in fixed print widths, in points. Only the leader block and the Espresso lead image have a fixed height.  The theme, `theme_economist_2017()`, derives the relative scaling of plot elements from the absolute numbers, but allows them to scale with `base_size`. The default, 10, gives the guide's own numbers.
 
 ```{r sizes-table}
 options(knitr.kable.NA = "")
@@ -93,20 +98,22 @@ knitr::kable(
 )
 ```
 
-`economist_2017_size()` returns a size as `c(width =, height =)`, in inches by default or in points.
+`economist_2017_size()` returns a chart size as `c(width =, height =)`, in inches by default or in points. 
+Figures are shown at actual size: a one-column chart, 160pt, is 213px wide.
 
 ```{r size-example}
 economist_2017_size("one_column", height = 165)
 economist_2017_size("leader", units = "pt")
 ```
 
-Type sizes and line weights are absolute, so `theme_economist_2017()` scales them with `base_size`. The default, 10, gives the guide's own numbers.
 
-Figures are shown at actual size: a one-column chart, 160pt, is 213px wide.
 
 ## Typefaces
 
-Charts use the proprietary Econ Sans and its condensed cut, Econ Sans Cnd. `ggthemes_data$economist_2017$typefaces` records what each is for and how ggthemes draws it.
+Economist charts in this era use the proprietary Econ Sans and its condensed cut, Econ Sans Cnd. 
+Since Econ Sans is not public, `economist_2017_font()` picks the closest installed substitute as the `base_family`: Fira Sans Condensed, then Roboto Condensed, then `"sans"`.
+
+The data element `ggthemes_data$economist_2017$typefaces` records what each is for and how ggthemes draws it.
 
 ```{r typefaces-table}
 typefaces <- ggthemes_data$economist_2017$typefaces
@@ -126,9 +133,8 @@ knitr::kable(
 )
 ```
 
-Econ Sans is not public. `economist_2017_font()`, the theme's default `base_family`, picks the closest installed substitute: Fira Sans Condensed, then Roboto Condensed, then `"sans"`.
 
-Footnotes use an ordered set of symbols. `economist_2017_footnote()` returns them by number.
+Economist charts often use footnotes, identified by an ordered set of stymbols.
 
 ```{r footnote-symbols}
 economist_2017_footnote(1:8)
@@ -162,7 +168,8 @@ economist_2017_chart(footnote_figure, media = "print")
 
 ## Anatomy of a chart
 
-The value axis sits on the right, with each label just above its gridline inside the panel. `scale_y_continuous(position = "right")` and `guide_axis_economist_2017()` produce this.
+The value axis sits on the right, with each label just above its gridline inside the panel. `scale_y_continuous(position = "right")` and `guide_axis_economist_2017()` produce this setup. `ggplot` themes do not allow placing
+a label *above* an axis, which is why `guide_axis_economist_2017()` is required.
 
 ```{r anatomy-bare, econ_height = 165}
 ## Monthly yields, in years since the start.
@@ -203,13 +210,13 @@ tokyo
 
 The theme sets the guide's type and rules: 9.5pt bold title, 8pt subtitle, 7.5pt legend labels, 7pt axis labels, 0.5pt gridlines, a 6.5pt source line (`labs(caption = )`), and ticks hanging below the baseline.
 
-Three things are not theme elements:
+Three features of Economist charts are not theme elements:
 
 * the **red tab**, 15pt by 5pt, above the title;
 * for web charts, a **red rule** across the full width, with the key beside the title;
 * a 10pt by 1pt **red marker** above each panel heading.
 
-`economist_2017_chart()` adds them to a finished plot and returns a grob you can print or save.
+The function `economist_2017_chart()` adds them to a finished plot and returns a grob you can print or save.
 
 ```{r anatomy-chart, econ_height = 165}
 economist_2017_chart(
@@ -219,8 +226,6 @@ economist_2017_chart(
 ```
 
 ## Source, footnote and number box
-
-The rest of the article draws every chart through `economist_2017_chart()`. The source is the theme's caption, set with `labs(caption = )`. `footnote =` adds a footnote, `number =` a number box and `tab =` sets the red tab.
 
 The print chart sits on a pale blue ground. The web chart sits on white under a red rule, with the key beside the title.
 
@@ -534,9 +539,8 @@ economist_2017_chart(
 
 The print palette is specified in CMYK and the web palette in hex. Both are in `ggthemes_data$economist_2017`.
 
-Print and web charts use the same palettes and color orders.
-
-`print_pal$swatches` lists every print swatch with its CMYK and its sRGB conversion through ISO Coated v2 (FOGRA39).
+The guide doesn't specify 1-1 colors for the web or separate color scales for print and web. The package only provides
+single sets of color palettes to use with either web or print backgrounds.
 
 ```{r swatches, econ_size = "two_column", econ_height = 260}
 ## The palettes, grouped as the guide groups them.
@@ -587,9 +591,7 @@ ggplot(swatch_data, aes(col, -row)) +
 
 Each chart type has its own color order, chosen with the `type` argument of `economist_2017_pal()`.
 
-The `bright` and `dark` sets (`set = "bright"`, `set = "dark"`) are for "multi-category charts where high contrast is needed".
-
-Nine "equal lightness colour scales" give six steps of one hue for ordered data. `economist_2017_gradient_pal(hue)`, `scale_fill_economist_2017_c(hue)` and `scale_colour_economist_2017_c(hue)` use them.
+Nine "equal lightness colour scales" come from the web palettes: `economist_2017_gradient_pal(hue)`, `scale_fill_economist_2017_c(hue)` and `scale_colour_economist_2017_c(hue)` use them.
 
 ```{r gradients, econ_size = "two_column", econ_height = 170}
 ## One column per hue, one row per step, darkest at the top.
@@ -616,7 +618,39 @@ ggplot(steps, aes(col, -step, fill = hex)) +
 
 ## Bar / column, side by side
 
-Examples cover one trace, two traces, sub-categories, a plus/minus axis and color overrides, all in the `bar_side` order unless noted.
+### One trace
+
+```{r african-lion, econ_height = 165}
+ethiopia <- data.frame(
+  year = 2004:2015,
+  growth = c(11.7, 12.7, 11.5, 11.8, 11.2, 10.0, 10.6, 11.4, 8.7, 9.8, 10.3, 8.7)
+)
+
+lion <- ggplot(ethiopia, aes(year, growth)) +
+  geom_col(fill = pal_bar(1), width = 0.6) +
+  scale_y_continuous(
+    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 14), breaks = seq(0, 14, 2),
+    expand = expansion(0)
+  ) +
+  ## Labels every other year, then the estimate; a tick for every year.
+  scale_x_continuous(
+    breaks = c(seq(2004, 2014, 2), 2015), labels = c("2004", "06", "08", "10", "12", "14", "15*"),
+    minor_breaks = 2004:2015, guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  labs(
+    title = "African lion",
+    subtitle = "Ethiopia’s GDP, % change on a year earlier",
+    x = NULL, y = NULL
+  ) +
+  theme_economist_2017("print")
+
+economist_2017_chart(
+  lion +
+    labs(caption = "Source: IMF"),
+  media = "print",
+  footnote = "*Estimate"
+)
+```
 
 ### One trace with highlight
 
@@ -651,39 +685,6 @@ economist_2017_chart(
 )
 ```
 
-### One trace, columns
-
-```{r african-lion, econ_height = 165}
-ethiopia <- data.frame(
-  year = 2004:2015,
-  growth = c(11.7, 12.7, 11.5, 11.8, 11.2, 10.0, 10.6, 11.4, 8.7, 9.8, 10.3, 8.7)
-)
-
-lion <- ggplot(ethiopia, aes(year, growth)) +
-  geom_col(fill = pal_bar(1), width = 0.6) +
-  scale_y_continuous(
-    guide = guide_axis_economist_2017(), position = "right", limits = c(0, 14), breaks = seq(0, 14, 2),
-    expand = expansion(0)
-  ) +
-  ## Labels every other year, then the estimate; a tick for every year.
-  scale_x_continuous(
-    breaks = c(seq(2004, 2014, 2), 2015), labels = c("2004", "06", "08", "10", "12", "14", "15*"),
-    minor_breaks = 2004:2015, guide = guide_axis(minor.ticks = TRUE)
-  ) +
-  labs(
-    title = "African lion",
-    subtitle = "Ethiopia’s GDP, % change on a year earlier",
-    x = NULL, y = NULL
-  ) +
-  theme_economist_2017("print")
-
-economist_2017_chart(
-  lion +
-    labs(caption = "Source: IMF"),
-  media = "print",
-  footnote = "*Estimate"
-)
-```
 
 ### Two traces
 
@@ -728,8 +729,6 @@ economist_2017_chart(
 ```
 
 ### Two traces with sub-categories
-
-`facet_grid()` with `space = "free"` gives the two-level label column.
 
 ```{r autumn-fall, econ_height = 185}
 forecasts <- data.frame(
@@ -777,8 +776,6 @@ economist_2017_chart(
 )
 ```
 
-### Two traces with sub-categories, columns
-
 ```{r mighty-jungle, econ_height = 155}
 returns <- data.frame(
   horizon = rep(c("20 years", "10 years", "5 years"), each = 4),
@@ -814,9 +811,7 @@ economist_2017_chart(
 )
 ```
 
-### One trace with a plus/minus axis
-
-The guide: "Differentiate positive/negative values by colour only where there is a meaningful difference i.e. imports / exports." This is one series, so it stays one color.
+### One trace with a +/- axis 
 
 ```{r dotcom, econ_height = 195}
 capex <- data.frame(
@@ -850,7 +845,8 @@ economist_2017_chart(
 )
 ```
 
-### Plus/minus columns
+> Differentiate positive/negative values by colour only where there is a
+> meaningful difference i.e. imports / exports
 
 ```{r money-drain, econ_height = 155}
 ## 2005 is missing from the guide's chart.
@@ -884,10 +880,6 @@ economist_2017_chart(
   footnote = "*To June 30th"
 )
 ```
-
-### Color used for a meaningful positive/negative split
-
-Here the sign is meaningful, so the two halves differ in color.
 
 ```{r trader-woes, econ_height = 215}
 trade <- data.frame(
@@ -977,9 +969,9 @@ economist_2017_chart(
 )
 ```
 
-### Color override: chronological categories
+### Color overrides
 
-"Where categories are chronological, use light-to-dark scale".
+> Where categories are chronological, use light-to-dark scale
 
 ```{r growth-asia, econ_height = 225}
 asia <- data.frame(
@@ -1017,9 +1009,7 @@ economist_2017_chart(
 )
 ```
 
-### Color override: categories that form meaningful groups
-
-"If categories form meaningful groups, use colour to reinforce that".
+> If categories form meaningful groups, use colour to reinforce that
 
 ```{r dont-fence, econ_height = 235}
 segregation <- data.frame(
@@ -1067,9 +1057,10 @@ economist_2017_chart(
 
 ## Bar / column, stacked
 
-Stacked bars use the `stacked` order. Label segment values directly when there are few categories, and "use grey for 'other' / 'don't know' etc".
+Stacked bars use the `stacked` order. 
 
-### Labeled segments, no axis
+> For stacked bars with few categories or labelling issues, consider
+> removing tick marks and labelling each segment value.
 
 ```{r fed-nuptials, econ_height = 149}
 carriers <- data.frame(
@@ -1121,8 +1112,6 @@ economist_2017_chart(
   media = "print"
 )
 ```
-
-### A single stacked bar with a threshold
 
 ```{r no-winner, econ_height = 129}
 ## Drawn in the guide's own units, so the leader lines can be placed.
@@ -1227,8 +1216,6 @@ economist_2017_chart(
   media = "print"
 )
 ```
-
-### Several stacked bars with different totals
 
 ```{r looting, econ_height = 189}
 ## Drawn in the guide's own units; each bar has its own scale.
@@ -1343,7 +1330,6 @@ economist_2017_chart(
 )
 ```
 
-### Stacked columns over time, with a forecast panel
 
 ```{r getting-sociable, econ_height = 178}
 adspend <- data.frame(
@@ -1396,7 +1382,6 @@ economist_2017_chart(
 )
 ```
 
-### Stacked columns below zero
 
 ```{r more-in-out, econ_height = 179}
 ## China's share, and the total.
@@ -1445,9 +1430,11 @@ economist_2017_chart(
 )
 ```
 
-### Color override: more than four categories, and gray for "other"
+### Color overrides
 
-"You may need to swap in other colours for charts with more than 4 categories. Use grey for 'other' / 'don't know' etc".
+> You may need to swap in other colours for charts with more than 4 categories
+>
+> Use grey for ‘other’ / ‘dont know’ etc
 
 ```{r movers-shakers, econ_height = 179}
 ## Origins in stack order; a bar skips origins it lacks.
@@ -1499,9 +1486,8 @@ economist_2017_chart(
 )
 ```
 
-### Color override: meaningful groups, with number blocks
 
-Positive answers take the blues, negative ones the reds, and "not sure" gray. The right-hand figures are number blocks.
+> If categories form meaningful groups, use colour to reinforce that
 
 ```{r trumps-troops, econ_height = 249}
 answers <- c("Enthusiastic", "Satisfied", "Dissatisfied", "Upset", "Not sure")
@@ -1583,76 +1569,6 @@ economist_2017_chart(
 
 ## Lines, side by side
 
-The `line_side` order, with the guide's cap: "Ilex will plot up to 6 colours but any more than 4 categories is probably too many and you should have a rethink."
-
-### The standard color order, one to six lines
-
-```{r line-order, econ_size = "three_column", econ_height = 300}
-## Shapes per panel, one value per step.
-line_shape <- list(
-  A = c(
-    3.62, 3.59, 3.52, 3.51, 3.48, 3.46, 3.44, 3.4, 3.34, 3.34, 3.27, 3.15, 3.09, 3.07, 3.06, 2.97,
-    2.93, 2.89, 2.83, 2.8, 2.78, 2.73, 2.68, 2.68
-  ),
-  B = c(
-    2.61, 2.66, 2.67, 2.7, 2.66, 2.63, 2.65, 2.65, 2.72, 2.78, 2.81, 2.82, 2.8, 2.75, 2.66, 2.62,
-    2.48, 2.39, 2.32, 2.23, 2.13, 2.05, 1.98, 1.97
-  ),
-  C = c(
-    2.11, 2.11, 2.08, 1.97, 1.95, 1.96, 1.92, 1.84, 1.77, 1.68, 1.65, 1.62, 1.59, 1.49, 1.46, 1.41,
-    1.37, 1.35, 1.31, 1.28, 1.25, 1.25, 1.23, 1.23
-  ),
-  D = c(
-    0.22, 0.24, 0.42, 0.51, 0.61, 0.65, 0.73, 0.93, 1.07, 1.23, 1.63, 1.48, 1.5, 1.69, 1.77, 1.92,
-    1.89, 1.72, 1.66, 1.64, 1.62, 1.6, 1.57, 1.48
-  ),
-  E = c(
-    -0.18, -0.14, -0.1, -0.09, -0.1, -0.11, -0.1, -0.09, -0.06, -0.04, 0, 0.05, 0.09, 0.12, 0.16,
-    0.23, 0.27, 0.31, 0.38, 0.46, 0.51, 0.54, 0.56, 0.56
-  ),
-  F = c(
-    2.06, 1.98, 1.98, 1.97, 1.96, 1.98, 2.01, 2.01, 2.01, 2.04, 2.03, 2.02, 2.01, 2.01, 2.02, 2.03,
-    2.02, 1.96, 1.9, 1.86, 1.85, 1.85, 1.86, 1.85
-  )
-)
-## Which shape each series (in colour order) takes in the 1- to 6-line panels.
-line_panels <- list(
-  c("B"),
-  c("A", "B"),
-  c("A", "B", "D"),
-  c("A", "C", "B", "D"),
-  c("A", "B", "F", "E", "D"),
-  c("A", "B", "F", "D", "C", "E")
-)
-line_demo <- do.call(rbind, lapply(seq_along(line_panels), function(n) {
-  do.call(rbind, lapply(seq_along(line_panels[[n]]), function(k) {
-    data.frame(
-      panel = paste(n, if (n == 1) "line" else "lines"),
-      series = factor(k, levels = 1:6),
-      x = 1:24,
-      y = line_shape[[line_panels[[n]][k]]]
-    )
-  }))
-}))
-line_demo$panel <- factor(line_demo$panel, levels = unique(line_demo$panel))
-
-ggplot(line_demo, aes(x, y, colour = series)) +
-  geom_line(linewidth = 1.4, show.legend = FALSE) +
-  facet_wrap(~panel, nrow = 2) +
-  scale_x_continuous(limits = c(-0.8, 25.6), expand = c(0, 0)) +
-  scale_y_continuous(limits = c(-0.76, 4.69), breaks = 0:4, expand = c(0, 0)) +
-  scale_colour_economist_2017("print", type = "line_side") +
-  labs(title = "Standard colour order", x = NULL, y = NULL) +
-  theme_economist_2017("print") +
-  theme(
-    axis.text = element_blank(),
-    axis.ticks = element_blank(),
-    axis.line = element_blank()
-  )
-```
-
-### One line
-
 ```{r penumbral, econ_height = 165}
 ## Quarterly (or finer) steps.
 ink <- theme_economist_2017("print")$text$colour
@@ -1703,8 +1619,6 @@ economist_2017_chart(
 )
 ```
 
-### Two lines
-
 ```{r tokyo-two, econ_height = 165}
 ## Both lines start from the same yield.
 japan_yield <- c(
@@ -1750,10 +1664,6 @@ economist_2017_chart(
   media = "print"
 )
 ```
-
-### Four lines, labeled in place, indexed
-
-An index chart: a red rule on the index value, a black dot on the index point, and lines labeled in place.
 
 ```{r transports, econ_height = 165}
 bus <- c(
@@ -1812,8 +1722,6 @@ economist_2017_chart(
   media = "print"
 )
 ```
-
-### Six lines, labeled in place
 
 ```{r coming-down, econ_height = 165}
 ## The series start and end in different years.
@@ -1899,9 +1807,75 @@ economist_2017_chart(
 )
 ```
 
-### The high-contrast alternatives
 
-Where six related hues will not separate, use the `bright` and `dark` sets.
+### Standard color order
+
+```{r line-order, econ_size = "three_column", econ_height = 300}
+## Shapes per panel, one value per step.
+line_shape <- list(
+  A = c(
+    3.62, 3.59, 3.52, 3.51, 3.48, 3.46, 3.44, 3.4, 3.34, 3.34, 3.27, 3.15, 3.09, 3.07, 3.06, 2.97,
+    2.93, 2.89, 2.83, 2.8, 2.78, 2.73, 2.68, 2.68
+  ),
+  B = c(
+    2.61, 2.66, 2.67, 2.7, 2.66, 2.63, 2.65, 2.65, 2.72, 2.78, 2.81, 2.82, 2.8, 2.75, 2.66, 2.62,
+    2.48, 2.39, 2.32, 2.23, 2.13, 2.05, 1.98, 1.97
+  ),
+  C = c(
+    2.11, 2.11, 2.08, 1.97, 1.95, 1.96, 1.92, 1.84, 1.77, 1.68, 1.65, 1.62, 1.59, 1.49, 1.46, 1.41,
+    1.37, 1.35, 1.31, 1.28, 1.25, 1.25, 1.23, 1.23
+  ),
+  D = c(
+    0.22, 0.24, 0.42, 0.51, 0.61, 0.65, 0.73, 0.93, 1.07, 1.23, 1.63, 1.48, 1.5, 1.69, 1.77, 1.92,
+    1.89, 1.72, 1.66, 1.64, 1.62, 1.6, 1.57, 1.48
+  ),
+  E = c(
+    -0.18, -0.14, -0.1, -0.09, -0.1, -0.11, -0.1, -0.09, -0.06, -0.04, 0, 0.05, 0.09, 0.12, 0.16,
+    0.23, 0.27, 0.31, 0.38, 0.46, 0.51, 0.54, 0.56, 0.56
+  ),
+  F = c(
+    2.06, 1.98, 1.98, 1.97, 1.96, 1.98, 2.01, 2.01, 2.01, 2.04, 2.03, 2.02, 2.01, 2.01, 2.02, 2.03,
+    2.02, 1.96, 1.9, 1.86, 1.85, 1.85, 1.86, 1.85
+  )
+)
+## Which shape each series (in colour order) takes in the 1- to 6-line panels.
+line_panels <- list(
+  c("B"),
+  c("A", "B"),
+  c("A", "B", "D"),
+  c("A", "C", "B", "D"),
+  c("A", "B", "F", "E", "D"),
+  c("A", "B", "F", "D", "C", "E")
+)
+line_demo <- do.call(rbind, lapply(seq_along(line_panels), function(n) {
+  do.call(rbind, lapply(seq_along(line_panels[[n]]), function(k) {
+    data.frame(
+      panel = paste(n, if (n == 1) "line" else "lines"),
+      series = factor(k, levels = 1:6),
+      x = 1:24,
+      y = line_shape[[line_panels[[n]][k]]]
+    )
+  }))
+}))
+line_demo$panel <- factor(line_demo$panel, levels = unique(line_demo$panel))
+
+ggplot(line_demo, aes(x, y, colour = series)) +
+  geom_line(linewidth = 1.4, show.legend = FALSE) +
+  facet_wrap(~panel, nrow = 2) +
+  scale_x_continuous(limits = c(-0.8, 25.6), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-0.76, 4.69), breaks = 0:4, expand = c(0, 0)) +
+  scale_colour_economist_2017("print", type = "line_side") +
+  labs(title = "Standard colour order", x = NULL, y = NULL) +
+  theme_economist_2017("print") +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.line = element_blank()
+  )
+```
+
+
+### High-contrast alternatives
 
 ```{r exodus, econ_height = 185}
 ## Positions follow the chart, not years.
@@ -1956,8 +1930,6 @@ economist_2017_chart(
 
 Stacked areas use the `stacked` order, labeled in place where a band is wide enough.
 
-### Two bands, labeled in place
-
 ```{r foreign-hoards, econ_height = 154}
 china <- c(
   0.26, 0.36, 0.56, 0.77, 1.02, 1.49, 1.91, 2.3, 2.64, 2.96
@@ -1999,8 +1971,6 @@ economist_2017_chart(
   footnote = "*Forecast"
 )
 ```
-
-### Six bands with a key
 
 ```{r big-shift, econ_height = 178}
 ## Band thicknesses, bottom to top.
@@ -2072,9 +2042,10 @@ economist_2017_chart(
 )
 ```
 
-### The alternative stacked scheme
+### Color overrides
 
-A second stacked order, "for use where categories are chronological or where primary colour scheme doesn't work".
+> Alternative colour scheme for use where categories are chronological or
+> where primary colour scheme doesn’t work
 
 ```{r in-limbo, econ_height = 185}
 ## Band thicknesses, bottom to top.
@@ -2134,7 +2105,6 @@ economist_2017_chart(
 )
 ```
 
-### Four bands, labeled in place
 
 ```{r emerging-middle, econ_size = "two_column", econ_height = 234}
 fn <- economist_2017_footnote(1:3)
@@ -2223,7 +2193,12 @@ economist_2017_chart(
 
 ## Thermometer
 
-A range between values per category, with short vertical terminals. The chart is repeated for two, three, four and six series, with the note that "any more than 4 categories is probably too many and you should have a rethink".
+A range between values per category, with short vertical terminals.  
+
+### Standard color order
+
+> Ilex will plot up to 6 colours but any more than 4 categories is probably
+> too many and you should have a rethink
 
 ```{r thermometer-data}
 fields <- c("Mathematics", "Economics", "Computer Science", "Business", "Biology",
@@ -2316,8 +2291,6 @@ thermo_plot <- function(n, terminals = c("rule", "dot")) {
 }
 ```
 
-### Two, three, four and six series
-
 ```{r thermometer-2, econ_height = 185}
 economist_2017_chart(
   thermo_plot(2) +
@@ -2352,7 +2325,7 @@ economist_2017_chart(
 
 ### Dot terminals
 
-"Use as alternative when lines are unclear".
+> Use as alternative when lines are unclear
 
 ```{r thermometer-dots, econ_height = 185}
 economist_2017_chart(
@@ -2362,11 +2335,19 @@ economist_2017_chart(
 )
 ```
 
-## Scatter
-
-Standard dots are 4px at 50% opacity "where general trend is more important than individual point". Highlight dots are 100% opaque "to label outliers / important data points". Category dots have a 0.3px stroke and 50% fill. Trend lines are 1px, dashed 3px/1px.
+## Scatter plot
 
 ### Chart elements
+
+Standard dots are 4px at 50% opacity:
+
+> use where general trend is more important than individual point
+
+Highlight dots are 100% opaque:
+
+> use to label outliers / important data points
+
+Category dots have a 0.3px stroke and 50% fill. Trend lines are 1px, dashed 3px/1px.
 
 ```{r scatter-elements, econ_size = "one_column", econ_height = 410}
 ## The specimen is laid out in points from its top left.
@@ -2431,7 +2412,7 @@ ggplot() +
         plot.margin = margin(0, 0, 0, 0))
 ```
 
-### Standard scatter with trend lines
+### Standard scatter
 
 ```{r divergent, econ_height = 195}
 set.seed(2017)
@@ -2487,9 +2468,9 @@ economist_2017_chart(
 )
 ```
 
-### Labeled outliers
+> sub title should summarise chart, save specific units for axis labels
 
-Highlight dots carry the labels. The guide: "sub title should summarise chart, save specific units for axis labels".
+> Same weight/colour for x and y ticks use black for zero baseline only
 
 ```{r disinfectant, econ_height = 166}
 set.seed(11)
@@ -2539,8 +2520,6 @@ economist_2017_chart(
 ```
 
 ### Connected scatter
-
-Two observations per country, joined. "To avoid obscuring the connecting lines and labels, axis lines can be broken".
 
 ```{r right-nation, econ_size = "two_column", econ_height = 234}
 ## The seven labelled countries, joined from 2003 to 2013.
@@ -2630,7 +2609,7 @@ economist_2017_chart(
 )
 ```
 
-### Bubble chart, four categories
+### Bubble chart
 
 Category dots have a 50% fill and a thin stroke, and are sized by a second variable.
 
@@ -2745,9 +2724,11 @@ economist_2017_chart(
 )
 ```
 
-### Highlighting instead of categorizing
+> Where colour categories become difficult to distinguish, consider
+> highlighting the most significant part of the story
 
-"Where colour categories become difficult to distinguish, consider highlighting the most significant part of the story".
+> On larger / complicated scatters, use explanatory labels to make the
+> correlation clear
 
 ```{r vitality-highlight, econ_size = "two_column", econ_height = 275}
 counties$focus <- ifelse(counties$region == "Midwest", "Midwest", "Other")
@@ -2791,7 +2772,7 @@ economist_2017_chart(
 
 ## Tables
 
-Tables use [gt](https://gt.rstudio.com/): 7.5/9 type, 75% black explanatory text, thin rules, alternating row fills "to help with reading", and the usual chart furniture.
+Tables cannot be made directly in `ggplot`, but are also replicated here, since some embed plots. The example tables here are created with `gt`.
 
 ```{r tables-setup}
 ## Fira Sans Condensed is loaded from Google Fonts, so tables use it whether or not it is installed.
@@ -2881,7 +2862,9 @@ econ_table <- function(data, id, width = 160) {
 
 ### Standard table
 
-Use 75% black text to set explanatory text apart.
+> Use 75k text to differentiate explanatory text
+
+> Use alternating row colours to help with reading
 
 ```{r greatest-hits}
 ## "Greatest hits": each company's name over its description in 75% black,
@@ -2940,9 +2923,9 @@ gt::gt(questions, groupname_col = "group", id = "divided") |>
   gt::tab_style(stripe, gt::cells_body(rows = c(1, 3, 4, 6, 8, 10, 12)))
 ```
 
-### With colour highlight
+### With color highlight
 
-Use a colour highlight with inverted text to pull out key details.
+> Use colour highlight with inverted text to pull out key details
 
 ```{r jobs-bill}
 ## "Obama's jobs bill": totals in the guide's colour highlight, blue2 text
@@ -2977,7 +2960,8 @@ gt::gt(bill, id = "jobs-bill") |>
 
 ### Table with integrated charts
 
-"Where table data will benefit from visualising, use small labelled bar charts etc."
+> Where table data will benefit from visualising, use small labelled bar
+> charts etc.
 
 ```{r what-to-expect}
 ## A table with small inline SVG charts in its cells.
@@ -3125,8 +3109,12 @@ gt::gt(cells, id = "what-to-expect") |>
 
 ## Pie / doughnut
 
-The guide carries its own warning: "Use with caution. Should probably be
-abandoned in favour of stacked bar if over 4 categories."
+> **NOTE: Use with caution.**
+> Should probably be abandoned
+> in favour of stacked bar
+> if over 4 categories
+
+In practice, the Economist stopped using pie and doughnut charts.
 
 ### The standard color order, one to six segments
 
@@ -3176,7 +3164,6 @@ pie_grid(0.52) + labs(title = "Standard colour order")
 pie_grid(0) + theme(strip.text = element_blank())
 ```
 
-### A labeled doughnut
 
 ```{r naan, econ_height = 155}
 ## Doughnuts labelled directly, in the guide's own coordinates.
@@ -3270,9 +3257,7 @@ economist_2017_chart(
 )
 ```
 
-### Two doughnuts, keyed labels
-
-"Where linking lines get too crowded, key the labels with small colour block". Gray takes "Rest of world".
+> Where linking lines get too crowded, key the labels with small colour block
 
 ```{r scramble, econ_size = "two_column", econ_height = 178}
 ## Drawn in the pixel coordinates of the guide's original, as for "Naan bigger".
@@ -3384,9 +3369,11 @@ economist_2017_chart(
 
 ## Double-scale charts
 
-"Double scales can be good at showing correlations and are economical with space. But they can also be confusing/misleading." Axis labels are colored to match their series: cyan and teal for axis 1, maroon and mauve for axis 2.
+> Double scales can be good at showing correlations and are economical with space. **But they can also be confusing/misleading.** 
 
-`sec_axis()` rescales the second series onto the first axis. Both axes use `guide_axis_economist_2017()`.
+Axis labels are colored to match their series: cyan and teal for axis 1, maroon and mauve for axis 2.
+`sec_axis()` rescales the second series onto the first axis.
+Both axes use `guide_axis_economist_2017()` to place their titles above them.
 
 ### One line on each axis
 
@@ -3526,8 +3513,8 @@ economist_2017_chart(
 
 ### Line and column
 
-"Always choose the axis colour order that will visually associate the labels
-best with the corresponding line."
+> Always choose the axis colour order that will visually associate the
+> labels best with the corresponding line
 
 ```{r chavismo, econ_height = 175}
 venezuela <- data.frame(
@@ -3573,7 +3560,15 @@ economist_2017_chart(
 
 ### What to avoid
 
-These charts show what *not* to copy. The guide's advice: "If you cannot conform to the above rules try splitting the chart into panels or indexing the variables."
+> Double scales can be good at showing correlations and are economical with space.
+> **But they can also be confusing/misleading.**
+> Here are some things to avoid when considering a double scale
+> 
+> **If you cannot conform to the above rules try splitting the chart into panels or indexing the variables.**
+
+> :cross: Avoid breaking the scales without good reason
+> 
+> Broken scale distorts data
 
 ```{r double-scale-avoid, econ_height = 155}
 ## Monthly series; the right scale (yields, %) runs 0-5, so the zero lines differ.
@@ -3736,8 +3731,7 @@ economist_2017_chart(
 
 ## Blob heads
 
-"A secondary data variable added as area-sized bubbles or number boxes. Can
-be used with column or thermometer charts."
+> A secondary data variable added as area-sized bubbles or number boxes. Can be used with column or thermometer charts.
 
 ### Numbers inside the bubbles
 
@@ -3816,8 +3810,8 @@ economist_2017_chart(
 
 ### Bubbles and numbers outside the bar
 
-"To avoid awkward alignment, if most numbers won't fit, put them outside
-bubble and align text right."
+> To avoid awkward alignment, if most numbers won’t fit, put them
+> outside bubble and align text right
 
 ```{r up-in-air, econ_height = 254}
 ## Bubble values are printed.
@@ -3862,8 +3856,8 @@ economist_2017_chart(
 
 ### Equal-sized number blocks
 
-"If number range or positive / negative values rule out bubbles, revert to
-equal-sized number blocks."
+> If number range or positive / negative values rule out bubbles, revert to
+> equal-sized number blocks
 
 ```{r starting-small, econ_height = 175}
 ## Market caps are printed.
@@ -3982,8 +3976,8 @@ tl_maroon <- swatch("maroon")
 
 ### Non-data timeline
 
-"Use thin alternating-colour bars to mark out time periods. Key repeated
-events, like coup attempts, to avoid duplicating text labels."
+> Use thin alternating-colour bars to mark out time periods. Key repeated
+> events, like coup attempts, to avoid duplicating text labels
 
 ```{r philippines, econ_size = "two_column", econ_height = 192}
 ## Heights here are in points above the year band.
@@ -4056,9 +4050,11 @@ economist_2017_chart(philippines)
 
 ### Data timeline
 
-"For timelines tied to a dataset, break the y-axis lines to avoid chart area
-becoming too crowded." Where color categorises the data, the guide keeps the
-timeline labels gray.
+> For timelines tied to a dataset, break the y-axis lines to avoid chart
+> area becoming too crowded
+
+> Where colour is being used to categorise data, use grey for timeline
+> labels
 
 ```{r iran-oil, econ_size = "two_column", econ_height = 222}
 iran <- data.frame(
@@ -4135,8 +4131,8 @@ economist_2017_chart(iran_oil)
 
 ### Bar chart timeline
 
-"To distinguish from plotted data, use dotted lines for labels on bar
-charts."
+> To distinguish from plotted data, use dotted lines for labels on bar
+> charts
 
 ```{r caliphate, econ_size = "two_column", econ_height = 265}
 iraq <- data.frame(
@@ -4314,8 +4310,10 @@ economist_2017_chart(putin)
 
 ### Mobile versions
 
-"With often-lengthy text labels in fixed positions on the chart, timelines
-present a unique challenge for condensing to mobile." The guide's example
+> With often-lengthly [sic] text labels in fixed positions on the chart,
+> timelines present a unique challenge for condensing to mobile.
+
+The guide's example
 comes in four versions: three columns for print, two for the web, and two
 ways of fitting a phone: rotated to run down the screen, or compressed with
 numbered labels listed below.
@@ -4556,9 +4554,11 @@ mexico_web <- mexican_waves(
 economist_2017_chart(mexico_web, "web", footnote = default_note)
 ```
 
-Mobile option 1: "rotate timeline and run vertically on mobile. Works well
-where labels are relatively evenly spaced and where the data relates to
-specific labels."
+Mobile option 1:
+
+> Rotate timeline and run vertically on mobile. Works well where labels
+> are relatively evenly spaced and where the data relates to specific
+> labels, i.e. oil nationalisation in this example
 
 ```{r mexico-mobile-rotated, econ_size = "one_column", econ_height = 415}
 mexico_rotated <- ggplot(mexico_yields, aes(yield, year)) +
@@ -4589,8 +4589,11 @@ mexico_rotated <- ggplot(mexico_yields, aes(yield, year)) +
 economist_2017_chart(mexico_rotated, "web")
 ```
 
-Mobile option 2: "compress horizontally, number labels on chart and list
-below". The list is a gt table.
+Mobile option 2:
+
+> Compress horizontally, number labels on chart and list below.
+
+The list is a gt table.
 
 ```{r mexico-mobile-numbered, econ_size = "one_column", econ_height = 190}
 mexico_numbered <- subset(mexico_events, !is.na(key))
@@ -4650,8 +4653,9 @@ gt::gt(data.frame(key = mexico_numbered$key, event = gsub("\n", " ", mexico_numb
 
 ### Number boxes
 
-"Use where multiple charts are referenced in text." A 7.5pt bold numeral on
-the number-box fill, top right.
+> Use where multiple charts are referenced in text
+
+A 7.5pt bold numeral on the number-box fill, top right.
 
 ```{r number-box, econ_height = 165}
 numbered <- tokyo +
@@ -4667,7 +4671,7 @@ economist_2017_chart(
 
 ### Highlight panels
 
-"For secondary information, like forecast or estimate, use neutral style."
+> For secondary information, like forecast or estimate, use neutral style
 
 ```{r highlight-neutral, econ_height = 165}
 ## Five-year intervals; every country is 100 in 2015.
@@ -4727,7 +4731,9 @@ economist_2017_chart(
 )
 ```
 
-"For highlights that are central to the message of the chart, use colour" -- a 30% tint of the guide's red.
+> For highlights that are central to the message of the chart, use colour
+
+A 30% tint of the guide's red.
 
 ```{r highlight-colour, econ_height = 155}
 ## The guide's line, at half-monthly intervals.
@@ -4790,8 +4796,9 @@ economist_2017_chart(
 )
 ```
 
-"For web-only charts, use print bkgd colour for highlights": the same chart
-on white, with the panels in the print background blue.
+> For web-only charts, use print bkgd colour for highlights
+
+The same chart on white, with the panels in the print background blue.
 
 ```{r highlight-web, econ_height = 155}
 ## Web charts use the print palette; only the highlight changes, to the print background.
@@ -4806,9 +4813,12 @@ economist_2017_chart(
 
 ### Highlight labels
 
-"Use to mark specific dates and points on axis" -- a 0.5pt red rule with a
-7pt label. "If there are only 1 or 2 points, and they are key to the chart
-meaning, use colour/medium font."
+> Use to mark specific dates and points on axis
+
+A 0.5pt red rule with a 7pt label.
+
+> If there are only 1 or 2 points, and they are key to the chart meaning,
+> use colour/medium font
 
 ```{r highlight-labels, econ_height = 155}
 ## The guide's line, at weekly intervals.
@@ -4866,8 +4876,9 @@ economist_2017_chart(
 
 ### Index charts
 
-"0.5pt red line on index line" and a "5pt diameter black circle on index
-point".
+> 0.5pt red line on index line
+
+> 5pt diameter black circle on index point
 
 ```{r index-chart, econ_height = 165}
 ## One value a year.
@@ -4927,9 +4938,12 @@ economist_2017_year(seq(1948, 2016, 4))
 
 ### Broken scales
 
-"Use when breaking y-axis on line, thermometer and scatter charts. Not needed on indexed, negative scale or inverted scales". Truncate the axis with `limits`, then add `geom_scale_break_economist_2017()`.
+> Use when breaking y-axis on line, thermometer and scatter charts
+> not needed on indexed, negative scale or inverted scales
 
-Don't break the scale on a bar or column chart; use a thermometer instead.
+> DON’T BREAK SCALE ON BAR/COLUMN CHARTS - USE THERMOMETER INSTEAD
+
+Truncate the axis with `limits`, then add `geom_scale_break_economist_2017()`.
 
 ```{r broken-scale, econ_height = 155}
 broken <- ggplot(merkel, aes(t, approval)) +
