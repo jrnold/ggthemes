@@ -61,6 +61,6 @@ test_that("geom_scale_break_economist_2017 draws at the requested side", {
 test_that("geom_scale_break_economist_2017 draws correctly", {
   expect_doppelganger(
     "geom_scale_break_economist_2017",
-    truncated_plot() + theme_economist_2017(base_family = "sans")
+    truncated_plot() + theme_economist_2017(base_family = "sans", base_size = 7)
   )
 })

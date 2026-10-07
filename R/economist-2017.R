@@ -1,3 +1,9 @@
+# The size of the guide's axis numbers, in points (p.6). `base_size` of
+# theme_economist_2017() is the size of the axis numbers, as in
+# theme_economist(), so every other size in the guide is a multiple of it, and a
+# chart drawn at the guide's own sizes has `base_size = economist_2017_base`.
+economist_2017_base <- 7
+
 #' Economist 2017 color palette
 #'
 #' The categorical palettes of *The Economist visual styleguide*
@@ -194,15 +200,15 @@ scale_fill_economist_2017_c <- function(
 #' The guide specifies a standard chart in points (pp.6-7): a 9.5pt bold
 #' title, 8pt subtitle, 7.5pt legend and panel headings, 7pt axis labels and
 #' a 6.5pt source line in 75% black; 0.5pt gridlines and baseline; and 0.4pt
-#' tick marks, 5pt long, hanging below the baseline. Every size here,
-#' including rule weights, margins and spacing, is expressed relative to
-#' `base_size`, so these are the guide's sizes at the default
-#' `base_size = 10` and keep their proportions at any other.
+#' tick marks, 5pt long, hanging below the baseline. `base_size` is the size
+#' of the axis labels, as it is in [theme_economist()], so at the default
+#' `base_size = 10` the axis labels are 10pt. Every other size, including
+#' rule weights, margins and spacing, is the guide's size relative to its 7pt
+#' axis labels, so a chart keeps its proportions at any `base_size`.
 #'
-#' At `base_size = 10` the type is the size the guide sets it, which suits a
-#' chart drawn at the guide's own widths -- 160pt (2.2in) for one print
-#' column, 332pt (4.6in) for two. On a larger figure, raise `base_size` in
-#' proportion.
+#' The guide's own sizes are those at `base_size = 7`, which suits a chart
+#' drawn at the guide's own widths -- 160pt (2.2in) for one print column,
+#' 332pt (4.6in) for two. On a larger figure, raise `base_size` in proportion.
 #'
 #' Several conventions of the guide are not theme elements:
 #'
@@ -220,8 +226,9 @@ scale_fill_economist_2017_c <- function(
 #'   legend headings, is drawn plain.
 #'
 #' @param media Either `"print"` or `"web"`.
-#' @param base_size Base font size, in points. Every size in the theme is
-#'   relative to it.
+#' @param base_size Base font size, in points: the size of the axis labels.
+#'   Every size in the theme is relative to it. The guide's own sizes are at
+#'   `base_size = 7`.
 #' @param base_family Base font family. The default, [economist_2017_font()],
 #'   is Fira Sans Condensed or Roboto Condensed if either is installed, and
 #'   otherwise `"sans"`. Base R's `pdf()` and `postscript()` devices know only
@@ -247,11 +254,14 @@ theme_economist_2017 <- function(
 ) {
   media <- rlang::arg_match(media)
   spec <- ggthemes::ggthemes_data[["economist_2017"]][[media]]
-  # Lengths are given in the guide's points at a 10pt base and scale with
-  # base_size, like the type.
-  pt <- function(x) unit(x * base_size / 10, "pt")
+  # A size in the guide's points, relative to the axis numbers, which are the
+  # size of base_size.
+  guide_size <- function(pt) rel(pt / economist_2017_base)
+  # Lengths are given in the guide's points, where the axis numbers are 7pt, and
+  # scale with base_size, like the type.
+  pt <- function(x) unit(x * base_size / economist_2017_base, "pt")
   m <- function(t = 0, r = 0, b = 0, l = 0) {
-    k <- base_size / 10
+    k <- base_size / economist_2017_base
     margin(t * k, r * k, b * k, l * k, "pt")
   }
   rule <- economist_2017_linewidth(0.5, base_size)
@@ -298,14 +308,14 @@ theme_economist_2017 <- function(
     axis.minor.ticks.length.x.top = unit(0, "pt"),
     ## Axis numbers: Econ Sans Cnd light 7pt. Axis label: Cnd regular 7/7.5,
     ## centred under the axis.
-    axis.text = element_text(size = rel(0.7)),
+    axis.text = element_text(size = rel(1)),
     axis.text.x = element_text(vjust = 1, margin = m(t = 1.5)),
     axis.text.x.top = element_text(vjust = 0, margin = m(b = 2)),
     ## Category labels on a left axis are ranged left, flush with the chart's
     ## edge (p.13).
     axis.text.y = element_text(hjust = 0, margin = m(r = 2)),
     axis.text.y.right = element_text(hjust = 0, margin = m(l = 2)),
-    axis.title = element_text(size = rel(0.7), lineheight = 7.5 / 7),
+    axis.title = element_text(size = rel(1), lineheight = 7.5 / 7),
     axis.title.x = element_text(margin = m(t = 0.5)),
     axis.title.x.top = element_text(margin = m(b = 0.5)),
     ## The guide never rotates a value-axis title; units sit horizontally at
@@ -322,8 +332,8 @@ theme_economist_2017 <- function(
     legend.key.width = pt(switch(media, print = 4.5, web = 10)),
     legend.key.spacing = pt(8),
     legend.key.spacing.y = pt(1.5),
-    legend.text = element_text(size = rel(0.75), lineheight = 9 / 7.5, margin = m(l = 2.5)),
-    legend.title = element_text(size = rel(0.75), lineheight = 9 / 7.5, hjust = 0, margin = m(b = 2.5)),
+    legend.text = element_text(size = guide_size(7.5), lineheight = 9 / 7.5, margin = m(l = 2.5)),
+    legend.title = element_text(size = guide_size(7.5), lineheight = 9 / 7.5, hjust = 0, margin = m(b = 2.5)),
     legend.title.position = "top",
     legend.position = "top",
     legend.direction = "horizontal",
@@ -349,7 +359,7 @@ theme_economist_2017 <- function(
     strip.clip = "off",
     strip.placement = "outside",
     strip.text = element_text(
-      size = rel(0.75),
+      size = guide_size(7.5),
       lineheight = 9 / 7.5,
       hjust = 0,
       margin = m(t = 3.5, b = 3)
@@ -363,7 +373,7 @@ theme_economist_2017 <- function(
     ## edge. The title starts 10pt down, below the 5pt tab.
     plot.background = element_rect(fill = spec[["ground"]], colour = NA),
     plot.title = element_text(
-      size = rel(0.95),
+      size = guide_size(9.5),
       face = "bold",
       lineheight = 11 / 9.5,
       hjust = 0,
@@ -371,7 +381,7 @@ theme_economist_2017 <- function(
       margin = m(t = 10, b = 3.5)
     ),
     plot.subtitle = element_text(
-      size = rel(0.8),
+      size = guide_size(8),
       lineheight = 9.5 / 8,
       hjust = 0,
       vjust = 1,
@@ -381,13 +391,13 @@ theme_economist_2017 <- function(
       margin = m(b = switch(media, print = 7.5, web = 13))
     ),
     plot.caption = element_text(
-      size = rel(0.65),
+      size = guide_size(6.5),
       colour = spec[["source"]],
       hjust = 0,
       vjust = 1,
       margin = m(t = 5.5)
     ),
-    plot.tag = element_text(size = rel(0.95), face = "bold", hjust = 0, vjust = 1),
+    plot.tag = element_text(size = guide_size(9.5), face = "bold", hjust = 0, vjust = 1),
     plot.title.position = "plot",
     plot.caption.position = "plot",
     plot.tag.position = "topleft",
@@ -406,7 +416,7 @@ theme_economist_2017 <- function(
 # millimetres, drawn as `lwd = linewidth * .pt`, and grid draws `lwd = 1` as
 # 1/96in, which is 0.75pt. Weights scale with base_size like everything else.
 economist_2017_linewidth <- function(pt, base_size) {
-  pt * (base_size / 10) / (ggplot2::.pt * 0.75)
+  pt * (base_size / economist_2017_base) / (ggplot2::.pt * 0.75)
 }
 
 #' Finish an Economist 2017 chart
@@ -561,7 +571,7 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
   spec <- ggthemes::ggthemes_data[["economist_2017"]][[media]]
   accent <- spec[["accent"]]
   theme <- ggplot2::complete_theme(plot$theme)
-  k <- ggplot2::calc_element("text", theme)$size / 10
+  k <- ggplot2::calc_element("text", theme)$size / economist_2017_base
   plot_margin <- ggplot2::calc_element("plot.margin", theme)
   pt <- function(x) grid::unit(x * k, "pt")
   red <- grid::gpar(fill = accent, col = NA)

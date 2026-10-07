@@ -46,7 +46,7 @@ ggplot(oil, aes(year, production)) +
     title = "More than an oil giant", subtitle = "Iran, oil production, m bpd",
     x = NULL, y = NULL
   ) +
-  theme_economist_2017() +
+  theme_economist_2017(base_size = 7) +
   theme(
     axis.text.x = element_blank(), axis.ticks.x = element_blank(),
     axis.line.x = element_blank()

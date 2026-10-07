@@ -37,7 +37,7 @@ p <- ggplot(economics, aes(date, psavert)) +
     x = NULL,
     y = NULL
   ) +
-  theme_economist_2017()
+  theme_economist_2017(base_size = 7)
 economist_2017_chart(
   p,
   footnote = paste0(economist_2017_footnote(1), "Seasonally adjusted"),

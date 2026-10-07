@@ -11,7 +11,7 @@ p <- ggplot(economics, aes(date, psavert)) +
     caption = "Source: US Bureau of Economic Analysis"
   )
 
-economist_2017_chart(p + theme_economist_2017("web"), "web")
+economist_2017_chart(p + theme_economist_2017("web", base_size = 7), "web")
 
 ## Panel charts get a red marker above each heading
 economist_2017_chart(
@@ -20,5 +20,5 @@ economist_2017_chart(
     facet_wrap(~year) +
     scale_y_continuous(position = "right", guide = guide_axis_economist_2017()) +
     labs(title = "Thirst quenched", subtitle = "Highway miles per gallon v engine size") +
-    theme_economist_2017()
+    theme_economist_2017(base_size = 7)
 )

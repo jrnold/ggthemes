@@ -22,17 +22,19 @@ p <- ggplot(yields, aes(year, yield, colour = country)) +
     caption = "Source: Thomson Reuters"
   )
 
-## Print
-p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017()
+## Print, at the guide's own sizes: base_size is the size of the axis labels,
+## which are 7pt in the guide
+p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017(base_size = 7)
 
 ## Web
-p + scale_colour_economist_2017("web") + theme_economist_2017("web")
+p + scale_colour_economist_2017("web") + theme_economist_2017("web", base_size = 7)
 
 ## Vertical gridlines, for a horizontal bar chart
 ggplot(mpg, aes(hwy, class)) +
   geom_boxplot() +
-  theme_economist_2017(horizontal = FALSE)
+  theme_economist_2017(horizontal = FALSE, base_size = 7)
 
 ## The guide's sizes suit its own chart widths. On a larger figure, scale
-## everything up with base_size.
-p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017(base_size = 14)
+## everything up with base_size: 10 makes the axis labels 10pt and every other
+## size follows in proportion.
+p + scale_colour_economist_2017(type = "line_side") + theme_economist_2017(base_size = 10)

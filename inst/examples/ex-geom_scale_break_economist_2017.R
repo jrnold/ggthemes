@@ -12,4 +12,4 @@ ggplot(approval, aes(year, pct)) +
   scale_y_continuous(position = "right", guide = guide_axis_economist_2017(), limits = c(30, 80)) +
   scale_x_continuous(labels = economist_2017_year_format()) +
   labs(title = "Mutti's malaise", subtitle = "Approval, % polled", x = NULL, y = NULL) +
-  theme_economist_2017()
+  theme_economist_2017(base_size = 7)

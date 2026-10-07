@@ -194,17 +194,39 @@ test_that("economist_2017 scales have the right classes", {
 
 test_that("theme_economist_2017 is a complete theme for both media", {
   for (media in c("print", "web")) {
-    thm <- theme_economist_2017(media)
+    thm <- theme_economist_2017(media, base_size = 7)
     expect_s3_class(thm, "theme")
     expect_true(attr(thm, "complete"), info = media)
   }
-  expect_error(theme_economist_2017("screen"))
+  expect_error(theme_economist_2017("screen", base_size = 7))
 })
 
-test_that("theme_economist_2017 sets the guide's type sizes at base_size 10", {
+test_that("theme_economist_2017's base_size is the size of the axis labels", {
+  # As in theme_economist(): the default of 10 gives 10pt axis labels, and every
+  # other size is the guide's size relative to its 7pt axis labels.
+  thm <- theme_economist_2017()
+  expect_equal(resolved_size(thm, "axis.text.x.bottom"), 10)
+  expect_equal(resolved_size(thm, "axis.title.x.bottom"), 10)
+  expect_equal(resolved_size(thm, "plot.title"), 10 * 9.5 / 7)
+  expect_equal(resolved_size(thm, "plot.subtitle"), 10 * 8 / 7)
+  expect_equal(resolved_size(thm, "legend.text"), 10 * 7.5 / 7)
+  expect_equal(resolved_size(thm, "plot.caption"), 10 * 6.5 / 7)
+  for (base in c(5, 7, 12)) {
+    thm <- theme_economist_2017(base_size = base)
+    expect_equal(resolved_size(thm, "axis.text.x.bottom"), base, info = base)
+  }
+})
+
+test_that("theme_economist and theme_economist_2017 share one base_size convention", {
+  # Both: base_size is the size of the axis labels.
+  expect_equal(resolved_size(theme_economist(base_size = 9), "axis.text.x.bottom"), 9)
+  expect_equal(resolved_size(theme_economist_2017(base_size = 9), "axis.text.x.bottom"), 9)
+})
+
+test_that("theme_economist_2017 sets the guide's type sizes at base_size 7", {
   # p.6: title 9.5pt, subtitle 8pt, legend and panel headings 7.5pt, axis
   # numbers and axis label 7pt, source 6.5pt.
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   expect_equal(resolved_size(thm, "plot.title"), 9.5)
   expect_equal(resolved_size(thm, "plot.subtitle"), 8)
   expect_equal(resolved_size(thm, "legend.title"), 7.5)
@@ -218,7 +240,7 @@ test_that("theme_economist_2017 sets the guide's type sizes at base_size 10", {
 
 test_that("theme_economist_2017 sets the guide's leading", {
   # p.6: 9.5/11, 8/9.5, 7.5/9, 7/7.5
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   expect_equal(ggplot2::calc_element("plot.title", thm)$lineheight, 11 / 9.5)
   expect_equal(ggplot2::calc_element("plot.subtitle", thm)$lineheight, 9.5 / 8)
   expect_equal(ggplot2::calc_element("legend.text", thm)$lineheight, 9 / 7.5)
@@ -227,7 +249,7 @@ test_that("theme_economist_2017 sets the guide's leading", {
 
 test_that("theme_economist_2017 maps Econ Sans weights to bold and plain", {
   # Bold title; medium (headings) and lighter weights are drawn plain.
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   expect_equal(ggplot2::calc_element("plot.title", thm)$face, "bold")
   for (el in c("plot.subtitle", "legend.title", "strip.text.x.top", "axis.text.x.bottom", "plot.caption")) {
     expect_equal(ggplot2::calc_element(el, thm)$face, "plain", info = el)
@@ -236,7 +258,7 @@ test_that("theme_economist_2017 maps Econ Sans weights to bold and plain", {
 
 test_that("theme_economist_2017 rules at the guide's weights", {
   # p.6: gridlines and baseline 0.5pt, tick marks 0.4pt.
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   expect_equal(linewidth_pt(ggplot2::calc_element("panel.grid.major.y", thm)$linewidth), 0.5)
   expect_equal(linewidth_pt(ggplot2::calc_element("axis.line.x.bottom", thm)$linewidth), 0.5)
   expect_equal(linewidth_pt(ggplot2::calc_element("axis.ticks.x.bottom", thm)$linewidth), 0.4)
@@ -244,7 +266,7 @@ test_that("theme_economist_2017 rules at the guide's weights", {
 
 test_that("theme_economist_2017 hangs 5pt ticks below the baseline", {
   # p.6: ticks 5pt tall (minor 3pt), outside the panel.
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   major <- ggplot2::calc_element("axis.ticks.length.x.bottom", thm)
   minor <- ggplot2::calc_element("axis.minor.ticks.length.x.bottom", thm)
   expect_equal(unit_pt(major), 5)
@@ -254,7 +276,7 @@ test_that("theme_economist_2017 hangs 5pt ticks below the baseline", {
 test_that("theme_economist_2017 rules only the x axis", {
   # p.6: no y-axis line and no y ticks; the baseline is black (p.18).
   for (media in c("print", "web")) {
-    thm <- theme_economist_2017(media)
+    thm <- theme_economist_2017(media, base_size = 7)
     expect_s3_class(ggplot2::calc_element("axis.line.y.right", thm), "element_blank")
     expect_s3_class(ggplot2::calc_element("axis.ticks.y.right", thm), "element_blank")
     expect_equal(ggplot2::calc_element("axis.line.x.bottom", thm)$colour, economist_2017_spec(media)$baseline)
@@ -264,7 +286,7 @@ test_that("theme_economist_2017 rules only the x axis", {
 test_that("theme_economist_2017 draws a top value axis without rule or ticks", {
   # p.13: a horizontal bar chart's value axis is numbers over gridlines.
   for (media in c("print", "web")) {
-    thm <- theme_economist_2017(media)
+    thm <- theme_economist_2017(media, base_size = 7)
     expect_s3_class(ggplot2::calc_element("axis.line.x.top", thm), "element_blank")
     expect_s3_class(ggplot2::calc_element("axis.ticks.x.top", thm), "element_blank")
     expect_equal(unit_pt(ggplot2::calc_element("axis.ticks.length.x.top", thm)), 0)
@@ -276,13 +298,13 @@ test_that("theme_economist_2017 draws a top value axis without rule or ticks", {
 
 test_that("theme_economist_2017 ranges left-axis labels left", {
   # p.13: the categories of a horizontal bar chart start at the chart's edge.
-  expect_equal(ggplot2::calc_element("axis.text.y.left", theme_economist_2017())$hjust, 0)
+  expect_equal(ggplot2::calc_element("axis.text.y.left", theme_economist_2017(base_size = 7))$hjust, 0)
 })
 
 test_that("theme_economist_2017 uses each medium's colours", {
   for (media in c("print", "web")) {
     spec <- economist_2017_spec(media)
-    thm <- theme_economist_2017(media)
+    thm <- theme_economist_2017(media, base_size = 7)
     expect_equal(ggplot2::calc_element("plot.background", thm)$fill, spec$ground, info = media)
     expect_equal(ggplot2::calc_element("panel.grid.major.y", thm)$colour, spec$grid, info = media)
     expect_equal(ggplot2::calc_element("plot.title", thm)$colour, spec$text, info = media)
@@ -297,8 +319,8 @@ test_that("theme_economist_2017 uses each medium's colours", {
 test_that("theme_economist_2017 uses print and web outer margins", {
   # p.6: 6pt at the sides and bottom for print. p.7: none at the sides for
   # web. Neither has a top margin: the tab sits on the top edge.
-  print_margin <- unit_pt(ggplot2::calc_element("plot.margin", theme_economist_2017("print")))
-  web_margin <- unit_pt(ggplot2::calc_element("plot.margin", theme_economist_2017("web")))
+  print_margin <- unit_pt(ggplot2::calc_element("plot.margin", theme_economist_2017("print", base_size = 7)))
+  web_margin <- unit_pt(ggplot2::calc_element("plot.margin", theme_economist_2017("web", base_size = 7)))
   expect_equal(print_margin, c(0, 6, 6, 6))
   expect_equal(web_margin[c(2, 4)], c(0, 0))
   expect_equal(web_margin[1], 0)
@@ -306,17 +328,17 @@ test_that("theme_economist_2017 uses print and web outer margins", {
 
 test_that("theme_economist_2017 spaces panels as the guide does", {
   # p.10: 24pt side by side, 15pt stacked.
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   expect_equal(unit_pt(ggplot2::calc_element("panel.spacing.x", thm)), 24)
   expect_equal(unit_pt(ggplot2::calc_element("panel.spacing.y", thm)), 15)
 })
 
 test_that("theme_economist_2017 places the key by medium", {
   # p.6: print key flush left under the subtitle. p.7: web key top right.
-  expect_equal(ggplot2::calc_element("legend.justification.top", theme_economist_2017("print")), "left")
-  expect_equal(ggplot2::calc_element("legend.justification.top", theme_economist_2017("web")), "right")
+  expect_equal(ggplot2::calc_element("legend.justification.top", theme_economist_2017("print", base_size = 7)), "left")
+  expect_equal(ggplot2::calc_element("legend.justification.top", theme_economist_2017("web", base_size = 7)), "right")
   for (media in c("print", "web")) {
-    thm <- theme_economist_2017(media)
+    thm <- theme_economist_2017(media, base_size = 7)
     expect_equal(thm$legend.position, "top")
     expect_equal(thm$legend.location, "plot")
     expect_true(thm$legend.byrow)
@@ -324,7 +346,7 @@ test_that("theme_economist_2017 places the key by medium", {
 })
 
 test_that("theme_economist_2017 aligns title and source to the plot", {
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   expect_equal(thm$plot.title.position, "plot")
   expect_equal(thm$plot.caption.position, "plot")
   expect_equal(ggplot2::calc_element("plot.title", thm)$hjust, 0)
@@ -332,8 +354,8 @@ test_that("theme_economist_2017 aligns title and source to the plot", {
 })
 
 test_that("theme_economist_2017 scales every size with base_size", {
-  small <- theme_economist_2017(base_size = 10)
-  large <- theme_economist_2017(base_size = 20)
+  small <- theme_economist_2017(base_size = 7)
+  large <- theme_economist_2017(base_size = 14)
   expect_equal(resolved_size(large, "plot.title"), 2 * resolved_size(small, "plot.title"))
   expect_equal(resolved_size(large, "axis.text.x.bottom"), 2 * resolved_size(small, "axis.text.x.bottom"))
   expect_equal(
@@ -354,10 +376,10 @@ test_that("theme_economist_2017 scales every size with base_size", {
 })
 
 test_that("theme_economist_2017 respects base_family and horizontal", {
-  thm <- theme_economist_2017(base_family = "serif")
+  thm <- theme_economist_2017(base_family = "serif", base_size = 7)
   expect_equal(ggplot2::calc_element("plot.title", thm)$family, "serif")
-  expect_s3_class(ggplot2::calc_element("panel.grid.major.x", theme_economist_2017()), "element_blank")
-  vertical <- theme_economist_2017(horizontal = FALSE)
+  expect_s3_class(ggplot2::calc_element("panel.grid.major.x", theme_economist_2017(base_size = 7)), "element_blank")
+  vertical <- theme_economist_2017(horizontal = FALSE, base_size = 7)
   expect_s3_class(ggplot2::calc_element("panel.grid.major.y", vertical), "element_blank")
   expect_s3_class(ggplot2::calc_element("panel.grid.major.x", vertical), "element_line")
 })
@@ -368,7 +390,7 @@ guide_test_plot <- function(...) {
   ggplot2::ggplot(data.frame(x = 1:3, y = c(0, 4, 8)), ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_point() +
     ggplot2::scale_y_continuous(position = "right", guide = guide_axis_economist_2017(...), breaks = c(0, 4, 8)) +
-    theme_economist_2017()
+    theme_economist_2017(base_size = 7)
 }
 
 test_that("guide_axis_economist_2017 returns an axis guide", {
@@ -402,7 +424,7 @@ test_that("guide_axis_economist_2017 draws left axes into the panel too", {
   p <- ggplot2::ggplot(data.frame(x = 1:3, y = 1:3), ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_point() +
     ggplot2::scale_y_continuous(guide = guide_axis_economist_2017()) +
-    theme_economist_2017()
+    theme_economist_2017(base_size = 7)
   gt <- ggplot2::ggplotGrob(p)
   axis <- gt$grobs[[which(gt$layout$name == "axis-l")]]
   text <- axis$grobs[[which(axis$layout$name == "labels")]]$children[[1]]
@@ -421,7 +443,7 @@ test_that("guide_axis_economist_2017 falls back to a standard axis on x", {
   p <- ggplot2::ggplot(data.frame(x = 1:3, y = 1:3), ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_point() +
     ggplot2::scale_x_continuous(guide = guide_axis_economist_2017()) +
-    theme_economist_2017()
+    theme_economist_2017(base_size = 7)
   gt <- ggplot2::ggplotGrob(p)
   axis <- gt$grobs[[which(gt$layout$name == "axis-b")]]
   expect_gt(unit_pt(grid::grobHeight(axis)), 0)
@@ -434,7 +456,7 @@ chart_plot <- function(media = "print", facet = FALSE) {
   p <- ggplot2::ggplot(df, ggplot2::aes(.data$x, .data$y, colour = .data$g)) +
     ggplot2::geom_point() +
     ggplot2::labs(title = "Title", subtitle = "Subtitle") +
-    theme_economist_2017(media)
+    theme_economist_2017(media, base_size = 7)
   if (facet) {
     p <- p + ggplot2::facet_wrap(ggplot2::vars(.data$g))
   }
@@ -471,7 +493,7 @@ test_that("economist_2017_chart adds the tab, and the rule for web", {
 })
 
 test_that("economist_2017_chart scales with the plot's base size", {
-  p <- chart_plot() + theme_economist_2017(base_size = 20)
+  p <- chart_plot() + theme_economist_2017(base_size = 14)
   tab <- chart_gtable(p)$grobs
   tab <- tab[[length(tab)]]
   expect_equal(unit_pt(tab$width), 30)
@@ -569,7 +591,7 @@ test_that("economist_2017_chart moves y-axis titles above the panels", {
       name = "Right, %",
       sec.axis = ggplot2::dup_axis(name = "Left, %", guide = guide_axis_economist_2017())
     ) +
-    theme_economist_2017()
+    theme_economist_2017(base_size = 7)
   gt <- chart_gtable(p)
   expect_false(any(c("ylab-l", "ylab-r") %in% gt$layout$name))
   panel <- gt$layout[gt$layout$name == "panel", ]
@@ -613,7 +635,7 @@ test_that("economist_2017_chart keeps end-of-axis labels within the panel", {
   p <- ggplot2::ggplot(d, ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_area() +
     ggplot2::scale_x_continuous(expand = c(0, 0), breaks = c(1991, 2000, 2016)) +
-    theme_economist_2017()
+    theme_economist_2017(base_size = 7)
   text <- drawn_axis_labels(p)
   expect_equal(text$label, c("1991", "2000", "2016"))
   expect_equal(text$hjust, c(0, 0.5, 1))
@@ -623,7 +645,7 @@ test_that("economist_2017_chart leaves axis labels that fit centred", {
   p <- ggplot2::ggplot(data.frame(x = 1:10, y = 1:10), ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_point() +
     ggplot2::scale_x_continuous(breaks = c(2, 5, 8)) +
-    theme_economist_2017()
+    theme_economist_2017(base_size = 7)
   expect_equal(drawn_axis_labels(p)$hjust, c(0.5, 0.5, 0.5))
 })
 
@@ -669,7 +691,7 @@ test_that("economist_2017_footnote follows the guide's order", {
 test_that("economist_2017 typefaces map each weight to the theme", {
   typefaces <- ggthemes_data$economist_2017$typefaces
   expect_equal(typefaces$weight, c("bold", "bold", "medium", "regular", "light"))
-  thm <- theme_economist_2017()
+  thm <- theme_economist_2017(base_size = 7)
   for (i in seq_len(nrow(typefaces))) {
     for (el in strsplit(typefaces$elements[i], ", ")[[1]]) {
       expect_equal(ggplot2::calc_element(el, thm)$face, typefaces$face[i], info = el)
@@ -690,7 +712,7 @@ test_that("economist_2017_font picks the first installed family", {
 })
 
 test_that("theme_economist_2017 defaults to economist_2017_font()", {
-  expect_equal(theme_economist_2017()$text$family, economist_2017_font())
+  expect_equal(theme_economist_2017(base_size = 7)$text$family, economist_2017_font())
 })
 
 # Visual regression --------------------------------------------------------------
@@ -701,7 +723,7 @@ test_that("theme_economist_2017 draws correctly", {
       ggplot2::scale_y_continuous(position = "right", guide = guide_axis_economist_2017()) +
       scale_colour_economist_2017(media) +
       # Pinned, so the snapshot does not depend on which fonts are installed.
-      theme_economist_2017(media, base_family = "sans")
+      theme_economist_2017(media, base_family = "sans", base_size = 7)
     expect_doppelganger(paste0("theme_economist_2017-", media), p)
     expect_doppelganger(
       paste0("economist_2017_chart-", media),
