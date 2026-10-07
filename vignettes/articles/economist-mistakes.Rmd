@@ -1262,7 +1262,7 @@ surplus_classic <- ggplot(bars_classic) +
     y = NULL,
     caption = "Sources: Eurostat; National statistics"
   ) +
-  classic_theme(classic_size * 0.8, lightpanel = TRUE) +
+  classic_theme(classic_size * 0.8, lightpanel = TRUE) + classic_no_ticks() +
   theme(
     panel.grid.major = element_blank(),
     strip.text = element_text(face = "bold", size = rel(1), margin = margin(b = 8)),
@@ -1611,7 +1611,7 @@ gaps <- data.frame(
     "Palette lacks the published coral, red-orange, orange, olive and mid-blue",
     "Only one text style for the subtitle and source, so a smaller second line, or an italic source, is impossible",
     "Legend keys are wide swatches; the Original's in chart 7 are tall bars and a ring, so `key_glyph` functions and key sizes are set by hand",
-    "Theme gap: horizontal-bar charts have a black axis line and ticks, where the Originals have neither; both are removed by hand",
+    "Theme gap: horizontal-bar charts have a black axis line and ticks, where the Originals have neither; both are removed by hand, the ticks by `classic_no_ticks()` for the stacked columns",
     "Style feature, not in the theme: the red zero and 50 rules (about one classic chart in five, from 2014) are drawn with geoms",
     "Highlight band behind a category label",
     "Axis-title superscripts: `economist_2017_footnote()` returns plain symbols",

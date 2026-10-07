@@ -369,7 +369,7 @@ asylum_plot <- ggplot(asylum_bars, aes(country, n, fill = measure)) +
 classic <- asylum_plot +
   scale_fill_economist() +
   scale_y_continuous(position = "right") +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   classic_rows() +
   labs(caption = "Source: UNHCR")
 
@@ -383,7 +383,7 @@ modern <- asylum_plot +
 chart_pair(classic_chart(classic), economist_2017_chart(modern, media = "print"))
 ```
 
-In the classic bars the palette's blue and dark blue stand in for the guide's two blues. The classic chart sits on a blue-gray ground with thin white gridlines and a thin black rule with ticks pointing up into the panel along the value axis (at the top, with the value labels), where 2017 has thin gray gridlines, no axis line and its own tick guide. The classic title, legend and source are flush left with the chart, the legend in small squares above the panel. At the guide's own 150pt the classic rows are tight but nothing clips.
+In the classic bars the palette's blue and dark blue stand in for the guide's two blues. The classic chart sits on a blue-gray ground with thin white gridlines and a thin black rule without ticks (`classic_no_ticks()` takes them off) along the value axis (at the top, with the value labels), where 2017 has thin gray gridlines, no axis line and its own tick guide. The classic title, legend and source are flush left with the chart, the legend in small squares above the panel. At the guide's own 150pt the classic rows are tight but nothing clips.
 
 ```{r tables-what-to-expect-doughnuts, econ_size = "two_column", econ_height = 110}
 accepted <- data.frame(
@@ -1379,7 +1379,7 @@ big_mac_classic$layers[[5]]$aes_params$colour <- classic_blob
 big_mac_classic$layers[[6]]$aes_params$colour <- "black"
 big_mac_classic <- big_mac_classic +
   scale_colour_economist(name = NULL) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   classic_rows() +
   labs(
     subtitle = "Local currency under (-) / over (+) valuation\nagainst the dollar, %; right-hand figures:\nBig Mac price*, $",
@@ -1464,7 +1464,7 @@ air_classic <- ggplot(travel, aes(country, change)) +
     subtitle = "Business travel spending, 2014\n% change on a year earlier",
     x = NULL, y = NULL, caption = "Source: GBTA"
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE)
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks()
 
 chart_pair(
   classic_chart(air_classic),
@@ -1535,7 +1535,7 @@ small_classic <- ggplot(exchanges, aes(exchange, listed)) +
     subtitle = "Number of companies\nlisted on stock exchanges\nOctober 2016",
     x = NULL, y = NULL, caption = "Source: World Federation of Exchanges\n*West African regional exchange"
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
   classic_rows()
 
 chart_pair(
