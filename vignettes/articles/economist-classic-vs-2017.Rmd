@@ -160,7 +160,7 @@ knitr::kable(
       paste(pts(classic$plot.margin), collapse = " / "),
       pts(classic$axis.ticks.length),
       paste(pts(grid::unit(0.25, "lines")), "(0.25 lines) for both"),
-      paste0(classic$plot.title.position %||% "panel", " (the default)"),
+      classic$plot.title.position %||% "panel",
       paste(classic$legend.position, "/", classic$legend.justification)
     ),
     `2017 (print)` = c(
@@ -175,7 +175,7 @@ knitr::kable(
 )
 ```
 
-Both themes now express every length relative to `base_size`, so a chart drawn at twice the size is the same chart. Until the classic theme was matched to the chart corpus it did not: it scaled its type but not its margins, which were fixed at 12pt and 10pt, nor its gridlines, nor its legend keys. Its default `base_size` is still 10, where `theme_economist_white()` defaults to 11.
+Both themes express every length relative to `base_size`, so a chart drawn at twice the size is the same chart. In both, `base_size` is the size of the axis labels. The classic theme's default `base_size` is 10, where `theme_economist_white()` defaults to 11.
 
 ## The palettes
 
@@ -205,11 +205,11 @@ The classic palette is mostly blues, grays and greens. Its documentation says re
 
 ## What the classic charts are adjusted for
 
-The classic charts below use `theme_economist(base_size = classic_size)`, with `classic_size` set to `r classic_size`, the base size the chart corpus gives for a chart 160pt across. The notes below the charts were written when `theme_economist()` still failed at this size, and each file added settings of its own to compensate: a smaller legend set flush left, the title and source line aligned with the plot and not the panel, a left-aligned source line, and a few charts drawn wider than the guide's width. The theme now sets all of those itself, from the measurements in the corpus (`?theme_economist` lists them), so the settings in the files are harmless repeats, and notes that blame the theme for a legend cut off at the right, a title aligned with the panel, a right-aligned source line, margins that do not scale or heavy gridlines describe the theme as it was. What remains true of the classic theme is the missing pieces: no zero line, no panel marker, no footnote, no web variant, and a palette and a line-palette scale that fall short of the paper's.
+The classic charts below use `theme_economist(base_size = classic_size)`, with `classic_size` set to `r classic_size`, the base size the chart corpus gives for a chart 160pt across, and add nothing to the theme's type, margins, gridlines or legend: the theme sets the title, source line and legend flush left with the chart, the legend at the top at the size of the axis labels, and the margins and rules in proportion to the type (`?theme_economist` lists the measurements). What the charts still add, each with a comment in its code and a sentence in its note, is chart-specific: the red tab, which `classic_chart()` draws around the finished plot; the layout of a legend (`guide_legend(nrow = 2)`) where its entries do not fit on one row of a 160pt chart; a smaller strip or row-name size where a long heading or a two-line row name does not fit; hand-wrapped source notes where a line is wider than the chart; a smaller base size in the leader-block and Espresso charts, which are drawn with smaller type; and the red rules and labels that a chart draws itself. What the classic theme still lacks: no zero line (the paper drew red rules from 2014 on, so this is a theme gap, not a feature the style lacked), no panel marker, no footnote element, no web variant, no option to leave the baseline and ticks off the column charts (the paper's columns had none), and a palette of at most nine colours and no line-palette scale.
 
 ## Every chart of the guide, in both styles
 
-Each chart below is the guide's own example. The right-hand chart is the 2017 version, drawn exactly as in [the 2017 article](economist-2017-styleguide.html). The left-hand one is the same data in the classic style: `theme_economist()` at a `base_size` of `r classic_size` to match the size of the 2017 type, `scale_*_economist()`, and a red tab drawn by `classic_chart()`, a helper local to this article. Where the classic style has no equivalent of something in the guide, the note below the chart says what is missing.
+Each chart below is the guide's own example. The right-hand chart is the 2017 version, drawn exactly as in [the 2017 article](economist-2017-styleguide.html). The left-hand one is the same data in the classic style: `theme_economist()` at a `base_size` of `r classic_size`, close to the 2017 charts' 7, `scale_*_economist()`, and a red tab drawn by `classic_chart()`, a helper local to this article. Where the classic style has no equivalent of something in the guide, the note below the chart says what is missing.
 
 ```{r anatomy, child = "_classic-vs-2017-anatomy.Rmd"}
 ```

@@ -6,6 +6,11 @@ here are plain *ggplot2*: a `geom_segment()` for a rule, a `geom_text()` for a l
 period, set in `theme_economist()` on an ordinary axis. Where a 2017 convention has no classic counterpart, the
 2017 chart is shown alone and the note says why.
 
+The classic charts take the theme as it is, at `base_size = 6.5` (the axis labels; the title, subtitle and source line
+scale from it, and the title, subtitle, source line and legend start flush with the chart's left margin). Only two things
+are set by the chart: a few labels and subtitles are wrapped by hand where the substitute font, about 10% wider than Econ Sans,
+would run past the chart's edge; and the legend is switched off where four keys would be wider than the 160pt chart.
+
 ```{r timelines-setup}
 library(gt)
 
@@ -294,11 +299,14 @@ modern <- economist_2017_chart(modern_plot)
 ## Estrada's bar is too narrow for his name, and Arroyo's name is cut to fit the bar.
 classic_presidents <- presidents
 classic_presidents$label[c(4, 5)] <- c("", "Gloria\nArroyo")
+## "Corazon Aquino dies" would run past the panel's edge, so it is set on three lines.
+classic_philippines_events <- transform(philippines_events, from = 0)
+classic_philippines_events$label[9] <- "Corazon\nAquino\ndies"
 classic <- ggplot() +
   classic_span(
     c(1972.46, 1983.50), c(1981.19, 1986.26), ymin = 0, ymax = 13, label = c("Martial law", "People\nPower")
   ) +
-  classic_events(transform(philippines_events, from = 0), colour = classic_col("dark blue")) +
+  classic_events(classic_philippines_events, colour = classic_col("dark blue")) +
   classic_bars(classic_presidents, ymin = -20, ymax = -8, fills = classic_col(c("dark blue", "blue"))) +
   ## Coup attempts are keyed, not labelled: a dot below the bars for each.
   annotate("point", x = philippines_coups, y = -26, shape = 21, size = 1.4, fill = classic_col("dark red"),
@@ -313,7 +321,7 @@ classic <- ggplot() +
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic events are plain rules standing on the baseline with a label beside the tip, where the 2017 rules start above the year band and carry arrowheads. The presidents are one run of alternating bars with the names inside, set on an ordinary axis, where the 2017 bars are thin, sit under a band of year cells and carry their names below; the coup attempts are dots with a one-line key instead of the 2017 key block, and the re-election marks and the president-elect label are left out. Two stand-ins are not clean: Estrada's bar is too narrow for his name, so it is unlabelled, and the "People Power" label is wider than its span and runs over the two rules beside it.
+The classic events are plain rules standing on the baseline with a label beside the tip, where the 2017 rules start above the year band and carry arrowheads. The presidents are one run of alternating bars with the names inside, set on an ordinary axis, where the 2017 bars are thin, sit under a band of year cells and carry their names below; the coup attempts are dots with a one-line key instead of the 2017 key block, and the re-election marks and the president-elect label are left out. Two stand-ins are not clean: Estrada's bar is too narrow for his name, so it is unlabelled, and the "People Power" label is wider than its span and runs over the two rules beside it. "Corazon Aquino dies" is set on three lines, as one wider than the space left of the panel's edge would be clipped.
 
 ### Data timeline
 
@@ -395,6 +403,10 @@ modern_plot <- ggplot(iran) +
 modern <- economist_2017_chart(modern_plot)
 
 ## Both series on one axis, GDP at $50bn to one million barrels a day, with its own scale on the right.
+## Two labels are wrapped, and one rule shortened, so the labels stay clear of their neighbours.
+classic_iran_events <- transform(iran_events, from = 0, to = top)
+classic_iran_events$label[c(4, 7)] <- c("US invades\nAfghanistan", "Obama offers to “extend\na hand” to Iran")
+classic_iran_events$to[5] <- 5.5
 iran_long <- data.frame(
   year = rep(iran$year + 0.5, 2),
   value = c(iran$production, iran$gdp / 50),
@@ -403,7 +415,7 @@ iran_long <- data.frame(
 classic <- ggplot(iran_long, aes(year, value, colour = series)) +
   classic_span(1980.72, 1988.98, ymax = 4.06, label = "Iran/Iraq war") +
   geom_line(linewidth = 0.6) +
-  classic_events(transform(iran_events, from = 0, to = top)) +
+  classic_events(classic_iran_events) +
   classic_bars(iran_leaders, ymin = -1.9, ymax = -1.1, fills = classic_col(c("gray", "dark green", "blue-gray"))) +
   classic_bars(iran_presidents, ymin = -3.1, ymax = -2.3, fills = classic_col(c("dark blue", "blue"))) +
   scale_colour_economist() +
@@ -416,7 +428,7 @@ classic <- ggplot(iran_long, aes(year, value, colour = series)) +
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic lines are the theme's two blues with a legend and a second value axis for GDP, where the 2017 chart has no legend, labels each line in its own colour above the panel and breaks the gridlines to stubs. The leaders and presidents are filled bars with white names, so the brief presidencies are unlabelled; the 2017 bars carry their names underneath. The war is a lighter panel whose label sits over the data lines. Several event labels also run into each other or into the lines, and the last two presidents' names are wider than their bars; the 2017 layers keep their labels apart, the hand-placed classic ones are not tuned beyond this.
+The classic lines are the theme's two blues with a legend and a second value axis for GDP, where the 2017 chart has no legend, labels each line in its own colour above the panel and breaks the gridlines to stubs. The leaders and presidents are filled bars with white names, so the brief presidencies are unlabelled; the 2017 bars carry their names underneath. The theme puts the legend flush left under the subtitle, in one row; it fits at this width. The war is a lighter panel whose label sits over the data lines. Two event labels (Afghanistan, Obama) are wrapped and the "axis of evil" label lowered so they no longer touch their neighbours; the rules of other events still cross a few labels, the "Iranian revolution" label touches the line, and the last two presidents' names are wider than their bars; the 2017 layers keep their labels apart, the hand-placed classic ones are not tuned beyond this.
 
 ### Bar chart timeline
 
@@ -525,7 +537,7 @@ classic <- ggplot() +
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic bars are coloured by country from the theme's palette with a legend, and the events keep the dotted rules of the 2017 chart but lose the dots at their ends. The classic labels are wider than the 2017 condensed type, so the long ones under the axis were wrapped and staggered; the three longest still overprint each other at the foot of the chart, and the width of the fallback font decides how much.
+The classic bars are coloured by country from the theme's palette with a legend, and the events keep the dotted rules of the 2017 chart but lose the dots at their ends. The classic labels are wider than the 2017 condensed type, so the long ones under the axis were wrapped and staggered; at the foot of the chart they are stacked close but no longer overprint each other. The rules of neighbouring events still run through a few labels, and the width of the fallback font decides how tight the stack is.
 
 ### Data timeline with periods above
 
@@ -1149,7 +1161,7 @@ classic <- ggplot(jobs, aes(year, index, colour = place)) +
 chart_pair(classic_chart(classic), modern)
 ```
 
-The classic forecast is a lighter panel with no rule across its top, no black dot on the index point and a lower-case label, and the four countries are labelled in place in dark grey instead of a legend (the legend of the classic theme is wider than the chart at this size). The 2017 panel has a darker fill and a grey rule, coloured labels and a capitalised FORECAST.
+The classic forecast is a lighter panel with no rule across its top, no black dot on the index point and a lower-case label, and the four countries are labelled in place in dark grey instead of a legend (the theme's one-row legend for four names measures about 180pt, against a chart 160pt wide). The 2017 panel has a darker fill and a grey rule, coloured labels and a capitalised FORECAST.
 
 "For highlights that are central to the message of the chart, use colour" -- a 30% tint of the guide's red.
 
@@ -1224,7 +1236,7 @@ classic_malaise <- function(tint) {
     geom_scale_break_economist_2017(side = "left") +
     scale_y_continuous(limits = c(24, 80), breaks = seq(30, 80, 10), expand = c(0, 0)) +
     scale_x_continuous(limits = c(2003.8, 2018.3), expand = c(0, 0), breaks = seq(2005, 2015, 2)) +
-    labs(title = "Mutti's malaise", subtitle = "German approval of Angela Merkel, % polled", x = NULL, y = NULL,
+    labs(title = "Mutti's malaise", subtitle = "German approval of Angela\nMerkel, % polled", x = NULL, y = NULL,
          caption = "Source: ARD DeutschlandTREND/infratest dimap") +
     theme_economist(base_size = classic_size)
 }
@@ -1393,7 +1405,7 @@ classic <- ggplot(income, aes(year, index, colour = measure)) +
   scale_colour_economist() +
   scale_y_continuous(limits = c(90, 150), breaks = seq(90, 150, 10), expand = c(0, 0)) +
   scale_x_continuous(limits = c(1976.8, 2018.2), expand = c(0, 0), breaks = seq(1980, 2010, 10)) +
-  labs(title = "Easing the pain", subtitle = "United States, median real household income*, 1979=100",
+  labs(title = "Easing the pain", subtitle = "United States, median real\nhousehold income*, 1979=100",
        x = NULL, y = NULL, caption = "Source: CBO") +
   coord_cartesian(clip = "off") +
   theme_economist(base_size = classic_size) +
@@ -1451,13 +1463,13 @@ classic <- ggplot(merkel, aes(t, approval)) +
   geom_scale_break_economist_2017(side = "left") +
   scale_y_continuous(limits = c(24, 80), breaks = seq(30, 80, 10), expand = c(0, 0)) +
   scale_x_continuous(limits = c(2003.8, 2018.3), expand = c(0, 0), breaks = seq(2005, 2015, 2)) +
-  labs(title = "Mutti's malaise", subtitle = "German approval of Angela Merkel, % polled", x = NULL, y = NULL,
+  labs(title = "Mutti's malaise", subtitle = "German approval of Angela\nMerkel, % polled", x = NULL, y = NULL,
        caption = "Source: ARD DeutschlandTREND/infratest dimap") +
   theme_economist(base_size = classic_size)
 chart_pair(classic_chart(classic), modern)
 ```
 
-The break is the 2017 layer, drawn unchanged beside the classic left axis (`side = "left"`). The classic axis labels run to full years and its gridlines are white and heavier.
+The break is the 2017 layer, drawn unchanged beside the classic left axis (`side = "left"`). The classic axis labels run to full years and its gridlines are white, about 0.5pt, where the 2017 gridlines are grey.
 
 ## Checklist
 

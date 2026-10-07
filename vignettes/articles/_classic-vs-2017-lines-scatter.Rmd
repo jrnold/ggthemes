@@ -4,27 +4,20 @@ The `line_side` order, with the guide's cap: "Ilex will plot up to 6 colours but
 
 The classic charts take their line colours from `economist_pal(fill = FALSE)`, which `scale_colour_economist()` does not use (it draws from the fill palette), so the lines here use `discrete_scale("colour", palette = economist_pal(fill = FALSE))`. Classic has no footnote line, so the footnotes of the 2017 charts are printed under the source.
 
-Local adjustments, so that the classic charts fit the guide's one-column width: `lines_classic()` sets the classic theme at `base_size = 6.5` and then trims its legend (smaller text and keys), adds axis-title margins and a left-aligned, wrapped caption, none of which `theme_economist()` does itself; the thermometers also set `plot.title.position = "plot"`; the 2017 side is the existing article's code unchanged.
+The classic charts use `theme_economist(base_size = 6.5)` as it is: the title, subtitle and source line are flush left with the chart, the legend sits top left at the size of the axis labels, and the margins and gridlines scale with the base size. One local adjustment remains: `lines_classic()` wraps the source line by hand, since ggplot2 prints a caption on one line. The theme sets the margins around the axis titles itself, those of the 2017 guide. Three charts (marked in their code) also shrink the legend text or stack the legends because their keys do not fit the chart's width. The 2017 side is the existing article's code unchanged.
 
 ```{r lines-setup}
 ## Classic lines take the line palette; fills and points take the fill palette of scale_*_economist().
 lines_classic_scale <- function(...) discrete_scale("colour", palette = economist_pal(fill = FALSE), ...)
 
-## Finish a classic plot: source and footnote in the caption, the classic theme, the red tab. At one-column size
-## the theme's legend needs trimming, the axis titles need a margin and the caption needs both a style (the
-## classic theme draws none) and wrapping, since ggplot2 prints it on one line; see the gaps at the end.
+## Finish a classic plot: source and footnote in the caption (wrapped by hand, since ggplot2 prints a caption on one
+## line), the classic theme, the red tab.
 lines_classic <- function(plot, caption = NULL, footnote = NULL, theme = theme_economist(base_size = classic_size),
                           tweaks = NULL, wrap = 44) {
   caption <- paste(vapply(c(caption, footnote), function(x) paste(strwrap(x, wrap), collapse = "\n"), ""),
                    collapse = "\n")
   classic_chart(
     plot + labs(caption = caption) + theme +
-      theme(
-        plot.caption = element_text(hjust = 0, size = rel(0.9), margin = margin(t = 5)),
-        legend.text = element_text(size = rel(0.9)), legend.key.size = unit(0.7, "lines"),
-        legend.key.spacing = unit(2, "pt"), legend.spacing = unit(2, "pt"), legend.margin = margin(0, 0, 0, 0),
-        axis.title.y = element_text(margin = margin(r = 4)), axis.title.x = element_text(margin = margin(t = 3))
-      ) +
       tweaks
   )
 }
@@ -111,7 +104,7 @@ classic <- lines_classic(
 chart_pair(classic, ggplotGrob(modern))
 ```
 
-The classic palette depends on the number of lines, so a line's colour changes when another is added: it starts with three blues (dark, mid, light), adds a blue-gray and a gray for four and five lines, and jumps to a different set, starting with light green, at six. The 2017 order is fixed (each panel takes the first colours of the same run), starting with blue and cyan, then gold and maroon, so the extra lines differ in hue and not just in lightness. Classic also draws white gridlines on a blue-gray panel, where the 2017 charts have thin grey rules on a lighter ground.
+The classic palette depends on the number of lines, so a line's colour changes when another is added: it starts with three blues (dark, mid, light), adds a blue-gray and a gray for four and five lines, and jumps to a different set, starting with light green, at six. The 2017 order is fixed (each panel takes the first colours of the same run), starting with blue and cyan, then gold and maroon, so the extra lines differ in hue and not just in lightness. Classic also draws thin white gridlines straight on its blue-gray ground, with no separate panel, where the 2017 charts have thin grey rules on a lighter ground.
 
 ### One line
 
@@ -176,7 +169,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-The classic chart has a left-hand axis with white gridlines, a heavy black x-axis rule with ticks, and a line in its dark blue. The 2017 chart puts the scale on the right, labels the years between the year-boundary ticks and abbreviates them ("07"), and sets the footnote at the right of the source line; classic has no footnote, so it is a second line under the source.
+The classic chart has a left-hand axis with white gridlines, a thin black x-axis rule with ticks pointing up into the panel, and a line in its dark blue; its title, subtitle and source are flush left with the chart. The 2017 chart puts the scale on the right, labels the years between the year-boundary ticks and abbreviates them ("07"), and sets the footnote at the right of the source line; classic has no footnote, so it is a second line under the source.
 
 ### Two lines
 
@@ -242,7 +235,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic puts the legend above the panel in two rows with its title to the left of the keys, and its two lines are dark blue and blue; the 2017 lines are blue and a paler cyan, with the legend left-aligned over the panel. Both charts label the years 1, 5, 10 and 13, but classic has no minor ticks at the year boundaries.
+Classic puts the legend above the panel in two rows with its title to the left of the keys, and its two lines are dark blue and blue; the 2017 lines are blue and a paler cyan, with the legend left-aligned over the panel; classic's legend is also flush left, but with its title beside the keys. Both charts label the years 1, 5, 10 and 13, but classic has no minor ticks at the year boundaries.
 
 ### Four lines, labeled in place, indexed
 
@@ -308,7 +301,7 @@ modern <- economist_2017_chart(
 transport_cols <- economist_pal(fill = FALSE)(4)
 classic <- lines_classic(
   ggplot(london, aes(year, index, colour = mode)) +
-    geom_hline(yintercept = 100, linewidth = 0.3) +
+    geom_hline(yintercept = 100, colour = classic_tab_colour(), linewidth = 0.3) +
     geom_line(linewidth = 0.7, show.legend = FALSE) +
     geom_point(
       aes(year, index), data = data.frame(year = 2001, index = 100),
@@ -322,7 +315,10 @@ classic <- lines_classic(
       ),
       aes(label = mode), size = 2.2, colour = transport_cols, show.legend = FALSE
     ) +
-    scale_x_continuous(limits = c(2000, 2016), breaks = seq(2001, 2015, 2), expand = c(0, 0)) +
+    scale_x_continuous(
+      limits = c(2000, 2016), breaks = seq(2001, 2015, 2), expand = c(0, 0),
+      labels = c("2001", "03", "05", "07", "09", "11", "13", "15")
+    ) +
     scale_y_continuous(limits = c(80, 180), breaks = seq(80, 180, 20)) +
     lines_classic_scale() +
     labs(
@@ -334,7 +330,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic has no index rule, so the rule at 100 is a plain black line (the 2017 rule is red), and the labels take their lines' colours where 2017 sets them in black. The light-blue "Car" line is faint on the blue-gray panel; in 2017 it is gold.
+The theme draws no zero or index line, so the rule at 100 is a `geom_hline()`, in the classic red as in the corpus's index charts from 2014 on (a black dot on the index point goes with it), and the labels take their lines' colours where 2017 sets them in black. The light-blue "Car" line is faint on the pale ground; in 2017 it is gold. The classic x axis labels the years "2001", "03" and so on, because four-digit labels every two years run together at this width.
 
 ### Six lines, labeled in place
 
@@ -666,12 +662,14 @@ classic <- lines_classic(
       subtitle = "Tax havens\u2019 share of US overseas\ncorporate profits, %",
       x = NULL, y = NULL, fill = NULL
     ),
-  caption = "Source: \u201cThe Hidden Wealth of Nations\u201d, by Gabriel Zucman, University of Chicago Press, 2015"
+  caption = "Source: \u201cThe Hidden Wealth of Nations\u201d, by Gabriel Zucman, University of Chicago Press, 2015",
+  ## Two columns of these labels overflow the chart at the theme's legend size.
+  tweaks = theme(legend.text = element_text(size = rel(0.8)))
 )
 chart_pair(classic, modern)
 ```
 
-The classic palette gives blue-gray, dark navy, pale blue, blue, light green and dark green: the legend is in two columns above the panel and the bands touch without a white rule, so neighbouring bands of similar lightness (light green and blue-gray against pale blue) run together. The 2017 key is a vertical list running into the panel, with the bands in blue, cyan, gold, teal, mint and navy.
+The classic palette gives blue-gray, dark navy, pale blue, blue, light green and dark green: the legend is in two columns flush left above the panel (its text is set smaller than the theme's, or the second column would run off the chart) and the bands touch without a white rule, so neighbouring bands of similar lightness (light green and blue-gray against pale blue) run together. The 2017 key is a vertical list running into the panel, with the bands in blue, cyan, gold, teal, mint and navy.
 
 ### The alternative stacked scheme
 
@@ -746,12 +744,14 @@ classic <- lines_classic(
       x = NULL, y = NULL, fill = NULL
     ),
   caption = "Source: DCLG",
-  footnote = "*Local authorities and housing associations"
+  footnote = "*Local authorities and housing associations",
+  ## Two columns of these labels overflow the chart at the theme's legend size.
+  tweaks = theme(legend.text = element_text(size = rel(0.8)))
 )
 chart_pair(classic, modern)
 ```
 
-Classic has no second scheme, so this is the same five fill colours as above; the bands are all blues and blue-greens, where the 2017 alternative brings in mauve and maroon at the top. The classic legend runs over three rows above the chart; the 2017 key is two columns.
+Classic has no second scheme, so this is the same five fill colours as above; the bands are all blues and blue-greens, where the 2017 alternative brings in mauve and maroon at the top. The classic legend runs over three rows in two columns above the chart, with its text set smaller than the theme's so that it fits; the 2017 key is two columns.
 
 ### Four bands, labeled in place
 
@@ -989,7 +989,6 @@ lines_thermo_classic <- function(n, terminals = c("rule", "dot")) {
     )
 }
 lines_thermo_theme <- theme_economist(base_size = classic_size, horizontal = FALSE)
-lines_thermo_tweaks <- theme(plot.title.position = "plot", plot.caption.position = "plot")
 ```
 
 ### Two, three, four and six series
@@ -1002,7 +1001,7 @@ modern <- economist_2017_chart(
 )
 classic <- lines_classic(
   lines_thermo_classic(2), "Source: Ben Schmidt, Northeastern University",
-  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+  theme = lines_thermo_theme
 )
 chart_pair(classic, modern)
 ```
@@ -1015,7 +1014,7 @@ modern <- economist_2017_chart(
 )
 classic <- lines_classic(
   lines_thermo_classic(3), "Source: Ben Schmidt, Northeastern University",
-  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+  theme = lines_thermo_theme
 )
 chart_pair(classic, modern)
 ```
@@ -1028,7 +1027,7 @@ modern <- economist_2017_chart(
 )
 classic <- lines_classic(
   lines_thermo_classic(4), "Source: Ben Schmidt, Northeastern University",
-  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+  theme = lines_thermo_theme
 )
 chart_pair(classic, modern)
 ```
@@ -1041,12 +1040,12 @@ modern <- economist_2017_chart(
 )
 classic <- lines_classic(
   lines_thermo_classic(6), "Source: Ben Schmidt, Northeastern University",
-  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+  theme = lines_thermo_theme
 )
 chart_pair(classic, modern)
 ```
 
-Classic has no thermometer, so the rule and terminals are plain ggplot2 layers on the classic theme. They read well for two and three series, but the classic series colours are a run of blues (and, from five series, grays, with greens at six), so terminals that overlap are hard to tell apart; the 2017 terminals use cyan, maroon, gold and then blue, teal and mauve. Classic also draws a heavy black rule and ticks along the top axis with white gridlines, and has no "Horrible" marker row, which the 2017 charts set in the axis-number row.
+Classic has no thermometer, so the rule and terminals are plain ggplot2 layers on the classic theme. They read well for two and three series, but the classic series colours are a run of blues (and, from five series, grays, with greens at six), so terminals that overlap are hard to tell apart; the 2017 terminals use cyan, maroon, gold and then blue, teal and mauve. Classic also draws a thin black rule and ticks along the top axis with white gridlines, and has no "Horrible" marker row, which the 2017 charts set in the axis-number row.
 
 ### Dot terminals
 
@@ -1060,7 +1059,7 @@ modern <- economist_2017_chart(
 )
 classic <- lines_classic(
   lines_thermo_classic(3, terminals = "dot"), "Source: Ben Schmidt, Northeastern University",
-  theme = lines_thermo_theme, tweaks = lines_thermo_tweaks
+  theme = lines_thermo_theme
 )
 chart_pair(classic, modern)
 ```
@@ -1206,7 +1205,7 @@ classic <- lines_classic(
     scale_x_continuous(breaks = seq(-2, 8, 2)) +
     scale_y_continuous(breaks = seq(-5, 20, 5)) +
     scale_colour_economist() +
-    guides(colour = guide_legend(override.aes = list(size = 2.2, alpha = 1))) +
+    guides(colour = guide_legend(nrow = 2, override.aes = list(size = 2.2, alpha = 1))) +
     labs(
       title = "Divergent",
       subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
@@ -1218,7 +1217,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-Classic has the same cloud in two blues (blue for the tight 1990-2007 cloud, drawn over the dark blue 2012-16 cloud), which are closer to each other than the 2017 pair of maroon and cyan. Classic's zero rules are black and its gridlines white, where 2017 uses red rules and thin grey gridlines with no x-axis line; classic's legend is a row above the panel rather than a column.
+Classic has the same cloud in two blues (blue for the tight 1990-2007 cloud, drawn over the dark blue 2012-16 cloud), which are closer to each other than the 2017 pair of maroon and cyan. The theme draws no zero rules, so the classic chart adds black ones (the corpus's classic scatters mostly have none, and where they have, from 2014, they are red), and its gridlines are white, where 2017 uses red rules and thin grey gridlines with no x-axis line; classic's legend is two rows above the panel rather than a column.
 
 ### Labeled outliers
 
@@ -1557,12 +1556,14 @@ classic <- lines_classic(
     "Sources: Atlas of US Presidential Elections; Census Bureau; IPUMS, University of Minnesota; ",
     "Institute for Health Metrics and Evaluation; The Economist"
   ),
-  footnote = "*Weighted index of obesity, diabetes, heavy drinking, physical exercise and life expectancy, 2010-12"
+  footnote = "*Weighted index of obesity, diabetes, heavy drinking, physical exercise and life expectancy, 2010-12",
+  ## The region and size legends side by side run off the chart's right edge, so stack them.
+  tweaks = theme(legend.box = "vertical", legend.box.just = "left")
 )
 chart_pair(classic, modern)
 ```
 
-Classic specifies no category-dot stroke (the classic dots here borrow the 2017 stroke width and 50% fill), no in-panel key and no arrow notes. Its first four fills are blue-gray, dark blue, blue and gray, so the large Northeast and Midwest clouds merge into one dark mass and the South (gray) fades into the panel; the 2017 maroon, blue, gold and cyan separate. The region and size legends are an ordinary row above the panel.
+Classic specifies no category-dot stroke (the classic dots here borrow the 2017 stroke width and 50% fill), no in-panel key and no arrow notes. Its first four fills are blue-gray, dark blue, blue and gray, so the large Northeast and Midwest clouds merge into one dark mass and the South (gray) fades into the panel; the 2017 maroon, blue, gold and cyan separate. The region and size legends are ordinary legends above the panel, stacked one above the other because side by side they ran off the chart's right edge.
 
 ### Highlighting instead of categorizing
 
@@ -1655,7 +1656,7 @@ Classic has no highlight scheme, so Midwest is its dark red against gray for the
 | Standard colour order, one to six lines | yes | Classic palette depends on the number of lines (starts with three blues); 2017 order is fixed |
 | One line | yes | Classic has no footnote line or right-hand scale |
 | Two lines | yes | Classic uses the line palette via `discrete_scale()` |
-| Four lines, labeled in place, indexed | yes | Classic has no red index rule; drawn in black |
+| Four lines, labeled in place, indexed | yes | No zero or index line in the theme; red rule added with `geom_hline()` |
 | Six lines, labeled in place | yes | Seven series; classic separates by lightness more than hue |
 | High-contrast alternatives | partly | No `bright`/`dark` sets in classic; drawn with the line palette |
 | Two bands, labeled in place | yes | Legend instead of in-band labels; no white rule |
