@@ -51,7 +51,7 @@ classic <- ggplot(doctors, aes(country, visits, fill = highlight)) +
     caption = "Source: OECD",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -166,7 +166,7 @@ classic <- ggplot(elections, aes(country, pct, fill = income)) +
     caption = "Source: Pew Global Attitudes Survey",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -236,7 +236,7 @@ classic <- ggplot(forecasts, aes(vintage, gdp, fill = made_in)) +
     caption = "Source: IMF",
     x = NULL, y = NULL, fill = "Forecasts made in:"
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   theme(strip.placement = "outside", strip.text.y.left = element_text(angle = 0, vjust = 1))
 
 chart_pair(classic_chart(classic), modern)
@@ -343,7 +343,7 @@ classic <- ggplot(capex, aes(sector, change)) +
     caption = "Source: Goldman Sachs\n*In dollar terms",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -566,7 +566,7 @@ classic <- ggplot(asia, aes(country, growth, fill = period)) +
     caption = "Source: OECD\n*Annual average",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -632,7 +632,7 @@ classic <- ggplot(segregation, aes(group, change, fill = area)) +
     caption = "Source: University of Manchester\n* % that needs to move to create an even distribution",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
 
 chart_pair(classic_chart(classic), modern)
@@ -712,7 +712,7 @@ classic <- ggplot(carriers, aes(band, width, fill = carrier)) +
     caption = "Source: comScore",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE))
 
 chart_pair(classic_chart(classic), modern)
@@ -844,7 +844,7 @@ classic <- ggplot(seats, aes(1, n, fill = party)) +
     caption = "Sources: Ministry of the Interior; El País",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
@@ -992,7 +992,7 @@ classic <- ggplot(loot, aes(value, panel, fill = stream)) +
     caption = "Sources: IHS\n*Estimates",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   theme(
     axis.text.y = element_blank(), axis.ticks.y = element_blank(), legend.position = "none",
     strip.text = element_text(face = "bold")
@@ -1208,7 +1208,7 @@ classic <- ggplot(migrants, aes(destination, pct, fill = origin)) +
     caption = "Source: European Commission\n*Including EFTA",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   guides(fill = guide_legend(nrow = 2, byrow = TRUE))
 
 chart_pair(classic_chart(classic), modern)
@@ -1317,7 +1317,7 @@ classic <- ggplot(bars, aes(row, pct, fill = answer)) +
     caption = "Sources: YouGov; CCES; The Economist\n*5,773 registered voters surveyed\nJune 4th to July 9th 2016",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   ## Two-line row names overprint at the theme's size: set them smaller.
   theme(axis.text.y = element_text(size = rel(0.85), lineheight = 0.9)) +
   guides(fill = guide_legend(ncol = 2, byrow = TRUE))

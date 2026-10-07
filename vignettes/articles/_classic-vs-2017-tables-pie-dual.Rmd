@@ -627,7 +627,7 @@ asylum_plot <- ggplot(asylum_bars, aes(country, n, fill = measure)) +
 classic <- asylum_plot +
   scale_fill_economist() +
   scale_y_continuous(position = "right") +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   classic_rows() +
   labs(caption = "Source: UNHCR")
 
@@ -1115,10 +1115,13 @@ steam_classic <- ggplot(rail, aes(.data$year, .data$value, colour = .data$series
   ) +
   labs(title = "Out of steam", subtitle = "Britain, railways", x = NULL, caption = "Source: Department for Transport") +
   theme_economist(base_size = classic_size) +
-  classic_rows(nrow = 2)
+  theme(legend.position = "none")
 
 chart_pair(
-  classic_chart(steam_classic),
+  classic_chart(steam_classic, axis_titles = list(
+    left = list(label = "National rail track,\n'000 km", colour = classic_series_colour(steam_classic, "track")),
+    right = list(label = "Passenger kilometres,\nbn", colour = classic_series_colour(steam_classic, "passengers"))
+  )),
   economist_2017_chart(
     steam +
       labs(caption = "Source: Department for Transport"),
@@ -1224,10 +1227,15 @@ golden_classic <- ggplot(nafta, aes(.data$year, .data$value, colour = .data$seri
     caption = "Sources: Thomson Reuters; IMF"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_rows(nrow = 2)
+  theme(legend.position = "none")
 
 chart_pair(
-  classic_chart(golden_classic),
+  classic_chart(golden_classic, axis_titles = list(
+    left = lapply(c("Mexico", "Canada", "United States"), function(country) {
+      list(label = country, colour = classic_series_colour(golden_classic, country), key = TRUE)
+    }),
+    right = list(label = "Total trade,\n$trn", colour = classic_series_colour(golden_classic, "Total trilateral trade"))
+  )),
   economist_2017_chart(
     golden +
       labs(caption = "Sources: Thomson Reuters; IMF"),
@@ -1236,7 +1244,7 @@ chart_pair(
 )
 ```
 
-The four classic colours (blue-gray, dark blue, blue, gray) give the total-trade line a gray, which is the palette's quietest colour for the series the right axis belongs to; in 2017 it is the maroon line with a maroon axis, while the three left-axis lines share a cyan family. The classic chart lacks the direct labels (Mexico, Canada, United States) and uses a legend, and the units move to the subtitle.
+The four classic colours (blue-gray, dark blue, blue, gray) give the total-trade line a gray, which is the palette's quietest colour for the series the right axis belongs to; in 2017 it is the maroon line with a maroon axis, while the three left-axis lines share a cyan family. The classic chart lacks the direct labels on the lines; the three left-axis series are named above the axis, each after a short line key in its colour, and the units move to the subtitle.
 
 ### Line and column
 
@@ -1299,10 +1307,13 @@ chavismo_classic <- ggplot(venezuela, aes(year)) +
     caption = "Sources: IMF; Reuters\n*Preliminary estimate"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_rows()
+  theme(legend.position = "none")
 
 chart_pair(
-  classic_chart(chavismo_classic),
+  classic_chart(chavismo_classic, axis_titles = list(
+    left = list(label = "GDP", colour = classic_series_colour(chavismo_classic, series[[1]], "fill")),
+    right = list(label = "Consumer\nprices", colour = classic_series_colour(chavismo_classic, series[[2]]))
+  )),
   economist_2017_chart(
     chavismo +
       labs(caption = "Sources: IMF; Reuters"),
@@ -1382,10 +1393,13 @@ quantifying_classic <- ggplot(qe, aes(.data$year, .data$value, colour = .data$se
     caption = "Source: Thomson Reuters"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_rows()
+  theme(legend.position = "none")
 
 chart_pair(
-  classic_chart(quantifying_classic),
+  classic_chart(quantifying_classic, axis_titles = list(
+    left = list(label = "Euro against the\ndollar, $ per €", colour = classic_series_colour(quantifying_classic, "Euro")),
+    right = list(label = "Ten-year government-\nbond yields, %", colour = classic_series_colour(quantifying_classic, "Italy"))
+  )),
   economist_2017_chart(
     quantifying +
       labs(caption = "Source: Thomson Reuters"),
@@ -1462,10 +1476,13 @@ lies_classic <- ggplot() +
     x = NULL, caption = "Source: BCG"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_rows()
+  theme(legend.position = "none")
 
 chart_pair(
-  classic_chart(lies_classic),
+  classic_chart(lies_classic, axis_titles = list(
+    left = list(label = "Free cash flow,\n$bn", colour = classic_series_colour(lies_classic, series[[1]], "fill")),
+    right = list(label = "Oil price,\n$ per barrel", colour = classic_series_colour(lies_classic, series[[2]]))
+  )),
   economist_2017_chart(
     lies +
       labs(caption = "Source: BCG"),
@@ -1539,10 +1556,13 @@ zuma_classic <- ggplot(zuma, aes(.data$year, .data$value, colour = .data$series)
     subtitle = "South Africa; rand per $, inverted\nscale (left); SACCI business\nconfidence index, 2015=100 (right)"
   ) +
   theme_economist(base_size = classic_size) +
-  classic_rows()
+  theme(legend.position = "none")
 
 chart_pair(
-  classic_chart(zuma_classic),
+  classic_chart(zuma_classic, axis_titles = list(
+    left = list(label = "Rand per $,\ninverted scale", colour = classic_series_colour(zuma_classic, "rand")),
+    right = list(label = "SACCI business\nconfidence\nindex, 2015=100", colour = classic_series_colour(zuma_classic, "sacci"))
+  )),
   economist_2017_chart(
     zuma_plot +
       labs(caption = "Sources: Thomson Reuters; SACCI"),
@@ -1645,7 +1665,7 @@ big_mac_classic$layers <- append(
 )
 big_mac_classic <- big_mac_classic +
   scale_colour_economist(name = NULL) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   classic_rows() +
   labs(
     subtitle = "Local currency under (-) / over (+) valuation\nagainst the dollar, %; right-hand figures:\nBig Mac price*, $",
@@ -1733,7 +1753,7 @@ air_classic <- ggplot(travel, aes(country, change)) +
     subtitle = "Business travel spending, 2014\n% change on a year earlier",
     x = NULL, y = NULL, caption = "Source: GBTA"
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks()
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line()
 
 chart_pair(
   classic_chart(air_classic),
@@ -1807,7 +1827,7 @@ small_classic <- ggplot(exchanges, aes(exchange, listed)) +
     subtitle = "Number of companies\nlisted on stock exchanges\nOctober 2016",
     x = NULL, y = NULL, caption = "Source: World Federation of Exchanges\n*West African regional exchange"
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() +
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() +
   classic_rows()
 
 chart_pair(
