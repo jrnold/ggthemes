@@ -57,6 +57,15 @@ test_that("ggthemes_data$economist keeps the classic fg and bg tables", {
   expect_equal(economist_bg("blue-gray"), "#d5e4eb")
 })
 
+test_that("ggthemes_data$economist$bg keeps its first five rows in place", {
+  # Code that reads the table by position, as `bg$value[3]` for the red, keeps
+  # working; new colors go after these rows.
+  bg <- ggthemes_data$economist$bg
+  expect_equal(bg$name[1:5], c("blue-gray", "dark blue-gray", "red", "light gray", "dark gray"))
+  expect_equal(bg$value[1:5], c("#d5e4eb", "#c3d6df", "#ed111a", "#ebebeb", "#c9c9c9"))
+  expect_equal(bg$name[6:7], c("deep blue-gray", "pale blue-gray"))
+})
+
 test_that("scale_colour_economist equals scale_color_economist", {
   expect_equal_scale(scale_color_economist(), scale_colour_economist())
 })
@@ -145,6 +154,57 @@ test_that("theme_economist separates the subtitle from the title", {
   expect_equal(grid::convertUnit(thm$plot.title$margin, "pt", valueOnly = TRUE)[3], 5)
 })
 
+# The classic charts of 2012 to 2018, measured in the chart corpus: one-column
+# charts, 160pt wide, in a base size of 6.5pt.
+test_that("theme_economist sets the title block flush left with the chart", {
+  thm <- theme_economist()
+  expect_equal(thm$plot.title.position, "plot")
+  expect_equal(thm$plot.caption.position, "plot")
+  for (element in c("plot.title", "plot.subtitle", "plot.caption")) {
+    expect_equal(thm[[element]]$hjust, 0, info = element)
+  }
+  expect_equal(thm$legend.justification, "left")
+  expect_equal(thm$legend.location, "plot")
+})
+
+test_that("theme_economist sizes the title block in base sizes, as the corpus measures", {
+  thm <- theme_economist()
+  # Title 9.5pt, subtitle 7.6pt and source 6.3pt, at a base size of 6.5pt.
+  expect_equal(as.numeric(thm$plot.title$size), 1.45)
+  expect_equal(as.numeric(thm$plot.subtitle$size), 1.15)
+  expect_equal(as.numeric(thm$plot.caption$size), 0.95)
+  expect_equal(as.numeric(thm$legend.text$size), 1)
+  # The title is 1.29 times the subtitle in the corpus.
+  expect_equal(as.numeric(thm$plot.title$size) / as.numeric(thm$plot.subtitle$size), 1.26, tolerance = 0.05)
+})
+
+test_that("theme_economist draws gridlines of the corpus's weight", {
+  # 0.53pt on a chart 160pt wide: 0.08 base sizes. ggplot2 draws `linewidth`
+  # millimetres as `linewidth * .pt` lwd, and a lwd is 0.75pt.
+  drawn <- function(base_size) {
+    theme_economist(base_size = base_size)$panel.grid.major$linewidth * ggplot2::.pt * 0.75
+  }
+  expect_equal(drawn(6.5), 0.52, tolerance = 0.02)
+  expect_equal(drawn(13), 2 * drawn(6.5))
+})
+
+test_that("theme_economist scales margins, gridlines and legend keys with base_size", {
+  # They did not before: the margins were fixed at 12pt and 10pt, the gridlines
+  # at 1.9pt and the legend keys sized in "lines".
+  pts <- function(x) grid::convertUnit(x, "pt", valueOnly = TRUE)
+  small <- theme_economist(base_size = 5)
+  big <- theme_economist(base_size = 20)
+  expect_equal(pts(big$plot.margin), 4 * pts(small$plot.margin))
+  expect_equal(big$panel.grid.major$linewidth, 4 * small$panel.grid.major$linewidth)
+  expect_equal(pts(big$legend.key.width), 4 * pts(small$legend.key.width))
+  expect_equal(pts(big$legend.key.height), 4 * pts(small$legend.key.height))
+})
+
+test_that("theme_economist's side margins are 1.9 base sizes, 12.2pt at the corpus's 6.5pt", {
+  margin <- grid::convertUnit(theme_economist(base_size = 6.5)$plot.margin, "pt", valueOnly = TRUE)
+  expect_equal(margin[c(2, 4)], rep(12.35, 2), tolerance = 0.02)
+})
+
 test_that("theme economist with horizontal=FALSE works", {
   thm <- theme_economist(horizontal = FALSE)
   expect_s3_class(thm, "theme")
@@ -156,6 +216,38 @@ test_that("theme economist with dark panel works", {
   expect_s3_class(thm, "theme")
   expect_equal(thm$panel.background$fill, economist_bg("dark blue-gray"))
   expect_equal(thm$strip.background$fill, economist_bg("dark blue-gray"))
+})
+
+brightness <- function(color) sum(grDevices::col2rgb(color) * c(0.2126, 0.7152, 0.0722))
+
+test_that("dkpanel draws the panel darker than the ground", {
+  thm <- theme_economist(dkpanel = TRUE)
+  expect_lt(brightness(thm$panel.background$fill), brightness(thm$plot.background$fill))
+})
+
+test_that("theme_economist(lightpanel = TRUE) draws pale panels on a deep ground", {
+  thm <- theme_economist(lightpanel = TRUE)
+  expect_s3_class(thm, "theme")
+  expect_equal(thm$plot.background$fill, economist_bg("deep blue-gray"))
+  expect_equal(thm$panel.background$fill, economist_bg("pale blue-gray"))
+  # The panel headings and the legend keys sit on the ground, not on the panels.
+  expect_equal(thm$strip.background$fill, economist_bg("deep blue-gray"))
+  expect_equal(thm$legend.key$fill, economist_bg("deep blue-gray"))
+  expect_gt(brightness(thm$panel.background$fill), brightness(thm$plot.background$fill))
+})
+
+test_that("lightpanel keeps the rest of the classic theme", {
+  plain <- theme_economist()
+  light <- theme_economist(lightpanel = TRUE)
+  for (element in c("panel.grid.major", "axis.line", "axis.ticks.length", "plot.margin", "plot.title")) {
+    expect_equal(light[[element]], plain[[element]], info = element)
+  }
+})
+
+test_that("dkpanel and lightpanel cannot both be set", {
+  expect_error(theme_economist(dkpanel = TRUE, lightpanel = TRUE), "cannot both")
+  expect_no_error(theme_economist(dkpanel = TRUE, lightpanel = FALSE))
+  expect_no_error(theme_economist(dkpanel = FALSE, lightpanel = TRUE))
 })
 
 test_that("theme_economist_white respects base_family and base_size", {
@@ -181,6 +273,7 @@ test_that("classic economist themes do not warn", {
   # 7.0.0 deprecated theme_economist_white(), dkpanel and fill=.
   expect_no_warning(theme_economist_white())
   expect_no_warning(theme_economist(dkpanel = TRUE))
+  expect_no_warning(theme_economist(lightpanel = TRUE))
   expect_no_warning(economist_pal(fill = FALSE))
 })
 
@@ -190,6 +283,10 @@ test_that("theme_economist draws correctly", {
 
 test_that("theme_economist(dkpanel = TRUE) draws correctly", {
   expect_doppelganger("theme_economist-dkpanel", theme_test_plot() + theme_economist(dkpanel = TRUE))
+})
+
+test_that("theme_economist(lightpanel = TRUE) draws correctly", {
+  expect_doppelganger("theme_economist-lightpanel", theme_test_plot() + theme_economist(lightpanel = TRUE))
 })
 
 test_that("theme_economist_white draws correctly", {
