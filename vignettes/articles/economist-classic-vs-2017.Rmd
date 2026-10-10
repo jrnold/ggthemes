@@ -14,6 +14,12 @@ local({
 })
 ```
 
+```{css, echo = FALSE}
+/* pkgdown gives every table Bootstrap's `table` class, whose cells are filled with --bs-table-bg (white); let the
+   gt tables show their own background instead (the 2017 ones, styled by gt_theme_economist_2017(), already do). */
+table.gt_table { --bs-table-bg: transparent; }
+```
+
 ggthemes has two Economist styles. `theme_economist()` is the classic style, the look of the paper's charts before 2017, approximated from published charts. `theme_economist_2017()` implements *The Economist visual styleguide* ([Version 1.2, 4 May 2017](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf), by Matt McLean), which was written down measurement by measurement. This article sets the two against each other: first the differences, then every example chart of the guide drawn in both styles, and finally, in [a second article](economist-mistakes.html), the Economist's own before-and-after charts from "Mistakes, we've drawn a few".
 
 The classic style is the one under test. The 2017 style is the reference, because the guide gives its numbers. Where the two disagree, the question is whether the classic style is deliberately different, as the guide says it is on p.3, or simply wrong.
@@ -205,7 +211,7 @@ The classic palette is mostly blues, grays and greens. Its documentation says re
 
 ## What the classic charts are adjusted for
 
-The classic charts below use `theme_economist(base_size = classic_size)`, with `classic_size` set to `r classic_size`, the base size the chart corpus gives for a chart 160pt across, and add nothing to the theme's type, margins, gridlines or legend: the theme sets the title, source line and legend flush left with the chart, the legend at the top at the size of the axis labels, and the margins and rules in proportion to the type (`?theme_economist` lists the measurements). What the charts still add, each with a comment in its code and a sentence in its note, is chart-specific: the red tab, which `classic_chart()` draws around the finished plot; the layout of a legend (`guide_legend(nrow = 2)`) where its entries do not fit on one row of a 160pt chart; a smaller strip or row-name size where a long heading or a two-line row name does not fit; hand-wrapped source notes where a line is wider than the chart; a smaller base size in the leader-block and Espresso charts, which are drawn with smaller type; and the red rules and labels that a chart draws itself. What the classic theme still lacks: no zero line (the paper drew red rules from 2014 on, so this is a theme gap, not a feature the style lacked), no panel marker, no footnote element, no web variant, no option to leave the baseline and ticks off the column charts (the paper's columns had none), and a palette of at most nine colours and no line-palette scale.
+The classic charts below use `theme_economist(base_size = classic_size)`, with `classic_size` set to `r classic_size`, the base size the chart corpus gives for a chart 160pt across, and add nothing to the theme's type, margins, gridlines or legend: the theme sets the title, source line and legend flush left with the chart, the legend at the top at the size of the axis labels, and the margins and rules in proportion to the type (`?theme_economist` lists the measurements). What the charts still add, each with a comment in its code and a sentence in its note, is chart-specific: the red tab, which `classic_chart()` draws around the finished plot; the layout of a legend (`guide_legend(nrow = 2)`) where its entries do not fit on one row of a 160pt chart; a smaller strip or row-name size where a long heading or a two-line row name does not fit; hand-wrapped source notes where a line is wider than the chart; a smaller base size in the leader-block and Espresso charts, which are drawn with smaller type; and the red rules and labels that a chart draws itself. What the classic theme still lacks: no zero line (the paper often drew red rules, so this is a theme gap, not a feature the style lacked), no panel marker, no footnote element, no web variant, no option to leave the baseline and ticks off the column charts (the paper's columns had none), and a palette of at most nine colours and no line-palette scale.
 
 ## Every chart of the guide, in both styles
 

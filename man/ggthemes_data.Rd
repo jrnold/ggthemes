@@ -25,6 +25,17 @@ Colors, shapes and linetypes are stored with the theme they belong to. The
 article on the package website draws every one of them. \code{ggthemes_data}
 contains no fonts: themes set their typefaces in code.
 
+\code{ggthemes_data$economist} contains the classic (pre-2017) colors used by
+\code{\link[=theme_economist]{theme_economist()}} and \code{\link[=economist_pal]{economist_pal()}}: \code{bg} (grounds, panels and the
+red) and \code{fg} (series colors). \code{ggthemes_data$economist$palette} gives the
+classic palette as print specs: the CMYK of each color, inferred from the
+web images of the print charts since no primary source has been found;
+\code{hex}, that CMYK rendered through US Web Coated SWOP, the profile the web
+images of print charts were exported with for most of 2010 to 2018, which
+is the value \code{bg} and \code{fg} use (Economist Red is the brand guide's screen
+value); and a \code{confidence} in the inference ("known", "high", "medium" or
+"low").
+
 \code{ggthemes_data$economist_2017} contains the colors of \emph{The Economist
 visual styleguide} (v1.2, 4 May 2017), one complete set per medium
 (\code{print} and \code{web}): the ground, gridline, text, baseline, source and

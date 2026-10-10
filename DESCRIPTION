@@ -34,6 +34,8 @@ Imports:
 Suggests:
     dplyr,
     farver,
+    gt,
+    htmltools,
     lattice,
     maps,
     mapproj,

@@ -1,0 +1,1078 @@
+```{r cg-tables-setup}
+## The two colours of a double-scale chart, in order: blue for the first series, dark red for the second.
+## The thin near-black outline of the classic number boxes and callouts, and of the leader lines of a doughnut.
+cgt_ink <- "#231F20"
+
+## The width of a label in points, in the charts' type, for laying out boxes and leader lines around text that
+## ggplot2 does not measure.
+cgt_width <- function(label, size = classic_size, face = "plain") {
+  vapply(label, function(l) {
+    g <- grid::textGrob(l, gp = grid::gpar(fontsize = size, fontfamily = "sans", fontface = face, lineheight = 0.95))
+    grid::convertWidth(grid::grobWidth(g), "pt", valueOnly = TRUE)
+  }, 1, USE.NAMES = FALSE)
+}
+
+## The size in points of the panel of `p` when drawn at the current chunk's figure size: the figure less everything
+## around the panel. With it a chart can be laid out in points, so that boxes, callouts and rings come out at the
+## sizes the paper drew them.
+cgt_panel <- function(p) {
+  gt <- ggplotGrob(p)
+  ## Null units, the panel's share, convert to nothing.
+  fixed <- function(u, convert) sum(convert(u, "pt", valueOnly = TRUE))
+  c(
+    width = knitr::opts_current$get("fig.width") * 72 - fixed(gt$widths, grid::convertWidth),
+    height = knitr::opts_current$get("fig.height") * 72 - fixed(gt$heights, grid::convertHeight)
+  )
+}
+
+## The classic callout: a box with a thin dark outline and a small pointer, as the key over a column of blob heads.
+## `x`, `y` is the tip of the pointer, in data units; `side` the side of the box the pointer is on; `along` where on
+## that side, from 0 (left or bottom) to 1. Sizes are in points, turned into data units by `kx` and `ky` (data units
+## per point), so the same box can be drawn on any scale.
+cgt_callout <- function(x, y, label, side = "bottom", along = 0.85, kx = 1, ky = 1, fill = "white",
+                        width = cgt_width(label) + 6, height = 9 * length(strsplit(label, "\n")[[1]]) + 3,
+                        tip = 4, tip_width = 4.5, size = classic_size) {
+  w <- width * kx
+  h <- height * ky
+  if (side == "bottom") {
+    yb <- y + tip * ky
+    x0 <- x - along * w
+    poly <- data.frame(
+      x = c(x0, x - tip_width * kx, x, x, x0 + w, x0 + w, x0),
+      y = c(yb, yb, y, yb, yb, yb + h, yb + h)
+    )
+    centre <- c(x0 + w / 2, yb + h / 2)
+  } else if (side == "right") {
+    xr <- x - tip * kx
+    y0 <- y - along * h
+    poly <- data.frame(
+      x = c(xr - w, xr, xr, x, xr, xr, xr - w),
+      y = c(y0, y0, y - tip_width / 2 * ky, y, y + tip_width / 2 * ky, y0 + h, y0 + h)
+    )
+    centre <- c(xr - w / 2, y0 + h / 2)
+  } else if (side == "left") {
+    xl <- x + tip * kx
+    y0 <- y - along * h
+    poly <- data.frame(
+      x = c(xl, xl + w, xl + w, xl, xl, x, xl),
+      y = c(y0, y0, y0 + h, y0 + h, y + tip_width / 2 * ky, y, y - tip_width / 2 * ky)
+    )
+    centre <- c(xl + w / 2, y0 + h / 2)
+  } else {
+    yt <- y - tip * ky
+    x0 <- x - along * w
+    poly <- data.frame(
+      x = c(x0, x0 + w, x0 + w, x, x, x - tip_width * kx, x0),
+      y = c(yt - h, yt - h, yt, yt, y, yt, yt)
+    )
+    centre <- c(x0 + w / 2, yt - h / 2)
+  }
+  list(
+    annotate("polygon", x = poly$x, y = poly$y, fill = fill, colour = cgt_ink, linewidth = lw(0.5)),
+    annotate("text", x = centre[1], y = centre[2], label = label, size = size / .pt, lineheight = 0.95)
+  )
+}
+
+## Blob heads: a white box of one size for every row, with a thin dark outline and the figure ranged right inside it.
+cgt_boxes <- function(y, label, x, width, height = 0.62, kx = 1) {
+  d <- data.frame(y = y, label = label)
+  list(
+    geom_rect(
+      data = d,
+      aes(xmin = x - width / 2, xmax = x + width / 2, ymin = .data$y - height / 2, ymax = .data$y + height / 2),
+      inherit.aes = FALSE, fill = "white", colour = cgt_ink, linewidth = lw(0.5)
+    ),
+    geom_text(
+      data = d, aes(x = x + width / 2 - 2.5 * kx, y = .data$y, label = .data$label),
+      inherit.aes = FALSE, hjust = 1, size = classic_size / .pt
+    )
+  )
+}
+
+## The two series of a double-scale chart: blue for the first, dark red for the second.
+cgt_two <- c(fg[["blue"]], fg[["dark red"]])
+
+## The ring of a classic doughnut, in points, centred at (`cx`, `cy`): its segments clockwise from 12 o'clock.
+cgt_ring <- function(values, colours, cx, cy, r_out, r_in, n = 90) {
+  edge <- 2 * pi * c(0, cumsum(values)) / sum(values)
+  ring <- do.call(rbind, lapply(seq_along(values), function(i) {
+    a <- seq(edge[i], edge[i + 1], length.out = n)
+    data.frame(
+      segment = paste(cx, names(values)[i]), fill = colours[i],
+      x = c(cx + r_out * sin(a), cx + r_in * sin(rev(a))),
+      y = c(cy + r_out * cos(a), cy + r_in * cos(rev(a)))
+    )
+  }))
+  geom_polygon(data = ring, aes(.data$x, .data$y, group = .data$segment, fill = I(.data$fill)), inherit.aes = FALSE)
+}
+
+## The labels of a classic doughnut, in points. Each segment is named in a column at the left (`x_left`) or right
+## (`x_right`) edge, at height `label_y`, and joined to the middle of the segment by a thin dark leader line that runs
+## up or down from the segment and then across to the label, stopping at the value. A label is the name in roman
+## over the value in italics, or both on one line (`inline`).
+cgt_ring_labels <- function(values, cx, cy, r_out, r_in, side, label_y, x_left, x_right, inline = FALSE,
+                            size = classic_size) {
+  edge <- 2 * pi * c(0, cumsum(values)) / sum(values)
+  mid <- (edge[-1] + edge[-length(edge)]) / 2
+  r_mid <- (r_out + r_in) / 2
+  inline <- rep_len(inline, length(values))
+  lab <- data.frame(
+    name = names(values), value = formatC(values, format = "f", digits = 1), side = side, inline = inline,
+    sx = cx + r_mid * sin(mid), sy = cy + r_mid * cos(mid),
+    ly = ifelse(is.na(label_y), cy + r_mid * cos(mid), label_y),
+    lx = ifelse(side == "left", x_left, x_right)
+  )
+  ## The leader stops short of the value: after it on the left, before it on the right.
+  w <- ifelse(
+    inline,
+    cgt_width(paste0(lab$name, " ")) + cgt_width(lab$value, face = "italic"),
+    cgt_width(lab$value, face = "italic")
+  )
+  lab$ex <- ifelse(side == "left", x_left + w + 2, x_right - w - 2)
+  leaders <- do.call(rbind, lapply(seq_len(nrow(lab)), function(i) {
+    data.frame(id = i, x = c(lab$sx[i], lab$sx[i], lab$ex[i]), y = c(lab$sy[i], lab$ly[i], lab$ly[i]))
+  }))
+  lab$hjust <- ifelse(side == "left", 0, 1)
+  one <- lab[lab$inline, ]
+  two <- lab[!lab$inline, ]
+  list(
+    geom_path(data = leaders, aes(.data$x, .data$y, group = .data$id), colour = cgt_ink, linewidth = lw(0.4),
+              inherit.aes = FALSE),
+    if (nrow(one)) {
+      geom_text(
+        data = one, aes(.data$lx, .data$ly, hjust = .data$hjust, label = paste0("'", name, " '*italic('", value, "')")),
+        parse = TRUE, size = size / .pt, inherit.aes = FALSE
+      )
+    },
+    if (nrow(two)) {
+      list(
+        geom_text(
+          data = two, aes(.data$lx, .data$ly + size * 0.6, label = .data$name, hjust = .data$hjust), vjust = 0,
+          size = size / .pt, lineheight = 0.95, inherit.aes = FALSE
+        ),
+        geom_text(
+          data = two, aes(.data$lx, .data$ly, label = .data$value, hjust = .data$hjust), fontface = "italic",
+          size = size / .pt, inherit.aes = FALSE
+        )
+      )
+    }
+  )
+}
+
+## The colours of a classic doughnut's segments, in order from 12 o'clock. Most of the cited doughnuts start with
+## dark blue and run through the blues (Where the money is going, Unlucky two-thirds, Short of horsepower, The world's
+## religious make-up), the order of the line palette, `economist_pal(fill = FALSE)`, for up to four segments; after
+## the blues come the greens, then the reds and browns. Gray is kept for a residual "other".
+cgt_ring_pal <- function(n) {
+  order <- c(economist_pal(fill = FALSE)(4), fg[c("dark green", "light green", "dark red", "pink", "brown", "coral")])
+  unname(order[seq_len(n)])
+}
+
+## The total in the hole: "Total" in bold over the figure in bold italics.
+cgt_ring_total <- function(cx, cy, total, size = classic_size) {
+  list(
+    annotate("text", x = cx, y = cy + size * 0.6, label = "Total", fontface = "bold", size = size / .pt),
+    annotate("text", x = cx, y = cy - size * 0.6, label = total, fontface = "bold.italic", size = size / .pt)
+  )
+}
+
+## A classic chart with no axes, to draw rings on in points: `size` is its panel's size, from `cgt_panel()`.
+cgt_blank <- function() {
+  list(
+    theme_economist(base_size = classic_size),
+    theme(
+      axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank(),
+      panel.grid.major = element_blank(), axis.title = element_blank()
+    )
+  )
+}
+cgt_points <- function(size) coord_fixed(xlim = c(0, size[[1]]), ylim = c(0, size[[2]]), expand = FALSE, clip = "off")
+```
+
+## Tables
+
+Tables are `r share("type.table")`.
+The classic table sits on the chart's blue-gray ground, under the red tab, the title and the subtitle of a chart, with a rule between every row (`r share("table.table_rules.between_rows")`).
+The rules between the rows are dotted (`r share("table.table_row_rules.dotted")`) or, less often, solid (`r share("table.table_row_rules.solid")`).
+In the cited tables the column heads are bold over a solid black rule, a solid rule closes the table, and the type is black; the row names are often bold.
+
+The tables here are [gt](https://gt.rstudio.com/) tables styled with ggthemes: `gt_theme_economist()` sets the classic table style, and `economist_table()` sets the table in the frame of a chart, with the red tab, title, subtitle, footnote and source.
+
+```{r cg-tables-table-style}
+## The classic table, drawn with ggthemes' `economist_table()`: the ground, the red tab, the title block and the
+## source of a chart around a gt table styled by `gt_theme_economist()`. The titles and notes here carry markup, so they
+## are passed as HTML.
+cgt_table <- function(tbl, id, title, subtitle = NULL, source = NULL, footnote = NULL, width = 160) {
+  as_html <- function(x) if (is.null(x)) NULL else htmltools::HTML(x)
+  economist_table(
+    tbl,
+    title = as_html(title),
+    subtitle = as_html(subtitle),
+    source = as_html(source),
+    footnote = as_html(footnote),
+    width = width
+  )
+}
+```
+
+### Standard table
+
+The classic table separates its rows with rules, where the 2017 guide fills every second row: alternate fills are in `r share("table.table_shading.alternating")`, and most tables have no shading at all (`r share("table.table_shading.none")`).
+The cited tables have no 75% black for explanatory text: the descriptions are in the same black as the rest, the names in bold above them.
+`r cite("table.table_row_rules.dotted")`.
+
+```{r cg-tables-greatest-hits}
+cgt_startups <- data.frame(
+  company = c("Airbnb", "Dropbox", "Stripe", "Zenefits", "Instacart", "Docker"),
+  about = c(
+    "Rents out places to stay for local hosts", "File-sharing and storage in the cloud",
+    "Software for selling from within apps", "Online HR and payroll services",
+    "Grocery collection and delivery service", "Platform to manage distribution of software"
+  ),
+  value = c(25.5, 10, 5, 4.5, 2, 1.1),
+  joined = c(2009, 2007, 2010, 2013, 2012, 2010)
+)
+cgt_startups$company <- paste0("<b>", cgt_startups$company, "</b><br>", cgt_startups$about)
+cgt_startups$about <- NULL
+
+gt::gt(cgt_startups, id = "cg-greatest-hits") |>
+  gt::fmt_markdown(company) |>
+  gt::fmt_number(value, decimals = 1) |>
+  gt::cols_label(company = "Company", value = gt::html("Value*<br>$bn"), joined = gt::html("Date of<br>joining")) |>
+  gt::cols_align("left", company) |>
+  gt::cols_align("right", c(value, joined)) |>
+  gt::cols_width(company ~ gt::pct(54), value ~ gt::pct(20), joined ~ gt::pct(26)) |>
+  cgt_table(
+    "cg-greatest-hits", "Greatest hits", "Largest Y Combinator-funded startups",
+    source = "Sources: CB Insights; CrunchBase", footnote = "*Latest funding round"
+  )
+```
+
+Groups of rows are headed by their name in bold over a solid rule, as "Giveaways" and "Clawbacks" are in `r cite_codes("20120324_BRC797")`.
+
+```{r cg-tables-divided-by-a-dozen}
+cgt_questions <- data.frame(
+  group = rep(c("Social", "Economic", "Foreign policy"), c(3, 4, 5)),
+  question = c(
+    "Which comes closest to your position on abortion?",
+    "Would you support/oppose a constitutional amendment allowing states to ban gay marriage?",
+    "Should gun-control laws be more or less strict than they are now?",
+    "Do you support/oppose raising the federal minimum wage to $15 per hour?",
+    "What should be done to reduce the federal budget deficit?",
+    "Do you support/oppose a single-payer health-care system?",
+    "Should our taxes provide free college tuition?",
+    "Do you think the US government should be doing more or less in its fight against terrorism?",
+    "Do you support/oppose sending ground combat troops to fight IS in Iraq and Syria?",
+    "Do you favour/oppose building a wall along the border between the United States and Mexico?",
+    "Would you say NAFTA has had a positive/negative effect on the US economy?",
+    "Is the government doing enough to combat climate change?"
+  )
+)
+gt::gt(cgt_questions, groupname_col = "group", id = "cg-divided") |>
+  gt::tab_options(column_labels.hidden = TRUE) |>
+  ## Each group's name over a solid rule, in place of the dotted rule above its first row.
+  gt::tab_style(
+    gt::cell_borders(sides = "top", color = "black", weight = "0.75pt", style = "solid"),
+    gt::cells_body(rows = !duplicated(cgt_questions$group))
+  ) |>
+  cgt_table("cg-divided", "Divided by a dozen", "Policy choices in our political proximity model")
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-table) sets the descriptions in 75% black, fills every second row and draws no rules between the rows; the classic tables draw a dotted rule under every row, fill none and set all the type in black, with the names in bold.
+The classic tables sit on the chart's ground with the chart's tab, where the 2017 tab is turned on its side above the title.
+
+### With color highlight
+
+The classic tables pick rows out with bold type (`r share("table.table_highlight.bold")`) and, for a total or a result, a band across the row a shade darker than the ground (`r share("table.table_shading.highlight_rows")`); the type stays black.
+`r cite("table.table_shading.highlight_rows")`.
+
+```{r cg-tables-jobs-bill}
+cgt_bill <- data.frame(
+  item = c(
+    "Business tax cuts", "Infrastructure spending, state and local government aid",
+    "Unemployment insurance and training", "Payroll-tax cut", "Total", "Paid for by",
+    "Limiting deductions for upper-income earners", "Treating carried interest as ordinary income",
+    "Limiting oil and gas company tax benefits", "Removing corporate-jet tax breaks", "Total*"
+  ),
+  bn = c(70, 140, 62, 175, 447, NA, 405, 18, 40, 3, 467)
+)
+cgt_totals <- which(startsWith(cgt_bill$item, "Total"))
+cgt_section <- which(cgt_bill$item == "Paid for by")
+cgt_solid <- gt::cell_borders(sides = "bottom", color = "black", weight = "0.75pt", style = "solid")
+
+gt::gt(cgt_bill, id = "cg-jobs-bill") |>
+  gt::sub_missing(bn, missing_text = "") |>
+  gt::cols_label(item = "New stimulus measures", bn = "$bn") |>
+  gt::cols_align("right", bn) |>
+  ## The totals: bold, on the band, between solid rules; "Paid for by" heads the second group over a solid rule.
+  gt::tab_style(
+    list(gt::cell_fill(color = bg[["dark blue-gray"]]), gt::cell_text(weight = "bold"), cgt_solid),
+    gt::cells_body(rows = cgt_totals)
+  ) |>
+  gt::tab_style(cgt_solid, gt::cells_body(rows = cgt_totals - 1)) |>
+  gt::tab_style(list(gt::cell_text(weight = "bold"), cgt_solid), gt::cells_body(rows = cgt_section)) |>
+  cgt_table(
+    "cg-jobs-bill", "Obama’s jobs bill",
+    source = "Source: White House", footnote = "*Figures may not sum due to rounding"
+  )
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#with-color-highlight) fills the totals with a strong blue and turns their type white; the classic table sets them in bold on a band of the darker blue-gray, between solid rules, as in the cited charts.
+
+### Table with integrated charts
+
+Most classic tables are type and rules, but a few draw the data in their cells: 3 of the `r claim("type.table")$n` sampled tables.
+`r cite_codes("20140607_FBC127")` has a bar for each row with its figure in white inside it, and a small pie in the share column with the figure in italics beside it; `r cite_codes("20150314_ASC999")` sets two bars a row, the figures after them; `r cite_codes("20140104_FBC098")` counts seats with rows of blue dots.
+The classic "What to expect" draws its data the same ways: bars with their figures after them for the applications and the decisions, a small pie for the share accepted, and a row of dots, one for every €10, for the benefits.
+
+```{r cg-tables-what-to-expect}
+## Small SVG charts for the cells, in points.
+cgt_svg <- function(width, height, body, style = "") {
+  sprintf(
+    paste0(
+      '<svg width="%gpt" height="%gpt" viewBox="0 0 %g %g" ',
+      'style="display:inline-block;vertical-align:middle;%s">%s</svg>'
+    ),
+    width, height, width, height, style, paste(body, collapse = "")
+  )
+}
+## A bar on the cell's scale, then its figure: as in "Needed: a proper debate".
+cgt_bar <- function(value, label, max, colour, width = 30, height = 5) {
+  paste0(
+    '<div style="white-space:nowrap;line-height:7pt;margin:0.5pt 0">',
+    cgt_svg(
+      max(width * value / max, 0.8), height, sprintf('<rect width="100%%" height="%g" fill="%s"/>', height, colour)
+    ),
+    sprintf(' <span style="color:%s;font-weight:bold">%s</span>', colour, label), "</div>"
+  )
+}
+## A small pie, pale blue with the share in dark blue clockwise from 12 o'clock, its figure in italics beside it: as
+## in "The big leagues".
+cgt_pie <- function(pct, label, r = 5) {
+  a <- 2 * pi * pct / 100
+  wedge <- sprintf(
+    '<path d="M%g,%g L%g,%g A%g,%g 0 %d 1 %g,%g Z" fill="%s"/>',
+    r, r, r, 0, r, r, as.integer(pct > 50), r + r * sin(a), r - r * cos(a), fg[["dark blue"]]
+  )
+  paste0(
+    '<span style="white-space:nowrap">',
+    cgt_svg(2 * r, 2 * r, c(sprintf('<circle cx="%g" cy="%g" r="%g" fill="%s"/>', r, r, r, fg[["light blue"]]), wedge)),
+    sprintf(' <i style="color:%s">%s</i></span>', fg[["dark blue"]], label)
+  )
+}
+## Rows of dots, one for every €10: as in "Naysayers".
+cgt_dots <- function(n, per_row = 10) {
+  if (n == 0) {
+    return("")
+  }
+  i <- seq_len(n) - 1
+  sprintf(
+    '<svg width="%gpt" height="%gpt" style="display:block;margin-top:1.5pt">%s</svg>',
+    per_row * 3.4, ceiling(n / per_row) * 3.4,
+    paste(sprintf(
+      '<circle cx="%gpt" cy="%gpt" r="1.3pt" fill="%s"/>',
+      1.7 + (i %% per_row) * 3.4, 1.7 + (i %/% per_row) * 3.4, fg[["blue"]]
+    ), collapse = "")
+  )
+}
+cgt_applications <- c(173070, 75090, 41370, 31260, 121160, 8960)
+cgt_decisions <- c(97415, 40015, 5445, 26055, 71765, 13198)
+cgt_mark <- c("", "", "", "", "†", "†")
+cgt_accepted <- c(42, 77, 9, 39, 30, 19)
+cgt_asylum <- data.frame(
+  country = paste0("<b>", c("Germany", "Sweden", "Hungary", "Britain", "United States", "Australia"), "</b>"),
+  applied = paste0(
+    mapply(cgt_bar, cgt_applications, format(cgt_applications, big.mark = ",", trim = TRUE),
+           MoreArgs = list(max = max(cgt_applications), colour = fg[["blue"]])),
+    mapply(cgt_bar, cgt_decisions, paste0(format(cgt_decisions, big.mark = ",", trim = TRUE), cgt_mark),
+           MoreArgs = list(max = max(cgt_applications), colour = fg[["dark blue"]]))
+  ),
+  origin = gsub("([^<>]+)(<br>|$)", '<span style="white-space:nowrap">\\1</span>\\2', c(
+    "Syria 23<br>Serbia/Kosovo 14<br>Eritrea 8", "Syria 40<br>Stateless 10<br>Eritrea 8",
+    "Serbia/Kosovo 51<br>Afghanistan 21<br>Syria 16", "Eritrea 13<br>Pakistan 11<br>Syria 8",
+    "Mexico 12<br>China 11<br>El Salvador 8", "China 19<br>India 13<br>Pakistan 10‡"
+  )),
+  accepted = mapply(cgt_pie, cgt_accepted, paste0(cgt_accepted, cgt_mark)),
+  wait = paste0(
+    c("<b>3 months</b><br>", "<b>Immediately</b><br>", "<b>9 months</b><br>", "<b>12 months</b><br>",
+      "<b>6 months</b><br>", ""),
+    c(
+      "", "Without restrictions", "Working only in a reception centre",
+      "Only jobs where gov’t sees a shortage (medics, engineers)",
+      "In practice, 92% of applicants wait longer", "Most applicants cannot work as they are in detention"
+    )
+  ),
+  benefits = paste0(
+    c("€374", "€226", "€86 <i>maximum</i>", "€217", "<i>Nil</i>", "€275"),
+    vapply(round(c(374, 226, 86, 217, 0, 275) / 10), cgt_dots, "")
+  )
+)
+
+gt::gt(cgt_asylum, id = "cg-what-to-expect") |>
+  gt::fmt_markdown(gt::everything()) |>
+  gt::cols_label(
+    country = "Country",
+    applied = gt::html(sprintf(
+      '<span style="color:%s">Applications*</span><br><span style="color:%s">Decisions made</span>',
+      fg[["blue"]], fg[["dark blue"]]
+    )),
+    origin = gt::html("Mainly from<br>%"),
+    accepted = gt::html("Accepted<br>%"),
+    wait = gt::html('<span style="white-space:nowrap">Minimum wait before</span><br>permitted to work'),
+    benefits = gt::html("State benefits<br>per month")
+  ) |>
+  gt::cols_align("left") |>
+  gt::cols_width(
+    country ~ "34pt", applied ~ "60pt", origin ~ "60pt", accepted ~ "34pt", wait ~ "72pt", benefits ~ "50pt"
+  ) |>
+  cgt_table(
+    "cg-what-to-expect", "What to expect", "Asylum processes, selected countries, 2014",
+    source = "Sources: UNHCR; government statistics; <i>The Economist</i>",
+    footnote = "*From UNHCR 2014 report &nbsp;†From UNHCR Statistical Database &nbsp;‡2012-13 figures",
+    width = 332
+  )
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#table-with-integrated-charts) draws thin bars with the figures above them, doughnuts for the share accepted and dashes for the wait, in its own cyans and navy; the classic table draws heavier bars with the figures after them, small pies, and dots in the classic blue, between dotted rules, and prints the wait and the origins as text, as in the cited tables.
+
+## Pie / doughnut
+
+Pies and doughnuts are rare: `r claim("type.pie_doughnut")$n` of the `r claim("type.pie_doughnut")$of` panels in the sample, too few to measure conventions.
+They were rare even before the 2017 guide advised against them, and nearly gone after 2012, with `r cgt_pie_years <- years[years$measure == "type.pie_doughnut", ]; paste0(cgt_pie_years$n, " in ", cgt_pie_years$year, collapse = ", ")` panels, of about 200 sampled charts a year.
+Examples: `r cite("type.pie_doughnut.examples", k = 4)`.
+In those charts the classic pie is a doughnut, with the total or a year in bold in the hole; each segment is named around the ring, the value in italics stacked under the name or beside it on one line, joined to its segment by a thin black leader line, and there is no legend.
+
+### The standard color order, one to six segments
+
+In most of the cited doughnuts the first segment, at 12 o'clock, is dark blue, and the segments run clockwise through the blues before the greens and reds: the order of the classic line palette, `economist_pal(fill = FALSE)`, not the fill palette's blue-gray first.
+A residual "other" is the classic gray.
+
+```{r cg-tables-pie-order, econ_size = "two_column", econ_height = 100}
+cgt_pie_shares <- list(
+  c(`1` = 55.6, O = 44.4),
+  c(`1` = 55.6, `2` = 44.4),
+  c(`1` = 38.9, `2` = 16.7, `3` = 44.4),
+  c(`1` = 22.2, `2` = 20.3, `4` = 13.1, `3` = 44.4),
+  c(`1` = 22.2, `2` = 20.3, `5` = 7.4, `4` = 5.7, `3` = 44.4),
+  c(`1` = 15.6, `2` = 13.3, `5` = 10.2, `3` = 11.2, `4` = 5.3, `6` = 44.4)
+)
+p <- ggplot() + cgt_blank() + labs(title = "Standard colour order", subtitle = "Number of segments")
+cgt_size <- cgt_panel(p)
+cgt_slot <- cgt_size[[1]] / 6
+cgt_r <- min(cgt_slot * 0.42, (cgt_size[[2]] - 16) / 2)
+## The rings and their numbers are centred in the height.
+cgt_cy <- (cgt_size[[2]] - 12) / 2
+for (i in seq_along(cgt_pie_shares)) {
+  s <- cgt_pie_shares[[i]]
+  ## Segment k takes colour k of the doughnut order; "O", the residual, is gray.
+  colours <- ifelse(names(s) == "O", fg[["gray"]], cgt_ring_pal(6)[suppressWarnings(as.integer(names(s)))])
+  cx <- (i - 0.5) * cgt_slot
+  p <- p +
+    cgt_ring(s, colours, cx, cgt_cy, cgt_r, cgt_r / 2) +
+    annotate("text", x = cx, y = cgt_cy + cgt_r + 6, vjust = 0, label = i, fontface = "bold", size = classic_size / .pt)
+}
+economist_chart(p + cgt_points(cgt_size))
+```
+
+"Naan bigger" names each segment around the ring.
+Four small segments lie together at the foot of the ring: the labels of three are stacked at the left, the fourth, TGB, goes to the right, and each leader line runs from its segment to its label without crossing another, as in `r cite_codes("20120526_BRC288")`.
+The residual "Others" keeps its place in the order and takes the gray.
+
+```{r cg-tables-naan, econ_height = 155}
+cgt_workforce <- c(
+  "Jaguar Land Rover" = 19.0, "Tata\nConsultancy\nServices" = 4.9, "TGB (drinks)" = 0.7,
+  "Tata Chemicals" = 0.5, "Taj (hotels)" = 0.4, "Others" = 0.6, "Tata Steel" = 19.4
+)
+cgt_naan_colours <- c(cgt_ring_pal(5), fg[["gray"]], cgt_ring_pal(6)[6])
+
+p <- ggplot() + cgt_blank() +
+  labs(title = "Naan bigger", subtitle = "Tata's workforce in Britain,\nSeptember 2011, '000", caption = "Source: Tata")
+cgt_size <- cgt_panel(p)
+cgt_cx <- cgt_size[[1]] / 2
+## The three small segments at the foot of the ring are named below it, one line each, the label nearest the
+## ring for the segment furthest left, so that no two leader lines cross.
+cgt_cy <- cgt_size[[2]] - 30
+p <- p +
+  cgt_ring(cgt_workforce, cgt_naan_colours, cgt_cx, cgt_cy, 28, 14) +
+  cgt_ring_labels(
+    cgt_workforce, cgt_cx, cgt_cy, 28, 14,
+    side = c("right", "right", "right", "left", "left", "left", "left"),
+    label_y = cgt_cy + c(20, -27, -46, -46, -38, -30, 20),
+    x_left = 0, x_right = cgt_size[[1]], inline = c(FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE)
+  ) +
+  cgt_ring_total(cgt_cx, cgt_cy, "45.4")
+economist_chart(p + cgt_points(cgt_size))
+```
+
+"The scramble in Africa" puts two doughnuts side by side, each under a bold heading with its units on the next line, as `r cite_codes("20121222_IRC929")` does.
+The cited doughnuts name every segment with a leader line, however many there are; none has a key of color blocks.
+The trade doughnut has eleven segments, so after the blues, greens and reds its last two named segments take the classic brown and coral, and "Rest of world" the gray.
+
+```{r cg-tables-scramble, econ_size = "two_column", econ_height = 178}
+cgt_trade <- c(
+  "China*" = 156.4, "United States" = 72.1, "France" = 61.6, "India" = 57.0, "Spain" = 48.1, "Italy" = 40.9,
+  "Germany" = 40.4, "Britain" = 34.4, "Japan" = 25.3, "Brazil" = 25.3, "Rest of\nworld" = 453.8
+)
+cgt_investment <- c(
+  "Britain" = 7.5, "United States" = 3.7, "Italy" = 3.6, "China" = 2.5, "France" = 2.1, "India" = 1.8,
+  "Rest of\nworld" = 38.1
+)
+cgt_trade_colours <- c(cgt_ring_pal(10), fg[["gray"]])
+
+p <- ggplot() + cgt_blank() +
+  labs(title = "The scramble in Africa", caption = "*Including Macau and Hong Kong\nSources: UNCTAD; IMF")
+cgt_size <- cgt_panel(p)
+cgt_half <- cgt_size[[1]] / 2
+cgt_top <- cgt_size[[2]]
+cgt_cy <- cgt_top - 58
+cgt_cx <- c(64, cgt_half + 62)
+p <- p +
+  cgt_ring(cgt_trade, cgt_trade_colours, cgt_cx[1], cgt_cy, 30, 15) +
+  cgt_ring_labels(
+    cgt_trade, cgt_cx[1], cgt_cy, 30, 15,
+    side = c(rep("right", 6), rep("left", 5)),
+    label_y = cgt_cy + c(29, 17, 5, -7, -19, -31, -60, -52, -44, -36, 18),
+    x_left = 0, x_right = cgt_half - 4, inline = c(rep(TRUE, 10), FALSE)
+  ) +
+  cgt_ring(cgt_investment, c(cgt_ring_pal(6), fg[["gray"]]), cgt_cx[2], cgt_cy, 30, 15) +
+  cgt_ring_labels(
+    cgt_investment, cgt_cx[2], cgt_cy, 30, 15,
+    side = c(rep("right", 6), "left"),
+    label_y = cgt_cy + c(29, 17, 5, -7, -19, -31, -44),
+    x_left = cgt_half + 4, x_right = cgt_size[[1]], inline = c(rep(TRUE, 6), FALSE)
+  ) +
+  cgt_ring_total(cgt_cx[1], cgt_cy, "$1.02trn") +
+  cgt_ring_total(cgt_cx[2], cgt_cy, "$59.3bn") +
+  ## The panel headings: bold, with their units on the next line.
+  annotate("text", x = c(0, cgt_half + 4), y = cgt_top, hjust = 0, vjust = 1, fontface = "bold",
+           size = classic_size / .pt,
+           label = c("Goods trade with Africa", "Foreign direct investment in Africa")) +
+  annotate("text", x = c(0, cgt_half + 4), y = cgt_top - classic_size * 1.25, hjust = 0, vjust = 1,
+           size = classic_size / .pt, label = c("2013, $bn", "2012, $bn"))
+economist_chart(p + cgt_points(cgt_size))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#the-standard-color-order-one-to-six-segments) runs one fixed order of colors that charts with fewer segments cut short, and keys crowded segments with small color blocks.
+Most of the cited doughnuts open with dark blue and run through the blues before other colors, and each names every segment on a leader line, the value in italics.
+The 2017 guide also shows solid pies; among the classic examples, the only pies without a hole are the special cases of `r cite_codes("20121110_USC974")`, pies sized by the share of each group.
+
+## Double-scale charts
+
+In the sample, charts with two value scales are `r share("type.double_scale")` (`r by_year("type.double_scale")`), where the 2017 guide warns that they "can also be confusing/misleading".
+They are columns with a line (`r share("double_scale.marks.columns + line")`) or two lines (`r share("double_scale.marks.lines only")`), with labelled axes at both sides (`r share("double_scale.value_axis_side.both")`).
+The first series, usually the columns or the series on the left, is blue (`r pct("colour.double_scale.n2.first.blue")` of two-series double-scale panels, `r claim("colour.double_scale.n2.first.blue")$n` of `r claim("colour.double_scale.n2.first.blue")$of`), and in the cited charts the second is dark red.
+Each axis is named by an italic title above it in the color of its series (`r share("double_scale.series_key.axis_titles")`), and in the cited charts its labels are set in that color too.
+`r cite("double_scale.series_key.axis_titles")`.
+
+The colored titles are the key in every year of the sample, `r by_year("double_scale.axis_titles")` of double-scale panels; the 2012 charts checked by eye have them as the 2015 ones do, so the charts below are drawn one way.
+
+### One line on each axis
+
+The track, on the left, is the first series and takes blue; the passengers, on the right, dark red.
+An event line is a thin red dashed rule, labelled in red italic capitals beside it (to its right in the cited chart; here to its left, where the label has room), as in `r cite_codes("20120609_USC369")` (`r share("double_scale.event_lines.labelled")`).
+
+```{r cg-tables-out-of-steam, econ_height = 175}
+cgt_px_year <- function(x) 1955 + (x - 115) / 8
+cgt_px_value <- function(y) (633 - y) / 5.27
+cgt_rail <- rbind(
+  data.frame(
+    series = "track",
+    year = cgt_px_year(c(115, 140, 155, 172, 190, 205, 220, 240, 300, 420, 430, 450, 470, 500, 520, 588)),
+    value = cgt_px_value(c(508, 509, 511, 520, 535, 548, 553, 557, 558, 558, 553, 553, 553, 553, 557, 556))
+  ),
+  data.frame(
+    series = "passengers",
+    year = cgt_px_year(c(
+      115, 131, 148, 160, 172, 190, 205, 220, 237, 250, 262, 272, 285, 298, 312, 322, 333, 340, 353, 365, 378,
+      395, 410, 428, 440, 455, 470, 480, 490, 505, 520, 535, 548, 560, 575, 588
+    )),
+    value = cgt_px_value(c(
+      458, 442, 445, 452, 465, 467, 478, 482, 472, 485, 475, 470, 483, 475, 465, 478, 490, 480, 478, 470, 457,
+      460, 468, 480, 465, 450, 430, 428, 420, 412, 390, 370, 360, 335, 318, 302
+    ))
+  )
+)
+p <- ggplot(cgt_rail, aes(.data$year, .data$value, colour = .data$series)) +
+  annotate("segment", x = 1994, xend = 1994, y = 0, yend = 70, colour = econ_red, linewidth = lw(0.5),
+           linetype = "22") +
+  ## Set to the left of the line: to its right, as in the cited chart, "PRIVATISATION" would run off the panel.
+  annotate("text", x = 1993.2, y = 69, label = "PRIVATISATION\nBEGINS", hjust = 1, vjust = 1, colour = econ_red,
+           fontface = "italic", size = classic_size * 0.9 / .pt, lineheight = 0.9) +
+  geom_line(linewidth = 0.8) +
+  scale_colour_manual(values = c(track = cgt_two[[1]], passengers = cgt_two[[2]]), guide = "none") +
+  scale_y_continuous(
+    limits = c(0, 70), breaks = seq(0, 70, 10), expand = c(0, 0),
+    sec.axis = sec_axis(~., breaks = seq(0, 70, 10))
+  ) +
+  scale_x_continuous(
+    breaks = c(1955, 1970, 1980, 1990, 2000, 2014), labels = classic_years, limits = c(1953, 2016), expand = c(0, 0)
+  ) +
+  labs(title = "Out of steam", subtitle = "Britain, railways", x = NULL, y = NULL,
+       caption = "Source: Department for Transport") +
+  theme_economist(base_size = classic_size) +
+  theme(axis.text.y.left = element_text(colour = cgt_two[[1]]), axis.text.y.right = element_text(colour = cgt_two[[2]]))
+grid::grid.draw(classic_chart(p, axis_titles = list(
+  left = list(label = "National rail track,\n'000 km", colour = cgt_two[[1]]),
+  right = list(label = "Passenger\nkilometres, bn", colour = cgt_two[[2]])
+)))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#one-line-on-each-axis) also colors each axis and its title by its series, but in maroon and cyan, with upright titles and its own tick marks; the classic titles are italic, the colors the classic blue and dark red, and the event line is red, not gray.
+
+### Three lines on the left-hand axis
+
+When an axis carries more than one series, the classic chart keys them under that axis's title with a short line of each color, as in `r cite("double_scale.series_key.mixed", k = 2)` (`r share("double_scale.series_key.mixed")`).
+The series of one axis share a family of colors: here dark blue, blue and blue-gray on the left and the dark red on the right.
+
+```{r cg-tables-golden-triangle, econ_height = 165}
+cgt_px_year <- function(x) 1994 + (x - 132) / 20.5
+cgt_px_value <- function(y) (591 - y) / 3.69
+cgt_px_x <- c(
+  130, 150, 172, 195, 215, 235, 255, 280, 300, 320, 340, 360, 380, 400, 420, 440, 460, 480, 500, 520, 540, 565
+)
+cgt_trace <- function(series, x, y) data.frame(series = series, year = cgt_px_year(x), value = cgt_px_value(y))
+cgt_nafta <- rbind(
+  cgt_trace("Mexico", cgt_px_x, c(
+    268, 274, 273, 268, 262, 258, 255, 257, 260, 261, 262, 268, 272, 280, 286, 280, 283, 290, 293, 290, 285, 282
+  )),
+  cgt_trace("Canada", cgt_px_x, c(
+    285, 292, 285, 282, 272, 266, 265, 264, 266, 270, 273, 277, 284, 296, 300, 308, 311, 314, 310, 306, 303, 302
+  )),
+  cgt_trace("United States", cgt_px_x, c(
+    471, 480, 478, 470, 463, 457, 455, 457, 455, 456, 455, 455, 462, 469, 473, 474, 471, 470, 469, 467, 464, 463
+  )),
+  cgt_trace(
+    "Total trilateral trade",
+    c(130, 150, 172, 195, 215, 235, 255, 275, 295, 315, 335, 355, 375, 395, 415, 440, 462, 480, 500, 520, 545, 565),
+    c(498, 483, 473, 460, 441, 431, 414, 388, 400, 403, 396, 375, 350, 327, 312, 299, 372, 312, 280, 265, 258, 244)
+  )
+)
+cgt_nafta_colours <- c(
+  Mexico = fg[["blue"]], Canada = fg[["blue-gray"]], `United States` = fg[["dark blue"]],
+  `Total trilateral trade` = fg[["dark red"]]
+)
+
+p <- ggplot(cgt_nafta, aes(.data$year, .data$value, colour = .data$series)) +
+  geom_line(linewidth = 0.8) +
+  scale_colour_manual(values = cgt_nafta_colours, guide = "none") +
+  scale_y_continuous(
+    limits = c(0, 100), breaks = seq(0, 100, 20), expand = c(0, 0),
+    sec.axis = sec_axis(~ . * 1.25 / 100, breaks = seq(0, 1.25, 0.25), labels = function(x) sprintf("%.2f", x))
+  ) +
+  scale_x_continuous(
+    breaks = c(1994, 2000, 2005, 2010, 2015), labels = classic_years, limits = c(1993, 2016), expand = c(0, 0)
+  ) +
+  labs(title = "Golden triangle", x = NULL, y = NULL, caption = "Sources: Thomson Reuters; IMF") +
+  theme_economist(base_size = classic_size) +
+  theme(
+    axis.text.y.left = element_text(colour = fg[["dark blue"]]),
+    axis.text.y.right = element_text(colour = fg[["dark red"]])
+  )
+grid::grid.draw(classic_chart(p, axis_titles = list(
+  left = c(
+    list(list(label = "NAFTA countries' exports\nto each other, % of total", colour = fg[["dark blue"]])),
+    lapply(c("Mexico", "Canada", "United States"), function(s) {
+      list(label = s, colour = cgt_nafta_colours[[s]], key = TRUE)
+    })
+  ),
+  right = list(label = "Total trilateral\ntrade, $trn", colour = fg[["dark red"]])
+)))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#three-lines-on-the-left-hand-axis) names the three lines with labels beside them and needs no key; the classic chart keys them under the left axis's title, which adds three lines of type above the panel.
+
+### Line and column
+
+The columns are blue and on the left, the line dark red and on the right.
+Both scales have negative values, so both use the +/- labels, as every double-scale panel with negatives does (`r share("double_scale.negative_labels.plus_minus_at_zero")`), and zero is a red rule (`r share("double_scale.red_zero_line")`).
+`r cite("double_scale.plus_minus_axis")`.
+
+```{r cg-tables-chavismo, econ_height = 175}
+cgt_venezuela <- data.frame(
+  year = 2004:2016,
+  gdp = c(18.3, 10.3, 9.9, 8.8, 5.3, -3.2, -1.5, 4.2, 5.6, 1.3, -3.9, -5.7, -18.6),
+  prices = c(22, 16, 14, 19, 31, 27, 29, 26, 21, 41, 70, 180, 800)
+)
+
+p <- ggplot(cgt_venezuela, aes(.data$year)) +
+  geom_col(aes(y = .data$gdp), fill = cgt_two[[1]], width = 0.6) +
+  classic_zero_line() +
+  geom_line(aes(y = .data$prices * 20 / 800), colour = cgt_two[[2]], linewidth = 0.8) +
+  scale_y_continuous(
+    ## The 2017 chart labels every 5 (and every 200 on the right); the three-line "+ 0 –" at zero runs into the
+    ## labels next to it at that spacing, so every other one is labelled here.
+    limits = c(-20, 20), breaks = seq(-20, 20, 10), expand = c(0, 0), labels = economist_plus_minus_format(),
+    sec.axis = sec_axis(~ . * 800 / 20, breaks = seq(-800, 800, 400), labels = economist_plus_minus_format())
+  ) +
+  scale_x_continuous(
+    breaks = seq(2004, 2016, 2), labels = function(x) paste0(classic_years(x), ifelse(x == 2016, "*", "")),
+    limits = c(2003.3, 2016.7), expand = c(0, 0)
+  ) +
+  labs(
+    title = "Chavismo in action", subtitle = "Venezuela, % change on a year earlier", x = NULL, y = NULL,
+    caption = "*Preliminary estimate\nSources: IMF; Reuters"
+  ) +
+  theme_economist(base_size = classic_size) +
+  theme(axis.text.y.left = element_text(colour = cgt_two[[1]]), axis.text.y.right = element_text(colour = cgt_two[[2]]))
+grid::grid.draw(classic_chart(p, axis_titles = list(
+  left = list(label = "GDP", colour = cgt_two[[1]]),
+  right = list(label = "Consumer prices,\nyear-end", colour = cgt_two[[2]])
+)))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#line-and-column) has cyan columns and a maroon line, with signed axis labels; the classic chart has blue columns and a dark red line, unsigned labels with "+ 0 –" at zero on both axes, and colored italic titles.
+
+### What to avoid
+
+The 2017 guide's list of what to avoid describes what the classic charts did.
+They inverted a scale when the two series moved in opposite directions, saying so in the axis title (see [inverted scales](#inverted-scales)), and started one scale away from zero (`r share("double_scale.scale_break.baseline_not_zero")`; `r cite("double_scale.scale_break.baseline_not_zero", k = 2)`).
+The three examples below are drawn as the classic charts would have drawn them.
+
+```{r cg-tables-double-scale-avoid, econ_height = 155}
+cgt_px_euro <- function(y) 1 + (473 - y) / 660
+cgt_months <- 2013.5 + (0:23) / 12
+cgt_qe <- rbind(
+  data.frame(series = "Euro", year = cgt_months, value = cgt_px_euro(c(
+    247, 245, 234, 236, 243, 250, 255, 268, 294, 310, 322, 333, 380, 397, 432, 432, 408, 405, 420, 411, 404, 404,
+    438, 428
+  ))),
+  data.frame(series = "Italy", year = cgt_months, value = cgt_px_euro(c(
+    284, 305, 324, 332, 344, 351, 367, 372, 392, 400, 392, 420, 430, 445, 465, 468, 450, 418, 402, 435, 420, 433,
+    441, 458
+  ))),
+  data.frame(series = "Euro area", year = cgt_months[1:23], value = cgt_px_euro(c(
+    337, 346, 358, 376, 380, 398, 406, 418, 427, 438, 442, 455, 465, 468, 486, 491, 458, 440, 450, 457, 450, 468,
+    472
+  )))
+)
+cgt_qe_colours <- c(Euro = fg[["blue"]], Italy = fg[["dark red"]], `Euro area` = fg[["pink"]])
+
+p <- ggplot(cgt_qe, aes(.data$year, .data$value, colour = .data$series)) +
+  geom_line(linewidth = 0.8) +
+  scale_colour_manual(values = cgt_qe_colours, guide = "none") +
+  scale_y_continuous(
+    limits = c(0.9, 1.4001), breaks = seq(1, 1.4, 0.1), labels = function(x) sprintf("%.1f", x), expand = c(0, 0),
+    sec.axis = sec_axis(~ (. - 0.9) * 10, breaks = 0:5)
+  ) +
+  scale_x_continuous(breaks = c(2014, 2015), labels = classic_years, limits = c(2013.4, 2015.5), expand = c(0, 0)) +
+  labs(title = "Quantifying QE", x = NULL, y = NULL, caption = "Source: Thomson Reuters") +
+  theme_economist(base_size = classic_size) +
+  theme(
+    axis.text.y.left = element_text(colour = fg[["blue"]]), axis.text.y.right = element_text(colour = fg[["dark red"]])
+  )
+grid::grid.draw(classic_chart(p, axis_titles = list(
+  left = list(label = "Euro against the\ndollar, $ per €", colour = fg[["blue"]]),
+  right = list(
+    list(label = "Ten-year government-\nbond yields, %", colour = fg[["dark red"]]),
+    list(label = "Italy", colour = cgt_qe_colours[["Italy"]], key = TRUE),
+    list(label = "Euro area", colour = cgt_qe_colours[["Euro area"]], key = TRUE)
+  )
+)))
+```
+
+```{r cg-tables-double-scale-avoid-2, econ_height = 155}
+cgt_beneath <- data.frame(year = 2002:2015, cash = c(27, 68, 75, 98, 79, 90, 91, -5, 32, 31, 18, -30, 1, -50))
+cgt_brent <- data.frame(
+  year = 2002 + (c(
+    100, 130, 165, 190, 205, 225, 237, 258, 275, 285, 295, 302, 310, 318, 324, 340, 358, 375, 385, 395, 405,
+    418, 430, 440, 455, 470, 485, 500, 510, 520, 530, 540, 550, 560, 575, 590
+  ) - 100) / 33.7,
+  price = (538 - c(
+    512, 495, 468, 455, 455, 420, 415, 430, 375, 370, 320, 290, 385, 470, 480, 420, 400, 415, 350, 320, 345,
+    340, 320, 345, 335, 345, 340, 340, 345, 400, 440, 430, 455, 480, 460, 450
+  )) / 1.88
+)
+
+## The right-hand scale is the left shifted by 60, so the two zero lines do not coincide.
+p <- ggplot() +
+  geom_col(data = cgt_beneath, aes(.data$year, .data$cash), fill = cgt_two[[1]], width = 0.6) +
+  classic_zero_line() +
+  geom_line(data = cgt_brent, aes(.data$year, .data$price - 60), colour = cgt_two[[2]], linewidth = 0.8) +
+  scale_y_continuous(
+    limits = c(-60, 120), breaks = seq(-60, 120, 30), labels = economist_plus_minus_format(), expand = c(0, 0),
+    sec.axis = sec_axis(~ . + 60, breaks = seq(0, 180, 30))
+  ) +
+  scale_x_continuous(
+    breaks = seq(2002, 2016, 2), labels = classic_years, limits = c(2001.3, 2016.7), expand = c(0, 0)
+  ) +
+  labs(title = "What lies beneath", x = NULL, y = NULL, caption = "Source: BCG") +
+  theme_economist(base_size = classic_size) +
+  theme(axis.text.y.left = element_text(colour = cgt_two[[1]]), axis.text.y.right = element_text(colour = cgt_two[[2]]))
+grid::grid.draw(classic_chart(p, axis_titles = list(
+  left = list(label = "Big oil companies'\nenterprise free\ncash flow, $bn", colour = cgt_two[[1]]),
+  right = list(label = "Oil price\nBrent, $ per barrel", colour = cgt_two[[2]])
+)))
+```
+
+```{r cg-tables-double-scale-avoid-3, econ_height = 165}
+cgt_rand_x <- c(
+  88, 95, 110, 125, 133, 140, 150, 160, 172, 185, 200, 215, 228, 240, 255, 270, 285, 300, 315, 330, 345,
+  360, 375, 390, 405, 420, 435, 450, 465, 480, 495, 510, 520, 530, 540, 550, 560, 575, 582
+)
+cgt_rand_y <- c(
+  258, 290, 290, 300, 375, 340, 360, 300, 290, 272, 275, 270, 265, 258, 262, 252, 262, 285, 282, 320, 310,
+  325, 330, 345, 350, 375, 380, 385, 370, 395, 420, 470, 520, 550, 490, 470, 480, 460, 480
+)
+cgt_sacci_x <- c(
+  88, 110, 125, 140, 150, 160, 172, 180, 200, 210, 225, 237, 250, 262, 272, 285, 300, 315, 330, 345, 360,
+  375, 385, 395, 410, 420, 435, 445, 460, 475, 485, 500, 515, 525, 535, 545, 555, 570, 580
+)
+cgt_sacci_y <- c(
+  285, 295, 330, 300, 350, 330, 290, 300, 300, 290, 240, 235, 255, 230, 245, 270, 280, 285, 350, 330, 340,
+  370, 365, 355, 350, 365, 348, 340, 360, 385, 345, 395, 410, 470, 490, 480, 455, 470, 475
+)
+cgt_zuma <- rbind(
+  data.frame(series = "rand", year = 2008 + (cgt_rand_x - 88) / 55, value = 6 + (cgt_rand_y - 228) / 30),
+  data.frame(series = "sacci", year = 2008 + (cgt_sacci_x - 88) / 55, value = 6 + (cgt_sacci_y - 228) / 30)
+)
+
+## The rand on an inverted scale on the left, the index on the right; 12 on the left is 100 on the right, the
+## index's base, marked by a thin red rule.
+p <- ggplot(cgt_zuma, aes(.data$year, .data$value, colour = .data$series)) +
+  classic_zero_line(yintercept = 12) +
+  geom_line(linewidth = 0.8) +
+  scale_colour_manual(values = c(rand = cgt_two[[1]], sacci = cgt_two[[2]]), guide = "none") +
+  scale_y_reverse(
+    limits = c(18, 6), breaks = seq(6, 18, 3), expand = c(0, 0),
+    sec.axis = sec_axis(~ 120 - (. - 6) * 40 / 12, breaks = seq(80, 120, 10))
+  ) +
+  scale_x_continuous(
+    breaks = 2008.5 + c(0, 2, 4, 6, 8), labels = function(x) classic_years(floor(x)),
+    limits = c(2007.8, 2017.4), expand = c(0, 0)
+  ) +
+  labs(title = "The Zuma years", subtitle = "South Africa", x = NULL, y = NULL,
+       caption = "Sources: Thomson Reuters; SACCI") +
+  theme_economist(base_size = classic_size) +
+  theme(axis.text.y.left = element_text(colour = cgt_two[[1]]), axis.text.y.right = element_text(colour = cgt_two[[2]]))
+grid::grid.draw(classic_chart(p, axis_titles = list(
+  left = list(label = "Rand per $,\ninverted scale", colour = cgt_two[[1]]),
+  right = list(label = "SACCI Business\nConfidence Index,\n2015=100", colour = cgt_two[[2]])
+)))
+```
+
+Against 2017: the [2017 versions](economist-2017-styleguide.html#what-to-avoid) are shown as warnings; the classic charts drew the same arrangements as a matter of course, in blue and dark red with colored italic titles, the +/- labels where a scale crosses zero and red rules at zero and at the index's base.
+
+## Blob heads
+
+Blob heads are `r share("type.blob_heads")`, nearly all on horizontal bars (`r share("blob_heads.orientation.horizontal")`), with the value axis at the top (`r share("blob_heads.value_axis_side.top")`).
+The blob shows a second measure, not the bar's own value (`r share("blob_heads.blob_content.second_variable")`).
+It is a box, not a bubble (`r share("blob_heads.blob_shape.box")`); in the cited charts it is a white box with a thin dark outline, the same size on every row, with the figure ranged right inside it.
+The boxes stand in a column at the right of the chart, lined up whatever the length of the bars (`r share("blob_heads.blob_position.aligned_column")`), and in the cited charts a callout, a white box with a small pointer, names the column.
+`r cite("blob_heads.blob_shape.box")`.
+The same column of boxes is drawn beside side-by-side bars (`r share("bar_column_side_by_side.blob_position.aligned_column")`) and stacked bars (`r share("bar_column_stacked.blob_shape.box")`).
+
+Bubbles sized by value, the 2017 guide's first choice, are rare (`r share("blob_heads.blob_shape.circle")`), and both cited examples are from 2015: `r cite("blob_heads.blob_shape.circle", k = 2)`.
+In those the bubbles and the callout are pale blue, with the figures in dark blue.
+
+### Numbers inside the bubbles
+
+The Big Mac index compares two years, so the classic chart draws two bars a country, the earlier year in dark blue, as `r cite_codes("20151024_INC258")` does (its blobs are pale-blue bubbles), keyed by a legend under the subtitle (`r share("blob_heads.legend.under_subtitle")`), with the +/- axis (`r share("blob_heads.negative_labels.plus_minus_at_zero")`) and a red zero line, which `r claim("blob_heads.red_zero_line")$n` blob-head panels have.
+The prices go in a column of white boxes, named by a callout above them, as in `r cite_codes("20130518_FNC630")`.
+
+```{r cg-tables-big-mac, econ_height = 335}
+cgt_bigmac <- data.frame(
+  country = c(
+    "Switzerland", "Norway", "Sweden", "Brazil", "United States", "Euro area", "Britain", "Japan", "Turkey",
+    "China", "Vietnam", "India", "Mexico", "Russia"
+  ),
+  y2016 = c(31, 6, 5, -32, -1, -19, -14, -37, -31, -46, -48, -61, -43, -68),
+  y2017 = c(27, 14, 4, 2, 0, -19, -24, -35, -41, -43, -45, -50, -54, -57),
+  price = c(6.4, 5.8, 5.3, 5.1, 5.1, 4.1, 3.8, 3.3, 3.0, 2.8, 2.6, 2.5, 2.3, 2.2)
+)
+cgt_bigmac$row <- rev(seq_len(nrow(cgt_bigmac)))
+cgt_bigmac_bars <- rbind(
+  data.frame(row = cgt_bigmac$row + 0.17, value = cgt_bigmac$y2016, year = "January 2016"),
+  data.frame(row = cgt_bigmac$row - 0.17, value = cgt_bigmac$y2017, year = "January 2017")
+)
+## Footnote marks hang off the country names as superscripts.
+cgt_marks <- c("United States" = "†", "Euro area" = "‡", "China" = "§", "India" = "**")
+cgt_country_labels <- parse(text = ifelse(
+  cgt_bigmac$country %in% names(cgt_marks),
+  paste0("'", cgt_bigmac$country, "'^'", cgt_marks[cgt_bigmac$country], "'"),
+  paste0("'", cgt_bigmac$country, "'")
+))
+cgt_xlim <- c(-75, 72)
+cgt_ylim <- c(0.5, 14.5)
+
+p <- ggplot(cgt_bigmac_bars) +
+  geom_rect(aes(
+    xmin = pmin(0, .data$value), xmax = pmax(0, .data$value), ymin = .data$row - 0.16, ymax = .data$row + 0.16,
+    fill = .data$year
+  )) +
+  classic_zero_line(xintercept = 0) +
+  ## The earlier year dark, as in "Oil exporters"; the legend stacked, as the callout takes the right of its row.
+  scale_fill_manual(
+    values = c("January 2016" = fg[["dark blue"]], "January 2017" = fg[["blue"]]), name = NULL,
+    guide = guide_legend(ncol = 1)
+  ) +
+  scale_x_continuous(
+    position = "top", breaks = seq(-60, 30, 30), labels = economist_plus_minus_format("horizontal")
+  ) +
+  scale_y_continuous(breaks = cgt_bigmac$row, labels = cgt_country_labels) +
+  coord_cartesian(xlim = cgt_xlim, ylim = cgt_ylim, expand = FALSE, clip = "off") +
+  labs(
+    title = "The Big Mac index",
+    subtitle = "Local currency under (–)/over (+)\nvaluation against the dollar, %",
+    x = NULL, y = NULL,
+    caption = paste0(
+      "*At market exchange rates (Jan 11th 2017)\n†Average of four cities\n‡Weighted average of member countries\n",
+      "§Average of five cities **Maharaja Mac\nSources: McDonald's; The Economist"
+    )
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line() +
+  theme(legend.background = element_blank())
+## Data units a point, to size the boxes and the callout in points.
+cgt_size <- cgt_panel(p)
+cgt_kx <- diff(cgt_xlim) / cgt_size[[1]]
+cgt_ky <- diff(cgt_ylim) / cgt_size[[2]]
+cgt_label <- format(cgt_bigmac$price, nsmall = 1)
+cgt_box <- max(cgt_width(cgt_label)) + 6
+cgt_bx <- cgt_xlim[2] - (cgt_box / 2 + 0.5) * cgt_kx
+## The callout stands over the column of boxes, above the axis labels, its pointer turned down at the boxes.
+p <- p +
+  cgt_boxes(cgt_bigmac$row, cgt_label, x = cgt_bx, width = cgt_box * cgt_kx, kx = cgt_kx) +
+  cgt_callout(cgt_bx + cgt_box / 2 * cgt_kx - 2 * cgt_kx, cgt_ylim[2] + 11 * cgt_ky, "Big Mac price*, $",
+              side = "bottom", along = 0.92, kx = cgt_kx, ky = cgt_ky)
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#numbers-inside-the-bubbles) draws each country as a dot for each year on a line back to zero, with the price in a pale bubble sized by price; the classic chart draws two bars a country and the price in white boxes of one size, keyed by a callout rather than a line of the subtitle.
+
+### Bubbles and numbers outside the bar
+
+The classic chart does not need this rule: its boxes are wide enough for the figures, so they stay inside them.
+"Up in the air" is drawn as `r cite_codes("20150214_INC133")` is: one series of dark blue bars, the +/- axis, the red zero line over the bars, and a callout at the foot of the column pointing at the last box.
+
+```{r cg-tables-up-in-air, econ_height = 254}
+cgt_travel <- data.frame(
+  country = c(
+    "China", "India", "Germany", "Spain", "United States", "Britain", "South Korea", "Canada", "Brazil", "France",
+    "Italy", "Australia", "Japan", "Netherlands", "Russia"
+  ),
+  change = c(16.5, 9.7, 7.6, 6.7, 5.4, 5.4, 3.9, 3.8, 3.7, 2.0, 1.3, 1.3, 1.1, -1.7, -6.6),
+  bn = c(261, 26, 58, 18, 288, 44, 32, 23, 32, 36, 31, 21, 62, 18, 21)
+)
+cgt_travel$row <- rev(seq_len(nrow(cgt_travel)))
+cgt_xlim <- c(-8, 25)
+cgt_ylim <- c(0.5, 15.5)
+
+p <- ggplot(cgt_travel) +
+  geom_rect(aes(
+    xmin = pmin(0, .data$change), xmax = pmax(0, .data$change), ymin = .data$row - 0.3, ymax = .data$row + 0.3
+  ), fill = economist_pal()(1)) +
+  classic_zero_line(xintercept = 0) +
+  scale_x_continuous(
+    position = "top", breaks = seq(-5, 15, 5), labels = economist_plus_minus_format("horizontal")
+  ) +
+  scale_y_continuous(breaks = cgt_travel$row, labels = cgt_travel$country) +
+  coord_cartesian(xlim = cgt_xlim, ylim = cgt_ylim, expand = FALSE, clip = "off") +
+  labs(
+    title = "Up in the air", subtitle = "Business travel spending, 2014\n% change on a year earlier",
+    x = NULL, y = NULL, caption = "Source: GBTA"
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line()
+## Data units a point, to size the boxes and the callout in points.
+cgt_size <- cgt_panel(p)
+cgt_kx <- diff(cgt_xlim) / cgt_size[[1]]
+cgt_ky <- diff(cgt_ylim) / cgt_size[[2]]
+cgt_label <- as.character(cgt_travel$bn)
+cgt_box <- max(cgt_width(cgt_label)) + 6
+cgt_bx <- cgt_xlim[2] - (cgt_box / 2 + 0.5) * cgt_kx
+## The callout sits at the foot of the column, pointing at the last box.
+p <- p +
+  cgt_boxes(cgt_travel$row, cgt_label, x = cgt_bx, width = cgt_box * cgt_kx, height = 0.62, kx = cgt_kx) +
+  cgt_callout(cgt_bx - (cgt_box / 2 + 1.5) * cgt_kx, 1, "2014\nspending,\n$bn", side = "right", along = 0.2,
+              kx = cgt_kx, ky = cgt_ky)
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#bubbles-and-numbers-outside-the-bar) colors the negative bars differently, sizes its bubbles by spending and sets the figures to their right; the classic chart keeps all the bars dark blue, puts the figures in boxes of one size and names the column with a callout.
+
+### Equal-sized number blocks
+
+In the classic style every blob is an equal-sized box, so this rule is the default rather than a fallback.
+On stacked bars the boxes stand in a column beside the bars, as on side-by-side bars: `r cite("bar_column_stacked.blob_position.aligned_column", k = 2)`.
+As in the cited charts, the stack runs from the baseline outwards in the palette's order, blue then dark blue, keyed by a legend under the subtitle.
+
+```{r cg-tables-starting-small, econ_height = 175}
+cgt_exchanges <- data.frame(
+  exchange = c("Johannesburg", "Nigeria", "Mauritius", "Nairobi", "Namibia", "BRVM*"),
+  domestic = c(306, 176, 75, 65, 8, 41),
+  foreign = c(71, 0, 0, 0, 33, 0),
+  cap = c(943, 29.3, 6.2, 19.9, 2.3, 11.6)
+)
+cgt_exchanges$row <- rev(seq_len(nrow(cgt_exchanges)))
+cgt_stack <- rbind(
+  data.frame(row = cgt_exchanges$row, lo = 0, hi = cgt_exchanges$domestic, listing = "Domestic"),
+  data.frame(
+    row = cgt_exchanges$row, lo = cgt_exchanges$domestic, hi = cgt_exchanges$domestic + cgt_exchanges$foreign,
+    listing = "Foreign"
+  )
+)
+cgt_xlim <- c(0, 500)
+cgt_ylim <- c(0.5, 6.5)
+
+p <- ggplot(cgt_stack) +
+  geom_rect(aes(xmin = .data$lo, xmax = .data$hi, ymin = .data$row - 0.3, ymax = .data$row + 0.3,
+                fill = .data$listing)) +
+  scale_fill_economist(name = NULL) +
+  scale_x_continuous(position = "top", breaks = seq(0, 400, 100)) +
+  scale_y_continuous(breaks = cgt_exchanges$row, labels = cgt_exchanges$exchange) +
+  coord_cartesian(xlim = cgt_xlim, ylim = cgt_ylim, expand = FALSE, clip = "off") +
+  labs(
+    title = "Starting small", subtitle = "Number of companies listed on\nstock exchanges, October 2016",
+    x = NULL, y = NULL, caption = "*West African regional exchange\nSource: World Federation of Exchanges"
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line()
+## Data units a point, to size the boxes and the callout in points.
+cgt_size <- cgt_panel(p)
+cgt_kx <- diff(cgt_xlim) / cgt_size[[1]]
+cgt_ky <- diff(cgt_ylim) / cgt_size[[2]]
+cgt_label <- as.character(cgt_exchanges$cap)
+cgt_box <- max(cgt_width(cgt_label)) + 6
+cgt_bx <- cgt_xlim[2] - (cgt_box / 2 + 0.5) * cgt_kx
+p <- p +
+  cgt_boxes(cgt_exchanges$row, cgt_label, x = cgt_bx, width = cgt_box * cgt_kx, height = 0.62, kx = cgt_kx) +
+  cgt_callout(cgt_bx - (cgt_box / 2 + 1.5) * cgt_kx, 1, "Market cap,\n$bn", side = "right", along = 0.3,
+              kx = cgt_kx, ky = cgt_ky)
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#equal-sized-number-blocks) fills its blocks pale blue-gray with no outline and colors the stack in two blues of its own palette; the classic boxes are white with a dark outline, and the callout sits beside the last box.
+
+### Text blocks
+
+The classic callout is the text block of the classic charts: black type in a white box with a thin dark outline and a small pointer, which can be on any side and anywhere along it.
+In the sample it names a column of blob heads (`r cite("blob_heads.blob_shape.box", k = 2)`) or names a boxed figure at the end of a line, as in `r cite_codes("20140524_BRC024")`; the box is as large as its text needs, not of a set height.
+
+```{r cg-tables-text-blocks, econ_size = "two_column", econ_height = 95}
+## A specimen of the callouts, not a chart, so it has no red tab or title.
+p <- ggplot() + cgt_blank()
+cgt_size <- cgt_panel(p)
+## Where each pointer touches, as a share of the panel.
+cgt_blocks <- data.frame(
+  x = c(0.17, 0.5, 0.36, 0.66, 0.8),
+  y = c(0.62, 0.52, 0.22, 0.32, 0.66),
+  label = c("ECB announces QE", "ECB announces\nQE beginning", "ECB announces QE", "ECB announces QE",
+            "ECB announces QE"),
+  side = c("bottom", "bottom", "right", "top", "left"),
+  along = c(0.5, 0.5, 0.5, 0.15, 0.5)
+)
+cgt_blocks$x <- cgt_blocks$x * cgt_size[[1]]
+cgt_blocks$y <- cgt_blocks$y * cgt_size[[2]]
+p <- p +
+  lapply(seq_len(nrow(cgt_blocks)), function(i) {
+    with(cgt_blocks[i, ], cgt_callout(x, y, label, side = side, along = along))
+  }) +
+  annotate("point", x = cgt_blocks$x, y = cgt_blocks$y, colour = econ_red, size = 0.6) +
+  cgt_points(cgt_size)
+p
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#text-blocks) fills its blocks pale blue-gray, without an outline, in boxes of a set height with the pointer centred or kept 6pt from the corners; the classic callout is white with a thin dark outline and sized to its text.

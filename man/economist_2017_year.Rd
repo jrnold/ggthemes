@@ -22,6 +22,8 @@ that returns a character vector, for use as a scale's \code{labels}.
 \description{
 Truncates year labels to their last two digits, keeping the first labeled
 year and every century boundary in full: \verb{1948 52 56 ... 96 2000 04 08}.
+Where no century boundary is labeled, the first year of the new century is
+in full: \verb{1970 90 2010}.
 This is the convention on every dated axis in \emph{The Economist visual
 styleguide} (v1.2, 4 May 2017) -- see pp.6, 7, 13, 15, 16 and 23 -- and it
 keeps a crowded time axis readable without losing the reader's anchor.
@@ -42,9 +44,11 @@ Other economist 2017:
 \code{\link[=economist_2017_gradient_pal]{economist_2017_gradient_pal()}},
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
+\code{\link[=economist_table]{economist_table()}},
 \code{\link[=geom_label_economist_2017]{geom_label_economist_2017()}},
 \code{\link[=geom_scale_break_economist_2017]{geom_scale_break_economist_2017()}},
 \code{\link{geom_timeline_economist_2017}},
+\code{\link[=gt_theme_economist]{gt_theme_economist()}},
 \code{\link[=guide_axis_economist_2017]{guide_axis_economist_2017()}},
 \code{\link[=scale_colour_economist_2017]{scale_colour_economist_2017()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}

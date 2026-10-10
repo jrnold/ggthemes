@@ -117,9 +117,11 @@ Other economist 2017:
 \code{\link[=economist_2017_pal]{economist_2017_pal()}},
 \code{\link[=economist_2017_size]{economist_2017_size()}},
 \code{\link[=economist_2017_year]{economist_2017_year()}},
+\code{\link[=economist_table]{economist_table()}},
 \code{\link[=geom_label_economist_2017]{geom_label_economist_2017()}},
 \code{\link[=geom_scale_break_economist_2017]{geom_scale_break_economist_2017()}},
 \code{\link{geom_timeline_economist_2017}},
+\code{\link[=gt_theme_economist]{gt_theme_economist()}},
 \code{\link[=guide_axis_economist_2017]{guide_axis_economist_2017()}},
 \code{\link[=theme_economist_2017]{theme_economist_2017()}}
 }

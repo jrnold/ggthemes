@@ -28,13 +28,20 @@ test_that("economist_pal fill=FALSE works", {
 
 test_that("economist_pal returns the classic colours", {
   # The pre-7.0.0 orders: blues, grays and greens, red held back for emphasis.
-  expect_equal(economist_pal()(1), "#014d64")
-  expect_equal(economist_pal()(3), c("#6794a7", "#014d64", "#01a2d9"))
+  expect_equal(economist_pal()(1), "#00526d")
+  expect_equal(economist_pal()(3), c("#5e91a8", "#00526d", "#00a4db"))
   expect_equal(
     economist_pal()(9),
-    c("#6794a7", "#014d64", "#01a2d9", "#7ad2f6", "#00887d", "#76c0c1", "#7c260b", "#ee8f71", "#adadad")
+    c("#5e91a8", "#00526d", "#00a4db", "#6ecff6", "#008a84", "#6ebbbf", "#76200c", "#ea8f74", "#a7a9ac")
   )
-  expect_equal(economist_pal(fill = FALSE)(3), c("#014d64", "#01a2d9", "#7ad2f6"))
+  expect_equal(economist_pal(fill = FALSE)(3), c("#00526d", "#00a4db", "#6ecff6"))
+})
+
+test_that("economist_pal gives five and six series the corpus's commonest sets", {
+  # Gray is the fifth colour and light green the sixth, as in the print charts
+  # of 2012 to 2015; before, they were light green and dark green.
+  expect_equal(economist_pal()(5), c("#5e91a8", "#00526d", "#6ecff6", "#00a4db", "#a7a9ac"))
+  expect_equal(economist_pal()(6), c("#5e91a8", "#00526d", "#6ecff6", "#00a4db", "#a7a9ac", "#6ebbbf"))
 })
 
 test_that("economist_pal fill= changes the palette", {
@@ -52,9 +59,10 @@ test_that("economist_pal raises warning with large number", {
 })
 
 test_that("ggthemes_data$economist keeps the classic fg and bg tables", {
-  expect_named(ggthemes_data$economist, c("bg", "fg", "scales"), ignore.order = TRUE)
-  expect_equal(nrow(ggthemes_data$economist$fg), 12)
-  expect_equal(economist_bg("blue-gray"), "#d5e4eb")
+  expect_named(ggthemes_data$economist, c("bg", "fg", "palette", "scales"), ignore.order = TRUE)
+  expect_equal(nrow(ggthemes_data$economist$fg), 13)
+  expect_equal(ggthemes_data$economist$fg$name[13], "coral")
+  expect_equal(economist_bg("blue-gray"), "#cbdde6")
 })
 
 test_that("ggthemes_data$economist$bg keeps its first five rows in place", {
@@ -62,8 +70,24 @@ test_that("ggthemes_data$economist$bg keeps its first five rows in place", {
   # working; new colors go after these rows.
   bg <- ggthemes_data$economist$bg
   expect_equal(bg$name[1:5], c("blue-gray", "dark blue-gray", "red", "light gray", "dark gray"))
-  expect_equal(bg$value[1:5], c("#d5e4eb", "#c3d6df", "#ed111a", "#ebebeb", "#c9c9c9"))
-  expect_equal(bg$name[6:7], c("deep blue-gray", "pale blue-gray"))
+  expect_equal(bg$value[1:5], c("#cbdde6", "#b8d0dc", "#e3120b", "#ebebeb", "#c9c9c9"))
+  expect_equal(bg$name[6:9], c("deep blue-gray", "pale blue-gray", "economist red", "number box"))
+  expect_equal(economist_bg("economist red"), "#e3120b")
+})
+
+test_that("the classic colors are the SWOP renderings listed with their CMYK in the palette table", {
+  pal <- ggthemes_data$economist$palette
+  expect_named(pal, c("name", "role", "cmyk", "hex", "confidence"))
+  expect_true(all(grepl("^#[0-9a-f]{6}$", pal$hex)))
+  expect_true(all(pal$confidence %in% c("known", "high", "medium", "low")))
+  fg <- ggthemes_data$economist$fg
+  series <- pal[pal$role == "series", ]
+  expect_equal(fg$value[match(series$name, fg$name)], series$hex)
+  expect_equal(economist_bg("blue-gray"), pal$hex[pal$name == "ground"])
+  expect_equal(economist_bg("dark blue-gray"), pal$hex[pal$name == "panel"])
+  # The light panels of 2015 swap the ground and the dark panel.
+  expect_equal(economist_bg("deep blue-gray"), economist_bg("dark blue-gray"))
+  expect_equal(economist_bg("pale blue-gray"), economist_bg("blue-gray"))
 })
 
 test_that("scale_colour_economist equals scale_color_economist", {
@@ -327,4 +351,13 @@ test_that("theme_economist_white(gray_bg = FALSE) draws correctly", {
     "theme_economist_white-white",
     theme_test_plot() + theme_economist_white(gray_bg = FALSE)
   )
+})
+
+test_that("theme_economist ranges right-hand axis labels right, set off from the panel", {
+  thm <- theme_economist(base_size = 10)
+  right <- ggplot2::calc_element("axis.text.y.right", ggplot2::complete_theme(thm))
+  expect_equal(right$hjust, 1)
+  expect_equal(as.numeric(right$margin), c(0, 0, 0, 6))
+  # The left axis keeps its labels ranged left.
+  expect_equal(ggplot2::calc_element("axis.text.y.left", ggplot2::complete_theme(thm))$hjust, 0)
 })

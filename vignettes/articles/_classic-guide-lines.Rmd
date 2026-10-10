@@ -1,0 +1,1414 @@
+## Lines, side by side
+
+Line charts are the commonest type in the classic sample: `r share("type.lines")`.
+Their layout barely varies.
+The value axis is on the right (`r share("lines.value_axis_side.right")`), with white horizontal gridlines (`r share("lines.gridlines.horizontal")`) and a black baseline whose ticks point up into the panel.
+Years after the first are cut to two digits, "2004, 06, 08" (`r share("lines.truncated_years")`).
+The habit grew over the four years: `r by_year("lines.truncated_years")`.
+Values are almost never printed on the lines (`r pct("lines.value_labels.some")` of panels print any).
+
+The series are named by labels set beside the lines (`r share("lines.series_key.labels_next_to_data")`) rather than by a legend (`r share("lines.series_key.legend")`); the rest have a single line and no key.
+By year, the share keyed by labels was `r by_year("lines.labels_next_to_data")`.
+Where there is a legend, it sits under the subtitle: `r claim("lines.legend.under_subtitle")$n` of the `r claim("lines.series_key.legend")$n` line panels keyed by a legend.
+In the cited charts it is flush left, with a short thick line for each series: `r cite("lines.legend.under_subtitle", k = 2)`.
+Charts with negative values label them on a +/- axis and draw a red rule at zero; those belong to [Miscellaneous styling](#miscellaneous-styling).
+
+```{r cg-lines-setup}
+## The line weight and in-panel label size of a one-column classic line chart.
+cgl_line <- 0.8
+cgl_text <- classic_size / .pt
+cgl_theme <- theme_economist(base_size = classic_size)
+## The classic dot looks: fills and outlines, in order.
+cgl_dot <- classic_dot_looks()
+## Ticks every year, labelled every few: the year ticks are minor ticks drawn as long as the labelled ones.
+cgl_year_axis <- guide_axis(minor.ticks = TRUE)
+cgl_year_ticks <- theme(axis.minor.ticks.length.x.bottom = rel(1))
+```
+
+### One line
+
+A single series is dark blue (one-series panels of all types: `r share("colour.n1.set.dark blue")`) and has no key.
+Single-series panels are `r pct("lines.series_key.single_series")` of line panels (`r claim("lines.series_key.single_series")$n` of `r claim("lines.series_key.single_series")$of`).
+The footnote goes above the source line.
+`r cite("lines.series_key.single_series")`.
+
+```{r cg-lines-penumbral, econ_height = 165}
+cgl_shadow <- data.frame(
+  year = 2006 + 0.125 * (0:42),
+  units = c(
+    0.4, 0.39, 0.38, 0.39, 0.42, 0.43, 0.46, 0.5, 0.54, 0.55, 0.59, 0.65, 0.71, 0.79, 0.88, 0.98, 1.09, 1.14, 1.19,
+    1.24, 1.3, 1.35, 1.39, 1.47, 1.55, 1.56, 1.54, 1.6, 1.64, 1.75, 1.88, 1.96, 2.02, 1.99, 1.95, 1.91, 1.86, 1.87,
+    1.9, 1.86, 1.79, 1.73, 1.68
+  )
+)
+
+p <- ggplot(cgl_shadow, aes(year, units)) +
+  geom_line(colour = economist_pal()(1), linewidth = cgl_line) +
+  scale_y_continuous(
+    position = "right",
+    limits = c(0, 2.05),
+    breaks = seq(0, 2, 0.5),
+    labels = c("0", "0.5", "1.0", "1.5", "2.0"),
+    expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(2005.9, 2011.4),
+    expand = c(0, 0),
+    breaks = 2006:2011,
+    labels = classic_years,
+    guide = cgl_year_axis
+  ) +
+  labs(
+    title = "Penumbral",
+    subtitle = "US shadow housing inventory*\nUnits, m",
+    caption = "*Foreclosed and delinquent homes\nnot yet on the market\nSource: CoreLogic",
+    x = NULL,
+    y = NULL
+  ) +
+  cgl_theme
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) labels each year between two ticks and sets the footnote at the right of the source line; the classic chart labels the tick at the start of each year, puts the footnote over the source, and draws the line in dark blue on the blue-gray ground, with no separate panel color.
+
+### Two lines
+
+Two lines are blue and dark blue, the pair `economist_pal()` returns (two-series panels of all types: `r share("colour.n2.set.blue+dark blue")`).
+Here the series are keyed by a legend under the subtitle, the style of `r pct("lines.series_key.legend")` of line panels.
+An axis that is not a time axis gets an italic title.
+`r cite("lines.legend.under_subtitle")`.
+
+```{r cg-lines-tokyo-two, econ_height = 165}
+cgl_japan <- c(
+  4.97, 5.22, 5.09, 5.34, 6.22, 6.78, 7.2, 7.21, 6.49, 6.67, 6.53, 6, 5.5, 5.68, 5.13, 4.82, 4.42, 4.53, 4.31, 3.67,
+  3.57, 4, 4.45, 4.65, 4.47, 3.44, 3.08, 2.91, 3.16, 3.27, 3.14, 2.65, 2.61, 2.55, 2.32, 1.96, 1.93, 1.68, 1.42,
+  1.06, 1.95, 1.55, 1.83, 1.8, 1.78, 1.73, 1.84, 1.76, 1.4, 1.28
+)
+cgl_us <- c(
+  5.22, 5.53, 5.9, 6.08, 6.7, 6.21, 5.97, 5.65, 5.16, 5.22, 5.06, 4.68, 5, 5.16, 4.34, 3.98, 3.95, 3.7, 3.97, 4.29,
+  4.09, 4.45, 4.19, 4.16, 4.14, 4.23, 4.25, 4.51, 4.54, 5.04, 4.93, 4.65, 4.72, 4.81, 4.78, 4.31, 3.7, 3.82, 3.86,
+  3.26, 2.67, 3.22, 3.53, 3.44, 3.7, 3.55, 2.8, 2.86, 3.48, 3.35
+)
+cgl_periods <- c("January 1989 (Japan)", "January 1999 (US)")
+cgl_bonds <- data.frame(
+  year = rep(1.125 + 0.25 * (0:49), 2),
+  period = factor(rep(cgl_periods, each = 50), levels = cgl_periods),
+  yield = c(cgl_japan, cgl_us)
+)
+
+p <- ggplot(cgl_bonds, aes(year, yield, colour = period)) +
+  geom_line(linewidth = cgl_line) +
+  scale_y_continuous(position = "right", limits = c(0, 8), breaks = seq(0, 8, 2), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(0.9, 13.8),
+    expand = c(0, 0),
+    breaks = c(1, 5, 10, 13),
+    minor_breaks = 1:13,
+    guide = cgl_year_axis
+  ) +
+  scale_colour_economist() +
+  guides(colour = guide_legend(ncol = 1)) +
+  labs(
+    title = "Where Tokyo leads",
+    subtitle = "Ten-year government-bond yields, %",
+    caption = "Source: Thomson Reuters",
+    x = "Years since start",
+    y = NULL,
+    colour = "Period beginning:"
+  ) +
+  cgl_theme +
+  cgl_year_ticks +
+  classic_x_title() +
+  theme(
+    legend.title = element_text(face = "bold"),
+    legend.title.position = "top"
+  )
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) draws the lines in blue and a pale cyan; the classic pair is blue and dark blue, and its legend keys are short thick strokes under a bold lead-in.
+The classic axis title is italic.
+
+### Four lines, labeled beside them
+
+Labels beside the lines are the classic key: plain black type, set in a clear space next to the line they name, without a leader line in most charts (`r pct("lines.leader_lines")` have one).
+Four series of equal emphasis take blue-gray, dark blue, blue and gray, the palette's four.
+An index chart marks its base value with a thin red rule (see [Index charts](#index-charts)).
+`r cite("lines.series_key.labels_next_to_data")`.
+
+```{r cg-lines-transports, econ_height = 165}
+cgl_modes <- c("Bus", "Tube", "Car", "Population")
+cgl_london <- data.frame(
+  year = rep(2001:2015, 4),
+  mode = factor(rep(cgl_modes, each = 15), levels = cgl_modes),
+  index = c(
+    100, 106.9, 117.8, 127.5, 127.1, 132.6, 150.1, 158.1, 162.5, 161.3, 165.3, 166.4, 168.7, 168.7, 168, 100, 99.6,
+    98.2, 103, 101.6, 104.8, 111, 114, 112.9, 115.6, 121, 127.9, 132.7, 133.4, 142.1, 100, 99.3, 96.7, 96.6, 95.5,
+    94.5, 92.8, 90.8, 91.1, 89.9, 88, 87.1, 86.5, 87.3, NA, 100, 101.1, 101, 101.1, 103.1, 103.3, 105.2, 106.7,
+    109.5, 110.2, 112, 113.5, 114.9, 116.3, 116.9
+  )
+)
+cgl_london <- cgl_london[!is.na(cgl_london$index), ]
+
+p <- ggplot(cgl_london, aes(year, index, colour = mode)) +
+  classic_zero_line(100) +
+  geom_line(linewidth = cgl_line, show.legend = FALSE) +
+  annotate(
+    "text",
+    x = c(2008, 2010.6, 2006, 2011.5),
+    y = c(170, 132, 89, 106.5),
+    label = cgl_modes,
+    size = cgl_text,
+    hjust = 0.5
+  ) +
+  scale_y_continuous(position = "right", limits = c(80, 180), breaks = seq(80, 180, 20), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(2000.6, 2015.4),
+    expand = c(0, 0),
+    breaks = seq(2001, 2015, 2),
+    minor_breaks = 2001:2015,
+    labels = classic_years,
+    guide = cgl_year_axis
+  ) +
+  scale_colour_economist() +
+  labs(
+    title = "Transports of delight",
+    subtitle = "London\u2019s population and journeys\n2001=100",
+    caption = "Sources: Transport for London; ONS;\nThe Economist",
+    x = NULL,
+    y = NULL
+  ) +
+  cgl_theme +
+  cgl_year_ticks
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) marks the base year with a black dot and draws four hues; the classic chart keeps to its blues and grays, so the four lines differ mostly in lightness, and the labels are all black.
+
+### Seven lines
+
+Charts with many lines still label them beside the lines when there is room.
+Past four series the palette adds light blue, then greens. The commonest six-series set, blue-gray, dark blue, blue, light blue, gray and light green, is in only `r claim("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")$n` of `r claim("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")$of` six-series panels of all types.
+No set was measured for line charts with more than four series (`r claim("colour.line.n4.first.dark blue")$of` line panels have exactly four), so the seven colors here are `economist_pal()`'s, not a measured set.
+
+```{r cg-lines-coming-down, econ_height = 165}
+cgl_rates <- list(
+  Hungary = c(
+    25.2, 25.4, 25.2, 26.7, 28.7, 29.7, 29.8, 31.4, 33.5, 33.4, 34.8, 36.1, 36.9, 37.4, 40, 38.9, 40.4, 40.7, 43.1,
+    44.6, 44.9, 45.3, 44, 45.7, 45.8, 44.6, 45.3, 44.6, 41.9, 41.7, 40, 38.7, 38.6, 36.7, 34.9, 33.1, 33, 31.5, 31.7,
+    32.4, 31.7, 29.5, 28.1, 27.6, 27.1, 26, 24.7, 24.7, 24.7, 24.8, 25, 24.4, 23.5, 22.1
+  ),
+  Lithuania = c(
+    34, 34, 34, 34.1, 32.4, 26.9, 28.5, 27, 27.1, 27.1, 30.8, 35.5, 42.3, 46.1, 46.8, 47.4, 45.7, 44, 44.3, 46.2,
+    44.6, 44.7, 42.6, 41, 38.7, 33.4, 32.2, 34.6, 35.6, 33.3, 33.3, 31.6
+  ),
+  Russia = c(
+    34.3, 34.4, 34.7, 33.2, 32.4, 28.7, 24, 23.4, 24.4, 25.8, 26.5, 27.2, 31.1, 37.6, 41.2, 41, 39, 37.1, 35.8, 38.3,
+    38.9, 39.1, 37.9, 35.8, 34.2, 32.2, 30.3, 28.8, 27.4, 26, 24.1
+  ),
+  Japan = c(
+    20.8, 19.6, 17.7, 16.2, 15.2, 14.8, 15.1, 14.2, 14.4, 14.6, 15.2, 15.7, 16.8, 17.4, 17.4, 17.9, 17.6, 17.8, 17.6,
+    17.9, 17.6, 17.1, 18, 20.5, 20.3, 19.7, 20.9, 19.6, 18.6, 17.2, 16.3, 16.1, 16.7, 16.5, 16.8, 17.1, 17.7, 19.7,
+    24.2, 24.8, 23.8, 23.1, 23.7, 25, 23.8, 23.9, 23.5, 24.2, 23.8, 24, 23.1, 22.4, 21, 20.6
+  ),
+  `South Korea` = c(
+    8, 7.6, 7.2, 7, 7.2, 7.1, 8.7, 9.4, 9.6, 10.7, 12.8, 14, 17.6, 15.6, 13.9, 15.1, 18.3, 22.4, 24.6, 24.9, 22.4,
+    25.2, 27, 30.6, 31.6, 31.3, 29.1
+  ),
+  US = c(
+    10.2, 10.1, 10.6, 10.9, 10.5, 11.3, 11, 10.8, 10.7, 11.1, 11.5, 11.7, 12, 11.9, 12.1, 12.6, 12.4, 13, 12.4, 12.1,
+    11.9, 12.1, 12.2, 12.1, 12.5, 12.5, 12.9, 12.8, 12.5, 12.3, 12.4, 12.2, 12, 12.1, 11.9, 11.8, 11.5, 11.2, 11.1,
+    10.6, 10.4, 10.8, 11, 10.9, 11.1, 11.1, 11.2, 11.5, 11.9, 12.1
+  ),
+  Britain = c(
+    10.7, 10.9, 11.5, 11.7, 11.2, 10.5, 10.1, 9.6, 9.2, 8.7, 8, 7.9, 7.6, 7.8, 7.9, 7.5, 7.8, 7.9, 8.1, 8.5, 8.8, 9,
+    8.8, 8.8, 8.8, 9, 8.6, 8.1, 8.7, 7.8, 8.1, 8, 8.1, 7.8, 7.6, 7.5, 7.2, 7.2, 7.5, 7.6, 7.4, 7, 7, 6.7, 7, 6.7,
+    6.9, 6.5, 6.9, 6.9, 6.7, 7, 7.1, 7.4
+  )
+)
+cgl_first <- c(
+  Hungary = 1960,
+  Lithuania = 1981,
+  Russia = 1980,
+  Japan = 1960,
+  `South Korea` = 1986,
+  US = 1960,
+  Britain = 1960
+)
+cgl_suicides <- do.call(
+  rbind,
+  lapply(names(cgl_rates), function(country) {
+    data.frame(
+      year = cgl_first[[country]] + seq_along(cgl_rates[[country]]) - 1,
+      country = factor(country, levels = names(cgl_rates)),
+      rate = cgl_rates[[country]]
+    )
+  })
+)
+
+p <- ggplot(cgl_suicides, aes(year, rate, colour = country)) +
+  geom_line(linewidth = cgl_line * 0.85, show.legend = FALSE) +
+  annotate(
+    "text",
+    x = c(1971.6, 2014, 1980.5, 1966.7, 2013, 1985.4, 1982.2),
+    y = c(45.4, 48.6, 27.1, 19.8, 16, 15.1, 4.9),
+    label = c(names(cgl_rates)[1:4], "South\nKorea", names(cgl_rates)[6:7]),
+    lineheight = 0.9,
+    size = cgl_text,
+    hjust = c(0.5, 1, 0.5, 0.5, 1, 0.5, 0.5)
+  ) +
+  scale_y_continuous(position = "right", limits = c(0, 50), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1958.5, 2014.5),
+    expand = c(0, 0),
+    breaks = seq(1960, 2010, 10),
+    minor_breaks = seq(1960, 2010, 5),
+    labels = classic_years,
+    guide = cgl_year_axis
+  ) +
+  scale_colour_economist() +
+  labs(
+    title = "Coming down everywhere",
+    subtitle = "Suicides per 100,000 population",
+    caption = "Sources: ONS; Eurostat",
+    x = NULL,
+    y = NULL
+  ) +
+  cgl_theme +
+  cgl_year_ticks
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) sets Japan's label in bold to pick it out and gives each country its own hue; the classic chart has seven colors from one blue-and-green family, and its labels do the identifying.
+
+### Standard color order
+
+The classic sample has no fixed line order: which color comes first changes with the number of lines, and even then the charts split.
+With two lines, the first series is dark blue (`r share("colour.line.n2.first.dark blue")`) or blue (`r share("colour.line.n2.first.blue")`).
+With three, dark blue leads (`r share("colour.line.n3.first.dark blue")`) or blue (`r share("colour.line.n3.first.blue")`).
+With four, dark blue (`r share("colour.line.n4.first.dark blue")`) or blue-gray (`r share("colour.line.n4.first.blue-gray")`).
+What is commonest is the set of colors: blue and dark blue for two, blue-gray, dark blue and blue for three (`r share("colour.n3.set.blue+blue-gray+dark blue")`), with gray added for four (`r share("colour.n4.set.blue+blue-gray+dark blue+gray")`).
+`economist_pal()` returns those sets, in the order the bars and stacks use: blue, then dark blue; blue-gray, dark blue, blue; then gray, light blue and light green.
+`r cite("colour.line.n2.first.dark blue", k = 2)`; `r cite("colour.line.n2.first.blue", k = 2)`.
+
+```{r cg-lines-line-order, econ_size = "three_column", econ_height = 300}
+## The 2017 guide's shapes, one value per step.
+cgl_shape <- list(
+  A = c(
+    3.62, 3.59, 3.52, 3.51, 3.48, 3.46, 3.44, 3.4, 3.34, 3.34, 3.27, 3.15, 3.09, 3.07, 3.06, 2.97, 2.93, 2.89, 2.83,
+    2.8, 2.78, 2.73, 2.68, 2.68
+  ),
+  B = c(
+    2.61, 2.66, 2.67, 2.7, 2.66, 2.63, 2.65, 2.65, 2.72, 2.78, 2.81, 2.82, 2.8, 2.75, 2.66, 2.62, 2.48, 2.39, 2.32,
+    2.23, 2.13, 2.05, 1.98, 1.97
+  ),
+  C = c(
+    2.11, 2.11, 2.08, 1.97, 1.95, 1.96, 1.92, 1.84, 1.77, 1.68, 1.65, 1.62, 1.59, 1.49, 1.46, 1.41, 1.37, 1.35, 1.31,
+    1.28, 1.25, 1.25, 1.23, 1.23
+  ),
+  D = c(
+    0.22, 0.24, 0.42, 0.51, 0.61, 0.65, 0.73, 0.93, 1.07, 1.23, 1.63, 1.48, 1.5, 1.69, 1.77, 1.92, 1.89, 1.72, 1.66,
+    1.64, 1.62, 1.6, 1.57, 1.48
+  ),
+  E = c(
+    -0.18, -0.14, -0.1, -0.09, -0.1, -0.11, -0.1, -0.09, -0.06, -0.04, 0, 0.05, 0.09, 0.12, 0.16, 0.23, 0.27, 0.31,
+    0.38, 0.46, 0.51, 0.54, 0.56, 0.56
+  ),
+  F = c(
+    2.06, 1.98, 1.98, 1.97, 1.96, 1.98, 2.01, 2.01, 2.01, 2.04, 2.03, 2.02, 2.01, 2.01, 2.02, 2.03, 2.02, 1.96, 1.9,
+    1.86, 1.85, 1.85, 1.86, 1.85
+  )
+)
+## Which shape each series (in color order) takes in the 1- to 6-line panels.
+cgl_panels <- list(
+  c("B"),
+  c("A", "B"),
+  c("A", "B", "D"),
+  c("A", "C", "B", "D"),
+  c("A", "B", "F", "E", "D"),
+  c("A", "B", "F", "D", "C", "E")
+)
+## economist_pal() picks its colors by the number of series, so each panel takes its own n.
+cgl_order <- do.call(
+  rbind,
+  lapply(seq_along(cgl_panels), function(n) {
+    do.call(
+      rbind,
+      lapply(seq_along(cgl_panels[[n]]), function(k) {
+        data.frame(
+          panel = paste(n, if (n == 1) "line" else "lines"),
+          colour = economist_pal()(n)[k],
+          series = k,
+          x = 1:24,
+          y = cgl_shape[[cgl_panels[[n]][k]]]
+        )
+      })
+    )
+  })
+)
+cgl_order$panel <- factor(cgl_order$panel, levels = unique(cgl_order$panel))
+
+p <- ggplot(cgl_order, aes(x, y, colour = colour, group = series)) +
+  geom_line(linewidth = cgl_line * 1.4) +
+  facet_wrap(~panel, nrow = 2) +
+  scale_x_continuous(limits = c(-0.8, 25.6), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-0.76, 4.69), breaks = 0:4, expand = c(0, 0)) +
+  scale_colour_identity() +
+  labs(title = "Standard colour order", subtitle = "economist_pal(), one to six series", x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size * 1.4) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank())
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order) fixes one run of colors, so a series keeps its color when another is added, and the lines differ in hue; the classic palette picks a set for each count, so a line's color changes as lines are added, and the colors differ mostly in lightness.
+
+### High-contrast alternatives
+
+The classic charts had no separate high-contrast palette.
+For contrast they brought dark red, and then pink, in among the blues: blue and dark red is the second commonest pair (`r share("colour.n2.set.blue+dark red")`), and blue, dark blue, dark red and pink a four-series set (`r share("colour.n4.set.blue+dark blue+dark red+pink")`).
+This redraw gives the two Gulf states, where the share is rising, the dark red and pink, and the rest blues and grays; that assignment is ours.
+`r cite("colour.n2.set.blue+dark red")`.
+
+```{r cg-lines-exodus, econ_height = 185}
+cgl_dates <- c(172, 406, 522.5, 584)
+cgl_countries <- c("Egypt", "Syria", "Palestine", "Israel", "Iraq", "U.A.E", "Saudi Arabia")
+cgl_mideast <- data.frame(
+  date = rep(cgl_dates, 7),
+  country = factor(rep(cgl_countries, each = 4), levels = cgl_countries),
+  pct = c(
+    18.7, 15.9, 10.2, 8.6, 15.6, 9.7, 5.2, 2.6, 11.6, 4.7, 1.9, 1.1, 8.1, 2.8, 2.5, 1.8, 6.3, 3.7, 1.4, 0.7, 0.1,
+    5.9, 12.7, 12.7, 0, 0.4, 4.4, 4.5
+  )
+)
+cgl_mideast_cols <- unname(fg[c("dark blue", "blue", "light blue", "blue-gray", "gray", "dark red", "pink")])
+
+p <- ggplot(cgl_mideast, aes(date, pct, colour = country)) +
+  geom_line(linewidth = cgl_line) +
+  scale_y_continuous(position = "right", limits = c(0, 20), expand = c(0, 0)) +
+  ## The positions follow the chart, not the years; the last year is a forecast.
+  scale_x_continuous(
+    limits = c(160, 596),
+    expand = c(0, 0),
+    breaks = cgl_dates,
+    labels = function(x) paste0(classic_years(c(1910, 1970, 2010, 2025)), c("", "", "", "*"))
+  ) +
+  scale_colour_manual(values = cgl_mideast_cols) +
+  guides(colour = guide_legend(ncol = 3)) +
+  labs(
+    title = "Exodus",
+    subtitle = "Christians, as % of population",
+    caption = paste0(
+      "*Forecast\nSource: \u201cOngoing Exodus: Tracking the Emigration\n",
+      "of Christians from the Middle East\u201d by T. Johnson\nand G. Zurlo, 2015"
+    ),
+    x = "Available years",
+    y = NULL,
+    colour = NULL
+  ) +
+  cgl_theme +
+  classic_x_title()
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#high-contrast-alternatives) draws seven distinct hues from its bright set and stacks its key at the left of the panel; the classic chart contrasts a red pair against blues and grays, with the key under the subtitle.
+
+### Step lines
+
+Step lines are few: seven panels in the sample read chart by chart, where they are counted with the line charts, and twelve once the charts gathered later are added.
+Seven of the twelve are interest rates set by central banks, which hold still between decisions and then jump.
+They are drawn as the other line charts are: square corners, risers as thick as the treads, the same blues and weights, the value axis on the right, and the series named beside the lines or by a legend of short thick strokes under the subtitle.
+A step line can share a panel with an ordinary one: in *From noise to signal* a blue step for China's benchmark lending rate runs over a dark blue daily repo rate, named by a label whose leader line ends in a small dot.
+The other five step through annual or survey data: growth in GDP per person, foreign holdings of government bonds, favourable opinion of Hillary Clinton, and two medical series, a survival curve and a cumulative count (`r cite_codes(c("20150606_STC514", "20150725_STC182"))`, the second in dark blue, blue and dark red).
+The policy-rate charts cited here are `r cite_codes(c("20140823_FNC565", "20151031_FNC318", "20140329_FNC628"))`.
+
+The 2017 guide has no step chart, so this redraws the first of those, *No more yo-yo*.
+
+```{r cg-lines-yo-yo, econ_height = 160}
+## Each bank's rate after every change, from the banks' published histories: the Fed funds target, Bank Rate, the
+## ECB's main refinancing rate (its minimum bid rate from June 2000) and the Bank of Japan's call-rate target, set to
+## zero while it targeted reserves, 2001-06. The Fed's 0-0.25% range is drawn at 0.25 and the Bank of Japan's 0-0.1% at
+## 0.1, where the chart draws them; its line stops in April 2013, as the footnote says.
+cgl_rate_changes <- list(
+  `US Federal Reserve` = c(
+    `2000-01-01` = 5.5, `2000-02-02` = 5.75, `2000-03-21` = 6, `2000-05-16` = 6.5, `2001-01-03` = 6,
+    `2001-01-31` = 5.5, `2001-03-20` = 5, `2001-04-18` = 4.5, `2001-05-15` = 4, `2001-06-27` = 3.75,
+    `2001-08-21` = 3.5, `2001-09-17` = 3, `2001-10-02` = 2.5, `2001-11-06` = 2, `2001-12-11` = 1.75,
+    `2002-11-06` = 1.25, `2003-06-25` = 1, `2004-06-30` = 1.25, `2004-08-10` = 1.5, `2004-09-21` = 1.75,
+    `2004-11-10` = 2, `2004-12-14` = 2.25, `2005-02-02` = 2.5, `2005-03-22` = 2.75, `2005-05-03` = 3,
+    `2005-06-30` = 3.25, `2005-08-09` = 3.5, `2005-09-20` = 3.75, `2005-11-01` = 4, `2005-12-13` = 4.25,
+    `2006-01-31` = 4.5, `2006-03-28` = 4.75, `2006-05-10` = 5, `2006-06-29` = 5.25, `2007-09-18` = 4.75,
+    `2007-10-31` = 4.5, `2007-12-11` = 4.25, `2008-01-22` = 3.5, `2008-01-30` = 3, `2008-03-18` = 2.25,
+    `2008-04-30` = 2, `2008-10-08` = 1.5, `2008-10-29` = 1, `2008-12-16` = 0.25, `2014-08-01` = 0.25
+  ),
+  `Bank of England` = c(
+    `2000-01-01` = 5.5, `2000-01-13` = 5.75, `2000-02-10` = 6, `2001-02-08` = 5.75, `2001-04-05` = 5.5,
+    `2001-05-10` = 5.25, `2001-08-02` = 5, `2001-09-18` = 4.75, `2001-10-04` = 4.5, `2001-11-08` = 4,
+    `2003-02-06` = 3.75, `2003-07-10` = 3.5, `2003-11-06` = 3.75, `2004-02-05` = 4, `2004-05-06` = 4.25,
+    `2004-06-10` = 4.5, `2004-08-05` = 4.75, `2005-08-04` = 4.5, `2006-08-03` = 4.75, `2006-11-09` = 5,
+    `2007-01-11` = 5.25, `2007-05-10` = 5.5, `2007-07-05` = 5.75, `2007-12-06` = 5.5, `2008-02-07` = 5.25,
+    `2008-04-10` = 5, `2008-10-08` = 4.5, `2008-11-06` = 3, `2008-12-04` = 2, `2009-01-08` = 1.5,
+    `2009-02-05` = 1, `2009-03-05` = 0.5, `2014-08-01` = 0.5
+  ),
+  `European Central Bank` = c(
+    `2000-01-01` = 3, `2000-02-04` = 3.25, `2000-03-17` = 3.5, `2000-04-28` = 3.75, `2000-06-09` = 4.25,
+    `2000-09-06` = 4.5, `2000-10-11` = 4.75, `2001-05-11` = 4.5, `2001-08-31` = 4.25, `2001-09-18` = 3.75,
+    `2001-11-09` = 3.25, `2002-12-06` = 2.75, `2003-03-07` = 2.5, `2003-06-06` = 2, `2005-12-06` = 2.25,
+    `2006-03-08` = 2.5, `2006-06-15` = 2.75, `2006-08-09` = 3, `2006-10-11` = 3.25, `2006-12-13` = 3.5,
+    `2007-03-14` = 3.75, `2007-06-13` = 4, `2008-07-09` = 4.25, `2008-10-15` = 3.75, `2008-11-12` = 3.25,
+    `2008-12-10` = 2.5, `2009-01-21` = 2, `2009-03-11` = 1.5, `2009-04-08` = 1.25, `2009-05-13` = 1,
+    `2011-04-13` = 1.25, `2011-07-13` = 1.5, `2011-11-09` = 1.25, `2011-12-14` = 1, `2012-07-11` = 0.75,
+    `2013-05-08` = 0.5, `2013-11-13` = 0.25, `2014-06-11` = 0.15, `2014-08-01` = 0.15
+  ),
+  `Bank of Japan` = c(
+    `2000-01-01` = 0, `2000-08-11` = 0.25, `2001-02-28` = 0.15, `2001-03-19` = 0, `2006-07-14` = 0.25,
+    `2007-02-21` = 0.5, `2008-10-31` = 0.3, `2008-12-19` = 0.1, `2013-04-04` = 0.1
+  )
+)
+## Dates as fractions of a year; the Bank of Japan is drawn first, under the others.
+cgl_year_frac <- function(d) {
+  d <- as.Date(d)
+  as.numeric(format(d, "%Y")) + (as.numeric(format(d, "%j")) - 1) / 365.25
+}
+cgl_policy <- do.call(
+  rbind,
+  lapply(rev(names(cgl_rate_changes)), function(bank) {
+    data.frame(
+      bank = factor(bank, levels = names(cgl_rate_changes)),
+      year = cgl_year_frac(names(cgl_rate_changes[[bank]])),
+      rate = unname(cgl_rate_changes[[bank]])
+    )
+  })
+)
+cgl_policy_cols <- unname(fg[c("dark blue", "blue", "light blue", "blue-gray")])
+
+p <- ggplot(cgl_policy, aes(year, rate, colour = bank)) +
+  geom_step(linewidth = cgl_line, show.legend = FALSE) +
+  annotate(
+    "text",
+    x = c(2001.1, 2008.15, 2010.4, 2000.5),
+    y = c(6.65, 5.95, 2.6, 0.75),
+    label = c("US Federal Reserve", "Bank of England", "European\nCentral\nBank", "Bank of Japan*"),
+    lineheight = 0.9,
+    size = cgl_text,
+    hjust = 0
+  ) +
+  scale_y_continuous(position = "right", limits = c(0, 7), breaks = 0:7, expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1999.7, 2014.7),
+    expand = c(0, 0),
+    breaks = seq(2000, 2014, 2),
+    labels = classic_years
+  ) +
+  scale_colour_manual(values = cgl_policy_cols) +
+  labs(title = "No more yo-yo", subtitle = "Policy interest rates, %", x = NULL, y = NULL) +
+  cgl_theme +
+  classic_footnote("*Japan changed to a\nmonetary-base target\nin April 2013", "Source: Haver Analytics")
+economist_chart(p, number = 1)
+```
+
+Against 2017: the 2017 guide has no step chart, so there is no version to set beside this one.
+
+## Lines, stacked
+
+Stacked areas are uncommon: `r share("type.lines_stacked_area")`.
+They follow the line charts: value axis on the right (`r share("lines_stacked_area.value_axis_side.right")`), truncated years (`r share("lines_stacked_area.truncated_years")`).
+This redraw stacks the bands from the baseline up in `economist_pal()` order.
+In the cited charts the bands are parted by thin white rules, a thin black line runs along the top of the stack, and the gridlines run behind the bands.
+Bands are named inside themselves or beside the stack (`r share("lines_stacked_area.series_key.labels_next_to_data")`), or by a legend under the subtitle (`r share("lines_stacked_area.series_key.legend")`).
+`r claim("lines_stacked_area.grey_other")$n` of the `r claim("lines_stacked_area.grey_other")$of` stacked-area panels have a gray "other" band.
+
+### Two bands
+
+With two bands, the bottom one is dark blue in `r claim("colour.area.n2.first.dark blue")$n` of the `r claim("colour.area.n2.first.dark blue")$of` two-band panels.
+In the cited charts the names go inside the bands, in white, where they fit.
+`r cite("lines_stacked_area.series_key.labels_next_to_data")`.
+
+```{r cg-lines-foreign-hoards, econ_height = 154}
+cgl_regions <- c("China", "Other developing countries")
+cgl_reserves <- data.frame(
+  year = rep(2002:2011, 2),
+  trn = c(
+    0.26, 0.36, 0.56, 0.77, 1.02, 1.49, 1.91, 2.3, 2.64, 2.96, 0.77, 0.98, 1.23, 1.51, 2.03, 2.86, 3.02, 3.19, 3.54,
+    3.77
+  ),
+  region = factor(rep(cgl_regions, each = 10), levels = cgl_regions)
+)
+
+p <- ggplot(cgl_reserves, aes(year, trn, fill = region)) +
+  geom_area(position = position_stack(reverse = TRUE), colour = "white", linewidth = 0.2, outline.type = "upper") +
+  classic_stack_top("year", "trn") +
+  annotate("text", x = 2009.6, y = 1.1, label = "China", colour = "white", size = cgl_text, fontface = "bold") +
+  annotate(
+    "text",
+    x = 2009,
+    y = 4.1,
+    label = "Other\ndeveloping\ncountries",
+    colour = "white",
+    size = cgl_text,
+    fontface = "bold",
+    lineheight = 0.95
+  ) +
+  scale_y_continuous(position = "right", limits = c(0, 7), breaks = seq(0, 7, 1), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(2002, 2011),
+    expand = c(0, 0),
+    breaks = 2002:2011,
+    labels = c("2002", "03", "04", "05", "06", "07", "08", "09", "10*", "11*")
+  ) +
+  scale_fill_manual(values = unname(fg[c("dark blue", "blue")]), guide = "none") +
+  labs(
+    title = "Foreign hoards",
+    subtitle = "Developing-country currency reserves\n$trn",
+    caption = "*Forecast\nSource: IMF",
+    x = NULL,
+    y = NULL
+  ) +
+  cgl_theme
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-stacked) stacks a blue under a cyan and leaves the top of the stack unmarked; the classic stack has dark blue under blue, the black line over the total, and a tick and label for every year.
+
+### Six bands, with a legend
+
+Where the bands are too thin to name inside, the key is a legend under the subtitle.
+In `r cite_codes("20130209_USC043")` the legend runs in rows, left to right, from the top band of the stack down, and the bottom band, the largest, is named inside itself instead.
+This chart follows it: the five upper bands are in the legend and the Netherlands is named in its band.
+More examples: `r cite("lines_stacked_area.legend.under_subtitle")`.
+
+```{r cg-lines-big-shift, econ_height = 178}
+cgl_shift_bands <- list(
+  Netherlands = c(
+    4.3, 5.2, 3.8, 5.2, 7.3, 7.3, 5.5, 5.7, 6.9, 6.8, 5.9, 4, 8, 8.3, 10.1, 11, 11, 11.7, 9.9, 9.8, 9.2, 9.9, 12.9,
+    12.4, 11.7, 12.6, 12.2, 16.4, 15.7, 17, 16.3, 16.4
+  ),
+  `Bermuda & other\nCaribbean` = c(
+    7.2, 1.9, 0.3, 1.1, 1.9, 1.1, 3.9, 5.1, 5.3, 6.2, 8.1, 6.5, 7.7, 6.2, 5.8, 6.7, 7.6, 8.3, 8.1, 10.5, 8.4, 8.3,
+    9.5, 10, 9.3, 11.8, 12.8, 14.8, 13.4, 13, 12.5, 13
+  ),
+  Luxembourg = c(
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1.8, 1.6, 1.6, 1.4, 1.9, 3, 2.1, 4.6, 6, 5.8, 4, 4.4,
+    5.6, 5.6, 5.3, 6, 7.6, 5.4, 6.5, 7.9
+  ),
+  Ireland = c(
+    2.2, 2.2, 2.6, 2.5, 2.5, 2.5, 2.2, 2.3, 2.5, 3, 3.6, 3.2, 2.3, 2.3, 2.1, 2.3, 4.9, 3.7, 4.4, 4.7, 5.1, 5.4, 6.2,
+    6.3, 6, 6.2, 7.6, 7.4, 6.3, 7, 8.8, 7.9
+  ),
+  Singapore = c(
+    1.9, 1.9, 1.8, 1.4, 1.6, 1.9, 1.6, 1.4, 1.9, 2.3, 3.2, 3.3, 3.2, 3, 3, 3.3, 1.9, 2.3, 3, 3, 3.5, 3.5, 3.7, 5.8,
+    5.1, 5.4, 4.4, 3, 4, 4.9, 4.9, 5.1
+  ),
+  Switzerland = c(
+    6, 5.4, 5.4, 5.3, 5.6, 6.9, 5.4, 7.2, 7.7, 6.3, 5.6, 7.4, 6.9, 4.9, 4.9, 4.9, 7, 6, 4, 6.3, 8.8, 7.9, 6.7, 5.8,
+    4.7, 4.4, 5.3, 5.3, 4.6, 4.4, 4.6, 4.9
+  )
+)
+cgl_shift <- do.call(
+  rbind,
+  lapply(names(cgl_shift_bands), function(haven) {
+    data.frame(
+      year = 1982:2013,
+      haven = factor(haven, levels = names(cgl_shift_bands)),
+      pct = cgl_shift_bands[[haven]]
+    )
+  })
+)
+
+p <- ggplot(cgl_shift, aes(year, pct, fill = haven)) +
+  geom_area(position = position_stack(reverse = TRUE), colour = "white", linewidth = 0.2, outline.type = "upper") +
+  classic_stack_top("year", "pct") +
+  scale_y_continuous(position = "right", limits = c(0, 60), breaks = seq(0, 60, 10), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1982, 2013),
+    expand = c(0, 0),
+    breaks = c(1982, 1990, 2000, 2010, 2013),
+    minor_breaks = seq(1985, 2010, 5),
+    labels = c("1982", "90", "2000", "10", "13"),
+    guide = cgl_year_axis
+  ) +
+  annotate("text", x = 2008, y = 7, label = "Netherlands", colour = "white", size = cgl_text, fontface = "bold") +
+  ## The legend reads from the top of the stack down; the bottom band is named inside itself.
+  scale_fill_economist(breaks = rev(names(cgl_shift_bands))[-6]) +
+  guides(fill = guide_legend(ncol = 2, byrow = TRUE)) +
+  labs(
+    title = "The big shift",
+    subtitle = "Tax havens\u2019 share of US overseas\ncorporate profits, %",
+    caption = "Source: \u201cThe Hidden Wealth of Nations\u201d, by\nGabriel Zucman, University of Chicago Press, 2015",
+    x = NULL,
+    y = NULL,
+    fill = NULL
+  ) +
+  cgl_theme +
+  cgl_year_ticks +
+  theme(legend.key.width = unit(classic_size, "pt"))
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-stacked) runs its key down into the panel, beside the stack, in six hues; the classic legend sits above the panel, in the order of the stack from the top, and the six bands take the palette's blue-gray, dark blue, light blue, blue, gray and light green.
+
+### Color overrides
+
+The 2017 guide adds an alternative order for chronological categories.
+No such alternative turned up in the classic sample, and its stack orders are not settled: the commonest three-band order, blue-gray, dark blue and blue from the baseline, is in only `r claim("colour.n3.stack.blue-gray>dark blue>blue")$n` of `r claim("colour.n3.stack.blue-gray>dark blue>blue")$of` three-band stacks.
+This chart is drawn in the standard palette, keyed by a legend.
+`r cite("lines_stacked_area.series_key.legend")`.
+
+```{r cg-lines-in-limbo, econ_height = 185}
+cgl_tenure_bands <- list(
+  `Private rental` = c(
+    6.4, 4.8, 7.3, 5.8, 8.6, 9.2, 8.9, 10.2, 9.8, 10.2, 11.4, 8.3, 6.1, 6.1, 7, 9.2, 13, 17.7
+  ),
+  `Private leased by LA/HA*` = c(
+    12.5, 15.9, 16.9, 21.9, 20.6, 27.5, 40.9, 46.6, 49.7, 47.2, 40.9, 38.1, 31.6, 27.5, 25.9, 26.2, 25.3, 23.4
+  ),
+  `LA/HA*` = c(
+    14.1, 18.4, 21.2, 25.3, 27.2, 27.8, 27.8, 26.9, 23.1, 18.1, 15.3, 10.9, 8.1, 7.2, 8.1, 9.1, 9.7, 10.3
+  ),
+  Hostel = c(
+    9.7, 10, 10, 10.6, 10, 10, 10.6, 10.3, 9.1, 7.8, 6.6, 5.3, 4.1, 4.4, 4.4, 4.4, 4.7, 5
+  ),
+  `Bed & breakfast` = c(
+    5.3, 7.2, 9.1, 11.2, 12.8, 13.4, 8.1, 6.9, 5.6, 4.7, 4.4, 3.1, 2.5, 2.8, 3.8, 4.1, 4.4, 5
+  )
+)
+cgl_limbo <- do.call(
+  rbind,
+  lapply(names(cgl_tenure_bands), function(tenure) {
+    data.frame(
+      year = 1998:2015,
+      tenure = factor(tenure, levels = names(cgl_tenure_bands)),
+      n = cgl_tenure_bands[[tenure]]
+    )
+  })
+)
+
+p <- ggplot(cgl_limbo, aes(year, n, fill = tenure)) +
+  geom_area(position = position_stack(reverse = TRUE), colour = "white", linewidth = 0.2, outline.type = "upper") +
+  classic_stack_top("year", "n") +
+  scale_y_continuous(position = "right", limits = c(0, 105), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1998, 2015),
+    expand = c(0, 0),
+    breaks = seq(1998, 2014, 4),
+    minor_breaks = 1998:2015,
+    labels = classic_years,
+    guide = cgl_year_axis
+  ) +
+  scale_fill_economist() +
+  guides(fill = guide_legend(ncol = 1)) +
+  labs(
+    title = "In limbo",
+    subtitle = "Households in temporary homes\nEngland, \u2019000",
+    caption = "*Local authorities and housing associations\nSource: DCLG",
+    x = NULL,
+    y = NULL,
+    fill = NULL
+  ) +
+  cgl_theme +
+  theme(legend.key.width = unit(classic_size, "pt"))
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#color-overrides-2) switches to its alternative blue-cyan-teal-mauve-maroon run; the classic chart has only its standard set.
+
+### Five bands, named in place
+
+A wide two-column stack names its bands inside them, in white on the dark bands and black on the light ones; the top band is too thin, so its name sits just above the stack.
+Footnote symbols run \*, †, ‡ and are explained above the source.
+`r cite("lines_stacked_area.series_key.labels_next_to_data", k = 2)`.
+
+```{r cg-lines-emerging-middle, econ_size = "two_column", econ_height = 234}
+cgl_classes <- c("Extremely poor", "Moderately poor", "Near poor", "Developing middle class", "Developed middle class")
+cgl_emerging <- data.frame(
+  year = rep(1991:2016, 5),
+  class = factor(rep(cgl_classes, each = 26), levels = cgl_classes),
+  bn = c(
+    0.88, 0.88, 0.87, 0.79, 0.7, 0.72, 0.73, 0.74, 0.72, 0.71, 0.7, 0.67, 0.61, 0.57, 0.52, 0.51, 0.48, 0.47, 0.45,
+    0.43, 0.38, 0.35, 0.34, 0.33, 0.32, 0.31, 0.35, 0.37, 0.39, 0.44, 0.48, 0.5, 0.5, 0.49, 0.51, 0.52, 0.53, 0.53,
+    0.54, 0.53, 0.53, 0.53, 0.52, 0.5, 0.5, 0.48, 0.47, 0.46, 0.45, 0.44, 0.43, 0.43, 0.2, 0.22, 0.24, 0.28, 0.32,
+    0.32, 0.33, 0.34, 0.36, 0.37, 0.39, 0.41, 0.44, 0.47, 0.49, 0.5, 0.5, 0.5, 0.5, 0.5, 0.52, 0.53, 0.53, 0.53,
+    0.53, 0.53, 0.27, 0.28, 0.29, 0.3, 0.33, 0.33, 0.35, 0.36, 0.39, 0.41, 0.44, 0.47, 0.52, 0.57, 0.61, 0.65, 0.7,
+    0.73, 0.77, 0.81, 0.87, 0.9, 0.94, 0.97, 1, 1.01, 0.14, 0.13, 0.13, 0.13, 0.14, 0.14, 0.14, 0.14, 0.14, 0.15,
+    0.15, 0.16, 0.17, 0.2, 0.21, 0.23, 0.26, 0.28, 0.29, 0.31, 0.33, 0.37, 0.39, 0.42, 0.44, 0.47
+  )
+)
+## economist_pal(5) from the baseline up: blue-gray, dark blue, light blue, blue, gray. White type on the three
+## darker bands, black on light blue; the thin gray band is named just above the stack, in black.
+cgl_band_ink <- c("white", "white", "black", "white", "black")
+cgl_band_labels <- data.frame(
+  year = c(1992, 1997.7, 2003.4, 2007.2, 1991.5),
+  bn = c(0.4, 1.0, 1.38, 1.85, 2.4),
+  label = c(
+    "Extremely poor\nless than $1.90",
+    "Moderately poor\n$1.90 to $3.10",
+    "Near poor\n$3.11 to $5",
+    "Developing middle class\n$5.01 to $13",
+    "Developed middle class and above, over $13"
+  ),
+  hjust = c(0, 0, 0, 0, 0),
+  ink = cgl_band_ink
+)
+
+p <- ggplot(cgl_emerging, aes(year, bn, fill = class)) +
+  geom_area(position = position_stack(reverse = TRUE), colour = "white", linewidth = 0.2, outline.type = "upper") +
+  classic_stack_top("year", "bn") +
+  geom_text(
+    data = cgl_band_labels,
+    aes(year, bn, label = label, hjust = hjust, colour = ink),
+    inherit.aes = FALSE,
+    size = cgl_text,
+    lineheight = 0.95
+  ) +
+  scale_colour_identity() +
+  scale_y_continuous(
+    position = "right",
+    limits = c(0, 3),
+    breaks = seq(0, 3, 0.5),
+    labels = c("0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0"),
+    expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(1991, 2016),
+    expand = c(0, 0),
+    breaks = c(1991, 1995, 2000, 2005, 2010, 2016),
+    minor_breaks = 1991:2016,
+    labels = c("1991", "95", "2000", "05", "10", "16‡"),
+    guide = cgl_year_axis
+  ) +
+  scale_fill_economist(guide = "none") +
+  labs(
+    title = "Emerging middle class",
+    subtitle = "Working population by economic class, emerging and developing countries*\n2011$ at PPP†, bn",
+    caption = paste0(
+      "*Excluding most Western developed countries  †Purchasing-power parity  ‡Estimate\n",
+      "Source: ILO"
+    ),
+    x = NULL,
+    y = NULL
+  ) +
+  theme_economist(base_size = classic_size) +
+  cgl_year_ticks
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#color-overrides-2) draws the five classes in its alternative order and sets the names in bold with the ranges under them; the classic chart uses the standard set from the baseline up, so the dark bands alternate with light ones, and sets names and ranges in plain type.
+
+## Thermometer
+
+Thermometers are rare in the classic sample: `r claim("type.thermometer")$n` panels, and `r claim("type.thermometer.examples")$n` in all once the examples outside it are counted, too few for shares.
+The checked examples agree on a form: each category is a hollow track, white inside a thin dark outline, running the full width of the scale, with a dot for each series; the value axis is on top, with white vertical gridlines and a black rule at zero; the category names are ranged left; and a legend of dots sits under the subtitle.
+Dots are drawn with a dark outline, and the checked examples carry two or three series.
+The figures here use the classic dot looks of the article's helpers in their order; the colors of the cited charts vary.
+`r cite("type.thermometer.examples", k = 4)`.
+
+```{r cg-lines-thermometer-data}
+cgl_fields <- c(
+  "Mathematics",
+  "Economics",
+  "Computer Science",
+  "Business",
+  "Biology",
+  "Philosophy",
+  "English",
+  "Psychology",
+  "History",
+  "Communication"
+)
+cgl_series <- c("one", "two", "three", "four", "five", "six")
+cgl_thermo_values <- list(
+  `2` = list(
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33),
+    c(416, 398, 382, 316, 308, 275, 290, 239, 283, 251)
+  ),
+  `3` = list(
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33),
+    c(418, 398, 382, 316, 308, 275, 290, 239, 283, 251),
+    c(395, 316, 292, 266, 257, 215, 201, 199, 197, 187)
+  ),
+  `4` = list(
+    c(280, 249, 117, 191, 84, 148, 80, 60, 134, 121),
+    c(402, 316, 292, 266, 257, 214, 201, 199, 197, 187),
+    c(339, 397, 381, 315, 307, 275, 290, 239, 283, 250),
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33)
+  ),
+  dot = list(
+    c(31, 41, 72, 37, 39, 43, 35, 15, 21, 34),
+    c(419, 398, 382, 280, 308, 276, 290, 239, 284, 251),
+    c(396, 317, 364, 263, 257, 215, 201, 222, 197, 187)
+  )
+)
+cgl_thermo_data <- function(key) {
+  values <- cgl_thermo_values[[key]]
+  do.call(
+    rbind,
+    lapply(seq_along(values), function(k) {
+      data.frame(
+        field = factor(cgl_fields, levels = rev(cgl_fields)),
+        series = factor(cgl_series[k], levels = cgl_series),
+        value = values[[k]]
+      )
+    })
+  )
+}
+
+## The classic thermometer: a hollow track the width of the scale under each category, one outlined dot per series.
+cgl_thermo <- function(key) {
+  d <- cgl_thermo_data(key)
+  n <- nlevels(droplevels(d$series))
+  track <- data.frame(field = factor(cgl_fields, levels = rev(cgl_fields)), x = 0, xend = 450)
+  ggplot(d, aes(value, field)) +
+    classic_tube(track, aes(x = x, xend = xend, y = field, yend = field), outer = 2.4, inner = 1.4) +
+    geom_vline(xintercept = 0, linewidth = lw(0.4)) +
+    classic_dot(aes(fill = series, colour = series)) +
+    classic_dot_scales(n) +
+    scale_x_continuous(position = "top", limits = c(0, 465), breaks = seq(0, 400, 100), expand = c(0, 0)) +
+    labs(
+      title = "The horrible science",
+      subtitle = paste0(
+        "Use of specific \u201cadjective\u201d per million\n",
+        "words in student reviews on\nRateMyProfessors.com*"
+      ),
+      caption = "Source: Ben Schmidt, Northeastern University",
+      x = NULL,
+      y = NULL,
+      fill = NULL,
+      colour = NULL
+    ) +
+    theme_economist(base_size = classic_size, horizontal = FALSE) +
+    classic_no_ticks() +
+    classic_no_axis_line() +
+    theme(legend.key.width = unit(classic_size, "pt"))
+}
+```
+
+### Two series
+
+Two series take the first two classic dot looks: white with a dark red outline, and light blue with a dark blue outline.
+The first cited chart, `r cite("type.thermometer.examples", k = 1)`, pairs light blue with a dark blue outline and coral with a dark red one.
+
+```{r cg-lines-thermometer-2, econ_height = 185}
+economist_chart(cgl_thermo("2"))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order-1) marks each value with a short colored rule and joins them with a gray line from zero; the classic thermometer puts outlined dots on a track that runs the whole scale, whatever the values.
+
+### Three series
+
+A third series is white with a dark blue outline.
+
+```{r cg-lines-thermometer-3, econ_height = 185}
+economist_chart(cgl_thermo("3"))
+```
+
+Against 2017: as with two series, the [2017 version](economist-2017-styleguide.html#standard-color-order-1) uses rules and a connecting line; here three dot looks share each track.
+
+### Four series
+
+A fourth look, pink with a dark red outline, picks out a highlighted series.
+No checked example has four series of equal emphasis, so this chart uses it as a fourth color, as `classic_dot_scales(4)` does.
+
+```{r cg-lines-thermometer-4, econ_height = 185}
+economist_chart(cgl_thermo("4"))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order-1) gives four rules four hues; the classic dots pair two fills with two outlines, so the series are told apart by fill and outline together.
+
+### Six series
+
+No classic thermometer in the examples shows more than three series, and the classic dots come in four looks only, so the six-series example has no classic counterpart and no figure.
+The [2017 version](economist-2017-styleguide.html#standard-color-order-1) itself warns that more than four is "probably too many".
+
+### Dot terminals
+
+Dots are the classic default, not an alternative.
+The one classic example with rules for terminals is a column chart run upright, `r cite_codes("20150124_FBC772")`: short thick rules in coral and dark blue, joined by a light blue bar.
+This redraws the 2017 dot example in that form, turned on its side to fit ten categories, with blue added for the third series.
+
+```{r cg-lines-thermometer-dots, econ_height = 185}
+cgl_thermo_dot <- cgl_thermo_data("dot")
+cgl_thermo_span <- do.call(
+  rbind,
+  lapply(split(cgl_thermo_dot, cgl_thermo_dot$field), function(d) {
+    data.frame(field = d$field[1], lo = min(d$value), hi = max(d$value))
+  })
+)
+## The terminals are rules across the bar, drawn as narrow tiles.
+p <- ggplot(cgl_thermo_dot, aes(value, field)) +
+  geom_segment(
+    data = cgl_thermo_span,
+    aes(x = lo, xend = hi, y = field, yend = field),
+    inherit.aes = FALSE,
+    colour = fg[["light blue"]],
+    linewidth = lw(2.4)
+  ) +
+  geom_vline(xintercept = 0, linewidth = lw(0.4)) +
+  geom_tile(aes(fill = series), width = 6, height = 0.6) +
+  scale_fill_manual(values = unname(c(fg[["dark blue"]], fg[["blue"]], fg[["coral"]]))) +
+  scale_x_continuous(position = "top", limits = c(0, 465), breaks = seq(0, 400, 100), expand = c(0, 0)) +
+  labs(
+    title = "The horrible science",
+    subtitle = paste0(
+      "Use of specific \u201cadjective\u201d per million\n",
+      "words in student reviews on\nRateMyProfessors.com*"
+    ),
+    caption = "Source: Ben Schmidt, Northeastern University",
+    x = NULL,
+    y = NULL,
+    fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line() +
+  theme(legend.key.width = unit(classic_size * 1.6, "pt"), legend.key.height = unit(classic_size * 0.5, "pt"))
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#dot-terminals) offers small solid dots as the alternative to its rules; in the classic charts the dot is the rule, and the one chart with rule terminals joins them with a thick light blue bar rather than a thin gray line.
+
+## Scatter plot
+
+Scatter plots are rare too (`r share("type.scatter")`), so their shares rest on few panels.
+The value axis is on the left (`r share("scatter.value_axis_side.left")`) or on the right (`r share("scatter.value_axis_side.right")`); the rest have no value axis.
+The value axis has a title (`r share("scatter.value_axis_title")`); in the cited charts the axis titles are italic.
+Gridlines are horizontal only (`r share("scatter.gridlines.horizontal")`).
+Labels for named points often have leader lines (`r share("scatter.leader_lines")`).
+`r cite("type.scatter", k = 4)`.
+
+### Chart elements
+
+The classic charts had no published specification for dots; these are the ones measured on the charts and kept in the article's helpers.
+A dot is a filled circle with a dark outline; categories pair a lighter fill with a darker outline of the same hue; a highlighted point is pink with a dark red outline, or light blue among white dots; dense clouds of many points drop the outline; trend lines are solid and thick, in the color of their series or dark red.
+
+```{r cg-lines-scatter-elements, econ_height = 150}
+cgl_looks <- classic_scatter_looks()
+cgl_spec <- data.frame(
+  x = c(1, 2, 3, 1, 2, 3, 4, 1, 2, 1, 2),
+  y = c(5, 5, 5, 4, 4, 4, 4, 3, 3, 2, 2),
+  fill = c(
+    "white",
+    "white",
+    fg[["light blue"]],
+    cgl_looks$fill,
+    fg[["pink"]],
+    fg[["light blue"]],
+    fg[["pink"]],
+    fg[["blue"]]
+  ),
+  outline = c(
+    fg[["dark blue"]],
+    fg[["dark blue"]],
+    fg[["dark blue"]],
+    cgl_looks$outline,
+    fg[["dark red"]],
+    fg[["dark blue"]],
+    NA,
+    NA
+  )
+)
+cgl_spec_notes <- data.frame(
+  y = 5:1,
+  label = c(
+    "Dot, highlighted in light blue",
+    "Category dots",
+    "Highlight dots",
+    "Dense clouds: no outline",
+    "Trend line"
+  )
+)
+p <- ggplot(cgl_spec, aes(x, y)) +
+  geom_point(
+    aes(fill = fill),
+    data = cgl_spec[!is.na(cgl_spec$outline), ],
+    colour = cgl_spec$outline[!is.na(cgl_spec$outline)],
+    shape = 21,
+    size = classic_dot_size * 1.4,
+    stroke = 0.5
+  ) +
+  geom_point(aes(colour = fill), data = cgl_spec[is.na(cgl_spec$outline), ], size = classic_dot_size * 1.2) +
+  annotate("segment", x = 0.8, xend = 4.2, y = 1, yend = 1, colour = fg[["dark red"]], linewidth = lw(1.6)) +
+  geom_text(data = cgl_spec_notes, aes(x = 4.7, y = y, label = label), hjust = 0, size = cgl_text) +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(limits = c(0.6, 12), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0.5, 5.5), expand = c(0, 0)) +
+  labs(title = "Chart elements", subtitle = "Classic dots and trend lines", x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size) +
+  theme(
+    axis.text = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  )
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#chart-elements) specifies translucent dots, 50% opacity, and dashed trend lines; the classic dots are opaque and outlined, and the trend lines solid.
+
+### Standard scatter
+
+A two-group scatter with many points, as in `r cite("scatter.series_key.legend", k = 1)`: solid dots without outlines, one solid trend line per group in its own color, a red rule at zero, and the +/- axis on the right; the +/- axis is on both scatters with negatives in the sample (`r claim("scatter.negative_labels.plus_minus_at_zero")$n` panels).
+The groups are keyed by a legend of dots under the subtitle, after a bold lead-in.
+
+```{r cg-lines-divergent, econ_height = 195}
+set.seed(2017)
+## The 2017 guide's simulated clouds, drawn in the same order so the points match.
+cgl_metro_old <- data.frame(employment = rnorm(240, 1.6, 1.1))
+cgl_metro_old$house_prices <- 1.3 + 2.2 * cgl_metro_old$employment + rnorm(240, 0, 1.8)
+cgl_metro_old <- rbind(
+  cgl_metro_old,
+  data.frame(
+    employment = c(4.4, 4.8, 5.1, 5.9, 8.2),
+    house_prices = c(2.8, 8.2, 7.9, 7.6, 6.6)
+  )
+)
+cgl_metro_new <- data.frame(employment = rnorm(210, 2.1, 1.6))
+cgl_metro_new$house_prices <- 3.5 + 0.67 * cgl_metro_new$employment + rnorm(210, 0, 3.9)
+cgl_spans <- c("Q1 1990 - Q1 2007", "Q1 2012 - Q1 2016")
+cgl_metro <- rbind(cbind(period = cgl_spans[2], cgl_metro_new), cbind(period = cgl_spans[1], cgl_metro_old))
+cgl_metro$period <- factor(cgl_metro$period, levels = cgl_spans)
+cgl_trends <- data.frame(
+  period = factor(cgl_spans, levels = cgl_spans),
+  x = c(-1.5, -0.7),
+  xend = c(5.8, 8.2),
+  y = c(-2, 3),
+  yend = c(14.2, 9)
+)
+cgl_metro_cols <- unname(fg[c("pink", "blue")])
+
+p <- ggplot(cgl_metro, aes(employment, house_prices, colour = period)) +
+  classic_zero_line(0) +
+  geom_point(size = 0.85) +
+  geom_segment(
+    data = cgl_trends,
+    aes(x = x, xend = xend, y = y, yend = yend),
+    linewidth = lw(1.6),
+    show.legend = FALSE
+  ) +
+  coord_cartesian(xlim = c(-2.4, 8.8), ylim = c(-5, 20), expand = FALSE) +
+  scale_x_continuous(breaks = seq(-2, 8, 2), labels = economist_plus_minus_format("horizontal")) +
+  scale_y_continuous(position = "right", breaks = seq(-5, 20, 5), labels = economist_plus_minus_format()) +
+  scale_colour_manual(values = cgl_metro_cols) +
+  guides(colour = guide_legend(ncol = 1, override.aes = list(size = 2.2))) +
+  labs(
+    title = "Divergent",
+    subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
+    caption = "*At least 100,000 population\nSources: Freddie Mac; US Bureau of\nLabour Statistics",
+    x = "Employment",
+    y = NULL,
+    colour = "Period:"
+  ) +
+  cgl_theme +
+  classic_x_title() +
+  theme(legend.title = element_text(face = "bold"))
+## The value axis is named by an italic title above it, as on the classic double-scale charts.
+grid::grid.draw(classic_chart(p, axis_titles = list(right = list(label = "House prices", colour = "black"))))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-scatter) draws translucent dots with dashed black trend lines over colored ones and plain signed labels; the classic chart has opaque dots, solid trend lines in the series' colors, and the +/- axis.
+
+### Labeled scatter
+
+A single-series scatter with named points, as in `r cite("scatter.leader_lines", k = 2)`: white dots outlined in dark blue, the left-hand axis, italic axis titles, and black names with short leader lines.
+The first cited chart also picks out one point in light blue and sets its name in bold; the 2017 chart picks out no single country, so here all eight named countries are light blue and no name is bold.
+
+```{r cg-lines-disinfectant, econ_height = 166}
+set.seed(11)
+cgl_corruption <- data.frame(open = c(runif(55, 19, 63), runif(24, 60, 92)))
+cgl_corruption$score <- c(
+  pmin(55, pmax(5, 0.55 * (cgl_corruption$open[1:55] - 19) + 10 + rnorm(55, 0, 13))),
+  runif(24, 33, 70)
+)
+cgl_named <- data.frame(
+  country = c("Britain", "Denmark", "India", "Colombia", "US", "Sweden", "Mexico", "Singapore"),
+  open = c(77.5, 91.7, 37.8, 37, 73.8, 86.8, 34.9, 83.7),
+  score = c(96.5, 82.5, 67.4, 66, 69.6, 65.6, 53, 34.4),
+  lx = c(76, 84.5, 42.8, 32.5, 71.5, 95.2, 27, 83.7),
+  ly = c(91, 91, 77, 63.5, 75, 50, 52.6, 26.7),
+  hjust = c(1, 0, 0.5, 1, 1, 0.5, 1, 0.5)
+)
+cgl_leaders <- data.frame(
+  x = c(27.9, 86.8, 92.6),
+  xend = c(34.9, 92.6, 92.6),
+  y = c(53, 65.6, 65.6),
+  yend = c(53, 65.6, 55)
+)
+p <- ggplot(cgl_corruption, aes(open, score)) +
+  geom_segment(
+    data = cgl_leaders,
+    aes(x = x, xend = xend, y = y, yend = yend),
+    inherit.aes = FALSE,
+    linewidth = lw(0.4)
+  ) +
+  classic_dot(fill = "white", colour = cgl_dot$outline[3], size = classic_dot_size * 0.8) +
+  classic_dot(data = cgl_named, fill = cgl_dot$fill[2], colour = cgl_dot$outline[2], size = classic_dot_size * 0.8) +
+  geom_text(data = cgl_named, aes(x = lx, y = ly, label = country, hjust = hjust), size = cgl_text * 0.95) +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(0, 112), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  labs(
+    title = "The best disinfectant",
+    subtitle = "Corruption and open data",
+    caption = "Sources: Transparency International;\nOpen Knowledge Foundation",
+    x = "Corruption-perceptions index score, 2014\n100=least corrupt",
+    y = "Open-data index score,\nlatest, 100=most open"
+  ) +
+  cgl_theme +
+  classic_x_title() +
+  theme(axis.title.y = element_text(face = "italic"), axis.title.x = element_text(hjust = 0.5))
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-scatter) puts the scale on the right, draws blue dots with the named ones red, and sets the names in gray; the classic chart has its scale on the left here, outlined dots, and black names.
+
+### Connected scatter
+
+Connected scatters are rarer still: `r claim("type.connected_scatter.examples")$n` panels, `r cite("type.connected_scatter.examples")`.
+That example joins each series' points with a thick line in its color, marks the start with a black dot and the end with an outlined dot, and keys the series with a short line ending in a dot under the subtitle.
+Here each country runs from a white dot (2003) to a light blue one (2013), joined by a blue-gray line; the other OECD countries are small blue-gray dots without outlines, and the 2013 averages thin dashed black rules.
+
+Slope charts, which join two dates rather than two measures, are a close relative; see [Slope charts](#slope-charts).
+
+```{r cg-lines-right-nation, econ_size = "two_column", econ_height = 234}
+cgl_nations <- c("Japan", "France", "Britain", "Germany", "Chile", "Turkey", "United States")
+cgl_oecd <- data.frame(
+  country = rep(cgl_nations, 2),
+  year = factor(rep(c("2003", "2013*"), each = 7), levels = c("2003", "2013*")),
+  spend = c(2.2, 2.83, 2.35, 3.06, 0.78, 0.44, 5.76, 3.7, 4.11, 3.35, 4.78, 1.6, 0.94, 8.72),
+  life = c(81.3, 78.7, 77.9, 78.1, 76.7, 71.8, 76.6, 83.0, 81.8, 80.6, 80.4, 78.3, 76.0, 78.3)
+)
+cgl_others <- rbind(
+  data.frame(
+    year = "2003",
+    spend = c(
+      3.19, 3.78, 2.55, 2.8, 2.23, 1.66, 1.85, 1.95, 2.92, 3.59, 2.84, 2.84, 2.16, 3.36, 1.76, 2.78, 1.0, 1.69, 1.29,
+      0.68, 0.76, 0.78, 1.27, 0.65
+    ),
+    life = c(
+      80.5, 80.1, 80.0, 80.0, 79.6, 79.2, 79.3, 78.7, 79.2, 79.1, 78.2, 77.6, 78.0, 77.3, 77.0, 76.9, 76.8, 75.9,
+      74.8, 74.2, 74.1, 73.3, 72.1, 71.3
+    )
+  ),
+  data.frame(
+    year = "2013*",
+    spend = c(
+      2.9, 6.26, 3.06, 3.86, 2.39, 3.67, 4.9, 4.37, 5.86, 2.36, 4.35, 2.35, 3.32, 5.13, 4.55, 3.68, 2.51, 4.25, 4.55,
+      2.03, 1.55, 2.01, 1.72, 1.05, 2.33
+    ),
+    life = c(
+      82.7, 82.4, 82.4, 81.7, 81.7, 81.6, 81.5, 81.4, 81.3, 81.3, 81.0, 80.9, 81.0, 80.9, 80.7, 80.5, 80.3, 80.2,
+      79.8, 77.8, 76.9, 76.0, 75.2, 74.1, 73.6
+    )
+  )
+)
+cgl_labels <- data.frame(
+  country = cgl_nations,
+  x = c(2.05, 4.25, 2.25, 5.2, 0.62, 0.3, 5.63),
+  y = c(81.4, 82.3, 77.6, 79.1, 77.0, 71.8, 76.5),
+  hjust = c(1, 0, 1, 0.5, 1, 1, 1)
+)
+p <- ggplot(cgl_oecd, aes(spend, life)) +
+  geom_point(data = cgl_others, colour = fg[["blue-gray"]], size = 1) +
+  geom_hline(yintercept = 80.5, linetype = "22", linewidth = lw(0.4)) +
+  geom_vline(xintercept = 3.45, linetype = "22", linewidth = lw(0.4)) +
+  geom_line(aes(group = country), colour = fg[["blue-gray"]], linewidth = lw(1.6)) +
+  classic_dot(aes(fill = year, colour = year)) +
+  geom_text(data = cgl_labels, aes(x = x, y = y, label = country, hjust = hjust), size = cgl_text) +
+  annotate("segment", x = 4.82, xend = 4.82, y = 80.3, yend = 79.5, linewidth = lw(0.4)) +
+  annotate("text", x = 10, y = 80.85, label = "2013 average: 80.5", size = cgl_text, hjust = 1, vjust = 0) +
+  annotate("text", x = 3.55, y = 68.6, label = "2013 average:\n$3,453", size = cgl_text, hjust = 0, vjust = 0) +
+  scale_fill_manual(values = c("white", cgl_dot$fill[2])) +
+  scale_colour_manual(values = cgl_dot$outline[c(3, 2)]) +
+  coord_cartesian(xlim = c(-0.8, 10), ylim = c(68, 84), expand = FALSE) +
+  scale_y_continuous(breaks = seq(68, 84, 2)) +
+  scale_x_continuous(breaks = 0:10) +
+  labs(
+    title = "Right nation",
+    subtitle = "Health spending and life expectancy at birth, OECD countries",
+    caption = "*Or latest\nSource: OECD",
+    x = "Health expenditures per person at purchasing-power parity, current prices, $'000",
+    y = "Life expectancy, years",
+    fill = NULL,
+    colour = NULL
+  ) +
+  cgl_theme +
+  classic_x_title() +
+  theme(axis.title.y = element_text(face = "italic"), axis.title.x = element_text(hjust = 0.5))
+economist_chart(p)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#connected-scatter) breaks its gridlines around the data, puts the scale on the right and draws a connected key above the panel; the classic redraw keeps whole gridlines, an axis on the left with italic titles, and a legend of outlined dots.
+
+### Slope charts
+
+Slope charts, a value at two or three dates joined by straight lines, are a 2014-15 form: `r claim("type.slope")$n` panels in the sample, too few for shares, and `r claim("type.slope.examples")$n` panels, in eight charts, once the charts gathered later are added; every one is from 2014 or 2015.
+The examples agree on a frame.
+Each date is an upright rule from the baseline to the top of the scale, gray or blue-gray, or a hollow tube, white inside a thin dark outline, like the thermometer's track.
+Each series is a dot at every date joined by a straight line in its color; the dots are solid, or outlined in a darker shade, or white inside a colored outline.
+The series are named at the left of the first date, in their own colors (*Religion in the US*) or in black (*The rich get fitter*, *Carnage*), or by a key of colored dots and names at the left of the panel (*Bound and gagged*).
+The value axis is on the right, with white horizontal gridlines that run from the first date to the axis, and is marked as broken when it does not start at zero.
+The dates are axis labels at the foot, or set in bold at the top of the rules.
+The colors stray from the line palette: a coral or red line for the series the article is about, dark green, and orange in one chart.
+`r cite_codes(c("20150516_WWC282", "20150404_AMC713", "20150801_USC213", "20140125_IRC184"))`.
+
+The 2017 guide has no slope chart, so this redraws *Religion in the US* from Pew's published shares. The printed chart has the 2007 dots of the unaffiliated and the mainline Protestants the wrong way round (18.1 and 16.1 where Pew has 16.1 and 18.1); the redraw follows Pew, so the unaffiliated start below the mainline Protestants here.
+
+```{r cg-lines-religion, econ_height = 160}
+## Pew Research Center's Religious Landscape Study, 2007 and 2014. The printed chart swaps the 2007 dots of the
+## unaffiliated and the mainline Protestants (it has them at 18.1 and 16.1); these are Pew's figures.
+cgl_faiths <- c("Evangelical Protestant", "Catholic", "Mainline Protestant", "Unaffiliated", "Non-Christian faiths*")
+cgl_religion <- data.frame(
+  faith = factor(rep(cgl_faiths, 2), levels = cgl_faiths),
+  year = rep(0:1, each = 5),
+  pct = c(26.3, 23.9, 18.1, 16.1, 4.7, 25.4, 20.8, 14.7, 22.8, 5.9)
+)
+## The names sit at the left of the first date, a little off their dots where the dots are close.
+cgl_faith_labels <- data.frame(faith = factor(cgl_faiths, levels = cgl_faiths), y = c(27.1, 23.5, 19.2, 15.2, 4.8))
+cgl_faith_cols <- unname(fg[c("dark blue", "dark blue", "dark blue", "coral", "dark green")])
+
+p <- ggplot(cgl_religion, aes(year, pct, colour = faith)) +
+  ## The gridlines start at the first date; the dates are gray rules from the baseline up.
+  annotate("segment", x = 0, xend = 1.3, y = 1:3 * 10, yend = 1:3 * 10, colour = "white", linewidth = lw(0.6)) +
+  annotate("segment", x = 0:1, xend = 0:1, y = 0, yend = 30, colour = fg[["gray"]], linewidth = lw(1)) +
+  geom_line(aes(group = faith), linewidth = lw(1.1)) +
+  geom_point(size = 1.5) +
+  geom_text(data = cgl_faith_labels, aes(x = -0.12, y = y, label = faith), hjust = 1, size = cgl_text) +
+  scale_colour_manual(values = cgl_faith_cols, guide = "none") +
+  scale_x_continuous(limits = c(-2.3, 1.3), breaks = 0:1, labels = c("2007", "2014"), expand = c(0, 0)) +
+  scale_y_continuous(position = "right", limits = c(0, 30.4), breaks = seq(0, 30, 10), expand = c(0, 0)) +
+  labs(title = "Religion in the US", subtitle = "% identifying with:", x = NULL, y = NULL) +
+  cgl_theme +
+  theme(panel.grid.major.y = element_blank(), axis.ticks.x = element_blank()) +
+  classic_footnote("*Jews, Muslims, Buddhists,\nHindus, others", "Source: Pew")
+economist_chart(p)
+```
+
+Against 2017: the 2017 guide has no slope chart, so there is no version to set beside this one.
+
+### Bubble chart
+
+Bubble charts are the rarest type here: `r claim("type.bubble")$n` panel in the sample and `r claim("type.bubble.examples")$n` panels in all, `r cite("type.bubble.examples")`.
+That example draws opaque blue-gray bubbles with dark blue outlines, picks one out in pink with a dark red outline, keys the bubble size with two nested circles at the top right, and has italic axis titles with the scale on the left.
+For the four regions here, the bubbles take the four category looks of the classic dots.
+
+```{r cg-lines-vitality-data}
+set.seed(4)
+cgl_regions_us <- c("Northeast", "Midwest", "West", "South")
+cgl_region_spec <- data.frame(
+  region = cgl_regions_us,
+  n = c(150, 700, 70, 450),
+  health_mean = c(42, 37.5, 50, 47),
+  health_sd = c(6, 5, 8, 9),
+  swing_mean = c(12, 15, -2, 5),
+  swing_sd = c(7, 9, 11, 8),
+  size_mean = c(1.2, 0.2, 1.6, 0.8)
+)
+cgl_counties <- do.call(
+  rbind,
+  lapply(seq_len(nrow(cgl_region_spec)), function(i) {
+    r <- cgl_region_spec[i, ]
+    health <- pmin(66, pmax(22, rnorm(r$n, r$health_mean, r$health_sd)))
+    data.frame(
+      region = r$region,
+      health = health,
+      swing = r$swing_mean - 1 * (health - r$health_mean) + rnorm(r$n, 0, r$swing_sd),
+      pop = rlnorm(r$n, r$size_mean, 0.75)
+    )
+  })
+)
+## Drawn from the southern cloud up, so the Midwest and Northeast lie on top.
+cgl_counties$region <- factor(cgl_counties$region, levels = c("South", "West", "Midwest", "Northeast"))
+cgl_counties <- cgl_counties[order(cgl_counties$region), ]
+cgl_counties$region <- factor(cgl_counties$region, levels = cgl_regions_us)
+
+## The size key at the top right: two nested circles, as the classic example keys its bubbles.
+cgl_size_key <- list(
+  annotate("point", x = 69, y = c(34, 30.4), shape = 21, size = c(6.6, 2), fill = NA, stroke = 0.3),
+  annotate(
+    "text",
+    x = 72.6,
+    y = 41,
+    label = "Voting-eligible\npopulation",
+    hjust = 1,
+    vjust = 0,
+    size = cgl_text,
+    fontface = "bold",
+    lineheight = 0.95
+  )
+)
+cgl_vitality <- function(p) {
+  p +
+    classic_zero_line(0) +
+    scale_size_area(max_size = 6.6, guide = "none") +
+    scale_y_continuous(
+      limits = c(-50.5, 50),
+      breaks = seq(-50, 50, 25),
+      expand = c(0, 0),
+      labels = economist_plus_minus_format()
+    ) +
+    scale_x_continuous(limits = c(20, 73), breaks = seq(20, 70, 10), expand = c(0, 0)) +
+    labs(
+      title = "Vitality and the vote",
+      subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+      caption = paste0(
+        "*Weighted index of obesity, diabetes, heavy drinking, physical exercise and life expectancy, 2010-12\n",
+        "Sources: Atlas of US Presidential Elections; Census Bureau; IPUMS, University of Minnesota;\n",
+        "Institute for Health Metrics and Evaluation; The Economist"
+      ),
+      x = "Index of county health metrics*",
+      y = "Change in Republican margin over\nDemocrats, 2012-16, % points",
+      fill = "Region:",
+      colour = "Region:"
+    ) +
+    cgl_theme +
+    classic_x_title() +
+    theme(
+      axis.title.y = element_text(face = "italic"),
+      axis.title.x = element_text(hjust = 0.5),
+      legend.title = element_text(face = "bold")
+    )
+}
+```
+
+```{r cg-lines-vitality, econ_size = "two_column", econ_height = 275}
+p <- ggplot(cgl_counties, aes(health, swing)) +
+  geom_point(aes(fill = region, colour = region, size = pop), shape = 21, stroke = 0.3) +
+  classic_scatter_scales(4) +
+  guides(fill = guide_legend(override.aes = list(size = 2.4))) +
+  cgl_size_key
+economist_chart(cgl_vitality(p))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#bubble-chart) draws translucent bubbles so the clouds show through one another, keys region and size inside the panel, and labels the ends of its axes with arrows; the classic bubbles are opaque and outlined, the region key is a legend under the subtitle, and the axis titles are italic.
+
+The 2017 guide's answer to a crowded scatter, highlighting one group, is also the classic one: the example's single highlighted bubble is pink with a dark red outline among blue-gray ones.
+
+```{r cg-lines-vitality-highlight, econ_size = "two_column", econ_height = 275}
+cgl_counties$focus <- factor(
+  ifelse(cgl_counties$region == "Midwest", "Midwest", "Other regions"),
+  levels = c("Midwest", "Other regions")
+)
+cgl_counties <- cgl_counties[order(cgl_counties$focus == "Midwest"), ]
+cgl_called_out <- data.frame(
+  label = c("Jefferson, OH", "Knox, OH"),
+  health = c(32.2, 46),
+  swing = c(30.3, 13),
+  label_y = c(46.4, 39.1),
+  line_top = c(44.4, 36.7)
+)
+
+p <- ggplot(cgl_counties, aes(health, swing)) +
+  geom_point(aes(fill = focus, colour = focus, size = pop), shape = 21, stroke = 0.3) +
+  geom_segment(
+    data = cgl_called_out,
+    aes(x = health, xend = health, y = line_top, yend = swing),
+    linewidth = lw(0.4),
+    inherit.aes = FALSE
+  ) +
+  geom_text(data = cgl_called_out, aes(health, label_y, label = label), size = cgl_text, inherit.aes = FALSE) +
+  scale_fill_manual(values = unname(c(fg[["pink"]], fg[["blue-gray"]]))) +
+  scale_colour_manual(values = unname(c(fg[["dark red"]], fg[["dark blue"]]))) +
+  guides(fill = guide_legend(override.aes = list(size = 2.4))) +
+  cgl_size_key
+economist_chart(cgl_vitality(p))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#bubble-chart) names the Midwest inside its cloud and fades the rest to a pale cyan; the classic highlight is pink against blue-gray, both outlined, with the key under the subtitle.

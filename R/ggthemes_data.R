@@ -13,6 +13,17 @@
 #' article on the package website draws every one of them. `ggthemes_data`
 #' contains no fonts: themes set their typefaces in code.
 #'
+#' `ggthemes_data$economist` contains the classic (pre-2017) colors used by
+#' [theme_economist()] and [economist_pal()]: `bg` (grounds, panels and the
+#' red) and `fg` (series colors). `ggthemes_data$economist$palette` gives the
+#' classic palette as print specs: the CMYK of each color, inferred from the
+#' web images of the print charts since no primary source has been found;
+#' `hex`, that CMYK rendered through US Web Coated SWOP, the profile the web
+#' images of print charts were exported with for most of 2010 to 2018, which
+#' is the value `bg` and `fg` use (Economist Red is the brand guide's screen
+#' value); and a `confidence` in the inference ("known", "high", "medium" or
+#' "low").
+#'
 #' `ggthemes_data$economist_2017` contains the colors of *The Economist
 #' visual styleguide* (v1.2, 4 May 2017), one complete set per medium
 #' (`print` and `web`): the ground, gridline, text, baseline, source and

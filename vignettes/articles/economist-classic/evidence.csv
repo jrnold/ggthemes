@@ -1,0 +1,272 @@
+claim_id,section,medium,statement,value,n,of,unit,share,cite
+scope.excluded,Scope,print,"Left out of the guide: composite charts, maps, diagrams and 'other' charts",,25,800,charts,0.031,20150314_STC987;20140405_MAC954;20120609_EUC373;20131026_WOC633
+size.width.<130,Chart sizes,print,Width class <130 pt (px / export scale / 1.812),"median 126pt, height IQR 94-124pt",284,3574,charts,0.079,20141213_LDC495;20120407_WWC871;20151024_LDC259;20131207_LDC882
+size.width.~160 (1 col),Chart sizes,print,Width class ~160 (1 col) pt (px / export scale / 1.812),"median 160pt, height IQR 155-175pt",2604,3574,charts,0.729,20131012_BBC542;20121222_STC687;20151017_AMC157;20140412_WWC710
+size.width.200-290,Chart sizes,print,Width class 200-290 pt (px / export scale / 1.812),"median 250pt, height IQR 214-284pt",76,3574,charts,0.021,20140816_WWC524;20150704_LDC750;20120728_INC717;20150815_WWC404
+size.width.~330 (2 col),Chart sizes,print,Width class ~330 (2 col) pt (px / export scale / 1.812),"median 328pt, height IQR 163-213pt",552,3574,charts,0.154,20150425_INC042;20120623_INC457;20140531_INC088;20130518_MAC631
+size.width.~500 (3 col),Chart sizes,print,Width class ~500 (3 col) pt (px / export scale / 1.812),"median 460pt, height IQR 365-522pt",39,3574,charts,0.011,20130831_INC308;20120929_IRC163;20131012_WWC547;20121103_FNC391
+size.width.>600,Chart sizes,print,Width class >600 pt (px / export scale / 1.812),"median 706pt, height IQR 439-720pt",19,3574,charts,0.005,20130720_WWC110;20130608_WBC595;20120526_FNC281;20130601_EUC716
+size.export.hidpi,Chart sizes,print,"From 20131019 charts are exported at 2x: median width 290px before, 580px after, same design",2x,2207,3574,charts,0.618,20120421_USC035;20130406_USC359;20121208_BRC605;20150214_INC133
+ground.print.#D6E2EA,Colour: ground,print,"Print ground #D6E2EA (4 shades within dE 2.5), 20120218-20151107, mostly 2014Q1, 2015Q1, 2015Q2",#D6E2EA,2990,3574,charts,0.837,20131012_WWC547;20150808_FNC314;20120707_ASC546;20140503_BRC806
+ground.print.#D6E6EA,Colour: ground,print,"Print ground #D6E6EA (1 shades within dE 2.5), 20120225-20121006, mostly 2012Q1, 2012Q2, 2012Q3",#D6E6EA,455,3574,charts,0.127,20120714_ASC574;20120623_INC457;20120721_INC641;20120929_IRC163
+ground.print.#BAD2DE,Colour: ground,print,"Print ground #BAD2DE (1 shades within dE 2.5), 20121027-20151107, mostly 2015Q1, 2015Q3, 2015Q4",#BAD2DE,65,3574,charts,0.018,20150207_MAC004;20150214_FNC114;20121124_FNC503;20150725_BRC162
+ground.print.#C2D6DE,Colour: ground,print,"Print ground #C2D6DE (1 shades within dE 2.5), 20120310-20150117, mostly 2014Q1, 2014Q2, 2014Q3",#C2D6DE,57,3574,charts,0.016,20131005_FNC508;20120728_BRC626;20140208_CNC299;20120331_IRC850
+anatomy.panel_fill.#C2D6DE,Anatomy,print,"Plot panels filled #C2D6DE, darker than the ground around them (mostly multi-panel charts), 20120303-20150117",#C2D6DE,150,3574,charts,0.042,20140412_BRC702;20120707_WBC524;20130615_INC805;20140104_INC081
+anatomy.panel_fill.#BAD2DE,Anatomy,print,"Plot panels filled #BAD2DE, darker than the ground around them (mostly multi-panel charts), 20121013-20151107",#BAD2DE,114,3574,charts,0.032,20150815_USC387;20130105_INC715;20150124_WBC784;20150221_ASC192
+anatomy.tab.print,Anatomy,print,"Red tab at the top left, above the title",5.0 x 14.9pt,3525,3574,charts,0.986,20130323_WWC310;20141004_BRC792;20120414_INC021;20150307_WWC398
+type.bar_column_side_by_side,Chart types,print,Panels of type bar_column_side_by_side,bar_column_side_by_side,244,898,panels,0.272,20150926_AMC826;20131019_EUC587;20140614_CNC156;20130803_EUC162
+type.bar_column_stacked,Chart types,print,Panels of type bar_column_stacked,bar_column_stacked,93,898,panels,0.104,20130119_INC787;20141108_FNC191;20120623_INC457;20150627_STC765
+type.blob_heads,Chart types,print,Panels of type blob_heads,blob_heads,35,898,panels,0.039,20120714_BRC577;20130302_WBC144;20130727_FNC142;20121027_FNC342
+type.bubble,Chart types,print,Panels of type bubble,bubble,1,898,panels,0.001,
+type.connected_scatter,Chart types,print,Panels of type connected_scatter,connected_scatter,2,898,panels,0.002,20150606_MAC501
+type.double_scale,Chart types,print,Panels of type double_scale,double_scale,86,898,panels,0.096,20140712_CNC315;20120407_WBC835;20131207_USC857;20150530_BRC407
+type.fan_forecast,Chart types,print,Panels of type fan_forecast,fan_forecast,2,898,panels,0.002,20130330_STC334;20151010_ASC953
+type.lines,Chart types,print,Panels of type lines,lines,325,898,panels,0.362,20120609_LDC368;20150829_WWC561;20141129_FNC366;20130810_AMC199
+type.lines_stacked_area,Chart types,print,Panels of type lines_stacked_area,lines_stacked_area,20,898,panels,0.022,20121215_USC615;20130720_BRC090;20150328_ASC637;20131005_BRC462
+type.pictogram,Chart types,print,Panels of type pictogram,pictogram,2,898,panels,0.002,
+type.pie_doughnut,Chart types,print,Panels of type pie_doughnut,pie_doughnut,13,898,panels,0.014,20120602_MAC312;20130323_BRC301;20140614_WBC154;20120526_BRC288
+type.scatter,Chart types,print,Panels of type scatter,scatter,16,898,panels,0.018,20150718_STC096;20150704_ASC786;20120804_STC752;20130713_CNC060
+type.slope,Chart types,print,Panels of type slope,slope,4,898,panels,0.004,20150516_WWC282;20150801_USC213;20150404_AMC713
+type.table,Chart types,print,Panels of type table,table,41,898,panels,0.046,20131005_CNC504;20120428_USC095;20140104_FBC098;20150411_EUC769
+type.thermometer,Chart types,print,Panels of type thermometer,thermometer,11,898,panels,0.012,20131123_WBC817;20150124_FBC772;20120728_IRC970;20130727_IRC133
+type.timeline,Chart types,print,Panels of type timeline,timeline,1,898,panels,0.001,20150214_GDC913
+type.waterfall,Chart types,print,Panels of type waterfall,waterfall,2,898,panels,0.002,20141004_WBC821;20150124_USC779
+layout.panels,Layout,print,Charts with layout 'panels',panels,83,775,charts,0.107,20151017_USC163;20140823_WBC574;20130615_INC805;20140125_EUC193
+layout.single,Layout,print,Charts with layout 'single',single,692,775,charts,0.893,20141213_WWC517;20130119_CNC766;20150221_CNC196;20120728_EUC696
+bar_column_side_by_side.value_axis_side.right,bar_column_side_by_side,print,bar_column_side_by_side: value_axis_side = right,right,88,244,panels,0.361,20120929_MAC146;20120512_USC177;20130518_WOC636;20150815_WWC404
+bar_column_side_by_side.value_axis_side.top,bar_column_side_by_side,print,bar_column_side_by_side: value_axis_side = top,top,151,244,panels,0.619,20130216_WBC069;20121013_WWC269;20150425_INC042;20140301_WWC435
+bar_column_side_by_side.legend.none,bar_column_side_by_side,print,bar_column_side_by_side: legend = none,none,170,244,panels,0.697,20130713_WWC067;20140301_WWC435;20150425_INC042;20130323_WWC310
+bar_column_side_by_side.legend.under_subtitle,bar_column_side_by_side,print,bar_column_side_by_side: legend = under_subtitle,under_subtitle,64,244,panels,0.262,20131102_FNC687;20120512_USC177;20140222_INC395;20150314_INC465
+bar_column_side_by_side.gridlines.horizontal,bar_column_side_by_side,print,bar_column_side_by_side: gridlines = horizontal,horizontal,83,244,panels,0.34,20130720_WWC110;20150124_LDC786;20130223_ASC106;20120707_USC533
+bar_column_side_by_side.gridlines.vertical,bar_column_side_by_side,print,bar_column_side_by_side: gridlines = vertical,vertical,142,244,panels,0.582,20120310_LDC661;20140503_EUC794;20151017_AMC157;20150711_LDC033
+bar_column_side_by_side.orientation.horizontal,bar_column_side_by_side,print,bar_column_side_by_side: orientation = horizontal,horizontal,155,244,panels,0.635,20150214_FNC114;20140517_IRC878;20121117_INC452;20130831_INC308
+bar_column_side_by_side.orientation.vertical,bar_column_side_by_side,print,bar_column_side_by_side: orientation = vertical,vertical,89,244,panels,0.365,20141122_USC066;20130518_WOC636;20151024_LDC259;20120929_MAC146
+bar_column_side_by_side.series_key.category_labels,bar_column_side_by_side,print,bar_column_side_by_side: series_key = category_labels,category_labels,19,244,panels,0.078,20140809_USC457;20150711_LDC033
+bar_column_side_by_side.series_key.legend,bar_column_side_by_side,print,bar_column_side_by_side: series_key = legend,legend,77,244,panels,0.316,20131102_FNC687;20120414_INC021;20140405_CNC682;20121006_MAC165
+bar_column_side_by_side.series_key.single_series,bar_column_side_by_side,print,bar_column_side_by_side: series_key = single_series,single_series,142,244,panels,0.582,20120310_LDC661;20140308_LDC466;20131102_WWC691;20140816_ASC511
+bar_column_side_by_side.value_labels.some,bar_column_side_by_side,print,bar_column_side_by_side: data values printed on some marks (223 of 244 panels print none),some,20,244,panels,0.082,20151024_LDC259;20140920_INC721;20150404_BRC729;20130622_INC839
+bar_column_side_by_side.negative_labels.plus_minus_at_zero,bar_column_side_by_side,print,bar_column_side_by_side: negative_labels = plus_minus_at_zero,plus_minus_at_zero,48,50,panels with negatives,0.96,20130223_ASC106;20150214_INC133;20140222_INC395;20131102_FNC687
+bar_column_side_by_side.scale_break.discontinuous,bar_column_side_by_side,print,bar_column_side_by_side: scale_break = discontinuous,discontinuous,16,244,panels,0.066,20140920_INC721;20130622_INC839;20150822_IRC471;20120331_IRC847
+bar_column_side_by_side.blob_shape.box,bar_column_side_by_side,print,bar_column_side_by_side: blob_shape = box,box,26,244,panels,0.107,20140830_ASC605;20150314_INC465;20130831_INC308;20121027_INC343
+bar_column_side_by_side.blob_position.aligned_column,bar_column_side_by_side,print,bar_column_side_by_side: blob_position = aligned_column,aligned_column,26,244,panels,0.107,20140830_ASC605;20150314_INC465;20130831_INC308;20121027_INC343
+bar_column_side_by_side.blob_content.second_variable,bar_column_side_by_side,print,bar_column_side_by_side: blob_content = second_variable,second_variable,26,244,panels,0.107,20140830_ASC605;20150314_INC465;20130831_INC308;20121027_INC343
+bar_column_side_by_side.event_lines.labelled,bar_column_side_by_side,print,bar_column_side_by_side: labelled event lines (marking a date),labelled,4,244,panels,0.016,20140816_ASC511;20150314_EUC474
+bar_column_side_by_side.value_lines.labelled,bar_column_side_by_side,print,bar_column_side_by_side: labelled value lines (marking a reference level),labelled,7,244,panels,0.029,20150718_USC083;20121215_CNC493;20140628_FNC219;20151031_EUC321
+bar_column_side_by_side.highlight_regions.labelled neutral,bar_column_side_by_side,print,bar_column_side_by_side: labelled neutral shaded regions (the ground darkened; mostly forecast periods),labelled neutral,12,244,panels,0.049,20121110_LDC427;20141220_IRC530;20150502_ASC888;20120421_EUC073
+bar_column_side_by_side.time_axis,bar_column_side_by_side,print,bar_column_side_by_side: time_axis,True,78,244,panels,0.32,20120929_MAC146;20131214_EUC026;20151031_WWC338;20130518_WOC636
+bar_column_side_by_side.number_box,bar_column_side_by_side,print,bar_column_side_by_side: number_box,True,36,244,panels,0.148,20140719_FBC356;20131102_AMC667;20120804_WBC735
+bar_column_side_by_side.plus_minus_axis,bar_column_side_by_side,print,bar_column_side_by_side: plus_minus_axis,True,53,244,panels,0.217,20130223_ASC106;20151031_WWC338;20130216_WBC069;20120512_USC177
+bar_column_side_by_side.truncated_years,bar_column_side_by_side,print,bar_column_side_by_side: truncated_years,True,77,244,panels,0.316,20120929_MAC146;20140614_CNC156;20151031_WWC338;20150221_BRC084
+bar_column_side_by_side.red_zero_line,bar_column_side_by_side,print,bar_column_side_by_side: red_zero_line,True,46,244,panels,0.189,20140906_WWC633;20150214_INC133;20131102_WWC691;20140222_INC395
+bar_column_stacked.value_axis_side.none,bar_column_stacked,print,bar_column_stacked: value_axis_side = none,none,10,93,panels,0.108,20120929_MAC148;20130504_AMC528;20140517_FBC877;20130126_MAC857
+bar_column_stacked.value_axis_side.right,bar_column_stacked,print,bar_column_stacked: value_axis_side = right,right,52,93,panels,0.559,20121103_FNC391;20150808_LDC001;20120811_LDC772;20130413_CNC414
+bar_column_stacked.value_axis_side.top,bar_column_stacked,print,bar_column_stacked: value_axis_side = top,top,31,93,panels,0.333,20151003_LDC072;20140517_WBC845;20121006_STC023;20130831_BRC306
+bar_column_stacked.legend.in_plot,bar_column_stacked,print,bar_column_stacked: legend = in_plot,in_plot,6,93,panels,0.065,20141108_FNC191;20150808_LDC001;20120623_INC457;20151010_ASC099
+bar_column_stacked.legend.none,bar_column_stacked,print,bar_column_stacked: legend = none,none,18,93,panels,0.194,20150207_LDC038;20150314_BBC958;20130330_FBC184
+bar_column_stacked.legend.under_subtitle,bar_column_stacked,print,bar_column_stacked: legend = under_subtitle,under_subtitle,63,93,panels,0.677,20140621_IRC194;20130831_BRC306;20151003_LDC072;20120623_BRC468
+bar_column_stacked.gridlines.horizontal,bar_column_stacked,print,bar_column_stacked: gridlines = horizontal,horizontal,49,93,panels,0.527,20121103_FNC391;20131116_STC780;20150509_LDC934;20141108_FNC191
+bar_column_stacked.gridlines.vertical,bar_column_stacked,print,bar_column_stacked: gridlines = vertical,vertical,29,93,panels,0.312,20130831_BRC306;20151003_LDC072;20120623_BRC468;20140517_WBC845
+bar_column_stacked.orientation.horizontal,bar_column_stacked,print,bar_column_stacked: orientation = horizontal,horizontal,39,93,panels,0.419,20121006_STC023;20151003_LDC072;20140517_WBC845;20130831_BRC306
+bar_column_stacked.orientation.vertical,bar_column_stacked,print,bar_column_stacked: orientation = vertical,vertical,54,93,panels,0.581,20121103_FNC391;20140621_IRC194;20150808_LDC001;20120811_LDC772
+bar_column_stacked.series_key.labels_next_to_data,bar_column_stacked,print,bar_column_stacked: series_key = labels_next_to_data,labels_next_to_data,14,93,panels,0.151,20130330_FBC184;20150314_BBC958;20130504_AMC528;20131102_CNC681
+bar_column_stacked.series_key.legend,bar_column_stacked,print,bar_column_stacked: series_key = legend,legend,71,93,panels,0.763,20120929_MAC148;20150110_WBC648;20131116_STC780;20120811_LDC772
+bar_column_stacked.series_key.mixed,bar_column_stacked,print,bar_column_stacked: series_key = mixed,mixed,5,93,panels,0.054,20140913_INC676;20131005_ASC515;20150613_INC576;20140125_FNC212
+bar_column_stacked.value_labels.all,bar_column_stacked,print,bar_column_stacked: data values printed on all marks (80 of 93 panels print none),all,10,93,panels,0.108,20120929_MAC148;20130504_AMC528;20140517_FBC877;20151017_MAC165
+bar_column_stacked.value_labels.some,bar_column_stacked,print,bar_column_stacked: data values printed on some marks (80 of 93 panels print none),some,3,93,panels,0.032,20130330_FBC184;20131026_FNC624
+bar_column_stacked.negative_labels.other,bar_column_stacked,print,bar_column_stacked: negative_labels = other,other,2,6,panels with negatives,0.333,20131012_IRC543
+bar_column_stacked.negative_labels.plus_minus_at_zero,bar_column_stacked,print,bar_column_stacked: negative_labels = plus_minus_at_zero,plus_minus_at_zero,4,6,panels with negatives,0.667,20121103_FNC391;20151031_BRC310;20131221_INC080;20130330_INC332
+bar_column_stacked.blob_shape.box,bar_column_stacked,print,bar_column_stacked: blob_shape = box,box,13,93,panels,0.14,20120623_BRC468;20130119_INC787;20130126_INC852;20120630_INC512
+bar_column_stacked.blob_position.aligned_column,bar_column_stacked,print,bar_column_stacked: blob_position = aligned_column,aligned_column,8,93,panels,0.086,20151017_INC168;20120623_BRC468;20130126_INC852;20120630_INC512
+bar_column_stacked.blob_position.at_bar_end,bar_column_stacked,print,bar_column_stacked: blob_position = at_bar_end,at_bar_end,6,93,panels,0.065,20130921_IRC411;20120512_INC200;20130803_WBC166;20131026_FNC624
+bar_column_stacked.blob_content.second_variable,bar_column_stacked,print,bar_column_stacked: blob_content = second_variable,second_variable,14,93,panels,0.151,20130119_INC787;20120623_BRC468;20151017_INC168;20130126_INC852
+bar_column_stacked.highlight_regions.labelled neutral,bar_column_stacked,print,bar_column_stacked: labelled neutral shaded regions (the ground darkened; mostly forecast periods),labelled neutral,9,93,panels,0.097,20130817_WBC210;20130803_WBC166;20141213_FNC509;20150829_WBC539
+bar_column_stacked.leader_lines,bar_column_stacked,print,bar_column_stacked: leader_lines,True,16,93,panels,0.172,20150314_BBC958;20131102_CNC681;20130504_AMC528;20140927_STC924
+bar_column_stacked.time_axis,bar_column_stacked,print,bar_column_stacked: time_axis,True,42,93,panels,0.452,20141108_FNC191;20131116_STC780;20120811_LDC772;20130413_CNC414
+bar_column_stacked.number_box,bar_column_stacked,print,bar_column_stacked: number_box,True,24,93,panels,0.258,20120519_FBC244;20120519_FNC257;20140315_IRC363;20150627_AMC736
+bar_column_stacked.plus_minus_axis,bar_column_stacked,print,bar_column_stacked: plus_minus_axis,True,5,93,panels,0.054,20121103_FNC391;20131221_INC080;20151031_BRC310;20130330_INC332
+bar_column_stacked.truncated_years,bar_column_stacked,print,bar_column_stacked: truncated_years,True,41,93,panels,0.441,20140621_IRC194;20120811_LDC772;20131116_STC780;20150328_AMC610
+bar_column_stacked.grey_other,bar_column_stacked,print,bar_column_stacked: grey_other,True,19,93,panels,0.204,20121103_FNC391;20130629_INC873;20120512_INC200;20130119_FBC801
+bar_column_stacked.red_data,bar_column_stacked,print,bar_column_stacked: red_data,True,5,93,panels,0.054,20150328_AMC610;20150627_AMC736;20150314_BBC958
+bar_column_stacked.red_zero_line,bar_column_stacked,print,bar_column_stacked: red_zero_line,True,7,93,panels,0.075,20121103_FNC391;20151031_BRC310
+blob_heads.value_axis_side.top,blob_heads,print,blob_heads: value_axis_side = top,top,33,35,panels,0.943,20130518_FNC630;20140719_WWC352;20120721_INC641;20150905_EUC622
+blob_heads.legend.none,blob_heads,print,blob_heads: legend = none,none,25,35,panels,0.714,20131012_WWC547;20120721_INC641;20140719_WWC352;20150905_EUC622
+blob_heads.legend.under_subtitle,blob_heads,print,blob_heads: legend = under_subtitle,under_subtitle,10,35,panels,0.286,20151024_INC258;20120421_INC070;20140118_INC164;20120331_EUC854
+blob_heads.gridlines.vertical,blob_heads,print,blob_heads: gridlines = vertical,vertical,32,35,panels,0.914,20130518_FNC630;20140719_WWC352;20150905_EUC622;20130727_FNC142
+blob_heads.orientation.horizontal,blob_heads,print,blob_heads: orientation = horizontal,horizontal,34,35,panels,0.971,20130518_FNC630;20140719_WWC352;20150905_EUC622;20120714_BRC577
+blob_heads.series_key.labels_next_to_data,blob_heads,print,blob_heads: series_key = labels_next_to_data,labels_next_to_data,6,35,panels,0.171,
+blob_heads.series_key.legend,blob_heads,print,blob_heads: series_key = legend,legend,4,35,panels,0.114,20151024_INC258;20120421_INC070;20140118_INC164;20120331_EUC854
+blob_heads.series_key.single_series,blob_heads,print,blob_heads: series_key = single_series,single_series,24,35,panels,0.686,20130727_FNC142;20120721_INC641;20140719_WWC352;20150905_EUC622
+blob_heads.negative_labels.plus_minus_at_zero,blob_heads,print,blob_heads: negative_labels = plus_minus_at_zero,plus_minus_at_zero,7,7,panels with negatives,1.0,20130518_FNC630;20120714_BRC577;20131012_WWC547;20151024_INC258
+blob_heads.scale_break.baseline_not_zero,blob_heads,print,blob_heads: scale_break = baseline_not_zero,baseline_not_zero,3,35,panels,0.086,20130713_INC048
+blob_heads.blob_shape.box,blob_heads,print,blob_heads: blob_shape = box,box,26,35,panels,0.743,20130518_FNC630;20140719_WWC352;20150905_EUC622;20120714_BRC577
+blob_heads.blob_shape.circle,blob_heads,print,blob_heads: blob_shape = circle,circle,6,35,panels,0.171,20151024_INC258;20150606_EUC457
+blob_heads.blob_position.aligned_column,blob_heads,print,blob_heads: blob_position = aligned_column,aligned_column,30,35,panels,0.857,20130518_FNC630;20140719_WWC352;20120721_INC641;20150905_EUC622
+blob_heads.blob_position.at_bar_end,blob_heads,print,blob_heads: blob_position = at_bar_end,at_bar_end,2,35,panels,0.057,20140208_WWC305
+blob_heads.blob_content.second_variable,blob_heads,print,blob_heads: blob_content = second_variable,second_variable,31,35,panels,0.886,20130518_FNC630;20140719_WWC352;20150905_EUC622;20120714_BRC577
+blob_heads.value_lines.unlabelled,blob_heads,print,blob_heads: unlabelled value lines (marking a reference level),unlabelled,3,35,panels,0.086,
+blob_heads.leader_lines,blob_heads,print,blob_heads: leader_lines,True,7,35,panels,0.2,
+blob_heads.plus_minus_axis,blob_heads,print,blob_heads: plus_minus_axis,True,6,35,panels,0.171,20130518_FNC630;20120714_BRC577;20131012_WWC547;20130202_FNC879
+blob_heads.truncated_years,blob_heads,print,blob_heads: truncated_years,True,3,35,panels,0.086,20140208_WWC305
+blob_heads.red_zero_line,blob_heads,print,blob_heads: red_zero_line,True,6,35,panels,0.171,20130518_FNC630;20120714_BRC577;20131012_WWC547;20130202_FNC879
+type.bubble.examples,bubble,print,bubble: too few in the sample for conventions; examples only,,4,4,panels,1.0,20150725_WBC167
+type.connected_scatter.examples,connected_scatter,print,connected_scatter: too few in the sample for conventions; examples only,,2,2,panels,1.0,20150606_MAC501
+double_scale.value_axis_side.both,double_scale,print,double_scale: value_axis_side = both,both,84,86,panels,0.977,20150808_FNC314;20120407_WBC835;20120714_ASC574;20131207_USC857
+double_scale.gridlines.horizontal,double_scale,print,double_scale: gridlines = horizontal,horizontal,79,86,panels,0.919,20140405_AMC657;20131102_MAC677;20120714_ASC574;20131207_USC857
+double_scale.series_key.axis_titles,double_scale,print,double_scale: series_key = axis_titles,axis_titles,69,86,panels,0.802,20120714_ASC574;20131102_MAC677;20120407_WBC835;20150214_MAC104
+double_scale.series_key.mixed,double_scale,print,double_scale: series_key = mixed,mixed,13,86,panels,0.151,20140712_CNC315;20140524_BRC024;20150502_AMC106;20130601_AMC722
+double_scale.negative_labels.plus_minus_at_zero,double_scale,print,double_scale: negative_labels = plus_minus_at_zero,plus_minus_at_zero,23,23,panels with negatives,1.0,20140104_FNC093;20150808_FNC314;20140503_BRC806;20150905_AMC613
+double_scale.scale_break.baseline_not_zero,double_scale,print,double_scale: scale_break = baseline_not_zero,baseline_not_zero,16,86,panels,0.186,20141122_ASC307;20150718_BRC106;20131123_STC819;20121013_USC256
+double_scale.event_lines.labelled,double_scale,print,double_scale: labelled event lines (marking a date),labelled,4,86,panels,0.047,20140906_AMC617;20120609_USC369;20130928_FNC481;20140201_USC252
+double_scale.highlight_regions.labelled neutral,double_scale,print,double_scale: labelled neutral shaded regions (the ground darkened; mostly forecast periods),labelled neutral,7,86,panels,0.081,20121117_WBC459;20150328_FNC640;20130706_USC001;20121027_LDC348
+double_scale.marks.columns + line,double_scale,print,double_scale: marks = columns + line,columns + line,49,86,panels,0.57,20140315_INC527;20120407_WBC835;20131102_MAC677;20150530_BRC407
+double_scale.marks.lines only,double_scale,print,double_scale: marks = lines only,lines only,35,86,panels,0.407,20150606_CNC499;20140118_ASC178;20131207_USC857;20140104_FNC093
+double_scale.value_axis_title,double_scale,print,double_scale: value_axis_title,True,40,86,panels,0.465,20120714_ASC574;20150214_MAC104;20150606_CNC499;20150808_FNC314
+double_scale.time_axis,double_scale,print,double_scale: time_axis,True,85,86,panels,0.988,20120407_WBC835;20131207_USC857;20140118_ASC178;20150808_FNC314
+double_scale.inverted_scale,double_scale,print,double_scale: inverted_scale,True,6,86,panels,0.07,20150530_FBC423;20130413_AMC363;20141122_FBC287;20150502_FNC083
+double_scale.number_box,double_scale,print,double_scale: number_box,True,12,86,panels,0.14,20140503_MAC818;20150613_CNC560;20150905_AMC613;20120324_FNC793
+double_scale.plus_minus_axis,double_scale,print,double_scale: plus_minus_axis,True,26,86,panels,0.302,20140104_FNC093;20150808_FNC314;20140503_BRC806;20150905_AMC613
+double_scale.index_line,double_scale,print,double_scale: index_line,True,7,86,panels,0.081,20131207_USC857;20140524_BRC024;20140329_AMC602;20130727_FBC131
+double_scale.truncated_years,double_scale,print,double_scale: truncated_years,True,76,86,panels,0.884,20120407_WBC835;20150815_MAC383;20140104_FNC093;20120714_ASC574
+double_scale.red_zero_line,double_scale,print,double_scale: red_zero_line,True,24,86,panels,0.279,20150808_FNC314;20140503_BRC806;20140104_FNC093;20131207_FNC764
+type.fan_forecast.examples,fan_forecast,print,fan_forecast: too few in the sample for conventions; examples only,,2,2,panels,1.0,20130330_STC334;20151010_ASC953
+lines.value_axis_side.right,lines,print,lines: value_axis_side = right,right,324,325,panels,0.997,20130810_AMC199;20150307_EUC351;20121124_BRC515;20151107_MAC372
+lines.legend.none,lines,print,lines: legend = none,none,270,325,panels,0.831,20130112_BRC750;20140531_BRC079;20141108_LDC206;20140607_BRC113
+lines.legend.under_subtitle,lines,print,lines: legend = under_subtitle,under_subtitle,46,325,panels,0.142,20140607_BRC109;20131123_BRC831;20121222_STC687;20131012_BBC542
+lines.gridlines.horizontal,lines,print,lines: gridlines = horizontal,horizontal,319,325,panels,0.982,20150829_WWC561;20140906_USC638;20131109_USC719
+lines.series_key.labels_next_to_data,lines,print,lines: series_key = labels_next_to_data,labels_next_to_data,189,325,panels,0.582,20150829_FNC538;20140719_AMC345;20120526_WWC285;20120331_AMC833
+lines.series_key.legend,lines,print,lines: series_key = legend,legend,50,325,panels,0.154,20140308_AMC473;20121222_STC687;20131012_BBC542;20140607_BRC109
+lines.series_key.single_series,lines,print,lines: series_key = single_series,single_series,82,325,panels,0.252,20120728_LDC703;20140531_WWC082;20121013_CNC192;20131005_FNC508
+lines.value_labels.some,lines,print,lines: data values printed on some marks (320 of 325 panels print none),some,4,325,panels,0.012,20140920_WWC728;20140628_EUC228;20130216_USC081;20150718_FNC074
+lines.negative_labels.other,lines,print,lines: negative_labels = other,other,3,46,panels with negatives,0.065,20121208_BRC605;20150613_BRC580;20130622_ASC836;20131221_FNC068
+lines.negative_labels.plus_minus_at_zero,lines,print,lines: negative_labels = plus_minus_at_zero,plus_minus_at_zero,42,46,panels with negatives,0.913,20131123_BRC831;20120609_EUC363;20150808_FNC294;20130112_BRC750
+lines.scale_break.baseline_not_zero,lines,print,lines: scale_break = baseline_not_zero,baseline_not_zero,56,325,panels,0.172,20120317_WBC761;20131116_FNC698;20150509_EUC189;20121103_INC383
+lines.event_lines.labelled,lines,print,lines: labelled event lines (marking a date),labelled,27,325,panels,0.083,20121124_WBC513;20150207_MAC004;20131102_USC675;20140208_WBC291
+lines.value_lines.labelled,lines,print,lines: labelled value lines (marking a reference level),labelled,8,325,panels,0.025,20141025_STC029;20131130_BRC864;20150328_LDC667;20130302_EUC141
+lines.value_lines.unlabelled,lines,print,lines: unlabelled value lines (marking a reference level),unlabelled,6,325,panels,0.018,20140208_WBC291;20120804_BRC737;20150228_LDC295;20120331_EUC844
+lines.highlight_regions.labelled coloured,lines,print,"lines: labelled coloured shaded regions (pale pink, sometimes with pale blue; events and periods)",labelled coloured,3,325,panels,0.009,20141101_MAC130;20150328_FNC672
+lines.highlight_regions.labelled neutral,lines,print,lines: labelled neutral shaded regions (the ground darkened; mostly forecast periods),labelled neutral,24,325,panels,0.074,20130504_WBC491;20140315_BRC497;20120428_WWC112;20150214_STC131
+lines.highlight_regions.unlabelled neutral,lines,print,lines: unlabelled neutral shaded regions (the ground darkened; mostly forecast periods),unlabelled neutral,4,325,panels,0.012,20151010_CNC108;20121117_FBC445;20150404_FBC717;20121117_FBC444
+lines.leader_lines,lines,print,lines: leader_lines,True,24,325,panels,0.074,20140830_EUC596;20151024_BRC262;20150307_LDC295;20151031_FNC318
+lines.time_axis,lines,print,lines: time_axis,True,317,325,panels,0.975,20121208_BRC605;20130406_USC359;20140222_WBC400;20141018_ASC895
+lines.number_box,lines,print,lines: number_box,True,48,325,panels,0.148,20120505_FNC143;20120519_FNC256;20140201_FNC260;20150228_FNC287
+lines.plus_minus_axis,lines,print,lines: plus_minus_axis,True,61,325,panels,0.188,20131123_BRC831;20150808_FNC294;20130112_BRC750;20120804_BRC725
+lines.index_line,lines,print,lines: index_line,True,44,325,panels,0.135,20130406_FNC368;20141004_BRC792;20150411_LDC774;20140823_LDC578
+lines.truncated_years,lines,print,lines: truncated_years,True,263,325,panels,0.809,20131123_BRC831;20121013_FNC260;20150307_EUC351;20130810_FNC192
+lines.red_zero_line,lines,print,lines: red_zero_line,True,84,325,panels,0.258,20130803_BRC170;20140308_STC479;20121208_BRC605;20150411_LDC774
+lines_stacked_area.value_axis_side.left,lines_stacked_area,print,lines_stacked_area: value_axis_side = left,left,1,20,panels,0.05,
+lines_stacked_area.value_axis_side.right,lines_stacked_area,print,lines_stacked_area: value_axis_side = right,right,19,20,panels,0.95,20150328_ASC637;20121215_USC615;20130720_BRC090;20131005_BRC462
+lines_stacked_area.legend.in_plot,lines_stacked_area,print,lines_stacked_area: legend = in_plot,in_plot,2,20,panels,0.1,20130803_FBC159;20150328_ASC637
+lines_stacked_area.legend.none,lines_stacked_area,print,lines_stacked_area: legend = none,none,11,20,panels,0.55,20140517_BRC809;20150530_INC403;20121215_USC615;20150404_WBC737
+lines_stacked_area.legend.under_subtitle,lines_stacked_area,print,lines_stacked_area: legend = under_subtitle,under_subtitle,7,20,panels,0.35,20130209_USC043;20131005_BRC462;20130720_BRC090;20130831_BRC298
+lines_stacked_area.gridlines.horizontal,lines_stacked_area,print,lines_stacked_area: gridlines = horizontal,horizontal,15,20,panels,0.75,20131005_BRC462;20150328_ASC637;20130720_BRC090;20150815_USC384
+lines_stacked_area.series_key.labels_next_to_data,lines_stacked_area,print,lines_stacked_area: series_key = labels_next_to_data,labels_next_to_data,11,20,panels,0.55,20121215_USC615;20140517_BRC809;20150404_WBC737;20150530_INC403
+lines_stacked_area.series_key.legend,lines_stacked_area,print,lines_stacked_area: series_key = legend,legend,8,20,panels,0.4,20150328_ASC637;20131005_BRC462;20130720_BRC090;20130831_BRC298
+lines_stacked_area.series_key.mixed,lines_stacked_area,print,lines_stacked_area: series_key = mixed,mixed,1,20,panels,0.05,20130720_AMC113;20130209_USC043
+lines_stacked_area.value_lines.unlabelled,lines_stacked_area,print,lines_stacked_area: unlabelled value lines (marking a reference level),unlabelled,1,20,panels,0.05,20140823_GDC559
+lines_stacked_area.highlight_regions.labelled neutral,lines_stacked_area,print,lines_stacked_area: labelled neutral shaded regions (the ground darkened; mostly forecast periods),labelled neutral,2,20,panels,0.1,20140823_MAC567;20130209_USC043;20150606_IRC522;20140823_GDC559
+lines_stacked_area.leader_lines,lines_stacked_area,print,lines_stacked_area: leader_lines,True,2,20,panels,0.1,20150815_USC384;20140823_MAC567
+lines_stacked_area.time_axis,lines_stacked_area,print,lines_stacked_area: time_axis,True,20,20,panels,1.0,20150328_ASC637;20121215_USC615;20130720_BRC090;20131005_BRC462
+lines_stacked_area.number_box,lines_stacked_area,print,lines_stacked_area: number_box,True,2,20,panels,0.1,20130803_FBC159;20140104_BBC109;20130831_BRC298
+lines_stacked_area.truncated_years,lines_stacked_area,print,lines_stacked_area: truncated_years,True,20,20,panels,1.0,20150328_ASC637;20121215_USC615;20130720_BRC090;20131005_BRC462
+lines_stacked_area.grey_other,lines_stacked_area,print,lines_stacked_area: grey_other,True,9,20,panels,0.45,20130720_BRC090;20121215_USC615;20150328_ASC637;20131005_BRC462
+type.pictogram.examples,pictogram,print,pictogram: too few in the sample for conventions; examples only,,5,5,panels,1.0,20141213_AMC497
+type.pie_doughnut.examples,pie_doughnut,print,pie_doughnut: too few in the sample for conventions; examples only,,19,19,panels,1.0,20120721_EUC633;20120602_MAC312;20150321_MAC111;20130323_BRC301
+scatter.value_axis_side.left,scatter,print,scatter: value_axis_side = left,left,8,16,panels,0.5,20131123_FNC810;20150704_ASC786;20141115_EUC234;20120331_BRC851
+scatter.value_axis_side.none,scatter,print,scatter: value_axis_side = none,none,5,16,panels,0.312,
+scatter.value_axis_side.right,scatter,print,scatter: value_axis_side = right,right,3,16,panels,0.188,20150718_STC096;20120804_STC752;20150418_WBC823
+scatter.legend.in_plot,scatter,print,scatter: legend = in_plot,in_plot,1,16,panels,0.062,20150704_ASC786
+scatter.legend.none,scatter,print,scatter: legend = none,none,9,16,panels,0.562,20131123_FNC810;20130706_ASC022;20141115_EUC234;20150418_WBC823
+scatter.legend.under_subtitle,scatter,print,scatter: legend = under_subtitle,under_subtitle,6,16,panels,0.375,20150718_STC096
+scatter.gridlines.horizontal,scatter,print,scatter: gridlines = horizontal,horizontal,15,16,panels,0.938,20150718_STC096;20131123_FNC810;20150704_ASC786;20130706_ASC022
+scatter.series_key.labels_next_to_data,scatter,print,scatter: series_key = labels_next_to_data,labels_next_to_data,2,16,panels,0.125,
+scatter.series_key.legend,scatter,print,scatter: series_key = legend,legend,7,16,panels,0.438,20150718_STC096;20150704_ASC786
+scatter.series_key.single_series,scatter,print,scatter: series_key = single_series,single_series,7,16,panels,0.438,20131123_FNC810;20130706_ASC022;20150418_WBC823;20120331_BRC851
+scatter.negative_labels.plus_minus_at_zero,scatter,print,scatter: negative_labels = plus_minus_at_zero,plus_minus_at_zero,2,2,panels with negatives,1.0,20150718_STC096;20120414_FNC013
+scatter.scale_break.baseline_not_zero,scatter,print,scatter: scale_break = baseline_not_zero,baseline_not_zero,1,16,panels,0.062,20130713_CNC060
+scatter.scale_break.discontinuous,scatter,print,scatter: scale_break = discontinuous,discontinuous,1,16,panels,0.062,20120804_STC752
+scatter.event_lines.labelled,scatter,print,scatter: labelled event lines (marking a date),labelled,1,16,panels,0.062,20150418_WBC823
+scatter.value_lines.labelled,scatter,print,scatter: labelled value lines (marking a reference level),labelled,2,16,panels,0.125,20120804_STC752;20141115_EUC234
+scatter.leader_lines,scatter,print,scatter: leader_lines,True,7,16,panels,0.438,20131123_FNC810;20150704_ASC786;20120331_BRC851;20130706_ASC022
+scatter.value_axis_title,scatter,print,scatter: value_axis_title,True,13,16,panels,0.812,20131123_FNC810;20150704_ASC786;20141115_EUC234;20120331_BRC851
+scatter.time_axis,scatter,print,scatter: time_axis,True,2,16,panels,0.125,20120804_STC752;20150418_WBC823
+scatter.number_box,scatter,print,scatter: number_box,True,7,16,panels,0.438,20120414_FNC013
+scatter.plus_minus_axis,scatter,print,scatter: plus_minus_axis,True,7,16,panels,0.438,20150718_STC096;20120414_FNC013
+scatter.log_scale,scatter,print,scatter: log_scale,True,3,16,panels,0.188,20150418_WBC823;20150613_USC574
+scatter.truncated_years,scatter,print,scatter: truncated_years,True,2,16,panels,0.125,20150418_WBC823
+scatter.red_data,scatter,print,scatter: red_data,True,1,16,panels,0.062,20120804_STC752
+scatter.red_zero_line,scatter,print,scatter: red_zero_line,True,6,16,panels,0.375,20150718_STC096
+type.slope.examples,slope,print,slope: too few in the sample for conventions; examples only,,9,9,panels,1.0,20150801_USC213;20150404_AMC713;20150516_WWC282;20150425_WBC018
+table.table_rules.between_rows,table,print,table: table_rules = between_rows,between_rows,37,41,panels,0.902,20130629_MAC893;20120407_IRC882;20130713_USC069;20120324_BRC797
+table.table_rules.none,table,print,table: table_rules = none,none,3,41,panels,0.073,20140607_FBC127
+table.table_row_rules.dotted,table,print,table: table_row_rules = dotted,dotted,27,41,panels,0.659,20140104_FBC098;20120324_BRC797;20130629_MAC893;20150411_EUC769
+table.table_row_rules.none,table,print,table: table_row_rules = none,none,3,41,panels,0.073,20150314_ASC999;20140607_FBC127
+table.table_row_rules.solid,table,print,table: table_row_rules = solid,solid,11,41,panels,0.268,20130720_STC096;20120428_USC095;20130323_STC292;20120407_FBC859
+table.table_shading.alternating,table,print,table: table_shading = alternating,alternating,5,41,panels,0.122,20150926_CNC876;20140607_FBC127;20151003_FNC059
+table.table_shading.highlight_rows,table,print,table: table_shading = highlight_rows,highlight_rows,8,41,panels,0.195,20120324_BRC797;20130518_MAC631;20150711_WBC899
+table.table_shading.none,table,print,table: table_shading = none,none,28,41,panels,0.683,20131005_FNC501;20140104_FBC098;20120428_USC095;20150411_EUC769
+table.table_highlight.bold,table,print,table: table_highlight = bold,bold,16,41,panels,0.39,20120324_BRC797;20150411_EUC769;20140104_FBC098;20121103_BRC382
+type.thermometer.examples,thermometer,print,thermometer: too few in the sample for conventions; examples only,,22,22,panels,1.0,20120728_IRC970;20150124_FBC772;20140301_FNC432;20130504_IRC523
+type.timeline.examples,timeline,print,timeline: too few in the sample for conventions; examples only,,3,3,panels,1.0,20130119_USC776;20150214_GDC913;20130831_FBC947
+type.waterfall.examples,waterfall,print,waterfall: too few in the sample for conventions; examples only,,2,2,panels,1.0,20141004_WBC821;20150124_USC779
+anatomy.footnote_symbols,Anatomy,print,"Footnote symbols (*, †, ‡) in labels, with the notes at the bottom",True,301,775,charts,0.388,20150314_EUC474;20120804_IRC728;20131123_ASC815;20140712_LDC314
+palette.blue,Colour: palette,print,"Series colour 'blue' (classic blue): modal shade #00A4DC, median dE to classic 1.7, to nearest 2017 21.7; by half-year 2012H1 #01A2D9, 2012H2 #00A3DC, 2013H1 #009DCD, 2013H2 #01A1CE, 2014H1 #01A1CE, 2014H2 #01A1CE, 2015H1 #00A4DC, 2015H2 #01A4DC",#00A4DC,466,751,charts,0.621,20121208_WWC601;20130427_WBC404;20150221_INC209;20140712_CNC315
+palette.blue-gray,Colour: palette,print,"Series colour 'blue-gray' (classic blue-gray): modal shade #5E91A8, median dE to classic 2.9, to nearest 2017 7.2; by half-year 2012H1 #6794A7, 2012H2 #6794A7, 2013H1 #638C9C, 2013H2 #648D9E, 2014H1 #648D9D, 2014H2 #648D9D, 2015H1 #5E91A8, 2015H2 #5E91A8",#5E91A8,131,751,charts,0.174,20140531_INC088;20130810_FNC192;20120331_AMC833;20150221_INC209
+palette.brown,Colour: palette,print,"Series colour 'brown' (classic brown): modal shade #977B70, median dE to classic 2.2, to nearest 2017 14.4; by half-year ",#977B70,6,751,charts,0.008,20151003_MAC048;20151017_MAC165;20130323_BRC301;20150307_IRC356
+palette.dark blue,Colour: palette,print,"Series colour 'dark blue' (classic dark blue): modal shade #00485D, median dE to classic 2.4, to nearest 2017 7.4; by half-year 2012H1 #014D65, 2012H2 #01526D, 2013H1 #01526D, 2013H2 #00485D, 2014H1 #00485D, 2014H2 #00485D, 2015H1 #00526D, 2015H2 #00526D",#00485D,597,751,charts,0.795,20140405_CNC682;20130727_INC134;20150221_BRC084;20120707_USC533
+palette.dark green,Colour: palette,print,"Series colour 'dark green' (classic dark green): modal shade #018A84, median dE to classic 1.3, to nearest 2017 14.5; by half-year 2012H1 #01877C, 2012H2 #00887E, 2014H2 #02897E, 2015H1 #018A84, 2015H2 #018A84",#018A84,46,751,charts,0.061,20150725_IRC057;20151003_MAC048;20120707_AMC537;20120728_MAC707
+palette.dark red,Colour: palette,print,"Series colour 'dark red' (classic dark red): modal shade #772310, median dE to classic 3.9, to nearest 2017 26.2; by half-year 2012H1 #7C2509, 2012H2 #781D01, 2013H1 #721905, 2013H2 #772310, 2014H1 #772310, 2014H2 #772310, 2015H1 #7B2713, 2015H2 #761E09",#772310,119,751,charts,0.158,20150606_CNC499;20120714_ASC574;20140405_AMC657;20131207_USC857
+palette.gray,Colour: palette,print,"Series colour 'gray' (classic gray): modal shade #A6A6A7, median dE to classic 2.6, to nearest 2017 15.1; by half-year 2012H1 #ADADAD, 2012H2 #A8A9AD, 2013H1 #A5A4A4, 2013H2 #A6A6A7, 2014H1 #A6A6A7, 2014H2 #A6A6A7, 2015H1 #A7A9AC, 2015H2 #A7A9AC",#A6A6A7,90,751,charts,0.12,20130706_EUC015;20140607_FNC104;20121215_USC615;20150328_ASC637
+palette.light blue,Colour: palette,print,"Series colour 'light blue' (classic light blue): modal shade #86D7F2, median dE to classic 4.3, to nearest 2017 14.2; by half-year 2012H1 #7AD2F6, 2012H2 #7AD2F6, 2013H1 #84D7F2, 2013H2 #86D7F2, 2014H1 #86D7F2, 2014H2 #85D7F2, 2015H1 #6ED0F6, 2015H2 #6ED0F6",#86D7F2,126,751,charts,0.168,20131116_STC780;20140712_WOC298;20150214_FNC114;20120519_AMC246
+palette.light green,Colour: palette,print,"Series colour 'light green' (classic light green): modal shade #7FCAC7, median dE to classic 2.4, to nearest 2017 4.1; by half-year 2012H2 #76C0C1, 2013H1 #6EBDC1, 2014H1 #7FCAC7, 2014H2 #7FCAC7, 2015H1 #6EBCBF, 2015H2 #6EBCBF",#7FCAC7,46,751,charts,0.061,20150627_STC765;20150725_EUC158;20150404_WBC737;20120721_FNC632
+palette.pink,Colour: palette,print,"Series colour 'pink' (classic pink): modal shade #EC8B6A, median dE to classic 3.1, to nearest 2017 19.7; by half-year 2012H1 #EE8F71, 2012H2 #EC8E72, 2013H1 #EE9E81, 2014H1 #EC8B6A, 2014H2 #EC8B6A, 2015H1 #EA9074, 2015H2 #EB8E73",#EC8B6A,57,751,charts,0.076,20140712_CNC315;20150328_ASC637;20131207_USC857;20120519_AMC246
+palette.red,Colour: palette,print,"Series colour 'red' (classic red): modal shade #E11B17, median dE to classic 5.1, to nearest 2017 28.3; by half-year 2014H2 #E11B17",#E11B17,13,751,charts,0.017,20151017_STC142;20130105_LDC721;20130608_BRC764;20150801_USC213
+palette.new.#EF4623,Colour: palette,print,"Series colour #EF4623 not in the classic palette (nearest red, dE 12.7; nearest 2017 2017 coral, dE 20.3)",#EF4623,5,751,charts,0.007,20130330_BBC053;20130323_MAC309;20140201_INC246;20131012_IRC543
+palette.new.#F36A4B,Colour: palette,print,"Series colour #F36A4B not in the classic palette (nearest pink, dE 21.2; nearest 2017 2017 coral, dE 6.4)",#F36A4B,8,751,charts,0.011,20130727_IRC133;20150919_MAC791;20121201_EUC545;20150704_INC833
+palette.new.#F15A40,Colour: palette,print,"Series colour #F15A40 not in the classic palette (nearest red, dE 22.4; nearest 2017 2017 coral, dE 10.1)",#F15A40,10,751,charts,0.013,20150718_STC096;20150725_EUC158;20150124_FBC772;20150606_WWC516
+colour.other.gray,Colour: order,print,An 'other' category is drawn in gray,gray,31,49,series,0.633,
+colour.gray.equal,Colour: order,print,"Gray also colours ordinary categories of equal emphasis, not only 'other'",gray,71,102,series,0.696,
+colour.other.n2.set.blue+dark blue,Colour: order,print,2 series plus an 'other' category use the colours {blue+dark blue} for the series,blue+dark blue,4,5,panels,0.8,
+colour.other.n3.set.blue+blue-gray+dark blue,Colour: order,print,3 series plus an 'other' category use the colours {blue+blue-gray+dark blue} for the series,blue+blue-gray+dark blue,3,9,panels,0.333,
+colour.other.n3.set.dark red+light blue+red,Colour: order,print,3 series plus an 'other' category use the colours {dark red+light blue+red} for the series,dark red+light blue+red,3,9,panels,0.333,
+colour.other.n4.set.blue+blue-gray+dark blue+light blue,Colour: order,print,4 series plus an 'other' category use the colours {blue+blue-gray+dark blue+light blue} for the series,blue+blue-gray+dark blue+light blue,5,6,panels,0.833,
+colour.other.position.first,Colour: order,print,The 'other' category comes first in the legend or stack,first,2,34,panels,0.059,
+colour.other.position.last,Colour: order,print,The 'other' category comes last in the legend or stack,last,30,34,panels,0.882,
+colour.other.position.middle,Colour: order,print,The 'other' category comes middle in the legend or stack,middle,2,34,panels,0.059,
+colour.n1.set.blue,Colour: order,print,1 series of equal emphasis use the colours {blue},blue,16,257,panels,0.062,20140405_USC662;20150418_WBC823
+colour.n1.set.dark blue,Colour: order,print,1 series of equal emphasis use the colours {dark blue},dark blue,234,257,panels,0.911,20140215_WWC353;20130727_FNC142;20120929_IRC163;20150131_LDC889
+colour.n2.set.blue+dark blue,Colour: order,print,2 series of equal emphasis use the colours {blue+dark blue},blue+dark blue,197,285,panels,0.691,20141129_LDC361;20120811_LDC772;20150124_EUC763;20130831_BRC306
+colour.n2.set.blue+dark red,Colour: order,print,2 series of equal emphasis use the colours {blue+dark red},blue+dark red,60,285,panels,0.211,20140607_STC108;20150530_BRC407;20120407_WBC835;20130427_WBC404
+colour.n2.stack.blue>dark blue,Colour: order,print,"2-series stacks, bottom/left first: blue > dark blue",blue > dark blue,14,36,panels,0.389,20130119_INC787;20141108_FNC191;20120811_LDC772;20130413_CNC414
+colour.n2.stack.dark blue>blue,Colour: order,print,"2-series stacks, bottom/left first: dark blue > blue",dark blue > blue,16,36,panels,0.444,20130831_BRC306;20151003_LDC072;20120929_MAC148;20150221_CNC196
+colour.n2.stack.pink>dark blue,Colour: order,print,"2-series stacks, bottom/left first: pink > dark blue",pink > dark blue,3,36,panels,0.083,20120505_IRC001
+colour.n3.set.blue+blue-gray+dark blue,Colour: order,print,3 series of equal emphasis use the colours {blue+blue-gray+dark blue},blue+blue-gray+dark blue,40,106,panels,0.377,20130504_USC525;20120623_BRC468;20150221_INC209;20141129_FNC366
+colour.n3.set.blue+dark blue+dark red,Colour: order,print,3 series of equal emphasis use the colours {blue+dark blue+dark red},blue+dark blue+dark red,8,106,panels,0.075,20130223_ASC110;20120630_ASC490;20150725_STC182;20131102_AMC572
+colour.n3.set.blue+dark blue+gray,Colour: order,print,3 series of equal emphasis use the colours {blue+dark blue+gray},blue+dark blue+gray,8,106,panels,0.075,20120707_ASC546;20130112_ASC753;20120804_IRC730;20120324_FBC804
+colour.n3.set.blue+dark blue+light blue,Colour: order,print,3 series of equal emphasis use the colours {blue+dark blue+light blue},blue+dark blue+light blue,20,106,panels,0.189,20131116_STC780;20121006_STC023;20150214_FNC114;20151024_INC258
+colour.n3.set.blue+dark blue+pink,Colour: order,print,3 series of equal emphasis use the colours {blue+dark blue+pink},blue+dark blue+pink,5,106,panels,0.047,20140830_CNC597;20150207_FNC013;20130119_LDC784;20140329_FNC628
+colour.n3.set.blue+dark red+pink,Colour: order,print,3 series of equal emphasis use the colours {blue+dark red+pink},blue+dark red+pink,5,106,panels,0.047,20140712_CNC315;20140524_BRC024;20151003_FBC111;20140329_WBC620
+colour.n3.stack.blue-gray>dark blue>blue,Colour: order,print,"3-series stacks, bottom/left first: blue-gray > dark blue > blue",blue-gray > dark blue > blue,4,15,panels,0.267,20130126_INC852;20120623_BRC468;20121013_FNC263;20130803_WBC166
+colour.n4.set.blue+blue-gray+dark blue+gray,Colour: order,print,4 series of equal emphasis use the colours {blue+blue-gray+dark blue+gray},blue+blue-gray+dark blue+gray,11,49,panels,0.224,20140607_FNC104;20130706_EUC015;20140531_INC088
+colour.n4.set.blue+blue-gray+dark blue+light blue,Colour: order,print,4 series of equal emphasis use the colours {blue+blue-gray+dark blue+light blue},blue+blue-gray+dark blue+light blue,8,49,panels,0.163,20130810_AMC199;20120811_USC776;20140823_FNC565;20130817_CNC214
+colour.n4.set.blue+dark blue+dark red+pink,Colour: order,print,4 series of equal emphasis use the colours {blue+dark blue+dark red+pink},blue+dark blue+dark red+pink,4,49,panels,0.082,20150314_AMC462;20151010_USC037
+colour.n4.set.blue+dark red+light blue+pink,Colour: order,print,4 series of equal emphasis use the colours {blue+dark red+light blue+pink},blue+dark red+light blue+pink,3,49,panels,0.061,20120519_AMC246;20131207_USC857;20130119_FBC775
+colour.n5.set.blue+blue-gray+dark blue+dark green+light green,Colour: order,print,5 series of equal emphasis use the colours {blue+blue-gray+dark blue+dark green+light green},blue+blue-gray+dark blue+dark green+light green,3,25,panels,0.12,20130105_EUC708;20140712_INC310;20140301_AMC428
+colour.n5.set.blue+blue-gray+dark blue+gray+light blue,Colour: order,print,5 series of equal emphasis use the colours {blue+blue-gray+dark blue+gray+light blue},blue+blue-gray+dark blue+gray+light blue,9,25,panels,0.36,20150718_BRC001;20121124_INC514
+colour.n5.set.blue-gray+dark blue+dark green+light blue+light green,Colour: order,print,5 series of equal emphasis use the colours {blue-gray+dark blue+dark green+light blue+light green},blue-gray+dark blue+dark green+light blue+light green,4,25,panels,0.16,
+colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green,Colour: order,print,6 series of equal emphasis use the colours {blue+blue-gray+dark blue+gray+light blue+light green},blue+blue-gray+dark blue+gray+light blue+light green,3,11,panels,0.273,20130427_IRC505;20140405_WBC681;20140322_EUC547
+colour.area.n2.first.dark blue,Colour: order,print,area charts with 2 series: first series is dark blue,dark blue,4,5,panels,0.8,20140517_BRC809;20150606_IRC522
+colour.bar.n2.first.blue,Colour: order,print,bar charts with 2 series: first series is blue,blue,57,99,panels,0.576,20120317_LDC770;20130413_CNC414;20150307_WWC398;20141122_INC308
+colour.bar.n2.first.dark blue,Colour: order,print,bar charts with 2 series: first series is dark blue,dark blue,36,99,panels,0.364,20140816_WWC524;20130831_BRC306;20121103_BRC387;20150221_CNC196
+colour.bar.n3.first.blue,Colour: order,print,bar charts with 3 series: first series is blue,blue,7,29,panels,0.241,20150627_STC765;20151003_FBC111
+colour.bar.n3.first.blue-gray,Colour: order,print,bar charts with 3 series: first series is blue-gray,blue-gray,11,29,panels,0.379,20140222_INC395;20130126_INC852;20120623_BRC468;20121013_FNC263
+colour.bar.n3.first.dark blue,Colour: order,print,bar charts with 3 series: first series is dark blue,dark blue,9,29,panels,0.31,20121006_STC023;20120630_ASC490;20131102_AMC572;20120526_FNC292
+colour.bar.n4.first.blue-gray,Colour: order,print,bar charts with 4 series: first series is blue-gray,blue-gray,4,11,panels,0.364,20120811_USC776;20131005_ASC515;20130817_CNC214
+colour.bar.n4.first.dark red,Colour: order,print,bar charts with 4 series: first series is dark red,dark red,3,11,panels,0.273,20120519_AMC246
+colour.double_scale.n2.first.blue,Colour: order,print,double_scale charts with 2 series: first series is blue,blue,51,64,panels,0.797,20120407_WBC835;20140607_STC108;20150606_CNC499;20131102_MAC677
+colour.double_scale.n3.first.blue,Colour: order,print,double_scale charts with 3 series: first series is blue,blue,4,8,panels,0.5,20140712_CNC315;20140329_WBC620;20130706_USC001;20120929_FBC140
+colour.line.n2.first.blue,Colour: order,print,line charts with 2 series: first series is blue,blue,51,112,panels,0.455,20120512_AMC201;20150523_LDC348;20130309_AMC149;20140726_STC381
+colour.line.n2.first.dark blue,Colour: order,print,line charts with 2 series: first series is dark blue,dark blue,55,112,panels,0.491,20131102_USC675;20151017_STC142;20141108_MAC202;20120804_BRC725
+colour.line.n3.first.blue,Colour: order,print,line charts with 3 series: first series is blue,blue,22,64,panels,0.344,20141129_FNC366;20120331_AMC833;20150221_INC209;20140830_CNC597
+colour.line.n3.first.dark blue,Colour: order,print,line charts with 3 series: first series is dark blue,dark blue,23,64,panels,0.359,20130504_USC525;20120707_ASC546;20130112_ASC753;20131123_BRC831
+colour.line.n4.first.blue-gray,Colour: order,print,line charts with 4 series: first series is blue-gray,blue-gray,5,29,panels,0.172,
+colour.line.n4.first.dark blue,Colour: order,print,line charts with 4 series: first series is dark blue,dark blue,12,29,panels,0.414,20130706_EUC015;20150725_IRC057;20130330_BBC345;20151010_USC037

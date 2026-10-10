@@ -273,6 +273,8 @@ smart_digits_format <- function(x, ...) {
 #'
 #' Truncates year labels to their last two digits, keeping the first labeled
 #' year and every century boundary in full: `1948 52 56 ... 96 2000 04 08`.
+#' Where no century boundary is labeled, the first year of the new century is
+#' in full: `1970 90 2010`.
 #' This is the convention on every dated axis in *The Economist visual
 #' styleguide* (v1.2, 4 May 2017) -- see pp.6, 7, 13, 15, 16 and 23 -- and it
 #' keeps a crowded time axis readable without losing the reader's anchor.
@@ -308,6 +310,14 @@ economist_2017_year <- function(x, ...) {
   first <- which(labelled)[1]
   if (length(first)) {
     full[first] <- TRUE
+  }
+  # A year in a new century is in full too when no century boundary is
+  # labelled before it, so that 1970, 90, 2010 does not read 1970, 90, 10.
+  century <- x %/% 100
+  seen <- which(labelled)
+  if (length(seen) > 1) {
+    changed <- seen[-1][century[seen[-1]] != century[seen[-length(seen)]]]
+    full[changed] <- full[changed] | whole[changed]
   }
 
   # Formatted one at a time: a shared call would pad every year to the widest

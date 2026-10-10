@@ -5,6 +5,20 @@
 #' not included in these palettes; *The Economist* reserves it to
 #' mark important data.
 #'
+#' The fill palette gives the colour sets that the print charts of 2012 to
+#' 2015 use most for series of equal emphasis: dark blue for one series;
+#' blue and dark blue for two; blue-gray, dark blue and blue for three, with
+#' gray added for four; light blue and gray added for five; and light green
+#' for a sixth. Stacks run
+#' from the baseline outwards in the same order. The charts drew an "other"
+#' category in gray, after the other series: give it the last level of the
+#' factor and set its colour with [ggplot2::scale_fill_manual()].
+#'
+#' The colors are the print specs of the palette, inferred as CMYK, rendered
+#' through US Web Coated SWOP, as the web images of the print charts usually
+#' showed them. The CMYK are in `ggthemes_data$economist$palette` (see
+#' [ggthemes_data]).
+#'
 #' @param fill Use the fill palette. The fill palette (the default) and the
 #'   line palette choose and order the colors differently.
 #' @family color economist
@@ -29,14 +43,15 @@ economist_pal <- function(fill = TRUE) {
       } else if (n == 4L) {
         i <- c("blue-gray", "dark blue", "blue", "gray")
       } else if (n %in% 5:6) {
-        ## 20120901_woc904
+        # The commonest sets in the print charts of 2012 to 2015: gray is the
+        # fifth colour (9 of 25 five-series panels) and light green the sixth.
         i <- c(
           "blue-gray",
           "dark blue",
           "light blue",
           "blue",
-          "light green",
-          "dark green"
+          "gray",
+          "light green"
         )
       } else if (n == 7L) {
         # 20120818_AMC820
@@ -277,10 +292,11 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 #' @param horizontal `logical` Horizontal axis lines?
 #' @param dkpanel `logical` Darker background for panel region? The panels
 #'   and strips are a darker blue-gray than the plot's ground, as in the
-#'   charts of 2012 to 2014.
+#'   charts with panels of 2012 to mid-2015.
 #' @param lightpanel `logical` Lighter background for panel region? The plot's
-#'   ground is a deeper blue-gray and the panels are paler than it, as in many
-#'   of the charts of 2015 to 2018. The panel headings (strips) stay on the
+#'   ground is a deeper blue-gray and the panels are paler than it, as in the
+#'   charts with panels from the second half of 2015, which replaced the
+#'   darker panels of `dkpanel`: the same two colors, swapped. The panel headings (strips) stay on the
 #'   ground. Use at most one of `dkpanel` and `lightpanel`.
 #' @param gray_bg `logical` If `TRUE`, use gray background, else
 #'   use white background.
@@ -353,6 +369,9 @@ theme_economist <- function(
           unit = "pt"
         )
       ),
+      # The value axis of most charts is on the right, its labels ranged right,
+      # flush with the chart's right margin, and set off from the panel.
+      axis.text.y.right = element_text(hjust = 1, margin = margin(l = base_size * 0.6, unit = "pt")),
       ## I cannot figure out how to get ggplot to do 2 levels of ticks
       ## axis.ticks.margin = unit(3 / 72, "in"),
       # Ticks have the size of the 2017 guide's (0.4pt wide, 5pt long beside 7pt
@@ -377,7 +396,13 @@ theme_economist <- function(
       legend.key.size = unit(base_size, "points"),
       legend.key.height = unit(base_size, "points"),
       legend.key.width = unit(base_size * 1.6, "points"),
-      legend.text = element_text(size = rel(1)),
+      # The key sits close under the subtitle and over the panel, flush with
+      # the title, its entries a base size apart, as in the corpus's charts.
+      legend.margin = margin(0, 0, 0, 0),
+      legend.box.spacing = unit(base_size * 0.6, "points"),
+      legend.key.spacing.x = unit(base_size, "points"),
+      legend.key.spacing.y = unit(base_size * 0.2, "points"),
+      legend.text = element_text(size = rel(1), margin = margin(l = base_size * 0.4, unit = "pt")),
       legend.title = element_text(size = rel(1), hjust = 0),
       legend.position = "top",
       legend.direction = NULL,

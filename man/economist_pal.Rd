@@ -20,6 +20,21 @@ greens, chosen and ordered for the number of colors requested. Red is
 not included in these palettes; \emph{The Economist} reserves it to
 mark important data.
 }
+\details{
+The fill palette gives the colour sets that the print charts of 2012 to
+2015 use most for series of equal emphasis: dark blue for one series;
+blue and dark blue for two; blue-gray, dark blue and blue for three, with
+gray added for four; light blue and gray added for five; and light green
+for a sixth. Stacks run
+from the baseline outwards in the same order. The charts drew an "other"
+category in gray, after the other series: give it the last level of the
+factor and set its colour with \code{\link[ggplot2:scale_fill_manual]{ggplot2::scale_fill_manual()}}.
+
+The colors are the print specs of the palette, inferred as CMYK, rendered
+through US Web Coated SWOP, as the web images of the print charts usually
+showed them. The CMYK are in \code{ggthemes_data$economist$palette} (see
+\link{ggthemes_data}).
+}
 \examples{
 library("scales")
 

@@ -4,6 +4,16 @@ template:
 reference:
 - title: Themes
   contents: starts_with("theme_")
+- title: The Economist, classic
+  desc: The classic (pre-2017) print style of *The Economist*, measured on its charts of 2012 to 2016.
+  contents:
+  - theme_economist
+  - economist_pal
+  - scale_colour_economist
+  - economist_chart
+  - economist_plus_minus
+  - gt_theme_economist
+  - economist_table
 - title: The Economist, 2017
   desc: Theme, palettes, scales, axis guide, chart layout and sizes for *The Economist
     visual styleguide* (v1.2, 4 May 2017).

@@ -1,0 +1,185 @@
+## Titles, subtitles and units
+
+```{r cg-words-setup, include = FALSE}
+## The stories' share of wordplay by year: "59% in 2012, 47% in 2013, ...".
+cgw_by_year <- paste0(vapply(2012:2015, function(y) {
+  r <- words[words$measure == paste0("title.stories.wordplay.", y), ]
+  paste0(round(100 * r$n / r$of), "% in ", y)
+}, character(1)), collapse = ", ")
+```
+
+The corpus reading recorded the title and subtitle of each of the `r words$of[words$measure == "subtitle.empty"]` print
+charts in the sample. The counts below come from that text. The kind of each title (a plain label, a verdict, or one of
+the kinds of wordplay) was classified by Claude from the title and its subtitle; the boundaries between an idiom used
+straight, a verdict and a pun are soft, so treat those shares as approximate. Every example cited was checked against
+its chart.
+
+### Titles
+
+A classic title is short: three words is the median, and `r word_share("title.words_le4", "titles")` have four words
+or fewer. It is set in sentence case, with no full stop; a question mark is rare
+(`r word_share("title.question", "titles")`).
+
+What the title says depends on where the chart runs. On the data pages (Economic and financial indicators and The world
+this week) and in Leaders, the title is a label for the data: `r word_share("title.pages.plain", "titles")` are plain
+labels, such as `r cite_codes(c("20150124_WWC794", "20120512_INC200"))`. In the rest of the paper, the stories, the
+title is a headline: `r word_share("title.stories.wordplay", "titles")` play on words, and most of the rest
+(`r word_share("title.stories.statement", "titles")`) are short verdicts on the story. Only
+`r word_share("title.stories.plain", "titles")` are plain labels. The share of wordplay moved between years with no
+trend: `r cgw_by_year`.
+
+```{r cg-words-kinds, econ_height = 150}
+## The kinds of title, from words.csv, as a classic stacked bar: the data pages against the stories.
+cgw_kinds <- c(plain = "Plain label", statement = "Verdict", idiom = "Idiom", pun = "Pun", allusion = "Allusion")
+cgw_counts <- do.call(rbind, lapply(c(pages = "Data pages\nand Leaders", stories = "Stories"), function(group) {
+  key <- names(which(c(pages = "Data pages\nand Leaders", stories = "Stories") == group))
+  r <- words[words$measure %in% paste0("title.", key, ".", names(cgw_kinds)), ]
+  data.frame(
+    group = group,
+    kind = factor(cgw_kinds[sub(".*\\.", "", r$measure)], levels = rev(cgw_kinds)),
+    share = 100 * r$n / r$of
+  )
+}))
+cgw_counts$group <- factor(cgw_counts$group, levels = rev(unique(cgw_counts$group)))
+
+cgw_p <- ggplot(cgw_counts, aes(share, group, fill = kind)) +
+  geom_col(width = 0.6) +
+  ## The stories' segments are named inside them, as the classic stacked bars name theirs when they fit.
+  geom_text(
+    data = cgw_counts[cgw_counts$group == "Stories", ],
+    ## White on the dark segments, black on the gray and the light blue.
+    aes(label = round(share), colour = kind %in% c("Plain label", "Idiom"), group = kind),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    size = classic_size * 0.9 / .pt
+  ) +
+  scale_colour_manual(values = c(`FALSE` = "white", `TRUE` = "black")) +
+  geom_vline(xintercept = 0, colour = "black", linewidth = lw(0.5)) +
+  scale_fill_manual(
+    values = setNames(c(fg[["gray"]], fg[["blue-gray"]], fg[["light blue"]], fg[["blue"]], fg[["dark blue"]]),
+                      cgw_kinds),
+    breaks = unname(cgw_kinds),
+    name = NULL
+  ) +
+  guides(fill = guide_legend(nrow = 2)) +
+  scale_x_continuous(position = "top", breaks = seq(0, 100, 25), expand = expansion(0)) +
+  labs(
+    title = "Pun and games",
+    subtitle = "Titles of print charts by kind,\n2012-15, % of total",
+    caption = "Source: ggthemes chart corpus",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line() +
+  theme(legend.text = element_text(size = rel(0.9)))
+economist_chart(cgw_p)
+```
+
+The chart's title is an example of what it counts: an altered idiom ("fun and games"), true of the data.
+
+The table splits the chart's kinds more finely: its "Pun" takes in double meanings, altered idioms and homophones;
+"Idiom" is an idiom used straight; and "Verdict" and "Plain label" are as in the chart. The kinds of title, with the
+subtitles they play against (a "/" marks the subtitle's second line):
+
+| Kind | Example | Subtitle | How it works |
+|:--|:--|:--|:--|
+| Double meaning | `r cite_codes("20140517_IRC893")` | Number of Catholic priests and nuns, m | a nun's habit, and a habit broken as numbers fall |
+| | `r cite_codes("20120317_WBC761")` | North American carbonated soft-drinks index / Sales volume, 2004=100 | fizz is the product and the vigour of its sales |
+| Idiom used straight | `r cite_codes("20150718_BRC001")` | Households in temporary homes, England, '000 | literally true of the people counted |
+| | `r cite_codes("20140222_MAC376")` | Food imports as % of consumption, 2010 | the Gulf states import most of the food their people eat |
+| Altered idiom | `r cite_codes("20150214_FNC114")` | Commercial property, average annual total returns to September 2014, % | safe as houses |
+| | `r cite_codes("20150207_WBC033")` | US oil exports, barrels per day, m | fools rush in |
+| | `r cite_codes("20130817_CNC214")` | China's debt as % of GDP | death-defying |
+| Homophone | `r cite_codes("20140104_STC094")` | Cost of determining 1m bases of a DNA sequence / Log scale, $ | sense and cents, as the cost falls to cents |
+| | `r cite_codes("20150418_WBC823")` | Number of transistors in CPU\* / Log scale | always more, and Moore's law |
+| | `r cite_codes("20150829_FNC538")` | Japan, % change on a year earlier | cor blimey, and core inflation |
+| Allusion | `r cite_codes("20130525_EUC676")` | Unemployment rate, % of labour force | *Sleepless in Seattle* |
+| | `r cite_codes("20130126_CNC824")` | China's working-age population\* / Change on previous year, m | *Love's Labour's Lost* |
+| | `r cite_codes("20120324_BRC797")` | Impact of main budget measures on the exchequer, £m | the Lord giveth (Job 1:21) |
+| Verdict | `r cite_codes("20121027_WBC329")` | World's biggest construction firms by revenue | no wordplay: the story in four words |
+
+The title and the subtitle divide the work. The subtitle says literally what is plotted, so the title is free to say
+what it means, and the pun only lands once the reader has the subtitle: "Breaking the habit" makes sense only beside
+"Number of Catholic priests and nuns". The play points at the finding, not just the topic: the habit is broken
+because the numbers fall, and the fizz is lost because sales do.
+
+For writing classic titles, the corpus suggests:
+
+- On the data pages and in Leaders, use a plain label: "Brent crude oil price".
+- Elsewhere, write a headline of one to four words. If no wordplay comes that is true of the data, a short verdict is
+  as much the house style as a pun: "China's rise, Japan's fall".
+- Aim the play at the finding, and keep its literal sense true of the data.
+- Use phrases an international reader knows: idioms, proverbs, the Bible, Shakespeare, famous films, books and songs.
+  Allusions can run a little longer than other titles.
+- One play per title, and none on deaths, disasters or their victims.
+- Keep the units and the date out of the title: they belong in the subtitle.
+
+Against 2017: the 2017 guide gives no rule for titles, but its examples are classic titles: *Mutti's malaise*,
+*Mexican waves* (a redraw of a classic chart, `r cite_codes("20150502_FNC077")`), *The horrible science*.
+
+### Subtitles and units
+
+The subtitle says what is measured, where and when, and often ends with the unit after a comma: "Tourist arrivals in
+Egypt, m", "Revenue, 2013, $bn", "Japan, % change on a year earlier". The last term after a comma is a unit in
+`r word_share("subtitle.unit_last", "subtitles")`, and a unit appears somewhere in
+`r word_share("subtitle.has_unit", "subtitles")`; a year or period in `r word_share("subtitle.year", "subtitles")`.
+Only `r word_share("subtitle.empty", "charts")` have no subtitle; of those,
+`r words$n[words$measure == "subtitle.empty_panels"]` are panel charts whose panel headings carry it.
+
+Units are written short and in a fixed form:
+
+| Form | In subtitles | Notes |
+|:--|:--|:--|
+| `%` | `r word_share("subtitle.percent", "subtitles")` | alone, after a comma |
+| `% of GDP` | `r word_share("subtitle.pct_gdp", "subtitles")` | also `% of total` |
+| `% change on a year earlier` | `r word_share("subtitle.on_year_earlier", "subtitles")` | or "on previous year"; "increase" when every value is positive |
+| `bn`, `m`, `trn`, `'000` | `r paste(words$n[match(c("subtitle.bn", "subtitle.m", "subtitle.trn", "subtitle.thousand"), words$measure)], collapse = ", ")` subtitles | after a currency symbol with no space: $bn, £m, ¥trn, €bn; alone for counts: "m" |
+| million, billion, thousand in words | `r words$n[words$measure == "subtitle.spelled_magnitude"]` subtitles | only before another unit word: "million b/d", "billion tonnes" |
+| `2005=100` | `r word_share("subtitle.index", "subtitles")` | no spaces; with the currency basis if it matters: "2005=100, $ terms" |
+| percentage points | `r words$n[words$measure == "subtitle.percentage_points"]` subtitles | spelled out |
+| log scale | see [log scales](#log-scales) | stated in the subtitle or over the axis |
+
+When the subtitle runs long, the unit and the index base go on a second, shorter line ("North American carbonated
+soft-drinks index" over "Sales volume, 2004=100", `r cite_codes("20120317_WBC761")`). When panels have their own
+headings, the subtitle ends with a colon and the headings finish it ("India's:"; `r word_share("subtitle.colon_end",
+"subtitles")`). A term that needs defining takes an asterisk, then †, ‡, and the definition goes in a footnote.
+Double-scale charts and scatters, whose axes have different units, put them in colored or italic axis titles instead
+(see [double-scale charts](#double-scale-charts)).
+
+Against 2017: the [2017 guide](economist-2017-styleguide.html#standard-scatter) moves the units out of the subtitle:
+"sub title should summarise chart, save specific units for axis labels". The classic subtitle is where the unit lives.
+
+### A prompt for classic titles
+
+The rules above, written as a prompt for a language model. Give it a chart, as an image or a description of what it
+plots, and optionally the article and the part of the paper; it returns a title, a subtitle, the kind of title and
+two alternatives. The prompt is in
+[`economist-classic/title-prompt.md`](https://github.com/jrnold/ggthemes/blob/main/vignettes/articles/economist-classic/title-prompt.md).
+
+```{r cg-words-prompt, echo = FALSE, comment = ""}
+cat(readLines("economist-classic/title-prompt.md"), sep = "\n")
+```
+
+The prompt was tested blind on ten charts from the sample that it does not quote: eight stories with wordplay titles,
+one verdict and one chart from the indicators pages. Each chart's title was painted out of its image, and the model
+(Claude Sonnet) was given the image, the section and the words of the article's web address. Two of its titles were
+the paper's own and two more played on the same word; the other six were different titles, most of them sound:
+
+| Original | The prompt's title | |
+|:--|:--|:--|
+| `r cite_codes("20130112_ASC753")` | The lucky country | the same |
+| `r cite_codes("20121215_INC644")` | Patent applications | the same, a plain label on an indicators page |
+| `r cite_codes("20121215_STC646")` | Scoring goals | a different pun on the same word, the Millennium Development Goals |
+| `r cite_codes("20120225_FNC628")` | Temping fate | a different pun on the same word, temporary workers |
+| `r cite_codes("20130330_BBC053")` | Changing planes | different: transfers between flights, where the original plays on hubs |
+| `r cite_codes("20130126_BRC845")` | Work in regress | different: an altered idiom where the original uses one straight |
+| `r cite_codes("20140913_USC660")` | Not so golden | different: on the Golden State, where the original reads like a school report |
+| `r cite_codes("20141018_BRC006")` | Up the property ladder | different: an idiom where the original alludes to a song |
+| `r cite_codes("20150905_AMC613")` | Real trouble | different: a double meaning on the currency, the real |
+| `r cite_codes("20130323_EUC289")` | Going Dutch | different, and a pun on a national stereotype that the revised prompt rules out |
+
+The test ran on an earlier version of the prompt. The version above was revised from the tester's notes, and has not
+been tested again: a verdict ahead of a strained pun, the chart's finding ahead of the article's, no reuse of the
+examples, no puns on national stereotypes, and keeping the panel headings a chart already has.

@@ -1,0 +1,1055 @@
+## Timelines
+
+The classic print charts had few timelines: `r claim("type.timeline.examples")$n` panels in the sample, too few to
+measure conventions on (`r cite("type.timeline.examples")`). Two of them, *The Geithner record* and *Aerial
+atrocities*, run the years along a ruler in place of an axis and stand each event on a plain rule above or below it,
+labelled in black or in the rule's color; the third, *Rust in space*, draws lifespans as bars against a year scale.
+Charts with data marked their events with the dashed red event lines and shaded bands described under
+[Miscellaneous styling](#miscellaneous-styling). The figures below redraw the 2017 guide's timelines in those two ways.
+
+```{r cg-misc-setup}
+## Shared by the figures of this section; every name starts with `cgm_`.
+cgm_text <- classic_size / .pt
+## An event line: a dashed rule in Economist red from `bottom` up to its label, which hangs from the top of the rule
+## in red italic capitals, to its left (`hjust = 1`) or right (`hjust = 0`). `data` has `x`, `top`, `label` and
+## `hjust`; `pad` is the gap between the rule and the label, in x units.
+cgm_dash <- "43"
+## Labels in capitals, but with "bn" kept in lower case, as the paper wrote it.
+cgm_caps <- function(x) gsub("([0-9])BN\\b", "\\1bn", toupper(x))
+cgm_event_lines <- function(data, pad, bottom = -Inf, size = classic_size * 0.9) {
+  data$tx <- data$x + pad * (1 - 2 * data$hjust)
+  list(
+    geom_segment(
+      aes(x = .data$x, xend = .data$x, y = bottom, yend = .data$top), data = data, colour = econ_red,
+      linewidth = lw(0.6), linetype = cgm_dash, inherit.aes = FALSE
+    ),
+    geom_text(
+      aes(x = .data$tx, y = .data$top, label = cgm_caps(.data$label), hjust = .data$hjust), data = data, vjust = 1,
+      colour = econ_red, fontface = "italic", size = size / .pt, lineheight = 0.9, inherit.aes = FALSE
+    )
+  )
+}
+## Neutral (forecast) bands are the shared `classic_band()`. The pale pink
+## band of an event or period has no shared helper: `classic_band()` draws only the darkened ground and a blue-gray
+## label, so `cgm_pink_band()` draws the pink fill with its label in red italic capitals.
+## Measured on "Crude politics", 20141101_MAC130.
+cgm_pink <- "#F4E1D9"
+cgm_pink_band <- function(xmin, xmax, label = NULL, y = Inf, size = classic_size * 0.9, vjust = 1.5) {
+  list(
+    annotate("rect", xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf, fill = cgm_pink),
+    if (!is.null(label)) {
+      annotate("text", x = (xmin + xmax) / 2, y = y, vjust = vjust, size = size / .pt, fontface = "italic",
+               lineheight = 0.9, label = cgm_caps(label), colour = econ_red)
+    }
+  )
+}
+```
+
+### Non-data timeline
+
+The redrawing uses the Geithner chart's dark ruler with white years and its red rules, each label standing on the end
+of its rule. Terms of office are filled bars with white names inside, as the satellites' lifespans are in *Rust in
+space*, and periods are pale spans named at the top, as the world wars are in *Aerial atrocities*.
+
+```{r cg-misc-philippines, econ_size = "two_column", econ_height = 192}
+## The 2017 chart's dates and labels. Each label stands on the end of its rule, so the heights (in points above the
+## ruler) and alignments are this chart's own, set to keep the labels clear of each other and of the other rules.
+cgm_philippines_events <- data.frame(
+  year = c(1965.89, 1983.58, 1986.22, 1987.20, 1988.46, 1997.45, 2001.10, 2007.63, 2009.44, 2011.76),
+  to = c(30, 40, 64, 72, 40, 12, 66, 30, 46, 18),
+  label = c(
+    "Ferdinand\nMarcos\nelected", "Benigno Aquino Jr.\nassassinated on\nreturn from US exile", "Marcos ousted",
+    "New constitution", "Duterte first\nelected mayor\nof Davao", "Asian\nfinancial\ncrisis\nstarts",
+    "Joseph Estrada resigns\nduring impeachment\nproceedings", "Estrada\nconvicted of\ncorruption",
+    "Corazon Aquino\ndies", "Ms Arroyo\narrested"
+  ),
+  hjust = c(0, 1, 1, 0, 0, 0.5, 0, 1, 0, 0)
+)
+## Estrada's bar is too short for his name, and Arroyo's name is cut to fit hers.
+cgm_presidents <- data.frame(
+  start = c(1965.96, 1985.68, 1991.91, 1997.83, 2000.46, 2009.66, 2016.32),
+  end = c(1985.53, 1991.76, 1997.68, 2000.31, 2009.51, 2016.23, 2016.89),
+  label = c("Marcos", "Corazon\nAquino", "Ramos", "", "Gloria Arroyo", "Benigno\nAquino III", "")
+)
+cgm_philippines_coups <- c(1986.62, 1987.06, 1987.58, 1989.75, 1990.23, 1990.76, 2003.50, 2006.24, 2007.80)
+cgm_ph_band <- c(-7, 0)
+cgm_ph_years <- seq(1965, 2015, 5)
+
+cgm_philippines <- ggplot() +
+  ## Martial law and "People Power" as pale spans, named at the top in dark blue.
+  annotate("rect", xmin = c(1972.46, 1983.50), xmax = c(1981.19, 1986.26), ymin = 0, ymax = 92, fill = "white",
+           alpha = 0.45) +
+  annotate("text", x = c(1976.8, 1984.9), y = 92, vjust = 1.3, label = c("MARTIAL LAW", "PEOPLE\nPOWER"),
+           colour = fg[["dark blue"]], size = cgm_text * 0.85, lineheight = 0.9) +
+  geom_segment(aes(x = year, xend = year, y = 0, yend = to), data = cgm_philippines_events, colour = econ_red,
+               linewidth = lw(0.6)) +
+  geom_text(aes(x = year, y = to, label = label, hjust = hjust), data = cgm_philippines_events, vjust = -0.25,
+            size = cgm_text, lineheight = 0.9) +
+  ## Coup attempts: keyed, as in the 2017 chart, by a red dot on the ruler.
+  annotate("point", x = cgm_philippines_coups, y = 1.6, colour = econ_red, size = 0.9) +
+  ## The ruler: a dark band with the years in white, a tick for every year.
+  annotate("rect", xmin = 1963.6, xmax = 2017.6, ymin = cgm_ph_band[1], ymax = cgm_ph_band[2], fill = "#5D6063") +
+  annotate("segment", x = 1964:2017, y = cgm_ph_band[2], yend = cgm_ph_band[2] - 1.2, colour = "white",
+           linewidth = lw(0.4)) +
+  annotate("text", x = cgm_ph_years, y = mean(cgm_ph_band) - 0.4, label = classic_years(cgm_ph_years),
+           colour = "white", fontface = "bold", size = cgm_text) +
+  ## Presidents: bars in alternating blues under the ruler.
+  geom_rect(aes(xmin = start, xmax = end, fill = I(rep_len(fg[c("dark blue", "blue")], 7))),
+            data = cgm_presidents, ymin = -19, ymax = -9) +
+  geom_text(aes(x = (start + end) / 2, label = label), data = cgm_presidents, y = -14, colour = "white",
+            fontface = "bold", size = cgm_text * 0.8, lineheight = 0.85) +
+  annotate("text", x = 1963.6, y = -22, hjust = 0, vjust = 1, label = "PRESIDENTS", size = cgm_text * 0.85,
+           colour = fg[["dark blue"]]) +
+  annotate("point", x = 1972.6, y = -24.2, colour = econ_red, size = 0.9) +
+  annotate("text", x = 1973.2, y = -22, hjust = 0, vjust = 1, label = "Coup attempts", size = cgm_text * 0.85) +
+  coord_cartesian(xlim = c(1963.6, 2017.6), ylim = c(-27, 92), expand = FALSE, clip = "off") +
+  labs(title = "The Philippines", subtitle = "Selected events", x = NULL, y = NULL,
+       caption = "Source: The Economist") +
+  theme_economist(base_size = classic_size) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank(),
+        panel.grid.major = element_blank())
+economist_chart(cgm_philippines)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#non-data-timeline) sets each label beside the tip
+of an arrowed rule, puts the years in a band of cells, and runs the presidents as thin bars with their names below
+them. The classic version has no arrowheads, stands the labels on the rules, and sets the names inside the bars, so
+Estrada's term is too short to name; the re-election marks and the president-elect are left out.
+
+### Data timeline
+
+With data, the classic charts kept the ordinary chart and laid the timeline over it: events as labelled event lines
+(line charts: `r share("lines.event_lines.labelled")`; `r cite("lines.event_lines.labelled")`), in the cited charts
+dashed red rules with labels in red italic capitals, and a period as a pale pink band
+(`r cite("lines.highlight_regions.labelled coloured")`). Two series on different scales take a double scale, each
+axis named by a title above it (double-scale charts: `r share("double_scale.series_key.axis_titles")`), in the cited
+charts italic and in its series' color, blue on the left and dark red on the right.
+
+```{r cg-misc-iran-oil, econ_size = "two_column", econ_height = 222}
+cgm_iran <- data.frame(
+  year = 1965:2014,
+  production = c(
+    1.90, 2.12, 2.59, 2.83, 3.37, 3.84, 4.57, 5.06, 5.91, 6.06, 5.38, 5.92,
+    5.71, 5.30, 3.21, 1.46, 1.31, 2.39, 2.44, 2.03, 2.19, 2.04, 2.33, 2.34,
+    2.88, 3.26, 3.49, 3.52, 3.71, 3.72, 3.74, 3.75, 3.77, 3.85, 3.60, 3.85,
+    3.82, 3.57, 4.00, 4.20, 4.18, 4.25, 4.30, 4.39, 4.24, 4.35, 4.37, 3.74,
+    3.52, 3.61
+  ),
+  gdp = c(
+    34, 38, 42, 47, 53, 59, 66, 77, 82, 89, 94, 111,
+    110, 102, 94, 82, 77, 88, 99, 97, 99, 90, 89, 83,
+    88, 101, 113, 118, 116, 116, 119, 127, 132, 135, 138, 146,
+    152, 163, 175, 184, 192, 203, 216, 220, 225, 239, 249, 233,
+    228, 231
+  )
+)
+## The labels hang from the tops of the rules, in tiers above the data (in million barrels a day), each clear of the
+## rules that pass beside it. A few are shortened to fit in capitals.
+## The event years are those of the 2017 chunk's `iran_events`.
+cgm_iran_ev <- data.frame(
+  x = c(1968.78, 1979.89, 1988.54, 2001.59, 2002.58, 2003.64, 2009.58, 2012.45, 2014.56),
+  top = c(9.2, 14.0, 9.2, 10.8, 12.4, 9.2, 14.0, 11.0, 9.2),
+  label = c("Iran signs Non-\nproliferation\nTreaty", "Iranian revolution;\nShah overthrown",
+            "USS Vincennes\nshoots down\nairliner", "US invades\nAfghanistan",
+            "Iran branded part\nof “axis of evil”",
+            "US\ninvades\nIraq", "Obama offers\nto “extend\na hand”", "US/EU oil\nsanctions", "IS takes\nMosul"),
+  hjust = c(0, 0, 0, 1, 1, 0, 0, 0, 0)
+)
+
+cgm_iran_plot <- ggplot(cgm_iran) +
+  cgm_pink_band(1980.72, 1988.98, "Iran/Iraq\nwar", y = 7.8, vjust = 1) +
+  geom_line(aes(year + 0.5, production), colour = fg[["blue"]], linewidth = 0.8) +
+  ## GDP is drawn on the production scale: $50bn to one million barrels a day.
+  geom_line(aes(year + 0.5, gdp / 50), colour = fg[["dark red"]], linewidth = 0.8) +
+  cgm_event_lines(cgm_iran_ev, pad = 0.35, bottom = 0) +
+  scale_y_continuous(
+    breaks = seq(0, 8, 2), expand = c(0, 0), sec.axis = sec_axis(~ . * 50, breaks = seq(0, 400, 100))
+  ) +
+  scale_x_continuous(breaks = seq(1965, 2015, 5), labels = classic_years) +
+  coord_cartesian(xlim = c(1964.5, 2019.5), ylim = c(0, 14.2), expand = FALSE, clip = "off") +
+  labs(title = "More than an oil giant", subtitle = "Iran", x = NULL, y = NULL,
+       caption = "Sources: World Bank; Thomson Reuters") +
+  theme_economist(base_size = classic_size) +
+  theme(
+    axis.text.y.left = element_text(colour = fg[["blue"]]),
+    axis.text.y.right = element_text(colour = fg[["dark red"]])
+  )
+grid::grid.draw(classic_chart(cgm_iran_plot, axis_titles = list(
+  left = list(label = "Oil production, m b/d", colour = fg[["blue"]]),
+  right = list(label = "GDP, $bn, 2005 prices", colour = fg[["dark red"]])
+)))
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#data-timeline) breaks the gridlines to stubs, keeps
+its event labels gray with arrowed rules, and adds rows of supreme leaders and presidents under a band of years. The
+classic version keeps whole gridlines and the ordinary year axis, draws the events as dashed red lines, and leaves the
+leaders out: none of the cited charts carries rows of terms under a data chart.
+
+### Bar chart timeline
+
+On a column chart the event lines are the same dashed red rules. *Aerial atrocities* sets a second kind of event below
+its ruler, so the redrawing hangs the 2017 guide's lower events (the jihadist groups) from the year axis, and names the
+two countries beside their columns.
+
+```{r cg-misc-caliphate, econ_size = "two_column", econ_height = 265}
+cgm_iraq <- data.frame(
+  month = seq(2003 + 2 / 12, by = 1 / 12, length.out = 145),
+  deaths = c(
+    3.98, 3.44, 0.54, 0.60, 0.65, 0.82, 0.57, 0.52, 0.49, 0.52, 0.61, 0.66, 1.00, 1.30, 0.65, 0.90,
+    0.83, 0.88, 1.03, 1.02, 1.65, 1.11, 1.19, 1.28, 0.90, 1.14, 1.40, 1.35, 1.53, 2.28, 1.42, 1.30,
+    1.47, 1.13, 1.54, 1.57, 1.95, 1.80, 2.27, 2.57, 3.30, 2.86, 2.56, 2.99, 3.08, 2.90, 3.02, 2.68,
+    2.72, 2.55, 2.84, 2.20, 2.69, 2.48, 1.38, 1.29, 1.11, 0.99, 0.85, 1.09, 1.67, 1.31, 0.91, 0.75,
+    0.64, 0.68, 0.61, 0.59, 0.54, 0.59, 0.37, 0.41, 0.44, 0.59, 0.43, 0.56, 0.42, 0.62, 0.33, 0.44,
+    0.23, 0.48, 0.26, 0.30, 0.34, 0.38, 0.39, 0.38, 0.44, 0.52, 0.25, 0.31, 0.31, 0.22, 0.39, 0.25,
+    0.31, 0.29, 0.38, 0.39, 0.31, 0.40, 0.40, 0.37, 0.28, 0.39, 0.53, 0.36, 0.38, 0.39, 0.30, 0.53,
+    0.47, 0.42, 0.40, 0.29, 0.25, 0.30, 0.36, 0.36, 0.40, 0.54, 0.89, 0.66, 1.14, 1.01, 1.31, 1.18,
+    0.87, 0.84, 1.08, 0.93, 1.01, 1.01, 1.03, 2.53, 1.48, 1.59, 1.96, 1.80, 1.47, 1.19, 1.43, 1.47,
+    0.51
+  )
+)
+cgm_syria <- data.frame(
+  month = seq(2011 + 3 / 12, by = 1 / 12, length.out = 48),
+  deaths = c(
+    0.75, 0.75, 0.69, 0.66, 0.88, 0.82, 0.84, 0.93, 1.17, 1.37, 1.85, 1.88, 1.82, 1.40, 2.42, 3.76,
+    5.40, 4.76, 3.96, 3.29, 3.62, 3.46, 3.13, 3.19, 2.93, 2.91, 2.46, 2.96, 3.72, 2.73, 2.87, 2.34,
+    3.17, 3.10, 3.20, 2.45, 2.59, 2.59, 4.01, 2.64, 3.08, 3.33, 2.80, 2.45, 2.22, 2.18, 2.27, 1.20
+  )
+)
+## The upper events hang their labels from the tops of their rules, in tiers above the bars ('000 deaths); the lower
+## ones hang from the year axis, their labels under the ends of the rules, deeper for each rule a label must clear.
+## The labels are shortened to fit in capitals.
+## The event years are those of the 2017 chunk's `caliphate_events`.
+cgm_cal_up <- data.frame(
+  x = c(2000.39, 2003.21, 2006.45, 2007.04, 2011.22, 2014.63, 2015.13),
+  top = c(3.6, 6.8, 5.3, 5.3, 6.8, 8.3, 5.3),
+  label = c("Assad\ncomes to\npower", "US-led invasion;\nSaddam toppled", "Zarqawi\nkilled", "Start of\nUS surge",
+            "Syrian uprising\nbegins", "Abadi replaces Maliki;\nUS-led bombing of IS", "Egypt\nbombs IS\nin Libya"),
+  hjust = c(0, 0, 1, 0, 1, 1, 0)
+)
+cgm_cal_down <- data.frame(
+  x = c(1998.49, 1999.50, 2004.42, 2006.55, 2012.25, 2013.21, 2014.46, 2015.21),
+  bottom = c(-3.0, -1.6, -3.0, -1.6, -1.6, -3.0, -4.4, -5.8),
+  label = c("Al-Qaeda bombs US\nembassies in Africa", "Zarqawi founds\njihadist group",
+            "Zarqawi joins Bin\nLaden: al-Qaeda in Iraq", "ISI founded", "ISI founds\nJabhat al-Nusra",
+            "ISIS founded;\ntakes Raqqa", "IS takes Mosul,\ndeclares caliphate", "Boko Haram\njoins IS"),
+  hjust = c(0, 0, 0, 0.5, 1, 1, 1, 1)
+)
+cgm_cal_down$tx <- cgm_cal_down$x + 0.1 * (1 - 2 * cgm_cal_down$hjust)
+cgm_cal_months <- rbind(
+  data.frame(country = "Iraq", cgm_iraq),
+  data.frame(country = "Syria", cgm_syria)
+)
+cgm_cal_years <- 1998:2015
+
+## The panel runs below zero to hold the lower events, so the year axis is drawn in it: a baseline at zero with the
+## years under it.
+cgm_caliphate <- ggplot(cgm_cal_months) +
+  cgm_pink_band(2007.96, 2011.98, "US forces\nwithdraw\nfrom Iraq", y = 3.4, vjust = 1) +
+  ## Months as thin columns; Syria's are drawn over Iraq's where both run. The two are named beside them.
+  geom_rect(aes(xmin = month, xmax = month + 1 / 12, ymin = 0, ymax = deaths, fill = country)) +
+  annotate("text", x = c(2004.4, 2012.9), y = c(2.1, 5.9), vjust = c(0.5, 0), label = c("Iraq", "Syria"),
+           size = cgm_text) +
+  cgm_event_lines(cgm_cal_up, pad = 0.1, bottom = 0) +
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 0, fill = ground) +
+  annotate("segment", x = -Inf, xend = Inf, y = 0, yend = 0, linewidth = lw(0.3)) +
+  annotate("text", x = cgm_cal_years + 0.5, y = -0.2, vjust = 1, label = classic_years(cgm_cal_years),
+           size = cgm_text) +
+  geom_segment(aes(x = x, xend = x, y = -1.0, yend = bottom), data = cgm_cal_down, colour = econ_red,
+               linewidth = lw(0.6), linetype = cgm_dash) +
+  geom_text(aes(x = tx, y = bottom, label = cgm_caps(label), hjust = hjust), data = cgm_cal_down, vjust = 1,
+            colour = econ_red, fontface = "italic", size = cgm_text * 0.9, lineheight = 0.9) +
+  scale_fill_manual(values = c(Iraq = fg[["dark blue"]], Syria = fg[["blue"]]), guide = "none") +
+  scale_y_continuous(breaks = 0:6, position = "right", expand = c(0, 0)) +
+  scale_x_continuous(breaks = NULL) +
+  coord_cartesian(xlim = c(1997.9, 2017.3), ylim = c(-7, 8.5), expand = FALSE) +
+  labs(title = "Causation of a caliphate", subtitle = "Civilian death toll, ‘000", x = NULL, y = NULL,
+       caption = "Sources: Iraq Body Count; Violation Documentation Centre in Syria; The Economist") +
+  theme_economist(base_size = classic_size) +
+  theme(axis.line.x = element_blank(), axis.ticks = element_blank())
+economist_chart(cgm_caliphate)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#bar-chart-timeline) draws its event rules dotted in
+maroon, puts the years in a band of cells and gridline stubs at the sides, and keys the countries in the subtitle line.
+The classic version uses the same dashed red rule for every event, a plain year axis with whole gridlines, and names
+the countries beside the columns; the labels are shortened to fit in capitals.
+
+### Data timeline with periods above
+
+The periods of the 2017 chart become bands in the panel: the darkened ground for the years Putin was prime minister,
+in the manner of a forecast band (line charts: `r share("lines.highlight_regions.labelled neutral")`), and pale pink
+for the recession.
+
+```{r cg-misc-putin, econ_size = "two_column", econ_height = 240}
+cgm_putin_approval <- data.frame(
+  month = seq(2000, by = 1 / 12, length.out = 188),
+  putin = c(
+    84, 75, 70, 77, 72, 61, 72, 65, 65, 64, 70, 68, 76, 69, 75, 70,
+    71, 72, 72, 74, 73, 75, 80, 73, 75, 75, 72, 71, 75, 75, 73, 76,
+    77, 77, 83, 82, 75, 76, 75, 73, 70, 77, 78, 74, 75, 73, 81, 86,
+    79, 82, 81, 79, 76, 72, 72, 68, 72, 72, 69, 69, 65, 66, 66, 69,
+    66, 67, 70, 70, 71, 76, 73, 71, 75, 72, 72, 76, 77, 79, 78, 75,
+    77, 81, 78, 80, 81, 81, 79, 81, 85, 82, 79, 82, 84, 87, 86, 85,
+    85, 86, 80, 83, 80, 83, 88, 83, 86, 83, 83, 78, 78, 76, 78, 79,
+    78, 82, 81, 78, 79, 83, 78, 80, 78, 78, 80, 78, 77, 78, 77, 77,
+    78, 79, 72, 73, 69, 71, 69, 69, 68, 68, 66, 67, 63, 64, 65, 68,
+    67, 69, 64, 67, 63, 67, 67, 63, 65, 62, 65, 63, 63, 64, 63, 65,
+    63, 64, 64, 61, 65, 65, 69, 80, 82, 83, 86, 85, 84, 86, 88, 85,
+    85, 86, 85, 86, 86, 89, 87, 83, 84, 88, 85, 85
+  ),
+  government = c(
+    39, 42, 38, 44, 38, 34, 38, 38, 39, 39, 38, 38, 43, 34, 40, 37,
+    38, 38, 40, 39, 40, 42, 46, 42, 40, 43, 39, 38, 35, 39, 36, 35,
+    39, 45, 42, 41, 39, 35, 36, 30, 32, 36, 36, 38, 33, 39, 36, 46,
+    43, 44, 42, 44, 38, 38, 37, 32, 38, 37, 34, 33, 28, 31, 25, 26,
+    31, 26, 32, 29, 31, 31, 35, 34, 31, 37, 31, 30, 37, 34, 39, 37,
+    37, 40, 40, 41, 40, 40, 42, 42, 44, 44, 47, 43, 38, 46, 48, 53,
+    60, 58, 61, 62, 57, 59, 66, 59, 61, 60, 58, 54, 54, 53, 53, 54,
+    55, 53, 58, 52, 50, 57, 54, 54, 53, 56, 53, 52, 52, 51, 55, 52,
+    54, 50, 49, 48, 48, 51, 46, 46, 44, 48, 47, 46, 44, 45, 47, 48,
+    50, 53, 46, 49, 47, 47, 49, 40, 47, 47, 45, 45, 44, 44, 43, 44,
+    41, 41, 44, 39, 43, 43, 47, 58, 56, 60, 60, 62, 66, 64, 59, 60,
+    58, 60, 59, 61, 59, 62, 58, 54, 60, 56, 54, 56
+  )
+)
+## Labels hang from the tops of the rules, in tiers above the data (% polled).
+## The event years are those of the 2017 chunk's `putin_events`.
+cgm_putin_ev <- data.frame(
+  x = c(2000.29, 2002.80, 2004.72, 2008.63, 2011.21, 2011.94, 2014.21, 2014.96),
+  top = c(142, 128, 114, 128, 142, 142, 128, 112),
+  label = c("Second\nChechen war", "Moscow\ntheatre siege", "Beslan\nschool siege", "Georgia\nwar",
+            "Start of Syrian\ncivil war", "Bolotnaya\nprotests", "Annexation\nof Crimea", "Rouble\ncollapses"),
+  hjust = c(0, 0, 0, 1, 1, 0, 0, 0)
+)
+cgm_putin_long <- data.frame(
+  month = rep(cgm_putin_approval$month, 2),
+  value = c(cgm_putin_approval$putin, cgm_putin_approval$government),
+  series = rep(c("putin", "government"), each = nrow(cgm_putin_approval))
+)
+
+cgm_putin <- ggplot(cgm_putin_long, aes(month, value, colour = series)) +
+  ## Prime-minister years in the darkened ground and the recession in pink; the presidential years are left plain.
+  ## The pink starts with the prime-minister band (2008.40, not the 2017 chart's 2008.54) to leave no sliver of gray.
+  classic_band(c(1999.85, 2008.40), c(2000.35, 2012.40)) +
+  cgm_pink_band(2008.40, 2009.64) +
+  annotate("text", x = c(2004.4, 2010.4, 2014.85), y = 155, size = cgm_text * 0.85, fontface = "italic",
+           label = c("PRESIDENT", "PRIME MINISTER", "PRESIDENT"), colour = fg[["blue-gray"]]) +
+  annotate("text", x = 1999.45, y = 155, hjust = 0, label = "Putin is:", size = cgm_text * 0.85,
+           fontface = "bold.italic", colour = fg[["blue-gray"]]) +
+  ## The recession band is too narrow for its label, which is set beside it.
+  annotate("text", x = 2008.25, y = 4, hjust = 1, vjust = 0, label = "GREAT\nRECESSION", colour = econ_red,
+           fontface = "italic", size = cgm_text * 0.8, lineheight = 0.9) +
+  geom_line(linewidth = 0.6) +
+  cgm_event_lines(cgm_putin_ev, pad = 0.1, bottom = 0) +
+  annotate("text", x = c(2005.2, 2013.075), y = c(93, 28), label = c("Vladimir Putin", "Russian\ngovernment"),
+           hjust = c(0, 0.5), size = cgm_text * c(1, 0.9), lineheight = 0.9) +
+  scale_colour_manual(values = c(putin = fg[["dark blue"]], government = fg[["blue"]]), guide = "none") +
+  scale_y_continuous(breaks = seq(0, 100, 25), position = "right", expand = c(0, 0)) +
+  scale_x_continuous(breaks = 2000:2016, labels = classic_years) +
+  coord_cartesian(xlim = c(1999.3, 2017.3), ylim = c(0, 160), expand = FALSE) +
+  labs(title = "I wanna be adored",
+       subtitle = "Approval rating of Vladimir Putin and the Russian government, % polled",
+       x = NULL, y = NULL, caption = "Sources: Levada Centre; The Economist") +
+  theme_economist(base_size = classic_size)
+economist_chart(cgm_putin)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#data-timeline-with-periods-above) runs Putin's offices
+as thin bars above the panel and again below the year band, keys the elections as colored dots on the band, and breaks
+the gridlines to stubs. The classic version shades the prime-minister years in the panel, labels the lines beside them
+in black, and leaves the elections out.
+
+### Mobile versions
+
+No mobile layouts appear in the corpus, which holds only the print charts, so the 2017 guide's rotated and numbered
+phone layouts of *Mexican waves* have no classic counterpart and there is no figure.
+
+## Miscellaneous styling
+
+### Number boxes
+
+Number boxes, for charts the text refers to by number, appear on line charts (`r share("lines.number_box")`) and on
+side-by-side bar and column charts (`r share("bar_column_side_by_side.number_box")`). In the cited charts
+(`r cite("lines.number_box")`) the number is white and bold on a blue-gray square at the top right
+(`economist_chart(p, number = 2)`).
+
+```{r cg-misc-number-box, econ_height = 165}
+cgm_tokyo_x <- c(1, seq(1.25, 13.5, by = 0.25), 13.7)
+cgm_bonds <- data.frame(
+  year = rep(cgm_tokyo_x, 2),
+  yield = c(
+    4.7, 5.0, 5.2, 5.1, 5.6, 6.6, 6.7, 7.9, 6.8, 6.5, 6.7, 6.2, 5.7, 5.5, 5.4, 4.9, 4.6, 4.2, 4.5, 4.0,
+    3.4, 3.9, 4.1, 4.5, 4.5, 3.9, 3.0, 3.0, 2.9, 3.2, 3.2, 2.9, 2.5, 2.5, 2.6, 2.1, 1.9, 1.8, 1.6, 1.1,
+    1.5, 1.8, 1.6, 1.8, 1.8, 1.8, 1.7, 1.9, 1.6, 1.2, 1.2, 1.25,
+    4.7, 5.2, 5.8, 5.9, 6.3, 6.2, 6.2, 5.8, 5.4, 5.0, 5.3, 4.7, 4.9, 5.2, 4.8, 4.0, 4.0, 3.8, 3.6, 4.3,
+    4.2, 4.2, 4.6, 4.1, 4.2, 4.4, 4.1, 4.3, 4.4, 4.8, 5.1, 4.7, 4.6, 4.6, 5.0, 4.5, 4.0, 3.6, 4.0, 3.7,
+    2.7, 2.8, 3.6, 3.4, 3.6, 3.7, 3.2, 2.6, 3.1, 3.4, 3.0, 2.3
+  ),
+  period = rep(c("January 1989 (Japan)", "January 1999 (US)"), each = length(cgm_tokyo_x))
+)
+cgm_tokyo <- ggplot(cgm_bonds, aes(year, yield, colour = period)) +
+  geom_line(linewidth = 0.8) +
+  annotate("text", x = c(5.3, 9.8), y = c(1.9, 5.6), label = c("Japan, from\nJanuary 1989", "US, from\nJanuary 1999"),
+           hjust = 0, size = cgm_text, lineheight = 0.9) +
+  scale_colour_manual(values = c(fg[["blue"]], fg[["dark blue"]]), guide = "none") +
+  scale_y_continuous(position = "right", limits = c(0, 8), breaks = seq(0, 8, 2), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(1, 13.7), breaks = c(1, 5, 10, 13), expand = c(0, 0)) +
+  labs(title = "Where Tokyo leads", subtitle = "Ten-year government-bond yields, %", x = "Years since start", y = NULL,
+       caption = "Source: Thomson Reuters") +
+  theme_economist(base_size = classic_size) +
+  classic_x_title()
+economist_chart(cgm_tokyo, number = 1)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#number-boxes) has a box in the same place; the classic
+chart also names its lines beside them instead of in a legend.
+
+### Highlight panels
+
+A forecast is shown on the darkened ground, labelled
+(line charts: `r share("lines.highlight_regions.labelled neutral")`;
+`r cite("lines.highlight_regions.labelled neutral")`); in the cited charts the label is in italic capitals at
+the top. An index is marked by a red line at the index value (see [Index charts](#index-charts)).
+
+```{r cg-misc-highlight-neutral, econ_height = 165}
+cgm_jobs <- data.frame(
+  year = rep(seq(1950, 2100, by = 5), 4),
+  place = rep(c("Japan", "United States", "European Union", "China"), each = 31),
+  index = c(
+    65, 71, 77, 86, 93, 98, 102, 106, 111, 112, 111, 109, 105, 100, 96, 93, 89, 85, 79, 75, 72, 69, 67, 65, 63, 62, 60,
+    59, 58, 56, 56,
+    48, 50, 53, 56, 61, 66, 71, 75, 78, 83, 89, 94, 97, 100, 101, 102, 102, 104, 106, 108, 110, 111, 112, 113, 115, 116,
+    117, 118, 119, 119, 119,
+    76, 78, 80, 83, 85, 88, 91, 95, 97, 98, 99, 101, 102, 100, 98, 96, 94, 91, 89, 87, 85, 83, 82, 81, 81, 80, 79, 78,
+    77, 76, 76,
+    34, 35, 36, 39, 45, 51, 58, 67, 75, 81, 86, 94, 99, 100, 100, 98, 96, 90, 86, 83, 79, 73, 69, 67, 65, 63, 59, 57,
+    55, 54, 53
+  )
+)
+cgm_jobs$place <- factor(cgm_jobs$place, levels = c("United States", "Japan", "European Union", "China"))
+cgm_job_labels <- data.frame(
+  year = c(1968, 2030, 2072, 1983), index = c(114, 120, 93, 47),
+  label = c("Japan", "United\nStates", "European\nUnion", "China")
+)
+
+cgm_fill_jobs <- ggplot(cgm_jobs, aes(year, index, colour = place)) +
+  classic_band(2015, 2100, "FORECAST") +
+  classic_zero_line(100) +
+  geom_line(linewidth = 0.6) +
+  geom_point(data = data.frame(year = 2015, index = 100), aes(year, index), colour = "black", size = 1.6,
+             inherit.aes = FALSE) +
+  geom_text(data = cgm_job_labels, aes(year, index, label = label), colour = "black", size = cgm_text,
+            lineheight = 0.9, inherit.aes = FALSE) +
+  scale_colour_manual(values = economist_pal()(4), guide = "none") +
+  scale_y_continuous(position = "right", limits = c(20, 140), breaks = seq(20, 140, 20), expand = c(0, 0)) +
+  scale_x_continuous(breaks = seq(1950, 2100, 25), labels = classic_years, expand = c(0, 0)) +
+  coord_cartesian(xlim = c(1950, 2100)) +
+  labs(title = "Who will fill the jobs?", subtitle = "Working-age population*, 2015=100", x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size) +
+  classic_footnote("*Aged 15-64", "Source: United Nations\nPopulation Division")
+economist_chart(cgm_fill_jobs)
+```
+
+A period central to the story is marked by a labelled coloured band (line charts:
+`r share("lines.highlight_regions.labelled coloured")`). In the cited charts
+(`r cite("lines.highlight_regions.labelled coloured")`) the band is pale pink and labelled in red italic capitals.
+The print charts had no web variant, so the 2017 guide's web version, on white, has no classic counterpart.
+
+```{r cg-misc-highlight-colour, econ_height = 155}
+cgm_merkel <- data.frame(
+  t = seq(2005, 2016.25, by = 1 / 24),
+  approval = c(
+    61, 61, 60, 62, 65, 67, 71, 73, 79, 76, 74, 72, 71, 70, 69, 67, 65, 63, 60, 58, 56, 55, 55, 55, 53, 51, 51,
+    48, 53, 54, 56, 58, 60, 61, 61, 62, 65, 65, 65, 68, 70, 70, 71, 72, 72, 73, 75, 75, 76, 76, 76, 75, 74, 72,
+    70, 70, 68, 67, 69, 69, 68, 67, 68, 69, 69, 69, 70, 69, 70, 67, 70, 68, 67, 65, 64, 66, 66, 67, 68, 70, 66,
+    70, 67, 66, 67, 68, 66, 66, 66, 64, 65, 66, 66, 67, 69, 69, 70, 71, 71, 71, 71, 71, 71, 71, 71, 70, 70, 68,
+    65, 65, 64, 61, 60, 61, 60, 56, 61, 57, 54, 53, 52, 49, 46, 45, 42, 44, 44, 47, 44, 44, 43, 42, 42, 45, 47,
+    48, 49, 51, 52, 52, 52, 49, 52, 49, 49, 50, 51, 50, 50, 48, 47, 47, 46, 46, 47, 50, 52, 52, 53, 56, 58, 59,
+    59, 62, 63, 63, 63, 63, 62, 62, 61, 60, 59, 61, 62, 63, 65, 67, 62, 67, 62, 64, 65, 67, 64, 61, 67, 61, 65,
+    67, 67, 69, 70, 69, 67, 67, 66, 67, 69, 66, 69, 68, 67, 68, 68, 68, 69, 69, 68, 68, 68, 68, 68, 69, 68, 69,
+    69, 70, 70, 71, 71, 69, 68, 68, 66, 67, 69, 70, 71, 72, 73, 74, 73, 72, 71, 70, 69, 68, 68, 70, 68, 69, 70,
+    71, 71, 72, 72, 74, 72, 71, 69, 68, 67, 67, 67, 66, 65, 63, 61, 59, 56, 53, 52, 50, 53, 55, 58, 55, 50, 49,
+    46
+  )
+)
+cgm_crises <- data.frame(xmin = c(2009.56, 2015.48), xmax = c(2012.27, 2016.24))
+
+cgm_malaise <- ggplot(cgm_merkel, aes(t, approval)) +
+  cgm_pink_band(cgm_crises$xmin, cgm_crises$xmax) +
+  ## The migrant crisis band is too narrow for its label, which is set beside it.
+  annotate("text", x = c(2010.9, 2015.4), y = c(87, 87), vjust = 1, hjust = c(0.5, 1),
+           label = c("EURO\nCRISIS", "MIGRANT\nCRISIS"), colour = econ_red, fontface = "italic", size = cgm_text * 0.9,
+           lineheight = 0.9) +
+  geom_line(colour = fg[["dark blue"]], linewidth = 0.8) +
+  scale_y_continuous(position = "right", breaks = seq(30, 80, 10)) +
+  scale_x_continuous(breaks = seq(2005, 2015, 2), minor_breaks = 2005:2016, labels = classic_years,
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  coord_cartesian(xlim = c(2004.7, 2016.6), ylim = c(24, 88), expand = FALSE) +
+  labs(title = "Mutti’s malaise", subtitle = "German approval of Angela\nMerkel, % polled", x = NULL, y = NULL,
+       caption = "Source: ARD DeutschlandTREND/\ninfratest dimap") +
+  theme_economist(base_size = classic_size)
+economist_chart(cgm_malaise, scale_break = "right")
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#highlight-panels) tops each panel with a rule and
+labels its forecast "FORECAST" in gray and its crises in red sentence case. The classic bands have no rule and run the
+full height of the panel; the forecast label is in blue-gray italic capitals, and the crisis labels are capitals.
+The sample has
+`r claim("type.fan_forecast.examples")$n` fan charts (`r cite("type.fan_forecast.examples")`); in these two charts a
+forecast's range is shown as bands of light green instead.
+
+### Highlight labels
+
+Specific dates are marked by labelled event lines (line charts: `r share("lines.event_lines.labelled")`;
+`r cite("lines.event_lines.labelled")`). In the cited charts they are the dashed red rules of the timelines
+above, labelled in red italic capitals at the top of the panel.
+
+```{r cg-misc-highlight-labels, econ_height = 155}
+cgm_toshiba <- data.frame(
+  t = seq(2015, by = 1 / 60, length.out = 122),
+  price = c(
+    510, 505, 495, 485, 475, 470, 475, 480, 485, 490, 490, 485, 480, 500, 510, 515, 500, 490, 490, 490, 485,
+    460, 450, 425, 420, 430, 440, 440, 435, 430, 415, 400, 385, 380, 380, 380, 375, 375, 380, 375, 365, 345,
+    335, 320, 315, 315, 320, 330, 340, 340, 340, 330, 315, 300, 290, 295, 300, 290, 260, 255, 235, 240, 230,
+    220, 210, 200, 185, 180, 170, 180, 190, 195, 200, 195, 205, 210, 210, 220, 235, 240, 230, 225, 225, 230,
+    245, 260, 275, 290, 285, 285, 280, 285, 290, 295, 285, 275, 265, 280, 285, 305, 320, 330, 320, 320, 330,
+    340, 355, 360, 370, 380, 375, 380, 385, 395, 410, 430, 445, 460, 425, 360, 335, 270
+  )
+)
+## The labels hang from the tops of the rules in tiers above the data, each clear of the rules beside it.
+cgm_woes_ev <- data.frame(
+  x = c(2015.396, 2015.542, 2015.983, 2016.31, 2016.967),
+  top = c(1080, 940, 1080, 940, 800),
+  label = c("Accounting\nscandal", "CEO\nresigns", "$4.6bn\nrecord loss", "Westinghouse\nwrite-down",
+            "CB&I Stone\n& Webster\nwrite-down"),
+  hjust = c(0, 0, 0, 0, 1)
+)
+
+cgm_woes <- ggplot(cgm_toshiba, aes(t, price)) +
+  cgm_event_lines(cgm_woes_ev, pad = 0.02, size = classic_size * 0.7) +
+  geom_line(colour = fg[["dark blue"]], linewidth = 0.8) +
+  scale_y_continuous(position = "right", breaks = seq(0, 600, 100), expand = c(0, 0)) +
+  scale_x_continuous(breaks = c(2015, 2016, 2017), minor_breaks = seq(2015, 2017, by = 1 / 12),
+                     labels = classic_years, guide = guide_axis(minor.ticks = TRUE)) +
+  coord_cartesian(xlim = c(2014.95, 2017.05), ylim = c(0, 1090), expand = FALSE) +
+  labs(title = "Westinghouse woes", subtitle = "Toshiba, share price, yen", x = NULL, y = NULL,
+       caption = "Source: Thomson Reuters") +
+  theme_economist(base_size = classic_size)
+economist_chart(cgm_woes)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#highlight-labels) draws solid red rules ending in a dot
+on the line, with black sentence-case labels on boxes of the ground color. The classic rules are dashed and run from
+the axis to their labels, which are red capitals without boxes, set above the data.
+
+### Index charts
+
+An index is marked by a red line at the index value (line charts: `r share("lines.index_line")`;
+`r cite("lines.index_line")`); in the cited charts a black dot also marks the index point.
+
+```{r cg-misc-index-chart, econ_height = 165}
+cgm_income <- data.frame(
+  year = rep(1979:2013, 3),
+  measure = factor(rep(c("Market income", "plus transfers", "plus transfers less taxes"), each = 35),
+                   levels = c("Market income", "plus transfers", "plus transfers less taxes")),
+  index = c(
+    100, 97.5, 96.5, 94.6, 93.9, 98.8, 99.9, 102.2, 103.1, 104.9, 106.5, 105.5, 103.7, 103.7, 103.7,
+    105.4, 108.9, 110.3, 113.5, 118.3, 121.7, 122.2, 121.6, 118.1, 117.9, 121.5, 123.8, 126.5, 129.7,
+    124.7, 118.3, 117.9, 116.7, 116.9, 119.4,
+    100, 96.1, 96.1, 97.1, 97.2, 101.9, 102.4, 105.2, 106.6, 108, 109.8, 109.8, 109.5, 109.9, 110.5,
+    112.7, 116, 117.9, 120.8, 125.6, 129.1, 130.7, 134.6, 133.5, 135.7, 139.5, 142.7, 145.4, 148.9, 148.5,
+    147.5, 147.7, 147.1, 147, 147.1,
+    100, 97.1, 97.1, 96.1, 95.5, 100.5, 101.3, 103.9, 105.1, 106.5, 108.5, 108.5, 108.1, 108.3, 108.9,
+    110.7, 114.1, 116.1, 118.6, 122.7, 126.1, 127.1, 128.7, 126.8, 127.5, 131.6, 134.7, 137.3, 140.5,
+    136.8, 134.9, 135.5, 133.9, 134.5, 136.3
+  )
+)
+cgm_pain <- ggplot(cgm_income, aes(year, index, colour = measure)) +
+  classic_zero_line(100) +
+  geom_line(linewidth = 0.6) +
+  geom_point(data = data.frame(year = 1979, index = 100), aes(year, index), colour = "black", size = 1.6,
+             inherit.aes = FALSE) +
+  ## The lines run too close together to label beside them, so they are named at their ends, in room left to the right
+  ## of the last year.
+  annotate("text", x = 2013.8, y = c(147.1, 136.3, 119.4), hjust = 0, vjust = c(0.5, 0.5, 0.5),
+           label = c("plus transfers", "plus transfers\nless taxes", "Market\nincome"), size = cgm_text * 0.8,
+           lineheight = 0.85) +
+  scale_colour_manual(values = c(fg[["dark blue"]], fg[["blue"]], fg[["blue-gray"]]), guide = "none") +
+  scale_y_continuous(position = "right", limits = c(90, 150), breaks = seq(90, 150, 10), expand = c(0, 0)) +
+  scale_x_continuous(breaks = c(1979, 1985, 1995, 2005, 2013), labels = classic_years) +
+  coord_cartesian(xlim = c(1977.5, 2027.5), expand = FALSE) +
+  labs(title = "Easing the pain", subtitle = "United States, median real\nhousehold income*, 1979=100",
+       x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size) +
+  classic_footnote("*Adjusted for\nhousehold size", "Source: CBO")
+economist_chart(cgm_pain)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#index-charts) has the same red line and black dot,
+and keys the three measures in a two-row legend. The classic version names them at the ends of the lines, as most
+classic line charts labelled their lines rather than keying them
+(line charts: `r share("lines.series_key.labels_next_to_data")`).
+
+### Truncated year labels
+
+Dated axes write the first year in full and the rest in two digits (line charts:
+`r share("lines.truncated_years")`; `r cite("lines.truncated_years")`). The habit grew over the period, in line charts
+`r by_year("lines.truncated_years")`. `classic_years` (the same as `economist_2017_year_format()`) does this:
+
+```{r cg-misc-year-labels}
+classic_years(seq(1948, 2016, 4))
+```
+
+Against 2017: the [2017 rule](economist-2017-styleguide.html#truncated-year-labels) is the same.
+
+### Broken scales
+
+Classic charts let a value axis start away from zero, and said so, on line charts and on bars alike. A line chart
+marks its truncated axis with a small zigzag; a bar chart tears its bars, either at the base, when the whole scale
+starts above zero, or partway along one bar too long for the scale.
+
+#### Lines
+
+On line charts the mark is a thin black "N", leaning to the right, centred under the axis labels at the level of the
+baseline, outside the panel (line charts: `r share("lines.scale_break.baseline_not_zero")`;
+`r cite("lines.scale_break.baseline_not_zero")`). `economist_chart(scale_break = "right")` draws it there, which a geom
+inside the panel cannot. Index charts carry it too: the first two cited are indexes, as is
+`r cite_codes("20121103_INC383")`.
+
+```{r cg-misc-broken-scale, econ_height = 155}
+cgm_broken <- ggplot(cgm_merkel, aes(t, approval)) +
+  geom_line(colour = fg[["dark blue"]], linewidth = 0.8) +
+  scale_y_continuous(position = "right", limits = c(24, 80), breaks = seq(30, 80, 10), expand = c(0, 0)) +
+  scale_x_continuous(breaks = seq(2005, 2015, 2), minor_breaks = 2005:2016, labels = classic_years,
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  coord_cartesian(xlim = c(2004.7, 2016.6), expand = FALSE) +
+  labs(title = "Mutti’s malaise", subtitle = "German approval of Angela\nMerkel, % polled", x = NULL, y = NULL,
+       caption = "Source: ARD DeutschlandTREND/\ninfratest dimap") +
+  theme_economist(base_size = classic_size)
+economist_chart(cgm_broken, scale_break = "right")
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#broken-scales) marks the break with two short slanted
+strokes inside the panel, between the baseline and the lowest tick (`geom_scale_break_economist_2017()`), and says the
+mark is not needed on index scales, which the classic charts marked.
+
+#### Bars with a torn base
+
+A bar chart whose scale starts above zero cuts the bars' bases into a saw edge, three notches across each bar, in the
+color of the ground, and draws no rule at the base. It is rare: 3 of the 244 side-by-side bar panels in the sample,
+all horizontal bars from 2013 and 2014, as in `r cite_codes(c("20140222_MAC376", "20141101_INC124"))`. Columns were
+torn the same way, at the foot, in `r cite_codes(c("20130323_FNC299", "20151107_CNC399"))`. The 2017 guide has no
+bar chart that does not start at zero, so the figures redraw two of these charts, with values read off them.
+
+```{r cg-misc-torn-setup}
+## Notches cut into the base of bars, in the color of the ground, so that the bars read as torn. `at` is the base, on
+## the value scale; `pos` the bars' centres and `width` their width, on the category scale; `depth` the notches' depth,
+## in value units. Draw it over the bars, and start the value axis at `at` with `expand = FALSE`.
+cgm_torn <- function(at, pos, width, depth, teeth = 3, horizontal = TRUE) {
+  step <- width / teeth
+  start <- rep(pos - width / 2, each = teeth) + (seq_len(teeth) - 1) * step
+  d <- data.frame(
+    id = rep(seq_along(start), each = 3),
+    value = rep(c(at, at + depth, at), length(start)),
+    cat = as.vector(rbind(start, start + step / 2, start + step))
+  )
+  if (horizontal) {
+    geom_polygon(aes(.data$value, .data$cat, group = .data$id), d, fill = ground, inherit.aes = FALSE)
+  } else {
+    geom_polygon(aes(.data$cat, .data$value, group = .data$id), d, fill = ground, inherit.aes = FALSE)
+  }
+}
+```
+
+```{r cg-misc-torn-bars, econ_height = 135}
+cgm_food <- data.frame(
+  country = c("Qatar", "Bahrain", "United Arab\nEmirates", "Kuwait", "Oman", "Saudi Arabia"),
+  share = c(93.5, 91.6, 83.9, 79.7, 70.3, 68.2)
+)
+cgm_food$country <- factor(cgm_food$country, levels = rev(cgm_food$country))
+
+cgm_feeding <- ggplot(cgm_food, aes(share, country)) +
+  geom_col(fill = fg[["dark blue"]], width = 0.6) +
+  cgm_torn(at = 47, pos = seq_along(levels(cgm_food$country)), width = 0.6, depth = 0.9) +
+  scale_x_continuous(position = "top", breaks = seq(50, 100, 10)) +
+  coord_cartesian(xlim = c(47, 101), expand = FALSE) +
+  labs(title = "Feeding the masses", subtitle = "Food imports as % of consumption, 2010",
+       caption = "Source: Alpen Capital", x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line()
+economist_chart(cgm_feeding)
+```
+
+The columns of *Enclave of near normality* start at 64, under the lowest label. The natural ratio is a
+[value line](#value-lines), drawn behind the columns and named from the right through a leader ending in a dot.
+
+```{r cg-misc-torn-columns, econ_height = 175}
+cgm_sex_ratio <- data.frame(
+  year = factor(rep(c("1980", "90", "2000", "10"), 2), levels = c("1980", "90", "2000", "10")),
+  place = factor(rep(c("China", "Yicheng, Shanxi province"), each = 4),
+                 levels = c("China", "Yicheng, Shanxi province")),
+  ratio = c(106.6, 112.2, 115.6, 115.6, 112.4, 109.3, 106.6, 99.6)
+)
+
+cgm_enclave <- ggplot(cgm_sex_ratio, aes(year, ratio, fill = place)) +
+  annotate("segment", x = -Inf, xend = Inf, y = 105, yend = 105, colour = econ_red, linewidth = lw(0.6),
+           linetype = cgm_dash) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.8) +
+  cgm_torn(at = 64, pos = rep(1:4, each = 2) + c(-0.2, 0.2), width = 0.4, depth = 1.4, horizontal = FALSE) +
+  annotate("segment", x = 4.62, xend = 4.62, y = 105, yend = 120.5, colour = econ_red, linewidth = lw(0.5)) +
+  annotate("point", x = 4.62, y = 105, colour = econ_red, size = 0.9) +
+  annotate("text", x = 4.66, y = 121, label = "NATURAL RATIO", hjust = 1, vjust = 0, colour = econ_red,
+           fontface = "italic", size = cgm_text * 0.9) +
+  scale_fill_manual(values = c(fg[["dark blue"]], fg[["blue"]]), name = NULL) +
+  scale_y_continuous(position = "right", breaks = seq(70, 130, 10)) +
+  coord_cartesian(xlim = c(0.55, 4.75), ylim = c(64, 132), expand = FALSE) +
+  labs(title = "Enclave of near normality", subtitle = "Sex ratio at birth, males per 100 females",
+       caption = "Sources: UN; Population Studies, 2014", x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size) +
+  classic_no_ticks() +
+  classic_no_axis_line()
+economist_chart(cgm_enclave)
+```
+
+#### One bar cut short
+
+More often only one or two bars run past the end of the scale (side-by-side bar and column charts:
+`r share("bar_column_side_by_side.scale_break.discontinuous")`). In the cited charts
+(`r cite("bar_column_side_by_side.scale_break.discontinuous", k = 2)`, and *Mobile money in developing countries*,
+`r cite_codes("20140920_INC721")`) the long bar is cut by a zigzag gap in the color of the ground just past the last
+gridline, runs on a little, and carries its value: in white inside the stub, or in the bar color after it when the
+stub is too short to hold the number.
+
+```{r cg-misc-cut-bar, econ_height = 190}
+## Values read off the chart; Kenya's 1,018 is printed on it.
+cgm_mobile <- data.frame(
+  country = c("Kenya", "Tanzania", "Botswana", "Zimbabwe", "Cameroon", "Philippines", "Bangladesh", "Congo",
+              "Pakistan", "Malaysia", "Afghanistan", "South Africa"),
+  accounts = c(1018, 418, 384, 325, 117, 84, 41, 30, 14, 8, 7, 7)
+)
+cgm_mobile$country <- factor(cgm_mobile$country, levels = rev(cgm_mobile$country))
+## Bars longer than the scale stop at `stub`; the cut is a gap `gap` wide whose edges zigzag `zig` (all in value
+## units), starting at `cut`. At one column the stub is longer than on the two-column original, to hold the number.
+cgm_stub <- 660
+cgm_cut <- function(cut, pos, width, gap, zig) {
+  y <- pos + c(1, 0.5, 0, -0.5, -1) * width * 0.55
+  edge <- cut + c(0, zig, 0, zig, 0)
+  annotate("polygon", x = c(edge, rev(edge + gap)), y = c(y, rev(y)), fill = ground)
+}
+
+cgm_mobile_p <- ggplot(cgm_mobile, aes(pmin(accounts, cgm_stub), country)) +
+  geom_col(fill = fg[["dark blue"]], width = 0.6) +
+  geom_vline(xintercept = 0, colour = "black", linewidth = lw(0.5)) +
+  cgm_cut(cut = 520, pos = 12, width = 0.6, gap = 10, zig = 10) +
+  annotate("text", x = cgm_stub - 8, y = 12, label = "1,018", hjust = 1, colour = "white", fontface = "bold",
+           size = cgm_text * 0.9) +
+  scale_x_continuous(position = "top", breaks = seq(0, 500, 100)) +
+  coord_cartesian(xlim = c(0, 665), expand = FALSE) +
+  labs(title = "Mobile money in developing\ncountries",
+       subtitle = "Active accounts per 1,000 adults,\nselected countries, 2013", caption = "Source: IMF",
+       x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line()
+economist_chart(cgm_mobile_p)
+```
+
+Against 2017: the [2017 guide](economist-2017-styleguide.html#broken-scales) forbids breaking the scale of a bar or
+column chart in either way, and draws such data as a [thermometer](#thermometer) instead.
+
+### Log scales
+
+Log scales were rare in the classic print charts. Scatters took one now and then (scatters:
+`r share("scatter.log_scale")`; `r cite("scatter.log_scale")`); line charts almost never, three of the 325 line panels
+in the sample, too few to report as a share
+(`r cite_codes(c("20140426_EBC776", "20140104_STC094", "20140111_USC135"))`). The last of these is a facsimile of a 1964
+chart from the Surgeon-General's report, drawn in its own style. The figures below redraw the other two and the two
+scatters, with values read off the charts (the DNA costs follow NHGRI's published series, checked against the chart,
+with four early quarters interpolated).
+
+The charts say so where the scale is named: *Decoding for cents* adds "Log scale, $" as a second subtitle line and *The
+way to go* ends its subtitle "October 1976=100, log scale"; of the scatters, *Always Moore* has a "Log scale" line under
+its subtitle, and *A wealth of knowledge*, whose horizontal axis is the logged one, ends its italic axis title "(log
+scale)". Gridlines fall only at round steps, with no minor gridlines: at powers of ten in *Decoding for cents* (0.01 to
+10,000) and *The way to go* (10 to 1,000,000, with the red line and black dot of an index at 100), and at every second
+power in *Always Moore*, which spans ten. The labels are plain numbers, written in full with commas or with the usual
+abbreviations (10,000, 100,000, 1m, 10m in *A wealth of knowledge*); *Always Moore* labels its powers as powers of ten
+(10^2^, 10^4^, ...). `r cite_codes("20150502_FNC077")`, outside the sample and redrawn in the 2017 guide, used a log
+scale too, with "log scale" set in small italics over the top of the value axis and gridlines at 1, 2, 4, 10, 20, 40.
+
+The rule, then: say "log scale" in the subtitle (in the axis title of a scatter, or over the value axis); put gridlines
+at powers of ten (every second power over a very wide range), or at 1-2-4 steps within each power when the range is
+narrow; label them in plain numbers with m and bn, or as powers of ten for very large ranges; and draw no minor
+gridlines.
+
+```{r cg-misc-log-dna, econ_height = 155}
+## NHGRI's cost per megabase of DNA sequence, quarterly from September 2001 to October 2013 (its "DNA Sequencing
+## Costs" table, as remembered and checked against the chart; cents may differ). Four quarters of 2001-03 that were not
+## remembered (4,500, 3,600, 3,200 and 2,600) are interpolated.
+cgm_dna <- data.frame(
+  t = seq(2001.67, by = 0.25, length.out = 49),
+  cost = c(
+    5292.39, 4500, 3898.64, 3600, 3413.80, 3200, 2986.20, 2600, 2230.98, 1598.91, 1135.70, 1107.46, 1028.85,
+    974.16, 897.76, 898.90, 766.73, 699.20, 651.81, 636.41, 581.92, 522.71, 502.61, 495.96, 397.09, 102.13,
+    15.03, 8.36, 3.81, 2.59, 1.72, 1.20, 0.78, 0.52, 0.35, 0.35, 0.32, 0.23, 0.19, 0.12, 0.09, 0.09, 0.07, 0.07,
+    0.06, 0.06, 0.06, 0.06, 0.06
+  )
+)
+cgm_log_dna <- ggplot(cgm_dna, aes(t, cost)) +
+  geom_line(colour = fg[["dark blue"]], linewidth = 0.8) +
+  scale_y_log10(breaks = 10^(-2:4), labels = c("0.01", "0.1", "1", "10", "100", "1,000", "10,000"),
+                position = "right", expand = c(0, 0)) +
+  scale_x_continuous(breaks = seq(2001, 2013, 2), minor_breaks = 2001:2013, labels = classic_years,
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  coord_cartesian(xlim = c(2000.6, 2014), ylim = c(0.01, 12000), expand = FALSE) +
+  labs(title = "Decoding for cents", subtitle = "Cost of determining 1m bases of\na DNA sequence\nLog scale, $",
+       x = NULL, y = NULL, caption = "Source: National Human Genome Research Institute") +
+  theme_economist(base_size = classic_size)
+economist_chart(cgm_log_dna)
+```
+
+```{r cg-misc-log-index, econ_height = 175}
+## Read off the chart, in pixels of the archived image (October 1976 at x = 188, 18.7 to a year; 100 at y = 1021, 177
+## to a power of ten), converted below: Berkshire Hathaway's share price and the S&P 500, October 1976=100.
+cgm_idx_px <- data.frame(
+  series = rep(c("berkshire", "sp500"), c(46, 37)),
+  x = c(188, 205, 220, 235, 245, 260, 275, 290, 305, 320, 340, 355, 370, 385, 400, 415, 430, 445, 460, 475, 490, 505,
+        520, 535, 550, 565, 580, 595, 610, 625, 640, 660, 680, 700, 720, 740, 760, 775, 790, 800, 815, 830, 845, 860,
+        875, 893,
+        188, 215, 240, 265, 285, 300, 315, 340, 365, 390, 400, 420, 440, 460, 480, 500, 520, 540, 560, 580, 600, 615,
+        635, 655, 675, 690, 705, 730, 750, 775, 790, 800, 815, 835, 850, 870, 893),
+  y = c(1021, 985, 950, 940, 900, 880, 860, 860, 820, 790, 745, 740, 720, 710, 700, 680, 650, 665, 650, 640, 630, 595,
+        590, 560, 540, 530, 510, 480, 495, 515, 490, 485, 490, 465, 470, 460, 450, 435, 445, 475, 450, 440, 455, 440,
+        415, 410,
+        1021, 1020, 1010, 1000, 1005, 1020, 985, 975, 950, 935, 955, 940, 925, 920, 912, 905, 905, 890, 870, 850, 830,
+        815, 815, 830, 850, 855, 835, 830, 825, 810, 830, 870, 835, 830, 825, 810, 797)
+)
+cgm_idx <- data.frame(
+  series = cgm_idx_px$series,
+  t = 1976.8 + (cgm_idx_px$x - 188) / 18.7,
+  value = 10^(2 + (1021 - cgm_idx_px$y) / 177)
+)
+cgm_log_index <- ggplot(cgm_idx, aes(t, value, colour = series)) +
+  classic_zero_line(100) +
+  geom_line(linewidth = 0.8) +
+  annotate("point", x = 1976.8, y = 100, size = 2.4) +
+  annotate("text", x = c(1993, 2001), y = c(330000, 380), label = c("Berkshire Hathaway", "S&P 500"),
+           size = cgm_text) +
+  scale_colour_manual(values = c(berkshire = fg[["dark blue"]], sp500 = fg[["blue"]]), guide = "none") +
+  scale_y_log10(breaks = 10^(1:6), labels = scales::label_comma(), position = "right", expand = c(0, 0)) +
+  scale_x_continuous(breaks = c(1976, 1985, 1995, 2005, 2014), minor_breaks = 1976:2014, labels = classic_years,
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  coord_cartesian(xlim = c(1971.5, 2016.5), ylim = c(10, 1200000), expand = FALSE) +
+  labs(title = "The way to go", subtitle = "October 1976=100, log scale", x = NULL, y = NULL,
+       caption = "Source: Thomson Reuters") +
+  theme_economist(base_size = classic_size)
+economist_chart(cgm_log_index)
+```
+
+```{r cg-misc-log-powers, econ_height = 165}
+## Read off the chart, one row per dot, in pixels of the archived image (1960 at x = 62, 7.4 to a year; 1 at y = 507,
+## 33 to a power of ten), converted below: year of introduction and transistors per CPU.
+cgm_cpu_px <- data.frame(
+  x = c(62, 75, 74, 81, 88, 107, 107, 114, 121, 142, 150, 157, 162, 172, 181, 187, 189, 201, 202, 209, 210, 231, 231,
+        254, 283, 310, 335, 342, 343, 356, 357, 358, 364, 385, 386, 394, 408, 408, 408, 412, 417, 422, 423, 437, 437,
+        437, 447),
+  y = c(502, 497, 437, 426, 456, 426, 441, 404, 447, 431, 396, 389, 409, 385, 390, 375, 381, 358, 375, 348, 358, 337,
+        351, 327, 307, 292, 288, 281, 273, 279, 267, 264, 256, 252, 233, 219, 236, 229, 204, 213, 223, 213, 202, 212,
+        203, 198, 197)
+)
+cgm_cpu <- data.frame(year = 1960 + (cgm_cpu_px$x - 62) / 7.4, n = 10^((507 - cgm_cpu_px$y) / 33))
+## Superscript powers of ten, as plotmath.
+cgm_powers <- function(x) parse(text = ifelse(x == 1, "1", paste0("10^", log10(x))))
+cgm_log_powers <- ggplot(cgm_cpu, aes(year, n)) +
+  annotate("segment", x = 1965.7, xend = 1965.7, y = 1, yend = 10^10.9, colour = econ_red, linewidth = lw(0.6),
+           linetype = cgm_dash) +
+  annotate("text", x = 1965.7, y = 10^11, vjust = 0, label = "MOORE’S LAW\nDEFINED", colour = econ_red,
+           fontface = "italic", size = cgm_text * 0.9, lineheight = 0.9) +
+  geom_point(colour = fg[["blue"]], size = 1.2) +
+  scale_y_log10(breaks = 10^seq(0, 10, 2), labels = cgm_powers, position = "right", expand = c(0, 0)) +
+  scale_x_continuous(breaks = c(seq(1960, 2010, 10), 2014), minor_breaks = 1958:2014, labels = classic_years,
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  coord_cartesian(xlim = c(1958, 2016), ylim = c(1, 10^12), expand = FALSE, clip = "off") +
+  labs(title = "Always Moore", subtitle = "Number of transistors in CPU*\nLog scale", x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size) +
+  classic_footnote("*Central processing unit", "Source: Intel")
+economist_chart(cgm_log_powers)
+```
+
+```{r cg-misc-log-scatter, econ_height = 218}
+## Read off the chart: endowment assets per student, $, and average donation per student, $'000, for each university.
+## `x` and `y` are pixels of the archived image, converted below.
+cgm_uni_px <- data.frame(
+  x = c(145, 165, 180, 183, 178, 197, 203, 208, 212, 215, 218, 220, 222, 223, 225, 228, 232, 235, 240, 242, 244, 246,
+        250, 252, 255, 258, 260, 270, 272, 273, 275, 276, 278, 281, 282, 283, 285, 298, 318, 320, 321, 322, 325, 331,
+        335, 337, 338, 345, 355, 357, 368, 253, 232, 237, 244),
+  y = c(580, 568, 575, 572, 580, 567, 577, 570, 548, 560, 575, 585, 568, 578, 560, 575, 585, 565, 548, 555, 570, 530,
+        547, 575, 559, 571, 590, 545, 563, 550, 520, 555, 568, 548, 540, 535, 520, 530, 468, 457, 445, 452, 440, 446,
+        442, 475, 478, 520, 442, 370, 484, 487, 529, 553, 520)
+)
+cgm_named_px <- data.frame(
+  name = c("Stanford", "Yale", "MIT", "Princeton", "Harvard", "Duke", "Johns Hopkins", "Cornell", "Berkeley", "UCLA"),
+  x = c(389, 417, 385, 435, 396, 334, 276, 294, 204, 197),
+  y = c(207, 309, 346, 374, 372, 405, 409, 445, 523, 529)
+)
+cgm_assets <- function(px) 10^(4 + (px - 127) / 130)
+cgm_gift <- function(py) (601 - py) / 7.5
+cgm_unis <- data.frame(assets = cgm_assets(cgm_uni_px$x), gift = cgm_gift(cgm_uni_px$y))
+cgm_named <- data.frame(name = cgm_named_px$name, assets = cgm_assets(cgm_named_px$x), gift = cgm_gift(cgm_named_px$y))
+## The fitted curve, read off the chart and smoothed as a quadratic in log assets.
+cgm_curve_px <- data.frame(x = c(127, 150, 200, 250, 300, 350, 400, 430, 455), y = c(577, 578, 570, 545, 505, 440,
+                                                                                         360, 295, 245))
+cgm_fit <- lm(gift ~ poly(log10(assets), 2), data.frame(assets = cgm_assets(cgm_curve_px$x),
+                                                       gift = cgm_gift(cgm_curve_px$y)))
+cgm_curve <- data.frame(assets = 10^seq(4, log10(cgm_assets(455)), length.out = 100))
+cgm_curve$gift <- predict(cgm_fit, cgm_curve)
+## Labels beside their dots, Princeton's above its own and Harvard's under it on a short leader.
+cgm_named$lx <- cgm_named$assets * c(0.86, 0.9, 0.86, 0.9, 1, 0.86, 0.8, 0.84, 0.9, 0.86)
+cgm_named$ly <- cgm_named$gift + c(2, 1.8, 1.8, 2.6, -5, 2.6, 0.2, 0.8, 2.6, -1.4)
+cgm_named$hjust <- c(1, 1, 1, 0, 0.5, 1, 1, 1, 1, 1)
+cgm_uni_source <-"Sources: Council\nfor Aid to Education;\nDepartment of\nEducation"
+
+cgm_log_scatter <- ggplot(mapping = aes(assets, gift)) +
+  geom_line(data = cgm_curve, colour = fg[["dark red"]], linewidth = 0.8) +
+  classic_dot(data = cgm_unis, fill = fg[["light blue"]], colour = fg[["blue"]], size = classic_dot_size * 0.65,
+              stroke = 0.3) +
+  annotate("segment", x = cgm_named$assets[5], y = cgm_named$gift[5], yend = cgm_named$ly[5] + 1.2,
+           linewidth = lw(0.4)) +
+  classic_dot(data = cgm_named, fill = fg[["blue"]], colour = fg[["dark blue"]]) +
+  geom_text(aes(lx, ly, label = name, hjust = hjust, fontface = ifelse(name == "Harvard", "bold", "plain")),
+            data = cgm_named, size = cgm_text) +
+  scale_x_log10(breaks = 10^(4:7), labels = c("10,000", "100,000", "1m", "10m")) +
+  scale_y_continuous(breaks = seq(0, 60, 10)) +
+  coord_cartesian(xlim = c(10^3.8, 10^7.15), ylim = c(0, 62), expand = FALSE) +
+  labs(title = "A wealth of knowledge", subtitle = "American university donations and\nendowment wealth*",
+       x = "Endowment assets per student, $, 2013 (log scale)", y = "Average donation per student, $’000, 2012-14") +
+  theme_economist(base_size = classic_size) +
+  theme(axis.title = element_text(face = "italic", size = rel(0.9))) +
+  classic_footnote("*Universities with\n>5,000 students\nand endowments\nof >$1bn",
+                   cgm_uni_source) +
+  ## The source runs to as many lines as the footnote, so it needs none of classic_footnote()'s padding.
+  labs(caption = cgm_uni_source)
+economist_chart(cgm_log_scatter)
+```
+
+Against 2017: the 2017 guide has no section on log scales. Its *Mexican waves*
+([2017 version](economist-2017-styleguide.html#mobile-versions)) keeps the classic chart's log scale and its italic
+"log scale" over the axis.
+
+### Value lines
+
+A reference level is marked by a labelled value line (line charts: `r share("lines.value_lines.labelled")`); in
+the charts checked for it (`r cite_codes(c("20131130_BRC864", "20150328_LDC667"))`) it is a dashed red line labelled
+in red italic capitals beside it, the horizontal counterpart of the event line. The 2017 guide has no value line of
+its own, so the figure labels the 50% line of its *Mutti's malaise*.
+
+```{r cg-misc-value-line, econ_height = 155}
+cgm_value <- ggplot(cgm_merkel, aes(t, approval)) +
+  annotate("segment", x = -Inf, xend = Inf, y = 50, yend = 50, colour = econ_red, linewidth = lw(0.6),
+           linetype = cgm_dash) +
+  annotate("text", x = 2015.7, y = 49, hjust = 1, vjust = 1, label = "HALF OF\nTHOSE POLLED", lineheight = 0.9,
+           colour = econ_red, fontface = "italic", size = cgm_text * 0.9) +
+  geom_line(colour = fg[["dark blue"]], linewidth = 0.8) +
+  scale_y_continuous(position = "right", limits = c(24, 80), breaks = seq(30, 80, 10), expand = c(0, 0)) +
+  scale_x_continuous(breaks = seq(2005, 2015, 2), minor_breaks = 2005:2016, labels = classic_years,
+                     guide = guide_axis(minor.ticks = TRUE)) +
+  coord_cartesian(xlim = c(2004.7, 2016.6), expand = FALSE) +
+  labs(title = "Mutti’s malaise", subtitle = "German approval of Angela\nMerkel, % polled", x = NULL, y = NULL,
+       caption = "Source: ARD DeutschlandTREND/\ninfratest dimap") +
+  theme_economist(base_size = classic_size)
+economist_chart(cgm_value, scale_break = "right")
+```
+
+Against 2017: the 2017 guide has no section on value lines; its *Mutti's malaise*
+([2017 version](economist-2017-styleguide.html#highlight-panels)) draws the 50% line as a thin, unlabelled black rule.
+
+### Inverted scales
+
+A double-scale chart sometimes turns one scale upside down so that the two series move together
+(double-scale charts: `r share("double_scale.inverted_scale")`; `r cite("double_scale.inverted_scale", k = 2)`); in the
+cited charts the axis title says "inverted scale". The 2017 guide shows its own example, *The Zuma years*, only as one
+to avoid.
+
+```{r cg-misc-inverted, econ_height = 175}
+cgm_rand_px <- data.frame(
+  x = c(88, 95, 110, 125, 133, 140, 150, 160, 172, 185, 200, 215, 228, 240, 255, 270, 285, 300, 315, 330, 345,
+        360, 375, 390, 405, 420, 435, 450, 465, 480, 495, 510, 520, 530, 540, 550, 560, 575, 582),
+  y = c(258, 290, 290, 300, 375, 340, 360, 300, 290, 272, 275, 270, 265, 258, 262, 252, 262, 285, 282, 320, 310,
+        325, 330, 345, 350, 375, 380, 385, 370, 395, 420, 470, 520, 550, 490, 470, 480, 460, 480)
+)
+cgm_sacci_px <- data.frame(
+  x = c(88, 110, 125, 140, 150, 160, 172, 180, 200, 210, 225, 237, 250, 262, 272, 285, 300, 315, 330, 345, 360,
+        375, 385, 395, 410, 420, 435, 445, 460, 475, 485, 500, 515, 525, 535, 545, 555, 570, 580),
+  y = c(285, 295, 330, 300, 350, 330, 290, 300, 300, 290, 240, 235, 255, 230, 245, 270, 280, 285, 350, 330, 340,
+        370, 365, 355, 350, 365, 348, 340, 360, 385, 345, 395, 410, 470, 490, 480, 455, 470, 475)
+)
+cgm_zuma_df <- rbind(
+  data.frame(series = "rand", year = 2008 + (cgm_rand_px$x - 88) / 55, value = 6 + (cgm_rand_px$y - 228) / 30),
+  data.frame(series = "sacci", year = 2008 + (cgm_sacci_px$x - 88) / 55, value = 6 + (cgm_sacci_px$y - 228) / 30)
+)
+cgm_zuma <- ggplot(cgm_zuma_df, aes(year, value, colour = series)) +
+  geom_line(linewidth = 0.8) +
+  scale_colour_manual(values = c(rand = fg[["blue"]], sacci = fg[["dark red"]]), guide = "none") +
+  scale_y_reverse(
+    limits = c(18, 6), breaks = seq(6, 18, 3), expand = c(0, 0),
+    sec.axis = sec_axis(~ 120 - (. - 6) * 40 / 12, breaks = seq(80, 120, 10))
+  ) +
+  scale_x_continuous(breaks = seq(2008, 2016, 2), minor_breaks = 2008:2016, labels = classic_years,
+                     limits = c(2007.6, 2017.3), expand = c(0, 0), guide = guide_axis(minor.ticks = TRUE)) +
+  labs(title = "The Zuma years", subtitle = "South Africa", x = NULL, y = NULL,
+       caption = "Sources: Thomson Reuters; SACCI") +
+  theme_economist(base_size = classic_size) +
+  theme(
+    axis.text.y.left = element_text(colour = fg[["blue"]]),
+    axis.text.y.right = element_text(colour = fg[["dark red"]])
+  )
+grid::grid.draw(classic_chart(cgm_zuma, axis_titles = list(
+  left = list(label = "Rand per $", sub = "inverted scale", colour = fg[["blue"]]),
+  right = list(label = "SACCI business\nconfidence, 2015=100", colour = fg[["dark red"]])
+)))
+```
+
+Against 2017: the 2017 guide has no section on inverted scales; it shows *The Zuma years*
+([2017 version](economist-2017-styleguide.html#what-to-avoid)) only as a chart to avoid, in maroon and cyan with a red
+rule at 12.
+
+### The +/- axis
+
+Negative values are labelled without minus signs: a "+" above the zero and a "–" below it
+(line charts with negatives: `r share("lines.negative_labels.plus_minus_at_zero")`; side-by-side bar and column charts
+with negatives: `r share("bar_column_side_by_side.negative_labels.plus_minus_at_zero")`;
+`r cite("lines.negative_labels.plus_minus_at_zero")`). It held throughout:
+`r by_year("negative_labels.plus_minus_at_zero")`
+of panels with negatives. In the cited charts the zero line is red, drawn over the gridlines but under the data.
+Venezuela's growth, from
+the 2017 guide's *Chavismo in action*:
+
+```{r cg-misc-plus-minus, econ_height = 165}
+cgm_venezuela <- data.frame(
+  year = 2004:2016,
+  gdp = c(18.3, 10.3, 9.9, 8.8, 5.3, -3.2, -1.5, 4.2, 5.6, 1.3, -3.9, -5.7, -18.6)
+)
+## The theme's ticks are kept on the year axis: the cited column chart "Some turnaround" (20130223_ASC106) has them.
+cgm_chavez <- ggplot(cgm_venezuela, aes(year, gdp)) +
+  ## The red zero line goes under the columns.
+  classic_zero_line() +
+  geom_col(fill = fg[["dark blue"]], width = 0.7) +
+  scale_y_continuous(position = "right", limits = c(-20, 20), breaks = seq(-20, 20, 10), expand = c(0, 0),
+                     labels = economist_plus_minus_format()) +
+  scale_x_continuous(breaks = seq(2004, 2016, 2), labels = c(classic_years(seq(2004, 2014, 2)), "16*")) +
+  labs(title = "Chavismo in action", subtitle = "Venezuela, GDP, % change\non a year earlier", x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size) +
+  classic_footnote("*Preliminary\nestimate", "Sources: IMF; Reuters")
+economist_chart(cgm_chavez)
+```
+
+Against 2017: the [2017 version](economist-2017-styleguide.html#line-and-column) draws the same growth columns in
+cyan on a double scale with consumer prices, and its value axis labels negatives with minus signs. The classic version
+shows growth alone, in dark blue, on the +/- axis.
+
+### Waterfalls
+
+Waterfall charts were too few in the sample (`r claim("type.waterfall.examples")$n` panels) to set a convention
+(`r cite("type.waterfall.examples")`). In these two charts each part is a column starting where the last one ended,
+and the total is a full column. The 2017 guide has no waterfall, so there is no figure.

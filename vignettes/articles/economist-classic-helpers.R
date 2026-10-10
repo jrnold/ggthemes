@@ -1,10 +1,11 @@
 # Helpers shared by the classic-vs-2017 articles. Sourced from the articles as
 # `source("economist-classic-helpers.R")`; nothing here is exported.
 
-# The red of the classic charts, looked up by name among the ground colors.
+# The red of the classic charts' tab and rules: Economist red, looked up by name among the ground colors. The archived
+# images show it anywhere from #ED111A to #E11B17, depending on the export.
 classic_tab_colour <- function() {
   bg <- ggthemes_data$economist$bg
-  bg$value[bg$name == "red"]
+  bg$value[bg$name == "economist red"]
 }
 
 # The classic chart (pre-2017) has a red tab too, but a vertical one flush with
@@ -29,7 +30,9 @@ classic_chart <- function(plot, tab = c(5, 15), colour = classic_tab_colour(), a
   # sits at the plot's top left corner even when a fixed aspect ratio (a pie,
   # say) leaves the plot smaller than the space it is drawn in.
   gt <- ggplot2::ggplotGrob(plot)
-  if (!is.null(axis_titles)) gt <- classic_add_axis_titles(gt, plot, axis_titles)
+  if (!is.null(axis_titles)) {
+    gt <- classic_add_axis_titles(gt, plot, axis_titles)
+  }
   gtable::gtable_add_grob(
     gt,
     tab_grob,
@@ -61,12 +64,16 @@ classic_add_axis_titles <- function(gt, plot, axis_titles, size = classic_size) 
   text <- function(label, side, y, colour, fontsize) {
     grid::textGrob(
       label,
-      x = grid::unit(if (side == "left") 0 else 1, "npc"), y = grid::unit(y, "pt"), just = c(side, "bottom"),
+      x = grid::unit(if (side == "left") 0 else 1, "npc"),
+      y = grid::unit(y, "pt"),
+      just = c(side, "bottom"),
       gp = grid::gpar(col = colour, fontsize = fontsize, fontface = "italic", fontfamily = family, lineheight = 1.0)
     )
   }
   side_grobs <- function(entries, side) {
-    if (!is.null(entries$label)) entries <- list(entries)
+    if (!is.null(entries$label)) {
+      entries <- list(entries)
+    }
     key_width <- size * 1.6
     gap <- size * 0.3
     y <- size * 0.75
@@ -85,13 +92,21 @@ classic_add_axis_titles <- function(gt, plot, axis_titles, size = classic_size) 
           x0 <- grid::unit(0, "npc")
           label$x <- grid::unit(key_width + gap, "pt")
         } else {
-          x0 <- grid::unit(1, "npc") - grid::grobWidth(text(first, side, 0, e$colour, size)) - grid::unit(key_width + gap, "pt")
+          x0 <- grid::unit(1, "npc") -
+            grid::grobWidth(text(first, side, 0, e$colour, size)) -
+            grid::unit(key_width + gap, "pt")
           label$x <- grid::unit(1, "npc")
         }
-        grobs <- c(grobs, list(grid::segmentsGrob(
-          x0, grid::unit(mid, "pt"), x0 + grid::unit(key_width, "pt"), grid::unit(mid, "pt"),
-          gp = grid::gpar(col = e$colour, lwd = 2.2, lineend = "butt")
-        )))
+        grobs <- c(
+          grobs,
+          list(grid::segmentsGrob(
+            x0,
+            grid::unit(mid, "pt"),
+            x0 + grid::unit(key_width, "pt"),
+            grid::unit(mid, "pt"),
+            gp = grid::gpar(col = e$colour, lwd = 2.2, lineend = "butt")
+          ))
+        )
         if (side == "left") label$just <- c("left", "bottom")
         # The label's own line is drawn from the left edge of its key's end on the left, as it is.
       }
@@ -102,17 +117,29 @@ classic_add_axis_titles <- function(gt, plot, axis_titles, size = classic_size) 
   }
   left <- side_grobs(axis_titles$left, "left")
   right <- side_grobs(axis_titles$right, "right")
-  height <- grid::unit(max(left$height, right$height) + size * 0.3, "pt")
+  # The row reaches up into the subtitle's bottom margin, so that the titles sit about 6pt under the subtitle, as on
+  # the paper's charts, not the subtitle's margin and a gap of the row's own.
+  height <- grid::unit(max(left$height, right$height) - size * 0.45, "pt")
   panel <- gt$layout[grepl("^panel", gt$layout$name), ]
   top <- min(panel$t)
   l_col <- gt$layout$l[gt$layout$name == "axis-l"][1]
   r_col <- gt$layout$l[gt$layout$name == "axis-r"][1]
   gt <- gtable::gtable_add_rows(gt, height, pos = top - 1)
   gt <- gtable::gtable_add_grob(
-    gt, grid::gTree(children = left$grob), t = top, l = l_col, clip = "off", name = "axis-title-left"
+    gt,
+    grid::gTree(children = left$grob),
+    t = top,
+    l = l_col,
+    clip = "off",
+    name = "axis-title-left"
   )
   gtable::gtable_add_grob(
-    gt, grid::gTree(children = right$grob), t = top, l = r_col, clip = "off", name = "axis-title-right"
+    gt,
+    grid::gTree(children = right$grob),
+    t = top,
+    l = r_col,
+    clip = "off",
+    name = "axis-title-right"
   )
 }
 
@@ -190,8 +217,12 @@ classic_tube <- function(data, mapping, outer = 3, inner = 1.5) {
 # rules (`geom_area()` with a white upper outline); this goes over the white one on the top band.
 classic_stack_top <- function(x, y) {
   ggplot2::stat_summary(
-    ggplot2::aes(x = .data[[x]], y = .data[[y]], group = 1), inherit.aes = FALSE, fun = sum, geom = "line",
-    colour = "black", linewidth = 0.2
+    ggplot2::aes(x = .data[[x]], y = .data[[y]], group = 1),
+    inherit.aes = FALSE,
+    fun = sum,
+    geom = "line",
+    colour = "black",
+    linewidth = 0.2
   )
 }
 
@@ -200,7 +231,9 @@ classic_stack_top <- function(x, y) {
 # `classic_chart()` and of `economist_2017_chart()`.
 chart_pair <- function(classic, modern, headings = c("Classic", "2017")) {
   grid::grid.newpage()
-  grid::pushViewport(grid::viewport(layout = grid::grid.layout(2, 2, heights = grid::unit(c(1.2, 1), c("lines", "null")))))
+  grid::pushViewport(grid::viewport(
+    layout = grid::grid.layout(2, 2, heights = grid::unit(c(1.2, 1), c("lines", "null")))
+  ))
   cell <- function(row, col) grid::viewport(layout.pos.row = row, layout.pos.col = col)
   for (j in 1:2) {
     grid::pushViewport(cell(1, j))

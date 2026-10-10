@@ -29,11 +29,12 @@ theme_economist_white(
 
 \item{dkpanel}{\code{logical} Darker background for panel region? The panels
 and strips are a darker blue-gray than the plot's ground, as in the
-charts of 2012 to 2014.}
+charts with panels of 2012 to mid-2015.}
 
 \item{lightpanel}{\code{logical} Lighter background for panel region? The plot's
-ground is a deeper blue-gray and the panels are paler than it, as in many
-of the charts of 2015 to 2018. The panel headings (strips) stay on the
+ground is a deeper blue-gray and the panels are paler than it, as in the
+charts with panels from the second half of 2015, which replaced the
+darker panels of \code{dkpanel}: the same two colors, swapped. The panel headings (strips) stay on the
 ground. Use at most one of \code{dkpanel} and \code{lightpanel}.}
 
 \item{gray_bg}{\code{logical} If \code{TRUE}, use gray background, else
@@ -90,11 +91,11 @@ p + theme_economist(horizontal = FALSE) +
     scale_colour_economist() +
     coord_flip()
 
-## Panels darker than the ground, as in the charts of 2012 to 2014
+## Panels darker than the ground, as in the charts of 2012 to mid-2015
 p + theme_economist(dkpanel = TRUE) +
     scale_colour_economist()
 
-## Panels lighter than the ground, as in many charts of 2015 to 2018
+## Panels lighter than the ground, as in the charts from mid-2015
 p + theme_economist(lightpanel = TRUE) +
     scale_colour_economist()
 
@@ -124,5 +125,12 @@ p + theme_economist(base_family="Verdana") +
 \item \href{https://www.economist.com/}{The Economist}
 \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 }
+}
+\seealso{
+Other themes economist:
+\code{\link[=economist_chart]{economist_chart()}},
+\code{\link[=economist_plus_minus]{economist_plus_minus()}},
+\code{\link[=economist_table]{economist_table()}},
+\code{\link[=gt_theme_economist]{gt_theme_economist()}}
 }
 \concept{themes economist}

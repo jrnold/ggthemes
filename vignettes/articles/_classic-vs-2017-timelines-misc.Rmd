@@ -888,7 +888,7 @@ mexican_waves <- function(media, event_top, war_labels, event_labels = mexico_ev
     scale_y_log10(breaks = c(1, 2, 4, 10, 20, 40, 100, 200, 400), position = "right",
                   guide = guide_axis_economist_2017()) +
     coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 800), expand = FALSE, clip = "off") +
-    labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %",
+    labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond yields, %",
          x = NULL, y = NULL, caption = caption) +
     theme_economist_2017(media, base_size = 7) +
     ## Room between the year labels and the source line for the default track.
@@ -990,7 +990,7 @@ mexico_rotated <- ggplot(mexico_yields, aes(yield, year)) +
   scale_x_log10(breaks = c(1, 10, 100), position = "top",
                 sec.axis = dup_axis(), guide = guide_axis(cap = "both")) +
   coord_cartesian(xlim = c(0.2, 500), ylim = c(2018, 1820), expand = FALSE, clip = "off") +
-  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %",
+  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond yields, %",
        x = NULL, y = NULL, caption = "Sources: Global Financial Data;\nThomson Reuters; Haver Analytics") +
   theme_economist_2017("web", base_size = 7) +
   theme(panel.grid.major = element_blank(), axis.text.y = element_text(hjust = 0))
@@ -1023,7 +1023,7 @@ mexico_compressed <- ggplot(mexico_yields, aes(year, yield)) +
   scale_y_log10(breaks = c(1, 2, 4, 10, 20, 40, 100, 200, 400), position = "right",
                 guide = guide_axis_economist_2017()) +
   coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 3500), expand = FALSE, clip = "off") +
-  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %", x = NULL, y = NULL) +
+  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond yields, %", x = NULL, y = NULL) +
   theme_economist_2017("web", base_size = 7) +
   theme(axis.text.x = element_text(size = rel(0.8)), plot.margin = margin(0, 0, 22, 0))
 economist_2017_chart(mexico_compressed, "web")
@@ -1065,19 +1065,28 @@ gt::gt(data.frame(key = mexico_numbered$key, event = gsub("\n", " ", mexico_numb
 "Use where multiple charts are referenced in text." A 7.5pt bold numeral on
 the number-box fill, top right.
 
-The number box is a 2017 device for charts that are referred to from the text; the classic charts have no
-equivalent, so only the 2017 chart is shown.
+The classic charts had number boxes too: the number in bold white on a blue-gray square, about 9pt across, at the top right, on about one line chart in seven in the chart corpus (2012 to 2015). `economist_chart(number = )` draws it.
 
-```{r timelines-number-box, econ_height = 165, econ_pair = FALSE}
+```{r timelines-number-box, econ_height = 165}
 numbered <- tl_tokyo +
   labs(caption = NULL)
 
-economist_2017_chart(
+modern <- economist_2017_chart(
   numbered +
     labs(caption = "Source: Thomson Reuters"),
   media = "print",
   number = 1
 )
+classic <- ggplot(tl_bonds, aes(year, yield, colour = period)) +
+  geom_line(linewidth = 0.8) +
+  scale_colour_economist() +
+  scale_x_continuous(limits = c(1, 13.7), breaks = c(1, 5, 10, 13), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 8), breaks = seq(0, 8, 2), expand = c(0, 0), position = "right") +
+  labs(title = "Where Tokyo leads", subtitle = "Ten-year government-bond yields, %", x = "Years since start", y = NULL,
+       colour = NULL, caption = "Source: Thomson Reuters") +
+  guides(colour = guide_legend(nrow = 2)) +
+  theme_economist(base_size = classic_size)
+chart_pair(economist_chart(classic, number = 1), modern)
 ```
 
 ### Highlight panels
@@ -1484,7 +1493,7 @@ The break is the 2017 layer, drawn unchanged beside the classic left axis (`side
 | Mexican waves, web | yes | Same chart, staggered labels |
 | Mexican waves, mobile (rotated) | 2017 only | A phone layout; no classic counterpart |
 | Mexican waves, mobile (numbered) | 2017 only | A phone layout; no classic counterpart |
-| Number boxes | 2017 only | No classic counterpart |
+| Number boxes | yes | Classic: white on blue-gray, no outline |
 | Highlight panels, neutral | yes | Lighter panel, labels in place |
 | Highlight panels, colour | yes | Classic pink; 2017 break layer reused |
 | Highlight panels, web | 2017 only | Web medium is a 2017 distinction |

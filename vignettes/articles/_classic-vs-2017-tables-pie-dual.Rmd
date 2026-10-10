@@ -2,7 +2,7 @@
 
 Tables use [gt](https://gt.rstudio.com/): 7.5/9 type, 75% black explanatory text, thin rules, alternating row fills "to help with reading", and the usual chart furniture.
 
-ggthemes has no table styling for either style: `theme_economist()` and `theme_economist_2017()` are ggplot2 themes and say nothing about gt. Here each table is drawn twice, in the classic style on the left and in the 2017 style on the right, except the one with charts inside its cells, which has no classic counterpart, with `classic_table()` and `econ_table()`, two gt styles written for this article. The 2017 tables are the same as in the 2017 article. The classic style is taken from two tables the paper printed in 2012, "Uncertain, for sure" and "Biggest money-laundering settlements with US authorities", redrawn first below.
+Here each table is drawn twice, in the classic style on the left and in the 2017 style on the right, except the one with charts inside its cells, which has no classic counterpart. The 2017 tables use ggthemes' `gt_theme_economist_2017()`; the classic tables use `classic_table()`, a gt style written for this article from the two tables below (ggthemes' `gt_theme_economist()`, measured on the corpus of classic tables, draws the rules in black). The 2017 tables are the same as in the 2017 article. The classic style is taken from two tables the paper printed in 2012, "Uncertain, for sure" and "Biggest money-laundering settlements with US authorities", redrawn first below.
 
 ```{r tables-setup}
 library(gt)
@@ -38,55 +38,13 @@ econ_source <- function(source, footnote = "") {
 ## Everything the tables share: the print background, the type, the rules
 ## and the padding, at the guide's width in points.
 econ_table <- function(data, id, width = 160) {
+  ## ggthemes' 2017 table style, with the fonts loaded from Google Fonts; the tables fill their own second rows.
   data |>
-    gt::tab_options(
-      table.width = sprintf("%gpt", width),
-      table.background.color = print_pal$ground,
-      table.font.size = "7.5pt",
-      table.font.color = print_pal$text,
-      table.font.weight = "300",
-      table.border.top.style = "none",
-      table.border.bottom.style = "none",
-      table.margin.left = "0",
-      heading.align = "left",
-      heading.border.bottom.style = "none",
-      heading.padding = "0",
-      heading.padding.horizontal = "6pt",
-      column_labels.font.weight = "500",
-      column_labels.vlines.style = "none",
-      column_labels.border.top.style = "none",
-      column_labels.border.bottom.style = "solid",
-      column_labels.border.bottom.width = "0.5pt",
-      column_labels.border.bottom.color = print_pal$text,
-      column_labels.padding = "2pt",
-      column_labels.padding.horizontal = "3pt",
-      row_group.font.weight = "500",
-      row_group.border.top.style = "none",
-      row_group.border.bottom.style = "solid",
-      row_group.border.bottom.width = "0.5pt",
-      row_group.border.bottom.color = print_pal$text,
-      row_group.padding = "2pt",
-      row_group.padding.horizontal = "3pt",
-      table_body.border.top.style = "none",
-      table_body.border.bottom.style = "none",
-      table_body.hlines.style = "none",
-      data_row.padding = "2pt",
-      data_row.padding.horizontal = "3pt",
-      source_notes.font.size = "6.5pt",
-      source_notes.padding = "3pt",
-      source_notes.padding.horizontal = "6pt",
-      source_notes.border.bottom.style = "none",
-      container.padding.x = "0",
-      container.padding.y = "0"
-    ) |>
-    gt::opt_table_font(font = econ_table_font) |>
-    gt::tab_style(gt::cell_text(color = print_pal$source), gt::cells_source_notes()) |>
+    gt_theme_economist_2017(width = width, stripe = FALSE, font = econ_table_font) |>
+    gt::tab_options(heading.padding.horizontal = "6pt", source_notes.padding.horizontal = "6pt") |>
     gt::opt_css(gsub("ID", id, "
-      #ID .gt_table { line-height: 9pt; margin: 0 !important; }
       #ID .gt_heading { padding: 0 3pt 6pt 3pt !important; }
       #ID .gt_title, #ID .gt_subtitle { padding: 0 !important; }
-      #ID .gt_col_heading { vertical-align: bottom; line-height: 9pt; }
-      #ID .gt_row { vertical-align: top; line-height: 9pt; }
       #ID .nowrap { white-space: nowrap; }
     ", fixed = TRUE))
 }
@@ -204,7 +162,7 @@ table_pair <- function(classic, modern, headings = c("Classic", "2017")) {
 
 The paper's classic tables, drawn here from two printed in 2012, differ from the 2017 style in these ways, which `classic_table()` sets:
 
-* the table sits on the chart's blue-gray ground, `#d5e4eb`, with the same vertical red tab at the top left, 5pt by 15pt, and the title block 12pt in from the left edge;
+* the table sits on the chart's blue-gray ground, `#cbdde6`, with the same vertical red tab at the top left, 5pt by 15pt, and the title block 12pt in from the left edge;
 * the title is bold and the subtitle plain, in black, and all the table's text is black: there is no 75% black for explanatory text or the source line;
 * the column headings are bold, set on the bottom line of the heading block, with a rule under them; the rows are separated by thin dotted rules, or thin solid ones in a wide table, and the last rule is solid;
 * there is no alternating row fill, which the 2017 guide uses "to help with reading": a classic table is rules and type, and picks out chosen rows with a highlight, a band a shade darker than the ground across the whole row (see "China’s rise, Japan’s fall" below).
@@ -603,7 +561,7 @@ gt::gt(cells, id = "what-to-expect") |>
   gt::tab_style(rule_heavy, gt::cells_body(rows = 6))
 ```
 
-The classic style has no counterpart to this table: none of the paper's classic tables has data drawn inside its cells, so the table is shown in 2017 alone.
+Classic tables with data drawn in their cells exist but are rare: 3 of the 41 tables in the chart corpus's sample (bars with small pies, paired bars, and rows of dots). The table is shown in 2017 alone here; [the classic style guide](economist-classic-styleguide.html#table-with-integrated-charts) draws a classic version.
 
 The 2017 table\'s small charts are hand-built SVG, which ggplot2 themes cannot reach. Two of them can be redrawn as ggplot2 charts, the applications and decisions bars and the "accepted" doughnuts, so that the classic and 2017 themes can be compared on the same data. They are plain charts, not table cells.
 
@@ -1905,7 +1863,7 @@ chart_pair(classic_chart(classic), ggplotGrob(modern))
 | Classic table with highlights, "China's rise, Japan's fall" | yes | Classic only, redrawn from the paper's table. |
 | Standard table, "Divided by a dozen" | yes | Both; no row fills in classic. |
 | Colour highlight table, "Obama's jobs bill" | yes | Both; the classic highlight is a band a shade darker than the ground, as in "China's rise, Japan's fall". |
-| Table with integrated charts, "What to expect" | yes | 2017 only: no classic table has data inside its cells. Bars and doughnuts also redrawn as ggplot2 in both styles. |
+| Table with integrated charts, "What to expect" | yes | 2017 only here; classic version in the classic style guide. Bars and doughnuts also redrawn as ggplot2 in both styles. |
 | Pie order, doughnuts and pies, 1 to 6 segments | yes | Classic palette re-chosen per panel. |
 | Labeled doughnut, "Naan bigger" | yes | |
 | Two doughnuts, keyed labels, "The scramble in Africa" | yes | Classic palette runs out at nine colors; two added by hand. |

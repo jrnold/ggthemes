@@ -92,6 +92,12 @@ test_that("economist_2017_year keeps every century boundary in full", {
   expect_equal(economist_2017_year(c(2000, 2002)), c("2000", "02"))
 })
 
+test_that("economist_2017_year spells out a new century when its boundary is not labelled", {
+  expect_equal(economist_2017_year(c(1970, 1990, 2010)), c("1970", "90", "2010"))
+  expect_equal(economist_2017_year(c(1995, 2005, 2015)), c("1995", "2005", "15"))
+  expect_equal(economist_2017_year(c(NA, 1990, 2010, NA)), c(NA, "1990", "2010", NA))
+})
+
 test_that("economist_2017_year zero-pads single-digit years", {
   expect_equal(economist_2017_year(c(1998, 2000, 2001)), c("1998", "2000", "01"))
 })

@@ -330,7 +330,7 @@ classic <- lines_classic(
 chart_pair(classic, modern)
 ```
 
-The theme draws no zero or index line, so the rule at 100 is a `geom_hline()`, in the classic red as in the corpus's index charts from 2014 on (a black dot on the index point goes with it), and the labels take their lines' colours where 2017 sets them in black. The light-blue "Car" line is faint on the pale ground; in 2017 it is gold. The classic x axis labels the years "2001", "03" and so on, because four-digit labels every two years run together at this width.
+The theme draws no zero or index line, so the rule at 100 is a `geom_hline()`, in the classic red as in the corpus's index charts (a black dot on the index point goes with it), and the labels take their lines' colours where 2017 sets them in black. The light-blue "Car" line is faint on the pale ground; in 2017 it is gold. The classic x axis labels the years "2001", "03" and so on, because four-digit labels every two years run together at this width.
 
 ### Six lines, labeled in place
 

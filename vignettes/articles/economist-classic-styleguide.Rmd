@@ -1,0 +1,428 @@
+---
+title: "The classic Economist chart style, 2012-2016"
+---
+
+```{r, include = FALSE}
+## ragg writes plain sRGB PNGs; the macOS default device embeds a profile that darkens colors.
+knitr::opts_chunk$set(comment = "#>", dpi = 192, dev = "ragg_png")
+## Fold each chunk's code behind a "Code" toggle; output stays visible.
+local({
+  source_hook <- knitr::knit_hooks$get("source")
+  knitr::knit_hooks$set(source = function(x, options) {
+    paste0("\n\n<details><summary>Code</summary>\n\n", source_hook(x, options), "\n\n</details>\n\n")
+  })
+})
+```
+
+*The Economist* wrote its chart style down for the first time in 2017, in *The Economist visual styleguide* (v1.2, 4 May 2017), which [another article](economist-2017-styleguide.html) reproduces with `theme_economist_2017()`.
+The charts it replaced, the blue-gray charts of the weekly print edition, had no written guide.
+This article is the guide they would have had.
+It follows the sections of the 2017 guide, and draws the 2017 guide's own example charts, with the same data and titles, in the classic style, so that each figure here can be set beside its 2017 version.
+
+Every rule below was measured on the paper's charts, and each one links to real charts that show it: the archived image of the chart ("chart") and the article it ran with.
+No Economist images are reproduced; the figures are *ggplot2* drawings made with `theme_economist()` and the other classic tools in ggthemes.
+[A companion article](economist-classic-vs-2017.html) draws the same examples in both styles side by side.
+
+```{r setup, message = FALSE}
+## The evidence, the citation helpers and the classic drawing helpers, shared with the child documents.
+source("economist-classic-guide.R")
+```
+
+## How the guide was made
+
+The evidence is a corpus of the print edition's charts, archived by the [Wayback Machine](https://web.archive.org/): every chart of the weekly issues from January 2012 to December 2016 that the archive holds.
+
+- **Every chart was measured from its pixels**: size, background, the red tab, panel fills and the colors of its marks. These measurements cover 2012 to 2016 and give the shares by half-year below.
+- **A stratified sample of 800 charts** (200 a year from 2012 to 2015, spread over quarters and sections) **was read chart by chart**: chart type, axes, gridlines, keys, labels and annotations, panel by panel. These readings give every share of a convention, counted among the panels of one chart type, and only among panels where the convention could apply (the +/- axis among panels with negative values, say).
+- **Every chart cited as an example was checked by eye**, and charts that did not show what was claimed were dropped.
+
+The scope is the standard weekly chart on its blue-gray ground.
+Composite charts, maps, diagrams and one-off designs are left out (`r share("scope.excluded")` in the sample), as are web-only charts and the white-ground charts of the special reports, which had styles of their own.
+The type the charts were set in (ITC Officina Sans) and the sizes of their text were not part of the corpus measurements; the sizes come from the measurements behind `theme_economist()` (see `?theme_economist`).
+
+Shares are given as a percentage with their counts: line charts named their lines by labels beside them in `r pct("lines.series_key.labels_next_to_data")` of line panels (`r share("lines.series_key.labels_next_to_data")`). Conventions with fewer than 15 panels in the sample are shown by example only.
+
+## What changed between 2012 and 2016
+
+Most of the classic style held still for five years: the red tab, the right-hand value axis, the white gridlines, the palette, the +/- axis and the truncated years were the same in 2016 as in 2012.
+A few things changed, and where they did, this guide gives the choices for each period.
+
+```{r periods, econ_size = "two_column", econ_height = 200}
+## Shares of all print charts, by half-year: the pixel measurements of periods.csv.
+shifts <- rbind(
+  data.frame(half = periods$half, what = "Panels darker than the ground", share = periods$dark_panel),
+  data.frame(half = periods$half, what = "Panels paler than a deeper ground", share = periods$light_panel),
+  data.frame(half = periods$half, what = "Coral red in the chart", share = periods$coral),
+  data.frame(half = periods$half, what = "Blue-gray in the chart", share = periods$blue_gray)
+)
+shifts$x <- match(shifts$half, periods$half)
+ends <- shifts[shifts$x == max(shifts$x), ]
+p <- ggplot(shifts, aes(x, 100 * share, colour = what)) +
+  geom_line(linewidth = 0.8) +
+  annotate("text", x = c(1.2, 9.6, 8, 2.2), y = c(13, 4.2, 13, 31),
+           label = c("Darker panels", "Paler panels", "Coral", "Blue-gray"),
+           hjust = c(0, 0.5, 0.5, 0), size = classic_size / .pt) +
+  scale_colour_manual(
+    values = c(fg[["dark blue"]], fg[["blue"]], fg[["coral"]], fg[["blue-gray"]]),
+    breaks = c("Panels darker than the ground", "Panels paler than a deeper ground", "Coral red in the chart",
+               "Blue-gray in the chart"),
+    guide = "none"
+  ) +
+  scale_x_continuous(breaks = seq(1.5, 9.5, 2), labels = 2012:2016, expand = expansion(add = 0.3)) +
+  scale_y_continuous(position = "right", limits = c(0, 36), breaks = seq(0, 35, 5), expand = c(0, 0)) +
+  labs(
+    title = "Fewer blue-grays, paler panels",
+    subtitle = "Economist print charts, % by half-year",
+    x = NULL, y = NULL,
+    caption = "Source: chart corpus, all print charts 2012-16"
+  ) +
+  theme_economist(base_size = classic_size) +
+  ## Years label the middle of each year, so there are no ticks.
+  theme(axis.ticks.x = element_blank())
+economist_chart(p)
+```
+
+| | 2012 to mid-2015 | From mid-2015 |
+|:--|:--|:--|
+| Panels of a multi-panel chart | Darker than the ground: `theme_economist(dkpanel = TRUE)` | Paler than a deeper ground: `theme_economist(lightpanel = TRUE)` |
+| Contrast colors | Dark red and pink | Also coral, `fg[["coral"]]` |
+| Ground | 10/0/0/10, drawn as `r ground`; the archived images show it as `#D6E6EA`, `#CEDEE6` or `#D6E2EA`, depending on the export (see Shades) | On charts with pale panels, the dark panel's 15/0/0/15 (`r bg[["deep blue-gray"]]`), with the panels in the ground's color |
+
+- **Panels.** Until mid-2015 a multi-panel chart could fill its panels a shade darker than the ground: `r round(100 * max(periods$dark_panel[1:7]))`% of charts at most in a half-year. In the second half of 2015 that flipped: the ground deepened to a stronger blue-gray and the panels became paler than it (`r round(100 * periods$light_panel[periods$half == "2016H1"])`% of the charts of early 2016), while darker panels all but disappeared. Dark panels: `r cite_codes("20130720_FNC104")`. Pale panels: `r cite_codes(c("20160827_FBC212", "20161022_FNC897"))`.
+- **Coral.** A coral red, around `r claim("palette.new.#F15A40")$value`, in none of the classic palettes, appears in 2015 and is in `r round(100 * periods$coral[periods$half == "2015H2"])`% of the charts of late 2015. It joins dark red and pink as a contrast color, often beside pink: `r cite("palette.new.#F15A40", k = 2)`.
+- **Blue-gray** fell out of use: from `r round(100 * periods$blue_gray[1])`% of charts in early 2012 to `r round(100 * periods$blue_gray[nrow(periods)])`% in late 2016, as coral, pink and light green rose. The sample read chart by chart ends in 2015, so the guide's color sets below are those of 2012 to 2015.
+- **Pies** were nearly gone after 2012 (`r by_year("type.pie_doughnut")` of panels), and **charts of several panels** became more common in 2015 (`r by_year("layout.panels")` of charts).
+- **Shades.** The measured shade of each series color moves from one period to the next, by up to 4 or 5 units of color difference (blue was `#01A1CE` from mid-2013 to the end of 2014, against `#00A4DC` in 2015). These are changes in how the web images of the print charts were exported, not new colors. The red tab, which is always Economist Red, dates them: an unidentified export from 28 May 2011 to 6 October 2012; US Web Coated SWOP from 13 October 2012 to 2 March 2013; a coated profile (FOGRA39 or GRACoL) from 9 March 2013 to 17 January 2015; and SWOP again from 24 January 2015. The two SWOP periods show the same series colors (median difference 0.4), so the specs did not change. From 19 October 2013 the images were also exported at twice the resolution, with no change of design.
+
+The classic style did not end in 2016.
+A smaller earlier sample of print charts, about 30 a year, found the classic blue, dark blue and ground in use through 2018; the 2017 guide's palette reached the print charts in 2019.
+
+## Chart sizes
+
+Charts were drawn to the print edition's columns.
+Converting the archived images back to points (a one-column chart is 290 pixels wide, or 580 at twice the resolution, for 160pt):
+
+| Width | Typical height | Share of print charts |
+|:--|:--|--:|
+| One column, about 160pt | `r sub(".*height IQR ", "", claim("size.width.~160 (1 col)")$value)` | `r share("size.width.~160 (1 col)")` |
+| Two columns, about 330pt | `r sub(".*height IQR ", "", claim("size.width.~330 (2 col)")$value)` | `r share("size.width.~330 (2 col)")` |
+| Narrower than a column, about 126pt | `r sub(".*height IQR ", "", claim("size.width.<130")$value)` | `r share("size.width.<130")` |
+| Between one and two columns, about 250pt | `r sub(".*height IQR ", "", claim("size.width.200-290")$value)` | `r share("size.width.200-290")` |
+| Three columns or wider | | `r pct("size.width.~500 (3 col)")` and `r pct("size.width.>600")` |
+
+These are the 2017 guide's widths too, so `economist_2017_size()` gives the classic sizes: `economist_2017_size("one_column", height = 165)` is a one-column chart 165pt tall.
+One-column charts: `r cite("size.width.~160 (1 col)", k = 2)`. Two-column charts: `r cite("size.width.~330 (2 col)", k = 2)`.
+
+Draw a one-column chart with `theme_economist(base_size = 6.5)`, the size of its axis labels; every other size in the theme is relative to `base_size`, so a chart drawn larger keeps its proportions.
+
+## Typefaces
+
+The classic charts were set in ITC Officina Sans, a humanist sans serif with a slightly typewritten look: bold for titles, book for everything else, italic for the titles of a double-scale chart's axes, for annotations such as "Forecast" and for notes under the axis.
+It is not freely available; `theme_economist()` uses the default sans, and `base_family = "Verdana"` or any open humanist sans is a closer substitute.
+
+Footnotes are marked with symbols, \*, †, ‡, in a title, a label or a key, and explained at the bottom of the chart, above or beside the source. `r pct("anatomy.footnote_symbols")` of charts have at least one (`r claim("anatomy.footnote_symbols")$n` of `r claim("anatomy.footnote_symbols")$of`). `r cite("anatomy.footnote_symbols", k = 2)`.
+
+## Anatomy of a chart
+
+Every chart has the same frame:
+
+- **The red tab**, a small red rectangle, 5pt wide and 15pt tall, flush with the chart's top left corner (`r share("anatomy.tab.print")`). `economist_chart()` draws it in Economist red, `r econ_red`.
+- **A short bold title**, flush left, then **a subtitle** naming what is measured, and the **unit** where the subtitle does not give it.
+- **The ground**, a pale blue-gray: measured as `r claim("ground.print.#D6E2EA")$value` on the commonest export (`r share("ground.print.#D6E2EA")`), and printed as 10/0/0/10, which `theme_economist()` draws as `r ground`, with the gridlines as thin white rules.
+- **The value axis on the right** of line and column charts, labeled outside the panel and ranged right, and **on top** of horizontal bar charts.
+- **The source** at the bottom left, "Source:" or "Sources:", in a smaller size.
+
+This is the 2017 guide's anatomy chart, "Where Tokyo leads", in the classic style.
+
+```{r anatomy, econ_height = 165}
+## Monthly yields, in years since the start: the 2017 guide's data.
+tokyo_x <- c(1, seq(1.25, 13.5, by = 0.25), 13.7)
+bonds <- data.frame(
+  year = rep(tokyo_x, 2),
+  yield = c(
+    4.7, 5.0, 5.2, 5.1, 5.6, 6.6, 6.7, 7.9, 6.8, 6.5, 6.7, 6.2, 5.7, 5.5, 5.4, 4.9, 4.6, 4.2, 4.5, 4.0,
+    3.4, 3.9, 4.1, 4.5, 4.5, 3.9, 3.0, 3.0, 2.9, 3.2, 3.2, 2.9, 2.5, 2.5, 2.6, 2.1, 1.9, 1.8, 1.6, 1.1,
+    1.5, 1.8, 1.6, 1.8, 1.8, 1.8, 1.7, 1.9, 1.6, 1.2, 1.2, 1.25,
+    4.7, 5.2, 5.8, 5.9, 6.3, 6.2, 6.2, 5.8, 5.4, 5.0, 5.3, 4.7, 4.9, 5.2, 4.8, 4.0, 4.0, 3.8, 3.6, 4.3,
+    4.2, 4.2, 4.6, 4.1, 4.2, 4.4, 4.1, 4.3, 4.4, 4.8, 5.1, 4.7, 4.6, 4.6, 5.0, 4.5, 4.0, 3.6, 4.0, 3.7,
+    2.7, 2.8, 3.6, 3.4, 3.6, 3.7, 3.2, 2.6, 3.1, 3.4, 3.0, 2.3
+  ),
+  period = rep(c("January 1989 (Japan)", "January 1999 (US)"), each = length(tokyo_x))
+)
+
+tokyo <- ggplot(bonds, aes(year, yield, colour = period)) +
+  geom_line(linewidth = 0.8) +
+  ## Two lines are blue and dark blue, and are named by labels beside them, not by a legend.
+  annotate("text", x = c(5.3, 7.8), y = c(1.9, 7.3), vjust = c(0.5, 1),
+           label = c("Japan, from\nJanuary 1989", "United States,\nfrom January 1999"),
+           hjust = 0, size = classic_size / .pt, lineheight = 0.9) +
+  scale_colour_manual(values = economist_pal()(2), guide = "none") +
+  scale_x_continuous(limits = c(1, 13.7), breaks = c(1, 5, 10, 13), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 8), breaks = seq(0, 8, 2), expand = c(0, 0), position = "right") +
+  labs(
+    title = "Where Tokyo leads",
+    subtitle = "Ten-year government-bond yields, %",
+    x = "Years since start", y = NULL,
+    caption = "Source: Thomson Reuters"
+  ) +
+  theme_economist(base_size = classic_size) +
+  classic_x_title()
+economist_chart(tokyo)
+```
+
+Against [the 2017 version](economist-2017-styleguide.html#anatomy-of-a-chart): the tab stands upright at the top left corner instead of lying above the title; the ground is blue-gray, with white gridlines, where 2017 has a paler blue with gray ones; the value labels sit outside the panel, beside their gridlines, where 2017 sets them inside, just above them; and the lines are named by labels beside them, where the 2017 version has a key.
+
+### Source, footnote and number box
+
+A footnote is set above the source line, flush left; on a wide chart, it can sit to the right of the source instead.
+A chart that the article refers to by number ("chart 2") has a **number box** at the top right: the number in bold white on a blue-gray square, 9pt across. Number boxes are on `r pct("lines.number_box")` of line panels and `r pct("bar_column_side_by_side.number_box")` of side-by-side bar panels: `r cite("lines.number_box", k = 2)`.
+`economist_chart(p, number = 2)` draws it.
+
+```{r anatomy-number, econ_height = 165}
+economist_chart(
+  tokyo +
+    labs(
+      subtitle = "Ten-year government-bond yields*, %",
+      caption = "*Annualised\nSource: Thomson Reuters"
+    ),
+  number = 2
+)
+```
+
+Against [the 2017 version](economist-2017-styleguide.html#source-footnote-and-number-box): the 2017 footnote is ranged right on the source line, and its number box is a dark square outlined in white.
+
+### Type scale and margins
+
+`theme_economist()` sets the classic type scale and margins, measured on one-column charts, in proportion to `base_size`. At `base_size = 6.5`:
+
+```{r type-scale}
+classic_theme <- ggplot2::complete_theme(theme_economist(base_size = classic_size))
+size_of <- function(name) ggplot2::calc_element(name, classic_theme)$size
+margin_of <- function(name) as.numeric(ggplot2::calc_element(name, classic_theme))
+knitr::kable(
+  data.frame(
+    Element = c("Title (bold)", "Subtitle", "Panel heading", "Legend", "Axis labels", "Source"),
+    `Size (pt)` = round(sapply(
+      c("plot.title", "plot.subtitle", "strip.text", "legend.text", "axis.text.y.right", "plot.caption"), size_of
+    ), 1),
+    `Theme element` = paste0("`", c("plot.title", "plot.subtitle", "strip.text", "legend.text", "axis.text", "plot.caption"), "`"),
+    check.names = FALSE
+  ),
+  row.names = FALSE
+)
+```
+
+The title, subtitle and source start `r margin_of("plot.margin")[4]`pt from the chart's left edge, and the right-hand axis labels end the same distance from its right edge.
+
+### Panel chart
+
+A chart of several panels has one title and source, and a heading over each panel, flush left.
+Until mid-2015 the panels could be filled a shade darker than the ground; from mid-2015 the ground deepened and the panels became paler than it.
+Here is the 2017 guide's panel chart, "Racy", in both. Each panel has its own value axis, and both measures in the first panel are percentages, so they share it.
+
+```{r panel-data}
+## The "Racy" data of the 2017 guide: daily lines on the left, 12 points on the right.
+racy_names <- c("Donald Trump's media dominance\nand polling surge", "Support for Trump v racial\nresentment and authoritarianism†,\nRepublican primary voters")
+racy_tv <- c(
+  34, 29, 26, 35, 47, 56, 58, 55, 61, 64, 59, 55, 52, 52, 55, 58, 62, 61, 61, 58, 52, 50, 48, 53, 47, 41,
+  41, 43, 42, 43, 47, 47, 48, 45, 35, 27, 27, 27, 27, 28, 37, 48, 50, 49, 57, 67, 63, 53, 55, 58, 56, 56,
+  57, 57, 54, 54, 58, 57, 54, 45, 35, 35, 43, 48, 49, 53, 60, 64, 60, 60, 62, 69, 71, 69, 72, 70, 67, 69,
+  71, 71, 71, 68, 70
+)
+racy_poll <- c(
+  3.8, 3.8, 4.1, 5.2, 6.2, 6.4, 9.3, 13, 16.7, 18.1, 19.3, 21.6, 23.6, 23.7, 22.5, 22.2, 22, 22.5, 24.4,
+  26.5, 27.6, 28.8, 29.9, 30.4, 28, 24.8, 23.4, 23, 23.1, 23.4, 23.4, 24.8, 26.7, 27, 26.9, 25.7, 24.8,
+  24.8, 24.5, 24.4, 26.1, 27.8, 28.6, 29.5, 29.8, 30.2, 31.6, 33.8, 34.5, 36, 35.5, 34.9, 34.6, 34.5,
+  34.5, 34.7, 34.7, 35.7, 35.6, 34, 30.8, 29.3, 31.1, 33.6, 33.4, 33.9, 35.3, 36.2, 36.2, 34.1, 34.8,
+  39.4, 42.9, 42.3, 41.4, 40.2, 39.3, 39.7, 40.4, 40.7, 42.2, 43.6, 45.3
+)
+## Days are spread over June 2015 to May 2016; the right panel runs from lowest (1) to highest (12).
+racy_days <- (6 * seq_along(racy_tv) - 22) / 1.57
+racy <- rbind(
+  data.frame(panel = racy_names[1], x = racy_days, series = "TV mentions*", value = racy_tv),
+  data.frame(panel = racy_names[1], x = racy_days, series = "Polling average", value = racy_poll),
+  data.frame(panel = racy_names[2], x = 1:12, series = "Authoritarianism",
+             value = c(43.5, 42.9, 42.6, 43.5, 44.4, 45.3, 46.4, 47.7, 48.9, 49.9, 50.4, 50.6)),
+  data.frame(panel = racy_names[2], x = 1:12, series = "Racial resentment",
+             value = c(2, 9.5, 17.3, 24.9, 31.4, 35.3, 39.1, 43, 46.5, 50, 53.5, 56))
+)
+racy$panel <- factor(racy$panel, levels = racy_names)
+racy_labels <- data.frame(
+  panel = factor(racy_names[c(1, 1, 2, 2)], levels = racy_names),
+  x = c(150, 150, 1.3, 6.5), y = c(84, 14, 58, 30),
+  label = c("TV mentions*,\n% of total", "Polling average, %", "Authoritarianism", "Racial\nresentment")
+)
+
+racy_plot <- function(...) {
+  ggplot(racy, aes(x, value, colour = series)) +
+    geom_line(linewidth = 0.8) +
+    geom_text(aes(x, y, label = label), data = racy_labels, inherit.aes = FALSE, hjust = 0, vjust = 1,
+              size = classic_size / .pt, lineheight = 0.9) +
+    facet_wrap(~panel, scales = "free_x") +
+    scale_colour_manual(values = c(`TV mentions*` = fg[["blue"]], `Polling average` = fg[["dark red"]],
+                                   Authoritarianism = fg[["blue"]], `Racial resentment` = fg[["dark blue"]]),
+                        guide = "none") +
+    scale_y_continuous(position = "right", limits = c(0, 100), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+    ## The months of the first panel; the second runs from the lowest to the highest twelfth of voters.
+    scale_x_continuous(
+      breaks = function(l) if (l[2] > 100) c(-9, 92, 184, 275) else c(1, 12),
+      labels = function(b) if (length(b) == 4) c("Jun\n2015", "Sep", "Dec", "Mar\n2016") else c("Lowest", "Highest")
+    ) +
+    labs(
+      title = "Racy", subtitle = "United States", x = NULL, y = NULL,
+      caption = "*National news mentions of Trump compared with all Republican candidates\n†Poll Jul 30th-Aug 6th 2016\nSources: GDELT; RCP; YouGov"
+    ) +
+    theme_economist(base_size = classic_size, ...) +
+    ## The headings are bold, as in the cited charts, and the panels are set apart by more than the default.
+    theme(strip.text = element_text(face = "bold", size = rel(1)), panel.spacing.x = unit(18, "pt"))
+}
+```
+
+**2012 to mid-2015**: panels darker than the ground (`theme_economist(dkpanel = TRUE)`).
+
+```{r panel-dark, econ_size = "two_column", econ_height = 210}
+economist_chart(racy_plot(dkpanel = TRUE))
+```
+
+**From mid-2015**: a deeper ground with paler panels (`theme_economist(lightpanel = TRUE)`).
+
+```{r panel-light, econ_size = "two_column", econ_height = 210}
+economist_chart(racy_plot(lightpanel = TRUE))
+```
+
+Against [the 2017 version](economist-2017-styleguide.html#panel-chart): the 2017 panels share the ground and are marked by a short red rule over each heading, 24pt apart; neither classic version has the marker.
+
+```{r words, child = "_classic-guide-words.Rmd"}
+```
+
+## Color
+
+The classic colors were print specs, and the colors of the archived images depend on how each image was exported (see Shades, above). The CMYK of each color below is inferred from the images, since no primary source has been found: the specs whose renderings through US Web Coated SWOP, the usual export, match the charts of the SWOP periods, preferring simple specs. Every blue and neutral is cyan and black. `economist_pal()` and `theme_economist()` draw those SWOP renderings, which are in `ggthemes_data$economist$palette` with the CMYK and a confidence for each. The chart shows the measured shade of each color by half-year: the shifts follow the export periods: the 2013 and 2014 columns, from the coated export, are duller, and the 2015 columns, exported through SWOP again, match the package's colors in the first column.
+
+```{r palette, econ_size = "two_column", econ_height = 190}
+## The modal shade of each series color in each half-year, from the measured claims, after the package's own value.
+pal <- ev[startsWith(ev$claim_id, "palette.") & !startsWith(ev$claim_id, "palette.new"), ]
+shade <- do.call(rbind, lapply(seq_len(nrow(pal)), function(i) {
+  m <- regmatches(pal$statement[i], gregexpr("\\d{4}H\\d #[0-9A-F]{6}", pal$statement[i]))[[1]]
+  if (!length(m)) {
+    return(NULL)
+  }
+  data.frame(name = sub("palette.", "", pal$claim_id[i], fixed = TRUE), half = substr(m, 1, 6), hex = substr(m, 8, 14),
+             charts = pal$n[i])
+}))
+shade <- rbind(
+  ## The package's own value first; "red" (13 charts, all in 2014) has none.
+  data.frame(name = unique(shade$name), half = "ggthemes", hex = unname(fg[unique(shade$name)]), charts = NA),
+  shade
+)
+shade$name <- factor(shade$name, levels = names(sort(tapply(shade$charts, shade$name, max, na.rm = TRUE))))
+shade$half <- factor(shade$half, levels = c("ggthemes", sort(setdiff(unique(shade$half), "ggthemes"))))
+p <- ggplot(shade, aes(half, name, fill = hex)) +
+  geom_tile(colour = ground, linewidth = 1) +
+  scale_fill_identity() +
+  scale_x_discrete(position = "top", labels = function(x) sub("H", " H", x)) +
+  labs(title = "Steady shades", subtitle = "Modal shade of each series color by half-year, most used at top",
+       x = NULL, y = NULL, caption = "Blank: too few charts. Source: chart corpus, print sample 2012-15") +
+  theme_economist(base_size = classic_size) +
+  theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.line = element_blank())
+economist_chart(p)
+```
+
+How often each color carries a data series, as a share of the `r claim("palette.dark blue")$of` sampled charts with colored series:
+
+| Color | CMYK | ggthemes | Confidence | Share of charts | Use |
+|:--|:--|:--|:--|--:|:--|
+| dark blue | `r cmyk("dark blue")` | `r fg[["dark blue"]]` | `r conf("dark blue")` | `r share("palette.dark blue")` | The single series; the darker of two |
+| blue | `r cmyk("blue")` | `r fg[["blue"]]` | `r conf("blue")` | `r share("palette.blue")` | The brighter of two; the first of a double scale |
+| blue-gray | `r cmyk("blue-gray")` | `r fg[["blue-gray"]]` | `r conf("blue-gray")` | `r share("palette.blue-gray")` | The third series; the base of a stack |
+| light blue | `r cmyk("light blue")` | `r fg[["light blue"]]` | `r conf("light blue")` | `r share("palette.light blue")` | A fourth or fifth series |
+| dark red | `r cmyk("dark red")` | `r fg[["dark red"]]` | `r conf("dark red")` | `r share("palette.dark red")` | The contrast to blue |
+| gray | `r cmyk("gray")` | `r fg[["gray"]]` | `r conf("gray")` | `r share("palette.gray")` | "Other", and a fourth or fifth series |
+| pink | `r cmyk("pink")` | `r fg[["pink"]]` | `r conf("pink")` | `r share("palette.pink")` | A lighter contrast |
+| light green | `r cmyk("light green")` | `r fg[["light green"]]` | `r conf("light green")` | `r share("palette.light green")` | Sixth series and more |
+| dark green | `r cmyk("dark green")` | `r fg[["dark green"]]` | `r conf("dark green")` | `r share("palette.dark green")` | Sixth series and more |
+| brown | `r cmyk("brown")` | `r fg[["brown"]]` | `r conf("brown")` | `r share("palette.brown")` | Rare |
+| coral | `r cmyk("coral")` (80% Economist Red) | `r fg[["coral"]]` | `r conf("coral")` | `r share("palette.new.#F15A40")` | A contrast, from 2015 |
+| Economist Red | `r cmyk("economist red")` | `r econ_red` | `r conf("economist red")` | | The tab and the red rules, not a series |
+| ground, panel | `r cmyk("ground")`, `r cmyk("panel")` | `r ground`, `r bg[["dark blue-gray"]]` | `r conf("ground")`, `r conf("panel")` | | The ground, and the darker panel |
+
+The CMYK are inferences: "high" fits the SWOP periods within half a unit of color difference and is confirmed on charts of 2010-11; "medium" fits within one unit; "low" fits but is not confirmed, and the coral and pink may yet prove to be other specs.
+
+Examples: dark blue, `r cite("palette.dark blue", k = 2)`; dark red, `r cite("palette.dark red", k = 2)`.
+
+Bright red was not a series color. It was the red of the tab and of the thin rules at zero, at an index value or at an event, which this guide draws in Economist red, `r econ_red`.
+
+### Colors by number of series
+
+For series of equal emphasis, the colors depend on how many series a chart has. `economist_pal()` gives the commonest set for each number:
+
+| Series | Commonest set | Share | `economist_pal()(n)` | Usual alternative |
+|:--|:--|--:|:--|:--|
+| 1 | dark blue | `r share("colour.n1.set.dark blue")` | dark blue | blue |
+| 2 | blue, dark blue | `r share("colour.n2.set.blue+dark blue")` | blue, dark blue | blue and dark red: `r share("colour.n2.set.blue+dark red")` |
+| 3 | blue-gray, dark blue, blue | `r share("colour.n3.set.blue+blue-gray+dark blue")` | blue-gray, dark blue, blue | dark blue, blue, light blue: `r share("colour.n3.set.blue+dark blue+light blue")` |
+| 4 | blue-gray, dark blue, blue, gray | `r share("colour.n4.set.blue+blue-gray+dark blue+gray")` | the same | light blue for gray: `r share("colour.n4.set.blue+blue-gray+dark blue+light blue")` |
+| 5 | blue-gray, dark blue, light blue, blue, gray | `r share("colour.n5.set.blue+blue-gray+dark blue+gray+light blue")` | the same | greens for gray |
+| 6 | the five above and light green | `r share("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")` | the same | |
+
+Examples: two series, `r cite("colour.n2.set.blue+dark blue", k = 2)`; blue with dark red, `r cite("colour.n2.set.blue+dark red", k = 2)`; three series, `r cite("colour.n3.set.blue+blue-gray+dark blue", k = 2)`.
+
+```{r colours-by-n, econ_size = "two_column", econ_height = 150}
+sets <- do.call(rbind, lapply(1:6, function(n) data.frame(n = n, pos = seq_len(n), colour = economist_pal()(n))))
+p <- ggplot(sets, aes(pos, factor(n, levels = 6:1), fill = colour)) +
+  geom_tile(colour = ground, linewidth = 1.5, width = 0.95) +
+  scale_fill_identity() +
+  scale_x_continuous(breaks = NULL) +
+  labs(title = "One to six", subtitle = "economist_pal()(n), by number of series n; stacks run left to right from the baseline",
+       x = NULL, y = NULL) +
+  theme_economist(base_size = classic_size) +
+  theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.line = element_blank())
+economist_chart(p)
+```
+
+**Order.** Which color comes first depends on the chart type:
+
+- Bars and columns with two series lead with blue (`r share("colour.bar.n2.first.blue")`), as `economist_pal()` does.
+- Lines with two series are split between dark blue (`r share("colour.line.n2.first.dark blue")`) and blue first.
+- In double-scale charts the first series, usually the columns or the left-hand axis, is blue (`r share("colour.double_scale.n2.first.blue")`).
+- Stacks run from the baseline outwards in `economist_pal()`'s order, blue-gray, then dark blue, then blue: `r cite("colour.n3.stack.blue-gray>dark blue>blue", k = 2)`.
+
+### Gray: "other", or one more color
+
+Gray has two jobs.
+
+- **An "other" category.** A residual such as "Other", "Others" or "Rest of world" is drawn in gray (`r share("colour.other.gray")`). It comes last in the key or the stack (`r share("colour.other.position.last")`), and the other series keep the colors they would have without it. `r cite("colour.other.gray", k = 2)`.
+- **One more equal color.** Most gray series are not "other" at all (`r share("colour.gray.equal")`): gray is the fourth or fifth color for series of equal emphasis, as in the sets above. `r cite("colour.gray.equal", k = 2)`.
+
+A group named "Other countries" or "Other rich countries" that is compared on equal terms is not a residual, and takes an ordinary color.
+
+```{r bars, child = "_classic-guide-bars.Rmd"}
+```
+
+```{r lines, child = "_classic-guide-lines.Rmd"}
+```
+
+```{r tables, child = "_classic-guide-tables.Rmd"}
+```
+
+```{r misc, child = "_classic-guide-misc.Rmd"}
+```
+
+## Drawing classic charts with ggthemes
+
+| To draw | Use |
+|:--|:--|
+| The ground, type, gridlines, margins | `theme_economist(base_size = 6.5)` for a one-column chart |
+| Horizontal bars (vertical gridlines) | `theme_economist(horizontal = FALSE)` |
+| Darker panels (2012 to mid-2015), paler panels (from mid-2015) | `theme_economist(dkpanel = TRUE)`, `theme_economist(lightpanel = TRUE)` |
+| Series colors | `scale_colour_economist()`, `scale_fill_economist()`, `economist_pal()`; named colors in `ggthemes_data$economist$fg` |
+| The value axis | `scale_y_continuous(position = "right")`; on horizontal bars, `position = "top"` |
+| The +/- axis | `scale_y_continuous(labels = economist_plus_minus_format())` |
+| Truncated years | `scale_x_continuous(labels = economist_2017_year_format())` |
+| The red tab and a number box | `economist_chart(p, number = )` |
+| A log scale | `scale_y_log10(breaks = c(1, 10, 100))`, and "log scale" in the subtitle or over the axis (see [log scales](#log-scales)) |
+| Step lines | `geom_step()` (see [step lines](#step-lines)) |
+| A broken value axis | `economist_chart(p, scale_break = "right")`, with the axis truncated by `limits`; torn bars are drawn by hand (see [broken scales](#broken-scales)) |
+| The red zero line | `geom_hline(yintercept = 0, colour = "#E3120B")` |
+
+What ggthemes does not draw: the colored axis titles of double-scale charts (this guide uses a helper of its own, in [`economist-classic-helpers.R`](https://github.com/jrnold/ggthemes/blob/main/vignettes/articles/economist-classic-helpers.R)), blob heads, torn and cut bars, and the type face itself.
