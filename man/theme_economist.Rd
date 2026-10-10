@@ -29,13 +29,14 @@ theme_economist_white(
 
 \item{dkpanel}{If \code{TRUE}, use a darker background for the panel region: the
 panels and strips are a darker blue-gray than the plot's ground, as in the
-charts of 2012 to 2014. The default is \code{FALSE}.}
+charts with panels of 2012 to mid-2015. The default is \code{FALSE}.}
 
 \item{lightpanel}{If \code{TRUE}, use a lighter background for the panel region:
 the plot's ground is a deeper blue-gray and the panels are paler than it,
-as in many of the charts of 2015 to 2018. The panel headings (strips) stay
-on the ground. Use at most one of \code{dkpanel} and \code{lightpanel}. The default
-is \code{FALSE}.}
+as in the charts with panels from the second half of 2015, which replaced
+the darker panels of \code{dkpanel}: the same two colors, swapped. The panel
+headings (strips) stay on the ground. Use at most one of \code{dkpanel} and
+\code{lightpanel}. The default is \code{FALSE}.}
 
 \item{gray_bg}{If \code{TRUE} (the default), use a gray background; otherwise,
 use a white background.}
@@ -98,11 +99,11 @@ p + theme_economist(horizontal = FALSE) +
     scale_colour_economist() +
     coord_flip()
 
-## Panels darker than the ground, as in the charts of 2012 to 2014
+## Panels darker than the ground, as in the charts of 2012 to mid-2015
 p + theme_economist(dkpanel = TRUE) +
     scale_colour_economist()
 
-## Panels lighter than the ground, as in many charts of 2015 to 2018
+## Panels lighter than the ground, as in the charts from mid-2015
 p + theme_economist(lightpanel = TRUE) +
     scale_colour_economist()
 
@@ -132,5 +133,12 @@ p + theme_economist(base_family="Verdana") +
 \item \href{https://www.economist.com/}{The Economist}
 \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 }
+}
+\seealso{
+Other themes economist:
+\code{\link[=economist_chart]{economist_chart()}},
+\code{\link[=economist_plus_minus]{economist_plus_minus()}},
+\code{\link[=economist_table]{economist_table()}},
+\code{\link[=gt_theme_economist]{gt_theme_economist()}}
 }
 \concept{themes economist}

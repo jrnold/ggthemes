@@ -92,7 +92,53 @@
   different: larger side margins, a larger subtitle and source line, thinner
   gridlines and ticks.
 
+- `economist_pal()` gives five and six series the colours the paper's print
+  charts of 2012 to 2015 used most: gray is now the fifth colour and light
+  green the sixth, where they were light green and dark green. Charts with five
+  or six filled series look different.
+
+- `theme_economist()` ranges the labels of a right-hand value axis right, flush
+  with the chart's edge, and sets them 0.6 base sizes off the panel, as the
+  paper's charts do. They were ranged left, against the panel.
+
+- `theme_economist()` sets the key close under the subtitle and above the
+  panel, with no margin around it and its entries a base size apart, as the
+  paper's charts do. It kept ggplot2's wider legend margins and spacing.
+
+- The classic Economist colours used by `theme_economist()` and
+  `economist_pal()` change to the paper's print specs, inferred as CMYK and
+  rendered through US Web Coated SWOP, as the web images of the print charts
+  usually showed them; the old values were sampled from charts of 2012, which
+  went through a different export that shifted every colour. The changes are
+  small (the blues, grays, greens and the ground move by a few units of colour
+  difference), and the tab red is now Economist Red, `#e3120b`. The rows of
+  `ggthemes_data$economist$fg` and `$bg` keep their names and order.
+
 ## New features
+
+- New `economist_chart()` finishes a `theme_economist()` plot as a classic
+  print chart of *The Economist*: it draws the red tab, 5pt by 15pt at the top
+  left, which is on 99% of the paper's print charts of 2012 to 2016, an
+  optional number box at the top right and, with `scale_break`, the classic
+  zigzag that marks a value axis not starting at zero.
+
+- New `gt_theme_economist()` and `gt_theme_economist_2017()` style a gt table
+  as a classic (2012-16) or a 2017 Economist table, and `economist_table()`
+  sets one in the frame of a chart, with the red tab, title, subtitle,
+  footnote and source (HTML output only). gt is a new suggested package.
+
+- New `economist_plus_minus()` and `economist_plus_minus_format()` label a value
+  axis as the classic charts did: negative values without minus signs, and a
+  "+" and "–" on either side of zero.
+
+- `ggthemes_data$economist` gains a `"coral"` series colour (`#f15a40`), used in
+  the print charts from 2015, `"economist red"` (`#e3120b`) and `"number box"`
+  (`#518fa6`) in `bg`, and `palette`, the classic palette's inferred CMYK specs
+  with their screen colours and a confidence for each.
+
+- New article, "The classic Economist chart style, 2012-2016": a style guide
+  for the paper's pre-2017 print charts, measured on a corpus of them, with the
+  2017 guide's example charts redrawn in the classic style.
 
 - `theme_economist()` gains `lightpanel`, which draws the panels paler than a
   deeper blue-gray ground, as many Economist charts of 2015 to 2018 did.
@@ -131,6 +177,10 @@
   (#265).
 
 ## Minor improvements and fixes
+
+- `economist_2017_year()` writes the first year of a new century in full when
+  no century boundary is labeled, so `c(1970, 1990, 2010)` gives "1970", "90",
+  "2010", where the last was "10".
 
 - `scale_colour_colorblind()` now always warns that it is deprecated; use
   `scale_colour_colourblind()` (#287).

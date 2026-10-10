@@ -1,11 +1,16 @@
 # The Economist chart colours.
 #
 # `fg` and `bg` are the classic, pre-2017 Economist chart colours used by
-# theme_economist(), theme_economist_white() and economist_pal(). They are
-# kept exactly as ggthemes shipped them before 7.0.0, including the two
-# repeated names ("light blue", "light green"): the palette looks colours up
-# by name, so it has always used the first of each, and code that reads these
-# tables directly sees the same rows it always did.
+# theme_economist(), theme_economist_white() and economist_pal(). Their rows,
+# names and order are those of ggthemes 7.0.0 and earlier, including the two
+# repeated names ("light blue", "light green"): the palette looks colours up by
+# name, so it uses the first of each.
+#
+# The values are the screen colours of the inferred print specs (`palette`
+# below), rendered through US Web Coated SWOP, the profile the paper's web
+# images of print charts were exported with for most of 2010-18. Source: the
+# econ chart corpus, CLASSIC-PALETTE-CMYK.md and data/classic_palette.csv
+# (2026-10-10).
 #
 # `scales` are the "equal lightness colour scales" from "The Economist visual
 # styleguide", version 1.2 (4 May 2017), p.12: six ordered steps per hue,
@@ -15,32 +20,68 @@
 
 # Backgrounds.
 bg:
-- {name: "blue-gray", value: '#d5e4eb'}
-- {name: "dark blue-gray", value: '#c3d6df'}
-- {name: "red", value: '#ed111a'}
+# The ground (10/0/0/10), the darker panel of dkpanel = TRUE (15/0/0/15), and the
+# tab, which is Economist Red (0/100/100/0), #E3120B in the brand guide.
+- {name: "blue-gray", value: '#cbdde6'}
+- {name: "dark blue-gray", value: '#b8d0dc'}
+- {name: "red", value: '#e3120b'}
 - {name: "light gray", value: '#ebebeb'}
 - {name: "dark gray", value: '#c9c9c9'}
 # Added after the five above, which stay in their old rows. The 2015-18 charts
 # that drew their panels lighter than the ground: a deep ground and a pale
-# panel. The commonest such pair in the chart corpus, which holds about ten of
-# them, is ground #B8D0DC and panel #CDDEE7.
+# panel, measured as #B8D0DC and #CDDEE7. They are the same two inks as the
+# ground and the dark panel, swapped: 15/0/0/15 and 10/0/0/10.
 - {name: "deep blue-gray", value: '#b8d0dc'}
-- {name: "pale blue-gray", value: '#cddee7'}
+- {name: "pale blue-gray", value: '#cbdde6'}
+# Economist red, the brand's bright red, for the tab and red rules drawn by
+# economist_chart() and the charts' zero lines: the same colour as "red", which
+# keeps its old row.
+- {name: "economist red", value: '#e3120b'}
+# The number box at the top right of a chart that the text refers to: a white
+# figure on a blue-gray square, measured on print charts of 2012 to 2015.
+- {name: "number box", value: '#518fa6'}
 
 # Series colours.
 fg:
-- {name: "blue-gray", value: '#6794a7'}
-- {name: "dark blue", value: '#014d64'}
-- {name: "light green", value: '#76c0c1'}
-- {name: "blue", value: '#01a2d9'}
-- {name: "light blue", value: '#7ad2f6'}
-- {name: "dark green", value: '#00887d'}
-- {name: "gray", value: '#adadad'}
-- {name: "light blue", value: '#7bd3f6'}
-- {name: "dark red", value: '#7c260b'}
-- {name: "pink", value: '#ee8f71'}
-- {name: "light green", value: '#76c0c1'}
-- {name: "brown", value: '#a18376'}
+- {name: "blue-gray", value: '#5e91a8'}
+- {name: "dark blue", value: '#00526d'}
+- {name: "light green", value: '#6ebbbf'}
+- {name: "blue", value: '#00a4db'}
+- {name: "light blue", value: '#6ecff6'}
+- {name: "dark green", value: '#008a84'}
+- {name: "gray", value: '#a7a9ac'}
+- {name: "light blue", value: '#6ecff6'}
+- {name: "dark red", value: '#76200c'}
+- {name: "pink", value: '#ea8f74'}
+- {name: "light green", value: '#6ebbbf'}
+- {name: "brown", value: '#9c7e72'}
+# Added after the rows above, which stay in place. A coral red that series
+# take in the print charts from 2015, in none of the palettes before it.
+- {name: "coral", value: '#f15a40'}
+
+# The classic palette as print specs: CMYK inferred from the web images of the
+# print charts (no primary source has been found), the spec's rendering through
+# US Web Coated SWOP (`hex`, the values used above; Economist Red is the brand
+# guide's screen value), and how sure the inference is. Confidence:
+# "known" is the brand spec; "high" fits the SWOP periods within dE 0.5 and
+# charts of 2010-11 within 1.0; "medium" fits within 1.0 and is not
+# contradicted; "low" is anything else. Source: CLASSIC-PALETTE-CMYK.md.
+palette:
+- {name: "blue", role: "series", cmyk: "90/0/0/10", hex: '#00a4db', confidence: "high"}
+- {name: "dark blue", role: "series", cmyk: "80/0/0/70", hex: '#00526d', confidence: "high"}
+- {name: "blue-gray", role: "series", cmyk: "40/0/0/40", hex: '#5e91a8', confidence: "high"}
+- {name: "light blue", role: "series", cmyk: "50/0/0/0", hex: '#6ecff6', confidence: "high"}
+- {name: "light green", role: "series", cmyk: "50/0/20/10", hex: '#6ebbbf', confidence: "medium"}
+- {name: "dark green", role: "series", cmyk: "80/0/40/30", hex: '#008a84', confidence: "medium"}
+- {name: "gray", role: "series", cmyk: "0/0/0/40", hex: '#a7a9ac', confidence: "high"}
+- {name: "dark red", role: "series", cmyk: "20/90/97.5/50", hex: '#76200c', confidence: "high"}
+- {name: "pink", role: "series", cmyk: "0/50/50/5", hex: '#ea8f74', confidence: "low"}
+- {name: "coral", role: "series", cmyk: "0/80/80/0", hex: '#f15a40', confidence: "low"}
+- {name: "brown", role: "series", cmyk: "0/25/25/45", hex: '#9c7e72', confidence: "low"}
+- {name: "economist red", role: "tab", cmyk: "0/100/100/0", hex: '#e3120b', confidence: "known"}
+- {name: "ground", role: "background", cmyk: "10/0/0/10", hex: '#cbdde6', confidence: "medium"}
+- {name: "panel", role: "background", cmyk: "15/0/0/15", hex: '#b8d0dc', confidence: "high"}
+
 
 # "Equal lightness colour scales" (2017 styleguide, p.12): six ordered steps
 # per hue, darkest first.

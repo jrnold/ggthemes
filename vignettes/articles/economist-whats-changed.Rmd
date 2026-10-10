@@ -222,7 +222,7 @@ What the theme cannot do, and was drawn by hand:
 * **Gridlines.** They are grey, `#BCBEC0`, 0.8pt wide, on a white panel, and run through the shaded band. The theme draws them white and 0.5pt wide at this size, for a coloured ground, so they are drawn as segments.
 * **Ticks.** In this web chart they hang below the black axis rule, 1.9pt long, with a label under every fifth tick, set from the tick's left edge (the four-digit labels sit left of their tick). The theme's ticks point into the panel, which is what the print corpus (2012 to 2018) shows, so print and web classic charts differ here.
 * **Headings in the panels, the leader lines and the band.** The panel headings are drawn inside each panel as text; the leader lines and dots are segments and points. `theme_economist()` has nothing for either. The grey band with its asterisk is a rectangle.
-* **The red zero line**, as in the paper's print charts from 2014, is drawn with a segment; the theme draws none.
+* **The red zero line**, as in the paper's print charts of 2012 to 2015, is drawn with a segment; the theme draws none.
 * **Fonts.** The guide's Econ Sans Condensed is narrower than the substitute, Fira Sans Condensed, so the sizes of the source lines and the panel text are set 6 to 12% smaller than the page's to fit.
 
 ## The new design, in the 2017 style

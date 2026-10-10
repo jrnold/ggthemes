@@ -1,0 +1,37 @@
+measure,description,year,n,of
+layout.panels,Charts of two or more panels,2012,19,198
+layout.panels,Charts of two or more panels,2013,13,199
+layout.panels,Charts of two or more panels,2014,16,187
+layout.panels,Charts of two or more panels,2015,35,191
+type.pie_doughnut,Panels that are pies or doughnuts,2012,9,232
+type.pie_doughnut,Panels that are pies or doughnuts,2013,1,217
+type.pie_doughnut,Panels that are pies or doughnuts,2014,2,210
+type.pie_doughnut,Panels that are pies or doughnuts,2015,1,239
+type.double_scale,Panels with two value scales,2012,16,232
+type.double_scale,Panels with two value scales,2013,22,217
+type.double_scale,Panels with two value scales,2014,24,210
+type.double_scale,Panels with two value scales,2015,24,239
+double_scale.axis_titles,Double-scale panels keyed by titles over their axes,2012,14,16
+double_scale.axis_titles,Double-scale panels keyed by titles over their axes,2013,16,22
+double_scale.axis_titles,Double-scale panels keyed by titles over their axes,2014,18,24
+double_scale.axis_titles,Double-scale panels keyed by titles over their axes,2015,21,24
+lines.labels_next_to_data,Line panels keyed by labels beside the lines,2012,47,76
+lines.labels_next_to_data,Line panels keyed by labels beside the lines,2013,43,78
+lines.labels_next_to_data,Line panels keyed by labels beside the lines,2014,42,77
+lines.labels_next_to_data,Line panels keyed by labels beside the lines,2015,57,94
+lines.truncated_years,Line panels with truncated years,2012,55,76
+lines.truncated_years,Line panels with truncated years,2013,62,78
+lines.truncated_years,Line panels with truncated years,2014,64,77
+lines.truncated_years,Line panels with truncated years,2015,82,94
+lines.red_zero_line,Line panels with a red zero or index line,2012,24,76
+lines.red_zero_line,Line panels with a red zero or index line,2013,18,78
+lines.red_zero_line,Line panels with a red zero or index line,2014,18,77
+lines.red_zero_line,Line panels with a red zero or index line,2015,24,94
+bar_column_stacked.legend,Stacked-bar panels keyed by a legend,2012,23,24
+bar_column_stacked.legend,Stacked-bar panels keyed by a legend,2013,15,23
+bar_column_stacked.legend,Stacked-bar panels keyed by a legend,2014,18,24
+bar_column_stacked.legend,Stacked-bar panels keyed by a legend,2015,15,22
+negative_labels.plus_minus_at_zero,Panels with negatives on a +/- axis,2012,41,43
+negative_labels.plus_minus_at_zero,Panels with negatives on a +/- axis,2013,28,31
+negative_labels.plus_minus_at_zero,Panels with negatives on a +/- axis,2014,25,25
+negative_labels.plus_minus_at_zero,Panels with negatives on a +/- axis,2015,33,37

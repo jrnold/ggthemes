@@ -348,7 +348,7 @@ classic <- ggplot(capex, aes(sector, change)) +
 chart_pair(classic_chart(classic), modern)
 ```
 
-Same data, one colour. The classic chart has no red zero line (the value-axis rule is black and at the top) and no bold "Total" row. The theme cannot draw a zero line, but the paper did: from 2014 about one classic chart in five carries a thin red rule at zero or at an index value (corpus), so this is a gap in the theme, not a feature the classic style lacked. The classic gridlines are thin white rules at the tick values; the 2017 chart has thin grey ones.
+Same data, one colour. The classic chart has no red zero line (the value-axis rule is black and at the top) and no bold "Total" row. The theme cannot draw a zero line, but the paper did: from 2012 to 2015 about one classic chart in five carries a thin red rule at zero or at an index value (corpus), so this is a gap in the theme, not a feature the classic style lacked. The classic gridlines are thin white rules at the tick values; the 2017 chart has thin grey ones.
 
 ### Plus/minus columns
 
@@ -403,7 +403,7 @@ classic <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
 chart_pair(classic_chart(classic), modern)
 ```
 
-The sign split uses the palette's two blues (bright for outflows, dark for inflows); the 2017 chart uses the `bar_side` blue and cyan. There is no red zero line in the classic chart (the theme cannot draw one; the paper's charts from 2014 on did), and its year labels at this size are close enough to crowd ("1994 96"), with black ticks under the columns that the paper's column charts did not have.
+The sign split uses the palette's two blues (bright for outflows, dark for inflows); the 2017 chart uses the `bar_side` blue and cyan. There is no red zero line in the classic chart (the theme cannot draw one; the paper's charts of 2012 to 2015 often did), and its year labels at this size are close enough to crowd ("1994 96"), with black ticks under the columns that the paper's column charts did not have.
 
 ### Color used for a meaningful positive/negative split
 
@@ -1336,8 +1336,8 @@ The number blocks are plain sized points, and there is no pointer label ("% of t
 | Two traces | yes | series order of colours reversed in darkness |
 | Two traces with sub-categories | partial | facet strips instead of label column; no group rules |
 | Two traces with sub-categories, columns | yes | fourth palette colour is grey |
-| One trace with a plus/minus axis | partial | no red zero line (a theme gap; the paper drew one from 2014), no bold total |
-| Plus/minus columns | partial | no red zero line (a theme gap; the paper drew one from 2014) |
+| One trace with a plus/minus axis | partial | no red zero line (a theme gap; the paper often drew one), no bold total |
+| Plus/minus columns | partial | no red zero line (a theme gap; the paper often drew one) |
 | Colour for a positive/negative split | partial | key instead of in-place names; no bold lead-in strips |
 | Colour override: chronological | partial | ramp from three classic blues |
 | Colour override: meaningful groups | partial | classic reds are brown and salmon |

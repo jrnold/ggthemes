@@ -2772,7 +2772,7 @@ economist_2017_chart(
 
 ## Tables
 
-Tables cannot be made directly in `ggplot`, but are also replicated here, since some embed plots. The example tables here are created with `gt`.
+Tables cannot be made directly in `ggplot`, but are also replicated here, since some embed plots. The example tables here are created with `gt` and styled with `gt_theme_economist_2017()`; `economist_table(style = "2017")` also draws the red tab, title and source around a table.
 
 ```{r tables-setup}
 ## Fira Sans Condensed is loaded from Google Fonts, so tables use it whether or not it is installed.
@@ -2806,55 +2806,13 @@ econ_source <- function(source, footnote = "") {
 ## Everything the tables share: the print background, the type, the rules
 ## and the padding, at the guide's width in points.
 econ_table <- function(data, id, width = 160) {
+  ## ggthemes' 2017 table style, with the fonts loaded from Google Fonts; the tables fill their own second rows.
   data |>
-    gt::tab_options(
-      table.width = sprintf("%gpt", width),
-      table.background.color = print_pal$ground,
-      table.font.size = "7.5pt",
-      table.font.color = print_pal$text,
-      table.font.weight = "300",
-      table.border.top.style = "none",
-      table.border.bottom.style = "none",
-      table.margin.left = "0",
-      heading.align = "left",
-      heading.border.bottom.style = "none",
-      heading.padding = "0",
-      heading.padding.horizontal = "6pt",
-      column_labels.font.weight = "500",
-      column_labels.vlines.style = "none",
-      column_labels.border.top.style = "none",
-      column_labels.border.bottom.style = "solid",
-      column_labels.border.bottom.width = "0.5pt",
-      column_labels.border.bottom.color = print_pal$text,
-      column_labels.padding = "2pt",
-      column_labels.padding.horizontal = "3pt",
-      row_group.font.weight = "500",
-      row_group.border.top.style = "none",
-      row_group.border.bottom.style = "solid",
-      row_group.border.bottom.width = "0.5pt",
-      row_group.border.bottom.color = print_pal$text,
-      row_group.padding = "2pt",
-      row_group.padding.horizontal = "3pt",
-      table_body.border.top.style = "none",
-      table_body.border.bottom.style = "none",
-      table_body.hlines.style = "none",
-      data_row.padding = "2pt",
-      data_row.padding.horizontal = "3pt",
-      source_notes.font.size = "6.5pt",
-      source_notes.padding = "3pt",
-      source_notes.padding.horizontal = "6pt",
-      source_notes.border.bottom.style = "none",
-      container.padding.x = "0",
-      container.padding.y = "0"
-    ) |>
-    gt::opt_table_font(font = econ_table_font) |>
-    gt::tab_style(gt::cell_text(color = print_pal$source), gt::cells_source_notes()) |>
+    gt_theme_economist_2017(width = width, stripe = FALSE, font = econ_table_font) |>
+    gt::tab_options(heading.padding.horizontal = "6pt", source_notes.padding.horizontal = "6pt") |>
     gt::opt_css(gsub("ID", id, "
-      #ID .gt_table { line-height: 9pt; margin: 0 !important; }
       #ID .gt_heading { padding: 0 3pt 6pt 3pt !important; }
       #ID .gt_title, #ID .gt_subtitle { padding: 0 !important; }
-      #ID .gt_col_heading { vertical-align: bottom; line-height: 9pt; }
-      #ID .gt_row { vertical-align: top; line-height: 9pt; }
       #ID .nowrap { white-space: nowrap; }
     ", fixed = TRUE))
 }
@@ -4524,7 +4482,7 @@ mexican_waves <- function(media, event_top, war_labels, event_labels = mexico_ev
     scale_y_log10(breaks = c(1, 2, 4, 10, 20, 40, 100, 200, 400), position = "right",
                   guide = guide_axis_economist_2017()) +
     coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 800), expand = FALSE, clip = "off") +
-    labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %",
+    labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond yields, %",
          x = NULL, y = NULL, caption = caption) +
     theme_economist_2017(media, base_size = 7) +
     ## Room between the year labels and the source line for the default track.
@@ -4582,7 +4540,7 @@ mexico_rotated <- ggplot(mexico_yields, aes(yield, year)) +
   scale_x_log10(breaks = c(1, 10, 100), position = "top",
                 sec.axis = dup_axis(), guide = guide_axis(cap = "both")) +
   coord_cartesian(xlim = c(0.2, 500), ylim = c(2018, 1820), expand = FALSE, clip = "off") +
-  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %",
+  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond yields, %",
        x = NULL, y = NULL, caption = "Sources: Global Financial Data;\nThomson Reuters; Haver Analytics") +
   theme_economist_2017("web", base_size = 7) +
   theme(panel.grid.major = element_blank(), axis.text.y = element_text(hjust = 0))
@@ -4616,7 +4574,7 @@ mexico_compressed <- ggplot(mexico_yields, aes(year, yield)) +
   scale_y_log10(breaks = c(1, 2, 4, 10, 20, 40, 100, 200, 400), position = "right",
                 guide = guide_axis_economist_2017()) +
   coord_cartesian(xlim = c(1820.8, 2017), ylim = c(0.52, 3500), expand = FALSE, clip = "off") +
-  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond mexico_yields, %", x = NULL, y = NULL) +
+  labs(title = "Mexican waves", subtitle = "Mexico, selected government-bond yields, %", x = NULL, y = NULL) +
   theme_economist_2017("web", base_size = 7) +
   theme(axis.text.x = element_text(size = rel(0.8)), plot.margin = margin(0, 0, 22, 0))
 economist_2017_chart(mexico_compressed, "web")

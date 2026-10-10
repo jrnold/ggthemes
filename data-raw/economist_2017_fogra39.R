@@ -75,7 +75,16 @@ rgb <- do.call(rbind, lapply(strsplit(trimws(out), "\\s+"), as.numeric))
 rgb <- pmin(pmax(round(rgb), 0), 255)
 swatches$value <- grDevices::rgb(rgb[, 1], rgb[, 2], rgb[, 3], maxColorValue = 255)
 
-cat(sprintf(
-  '  - {name: "%s", group: "%s", "c": %s, "m": %s, "y": %s, "k": %s, value: \'%s\'}\n',
-  swatches$name, swatches$group, swatches$c, swatches$m, swatches$y, swatches$k, swatches$value
-), sep = "")
+cat(
+  sprintf(
+    '  - {name: "%s", group: "%s", "c": %s, "m": %s, "y": %s, "k": %s, value: \'%s\'}\n',
+    swatches$name,
+    swatches$group,
+    swatches$c,
+    swatches$m,
+    swatches$y,
+    swatches$k,
+    swatches$value
+  ),
+  sep = ""
+)
