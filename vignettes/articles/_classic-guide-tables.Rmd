@@ -435,6 +435,38 @@ gt::gt(cgt_asylum, id = "cg-what-to-expect") |>
 
 Against 2017: the [2017 version](economist-2017-styleguide.html#table-with-integrated-charts) draws thin bars with the figures above them, doughnuts for the share accepted and dashes for the wait, in its own cyans and navy; the classic table draws heavier bars with the figures after them, small pies, and dots in the classic blue, between dotted rules, and prints the wait and the origins as text, as in the cited tables.
 
+### Indicator tables
+
+The weekly "Economic and financial indicators" pages at the back of the paper are tables of their own kind, not charts with a table inside them.
+The pages here are "Output, prices and jobs" (`INT103`), the trade, exchange-rate, budget and interest-rate table (`INT104`), "Markets" (`INT200`) and *The Economist* commodity-price index (`INT400`), from five issues: 15 September 2012, 9 November 2013, 21 June 2014, 2 July 2016 and 6 October 2018.
+The format outlived the 2017 chart redesign: the issue of 6 October 2018 still has it, and the next sampled issue, 20 October 2018, has the [2017 indicator tables](economist-2017-styleguide.html#indicator-tables).
+
+They differ from the classic chart tables on every point:
+
+- **No chart ground and no tab.** The page is white, with the title in bold and the unit under it ("% change on year ago").
+- **Bands, not rules.** Every second row is filled, starting with the first, and there are no rules between rows.
+  The band is the classic blue-gray at half strength, a print tint of the chart ground: the pages measure `#EBF2F3` in 2012-14 (about 40%) and `#E4EEF2` in 2016-18 (about 50%).
+- **Dashed rules between regions.** A dashed black rule runs across the page under the last country of each group: the five largest economies (the United States, China, Japan, Britain and Canada); the euro area; the rest of Europe; Asia; Latin America; the Middle East and Africa; and a tail of smaller economies.
+- **Column groups centered.** Each group of columns has its name in bold, centered, over a thin black rule, with the columns' own labels below it in roman.
+- **Signed figures.** Every change carries its sign, `+1.6` as well as `-0.6`. "nil" stands for zero and "na" for missing.
+  The period of a latest figure is set small after it, in the same cell ("+1.6 Q2").
+- **Bold country names**, and the source and footnotes set small under the table, with no closing rule.
+
+The commodity index (`INT400`) heads each index (Dollar, Sterling, Euro, Gold, oil) with its name in bold on the band. A solid rule separates the indices, dashed rules separate the rows of the dollar index, and dotted rules separate its indented industrial sub-indices.
+
+The table below is a real page in full: "Economic data, 1 of 2" of 20 October 2018, the first issue of the new format, set as the classic page set it two weeks before.
+The [2017](economist-2017-styleguide.html#indicator-tables) and [2024](economist-2024-styleguide.html#indicator-tables) guides set the same figures in their own styles.
+The table is built by `indicator_table()` in `vignettes/articles/economist-indicators.R`, which all three guides share; every color in it is one the package already has, or a print tint of one.
+
+```{r cg-tables-indicators}
+source("economist-indicators.R")
+## The classic style: bands of the blue-gray at half strength, signed figures with the period small after them,
+## dashed rules between the groups of countries, and bold names.
+indicator_table("classic")
+```
+
+Against 2017: the [2017 indicator tables](economist-2017-styleguide.html#indicator-tables) drop the signs and the dashed rules, set the regions apart with solid rules, put each group's name flush left after a vertical rule, and fill the latest figures with blue, or salmon where they are negative.
+
 ## Pie / doughnut
 
 Pies and doughnuts are rare: `r claim("type.pie_doughnut")$n` of the `r claim("type.pie_doughnut")$of` panels in the sample, too few to measure conventions.

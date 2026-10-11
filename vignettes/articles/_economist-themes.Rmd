@@ -26,16 +26,16 @@ vignette adds two more eras, each with its own print and web variant:
 | Era | Functions | Source |
 |---|---|---|
 | Classic (~2012) | `theme_economist()`, `theme_economist_white()` | already in the package |
-| "New design" (2017) | `theme_economist_new(media = "print"` or `"web")` | *The Economist visual styleguide*, v1.2, 4 May 2017 -- an internal PDF (Matt McLean) that documents this redesign explicitly, including an "OLD DESIGN / NEW DESIGN" comparison that lines up with the classic theme on one side and this one on the other |
-| 2024 redesign | `theme_economist_2024(media = "print"` or `"web")` | no public chart styleguide covers this refresh, so these values are measured from a corpus of 689 published Economist charts (2012-2026), including indexed PNGs and responsive `ai2html` graphics |
+| "New design" (2017) | `theme_economist_2017()` with `media = "print"` or `"web"` | *The Economist visual styleguide*, v1.2, 4 May 2017, an internal PDF (Matt McLean) that documents this redesign explicitly, including an "OLD DESIGN / NEW DESIGN" comparison that lines up with the classic theme on one side and this one on the other |
+| 2024 redesign | `theme_economist_2024()` with `media = "print"` or `"web"` | no public chart styleguide covers this refresh, so these values are measured from published Economist charts: 94 print charts and about 420 web graphics from April 2024 to August 2026, including indexed PNGs and responsive `ai2html` graphics |
 
-The "new design" print and web palettes are genuinely different hues, not
-just different renderings of the same hues -- print's primary order is
-*dark blue, cyan, gold, teal, maroon, mauve*; web's is a nine-color
+The "new design" print and web palettes use different hues. Print's primary
+order is *dark blue, cyan, gold, teal, maroon, mauve*; web's is a nine-color
 *red, blue, cyan, green, yellow, olive, purple, gold, gray*. The 2024 redesign
 uses a stable six-color order in both media: *red, salmon, blue, light blue,
-dark gray, light gray*. Print and web have different production values. Red
-and gray sequential ramps and a red-gray diverging ramp cover ordered data.
+dark gray, light gray*. Print and web have different production values, and a
+brighter red marks plain single-series charts. Red and gray sequential ramps
+and a red-gray diverging ramp cover ordered data.
 
 The 2017 guide is a specification; adoption lagged it. Sarah Leo, a visual
 data journalist at the paper, wrote about the transition from the inside in
@@ -43,16 +43,15 @@ data journalist at the paper, wrote about the transition from the inside in
 few"](https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368)
 (*The Economist*, 27 March 2019): "Most of the 'original' charts were
 published before our chart redesign. The improved charts are drawn to fit
-our new specs." That "new specs" redesign is the same one this guide
-documents, just observed already in production two years after the guide
-itself -- which lines up with what the measured chart corpus shows too: the
-series-color shift from `#01A2D9` to `#076FA1` dates to 2019, not 2017.
+our new specs." Those "new specs" are the 2017 redesign, seen in production
+two years after the guide. The measured chart corpus agrees: the series-color
+shift from `#01A2D9` to `#076FA1` dates to 2019, not 2017.
 
-One chart type from the styleguide's own catalogue isn't included below:
-**tables** aren't a ggplot2 geom. Thermometer charts aren't a built-in geom
-either, but they're really just a range plot -- a segment between two
-values with a mark at each end -- so `geom_segment()` + `geom_point()`
-reproduces them exactly and gets a section of its own.
+One chart type from the styleguide's own catalog isn't included below:
+tables aren't a ggplot2 geom. Thermometer charts aren't a built-in geom
+either, but they're just a range plot (a segment between two values with a
+mark at each end), so `geom_segment()` and `geom_point()` reproduce them
+exactly. They get a section of their own.
 
 ```{r setup}
 library(ggthemes)
@@ -61,21 +60,21 @@ library(ggplot2)
 
 ## All the palettes, side by side
 
-Ten discrete palettes across the three eras -- one row per `media`/`set`/`type`
-combination -- so they can be compared directly rather than reconstructed
-from separate examples further down.
+The chart below compares ten discrete palettes across the three eras, with
+one row per `media`, `set` and `type` combination, so they can be compared
+directly instead of reconstructed from separate examples further down.
 
 ```{r palette-comparison, fig.height=4.2, fig.width=7.5}
 pals <- list(
   "Classic" = economist_pal()(9),
-  "New, print (bar_side)" = economist_new_pal("print", type = "bar_side")(6),
-  "New, print (stacked)" = economist_new_pal("print", type = "stacked")(6),
-  "New, print (line_side)" = economist_new_pal("print", type = "line_side")(6),
-  "New, print (dot)" = economist_new_pal("print", type = "dot")(6),
-  "New, print (pie)" = economist_new_pal("print", type = "pie")(6),
-  "New, print (bright)" = economist_new_pal("print", set = "bright")(4),
-  "New, print (dark)" = economist_new_pal("print", set = "dark")(3),
-  "New, web" = economist_new_pal("web")(9),
+  "New, print (bar_side)" = economist_2017_pal("print", type = "bar_side")(6),
+  "New, print (stacked)" = economist_2017_pal("print", type = "stacked")(6),
+  "New, print (line_side)" = economist_2017_pal("print", type = "line_side")(6),
+  "New, print (dot)" = economist_2017_pal("print", type = "dot")(6),
+  "New, print (pie)" = economist_2017_pal("print", type = "pie")(6),
+  "New, print (bright)" = economist_2017_pal("print", set = "bright")(4),
+  "New, print (dark)" = economist_2017_pal("print", set = "dark")(3),
+  "New, web" = economist_2017_pal("web")(9),
   "2024, print" = economist_2024_pal("print")(6),
   "2024, web" = economist_2024_pal("web")(6)
 )
@@ -106,11 +105,11 @@ ggplot(pal_df, aes(x = i, y = pal, fill = hex)) +
 
 The 2024 redesign has qualitative, sequential and diverging palette families.
 
-| Palette | Functions | Source |
+| Palette | Functions | Description |
 |---|---|---|
 | Qualitative | `economist_2024_pal()`, `scale_*_economist_2024()` | Six recurring series colors, ordered red, salmon, blue, light blue, dark gray, light gray; separate print and web values. |
 | Sequential | `economist_2024_seq_gradient_pal()`, `scale_*_gradient_economist_2024()` | Light-to-dark red and gray ramps reconstructed from maps, heatmaps and shaded bands. |
-| Diverging | `economist_2024_div_gradient_pal()`, `scale_*_gradient2_economist_2024()` | Gray-to-red around the medium's ground color, for change or deviation around a meaningful midpoint. |
+| Diverging | `economist_2024_div_gradient_pal()`, `scale_*_gradient2_economist_2024()` | Gray-to-red around the medium's ground color, for change or deviation from a meaningful midpoint. |
 
 All three families take `media = "print"` or `"web"`.
 
@@ -225,8 +224,8 @@ ggplot(surface_example, aes(x, y, fill = exposure)) +
 
 Each dataset below is built to have the same *shape* as one of the
 styleguide's own named examples, so the same story can be told in five
-styles side by side. None of the numbers are real -- they're illustrative,
-sized and shaped like the original chart, nothing more.
+styles side by side. None of the numbers are real. They are illustrative,
+sized and shaped like the original chart.
 
 ```{r toy-data}
 ## Like "Salud" (p.13): one series, one country highlighted
@@ -314,19 +313,19 @@ adjectives$field <- factor(adjectives$field, levels = rev(adjectives$field))
 
 ## A helper to show all six styles
 
-The same base plot, six ways: classic print, classic web/white, "new
-design" print, "new design" web, 2024 print, 2024 web. The classic era gets
-two variants from the package's original pair of theme functions --
-`theme_economist()` (the bluish-gray print look) and
+The helper draws the same base plot six ways: classic print, classic
+web/white, "new design" print, "new design" web, 2024 print, 2024 web. The
+classic era gets two variants from the package's original pair of theme
+functions: `theme_economist()` (the bluish-gray print look) and
 `theme_economist_white()` (its white-panel web variant, already documented
-as what *The Economist*'s Graphic Detail blog used) -- both drawing on the
-same `economist_pal()` colors, since that palette was never print/web-split
-in the way `economist_new_pal()` is. This helper is a plain function local
+as what *The Economist*'s Graphic Detail blog used). Both draw on the same
+`economist_pal()` colors, because that palette was never split by print and
+web the way `economist_2017_pal()` is. The helper is a plain function local
 to the vignette, not part of the package.
 
-`new_type` picks which of `economist_new_pal()`'s five per-chart-type print
-orders to use for the "New design -- print" variant -- see the box below
-each section heading for which one and why.
+`new_type` picks which of the five per-chart-type print orders in
+`economist_2017_pal()` to use for the print variant of the "new design". See
+the box below each section heading for which one and why.
 
 ```{r variant-helper}
 show_variants <- function(p, aes_type = c("colour", "fill"),
@@ -342,9 +341,9 @@ show_variants <- function(p, aes_type = c("colour", "fill"),
     "Classic (~2012) -- web/white" =
       p + theme_economist_white() + scale_fn(""),
     "New design (2017) -- print" =
-      p + theme_economist_new(media = "print") + scale_fn("_new", media = "print", type = new_type),
+      p + theme_economist_2017(media = "print") + scale_fn("_new", media = "print", type = new_type),
     "New design (2017) -- web" =
-      p + theme_economist_new(media = "web") + scale_fn("_new", media = "web"),
+      p + theme_economist_2017(media = "web") + scale_fn("_new", media = "web"),
     "2024 redesign -- print" =
       p + theme_economist_2024(media = "print") + scale_fn("_2024", media = "print"),
     "2024 redesign -- web" =
@@ -356,7 +355,7 @@ show_variants <- function(p, aes_type = c("colour", "fill"),
 }
 ```
 
-## Bar / column, side by side, one trace with highlight
+## Bar / column, side by side, one series with highlight
 
 ```{r bar-highlight, fig.height=4}
 p <- ggplot(doctors, aes(x = country, y = visits, fill = highlight)) +
@@ -374,10 +373,10 @@ p_classic <- p + theme_economist() +
   scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_pal()(1)))
 p_classic_white <- p + theme_economist_white() +
   scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_pal()(1)))
-p_new_print <- p + theme_economist_new(media = "print") +
-  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_new_pal("print", type = "bar_side")(1)))
-p_new_web <- p + theme_economist_new(media = "web") +
-  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_new_pal("web")(1)))
+p_new_print <- p + theme_economist_2017(media = "print") +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_2017_pal("print", type = "bar_side")(1)))
+p_new_web <- p + theme_economist_2017(media = "web") +
+  scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_2017_pal("web")(1)))
 p_2024_print <- p + theme_economist_2024(media = "print") +
   scale_fill_manual(values = c(`FALSE` = "grey70", `TRUE` = economist_2024_pal("print")(1)))
 p_2024_web <- p + theme_economist_2024(media = "web") +
@@ -391,7 +390,7 @@ p_2024_print + labs(caption = "2024 redesign -- print")
 p_2024_web + labs(caption = "2024 redesign -- web")
 ```
 
-## Bar / column, side by side, two traces
+## Bar / column, side by side, two series
 
 ```{r bar-grouped, fig.height=4}
 p <- ggplot(elections, aes(x = country, y = pct, fill = income)) +
@@ -449,11 +448,11 @@ show_variants(p, aes_type = "fill", new_type = "stacked")
 
 ## Thermometer
 
-Not a built-in ggplot2 geom, but structurally a range plot: a segment
-between two values per category, with a colored mark at each end (the
-guide's own "dot terminals" variant, p.17, rather than the tick-mark
-default -- cleaner to reproduce, and the guide names it as an accepted
-alternative "when lines are unclear").
+Thermometer charts are not a built-in ggplot2 geom, but are structurally a
+range plot: a segment between two values per category, with a colored mark
+at each end. This is the guide's own "dot terminals" variant (p.17) instead
+of the tick-mark default. It is cleaner to reproduce, and the guide names it
+as an accepted alternative "when lines are unclear".
 
 ```{r thermometer, fig.height=4.2}
 adjectives_long <- data.frame(
@@ -503,35 +502,34 @@ p <- ggplot(workforce, aes(x = 2, y = thousands, fill = division)) +
 ## title styling carry over -- shown here just via the discrete fill scales.
 p + scale_fill_economist() + labs(caption = "Classic (~2012) -- print")
 p + scale_fill_economist() + labs(caption = "Classic (~2012) -- web/white")
-p + scale_fill_economist_new(media = "print", type = "pie") + labs(caption = "New design (2017) -- print")
-p + scale_fill_economist_new(media = "web") + labs(caption = "New design (2017) -- web")
-p + scale_fill_economist_2024(media = "print") + labs(caption = "2024 redesign -- print")
-p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- web")
+p + scale_fill_economist_2017(media = "print", type = "pie") + labs(caption = "New design (2017) -- print")
+p + scale_fill_economist_2017(media = "web") + labs(caption = "New design (2017) -- web")
+## No 2024 version: none of the 88 print or 118 web charts surveyed from
+## after the redesign is a pie or doughnut.
 ```
 
 ## Notes
 
-- **Print vs web is a real color difference for the 2017 design, not just
-  a background swap.** `economist_new_pal(media = "print")` and
-  `economist_new_pal(media = "web")` share no hex values.
-- **The 2024 redesign uses the same six colors in both media** -- only the
-  panel background changes (`#ECEBE0` warm beige for print, white for web) --
-  because that's what the measured chart corpus actually shows: one accent
-  hue carried across media, not a media-specific categorical set.
-- `economist_new_pal(media = "print", set = "bright")` and
-  `set = "dark"` expose the styleguide's two higher-contrast alternates,
-  meant for "multi-category charts where high contrast is needed" (its own
-  words) rather than for everyday use -- not shown above to keep this
+- **For the 2017 design, print and web use different colors.**
+  `economist_2017_pal(media = "print")` and `economist_2017_pal(media = "web")`
+  share no hex values.
+- **The 2024 redesign uses the same six roles in both media, with different
+  production values:** no print value occurs in the web exports, and no web
+  value in the print charts. The grounds differ too (`#ECEBE0` warm gray for
+  print, white for web).
+- `economist_2017_pal(media = "print", set = "bright")` and `set = "dark"`
+  expose the styleguide's two higher-contrast alternates. They are meant for
+  "multi-category charts where high contrast is needed" (its own words), not
+  everyday use, and are left out of the chart examples above to keep this
   vignette to one story per chart type.
 
 ### Does the color order depend on chart type? Checked in all three eras
 
-- **2017 "new design" (print): yes, genuinely.** Pages 13-20 of the guide
-  each illustrate one chart-type family and each carries its own numbered
-  "COLOUR ORDER" swatch strip. Pixel-sampling all of them (never trusting a
-  glance) found 5 distinct sequences over the *same* 6 hues -- never a
-  different hue, just a different order -- which is why
-  `economist_new_pal(media = "print")` takes a `type` argument
+- **2017 "new design" (print): yes.** Pages 13-20 of the guide each
+  illustrate one chart-type family and each carries its own numbered
+  "COLOUR ORDER" swatch strip. Pixel-sampling all of them found 5 distinct
+  sequences over the *same* 6 hues. The hues never change, only the order,
+  which is why `economist_2017_pal(media = "print")` takes a `type` argument
   (`"bar_side"`, `"stacked"`, `"line_side"`, `"dot"`, `"pie"`; see above).
   Two pairs turned out hex-identical: bar/column stacked and line stacked
   share one order, thermometer and scatter share another.
@@ -539,37 +537,32 @@ p + scale_fill_economist_2024(media = "web") + labs(caption = "2024 redesign -- 
   single "MAIN" swatch row for web (p.12) and never illustrates a web chart
   type with its own numbered order the way it does for print. `type` has no
   effect when `media = "web"`.
-- **Classic (~2012): checked directly against the corpus, and it's mixed.**
-  `economist_pal()` predates this vignette and already varies by `fill`
-  (bars/areas vs lines/points), each ordering commented with the chart it
-  was sourced from. Going back to the corpus (224 classic-era charts,
-  2012-2018) to check that against real chart-type families rather than
-  just the fill/color split: **bar/column side-by-side has a clean,
-  repeated answer** -- three grouped-bar charts with legends
+- **Classic (~2012): mixed.** `economist_pal()` predates this vignette and
+  already varies by `fill` (bars and areas versus lines and points), with
+  each ordering commented with the chart it was sourced from. The corpus
+  (224 classic-era charts, 2012-2018) was checked against real chart-type
+  families instead of just the fill/color split. Bar/column side-by-side
+  has a clean, repeated answer: three grouped-bar charts with keys
   ("One stock, big effect", "What's in a letter?", "The best lack all
   conviction") all order `#01A2D9` (blue) before `#014D65` (dark blue),
   exactly matching `economist_pal(fill = TRUE)(2)`'s existing
-  `c("blue", "dark blue")` -- a genuine validation of the existing code,
-  not a new finding to add. The other four buckets don't converge the same
-  way: **stacked** charts are blue-family-led but the third-and-later
-  colors differ chart to chart (green+gray in one, coral+maroon in
-  another, a six-step ordinal ramp in a third); **line side-by-side** and
-  **dot/scatter** mostly label series inline rather than with a legend key,
-  so there's no unambiguous reading order to extract -- what *is*
-  consistent is a role, not a position: red/maroon marks whichever series
-  the story is about, blue/cyan is the default; and **pie/doughnut** has
-  zero examples in all 224 classic-era charts checked (not a gap in
-  coverage -- the whole sample was reviewed), so there's nothing to derive
-  an order from at all. `economist_pal()` isn't changed here: the one
-  place the evidence is clean, the package already had it right, and
-  adding a `type` argument for the other four would overstate how
-  consistent real charts actually are.
-- **2024 redesign: checked, no reliable signal.** No public styleguide
-  covers this era, so the only way to check is the measured chart corpus
-  itself: splitting its ~150 post-redesign dominant-ink measurements by the
-  chart's classified type (line/bar/dot/area) gives samples of 6-25 charts
-  per type, all clustered on the same handful of reds regardless of type,
-  with no separable pattern -- and dominant ink is one color per chart to
-  begin with, not a categorical sequence, so there's nothing to reorder even
-  in principle. `economist_2024_pal()` stays a single order rather than
-  splitting on evidence too thin to trust.
+  `c("blue", "dark blue")`. That validates the existing code and adds no
+  new finding. The other four buckets don't converge the same way. Stacked
+  charts are blue-family-led, but the third and later colors differ from
+  chart to chart (green and gray in one, coral and maroon in another, a
+  six-step ordinal ramp in a third). Line side-by-side and dot/scatter
+  charts mostly label series inline instead of using a key, so there is no
+  unambiguous reading order to extract. What is consistent is a role, not a
+  position: red/maroon marks whichever series the story is about, and
+  blue/cyan is the default. Pie/doughnut is too rare to derive an order
+  from, since pies were nearly gone after 2012 (see the classic style
+  guide). `economist_pal()` is unchanged here. Where the evidence is clean,
+  the package already had it right, and adding a `type` argument for the
+  other four would overstate how consistent real charts are.
+- **2024 redesign: one order, but two reds.** No public styleguide covers
+  this era, so the only check is the measured chart corpus. It shows no
+  type-specific order, but it does separate two reds: a brighter orange-red
+  (`#F04F38` print, `#F6423C` web) for plain single-series charts, and the
+  deeper red for emphasis in charts with several series. They share a chart
+  in only 3 of 94 print charts. `economist_2024_pal()` keeps one order and
+  returns the single-series red when asked for one color.

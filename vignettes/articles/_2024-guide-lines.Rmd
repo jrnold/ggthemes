@@ -1,0 +1,1236 @@
+## Lines, side by side
+
+Line charts are the commonest 2024 type: 43 of the 88 surveyed print charts are line charts or have line panels, and so do 49 of the 119 web graphics of 2026.
+The value axis is on the right (41 of the 43 print charts, 48 of the 49 web ones).
+Lines are heavy: in `20240330_CNC083` the line is three times as thick as a gridline, about 1.5pt at the guide's 7pt axis labels.
+Series are named by labels beside the lines (25 of the 43 print charts, 32 of the 49 web ones), in plain black type, with the series the story is about in bold (`20240406_BRC149`, `20240622_WBC139`).
+A key above the plot (4 print charts) or inside the panel (3) is the exception; the 13 print charts with a single line have no key.
+
+```{r g24-lines-setup}
+## Lines are 1.5pt at the guide's 7pt axis labels, as measured on `20240330_CNC083`; zero lines and index rules
+## are as heavy as the theme's black baseline.
+g24l_line <- g24_lw(1.5)
+g24l_rule <- 0.1 * g24_size / ggplot2::.pt
+g24l_ink <- econ$print$text
+g24l_note <- econ$print$source
+g24l_ground <- econ$print$bg$value[1]
+g24l_grid <- econ$print$grid
+## The forecast block of `20240427_ASC408` is the first step of the print gray ramp.
+g24l_forecast <- econ$print$sequential_gray$value[2]
+
+## Ticks at the year boundaries, with each label centered in its year (`20240330_CNC083`, `20240622_WBC139`): the
+## boundary ticks are minor ticks drawn full length, and the labels' own ticks are hidden.
+g24l_span_axis <- guide_axis(
+  minor.ticks = TRUE,
+  theme = theme(
+    axis.ticks.x.bottom = element_line(colour = "transparent"),
+    axis.minor.ticks.x.bottom = element_line(colour = g24l_ink),
+    axis.minor.ticks.length.x.bottom = rel(1)
+  )
+)
+
+## Labels set on the chart, at the axis-label size.
+g24l_labels <- function(data, colour = g24l_ink, ...) {
+  geom_text(
+    data = data, aes(.data$x, .data$y, label = .data$label, hjust = .data$hjust, fontface = .data$face),
+    colour = colour, size = g24_text, lineheight = 0.95, inherit.aes = FALSE, ...
+  )
+}
+g24l_lab <- function(x, y, label, hjust = 0, face = "plain") {
+  data.frame(x = x, y = y, label = label, hjust = hjust, face = face)
+}
+```
+
+A single series is drawn in the brighter single-series red, with no key: 16 of the 43 print line charts are one plain line.
+Each year runs between two ticks, with its label centered under it (`20240330_CNC083`, `20240622_WBC139`).
+The note goes on its own line above the source.
+
+```{r g24-lines-penumbral, econ_height = 165}
+g24l_shadow <- data.frame(
+  year = 2006 + 0.125 * (0:42),
+  units = c(
+    0.4, 0.39, 0.38, 0.39, 0.42, 0.43, 0.46, 0.5, 0.54, 0.55, 0.59, 0.65, 0.71, 0.79, 0.88, 0.98, 1.09, 1.14, 1.19,
+    1.24, 1.3, 1.35, 1.39, 1.47, 1.55, 1.56, 1.54, 1.6, 1.64, 1.75, 1.88, 1.96, 2.02, 1.99, 1.95, 1.91, 1.86, 1.87,
+    1.9, 1.86, 1.79, 1.73, 1.68
+  )
+)
+
+g24l_penumbral <- ggplot(g24l_shadow, aes(year, units)) +
+  geom_line(colour = single24[["print"]], linewidth = g24l_line) +
+  g24_value_axis(
+    limits = c(0, 2.05), breaks = seq(0, 2, 0.5), labels = c("0", "0.5", "1.0", "1.5", "2.0"), expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(2006, 2012.05), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = 2006:2011 + 0.5, minor_breaks = 2006:2012, labels = c("2006", "07", "08", "09", "10", "11")
+  ) +
+  labs(
+    title = "Penumbral",
+    subtitle = "US shadow housing inventory*\nUnits, m",
+    x = NULL, y = NULL,
+    caption = "*Foreclosed and delinquent homes\nnot yet on the market\nSource: CoreLogic"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_penumbral)
+```
+
+Against 2017: the line is the single-series red rather than blue, and the note stands above the source rather than ranged right on its line. `r g24_2017("lines-side-by-side")`
+
+Two lines are red and salmon: six of the ten print charts with two lines in the house colors pair them so (`20250315_FNC140`), and the other four pair red with gray, where the second line is a reference (`20250614_EPC627`).
+The lines are named beside them, not in a key.
+
+```{r g24-lines-tokyo-two, econ_height = 165}
+g24l_japan_yield <- c(
+  4.97, 5.22, 5.09, 5.34, 6.22, 6.78, 7.2, 7.21, 6.49, 6.67, 6.53, 6, 5.5, 5.68, 5.13, 4.82, 4.42, 4.53, 4.31, 3.67,
+  3.57, 4, 4.45, 4.65, 4.47, 3.44, 3.08, 2.91, 3.16, 3.27, 3.14, 2.65, 2.61, 2.55, 2.32, 1.96, 1.93, 1.68, 1.42, 1.06,
+  1.95, 1.55, 1.83, 1.8, 1.78, 1.73, 1.84, 1.76, 1.4, 1.28
+)
+g24l_us_yield <- c(
+  5.22, 5.53, 5.9, 6.08, 6.7, 6.21, 5.97, 5.65, 5.16, 5.22, 5.06, 4.68, 5, 5.16, 4.34, 3.98, 3.95, 3.7, 3.97, 4.29,
+  4.09, 4.45, 4.19, 4.16, 4.14, 4.23, 4.25, 4.51, 4.54, 5.04, 4.93, 4.65, 4.72, 4.81, 4.78, 4.31, 3.7, 3.82, 3.86,
+  3.26, 2.67, 3.22, 3.53, 3.44, 3.7, 3.55, 2.8, 2.86, 3.48, 3.35
+)
+g24l_periods <- c("January 1989 (Japan)", "January 1999 (US)")
+g24l_bonds <- data.frame(
+  year = rep(1.125 + 0.25 * (0:49), 2),
+  period = factor(rep(g24l_periods, each = 50), levels = g24l_periods),
+  yield = c(g24l_japan_yield, g24l_us_yield)
+)
+
+g24l_tokyo <- ggplot(g24l_bonds, aes(year, yield, colour = period)) +
+  geom_line(linewidth = g24l_line, show.legend = FALSE) +
+  g24l_labels(g24l_lab(c(3.1, 7.2), c(7.6, 5.75), g24l_periods)) +
+  g24_value_axis(limits = c(0, 8.1), breaks = seq(0, 8, 2), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1, 14.7), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = c(1, 5, 10, 13) + 0.5, minor_breaks = 1:14, labels = c("1", "5", "10", "13")
+  ) +
+  scale_colour_economist_2024("print") +
+  labs(
+    title = "Where Tokyo leads",
+    subtitle = "Ten-year government-bond yields, %",
+    x = "Years since start", y = NULL, caption = "Source: Thomson Reuters"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_tokyo)
+```
+
+Against 2017: red and salmon where 2017 drew blue and a pale cyan, and the periods are named on the chart instead of in a key. `r g24_2017("lines-side-by-side")`
+
+An index chart marks its base with a black rule and a black dot where the lines start (`20250315_FNC140`).
+A series that serves as a yardstick, like the population here, is gray, as the OECD average is in `20240420_EPC359`.
+
+```{r g24-lines-transports, econ_height = 165}
+g24l_bus <- c(100, 106.9, 117.8, 127.5, 127.1, 132.6, 150.1, 158.1, 162.5, 161.3, 165.3, 166.4, 168.7, 168.7, 168)
+g24l_tube <- c(100, 99.6, 98.2, 103, 101.6, 104.8, 111, 114, 112.9, 115.6, 121, 127.9, 132.7, 133.4, 142.1)
+g24l_car <- c(100, 99.3, 96.7, 96.6, 95.5, 94.5, 92.8, 90.8, 91.1, 89.9, 88, 87.1, 86.5, 87.3, NA)
+g24l_population <- c(100, 101.1, 101, 101.1, 103.1, 103.3, 105.2, 106.7, 109.5, 110.2, 112, 113.5, 114.9, 116.3, 116.9)
+g24l_modes <- c("Bus", "Tube", "Car", "Population")
+g24l_london <- data.frame(
+  year = rep(2001:2015, 4),
+  mode = factor(rep(g24l_modes, each = 15), levels = g24l_modes),
+  index = c(g24l_bus, g24l_tube, g24l_car, g24l_population)
+)
+g24l_london <- g24l_london[!is.na(g24l_london$index), ]
+
+g24l_transports <- ggplot(g24l_london, aes(year, index, colour = mode)) +
+  geom_hline(yintercept = 100, colour = "black", linewidth = g24l_rule) +
+  geom_line(linewidth = g24l_line, show.legend = FALSE) +
+  annotate("point", x = 2001, y = 100, colour = "black", size = 2.2) +
+  g24l_labels(g24l_lab(c(2008.2, 2010.9, 2013, 2013.35), c(167.6, 132.5, 93.3, 107.2), g24l_modes, hjust = 0.5)) +
+  g24_value_axis(limits = c(80, 180), breaks = seq(80, 180, 20), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1999.55, 2018.2), expand = c(0, 0), breaks = seq(2001, 2015, 2), minor_breaks = 2001:2015,
+    labels = c("2001", "03", "05", "07", "09", "11", "13", "15"), guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_colour_manual(values = c(
+    Bus = p24[["red"]], Tube = p24[["salmon"]], Car = p24[["blue"]], Population = p24[["dark gray"]]
+  )) +
+  labs(
+    title = "Transports of delight",
+    subtitle = "London’s population and journeys\n2001=100",
+    x = NULL, y = NULL, caption = "Sources: Transport for London; ONS;\nThe Economist"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_transports)
+```
+
+Against 2017: the base rule is black rather than red; the three modes take red, salmon and blue, and the population is gray, not a fourth hue with a colored label. `r g24_2017("lines-side-by-side")`
+
+The palette stops at six colors, and no line chart in the corpus has more than six series in them; the seven lines of `20240504_EUC088` are German party colors.
+The redraw follows `20240427_ASC408`, whose focus line is red with a bold label and whose other lines take the rest of the order: Japan, set in bold in 2017, is red.
+The seventh country, Britain, shares light blue with Russia, a line it never meets, and the labels tell them apart; that pairing is ours.
+
+```{r g24-lines-coming-down, econ_height = 165}
+g24l_rates <- list(
+  Hungary = c(
+    25.2, 25.4, 25.2, 26.7, 28.7, 29.7, 29.8, 31.4, 33.5, 33.4, 34.8, 36.1, 36.9, 37.4, 40, 38.9, 40.4, 40.7, 43.1,
+    44.6, 44.9, 45.3, 44, 45.7, 45.8, 44.6, 45.3, 44.6, 41.9, 41.7, 40, 38.7, 38.6, 36.7, 34.9, 33.1, 33, 31.5, 31.7,
+    32.4, 31.7, 29.5, 28.1, 27.6, 27.1, 26, 24.7, 24.7, 24.7, 24.8, 25, 24.4, 23.5, 22.1
+  ),
+  Lithuania = c(
+    34, 34, 34, 34.1, 32.4, 26.9, 28.5, 27, 27.1, 27.1, 30.8, 35.5, 42.3, 46.1, 46.8, 47.4, 45.7, 44, 44.3, 46.2,
+    44.6, 44.7, 42.6, 41, 38.7, 33.4, 32.2, 34.6, 35.6, 33.3, 33.3, 31.6
+  ),
+  Russia = c(
+    34.3, 34.4, 34.7, 33.2, 32.4, 28.7, 24, 23.4, 24.4, 25.8, 26.5, 27.2, 31.1, 37.6, 41.2, 41, 39, 37.1, 35.8, 38.3,
+    38.9, 39.1, 37.9, 35.8, 34.2, 32.2, 30.3, 28.8, 27.4, 26, 24.1
+  ),
+  Japan = c(
+    20.8, 19.6, 17.7, 16.2, 15.2, 14.8, 15.1, 14.2, 14.4, 14.6, 15.2, 15.7, 16.8, 17.4, 17.4, 17.9, 17.6, 17.8, 17.6,
+    17.9, 17.6, 17.1, 18, 20.5, 20.3, 19.7, 20.9, 19.6, 18.6, 17.2, 16.3, 16.1, 16.7, 16.5, 16.8, 17.1, 17.7, 19.7,
+    24.2, 24.8, 23.8, 23.1, 23.7, 25, 23.8, 23.9, 23.5, 24.2, 23.8, 24, 23.1, 22.4, 21, 20.6
+  ),
+  `South Korea` = c(
+    8, 7.6, 7.2, 7, 7.2, 7.1, 8.7, 9.4, 9.6, 10.7, 12.8, 14, 17.6, 15.6, 13.9, 15.1, 18.3, 22.4, 24.6, 24.9, 22.4,
+    25.2, 27, 30.6, 31.6, 31.3, 29.1
+  ),
+  US = c(
+    10.2, 10.1, 10.6, 10.9, 10.5, 11.3, 11, 10.8, 10.7, 11.1, 11.5, 11.7, 12, 11.9, 12.1, 12.6, 12.4, 13, 12.4, 12.1,
+    11.9, 12.1, 12.2, 12.1, 12.5, 12.5, 12.9, 12.8, 12.5, 12.3, 12.4, 12.2, 12, 12.1, 11.9, 11.8, 11.5, 11.2, 11.1,
+    10.6, 10.4, 10.8, 11, 10.9, 11.1, 11.1, 11.2, 11.5, 11.9, 12.1
+  ),
+  Britain = c(
+    10.7, 10.9, 11.5, 11.7, 11.2, 10.5, 10.1, 9.6, 9.2, 8.7, 8, 7.9, 7.6, 7.8, 7.9, 7.5, 7.8, 7.9, 8.1, 8.5, 8.8, 9,
+    8.8, 8.8, 8.8, 9, 8.6, 8.1, 8.7, 7.8, 8.1, 8, 8.1, 7.8, 7.6, 7.5, 7.2, 7.2, 7.5, 7.6, 7.4, 7, 7, 6.7, 7, 6.7, 6.9,
+    6.5, 6.9, 6.9, 6.7, 7, 7.1, 7.4
+  )
+)
+g24l_first_year <- c(
+  Hungary = 1960, Lithuania = 1981, Russia = 1980, Japan = 1960, `South Korea` = 1986, US = 1960, Britain = 1960
+)
+g24l_suicides <- do.call(rbind, lapply(names(g24l_rates), function(country) {
+  data.frame(
+    year = g24l_first_year[[country]] + seq_along(g24l_rates[[country]]) - 1,
+    country = factor(country, levels = names(g24l_rates)),
+    rate = g24l_rates[[country]]
+  )
+}))
+## Japan, the focus, is red; the rest take the order after it, and Britain shares Russia's light blue.
+g24l_country_cols <- c(
+  Japan = p24[["red"]], Hungary = p24[["salmon"]], Lithuania = p24[["blue"]], Russia = p24[["light blue"]],
+  `South Korea` = p24[["dark gray"]], US = p24[["light gray"]], Britain = p24[["light blue"]]
+)
+## Japan is drawn last, on top.
+g24l_suicides$country <- factor(g24l_suicides$country, levels = c(setdiff(names(g24l_rates), "Japan"), "Japan"))
+
+g24l_coming_down <- ggplot(g24l_suicides, aes(year, rate, colour = country)) +
+  geom_line(linewidth = g24l_line, show.legend = FALSE) +
+  g24l_labels(g24l_lab(
+    c(1971.6, 2009.1, 1980.5, 1966.7, 2010.7, 1985.4, 1982.2), c(45.4, 46, 27.1, 19.8, 16.5, 15.1, 4.9),
+    names(g24l_rates), hjust = 0.5, face = c("plain", "plain", "plain", "bold", "plain", "plain", "plain")
+  )) +
+  g24_value_axis(limits = c(0, 50), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1956.9, 2023.3), expand = c(0, 0), minor_breaks = seq(1960, 2010, 5),
+    breaks = c(1960, 1970, 1980, 1990, 2000, 2013), labels = c("1960", "70", "80", "90", "2000", "13"),
+    guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_colour_manual(values = g24l_country_cols) +
+  labs(
+    title = "Coming down everywhere",
+    subtitle = "Suicides per 100,000 population",
+    x = NULL, y = NULL, caption = "Sources: ONS; Eurostat"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_coming_down)
+```
+
+Against 2017: Japan is picked out in red as well as in bold, and the other countries share the rest of one palette, where 2017 gave each its own hue from three sets. `r g24_2017("lines-side-by-side")`
+
+### Standard color order
+
+The order is fixed: red, salmon, blue, light blue, dark gray, light gray.
+`20260606_WOC055` draws six lines in exactly that order, and `20240427_ASC408` uses the same six colors with the focus line moved to red.
+A series keeps its color as lines are added; the one exception is a chart with a single line, which takes the brighter single-series red.
+`economist_2024_pal()` returns these sets.
+
+```{r g24-lines-line-order, econ_size = "three_column", econ_height = 300}
+## The 2017 guide's shapes, one value per step.
+g24l_line_shape <- list(
+  A = c(
+    3.62, 3.59, 3.52, 3.51, 3.48, 3.46, 3.44, 3.4, 3.34, 3.34, 3.27, 3.15, 3.09, 3.07, 3.06, 2.97,
+    2.93, 2.89, 2.83, 2.8, 2.78, 2.73, 2.68, 2.68
+  ),
+  B = c(
+    2.61, 2.66, 2.67, 2.7, 2.66, 2.63, 2.65, 2.65, 2.72, 2.78, 2.81, 2.82, 2.8, 2.75, 2.66, 2.62,
+    2.48, 2.39, 2.32, 2.23, 2.13, 2.05, 1.98, 1.97
+  ),
+  C = c(
+    2.11, 2.11, 2.08, 1.97, 1.95, 1.96, 1.92, 1.84, 1.77, 1.68, 1.65, 1.62, 1.59, 1.49, 1.46, 1.41,
+    1.37, 1.35, 1.31, 1.28, 1.25, 1.25, 1.23, 1.23
+  ),
+  D = c(
+    0.22, 0.24, 0.42, 0.51, 0.61, 0.65, 0.73, 0.93, 1.07, 1.23, 1.63, 1.48, 1.5, 1.69, 1.77, 1.92,
+    1.89, 1.72, 1.66, 1.64, 1.62, 1.6, 1.57, 1.48
+  ),
+  E = c(
+    -0.18, -0.14, -0.1, -0.09, -0.1, -0.11, -0.1, -0.09, -0.06, -0.04, 0, 0.05, 0.09, 0.12, 0.16,
+    0.23, 0.27, 0.31, 0.38, 0.46, 0.51, 0.54, 0.56, 0.56
+  ),
+  F = c(
+    2.06, 1.98, 1.98, 1.97, 1.96, 1.98, 2.01, 2.01, 2.01, 2.04, 2.03, 2.02, 2.01, 2.01, 2.02, 2.03,
+    2.02, 1.96, 1.9, 1.86, 1.85, 1.85, 1.86, 1.85
+  )
+)
+## Which shape each series (in color order) takes in the 1- to 6-line panels.
+g24l_line_panels <- list(
+  c("B"),
+  c("A", "B"),
+  c("A", "B", "D"),
+  c("A", "C", "B", "D"),
+  c("A", "B", "F", "E", "D"),
+  c("A", "B", "F", "D", "C", "E")
+)
+g24l_line_demo <- do.call(rbind, lapply(seq_along(g24l_line_panels), function(n) {
+  ## One line takes the single-series red; more take the qualitative order.
+  cols <- economist_2024_pal("print")(n)
+  do.call(rbind, lapply(seq_along(g24l_line_panels[[n]]), function(k) {
+    data.frame(
+      panel = paste(n, if (n == 1) "line" else "lines"),
+      series = paste(n, k),
+      colour = cols[k],
+      x = 1:24,
+      y = g24l_line_shape[[g24l_line_panels[[n]][k]]]
+    )
+  }))
+}))
+g24l_line_demo$panel <- factor(g24l_line_demo$panel, levels = unique(g24l_line_demo$panel))
+
+g24_chart(
+  ggplot(g24l_line_demo, aes(x, y, group = series, colour = colour)) +
+    geom_line(linewidth = g24_lw(2)) +
+    facet_wrap(~panel, nrow = 2) +
+    scale_x_continuous(limits = c(-0.8, 25.6), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(-0.76, 4.69), breaks = 0:4, expand = c(0, 0)) +
+    scale_colour_identity() +
+    labs(title = "Standard colour order", x = NULL, y = NULL) +
+    g24_theme() +
+    g24_no_axes() +
+    theme(panel.grid.major.y = element_line(colour = g24l_grid))
+)
+```
+
+Against 2017: red leads where 2017 led with blue, and the six colors are three pairs (reds, blues, grays) rather than six unrelated hues. `r g24_2017("standard-color-order")`
+
+### High-contrast alternatives
+
+The 2024 charts have no separate high-contrast set.
+Contrast comes from the order itself: the reds against the blues and grays.
+Here the two Gulf states, where the share of Christians rose, are red and salmon, and the five countries where it fell are blues and grays; with seven lines, Iraq shares blue with Egypt, which stays far above it.
+The lines are named beside them: the falling five where they start, the rising two where they end.
+
+A forecast is a shaded block labelled "Forecast" (`20240427_ASC408`, `20240921_WBC092`), so the asterisk on the last year and its note are not needed.
+
+```{r g24-lines-exodus, econ_height = 185}
+## Positions follow the chart, not years.
+g24l_dates <- c(172, 406, 522.5, 584)
+g24l_countries <- c("Egypt", "Syria", "Palestine", "Israel", "Iraq", "U.A.E", "Saudi Arabia")
+g24l_mideast <- data.frame(
+  date = rep(g24l_dates, 7),
+  country = factor(rep(g24l_countries, each = 4), levels = g24l_countries),
+  pct = c(
+    18.7, 15.9, 10.2, 8.6, 15.6, 9.7, 5.2, 2.6, 11.6, 4.7, 1.9, 1.1, 8.1, 2.8, 2.5, 1.8,
+    6.3, 3.7, 1.4, 0.7, 0.1, 5.9, 12.7, 12.7, 0, 0.4, 4.4, 4.5
+  )
+)
+g24l_exodus_cols <- c(
+  Egypt = p24[["blue"]], Syria = p24[["light blue"]], Palestine = p24[["dark gray"]], Israel = p24[["light gray"]],
+  Iraq = p24[["blue"]], U.A.E = p24[["red"]], `Saudi Arabia` = p24[["salmon"]]
+)
+
+g24l_exodus <- ggplot(g24l_mideast, aes(date, pct, colour = country)) +
+  annotate("rect", xmin = 522.5, xmax = 584, ymin = 0, ymax = 20, fill = g24l_forecast) +
+  annotate("text", x = 584, y = 19.4, label = "Forecast", hjust = 1, vjust = 1, size = g24_text, colour = g24l_note) +
+  geom_line(linewidth = g24l_line, show.legend = FALSE) +
+  g24l_labels(rbind(
+    g24l_lab(178, c(19.5, 16.4, 12.4, 8.9, 4.8), c("Egypt", "Syria", "Palestine", "Israel", "Iraq")),
+    g24l_lab(594, c(12.7, 4.5), c("U.A.E", "Saudi\nArabia"))
+  ), vjust = 0.5) +
+  g24_value_axis(limits = c(0, 20), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(172, 690), expand = c(0, 0), breaks = g24l_dates, labels = c("1910", "70", "2010", "25")
+  ) +
+  scale_colour_manual(values = g24l_exodus_cols) +
+  labs(
+    title = "Exodus",
+    subtitle = "Christians, as % of population",
+    x = "Available years", y = NULL,
+    caption = paste0(
+      "Source: “Ongoing Exodus: Tracking the\nEmigration of Christians from the Middle\n",
+      "East” by T. Johnson and G. Zurlo, 2015"
+    )
+  ) +
+  g24_theme()
+
+g24_chart(g24l_exodus)
+```
+
+Against 2017: two colors carry the story instead of seven bright hues, the lines are named on the chart rather than in a key at the left, and the forecast is a shaded block, not an asterisk. `r g24_2017("high-contrast-alternatives")`
+
+## Lines, stacked
+
+Stacked areas are uncommon: 5 of the 88 print charts and 1 of the 119 web graphics.
+The bands stack from the baseline up in the palette order, red at the bottom in four of the five print charts (`20240727_WOC536`, `20240921_WBC092`, `20250614_EPC634`, `20260829_BRC065`).
+Thin white rules part the bands in all five, and the gridlines are hidden behind them.
+Every one names its bands inside themselves, in regular type: white on red and blue, black on salmon and gray.
+Bands too thin to name go in a key of squares above the plot (`20260829_BRC065`).
+
+```{r g24-lines-foreign-hoards, econ_height = 154}
+g24l_china <- c(0.26, 0.36, 0.56, 0.77, 1.02, 1.49, 1.91, 2.3, 2.64, 2.96)
+g24l_other <- c(0.77, 0.98, 1.23, 1.51, 2.03, 2.86, 3.02, 3.19, 3.54, 3.77)
+g24l_reserves <- data.frame(
+  year = rep(2002:2011, 2),
+  trn = c(g24l_china, g24l_other),
+  region = factor(
+    rep(c("China", "Other developing countries"), each = 10),
+    levels = c("China", "Other developing countries")
+  )
+)
+
+## A white rule along the top of every band but the last, and the forecast years under a darker block, as in
+## `20240921_WBC092`.
+g24l_hoards <- ggplot(g24l_reserves, aes(year, trn, fill = region, colour = region)) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = g24_lw(0.75)) +
+  annotate("rect", xmin = 2009, xmax = 2011, ymin = 0, ymax = 6.8, fill = p24[["dark gray"]], alpha = 0.18) +
+  annotate("text", x = 2010, y = 6.3, label = "Forecast", vjust = 1, size = g24_text, colour = g24l_note) +
+  annotate("text", x = 2008.6, y = 1.3, label = "China", hjust = 1, colour = "white", size = g24_text) +
+  annotate(
+    "text", x = 2006.4, y = 3.85, label = "Other\ndeveloping\ncountries", hjust = 1, size = g24_text,
+    lineheight = 0.95
+  ) +
+  g24_value_axis(limits = c(0, 6.8), breaks = seq(0, 6, 2), expand = c(0, 0)) +
+  scale_x_continuous(
+    expand = c(0, 0), limits = c(2001.52, 2012), breaks = c(2002, 2004, 2006, 2008, 2010, 2011),
+    labels = c("2002", "04", "06", "08", "10", "11")
+  ) +
+  scale_fill_economist_2024("print", guide = "none") +
+  scale_colour_manual(values = c("white", NA), guide = "none") +
+  labs(
+    title = "Foreign hoards",
+    subtitle = "Developing-country currency reserves\n$trn",
+    x = NULL, y = NULL, caption = "Source: IMF"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_hoards)
+```
+
+Against 2017: red under salmon where 2017 had blue under cyan, the names set in regular type and black on the light band, and the forecast shaded instead of starred. `r g24_2017("lines-stacked")`
+
+```{r g24-lines-big-shift, econ_height = 178}
+## Band thicknesses, bottom to top.
+g24l_shift_bands <- list(
+  Netherlands = c(
+    4.3, 5.2, 3.8, 5.2, 7.3, 7.3, 5.5, 5.7, 6.9, 6.8, 5.9, 4, 8, 8.3, 10.1, 11, 11, 11.7, 9.9, 9.8, 9.2, 9.9, 12.9,
+    12.4, 11.7, 12.6, 12.2, 16.4, 15.7, 17, 16.3, 16.4
+  ),
+  `Bermuda & other Caribbean` = c(
+    7.2, 1.9, 0.3, 1.1, 1.9, 1.1, 3.9, 5.1, 5.3, 6.2, 8.1, 6.5, 7.7, 6.2, 5.8, 6.7, 7.6, 8.3, 8.1, 10.5, 8.4, 8.3,
+    9.5, 10, 9.3, 11.8, 12.8, 14.8, 13.4, 13, 12.5, 13
+  ),
+  Luxembourg = c(
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1.8, 1.6, 1.6, 1.4, 1.9, 3, 2.1, 4.6, 6, 5.8, 4, 4.4,
+    5.6, 5.6, 5.3, 6, 7.6, 5.4, 6.5, 7.9
+  ),
+  Ireland = c(
+    2.2, 2.2, 2.6, 2.5, 2.5, 2.5, 2.2, 2.3, 2.5, 3, 3.6, 3.2, 2.3, 2.3, 2.1, 2.3, 4.9, 3.7, 4.4, 4.7, 5.1, 5.4, 6.2,
+    6.3, 6, 6.2, 7.6, 7.4, 6.3, 7, 8.8, 7.9
+  ),
+  Singapore = c(
+    1.9, 1.9, 1.8, 1.4, 1.6, 1.9, 1.6, 1.4, 1.9, 2.3, 3.2, 3.3, 3.2, 3, 3, 3.3, 1.9, 2.3, 3, 3, 3.5, 3.5, 3.7, 5.8,
+    5.1, 5.4, 4.4, 3, 4, 4.9, 4.9, 5.1
+  ),
+  Switzerland = c(
+    6, 5.4, 5.4, 5.3, 5.6, 6.9, 5.4, 7.2, 7.7, 6.3, 5.6, 7.4, 6.9, 4.9, 4.9, 4.9, 7, 6, 4, 6.3, 8.8, 7.9, 6.7, 5.8,
+    4.7, 4.4, 5.3, 5.3, 4.6, 4.4, 4.6, 4.9
+  )
+)
+g24l_havens <- names(g24l_shift_bands)
+g24l_shift <- do.call(rbind, lapply(g24l_havens, function(haven) {
+  data.frame(year = 1982:2013, haven = factor(haven, levels = g24l_havens), pct = g24l_shift_bands[[haven]])
+}))
+
+## The widest band is named in place; the five thinner ones go in the key, in stack order.
+g24l_big_shift <- ggplot(g24l_shift, aes(year, pct, fill = haven, colour = haven)) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = g24_lw(0.75)) +
+  annotate("text", x = 2012.5, y = 7.5, label = "Netherlands", hjust = 1, colour = "white", size = g24_text) +
+  g24_value_axis(limits = c(0, 60.6), breaks = seq(0, 60, 10), expand = c(0, 0)) +
+  scale_x_continuous(
+    expand = c(0, 0), limits = c(1980.2, 2016.5), breaks = c(1982, 1985, 1990, 1995, 2000, 2005, 2010, 2013),
+    labels = c("1982", "", "90", "95", "2000", "05", "10", "13")
+  ) +
+  scale_fill_economist_2024("print", breaks = g24l_havens[-1]) +
+  scale_colour_manual(values = c(rep("white", 5), NA), guide = "none") +
+  guides(fill = guide_legend(ncol = 2, byrow = TRUE)) +
+  labs(
+    title = "The big shift",
+    subtitle = "Tax havens’ share of US overseas\ncorporate profits, %",
+    x = NULL, y = NULL, fill = NULL,
+    caption = paste0(
+      "Source: “The Hidden Wealth of Nations”,\n",
+      "by Gabriel Zucman, University of Chicago\nPress, 2015"
+    )
+  ) +
+  g24_theme()
+
+g24_chart(g24l_big_shift)
+```
+
+Against 2017: the key sits above the plot and names only the thin bands, where 2017 ran a key for all six into the panel; the bands are the 2024 six in order. `r g24_2017("lines-stacked")`
+
+### Color overrides
+
+The corpus has no alternative order for chronological categories.
+Where series are years, the 2024 charts use part of the one order, oldest to newest in gray, salmon and red (`20240706_AMC263`); otherwise they keep the standard order, as this chart does.
+Its five bands are keyed above the plot, two to a row, as the bands are too thin to name inside.
+
+```{r g24-lines-in-limbo, econ_height = 185}
+## Band thicknesses, bottom to top.
+g24l_tenure_bands <- list(
+  `Private rental` = c(6.4, 4.8, 7.3, 5.8, 8.6, 9.2, 8.9, 10.2, 9.8, 10.2, 11.4, 8.3, 6.1, 6.1, 7, 9.2, 13, 17.7),
+  `Private leased by LA/HA*` = c(
+    12.5, 15.9, 16.9, 21.9, 20.6, 27.5, 40.9, 46.6, 49.7, 47.2, 40.9, 38.1, 31.6, 27.5, 25.9, 26.2, 25.3, 23.4
+  ),
+  `LA/HA*` = c(14.1, 18.4, 21.2, 25.3, 27.2, 27.8, 27.8, 26.9, 23.1, 18.1, 15.3, 10.9, 8.1, 7.2, 8.1, 9.1, 9.7, 10.3),
+  Hostel = c(9.7, 10, 10, 10.6, 10, 10, 10.6, 10.3, 9.1, 7.8, 6.6, 5.3, 4.1, 4.4, 4.4, 4.4, 4.7, 5),
+  `Bed & breakfast` = c(5.3, 7.2, 9.1, 11.2, 12.8, 13.4, 8.1, 6.9, 5.6, 4.7, 4.4, 3.1, 2.5, 2.8, 3.8, 4.1, 4.4, 5)
+)
+g24l_limbo <- do.call(rbind, lapply(names(g24l_tenure_bands), function(tenure) {
+  data.frame(
+    year = 1998:2015,
+    tenure = factor(tenure, levels = names(g24l_tenure_bands)),
+    n = g24l_tenure_bands[[tenure]]
+  )
+}))
+
+g24l_limbo_plot <- ggplot(g24l_limbo, aes(year, n, fill = tenure, colour = tenure)) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = g24_lw(0.75)) +
+  g24_value_axis(limits = c(0, 102), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  scale_x_continuous(
+    expand = c(0, 0), limits = c(1997.56, 2017.1),
+    breaks = c(1998, 2002, 2004, 2006, 2008, 2010, 2012, 2015), minor_breaks = 1998:2015,
+    labels = c("1998", "2002", "04", "06", "08", "10", "12", "15"), guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_fill_economist_2024("print") +
+  scale_colour_manual(values = c(rep("white", 4), NA), guide = "none") +
+  guides(fill = guide_legend(ncol = 2, byrow = TRUE)) +
+  labs(
+    title = "In limbo",
+    subtitle = "Households in temporary homes\nEngland, ’000",
+    x = NULL, y = NULL, fill = NULL,
+    caption = "*Local authorities and housing\nassociations\nSource: DCLG"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_limbo_plot)
+```
+
+Against 2017: the standard red, salmon, blue, light blue and dark gray rather than a separate blue-cyan-teal-mauve-maroon run. `r g24_2017("color-overrides-2")`
+
+When the categories are ordered and one of them is the story, the 2024 rules give that one red and set the rest in grays, as the color section says.
+Here the developing middle class is the story; the three poor classes take three steps of the print gray ramp, darkest at the bottom, and the developed middle class takes salmon.
+No stacked chart of ordered classes is in the corpus, so this one applies the color rules rather than copying a chart.
+The focus band is named in bold; the others in regular type, with their income ranges under the names.
+
+```{r g24-lines-emerging-middle, econ_size = "two_column", econ_height = 234}
+g24l_fn <- economist_2017_footnote(1:3)
+g24l_extremely_poor <- c(
+  0.88, 0.88, 0.87, 0.79, 0.7, 0.72, 0.73, 0.74, 0.72, 0.71, 0.7, 0.67, 0.61, 0.57, 0.52, 0.51, 0.48, 0.47, 0.45,
+  0.43, 0.38, 0.35, 0.34, 0.33, 0.32, 0.31
+)
+g24l_moderately_poor <- c(
+  0.35, 0.37, 0.39, 0.44, 0.48, 0.5, 0.5, 0.49, 0.51, 0.52, 0.53, 0.53, 0.54, 0.53, 0.53, 0.53, 0.52, 0.5, 0.5, 0.48,
+  0.47, 0.46, 0.45, 0.44, 0.43, 0.43
+)
+g24l_near_poor <- c(
+  0.2, 0.22, 0.24, 0.28, 0.32, 0.32, 0.33, 0.34, 0.36, 0.37, 0.39, 0.41, 0.44, 0.47, 0.49, 0.5, 0.5, 0.5, 0.5, 0.5,
+  0.52, 0.53, 0.53, 0.53, 0.53, 0.53
+)
+g24l_developing_middle <- c(
+  0.27, 0.28, 0.29, 0.3, 0.33, 0.33, 0.35, 0.36, 0.39, 0.41, 0.44, 0.47, 0.52, 0.57, 0.61, 0.65, 0.7, 0.73, 0.77,
+  0.81, 0.87, 0.9, 0.94, 0.97, 1, 1.01
+)
+g24l_developed_middle <- c(
+  0.14, 0.13, 0.13, 0.13, 0.14, 0.14, 0.14, 0.14, 0.14, 0.15, 0.15, 0.16, 0.17, 0.2, 0.21, 0.23, 0.26, 0.28, 0.29,
+  0.31, 0.33, 0.37, 0.39, 0.42, 0.44, 0.47
+)
+g24l_classes <- c(
+  "Extremely poor", "Moderately poor", "Near poor", "Developing middle class", "Developed middle class"
+)
+g24l_emerging <- data.frame(
+  year = rep(1991:2016, 5),
+  class = factor(rep(g24l_classes, each = 26), levels = g24l_classes),
+  bn = c(g24l_extremely_poor, g24l_moderately_poor, g24l_near_poor, g24l_developing_middle, g24l_developed_middle)
+)
+## The poor classes in the gray ramp, darkest at the bottom; the focus in red; the top band salmon.
+g24l_gray_ramp <- econ$print$sequential_gray$value
+g24l_class_cols <- c(g24l_gray_ramp[5], g24l_gray_ramp[4], g24l_gray_ramp[3], p24[["red"]], p24[["salmon"]])
+g24l_class_text <- c("white", "white", "black", "white", "black")
+
+## Each band is named, with its income range under the name.
+g24l_band_labels <- data.frame(
+  x = c(1992.02, 1997.67, 2003.43, 2007.2, 2013.1, 2015.73, 2015.73),
+  y = c(0.43, 1.04, 1.42, 1.91, 2.37, 2.52, 2.37),
+  label = c(
+    "Extremely poor", "Moderately poor", "Near poor", "Developing middle class",
+    "class and above", "Developed middle", "over $13"
+  ),
+  hjust = c(0, 0, 0, 0, 1, 1, 1),
+  face = c("plain", "plain", "plain", "bold", "plain", "plain", "plain")
+)
+g24l_band_ranges <- data.frame(
+  x = c(1992.02, 1997.67, 2003.43, 2007.2),
+  y = c(0.28, 0.9, 1.27, 1.77),
+  label = c("less than $1.90", "$1.90 to $3.10", "$3.11 to $5", "$5.01 to $13"),
+  hjust = 0, face = "plain"
+)
+
+g24l_emerging_plot <- ggplot(g24l_emerging, aes(year, bn, fill = class, colour = class)) +
+  geom_area(position = position_stack(reverse = TRUE), outline.type = "upper", linewidth = g24_lw(0.75)) +
+  g24l_labels(g24l_band_labels, colour = g24l_class_text[c(1, 2, 3, 4, 5, 5, 5)]) +
+  g24l_labels(g24l_band_ranges, colour = g24l_class_text[1:4]) +
+  g24_value_axis(
+    limits = c(0, 3), breaks = seq(0, 3, 0.5), labels = c("0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0"),
+    expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    expand = c(0, 0), limits = c(1990.41, 2017.5), minor_breaks = 1991:2016,
+    breaks = c(1991, 1995, 2000, 2005, 2010, 2015, 2016),
+    ## The fallback font is too wide, so 2015 keeps its tick but not its label.
+    labels = c("1991", "95", "2000", "05", "10", "", paste0("16", g24l_fn[3])),
+    guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_fill_manual(values = g24l_class_cols, guide = "none") +
+  scale_colour_manual(values = c(rep("white", 4), NA), guide = "none") +
+  labs(
+    title = "Emerging middle class",
+    subtitle = paste0(
+      "Working population by economic class, emerging and developing countries", g24l_fn[1],
+      ", 2011$ at PPP", g24l_fn[2], ", bn"
+    ),
+    x = NULL, y = NULL,
+    caption = paste0(
+      g24l_fn[1], "Excluding most Western developed countries  ", g24l_fn[2], "Purchasing-power parity  ",
+      g24l_fn[3], "Estimate\nSource: ILO"
+    )
+  ) +
+  g24_theme()
+
+g24_chart(g24l_emerging_plot)
+```
+
+Against 2017: the developing middle class is picked out in red against grays, where 2017 gave each class a hue from its alternative run; only the focus band's name is bold, and the notes stand above the source. `r g24_2017("color-overrides-2")`
+
+## Thermometer
+
+The dot range, the 2017 thermometer, is in 5 of the 88 print charts and 10 of the 119 web graphics.
+The four standard print examples share one form (`20240706_AMC263`, `20250104_IRC277`, `20250621_MAC033`, `20260829_FNC983`); the fifth, `20240525_LDC093`, is a Leaders chart of intervals.
+Each series is a solid dot, about as tall as a capital letter of the labels.
+A dark gray rule joins the lowest dot to the highest, rather than running from zero.
+The scale is on top, with vertical gridlines and a black rule at zero, and the category names are ranged left at the edge of the chart.
+A key of dots sits above the plot.
+Two series are red and salmon in all three two-series charts.
+
+```{r g24-lines-thermometer-data}
+g24l_fields <- c(
+  "Mathematics", "Economics", "Computer Science", "Business", "Biology",
+  "Philosophy", "English", "Psychology", "History", "Communication"
+)
+g24l_series_names <- c("one", "two", "three", "four", "five", "six")
+
+## One table of values per series count.
+g24l_thermo_values <- list(
+  `2` = list(
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33),
+    c(416, 398, 382, 316, 308, 275, 290, 239, 283, 251)
+  ),
+  `3` = list(
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33),
+    c(418, 398, 382, 316, 308, 275, 290, 239, 283, 251),
+    c(395, 316, 292, 266, 257, 215, 201, 199, 197, 187)
+  ),
+  `4` = list(
+    c(280, 249, 117, 191, 84, 148, 80, 60, 134, 121),
+    c(402, 316, 292, 266, 257, 214, 201, 199, 197, 187),
+    c(339, 397, 381, 315, 307, 275, 290, 239, 283, 250),
+    c(31, 40, 72, 36, 39, 43, 35, 15, 20, 33)
+  ),
+  `6` = list(
+    c(222, 191, 172, 133, 16, 180, 152, 104, 233, 109),
+    c(405, 398, 382, 316, 308, 276, 290, 238, 284, 251),
+    c(280, 249, 117, 192, 84, 147, 80, 60, 135, 121),
+    c(31, 40, 72, 37, 39, 43, 35, 15, 21, 34),
+    c(335, 294, 134, 236, 129, 196, 52, 199, 260, 156),
+    c(375, 317, 292, 266, 257, 214, 201, 199, 197, 187)
+  ),
+  dot = list(
+    c(31, 41, 72, 37, 39, 43, 35, 15, 21, 34),
+    c(419, 398, 382, 280, 308, 276, 290, 239, 284, 251),
+    c(396, 317, 364, 263, 257, 215, 201, 222, 197, 187)
+  )
+)
+
+g24l_thermo_data <- function(key) {
+  values <- g24l_thermo_values[[key]]
+  do.call(rbind, lapply(seq_along(values), function(k) {
+    data.frame(
+      field = factor(g24l_fields, levels = rev(g24l_fields)),
+      series = factor(g24l_series_names[k], levels = g24l_series_names),
+      value = values[[k]]
+    )
+  }))
+}
+
+## The dark gray rule runs from the lowest dot to the highest; the dots are drawn over it in series order.
+g24l_thermo_plot <- function(key, colours = unname(p24)) {
+  d <- g24l_thermo_data(key)
+  spans <- merge(
+    stats::aggregate(value ~ field, d, min),
+    stats::aggregate(value ~ field, d, max),
+    by = "field", suffixes = c("_lo", "_hi")
+  )
+  label_gp <- gpar(fontsize = g24_size, fontface = "bold", fontfamily = economist_2017_font(), col = g24l_ink)
+  ggplot(d, aes(y = .data$field)) +
+    geom_segment(
+      data = spans, aes(x = .data$value_lo, xend = .data$value_hi, y = .data$field, yend = .data$field),
+      colour = p24[["dark gray"]], linewidth = g24_lw(1)
+    ) +
+    geom_point(aes(x = .data$value, colour = .data$series), size = 1.75) +
+    ## "Horrible" sits on the axis-number row, over the category labels.
+    annotation_custom(textGrob(
+      "“Horrible”", gp = label_gp, hjust = 0, vjust = 0,
+      x = unit(0, "npc") - grobWidth(textGrob("Computer Science", gp = gpar(fontsize = g24_size))) -
+        unit(0.3 * g24_size, "pt"),
+      y = unit(1, "npc") + unit(0.25 * g24_size, "pt")
+    )) +
+    coord_cartesian(clip = "off") +
+    scale_x_continuous(position = "top", limits = c(0, 425), breaks = seq(0, 400, 100), expand = c(0, 0)) +
+    scale_colour_manual(values = colours) +
+    guides(colour = guide_legend(nrow = 1, override.aes = list(size = 1.75))) +
+    labs(
+      title = "The horrible science",
+      subtitle = paste0(
+        "Use of specific “adjective” per million\n",
+        "words in student reviews on\n",
+        "RateMyProfessors.com*"
+      ),
+      x = NULL, y = NULL, colour = NULL, caption = "Source: Ben Schmidt, Northeastern University"
+    ) +
+    g24_theme(horizontal = FALSE) +
+    theme(
+      axis.line.y = element_line(colour = "black", linewidth = g24l_rule),
+      axis.ticks.y = element_blank(),
+      axis.text.y = element_text(hjust = 0)
+    )
+}
+```
+
+### Standard color order
+
+Series take the qualitative order: red, salmon, then blue and light blue.
+The corpus has no dot range with more than four dots to a row, and those four are party colors; the 2017 advice that more than four series is "probably too many" stands.
+
+```{r g24-lines-thermometer-2, econ_height = 185}
+g24_chart(g24l_thermo_plot("2"))
+```
+
+Against 2017: dots in red and salmon on a dark gray rule between them, where 2017 marked each value with a short colored rule and ran a pale line from zero. `r g24_2017("standard-color-order-1")`
+
+```{r g24-lines-thermometer-3, econ_height = 185}
+g24_chart(g24l_thermo_plot("3"))
+```
+
+Against 2017: a third series in blue rather than gold, and the rule ends at the outermost dots on either side. `r g24_2017("standard-color-order-1")`
+
+```{r g24-lines-thermometer-4, econ_height = 185}
+g24_chart(g24l_thermo_plot("4"))
+```
+
+Against 2017: four dots in the first four colors of the order; overlapping dots hide one another, which the 2017 rules did less. `r g24_2017("standard-color-order-1")`
+
+```{r g24-lines-thermometer-6, econ_height = 185}
+g24_chart(g24l_thermo_plot("6"))
+```
+
+Against 2017: the full six-color order, with no example in the corpus; at this density the chart needs a rethink, as the 2017 guide said. `r g24_2017("standard-color-order-1")`
+
+### Dot terminals
+
+In 2024 the dot is the standard terminal, not the alternative: every print dot range in the corpus ends in dots, and none uses rule terminals.
+Where the series are dates, they run gray, salmon, red from oldest to newest, the newest dot carrying the emphasis (`20240706_AMC263`, which picks out one country in bold); the chart below colors the 2017 example as if its three series were successive years.
+The web charts add arrows for a change between two dates (3 of the 10 web dot ranges).
+
+```{r g24-lines-thermometer-dots, econ_height = 185}
+## The oldest dot in the warm gray of `20240706_AMC263`, the second step of the gray ramp.
+g24_chart(g24l_thermo_plot("dot", colours = c(econ$print$sequential_gray$value[3], p24[["salmon"]], p24[["red"]])))
+```
+
+Against 2017: larger dots, with red for the latest, joined by a dark gray rule between the dots instead of a pale line from zero. `r g24_2017("dot-terminals")`
+
+## Scatter plot
+
+Scatter plots are rare in print: one of the 88 print charts (`20260829_BRC066`) and panels in two others.
+The web graphics have more, and agree with it (`20260530_WOC567`, `20260117_WOC860`).
+Gridlines run both ways, and the x axis has no ticks and no baseline unless zero is in range, where both zero rules are black.
+The value axis keeps its labels above the gridlines at the right; its title is ranged right above it, level with the subtitle (the `ai2html` files name it `yaxis-header-right`), and the x-axis title is centered under the axis numbers.
+
+```{r g24-lines-scatter-setup}
+## The value-axis title, ranged right above the axis, and the room it needs under the subtitle.
+g24l_y_title <- function(label) {
+  annotation_custom(textGrob(
+    label, x = unit(1, "npc"), y = unit(1, "npc") + unit(1.5 * g24_size, "pt"), hjust = 1, vjust = 0,
+    gp = gpar(fontsize = g24_size, fontfamily = economist_2017_font(), col = g24l_ink, lineheight = 0.95)
+  ))
+}
+g24l_scatter_theme <- function(title_lines = 1) {
+  theme(
+    panel.grid.major.x = element_line(colour = g24l_grid),
+    axis.line.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_text(hjust = 0.5),
+    plot.subtitle = element_text(margin = margin(b = g24_size * (1.9 + 1.2 * title_lines)))
+  )
+}
+## Standard dots: the single-series red, translucent and unoutlined. Highlight dots: the emphasis red, opaque, in a
+## thin black outline. Both sampled from `20260829_BRC066`.
+g24l_dot_alpha <- 0.6
+g24l_dot_size <- 1.3
+g24l_outline <- 0.35
+```
+
+### Chart elements
+
+The dots of `20260829_BRC066` and `20260530_WOC567` are of two kinds, as in 2017.
+A standard dot is the single-series red at about 60% opacity, with no outline, so that overlaps darken; in BRC066 it samples `#EC9071` on the warm ground.
+A highlight dot is the emphasis red, opaque, in a thin black outline, and carries a name.
+Category dots take the palette colors, translucent and unoutlined (`20260117_WOC860`); a highlighted one gets the black outline.
+A trend line is dashed, in red.
+
+```{r g24-lines-scatter-elements, econ_size = "one_column", econ_height = 410}
+## The specimen is laid out in points from its bottom left; the dots are drawn larger than life.
+g24l_spec_row <- c(320, 220, 120, 40)
+g24l_spec_dots <- data.frame(
+  x = rep(c(14, 23, 32), 3),
+  y = rep(g24l_spec_row[1:3], each = 3) + rep(c(0, 4, -3), 3),
+  size = c(rep(5, 6), 3, 5, 6.5),
+  fill = c(
+    rep(alpha(single24[["print"]], g24l_dot_alpha), 3), rep(p24[["red"]], 3),
+    alpha(p24[["blue"]], g24l_dot_alpha), alpha(p24[["salmon"]], g24l_dot_alpha),
+    alpha(p24[["dark gray"]], g24l_dot_alpha)
+  ),
+  colour = c(rep("transparent", 3), rep("black", 3), rep("transparent", 3))
+)
+g24l_spec_notes <- data.frame(
+  x = 52,
+  y = c(
+    g24l_spec_row[1] + c(18, 6, -6, -18, -30),
+    g24l_spec_row[2] + c(18, 6, -6, -18, -30),
+    g24l_spec_row[3] + c(18, 6, -6, -18, -30),
+    g24l_spec_row[4] + c(18, 6, -6)
+  ),
+  label = c(
+    "Standard dot", "single-series red", "60% opacity, no outline", "where the trend matters", "more than any point",
+    "Highlight dot", "emphasis red, opaque", "thin black outline", "for named outliers and", "important points",
+    "Category dot", "palette colors, translucent", "no outline", "for groups and bubbles;", "outline those named",
+    "Trend line", "dashed, red", "lighter than a data line"
+  ),
+  face = c(
+    "bold", rep("plain", 4), "bold", rep("plain", 4), "bold", rep("plain", 4), "bold", "plain", "plain"
+  )
+)
+
+ggplot() +
+  geom_point(
+    data = g24l_spec_dots, aes(x, y, size = size, fill = fill, colour = colour), shape = 21, stroke = 0.6
+  ) +
+  annotate(
+    "segment", x = 4, xend = 42, y = g24l_spec_row[4] + 6, yend = g24l_spec_row[4] + 6,
+    colour = p24[["red"]], linewidth = g24_lw(1), linetype = "42"
+  ) +
+  geom_text(
+    data = g24l_spec_notes, aes(x, y, label = label, fontface = face), hjust = 0, size = g24_text
+  ) +
+  scale_size_identity() +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(limits = c(0, 150), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(10, 350), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  labs(title = "Chart elements", x = NULL, y = NULL) +
+  g24_theme() +
+  g24_no_axes()
+```
+
+Against 2017: the standard dot is the single-series red rather than cyan and the highlight dot has a black outline instead of a white edge; category dots lose their colored stroke; the trend line is red, not black over color. `r g24_2017("chart-elements")`
+
+### Standard scatter
+
+Trend lines are dashed, in the house red for a single group (`20260829_BRC066`, `20260530_WOC567`).
+Two groups take two colors, each with its own dashed trend line in its color, as in the web scatter `20260411_WOC894`, an off-palette special on Hungary's election drawn in orange and gray without the red tab.
+Here the recent period, the story, is red and the earlier one gray, the reading the dot ranges give to dates; the groups are keyed by dots above the plot, and the zero rules are black.
+
+```{r g24-lines-divergent, econ_height = 195}
+set.seed(2017)
+## The 1990-2007 cloud is tight and steep; the 2012-16 cloud is wide and flat.
+## Five 1990-2007 outliers sit out to the right.
+g24l_metro_old <- data.frame(employment = rnorm(240, 1.6, 1.1))
+g24l_metro_old$house_prices <- 1.3 + 2.2 * g24l_metro_old$employment + rnorm(240, 0, 1.8)
+g24l_metro_old <- rbind(
+  g24l_metro_old,
+  data.frame(employment = c(4.4, 4.8, 5.1, 5.9, 8.2), house_prices = c(2.8, 8.2, 7.9, 7.6, 6.6))
+)
+g24l_metro_new <- data.frame(employment = rnorm(210, 2.1, 1.6))
+g24l_metro_new$house_prices <- 3.5 + 0.67 * g24l_metro_new$employment + rnorm(210, 0, 3.9)
+
+g24l_metro_periods <- c("Q1 1990 - Q1 2007", "Q1 2012 - Q1 2016")
+g24l_metro <- rbind(
+  cbind(period = g24l_metro_periods[1], g24l_metro_old),
+  cbind(period = g24l_metro_periods[2], g24l_metro_new)
+)
+g24l_metro$period <- factor(g24l_metro$period, levels = g24l_metro_periods)
+
+## Trend lines run over the span the guide draws them.
+g24l_trends <- data.frame(
+  period = factor(g24l_metro_periods, levels = g24l_metro_periods),
+  x = c(-1.5, -0.7), xend = c(5.8, 8.2),
+  y = c(-2, 3), yend = c(14.2, 9)
+)
+g24l_period_cols <- c("Q1 1990 - Q1 2007" = p24[["dark gray"]], "Q1 2012 - Q1 2016" = single24[["print"]])
+g24l_trend_cols <- c("Q1 1990 - Q1 2007" = p24[["dark gray"]], "Q1 2012 - Q1 2016" = p24[["red"]])
+
+g24l_divergent <- ggplot(g24l_metro, aes(employment, house_prices)) +
+  geom_hline(yintercept = 0, colour = "black", linewidth = g24l_rule) +
+  geom_vline(xintercept = 0, colour = "black", linewidth = g24l_rule) +
+  geom_point(aes(colour = period), size = g24l_dot_size, alpha = g24l_dot_alpha, stroke = 0) +
+  geom_segment(
+    data = g24l_trends, aes(x = x, xend = xend, y = y, yend = yend), colour = g24l_trend_cols,
+    linewidth = g24_lw(1), linetype = "42"
+  ) +
+  g24l_y_title("House prices") +
+  coord_cartesian(xlim = c(-2.4, 8.8), ylim = c(-5, 20), expand = FALSE, clip = "off") +
+  scale_x_continuous(breaks = seq(-2, 8, 2)) +
+  g24_value_axis(breaks = seq(-5, 20, 5)) +
+  scale_colour_manual(values = g24l_period_cols) +
+  guides(colour = guide_legend(nrow = 1, override.aes = list(size = 2.1, alpha = 1))) +
+  labs(
+    title = "Divergent",
+    subtitle = "United States, housing and employment\nMetro areas*, average annual change, %",
+    x = "Employment", y = NULL, colour = NULL,
+    caption = "*At least 100,000 population\nSources: Freddie Mac; US Bureau of Labour Statistics"
+  ) +
+  g24_theme() +
+  g24l_scatter_theme() +
+  ## The key sits under the subtitle, and the axis title between it and the plot.
+  theme(
+    plot.subtitle = element_text(margin = margin(b = g24_size)),
+    legend.box.spacing = unit(g24_size * 3.2, "pt")
+  )
+
+g24_chart(g24l_divergent)
+```
+
+Against 2017: red and gray for the two periods instead of red and blue, trend lines dashed in their own colors instead of black over color, black zero rules where 2017 drew red ones, and the axis titles above the value axis and under the x axis. `r g24_2017("standard-scatter")`
+
+A single series uses standard dots, with the named points as highlight dots and their names in black, joined by leader lines where they sit away from them (`20260829_BRC066`).
+
+```{r g24-lines-disinfectant, econ_height = 166}
+set.seed(11)
+## A diffuse cloud of countries, plus a denser band of more open, less corrupt ones.
+g24l_corruption <- data.frame(open = c(runif(55, 19, 63), runif(24, 60, 92)))
+g24l_corruption$score <- c(
+  pmin(55, pmax(5, 0.55 * (g24l_corruption$open[1:55] - 19) + 10 + rnorm(55, 0, 13))),
+  runif(24, 33, 70)
+)
+g24l_named <- data.frame(
+  country = c("Britain", "Denmark", "India", "Colombia", "US", "Sweden", "Mexico", "Singapore"),
+  open = c(77.5, 91.7, 37.8, 37, 73.8, 86.8, 34.9, 83.7),
+  score = c(96.5, 82.5, 67.4, 66, 69.6, 65.6, 53, 34.4),
+  ## Where each label sits, relative to its dot, in data units.
+  lx = c(76, 84.5, 42.8, 34.1, 70.9, 95.2, 19.6, 83.7),
+  ly = c(91, 91, 75.4, 67.4, 70.2, 50, 52.6, 26.7),
+  hjust = c(1, 0, 0.5, 1, 1, 0.5, 1, 0.5)
+)
+## Leader lines for the two labels that sit away from their dots.
+g24l_leaders <- data.frame(
+  x = c(20.5, 86.8, 92.6), xend = c(34.9, 92.6, 92.6),
+  y = c(53, 65.6, 65.6), yend = c(53, 65.6, 55)
+)
+
+g24l_disinfectant <- ggplot(g24l_corruption, aes(open, score)) +
+  geom_point(colour = single24[["print"]], size = g24l_dot_size, alpha = g24l_dot_alpha, stroke = 0) +
+  geom_segment(
+    data = g24l_leaders, aes(x = x, xend = xend, y = y, yend = yend), colour = "black", linewidth = g24_lw(0.5)
+  ) +
+  geom_point(
+    data = g24l_named, shape = 21, fill = p24[["red"]], colour = "black", size = g24l_dot_size,
+    stroke = g24l_outline
+  ) +
+  geom_text(data = g24l_named, aes(x = lx, y = ly, label = country, hjust = hjust), size = g24_text) +
+  g24l_y_title("Open-data index score,\nlatest, 100=most open") +
+  g24_value_axis(limits = c(0, 100), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(0, 115), breaks = seq(0, 100, 20), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "The best disinfectant",
+    subtitle = "Corruption and open data",
+    x = "Corruption-perceptions index score, 2014\n100=least corrupt", y = NULL,
+    caption = "Sources: Transparency International;\nOpen Knowledge Foundation"
+  ) +
+  g24_theme() +
+  g24l_scatter_theme(title_lines = 2)
+
+g24_chart(g24l_disinfectant)
+```
+
+Against 2017: standard dots in translucent red, not blue; the named points are outlined red dots with black names, where 2017 set them in red with gray names. `r g24_2017("standard-scatter")`
+
+### Connected scatter
+
+The corpus has no connected scatter.
+The nearest, `20260725_WOC925`, joins each country's points with a fitted line, marks its average with an outlined dot and breaks the gridlines around its labels, as the 2017 chart does.
+This redraw applies the general rules: the 2003 dot salmon and the 2013 dot red, as for dates, joined by a dark gray line; the other countries as standard dots in light gray; the 2013 averages as dashed black rules; and a key of the joined pair above the plot.
+
+```{r g24-lines-right-nation, econ_size = "two_column", econ_height = 234}
+## The seven labelled countries, joined from 2003 to 2013.
+g24l_oecd <- data.frame(
+  country = rep(c("Japan", "France", "Britain", "Germany", "Chile", "Turkey", "United States"), 2),
+  year = rep(c("2003", "2013*"), each = 7),
+  spend = c(2.2, 2.83, 2.35, 3.06, 0.78, 0.44, 5.76, 3.7, 4.11, 3.35, 4.78, 1.6, 0.94, 8.72),
+  life = c(81.3, 78.7, 77.9, 78.1, 76.7, 71.8, 76.6, 83.0, 81.8, 80.6, 80.4, 78.3, 76.0, 78.3)
+)
+g24l_oecd$year <- factor(g24l_oecd$year, levels = c("2003", "2013*"))
+
+## The other OECD countries.
+g24l_others <- rbind(
+  data.frame(
+    year = "2003",
+    spend = c(
+      3.19, 3.78, 2.55, 2.8, 2.23, 1.66, 1.85, 1.95, 2.92, 3.59, 2.84, 2.84, 2.16, 3.36, 1.76, 2.78, 1.0, 1.69, 1.29,
+      0.68, 0.76, 0.78, 1.27, 0.65
+    ),
+    life = c(
+      80.5, 80.1, 80.0, 80.0, 79.6, 79.2, 79.3, 78.7, 79.2, 79.1, 78.2, 77.6, 78.0, 77.3, 77.0, 76.9, 76.8, 75.9, 74.8,
+      74.2, 74.1, 73.3, 72.1, 71.3
+    )
+  ),
+  data.frame(
+    year = "2013*",
+    spend = c(
+      2.9, 6.26, 3.06, 3.86, 2.39, 3.67, 4.9, 4.37, 5.86, 2.36, 4.35, 2.35, 3.32, 5.13, 4.55, 3.68, 2.51, 4.25, 4.55,
+      2.03, 1.55, 2.01, 1.72, 1.05, 2.33
+    ),
+    life = c(
+      82.7, 82.4, 82.4, 81.7, 81.7, 81.6, 81.5, 81.4, 81.3, 81.3, 81.0, 80.9, 81.0, 80.9, 80.7, 80.5, 80.3, 80.2, 79.8,
+      77.8, 76.9, 76.0, 75.2, 74.1, 73.6
+    )
+  )
+)
+
+## Labels, ranged against their dots as the guide sets them, on the ground so the gridlines break around them.
+g24l_nation_labels <- data.frame(
+  country = c("Japan", "France", "Britain", "Germany", "Chile", "Turkey", "United States"),
+  x = c(2.05, 4.48, 2.31, 5.2, 0.65, 0.38, 5.63),
+  y = c(81.4, 82.3, 77.05, 79.1, 76.5, 72.4, 76.5),
+  hjust = c(1, 0.5, 0.5, 0.5, 1, 1, 1),
+  face = c(rep("plain", 6), "bold")
+)
+g24l_year_cols <- c("2003" = p24[["salmon"]], "2013*" = p24[["red"]])
+
+g24l_right_nation <- ggplot(g24l_oecd, aes(spend, life)) +
+  geom_point(
+    data = g24l_others, colour = p24[["light gray"]], size = g24l_dot_size, alpha = 0.8, stroke = 0
+  ) +
+  ## The 2013 averages, called out with dashed rules and labels.
+  geom_hline(yintercept = 80.5, linetype = "22", linewidth = g24l_rule) +
+  geom_vline(xintercept = 3.45, linetype = "22", linewidth = g24l_rule) +
+  geom_line(aes(group = country), colour = p24[["dark gray"]], linewidth = g24_lw(0.75)) +
+  geom_point(aes(fill = year), shape = 21, colour = "black", size = g24l_dot_size, stroke = g24l_outline) +
+  geom_label(
+    data = g24l_nation_labels, aes(x = x, y = y, label = country, hjust = hjust, fontface = face),
+    size = g24_text, fill = g24l_ground, border.colour = NA, label.padding = unit(1, "pt"), inherit.aes = FALSE
+  ) +
+  annotate("segment", x = 4.82, xend = 4.82, y = 80.3, yend = 79.5, linewidth = g24_lw(0.5)) +
+  annotate(
+    "label", x = 10, y = 80.85, label = "bold('2013 average')~'80.5'", parse = TRUE, size = g24_text, hjust = 1,
+    fill = g24l_ground, border.colour = NA, label.padding = unit(1, "pt")
+  ) +
+  annotate(
+    "label", x = 3.55, y = c(70.2, 69.2), label = c("2013 average", "$3,453"), fontface = c("bold", "plain"),
+    size = g24_text, hjust = 0, fill = g24l_ground, border.colour = NA, label.padding = unit(1, "pt")
+  ) +
+  ## A key of the joined pair, above the plot at the left.
+  annotate("segment", x = -0.1, xend = 0.6, y = 85.3, yend = 85.3, colour = p24[["dark gray"]],
+           linewidth = g24_lw(0.75)) +
+  annotate(
+    "point", x = c(-0.1, 0.6), y = 85.3, shape = 21, fill = g24l_year_cols, colour = "black",
+    size = g24l_dot_size, stroke = g24l_outline
+  ) +
+  annotate("text", x = -0.3, y = 85.3, label = "2003", hjust = 1, size = g24_text) +
+  annotate("text", x = 0.8, y = 85.3, label = "2013*", hjust = 0, size = g24_text) +
+  g24l_y_title("Life expectancy, years") +
+  coord_cartesian(xlim = c(-0.8, 10), ylim = c(68, 84), expand = FALSE, clip = "off") +
+  ## 80 is left off, where the average label sits.
+  g24_value_axis(breaks = c(70, 72, 74, 76, 78, 82, 84)) +
+  scale_x_continuous(breaks = 0:9) +
+  scale_fill_manual(values = g24l_year_cols, guide = "none") +
+  labs(
+    title = "Right nation",
+    subtitle = "Health spending and life expectancy at birth\nOECD countries",
+    x = "Health expenditures per person\nat purchasing-power parity, current prices, $'000",
+    y = NULL, caption = "*Or latest\nSource: OECD"
+  ) +
+  g24_theme() +
+  g24l_scatter_theme()
+
+g24_chart(g24l_right_nation)
+```
+
+Against 2017: the gridlines run whole both ways and break only under the labels; the pair is salmon and red rather than cyan and maroon; the other countries are light gray, and the key sits above the plot at the left. `r g24_2017("connected-scatter")`
+
+### Bubble chart
+
+The bubble chart of `20260117_WOC860` sets the conventions: translucent bubbles in the palette colors, with no outline, sized by area; a key of colored dots for the groups and a size key of two nested black circles, both inside the panel; and a black outline on the bubbles it names.
+Direction labels for an axis are gray, in sentence case, with an arrow (`20260829_USC103`).
+
+```{r g24-lines-vitality-data}
+set.seed(4)
+g24l_regions <- c("Northeast", "Midwest", "West", "South")
+## Per region: number of counties, health score mean and spread, swing at the mean health, and
+## how large the counties are (log-mean of voting-eligible population).
+g24l_region_spec <- data.frame(
+  region = g24l_regions, n = c(150, 700, 70, 450),
+  health_mean = c(42, 37.5, 50, 47), health_sd = c(6, 5, 8, 9),
+  swing_mean = c(12, 15, -2, 5), swing_sd = c(7, 9, 11, 8), size_mean = c(1.2, 0.2, 1.6, 0.8)
+)
+g24l_counties <- do.call(rbind, lapply(seq_len(nrow(g24l_region_spec)), function(i) {
+  r <- g24l_region_spec[i, ]
+  health <- pmin(66, pmax(22, rnorm(r$n, r$health_mean, r$health_sd)))
+  data.frame(
+    region = r$region,
+    health = health,
+    swing = r$swing_mean - 1 * (health - r$health_mean) + rnorm(r$n, 0, r$swing_sd),
+    pop = rlnorm(r$n, r$size_mean, 0.75)
+  )
+}))
+## Drawn from the southern cloud up, so the Midwest and Northeast lie on top.
+g24l_counties$region <- factor(g24l_counties$region, levels = c("South", "West", "Midwest", "Northeast"))
+g24l_counties <- g24l_counties[order(g24l_counties$region), ]
+g24l_counties$region <- factor(g24l_counties$region, levels = g24l_regions)
+
+g24l_region_cols <- c(
+  Northeast = p24[["red"]], Midwest = p24[["salmon"]], West = p24[["blue"]], South = p24[["light blue"]]
+)
+g24l_bubble_alpha <- 0.55
+
+## The key, inside the panel at the top right: regions, then bubble size.
+g24l_vitality_key <- function(show_regions = TRUE) {
+  region_key <- if (show_regions) {
+    list(
+      annotate("text", x = 61.1, y = 46.5, label = "Region", hjust = 0, fontface = "bold", size = g24_text),
+      annotate(
+        "point", x = 61.6, y = c(40.5, 34.5, 28.5, 22.5), size = 2.1, colour = g24l_region_cols,
+        alpha = g24l_bubble_alpha
+      ),
+      annotate("text", x = 63, y = c(40.5, 34.5, 28.5, 22.5), label = g24l_regions, hjust = 0, size = g24_text)
+    )
+  }
+  c(region_key, list(
+    annotate("point", x = 62.8, y = c(12.5, 9.4), shape = 1, size = c(6.6, 1.9), stroke = 0.3),
+    annotate(
+      "text", x = 65.6, y = c(16, 10.5, 5), label = c("Voting", "eligible", "population"), hjust = 0,
+      size = g24_text
+    )
+  ))
+}
+
+## Direction labels in gray with arrows, along the zero rule and under either end of the health axis.
+g24l_direction_labels <- list(
+  annotate(
+    "text", x = 20.6, y = c(2.5, -2.5), label = c("↑ More Republican", "↓ Less Republican"),
+    hjust = 0, vjust = c(0, 1), size = g24_text, colour = g24l_note
+  ),
+  annotate(
+    "text", x = c(20, 73), y = -59, label = c("← Worse health", "Better health →"), hjust = c(0, 1),
+    size = g24_text, colour = g24l_note
+  )
+)
+
+g24l_vitality_frame <- list(
+  geom_hline(yintercept = 0, colour = "black", linewidth = g24l_rule),
+  scale_size_area(max_size = 6.6, guide = "none"),
+  g24l_y_title("Change in Republican margin over Democrats, 2012-16, % points"),
+  g24_value_axis(breaks = seq(-50, 50, 25)),
+  scale_x_continuous(breaks = seq(20, 70, 10)),
+  g24l_direction_labels,
+  coord_cartesian(xlim = c(20, 73), ylim = c(-50.5, 50), expand = FALSE, clip = "off"),
+  g24_theme(),
+  g24l_scatter_theme(),
+  theme(axis.title.x = element_text(hjust = 0.5, margin = margin(t = g24_size * 1.6)))
+)
+g24l_vitality_caption <- paste0(
+  "*Weighted index of obesity, diabetes, heavy drinking, physical exercise and\nlife expectancy, 2010-12\n",
+  "Sources: Atlas of US Presidential Elections; Census Bureau;\n",
+  "IPUMS, University of Minnesota; Institute for Health Metrics\n",
+  "and Evaluation; The Economist"
+)
+```
+
+```{r g24-lines-vitality, econ_size = "two_column", econ_height = 275}
+g24l_vitality <- ggplot(g24l_counties, aes(health, swing)) +
+  geom_point(aes(colour = region, size = pop), alpha = g24l_bubble_alpha, stroke = 0) +
+  scale_colour_manual(values = g24l_region_cols, guide = "none") +
+  g24l_vitality_key() +
+  g24l_vitality_frame +
+  labs(
+    title = "Vitality and the vote",
+    subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+    x = "Index of county health metrics*", y = NULL, caption = g24l_vitality_caption
+  )
+
+g24_chart(g24l_vitality)
+```
+
+Against 2017: unoutlined bubbles in the first four colors of the 2024 order instead of outlined ones in cyan, red, gold and blue; a black zero rule, and direction labels in gray sentence case beside the axes rather than rotated capitals. `r g24_2017("bubble-chart")`
+
+Where the groups are hard to tell apart, the 2017 advice holds and the 2024 charts follow it: one group in red, the rest in a light gray as context, and the points the text discusses outlined in black and named, with leader lines.
+
+```{r g24-lines-vitality-highlight, econ_size = "two_column", econ_height = 275}
+g24l_counties$focus <- ifelse(g24l_counties$region == "Midwest", "Midwest", "Other")
+g24l_counties_hl <- g24l_counties[order(g24l_counties$focus == "Midwest"), ]
+g24l_focus_cols <- c(Midwest = p24[["red"]], Other = p24[["light gray"]])
+## The two labelled counties, in Ohio: each has a leader line from its label down to its dot.
+g24l_called_out <- data.frame(
+  label = c("Jefferson, OH", "Knox, OH"), health = c(32.2, 46), swing = c(30.3, 13),
+  label_y = c(46.4, 39.1), line_top = c(44.4, 36.7)
+)
+
+g24l_vitality_hl <- ggplot(g24l_counties_hl, aes(health, swing)) +
+  geom_point(aes(colour = focus, size = pop), alpha = g24l_bubble_alpha, stroke = 0) +
+  geom_segment(
+    data = g24l_called_out, aes(x = health, xend = health, y = line_top, yend = swing), linewidth = g24_lw(0.5),
+    inherit.aes = FALSE
+  ) +
+  geom_point(
+    data = g24l_called_out, aes(health, swing), shape = 21, size = 1.9, fill = p24[["red"]], colour = "black",
+    stroke = g24l_outline, inherit.aes = FALSE
+  ) +
+  geom_text(data = g24l_called_out, aes(health, label_y, label = label), size = g24_text, inherit.aes = FALSE) +
+  annotate("text", x = 31.5, y = -13, label = "Midwest", size = g24_text, fontface = "bold", hjust = 0) +
+  scale_colour_manual(values = g24l_focus_cols, guide = "none") +
+  g24l_vitality_key(show_regions = FALSE) +
+  g24l_vitality_frame +
+  labs(
+    title = "Vitality and the vote",
+    subtitle = "United States, health metrics against swing to Donald Trump\nBy county",
+    x = "Index of county health metrics*", y = NULL, caption = g24l_vitality_caption
+  )
+
+g24_chart(g24l_vitality_hl)
+```
+
+Against 2017: the Midwest in red against light gray rather than against a pale cyan, the named counties outlined in black, and the group's name in bold black beside its cloud rather than in white inside it. `r g24_2017("bubble-chart")`
