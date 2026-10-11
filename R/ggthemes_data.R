@@ -47,6 +47,14 @@
 #' main color families. These product tokens are kept separate from the
 #' observed chart palettes in `ggthemes_data$economist_2024`.
 #'
+#' `ggthemes_data$economist_2024$print$palette` gives the 2024 print colors as
+#' print specs: the CMYK build of each, inferred as the simplest one whose
+#' rendering through U.S. Web Coated (SWOP) v2 reproduces the color in
+#' published charts, with that rendering (`hex`), the observed color
+#' (`observed`), the CIEDE2000 difference between them (`delta_e`) and a
+#' confidence. The print colors are renderings of their own CMYK builds, not
+#' ICC conversions of the web colors.
+#'
 #' @format A `list` object.
 #' @example inst/examples/ex-ggthemes_data.R
 "ggthemes_data"
