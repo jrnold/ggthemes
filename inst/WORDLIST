@@ -20,9 +20,11 @@ ColrSpace
 DejaVu
 Dosis
 Excel's
+FOGRA
 Fira
 FiveThirtyEight
 Fivethirtyeight
+GRACoL
 Gantt
 Generalising
 Geoms
@@ -57,6 +59,7 @@ RStudio
 Roboto
 SRON
 STIX
+SWOP
 Salud
 SandyMuspratt
 Schoonover's
@@ -102,6 +105,7 @@ centre
 centred
 codepoint
 codepoints
+colorimetric
 colour
 continous
 convolving
@@ -123,6 +127,7 @@ geoms
 ggplot
 ggproto
 github
+gridline
 gridlines
 hardcoding
 hc
@@ -170,6 +175,7 @@ recognises
 reflow
 rlang
 rstudio
+sRGB
 sj
 slopeless
 solarized

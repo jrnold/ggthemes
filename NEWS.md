@@ -116,6 +116,16 @@
 
 ## New features
 
+- New `theme_economist_2024()`, `economist_2024_pal()`,
+  `economist_2024_gradient_pal()`, `scale_colour_economist_2024()` and friends,
+  and `economist_2024_chart()` draw charts in the style *The Economist* has used
+  since its redesign of March 2024: a warm gray print or white web ground, red
+  first, a 20/17/15 type scale and a short red tab. The new article "The
+  Economist chart style guide: 2024 onward" describes the design. The colors
+  are provisional and will be updated when a better corpus of examples is
+  available. `guide_colourbar_economist_2024()`, the default guide of the
+  continuous 2024 scales, draws a long, thin colorbar with its labels above it.
+
 - New `economist_chart()` finishes a `theme_economist()` plot as a classic
   print chart of *The Economist*: it draws the red tab, 5pt by 15pt at the top
   left, which is on 99% of the paper's print charts of 2012 to 2016, an

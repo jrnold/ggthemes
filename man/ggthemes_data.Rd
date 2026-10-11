@@ -59,6 +59,14 @@ HEX, RGB, HSL, and (where available) CMYK values are retained as documented
 source fields. The object also includes derived five-point HSL ramps for the
 main color families. These product tokens are kept separate from the
 observed chart palettes in \code{ggthemes_data$economist_2024}.
+
+\code{ggthemes_data$economist_2024$print$palette} gives the 2024 print colors as
+print specs: the CMYK build of each, inferred as the simplest one whose
+rendering through U.S. Web Coated (SWOP) v2 reproduces the color in
+published charts, with that rendering (\code{hex}), the observed color
+(\code{observed}), the CIEDE2000 difference between them (\code{delta_e}) and a
+confidence. The print colors are renderings of their own CMYK builds, not
+ICC conversions of the web colors.
 }
 \examples{
 library(scales)

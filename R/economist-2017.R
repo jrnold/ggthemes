@@ -475,18 +475,34 @@ economist_2017_chart <- function(
   number = NULL,
   tab = c(15, 5)
 ) {
-  if (!ggplot2::is_ggplot(plot)) {
-    cli::cli_abort("{.arg plot} must be a ggplot, not {.obj_type_friendly {plot}}.")
-  }
   media <- rlang::arg_match(media)
-  if (!is.null(footnote) && !rlang::is_string(footnote)) {
-    cli::cli_abort("{.arg footnote} must be a single string or {.code NULL}.")
-  }
-  if (!is.null(number) && length(number) != 1) {
-    cli::cli_abort("{.arg number} must be a single value or {.code NULL}.")
-  }
   if (!is.numeric(tab) || length(tab) != 2 || any(tab < 0)) {
     cli::cli_abort("{.arg tab} must be two non-negative numbers: a width and a height in points.")
+  }
+  new_economist_chart(plot, media, footnote, number, tab, era = "2017")
+}
+
+# The chart grob behind economist_2017_chart() and economist_2024_chart().
+# `tab` is in the 2017 guide's points; `era` picks the furniture that
+# economist_2017_layout() draws.
+new_economist_chart <- function(
+  plot,
+  media,
+  footnote,
+  number,
+  tab,
+  era = c("2017", "2024"),
+  call = rlang::caller_env()
+) {
+  era <- rlang::arg_match(era)
+  if (!ggplot2::is_ggplot(plot)) {
+    cli::cli_abort("{.arg plot} must be a ggplot, not {.obj_type_friendly {plot}}.", call = call)
+  }
+  if (!is.null(footnote) && !rlang::is_string(footnote)) {
+    cli::cli_abort("{.arg footnote} must be a single string or {.code NULL}.", call = call)
+  }
+  if (!is.null(number) && length(number) != 1) {
+    cli::cli_abort("{.arg number} must be a single value or {.code NULL}.", call = call)
   }
   # The footnote shares the source line, so the plot needs one to share.
   if (!is.null(footnote) && is.null(plot$labels$caption)) {
@@ -501,13 +517,14 @@ economist_2017_chart <- function(
     footnote = footnote,
     number = number,
     tab = tab,
+    era = era,
     cl = "ggthemes_economist_chart"
   )
 }
 
 #' @exportS3Method grid::makeContent
 makeContent.ggthemes_economist_chart <- function(x) {
-  gt <- economist_2017_layout(x$plot, x$media, x$footnote, x$number, x$tab)
+  gt <- economist_2017_layout(x$plot, x$media, x$footnote, x$number, x$tab, x$era)
   gt <- economist_2017_edge_labels(gt)
   grid::setChildren(x, grid::gList(gt))
 }
@@ -567,8 +584,20 @@ makeContent.ggthemes_edge_text <- function(x) {
   grid::setChildren(x, grid::gList(text))
 }
 
-economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, tab = c(15, 5)) {
-  spec <- ggthemes::ggthemes_data[["economist_2017"]][[media]]
+# `era = "2024"` draws the 2024 furniture instead (see economist_2024_chart()):
+# no web rule or raised web key, an outlined number box and a black rule over
+# each panel heading. Sizes are still in the 2017 guide's points, scaled by
+# base_size / economist_2017_base.
+economist_2017_layout <- function(
+  plot,
+  media,
+  footnote = NULL,
+  number = NULL,
+  tab = c(15, 5),
+  era = c("2017", "2024")
+) {
+  era <- rlang::arg_match(era)
+  spec <- ggthemes::ggthemes_data[[paste0("economist_", era)]][[media]]
   accent <- spec[["accent"]]
   theme <- ggplot2::complete_theme(plot$theme)
   k <- ggplot2::calc_element("text", theme)$size / economist_2017_base
@@ -577,7 +606,7 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
   red <- grid::gpar(fill = accent, col = NA)
 
   gt <- ggplot2::ggplotGrob(plot)
-  if (media == "web") {
+  if (era == "2017" && media == "web") {
     gt <- economist_2017_key_up(gt)
   }
   gt <- economist_2017_titles_up(gt, theme, k)
@@ -594,7 +623,7 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
       name = name
     )
   }
-  if (media == "web") {
+  if (era == "2017" && media == "web") {
     rule <- grid::rectGrob(
       x = 0,
       y = 1,
@@ -645,7 +674,9 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
     }
   }
 
-  if (!is.null(number)) {
+  if (!is.null(number) && era == "2024") {
+    gt <- everywhere(gt, economist_2024_number_box(number, theme, plot_margin, pt), "economist-number")
+  } else if (!is.null(number)) {
     box_fill <- spec[[if (media == "print") "number_box" else "box"]]
     box_x <- grid::unit(1, "npc") - plot_margin[2]
     box_y <- grid::unit(1, "npc") - plot_margin[1] - pt(10)
@@ -676,14 +707,16 @@ economist_2017_layout <- function(plot, media, footnote = NULL, number = NULL, t
     gt <- everywhere(gt, box, "economist-number")
   }
 
+  marker_size <- switch(era, `2017` = c(10, 1), `2024` = tab * c(1, 0.25))
+  marker_gp <- switch(era, `2017` = red, `2024` = grid::gpar(fill = spec[["text"]], col = NA))
   for (i in which(grepl("^strip-t", gt$layout$name))) {
     marker <- grid::rectGrob(
       x = 0,
       y = 1,
-      width = pt(10),
-      height = pt(1),
+      width = pt(marker_size[1]),
+      height = pt(marker_size[2]),
       just = c("left", "top"),
-      gp = red
+      gp = marker_gp
     )
     cell <- gt$layout[i, ]
     gt <- gtable::gtable_add_grob(

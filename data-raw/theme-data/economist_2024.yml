@@ -4,9 +4,21 @@
 #
 # The six-colour qualitative order is stable across the clearest six-series
 # examples: red, salmon, blue, light blue, dark grey, light grey. Print and
-# web use distinct production values. Sequential and diverging ramps are
-# reduced to perceptually useful stops sampled from maps, heatmaps and shaded
-# bands; ggplot2 interpolates between them for continuous data.
+# web use distinct production values. The web set recurs in about 420 web
+# charts from April 2024 to August 2026; the print set beyond red and salmon
+# rests mainly on one 2026 chart (20260829_FNC090), and 2024 print blues vary.
+#
+# `single` is the brighter red of plain single-series bars, columns and lines.
+# It rarely shares a chart with `accent`, the emphasis red of multi-series and
+# annotated charts (3 of 94 print charts).
+#
+# The ramps are reconstructions, not sampled house ramps. The web red ramp
+# comes from one map (20260801_WOM946). The print grey steps lie on the blend
+# between text ink and ground, so they are anti-aliased text, used here only
+# as plausible warm-grey steps. ggplot2 interpolates between stops.
+#
+# All of these palettes are provisional: update them when a better corpus of
+# examples is available.
 print:
   bg:
   - {name: "panel", value: '#ECEBE0'}
@@ -24,7 +36,6 @@ print:
   - {name: "red 2", value: '#F8AB90'}
   - {name: "red 3", value: '#F04F38'}
   - {name: "red 4", value: '#ED1C24'}
-  - {name: "red 5", value: '#8E0D15'}
   sequential_gray:
   - {name: "gray 0", value: '#F3F1E6'}
   - {name: "gray 1", value: '#D8D6C8'}
@@ -41,6 +52,22 @@ print:
   - {name: "red 2", value: '#F04F38'}
   - {name: "red 3", value: '#ED1C24'}
   accent: '#ED1C24'
+  single: '#F04F38'
+  # Print specs: the simplest CMYK build that reproduces each observed print
+  # colour through U.S. Web Coated (SWOP) v2, and its rendering. The print
+  # values are SWOP renderings of their own CMYK builds, not ICC conversions
+  # of the web values. See data-raw/economist_2024_swop.R.
+  palette:
+  - {name: "red", role: "series", cmyk: "0/100/100/0", hex: '#ED1C24', observed: '#ED1C24', delta_e: 0.0, confidence: "high"}
+  - {name: "single red", role: "series", cmyk: "0/85/85/0", hex: '#F04E37', observed: '#F04F38', delta_e: 0.2, confidence: "high"}
+  - {name: "salmon", role: "series", cmyk: "0/40/40/0", hex: '#F9AA8F', observed: '#F8AB90', delta_e: 0.4, confidence: "high"}
+  - {name: "blue", role: "series", cmyk: "95/85/0/0", hex: '#2C479E', observed: '#28479D', delta_e: 0.6, confidence: "medium"}
+  - {name: "light blue", role: "series", cmyk: "60/30/0/0", hex: '#659AD2', observed: '#659BD2', delta_e: 0.4, confidence: "high"}
+  - {name: "dark gray", role: "series", cmyk: "0/0/0/75", hex: '#636466', observed: '#636466', delta_e: 0.0, confidence: "high"}
+  - {name: "light gray", role: "series", cmyk: "0/0/0/25", hex: '#C7C8CA', observed: '#C6C8CA', delta_e: 0.5, confidence: "high"}
+  - {name: "panel", role: "ground", cmyk: "0/0/6/8", hex: '#ECEBDF', observed: '#ECEBE0', delta_e: 0.4, confidence: "medium"}
+  - {name: "panel alternate", role: "ground", cmyk: "4/3/9/0", hex: '#F2F0E5', observed: '#F3F1E6', delta_e: 0.2, confidence: "medium"}
+  - {name: "text", role: "text", cmyk: "50/45/50/85", hex: '#22211D', observed: '#24211E', delta_e: 1.8, confidence: "low"}
   grid: '#CCCCC3'
   text: '#24211E'
   source: '#636466'
@@ -83,6 +110,7 @@ web:
   - {name: "red 2", value: '#F6423C'}
   - {name: "red 3", value: '#E3120B'}
   accent: '#E3120B'
+  single: '#F6423C'
   grid: '#D9D9D9'
   text: '#0D0D0D'
   source: '#666666'
