@@ -3065,6 +3065,38 @@ gt::gt(cells, id = "what-to-expect") |>
   gt::tab_style(rule_heavy, gt::cells_body(rows = 6))
 ```
 
+### Indicator tables
+
+The guide does not cover the weekly "Economic and financial indicators" pages at the back of the paper, which are tables of their own kind.
+They kept the [classic format](economist-classic-styleguide.html#indicator-tables) for a year and a half after the guide, until the issue of 6 October 2018; from 20 October 2018 they take the format here.
+It is measured on the pages of three issues, 20 October 2018, 14 September 2019 and 6 January 2024: "Economic data" in two parts (`INT101`, `INT102`), "Markets" (`INT201`) and "Commodities" (`INT401`).
+The colors are the same, to the byte, on every page.
+
+- **Fewer, larger rows.** The countries fall from 58 in seven groups to 43 in six: the five largest economies, the euro area, the rest of Europe, Asia, Latin America, and the Middle East and Africa.
+  The classic tail of smaller economies goes, with Hungary and Venezuela; Peru and the Philippines join their regions.
+  "Output, prices and jobs" loses industrial production, next year's forecast and last year's inflation, and with the trade, exchange-rate and interest-rate page becomes two pages of "Economic data".
+- **Bands in the number-box blue.** Every second row is filled, starting with the first, with the guide's print number box at 60%, a print tint (`#D7E7EF` on the pages; ΔE 0.7).
+- **Key figures in boxes.** The latest figure of a series is set in a box of the number-box blue itself (`#B1D0DF` on the pages; ΔE 1.6), or of salmon where it is negative (`#FAC2AD`, the 2024 print salmon at 75%; ΔE 0.4).
+  The box is narrower than its column, so it reads as a block, not a band. "Markets" and "Commodities" box both of their changes.
+  The second page boxes the current-account balance and a currency's change; its interest-rate column boxed the change in basis points in October 2018, and the latest yield by September 2019, when the page had also gained a budget balance.
+- **No signs.** Only negative figures carry a sign.
+- **Solid rules.** A black rule closes the column heads, separates the groups of countries and closes the table.
+  There are no dashed rules.
+- **Column groups set flush left.** Each group's name is in bold, after a vertical black rule that runs down the heads only, with its unit in light type under it ("% change on year ago:") and the columns' labels in light type below.
+- **Light type.** The figures, the country names and the periods are light; the periods have a column of their own, in smaller type.
+  "Markets" sets each country in bold before its index in light ("**United States** DJIA").
+- **Commodities** heads each index with its name in bold on the band, with a solid rule between the indices.
+
+The table below is the first page of the new format in full, "Economic data, 1 of 2" of 20 October 2018.
+The [classic](economist-classic-styleguide.html#indicator-tables) and [2024](economist-2024-styleguide.html#indicator-tables) guides set the same figures in their own styles, with the same builder, `indicator_table()` in `vignettes/articles/economist-indicators.R`.
+
+```{r indicator-table}
+source("economist-indicators.R")
+## The 2018 style: number-box bands, the latest figures boxed in the number-box blue or, where negative, in salmon,
+## solid rules between the groups, and the groups' names flush left after a vertical rule.
+indicator_table("2017")
+```
+
 ## Pie / doughnut
 
 > **NOTE: Use with caution.**
