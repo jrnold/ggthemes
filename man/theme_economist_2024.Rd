@@ -70,6 +70,8 @@ Other economist 2024:
 \code{\link[=economist_2024_chart]{economist_2024_chart()}},
 \code{\link[=economist_2024_gradient_pal]{economist_2024_gradient_pal()}},
 \code{\link[=economist_2024_pal]{economist_2024_pal()}},
+\code{\link[=geom_gridline_economist_2024]{geom_gridline_economist_2024()}},
+\code{\link[=geom_ribbon_economist_2024]{geom_ribbon_economist_2024()}},
 \code{\link[=guide_colourbar_economist_2024]{guide_colourbar_economist_2024()}},
 \code{\link[=scale_colour_economist_2024]{scale_colour_economist_2024()}}
 }
