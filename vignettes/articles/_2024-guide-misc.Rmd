@@ -172,7 +172,7 @@ Against 2017: a plain baseline with ticks replaces the band of year cells; event
 
 On a data chart the events stand on the baseline and rise past the lines to their labels.
 Event labels stay gray whatever the colors of the data, as the 2017 guide asked; in the corpus they are gray or black, never a series color.
-Gridlines run the full width: the corpus does not break them to stubs, even across a row of labels (`20260829_FBC067`).
+Gridlines usually run the full width (`20260829_FBC067`); on a line chart that names its series on the chart, a gridline stops where a name stands on it (`20250329_EPC233`, `20240420_EPC345`).
 The two scales follow the dual-scale `20260829_FNC018`: each scale's labels and its unit are set at its own end in its line's color, with the focus, GDP, in red and oil production in dark gray.
 
 ```{r g24-misc-iran-oil, econ_size = "two_column", econ_height = 222}
@@ -250,6 +250,73 @@ g24_chart(g24m_iran_oil, footnote = "*Abolhassan Banisadr  †Mohammad-Ali Rajai
 ```
 
 Against 2017: full gridlines rather than stubs; the scales colored by their lines, red and dark gray where 2017 used maroon and blue; the Iran-Iraq war a gray period without a rule on top; and the leaders and presidents in two named rows below the years rather than on colored bars. The Shah, whose reign 2017 also drew as a bar, is left to the revolution's label. `r g24_2017("data-timeline")`
+
+### Events on an ordinary line chart
+
+The smallest timeline is an ordinary line chart with one or two events marked (`20240727_AMC511`).
+Each event is a thin gray rule from the baseline up to a small dot, with its label in gray type beside the dot, in three short lines.
+The rules run the full height of the panel and cross the lines, which stay in front.
+Nothing else is annotated.
+The series are named in place in black, plain for two of them and italic for the third, whose label sits below the lines and points up to its line with a short black leader ending in a dot; the leader is black where the event rules are gray, which is how the two are told apart.
+
+```{r g24-misc-via-dollarosa, econ_height = 165}
+## Approximate values read to follow the chart: quarterly, 2020Q1 to 2024Q1.
+g24m_dollar_at <- 2020.125 + 0.25 * (0:16)
+g24m_dollar <- data.frame(
+  quarter = rep(g24m_dollar_at, 3),
+  exports = c(
+    ## El Salvador
+    -2, -51, -6, 3, 10, 120, 22, 13, 16, 11, 9, -4, -4, -10, -14, -8, -14,
+    ## Ecuador
+    3, -27, -8, 5, 8, 57, 33, 31, 37, 31, 13, -8, -12, -11, 3, -1, 8,
+    ## Latin American average
+    3, -26, -6, 3, 9, 52, 24, 20, 22, 18, 14, 6, 0, -6, -4, 0, 2
+  ),
+  series = factor(
+    rep(c("El Salvador", "Ecuador", "Latin American average"), each = 17),
+    levels = c("El Salvador", "Ecuador", "Latin American average")
+  )
+)
+g24m_dollar_events <- g24m_event_data(
+  x = c(2021.45, 2022.69), y = -62, yend = c(122, 73),
+  label = c("US dollar starts\nto consistently\nappreciate", "Peak dollar\nindex rate\nsince 2002")
+)
+
+g24m_via_dollarosa <- ggplot(g24m_dollar, aes(quarter, exports, colour = series)) +
+  ## The events are behind the lines.
+  g24m_events(g24m_dollar_events, pad = 0.07, lift = 5, size = g24_text) +
+  ## The red series, the subject, a little heavier and last.
+  geom_line(data = subset(g24m_dollar, series != "El Salvador"), linewidth = g24l_line) +
+  geom_line(data = subset(g24m_dollar, series == "El Salvador"), linewidth = 1.4 * g24l_line) +
+  ## The leader of the unlabelled-in-place series: black, down from its line to the label.
+  annotate("segment", x = 2023.375, xend = 2023.375, y = -5, yend = -24, colour = "black", linewidth = g24_lw(0.75)) +
+  annotate("point", x = 2023.375, y = -5, colour = "black", size = g24_pt(2.5), stroke = 0) +
+  g24l_labels(g24l_lab(2020.19, 73, "El Salvador")) +
+  g24l_labels(g24l_lab(2023.7, 15, "Ecuador")) +
+  annotate(
+    "text", x = 2022.94, y = -37, label = "Latin American\naverage", hjust = 0, size = g24_text, lineheight = 0.95,
+    fontface = "italic", colour = "black"
+  ) +
+  geom_hline(yintercept = 0, colour = "black", linewidth = g24l_rule) +
+  g24_value_axis(limits = c(-62, 130), breaks = seq(-60, 120, 30), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(2020, 2024.4), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = 2020:2024 + 0.5, minor_breaks = 2020:2024, labels = c("2020", "21", "22", "23", "24")
+  ) +
+  scale_colour_manual(
+    values = c("El Salvador" = p24[["red"]], Ecuador = p24[["salmon"]], "Latin American average" = p24[["blue"]]),
+    guide = "none"
+  ) +
+  labs(
+    title = "Via Dollarosa", subtitle = "Goods exports, % change on a year earlier",
+    x = NULL, y = NULL, caption = "Source: Haver Analytics"
+  ) +
+  g24_theme()
+
+g24_chart(g24m_via_dollarosa)
+```
+
+Against 2017: the 2017 timeline is a band of year cells with labelled events across the whole chart; here the events are two gray rules on a line chart with its own value axis and gridlines, which keep their full width behind the rules and labels. `r g24_2017("data-timeline")`
 
 ### Bar chart timeline
 
@@ -847,7 +914,8 @@ Against 2017: the box is outlined in black, where 2017 filled it. `r g24_2017("n
 
 ### Highlight panels
 
-A forecast or estimate is a gray block the height of the panel, labelled "Forecast" in gray at its top (`20240427_ASC408`, `20260829_FNC025`).
+A forecast or estimate is a gray block the height of the panel, labelled "Forecast" in gray at its top (`20240427_ASC408`, `20260829_FNC025`); in a scatter the label stands at the middle of the block (`20250906_WBC303`).
+A line chart's forecast can instead be the same line, dotted (`20240720_BRC433`; see [Forecasts on lines](#forecasts-on-lines)).
 Usually it has no rule along its top.
 
 ```{r g24-misc-highlight-neutral, econ_height = 165}
@@ -1151,7 +1219,7 @@ Against 2017: unchanged. `r g24_2017("truncated-year-labels")`
 ### Broken scales
 
 A value axis that does not start at zero is marked by a small zigzag in black, below the lowest label at the right-hand end, between the lowest gridline and the baseline.
-Five print charts, all from the issue of 29 August 2026, have it (`20260829_EPC023`, `20260829_EUC006`, `20260829_FNC018`, `20260829_FNC021`, `20260829_FNC982`), and eight of the 119 web graphics of 2026 (`20260131_WOC222`).
+Five print charts, all from the issue of 29 August 2026, have it (`20260829_EPC023`, `20260829_EUC006`, `20260829_FNC018`, `20260829_FNC021`, `20260829_FNC982`), and so do two earlier ones, `20240720_BRC433` and `20250301_DAC769`; so do eight of the 119 web graphics of 2026 (`20260131_WOC222`).
 An inverted scale goes without (`20260829_MAC047`), and columns start at zero, as the 2017 guide asked.
 `geom_scale_break_economist_2017()` draws the same mark in the same place.
 
@@ -1173,7 +1241,7 @@ Red is a signal, not background decoration.
 - dashed line: projection, scenario or fitted relationship;
 - pale band: interval or uncertainty;
 - thin gray rule ending in a dot: an event date, labelled in gray beside the dot;
-- gray block the height of the panel: a named period, such as a forecast, a war or a term of office;
+- gray block the height of the panel: a named period, such as a forecast, a war or a term of office (a line's forecast can be dotted instead);
 - small zigzag below the lowest value label: a value axis that does not start at zero.
 
 ### Keys and direct labels

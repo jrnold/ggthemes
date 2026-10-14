@@ -103,7 +103,7 @@ g24t_table <- function(tbl, id, title, subtitle = NULL, source = NULL, notes = N
 
 ## Tables
 
-Tables are rare in the 2024 corpus: 2 of the 88 surveyed print charts, and none of the 118 web graphics of 2026 is a table on its own, though two set their figures in table-like rows.
+Tables are not common in the 2024 corpus: 2 of the 88 surveyed print charts (`20241214_USC174` is another, outside the survey), and none of the 118 web graphics of 2026 is a table on its own, though two set their figures in table-like rows.
 The two print tables share one style, `20250215_FNC938` ("Pulling up the ladder") and `20250614_EPC629` ("Jobs for the boys"):
 
 - **The chart's frame.** The table sits on the print ground under the red tab, the headline and the bold subtitle of a chart, with the source at its foot in gray.
@@ -183,7 +183,7 @@ Against 2017: no alternating fills, a light gray rule under every row, and descr
 ### With color highlight
 
 The 2024 tables highlight a figure by boxing it: a block of color narrower than its column, with the figure inside.
-`20250614_EPC629` fills each figure's box from the red ramp, salmon for the lowest values and red for the highest, and outlines the boxes of its first row in black; the indicator tables box their key figures in gray or salmon.
+`20250614_EPC629` fills each figure's box from the red ramp, salmon for the lowest values and red for the highest, and outlines the boxes of its first row in black; the indicator tables box their key figures in gray or salmon; `20241214_USC174` fills every figure's box with one red, the single-series red, whatever the value (see [Table with one color of box](#table-with-one-color-of-box)).
 The corpus has no table with a totals row, so the totals below are set in bold with their figures boxed in salmon, the related, less emphatic color, keeping red for a single point of focus.
 The text stays black, except on the two darkest steps of a ramp, which turn their figures white ("Strewth", below).
 
@@ -283,6 +283,88 @@ gt::gt(g24t_strewth, id = "g24-strewth") |>
 ```
 
 Against 2017: the 2017 guide fills whole rows, never single figures; here every figure is boxed, its fill a step on a red ramp. `r g24_2017("with-color-highlight")`
+
+### Table with one color of box
+
+The print table `20241214_USC174` ("Breakdown", 2024) boxes every figure in one fill: a text-and-figure table whose
+color carries no value.
+Seven rows give a component of the excess health spending of the United States relative to the OECD, a description at
+the left and its share at the right ("15%", "<5%", "40%"), each share in a box of the same red-orange with white text.
+The fill is `#F04F38`, the print single-series red (`single24[["print"]]`), in every row, whether the figure is 5%, 15%
+or 40%, and the boxes are all one width, the figures ranged right inside them.
+It is not a step of the sequential red of the heat table above, and not the emphasis red of the tab (`#ED1C24`): the
+tab keeps its own red, the figures take the plain single-series red, as a plain one-series chart does.
+The color marks the column as the table's data, not a size: the figure itself says how large each component is.
+
+- **One fill, white figures.** A single color for every box, with white text; unlike "Strewth", the table has no
+  ramp and no figure on a pale step in black.
+- **Boxes as tall as nearly the row.** A box is about 60% of the height of the row's pitch and about a tenth of the
+  table's width, ranged to the right edge, and the descriptions run on the left in regular black.
+- **Rules.** A light gray rule runs over the first row and under every row, the last included, with none at the sides and no head.
+  In the original it is a warm gray (`#D1D0C7` on the `#ECEBE0` ground), a translucent black, close to but not
+  the cool `p24[["light gray"]]` of the other tables here.
+- **A numbered table.** The number box ("2") sits at the right of the headline, level with it, as on a chart that is one of
+  several in a piece.
+- **Notes.** The footnote ("*Using 12 comparator countries") sits above the source, both in the source gray.
+
+```{r g24-tables-breakdown}
+## Read from the chart `20241214_USC174`.
+g24t_breakdown <- data.frame(
+  item = c(
+    "More administrative insurance costs", "Providers spend more on administrative activities",
+    "Higher prescription drug costs", "Physicians earn more", "Registered nurses earn more",
+    "More investment in medical machinery/equipment", "Other"
+  ),
+  share = c("15%", "15%", "10%", "10%", "5%", "<5%", "40%")
+)
+## One fill for every figure: the print single-series red (measured `#F04F38`), the text white.
+g24t_breakdown$share <- g24t_box(g24t_breakdown$share, single24[["print"]], "white")
+
+## The guide's heading with a number box at the right of the headline, as the print charts carry theirs.
+g24t_numbered_heading <- function(title, subtitle, number) {
+  gt::html(paste0(
+    sprintf(
+      '<div style="width:%gpt;height:%gpt;background:%s;margin:0 0 %gpt 0"></div>',
+      3.4 * g24_size, 0.45 * g24_size, accent24[["print"]], 1.2 * g24_size
+    ),
+    sprintf(
+      paste0(
+        '<div style="font-weight:700;font-size:%.1fpt;line-height:1.2;display:flex;justify-content:space-between">',
+        '<span>%s</span><span style="border:0.8pt solid %s;font-size:%.1fpt;padding:0 3pt;line-height:1.3">%s</span>',
+        '</div>'
+      ),
+      g24_size * 20 / 15, title, g24t_ink, g24_size * 16 / 15, number
+    ),
+    sprintf(
+      '<div style="font-weight:700;font-size:%.1fpt;line-height:1.18;margin-top:1.5pt">%s</div>',
+      g24_size * 17 / 15, subtitle
+    )
+  ))
+}
+
+g24t_breakdown_gt <- gt::gt(g24t_breakdown, id = "g24-breakdown") |>
+  gt::fmt_markdown(gt::everything()) |>
+  gt::tab_options(column_labels.hidden = TRUE) |>
+  gt::cols_align("right", share) |>
+  gt::cols_width(item ~ gt::pct(84), share ~ gt::pct(16)) |>
+  g24t_table(
+    "g24-breakdown", "Breakdown", source = "Source: The Commonwealth Fund", notes = "*Using 12 comparator countries",
+    width = 200
+  ) |>
+  ## The number box in place of the plain heading, and a thin light gray rule over the first row.
+  gt::tab_header(g24t_numbered_heading(
+    "Breakdown", "United States, components of excess health spending relative to OECD countries, % estimate*", "2"
+  )) |>
+  gt::opt_css(paste(
+    "#g24-breakdown .gt_row { vertical-align: middle !important; }",
+    "#g24-breakdown .gt_row span span { min-width: 16pt !important; padding: 0.3pt 2pt !important; }",
+    "#g24-breakdown tbody tr:first-child td { border-top: 0.6pt solid #D1D0C7 !important; }"
+  ))
+g24t_breakdown_gt
+```
+
+Against 2017: the 2017 guide fills whole rows with a color or leaves a table plain; it has no boxed figures, and no table
+whose figures all take one fill. `r g24_2017("with-color-highlight")`
 
 ### Table with integrated charts
 
