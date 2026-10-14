@@ -158,7 +158,8 @@ g24_chart(g24l_transports)
 
 Against 2017: the base rule is black rather than red; the three modes take red, salmon and blue, and the population is gray, not a fourth hue with a colored label. `r g24_2017("lines-side-by-side")`
 
-The palette stops at six colors, and no line chart in the corpus has more than six series in them; the seven lines of `20240504_EUC088` are German party colors.
+The qualitative palette stops at six colors, and the seven lines of `20240504_EUC088` are German party colors.
+Ordered categories may take a ramp instead (see [Ordered categories](#ordered-categories)): `20240420_EPC345` has seven lines, and `20240720_CNC447` ten, five of them colored.
 The redraw follows `20240427_ASC408`, whose focus line is red with a bold label and whose other lines take the rest of the order: Japan, set in bold in 2017, is red.
 The seventh country, Britain, shares light blue with Russia, a line it never meets, and the labels tell them apart; that pairing is ours.
 
@@ -317,7 +318,7 @@ Against 2017: red leads where 2017 led with blue, and the six colors are three p
 
 ### Highlighting a line against a background
 
-To pick one series out of many, the rest go light gray and are named together, once, in gray type.
+To pick one series out of many, the rest go light gray and are named together, once, in gray type, or, when each is ranked, one by one in black beside its line (`20240720_CNC447`).
 The focus line is the emphasis red, drawn on top and a little heavier, with its name in bold black at its end.
 The redraw follows "Too high for comfort" (2025), which sets Britain's ten-year gilt yield against the other six G7 countries.
 
@@ -437,6 +438,145 @@ g24l_pricier <- ggplot(g24l_rents, aes(month, change, group = city)) +
 
 g24_chart(g24l_pricier)
 ```
+
+### Markers and rank charts
+
+Where the observations are few, or unevenly spaced, each is marked.
+"Democracy index, global average" (`20250301_DAC769`) puts a dot on each year's score, and has none for 2007 or 2009, which the index did not publish, so its first segment runs across two years.
+The dot is the line's own color, drawn over it, with no outline and no white ring, and is about three times as wide as the line is thick (the line is about 1.2pt, the dot 3.6pt).
+The year axis ticks every year but names every other one, so the dots fall on ticks: the labelled years carry a long tick and the others a short one (20px and 13px at the chart's 1080px width).
+The value axis does not start at zero, and says so with the broken-scale mark (see [Broken scales](#broken-scales)); the baseline runs from the left edge only as far as the last year, not under the value labels, while the gridlines run on to the right-hand edge.
+
+A rank chart is the same form with an order in place of a value.
+"It's who you know" (`20240720_CNC447`) ranks ten reasons given for why people are rich, in four surveys (2004, 2009, 2014 and 2023); the x axis is true time, so the last gap, of nine years, is nearly twice as wide as the others.
+Rank 1 is at the top, and the ranks are named in bold at the left (1st, 2nd, ... 10th) in place of a value axis.
+The series are drawn as in a highlight chart: the reasons the story follows take the palette (here red, blue, light blue, salmon and dark gray) and the rest are a light gray, drawn first.
+Each survey is a dot, about 1.8 times as wide as the line is thick (about 3.3pt against 1.8pt).
+The names stand at the right, one for each rank of the last survey, level with the end of their line, in regular black.
+They are not colored, and they are not set in the gray the highlight chart uses for the unnamed rest; each of the ten is named.
+A reason that was not ranked in a survey starts later ("Grew up in a rich family", not ranked in 2004) rather than being drawn up from the foot.
+The gridlines and the baseline run from the first survey to the last and no further, and the baseline's ticks fall at the four surveys alone, not at every year.
+
+```{r g24-lines-rank-setup}
+## Measured on `20240720_CNC447`: the rest are a warm light gray, not the palette's `#C6C8CA`; the dark gray is the
+## palette's. The line is about 1.8pt and the markers about 3.3pt across, at the guide's 7pt axis labels.
+g24l_rank_gray <- "#BABAAD"
+g24l_rank_line <- g24_lw(1.8)
+g24l_rank_dot <- g24_lw(3.3)
+```
+
+```{r g24-lines-rank, econ_height = 215}
+## Read from the chart: the rank of each reason in each survey, from first to tenth (`NA` where it was not ranked).
+g24l_rank_year <- c(2004, 2009, 2014, 2023)
+g24l_rank_data <- list(
+  `Connections` = c(3, 4, 3, 1), `Grew up in a rich family` = c(NA, 6, 5, 2), `Better opportunities` = c(5, 5, 4, 3),
+  `Ability and talent` = c(1, 1, 1, 4), `Hard work` = c(4, 2, 2, 5), `Unfair economic\nsystem` = c(7, 9, 9, 6),
+  `High education` = c(2, 3, 6, 7), `Parents with high\neducation level` = c(NA, 8, 8, 8),
+  `Good luck` = c(6, 7, 7, 9), `Dishonesty` = c(8, 10, 10, 10)
+)
+g24l_ranks <- do.call(rbind, lapply(names(g24l_rank_data), function(n) {
+  data.frame(reason = n, year = g24l_rank_year, rank = g24l_rank_data[[n]])
+}))
+## Drawn from the back: the grays first, then the colors, the red last.
+g24l_rank_cols <- c(
+  `Connections` = p24[["red"]], `Ability and talent` = p24[["blue"]], `High education` = p24[["light blue"]],
+  `Grew up in a rich family` = p24[["salmon"]], `Unfair economic\nsystem` = p24[["dark gray"]]
+)
+g24l_rank_cols <- c(
+  stats::setNames(rep(g24l_rank_gray, 5), setdiff(names(g24l_rank_data), names(g24l_rank_cols))),
+  g24l_rank_cols[c("Unfair economic\nsystem", "High education", "Grew up in a rich family", "Ability and talent",
+                   "Connections")]
+)
+g24l_ranks$reason <- factor(g24l_ranks$reason, levels = names(g24l_rank_cols))
+g24l_ranks <- g24l_ranks[order(g24l_ranks$reason), ]
+g24l_rank_end <- g24l_ranks[g24l_ranks$year == 2023, ]
+
+g24l_rank_plot <- ggplot(g24l_ranks, aes(year, rank, group = reason, colour = reason)) +
+  ## The gridlines and the baseline run from the first survey to the last, and no further.
+  geom_gridline_economist_2024(1:10, 2004, 2023, base_size = g24_size) +
+  annotate("segment", x = 2004, xend = 2023, y = 10.38, yend = 10.38, colour = g24l_ink,
+           linewidth = 0.1 * g24_size / ggplot2::.pt) +
+  geom_line(linewidth = g24l_rank_line) +
+  geom_point(size = g24l_rank_dot, stroke = 0) +
+  ## The names stand beside the last survey, level with their points, in black.
+  geom_text(data = g24l_rank_end, aes(2024.3, rank, label = reason), colour = "black", hjust = 0, vjust = 0.5,
+            lineheight = 0.95, size = g24_text, inherit.aes = FALSE) +
+  scale_colour_manual(values = g24l_rank_cols, guide = "none") +
+  scale_y_reverse(limits = c(10.38, 0.8), breaks = 1:10, expand = c(0, 0),
+                  labels = c("1st", "2nd", "3rd", paste0(4:10, "th"))) +
+  scale_x_continuous(limits = c(2004, 2042.5), expand = c(0, 0), breaks = c(2004, 2009, 2014, 2023),
+                     ## An en space pads "2004" and "09", so that the labels of surveys five years apart do not meet.
+                     labels = c("2004\u2002", "\u200209", "14", "23")) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "It’s who you know", subtitle = "China, reasons given for why\npeople are rich, rank*",
+    x = NULL, y = NULL, caption = "Source: Big Data China,\nCSIS and Stanford"
+  ) +
+  g24_theme() +
+  theme(
+    panel.grid.major.y = element_blank(), axis.line.x = element_blank(),
+    axis.text.y = element_text(face = "bold", hjust = 0, size = rel(17 / 15)),
+    axis.ticks.length.x = unit(0.8 * g24_size, "pt")
+  )
+
+g24_chart(g24l_rank_plot, footnote = "*Based on surveys", number = 1)
+```
+
+```{r g24-lines-democracy-setup}
+## Measured on `20250301_DAC769`, a 1080px-wide web-style export: the line is 8px, the markers 24px across, the major
+## ticks 20px and the minor ticks 13px; at the guide's 160pt width those are about 1.2pt, 3.6pt, 3pt and 2pt.
+g24l_dem_line <- g24_lw(1.2)
+g24l_dem_dot <- g24_lw(3.6)
+```
+
+```{r g24-lines-democracy, econ_height = 172}
+## Economist Intelligence Unit scores, read to follow the chart: the index was published in 2006 and 2008, then every
+## year.
+g24l_democracy <- data.frame(
+  year = c(2006, 2008, 2010:2024),
+  index = c(5.52, 5.55, 5.46, 5.49, 5.52, 5.53, 5.55, 5.55, 5.52, 5.48, 5.48, 5.44, 5.37, 5.28, 5.29, 5.23, 5.17)
+)
+
+g24l_democracy_plot <- ggplot(g24l_democracy, aes(year, index)) +
+  geom_line(colour = single24[["print"]], linewidth = g24l_dem_line) +
+  geom_point(colour = single24[["print"]], size = g24l_dem_dot, stroke = 0) +
+  ## The baseline stops at the last year; the gridlines run on under the axis labels.
+  annotate("segment", x = 2004.95, xend = 2024, y = 5.049, yend = 5.049, colour = "black",
+           linewidth = 0.1 * g24_size / ggplot2::.pt) +
+  geom_scale_break_economist_2017() +
+  coord_cartesian(clip = "off") +
+  g24_value_axis(limits = c(5.049, 5.6), breaks = seq(5.1, 5.6, 0.1), labels = scales::label_number(0.1),
+                 expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(2004.95, 2027.1), expand = c(0, 0), breaks = seq(2006, 2024, 2), minor_breaks = seq(2007, 2023, 2),
+    labels = c("2006", sprintf("%02d", seq(8, 24, 2))),
+    guide = guide_axis(minor.ticks = TRUE, theme = theme(axis.minor.ticks.length.x.bottom = rel(0.65)))
+  ) +
+  labs(
+    title = "Democracy index, global average", subtitle = "167 countries, 10=most democratic",
+    x = NULL, y = NULL, caption = "Source: EIU"
+  ) +
+  g24_theme("web") +
+  theme(axis.line.x = element_blank())
+
+g24_chart(g24l_democracy_plot, "web", tab = c(3.6, 0.37))
+```
+
+Against 2017: the 2017 guide has no rank chart and no line with markers; its nearest forms are the line chart, with its series named beside the lines, and the thermometer's dot terminals. `r g24_2017("lines-side-by-side")`
+
+#### A white ground with a short red tab
+
+`20250301_DAC769` has the code prefix `DAC`, which 44 charts of the corpus share (31 of 2024, 12 of 2025 and one of 2019).
+All 44 have a white ground, a red tab flush with the left edge, and a width of 1080px (the 2019 chart, 1087px); in 43 of them the tab is 128px wide, and in the 2019 chart 102px.
+The tab is 11.9% of the image wide and 1.2% high; the print tab of `20240720_CNC447` is 11.2% by 1.5% (68 by 9px of 608), and a web graphic's, in 2026, 5.7% by 0.6% (40 by 4px of 700).
+So the tab is a print tab, in white, and not a web graphic's.
+The value axis is on the right and its labels run off the right-hand edge, as in a print chart cropped to its panel.
+The ground is pure white, the text near-black (`#000004`) and the gridline a neutral gray (`#CECECE`, a soft rule about 3px wide), where the web values are `#FFFFFF`, `#0D0D0D` and `#D9D9D9` and the print gridline is a warm `#CCCCC3`.
+The red cannot be pinned to either set.
+The tab (`#E22D24`) and the line (`#EF4E44`), in a JPEG that carries an sRGB profile, are nearer to the print reds (`#ED1C24` and `#F04F38`) than to the web ones (`#E3120B` and `#F6423C`), but they match neither, and compression moves a flat red by about this much.
+What the pixels establish is that a white ground and a short red tab do not by themselves say "web" or "print": this is the print layout on a white ground, at 1080px.
+They do not say which production path made it, and the corpus index files all 44 as `print` only because they were found in the image index.
+The redraw uses `g24_theme("web")` for the white ground and the text, a print-sized tab, and the print single-series red.
 
 ### Smoothed lines through points
 
@@ -641,10 +781,179 @@ g24l_tanking <- ggplot(mapping = aes(x, y, colour = series, group = series)) +
 g24_chart(g24l_tanking)
 ```
 
+### Confidence ribbons
+
+A band of uncertainty is a translucent ribbon in the series' own color, with the heavy line through it ("In poll position", 2025, `20250329_EPC233`).
+The ribbon is 17% of the series' color over the ground (the Conservative ribbon is `#CDCCD2` over `#ECEBE0`, the New Democrat ribbon `#EFE1C4`), edged by a hairline of the same color, about 45% opaque, no thicker than a gridline, so that where two ribbons overlap both show (`geom_ribbon_economist_2024()` draws the ribbon and its edges).
+The line is as heavy as any other (about 1.5pt) and carries the series' name; the ribbons carry no name and no key, and the chart's subtitle does not say what they are.
+The chart reads as six lines first and six bands second: the bands are pale enough not to fight with the lines, and none is tinted darker than another.
+Parties take their [party colors](#party-colors), as everywhere (Liberal red, Conservative blue, New Democratic amber, Bloc Québécois light blue, Green green, People's Party dark red).
+The names stand on the chart in black.
+Where a name stands on a gridline, the gridline stops short of it, and starts again beyond it; across the rest of the panel it runs under the ribbons (`geom_gridline_economist_2024()` draws such gridlines).
+A name that has no room beside its line, the People's Party's, is joined to it by a black leader.
+The time axis ticks the year boundaries, as on any line chart, and the first and last spans are short ones: the data begin partway through 2021 (the first label, "2021", sits under a span of a few months) and end on March 25th, so the last label is "25*", with the footnote on the source line saying where the data stop.
+
+```{r g24-lines-poll-position, econ_height = 215}
+## Invented to follow the chart: weekly poll averages from the 2021 election to 25 March 2025, as decimal years, each
+## series a few knots joined by a smooth curve, with a little week-to-week noise, and a 95% interval around it.
+set.seed(2025)
+g24l_wk <- seq(2021.72, 2025.23, length.out = 175)
+g24l_knots <- function(x, y, hw, noise = 0.3) {
+  ## The interval's half-width: one number, or a few spread evenly over the span.
+  hw <- if (length(hw) == 1) rep(hw, length(g24l_wk)) else
+    stats::approx(seq(0, 1, length.out = length(hw)), hw, xout = (g24l_wk - min(g24l_wk)) / diff(range(g24l_wk)))$y
+  jitter <- as.numeric(stats::filter(stats::rnorm(length(g24l_wk), 0, noise), 0.5, method = "recursive"))
+  mid <- stats::spline(x, y, xout = g24l_wk, method = "natural")$y + jitter
+  ## The ribbons stop at the top of the panel, as the Liberal one does in the original.
+  data.frame(x = g24l_wk, y = mid, lo = pmax(mid - hw, 0), hi = pmin(mid + hw, 50.9))
+}
+g24l_polls <- rbind(
+  cbind(series = "Conservative", g24l_knots(
+    c(2021.72, 2021.85, 2022, 2022.3, 2022.7, 2022.95, 2023.2, 2023.6, 2024, 2024.5, 2024.8, 2024.93, 2025.05, 2025.23),
+    c(33.5, 29, 29.5, 33, 34, 33.3, 38, 40, 41.5, 43, 44.5, 43, 38, 36.8), hw = 5, noise = 0.35)),
+  cbind(series = "Liberal", g24l_knots(
+    c(2021.72, 2022, 2022.5, 2023, 2023.5, 2023.9, 2024.3, 2024.8, 2024.95, 2025.05, 2025.15, 2025.23),
+    c(33, 32, 30.5, 28.5, 28, 24.5, 23.5, 21.5, 19.5, 25, 36, 43), hw = c(4, 4.5, 5, 5, 5, 5, 5, 5, 6, 9, 11, 11),
+    noise = 0.35)),
+  cbind(series = "New Democratic", g24l_knots(
+    c(2021.72, 2021.9, 2022.4, 2022.8, 2023.2, 2023.9, 2024.4, 2024.8, 2024.95, 2025.1, 2025.23),
+    c(18, 19.8, 19.7, 18.7, 20, 18, 18.5, 19, 16.5, 14, 8.7), hw = 3, noise = 0.3)),
+  cbind(series = "Bloc Québécois", g24l_knots(
+    c(2021.72, 2021.9, 2022.5, 2023.2, 2023.9, 2024.5, 2024.85, 2025.1, 2025.23),
+    c(7.5, 6.5, 7.1, 6.9, 7.2, 8.2, 8.5, 6.8, 5.7), hw = 2, noise = 0.12)),
+  cbind(series = "People’s Party", g24l_knots(
+    c(2021.72, 2021.9, 2022, 2022.3, 2022.6, 2023, 2024, 2024.8, 2025.23),
+    c(4.8, 6, 6.2, 4.3, 3.3, 2.8, 2.2, 1.9, 1.7), hw = c(2.5, 2.5, 2, 2, 1.5), noise = 0.12)),
+  cbind(series = "Green", g24l_knots(
+    c(2021.72, 2021.85, 2022.4, 2022.8, 2023.2, 2023.6, 2024.3, 2024.6, 2024.95, 2025.23),
+    c(2.7, 3.9, 3.6, 4.2, 3.5, 4.8, 4.4, 4.1, 3.8, 1.7), hw = 1.5, noise = 0.12))
+)
+g24l_poll_names <- c("Conservative", "Liberal", "New Democratic", "Bloc Québécois", "People’s Party", "Green")
+g24l_polls$series <- factor(g24l_polls$series, levels = g24l_poll_names)
+## The party colors: the palette's red, blue and light blue, and the amber, dark red and green of the party table.
+g24l_poll_cols <- c(
+  Conservative = p24[["blue"]], Liberal = p24[["red"]], `New Democratic` = "#FCB315", `Bloc Québécois` = p24[["light blue"]],
+  `People’s Party` = "#B7131A", Green = "#71BF45"
+)
+
+## Gridlines are drawn by hand (`geom_gridline_economist_2024()`), broken where a name stands on them.
+g24l_poll_gaps <- data.frame(y = c(50, 30, 10), from = c(2023.95, 2024.35, 2023.75), to = c(2025, 2024.93, 2024.95))
+
+g24l_poll_position <- ggplot(mapping = aes(colour = series)) +
+  geom_gridline_economist_2024(seq(10, 50, 10), 2021.72, 2025.23, g24l_poll_gaps, base_size = g24_size) +
+  geom_ribbon_economist_2024(aes(x, ymin = lo, ymax = hi, fill = series, group = series), data = g24l_polls) +
+  geom_line(data = g24l_polls, aes(x, y, group = series), linewidth = g24l_line) +
+  ## The name of the People's Party has no room beside its line: a black leader runs down to it.
+  annotate("segment", x = 2022.23, xend = 2022.23, y = 9.6, yend = 4.4, colour = g24l_ink, linewidth = g24l_rule) +
+  g24l_labels(g24l_lab(c(2024, 2024.37, 2021.88, 2023.78, 2021.88, 2021.88), c(50.4, 30.4, 14.4, 10.4, 10.8, 1.3),
+                       c("Conservative", "Liberal", "New Democratic", "Bloc Québécois", "People’s Party", "Green")),
+              vjust = 0.5) +
+  scale_colour_manual(values = g24l_poll_cols, guide = "none") +
+  scale_fill_manual(values = g24l_poll_cols, guide = "none") +
+  g24_value_axis(limits = c(0, 51), breaks = seq(0, 50, 10), expand = c(0, 0), oob = scales::oob_keep) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(
+    limits = c(2021.72, 2025.23), expand = c(0, 0), guide = g24l_span_axis, oob = scales::oob_keep,
+    breaks = c(2021.86, 2022.5, 2023.5, 2024.5, 2025.115), minor_breaks = c(2021.72, 2022:2025, 2025.23),
+    labels = c("2021", "22", "23", "24", "25*")
+  ) +
+  labs(
+    title = "In poll position", subtitle = "Canada, voting intention in\ngeneral election, %",
+    x = NULL, y = NULL, caption = "Source: National polls"
+  ) +
+  g24_theme() +
+  theme(panel.grid.major.y = element_blank())
+
+g24_chart(g24l_poll_position, footnote = "*To March 25th")
+```
+
+Against 2017: the 2017 guide has no uncertainty bands on lines, and the one place it stops a gridline short is at a stacked area's key (`r g24_2017("lines-stacked")`); here names do the same.
+
+### Forecasts on lines
+
+A forecast on a line chart continues the line, in the same color, dotted (`20240720_BRC433`).
+Nothing else changes: the dotted stretch has the same width as the solid one and starts where the data stop, so each series reads as one line that turns from solid to dotted.
+A key at the top left of the panel names the convention, "Forecast", with a short dotted sample in gray, as the key is not for either series.
+The series themselves are named by labels on the lines, in the chart's usual way.
+
+The same chart truncates the value axis, here at 65 with the lowest gridline at 70, and marks the truncation with a small black zigzag at the right-hand end under the lowest label, which is where the 2024 charts put a break (`20240720_BRC433`).
+The year axis is the ordinary one for lines, a tick at each year boundary and a label centered in the year, every second year and the last.
+
+```{r g24-lines-prison-breaks, econ_height = 175}
+## Approximate values read to follow the chart. The solid stretches end where the data end, in early 2024; the dotted
+## ones start there.
+g24l_prison_anchor <- function(at, value, from, to, by = 1 / 12) {
+  data.frame(year = seq(from, to, by), value = approx(at, value, seq(from, to, by))$y)
+}
+g24l_cap <- g24l_prison_anchor(
+  c(2011, 2011.2, 2011.5, 2012, 2012.5, 2012.7, 2012.9, 2013.2, 2013.4, 2014, 2014.5, 2015, 2015.2, 2015.6, 2016,
+    2016.5, 2017, 2017.5, 2018, 2018.5, 2019, 2019.5, 2019.9, 2020, 2020.1, 2020.5, 2021, 2021.5, 2022, 2022.5, 2023,
+    2023.5, 2024, 2024.3),
+  c(88.2, 87, 87.6, 88.8, 90, 89, 87, 86.8, 85, 85.5, 86, 86.2, 85, 86.5, 86.8, 86, 85.6, 86.5, 85.8, 85, 84.5, 84.8,
+    85, 83, 81.5, 81, 80.5, 81, 82, 84, 87, 88.8, 89, 88.5),
+  2011, 2024.3
+)
+g24l_pop <- g24l_prison_anchor(
+  c(2011, 2011.3, 2011.5, 2012, 2012.5, 2012.8, 2013.2, 2013.5, 2014, 2015, 2016, 2017, 2018, 2018.7, 2019, 2019.5,
+    2019.9, 2020, 2020.1, 2020.5, 2021, 2021.5, 2022, 2022.5, 2023, 2023.5, 2023.8, 2024.2),
+  c(84.5, 85, 87, 86.5, 86.8, 83.2, 83, 84.5, 84.5, 84.8, 85, 84.5, 84.8, 83.5, 83, 84, 84.7, 82, 79.5, 79, 78.2,
+    79.5, 80.5, 82.5, 85, 88, 87.2, 87.2),
+  2011, 2024.2
+)
+g24l_cap_fc <- g24l_prison_anchor(c(2024.3, 2025, 2026, 2027, 2028), c(88.8, 91, 93.3, 95.5, 98), 2024.3, 2028)
+g24l_pop_fc <- g24l_prison_anchor(
+  c(2024.2, 2024.6, 2025, 2025.65, 2026.7, 2027.5, 2028), c(87.8, 92, 97, 101.4, 103.5, 104.7, 105.5), 2024.2, 2028
+)
+
+## The dotted stretch is a linetype of the same width: equal dots and gaps, a little longer than the line is wide.
+g24l_forecast_lty <- "21"
+## The key's sample is a gray a step lighter than the text gray (sampled in `20240720_BRC433`, about #969796).
+g24l_key_gray <- econ$print$sequential_gray$value[3]
+
+g24l_prison_breaks <- ggplot() +
+  geom_line(aes(year, value), g24l_cap, colour = "black", linewidth = g24l_line) +
+  geom_line(aes(year, value), g24l_pop, colour = p24[["red"]], linewidth = g24l_line) +
+  geom_line(aes(year, value), g24l_cap_fc, colour = "black", linewidth = g24l_line, linetype = g24l_forecast_lty) +
+  geom_line(aes(year, value), g24l_pop_fc, colour = p24[["red"]], linewidth = g24l_line, linetype = g24l_forecast_lty) +
+  ## The key: a dotted gray sample and its name, at the top left of the panel.
+  annotate(
+    "segment", x = 2011.05, xend = 2012.55, y = 105, yend = 105, colour = g24l_key_gray, linewidth = g24l_line,
+    linetype = g24l_forecast_lty
+  ) +
+  annotate("text", x = 2012.9, y = 105, label = "Forecast", hjust = 0, size = g24_text, colour = g24l_ink) +
+  g24l_labels(g24l_lab(2011, 95.5, "Operational capacity")) +
+  g24l_labels(g24l_lab(2024.6, 107.8, "Population", hjust = 0.5), colour = p24[["red"]]) +
+  geom_scale_break_economist_2017() +
+  g24_value_axis(limits = c(65, 111), breaks = seq(70, 110, 10), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(2011, 2028.1), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = c(seq(2011, 2025, 2) + 0.5, 2028), minor_breaks = 2011:2028,
+    labels = c("2011", "13", "15", "17", "19", "21", "23", "25", "28")
+  ) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Prison breaks",
+    subtitle = "England and Wales, prison population\nand capacity, ’000",
+    x = NULL, y = NULL, caption = "Sources: Ministry of Justice; Institute for Government"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_prison_breaks)
+```
+
+When to use which forecast convention, as far as the corpus charts show:
+
+* **Dotted lines** for a forecast of a line that carries on from its data, in the same color, with the key above (`20240720_BRC433`).
+  The dotted stretch is the series, so the series keeps its color and its label, and only "Forecast" is keyed.
+* **A shaded block** the height of the panel for forecast years behind areas and bars, named "Forecast" in gray at its top (`20240921_WBC092` for a stacked area; see "Lines, stacked" above): a block can sit behind anything, where a dotted line only fits a line.
+* A shaded band behind dots is a further form (`20250906_WBC303`; see [Scatter over time, with a forecast band](#scatter-over-time-with-a-forecast-band)).
+
+Against 2017: the 2017 guide marked a forecast with a star or an asterisk and has no dotted lines; the 2024 forecast is dotted, in the series' own color. `r g24_2017("lines-stacked")`
+
 ## Lines, stacked
 
-Stacked areas are uncommon: 5 of the 88 print charts and 1 of the 119 web graphics.
-The bands stack from the baseline up in the palette order, red at the bottom in four of the five print charts (`20240727_WOC536`, `20240921_WBC092`, `20250614_EPC634`, `20260829_BRC065`).
+Stacked areas are less common than lines: 5 of the 88 print charts surveyed and 1 of the 119 web graphics, and `20250201_USC522`, outside that survey, is another.
+The bands stack from the baseline up in the palette order, red at the bottom in four of those five print charts, or two grays when a line carries the emphasis (`20250201_USC522`, below) (`20240727_WOC536`, `20240921_WBC092`, `20250614_EPC634`, `20260829_BRC065`).
 Thin white rules part the bands in all five, and the gridlines are hidden behind them.
 Every one names its bands inside themselves, in regular type: white on red and blue, black on salmon and gray.
 Bands too thin to name go in a key of squares above the plot (`20260829_BRC065`).
@@ -689,7 +998,7 @@ g24l_hoards <- ggplot(g24l_reserves, aes(year, trn, fill = region, colour = regi
 g24_chart(g24l_hoards)
 ```
 
-Against 2017: red under salmon where 2017 had blue under cyan, the names set in regular type and black on the light band, and the forecast shaded instead of starred. `r g24_2017("lines-stacked")`
+Against 2017: red under salmon where 2017 had blue under cyan, the names set in regular type and black on the light band, and the forecast shaded instead of starred (or, on a line, dotted: see [Forecasts on lines](#forecasts-on-lines)). `r g24_2017("lines-stacked")`
 
 ```{r g24-lines-big-shift, econ_height = 178}
 ## Band thicknesses, bottom to top.
@@ -752,6 +1061,77 @@ g24_chart(g24l_big_shift)
 
 Against 2017: the key sits above the plot and names only the thin bands, where 2017 ran a key for all six into the panel; the bands are the 2024 six in order. `r g24_2017("lines-stacked")`
 
+A stack can carry the total as a line along its top, and a series that is not part of the stack can run over it on the same axis (`20250201_USC522`).
+The bands are two steps of gray, the lower the lighter, with a thin white rule between them; the total is a dark gray line along the top of the upper band, thinner than a data line.
+The series that is not in the stack, active-duty military, is an ordinary 1.5pt red line drawn over the stack at its own values, so it can cross the bands.
+Everything is named on the chart: the red line in red at its start, the total in dark gray above the line, and each band inside itself in black.
+There is no key and no gridline through the bands, which are opaque.
+
+```{r g24-lines-immovable-object, econ_height = 165}
+## Approximate values read to follow the chart, interpolated between years read off it. `other` is the lower band;
+## the upper band is the total less `other`.
+g24l_fed_year <- 1954:2024
+g24l_fed_total <- approx(
+  c(1954, 1960, 1963, 1966, 1967, 1968, 1970, 1973, 1974, 1978, 1980, 1982, 1984, 1986, 1988, 1992, 1996, 1998, 2000,
+    2002, 2004, 2006, 2008, 2009, 2010, 2011, 2013, 2016, 2018, 2021, 2023, 2024),
+  c(2.28, 2.4, 2.48, 2.5, 2.85, 2.9, 2.84, 2.8, 2.9, 2.88, 3, 2.93, 2.97, 3.07, 3.12, 3.2, 3, 2.85, 2.8, 2.86,
+    2.78, 2.75, 2.78, 2.8, 2.98, 2.82, 2.75, 2.82, 2.9, 2.88, 2.96, 3),
+  g24l_fed_year
+)$y
+g24l_fed_other <- approx(
+  c(1954, 1957, 1960, 1963, 1966, 1970, 1975, 1978, 1982, 1985, 1988, 1990, 1993, 1995, 2000, 2002, 2005, 2010,
+    2012, 2020, 2024),
+  c(1.07, 1.15, 1.3, 1.4, 1.55, 1.65, 1.85, 1.9, 1.88, 2.05, 2.15, 2.1, 2, 2.1, 2.1, 2.18, 2.08, 2.2, 2.07, 2.08,
+    2.18),
+  g24l_fed_year
+)$y
+g24l_fed_military <- c(
+  3.25, 2.95, 2.8, 2.65, 2.6, 2.5, 2.48, 2.5, 2.8, 2.7, 2.68, 2.65, 3.1, 3.4, 3.55, 3.45, 3.07, 2.7, 2.32, 2.25,
+  2.16, 2.1, 2.08, 2.07, 2.05, 2.03, 2.05, 2.1, 2.11, 2.13, 2.14, 2.15, 2.17, 2.17, 2.14, 2.13, 2.07, 2, 1.8, 1.7,
+  1.6, 1.52, 1.47, 1.44, 1.41, 1.39, 1.38, 1.38, 1.4, 1.43, 1.43, 1.42, 1.38, 1.38, 1.4, 1.42, 1.43, 1.43, 1.4,
+  1.38, 1.34, 1.31, 1.3, 1.3, 1.32, 1.34, 1.34, 1.33, 1.29, 1.28, 1.25
+)
+g24l_fed <- data.frame(
+  year = rep(g24l_fed_year, 2),
+  n = c(g24l_fed_other, g24l_fed_total - g24l_fed_other),
+  band = factor(rep(c("Other", "Dept. of Defence civilian"), each = length(g24l_fed_year)),
+                levels = c("Other", "Dept. of Defence civilian"))
+)
+g24l_fed_total_line <- data.frame(year = g24l_fed_year, n = g24l_fed_total)
+g24l_fed_mil <- data.frame(year = g24l_fed_year, n = g24l_fed_military)
+## The two grays of the bands, sampled in `20250201_USC522`: the lower is the second step of the print gray ramp, the
+## upper (#C4C4B8) lies between its second and third steps.
+g24l_fed_fill <- c(econ$print$sequential_gray$value[2], "#C4C4B8")
+
+g24l_immovable <- ggplot() +
+  geom_area(
+    aes(year, n, fill = band, colour = band), g24l_fed, position = position_stack(reverse = TRUE),
+    outline.type = "upper", linewidth = g24_lw(0.75)
+  ) +
+  ## The total, along the top of the stack.
+  geom_line(aes(year, n), g24l_fed_total_line, colour = p24[["dark gray"]], linewidth = g24_lw(1)) +
+  ## The unstacked series, over the stack, on top.
+  geom_line(aes(year, n), g24l_fed_mil, colour = p24[["red"]], linewidth = g24l_line) +
+  g24l_labels(g24l_lab(1952.8, 3.76, "Active-duty military", face = "bold"), colour = p24[["red"]]) +
+  g24l_labels(g24l_lab(1988.2, 3.4, "Total federal workforce"), colour = g24l_note) +
+  g24l_labels(g24l_lab(1988.2, 2.44, "Dept. of Defence civilian")) +
+  g24l_labels(g24l_lab(2014.6, 0.64, "Other")) +
+  g24_value_axis(limits = c(0, 4.15), breaks = 0:4, expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1950.5, 2025.7), expand = c(0, 0), breaks = c(1954, 1970, 1980, 1990, 2000, 2010, 2024),
+    labels = c("1954", "70", "80", "90", "2000", "10", "24")
+  ) +
+  scale_fill_manual(values = g24l_fed_fill, guide = "none") +
+  scale_colour_manual(values = c("white", NA), guide = "none") +
+  labs(title = "Immovable object", subtitle = "United States, personnel, m", x = NULL, y = NULL,
+       caption = "Sources: Bureau of Labour Statistics; Department of Defence") +
+  g24_theme()
+
+g24_chart(g24l_immovable)
+```
+
+Against 2017: the 2017 guide has no stack with a line over it; its stacked areas are bands only, in blue and cyan, and a total would have been a label. `r g24_2017("lines-stacked")`
+
 ### Color overrides
 
 The corpus has no alternative order for chronological categories.
@@ -801,9 +1181,9 @@ g24_chart(g24l_limbo_plot)
 
 Against 2017: the standard red, salmon, blue, light blue and dark gray rather than a separate blue-cyan-teal-mauve-maroon run. `r g24_2017("color-overrides-2")`
 
-When the categories are ordered and one of them is the story, the 2024 rules give that one red and set the rest in grays, as the color section says.
+When the categories are ordered and one of them is the story, the 2024 rules give that one red and set the rest in a ramp that steps through salmon into grays, as the [color section](#ordered-categories) says.
 Here the developing middle class is the story; the three poor classes take three steps of the print gray ramp, darkest at the bottom, and the developed middle class takes salmon.
-No stacked chart of ordered classes is in the corpus, so this one applies the color rules rather than copying a chart.
+No *stacked* chart of ordered classes is in the corpus, so this one applies the color rules rather than copying a chart.
 The focus band is named in bold; the others in regular type, with their income ranges under the names.
 
 ```{r g24-lines-emerging-middle, econ_size = "two_column", econ_height = 234}
@@ -1232,7 +1612,7 @@ g24l_outlier <- ggplot(g24l_trust, aes(y = country)) +
 g24_chart(g24l_outlier)
 ```
 
-A lollipop is a dot on a stem from zero: in "Seats per 1m votes" (2024) the stems are dark gray and the dots the single-series red, over gridlines both ways and a black rule at zero.
+A lollipop is a dot on a stem from zero (or from the left edge of a log scale, as in [the lollipop below](#log-scales-on-a-lollipop)): in "Seats per 1m votes" (2024) the stems are dark gray and the dots the single-series red, over gridlines both ways and a black rule at zero.
 Like "Electric car prices", it is a small web chart, with a red headline and no tab.
 
 ```{r g24-lines-lollipop, econ_height = 120}
@@ -1270,20 +1650,87 @@ g24_chart(g24l_lollipop, tab = c(0, 0))
 
 Against 2017: the 2017 guide has no lollipops; its nearest form is a bar.
 
+### Log scales on a lollipop
+
+A lollipop can be on a log scale.
+In "No brakes" (`20240608_WBC240`, a Business-section print chart) each stem runs from the left edge of the panel, at 100x, to a red dot, and each row's name is set above its stem rather than at the left.
+The scale is on top, as in the lollipop above, but because the axis is logarithmic the labels are uneven: `100x`, `200x`, `500x`, `1,000x`, `2,000x`, the 1-2-5 sequence, with the ends of the scale centered on the first and last gridlines.
+Each label's gridline is a major gridline and runs the height of the panel; the other values in each decade, 300x, 400x and 600x to 900x, are drawn as lighter-weight minor lines, but only from the second row down, so the first row's name is clear of them.
+The stems are dark gray and the dots the single-series red, as before; the stem sits on its row's horizontal gridline, which runs the full width.
+The subtitle names the scale in its last line, in regular weight: "2023, Log scale".
+
+```{r g24-lines-brakes-data}
+## Approximate values read to follow the chart: log10 of the multiple at 502px per log10(20) from 100x at x=46 in
+## `20240608_WBC240` (608px wide).
+g24l_brakes <- data.frame(
+  ceo = c("Hock Tan, Broadcom", "William Lansing, Fair Isaac", "Tim Cook, Apple", "Hamid Moghadam, Prologis",
+          "Ted Sarandos, Netflix", "David Zaslav, Warner Bros. Discovery", "Glenn Fogel, Booking Holdings",
+          "Shantanu Narayen, Adobe", "Neil Hunn, Roper Technologies", "Bill McDermott, ServiceNow"),
+  px = c(222, 370, 379, 416, 419, 420, 429, 436, 451, 466)
+)
+g24l_brakes$multiple <- 100 * 20^((g24l_brakes$px - 46) / 502)
+g24l_brakes$row <- rev(seq_len(nrow(g24l_brakes)))
+## The minor lines, other than 1-2-5 values; they start at the second row's line.
+g24l_minor <- c(300, 400, 600, 700, 800, 900)
+```
+
+```{r g24-lines-brakes, econ_height = 265}
+g24l_brakes_plot <- ggplot(g24l_brakes, aes(multiple, row)) +
+  geom_segment(aes(x = 100, xend = multiple, yend = row), colour = p24[["dark gray"]], linewidth = g24_lw(1.5)) +
+  geom_point(colour = single24[["print"]], size = 1.75) +
+  geom_text(aes(x = 106, y = row + 0.38, label = ceo), hjust = 0, size = g24_text) +
+  ## The minor lines: from the line of the second row to the foot of the panel.
+  annotate(
+    "segment", x = g24l_minor, xend = g24l_minor, y = 0.83, yend = 9, colour = g24l_grid, linewidth = g24_lw(0.5)
+  ) +
+  scale_x_log10(
+    position = "top", limits = c(100, 2000), expand = c(0, 0),
+    breaks = c(100, 200, 500, 1000, 2000), labels = c("100x", "200x", "500x", "1,000x", "2,000x")
+  ) +
+  scale_y_continuous(limits = c(0.83, 10.85), breaks = 1:10, expand = c(0, 0)) +
+  ## The last line of the subtitle is regular weight: set over the panel, under the two bold lines.
+  annotation_custom(textGrob(
+    "2023, Log scale", x = unit(0, "npc"), y = unit(1, "npc") + unit(2.9 * g24_size, "pt"), hjust = 0, vjust = 0,
+    gp = gpar(fontsize = g24_size, fontfamily = economist_2017_font(), col = g24l_ink)
+  ), xmin = 100, xmax = 2000, ymin = -Inf, ymax = Inf) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "No brakes",
+    subtitle = "United States, Elon Musk's pay package as a\nmultiple of the ten best-compensated CEOs*\n ",
+    x = NULL, y = NULL,
+    caption = paste0(
+      "*S&P 500 companies that have filed proxy\nstatements and have had their CEO in position\n",
+      "for at least two years\nSources: Equilar; AP; company reports;\nThe Economist"
+    )
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank(),
+    panel.grid.major.y = element_line(colour = g24l_grid)
+  )
+
+g24_chart(g24l_brakes_plot, tab = c(0, 0))
+```
+
+Against 2017: the 2017 guide has no lollipops and no log scale; the log axis is shown with the usual labels and a note in the subtitle, and the minor values of each decade are drawn in the panel rather than ticked on an axis.
+
 ## Scatter plot
 
-Scatter plots are rare in print: one of the 88 print charts (`20260829_BRC066`) and panels in two others.
+Scatter plots are not common in print, but not rare: `20260829_BRC066` is one of the 88 surveyed print charts, and `20250906_WBC303`, `20240706_ASC302` and `20240601_BRC147`, outside that survey, are three more, besides panels in two others.
 The web graphics have more, and agree with it (`20260530_WOC567`, `20260117_WOC860`).
-Gridlines run both ways, and the x axis has no ticks and no baseline unless zero is in range, where both zero rules are black.
+Gridlines run both ways, and the x axis has no ticks and no baseline unless zero is in range, where both zero rules are black; a scatter over time has a line chart's axis and horizontal gridlines only (`20250906_WBC303`).
 The value axis keeps its labels above the gridlines at the right; its title is ranged right above it, level with the subtitle (the `ai2html` files name it `yaxis-header-right`), and the x-axis title is centered under the axis numbers.
 
 ```{r g24-lines-scatter-setup}
 ## The value-axis title, ranged right above the axis, and the room it needs under the subtitle.
-g24l_y_title <- function(label) {
+## On a log x axis, pass the panel's x limits: the default bounds, -Inf and Inf, have no logarithm.
+g24l_y_title <- function(label, xmin = -Inf, xmax = Inf) {
   annotation_custom(textGrob(
     label, x = unit(1, "npc"), y = unit(1, "npc") + unit(1.5 * g24_size, "pt"), hjust = 1, vjust = 0,
     gp = gpar(fontsize = g24_size, fontfamily = economist_2017_font(), col = g24l_ink, lineheight = 0.95)
-  ))
+  ), xmin = xmin, xmax = xmax)
 }
 g24l_scatter_theme <- function(title_lines = 1) {
   theme(
@@ -1486,6 +1933,197 @@ g24_chart(g24l_disinfectant)
 ```
 
 Against 2017: standard dots in translucent red, not blue; the named points are outlined red dots with black names, where 2017 set them in red with gray names. `r g24_2017("standard-scatter")`
+
+### Scatter over time, with a forecast band
+
+A scatter can have a date on the x axis.
+In "Energy bills" (`20250906_WBC303`, a Business-section print chart) each dot is one nuclear power plant, placed by the date it began commercial operation.
+The dots are opaque and each has a thin outline in a darker shade of its own fill (the blue dots' outline is a deep navy, the red dots' a dark red), so that the overlapping ones stay countable; they are the category colors in the 2024 order, blue, light blue, salmon and red, keyed by dots in a row under the subtitle.
+The axis is a line chart's, not a scatter's: ticks and a black baseline, no vertical gridlines, the year labels trimmed to two digits after the first and the century (`1972`, `80`, `90`, `2000`, `10`, `20`, `29`), the last label the last year of the data.
+The title of the x axis is centered under it.
+
+The years that are a forecast are a block of the gray used for forecasts in the stacked areas, drawn the height of the panel under the dots, with the word "Forecast" set in gray at its middle (not at its top, as in the area charts) and wider than it.
+In `20250906_WBC303` the block runs from the start of 2024 to the last year, and a dot that straddles its edge is not clipped.
+
+```{r g24-lines-energy-data}
+## Invented plants, scattered to follow the chart; the named outliers are placed as drawn.
+set.seed(303)
+g24l_plant <- function(country, year, cost) data.frame(country = country, year = year, cost = cost)
+g24l_plants <- rbind(
+  ## The US: a cluster of cheap early plants, the 1980s overruns, a few later ones.
+  g24l_plant("US", runif(34, 1972, 1984), 0.7 + (runif(34, 1972, 1984) - 1972) * 0.12 + abs(rnorm(34, 0, 0.5))),
+  g24l_plant("US", runif(26, 1984.5, 1990), pmin(10.5, pmax(3, 4 + runif(26, 0, 5.5) + rnorm(26, 0, 1.6)))),
+  g24l_plant(
+    "US", c(1986.4, 1988.4, 1989.4, 1990.4, 1993.4, 1996.5, 2016.8, 2023.6, 2024.3, 1990.1),
+    c(12.7, 10.3, 5.7, 7.1, 8.8, 6.5, 6.0, 15, 15, 8.8)
+  ),
+  ## France: a long, flat line of plants near $1.5-2.5 per W, one 2025 forecast.
+  g24l_plant("France", runif(40, 1977, 1993), 1.4 + abs(rnorm(40, 0, 0.35))),
+  g24l_plant("France", c(1994, 1999.8, 2000.6, 2025.1), c(2.4, 2.3, 3.0, 9.9)),
+  g24l_plant(
+    "South Korea",
+    c(1978.5, 1983.7, 1984.2, 1985, 1986, 1987, 1988, 1989, 1990.5, 1992.4, 1996.2, 1997, 1998, 1998.8, 1999.7,
+      2002, 2003.3, 2004, 2005),
+    c(4.2, 4.6, 4.5, 2.8, 3.3, 3.2, 3.2, 3.2, 2.6, 2.6, 3.5, 3.5, 3.5, 2.7, 2.7, 2.1, 2.2, 3.1, 2.4)
+  ),
+  ## China: one early expensive plant, a few in the 2000s, then a dense, flat band out to the forecast.
+  g24l_plant("China", c(1993.8, 1994.1, 2001.8, 2002.5, 2003.2, 2004, 2007.5), c(8.3, 2.3, 2.3, 2.1, 3.2, 3.2, 2.7)),
+  g24l_plant("China", runif(70, 2010.5, 2029), 1.55 + abs(rnorm(70, 0, 0.3))),
+  g24l_plant("China", c(2016, 2016.6, 2018.8, 2019.3, 2025.5, 2026.5, 2027.5), c(3.2, 3.4, 3.3, 3.4, 2.5, 2.6, 2.4))
+)
+## Drawn in the key's order, so that the last country, China, lies on top.
+g24l_plants$country <- factor(g24l_plants$country, levels = c("US", "France", "South Korea", "China"))
+g24l_plants <- g24l_plants[order(g24l_plants$country), ]
+## Each outline is the fill a quarter of the way to black, as sampled on `20250906_WBC303`
+## (`#659BD2` fill, `#26449B` outline; `#ED1C24` fill, a dark red outline).
+g24l_darker <- function(col) vapply(col, function(x) colorRampPalette(c(x, "black"))(5)[2], character(1))
+g24l_plant_fill <- c(US = p24[["blue"]], France = p24[["light blue"]], `South Korea` = p24[["salmon"]],
+                     China = p24[["red"]])
+```
+
+```{r g24-lines-energy, econ_height = 240}
+g24l_energy <- ggplot(g24l_plants, aes(year, cost)) +
+  ## The forecast: the dark gray at 15% over the ground, sampled as `#D8D7CE` on `#ECEBE0` in `20250906_WBC303`.
+  annotate("rect", xmin = 2024.1, xmax = 2029, ymin = 0, ymax = 15, fill = p24[["dark gray"]], alpha = 0.15) +
+  annotate("text", x = 2026.3, y = 7.4, label = "Forecast", size = g24_pt(7.5), colour = g24l_note) +
+  geom_point(aes(fill = country, colour = country), shape = 21, size = 1.55, stroke = g24l_outline) +
+  scale_fill_manual(values = g24l_plant_fill) +
+  scale_colour_manual(values = g24l_darker(g24l_plant_fill)) +
+  g24_value_axis(limits = c(0, 15), breaks = seq(0, 15, 3), expand = c(0, 0)) +
+  scale_x_continuous(
+    breaks = c(1972, 1980, 1990, 2000, 2010, 2020, 2029),
+    labels = c("1972", "80", "90", "2000", "10", "20", "29"), expand = c(0, 0)
+  ) +
+  coord_cartesian(xlim = c(1969.1, 2032.4), clip = "off") +
+  guides(
+    fill = guide_legend(nrow = 1, override.aes = list(size = 2.1)),
+    colour = "none"
+  ) +
+  labs(
+    title = "Energy bills",
+    subtitle = "Nuclear power plants*, construction cost†,\n$ per W, 2020 prices",
+    x = "Date of commercial operation", y = NULL, fill = NULL,
+    caption = paste0(
+      "*Includes retired plants\n†If construction was completed overnight\n",
+      "Source: \"Can China break the 'cost curse' of\nnuclear power?\", by S. Liu, G. He, M. Qiu and\n",
+      "D.M. Kammen, Nature, 2025"
+    )
+  ) +
+  g24_theme() +
+  theme(
+    axis.title.x = element_text(hjust = 0.5),
+    legend.box.spacing = unit(g24_size * 1.6, "pt")
+  )
+
+g24_chart(g24l_energy, number = 3)
+```
+
+Against 2017: the 2017 guide has no scatter over time and no forecast band; its dots are cyan or red, edged in white.
+Here the dots are edged in a darker shade of themselves, the forecast is a block under the dots rather than a star in the label, and the axis is a line chart's.
+`r g24_2017("standard-scatter")`
+
+### Highlighted dots over a background, on a log scale
+
+The 2017 advice was to highlight the dots the text discusses and leave the rest as context.
+In "Health over wealth" (`20240706_ASC302`) the context is every other country with more than 20m people: 50 or so dots in the single-series red at 60% opacity, no outline (`#EC9172` on the ground), as in the standard scatter above.
+The highlighted countries are opaque, the same red, ringed in black, and named in regular black type.
+The subject, Thailand, is the emphasis red (`#ED1D24`), where the others are the single-series red (`#ED4D35`), and its name is bold: the subject is marked twice, by fill and by name.
+A name sits next to its dot where there is room, and otherwise at the end of a leader line, black and thin: straight and vertical when the name is directly above or below (France, Germany, Malaysia), a short curve when it is to one side (Vietnam, Poland).
+
+The x axis is a log axis: its labels are the powers of ten, `0.1`, `1`, `10`, `100`, evenly spaced under their vertical gridlines, and the axis title ends in "log scale".
+There are no minor gridlines and no ticks, and the title of the value axis sits at the top right, as in other scatters.
+
+```{r g24-lines-health-data}
+## Positions read in pixels off `20240706_ASC302` (608px wide): log10 of GDP at 159.3px per decade from 1 at x=194,
+## life expectancy at 9.94px per year from 90 at y=187.
+g24l_asc_x <- function(px) 10^((px - 194) / 159.3)
+g24l_asc_y <- function(py) 90 - (py - 187) / 9.94
+
+g24l_countries <- data.frame(
+  country = c("Thailand", "France", "Germany", "US", "China", "Poland", "Vietnam", "Malaysia", "India", "Indonesia",
+              "Afghanistan", "Nigeria"),
+  dot_x = c(333, 460, 470, 503, 370, 409, 301, 371, 259, 306, 135, 231),
+  dot_y = c(288, 254, 265, 289, 299, 301, 339, 322, 367, 376, 444, 547),
+  ## Where each name is set (its anchor, in pixels) and how it is ranged to that anchor.
+  lab_x = c(283, 457, 461, 520, 388, 453, 276, 363, 224, 306, 84, 243),
+  lab_y = c(265, 208, 318, 267, 277, 348, 306, 373, 350, 402, 465, 566),
+  hjust = c(0.5, 0.5, 0, 0.5, 0.5, 0, 1, 0, 0.5, 0, 0.5, 0)
+)
+g24l_countries$gdp <- g24l_asc_x(g24l_countries$dot_x)
+g24l_countries$life <- g24l_asc_y(g24l_countries$dot_y)
+g24l_countries$name_x <- g24l_asc_x(g24l_countries$lab_x)
+g24l_countries$name_y <- g24l_asc_y(g24l_countries$lab_y)
+g24l_countries$subject <- g24l_countries$country == "Thailand"
+
+## The other countries with over 20m people: approximate, read to follow the chart. A merged dot is two or three.
+set.seed(302)
+g24l_blobs <- data.frame(
+  x = c(441, 482, 440, 436, 379, 334, 311, 279, 359, 288, 396, 377, 262, 314, 288, 214, 216, 156, 253, 204, 217, 321,
+        232, 168, 186, 260, 440),
+  y = c(243, 251, 272, 306, 308, 314, 315, 319, 325, 334, 335, 341, 347, 361, 368, 379, 414, 443, 449, 448, 457, 457,
+        467, 479, 483, 485, 245),
+  k = c(2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 2, 1, 3, 4, 3, 1, 1, 1, 1, 1, 1, 1, 1)
+)
+g24l_others <- do.call(rbind, lapply(seq_len(nrow(g24l_blobs)), function(i) {
+  b <- g24l_blobs[i, ]
+  data.frame(px = b$x + c(0, rnorm(b$k - 1, 0, 6))[seq_len(b$k)], py = b$y + c(0, rnorm(b$k - 1, 0, 7))[seq_len(b$k)])
+}))
+g24l_others$gdp <- g24l_asc_x(g24l_others$px)
+g24l_others$life <- g24l_asc_y(g24l_others$py)
+
+## Leader lines, as pixel pairs: from the name to the dot.
+g24l_leaders_straight <- data.frame(
+  x = c(460, 470, 371), xend = c(460, 470, 371), y = c(222, 273, 330), yend = c(247, 303, 358)
+)
+g24l_leaders_curved <- data.frame(x = c(277, 411), xend = c(298, 452), y = c(306, 311), yend = c(332, 348))
+g24l_leader_px <- function(d) {
+  data.frame(x = g24l_asc_x(d$x), xend = g24l_asc_x(d$xend), y = g24l_asc_y(d$y), yend = g24l_asc_y(d$yend))
+}
+```
+
+```{r g24-lines-health, econ_height = 250}
+g24l_health <- ggplot(g24l_others, aes(gdp, life)) +
+  geom_point(colour = single24[["print"]], size = 1.55, alpha = g24l_dot_alpha, stroke = 0) +
+  geom_segment(
+    data = g24l_leader_px(g24l_leaders_straight),
+    aes(x = x, xend = xend, y = y, yend = yend), colour = "black", linewidth = g24_lw(0.5), inherit.aes = FALSE
+  ) +
+  geom_curve(
+    data = g24l_leader_px(g24l_leaders_curved[1, ]),
+    aes(x = x, xend = xend, y = y, yend = yend), colour = "black", linewidth = g24_lw(0.5), curvature = -0.5,
+    ncp = 8, inherit.aes = FALSE
+  ) +
+  geom_curve(
+    data = g24l_leader_px(g24l_leaders_curved[2, ]),
+    aes(x = x, xend = xend, y = y, yend = yend), colour = "black", linewidth = g24_lw(0.5), curvature = 0.5,
+    ncp = 8, inherit.aes = FALSE
+  ) +
+  geom_point(
+    data = g24l_countries, aes(fill = subject), shape = 21, colour = "black", size = 1.7, stroke = g24l_outline
+  ) +
+  geom_text(
+    data = g24l_countries, aes(name_x, name_y, label = country, hjust = hjust, fontface = ifelse(subject, "bold", "plain")),
+    size = g24_text
+  ) +
+  scale_fill_manual(values = c(`TRUE` = p24[["red"]], `FALSE` = single24[["print"]]), guide = "none") +
+  g24l_y_title("Life expectancy\nat birth, years", xmin = 0.1, xmax = 300) +
+  g24_value_axis(breaks = seq(50, 90, 10)) +
+  scale_x_log10(breaks = c(0.1, 1, 10, 100), labels = c("0.1", "1", "10", "100"), expand = c(0, 0)) +
+  coord_cartesian(xlim = c(0.1, 300), ylim = c(46.5, 90), expand = FALSE, clip = "off") +
+  labs(
+    title = "Health over wealth", subtitle = "Selected countries*, 2023†",
+    x = "GDP per person, $'000, log scale", y = NULL,
+    caption = "*Population greater than 20m\n†Or latest available, estimate\nSources: IMF; United Nations"
+  ) +
+  g24_theme() +
+  g24l_scatter_theme(title_lines = 1)
+
+g24_chart(g24l_health)
+```
+
+Against 2017: the 2017 guide's highlighted dots are red against a pale cyan or gray background; here background and highlight are the same red, translucent against opaque and ringed in black, and the subject is the deeper emphasis red.
+The 2017 guide's log-scale advice is "log scale" in the axis title; this chart does that, and puts no minor gridlines under the axis.
+`r g24_2017("standard-scatter")`
 
 ### Connected scatter
 
@@ -1790,6 +2428,95 @@ g24_chart(g24l_big_bucks)
 ```
 
 Against 2017: opaque bubbles in two reds with pale rings, where 2017 outlined each bubble in a darker shade of its fill; both keys sit inside the panel. `r g24_2017("bubble-chart")`
+
+### A diverging bubble chart, with highlighted seats
+
+A zero line can colour the bubbles.
+In "Which doors to knock on?" (`20240601_BRC147`) the x axis is the margin of a party's 2019 defeat or victory in a constituency and the vertical line at zero is black and runs the height of the panel; the bubbles are blue to its left and red to its right.
+Each is faded by its distance from zero, solid next to the line and nearly gone at the far ends, so that the dense cloud of defeats at the lower left stays legible.
+There are two sizes of bubble, and a key of two gray dots at the top left says what they are: the large ones are the party's main target seats, the small ones "Others".
+Seats the text names are drawn on top of the cloud as highlight dots: the emphasis red, opaque, black outline, larger than the target bubbles, each with its name beside it in regular black type, left-aligned where the name has two lines.
+
+The two directions of the x axis are written in the panel above the data, one each side of the zero line, in sentence case with an arrow pointing away from it (`Labour defeat, 2019 ←`, `→ Labour victory, 2019`), in black.
+The value axis is on the right, labels above gridlines, and its title is at the top right.
+The x axis has no ticks, and the zero baseline is black.
+
+```{r g24-lines-doors-data}
+## Positions read in pixels off `20240601_BRC147` (608px wide): x at 3.19px per point from 0 at x=280, y at 5.47px per
+## point from 0 at y=691.
+g24l_brc_x <- function(px) (px - 280) / 3.19
+g24l_brc_y <- function(py) (691 - py) / 5.47
+
+g24l_seats_named <- data.frame(
+  seat = c("Leicester\nEast", "Bradford\nWest", "Blackburn", "Slough"),
+  dot_x = c(318, 472, 415, 372), dot_y = c(339, 372, 439, 460),
+  lab_x = c(333, 490, 378, 361), lab_y = c(364, 355, 422, 473),
+  hjust = c(0, 0, 1, 1)
+)
+g24l_seats_named$margin <- g24l_brc_x(g24l_seats_named$dot_x)
+g24l_seats_named$share <- g24l_brc_y(g24l_seats_named$dot_y)
+g24l_seats_named$name_x <- g24l_brc_x(g24l_seats_named$lab_x)
+g24l_seats_named$name_y <- g24l_brc_y(g24l_seats_named$lab_y)
+
+## Invented seats, scattered to follow the chart: most are in the low South Asian shares, with the defeats
+## (negative margins) mostly small shares and a few seats with large ones.
+set.seed(147)
+## Draws beyond the scale are dropped rather than piled on its edge.
+g24l_draw <- function(n, f, lim) head(Filter(function(x) abs(x) < lim, f(3 * n)), n)
+g24l_seats_bg <- rbind(
+  data.frame(margin = -g24l_draw(330, function(n) rgamma(n, 2.6, 0.11), 75), share = rexp(330, 0.16)),
+  data.frame(margin = g24l_draw(190, function(n) rgamma(n, 1.8, 0.055), 78), share = rgamma(190, 1.5, 0.11))
+)
+g24l_seats_bg$share <- pmin(54, g24l_seats_bg$share)
+g24l_seats_bg$target <- runif(nrow(g24l_seats_bg)) < ifelse(abs(g24l_seats_bg$margin) < 40, 0.3, 0.05)
+g24l_seats_bg$sign <- ifelse(g24l_seats_bg$margin < 0, "defeat", "victory")
+## Faded by distance from the zero line: solid at zero, a fifth as strong at the far ends.
+g24l_seats_bg$alpha <- pmax(0.2, 1 - abs(g24l_seats_bg$margin) / 70)
+g24l_seats_bg <- g24l_seats_bg[order(g24l_seats_bg$target), ]
+g24l_gray_key <- "#A5A6A2" # the key's dots, sampled on `20240601_BRC147`
+```
+
+```{r g24-lines-doors, econ_height = 270}
+g24l_doors <- ggplot(g24l_seats_bg, aes(margin, share)) +
+  geom_vline(xintercept = 0, colour = "black", linewidth = g24l_rule) +
+  geom_point(aes(colour = sign, size = target, alpha = alpha), stroke = 0) +
+  geom_point(data = g24l_seats_named, aes(margin, share), shape = 21, fill = p24[["red"]], colour = "black",
+             size = 1.6, stroke = g24l_outline, inherit.aes = FALSE) +
+  geom_text(data = g24l_seats_named, aes(name_x, name_y, label = seat, hjust = hjust), size = g24_text,
+            lineheight = 0.95, inherit.aes = FALSE) +
+  ## The direction labels, in the panel above the data.
+  annotate("text", x = -2.5, y = 69.5, label = "Labour defeat, 2019 ←", hjust = 1, size = g24_text) +
+  annotate("text", x = 2.5, y = 69.5, label = "→ Labour victory, 2019", hjust = 0, size = g24_text) +
+  ## The key, above the panel at the left: the two sizes.
+  annotate("point", x = g24l_brc_x(32), y = c(98.4, 85.2), size = c(1.6, 0.9), colour = g24l_gray_key) +
+  annotate("text", x = g24l_brc_x(46), y = c(98.4, 85.2), label = c("Labour's main target\nseats in 2024", "Others"),
+           hjust = 0, fontface = c("bold", "plain"), size = g24_text, lineheight = 0.95) +
+  scale_colour_manual(values = c(defeat = p24[["blue"]], victory = single24[["print"]]), guide = "none") +
+  scale_size_manual(values = c(`FALSE` = 0.9, `TRUE` = 1.6), guide = "none") +
+  scale_alpha_identity() +
+  g24l_y_title("South Asian population*,\n2021, % of total") +
+  g24_value_axis(breaks = seq(0, 75, 25)) +
+  scale_x_continuous(breaks = seq(-75, 75, 25), labels = c("-75", "-50", "-25", "0", "25", "50", "75")) +
+  coord_cartesian(xlim = c(-81, 95), ylim = c(0, 75), expand = FALSE, clip = "off") +
+  labs(
+    title = "Which doors to knock on?", subtitle = "England and Wales, by constituency",
+    x = "Margin of Labour defeat/victory in 2019\ngeneral election, percentage points", y = NULL,
+    caption = paste0(
+      "*Bangladeshi, Indian and Pakistani\nSources: ONS Census, 2021; C. Rallings and\n",
+      "M. Thrasher, University of Plymouth; the Labour\nParty; The Economist"
+    )
+  ) +
+  g24_theme() +
+  g24l_scatter_theme(title_lines = 4.3) +
+  theme(axis.line.x = element_line(colour = "black", linewidth = g24l_rule))
+
+g24_chart(g24l_doors)
+```
+
+Against 2017: the 2017 guide's bubbles are sized by a third variable and have no sign colouring or fading.
+Here the two sizes are a category (main target or not), the colour is the side of zero, and the fade is the distance.
+The highlighted seats carry black outlines and names as in the standard scatter.
+`r g24_2017("bubble-chart")`
 
 ### Beeswarm
 

@@ -43,7 +43,7 @@ source("economist-2024-guide.R")
 ## What changed in 2024
 
 The redesign replaced the cool blue print ground and blue-first palettes with a warm gray print ground and red-first palettes.
-Web charts remain white, but share the red-led hierarchy.
+Web charts remain white, but share the red-led hierarchy; a white ground does not by itself mean a web graphic (see [A white ground with a short red tab](#a-white-ground-with-a-short-red-tab)).
 The local corpus last shows the old cool ground on 16 March 2024 and first shows `#ECEBE0` on 30 March; the weekly indicator tables changed between the issues of 6 January and 6 April.
 The charts changed with the paper's typeface, which it explained in ["Why has *The Economist* changed its typeface?"](https://www.economist.com/the-economist-explains/2024/02/07/why-has-the-economist-changed-its-typeface) (7 February 2024).
 
@@ -59,6 +59,9 @@ The charts changed with the paper's typeface, which it explained in ["Why has *T
 | Panel headings | a short red marker | a short black rule |
 | Number box | filled | outlined in black |
 | Pie / doughnut | included | no longer used (none in 88 print or 118 web charts) |
+
+The range of charts widened too. Every 2017 chart type is still drawn, but print now also carries more statistical forms: confidence ribbons on lines (`20250329_EPC233`), rank charts (`20240720_CNC447`), scatters with highlighted dots over a faded background (`20240706_ASC302`, `20240601_BRC147`), a scatter over time with a forecast band (`20250906_WBC303`), log scales on a lollipop (`20240608_WBC240`) and a scatter, forecasts drawn as dotted lines (`20240720_BRC433`), a stacked area with a total line and an unstacked line (`20250201_USC522`), a line chart with only event rules (`20240727_AMC511`), lines in an ordered color ramp (`20240420_EPC345`), and tables whose figures sit in colored boxes (`20241214_USC174`).
+The sections below describe each. Counts of "rare" types in this guide come from its sample (see [Method and limitations](#method-and-limitations)), so a type that is rare there may be less rare in the full print archive.
 
 What did not change is as important: the value axis on the right with its labels above the gridlines, the black baseline with ticks hanging below it, truncated years, unboxed panels, a left-aligned headline over a subtitle that gives the measure and unit, and a source line at the foot.
 
@@ -465,7 +468,7 @@ g24_chart(
 ## Color
 
 Color is semantic. Red establishes focus; salmon is a related or less emphatic category; blue and light blue form the main contrast; grays provide context.
-Do not use the whole palette merely because six colors are available.
+Do not use the whole palette merely because six colors are available. Ordered categories take a ramp instead (see [Ordered categories](#ordered-categories)).
 
 The palettes here are provisional. They are measured from the charts the corpus happens to hold: the web set is well attested, but the print set rests largely on one chart, and the ramps are reconstructions.
 They will be updated when a better corpus of examples is available.
@@ -654,6 +657,96 @@ ggplot(g24_ramps, aes(step, row, fill = hex)) +
 
 Against 2017: two ramps and one diverging scale, where the 2017 guide gave nine "equal lightness" scales, one for each of its hues. `r g24_2017("color")`
 
+### Ordered categories
+
+When the categories are ordered (generations, cohorts, age groups, classes), their colors run in the same order, and
+the series the chart is about sits at one end of the run.
+"He's got money, but not too much" (`20240420_EPC345`) draws seven birth cohorts across the life cycle, youngest
+first: Gen Z is red, Millennials a deep salmon, Gen X the palette's salmon, and the four older cohorts take four
+warm grays from light to dark, so that darker means older.
+This is a ramp, not the six-color order, which is for categories that have none.
+There is no key.
+Each line is named beside itself in black, with its birth years under it, and only the focus, Gen Z, is in bold.
+The names stand in the open, on gaps cut in the gridlines, and a name that has no room beside its line is joined to it
+by a short black leader ending in a dot.
+
+```{r g24-ordered-setup}
+## Measured on `20240420_EPC345`, the print values: the red and salmon are the palette's; the deep salmon and the
+## four warm grays are not (the lightest is not the palette's light gray `#C6C8CA`, which this chart keeps for its
+## gridlines).
+g24_ordered <- c(
+  "Gen Z" = p24[["red"]], "Millennial" = "#E27A5E", "Gen X" = p24[["salmon"]], "Boomer" = "#C3C2B5",
+  "Silent" = "#A4A495", "Greatest" = "#8A897D", "Lost" = "#64625D"
+)
+```
+
+```{r g24-ordered-money, econ_height = 215}
+## Approximate values read to follow the chart: median income by age, one value a year from each cohort's first age.
+g24_cohort <- function(name, first, income) data.frame(cohort = name, age = first + seq_along(income) - 1, income = income)
+g24_incomes <- rbind(
+  g24_cohort("Gen Z", 15, c(36, 37.2, 38.2, 38.7, 38.5, 39, 39.3, 39.8, 40.1, 40.4, 41.1)),
+  g24_cohort("Millennial", 15, c(31.4, 32.1, 32.8, 32.4, 31.6, 31.5, 31.3, 31.7, 32.6, 34, 35.6, 37.1, 37.9, 38.1, 38.7,
+                                 39.1, 39.5, 40.1, 40.8, 41.6, 43, 43.3, 44.3, 45.1, 45, 44.5, 44.6)),
+  g24_cohort("Gen X", 15, c(25.3, 26.2, 27, 27.9, 28.4, 28.6, 28.4, 28.2, 28.5, 29.6, 30.5, 31.3, 32.2, 32.7, 33.3,
+                            33.6, 34.2, 34.6, 34.8, 35.3, 35.7, 36.2, 37, 37.7, 38.4, 39.2, 40, 40.7, 41.1, 42, 42.7,
+                            43.8, 44.7, 45.4, 46.5, 47.7, 48.9, 49.6, 50.4, 50.7, 51.2, 50.1, 46.9)),
+  g24_cohort("Boomer", 15, c(21.9, 22.6, 23.4, 24.2, 24.9, 25.4, 25.4, 25.2, 25.7, 26.4, 27, 27.3, 27.3, 27.2, 27.6,
+                             27.8, 27.8, 28, 28.3, 28.9, 29.9, 30.7, 31.6, 32.5, 33.5, 34.4, 35.3, 36.2, 36.9, 38,
+                             38.8, 39.6, 40.3, 41.1, 41.8, 42.3, 43, 43.3, 43.7, 44, 44.5, 44.9, 44.7, 44.2, 44,
+                             43.6, 43, 42.6, 42, 41.5, 41.8, 41.6, 41.6, 41.2, 41.6, 41.4, 41, 40.9, 41, 40.1, 37.5)),
+  g24_cohort("Silent", 18, c(17.1, 18, 18.7, 18.6, 18.8, 19.5, 19.6, 20.1, 20.5, 20.6, 20.9, 21, 21.4, 21.6, 21.9,
+                             22.2, 22.7, 23.2, 24, 24.8, 25.8, 26.7, 27.4, 28.4, 29.4, 30.3, 31.3, 32.2, 33, 33.8,
+                             34.2, 34.8, 35.3, 35.7, 35.9, 36.6, 36.7, 36.8, 36.9, 37.1, 36.7, 36.4, 35.9, 35.6,
+                             34.7, 34.8, 34.5, 34, 33.7, 34, 33.7, 33.2, 32.2, 32.4, 32, 32, 31.5, 31.4, 31.1, 30.8,
+                             30.7, 30.3, 29.3, 28.9, 28.6, 28.2, 28, 27.8)),
+  g24_cohort("Greatest", 37, c(18.4, 19.5, 20, 20.8, 21.8, 22.6, 23.4, 24.4, 25.3, 26.2, 26.6, 27.2, 27.9, 28.1, 28.5,
+                               29, 29.1, 29.1, 29, 28.9, 28.7, 28.4, 27.9, 27.3, 26.6, 26.1, 25.9, 25.5, 25, 24.5, 24,
+                               24, 23.7, 23.3, 23.4, 23.3, 23.3, 23.1, 23.1, 22.8, 22.9, 22.7, 22.8, 23.1, 21.9,
+                               21.2, 20.9, 21.1, 22.5, 21.4, 20.5, 20.5, 20)),
+  g24_cohort("Lost", 63, c(17.8, 17.3, 16.2, 15.6, 15.2, 14.8, 14.7, 14.6, 14.4, 14.6, 14.7, 14.6, 14.5, 14.5, 14.6,
+                           14.9, 14.9, 14.8, 15.2, 15.4, 15.7, 16.2, 16.5, 16.8, 17.4, 17.1, 17.9))
+)
+g24_incomes$cohort <- factor(g24_incomes$cohort, levels = names(g24_ordered))
+
+## The names, set left-aligned with the birth years under them; the focus in bold. `at` is where each begins.
+g24_cohort_names <- data.frame(
+  label = c("Gen Z (born\n1997-2012)", "Millennial\n(1981-96)", "Gen X\n(1965-80)", "Boomer\n(1946-64)",
+            "Silent\n(1928-45)", "Greatest\n(1901-27)", "Lost\n(1883-1900)"),
+  x = c(13.2, 32.2, 58.1, 73.4, 13.2, 36.1, 70.3), y = c(45.2, 52.6, 52.6, 44.3, 12, 12.6, 8.9),
+  face = c("bold", rep("plain", 6))
+)
+## Where a name stands on a gridline, the gridline stops.
+g24_cohort_gaps <- data.frame(
+  y = c(50, 50, 10, 10, 10), from = c(32, 54.6, 13.2, 35.8, 66.7), to = c(46.4, 67.4, 22.4, 50.2, 90)
+)
+
+g24_money <- ggplot(g24_incomes, aes(age, income, colour = cohort, group = cohort)) +
+  ## Gridlines that stop where a name stands on them; the theme's own are switched off below.
+  geom_gridline_economist_2024(seq(10, 50, 10), 13.1, 90, g24_cohort_gaps, base_size = g24_size) +
+  geom_line(linewidth = g24_lw(1.5)) +
+  ## Millennials' name has no room beside the end of their line: a leader runs down to it, ending in a dot.
+  annotate("segment", x = 38.2, xend = 38.2, y = 49.6, yend = 45.5, colour = "black", linewidth = 0.1 * g24_size / ggplot2::.pt) +
+  annotate("point", x = 38.2, y = 45.3, colour = "black", size = g24_pt(2.2)) +
+  geom_text(data = g24_cohort_names, aes(x, y, label = label, fontface = face), colour = "black", hjust = 0,
+            lineheight = 0.95, size = g24_text, inherit.aes = FALSE) +
+  scale_colour_manual(values = g24_ordered, guide = "none") +
+  g24_value_axis(limits = c(0, 55.8), breaks = seq(0, 50, 10), expand = c(0, 0), oob = scales::oob_keep) +
+  scale_x_continuous(limits = c(13.1, 90), expand = c(0, 0), breaks = c(15, seq(20, 80, 10), 89)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "He’s got money, but not too much",
+    subtitle = "United States, median income after\ntaxes and transfers*, $’000, 2019 prices",
+    x = "Age, years", y = NULL, caption = "Source: Federal Reserve\nworking paper"
+  ) +
+  g24_theme() +
+  theme(panel.grid.major.y = element_blank(), axis.title.x = element_text(hjust = 0.5))
+
+g24_chart(g24_money, footnote = "*Adjusted by\nhousehold size", number = 4)
+```
+
+Against 2017: the 2017 guide's ordered colors were nine "equal lightness" scales, one for each hue, with no focus in them; here the focus is the red end of a red-salmon-gray run, so the ramp both orders the series and picks out the one the story is about.
+`r g24_2017("color")`
+
 ```{r g24-bars, child = "_2024-guide-bars.Rmd"}
 ```
 
@@ -707,4 +800,5 @@ Print images after April 2024 are not in the web archive, so the 2025 and 2026 c
 The layout counts in this guide come from a chart-by-chart survey of 88 of the 94 print charts and all 118 web graphics of 2026.
 The web sample is larger: 118 graphics from 2026, with their `ai2html` sources, and 308 Graphic Detail graphics from April 2024 to December 2025.
 This is enough to establish the ground, qualitative order and recurring grammar, but not to turn every rare layout into a rule.
+The examples added later (ribbons, rank charts, highlighted scatters, log scales, dotted forecasts and tables with boxed figures) come from print charts of 2024 and 2025 outside the survey, found while the full 2024-onward print archive was still being collected; the survey's counts were not redone for them.
 Where a 2017 chart type does not appear in the corpus, its 2024 version here applies the general rules, and says so.
