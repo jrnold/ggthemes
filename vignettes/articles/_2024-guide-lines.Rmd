@@ -15,8 +15,6 @@ g24l_ink <- econ$print$text
 g24l_note <- econ$print$source
 g24l_ground <- econ$print$bg$value[1]
 g24l_grid <- econ$print$grid
-## The forecast block of `20240427_ASC408` is the first step of the print gray ramp.
-g24l_forecast <- econ$print$sequential_gray$value[2]
 
 ## Ticks at the year boundaries, with each label centered in its year (`20240330_CNC083`, `20240622_WBC139`): the
 ## boundary ticks are minor ticks drawn full length, and the labels' own ticks are hidden.
@@ -317,60 +315,331 @@ g24_chart(
 
 Against 2017: red leads where 2017 led with blue, and the six colors are three pairs (reds, blues, grays) rather than six unrelated hues. `r g24_2017("standard-color-order")`
 
-### High-contrast alternatives
+### Highlighting a line against a background
 
-The 2024 charts have no separate high-contrast set.
-Contrast comes from the order itself: the reds against the blues and grays.
-Here the two Gulf states, where the share of Christians rose, are red and salmon, and the five countries where it fell are blues and grays; with seven lines, Iraq shares blue with Egypt, which stays far above it.
-The lines are named beside them: the falling five where they start, the rising two where they end.
+To pick one series out of many, the rest go light gray and are named together, once, in gray type.
+The focus line is the emphasis red, drawn on top and a little heavier, with its name in bold black at its end.
+The redraw follows "Too high for comfort" (2025), which sets Britain's ten-year gilt yield against the other six G7 countries.
 
-A forecast is a shaded block labelled "Forecast" (`20240427_ASC408`, `20240921_WBC092`), so the asterisk on the last year and its note are not needed.
-
-```{r g24-lines-exodus, econ_height = 185}
-## Positions follow the chart, not years.
-g24l_dates <- c(172, 406, 522.5, 584)
-g24l_countries <- c("Egypt", "Syria", "Palestine", "Israel", "Iraq", "U.A.E", "Saudi Arabia")
-g24l_mideast <- data.frame(
-  date = rep(g24l_dates, 7),
-  country = factor(rep(g24l_countries, each = 4), levels = g24l_countries),
-  pct = c(
-    18.7, 15.9, 10.2, 8.6, 15.6, 9.7, 5.2, 2.6, 11.6, 4.7, 1.9, 1.1, 8.1, 2.8, 2.5, 1.8,
-    6.3, 3.7, 1.4, 0.7, 0.1, 5.9, 12.7, 12.7, 0, 0.4, 4.4, 4.5
+```{r g24-lines-too-high, econ_height = 185}
+## Quarterly averages, approximate, read to follow the chart.
+g24l_g7_yield <- list(
+  Japan = c(
+    0.06, 0.04, 0.1, 0.1, -0.02, -0.08, -0.2, -0.08, -0.05, 0, 0.03, 0.02, 0.1, 0.08, 0.03, 0.07, 0.2, 0.24, 0.24,
+    0.26, 0.45, 0.43, 0.65, 0.75, 0.7, 0.95, 0.9, 1.05, 1.4, 1.45, 1.6
+  ),
+  Germany = c(
+    0.65, 0.5, 0.4, 0.35, 0.1, -0.15, -0.55, -0.35, -0.4, -0.45, -0.5, -0.55, -0.4, -0.2, -0.35, -0.25, 0.15, 1.2,
+    1.4, 2.1, 2.35, 2.4, 2.6, 2.4, 2.3, 2.5, 2.3, 2.2, 2.6, 2.6, 2.7
+  ),
+  France = c(
+    0.85, 0.75, 0.7, 0.75, 0.5, 0.2, -0.3, 0, -0.1, 0.05, -0.15, -0.3, -0.15, 0.2, 0, 0.1, 0.6, 1.8, 2.2, 2.6, 2.8,
+    2.9, 3.1, 3, 2.8, 3.1, 3, 3.05, 3.25, 3.3, 3.45
+  ),
+  Canada = c(
+    2.25, 2.3, 2.3, 2.3, 1.85, 1.6, 1.35, 1.5, 1.1, 0.55, 0.55, 0.65, 1.25, 1.5, 1.25, 1.6, 1.9, 3, 3, 3.15, 3.05,
+    3.1, 3.6, 3.7, 3.4, 3.6, 3.15, 3.2, 3.1, 3.25, 3.3
+  ),
+  Italy = c(
+    2, 2.4, 3, 3.3, 2.7, 2.5, 1.3, 1.1, 1.4, 1.6, 1, 0.65, 0.6, 0.8, 0.7, 1, 1.6, 3.2, 3.9, 4.3, 4.3, 4.2, 4.4, 4.3,
+    3.8, 3.9, 3.7, 3.5, 3.65, 3.55, 3.5
+  ),
+  US = c(
+    2.8, 2.9, 2.9, 3, 2.65, 2.3, 1.8, 1.8, 1.4, 0.7, 0.65, 0.85, 1.3, 1.6, 1.3, 1.5, 1.9, 2.9, 3.1, 3.9, 3.65, 3.6,
+    4.15, 4.5, 4.15, 4.45, 3.95, 4.3, 4.45, 4.35, 4.25
+  ),
+  Britain = c(
+    1.5, 1.35, 1.45, 1.35, 1.2, 0.95, 0.55, 0.75, 0.5, 0.2, 0.2, 0.3, 0.6, 0.8, 0.75, 0.95, 1.4, 2.1, 3.3, 3.5, 3.5,
+    4.2, 4.4, 4.1, 4, 4.2, 4, 4.4, 4.6, 4.6, 4.7
   )
 )
-g24l_exodus_cols <- c(
-  Egypt = p24[["blue"]], Syria = p24[["light blue"]], Palestine = p24[["dark gray"]], Israel = p24[["light gray"]],
-  Iraq = p24[["blue"]], U.A.E = p24[["red"]], `Saudi Arabia` = p24[["salmon"]]
+g24l_g7 <- data.frame(
+  quarter = rep(2018.125 + 0.25 * (0:30), length(g24l_g7_yield)),
+  country = rep(names(g24l_g7_yield), each = 31),
+  yield = unlist(g24l_g7_yield, use.names = FALSE)
 )
+g24l_others <- g24l_g7[g24l_g7$country != "Britain", ]
 
-g24l_exodus <- ggplot(g24l_mideast, aes(date, pct, colour = country)) +
-  annotate("rect", xmin = 522.5, xmax = 584, ymin = 0, ymax = 20, fill = g24l_forecast) +
-  annotate("text", x = 584, y = 19.4, label = "Forecast", hjust = 1, vjust = 1, size = g24_text, colour = g24l_note) +
-  geom_line(linewidth = g24l_line, show.legend = FALSE) +
-  g24l_labels(rbind(
-    g24l_lab(178, c(19.5, 16.4, 12.4, 8.9, 4.8), c("Egypt", "Syria", "Palestine", "Israel", "Iraq")),
-    g24l_lab(594, c(12.7, 4.5), c("U.A.E", "Saudi\nArabia"))
-  ), vjust = 0.5) +
-  g24_value_axis(limits = c(0, 20), expand = c(0, 0)) +
+g24l_too_high <- ggplot(g24l_g7, aes(quarter, yield, group = country)) +
+  geom_line(data = g24l_others, colour = p24[["light gray"]], linewidth = g24l_line) +
+  ## Britain is drawn last, on top.
+  geom_line(data = g24l_g7[g24l_g7$country == "Britain", ], colour = p24[["red"]], linewidth = 1.5 * g24l_line) +
+  g24l_labels(g24l_lab(2019.9, 3.2, "Other G7\ncountries", hjust = 0.5), colour = g24l_note) +
+  g24l_labels(g24l_lab(2025.6, 5.3, "Britain", hjust = 1, face = "bold")) +
+  g24_value_axis(limits = c(-2, 6.1), breaks = seq(-2, 6, 2), expand = c(0, 0)) +
   scale_x_continuous(
-    limits = c(172, 690), expand = c(0, 0), breaks = g24l_dates, labels = c("1910", "70", "2010", "25")
+    limits = c(2018, 2026), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = 2018:2025 + 0.5, minor_breaks = 2018:2026, labels = c("2018", "19", "20", "21", "22", "23", "24", "25")
   ) +
-  scale_colour_manual(values = g24l_exodus_cols) +
   labs(
-    title = "Exodus",
-    subtitle = "Christians, as % of population",
-    x = "Available years", y = NULL,
-    caption = paste0(
-      "Source: “Ongoing Exodus: Tracking the\nEmigration of Christians from the Middle\n",
-      "East” by T. Johnson and G. Zurlo, 2015"
-    )
+    title = "Too high for comfort",
+    subtitle = "Ten-year government-bond yields, %",
+    x = NULL, y = NULL, caption = "Source: Haver Analytics"
   ) +
   g24_theme()
 
-g24_chart(g24l_exodus)
+g24_chart(g24l_too_high)
 ```
 
-Against 2017: two colors carry the story instead of seven bright hues, the lines are named on the chart rather than in a key at the left, and the forecast is a shaded block, not an asterisk. `r g24_2017("high-contrast-alternatives")`
+Two series can be picked out at once: the first takes red and the second blue, the palette's main contrast, and the rest stay gray.
+A label that would sit in the tangle of gray lines points to its line with a short black leader ending in a dot.
+The redraw follows "Pricier places" (2024), which sets London and Glasgow against four other British cities.
+
+```{r g24-lines-pricier, econ_height = 185}
+## Approximate values read to follow the chart, smoothed to monthly.
+g24l_rent_at <- c(
+  2019, 2019.5, 2019.9, 2020.2, 2020.5, 2020.75, 2021, 2021.25, 2021.5, 2021.75, 2022, 2022.25, 2022.5, 2022.75,
+  2023, 2023.25, 2023.5, 2023.75, 2024.1
+)
+g24l_rent_anchor <- list(
+  A = c(5, 3.5, 2, 0, -1.5, -3.5, -3, 0, 6, 11, 13, 14, 13.5, 13, 13, 14.5, 16, 14, 11.5),
+  B = c(4, 2, 0.5, -0.5, -2, -4, -3.5, -1, 4, 9, 12, 13, 12.5, 12, 11.5, 11, 10.5, 9.5, 8),
+  C = c(2.5, 1, -0.5, -1, -1, -1.5, -2.5, -1, 3, 8, 11, 12, 12, 11.5, 10.5, 9.5, 9, 8, 7.5),
+  D = c(1, 0, 0, 0, -0.5, -1, -1.5, 0, 3.5, 7.5, 10, 11.5, 11, 11, 10, 9, 8, 7, 6.5),
+  Glasgow = c(3.5, 3, 2.5, 0.8, 1, 2.3, 2.5, 4, 7, 11, 14, 15, 14.5, 14, 13, 13, 13.5, 13.5, 10.5),
+  London = c(1.5, 1.8, 2.5, 1.5, -3, -8, -9.3, -6.5, 1, 10, 16, 17.5, 17.5, 15, 13, 11, 10, 8, 5)
+)
+g24l_rent_month <- seq(2019, 2024.1, by = 1 / 12)
+g24l_rents <- do.call(rbind, lapply(names(g24l_rent_anchor), function(city) {
+  data.frame(
+    month = g24l_rent_month,
+    city = city,
+    change = stats::spline(g24l_rent_at, g24l_rent_anchor[[city]], xout = g24l_rent_month)$y
+  )
+}))
+g24l_rent_focus <- c(Glasgow = p24[["blue"]], London = p24[["red"]])
+
+g24l_pricier <- ggplot(g24l_rents, aes(month, change, group = city)) +
+  geom_hline(yintercept = 0, colour = "black", linewidth = g24l_rule) +
+  geom_line(data = g24l_rents[!g24l_rents$city %in% names(g24l_rent_focus), ], colour = p24[["light gray"]],
+    linewidth = g24l_line) +
+  ## London, the larger move, is drawn last, on top.
+  geom_line(aes(colour = city), data = g24l_rents[g24l_rents$city %in% names(g24l_rent_focus), ],
+    linewidth = 1.5 * g24l_line, show.legend = FALSE) +
+  scale_colour_manual(values = g24l_rent_focus) +
+  annotate("segment", x = 2020.55, xend = 2020.7, y = 4.6, yend = 2.4, colour = g24l_ink, linewidth = g24l_rule) +
+  annotate("point", x = 2020.7, y = 2.4, colour = g24l_ink, size = 1) +
+  g24l_labels(g24l_lab(c(2020.55, 2021.85), c(5.6, 17.6), c("Glasgow", "London"), hjust = c(0.5, 1))) +
+  g24l_labels(g24l_lab(2022.3, 3.6, "Other selected\ncities*"), colour = g24l_note) +
+  g24_value_axis(
+    limits = c(-11.5, 20.3), breaks = seq(-10, 20, 5), expand = c(0, 0)
+  ) +
+  scale_x_continuous(
+    limits = c(2019, 2024.3), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = c(2019:2023 + 0.5, 2024), minor_breaks = 2019:2024, labels = c("2019", "20", "21", "22", "23", "24")
+  ) +
+  labs(
+    title = "Pricier places",
+    subtitle = "Britain, rental cost of new private lets,\n% change on a year earlier",
+    x = NULL, y = NULL, caption = "*Birmingham, Bristol,\nEdinburgh and Manchester\nSource: Zoopla"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_pricier)
+```
+
+### Smoothed lines through points
+
+Where the data are noisy, such as polls, each observation is a small translucent dot in its series' color, and a heavy line fitted through the dots carries the trend ("Catch him if you can", "Open to switching", "Tanking", all 2024-25).
+The fitted line is the series; the dots only show the scatter around it, so they are smaller than a line is wide and pale enough for the line to read over them.
+The series are named beside their lines, in black, as on any line chart.
+Parties and their leaders take their [party colors](#party-colors): in "Catch him if you can" Trump is the single-series red and Harris blue, with Biden, whom she replaced, in gray.
+
+```{r g24-lines-smooth-setup}
+## The dots: each series' own color, translucent, smaller than the line is wide.
+g24l_dot_fade <- 0.45
+g24l_poll_dot <- 0.9
+
+## A loess fit through each series' points, over that series' own span.
+g24l_loess <- function(points, span = 0.5, n = 100) {
+  do.call(rbind, lapply(split(points, points$series, drop = TRUE), function(d) {
+    fit <- stats::loess(y ~ x, d, span = span)
+    x <- seq(min(d$x), max(d$x), length.out = n)
+    data.frame(series = d$series[1], x = x, y = stats::predict(fit, data.frame(x = x)))
+  }))
+}
+
+## Noisy points around a trend: the trend through `at` and `value`, sampled at `x`, plus normal noise.
+g24l_noisy <- function(series, x, at, value, sd) {
+  data.frame(series = series, x = x, y = stats::approx(at, value, xout = x, rule = 2)$y + stats::rnorm(length(x), 0, sd))
+}
+```
+
+```{r g24-lines-smooth-catch, econ_height = 185}
+## Invented polls around trends read to follow the chart: one poll a week, months as decimals from 1 January.
+set.seed(2024)
+g24l_poll_x <- seq(1.1, 7.7, by = 0.23)
+g24l_catch_points <- rbind(
+  g24l_noisy("Trump", g24l_poll_x, c(1, 2, 2.2, 3.2, 4, 5, 6, 7.7), c(-8.5, -5.5, -5.2, -13.5, -13.5, -14, -14, -12),
+             sd = 1.8),
+  g24l_noisy("Biden", g24l_poll_x, c(1, 2, 3.2, 4, 5, 6, 7.7), c(-13, -10.3, -17, -18.8, -18, -19, -21.8), sd = 2),
+  g24l_noisy("Harris", g24l_poll_x, c(1, 2, 3.2, 3.8, 4.4, 5, 6, 7.7), c(-13, -10.5, -15.5, -18, -16.3, -16.7, -17.2,
+             -15.5), sd = 2)
+)
+g24l_catch_cols <- c(Trump = single24[["print"]], Harris = p24[["blue"]], Biden = econ$print$sequential_gray$value[3])
+g24l_catch_lines <- g24l_loess(g24l_catch_points, span = 0.5)
+## Harris, the subject, is drawn last, on top.
+g24l_order <- function(d) {
+  d$series <- factor(d$series, levels = c("Biden", "Trump", "Harris"))
+  d[order(d$series), ]
+}
+
+g24l_catch <- ggplot(mapping = aes(x, y, colour = series, group = series)) +
+  geom_point(data = g24l_order(g24l_catch_points), size = g24l_poll_dot, alpha = g24l_dot_fade, stroke = 0) +
+  geom_line(data = g24l_order(g24l_catch_lines), linewidth = g24l_line) +
+  ## Harris's name sits clear of the lines, below them, with a curved leader up to hers.
+  annotate("curve", x = 3.25, xend = 4.35, y = -21.6, yend = -16.9, curvature = 0.35, colour = g24l_ink,
+           linewidth = g24l_rule) +
+  g24l_labels(g24l_lab(c(3.75, 1.35, 6.05), c(-8.6, -21.6, -22.6), c("Donald Trump", "Kamala Harris", "Joe Biden")),
+              vjust = 0.5) +
+  scale_colour_manual(values = g24l_catch_cols, guide = "none") +
+  g24_value_axis(limits = c(-26, 0.3), breaks = seq(-25, 0, 5), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1, 8.3), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = 1:7 + 0.5, minor_breaks = 1:8, labels = month.abb[1:7]
+  ) +
+  labs(
+    title = "Catch him if you can",
+    subtitle = "United States, net favourability\nrating*, 2024, %",
+    x = NULL, y = NULL,
+    caption = "*Favourable minus unfavourable\nSource: YouGov/The Economist"
+  ) +
+  g24_theme()
+
+g24_chart(g24l_catch)
+```
+
+Events are thin dark gray rules the height of the panel, named once in gray above them when they are all the same kind of event, as the general elections are in "Open to switching".
+A name that has no room beside its line is set in the clear and joined to the line by a black leader.
+
+```{r g24-lines-smooth-switching, econ_height = 185}
+## Invented survey waves around trends read to follow the chart: three waves a year.
+set.seed(2015)
+g24l_wave_x <- seq(2014.15, 2023.4, by = 1 / 3)
+g24l_wave_at <- c(2014, 2015.4, 2016.2, 2017.4, 2018.2, 2019.2, 2020.2, 2021.2, 2022.2, 2023.4)
+g24l_switch_points <- rbind(
+  g24l_noisy("Labour/Green", g24l_wave_x, g24l_wave_at, c(8.5, 12.8, 14, 18.3, 17.2, 16.6, 18, 18.6, 20, 22.4), sd = 1.2),
+  g24l_noisy("Labour/Lib Dem", g24l_wave_x, g24l_wave_at, c(9.8, 13, 15, 17.5, 17.6, 18.6, 19, 19.5, 19.8, 20),
+             sd = 1.2),
+  g24l_noisy("Lib Dem/Green", g24l_wave_x, g24l_wave_at, c(6.2, 8.5, 10, 12.5, 15, 16, 15, 14.4, 15, 16.8), sd = 1.2),
+  g24l_noisy("Labour/Conservative", g24l_wave_x, g24l_wave_at, c(6.6, 7.6, 7.2, 8.5, 6.8, 4.8, 6.6, 7, 6.6, 5.8),
+             sd = 1)
+)
+## Labour/Conservative is a salmon between the palette's salmon and the single-series red (sampled `#F08068`).
+g24l_switch_cols <- c(
+  `Labour/Green` = p24[["red"]], `Labour/Lib Dem` = p24[["salmon"]],
+  `Lib Dem/Green` = econ$print$sequential_gray$value[3],
+  `Labour/Conservative` = grDevices::colorRampPalette(c(p24[["salmon"]], single24[["print"]]))(3)[2]
+)
+g24l_switch_lines <- g24l_loess(g24l_switch_points, span = 0.4)
+g24l_elections <- c(2015.35, 2017.44, 2019.95)
+
+g24l_switching <- ggplot(mapping = aes(x, y, colour = series, group = series)) +
+  annotate("segment", x = g24l_elections, xend = g24l_elections, y = 0, yend = 26.3, colour = p24[["dark gray"]],
+           linewidth = g24_lw(0.75)) +
+  annotate("text", x = 2016.4, y = 26.6, label = "General elections", vjust = 0, colour = g24l_note,
+           size = g24_text) +
+  geom_point(data = g24l_switch_points, size = g24l_poll_dot, alpha = g24l_dot_fade, stroke = 0) +
+  geom_line(data = g24l_switch_lines, linewidth = g24l_line) +
+  ## The leader from "Labour/Lib Dem" down to its line, at the peak of 2017.
+  annotate("segment", x = 2017.6, xend = 2017.6, y = 19.9, yend = 18.1, colour = g24l_ink, linewidth = g24l_rule) +
+  g24l_labels(rbind(
+    g24l_lab(2017.05, 22.3, "Labour/\nLib Dem"),
+    g24l_lab(c(2020.1, 2020.1, 2020.1), c(22.4, 11.6, 3.4), c("Labour/\nGreen", "Lib Dem/\nGreen", "Labour/\nConservative"))
+  ), vjust = 0.5) +
+  scale_colour_manual(values = g24l_switch_cols, guide = "none") +
+  coord_cartesian(clip = "off") +
+  g24_value_axis(limits = c(0, 25.4), breaks = seq(0, 25, 5), expand = c(0, 0), oob = scales::oob_keep) +
+  scale_x_continuous(
+    limits = c(2014, 2024), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = 2014:2023 + 0.5, minor_breaks = 2014:2024, labels = c("2014", sprintf("%02d", 15:23))
+  ) +
+  labs(
+    title = "Open to switching",
+    subtitle = "Britain, voters considering both parties, %",
+    x = NULL, y = NULL, caption = "Source: British Election Study"
+  ) +
+  g24_theme() +
+  theme(plot.subtitle = element_text(margin = margin(b = 2.6 * g24_size)))
+
+g24_chart(g24l_switching)
+```
+
+The smoothing works in panels too.
+"Tanking" sets each president's term against his predecessors', in their party colors, with each president's first and second terms in red and salmon or blue and light blue, the latest in the stronger color; the newest line, the subject, is named in bold.
+
+```{r g24-lines-smooth-tanking, econ_height = 330}
+## Invented polls around trends read to follow the chart. The first panel counts days from each inauguration; the
+## second, days from 1 January of each first year in office.
+set.seed(2025)
+g24l_terms <- c("Obama", "Biden", "Trump I", "Trump II")
+g24l_tank_panels <- c("President", "President’s handling of the economy")
+g24l_tank_points <- rbind(
+  cbind(panel = g24l_tank_panels[1], rbind(
+    g24l_noisy("Obama", seq(0, 500, 8), c(0, 80, 150, 220, 280, 360, 430, 500), c(37, 20, 18, 7, 8, 0, 0, -2), sd = 3),
+    g24l_noisy("Biden", seq(0, 500, 8), c(0, 60, 100, 180, 240, 300, 360, 420, 500), c(15, 10, 12, 8, -5, -6, -10, -9,
+               -8), sd = 3),
+    g24l_noisy("Trump I", seq(0, 500, 8), c(0, 100, 200, 300, 400, 500), c(-3, -8, -14, -14, -12, -10), sd = 2.5),
+    g24l_noisy("Trump II", seq(0, 84, 8), c(0, 50, 85), c(3, 1, -10), sd = 2.5)
+  )),
+  cbind(panel = g24l_tank_panels[2], rbind(
+    g24l_noisy("Biden", seq(20, 120, 9), c(20, 45, 75, 95, 120), c(10.5, 11, 8, 7, 10), sd = 2),
+    g24l_noisy("Trump I", seq(20, 115, 9), c(20, 41, 60, 80, 115), c(11, 3.5, 7.5, 2.5, 4.5), sd = 2),
+    g24l_noisy("Trump II", seq(20, 100, 7), c(20, 41, 56, 70, 85, 100), c(11, 3, 1, -3, -4.5, -8), sd = 2)
+  ))
+)
+g24l_tank_points$panel <- factor(g24l_tank_points$panel, levels = g24l_tank_panels)
+g24l_tank_lines <- do.call(rbind, lapply(split(g24l_tank_points, g24l_tank_points$panel), function(d) {
+  cbind(panel = d$panel[1], g24l_loess(d, span = 0.55))
+}))
+g24l_tank_cols <- c(Obama = p24[["light blue"]], Biden = p24[["blue"]], `Trump I` = p24[["salmon"]],
+                    `Trump II` = p24[["red"]])
+g24l_tank_lab <- function(panel, x, y, label, face = "plain") {
+  cbind(panel = factor(g24l_tank_panels[panel], levels = g24l_tank_panels), g24l_lab(x, y, label, face = face))
+}
+
+g24l_tanking <- ggplot(mapping = aes(x, y, colour = series, group = series)) +
+  geom_hline(yintercept = 0, colour = "black", linewidth = g24l_rule) +
+  geom_point(data = g24l_tank_points, size = g24l_poll_dot, alpha = g24l_dot_fade, stroke = 0) +
+  geom_line(data = g24l_tank_lines, linewidth = g24l_line) +
+  g24l_labels(rbind(
+    g24l_tank_lab(1, c(310, 75, 82, 330), c(10.5, 5.5, -2.8, -17.5), c("Obama", "Biden", "Trump II", "Trump I"),
+                  face = c("plain", "plain", "bold", "plain")),
+    g24l_tank_lab(2, c(96, 90, 42), c(12.6, 1.4, -5.5), c("Biden", "Trump I", "Trump II"),
+                  face = c("plain", "plain", "bold"))
+  ), vjust = 0.5) +
+  ## The first panel's axis title, under its numbers; the second panel's months need none.
+  g24l_labels(g24l_tank_lab(1, 250, -33, "Days after inauguration"), hjust = 0.5, vjust = 1) +
+  facet_wrap(~panel, ncol = 1, scales = "free", axes = "all") +
+  scale_colour_manual(values = g24l_tank_cols, guide = "none") +
+  coord_cartesian(clip = "off") +
+  ## The panels share scales by range: days 0-500 in the first, and January to April in the second.
+  g24_value_axis(
+    limits = function(l) if (l[2] > 25) c(-21, 41) else c(-11, 15.4),
+    breaks = function(l) if (l[2] > 25) seq(-20, 40, 20) else seq(-10, 15, 5),
+    expand = c(0, 0), oob = scales::oob_keep
+  ) +
+  scale_x_continuous(
+    limits = function(l) if (l[2] > 200) c(-8, 520) else c(15, 125), expand = c(0, 0),
+    breaks = function(l) if (l[2] > 200) seq(0, 500, 100) else c(16, 45.5, 75, 105.5),
+    ## The first panel's ticks sit at its numbers; minor breaks on the majors would be dropped, so they are nudged.
+    minor_breaks = function(l) if (l[2] > 200) seq(0, 500, 100) + 0.01 else c(1, 32, 60, 91, 121),
+    labels = function(b) if (max(b, na.rm = TRUE) > 200) b else month.abb[1:4][seq_along(b)],
+    guide = g24l_span_axis
+  ) +
+  labs(
+    title = "Tanking",
+    subtitle = "United States, net approval,\npercentage points",
+    x = NULL, y = NULL, caption = "Sources: YouGov/The Economist; The Economist"
+  ) +
+  g24_theme() +
+  theme(
+    strip.text = element_text(margin = margin(3.5, 0, 9, 0)),
+    panel.spacing.y = unit(3.2 * g24_size, "pt")
+  )
+
+g24_chart(g24l_tanking)
+```
 
 ## Lines, stacked
 
@@ -632,7 +901,7 @@ The dot range, the 2017 thermometer, is in 5 of the 88 print charts and 10 of th
 The four standard print examples share one form (`20240706_AMC263`, `20250104_IRC277`, `20250621_MAC033`, `20260829_FNC983`); the fifth, `20240525_LDC093`, is a Leaders chart of intervals.
 Each series is a solid dot, about as tall as a capital letter of the labels.
 A dark gray rule joins the lowest dot to the highest, rather than running from zero.
-The scale is on top, with vertical gridlines and a black rule at zero, and the category names are ranged left at the edge of the chart.
+The scale is on top, with gridlines both ways (vertical at the scale's numbers, horizontal through each category, as in a scatter) and a black rule at zero, and the category names are ranged left at the edge of the chart.
 A key of dots sits above the plot.
 Two series are red and salmon in all three two-series charts.
 
@@ -723,6 +992,8 @@ g24l_thermo_plot <- function(key, colours = unname(p24)) {
     ) +
     g24_theme(horizontal = FALSE) +
     theme(
+      ## Gridlines run both ways: a horizontal one through each category, under its rule and dots.
+      panel.grid.major.y = element_line(colour = g24l_grid),
       axis.line.y = element_line(colour = "black", linewidth = g24l_rule),
       axis.ticks.y = element_blank(),
       axis.text.y = element_text(hjust = 0)
@@ -763,7 +1034,7 @@ Against 2017: the full six-color order, with no example in the corpus; at this d
 
 In 2024 the dot is the standard terminal, not the alternative: every print dot range in the corpus ends in dots, and none uses rule terminals.
 Where the series are dates, they run gray, salmon, red from oldest to newest, the newest dot carrying the emphasis (`20240706_AMC263`, which picks out one country in bold); the chart below colors the 2017 example as if its three series were successive years.
-The web charts add arrows for a change between two dates (3 of the 10 web dot ranges).
+The web charts add arrows for a change between two dates (3 of the 10 web dot ranges); see [below](#arrows-and-lollipops).
 
 ```{r g24-lines-thermometer-dots, econ_height = 185}
 ## The oldest dot in the warm gray of `20240706_AMC263`, the second step of the gray ramp.
@@ -771,6 +1042,233 @@ g24_chart(g24l_thermo_plot("dot", colours = c(econ$print$sequential_gray$value[3
 ```
 
 Against 2017: larger dots, with red for the latest, joined by a dark gray rule between the dots instead of a pale line from zero. `r g24_2017("dot-terminals")`
+
+### Arrows and lollipops
+
+A change between two dates is drawn as an arrow from the earlier value to the later one.
+In "Gills and spills" (2024) the earlier value is a salmon dot and the later a red one, as the dated dots above run from pale to red, and a dark gray arrow joins them, stopping at the edge of each dot.
+Where the two values nearly coincide there is no arrow, and the red dot sits over the salmon.
+A key of dots names the dates above the plot; the gridlines run both ways, and zero is a black rule.
+
+```{r g24-lines-thermometer-arrows, econ_height = 200}
+g24l_parties <- c("Labour", "Conservative", "Reform†", "Liberal Democrat", "Other")
+g24l_gills <- data.frame(
+  party = factor(g24l_parties, levels = rev(g24l_parties)),
+  then = c(28.5, 61.5, 0, 5.5, 5.5),
+  now = c(55, 23, 14.5, 5.5, 2.5)
+)
+## Arrows only where the dots do not touch; each stops at the edge of its dots.
+g24l_gap <- 2.9
+g24l_moves <- g24l_gills[abs(g24l_gills$now - g24l_gills$then) > 2 * g24l_gap, ]
+g24l_moves$dir <- sign(g24l_moves$now - g24l_moves$then)
+g24l_dates <- c("Current voting intention*", "2019")
+g24l_gills_dots <- data.frame(
+  party = rep(g24l_gills$party, 2),
+  value = c(g24l_gills$then, g24l_gills$now),
+  when = factor(rep(rev(g24l_dates), each = nrow(g24l_gills)), levels = g24l_dates)
+)
+
+g24l_gills_plot <- ggplot(g24l_gills_dots, aes(value, party)) +
+  geom_segment(
+    data = g24l_moves,
+    aes(x = .data$then + .data$dir * g24l_gap, xend = .data$now - .data$dir * g24l_gap, y = .data$party,
+      yend = .data$party),
+    colour = p24[["dark gray"]], linewidth = g24_lw(1.5), linejoin = "mitre",
+    arrow = arrow(length = unit(0.5 * g24_size, "pt"), angle = 30, type = "closed")
+  ) +
+  ## The 2019 dots first, so the current ones lie on top.
+  geom_point(aes(colour = .data$when), data = g24l_gills_dots[order(g24l_gills_dots$when, decreasing = TRUE), ],
+    size = 2.6) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(position = "top", limits = c(0, 80), breaks = seq(0, 80, 20), expand = c(0, 0)) +
+  ## The arrows' layer holds only the parties that moved, so the rows are named in order here.
+  scale_y_discrete(limits = rev(g24l_parties)) +
+  scale_colour_manual(values = c(p24[["red"]], p24[["salmon"]])) +
+  guides(colour = guide_legend(nrow = 1, override.aes = list(size = 2.2))) +
+  labs(
+    title = "Gills and spills",
+    subtitle = "Gillingham and Rainham constituency,\ngeneral-election vote share, %",
+    x = NULL, y = NULL, colour = NULL,
+    caption = paste0(
+      "*Face-to-face constituency poll of 376 people,\nJune 4th-16th 2024\n†Brexit Party in 2019\n",
+      "Sources: House of Commons Library; WeThink;\nThe Economist"
+    )
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(
+    panel.grid.major.y = element_line(colour = g24l_grid),
+    axis.line.y = element_line(colour = "black", linewidth = g24l_rule),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(hjust = 0)
+  )
+
+g24_chart(g24l_gills_plot)
+```
+
+Against 2017: the 2017 guide has no arrows; its dot terminals are the nearest form.
+
+An arrow can stand without dots.
+In "Electric car prices" each arrow is a heavy stroke in the single-series red, with a closed head; the two dates are named once, at the ends of one arrow, in place of a key, and a black rule marks the reference value, 100.
+
+```{r g24-lines-arrows, econ_height = 120}
+## A heavy arrow: a thick shaft that stops inside a head drawn with a hairline, since a closed head drawn with the
+## shaft's own line width is swollen by its stroke. `back` is how far into the head the shaft stops, in data units.
+g24l_heavy_arrow <- function(data, back, shaft = 3.5) {
+  data$dir <- sign(data$to - data$from)
+  list(
+    geom_segment(
+      aes(x = .data$from, xend = .data$to - .data$dir * back, y = .data$y, yend = .data$y, colour = I(.data$col)),
+      data = data, linewidth = g24_lw(shaft), lineend = "butt", inherit.aes = FALSE
+    ),
+    geom_segment(
+      aes(x = .data$to - .data$dir * back, xend = .data$to, y = .data$y, yend = .data$y, colour = I(.data$col)),
+      data = data, linewidth = g24_lw(0.3), linejoin = "mitre", inherit.aes = FALSE,
+      arrow = arrow(length = unit(1.8 * shaft, "pt"), angle = 34, type = "closed")
+    )
+  )
+}
+
+g24l_ev <- data.frame(
+  country = factor(c("US", "Britain", "China"), levels = c("China", "Britain", "US")),
+  from = c(181, 171, 116),
+  to = c(158, 145, 85)
+)
+
+g24l_ev_plot <- ggplot(g24l_ev, aes(y = country)) +
+  geom_vline(xintercept = 100, colour = "black", linewidth = g24l_rule) +
+  g24l_heavy_arrow(transform(g24l_ev, y = country, col = single24[["print"]]), back = 3) +
+  ## The dates, once, at the ends of Britain's arrow, on the ground so the gridline breaks around them.
+  geom_label(
+    data = data.frame(x = c(128, 187), y = "Britain", label = c("2022", "2018")),
+    aes(x = .data$x, y = .data$y, label = .data$label), inherit.aes = FALSE,
+    size = g24_text, colour = g24l_ink, fill = g24l_ground, label.size = 0, label.padding = unit(1, "pt")
+  ) +
+  scale_x_continuous(position = "top", limits = c(70, 205), breaks = seq(75, 200, 25), expand = c(0, 0)) +
+  labs(
+    title = "Electric car prices",
+    subtitle = "As % of non-electric cars, pre-subsidies",
+    x = NULL, y = NULL, caption = "Source: International Energy Agency"
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(
+    panel.grid.major.y = element_line(colour = g24l_grid),
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(hjust = 0),
+    ## The small web charts set the headline in red, with no tab, over a subtitle in regular weight.
+    plot.title = element_text(colour = accent24[["print"]]),
+    plot.subtitle = element_text(face = "plain")
+  )
+
+g24_chart(g24l_ev_plot, tab = c(0, 0))
+```
+
+Where arrows run both ways, direction takes the palette's main contrast.
+In "Outlier" (2023) the six countries whose confidence rose are blue and the one where it fell, the subject, is red, with its name in bold.
+A key above the axis gives the dates either side of a gray arrow, and a break mark before the first number shows that the scale does not start at zero.
+This chart has vertical gridlines only, where "Electric car prices" also rules each row.
+
+```{r g24-lines-arrows-two-way, econ_height = 205}
+g24l_g7_names <- c("Canada", "Britain", "Germany", "France", "Japan", "Italy", "United States")
+g24l_trust <- data.frame(
+  country = factor(g24l_g7_names, levels = rev(g24l_g7_names)),
+  from = c(57, 62.5, 55, 54, 48, 41, 63),
+  to = c(65, 64, 62, 61, 60, 55, 48)
+)
+g24l_trust$dir <- ifelse(g24l_trust$to > g24l_trust$from, "rise", "fall")
+
+g24l_key_gp <- gpar(fontsize = g24_size, fontfamily = economist_2017_font(), col = g24l_ink)
+## The key starts at the left edge of the chart, where the category names do.
+g24l_key_left <- unit(0, "npc") - grobWidth(textGrob("United States", gp = gpar(fontsize = g24_size,
+  fontface = "bold"))) - unit(0.3 * g24_size, "pt")
+g24l_key_y <- unit(1, "npc") + unit(2.4 * g24_size, "pt")
+g24l_two_way_key <- gTree(children = gList(
+  textGrob("2006", x = g24l_key_left, y = g24l_key_y, hjust = 0, gp = g24l_key_gp),
+  segmentsGrob(
+    x0 = g24l_key_left + unit(3.2 * g24_size, "pt"), x1 = g24l_key_left + unit(5.6 * g24_size, "pt") - unit(3, "pt"),
+    y0 = g24l_key_y, y1 = g24l_key_y,
+    gp = gpar(col = econ$print$sequential_gray$value[3], lwd = 3.5 / 0.75, lineend = "butt")
+  ),
+  segmentsGrob(
+    x0 = g24l_key_left + unit(5.6 * g24_size, "pt") - unit(3, "pt"), x1 = g24l_key_left + unit(5.6 * g24_size, "pt"),
+    y0 = g24l_key_y, y1 = g24l_key_y, arrow = arrow(length = unit(6.3, "pt"), angle = 34, type = "closed"),
+    gp = gpar(col = econ$print$sequential_gray$value[3], fill = econ$print$sequential_gray$value[3], lwd = 0.4)
+  ),
+  textGrob("2023", x = g24l_key_left + unit(6, "pt") * g24_size, y = g24l_key_y, hjust = 0, gp = g24l_key_gp)
+))
+## The break mark: a short zigzag on the axis-number row, before the first number.
+g24l_axis_break <- polylineGrob(
+  x = unit(c(0, 0.3, 0.45, 0.6, 0.75, 1), "npc"),
+  y = unit(1, "npc") + unit(0.75 * g24_size, "pt") + unit(c(0, 0, 2, -2, 0, 0), "pt"),
+  gp = gpar(col = g24l_ink, lwd = 0.8)
+)
+
+g24l_outlier <- ggplot(g24l_trust, aes(y = country)) +
+  g24l_heavy_arrow(
+    transform(g24l_trust, y = country, col = ifelse(dir == "rise", p24[["blue"]], p24[["red"]])), back = 0.8
+  ) +
+  annotation_custom(g24l_two_way_key) +
+  annotation_custom(g24l_axis_break, xmin = 35.6, xmax = 38.2) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(position = "top", limits = c(35, 72), breaks = seq(40, 70, 5), expand = c(0, 0)) +
+  scale_y_discrete(labels = g24_bold_label("United States")) +
+  labs(
+    title = "Outlier",
+    subtitle = "G7 countries, confidence in\nnational institutions*, %",
+    x = NULL, y = NULL,
+    caption = paste0(
+      "*Key national institutions: the military, the judicial\n",
+      "system, the national government and the honesty\nof elections\nSource: Gallup"
+    )
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(hjust = 0),
+    plot.subtitle = element_text(margin = margin(b = 4 * g24_size))
+  )
+
+g24_chart(g24l_outlier)
+```
+
+A lollipop is a dot on a stem from zero: in "Seats per 1m votes" (2024) the stems are dark gray and the dots the single-series red, over gridlines both ways and a black rule at zero.
+Like "Electric car prices", it is a small web chart, with a red headline and no tab.
+
+```{r g24-lines-lollipop, econ_height = 120}
+g24l_seats <- data.frame(
+  party = factor(
+    c("Labour", "Lib Dems", "Conservative", "Reform UK"),
+    levels = rev(c("Labour", "Lib Dems", "Conservative", "Reform UK"))
+  ),
+  per_m = c(42.5, 20.5, 17.5, 0.7)
+)
+
+g24l_lollipop <- ggplot(g24l_seats, aes(per_m, party)) +
+  geom_segment(aes(x = 0, xend = .data$per_m, yend = .data$party), colour = p24[["dark gray"]],
+    linewidth = g24_lw(1.5)) +
+  geom_point(colour = single24[["print"]], size = 2.6) +
+  coord_cartesian(clip = "off") +
+  scale_x_continuous(position = "top", limits = c(0, 50), breaks = seq(0, 50, 10), expand = c(0, 0)) +
+  labs(
+    title = "Seats per 1m votes",
+    subtitle = "Britain, general election, July 4th 2024",
+    x = NULL, y = NULL, caption = "Sources: House of Commons Library; PA Media"
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(
+    panel.grid.major.y = element_line(colour = g24l_grid),
+    axis.line.y = element_line(colour = "black", linewidth = g24l_rule),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(hjust = 0),
+    plot.title = element_text(colour = accent24[["print"]]),
+    plot.subtitle = element_text(face = "plain")
+  )
+
+g24_chart(g24l_lollipop, tab = c(0, 0))
+```
+
+Against 2017: the 2017 guide has no lollipops; its nearest form is a bar.
 
 ## Scatter plot
 
@@ -1234,3 +1732,179 @@ g24_chart(g24l_vitality_hl)
 ```
 
 Against 2017: the Midwest in red against light gray rather than against a pale cyan, the named counties outlined in black, and the group's name in bold black beside its cloud rather than in white inside it. `r g24_2017("bubble-chart")`
+
+The bubbles of "Big bucks, bigger bang" (2024) are opaque, not translucent: two groups, the emphasis red and salmon, each bubble ringed in a thin pale line so that the smaller ones stay visible over the larger.
+The two largest are named in white inside themselves.
+Both keys sit in the empty top left of the panel, the color key as dots under a bold heading and the size key as two nested circles, each value printed inside the top of its circle.
+
+```{r g24-lines-big-bucks, econ_height = 265}
+## Invented countries, scattered to follow the chart's cloud; China and India are placed as drawn.
+set.seed(11)
+g24l_gii_n <- 110
+g24l_gii <- data.frame(
+  gdp = runif(g24l_gii_n, 6.8, 11.6),
+  pop = pmin(0.4, rlnorm(g24l_gii_n, log(0.02), 1.2))
+)
+g24l_gii$score <- pmax(9, 13 + 9.8 * (g24l_gii$gdp - 6.8) + rnorm(g24l_gii_n, 0, 4))
+g24l_gii <- rbind(g24l_gii, data.frame(gdp = c(9.9, 8.95), pop = c(1.41, 1.43), score = c(55.3, 38.3)))
+g24l_gii$above <- g24l_gii$score > 13 + 9.8 * (g24l_gii$gdp - 6.8)
+g24l_gii$above[g24l_gii$pop > 1] <- TRUE
+## The largest drawn first, so the small bubbles lie on top of them.
+g24l_gii <- g24l_gii[order(-g24l_gii$pop), ]
+g24l_gii_cols <- c(`TRUE` = p24[["red"]], `FALSE` = p24[["salmon"]])
+## The ring round each bubble: the ground, a little transparent.
+g24l_ring <- alpha("white", 0.55)
+
+g24l_big_bucks <- ggplot(g24l_gii, aes(gdp, score)) +
+  geom_point(aes(size = pop, fill = above), shape = 21, colour = g24l_ring, stroke = 0.3) +
+  annotate("text", x = c(9.9, 8.95), y = c(55.3, 38.3), label = c("China", "India"), colour = "white",
+           size = g24_text) +
+  ## The color key: a bold heading over two dots.
+  annotate("text", x = 6.05, y = 79, label = "Innovation performance\ngiven income level", hjust = 0, vjust = 1,
+           fontface = "bold", size = g24_text, lineheight = 0.95) +
+  annotate("point", x = 6.2, y = c(66.5, 61), size = 2, colour = g24l_gii_cols) +
+  annotate("text", x = 6.4, y = c(66.5, 61), label = c("Above expectations", "Below expectations"), hjust = 0,
+           size = g24_text) +
+  ## The size key: nested black circles, each value inside the top of its circle.
+  annotate("text", x = 6.05, y = 52, label = "Population, bn", hjust = 0, fontface = "bold", size = g24_text) +
+  ## The circles share a bottom edge; their centers are set by eye for this size.
+  geom_point(data = data.frame(gdp = 6.75, score = c(38, 35.1), pop = c(1.5, 0.5)), aes(size = pop), shape = 21,
+             fill = NA, colour = "black", stroke = 0.3) +
+  annotate("text", x = 6.75, y = c(42.9, 37.2), label = c("1.5", "0.5"), size = g24_text) +
+  scale_size_area(max_size = 12.5, guide = "none") +
+  scale_fill_manual(values = g24l_gii_cols, guide = "none") +
+  g24l_y_title("Global innovation index\nscore, maximum=100") +
+  g24_value_axis(limits = c(0, 80), breaks = seq(0, 80, 20), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(6, 12.3), breaks = 6:12, expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Big bucks, bigger bang",
+    subtitle = "2023 or latest available",
+    x = "GDP per person at PPP*, natural log", y = NULL,
+    caption = "*Purchasing-power parity\nSource: Global Innovation Index, 2023"
+  ) +
+  g24_theme() +
+  g24l_scatter_theme(title_lines = 2)
+
+g24_chart(g24l_big_bucks)
+```
+
+Against 2017: opaque bubbles in two reds with pale rings, where 2017 outlined each bubble in a darker shade of its fill; both keys sit inside the panel. `r g24_2017("bubble-chart")`
+
+### Beeswarm
+
+A beeswarm shows every observation as a dot, stacked where values coincide.
+In "Labour landslip" (2024) each poll is a light gray dot with a darker gray outline, binned to the whole point and stacked up and down from its row; the poll average is a dark gray dot and the result a red one, both outlined in black and drawn on the row's center line.
+The parties run down the left, the scale is on top with a black rule at zero, the gridlines run both ways, and the key sits in the empty lower right of the panel.
+
+```{r g24-lines-beeswarm, econ_height = 265}
+## Invented polls, binned to the whole point; the averages and results are read from the chart.
+g24l_poll_parties <- c("Labour", "Conservative", "Reform UK", "Liberal\nDemocrats", "Green", "SNP", "Others")
+g24l_polls <- list(
+  c(36, 37, 37, 38, 38, 38, 39, 39, 39, 39, 40, 40, 40, 41, 41, 41, 39, 38, 40, 37),
+  c(16, 19, 20, 20, 21, 21, 21, 21, 22, 22, 22, 23, 20, 21, 22, 23, 20, 21),
+  c(13, 14, 15, 15, 16, 16, 16, 16, 16, 17, 17, 17, 17, 18, 15, 16, 17, 20),
+  c(10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 10, 11),
+  c(5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 8, 9, 5, 6),
+  c(2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 6, 2),
+  c(0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 4, 5, 7, 1, 2)
+)
+g24l_poll_average <- c(38.6, 21, 16.2, 11, 6.3, 2.9, 2.3)
+g24l_vote_share <- c(34.7, 24.4, 14.7, 12.6, 6.9, 2.6, 3.6)
+## Rows from the top; each dot in a bin of equal values steps away from the row's center line, alternately up and down.
+g24l_dot_step <- 0.115
+g24l_swarm <- do.call(rbind, lapply(seq_along(g24l_polls), function(i) {
+  v <- sort(g24l_polls[[i]])
+  k <- stats::ave(v, v, FUN = seq_along) - 1
+  data.frame(share = v, row = length(g24l_polls) + 1 - i + ceiling(k / 2) * ifelse(k %% 2 == 1, 1, -1) * g24l_dot_step)
+}))
+g24l_centres <- data.frame(
+  row = rev(seq_along(g24l_poll_parties)),
+  average = g24l_poll_average,
+  vote = g24l_vote_share
+)
+## Poll dots: the print light gray in a darker gray outline. Average: dark gray. Result: red. Both outlined in black.
+g24l_poll_fill <- p24[["light gray"]]
+g24l_poll_line <- econ$print$sequential_gray$value[3]
+g24l_average_fill <- econ$print$sequential_gray$value[4]
+g24l_swarm_size <- 1.45
+
+g24l_landslip <- ggplot(g24l_swarm, aes(share, row)) +
+  geom_vline(xintercept = 0, colour = "black", linewidth = g24l_rule) +
+  geom_point(shape = 21, fill = g24l_poll_fill, colour = g24l_poll_line, stroke = 0.25, size = g24l_swarm_size) +
+  geom_point(data = g24l_centres, aes(average, row), shape = 21, fill = g24l_average_fill, colour = "black",
+             stroke = 0.3, size = g24l_swarm_size) +
+  geom_point(data = g24l_centres, aes(vote, row), shape = 21, fill = p24[["red"]], colour = "black", stroke = 0.3,
+             size = g24l_swarm_size) +
+  ## The key, in the empty lower right of the panel.
+  annotate("point", x = 25, y = c(3.25, 2.65, 2.05), shape = 21, size = g24l_swarm_size, stroke = c(0.25, 0.3, 0.3),
+           fill = c(g24l_poll_fill, g24l_average_fill, p24[["red"]]), colour = c(g24l_poll_line, "black", "black")) +
+  annotate("text", x = 26.4, y = c(3.25, 2.65, 2.05), label = c("Poll", "Poll average", "Actual vote share"),
+           hjust = 0, size = g24_text) +
+  scale_x_continuous(position = "top", limits = c(0, 50), breaks = seq(0, 50, 10), expand = c(0, 0)) +
+  scale_y_continuous(breaks = rev(seq_along(g24l_poll_parties)), labels = g24l_poll_parties,
+                     limits = c(0.45, 7.55), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Labour landslip",
+    subtitle = "Britain, general election 2024, final polling, %",
+    x = NULL, y = NULL, caption = "Sources: Press Association; polling companies;\nThe Economist"
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(
+    panel.grid.major.y = element_line(colour = g24l_grid),
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(hjust = 0, lineheight = 0.95)
+  )
+
+g24_chart(g24l_landslip, number = 1)
+```
+
+### Point ranges
+
+An estimate with its uncertainty is a dot on a bar.
+In "Suspended sentence" (2024) each 95% confidence interval is a broad bar in the second step of the print gray ramp, a little narrower than its dot, and each estimate a dot in the single-series red; one bar is labelled "95% confidence" in gray, with a short leader ending in a dot.
+The gridlines are horizontal only, as in a column chart.
+The time axis changes unit partway, so each part is named, "Days" and "Weeks", in black just above the baseline where it begins, and the points are spaced to suit, not to scale.
+
+```{r g24-lines-point-ranges, econ_height = 255}
+## Read from the chart. Days 2 to 14 sit one unit apart; the weekly bands are spaced as the chart spaces them.
+g24l_release <- data.frame(
+  at = c(2:14, 18.5, 20.4, 22.4, 27.2, 31.2),
+  rate = c(1930, 1630, 1160, 1000, 1170, 1040, 1200, 600, 720, 720, 780, 530, 820, 880, 810, 770, 750, 770),
+  lo = c(900, 950, 580, 520, 600, 500, 560, 320, 310, 450, 330, 300, 360, 650, 640, 600, 600, 680),
+  hi = c(3150, 2480, 1920, 1780, 1880, 1920, 2050, 920, 1270, 1050, 1240, 860, 1420, 1130, 1000, 950, 900, 880)
+)
+g24l_interval <- econ$print$sequential_gray$value[2]
+
+g24l_suspended <- ggplot(g24l_release, aes(at, rate)) +
+  geom_rect(aes(xmin = at - 0.31, xmax = at + 0.31, ymin = lo, ymax = hi), fill = g24l_interval) +
+  geom_point(colour = single24[["print"]], size = 1.75) +
+  ## The interval named once, on the first bar.
+  annotate("segment", x = 2, xend = 2.8, y = 2500, yend = 2500, colour = g24l_note, linewidth = g24_lw(0.5)) +
+  annotate("point", x = 2, y = 2500, colour = g24l_note, size = 0.5) +
+  annotate("text", x = 3, y = 2500, label = "95% confidence", hjust = 0, colour = g24l_note, size = g24_text) +
+  ## Each part of the axis named where it begins.
+  annotate("text", x = c(1.5, 17.7), y = 60, label = c("Days", "Weeks"), hjust = 0, vjust = 0, size = g24_text) +
+  g24_value_axis(limits = c(0, 3200), breaks = seq(0, 3000, 1000), labels = scales::label_comma(),
+                 expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1.2, 32.4), expand = c(0, 0), breaks = c(2, 7, 14, 18.5, 22.4, 27.2, 31.2),
+    labels = c("2", "7", "14", "3-4", "9-12", "13-52", "53+")
+  ) +
+  labs(
+    title = "Suspended sentence",
+    subtitle = "Prisoners after release*, deaths per\n100,000 person-years, 1980-2008",
+    x = "Time after release from prison", y = NULL,
+    caption = paste0(
+      "*Australia, Brazil, Canada, New Zealand, Norway,\nScotland, Sweden and United States\n",
+      "Source: “Rates and causes of death after release\nfrom incarceration among 1,471,526 people in\n",
+      "eight high-income and middle-income countries”,\nby R. Borschmann et al., The Lancet, 2024"
+    )
+  ) +
+  g24_theme() +
+  theme(axis.title.x = element_text(hjust = 0.5))
+
+g24_chart(g24l_suspended)
+```

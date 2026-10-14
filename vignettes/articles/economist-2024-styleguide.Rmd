@@ -12,6 +12,12 @@ local({
 })
 ```
 
+```{css, echo = FALSE}
+/* pkgdown gives every table Bootstrap's `table` class, whose cells are filled with --bs-table-bg (white); let the
+   gt tables show their own background instead. */
+table.gt_table { --bs-table-bg: transparent; }
+```
+
 *The Economist* redesigned its charts in March 2024, and has published no chart style guide since.
 This article is a reverse-engineered replacement for *The Economist visual styleguide* (v1.2, 4 May 2017), which [another article](economist-2017-styleguide.html) reproduces.
 Like the [classic guide](economist-classic-styleguide.html), it follows the sections of the 2017 guide and draws the 2017 guide's own example charts, with the same data, titles and sizes, in the new style, so that each figure here can be set beside its 2017 version.
@@ -578,6 +584,36 @@ Only part of the chart palette is also an exact token in the current [Economist 
 
 The web gray ramp does contain exact London gray tokens: `#F2F2F2`, `#D9D9D9`, `#B3B3B3` and `#0D0D0D`.
 The chart blues clearly belong to the same visual family as Chicago blue, but treating them as official token values would overstate the evidence.
+
+### Party colors
+
+Political parties are the commonest case of color that means something outside the chart, and they take the palette where they can.
+The left takes red and the right takes blue, so America's Republicans are red, against the usual American convention.
+Second parties on each side take the paler partner: salmon for the Socialists & Democrats against the Left's red, and light blue for France's Republicans against the National Rally's blue.
+In "Tanking", Trump's second term is red and his first salmon, and Biden is blue and Obama light blue, so the pairs are both party and recency.
+Unaffiliated members and "others" take the palette's grays.
+
+Only third parties go off the palette, and they take their own colors: amber for the liberal center (France's Ensemble, Renew Europe, Canada's New Democrats, Scotland's SNP), orange for Britain's Liberal Democrats, green for Greens, cyan for the European People's Party and Reform UK, and navy, dark red or dark green where a further party needs its own hue.
+The values below are sampled from six charts of 2024–25 ("Tanking", "In poll position", "Squeezed middle", "Electoral efficiency", "Inching right" and "Not so separatist"). They match the print palette, not the web one.
+
+| Color | Value | Parties |
+|---|---|---|
+| Red | `#ED1C24` | Trump (second term), Canada's Liberals, the European Left, Basque Socialists, Britain's Labour (as a line among many) |
+| Single-series red | `#F04F38` | France's New Popular Front; Labour |
+| Salmon | `#F8AB90` | Trump (first term), Socialists & Democrats |
+| Blue | `#28479D` | Biden, Canada's Conservatives, National Rally, Britain's Conservatives, Spain's People's Party |
+| Light blue | `#659BD2` to `#8AAFDC` | Obama, Bloc Québécois, France's Republicans, European Conservatives & Reformists |
+| Dark gray | `#636466` | Unaffiliated (European Parliament) |
+| Light gray | `#C6C8CA` | Others |
+| Amber | `#FCB316` | Ensemble, Renew Europe, New Democrats, SNP (`#F9BE2A`) |
+| Orange | `#F57F20` | Liberal Democrats |
+| Green | `#71BF45` | Greens, EH Bildu; Plaid Cymru in a paler `#99CF87` |
+| Cyan | `#2FC0D3` | European People's Party, Reform UK |
+| Navy | `#222B76` | Identity & Democracy |
+| Dark red | `#B7131A` | People's Party of Canada |
+| Dark green | `#0A5115` | Basque Nationalist Party (PNV) |
+
+The sampled values carry the antialiasing and compression of the images, so the off-palette ones are good to a few units.
 
 ### Sequential and diverging red and gray
 

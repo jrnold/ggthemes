@@ -848,7 +848,7 @@ Against 2017: the box is outlined in black, where 2017 filled it. `r g24_2017("n
 ### Highlight panels
 
 A forecast or estimate is a gray block the height of the panel, labelled "Forecast" in gray at its top (`20240427_ASC408`, `20260829_FNC025`).
-It has no rule along its top.
+Usually it has no rule along its top.
 
 ```{r g24-misc-highlight-neutral, econ_height = 165}
 ## Five-year intervals; every country is 100 in 2015.
@@ -897,6 +897,37 @@ g24_chart(g24m_fill_jobs, footnote = "*Aged 15-64")
 ```
 
 Against 2017: no rule along the top of the panel, and a label in gray sentence case rather than capitals; the index line is black rather than red. `r g24_2017("highlight-panels")`
+
+Some forecast blocks add a thin dark rule along the top to set the block off ("Little people", 2024).
+
+```{r g24-misc-highlight-forecast-rule, econ_height = 165}
+g24m_pupils <- data.frame(
+  year = 2019:2028,
+  m = c(4.625, 4.62, 4.575, 4.572, 4.568, 4.485, 4.405, 4.325, 4.245, 4.155)
+)
+
+g24m_little <- ggplot(g24m_pupils, aes(year, m)) +
+  annotate("rect", xmin = 2024, xmax = 2028, ymin = -Inf, ymax = 4.8, fill = g24m_shade[["print"]]) +
+  ## The rule along the top of the block.
+  annotate("segment", x = 2024, xend = 2028, y = 4.8, yend = 4.8, colour = p24[["dark gray"]],
+           linewidth = g24_lw(0.75)) +
+  annotate("text", x = 2026, y = 4.76, label = "Forecast", vjust = 1, colour = g24m_ink[["print"]], size = g24_text) +
+  geom_line(colour = single24[["print"]], linewidth = g24_lw(1.5)) +
+  geom_point(colour = single24[["print"]], size = 1.4) +
+  geom_scale_break_economist_2017() +
+  coord_cartesian(clip = "off") +
+  g24_value_axis(limits = c(3.91, 4.8), breaks = seq(4, 4.8, 0.2), labels = scales::label_number(0.1),
+                 expand = c(0, 0)) +
+  scale_x_continuous(limits = c(2018.6, 2028), expand = c(0, 0), breaks = 2019:2028,
+                     labels = c("2019", sprintf("%02d", 20:28))) +
+  labs(title = "Little people", subtitle = "England, primary-school pupils, m", x = NULL, y = NULL,
+       caption = "Source: Department for Education") +
+  g24_theme()
+
+g24_chart(g24m_little)
+```
+
+Against 2017: the rule along the top is thin and dark gray rather than red, and the label is gray. `r g24_2017("highlight-panels")`
 
 The 2017 guide tinted a highlight central to the chart's message in red.
 The corpus has no tinted period.
@@ -959,6 +990,64 @@ g24_chart(g24m_malaise_plot("web"), "web")
 ```
 
 Against 2017: the web period is a pale gray, where 2017 borrowed the pale blue of the print ground. `r g24_2017("highlight-panels")`
+
+A period whose start and end are uncertain fades out at its edges instead of stopping at a hard line ("Rough trade", 2024).
+Its label sits inside it, in gray, and an event that is certain to the day is a thin gray rule with a dot on top, labelled above.
+
+```{r g24-misc-highlight-fuzzy, econ_height = 175}
+## Read to follow the chart, interpolated to monthly.
+g24m_xinjiang_at <- c(
+  2016, 2016.4, 2016.55, 2016.7, 2016.85, 2017.1, 2017.6, 2017.8, 2018, 2018.3, 2018.6, 2018.75, 2018.9, 2019.3,
+  2019.55, 2019.7, 2020, 2020.3, 2020.6, 2020.9, 2021.2, 2021.5, 2021.8, 2022, 2022.2, 2022.5, 2022.8, 2023,
+  2023.3, 2023.5, 2023.75, 2023.95, 2024.1, 2024.2
+)
+g24m_xinjiang_bn <- c(
+  0.92, 0.95, 0.88, 0.55, 0.4, 0.47, 0.45, 0.33, 0.25, 0.24, 0.25, 0.4, 0.45, 0.45, 0.66, 0.52, 0.5, 0.52, 0.6,
+  0.62, 0.75, 0.82, 0.85, 0.78, 0.86, 0.92, 1.2, 1.2, 1.2, 1.1, 0.88, 0.95, 1.13, 1.25
+)
+g24m_xinjiang <- as.data.frame(stats::approx(g24m_xinjiang_at, g24m_xinjiang_bn, n = 99))
+## The period fades in and out: thin slices whose opacity ramps up over the first 0.7 years and down over the last,
+## drawn by hand since gradient fills are not drawn by every graphics device.
+g24m_fade <- local({
+  edge <- seq(0, 0.7, length.out = 29)
+  x <- c(2016.45 + edge, 2019.45 + edge)
+  data.frame(xmin = x, xmax = x + 0.7 / 28, a = c(seq_along(edge) / 29, rev(seq_along(edge)) / 29))
+})
+
+g24m_rough <- ggplot(g24m_xinjiang, aes(x, y)) +
+  annotate("rect", xmin = 2017.15, xmax = 2019.45, ymin = -Inf, ymax = 1.33, fill = g24m_shade[["print"]]) +
+  geom_rect(data = g24m_fade, aes(xmin = .data$xmin, xmax = .data$xmax, ymin = -Inf, ymax = 1.33, alpha = I(.data$a)),
+            fill = g24m_shade[["print"]], inherit.aes = FALSE) +
+  annotate("text", x = 2018.3, y = 1.27, label = "Vocational-training\ncentres operating", vjust = 1,
+           colour = g24m_ink[["print"]], size = g24_text, lineheight = 0.9) +
+  annotate("segment", x = 2024.1, xend = 2024.1, y = 0, yend = 1.42, colour = g24m_ink[["print"]],
+           linewidth = g24_lw(0.5)) +
+  annotate("point", x = 2024.1, y = 1.42, colour = g24m_ink[["print"]], size = 0.8) +
+  annotate("text", x = 2024.1, y = 1.47, label = "European Parliament passes\nforced-labour regulation",
+           hjust = 1, vjust = 0, colour = g24m_ink[["print"]], size = g24_text, lineheight = 0.9) +
+  geom_line(colour = single24[["print"]], linewidth = g24_lw(1.5)) +
+  coord_cartesian(clip = "off") +
+  g24_value_axis(limits = c(0, 1.6), breaks = seq(0, 1.5, 0.3), labels = c("0", "0.3", "0.6", "0.9", "1.2", "1.5"),
+                 expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(2016, 2024.6), expand = c(0, 0), guide = g24l_span_axis,
+    breaks = c(2016:2023 + 0.5, 2024.3), minor_breaks = 2016:2024, labels = c("2016", sprintf("%02d", 17:24))
+  ) +
+  ## The second line of the subtitle is in regular weight, under the bold first.
+  annotation_custom(textGrob(
+    "12-month moving total", x = unit(0, "npc") - unit(0, "pt"), y = unit(1, "npc") + unit(2.3 * g24_size, "pt"),
+    hjust = 0, vjust = 0, gp = gpar(fontsize = g24_size * 17 / 15, fontfamily = economist_2017_font(),
+      col = "black")
+  )) +
+  labs(title = "Rough trade", subtitle = "Xinjiang, goods exports to the EU-27, $bn",
+       x = NULL, y = NULL, caption = "Sources: China Customs; The Economist") +
+  g24_theme() +
+  theme(plot.subtitle = element_text(margin = margin(b = 3.6 * g24_size)))
+
+g24_chart(g24m_rough)
+```
+
+Against 2017: the 2017 guide has no period with soft edges. `r g24_2017("highlight-panels")`
 
 ### Highlight labels
 

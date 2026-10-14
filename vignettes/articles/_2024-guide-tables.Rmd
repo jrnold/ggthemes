@@ -185,7 +185,7 @@ Against 2017: no alternating fills, a light gray rule under every row, and descr
 The 2024 tables highlight a figure by boxing it: a block of color narrower than its column, with the figure inside.
 `20250614_EPC629` fills each figure's box from the red ramp, salmon for the lowest values and red for the highest, and outlines the boxes of its first row in black; the indicator tables box their key figures in gray or salmon.
 The corpus has no table with a totals row, so the totals below are set in bold with their figures boxed in salmon, the related, less emphatic color, keeping red for a single point of focus.
-The text stays black: no 2024 table inverts it.
+The text stays black, except on the two darkest steps of a ramp, which turn their figures white ("Strewth", below).
 
 ```{r g24-tables-jobs-bill}
 g24t_bill <- data.frame(
@@ -223,12 +223,113 @@ gt::gt(g24t_bill, id = "g24-jobs-bill") |>
 
 Against 2017: the totals are bold, with only their figures boxed in salmon, where 2017 filled the whole row with blue and turned the text white. `r g24_2017("with-color-highlight")`
 
+A table can shade every figure, as a heatmap does.
+In "Strewth" (2024) each figure sits in a box filled from the sequential red, the same steps in both columns: every other step of the web ramp (steps 2, 4, 6 and 8 of the red ramp behind `economist_2024_seq_gradient_pal("web")`), from the palest salmon under 3% to a dark red from 5%.
+The print ramp, which stops at the emphasis red, has no step as dark as the last, so the table takes the web ramp in print too; the sampled fills match it to within a unit or two per channel.
+The two darker steps turn their figures white, the one place a 2024 table inverts its type.
+The boxes are all one width, ranged left in the column with the figure ranged right inside, so the column reads as a strip of color.
+
+```{r g24-tables-strewth}
+## Read from the chart.
+g24t_strewth <- data.frame(
+  rank = c("1", "2", "3=", "3=", "5", "6", "7", "8", "9", "10"),
+  country = c("Australia", "Britain", "Canada", "Spain", "United States", "Germany", "France", "Italy", "South Korea",
+              "Japan"),
+  core = c(3.8, 4.8, 3.0, 3.0, 3.9, 3.1, 2.7, 2.3, 2.5, 2.6),
+  expected = c(4.4, 2.4, 4.7, 4.1, 5.3, 2.2, 3.5, 3.3, 2.2, 1.6)
+)
+## Every other step of the web sequential red, which the chart's fills match.
+g24t_heat_steps <- econ$web$sequential_red$value[c(3, 5, 7, 9)]
+g24t_heat <- function(x) {
+  step <- findInterval(x, c(3, 4, 5)) + 1
+  g24t_box(formatC(x, format = "f", digits = 1), g24t_heat_steps[step], ifelse(step >= 3, "white", g24t_ink))
+}
+## The rank in bold, in a column of its own width, before the name.
+g24t_strewth$country <- sprintf(
+  '<b style="display:inline-block;width:13pt">%s</b>%s', g24t_strewth$rank, g24t_strewth$country
+)
+g24t_strewth$rank <- NULL
+g24t_strewth$core <- g24t_heat(g24t_strewth$core)
+g24t_strewth$expected <- g24t_heat(g24t_strewth$expected)
+
+gt::gt(g24t_strewth, id = "g24-strewth") |>
+  gt::fmt_markdown(gt::everything()) |>
+  gt::cols_label(
+    country = gt::html('Ranking*<br><span style="font-weight:400">Out of ten<br>countries</span>'),
+    core = gt::html(
+      'Core prices<sup>†</sup><br><span style="font-weight:400">% increase on<br>a year earlier</span>'
+    ),
+    expected = gt::html('Inflation<br>expectations<sup>‡</sup><br><span style="font-weight:400">%</span>')
+  ) |>
+  gt::cols_align("left") |>
+  gt::cols_width(country ~ gt::pct(40), core ~ gt::pct(30), expected ~ gt::pct(30)) |>
+  g24t_table(
+    "g24-strewth", "Strewth", "Selected countries, February 2024 or latest", width = 200,
+    source = paste(
+      "Sources: OECD; Google; Federal Reserve Bank of Cleveland; Morning Consult; Raphael Schoenle; ONS;",
+      "<i>The Economist</i>"
+    ),
+    notes = paste(
+      "*Three indicators not shown: Google-search behaviour, inflation dispersion and unit labour costs",
+      "<sup>†</sup>Excludes energy and food",
+      "<sup>‡</sup>Consumers’ inflation expectations over the next 12 months"
+    )
+  ) |>
+  ## Wider, taller boxes than the totals' above: each about half its column and nearly the height of its row.
+  gt::opt_css(paste(
+    "#g24-strewth .gt_row { vertical-align: middle !important; }",
+    "#g24-strewth .gt_row span { min-width: 30pt !important; padding: 3pt 3pt !important; }"
+  ))
+```
+
+Against 2017: the 2017 guide fills whole rows, never single figures; here every figure is boxed, its fill a step on a red ramp. `r g24_2017("with-color-highlight")`
+
 ### Table with integrated charts
 
 The 2024 tables draw in their cells with the same marks as the charts: arrows in blue and red for the direction of an effect in `20250215_FNC938`, boxes on the red ramp in `20250614_EPC629`, and bars in each row of `20260627_WOC963`, one color to a block of rows.
 The table below follows the charts' color rules.
 A single measure takes the single-series red; the paired applications and decisions take red and salmon, keyed by color squares in the head, as a key of squares names the colors of `20260829_FNC090`.
 The corpus has no doughnuts, in tables or out of them, so the share accepted is a bar on a light gray track that stands for 100%.
+
+The simplest mark in a cell is an arrow for a direction.
+"Pulling up the ladder" (`20250215_FNC938`) gives each study one arrow, centred under the last head: blue pointing down where generative AI narrowed the gap between workers, red pointing up where it widened it.
+Blue and red are the palette's main contrast, and the arrow is a glyph in the table's type, no larger than a capital.
+
+```{r g24-tables-ladder}
+## Read from the chart.
+g24t_ladder <- data.frame(
+  study = c(
+    "Peng et al. (2023)", "Brynjolfsson, Li and<br>Raymond (2023)", "Noy and Zhang (2023)",
+    "Dell’Acqua et al. (2023)",
+    "Chen and Chan (2023)", "Choi, Monahan and<br>Schwarcz (2023)", "Otis et al. (2023)", "Roldan-Mones (2024)",
+    "Toner-Rodgers (2024)", "Kim et al. (2024)"
+  ),
+  topic = c(
+    "Coding efficiency", "Customer chat", "Writing quality", "Product design", "Ad effectiveness", "Legal analysis",
+    "Profits and revenue", "Debating points", "Material discovery", "Investment decisions"
+  ),
+  narrows = rep(c(TRUE, FALSE), c(6, 4))
+)
+## Down in blue where inequality falls, up in red where it rises.
+g24t_ladder$inequality <- ifelse(
+  g24t_ladder$narrows,
+  sprintf('<span style="color:%s;font-weight:600;font-size:1.15em">&darr;</span>', p24[["blue"]]),
+  sprintf('<span style="color:%s;font-weight:600;font-size:1.15em">&uarr;</span>', p24[["red"]])
+)
+g24t_ladder$narrows <- NULL
+
+gt::gt(g24t_ladder, id = "g24-ladder") |>
+  gt::fmt_markdown(gt::everything()) |>
+  gt::cols_label(study = "Study", topic = "Topic", inequality = "Inequality") |>
+  gt::cols_align("left", c(study, topic)) |>
+  gt::cols_align("center", inequality) |>
+  gt::cols_width(study ~ gt::pct(45), topic ~ gt::pct(37), inequality ~ gt::pct(18)) |>
+  g24t_table(
+    "g24-ladder", "Pulling up the ladder",
+    "Impact of generative AI on the gap between<br>high- and low-performing workers",
+    source = "Source: <i>The Economist</i>", width = 190
+  )
+```
 
 ```{r g24-tables-what-to-expect}
 ## Small SVG charts for the cells, in points.
@@ -391,261 +492,6 @@ indicator_table("2024")
 ```
 
 Against 2017: no bands, gray rules in place of black ones, and gray key boxes in place of blue. `r g24_2017("indicator-tables")`
-
-## Pie / doughnut
-
-The 2024 charts use no pies or doughnuts: none of the 88 surveyed print charts and none of the 118 web graphics of 2026.
-Shares of a whole are drawn as 100% stacked bars or columns, such as `20260829_FNC090`, keyed by squares of color or labelled directly.
-The charts in this section are drawn only to set beside their 2017 versions; for new work, use a stacked bar.
-
-### The standard color order, one to six segments
-
-Were a doughnut drawn, it would take the six-color order from 12 o'clock, clockwise: red, salmon, blue, light blue, dark gray, light gray.
-A residual "other" takes the first step of the print gray ramp, paler than the light gray of the sixth segment.
-
-```{r g24-tables-pie-order, econ_size = "two_column", econ_height = 150, dev.args = list(bg = econ$print$bg$value[1])}
-## Segment shares (%), clockwise from 12 o'clock; "O" is the pale "Other".
-g24t_pie_shares <- list(
-  c(`1` = 55.6, O = 44.4),
-  c(`1` = 55.6, `2` = 44.4),
-  c(`1` = 38.9, `2` = 16.7, `3` = 44.4),
-  c(`1` = 22.2, `2` = 20.3, `4` = 13.1, `3` = 44.4),
-  c(`1` = 22.2, `2` = 20.3, `5` = 7.4, `4` = 5.7, `3` = 44.4),
-  c(`1` = 15.6, `2` = 13.3, `5` = 10.2, `3` = 11.2, `4` = 5.3, `6` = 44.4)
-)
-g24t_pie_demo <- do.call(rbind, lapply(seq_along(g24t_pie_shares), function(i) {
-  hi <- cumsum(g24t_pie_shares[[i]])
-  data.frame(panel = as.character(i), key = names(hi), lo = hi - g24t_pie_shares[[i]], hi = unname(hi))
-}))
-## The residual: the first step of the print gray ramp.
-g24t_other <- econ$print$sequential_gray$value[2]
-g24t_pie_cols <- c(stats::setNames(unname(p24), as.character(1:6)), O = g24t_other)
-
-g24t_pie_grid <- function(hole) {
-  ggplot(g24t_pie_demo, aes(xmin = hole, xmax = 1, ymin = .data$lo, ymax = .data$hi, fill = .data$key)) +
-    geom_rect() +
-    coord_polar(theta = "y") +
-    scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
-    scale_y_continuous(limits = c(0, 100), expand = c(0, 0)) +
-    facet_wrap(~panel, nrow = 1) +
-    scale_fill_manual(values = g24t_pie_cols, guide = "none") +
-    labs(x = NULL, y = NULL) +
-    g24_theme() +
-    g24_no_axes() +
-    theme(panel.spacing.x = unit(8, "pt"))
-}
-
-## Doughnut (hole) above, pie below, as the 2017 guide shows both rows.
-g24_chart(g24t_pie_grid(0.52) + labs(title = "Standard colour order"))
-```
-
-```{r g24-tables-pie-order-solid, econ_size = "two_column", econ_height = 110, dev.args = list(bg = econ$print$bg$value[1])}
-g24t_pie_grid(0) + theme(strip.text = element_blank())
-```
-
-The labels follow the 2024 rules for labels: direct, in black, joined to their marks by thin black leader lines, as in `20240720_ASC360` and `20260829_FNC072`.
-
-```{r g24-tables-naan, econ_height = 155}
-## Doughnuts in the 2017 guide's own coordinates, clockwise from 12 o'clock.
-g24t_donut <- function(values, cx, cy, r_out, r_in, n = 40) {
-  edge <- 2 * pi * c(0, cumsum(values)) / sum(values)
-  do.call(rbind, lapply(seq_along(values), function(i) {
-    arc <- seq(edge[i], edge[i + 1], length.out = n)
-    data.frame(
-      segment = names(values)[i],
-      x = c(cx + r_out * sin(arc), cx + r_in * sin(rev(arc))),
-      y = c(cy - r_out * cos(arc), cy - r_in * cos(rev(arc)))
-    )
-  }))
-}
-
-g24t_workforce <- c(
-  "Jaguar Land Rover" = 19.0, "Tata Consultancy Services" = 4.9, "TGB (drinks)" = 0.7,
-  "Tata Chemicals" = 0.5, "Taj (hotels)" = 0.4, "Others" = 0.6, "Tata Steel" = 19.4
-)
-## Each segment takes the 2024 color in the place of its 2017 color in the order.
-g24t_naan_cols <- c(
-  "Jaguar Land Rover" = p24[["red"]], "Tata Consultancy Services" = p24[["light gray"]],
-  "TGB (drinks)" = p24[["light blue"]], "Tata Chemicals" = p24[["blue"]], "Taj (hotels)" = p24[["dark gray"]],
-  "Others" = g24t_other, "Tata Steel" = p24[["salmon"]]
-)
-g24t_naan_labels <- data.frame(
-  segment = names(g24t_workforce),
-  label = c("Jaguar Land\nRover 19.0", "Tata\nConsultancy\nServices 4.9", "TGB (drinks) 0.7",
-            "Tata Chemicals 0.5", "Taj (hotels)\n0.4", "Others\n0.6", "Tata Steel\n19.4"),
-  x = c(628, 628, 628, 58, 58, 58, 58),
-  y = c(234, 438, 565, 565, 456, 344, 234),
-  hjust = c(1, 1, 1, 0, 0, 0, 0),
-  block_x = c(640, 640, 640, 35, 35, 35, 35),
-  block_lo = c(205, 390, 552, 552, 430, 318, 205),
-  block_hi = c(240, 425, 576, 576, 465, 350, 240)
-)
-g24t_naan_lines <- data.frame(
-  id = rep(1:7, c(3, 4, 4, 4, 4, 6, 3)),
-  x = c(
-    652, 652, 475,
-    652, 652, 380, 380,
-    652, 652, 318, 318,
-    35, 35, 305, 305,
-    35, 35, 296, 296,
-    35, 35, 205, 205, 288, 288,
-    35, 35, 212
-  ),
-  y = c(
-    240, 287, 287,
-    425, 530, 530, 495,
-    576, 589, 589, 487,
-    576, 589, 589, 486,
-    465, 497, 497, 484,
-    350, 383, 383, 489, 489, 484,
-    240, 287, 287
-  )
-)
-
-g24t_naan <- ggplot() +
-  geom_path(
-    data = g24t_naan_lines, aes(.data$x, -.data$y, group = .data$id), colour = g24t_ink, linewidth = g24_lw(0.4)
-  ) +
-  geom_polygon(
-    data = transform(g24t_donut(g24t_workforce, 344, 340, 143, 71), y = -y),
-    aes(.data$x, .data$y, group = .data$segment, fill = .data$segment)
-  ) +
-  geom_rect(
-    data = g24t_naan_labels,
-    aes(xmin = .data$block_x, xmax = .data$block_x + 12, ymin = -.data$block_hi, ymax = -.data$block_lo,
-        fill = .data$segment)
-  ) +
-  geom_text(
-    data = g24t_naan_labels, aes(.data$x, -.data$y, label = .data$label, hjust = .data$hjust),
-    size = g24_pt(6.5), lineheight = 0.95
-  ) +
-  annotate("text", x = 344, y = -340, label = "Total\n45.4", size = g24_text, fontface = "bold", lineheight = 1) +
-  scale_fill_manual(values = g24t_naan_cols, guide = "none") +
-  coord_fixed(xlim = c(35, 655), ylim = c(-600, -190), expand = FALSE) +
-  labs(
-    title = "Naan bigger", subtitle = "Tata's workforce in Britain,\nSeptember 2011, '000", x = NULL, y = NULL,
-    caption = "Source: Tata"
-  ) +
-  g24_theme() +
-  g24_no_axes()
-
-g24_chart(g24t_naan)
-```
-
-Where the labels would crowd, the 2017 guide keys them with small blocks of color.
-2024 keys use squares of color beside their labels, as in `20260829_FNC090`, so the blocks here are squares.
-Eleven segments outrun the six-color order; after it, the trade doughnut continues down the print gray ramp, and "Rest of world" takes its palest step.
-Each heading opens with the short black rule of a 2024 panel heading.
-
-```{r g24-tables-scramble, econ_size = "two_column", econ_height = 178, dev.args = list(bg = econ$print$bg$value[1])}
-g24t_trade <- c(
-  "China*" = 156.4, "United States" = 72.1, "France" = 61.6, "India" = 57.0, "Spain" = 48.1, "Italy" = 40.9,
-  "Germany" = 40.4, "Britain" = 34.4, "Japan" = 25.3, "Brazil" = 25.3, "Rest of world" = 453.8
-)
-g24t_investment <- c(
-  "Britain" = 7.5, "United States" = 3.7, "Italy" = 3.6, "China" = 2.5, "France" = 2.1, "India" = 1.8,
-  "Rest of world" = 38.1
-)
-## The printed entries total $1,015.3bn, which the guide rounds to $1.02trn, and $59.3bn.
-stopifnot(all.equal(sum(g24t_trade), 1015.3), all.equal(sum(g24t_investment), 59.3))
-
-## The six-color order, then the print gray ramp from dark to light, its palest step for the rest of the world.
-g24t_gray_ramp <- econ$print$sequential_gray$value
-g24t_trade_cols <- c(unname(p24), g24t_gray_ramp[6:3], g24t_other)
-g24t_investment_cols <- c(unname(p24)[c(1, 2, 3, 4, 6, 5)], g24t_other)
-
-g24t_wedges <- rbind(
-  transform(
-    g24t_donut(g24t_trade, 299, 440, 182, 91),
-    panel = "trade", fill = g24t_trade_cols[match(segment, names(g24t_trade))]
-  ),
-  transform(
-    g24t_donut(g24t_investment, 991, 440, 181, 90),
-    panel = "investment", fill = g24t_investment_cols[match(segment, names(g24t_investment))]
-  )
-)
-g24t_wedges$y <- -g24t_wedges$y
-g24t_wedges$group <- paste(g24t_wedges$panel, g24t_wedges$segment)
-
-## Key squares and labels: x, y are pixel positions of the label's anchor edge.
-g24t_key_row <- function(panel, segment, label, x, y, block_x, colour, hjust) {
-  data.frame(panel, segment, label, x, y, block_x, colour, hjust)
-}
-g24t_labels <- rbind(
-  g24t_key_row("trade", names(g24t_trade)[1:8], paste(names(g24t_trade)[1:8], sprintf("%.1f", g24t_trade[1:8])), 636,
-               c(207, 271, 336, 401, 466, 530, 595, 660), 641, g24t_trade_cols[1:8], 1),
-  g24t_key_row("trade", "Rest of world", "Rest of world\n453.8", 52, 207, 30, g24t_trade_cols[11], 0),
-  g24t_key_row("trade", "Brazil", "Brazil\n25.3", 52, 570, 30, g24t_trade_cols[10], 0),
-  g24t_key_row("trade", "Japan", "Japan 25.3", 52, 660, 30, g24t_trade_cols[9], 0),
-  g24t_key_row("investment", names(g24t_investment)[1:6],
-               paste0(names(g24t_investment)[1:6], "\n", sprintf("%.1f", g24t_investment[1:6])), 1346,
-               c(208, 293, 378, 461, 544, 628), 1355, g24t_investment_cols[1:6], 1),
-  g24t_key_row("investment", "Rest of world", "Rest of world\n38.1", 770, 207, 750, g24t_investment_cols[7], 0)
-)
-g24t_leaders <- data.frame(
-  id = rep(1:6, c(3, 3, 4, 2, 4, 3)),
-  x = c(
-    1058, 1058, 1262,
-    1140, 1140, 1178,
-    1170, 1220, 1220, 1262,
-    1172, 1275,
-    1160, 1218, 1218, 1262,
-    1140, 1140, 1285
-  ),
-  y = c(
-    258, 207, 207,
-    330, 293, 293,
-    412, 412, 378, 378,
-    462, 462,
-    508, 508, 544, 544,
-    540, 628, 628
-  )
-)
-g24t_headings <- data.frame(
-  x = c(35, 752),
-  label = c("bold('Goods trade with Africa,')~'2013, $bn'",
-            "bold('Foreign direct investment in Africa,')~'2012, $bn'")
-)
-g24t_centres <- data.frame(x = c(299, 991), label = c("Total\n$1.02trn", "Total\n$59.3bn"))
-
-g24t_scramble <- ggplot() +
-  geom_path(
-    data = g24t_leaders, aes(.data$x, -.data$y, group = .data$id), colour = g24t_ink, linewidth = g24_lw(0.4)
-  ) +
-  geom_polygon(data = g24t_wedges, aes(.data$x, .data$y, group = .data$group, fill = I(.data$fill))) +
-  ## Squares, 16 pixels a side, level with each label's first line.
-  geom_rect(
-    data = g24t_labels,
-    aes(xmin = .data$block_x - 2, xmax = .data$block_x + 14, ymin = -.data$y - 8 - ifelse(grepl("\n", .data$label), 3, 0),
-        ymax = -.data$y + 8 - ifelse(grepl("\n", .data$label), 3, 0), fill = I(.data$colour))
-  ) +
-  geom_text(
-    data = g24t_labels,
-    aes(.data$x, -.data$y - ifelse(grepl("\n", .data$label), 16, 0), label = .data$label, hjust = .data$hjust),
-    size = g24_pt(6.5), lineheight = 0.95, vjust = 0.5
-  ) +
-  geom_text(data = g24t_centres, aes(.data$x, -440, label = .data$label), size = g24_text, fontface = "bold",
-            lineheight = 1) +
-  geom_text(data = g24t_headings, aes(.data$x, -145, label = .data$label), parse = TRUE, hjust = 0,
-            size = g24_pt(6.5)) +
-  ## The short black rule over each panel heading, the length of the tab: 4.2 pixels a point here.
-  geom_rect(
-    data = data.frame(x = c(35, 752)),
-    aes(xmin = .data$x, xmax = .data$x + 100, ymin = -116, ymax = -112.6),
-    fill = g24t_ink
-  ) +
-  coord_fixed(xlim = c(25, 1385), ylim = c(-690, -100), expand = FALSE) +
-  labs(
-    title = "The scramble in Africa", x = NULL, y = NULL,
-    caption = "*Including Macau and Hong Kong\nSources: UNCTAD; IMF"
-  ) +
-  g24_theme() +
-  g24_no_axes()
-
-g24_chart(g24t_scramble)
-```
-
-Against 2017: the segments run red, salmon, blue, light blue, dark gray and light gray from 12 o'clock rather than through 2017's blues; the leader lines are black, the keys squares, and the note stands above the source. `r g24_2017("the-standard-color-order-one-to-six-segments")`
 
 ## Double-scale charts
 
@@ -974,7 +820,7 @@ One surveyed print chart has blob heads: the bar panel of `20250531_WBC482` ("Th
 Its blobs follow the 2017 guide's first choice, bubbles sized by value, now in the print light gray:
 
 - **A column of bubbles** at the right of the bars, one to a row, sized by area.
-- **The figure centred** on its bubble in black, even where the bubble is smaller than the figure ("0.6").
+- **The figure centred** on its bubble in black, even where the bubble is smaller than the figure ("0.6"); "Believers" sets them beside the bubbles instead (see [below](#bubbles-and-numbers-outside-the-bar)).
 - **A callout names the column**: a light gray box with the unit ("Median, $m") and a pointer turned down at the bubbles, above the value axis.
 - **Missing values** are "nil" in italics, both on the bars and in the column.
 
@@ -1045,7 +891,7 @@ Against 2017: the dots are salmon and red on a dark gray line rather than two bl
 
 ### Bubbles and numbers outside the bar
 
-The 2024 chart does not move the figures out of the bubbles: `20250531_WBC482` centres each figure on its bubble whatever the bubble's size, so the rule is followed here as the 2024 chart would, with the figures on the bubbles.
+The 2024 charts do both: `20250531_WBC482` centres each figure on its bubble whatever the bubble's size, and the chart below follows it; "Believers", after it, sets the figures beside the bubbles.
 The bars are one series, so all of them, negative or positive, take the single-series red, and the callout sits above the column.
 
 ```{r g24-tables-up-in-air, econ_height = 254}
@@ -1079,6 +925,45 @@ g24_chart(g24t_air)
 ```
 
 Against 2017: one red for every bar where 2017 colored the negative bars apart, light gray bubbles with the figures on them, and a black zero line. `r g24_2017("bubbles-and-numbers-outside-the-bar")`
+
+"Believers" (2024) sets the figures beside the bubbles instead, ranged left in a column of their own, so that a figure never overflows a small bubble ("11").
+The callout naming the column ("2022, m") stands in the bottom row, its pointer turned right at the last bubble, where the bar is short enough to leave room.
+The bars are one series, so all of them, negative or positive, take the single-series red.
+
+```{r g24-tables-believers, econ_height = 175}
+## Read from the chart.
+g24t_catholics <- data.frame(
+  region = factor(
+    c("Africa", "Oceania", "Asia", "Americas", "Europe"),
+    levels = rev(c("Africa", "Oceania", "Asia", "Americas", "Europe"))
+  ),
+  change = c(22.3, 16.6, 12.9, 8.6, -0.6),
+  m = c(272, 11, 154, 666, 286)
+)
+
+g24t_believers <- ggplot(g24t_catholics, aes(.data$region, .data$change)) +
+  geom_col(fill = single24[["print"]], width = 0.62) +
+  geom_hline(yintercept = 0, colour = g24t_ink, linewidth = g24_lw(1)) +
+  geom_point(aes(y = 31, size = .data$m), colour = g24t_blob, show.legend = FALSE) +
+  ## The figures beside the bubbles, ranged left.
+  geom_text(aes(y = 37, label = .data$m), hjust = 0, size = g24_text) +
+  annotate("label_economist_2017", x = 1, y = 27.8, label = "2022, m", pointer = "right", hjust = 1,
+           fill = g24t_blob, family = economist_2017_font(), size = g24_text) +
+  coord_flip(xlim = c(0.45, 5.55), ylim = c(-7, 41.5), expand = FALSE, clip = "off") +
+  scale_size_area(max_size = 7.5) +
+  scale_y_continuous(position = "right", breaks = seq(-5, 25, 5)) +
+  labs(
+    title = "Believers",
+    subtitle = "Catholic population, 2013-22, % change",
+    x = NULL, y = NULL, caption = "Source: The Vatican"
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(axis.line.y = element_blank(), axis.ticks.y = element_blank())
+
+g24_chart(g24t_believers)
+```
+
+Against 2017: the figures beside the bubbles, as the 2017 guide sets them, but ranged left in a column and with the bars in one red. `r g24_2017("bubbles-and-numbers-outside-the-bar")`
 
 ### Equal-sized number blocks
 
