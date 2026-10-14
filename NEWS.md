@@ -126,6 +126,12 @@
   available. `guide_colourbar_economist_2024()`, the default guide of the
   continuous 2024 scales, draws a long, thin colorbar with its labels above it.
 
+- New `geom_ribbon_economist_2024()` draws a band of uncertainty as *The
+  Economist* has since 2024: a translucent ribbon in the series' color with two
+  hairline edges. New `geom_gridline_economist_2024()` draws horizontal
+  gridlines that break where a name stands on them, in the colour and width of
+  `theme_economist_2024()`.
+
 - New `economist_chart()` finishes a `theme_economist()` plot as a classic
   print chart of *The Economist*: it draws the red tab, 5pt by 15pt at the top
   left, which is on 99% of the paper's print charts of 2012 to 2016, an

@@ -50,6 +50,8 @@ show_col(economist_2024_div_gradient_pal("print")(seq(0, 1, length.out = 7)))
 Other economist 2024:
 \code{\link[=economist_2024_chart]{economist_2024_chart()}},
 \code{\link[=economist_2024_pal]{economist_2024_pal()}},
+\code{\link[=geom_gridline_economist_2024]{geom_gridline_economist_2024()}},
+\code{\link[=geom_ribbon_economist_2024]{geom_ribbon_economist_2024()}},
 \code{\link[=guide_colourbar_economist_2024]{guide_colourbar_economist_2024()}},
 \code{\link[=scale_colour_economist_2024]{scale_colour_economist_2024()}},
 \code{\link[=theme_economist_2024]{theme_economist_2024()}}
