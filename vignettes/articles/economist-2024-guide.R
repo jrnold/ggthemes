@@ -107,8 +107,3 @@ g24_no_axes <- function() {
     panel.grid = element_blank()
   )
 }
-
-## The link to the 2017 version of a chart, by the 2017 guide's section anchor.
-g24_2017 <- function(anchor, text = "2017 version") {
-  sprintf("([%s](economist-2017-styleguide.html#%s))", text, anchor)
-}

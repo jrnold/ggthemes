@@ -19,15 +19,13 @@ g24b_cols_theme <- function(media = "print") {
 g24b_ink <- function(fill) ifelse(fill %in% c(p24[["red"]], p24[["blue"]], p24[["dark gray"]]), "white", econ$print$text)
 ```
 
-Bars and columns are a small share of the 2024 print survey: 9 single-series column charts, 5 horizontal-bar charts, 2 small multiples of horizontal bars and 9 stacked charts, against 31 line charts.
-A plain series is the brighter single-series red: all 9 single-series column charts and all 4 single-series bar charts in print, and 6 of the 7 single-series bar charts on the web.
-Horizontal bars, stacked or not, put the value axis along the top, with vertical gridlines and no ticks, and start from a black rule at zero: all 10 of the 11 print examples that have a value axis, such as `20241005_EPC263` and `20250524_STC394`.
-Columns keep the value axis on the right with each label above its gridline, and stand on a black baseline with ticks hanging below it under the labelled categories only: `20240504_USC067`, `20240803_EUC571`.
-Bars are about 0.7 of their spacing.
+- A plain series is the brighter single-series red, and bars are about 0.7 of their spacing.
+- Horizontal bars: value axis along the top, vertical gridlines, no ticks, a black rule at zero (`20241005_EPC263`).
+- Columns: value axis on the right, a black baseline, ticks under the labelled categories only (`20240504_USC067`).
 
 ### One trace
 
-Columns over time truncate the years, as lines do, and tick only the labelled years.
+Truncate the years and tick only the labelled ones.
 
 ```{r g24-bars-african-lion, econ_height = 165}
 g24b_ethiopia <- data.frame(
@@ -52,13 +50,9 @@ g24b_lion <- ggplot(g24b_ethiopia, aes(year, growth)) +
 g24_chart(g24b_lion, footnote = "*Estimate")
 ```
 
-Against 2017: single-series red columns, a little wider, and no ticks under the unlabelled years. `r g24_2017("one-trace")`
-
 ### One trace with highlight
 
-A highlighted category has its label set in bold.
-Of the 11 print bar, column and stacked charts with a highlight, 8 mark it with a bold label alone (`20250524_STC394`, `20250524_STC444`, `20250104_IRC269`, `20240608_WBC178`, `20260829_FNC090`), and one also outlines its bar in black (`20250118_FBC388`).
-Where the bars themselves must stand out, the rest go salmon and the highlight takes the deeper red, as the five bottom languages do in `20241005_EPC263`; this redraw follows that chart, since the 2017 version recolors the bar.
+Set the highlighted label in bold (`20250524_STC394`); where the bars must stand out, the rest go salmon and the highlight deeper red.
 
 ```{r g24-bars-salud, econ_height = 165}
 g24b_doctors <- data.frame(
@@ -85,12 +79,9 @@ g24b_salud <- ggplot(g24b_doctors, aes(country, visits, fill = highlight)) +
 g24_chart(g24b_salud)
 ```
 
-Against 2017: salmon bars with the highlight in red, where 2017 set a cyan bar among blue ones; the zero rule is black. `r g24_2017("one-trace-with-highlight")`
-
 ### Two traces
 
-Two series take red and salmon, the first two colors of the palette, and are keyed above the plot with square swatches, the commonest key after direct labels (16 of 88 print charts).
-The two bars of a pair touch, as in `20250104_IRC269`.
+Two series take red and salmon, keyed above the plot with square swatches; the bars of a pair touch.
 
 ```{r g24-bars-defenders, econ_height = 235}
 g24b_elections <- data.frame(
@@ -126,12 +117,9 @@ g24b_defenders <- ggplot(g24b_elections, aes(country, pct, fill = income)) +
 g24_chart(g24b_defenders)
 ```
 
-Against 2017: red and salmon in place of two blues, and the pairs a little thicker. `r g24_2017("two-traces")`
-
 ### Two traces with sub-categories
 
-The corpus has no bars grouped in two levels.
-This redraw keeps the 2017 layout, each country a group named at its top left, and applies the general rules: red and salmon for the two forecasts, a key above the plot, the axis on top.
+Name each group at its top left.
 
 ```{r g24-bars-autumn-fall, econ_height = 185}
 g24b_forecasts <- data.frame(
@@ -176,11 +164,7 @@ g24b_autumn <- ggplot(g24b_forecasts, aes(vintage, gdp, fill = made_in)) +
 g24_chart(g24b_autumn)
 ```
 
-Against 2017: red and salmon for the two forecasts, in place of two blues. `r g24_2017("two-traces-with-sub-categories")`
-
-Four series take the first four colors in order: red, salmon, blue, light blue.
-The corpus has no grouped columns; this redraw keeps them touching, as grouped bars do.
-Columns of categories rather than years have no ticks, as in `20260829_FNC090`.
+Four series take the first four colors in order; grouped columns touch, and have no ticks when the categories are not years.
 
 ```{r g24-bars-mighty-jungle, econ_height = 155}
 g24b_returns <- data.frame(
@@ -210,13 +194,9 @@ g24b_jungle <- ggplot(g24b_returns, aes(horizon, pct, fill = asset)) +
 g24_chart(g24b_jungle)
 ```
 
-Against 2017: red, salmon, blue and light blue in place of 2017's blues and cyans, standing on a black baseline, with the note above the source. `r g24_2017("two-traces-with-sub-categories")`
-
 ### One trace with a +/- axis
 
-Negative values carry a plain minus sign and positive ones no sign; zero is a black rule, as in `20250524_STC394` and `20250104_IRC269`.
-The bars keep one color on both sides of zero in both charts.
-A summary row is set in bold, as "All" is in `20250104_IRC269`.
+Negatives carry a minus sign and positives none; zero is a black rule; one color on both sides; a summary row in bold.
 
 ```{r g24-bars-dotcom, econ_height = 195}
 g24b_capex <- data.frame(
@@ -245,13 +225,8 @@ g24b_dotcom <- ggplot(g24b_capex, aes(sector, change)) +
 g24_chart(g24b_dotcom)
 ```
 
-Against 2017: single-series red bars from a black zero rule, where 2017 drew blue bars from a red one. `r g24_2017("one-trace-with-a---axis")`
-
 > Differentiate positive/negative values by colour only where there is a
 > meaningful difference i.e. imports / exports
-
-The corpus has no chart that colors bars by sign.
-Negative columns hang from the zero rule in the single-series red, as in `20250927_EUC526`, so this redraw draws inflows and outflows alike.
 
 ```{r g24-bars-money-drain, econ_height = 155}
 ## 2005 is missing from the 2017 guide's chart.
@@ -279,11 +254,7 @@ g24b_drain <- ggplot(g24b_capital, aes(year, flow)) +
 g24_chart(g24b_drain, footnote = "*To June 30th")
 ```
 
-Against 2017: one red for inflows and outflows, where 2017 colored them apart, and a black zero rule. `r g24_2017("one-trace-with-a---axis")`
-
-Where the sign does mean two things, as exports and imports do, the two are separate series and take red and salmon.
-Panels are headed in bold under a short black rule, the lead-in bold and the rest regular, as "House 435 total seats" is in `20250118_FBC388`.
-The series are named directly in the first panel, the commonest key in print (37 of 88 charts).
+Where the sign means two things, as exports and imports do, use two series in red and salmon, named directly in the first panel, with panel headings under a short black rule (`20250118_FBC388`).
 
 ```{r g24-bars-trader-woes, econ_height = 215}
 g24b_trade <- data.frame(
@@ -355,14 +326,54 @@ g24b_woes <- ggplot(g24b_trade, aes(year, pct, fill = flow)) +
 g24_chart(g24b_woes, footnote = "*Jan-Nov annualised")
 ```
 
-Against 2017: red and salmon for exports and imports, a black zero rule, and each panel heading under a short black rule. `r g24_2017("one-trace-with-a---axis")`
+### A bar too long for the scale
+
+Do not break the scale: set it for the other bars and run the long bar off the edge, its value in white with an arrow (`20250809_EUC046`); give a bar too short to see its value in red.
+
+```{r g24-bars-golden-ratio, econ_height = 290}
+## Read from the chart `20250809_EUC046`.
+g24b_swiss <- data.frame(
+  good = c(
+    "Precious metals,\npearls & jewellery", "All exports", "Pharmaceutical\nproducts", "Coffee, tea & spices",
+    "Clocks & watches", "Optical & medical\ntechnology", "Electrical machinery", "Mechanical\nmachinery",
+    "Aircraft & parts", "Organic chemicals"
+  ),
+  change = c(672, 172, 41, 14, 14, 8, -1, -11, -18, -52)
+)
+g24b_swiss$good <- factor(g24b_swiss$good, levels = rev(g24b_swiss$good))
+## The panel ends a little past the last gridline; the long bar is clipped there, not squeezed in.
+g24b_swiss_lim <- c(-55, 228)
+
+g24b_golden <- ggplot(g24b_swiss, aes(good, change)) +
+  geom_col(fill = single24[["print"]], width = 0.7) +
+  g24b_zero() +
+  ## The off-scale value: white, ranged right inside the end of the bar, with an arrow.
+  annotate(
+    "text", x = "Precious metals,\npearls & jewellery", y = g24b_swiss_lim[2] - 4, label = "672 →",
+    hjust = 1, colour = "white", size = g24_text
+  ) +
+  ## The bar too short to see, labelled in red to the left of the zero rule.
+  annotate(
+    "text", x = "Electrical machinery", y = -3, label = "-1", hjust = 1, colour = accent24[["print"]], size = g24_text
+  ) +
+  coord_flip(ylim = g24b_swiss_lim, expand = FALSE) +
+  g24_value_axis(breaks = seq(-50, 200, 50)) +
+  scale_x_discrete(labels = g24_bold_label("All exports")) +
+  labs(
+    title = "Golden ratio",
+    subtitle = "Switzerland, % change in export value to US,\n2024-25*, forecast, selected goods",
+    x = NULL, y = NULL, caption = "Source: US Census\nBureau"
+  ) +
+  g24b_bars_theme()
+
+g24_chart(g24b_golden, footnote = "*Jan-May 2025 annualised")
+```
 
 ### Color overrides
 
 > Where categories are chronological, use light-to-dark scale
 
-The corpus has no grouped bars in time order.
-The red ramp gives a light-to-dark scale in the palette's own hue: here its light step, salmon, and the deeper red.
+Chronological categories take the red ramp, light to dark.
 
 ```{r g24-bars-growth-asia, econ_height = 225}
 g24b_asia <- data.frame(
@@ -395,11 +406,9 @@ g24b_growth <- ggplot(g24b_asia, aes(country, growth, fill = period)) +
 g24_chart(g24b_growth)
 ```
 
-Against 2017: a red ramp in place of 2017's cyans and navy, and a black zero rule. `r g24_2017("color-overrides")`
-
 > If categories form meaningful groups, use colour to reinforce that
 
-Groups take a color family each, red and salmon for one, blue and light blue for the other, as the agreeing and disagreeing answers do in the web chart `20260117_WOC873`.
+Each group takes a color family: red and salmon, blue and light blue (`20260117_WOC873`).
 
 ```{r g24-bars-dont-fence, econ_height = 235}
 g24b_segregation <- data.frame(
@@ -443,15 +452,12 @@ g24b_fence <- ggplot(g24b_segregation, aes(group, change, fill = area)) +
 g24_chart(g24b_fence)
 ```
 
-Against 2017: red and salmon for London and blue and light blue for the cities, where 2017 used its reds and blues; a black zero rule. `r g24_2017("color-overrides")`
-
 ## Bar / column, stacked
 
-Stacked segments meet with no rule between them in print: `20240608_WBC178`, `20240803_EUC571`, `20240831_USC832`, `20260829_FNC090`.
-Web stacks often outline each segment in a thin dark line (11 of the 18 stacked charts of 2026, such as `20260117_WOC873`; not `20260523_WOC503`).
-The palette order usually runs from the baseline: red first, then salmon, blue, light blue and the grays, with "other" last in light gray, as in `20260829_FNC090`.
-Of the 9 stacked print charts, 5 are keyed above the plot, 2 by direct labels, 1 by a key in the panel and 1 by a key at the left in stack order.
-Segments wide enough carry their names or values inside them, white on red and blue and black on the lighter colors, as in `20240427_SRC663`.
+- No rule between segments in print; web stacks often outline them thinly.
+- Colors run from the baseline: red, salmon, blue, light blue, the grays, with "other" last in light gray.
+- The key sits above the plot.
+- Wide segments carry names or values inside: white on red and blue, black on lighter colors (`20240427_SRC663`).
 
 ```{r g24-bars-fed-nuptials, econ_height = 149}
 g24b_carriers <- data.frame(
@@ -495,11 +501,7 @@ g24b_fed <- ggplot(g24b_carriers, aes(band, width, fill = carrier)) +
 g24_chart(g24b_fed)
 ```
 
-Against 2017: the values centered in their segments, white on red and blue and black on the light colors, where 2017 set them all white at the segment's left edge; the key in stack order, "Other" last in light gray, not alphabetical. `r g24_2017("bar-column-stacked")`
-
-Segments too small to name in place are named outside the bar on leader lines, each ending in a dot on its segment, as the proposed cuts are in `20250524_STC444`.
-The one seat bar in the corpus, `20240706_WOC003`, marks the majority with a black rule through the bar, named beside it ("326 seats to win").
-It draws British parties in their own colors; the corpus has no Spanish election, so the parties here take the palette.
+Name small segments outside the bar on leader lines ending in a dot (`20250524_STC444`); mark a majority with a black rule through the bar.
 
 ```{r g24-bars-no-winner, econ_height = 129}
 ## Drawn in the 2017 guide's own units, so the leader lines can be placed.
@@ -566,11 +568,7 @@ g24b_winner <- ggplot() +
 g24_chart(g24b_winner)
 ```
 
-Against 2017: the national parties in red, salmon, blue and light blue and the small parties in grays, where 2017 mixed its bar and stacked palettes; the majority is a black rule through the bar rather than a tick on a hand-drawn axis; leader lines end in dots on their segments. `r g24_2017("bar-column-stacked")`
-
-The corpus has no stacked bars drawn to different scales in one chart.
-This redraw keeps the 2017 layout and applies the panel rules: each bar is headed under a short black rule, the lead-in bold, as each panel is in `20250118_FBC388`.
-A breakdown with more than four parts uses the six colors in order.
+Head each bar under a short black rule, lead-in bold; beyond four parts use the six colors in order.
 
 ```{r g24-bars-looting, econ_height = 189}
 ## Drawn in the 2017 guide's own units; each bar has its own scale.
@@ -675,10 +673,7 @@ g24b_looting <- ggplot() +
 g24_chart(g24b_looting)
 ```
 
-Against 2017: the six colors in order for both breakdowns, where 2017 gave the spending bar its own set; black rules over all three headings, where 2017 drew red ones over two. `r g24_2017("bar-column-stacked")`
-
-A forecast is a band of darker gray the full height of the panel, named at its top in gray, as in `20260829_FNC025`.
-The key sits above the plot, the commonest place for a stacked chart's key.
+A forecast is a darker gray band the full height of the panel, named at its top in gray.
 
 ```{r g24-bars-getting-sociable, econ_height = 178}
 g24b_adspend <- data.frame(
@@ -714,9 +709,7 @@ g24b_sociable <- ggplot(g24b_adspend, aes(year, bn, fill = format)) +
 g24_chart(g24b_sociable)
 ```
 
-Against 2017: red, salmon, blue and light blue in place of 2017's blue, cyan, gold and teal; the key above the plot rather than inside it, and the forecast named in gray sentence case under no rule. `r g24_2017("bar-column-stacked")`
-
-A stack below zero hangs from the black zero rule, as the deficits do in `20260829_FNC025`.
+A stack below zero hangs from the black zero rule.
 
 ```{r g24-bars-more-in-out, econ_height = 179}
 ## China's share, and the total.
@@ -754,18 +747,14 @@ g24b_more_in <- ggplot(g24b_deficit, aes(year, pct, fill = region)) +
 g24_chart(g24b_more_in, footnote = "*January-September")
 ```
 
-Against 2017: red and salmon in place of blue and cyan, a black zero rule, and ticks under the labelled years only. `r g24_2017("bar-column-stacked")`
-
 ### Color overrides
 
 > You may need to swap in other colours for charts with more than 4 categories
 >
 > Use grey for ‘other’ / ‘dont know’ etc
 
-The six colors take six categories; "other" is light gray and comes last, as in `20260829_FNC090`.
-Beyond six, the web charts add tints: a pale red after salmon and steps of gray, as in `20260516_WOC990`.
-This chart has six origins and "other", so it takes the pale red step of the red ramp after salmon.
-As in the 100% stack `20240427_SRC663`, no gridlines show between the bars.
+Six colors take six categories, "other" last in light gray; beyond six, add a pale red after salmon and steps of gray.
+Show no gridlines between the bars of a 100% stack.
 
 ```{r g24-bars-movers-shakers, econ_height = 179}
 ## Origins in stack order; a bar skips origins it lacks.
@@ -812,12 +801,9 @@ g24b_movers <- ggplot(g24b_migrants, aes(destination, pct, fill = origin)) +
 g24_chart(g24b_movers)
 ```
 
-Against 2017: the 2024 six colors and a pale red, with "Other" in the key, last, in light gray, where 2017 named it in the panel. `r g24_2017("color-overrides-1")`
-
 > If categories form meaningful groups, use colour to reinforce that
 
-Answers on a scale take a family for each side and gray for the middle: blue and light blue for the content, salmon and red for the discontent, light gray for "not sure", as in `20260117_WOC873`.
-A second measure for each bar goes in a column of gray circles sized by value, headed by a label in a gray box that points down at them, as in `20250531_WBC482`.
+Answers on a scale take a color family each side and gray for the middle (`20250531_WBC482`).
 
 ```{r g24-bars-trumps-troops, econ_height = 249}
 g24b_answers <- c("Enthusiastic", "Satisfied", "Dissatisfied", "Upset", "Not sure")
@@ -880,5 +866,3 @@ g24b_trump <- ggplot(g24b_feel, aes(row, pct, fill = answer)) +
 
 g24_chart(g24b_trump)
 ```
-
-Against 2017: blue and light blue for the content and salmon and red for the discontent, where 2017 mixed its stacked and bar palettes; light gray circles with black figures for the second measure, where 2017 drew blue-gray circles with white ones; the row names in one weight. `r g24_2017("color-overrides-1")`
