@@ -15,9 +15,11 @@ local({
 ```
 
 *The Economist* wrote its chart style down for the first time in 2017, in *The Economist visual styleguide* (v1.2, 4 May 2017), which [another article](economist-2017-styleguide.html) reproduces with `theme_economist_2017()`.
-The charts it replaced, the blue-gray charts of the weekly print edition, had no written guide.
-They belong to the redesign of May 2001, which the paper announced in a leader, ["Our new design"](https://www.economist.com/leaders/2001/05/10/our-new-design) (10 May 2001).
-The light blue-gray chart ground came later: it appears from the issue of 27 June 2009, and if it was used before then, it was used less often.
+The charts it replaced, those of the weekly print edition, had no written guide.
+They descend from the redesign of May 2001, the first full redesign since 1987, which the paper announced in a leader, ["Our new design"](https://www.economist.com/leaders/2001/05/10/our-new-design) (10 May 2001).
+Its main change to charts was the colour scheme: full colour on every editorial page, "used in a cool, restrained way in pictures, drawings, charts and maps", with the red tab at the top left of each chart and Officina for cover headlines and navigation; the leader says nothing more about charts.
+The charts of those years stood on a white ground.
+The light blue-gray ground that the classic style is known for came later: it appears from the issue of 27 June 2009, and if it was used before then, it was used less often.
 The paper's next redesign came in October 2018, seventeen years on ([García Media](https://garciamedia.com/blog/the-economist-first-redesign-in-17-years/); [It's Nice That](https://www.itsnicethat.com/news/the-economist-rebrand-phil-kenny-graphic-design-221018)), after the 2017 guide had already replaced the classic charts; the weekly indicator tables kept their classic format until then.
 This article is the guide they would have had.
 It follows the sections of the 2017 guide, and draws the 2017 guide's own example charts, with the same data and titles, in the classic style, so that each figure here can be set beside its 2017 version.
