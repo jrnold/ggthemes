@@ -103,23 +103,15 @@ g24t_table <- function(tbl, id, title, subtitle = NULL, source = NULL, notes = N
 
 ## Tables
 
-Tables are not common in the 2024 corpus: 2 of the 88 surveyed print charts (`20241214_USC174` is another, outside the survey), and none of the 118 web graphics of 2026 is a table on its own, though two set their figures in table-like rows.
-The two print tables share one style, `20250215_FNC938` ("Pulling up the ladder") and `20250614_EPC629` ("Jobs for the boys"):
+Tables sit in a chart's frame: the red tab, headline and bold subtitle on the print ground, the source in gray at the foot.
 
-- **The chart's frame.** The table sits on the print ground under the red tab, the headline and the bold subtitle of a chart, with the source at its foot in gray.
-- **No bands.** No row is filled.
-- **Rules.** A thin black rule closes the column heads; a thin light gray rule runs under every row, the last included.
-  There are no vertical rules.
-- **Heads.** Column heads are bold, with the unit under the name in regular type (`20250614_EPC629`).
-- **Rows.** All the type is black. A row's name can be bold, with a description under it in regular black (`20250614_EPC629`).
+- **No bands, no vertical rules.** A thin black rule closes the column heads; a thin light gray rule runs under every row, the last included.
+- **Heads** are bold, with the unit under the name in regular type.
+- **Rows** are all black; a name can be bold, with a description under it in regular black (`20250614_EPC629`).
 
-The web graphics with table-like rows follow the same pattern: a black rule over the heads and London 85 `#D9D9D9` rules between the rows in the ranked list under the map of `20260711_WOM992`, and London 70 `#B3B3B3` rules between the rows of bars in `20260627_WOC963`.
-There is no 2024 gt theme in the package, so the tables below are styled with gt directly, by a helper, `g24t_table()`, defined in this document.
+Web graphics with table-like rows follow the same pattern.
 
 ### Standard table
-
-Set explanatory text in regular black under a bold name, not in a lighter gray, as `20250614_EPC629` does.
-Separate rows with thin light gray rules instead of alternating fills.
 
 ```{r g24-tables-greatest-hits}
 g24t_startups <- data.frame(
@@ -152,9 +144,6 @@ gt::gt(g24t_startups, id = "g24-greatest-hits") |>
   )
 ```
 
-The corpus has no table with groups of rows.
-The table below heads each group with its name in bold over a black rule, the rule that closes the column heads, since the group's name does the work of a head; the indicator tables mark their groups with a gray rule instead (see [below](#indicator-tables)).
-
 ```{r g24-tables-divided-by-a-dozen}
 g24t_questions <- data.frame(
   group = rep(c("Social", "Economic", "Foreign policy"), c(3, 4, 5)),
@@ -178,14 +167,10 @@ gt::gt(g24t_questions, groupname_col = "group", id = "g24-divided") |>
   g24t_table("g24-divided", "Divided by a dozen", "Policy choices in our political proximity model")
 ```
 
-Against 2017: no alternating fills, a light gray rule under every row, and descriptions in black rather than 75% black; the group names sit over a black rule. `r g24_2017("standard-table")`
-
 ### With color highlight
 
-The 2024 tables highlight a figure by boxing it: a block of color narrower than its column, with the figure inside.
-`20250614_EPC629` fills each figure's box from the red ramp, salmon for the lowest values and red for the highest, and outlines the boxes of its first row in black; the indicator tables box their key figures in gray or salmon; `20241214_USC174` fills every figure's box with one red, the single-series red, whatever the value (see [Table with one color of box](#table-with-one-color-of-box)).
-The corpus has no table with a totals row, so the totals below are set in bold with their figures boxed in salmon, the related, less emphatic color, keeping red for a single point of focus.
-The text stays black, except on the two darkest steps of a ramp, which turn their figures white ("Strewth", below).
+Highlight a figure by boxing it, in a block of color narrower than its column.
+Set totals in bold with their figures boxed in salmon, keeping red for a single point of focus.
 
 ```{r g24-tables-jobs-bill}
 g24t_bill <- data.frame(
@@ -221,13 +206,7 @@ gt::gt(g24t_bill, id = "g24-jobs-bill") |>
   )
 ```
 
-Against 2017: the totals are bold, with only their figures boxed in salmon, where 2017 filled the whole row with blue and turned the text white. `r g24_2017("with-color-highlight")`
-
-A table can shade every figure, as a heatmap does.
-In "Strewth" (2024) each figure sits in a box filled from the sequential red, the same steps in both columns: every other step of the web ramp (steps 2, 4, 6 and 8 of the red ramp behind `economist_2024_seq_gradient_pal("web")`), from the palest salmon under 3% to a dark red from 5%.
-The print ramp, which stops at the emphasis red, has no step as dark as the last, so the table takes the web ramp in print too; the sampled fills match it to within a unit or two per channel.
-The two darker steps turn their figures white, the one place a 2024 table inverts its type.
-The boxes are all one width, ranged left in the column with the figure ranged right inside, so the column reads as a strip of color.
+Fill each figure's box from the sequential red, using the web ramp in print too; the two darkest steps turn their figures white.
 
 ```{r g24-tables-strewth}
 ## Read from the chart.
@@ -282,30 +261,9 @@ gt::gt(g24t_strewth, id = "g24-strewth") |>
   ))
 ```
 
-Against 2017: the 2017 guide fills whole rows, never single figures; here every figure is boxed, its fill a step on a red ramp. `r g24_2017("with-color-highlight")`
-
 ### Table with one color of box
 
-The print table `20241214_USC174` ("Breakdown", 2024) boxes every figure in one fill: a text-and-figure table whose
-color carries no value.
-Seven rows give a component of the excess health spending of the United States relative to the OECD, a description at
-the left and its share at the right ("15%", "<5%", "40%"), each share in a box of the same red-orange with white text.
-The fill is `#F04F38`, the print single-series red (`single24[["print"]]`), in every row, whether the figure is 5%, 15%
-or 40%, and the boxes are all one width, the figures ranged right inside them.
-It is not a step of the sequential red of the heat table above, and not the emphasis red of the tab (`#ED1C24`): the
-tab keeps its own red, the figures take the plain single-series red, as a plain one-series chart does.
-The color marks the column as the table's data, not a size: the figure itself says how large each component is.
-
-- **One fill, white figures.** A single color for every box, with white text; unlike "Strewth", the table has no
-  ramp and no figure on a pale step in black.
-- **Boxes as tall as nearly the row.** A box is about 60% of the height of the row's pitch and about a tenth of the
-  table's width, ranged to the right edge, and the descriptions run on the left in regular black.
-- **Rules.** A light gray rule runs over the first row and under every row, the last included, with none at the sides and no head.
-  In the original it is a warm gray (`#D1D0C7` on the `#ECEBE0` ground), a translucent black, close to but not
-  the cool `p24[["light gray"]]` of the other tables here.
-- **A numbered table.** The number box ("2") sits at the right of the headline, level with it, as on a chart that is one of
-  several in a piece.
-- **Notes.** The footnote ("*Using 12 comparator countries") sits above the source, both in the source gray.
+When color carries no value, box every figure in the single-series red, with white figures and no ramp (`20241214_USC174`).
 
 ```{r g24-tables-breakdown}
 ## Read from the chart `20241214_USC174`.
@@ -363,19 +321,9 @@ g24t_breakdown_gt <- gt::gt(g24t_breakdown, id = "g24-breakdown") |>
 g24t_breakdown_gt
 ```
 
-Against 2017: the 2017 guide fills whole rows with a color or leaves a table plain; it has no boxed figures, and no table
-whose figures all take one fill. `r g24_2017("with-color-highlight")`
-
 ### Table with integrated charts
 
-The 2024 tables draw in their cells with the same marks as the charts: arrows in blue and red for the direction of an effect in `20250215_FNC938`, boxes on the red ramp in `20250614_EPC629`, and bars in each row of `20260627_WOC963`, one color to a block of rows.
-The table below follows the charts' color rules.
-A single measure takes the single-series red; the paired applications and decisions take red and salmon, keyed by color squares in the head, as a key of squares names the colors of `20260829_FNC090`.
-The corpus has no doughnuts, in tables or out of them, so the share accepted is a bar on a light gray track that stands for 100%.
-
-The simplest mark in a cell is an arrow for a direction.
-"Pulling up the ladder" (`20250215_FNC938`) gives each study one arrow, centred under the last head: blue pointing down where generative AI narrowed the gap between workers, red pointing up where it widened it.
-Blue and red are the palette's main contrast, and the arrow is a glyph in the table's type, no larger than a capital.
+Cells use the charts' marks and colors: single-series red for one measure, red and salmon for a pair keyed by squares in the head, a bar on a light gray track for a share, and a blue or red arrow for a direction (`20250215_FNC938`).
 
 ```{r g24-tables-ladder}
 ## Read from the chart.
@@ -542,29 +490,15 @@ gt::gt(g24t_cells, id = "g24-what-to-expect") |>
   )
 ```
 
-Against 2017: the bars are red and salmon rather than cyan and navy, the figures black, the share accepted a bar on a track instead of a doughnut, and the rows separated by light gray rules. `r g24_2017("table-with-integrated-charts")`
-
 ### Indicator tables
 
-The weekly "Economic and financial indicators" pages at the back of the paper are tables of their own kind.
-They are measured here on the pages of three issues after the redesign, 6 April, 6 July and 21 December 2024: "Economic data" in two parts (`INT101`, `INT102`), "Markets" (`INT201`) and "Commodities" (`INT401`).
-The issue of 6 January 2024 still has the [2018 format](economist-2017-styleguide.html#indicator-tables) and that of 6 April the new one, so the tables changed with the charts.
-"Economic data" and "Markets" kept their contents: the countries, the columns, their order and the boxed figures are those of January.
-"Commodities" moved its index from 2015=100 to 2020=100 and shows two weeks, not three.
-The colors are the same on every page.
+The weekly indicator tables keep the [2018 format](economist-2017-styleguide.html#indicator-tables) and change only color and typeface:
 
-- **No bands.** The page is white, and a thin London 70 rule (`#B3B3B3`; ΔE 0.8 to the pages) runs under every row.
-- **Gray rules for structure.** A heavier London 40 rule (`#666666`, the web source gray; ΔE 0.0) closes the column heads, separates the six groups of countries and closes the table.
-  The vertical rule before each column group's name is London 40 as well, no longer black.
-- **Gray key boxes.** The latest figure of a series is boxed in London 85 (`#D9D9D9`, the web grid and first gray step; ΔE 1.5), or in salmon where it is negative.
-  The salmon is unchanged from 2018: the 2024 print salmon at 75% (ΔE 0.4).
-  The blue is gone, so salmon, marking falls, is the only color left on the pages.
-- **The rest as in 2018.** No signs on positive figures, periods in a column of their own in smaller type, each column group's name flush left in bold over its unit and labels in light type.
-  "Markets" keeps the country in bold before its index in light.
-- **The new typeface**, narrower than the light Econ Sans of 2018.
-
-The table below sets the figures of "Economic data, 1 of 2" of 20 October 2018, the page the [classic](economist-classic-styleguide.html#indicator-tables) and [2017](economist-2017-styleguide.html#indicator-tables) guides also show, in the 2024 style.
-It is built by `indicator_table()` in `vignettes/articles/economist-indicators.R`; every color in it is one the package already has, or a print tint of one.
+- **No bands.** A thin London 70 rule (`#B3B3B3`) runs under every row.
+- **Gray structure.** A London 40 rule (`#666666`) closes the column heads, separates the six country groups and closes the table, as does the vertical rule before each column group.
+- **Gray key boxes.** The latest figure is boxed in London 85 (`#D9D9D9`), or in salmon (the print salmon at 75%) where negative; there is no blue.
+- **As in 2018.** No signs on positive figures, periods in a column of their own in smaller type, group names flush left in bold over the unit, light labels.
+- **A narrower typeface.**
 
 ```{r g24-tables-indicators}
 source("economist-indicators.R")
@@ -573,22 +507,17 @@ source("economist-indicators.R")
 indicator_table("2024")
 ```
 
-Against 2017: no bands, gray rules in place of black ones, and gray key boxes in place of blue. `r g24_2017("indicator-tables")`
-
 ## Double-scale charts
 
-Double scales are rare in 2024: one of the 88 surveyed print charts, `20260829_FNC018` ("Unintended consequences"), plots two series on two value axes.
-The three surveyed column-and-line charts, `20240525_USC018`, `20240720_ASC360` and `20260829_FNC072`, all put the line, a moving average or a break-even rate, on the columns' own scale: salmon columns with a black, red or dark gray line.
-`20260829_FNC018` sets the pattern for a chart that does need two scales:
+Double scales are rare; a column-and-line chart usually puts the line on the columns' own scale.
+A chart that does need two scales (`20260829_FNC018`):
 
-- **Two colors.** The series in focus is red, the other gray.
-- **Colored axes.** Each axis's labels are in the color of its series, at the left on the left and at the right on the right, each above its gridline; the two axes share the gridlines.
-- **Titles as a split subtitle.** Each axis's title sits above it in its series' color, the left one ranged left and the right one ranged right, in the weight of a subtitle.
-- **Broken scales are marked.** Neither scale starts at zero, so each has a small zigzag at its foot, under the lowest gridline.
+- **Two colors.** Red for the series in focus, gray for the other.
+- **Colored axes.** Each axis's labels take its series' color; the axes share the gridlines.
+- **Titles** above the axes, in the series' colors and the weight of a subtitle, the left ranged left and the right ranged right.
+- **Broken scales** get a small zigzag at the foot.
 
 ### One line on each axis
-
-The passengers, the series that moves, are in red on the right-hand axis; the track is in dark gray on the left.
 
 ```{r g24-tables-out-of-steam, econ_height = 175}
 ## Series in pixel coordinates, converted to years and values.
@@ -652,12 +581,7 @@ g24t_steam <- ggplot(g24t_rail, aes(.data$year, .data$value, colour = .data$seri
 g24_chart(g24t_steam)
 ```
 
-Against 2017: red and dark gray for maroon and cyan, with the axis titles in the bold of a subtitle; the event line is a plain gray rule labelled above it. `r g24_2017("one-line-on-each-axis")`
-
 ### Three lines on the left-hand axis
-
-The corpus has no double-scale chart with more than one series on an axis.
-Under the general rules, the series on the left take blue, light blue and dark gray and are labelled directly in their colors, and the left-hand axis stays black, as it belongs to no one series; the total, on the right, is red.
 
 ```{r g24-tables-golden-triangle, econ_height = 165}
 g24t_px_year <- function(x) 1994 + (x - 132) / 20.5
@@ -716,12 +640,9 @@ g24t_golden <- ggplot(g24t_nafta, aes(.data$year, .data$value, colour = .data$se
 g24_chart(g24t_golden)
 ```
 
-Against 2017: the left-hand lines are blue, light blue and dark gray, labelled in their colors, and the total is red; the left axis is black instead of cyan. `r g24_2017("three-lines-on-the-left-hand-axis")`
-
 ### Line and column
 
-Choose the colors so that each axis reads with its series.
-The 2024 column-and-line charts draw salmon columns, but salmon is too pale for axis labels, so the columns here are blue, the main contrast to red, and the line red.
+Use blue columns, the main contrast to red, as salmon is too pale for axis labels.
 
 ```{r g24-tables-chavismo, econ_height = 175}
 g24t_venezuela <- data.frame(
@@ -756,13 +677,9 @@ g24t_chavismo <- ggplot(g24t_venezuela, aes(.data$year)) +
 g24_chart(g24t_chavismo)
 ```
 
-Against 2017: blue columns and a red line for cyan and maroon, a black zero line for a red one, and the note above the source. `r g24_2017("line-and-column")`
-
 ### What to avoid
 
-The 2017 guide's warnings stand, and 2024 charts mostly heed them by not drawing double scales at all.
-When a 2024 chart does break a scale or invert one, it says so: a zigzag at the foot of a scale that does not start at zero (`20260829_FNC018`), and "Inverted scale" under the measure (`20260829_FNC070`), here in the title of the inverted scale.
-The three examples below are drawn with those marks, which make their faults plain without curing them.
+Mark a broken scale with a zigzag and an inverted one in its title; the faults the 2017 guide warns of remain.
 
 ```{r g24-tables-double-scale-avoid, econ_height = 155}
 ## A zigzag where a scale is broken, centred on `x`, `y`, `w` data units wide and `h` high.
@@ -894,21 +811,16 @@ g24t_zuma_plot <- ggplot(g24t_zuma, aes(.data$year, .data$value, colour = .data$
 g24_chart(g24t_zuma_plot)
 ```
 
-Against 2017: the same faults, marked: a zigzag at the foot of each scale that does not start at zero, and the inverted scale named in its title. `r g24_2017("what-to-avoid")`
-
 ## Blob heads
 
-One surveyed print chart has blob heads: the bar panel of `20250531_WBC482` ("The spoils of bigness").
-Its blobs follow the 2017 guide's first choice, bubbles sized by value, now in the print light gray:
+Blob heads are bubbles sized by value, in the print light gray (`20250531_WBC482`):
 
-- **A column of bubbles** at the right of the bars, one to a row, sized by area.
-- **The figure centred** on its bubble in black, even where the bubble is smaller than the figure ("0.6"); "Believers" sets them beside the bubbles instead (see [below](#bubbles-and-numbers-outside-the-bar)).
-- **A callout names the column**: a light gray box with the unit ("Median, $m") and a pointer turned down at the bubbles, above the value axis.
-- **Missing values** are "nil" in italics, both on the bars and in the column.
+- **A column of bubbles**, one to a row, sized by area, at the right of the bars.
+- **The figure** in black, centred on its bubble or beside it (see [below](#bubbles-and-numbers-outside-the-bar)).
+- **A callout** with the unit and a pointer turned down at the bubbles names the column.
+- **Missing values** are "nil" in italics.
 
 ### Numbers inside the bubbles
-
-The two years are dots joined by a dark gray line, the earlier year salmon and the later red, keyed by dots above the plot, as in the dot ranges of `20240706_AMC263`; a black rule marks zero.
 
 ```{r g24-tables-big-mac, econ_height = 335}
 g24t_bigmac <- data.frame(
@@ -969,12 +881,9 @@ g24t_big_mac <- ggplot(g24t_bigmac, aes(y = .data$country)) +
 g24_chart(g24t_big_mac)
 ```
 
-Against 2017: the dots are salmon and red on a dark gray line rather than two blues on a gray bar, the bubbles light gray, and the price is named by a callout over the column rather than by a line of the subtitle. `r g24_2017("numbers-inside-the-bubbles")`
-
 ### Bubbles and numbers outside the bar
 
-The 2024 charts do both: `20250531_WBC482` centres each figure on its bubble whatever the bubble's size, and the chart below follows it; "Believers", after it, sets the figures beside the bubbles.
-The bars are one series, so all of them, negative or positive, take the single-series red, and the callout sits above the column.
+Centre the figures on the bubbles.
 
 ```{r g24-tables-up-in-air, econ_height = 254}
 g24t_travel <- data.frame(
@@ -1006,11 +915,7 @@ g24t_air <- ggplot(g24t_travel, aes(.data$country, .data$change)) +
 g24_chart(g24t_air)
 ```
 
-Against 2017: one red for every bar where 2017 colored the negative bars apart, light gray bubbles with the figures on them, and a black zero line. `r g24_2017("bubbles-and-numbers-outside-the-bar")`
-
-"Believers" (2024) sets the figures beside the bubbles instead, ranged left in a column of their own, so that a figure never overflows a small bubble ("11").
-The callout naming the column ("2022, m") stands in the bottom row, its pointer turned right at the last bubble, where the bar is short enough to leave room.
-The bars are one series, so all of them, negative or positive, take the single-series red.
+Or set the figures beside the bubbles, ranged left in a column of their own.
 
 ```{r g24-tables-believers, econ_height = 175}
 ## Read from the chart.
@@ -1045,14 +950,9 @@ g24t_believers <- ggplot(g24t_catholics, aes(.data$region, .data$change)) +
 g24_chart(g24t_believers)
 ```
 
-Against 2017: the figures beside the bubbles, as the 2017 guide sets them, but ranged left in a column and with the bars in one red. `r g24_2017("bubbles-and-numbers-outside-the-bar")`
-
 ### Equal-sized number blocks
 
-The corpus has no 2024 chart with equal-sized number blocks.
-The nearest are the number tiles of `20240706_WOC003`, large figures in party colors after a thin black vertical rule, which stand on their own rather than beside bars.
-The blocks below apply the light gray of the 2024 bubbles to blocks of one size, with the callout beside the last block.
-The stacks run red then salmon from the baseline, keyed above the plot.
+Equal-sized blocks are light gray, with the callout beside the last.
 
 ```{r g24-tables-starting-small, econ_height = 175}
 g24t_exchanges <- data.frame(
@@ -1088,13 +988,10 @@ g24t_small <- ggplot(g24t_exchanges, aes(.data$exchange, .data$listed)) +
 g24_chart(g24t_small)
 ```
 
-Against 2017: red and salmon stacks for two blues, light gray blocks for blue-gray ones, the key above the plot rather than beside the subtitle, and the note above the source. `r g24_2017("equal-sized-number-blocks")`
-
 ### Text blocks
 
-The one 2024 text block in the corpus is the callout of `20250531_WBC482`: black type on the print light gray, in a box with a pointer, as in 2017.
-Most 2024 annotations have no box: a label in black or gray, sometimes italic, joined to its mark by a thin black leader line (`20240720_ASC360`, `20260829_FNC072`).
-`geom_label_economist_2017()` draws the boxes in the 2024 gray.
+Text blocks are black type on the print light gray in a box with a pointer, as in 2017, but rare: most annotations are labels on thin black leader lines (`20240720_ASC360`).
+`geom_label_economist_2017()` draws the boxes.
 
 ```{r g24-tables-text-blocks, econ_size = "two_column", econ_height = 95}
 g24t_blocks <- data.frame(
@@ -1117,5 +1014,3 @@ ggplot(g24t_blocks, aes(.data$x, .data$y)) +
   g24_theme() +
   g24_no_axes()
 ```
-
-Against 2017: the box is the print light gray rather than pale blue-gray, and boxes are now the exception: most 2024 annotations are labels on leader lines. `r g24_2017("text-blocks")`

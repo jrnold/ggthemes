@@ -1,20 +1,14 @@
 ## Timelines
 
-The corpus has no timeline of the 2017 kind, with a band of year cells for an axis and labelled events across the whole chart.
-It has the parts, used one or two at a time on ordinary charts:
+Timelines are built from parts, one or two at a time:
 
-* an **event**: a thin gray rule from the baseline to a dot, labelled in gray beside or above the dot (`20260829_FNC021`, `20260829_MAC047`, and on the web `20260620_WOC187` and `20260808_WOC745`);
-* a **period**: a gray block the height of the panel, a step darker than the ground, labelled in gray at its top (`20240427_ASC408`, `20251025_AMC020`, `20260829_FNC025`, and on the web `20260411_WOC905`);
-* **successive periods**, such as terms of office: names in a row below the year labels, divided by rules, or a keyed strip of thin colored bars just above the baseline (both in `20260228_WOC524`), or gray rules dividing the panel with the names along its top (`20260829_FBC067`);
-* **numbered events**: black rules up to numerals in black rings, listed below the chart (`20260829_EPC023`).
+* an **event**: a thin gray rule from the baseline to a dot, labelled in gray (`20260829_FNC021`);
+* a **period**: a gray block the height of the panel, labelled in gray at its top (`20240427_ASC408`);
+* **successive periods**: names in a row, divided by rules, or a keyed strip of thin bars above the baseline;
+* **numbered events**: black rules up to numerals in black rings, listed below the chart.
 
-Eleven of the 88 surveyed print charts draw a vertical rule for an event or the start of an era, and seven shade a period as a block.
-The block is `#D8D6C8` in print, the second step of the print gray ramp (sampled exactly in `20260829_FNC025`, and nearly so in `20240427_ASC408`, `20251025_AMC020` and `20260829_MAC047`), and `#F2F2F2` on the web.
-Event rules and labels are in the source gray.
-
-The figures below build the 2017 timelines from these parts.
-The year axis is the ordinary one: a black baseline with ticks below it and truncated years.
-ggthemes has no 2024 timeline layers, so the setup chunk draws events, year axes and rows of terms with ggplot2 annotations.
+The year axis is a black baseline with ticks below it and truncated years.
+ggthemes has no 2024 timeline layers, so the setup chunk draws them with ggplot2 annotations.
 
 ```{r g24-misc-setup}
 ## Shared by the figures of this section; every name starts with `g24m_`.
@@ -99,9 +93,7 @@ g24m_event_data <- function(x, y, yend, label, hjust = 0) {
 
 ### Non-data timeline
 
-The corpus has no timeline without data, so this one is assembled from the parts above: a year axis with events standing on it and the presidents named in a row below the years.
-Repeated events are keyed rather than labelled, as in 2017; the coup attempts are red dots on the baseline.
-The subject of the chart, Duterte's election, has a bold black label, the emphasis the corpus gives a highlighted series name (`20240406_BRC149`).
+Repeated events are keyed, not labelled; the subject gets a bold black label.
 
 ```{r g24-misc-philippines, econ_size = "two_column", econ_height = 192}
 ## Heights are those of the 2017 chart, in points above the axis; Duterte, the subject, has a rule of his own.
@@ -166,14 +158,10 @@ g24m_philippines <- ggplot() +
 g24_chart(g24m_philippines)
 ```
 
-Against 2017: a plain baseline with ticks replaces the band of year cells; events are gray rules ending in a dot, not arrows; martial law and "People Power" are gray periods rather than thin blue bars; and the presidents are named in a row below the years rather than on alternating maroon bars. `r g24_2017("non-data-timeline")`
-
 ### Data timeline
 
-On a data chart the events stand on the baseline and rise past the lines to their labels.
-Event labels stay gray whatever the colors of the data, as the 2017 guide asked; in the corpus they are gray or black, never a series color.
-Gridlines usually run the full width (`20260829_FBC067`); on a line chart that names its series on the chart, a gridline stops where a name stands on it (`20250329_EPC233`, `20240420_EPC345`).
-The two scales follow the dual-scale `20260829_FNC018`: each scale's labels and its unit are set at its own end in its line's color, with the focus, GDP, in red and oil production in dark gray.
+Event labels stay gray whatever the data colors; each scale's labels and unit take its line's color.
+Gridlines run the full width, stopping where a name stands on them.
 
 ```{r g24-misc-iran-oil, econ_size = "two_column", econ_height = 222}
 g24m_iran <- data.frame(
@@ -249,15 +237,9 @@ g24m_iran_oil <- ggplot(g24m_iran) +
 g24_chart(g24m_iran_oil, footnote = "*Abolhassan Banisadr  †Mohammad-Ali Rajai")
 ```
 
-Against 2017: full gridlines rather than stubs; the scales colored by their lines, red and dark gray where 2017 used maroon and blue; the Iran-Iraq war a gray period without a rule on top; and the leaders and presidents in two named rows below the years rather than on colored bars. The Shah, whose reign 2017 also drew as a bar, is left to the revolution's label. `r g24_2017("data-timeline")`
-
 ### Events on an ordinary line chart
 
-The smallest timeline is an ordinary line chart with one or two events marked (`20240727_AMC511`).
-Each event is a thin gray rule from the baseline up to a small dot, with its label in gray type beside the dot, in three short lines.
-The rules run the full height of the panel and cross the lines, which stay in front.
-Nothing else is annotated.
-The series are named in place in black, plain for two of them and italic for the third, whose label sits below the lines and points up to its line with a short black leader ending in a dot; the leader is black where the event rules are gray, which is how the two are told apart.
+Mark one or two events with gray rules to a dot, behind the lines (`20240727_AMC511`); name series in place in black.
 
 ```{r g24-misc-via-dollarosa, econ_height = 165}
 ## Approximate values read to follow the chart: quarterly, 2020Q1 to 2024Q1.
@@ -316,14 +298,9 @@ g24m_via_dollarosa <- ggplot(g24m_dollar, aes(quarter, exports, colour = series)
 g24_chart(g24m_via_dollarosa)
 ```
 
-Against 2017: the 2017 timeline is a band of year cells with labelled events across the whole chart; here the events are two gray rules on a line chart with its own value axis and gridlines, which keep their full width behind the rules and labels. `r g24_2017("data-timeline")`
-
 ### Bar chart timeline
 
-The 2017 guide drew event rules on bar charts dotted, to tell them from the bars.
-The corpus draws them solid on columns, thin and in black or gray (`20260829_EPC023`, `20260829_FBC067`); here they are gray and end in a dot, like the other events.
-Dashed event rules occur, on lines (`20250510_FBC271`), but dotted ones do not.
-The two series are red and salmon, with Syria's bars behind Iraq's, which are mostly the shorter.
+Event rules are solid, thin and gray, ending in a dot, not dotted.
 
 ```{r g24-misc-caliphate, econ_size = "two_column", econ_height = 265}
 g24m_iraq <- data.frame(
@@ -403,14 +380,9 @@ g24m_caliphate <- ggplot() +
 g24_chart(g24m_caliphate)
 ```
 
-Against 2017: solid gray rules with dots rather than dotted maroon ones; red and salmon bars rather than two blues; the withdrawal a gray period; and the events below the axis hung in tiers under the year labels, three of them rewrapped. `r g24_2017("bar-chart-timeline")`
-
 ### Data timeline with periods above
 
-Putin's offices run across the top as a row of terms, the form `20260228_WOC524` uses below its axis.
-`20260829_FBC067` instead divides the whole panel with gray rules and names the eras along its top; here those rules would cross the event rules.
-Elections are keyed dots on the baseline, in blue and light blue so that they read apart from the red and salmon lines.
-The 50% line is black, like the reference lines of the corpus (`20250315_FNC140`, `20260808_WOC745`).
+Put periods in a row of terms across the top, key elections as dots on the baseline, and draw reference lines in black.
 
 ```{r g24-misc-putin, econ_size = "two_column", econ_height = 240}
 g24m_putin <- data.frame(
@@ -502,18 +474,12 @@ g24m_putin_plot <- ggplot(g24m_putin) +
 g24_chart(g24m_putin_plot)
 ```
 
-Against 2017: Putin's offices are a row of names between rules, rather than labelled bars repeated above and below the chart; the lines are red and salmon rather than maroon and blue; the recession is a gray period labelled above; and the elections sit on a plain baseline instead of a band of year cells. `r g24_2017("data-timeline-with-periods-above")`
-
 ### Mobile versions
 
-Every `ai2html` graphic in the 2026 web corpus has three artboards, about 700, 550 and 336px wide.
-In the examples checked, the mobile artboard keeps the chart's orientation, rewraps labels and thins or drops what does not fit.
-In `20260228_WOC524` the narrow artboard keeps six of the ten year labels (1978, 90, 2000, 10, 20, 26) and drops the row of presidents' names; in `20260808_WOC745` it keeps the event label and rewraps the direct labels.
-So of the 2017 guide's two mobile options, the corpus has an example of the second, numbered events listed below the chart (`20260829_EPC023`, a print chart), and none of the first, a chart rotated to run down the screen.
+Narrow versions keep the orientation, rewrap labels and drop what does not fit.
+Of the 2017 guide's two mobile options, use the second: numbered events listed below the chart.
 
-The chart is on a log scale.
-The corpus says so in the subtitle, either at its end (`20250517_WOC348`, "…, log scale") or on a second line in regular weight (`20260905_WOC194`), rather than in a corner of the plot.
-The periods of default become a keyed strip of thin bars just above the baseline, as `20260228_WOC524` marks presidents' parties.
+On a log scale, say so in the subtitle, and show periods of default as a keyed strip of thin bars just above the baseline.
 
 ```{r g24-misc-mexico-data}
 g24m_mexico_yields <- data.frame(
@@ -726,8 +692,6 @@ g24m_waves <- function(media, event_top, war_labels, event_labels = g24m_mexico_
 }
 ```
 
-The three-column print timeline:
-
 ```{r g24-misc-mexico-print, econ_size = "three_column", econ_height = 200}
 g24m_mexico_print <- g24m_waves(
   "print", event_top = 650,
@@ -735,10 +699,6 @@ g24m_mexico_print <- g24m_waves(
 )
 g24_chart(g24m_mexico_print, footnote = g24m_mexico_note)
 ```
-
-Against 2017: the yield line is the single-series red; wars are gray periods the height of the panel; events are gray rules ending in dots; the defaults are a strip in the panel, keyed, rather than a track below the year labels; and "log scale" moves to the subtitle. `r g24_2017("mobile-versions")`
-
-The web desktop version, at two columns, staggers the war labels:
 
 ```{r g24-misc-mexico-web, econ_size = "two_column", econ_height = 215}
 g24m_mexico_web <- g24m_waves(
@@ -752,10 +712,7 @@ g24m_mexico_web <- g24m_waves(
 g24_chart(g24m_mexico_web, "web", footnote = g24m_mexico_note)
 ```
 
-Against 2017: on the white web ground the wars are London 95 `#F2F2F2`, as in `20260411_WOC905`; the 1929 crash is labelled to the left of its rule, lower down, instead of above the plot. `r g24_2017("mobile-versions")`
-
-The 2017 guide's first mobile option rotates the timeline to run down the screen.
-The corpus has no rotated chart, so this version is drawn for comparison only, in the 2024 colors.
+The 2017 guide's rotated option is drawn for comparison only.
 
 ```{r g24-misc-mexico-mobile-rotated, econ_size = "one_column", econ_height = 415}
 g24m_mexico_rotated <- ggplot(g24m_mexico_yields, aes(yield, year)) +
@@ -796,11 +753,6 @@ g24m_mexico_rotated <- ggplot(g24m_mexico_yields, aes(yield, year)) +
 g24_chart(g24m_mexico_rotated, "web")
 ```
 
-Against 2017: the same layout in the 2024 colors; event rules end in dots rather than arrows, the war labels sit at the left, clear of the line, and the oil nationalisation is labelled to the left of the line, clear of the spike that follows it. `r g24_2017("mobile-versions")`
-
-The second option compresses the chart and numbers its events, listing them below.
-`20260829_EPC023` does this in print: black rules run the height of the panel up to numerals in black-ringed circles on the ground, and a list below the panel repeats each ring with its event.
-
 ```{r g24-misc-mexico-mobile-numbered, econ_size = "one_column", econ_height = 190}
 g24m_mexico_numbered <- subset(g24m_mexico_events, !is.na(key))
 ## A numbered event, as `20260829_EPC023` draws it: a black rule up to a numeral in a black-ringed circle.
@@ -828,8 +780,6 @@ g24m_mexico_compressed <- ggplot(g24m_mexico_yields, aes(year, yield)) +
   theme(plot.margin = margin(0, 8, 0, 5))
 g24_chart(g24m_mexico_compressed, "web")
 ```
-
-The list is a gt table, as in 2017.
 
 ```{r g24-misc-mexico-mobile-key}
 ## The numbered events, listed below the chart, each numeral in a black ring.
@@ -868,16 +818,11 @@ gt::gt(g24m_key_events, id = "g24m-mexico-key") |>
   )))
 ```
 
-Against 2017: black rules and black-ringed numerals rather than maroon rules and white numerals on maroon discs; a white list with no fill; the wars keyed by a gray square. `r g24_2017("mobile-versions")`
-
 ## Miscellaneous styling
 
 ### Number boxes
 
-Number a chart when the text refers to several.
-Thirty-four of the 88 surveyed print charts carry a number box: a square outlined in black, with a black numeral, at the top right level with the headline (`20240406_BRC149`, `20240427_ASC408`, `20260829_FNC021`).
-A chart of several panels has one box (`20260829_EPC023`).
-Web graphics carry the same box (`20260228_WOC496`, `20260228_WOC524`).
+Number a chart when the text refers to several: a black-outlined square with a black numeral at the top right, level with the headline (`20260829_FNC021`), one box for a multi-panel chart.
 
 ```{r g24-misc-number-box, econ_height = 165}
 ## The anatomy chart's bond yields, in years since the start.
@@ -910,13 +855,9 @@ g24m_tokyo <- ggplot(g24m_bonds, aes(year, yield, colour = period)) +
 g24_chart(g24m_tokyo, number = 1)
 ```
 
-Against 2017: the box is outlined in black, where 2017 filled it. `r g24_2017("number-boxes")`
-
 ### Highlight panels
 
-A forecast or estimate is a gray block the height of the panel, labelled "Forecast" in gray at its top (`20240427_ASC408`, `20260829_FNC025`); in a scatter the label stands at the middle of the block (`20250906_WBC303`).
-A line chart's forecast can instead be the same line, dotted (`20240720_BRC433`; see [Forecasts on lines](#forecasts-on-lines)).
-Usually it has no rule along its top.
+A forecast is a gray block the height of the panel, labelled "Forecast" in gray at its top (`20240427_ASC408`), with no rule along its top; a line's forecast can be dotted instead (see [Forecasts on lines](#forecasts-on-lines)).
 
 ```{r g24-misc-highlight-neutral, econ_height = 165}
 ## Five-year intervals; every country is 100 in 2015.
@@ -964,9 +905,7 @@ g24m_fill_jobs <- ggplot(g24m_jobs, aes(year, index, colour = place)) +
 g24_chart(g24m_fill_jobs, footnote = "*Aged 15-64")
 ```
 
-Against 2017: no rule along the top of the panel, and a label in gray sentence case rather than capitals; the index line is black rather than red. `r g24_2017("highlight-panels")`
-
-Some forecast blocks add a thin dark rule along the top to set the block off ("Little people", 2024).
+A forecast block may add a thin dark rule along its top.
 
 ```{r g24-misc-highlight-forecast-rule, econ_height = 165}
 g24m_pupils <- data.frame(
@@ -995,13 +934,7 @@ g24m_little <- ggplot(g24m_pupils, aes(year, m)) +
 g24_chart(g24m_little)
 ```
 
-Against 2017: the rule along the top is thin and dark gray rather than red, and the label is gray. `r g24_2017("highlight-panels")`
-
-The 2017 guide tinted a highlight central to the chart's message in red.
-The corpus has no tinted period.
-Periods that carry the message, such as Lula's terms in `20251025_AMC020` or the wars in `20260829_MAC047`, take the same gray as forecasts, and the label says what the period is.
-The only tinted area in the print sample is the salmon gap between two lines in `20260829_EUC006`, which shades a quantity, not a period.
-The crises here are therefore gray.
+Periods that carry the message take the same gray as forecasts, not a red tint; the label says what the period is.
 
 ```{r g24-misc-highlight-colour, econ_height = 155}
 ## The guide's line, at half-monthly intervals.
@@ -1049,18 +982,13 @@ g24m_malaise_plot <- function(media, crises = TRUE) {
 g24_chart(g24m_malaise_plot("print"))
 ```
 
-Against 2017: gray periods rather than a 30% tint of red with a red rule on top; labels in gray. `r g24_2017("highlight-panels")`
-
-On the web the period is London 95 `#F2F2F2` on white (`20260411_WOC905`), not the print ground.
+On the web the period is a pale gray on white.
 
 ```{r g24-misc-highlight-web, econ_height = 155}
 g24_chart(g24m_malaise_plot("web"), "web")
 ```
 
-Against 2017: the web period is a pale gray, where 2017 borrowed the pale blue of the print ground. `r g24_2017("highlight-panels")`
-
-A period whose start and end are uncertain fades out at its edges instead of stopping at a hard line ("Rough trade", 2024).
-Its label sits inside it, in gray, and an event that is certain to the day is a thin gray rule with a dot on top, labelled above.
+A period with uncertain edges fades out; label it inside in gray, and mark a certain date with a gray rule and dot.
 
 ```{r g24-misc-highlight-fuzzy, econ_height = 175}
 ## Read to follow the chart, interpolated to monthly.
@@ -1115,13 +1043,9 @@ g24m_rough <- ggplot(g24m_xinjiang, aes(x, y)) +
 g24_chart(g24m_rough)
 ```
 
-Against 2017: the 2017 guide has no period with soft edges. `r g24_2017("highlight-panels")`
-
 ### Highlight labels
 
-A date is marked by a thin gray rule from the baseline to a dot, labelled in gray beside or above the dot (`20260829_FNC021`, `20260829_MAC047`).
-A point on the line itself is marked by a black dot on the line with a short leader to a bold black label (`20260228_WOC496`).
-Color is kept for the data: neither form uses red.
+Mark a date with a gray rule to a dot (`20260829_FNC021`); mark a point on a line with a black dot and a short leader to a bold black label; neither uses red.
 
 ```{r g24-misc-highlight-labels, econ_height = 155}
 ## The guide's line, at weekly intervals.
@@ -1159,13 +1083,9 @@ g24m_woes <- ggplot(g24m_toshiba, aes(t, price)) +
 g24_chart(g24m_woes)
 ```
 
-Against 2017: gray rules ending in a dot rather than red rules, and labels set straight on the ground rather than on a box of the background color. `r g24_2017("highlight-labels")`
-
 ### Index charts
 
-The index line is a thin black rule, and a black dot marks the index point (`20250315_FNC140`).
-`20260905_WOC194` draws the black line without the dot.
-The base goes in the subtitle, sometimes on a second line in regular weight (`20240601_WBC127`, "May 1949=100").
+The index line is thin and black, with a black dot at the index point (`20250315_FNC140`); put the base in the subtitle ("May 1949=100").
 
 ```{r g24-misc-index-chart, econ_height = 165}
 ## One value a year.
@@ -1204,30 +1124,24 @@ g24m_pain <- ggplot(g24m_income, aes(year, index, colour = measure)) +
 g24_chart(g24m_pain, footnote = "*Adjusted for household size")
 ```
 
-Against 2017: the index line is black, not red; the dot is unchanged. `r g24_2017("index-charts")`
-
 ### Truncated year labels
 
-Years are truncated as before: the first in full, then two digits, with each new century in full (`20240406_BRC149`, "2000, 05, 10"; `20260829_FNC025`, "1962, 70, 80, 90, 2000, 10").
+Years are truncated: the first in full, then two digits, each new century in full ("2000, 05, 10").
 
 ```{r g24-misc-year-labels}
 economist_2017_year(seq(1948, 2016, 4))
 ```
 
-Against 2017: unchanged. `r g24_2017("truncated-year-labels")`
-
 ### Broken scales
 
-A value axis that does not start at zero is marked by a small zigzag in black, below the lowest label at the right-hand end, between the lowest gridline and the baseline.
-Five print charts, all from the issue of 29 August 2026, have it (`20260829_EPC023`, `20260829_EUC006`, `20260829_FNC018`, `20260829_FNC021`, `20260829_FNC982`), and so do two earlier ones, `20240720_BRC433` and `20250301_DAC769`; so do eight of the 119 web graphics of 2026 (`20260131_WOC222`).
-An inverted scale goes without (`20260829_MAC047`), and columns start at zero, as the 2017 guide asked.
+A value axis that does not start at zero gets a small black zigzag below the lowest label at the right-hand end.
+Inverted scales go without, and columns start at zero.
+Bars and columns are never broken: a bar too long for the scale runs off the edge of the chart with its value and an arrow (see [A bar too long for the scale](#a-bar-too-long-for-the-scale)).
 `geom_scale_break_economist_2017()` draws the same mark in the same place.
 
 ```{r g24-misc-broken-scale, econ_height = 155}
 g24_chart(g24m_malaise_plot("print", crises = FALSE))
 ```
-
-Against 2017: the same mark in the same place; the rules for when to use it still hold. `r g24_2017("broken-scales")`
 
 ### Editorial emphasis
 
