@@ -36,6 +36,21 @@
   ggplot2's scales do. `type`, `direction`, `guide` and `alt` must be named,
   and passing them by position is an error that says so (#275).
 
+- `theme_wsj()` is redesigned after 386 Wall Street Journal web graphics of
+  2010--2014, read and measured for a new article, "The Wall Street Journal
+  chart style, 2010--2014": black type, a heavy serif title over a
+  regular-weight subtitle, dotted horizontal reference rules, a short tick on
+  each x-axis break and none on the y axis, no axis rule, and no axis titles
+  (the charts state the unit in the subtitle). The heavy horizontal line of a
+  WSJ chart is the zero baseline, which belongs to the plot as a
+  `geom_hline()`. `title_family` now defaults to `"serif"` rather than
+  `"mono"`. Existing plots will look different.
+
+- The default palette of `wsj_pal()`, `scale_colour_wsj()` and
+  `scale_fill_wsj()` is now `"categorical"` rather than `"colors6"`, so plots
+  that relied on the default change color. Pass `"colors6"` (deprecated) to
+  keep the old colors for now.
+
 ## New features
 
 - New `theme_selenized()`, `selenized_pal()`, `scale_colour_selenized()` and
@@ -59,6 +74,56 @@
   and linetype in `ggthemes_data`, each labeled with the expression that
   returns it, and the `ggthemes_data` help page gains examples of reading it
   (#265).
+
+- `wsj_pal()` gains palettes named for the chart roles they serve, with colors
+  measured on the published charts: `"categorical"` (red, steel blue, green,
+  black, gold, orange), `"direction"` (green gains, red losses),
+  `"comparison"` (a highlighted bar in navy against steel blue: WSJ highlights
+  with a darker shade of the same hue, not against gray), `"actual_forecast"`
+  and `"party"`. The `"blues"`, `"greens"`, `"reds"`, `"golds"` and
+  `"oranges"` palettes hold the three shades of each hue the charts use for
+  stacks and highlights, darkest first; the lightest orange is not measured
+  but is a 55% tint of the mid orange, as the light step of every other family
+  is of its mid step. `"categorical_light"` holds the pale tint the charts
+  print beside each color, a fill rather than a line color at 1.2--2.2
+  contrast against the ivory field; `"categorical_dark"` is computed, each
+  color darkened in CIE Lab to 6:1 contrast.
+
+- New continuous WSJ scales: `scale_colour_gradient_wsj()` and
+  `scale_fill_gradient_wsj()` for the sequential ramps `"steel"` (the default,
+  built from colors measured on the 2010--2014 charts) and `"blue"` (from the
+  WSJ's later open-source maps), and `scale_colour_gradient2_wsj()` and
+  `scale_fill_gradient2_wsj()` for the `"blue_orange"` and `"green_red"`
+  diverging ramps.
+
+- New `wsj_label()` labels a continuous axis the way WSJ prints one: the unit
+  symbol appears on the topmost break only, so an axis reads `$120`, `110`,
+  `100`. With a `suffix`, it hangs the unit past the right edge of the other
+  labels (`hang = TRUE`, the default), so that right-aligned numbers line up as
+  in published charts; the labels are then plotmath expressions.
+
+- New `wsj_year_label()` labels a time axis as WSJ charts do, with the first
+  year in full and the rest abbreviated: `2011`, `'12`, `'13`.
+
+- New `wsj_bands()` shades every other interval between the y breaks, the
+  alternating bands WSJ charts of 2011 and 2012 drew in place of dotted rules,
+  in the band color measured on the ivory (`#efe4c9`) or gray (`#dddddd`)
+  field. The charts shade recessions and other periods in the same tint; the
+  colors are in `ggthemes_data$wsj$bands` for `annotate("rect", ...)`.
+
+- New `wsj_callout()` draws the number callouts of WSJ charts: the latest
+  value in bold type in a black or yellow box or circle, with a triangular
+  tail pointing at the data point.
+
+- New `geom_wsj_threshold()` fills the area between a series and a threshold,
+  green above and red below, interpolating where the series crosses it, as WSJ
+  purchasing managers' index and sentiment charts do. New
+  `wsj_direction_bar()` labels the two sides with arrows beside the panel
+  ("Expanding" and "Contracting").
+
+- `wsj_callout()` and `wsj_direction_bar()` take a named list of
+  faceting-variable values (`facets = list(panel = "China")`) to draw in one
+  panel only.
 
 ## Minor improvements and fixes
 
@@ -138,6 +203,26 @@
 
 - `theme_solarized_2()` now colors its axis lines. A typo in the color name left
   them unset (#272).
+
+- The `color` argument of `theme_wsj()` is renamed to `paper` and deprecated.
+  The fields are renamed and reduced to `"ivory"` and `"gray"`: `"brown"` is
+  the former name of `"ivory"` and resolves to the same color, and `"green"`
+  and `"blue"` are deprecated. All three still work, by name or by position,
+  so `theme_wsj(12, "brown")` returns the same field as before, with a
+  deprecation warning.
+
+- `theme_wsj(paper = "gray")` sets the subtitle, axis labels, legend, facet
+  headings and caption in dark gray (`#444444`), as WSJ charts did from
+  mid-2013; the title stays black. On the ivory field the axis labels are now
+  black rather than the gray they inherited from `theme_foundation()`.
+  `theme_wsj()` also sets facet headings flush left and the panels two lines
+  apart, as in multi-panel WSJ charts.
+
+- The `wsj_pal()` palettes `"rgby"`, `"red_green"`, `"black_green"`,
+  `"dem_rep"` and `"colors6"` are deprecated but still return exactly the
+  colors they always did, so existing plots are unchanged. Only `"dem_rep"`
+  has an exact replacement, `"party"`; `"direction"` and `"categorical"` fill
+  the roles of `"red_green"` and `"colors6"` with different colors.
 
 # ggthemes 7.0.0
 

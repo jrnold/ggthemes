@@ -1,0 +1,20 @@
+ink,hex,A,B,C,D,charts
+red,#c72e29,0,40,38,10,88
+salmon,#d5695d,0,12,25,6,43
+pale red,#ebb3a4,0,3,3,2,8
+navy,#016392,0,4,18,8,30
+blue,#0074a5,0,1,0,0,1
+steel,#5d8ca8,0,12,30,19,61
+pale steel,#abbdcb,0,0,7,11,18
+dark green,#098154,0,16,16,8,40
+green,#65a479,0,27,30,16,73
+pale green,#afccae,0,2,2,5,9
+orange,#fb832d,0,8,10,2,20
+light orange,#fcac67,0,4,2,2,8
+gold,#be9c2e,0,6,5,0,11
+tan,#d3ba68,0,2,3,2,7
+pale gold,#e8dbaf,0,1,1,3,5
+yellow,#ffe03d,0,9,18,0,27
+black,#000000,0,17,33,6,56
+bright red,#ff0c0e,15,0,0,0,15
+bright green,#5ac422,10,0,0,0,10

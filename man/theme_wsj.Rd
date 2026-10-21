@@ -6,29 +6,53 @@
 \usage{
 theme_wsj(
   base_size = 12,
-  color = "brown",
+  paper = c("ivory", "gray"),
   base_family = "sans",
-  title_family = "mono"
+  title_family = "serif",
+  color = deprecated()
 )
 }
 \arguments{
 \item{base_size}{base font size, given in pts.}
 
-\item{color}{A string, the background color of the plot. One of
-\code{"gray"}, \code{"green"}, \code{"blue"}, \code{"brown"}.}
+\item{paper}{Plot field. \code{"ivory"} (\verb{#f8f2e4}), the field from October 2011
+to July 2013, or \code{"gray"} (\verb{#efefef}), the field from August 2013. The
+gray field also sets the subtitle, axis labels, legend and caption in the
+dark gray (\verb{#444444}) of the charts from mid-2013; the title stays black.
+The pre-8.0.0 values \code{"brown"}, \code{"green"} and \code{"blue"} are accepted with a
+deprecation warning; \code{"brown"} is the former name of \code{"ivory"}.}
 
 \item{base_family}{base font family}
 
-\item{title_family}{A string, the font family of the plot title.}
+\item{title_family}{Font family for the plot title.}
+
+\item{color}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{paper} instead.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
 }
 \description{
-Theme based on the plots in \emph{The Wall Street Journal}.
+An editorial theme based on the Wall Street Journal's web graphics of
+2011--2014: a paper field, black type (dark gray but for the title on the
+gray field of 2013--2014), a heavy serif title over a plain
+subtitle, dotted horizontal reference rules, and a short tick under each x
+label. The article "The Wall Street Journal chart style, 2010--2014" on the
+package website documents the conventions and the charts they come from.
 }
 \details{
-This theme should be used with \code{\link[=scale_color_wsj]{scale_color_wsj()}}.
+Some of the style belongs to the plot, not the theme: draw the solid zero
+line with \code{geom_hline(yintercept = 0)}, put the unit on the topmost y label
+with \code{\link[=wsj_label]{wsj_label()}}, abbreviate years with \code{\link[=wsj_year_label]{wsj_year_label()}}, and use
+\code{\link[=wsj_bands]{wsj_bands()}} for the alternating bands of 2011--2012, \code{\link[=wsj_callout]{wsj_callout()}}
+for number callouts, and \code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}} with \code{\link[=wsj_direction_bar]{wsj_direction_bar()}}
+for indexes drawn above and below a threshold. Label series directly
+where there is room; a legend is a fallback. Axis titles are not drawn: the
+charts state the unit in the subtitle instead.
+
+The charts set titles in a heavy Ionic slab serif and everything else in a
+narrow sans. Free faces close to them are Bitter, in its heaviest weight, for
+\code{title_family}, and Source Sans 3 for \code{base_family}; see the article for how
+to fetch and register them with the systemfonts package.
 }
 \examples{
 library("ggplot2")
@@ -36,14 +60,28 @@ library("ggplot2")
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
   facet_wrap(~am) +
-  ggtitle("Diamond Prices")
-p + scale_colour_wsj("colors6", "") + theme_wsj()
-# Use a gray background instead
-p + scale_colour_wsj("colors6", "") + theme_wsj(color = "gray")
+  labs(
+    title = "Heavy Going",
+    subtitle = "Miles per gallon by weight, 1974 Motor Trend road tests",
+    colour = "Gears",
+    caption = "Source: Motor Trend"
+  )
+p + scale_colour_wsj("categorical") + theme_wsj()
+# The pale gray field used from August 2013
+p + scale_colour_wsj("categorical") + theme_wsj(paper = "gray")
+# Unit symbol on the topmost break only, as WSJ axes print it
+p +
+  scale_colour_wsj("categorical") +
+  scale_y_continuous(labels = wsj_label(suffix = " mpg")) +
+  theme_wsj()
 }
-\references{
-\url{https://x.com/WSJGraphics}
-
-\url{https://pinterest.com/wsjgraphics/wsj-graphics/}
+\seealso{
+Other themes wsj:
+\code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
+\code{\link[=wsj_bands]{wsj_bands()}},
+\code{\link[=wsj_callout]{wsj_callout()}},
+\code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
+\code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_year_label]{wsj_year_label()}}
 }
 \concept{themes wsj}

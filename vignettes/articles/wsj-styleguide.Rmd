@@ -1,0 +1,848 @@
+---
+title: "The Wall Street Journal chart style, 2010-2014"
+---
+
+```{r, include = FALSE}
+## ragg writes plain sRGB PNGs; the macOS default device embeds a profile that darkens colors.
+knitr::opts_chunk$set(comment = "#>", dpi = 192, dev = "ragg_png", fig.width = 3.4, fig.height = 4.2)
+## Fold each chunk's code behind a "Code" toggle; output stays visible.
+local({
+  source_hook <- knitr::knit_hooks$get("source")
+  knitr::knit_hooks$set(source = function(x, options) {
+    paste0("\n\n<details><summary>Code</summary>\n\n", source_hook(x, options), "\n\n</details>\n\n")
+  })
+})
+```
+
+```{r setup, include = FALSE}
+## The chart records, the citation helpers and the drawing helpers.
+source("wsj-guide.R")
+set.seed(2012)
+n_all <- nrow(charts)
+by_period <- split(charts, charts$period)
+axis_charts <- charts[charts$y_axis_side != "none", ]
+## The first chart with the credit line, and the charts after it.
+credit_from <- min(charts$date[charts$credit == "True"])
+after_credit <- charts[charts$date >= credit_from, ]
+```
+
+The *Wall Street Journal* published a book on its chart style in 2010, Dona Wong's *The Wall Street Journal Guide to Information Graphics*, but the book teaches judgement. It gives no colors and no measurements.
+This article describes the charts themselves, as they ran on the paper's website from late 2010 to mid-2014, and shows how to draw them with `theme_wsj()` and the other WSJ tools in ggthemes.
+
+It is based on `r n_all` charts, the "native size" graphics that ran beside articles from the *Journal*'s Asia desks: `r sum(charts$desk == "AI")` from the Asia news pages and `r sum(charts$desk == "AM")` from the Asian markets pages, dated `r format(min(as.Date(charts$date)), "%B %Y")` to `r format(max(as.Date(charts$date)), "%B %Y")`.
+The archive has none from 2015: searches for later graphics returned only re-captures of older ones.
+Every chart was read twice, and its colors were measured from its pixels.
+Shares come with their counts, as in "62%, 140 of 226 charts".
+Each rule links to examples, and each chart cited was checked by eye. The link goes to the archived image.
+No WSJ images are reproduced here. The figures are *ggplot2* drawings: most use made-up data, and a few copy the numbers of the chart they follow.
+How the evidence was gathered is described [at the end](#how-this-guide-was-made).
+
+## Four periods
+
+The style changed three times in four years, so this guide splits the charts into four periods.
+
+```{r period-table, echo = FALSE}
+tab <- do.call(rbind, lapply(split(charts, charts$period), function(d) {
+  data.frame(
+    Period = d$period[1],
+    Dates = periods$dates[periods$period == d$period[1]],
+    Charts = nrow(d),
+    Field = paste(names(sort(table(d$field), decreasing = TRUE))[1:2], collapse = ", "),
+    `Slab-serif title` = pct(d$title_typeface == "slab_serif", nrow(d)),
+    `Bold subtitle` = pct(d$subtitle_weight == "bold", sum(d$subtitle_weight != "")),
+    Bands = pct(d$rules == "bands", nrow(d)),
+    `Credit line` = pct(d$credit == "True", nrow(d)),
+    `Gray type` = pct(d$gray_text == "True", nrow(d)),
+    check.names = FALSE
+  )
+}))
+knitr::kable(tab, row.names = FALSE)
+```
+
+- **A, to September 2011.** A white or pale blue field, a plain sans-serif title over a bold subtitle, and bright, pure colors: red `r wsj_col("bright red")` and green `r wsj_col("bright green")`. No "The Wall Street Journal" credit line. On `r sum(charts$period == "A" & charts$field == "blue" & !is.na(charts$title_ink) & charts$title_ink >= 15)` of the `r sum(charts$period == "A" & charts$field == "blue")` pale blue charts all the type, title included, is a near-black gray rather than black. Examples: `r cite(c("AI-BG392_QE2REA_NS_20101104140201.jpg", "AI-BH794_BOK_NS_20110112225403.jpg", "AI-BH820_OZFLOO_NS_20110113132705.jpg"))`.
+- **B, October 2011 to June 2012.** The redesign: an ivory field, a heavy slab-serif title and the muted palette of the rest of this guide. The credit line under the source follows three months later, in January 2012. The subtitle is still bold. About a third of the charts mark their scale with alternating bands rather than dotted rules. Examples: `r cite(c("AI-BN971_JECON_NS_20111010233303.jpg", "AI-BQ436_SKECON_NS_20120201013603.jpg", "AI-BR349_JECON_NS_20120311232103.jpg"))`.
+- **C, July 2012 to July 2013.** As B, but the subtitle is set in regular weight, and bands fade out after 2012. Examples: `r cite(c("AI-BU349_SPAIN_NS_20120719113903.jpg", "AI-BW723_JECON_NS_20121030003018.jpg", "AI-BY469_CINVES_NS_20130116122703.jpg"))`.
+- **D, from August 2013.** The field turns pale gray, and the subtitle, axis labels, notes and source turn dark gray, `#444444`; the title stays black. The gray type comes in with the first gray fields, in July 2013, and is on nearly every chart from September. Examples: `r cite(c("AI-CC842A_APURS_NS_20130813000004.jpg", "AI-CC875_ARATES_NS_20130814225706.jpg", "AI-CF534_BITCOI_NS_20131218055104.jpg"))`.
+
+`theme_wsj()` draws period C by default and period D, gray type included, with `paper = "gray"`. Period B differs only in its bold subtitle and its bands, both one line away; period A takes a few more overrides.
+The same made-up chart in each period's style, left to right A to D:
+
+```{r period-examples, fig.width = 10, fig.height = 4.4}
+set.seed(1)
+## One chart, four looks. period_plot() in wsj-guide.R adds the bands of A and B and each period's overrides of
+## theme_wsj().
+d <- data.frame(date = seq(as.Date("2010-01-01"), by = "month", length.out = 21))
+d$value <- round(pmin(2400, pmax(250, 1200 + cumsum(stats::rnorm(21, -20, 260)))))
+base <- function(fill, title = "Current Account", credit = TRUE) {
+  ggplot(d, aes(date, value)) +
+    geom_col(fill = fill, width = 24) +
+    geom_hline(yintercept = 0) +
+    scale_x_date(breaks = as.Date(c("2010-01-01", "2011-01-01")), labels = wsj_year_label()) +
+    scale_y_continuous(labels = wsj_label(prefix = "¥"), breaks = seq(0, 2500, 500), limits = c(0, 2500),
+                       expand = expansion(0)) +
+    labs(
+      title = title,
+      subtitle = "Japan’s current account,\nin billions of yen",
+      caption = paste0("Source: Ministry of Finance", if (credit) "\nThe Wall Street Journal")
+    )
+}
+side_by_side(list(
+  ## A: a sans title, bright colors, no credit line.
+  period_plot(base(wsj_col("bright red"), credit = FALSE), "A"),
+  period_plot(base(wsj_col("steel")), "B"),
+  period_plot(base(wsj_col("steel")), "C"),
+  period_plot(base(wsj_col("steel")), "D")
+))
+```
+
+Period A follows `r cite(c("AI-BG392_QE2REA_NS_20101104140201.jpg", "AI-BH794_BOK_NS_20110112225403.jpg"))`; period B, `r cite("AI-BN971_JECON_NS_20111010233303.jpg")`, whose unit and scale this chart borrows.
+
+### Type
+
+The charts set their titles in a heavy Ionic slab serif and everything else in a narrow sans.
+The *Journal*'s own faces of these years were [Exchange](https://eyeondesign.aiga.org/exchange-merges-historical-strategies-to-find-its-own-voice/), an Ionic slab that Tobias Frere-Jones designed as the paper's text face and that it adopted in 2007, and [Retina](https://en.wikipedia.org/wiki/Retina_(typeface)), his narrow sans for the stock tables.
+The titles and labels in the corpus look like them, but no source found says which faces the graphics desk used.
+Both are commercial. The nearest free faces, both on Google Fonts, are:
+
+- **Titles:** [Bitter](https://fonts.google.com/specimen/Bitter) in its heaviest weight. Roboto Slab Black is close but wider; Rockwell, where installed, is a geometric slab and reads rounder than the original.
+- **Subtitles, labels and sources:** [Source Sans 3](https://fonts.google.com/specimen/Source+Sans+3), semibold for the bold subtitles of periods A and B. Fira Sans Condensed is narrower than the original.
+- **Period A titles:** Source Sans 3 semibold, the same sans as the labels.
+
+`theme_wsj()` takes them through `title_family` and `base_family`. The *systemfonts* package can fetch them from Google Fonts, and the heavy weight needs a name of its own:
+
+```{r fonts, eval = FALSE, echo = TRUE}
+systemfonts::require_font("Bitter")
+systemfonts::require_font("Source Sans 3")
+systemfonts::register_variant("Bitter Heavy", "Bitter", weight = "heavy")
+p + theme_wsj(base_family = "Source Sans 3", title_family = "Bitter Heavy")
+```
+
+The figures in this guide use these faces when they can be fetched, and the generic serif and sans when they cannot.
+
+**Ink.** Until mid-2013 all the type is black. From July 2013 everything but the title is a dark gray, about `#444444`: the cores of the letters measure 60 to 70 levels on the larger graphics, where black type measures 0. The subtitle, the axis labels, the notes and source and the credit line all change; the title does not. Of the `r sum(charts$date >= "2013-09-01")` charts from September 2013 on, `r sum(charts$date >= "2013-09-01" & charts$gray_text == "True")` have gray type. Compare the black type of `r cite("AI-CB568_AUSJOB_NS_20130613041804.jpg")` with `r cite(c("AI-CC875_ARATES_NS_20130814225706.jpg", "AI-CG344_INDIAR_NS_20140128030303.jpg"))`.
+`theme_wsj(paper = "gray")` sets the gray type with the gray field. On another field, set it with `theme(text = element_text(colour = "#444444"), axis.text = element_text(colour = "#444444"), plot.title = element_text(colour = "#000000"))`.
+
+```{r periods, fig.width = 5.2, fig.height = 4}
+## Shares of the charts by half-year.
+charts$half <- paste0(substr(charts$date, 1, 4), ifelse(as.integer(substr(charts$date, 6, 7)) <= 6, "-03-31", "-09-30"))
+halves <- do.call(rbind, lapply(split(charts, charts$half), function(d) {
+  data.frame(
+    half = as.Date(d$half[1]),
+    what = c("Ivory field", "Gray field", "Bands", "Bold subtitle"),
+    share = c(
+      mean(d$field == "ivory"),
+      mean(d$field == "gray"),
+      mean(d$rules == "bands"),
+      mean(d$subtitle_weight == "bold")
+    ),
+    n = nrow(d)
+  )
+}))
+## The second half of 2014 has two charts; leave it out.
+halves <- halves[halves$n >= 10, ]
+ends <- halves[halves$half == max(halves$half), ]
+ggplot(halves, aes(half, 100 * share, colour = what)) +
+  geom_hline(yintercept = 0) +
+  geom_line(linewidth = 0.8) +
+  annotate(
+    "text",
+    x = as.Date(c("2012-03-31", "2014-03-31", "2012-09-30", "2011-03-31")),
+    y = c(95, 88, 36, 92),
+    label = c("Ivory field", "Gray field", "Bands", "Bold subtitle"),
+    colour = c(wsj_col("gold"), "#000000", wsj_col("steel"), wsj_col("red")),
+    hjust = c(0.5, 1, 0, 0),
+    size = 3.2,
+    fontface = "bold"
+  ) +
+  scale_colour_manual(
+    values = c(`Ivory field` = wsj_col("gold"), `Gray field` = "#000000", Bands = wsj_col("steel"),
+               `Bold subtitle` = wsj_col("red")),
+    guide = "none"
+  ) +
+  scale_x_date(
+    breaks = as.Date(paste0(2011:2014, "-01-01")),
+    labels = wsj_year_label(),
+    minor_breaks = as.Date(paste0(2010:2014, "-07-01")),
+    guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = seq(0, 100, 25), limits = c(0, 100)) +
+  labs(
+    title = "Changing Looks",
+    subtitle = "Share of charts in each half-year with each feature",
+    caption = paste0("Source: ", n_all, " WSJ Asia web graphics, read and measured for this guide")
+  ) +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0))
+```
+
+## The parts of a chart
+
+Every chart has the same parts, top to bottom.
+
+1. **A title.** A short headline in a heavy slab serif, in title case: `r pct(lengths(strsplit(charts$title, " +")) == 2, n_all)` of titles are two words and `r pct(lengths(strsplit(charts$title, " +")) <= 3, n_all)` three or fewer. Some name the subject plainly (*South Korea's GDP*, *Japan's Trade Balance*), others make a point (*Slowing Down*, *Danger Zone*, *Hot Property*).
+2. **A subtitle.** It says what is measured and in what unit, in plain words: "Change from previous quarter, seasonally adjusted"; "Japan's trade balance, in trillions of yen". `r share(charts$subtitle != "", n_all)` have one. A few, mostly in periods C and D, add a sentence of news before the measure: `r cite(c("AM-BB585_CHINAH_NS_20131223060011.jpg", "AI-CF534_BITCOI_NS_20131218055104.jpg"))`.
+3. **The chart.** No axis titles: the subtitle has already given the unit, and the topmost y label repeats its symbol.
+4. **Notes and sources**, small, at the bottom left: "Note:" first, then "Source:" or "Sources:" (`r share(charts$has_source == "True", n_all)`). Footnotes are marked with an asterisk in the chart and explained in the note.
+5. **A credit line**, "The Wall Street Journal", on its own line under the source. It is not part of the redesign of October 2011: none of the `r sum(charts$period == "B" & charts$date < credit_from)` charts from then to mid-January 2012 has it. It first appears on `r format(as.Date(credit_from), "%e %B %Y")`, `r cite("AI-BQ125_CECON_NS_20120116223902.jpg")`, and is on `r share(after_credit$credit == "True", nrow(after_credit))` from that day on. Without it: `r cite(c("AI-BO366_SKECON_NS_20111027030302.jpg", "AI-BQ033_JECON_NS_20120111230006.jpg"))`.
+
+```{r anatomy}
+## Each chart of made-up data sets its own seed, so that adding a chart does not change the others.
+set.seed(2012)
+## Monthly change, with gains in green and losses in red and a black callout on the latest value.
+d <- data.frame(date = seq(as.Date("2011-01-01"), by = "month", length.out = 22))
+d$value <- round(stats::rnorm(22, 0.4, 2.6), 1)
+d$value[22] <- -4.1
+## Name the levels in the palette's order, gains first, so gains take its first color.
+d$sign <- factor(ifelse(d$value >= 0, "positive", "negative"), levels = c("positive", "negative"))
+ggplot(d, aes(date, value, fill = sign)) +
+  geom_col(width = 25) +
+  geom_hline(yintercept = 0) +
+  wsj_callout(d$date[22], -4.1, "Oct.\n-4.1%", nudge_x = -30, nudge_y = -10, size = 3, family = wsj_text_font) +
+  coord_cartesian(clip = "off") +
+  scale_fill_wsj("direction", guide = "none") +
+  scale_x_date(breaks = as.Date(c("2011-01-01", "2012-01-01")), labels = wsj_year_label(),
+               minor_breaks = d$date, guide = guide_axis(minor.ticks = TRUE)) +
+  scale_y_continuous(labels = wsj_label(suffix = "%", accuracy = 0.1), breaks = seq(-7.5, 5, 2.5)) +
+  labs(
+    title = "Factory Slump",
+    subtitle = "Industrial production, change from\nprevious month",
+    caption = "Note: Seasonally adjusted\nSource: Ministry of Economy, Trade and Industry\nThe Wall Street Journal"
+  ) +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0))
+```
+
+The chart above follows `r cite("AI-BW723_JECON_NS_20121030003018.jpg")`.
+
+## The field and the scale
+
+**The field** is a flat color behind the whole graphic, title and source included, not just the plot.
+Its colors were measured on every chart:
+
+- ivory, `#f8f2e4`, on `r share(charts$field == "ivory" & charts$period %in% c("B", "C"), sum(charts$period %in% c("B", "C")))` in periods B and C;
+- pale gray, `#efefef`, on `r share(charts$field == "gray" & charts$period == "D", sum(charts$period == "D"))` in period D;
+- white or a pale blue, `#eff4f9`, in period A;
+- a pale green, `#f2f9f2`, kept for one recurring chart, the HSBC purchasing managers' index for China, with its "Expanding" and "Contracting" scale bar: `r cite(c("AI-BP465_CHINAP_NS_20111215010903.jpg", "AI-BV767_CECON_NS_20120919230902.jpg"))`.
+
+**The scale** is marked by thin horizontal dotted rules (`r share(charts$rules == "dotted", n_all)`) or, mostly in 2011 and 2012, by alternating bands of a darker tint of the field (`r share(charts$rules == "bands" & charts$period %in% c("A", "B", "C"), sum(charts$period %in% c("A", "B", "C")))` in periods A to C, `r sum(charts$rules == "bands" & charts$period == "D")` charts after). The band on ivory measures `#efe4c9`; on gray, `#dddddd`. Shading starts with the interval above the lowest break and alternates up.
+There are no vertical rules.
+Bands: `r cite(c("AI-BN971_JECON_NS_20111010233303.jpg", "AI-BR349_JECON_NS_20120311232103.jpg", "AI-BS569_INDIIR_NS_20120502083603.jpg"))`. Dotted rules: `r cite(c("AI-BQ436_SKECON_NS_20120201013603.jpg", "AI-BT650_JECON_NS_20120620002102.jpg", "AI-CC875_ARATES_NS_20130814225706.jpg"))`.
+
+**A solid black line** runs along zero or along the bottom of the plot on `r share(axis_charts$baseline == "black_solid", nrow(axis_charts), "charts with a value axis")`. It belongs to the data, so `theme_wsj()` leaves it to `geom_hline(yintercept = 0)`.
+
+```{r field-bands}
+set.seed(3)
+d <- walk(30, 3, 0.6, 0.3)
+p <- ggplot(d, aes(date, value)) +
+  geom_line(colour = wsj_col("steel"), linewidth = 0.8) +
+  geom_hline(yintercept = 0) +
+  scale_x_date(breaks = as.Date(paste0(2011:2013, "-01-01")), labels = wsj_year_label()) +
+  scale_y_continuous(labels = wsj_label(prefix = "$"), breaks = seq(0, 12, 2), limits = c(0, 12),
+                     expand = expansion(0)) +
+  labs(
+    title = "Steady Climb",
+    subtitle = "Monthly exports, in billions of\nU.S. dollars",
+    caption = wsj_caption("Ministry of Commerce")
+  )
+## Period B: bands, with a bold subtitle. The bands go first so they draw behind the line.
+p_bands <- p
+p_bands$layers <- c(wsj_bands(), p$layers)
+p_bands +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    plot.subtitle = element_text(face = "bold"),
+    axis.text.x = element_text(hjust = 0)
+  )
+```
+
+```{r field-gray}
+## Period D: the gray field and dotted rules.
+p + theme_wsj(paper = "gray", base_family = wsj_text_font, title_family = wsj_title_font) + theme(axis.text.x = element_text(hjust = 0))
+```
+
+## Axes
+
+- **Values on the left, aligned right.** The y labels sit on the left (`r share(axis_charts$y_axis_side %in% c("left", "both"), nrow(axis_charts), "charts with a value axis")`), centred on their rule, with no tick. They are set flush right on their numbers, and the unit on the top label hangs outside the column: in "20%" over "15", the "20" sits above the "15" and the "%" sticks out toward the plot; in "$120" over "100" the "$" sticks out to the left. Of `r nrow(ylabel_check)` charts checked by eye, `r sum(ylabel_check$align == "right")` are aligned right, `r sum(ylabel_check$align == "undecided")` have labels all of one width and cannot tell, `r sum(ylabel_check$align == "other")` is irregular, and none is aligned left: `r cite(c("AI-CA928_CECON_NS_20130513065706.jpg", "AI-BY469_CINVES_NS_20130116122703.jpg", "AI-CF943_CEXPOR_NS_20140109221206.jpg"))`. `theme_wsj()` aligns them right, and `wsj_label()` hangs the suffix. Right-hand axes appear only as the second axis of a two-scale chart (`r sum(charts$y_axis_side == "both")` charts): `r cite(c("AI-BS851_CECON_NS_20120515142403.jpg", "AM-BA672_CHINAH_NS_20131014054803.jpg"))`.
+- **The unit on the top label only.** "8%", then 6, 4, 2; "$250 billion", then 225, 200. Of the charts whose axis carries a unit symbol, `r share(charts$y_unit_top_only == "True", sum(charts$y_unit_top_only %in% c("True", "False")))` put it on the top label alone: `r cite(c("AI-BU349_SPAIN_NS_20120719113903.jpg", "AI-BU867_Econom_NS_20120809135703.jpg", "AM-BB585_CHINAH_NS_20131223060011.jpg"))`. Use `wsj_label()`. A worded unit hangs like a symbol: "$250 billion" over "225".
+- **Ticks under the x axis**, hanging down from the baseline (`r share(charts$x_ticks == "below", sum(charts$x_ticks != "none"), "charts with x ticks")`), with smaller ticks between them for months or quarters on `r share(charts$minor_ticks == "True", n_all)`.
+- **Years abbreviated.** The first year in full and the rest with an apostrophe, "2011 '12 '13", on `r share(charts$year_labels %in% c("mixed", "abbreviated"), sum(charts$year_labels %in% c("mixed", "abbreviated", "full")), "charts labelled by year")`. Fiscal years start "FY2011". Use `wsj_year_label()`.
+- **Labels after the tick.** On a time axis the tick marks the start of the period and the label is set just to its right (`r share(charts$x_label_position == "right_of_tick", sum(charts$x_label_position != ""), "charts with x labels")`), so "'12" reads as the year that begins there: `r cite(c("AI-BQ436_SKECON_NS_20120201013603.jpg", "AI-BR349_JECON_NS_20120311232103.jpg"))`. Use `theme(axis.text.x = element_text(hjust = 0))`. Bars of categories, such as quarters, are labelled centred under each bar.
+- **Inverted scales** are allowed and flagged. A currency chart may turn its axis over so that down means weaker, with a footnote saying so: `r cite("AM-AZ574_AMONEY_NS_20130724132404.jpg")`.
+
+```{r axes}
+set.seed(4)
+d <- data.frame(date = seq(as.Date("2010-09-01"), by = "month", length.out = 40))
+d$value <- 52 - 0.4 * seq_len(40) + 1.5 * sin(seq_len(40) / 2) + stats::rnorm(40, 0, 0.8)
+ggplot(d, aes(date, value)) +
+  geom_line(colour = wsj_col("red"), linewidth = 0.8) +
+  scale_x_date(
+    breaks = as.Date(paste0(2011:2013, "-01-01")),
+    labels = wsj_year_label(),
+    minor_breaks = d$date,
+    guide = guide_axis(minor.ticks = TRUE)
+  ) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = seq(30, 60, 5)) +
+  labs(
+    title = "Losing Ground",
+    subtitle = "Share of exports going to Europe",
+    caption = wsj_caption("Customs department")
+  ) +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0), axis.minor.ticks.length.x = unit(1.5, "pt"))
+```
+
+## Color
+
+### The palette
+
+The colors below were measured from flat areas of the charts. They are the modal colors of each cluster across every chart that uses it, not estimates from one image.
+The same values recur exactly from chart to chart, which suggests a fixed set of swatches.
+Each hue comes in up to three shades.
+
+```{r palette, fig.width = 6, fig.height = 4.6}
+pal <- inks[!inks$ink %in% c("blue", "bright red", "bright green"), ]
+## The lightest orange is extrapolated from the other families, not measured: it has no count.
+pale_orange <- data.frame(ink = "pale orange", hex = wsj_pal("oranges")(3)[3], A = NA, B = NA, C = NA, D = NA,
+                           charts = NA)
+pal <- rbind(pal[pal$ink != "gold" & pal$ink != "tan" & pal$ink != "pale gold" & pal$ink != "yellow" &
+                   pal$ink != "black", ],
+             pale_orange, pal[pal$ink %in% c("gold", "tan", "pale gold", "yellow", "black"), ])
+pal$family <- c(rep("Red", 3), rep("Blue", 3), rep("Green", 3), rep("Orange", 3), rep("Gold", 3), "Yellow", "Black")
+pal$step <- c(1:3, 1:3, 1:3, 1:3, 1:3, 1, 1)
+pal$family <- factor(pal$family, levels = rev(unique(pal$family)))
+pal$label <- paste0(pal$ink, "\n", pal$hex, "\n", ifelse(is.na(pal$charts), "extrapolated", paste(pal$charts, "charts")))
+ggplot(pal, aes(step, family)) +
+  geom_tile(aes(fill = hex), width = 0.92, height = 0.85) +
+  geom_tile(data = pal[is.na(pal$charts), ], fill = NA, colour = "#000000", linetype = "dashed", linewidth = 0.3,
+            width = 0.92, height = 0.85) +
+  geom_text(
+    aes(label = label, colour = ifelse(farver::decode_colour(hex, to = "hcl")[, "l"] > 60, "#000000", "#ffffff")),
+    size = 2.7, lineheight = 0.9
+  ) +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(breaks = 1:3, labels = c("Dark", "Mid", "Light"), position = "top") +
+  labs(
+    title = "House Colors",
+    subtitle = "Colors measured on the charts, Oct. 2011 to July 2014",
+    caption = paste0("Source: ", n_all, " WSJ Asia web graphics")
+  ) +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(panel.grid = element_blank(), axis.ticks = element_blank())
+```
+
+```{r palette-periods, echo = FALSE}
+knitr::kable(
+  inks[, c("ink", "hex", "A", "B", "C", "D", "charts")],
+  col.names = c("Color", "Hex", "A", "B", "C", "D", "All"),
+  caption = "Charts using each measured color, by period."
+)
+```
+
+The bright red and green of period A, and a stronger blue, `#0074a5`, seen on one chart, belong to the earlier look.
+`wsj_pal()` holds the colors in the palettes described below; `ggthemes_data$wsj$palettes` has the hex values.
+
+Orange is the one hue the charts used in only two shades. Its third, `#fdd1ab`, is not measured: it is a 55% tint of the mid orange, the tint that makes the light shade of every other family (see the next section).
+
+### How the shades were built
+
+The shades are tints: each lighter color is a darker one mixed toward white in RGB, as a tint slider in Illustrator or an opacity over white makes it. They are not steps of HSL lightness or HSB brightness, and they are not web-safe values. The fit of each relation is the share of the base color, `t` in 255 - t (255 - base), and the worst of the three channels' misses, in levels of 255:
+
+```{r tints, echo = FALSE}
+tints <- data.frame(
+  shade = c("pale red", "pale steel", "pale green", "pale gold", "salmon", "tan", "light orange", "steel", "green",
+            "ivory field", "ivory band", "gray field", "gray band", "pale blue field", "pale green field"),
+  color = c("#ebb3a4", "#abbdcb", "#afccae", "#e8dbaf", "#d5695d", "#d3ba68", "#fcac67", "#5d8ca8", "#65a479",
+            "#f8f2e4", "#efe4c9", "#efefef", "#dddddd", "#eff4f9", "#f2f9f2"),
+  of = c("salmon", "steel", "green", "tan", "red", "gold", "orange", "navy", "dark green", "gold", "gold", "black",
+         "black", "steel", "green"),
+  base = c("#d5695d", "#5d8ca8", "#65a479", "#d3ba68", "#c72e29", "#be9c2e", "#fb832d", "#016392", "#098154",
+           "#be9c2e", "#be9c2e", "#000000", "#000000", "#5d8ca8", "#65a479")
+)
+fit <- t(mapply(tint_of, tints$base, tints$color))
+tints$tint <- paste0(round(100 * fit[, "t"]), "%")
+tints$miss <- round(fit[, "miss"], 1)
+knitr::kable(tints[, c("shade", "color", "of", "base", "tint", "miss")],
+             col.names = c("Shade", "Color", "Tint of", "Base", "Share of base", "Worst miss"), row.names = FALSE)
+```
+
+- Every light shade is a 53 to 56% tint of the mid shade of its family, to within a few levels: most likely a 55% tint, a round value a designer would set, which fits all four as well as their own best values do and much better than 50 or 60%. The mid red, gold and orange are 71 to 74% tints of their dark shades.
+- Navy and dark green are not tints: they miss by 13 and 17 levels, and dark green is a bluer hue than the green. They are swatches of their own, darker and more saturated, which is how the charts use them, for highlighted bars.
+- The fields and bands are tints too: the ivory field is a 13% tint of the gold and its bands 26%; the gray field is 6% black and its bands 13%; the pale blue and green fields are 9% tints of the steel and the green. The band is about twice the field.
+- The pale blue field, its bands, the pale steel, the steel and the navy make a five-step ramp of measured colors, light to dark: `scale_fill_gradient_wsj()` and `scale_colour_gradient_wsj()` use it by default, as `"steel"`. The charts' grays are neutral tints of black too, so the pale partner of black in `wsj_pal("categorical_light")` is `#bdbdbd`, about 26% black.
+
+So the desk worked from a few base swatches and made the rest as RGB tints. That suits web graphics, and explains why the colors do not fall on round CMYK values under a press profile: they were never ink specifications.
+
+### On each field
+
+The palettes were measured on the ivory field, but the charts used them on every field. The swatches of each `wsj_pal()` palette, then the same chart, on the five fields of the corpus: ivory and gray (`theme_wsj()`'s `"ivory"` and `"gray"`), the pale blue `#eff4f9` and white of period A, and the pale green `#f2f9f2` of the PMI charts. The pale tints lose most against gray and pale blue; keep them for fills.
+
+```{r palettes-fields, fig.width = 10, fig.height = 4.8}
+palettes <- c("categorical", "categorical_light", "categorical_dark", "direction", "comparison", "actual_forecast",
+              "blues", "greens", "reds", "golds", "oranges")
+sw <- do.call(rbind, lapply(palettes, function(p) {
+  cols <- wsj_pal(p)(attr(wsj_pal(p), "max_n"))
+  data.frame(palette = p, i = seq_along(cols), hex = cols)
+}))
+sw$palette <- factor(sw$palette, levels = rev(palettes))
+swatches <- function(field, name) {
+  ggplot(sw, aes(i, palette, fill = hex)) +
+    geom_tile(width = 0.85, height = 0.7) +
+    scale_fill_identity() +
+    scale_x_continuous(breaks = NULL) +
+    labs(title = name, subtitle = fields[[name]]) +
+    on_field(field, base_size = 9) +
+    theme(panel.grid = element_blank(), axis.text.y = element_text(size = rel(0.9)))
+}
+side_by_side(Map(swatches, fields, names(fields)))
+```
+
+```{r palettes-fields-chart, fig.width = 10, fig.height = 3.8}
+## Stacked columns in the three greens, the darkest at the base.
+stack <- expand.grid(year = 2008:2013, part = c("Completed", "Under way", "Planned"))
+stack$part <- factor(stack$part, levels = c("Planned", "Under way", "Completed"))
+stack$value <- c(3.4, 3.9, 4.4, 5.6, 6.5, 7.6, 1.0, 1.6, 2.2, 2.4, 2.9, 3.2, 0.6, 0.8, 1.4, 1.5, 2.0, 2.6)
+chart <- function(field, name) {
+  ggplot(stack, aes(year, value)) +
+    geom_col(aes(fill = part), width = 0.8) +
+    geom_hline(yintercept = 0) +
+    scale_fill_manual(values = setNames(wsj_pal("greens")(3), c("Completed", "Under way", "Planned"))) +
+    scale_x_continuous(breaks = c(2008, 2010, 2012), labels = c("2008", "'10", "'12")) +
+    scale_y_continuous(breaks = seq(0, 14, 4), limits = c(0, 14), expand = expansion(0)) +
+    labs(title = name, fill = NULL) +
+    on_field(field, base_size = 9) +
+    theme(legend.text = element_text(size = rel(0.75)), legend.key.size = unit(8, "pt"))
+}
+side_by_side(Map(chart, fields, names(fields)))
+```
+
+### One series, two series, more
+
+- **One series is red or steel blue.** Of the charts with one data series, `r share(charts$series_colors == "red", sum(lengths(strsplit(charts$series_colors, ";")) == 1), "single-series charts")` draw it in red and `r pct(charts$series_colors == "steel_blue", sum(lengths(strsplit(charts$series_colors, ";")) == 1))` in steel blue: `r cite(c("AI-BU349_SPAIN_NS_20120719113903.jpg", "AM-AU378_CHINAH_NS_20120820083604.jpg", "AI-BN971_JECON_NS_20111010233303.jpg"))`.
+- **Two series are red and steel blue**, the most common pair: `r cite(c("AI-BU867_Econom_NS_20120809135703.jpg", "AI-BO486_CPROPc_NS_20111102132703.jpg"))`.
+- **Three or more lines take distinct hues**: red, steel blue and green, then black and gold. Of the `r nrow(many_lines)` line charts with three or more series, `r sum(has_colour(many_lines, "black"))` add black, `r sum(has_colour(many_lines, "gold"))` gold and `r sum(grepl("orange", many_lines$series_colors))` orange, and `wsj_pal()` takes them in that order: `r cite(c("AI-CC875_ARATES_NS_20130814225706.jpg", "AM-BC480_INDIAH_NS_20140227104505.jpg", "AI-BZ169_CINTER_NS_20130219061204.jpg"))`. A gray line is a benchmark set behind the others: `r cite(c("AI-CA003_CRT_NS_20130329012403.jpg", "AI-CH135_JDEFLA_NS_20140306045703.jpg"))`. Charts rarely show more than five lines.
+- **Three or more bars, segments or slices take families of hues.** Categories that belong together share a hue in its dark, mid and pale shades, and the next group takes the next hue. Of the `r nrow(many_parts)` bar and pie charts with three or more series, `r sum(many_parts$shades)` print two or more shades of one hue, measured: `r cite(c("AI-CC605_JSMART_NS_20130731070306.jpg", "AI-CC842A_APURS_NS_20130813000004.jpg", "AM-BB223_AMONEY_NS_20131126013004.jpg", "AM-BB786_GLPHER_NS_20140108021203.jpg"))`. Use the `"blues"`, `"greens"`, `"reds"`, `"golds"` and `"oranges"` palettes, a family to each group.
+
+Lines are about 2 pixels wide on a 225-pixel graphic, a medium weight (`r share(charts$line_weight == "medium", sum(charts$line_weight != ""), "line charts")`); `linewidth = 0.8` matches at the sizes used here.
+
+```{r two-series}
+set.seed(5)
+d <- rbind(
+  data.frame(date = seq(as.Date("2011-01-01"), by = "month", length.out = 30), series = "Imports",
+             value = 240 - 0.9 * 1:30 + stats::rnorm(30, 0, 3)),
+  data.frame(date = seq(as.Date("2011-01-01"), by = "month", length.out = 30), series = "Exports",
+             value = 150 + 1.3 * 1:30 + stats::rnorm(30, 0, 3))
+)
+## Imports first, so they take the palette's red.
+d$series <- factor(d$series, levels = c("Imports", "Exports"))
+ends <- d[d$date == max(d$date), ]
+ggplot(d, aes(date, value, colour = series)) +
+  geom_line(linewidth = 0.8) +
+  geom_label(
+    data = ends, aes(label = series, fill = series), colour = "#ffffff", fontface = "bold", size = 3,
+    hjust = 1, vjust = -0.4, label.r = unit(0, "pt"), label.size = 0
+  ) +
+  scale_colour_wsj() +
+  scale_fill_wsj() +
+  scale_x_date(breaks = as.Date(paste0(2011:2013, "-01-01")), labels = wsj_year_label()) +
+  scale_y_continuous(labels = wsj_label(prefix = "$", suffix = " billion"), breaks = seq(125, 275, 25)) +
+  guides(colour = "none", fill = "none") +
+  labs(
+    title = "Narrowing",
+    subtitle = "The trade deficit shrank as\nexports rose and imports fell.",
+    caption = "Note: Data are seasonally adjusted\nSource: Commerce Department\nThe Wall Street Journal"
+  ) +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0))
+```
+
+The labels above copy the tinted label boxes of `r cite("AI-BU867_Econom_NS_20120809135703.jpg")`.
+
+```{r families}
+## After "Seeking Cash": a hue to each group, and the pale shade for the year to date.
+cash <- expand.grid(year = 2009:2013, group = c("Developers", "Fund managers"))
+cash$value <- c(0.7, 0.4, 2.6, 2.2, 3.4, 0.6, 1.6, 2.8, 1.6, 3.9)
+cash$shade <- paste(cash$group, ifelse(cash$year == 2013, "to date", "full year"))
+## The groups sit side by side on one axis, a gap between them.
+cash$x <- cash$year - 2008 + ifelse(cash$group == "Fund managers", 6, 0)
+shades <- c(
+  `Developers full year` = wsj_pal("greens")(3)[2], `Developers to date` = wsj_pal("greens")(3)[3],
+  `Fund managers full year` = wsj_pal("blues")(3)[2], `Fund managers to date` = wsj_pal("blues")(3)[3]
+)
+ggplot(cash, aes(x, value, fill = shade)) +
+  geom_col(width = 0.8) +
+  geom_hline(yintercept = 0) +
+  annotate("text", x = c(3, 9), y = 4.4, label = c("Developers", "Fund managers"), size = 3,
+           family = wsj_text_font) +
+  scale_fill_manual(values = shades, guide = "none") +
+  scale_x_continuous(breaks = cash$x[cash$year %% 2 == 1],
+                     labels = c("2009", "'11", "'13\nYTD")[(cash$year[cash$year %% 2 == 1] - 2007) / 2]) +
+  scale_y_continuous(labels = wsj_label(prefix = "$", suffix = " billion"), breaks = 0:4, limits = c(0, 4.6),
+                     expand = expansion(0)) +
+  labs(
+    title = "Seeking Cash",
+    subtitle = "Capital raised for real-estate funds,\nin U.S. dollars",
+    caption = wsj_caption("PERE")
+  ) +
+  theme_wsj(paper = "gray", base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.ticks.x = element_blank())
+```
+
+The data are made up; the form follows `r cite("AM-BB223_AMONEY_NS_20131126013004.jpg")`, which runs each group in green or steel blue and gives the year to date the pale shade.
+
+### Gains and losses
+
+Charts of change color gains green and losses red (`r share(charts$direction_colors == "True", n_all)`): `r cite(c("AI-BW723_JECON_NS_20121030003018.jpg", "AI-BY972_JECON_NS_20130207023903.jpg", "AI-BT650_JECON_NS_20120620002102.jpg"))`.
+The commonest pair is green `#65a479` with red `#c72e29`, `wsj_pal("direction")`; some charts use the darker green `#098154` or the softer red `#d5695d` instead.
+
+### Above and below a threshold
+
+Indexes with a natural middle, such as a purchasing managers' index (50 divides expansion from contraction) or a sentiment index (0), fill the area between the line and that middle: green above, red below. A black line runs on top, and an arrow bar beside the panel names the two directions, "Expanding" and "Contracting", or "Positive" and "Negative" with the index's name between them. About two dozen charts in the corpus are drawn this way, nearly all of them the HSBC China PMI from 2011 to 2013; the fills are the mid green `#65a479` and the salmon `#d5695d` from 2012, bright green and red before. Examples: `r cite(c("AI-BV139_CECON_NS_20120823021803.jpg", "AI-BV546_JECON_NS_20120911064506.jpg", "AI-BQ917_CECON_NS_20120221233902.jpg", "AI-BN572_CHINAP_NS_20110922002103.jpg"))`.
+Draw the fill with `geom_wsj_threshold()` and the arrows with `wsj_direction_bar()`; both need room outside the panel.
+
+```{r threshold, fig.width = 7, fig.height = 4.4}
+pmi <- data.frame(
+  month = seq(as.Date("2011-01-01"), by = "month", length.out = 20),
+  index = c(54.5, 51.7, 51.8, 51.8, 51.6, 50.1, 49.3, 49.9, 49.9, 51, 47.7, 48.7, 48.8, 49.6, 48.3, 48.7, 48.4, 49.3,
+            48.5, 47.8)
+)
+p1 <- ggplot(pmi, aes(month, index)) +
+  geom_wsj_threshold(threshold = 50) +
+  geom_hline(yintercept = 50) +
+  geom_line() +
+  ## The latest value: a ringed point and plain bold text.
+  annotate("point", x = max(pmi$month), y = 47.8, shape = 21, size = 2.5, fill = fields[["ivory"]], stroke = 0.6) +
+  annotate("text", x = max(pmi$month), y = 46.9, label = "August: 47.8*", hjust = 1, fontface = "bold", size = 3,
+           family = wsj_text_font) +
+  ## On the left the bar has to clear the y labels.
+  wsj_direction_bar(50, side = "left", offset = 24, family = wsj_text_font) +
+  scale_x_date(breaks = as.Date(c("2011-01-01", "2012-01-01")), labels = wsj_year_label()) +
+  scale_y_continuous(breaks = seq(46, 54, 2), limits = c(46, 55)) +
+  coord_cartesian(clip = "off") +
+  labs(title = "HSBC\u2019s China PMI", caption = "Source: Markit Economics     *Preliminary\nThe Wall Street Journal") +
+  theme_wsj(base_size = 10, base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0), plot.margin = margin(10, 10, 10, 34))
+sentiment <- data.frame(
+  quarter = seq(as.Date("2010-01-01"), by = "quarter", length.out = 12),
+  index = c(-2, 4, 7, -5, -1, -22, 7, -2, -2.5, -3, -2.8, 2.2)
+)
+p2 <- ggplot(sentiment, aes(quarter, index)) +
+  geom_wsj_threshold() +
+  geom_hline(yintercept = 0) +
+  geom_line() +
+  wsj_callout(max(sentiment$quarter), 2.2, "3Q: 2.2", nudge_x = -18, nudge_y = 22, family = wsj_text_font) +
+  wsj_direction_bar(0, labels = c("Positive", "Negative"), title = "SENTIMENT", offset = 10, family = wsj_text_font) +
+  scale_x_date(breaks = as.Date(paste0(2010:2012, "-01-01")), labels = wsj_year_label()) +
+  scale_y_continuous(breaks = seq(-30, 20, 10), limits = c(-30, 20)) +
+  coord_cartesian(clip = "off") +
+  labs(title = "Feeling Better", subtitle = "Index of large Japanese\ncompanies\u2019 sentiment",
+       caption = "Source: Ministry of Finance\nThe Wall Street Journal") +
+  theme_wsj(base_size = 10, base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0), plot.margin = margin(10, 30, 10, 10))
+side_by_side(list(p1, p2))
+```
+
+The data are approximate readings of the two charts cited first.
+
+### Highlighting
+
+To pick out one bar, WSJ charts darken it within its own hue and set its label in bold. They do not gray out the rest.
+A steel-blue ranking highlights in navy, a green one in dark green, a salmon one in red: `r cite(c("AI-CD614_VIETWE_NS_20130918063008.jpg", "AI-BU730_PHILBA_NS_20120806050005.jpg", "AM-BD893_CDEBT_NS_20140616115704.jpg", "AI-CF229_BANGWA_NS_20131203125403.jpg"))`.
+`wsj_pal("comparison")` gives the blue pair; the `"greens"`, `"reds"` and `"golds"` palettes give the others, darkest first.
+
+Ranked horizontal bars drop the value axis: the category is labelled on the left, the value at the end of each bar, and rows are separated by dotted rules or bands.
+
+```{r highlight, fig.height = 4.4, warning = FALSE}
+d <- data.frame(
+  country = c("Colombia", "Vietnam", "Turkey", "Ukraine", "Egypt", "China", "Chile", "India", "Thailand"),
+  growth = c(278, 266, 247, 237, 211, 209, 209, 189, 176)
+)
+d$country <- factor(d$country, levels = rev(d$country))
+d$focal <- d$country == "Vietnam"
+ggplot(d, aes(growth, country)) +
+  geom_col(aes(fill = focal), width = 0.7) +
+  geom_text(aes(label = paste0(growth, ifelse(country == "Colombia", "%", "")), fontface = ifelse(focal, "bold", "plain")),
+            hjust = -0.2, size = 3) +
+  scale_fill_manual(values = c(`TRUE` = wsj_pal("comparison")(2)[1], `FALSE` = wsj_pal("comparison")(2)[2]),
+                    guide = "none") +
+  scale_x_continuous(expand = expansion(c(0, 0.15))) +
+  labs(
+    title = "Going Mobile",
+    subtitle = "Growth in active smart devices,\nJanuary 2012 to January 2013",
+    caption = wsj_caption("Flurry Analytics")
+  ) +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    panel.grid.major.y = element_line(colour = "#8a8a8a", linewidth = 0.25, linetype = "dotted"),
+    axis.text.y = element_text(face = ifelse(levels(d$country) == "Vietnam", "bold", "plain"))
+  )
+```
+
+### Shades of one hue
+
+Stacked bars and pies fill their segments with the shades of one or two hues, labelled at the side with short leader lines rather than a legend: `r cite(c("AI-CC842A_APURS_NS_20130813000004.jpg", "AI-CC605_JSMART_NS_20130731070306.jpg", "AI-BU352_SINGBE_NS_20120720041503.jpg"))`.
+Forecasts and estimates take the pale shade of the actual values' hue: `r cite(c("AI-BQ213_SINGHc_NS_20120119073303.jpg", "AI-CE420_AVOTE_NS_20131024043004.jpg", "AI-BS155_SKECON_NS_20120416015702.jpg"))`. `wsj_pal("actual_forecast")` is the steel-blue pair, and `wsj_pal("categorical_light")` has the pale shade of every hue.
+
+```{r forecast}
+d <- data.frame(year = 2004:2014, value = c(4.3, 5.8, 3.9, 8.5, 7.5, 9.6, 9.7, 9.3, 6.9, 7.9, 6.8))
+d$kind <- ifelse(d$year >= 2013, "forecast", "actual")
+ggplot(d, aes(year, value, fill = kind)) +
+  geom_col(width = 0.85) +
+  geom_hline(yintercept = 0) +
+  annotate("text", x = 13.5 + 2000, y = 8.6, label = "Forecast*", hjust = 0.5, size = 2.8) +
+  scale_fill_manual(values = c(actual = wsj_col("orange"), forecast = wsj_col("light orange")), guide = "none") +
+  scale_x_continuous(breaks = seq(2004, 2014, 2), labels = wsj_year_label()) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = seq(0, 10, 2)) +
+  labs(
+    title = "Sputtering Engine",
+    subtitle = "GDP growth rate",
+    caption = "*Forecast from finance ministry\nSource: Government statistics\nThe Wall Street Journal"
+  ) +
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font)
+```
+
+## Labels and callouts
+
+- **Direct labels first.** Series are named beside the data, in the series' own color, on `r share(has(charts$labelling, "direct_series_labels"), sum(lengths(strsplit(charts$series_colors, ";")) >= 2), "charts with two or more series")`; a legend at the top appears on `r sum(has(charts$labelling, "legend_top"))` charts in all, usually where lines cross too often to label: `r cite(c("AI-BU867_Econom_NS_20120809135703.jpg", "AI-CC875_ARATES_NS_20130814225706.jpg"))`.
+- **Labels take the line's own color**, usually in bold, not a lighter or darker shade of it. Measured on `r nrow(label_colors)` label and line pairs in `r length(unique(label_colors$file))` charts, `r share(abs(label_colors$dL) <= 4, nrow(label_colors), "pairs")` match within 4 units of lightness (L\*), and most of the rest are artefacts of the measurement, a pale fill or band taken for the line. A black series gets a black label. Examples: `r cite(c("AI-BG392_QE2REA_NS_20101104140201.jpg", "AI-BV752_CPANET_NS_20120919115707.jpg", "AM-BA985_CMATTE_NS_20131107123008.jpg"))`. Map the label's color to the same variable as the line's, as in `geom_text(aes(colour = series))`, and the scale gives both the same color.
+- **Callouts mark the latest value.** A number callout holds the value, often after its date ("July 4.6%", "2Q: 0.7%"), in bold type inside a filled box or circle, with a triangular tail pointing at the bar or the end of the line. Of the `r nrow(callouts)` charts with one, `r share(callouts$tail == "triangle", nrow(callouts), "callouts")` have the tail and `r share(callouts$marks_latest == "True", nrow(callouts), "callouts")` mark the latest value. They are black with white type (`r sum(callouts$fill == "black")`) or yellow `#ffe03d` with black type (`r sum(callouts$fill == "yellow")`). The other `r sum(!callouts$fill %in% c("black", "yellow"))` take a color of the chart: the color of the series they mark, as in `r cite(c("AI-BR167_CGDP_NS_20120304224503.jpg", "AI-CF617A_ASIAS_NS_20131223122404.jpg"))`, or another shade, mostly the mid steel blue `#5d8ca8` with white type, as in `r cite(c("AI-CF534_BITCOI_NS_20131218055104.jpg", "AI-BW283_SKRATE_NS_20121010224803.jpg"))`, and once the pale shades with black type, `r cite("AI-BY764_IECON_NS_20130129031805.jpg")`. A chart with two marked series gives each callout its series' color. Most sit above the point, often to its left (`r share(grepl("above", callouts$position), nrow(callouts), "callouts")`), and below it when the value is low. They belong to periods B and C, `r sum(callouts$period %in% c("B", "C"))` of the `r nrow(callouts)`; only `r sum(callouts$period == "D")` of the `r sum(charts$period == "D")` charts of period D have one; the rest mark the latest value with a pointer label (see [below](#pointers-rings-arrows-and-markers)) or plain text, if at all. Black: `r cite(c("AI-BV492_JECON_NS_20120909223903.jpg", "AI-BS026_JECON_NS_20120410232103.jpg"))`. Yellow: `r cite(c("AI-BV612_SKRATE_NS_20120913002402.jpg", "AI-BV557_JECON_NS_20120911225702.jpg"))`. Draw them with `wsj_callout()`.
+
+```{r callout, fig.width = 7.5, fig.height = 3.8}
+## The callouts of the three cited charts: a black box on a bar, a yellow circle on the end of a step line, and a
+## yellow box on the end of a line. Offsets are in points; clip = "off" lets a callout cross the panel edge.
+thm <- theme_wsj(base_size = 10, base_family = wsj_text_font, title_family = wsj_title_font)
+gdp <- data.frame(quarter = 1:6, change = c(-7.9, -1.3, 6.8, 0.3, 5.2, 0.7))
+gdp$sign <- factor(ifelse(gdp$change >= 0, "positive", "negative"), levels = c("positive", "negative"))
+p1 <- ggplot(gdp, aes(quarter, change, fill = sign)) +
+  geom_col(width = 0.95) +
+  geom_hline(yintercept = 0) +
+  wsj_callout(6, 0.7, "2Q:\n0.7%", shape = "rounded", nudge_x = -4, nudge_y = 34, family = wsj_text_font) +
+  scale_fill_wsj("direction", guide = "none") +
+  scale_x_continuous(breaks = 1:6, labels = c("1Q\n2011", "2Q", "3Q", "4Q", "1Q\n'12", "2Q")) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = seq(-8, 8, 4)) +
+  coord_cartesian(clip = "off") +
+  labs(title = "Japan\u2019s GDP", subtitle = "Annualized change from prior\nquarter, seasonally adjusted") +
+  thm +
+  theme(axis.ticks.x = element_blank())
+rate <- data.frame(
+  date = as.Date(c("2009-01-01", "2010-07-01", "2010-11-01", "2011-01-01", "2011-03-01", "2011-06-01", "2012-07-01",
+                   "2012-10-01")),
+  value = c(2, 2.25, 2.5, 2.75, 3, 3.25, 3, 3)
+)
+p2 <- ggplot(rate, aes(date, value)) +
+  geom_step(colour = wsj_pal("blues")(1), linewidth = 0.8) +
+  wsj_callout(as.Date("2012-10-01"), 3, "3.0%", fill = "yellow", shape = "circle", nudge_x = -16, nudge_y = -26,
+              family = wsj_text_font) +
+  scale_x_date(breaks = as.Date(paste0(2009:2012, "-01-01")), labels = c("2009", "2010", "2011", "2012")) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = 0:5, limits = c(0, 5)) +
+  labs(title = "Keeping Steady", subtitle = "Bank of Korea key policy rate") +
+  thm +
+  theme(axis.text.x = element_text(hjust = 0))
+orders <- data.frame(month = 1:7, change = c(0.6, 2.5, -2.8, 5.5, -14.8, 5.6, 4.6))
+p3 <- ggplot(orders, aes(month, change)) +
+  geom_line(colour = wsj_pal("blues")(1), linewidth = 0.8) +
+  geom_hline(yintercept = 0) +
+  wsj_callout(7, 4.6, "July 4.6%", fill = "yellow", nudge_x = -10, nudge_y = 26, family = wsj_text_font) +
+  scale_x_continuous(breaks = 1:7, labels = c("J", "F", "M", "A", "M", "J", "J")) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = seq(-15, 5, 5)) +
+  coord_cartesian(clip = "off") +
+  labs(title = "Better Than Expected", subtitle = "Core machinery orders,\nchange from previous month") +
+  thm
+side_by_side(list(p1, p2, p3))
+```
+
+```{r callout-series, fig.width = 3.2, fig.height = 4.2}
+## After "China's GDP": each callout in the color of the series it marks, and the label text inside it.
+gdp <- data.frame(
+  year = rep(2005:2012, 2),
+  series = rep(c("Actual", "Target"), each = 8),
+  rate = c(11.3, 12.7, 14.2, 9.6, 9.2, 10.4, 9.2, NA, 8, 8, 8, 8, 8, 8, 8, 7.5)
+)
+gdp$series <- factor(gdp$series, levels = c("Actual", "Target"))
+cols <- c(Actual = wsj_col("red"), Target = wsj_col("navy"))
+ggplot(gdp[!is.na(gdp$rate), ], aes(year, rate, colour = series)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 1.4) +
+  wsj_callout(2011, 9.2, "Actual\n9.2%", fill = cols[["Actual"]], nudge_x = -6, nudge_y = 26, size = 3.4,
+              family = wsj_text_font) +
+  wsj_callout(2012, 7.5, "Target\n7.5%", fill = cols[["Target"]], nudge_x = -14, nudge_y = -24, size = 3.4,
+              family = wsj_text_font) +
+  scale_colour_manual(values = cols, guide = "none") +
+  scale_x_continuous(breaks = 2005:2012, labels = c("2005", paste0("'0", 6:9), "'10", "'11", "'12")) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = seq(0, 14, 2), limits = c(0, 14.5)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "China\u2019s GDP",
+    subtitle = "Annual targeted and actual\ngrowth rate",
+    caption = "Sources: National Bureau of Statistics;\nWen Jiabao\nThe Wall Street Journal"
+  ) +
+  theme_wsj(base_size = 10, base_family = wsj_text_font, title_family = wsj_title_font)
+```
+
+### Pointers, rings, arrows and markers
+
+Four more marks are rarer than the callouts, but recur.
+
+- **Pointer labels.** After the gray field arrives, the boxed callout gives way to plain type: the date in regular weight and the value in bold, "3Q: **+3.5%**", with a small black wedge pointing at the point or bar. All `r length(annotated$pointer)` charts found with one are from period D: `r cite(annotated$pointer[c(5, 8, 4, 2)])`.
+- **Rings.** The latest point of a line can be ringed: an open black circle, filled with the field, usually beside a pointer label or plain text (`r length(annotated$ring)` charts): `r cite(annotated$ring[c(2, 5, 6)])`. Draw it with `geom_point(shape = 21)`. In late 2011 and early 2012 a few red lines carried a dot on every observation instead: `r cite(c("AI-BP106_JECON_NS_20111130010303.jpg", "AI-BP835_CPROP_NS_20120104011203.jpg"))`.
+- **Direction arrows.** A currency chart says which way is which with a broad pale arrow beside the line, labelled with what the direction means, "Weaker yuan" or "Stronger yen" (`r length(annotated$arrow)` charts): `r cite(annotated$arrow)`. An inverted scale is flagged in a note instead (see [Axes](#axes)).
+- **Event markers.** A thin gray vertical rule marks the moment of an event, labelled beside it, or a shaded span marks the time after it (`r length(annotated$event)` charts): `r cite(annotated$event)`.
+
+```{r annotations, fig.width = 10, fig.height = 4.2}
+## After "Target the Line", "A New Day" and "Shifting Currency", with made-up data.
+thm <- theme_wsj(base_size = 10, paper = "gray", base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0))
+set.seed(6)
+cpi <- walk(26, 9.8, 0.35, from = "2012-01-01")
+cpi$value[26] <- 9.9
+last <- cpi[26, ]
+p1 <- ggplot(cpi, aes(date, value)) +
+  geom_line(colour = wsj_col("dark green"), linewidth = 0.8) +
+  ## The ring, then the pointer label below it.
+  geom_point(data = last, shape = 21, size = 2.6, stroke = 0.6, fill = fields[["gray"]]) +
+  wedge(last$date - 12, last$value - 0.35, "up", w = 22, h = 0.35) +
+  annotate("text", x = last$date - 4, y = last$value - 1.1, label = 'plain("December: ")*bold("9.9%")',
+           parse = TRUE, hjust = 1, size = 3, family = wsj_text_font) +
+  scale_x_date(breaks = as.Date(c("2012-01-01", "2013-01-01", "2014-01-01")), labels = wsj_year_label()) +
+  scale_y_continuous(labels = wsj_label(suffix = "%", accuracy = 0.1), breaks = seq(5, 12.5, 2.5),
+                     limits = c(5, 12.5), expand = expansion(0)) +
+  coord_cartesian(clip = "off") +
+  labs(title = "Target the Line", subtitle = "Consumer prices,\nyear-on-year change",
+       caption = wsj_caption("Government of India")) +
+  thm
+prices <- data.frame(year = 2009:2014, change = c(28, 20, 11, 26, 8, -0.5))
+p2 <- ggplot(prices, aes(year, change)) +
+  geom_col(aes(fill = change >= 0), width = 0.8) +
+  geom_hline(yintercept = 0) +
+  ## The pointer sits left of the small bar, below the zero line, its wedge on the bar's corner.
+  wedge(2013.6, -1.1, "right", w = 0.18, h = 1.5) +
+  annotate("text", x = 2013.4, y = -1.3, label = 'bold("-0.5%")', parse = TRUE, hjust = 1, size = 3,
+           family = wsj_text_font) +
+  scale_fill_manual(values = c(`TRUE` = wsj_col("green"), `FALSE` = wsj_col("red")), guide = "none") +
+  scale_x_continuous(breaks = 2009:2014, labels = c("2009", "'10", "'11", "'12", "'13", "'14*")) +
+  scale_y_continuous(labels = wsj_label(suffix = "%"), breaks = seq(-5, 30, 5), limits = c(-5, 30)) +
+  labs(title = "A New Day", subtitle = "Change in average\nhouse prices",
+       caption = "*First two months\nSource: Hong Kong government\nThe Wall Street Journal") +
+  thm +
+  theme(axis.text.x = element_text(hjust = 0.5))
+set.seed(7)
+yuan <- walk(40, 6.6, 0.012, -0.007, from = "2010-06-01")
+p3 <- ggplot(yuan, aes(date, value)) +
+  ## The event: a gray rule, labelled beside it with a wedge.
+  geom_vline(xintercept = as.Date("2010-06-19"), colour = "#a6a6a6", linewidth = 0.4) +
+  annotate("text", x = as.Date("2010-08-20"), y = 6.73, label = "Peg ends", hjust = 0, size = 2.8,
+           family = wsj_text_font) +
+  wedge(as.Date("2010-06-25"), 6.73, "left", w = 45, h = 0.02) +
+  geom_line(colour = wsj_col("red"), linewidth = 0.8) +
+  ## The direction arrow, pale, beside the line: up is a weaker yuan.
+  annotate("polygon", x = as.Date(c("2013-12-01", "2013-12-01", "2013-10-15", "2014-01-01", "2014-02-15",
+                                    "2014-01-31", "2014-01-31")),
+           y = c(6.53, 6.6, 6.6, 6.66, 6.6, 6.6, 6.53), fill = "#bdbdbd") +
+  annotate("text", x = as.Date("2014-01-01"), y = 6.5, label = "Weaker\nyuan", size = 2.8, lineheight = 0.9,
+           vjust = 1, family = wsj_text_font) +
+  scale_x_date(breaks = as.Date(paste0(2011:2013, "-01-01")), labels = wsj_year_label()) +
+  scale_y_continuous(breaks = seq(6.0, 6.8, 0.2), limits = c(5.95, 6.8), labels = scales::label_number(0.1)) +
+  coord_cartesian(clip = "off") +
+  labs(title = "Shifting Currency", subtitle = "How many yuan one U.S. dollar buys",
+       caption = wsj_caption("WSJ Market Data Group")) +
+  theme_wsj(base_size = 10, base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0))
+side_by_side(list(p1, p2, p3))
+```
+
+## Chart types
+
+```{r types, echo = FALSE}
+types <- sort(table(unlist(strsplit(charts$chart_types, ";"))), decreasing = TRUE)
+types <- types[types >= 5]
+knitr::kable(
+  data.frame(Type = gsub("_", " ", names(types)), Charts = as.integer(types), Share = paste0(round(100 * types / n_all), "%")),
+  caption = "Chart types; a chart with two panels can count twice."
+)
+```
+
+- **Columns** are the commonest form, for monthly and quarterly data as well as annual. Gaps are narrow, less than a third of a bar on `r share(charts$bar_gap == "narrow", sum(charts$bar_gap != ""), "bar charts")`: `geom_col(width = 0.8)` or more.
+- **Lines** carry daily and monthly series, with steps for policy rates: `r cite(c("AI-BH794_BOK_NS_20110112225403.jpg", "AI-BR643_YUAN_NS_20120323043004.jpg"))`.
+- **Horizontal bars** are kept for rankings, sorted, with the values at the bar ends (see [Highlighting](#highlighting)).
+- **Pies** are rare (`r sum(has(charts$chart_types, "pie"))` charts), with outside labels: `r cite("AI-BU352_SINGBE_NS_20120720041503.jpg")`.
+- **Small multiples** are rarer still: `r share(charts$n_panels > 1, n_all)` have more than one panel. A web graphic is one chart. See [Several panels](#several-panels).
+
+### Several panels
+
+When a chart has two or three panels, each is a chart of its own under the one title: a bold heading set flush left over the panel, often followed by the measure in regular weight, its own scale with its own unit on the top label, and often a different form, bars beside a line. The panels sit side by side with a wide gutter, or stacked. A threshold banner or a callout belongs to one panel, not to each. Examples: `r cite(c("AI-CB451_CECON_NS_20130609112404.jpg", "AI-CA484_AMONEY_NS_20130422223603.jpg", "AI-CC843_AMONEY_NS_20130813002103.jpg", "AI-BR132_ASIAEC_NS_20120301021803.jpg"))`.
+
+`theme_wsj()` sets facet headings flush left and the panels two lines apart. Give each panel its own scale with `scales = "free_y"`, so `wsj_label()` marks the top label of each. Draw a different form in each panel by giving each layer its panel's rows, and put a callout or a banner in one panel by naming the panel: `wsj_callout(..., facets = list(panel = "Industrial production"))`.
+
+```{r panels, fig.width = 6.4, fig.height = 4.2}
+## After "Applying the Brakes": bars in one panel, a line in the other, each with its own scale and unit.
+months <- seq(as.Date("2013-01-01"), by = "month", length.out = 5)
+brakes <- rbind(
+  data.frame(panel = "Social financing, in trillions of yuan", month = months, value = c(2.5, 1.1, 2.5, 1.8, 1.2)),
+  data.frame(panel = "Industrial production, change from a year earlier", month = months,
+             value = c(9.9, 9.9, 8.9, 9.3, 9.2))
+)
+brakes$panel <- factor(brakes$panel, levels = unique(brakes$panel))
+## A factor keeps the panels in order; a callout names its panel with a factor of the same levels.
+panel <- function(i) factor(levels(brakes$panel)[i], levels = levels(brakes$panel))
+first <- brakes[as.integer(brakes$panel) == 1, ]
+second <- brakes[as.integer(brakes$panel) == 2, ]
+ggplot(brakes, aes(month, value)) +
+  geom_col(data = first, fill = wsj_col("steel"), width = 24) +
+  geom_line(data = second, colour = wsj_col("green"), linewidth = 0.8) +
+  wsj_callout(months[5], 1.2, "1.19", nudge_x = -2, nudge_y = 20, size = 2.8, family = wsj_text_font,
+              facets = list(panel = panel(1))) +
+  wsj_callout(months[5], 9.2, "9.2%", fill = "yellow", nudge_x = -6, nudge_y = 18, size = 2.8, family = wsj_text_font,
+              facets = list(panel = panel(2))) +
+  facet_wrap(~panel, scales = "free_y", labeller = label_wrap_gen(24)) +
+  scale_x_date(breaks = months, labels = c("J\n2013", "F", "M", "A", "M")) +
+  scale_y_continuous(labels = wsj_label(), n.breaks = 4, expand = expansion(c(0, 0.1))) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Applying the Brakes",
+    subtitle = "China\u2019s regulators rein in financing, risking a slowdown in growth",
+    caption = "Sources: People\u2019s Bank of China; National Bureau of Statistics\nThe Wall Street Journal"
+  ) +
+  theme_wsj(base_size = 10, base_family = wsj_text_font, title_family = wsj_title_font)
+```
+
+The data are made up; the second panel's axis does not start at zero, as a line's need not.
+
+## With ggthemes
+
+```{r recipe, eval = FALSE, echo = TRUE}
+ggplot(data, aes(date, value)) +
+  wsj_bands() +                                   # 2011-12 only; then drop the dotted rules
+  geom_col(fill = wsj_pal()(1), width = 25) +
+  geom_hline(yintercept = 0) +                    # the solid zero line
+  scale_x_date(labels = wsj_year_label()) +       # 2011 '12 '13
+  scale_y_continuous(labels = wsj_label(suffix = "%")) + # the unit on the top label only
+  labs(
+    title = "Two Words",
+    subtitle = "What is measured, in what unit",
+    caption = "Source: Who\nThe Wall Street Journal"
+  ) +
+  theme_wsj() +                                   # paper = "gray", with gray type, from August 2013
+  theme(
+    axis.text.x = element_text(hjust = 0),        # labels just after the tick
+    panel.grid.major.y = element_blank()          # with wsj_bands() only
+  )
+```
+
+Number callouts are `wsj_callout()`. What the package does not do: the title and text faces (see [Type](#type)), leader-line labels, the pale green field of the PMI charts, and the pointer labels, rings, direction arrows and event markers, which the figure above draws with `annotate()`.
+
+## How this guide was made
+
+**The charts.** The corpus is the set of "native size" graphics (`_NS_` in the file name) that the Internet Archive captured from the *Journal*'s image servers, `si.wsj.net` and `s.wsj.net`, kept if they were flat data graphics in English and checked by hand, `r n_all` in all. Most are 225 pixels wide. They are web graphics from the Asia news and Asian markets desks, not the U.S. print pages, though they share the print look.
+
+**Two readings.** Each chart was read by a Claude subagent, which recorded its text (title, subtitle, notes, source), chart type, labels, callouts and colors, then read again at twice the size for the rules, ticks, label positions, typefaces and weights. Where the two readings overlapped they mostly agreed, except on bands: the first reading reported bands on 52 charts that the second saw as dotted rules. A pixel measurement of the band tint decided it for the second reading, and the shares here use it.
+
+**Pixel measurements.** The field is the modal color of each chart's border. The palette comes from the flat areas of each chart (pixels whose 3-by-3 neighbourhood varies by no more than 12 levels, which drops anti-aliased edges and text), binned in CIE Lab and clustered across charts; a chart uses a color if at least 30 of its pixels fall within ΔE 6 of it. The bands are the share of each chart in a tint 2.5 to 12 L* darker than its field.
+
+**Type and labels.** The darkness of the type was measured in each chart's subtitle and source lines, as the darkest 5% of its neutral pixels: black type measures 0 to 10 there and the later gray 25 to 70. The second reading's call of the y-label alignment was dropped: on axes whose labels are all one width it took the unit hanging off the top label for left alignment. A by-eye check of 48 charts replaces it.
+
+**Checks.** Every chart cited as an example was looked at, and charts that did not show what was claimed were not cited. The scripts, the readings and the measurements are in `data-raw/wsj-corpus/` of the ggthemes source.
+
+**Limits.** Readings of small images miss faint detail: shares of thin features, such as minor ticks, are likely to be low. The corpus is what the Archive happened to capture, so it is not a random sample of the *Journal*'s charts, and it says nothing about U.S. print pages, maps or interactive graphics.

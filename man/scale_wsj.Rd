@@ -6,15 +6,15 @@
 \alias{scale_fill_wsj}
 \title{Wall Street Journal color and fill scales}
 \usage{
-scale_colour_wsj(palette = "colors6", ...)
+scale_colour_wsj(palette = "categorical", ...)
 
-scale_color_wsj(palette = "colors6", ...)
+scale_color_wsj(palette = "categorical", ...)
 
-scale_fill_wsj(palette = "colors6", ...)
+scale_fill_wsj(palette = "categorical", ...)
 }
 \arguments{
-\item{palette}{A string, the color palette to use. One of
-\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}.}
+\item{palette}{A string, the palette to use. One of
+\code{"comparison"}, \code{"actual_forecast"}, \code{"direction"}, \code{"party"}, \code{"categorical"}, \code{"categorical_light"}, \code{"categorical_dark"}, \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"}, \code{"oranges"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -78,18 +78,20 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-Color and fill scales which use the palettes in \code{\link[=wsj_pal]{wsj_pal()}}.
-These scales should be used with \code{\link[=theme_wsj]{theme_wsj()}}.
+Discrete color and fill scales using \code{\link[=wsj_pal]{wsj_pal()}}. These scales should be
+used with \code{\link[=theme_wsj]{theme_wsj()}}.
 }
 \examples{
 library("ggplot2")
 
 ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +
-  scale_colour_wsj("colors6")
+  scale_colour_wsj("categorical")
 }
 \seealso{
 Other color wsj:
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
 \code{\link[=wsj_pal]{wsj_pal()}}
 }
 \concept{color wsj}
