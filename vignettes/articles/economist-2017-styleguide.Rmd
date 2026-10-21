@@ -14,7 +14,7 @@ local({
 })
 ```
 
-This article reproduces the charts of [The Economist visual styleguide](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf) (Version 1.2, 4 May 2017, by Matt McLean) with *ggthemes*, using `theme_economist_2017()`, `economist_2017_pal()`, `guide_axis_economist_2017()` and `economist_2017_chart()`.
+This article reproduces the charts of [The Economist visual styleguide](https://archive.org/details/chartstyleguide-20170505) (Version 1.2, 4 May 2017, by Matt McLean) with *ggthemes*, using `theme_economist_2017()`, `economist_2017_pal()`, `guide_axis_economist_2017()` and `economist_2017_chart()`.
 
 Block quotes are the guide's own words, with its spelling and typos.
 

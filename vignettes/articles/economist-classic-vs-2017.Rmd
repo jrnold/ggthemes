@@ -20,7 +20,7 @@ local({
 table.gt_table { --bs-table-bg: transparent; }
 ```
 
-ggthemes has two Economist styles. `theme_economist()` is the classic style, the look of the paper's charts before 2017, approximated from published charts. `theme_economist_2017()` implements *The Economist visual styleguide* ([Version 1.2, 4 May 2017](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf), by Matt McLean), which was written down measurement by measurement. This article sets the two against each other: first the differences, then every example chart of the guide drawn in both styles, and finally, in [a second article](economist-mistakes.html), the Economist's own before-and-after charts from "Mistakes, we've drawn a few".
+ggthemes has two Economist styles. `theme_economist()` is the classic style, the look of the paper's charts before 2017, approximated from published charts. `theme_economist_2017()` implements *The Economist visual styleguide* ([Version 1.2, 4 May 2017](https://archive.org/details/chartstyleguide-20170505), by Matt McLean), which was written down measurement by measurement. This article sets the two against each other: first the differences, then every example chart of the guide drawn in both styles, and finally, in [a second article](economist-mistakes.html), the Economist's own before-and-after charts from "Mistakes, we've drawn a few".
 
 The classic style is the one under test. The 2017 style is the reference, because the guide gives its numbers. Where the two disagree, the question is whether the classic style is deliberately different, as the guide says it is on p.3, or simply wrong.
 

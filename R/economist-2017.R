@@ -38,6 +38,7 @@ economist_2017_base <- 7
 #' @references
 #' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.11-20.
+#' <https://archive.org/details/chartstyleguide-20170505>
 #'
 #' @family economist 2017
 #' @export
@@ -83,6 +84,7 @@ economist_2017_pal <- function(
 #' @references
 #' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), p.12.
+#' <https://archive.org/details/chartstyleguide-20170505>
 #'
 #' @family economist 2017
 #' @export
@@ -242,6 +244,7 @@ scale_fill_economist_2017_c <- function(
 #' @references
 #' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.3-12.
+#' <https://archive.org/details/chartstyleguide-20170505>
 #'
 #' @family economist 2017
 #' @export
@@ -464,6 +467,7 @@ economist_2017_linewidth <- function(pt, base_size) {
 #' @references
 #' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.6-7, 10.
+#' <https://archive.org/details/chartstyleguide-20170505>
 #'
 #' @family economist 2017
 #' @export
@@ -928,6 +932,7 @@ economist_2017_font <- function(
 #' @references
 #' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), pp.4, 8-9.
+#' <https://archive.org/details/chartstyleguide-20170505>
 #'
 #' @family economist 2017
 #' @export
@@ -970,6 +975,7 @@ economist_2017_size <- function(size = "one_column", height = NULL, units = c("i
 #' @references
 #' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), p.5.
+#' <https://archive.org/details/chartstyleguide-20170505>
 #'
 #' @family economist 2017
 #' @export

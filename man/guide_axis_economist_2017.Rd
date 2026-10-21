@@ -62,6 +62,7 @@ ggplot(economics, aes(date, unemploy / 1000)) +
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
 Matt McLean), pp.6-7.
+\url{https://archive.org/details/chartstyleguide-20170505}
 }
 \seealso{
 Other economist 2017:

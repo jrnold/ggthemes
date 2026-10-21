@@ -41,6 +41,7 @@ show_col(economist_2017_gradient_pal("red", direction = -1)(seq(0, 1, length.out
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
 Matt McLean), p.12.
+\url{https://archive.org/details/chartstyleguide-20170505}
 }
 \seealso{
 Other economist 2017:
