@@ -8,7 +8,7 @@
 #' @param labels If `TRUE` (the default), label each symbol with its plotting
 #'   character value.
 #' @seealso [scales::show_col()], [show_linetypes()]
-#' @return Called for its side effect of creating a plot; returns `shapes`
+#' @returns Called for its side effect of creating a plot; returns `shapes`
 #'   invisibly.
 #' @example inst/examples/ex-show_shapes.R
 show_shapes <- function(shapes, labels = TRUE) {
@@ -43,7 +43,7 @@ show_shapes <- function(shapes, labels = TRUE) {
 #' @seealso [scales::show_col()], [show_shapes()]
 #'
 #' @example inst/examples/ex-show_linetypes.R
-#' @return Called for its side effect of creating a plot; returns `linetypes`
+#' @returns Called for its side effect of creating a plot; returns `linetypes`
 #'   invisibly.
 #' @importFrom graphics plot
 show_linetypes <- function(linetypes, labels = TRUE) {

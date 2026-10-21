@@ -8,7 +8,7 @@
 #' @param fill The background color of the plot.
 #' @family themes
 #' @example inst/examples/ex-theme_solid.R
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 theme_solid <- function(base_size = 12, base_family = "", fill = NA) {
   theme_foundation() +

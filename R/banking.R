@@ -133,7 +133,7 @@ calc_slopes <- function(x, y, cull = FALSE) {
 #'
 #' Cleveland, W. S. 1994. The Elements of Graphing Data, Revised Edition.
 #'
-#' @return A number, the aspect ratio `y / x`, for use as `ratio` in
+#' @returns A number, the aspect ratio `y / x`, for use as `ratio` in
 #'   [ggplot2::coord_fixed()].
 #'
 #' @seealso [lattice::banking()], [bank_plot()] to bank
@@ -177,7 +177,7 @@ bank_slopes <- function(x, y, cull = TRUE, weight = NULL, method = c("ms", "as",
 #' @param layer Integer. Which layer of `plot` to extract `x`/
 #' `y` from. Defaults to the first layer.
 #'
-#' @return The `plot`, with [ggplot2::coord_fixed()] added.
+#' @returns The `plot`, with [ggplot2::coord_fixed()] added.
 #' @seealso [bank_slopes()]
 #' @export
 #' @examples

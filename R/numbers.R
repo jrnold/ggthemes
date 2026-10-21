@@ -9,7 +9,7 @@
 #'   The default, `"Classic"`, is the palette Numbers itself uses by
 #'   default.
 #' @family color numbers
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-numbers_pal.R
@@ -36,7 +36,7 @@ numbers_pal <- function(palette = "Classic") {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family color numbers
 #' @rdname scale_numbers
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @seealso See [theme_numbers()] for examples.
 #' @example inst/examples/ex-scale_numbers.R
@@ -64,7 +64,7 @@ scale_color_numbers <- scale_colour_numbers
 #' chart but not the other three sides, and no tick marks.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes numbers
 #' @example inst/examples/ex-theme_numbers.R

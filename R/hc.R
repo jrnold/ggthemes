@@ -87,7 +87,7 @@ hc_theme_styles <- list(
 #' @param bgcolor `r lifecycle::badge("deprecated")` Use `style` instead.
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 theme_hc <- function(
   base_size = 12,
@@ -167,7 +167,7 @@ theme_hc <- function(
 #'   One of `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$hc))`.
 #'
 #' @family color hc
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-hc_pal.R
@@ -196,7 +196,7 @@ hc_pal <- function(palette = "default") {
 #' @inheritParams hc_pal
 #' @family color hc
 #' @rdname scale_hc
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_hc.R
 scale_colour_hc <- function(palette = "default", ...) {

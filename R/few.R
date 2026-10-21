@@ -20,7 +20,7 @@
 #'
 #' ["Practical Rules for Using Color in Charts"](https://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf).
 #'
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @param palette One of `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$few$colors))`.
@@ -60,7 +60,7 @@ few_pal <- function(palette = "Medium") {
 #' @inheritParams few_pal
 #' @family color few
 #' @rdname scale_few
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_few.R
 scale_colour_few <- function(palette = "Medium", ...) {
@@ -91,7 +91,7 @@ scale_fill_few <- function(palette = "Light", ...) {
 #'
 #' @inheritParams ggplot2::theme_bw
 #' @family themes few
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family = "") {
@@ -121,7 +121,7 @@ theme_few <- function(base_size = 12, base_family = "") {
 #'   *Show Me the Numbers: Designing Tables and Graphs to Enlighten*,
 #'   Analytics Press, p. 208.
 #'
-#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#' @returns A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
 #' @export
@@ -145,7 +145,7 @@ few_shape_pal <- function() {
 #'   Analytics Press, p. 208.
 #' @seealso [few_shape_pal()] for the shape palette that this
 #'   scale uses.
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @family shapes few
 #' @example inst/examples/ex-scale_shape_few.R

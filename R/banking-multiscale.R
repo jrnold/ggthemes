@@ -46,7 +46,7 @@ check_multiscale_y <- function(y, arg = rlang::caller_arg(y), call = rlang::call
 #' mean. The redundant conjugate half is dropped as well.
 #'
 #' @param y `numeric` series.
-#' @return `numeric` of length `floor(length(y) / 2)`.
+#' @returns `numeric` of length `floor(length(y) / 2)`.
 #' @noRd
 power_spectrum <- function(y) {
   nyquist <- length(y) %/% 2
@@ -66,7 +66,7 @@ power_spectrum <- function(y) {
 #' @param ar `numeric` candidate aspect ratios, in order of increasing
 #'   frequency.
 #' @param scale_factor `numeric` minimum ratio between successive kept values.
-#' @return `numeric` the retained subset of `ar`, always including `ar[1]`.
+#' @returns `numeric` the retained subset of `ar`, always including `ar[1]`.
 #' @noRd
 cull_ratios <- function(ar, scale_factor) {
   ar[cull_ratios_keep(ar, scale_factor)]
@@ -83,7 +83,7 @@ cull_ratios <- function(ar, scale_factor) {
 #' it is nominally close to.
 #'
 #' @inheritParams cull_ratios
-#' @return `logical` of the same length as `ar`.
+#' @returns `logical` of the same length as `ar`.
 #' @noRd
 cull_ratios_keep <- function(ar, scale_factor) {
   keep <- rep(FALSE, length(ar))
@@ -111,7 +111,7 @@ cull_ratios_keep <- function(ar, scale_factor) {
 #'
 #' @param z `numeric` smoothed power spectrum.
 #' @param threshold `numeric` scalar; bins above this start a run.
-#' @return `integer` frequency indices, ascending.
+#' @returns `integer` frequency indices, ascending.
 #' @noRd
 select_scales <- function(z, threshold) {
   n <- length(z)
@@ -136,7 +136,7 @@ select_scales <- function(z, threshold) {
 #' @param p `numeric` power spectrum.
 #' @param window `integer` kernel width in bins.
 #' @param sd `numeric` standard deviation of the kernel.
-#' @return `numeric` of the same length as `p`.
+#' @returns `numeric` of the same length as `p`.
 #' @noRd
 smooth_spectrum <- function(p, window, sd) {
   offsets <- seq_len(window) - (window %/% 2) - 1
@@ -163,7 +163,7 @@ smooth_spectrum <- function(p, window, sd) {
 #'
 #' @param y `numeric` series.
 #' @param cutoff `integer` frequency index; frequencies above this are removed.
-#' @return `numeric` of the same length as `y`.
+#' @returns `numeric` of the same length as `y`.
 #' @noRd
 lowpass <- function(y, cutoff) {
   n <- length(y)
@@ -223,7 +223,7 @@ lowpass <- function(y, cutoff) {
 #' @param scale_factor `numeric` minimum ratio between successive
 #' retained aspect ratios.
 #'
-#' @return A [tibble::tibble()] with one row per retained scale, in
+#' @returns A [tibble::tibble()] with one row per retained scale, in
 #' ascending order of frequency, and columns:
 #' - `frequency`: `integer` frequency index, i.e. the number of
 #'   times the trend repeats across the series.
@@ -291,7 +291,7 @@ bank_slopes_multiscale <- function(
 #' Defaults to the first layer.
 #' @param method,cull,... Passed to [bank_slopes_multiscale()].
 #'
-#' @return A named `list` of `ggplot` objects, one per retained
+#' @returns A named `list` of `ggplot` objects, one per retained
 #' scale, in ascending order of frequency and named by frequency index.
 #'
 #' @references
@@ -319,7 +319,7 @@ bank_plot_multiscale <- function(plot, method = c("ms", "as", "ao", "was"), cull
 #' Check that layer data is a single, regularly sampled series
 #'
 #' @param data layer data from [ggplot2::ggplot_build()].
-#' @return `data`, sorted by `x`.
+#' @returns `data`, sorted by `x`.
 #' @noRd
 check_multiscale_series <- function(data, call = rlang::caller_env()) {
   series <- unique(interaction(data$PANEL %||% 1L, data$group %||% 1L, drop = TRUE))

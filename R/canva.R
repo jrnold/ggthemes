@@ -27,7 +27,7 @@
 #'
 #' @param palette Palette name. See the names of [canva_palettes]
 #'   for valid names.
-#' @return A function that takes a single value, the number of colors to use.
+#' @returns A function that takes a single value, the number of colors to use.
 #' @export
 #' @family color canva
 #' @example inst/examples/ex-canva_pal.R
@@ -48,7 +48,7 @@ canva_pal <- function(palette = "Fresh and bright") {
 #'
 #' @param ... Arguments passed to [ggplot2::discrete_scale()].
 #' @inheritParams canva_pal
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @family color canva
 #' @example inst/examples/ex-scale_colour_canva.R

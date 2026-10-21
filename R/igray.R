@@ -11,7 +11,7 @@
 #' similar to the style of plots in Stata and Tableau.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @seealso [ggplot2::theme_gray()],

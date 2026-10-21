@@ -9,7 +9,7 @@
 #'   the line palette. The two palettes choose and order the colors
 #'   differently.
 #' @family color economist
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-economist_pal.R
@@ -117,7 +117,7 @@ economist_pal <- function(fill = TRUE) {
 #' @family color economist
 #' @rdname scale_economist
 #' @seealso [theme_economist()] for examples.
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_economist.R
 scale_colour_economist <- function(...) {
@@ -151,7 +151,7 @@ scale_fill_economist <- function(...) {
 #'   `"gold"`, `"gray"`, or `"red"`.
 #' @family color economist
 #' @rdname economist_seq_pal
-#' @return `economist_seq_pal()` returns a palette function that takes the number of colors `n` and
+#' @returns `economist_seq_pal()` returns a palette function that takes the number of colors `n` and
 #'   returns the first `n` of the six hex colors for `hue`, for use with
 #'   [ggplot2::discrete_scale()]. `economist_gradient_pal()` returns a palette function that
 #'   takes a numeric vector `x` of values between 0 and 1 and returns hex colors interpolated between
@@ -200,7 +200,7 @@ economist_scale_colors <- function(hue) {
 #' @param ... Other arguments passed on to the underlying scale.
 #' @family color economist
 #' @rdname scale_economist_seq
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_economist_seq.R
 scale_colour_economist_c <- function(hue = "blue", ..., guide = "colourbar") {
@@ -271,7 +271,7 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 #' @param gray_bg If `TRUE` (the default), use a gray background; otherwise,
 #'   use a white background.
 #'
-#' @return An object of class [ggplot2::theme()].
+#' @returns An object of class [ggplot2::theme()].
 #'
 #' @export
 #' @family themes economist

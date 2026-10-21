@@ -3,7 +3,7 @@
 #' Theme similar to the default look of charts in Google Docs.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes gdocs
 #' @example inst/examples/ex-theme_gdocs.R
@@ -100,7 +100,7 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
 #' This palette includes 20 colors.
 #'
 #' @family color gdocs
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-gdocs_pal.R
@@ -118,7 +118,7 @@ gdocs_pal <- function() {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family color gdocs
 #' @rdname scale_gdocs
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @seealso See [theme_gdocs()] for examples.
 #' @example inst/examples/ex-scale_gdocs.R
