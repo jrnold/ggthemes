@@ -7,16 +7,19 @@
 wsj_label(prefix = "", suffix = "", drop_lowest = FALSE, hang = TRUE, ...)
 }
 \arguments{
-\item{prefix}{Symbol placed before the topmost label, such as \code{"$"}.}
+\item{prefix}{A string, the symbol placed before the topmost label, such as
+\code{"$"}.}
 
-\item{suffix}{Symbol placed after the topmost label, such as \code{"\%"}.}
+\item{suffix}{A string, the symbol placed after the topmost label, such as
+\code{"\%"}.}
 
-\item{drop_lowest}{Blank the lowest break. Some WSJ charts omit it where the
-axis meets the panel edge; most print it, so this defaults to \code{FALSE}.}
+\item{drop_lowest}{If \code{TRUE}, blanks the lowest break. Some WSJ charts omit
+it where the axis meets the panel edge; most print it, so the default is
+\code{FALSE}.}
 
-\item{hang}{Hang the suffix past the right edge of the other labels. The
-labels are then returned as plotmath expressions, so use \code{hang = FALSE}
-for text that is not an axis label, or on an x axis.}
+\item{hang}{If \code{TRUE} (the default), hangs the suffix past the right edge of
+the other labels. The labels are then returned as plotmath expressions, so
+use \code{hang = FALSE} for text that is not an axis label, or on an x axis.}
 
 \item{...}{Passed to \code{\link[scales:label_comma]{scales::label_comma()}}, for example \code{accuracy}.}
 }
@@ -50,12 +53,16 @@ p <- ggplot(economics, aes(date, psavert)) +
 p + scale_y_continuous(labels = wsj_label(suffix = "\%"))
 }
 \seealso{
-Other themes wsj:
+Other wsj:
 \code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
 \code{\link[=theme_wsj]{theme_wsj()}},
 \code{\link[=wsj_bands]{wsj_bands()}},
 \code{\link[=wsj_callout]{wsj_callout()}},
 \code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
 \code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{themes wsj}
+\concept{wsj}

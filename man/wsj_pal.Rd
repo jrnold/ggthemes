@@ -11,8 +11,9 @@ wsj_pal(palette = "categorical")
 \code{"comparison"}, \code{"actual_forecast"}, \code{"direction"}, \code{"party"}, \code{"categorical"}, \code{"categorical_light"}, \code{"categorical_dark"}, \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"}, \code{"oranges"}.}
 }
 \value{
-A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
-hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
+A palette function. It takes the number of colors \code{n} and returns a
+character vector of \code{n} hex colors, and can be used as the \code{palette}
+argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
 Palettes measured on the Wall Street Journal's web graphics of 2010--2014,
@@ -45,8 +46,6 @@ darkens each color in CIE Lab to 6:1 contrast against the ivory field, for
 lines and small marks that must stand out.
 }
 \section{Deprecated palettes}{
-
-
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
 The pre-8.0.0 palettes \code{"rgby"}, \code{"red_green"}, \code{"black_green"},
@@ -64,9 +63,16 @@ wsj_pal()(6)
 scales::show_col(wsj_pal("blues")(3))
 }
 \seealso{
-Other color wsj:
+Other wsj:
+\code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
 \code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
 \code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
-\code{\link[=scale_colour_wsj]{scale_colour_wsj()}}
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
+\code{\link[=theme_wsj]{theme_wsj()}},
+\code{\link[=wsj_bands]{wsj_bands()}},
+\code{\link[=wsj_callout]{wsj_callout()}},
+\code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
+\code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{color wsj}
+\concept{wsj}

@@ -89,9 +89,16 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   scale_colour_wsj("categorical")
 }
 \seealso{
-Other color wsj:
+Other wsj:
+\code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
 \code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
 \code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
-\code{\link[=wsj_pal]{wsj_pal()}}
+\code{\link[=theme_wsj]{theme_wsj()}},
+\code{\link[=wsj_bands]{wsj_bands()}},
+\code{\link[=wsj_callout]{wsj_callout()}},
+\code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
+\code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
+\code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{color wsj}
+\concept{wsj}

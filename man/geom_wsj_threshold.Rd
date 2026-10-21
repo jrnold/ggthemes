@@ -36,15 +36,16 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{threshold}{The value that divides the two fills, in data units.}
+\item{threshold}{A number, the value that divides the two sides, in data
+units.}
 
-\item{fill}{Two colors: above the threshold, then below. The default is
-the mid green and mid red that the charts used from 2012.}
+\item{fill}{Two colors, for above the threshold and then below. The default
+is the mid green and mid red that the charts used from 2012.}
 
-\item{alpha}{Opacity of the fills.}
+\item{alpha}{A number between 0 and 1, the opacity of the fills.}
 
-\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
-a warning. If \code{TRUE}, missing values are silently removed.}
+\item{na.rm}{Not used: missing values always break the fill. Kept for
+consistency with other geoms.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
@@ -74,6 +75,9 @@ threshold and do not overlap.
 The layer draws only the fills. Draw the series over it with
 \code{geom_line(colour = "black")} and the threshold with \code{geom_hline()}, and
 label the two directions with \code{\link[=wsj_direction_bar]{wsj_direction_bar()}}.
+
+Missing values break the fill: each run of observations between them is
+filled on its own, and the gap is left empty.
 }
 \examples{
 library("ggplot2")
@@ -89,12 +93,16 @@ ggplot(pmi, aes(month, index)) +
   theme_wsj()
 }
 \seealso{
-Other themes wsj:
+Other wsj:
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
 \code{\link[=theme_wsj]{theme_wsj()}},
 \code{\link[=wsj_bands]{wsj_bands()}},
 \code{\link[=wsj_callout]{wsj_callout()}},
 \code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
 \code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
 \code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{themes wsj}
+\concept{wsj}

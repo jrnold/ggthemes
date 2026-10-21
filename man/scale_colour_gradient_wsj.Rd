@@ -52,7 +52,8 @@ scale_fill_continuous_wsj(
 )
 }
 \arguments{
-\item{palette}{Sequential palette name: \code{"steel"} or \code{"blue"}.}
+\item{palette}{A string, the palette to use: \code{"steel"}, the default, or
+\code{"blue"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -114,7 +115,11 @@ notation.
 
 \item{na.value}{Colour to use for missing values}
 
-\item{guide}{Guide type, normally \code{"colourbar"}.}
+\item{guide}{A string or guide object, the type of legend. \code{"colourbar"},
+the default, draws a color bar.}
+}
+\value{
+A ggplot2 scale object.
 }
 \description{
 Continuous color scales using a WSJ sequential palette: \code{"steel"}, the
@@ -123,9 +128,16 @@ every step a color measured on the 2010--2014 charts; \code{"blue"} is the
 brighter ramp of the WSJ's later open-source maps (2015 and after).
 }
 \seealso{
-Other color wsj:
+Other wsj:
+\code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
 \code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
 \code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
-\code{\link[=wsj_pal]{wsj_pal()}}
+\code{\link[=theme_wsj]{theme_wsj()}},
+\code{\link[=wsj_bands]{wsj_bands()}},
+\code{\link[=wsj_callout]{wsj_callout()}},
+\code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
+\code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
+\code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{color wsj}
+\concept{wsj}

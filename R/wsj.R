@@ -22,15 +22,18 @@
 #' to fetch and register them with the systemfonts package.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param paper Plot field. `"ivory"` (`#f8f2e4`), the field from October 2011
-#'   to July 2013, or `"gray"` (`#efefef`), the field from August 2013. The
-#'   gray field also sets the subtitle, axis labels, legend and caption in the
-#'   dark gray (`#444444`) of the charts from mid-2013; the title stays black.
+#' @param paper A string, the plot field. One of:
+#'   * `"ivory"` (`#f8f2e4`), the default: the field from October 2011 to July
+#'     2013.
+#'   * `"gray"` (`#efefef`): the field from August 2013. It also sets the
+#'     subtitle, axis labels, legend and caption in the dark gray (`#444444`) of
+#'     the charts from mid-2013; the title stays black.
+#'
 #'   The pre-8.0.0 values `"brown"`, `"green"` and `"blue"` are accepted with a
 #'   deprecation warning; `"brown"` is the former name of `"ivory"`.
-#' @param title_family Font family for the plot title.
+#' @param title_family A string, the font family of the plot title.
 #' @param color `r lifecycle::badge("deprecated")` Use `paper` instead.
-#' @family themes wsj
+#' @family wsj
 #' @returns A ggplot2 theme object (class `theme`).
 #' @example inst/examples/ex-theme_wsj.R
 #' @export
@@ -194,7 +197,7 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
 #' darkens each color in CIE Lab to 6:1 contrast against the ivory field, for
 #' lines and small marks that must stand out.
 #'
-#' @section Deprecated palettes:
+#' # Deprecated palettes
 #'
 #' `r lifecycle::badge("deprecated")`
 #'
@@ -208,9 +211,10 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
 #'
 #' @param palette A string, the palette to use. One of
 #'   `r ggthemes:::md_optlist(ggthemes:::wsj_current_palettes())`.
-#' @family color wsj
-#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
-#'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
+#' @family wsj
+#' @returns A palette function. It takes the number of colors `n` and returns a
+#'   character vector of `n` hex colors, and can be used as the `palette`
+#'   argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-wsj_pal.R
 #' @importFrom lifecycle deprecate_soft
@@ -274,7 +278,7 @@ warn_deprecated_wsj_palette <- function(palette) {
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams wsj_pal
-#' @family color wsj
+#' @family wsj
 #' @rdname scale_wsj
 #' @returns A ggplot2 scale object.
 #' @export
@@ -319,10 +323,13 @@ check_wsj_palette_name <- function(palette, listed, accepted = listed, call = rl
 #' brighter ramp of the WSJ's later open-source maps (2015 and after).
 #'
 #' @inheritParams ggplot2::scale_colour_hue
-#' @param palette Sequential palette name: `"steel"` or `"blue"`.
-#' @param guide Guide type, normally `"colourbar"`.
-#' @family color wsj
+#' @param palette A string, the palette to use: `"steel"`, the default, or
+#'   `"blue"`.
+#' @param guide A string or guide object, the type of legend. `"colourbar"`,
+#'   the default, draws a color bar.
+#' @family wsj
 #' @rdname scale_colour_gradient_wsj
+#' @returns A ggplot2 scale object.
 #' @export
 #' @importFrom ggplot2 continuous_scale
 scale_colour_gradient_wsj <- function(
@@ -380,11 +387,13 @@ scale_fill_continuous_wsj <- scale_fill_gradient_wsj
 #' charts. Both pass through the ivory field at the midpoint.
 #'
 #' @inheritParams ggplot2::scale_colour_hue
-#' @param palette Diverging palette name: `"blue_orange"` or `"green_red"`.
-#' @param midpoint Data value mapped to the neutral midpoint.
-#' @param guide Guide type, normally `"colourbar"`.
-#' @family color wsj
+#' @inheritParams scale_colour_gradient_wsj
+#' @param palette A string, the palette to use: `"blue_orange"`, the default,
+#'   or `"green_red"`.
+#' @param midpoint A number, the data value mapped to the neutral midpoint.
+#' @family wsj
 #' @rdname scale_colour_gradient2_wsj
+#' @returns A ggplot2 scale object.
 #' @export
 scale_colour_gradient2_wsj <- function(
   palette = "blue_orange",
@@ -443,18 +452,21 @@ scale_fill_gradient2_wsj <- function(
 #' `hang = TRUE` every other label carries an invisible copy of the suffix, so
 #' the suffix hangs too.
 #'
-#' @param prefix Symbol placed before the topmost label, such as `"$"`.
-#' @param suffix Symbol placed after the topmost label, such as `"%"`.
-#' @param drop_lowest Blank the lowest break. Some WSJ charts omit it where the
-#'   axis meets the panel edge; most print it, so this defaults to `FALSE`.
-#' @param hang Hang the suffix past the right edge of the other labels. The
-#'   labels are then returned as plotmath expressions, so use `hang = FALSE`
-#'   for text that is not an axis label, or on an x axis.
+#' @param prefix A string, the symbol placed before the topmost label, such as
+#'   `"$"`.
+#' @param suffix A string, the symbol placed after the topmost label, such as
+#'   `"%"`.
+#' @param drop_lowest If `TRUE`, blanks the lowest break. Some WSJ charts omit
+#'   it where the axis meets the panel edge; most print it, so the default is
+#'   `FALSE`.
+#' @param hang If `TRUE` (the default), hangs the suffix past the right edge of
+#'   the other labels. The labels are then returned as plotmath expressions, so
+#'   use `hang = FALSE` for text that is not an axis label, or on an x axis.
 #' @param ... Passed to [scales::label_comma()], for example `accuracy`.
-#' @return A function suitable for a scale's `labels` argument. It returns a
+#' @returns A function suitable for a scale's `labels` argument. It returns a
 #'   character vector, or an expression vector when `hang` is `TRUE` and there
 #'   is a `suffix`.
-#' @family themes wsj
+#' @family wsj
 #' @examples
 #' library("ggplot2")
 #' p <- ggplot(economics, aes(date, psavert)) +
@@ -503,13 +515,16 @@ wsj_label <- function(prefix = "", suffix = "", drop_lowest = FALSE, hang = TRUE
 #' of the year, rather than centered under it. Get that with
 #' `theme(axis.text.x = element_text(hjust = 0))`.
 #'
-#' @return A function suitable for a scale's `labels` argument. It accepts
+#' Numeric breaks are rounded to the nearest year, so `2010.5` is labeled as
+#' 2010. Missing breaks stay `NA`.
+#'
+#' @returns A function suitable for a scale's `labels` argument. It accepts
 #'   `Date` and `POSIXt` breaks, or years as numbers.
-#' @family themes wsj
+#' @family wsj
 #' @examples
 #' library("ggplot2")
 #' ggplot(economics, aes(date, unemploy / 1000)) +
-#'   geom_line(color = wsj_pal()(1)) +
+#'   geom_line(colour = wsj_pal()(1)) +
 #'   scale_x_date(
 #'     breaks = as.Date(paste0(seq(1970, 2010, by = 10), "-01-01")),
 #'     labels = wsj_year_label()
@@ -545,19 +560,20 @@ wsj_year_label <- function() {
 #'
 #' The charts shade a recession or another period behind the data in the same
 #' tint. Draw such a band with `annotate("rect", ...)` and
-#' `fill = ggthemes_data$wsj$bands[["ivory"]]`, or `[["gray"]]` on the gray field.
+#' `fill = ggthemes_data$wsj$bands[["ivory"]]`, or `[["gray"]]` on the gray
+#' field.
 #'
-#' @param paper The field the bands sit on, which sets the band color:
-#'   `"ivory"` (`#efe4c9`) or `"gray"` (`#dddddd`), both measured on published
-#'   charts.
-#' @param fill Band color. Overrides `paper`.
-#' @return A ggplot2 layer.
-#' @family themes wsj
+#' @param paper A string, the field the bands sit on, which sets the band
+#'   color: `"ivory"` (`#efe4c9`), the default, or `"gray"` (`#dddddd`), both
+#'   measured on published charts.
+#' @param fill A color for the bands. If `NULL`, the default, `paper` sets it.
+#' @returns A ggplot2 layer.
+#' @family wsj
 #' @examples
 #' library("ggplot2")
 #' ggplot(economics, aes(date, psavert)) +
 #'   wsj_bands() +
-#'   geom_line(color = wsj_pal()(1)) +
+#'   geom_line(colour = wsj_pal()(1)) +
 #'   scale_y_continuous(labels = wsj_label(suffix = "%")) +
 #'   theme_wsj() +
 #'   theme(panel.grid.major.y = element_blank())
@@ -623,38 +639,47 @@ wsj_break_positions <- function(panel_params) {
 #' panel is clipped unless the coordinate system is set with
 #' `coord_cartesian(clip = "off")`.
 #'
-#' @param x,y Position of the data point the tail points at, in data units.
-#' @param label Text of the callout. Use `"\n"` for a second line, as in
-#'   `"2Q:\n0.7%"`.
-#' @param fill Fill of the callout: `"black"`, `"yellow"` (`#ffe03d`, measured
-#'   on published charts) or any color. The few callouts in neither take the
-#'   color of the series they mark or another shade of the palette, such as
-#'   the mid steel blue `wsj_pal("blues")(3)[2]`.
-#' @param colour Color of the text. By default white on a dark fill and black
-#'   on a light one.
-#' @param shape `"rectangle"`, `"rounded"` (a box with slightly rounded
-#'   corners) or `"circle"`.
-#' @param nudge_x,nudge_y Offset of the callout's center from the data point, in
-#'   points.
-#' @param size Text size, in mm, as for [ggplot2::geom_text()].
-#' @param family Font family of the text.
-#' @param padding Space between the text and the edge of the shape, in points.
-#' @param tail_width Half the width of the tail where it leaves the shape, in
-#'   points.
-#' @param facets A named list of faceting-variable values, to draw the callout
-#'   in one panel only, as in `facets = list(panel = "Taiwan")`. `NULL`, the
-#'   default, draws it in every panel. If the faceting variable is a factor,
-#'   pass a factor with the same levels: a plain string makes ggplot2 sort the
-#'   panels.
-#' @return A ggplot2 layer.
-#' @family themes wsj
+#' @param x,y The position of the data point the tail points at, in data
+#'   units.
+#' @param label A string, the text of the callout. Use `"\n"` for a second
+#'   line, as in `"2Q:\n0.7%"`.
+#' @param fill The fill of the callout. One of:
+#'   * `"black"`, the default.
+#'   * `"yellow"`: `#ffe03d`, measured on published charts.
+#'   * Any other color. The few callouts that are neither black nor yellow take
+#'     the color of the series they mark or another shade of the palette, such
+#'     as the mid steel blue `wsj_pal("blues")(3)[2]`.
+#' @param colour The color of the text. If `NULL`, the default, the text is
+#'   white on a dark fill and black on a light one.
+#' @param shape The shape of the callout. One of:
+#'   * `"rectangle"`, the default.
+#'   * `"rounded"`: a box with slightly rounded corners.
+#'   * `"circle"`.
+#' @param nudge_x,nudge_y Numbers, the offset of the callout's center from the
+#'   data point, in points.
+#' @param size A number, the text size in mm, as for [ggplot2::geom_text()].
+#' @param family A string, the font family of the text.
+#' @param padding A number, the space between the text and the edge of the
+#'   shape, in points.
+#' @param tail_width A number, half the width of the tail where it leaves the
+#'   shape, in points.
+#' @param facets A named list of faceting-variable values, to draw the layer in
+#'   one panel only, as in `facets = list(panel = "Taiwan")`. If `NULL`, the
+#'   default, the layer is drawn in every panel. If the faceting variable is a
+#'   factor, pass a factor with the same levels: a plain string makes ggplot2
+#'   sort the panels.
+#' @returns A ggplot2 layer.
+#' @family wsj
 #' @examples
 #' library("ggplot2")
 #' d <- data.frame(quarter = 1:6, change = c(-7.9, -1.3, 6.8, 0.3, 5.2, 0.7))
 #' ggplot(d, aes(quarter, change)) +
 #'   geom_col(aes(fill = change >= 0), width = 0.95) +
 #'   geom_hline(yintercept = 0) +
-#'   wsj_callout(6, 0.7, "2Q:\n0.7%", shape = "rounded", nudge_x = -6, nudge_y = 30) +
+#'   wsj_callout(
+#'     6, 0.7, "2Q:\n0.7%",
+#'     shape = "rounded", nudge_x = -6, nudge_y = 30
+#'   ) +
 #'   scale_fill_manual(values = rev(wsj_pal("direction")(2)), guide = "none") +
 #'   scale_y_continuous(labels = wsj_label(suffix = "%")) +
 #'   coord_cartesian(clip = "off") +
@@ -663,8 +688,11 @@ wsj_break_positions <- function(panel_params) {
 #' # A yellow circle on the last point of a line
 #' rate <- data.frame(year = 2009:2012, value = c(2, 2, 3.25, 3))
 #' ggplot(rate, aes(year, value)) +
-#'   geom_step(color = wsj_pal("blues")(1)) +
-#'   wsj_callout(2012, 3, "3.0%", fill = "yellow", shape = "circle", nudge_x = -14, nudge_y = -22) +
+#'   geom_step(colour = wsj_pal("blues")(1)) +
+#'   wsj_callout(
+#'     2012, 3, "3.0%",
+#'     fill = "yellow", shape = "circle", nudge_x = -14, nudge_y = -22
+#'   ) +
 #'   theme_wsj()
 #' @export
 #' @importFrom rlang .data
@@ -819,13 +847,19 @@ wsj_callout_grob <- function(
 #' `geom_line(colour = "black")` and the threshold with `geom_hline()`, and
 #' label the two directions with [wsj_direction_bar()].
 #'
+#' Missing values break the fill: each run of observations between them is
+#' filled on its own, and the gap is left empty.
+#'
 #' @inheritParams ggplot2::geom_area
-#' @param threshold The value that divides the two fills, in data units.
-#' @param fill Two colors: above the threshold, then below. The default is
-#'   the mid green and mid red that the charts used from 2012.
-#' @param alpha Opacity of the fills.
-#' @return A ggplot2 layer.
-#' @family themes wsj
+#' @param threshold A number, the value that divides the two sides, in data
+#'   units.
+#' @param fill Two colors, for above the threshold and then below. The default
+#'   is the mid green and mid red that the charts used from 2012.
+#' @param alpha A number between 0 and 1, the opacity of the fills.
+#' @param na.rm Not used: missing values always break the fill. Kept for
+#'   consistency with other geoms.
+#' @returns A ggplot2 layer.
+#' @family wsj
 #' @examples
 #' library("ggplot2")
 #' pmi <- data.frame(
@@ -926,23 +960,22 @@ wsj_threshold_crossings <- function(x, y, threshold) {
 #' The bar is drawn outside the panel, so the plot needs
 #' `coord_cartesian(clip = "off")` and a wide enough margin on that side.
 #' On the left it has to clear the y labels: raise `offset` until it does.
+#' Multi-panel WSJ charts draw the bar once, beside the first panel; use
+#' `facets` to do the same.
 #'
-#' @param threshold The value that divides the two arrows, in data units.
-#' @param labels Two labels: above the threshold, then below.
-#' @param title Text set between the arrows at the threshold, or `NULL`.
-#' @param side `"left"` or `"right"` of the panel.
-#' @param fill Two colors: the upper arrow, then the lower.
-#' @param width Width of the bar, in points.
-#' @param offset Distance from the edge of the panel to the bar, in points.
-#' @param size Text size, in mm, as for [ggplot2::geom_text()].
-#' @param family Font family of the text.
-#' @param facets A named list of faceting-variable values, to draw the bar
-#'   beside one panel only, as in `facets = list(panel = "China")`. Multi-panel
-#'   WSJ charts draw it once, beside the first panel. `NULL`, the default, draws
-#'   it beside every panel. If the faceting variable is a factor, pass a factor
-#'   with the same levels: a plain string makes ggplot2 sort the panels.
-#' @return A ggplot2 layer.
-#' @family themes wsj
+#' @inheritParams geom_wsj_threshold
+#' @inheritParams wsj_callout
+#' @param labels Two strings, the labels above the threshold and then below.
+#' @param title A string set between the arrows at the threshold. If `NULL`,
+#'   the default, there is none.
+#' @param side A string, the side of the panel to draw the bar on: `"right"`,
+#'   the default, or `"left"`.
+#' @param fill Two colors, for the upper arrow and then the lower.
+#' @param width A number, the width of the bar, in points.
+#' @param offset A number, the distance from the edge of the panel to the bar,
+#'   in points.
+#' @returns A ggplot2 layer.
+#' @family wsj
 #' @examples
 #' library("ggplot2")
 #' pmi <- data.frame(

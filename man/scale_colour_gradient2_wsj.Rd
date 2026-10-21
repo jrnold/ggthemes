@@ -31,7 +31,8 @@ scale_fill_gradient2_wsj(
 )
 }
 \arguments{
-\item{palette}{Diverging palette name: \code{"blue_orange"} or \code{"green_red"}.}
+\item{palette}{A string, the palette to use: \code{"blue_orange"}, the default,
+or \code{"green_red"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -91,11 +92,15 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 
-\item{midpoint}{Data value mapped to the neutral midpoint.}
+\item{midpoint}{A number, the data value mapped to the neutral midpoint.}
 
 \item{na.value}{Colour to use for missing values}
 
-\item{guide}{Guide type, normally \code{"colourbar"}.}
+\item{guide}{A string or guide object, the type of legend. \code{"colourbar"},
+the default, draws a color bar.}
+}
+\value{
+A ggplot2 scale object.
 }
 \description{
 Continuous color scales using a WSJ diverging palette: \code{"blue_orange"},
@@ -103,9 +108,16 @@ or \code{"green_red"}, which follows the green-up, red-down convention of the
 charts. Both pass through the ivory field at the midpoint.
 }
 \seealso{
-Other color wsj:
+Other wsj:
+\code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
 \code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
 \code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
-\code{\link[=wsj_pal]{wsj_pal()}}
+\code{\link[=theme_wsj]{theme_wsj()}},
+\code{\link[=wsj_bands]{wsj_bands()}},
+\code{\link[=wsj_callout]{wsj_callout()}},
+\code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
+\code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
+\code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{color wsj}
+\concept{wsj}
