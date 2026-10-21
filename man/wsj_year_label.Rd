@@ -19,11 +19,14 @@ full and the rest abbreviated with an apostrophe, so an axis reads \code{2011},
 WSJ charts usually set each label just right of a tick that marks the start
 of the year, rather than centered under it. Get that with
 \code{theme(axis.text.x = element_text(hjust = 0))}.
+
+Numeric breaks are rounded to the nearest year, so \code{2010.5} is labeled as
+2010. Missing breaks stay \code{NA}.
 }
 \examples{
 library("ggplot2")
 ggplot(economics, aes(date, unemploy / 1000)) +
-  geom_line(color = wsj_pal()(1)) +
+  geom_line(colour = wsj_pal()(1)) +
   scale_x_date(
     breaks = as.Date(paste0(seq(1970, 2010, by = 10), "-01-01")),
     labels = wsj_year_label()
@@ -32,12 +35,16 @@ ggplot(economics, aes(date, unemploy / 1000)) +
   theme(axis.text.x = element_text(hjust = 0))
 }
 \seealso{
-Other themes wsj:
+Other wsj:
 \code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
 \code{\link[=theme_wsj]{theme_wsj()}},
 \code{\link[=wsj_bands]{wsj_bands()}},
 \code{\link[=wsj_callout]{wsj_callout()}},
 \code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
-\code{\link[=wsj_label]{wsj_label()}}
+\code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}}
 }
-\concept{themes wsj}
+\concept{wsj}

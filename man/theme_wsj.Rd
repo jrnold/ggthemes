@@ -15,16 +15,21 @@ theme_wsj(
 \arguments{
 \item{base_size}{base font size, given in pts.}
 
-\item{paper}{Plot field. \code{"ivory"} (\verb{#f8f2e4}), the field from October 2011
-to July 2013, or \code{"gray"} (\verb{#efefef}), the field from August 2013. The
-gray field also sets the subtitle, axis labels, legend and caption in the
-dark gray (\verb{#444444}) of the charts from mid-2013; the title stays black.
+\item{paper}{A string, the plot field. One of:
+\itemize{
+\item \code{"ivory"} (\verb{#f8f2e4}), the default: the field from October 2011 to July
+2013.
+\item \code{"gray"} (\verb{#efefef}): the field from August 2013. It also sets the
+subtitle, axis labels, legend and caption in the dark gray (\verb{#444444}) of
+the charts from mid-2013; the title stays black.
+}
+
 The pre-8.0.0 values \code{"brown"}, \code{"green"} and \code{"blue"} are accepted with a
 deprecation warning; \code{"brown"} is the former name of \code{"ivory"}.}
 
 \item{base_family}{base font family}
 
-\item{title_family}{Font family for the plot title.}
+\item{title_family}{A string, the font family of the plot title.}
 
 \item{color}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{paper} instead.}
 }
@@ -76,12 +81,16 @@ p +
   theme_wsj()
 }
 \seealso{
-Other themes wsj:
+Other wsj:
 \code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
 \code{\link[=wsj_bands]{wsj_bands()}},
 \code{\link[=wsj_callout]{wsj_callout()}},
 \code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
 \code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
 \code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{themes wsj}
+\concept{wsj}

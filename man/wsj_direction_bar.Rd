@@ -18,29 +18,33 @@ wsj_direction_bar(
 )
 }
 \arguments{
-\item{threshold}{The value that divides the two arrows, in data units.}
+\item{threshold}{A number, the value that divides the two sides, in data
+units.}
 
-\item{labels}{Two labels: above the threshold, then below.}
+\item{labels}{Two strings, the labels above the threshold and then below.}
 
-\item{title}{Text set between the arrows at the threshold, or \code{NULL}.}
+\item{title}{A string set between the arrows at the threshold. If \code{NULL},
+the default, there is none.}
 
-\item{side}{\code{"left"} or \code{"right"} of the panel.}
+\item{side}{A string, the side of the panel to draw the bar on: \code{"right"},
+the default, or \code{"left"}.}
 
-\item{fill}{Two colors: the upper arrow, then the lower.}
+\item{fill}{Two colors, for the upper arrow and then the lower.}
 
-\item{width}{Width of the bar, in points.}
+\item{width}{A number, the width of the bar, in points.}
 
-\item{offset}{Distance from the edge of the panel to the bar, in points.}
+\item{offset}{A number, the distance from the edge of the panel to the bar,
+in points.}
 
-\item{size}{Text size, in mm, as for \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
+\item{size}{A number, the text size in mm, as for \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
 
-\item{family}{Font family of the text.}
+\item{family}{A string, the font family of the text.}
 
-\item{facets}{A named list of faceting-variable values, to draw the bar
-beside one panel only, as in \code{facets = list(panel = "China")}. Multi-panel
-WSJ charts draw it once, beside the first panel. \code{NULL}, the default, draws
-it beside every panel. If the faceting variable is a factor, pass a factor
-with the same levels: a plain string makes ggplot2 sort the panels.}
+\item{facets}{A named list of faceting-variable values, to draw the layer in
+one panel only, as in \code{facets = list(panel = "Taiwan")}. If \code{NULL}, the
+default, the layer is drawn in every panel. If the faceting variable is a
+factor, pass a factor with the same levels: a plain string makes ggplot2
+sort the panels.}
 }
 \value{
 A ggplot2 layer.
@@ -56,6 +60,8 @@ the threshold.
 The bar is drawn outside the panel, so the plot needs
 \code{coord_cartesian(clip = "off")} and a wide enough margin on that side.
 On the left it has to clear the y labels: raise \code{offset} until it does.
+Multi-panel WSJ charts draw the bar once, beside the first panel; use
+\code{facets} to do the same.
 }
 \examples{
 library("ggplot2")
@@ -74,12 +80,16 @@ ggplot(pmi, aes(month, index)) +
   theme(plot.margin = margin(12, 12, 12, 30))
 }
 \seealso{
-Other themes wsj:
+Other wsj:
 \code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
 \code{\link[=theme_wsj]{theme_wsj()}},
 \code{\link[=wsj_bands]{wsj_bands()}},
 \code{\link[=wsj_callout]{wsj_callout()}},
 \code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
 \code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{themes wsj}
+\concept{wsj}

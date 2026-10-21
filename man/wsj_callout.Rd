@@ -21,39 +21,49 @@ wsj_callout(
 )
 }
 \arguments{
-\item{x, y}{Position of the data point the tail points at, in data units.}
+\item{x, y}{The position of the data point the tail points at, in data
+units.}
 
-\item{label}{Text of the callout. Use \code{"\\n"} for a second line, as in
-\code{"2Q:\\n0.7\%"}.}
+\item{label}{A string, the text of the callout. Use \code{"\\n"} for a second
+line, as in \code{"2Q:\\n0.7\%"}.}
 
-\item{fill}{Fill of the callout: \code{"black"}, \code{"yellow"} (\verb{#ffe03d}, measured
-on published charts) or any color. The few callouts in neither take the
-color of the series they mark or another shade of the palette, such as
-the mid steel blue \code{wsj_pal("blues")(3)[2]}.}
+\item{fill}{The fill of the callout. One of:
+\itemize{
+\item \code{"black"}, the default.
+\item \code{"yellow"}: \verb{#ffe03d}, measured on published charts.
+\item Any other color. The few callouts that are neither black nor yellow take
+the color of the series they mark or another shade of the palette, such
+as the mid steel blue \code{wsj_pal("blues")(3)[2]}.
+}}
 
-\item{colour}{Color of the text. By default white on a dark fill and black
-on a light one.}
+\item{colour}{The color of the text. If \code{NULL}, the default, the text is
+white on a dark fill and black on a light one.}
 
-\item{shape}{\code{"rectangle"}, \code{"rounded"} (a box with slightly rounded
-corners) or \code{"circle"}.}
+\item{shape}{The shape of the callout. One of:
+\itemize{
+\item \code{"rectangle"}, the default.
+\item \code{"rounded"}: a box with slightly rounded corners.
+\item \code{"circle"}.
+}}
 
-\item{nudge_x, nudge_y}{Offset of the callout's center from the data point, in
-points.}
+\item{nudge_x, nudge_y}{Numbers, the offset of the callout's center from the
+data point, in points.}
 
-\item{size}{Text size, in mm, as for \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
+\item{size}{A number, the text size in mm, as for \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
 
-\item{family}{Font family of the text.}
+\item{family}{A string, the font family of the text.}
 
-\item{padding}{Space between the text and the edge of the shape, in points.}
+\item{padding}{A number, the space between the text and the edge of the
+shape, in points.}
 
-\item{tail_width}{Half the width of the tail where it leaves the shape, in
-points.}
+\item{tail_width}{A number, half the width of the tail where it leaves the
+shape, in points.}
 
-\item{facets}{A named list of faceting-variable values, to draw the callout
-in one panel only, as in \code{facets = list(panel = "Taiwan")}. \code{NULL}, the
-default, draws it in every panel. If the faceting variable is a factor,
-pass a factor with the same levels: a plain string makes ggplot2 sort the
-panels.}
+\item{facets}{A named list of faceting-variable values, to draw the layer in
+one panel only, as in \code{facets = list(panel = "Taiwan")}. If \code{NULL}, the
+default, the layer is drawn in every panel. If the faceting variable is a
+factor, pass a factor with the same levels: a plain string makes ggplot2
+sort the panels.}
 }
 \value{
 A ggplot2 layer.
@@ -77,7 +87,10 @@ d <- data.frame(quarter = 1:6, change = c(-7.9, -1.3, 6.8, 0.3, 5.2, 0.7))
 ggplot(d, aes(quarter, change)) +
   geom_col(aes(fill = change >= 0), width = 0.95) +
   geom_hline(yintercept = 0) +
-  wsj_callout(6, 0.7, "2Q:\n0.7\%", shape = "rounded", nudge_x = -6, nudge_y = 30) +
+  wsj_callout(
+    6, 0.7, "2Q:\n0.7\%",
+    shape = "rounded", nudge_x = -6, nudge_y = 30
+  ) +
   scale_fill_manual(values = rev(wsj_pal("direction")(2)), guide = "none") +
   scale_y_continuous(labels = wsj_label(suffix = "\%")) +
   coord_cartesian(clip = "off") +
@@ -86,17 +99,24 @@ ggplot(d, aes(quarter, change)) +
 # A yellow circle on the last point of a line
 rate <- data.frame(year = 2009:2012, value = c(2, 2, 3.25, 3))
 ggplot(rate, aes(year, value)) +
-  geom_step(color = wsj_pal("blues")(1)) +
-  wsj_callout(2012, 3, "3.0\%", fill = "yellow", shape = "circle", nudge_x = -14, nudge_y = -22) +
+  geom_step(colour = wsj_pal("blues")(1)) +
+  wsj_callout(
+    2012, 3, "3.0\%",
+    fill = "yellow", shape = "circle", nudge_x = -14, nudge_y = -22
+  ) +
   theme_wsj()
 }
 \seealso{
-Other themes wsj:
+Other wsj:
 \code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
 \code{\link[=theme_wsj]{theme_wsj()}},
 \code{\link[=wsj_bands]{wsj_bands()}},
 \code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
 \code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
 \code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{themes wsj}
+\concept{wsj}

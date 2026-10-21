@@ -7,11 +7,11 @@
 wsj_bands(paper = c("ivory", "gray"), fill = NULL)
 }
 \arguments{
-\item{paper}{The field the bands sit on, which sets the band color:
-\code{"ivory"} (\verb{#efe4c9}) or \code{"gray"} (\verb{#dddddd}), both measured on published
-charts.}
+\item{paper}{A string, the field the bands sit on, which sets the band
+color: \code{"ivory"} (\verb{#efe4c9}), the default, or \code{"gray"} (\verb{#dddddd}), both
+measured on published charts.}
 
-\item{fill}{Band color. Overrides \code{paper}.}
+\item{fill}{A color for the bands. If \code{NULL}, the default, \code{paper} sets it.}
 }
 \value{
 A ggplot2 layer.
@@ -28,24 +28,29 @@ rather than on the layer. Only Cartesian coordinates are supported.
 
 The charts shade a recession or another period behind the data in the same
 tint. Draw such a band with \code{annotate("rect", ...)} and
-\code{fill = ggthemes_data$wsj$bands[["ivory"]]}, or \verb{[["gray"]]} on the gray field.
+\code{fill = ggthemes_data$wsj$bands[["ivory"]]}, or \verb{[["gray"]]} on the gray
+field.
 }
 \examples{
 library("ggplot2")
 ggplot(economics, aes(date, psavert)) +
   wsj_bands() +
-  geom_line(color = wsj_pal()(1)) +
+  geom_line(colour = wsj_pal()(1)) +
   scale_y_continuous(labels = wsj_label(suffix = "\%")) +
   theme_wsj() +
   theme(panel.grid.major.y = element_blank())
 }
 \seealso{
-Other themes wsj:
+Other wsj:
 \code{\link[=geom_wsj_threshold]{geom_wsj_threshold()}},
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
+\code{\link[=scale_colour_wsj]{scale_colour_wsj()}},
 \code{\link[=theme_wsj]{theme_wsj()}},
 \code{\link[=wsj_callout]{wsj_callout()}},
 \code{\link[=wsj_direction_bar]{wsj_direction_bar()}},
 \code{\link[=wsj_label]{wsj_label()}},
+\code{\link[=wsj_pal]{wsj_pal()}},
 \code{\link[=wsj_year_label]{wsj_year_label()}}
 }
-\concept{themes wsj}
+\concept{wsj}
