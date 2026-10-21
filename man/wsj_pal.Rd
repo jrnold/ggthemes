@@ -2,44 +2,71 @@
 % Please edit documentation in R/wsj.R
 \name{wsj_pal}
 \alias{wsj_pal}
-\title{Wall Street Journal color palette (discrete)}
+\title{Wall Street Journal color palettes (discrete)}
 \usage{
-wsj_pal(palette = "colors6")
+wsj_pal(palette = "categorical")
 }
 \arguments{
-\item{palette}{A string, the color palette to use. One of
-\code{"rgby"}, \code{"red_green"}, \code{"black_green"}, \code{"dem_rep"}, \code{"colors6"}.}
+\item{palette}{A string, the palette to use. One of
+\code{"comparison"}, \code{"actual_forecast"}, \code{"direction"}, \code{"party"}, \code{"categorical"}, \code{"categorical_light"}, \code{"categorical_dark"}, \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"}, \code{"oranges"}.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
 hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
-The Wall Street Journal uses many different color palettes in its
-plots. This collects a few of them, but is by no means exhaustive.
-Collections of these plots can be found on the WSJ Graphics
-\href{https://x.com/WSJGraphics}{X (formerly Twitter)} feed and
-\href{https://pinterest.com/wsjgraphics/wsj-graphics/}{Pinterest}.
+Palettes measured on the Wall Street Journal's web graphics of 2010--2014,
+named for the jobs they do in a chart.
 }
-\section{Palettes}{
-The following palettes are defined:
+\details{
 \itemize{
-\item \code{"rgby"}: red/green/blue/yellow theme.
-\item \code{"red_green"}: green/red two-color scale for good/bad.
-\item \code{"black_green"}: black-green 4-color scale for "very negative",
-"somewhat negative", "somewhat positive", "very positive".
-\item \code{"dem_rep"}: Democrat/Republican/Undecided blue/red/gray scale.
-\item \code{"colors6"}: red, blue, gold, green, orange, and black palette.
+\item \code{"categorical"} (the default): red, steel blue, green, black, gold and
+orange. Red is the usual color of a single series and the first of two;
+steel blue is the second. Black and gold follow, the order of the
+charts with three or more lines.
+\item \code{"direction"}: green for gains and red for losses.
+\item \code{"comparison"}: a highlighted bar and the rest. WSJ highlights with a
+darker shade of the same hue and a bold label, not by graying out the
+others. Use \code{"greens"}, \code{"reds"} or \code{"golds"} to highlight in another hue.
+\item \code{"actual_forecast"}: a steel-blue actual value and a pale forecast.
+\item \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"} and \code{"oranges"}: three shades
+of one hue, darkest first, for stacks and highlights. The lightest orange
+is not measured: it is a 55\% tint of the mid orange, the tint that makes
+the light step of every other family.
+\item \code{"party"}: Democratic blue, Republican red and gray. It is not from the
+corpus, which has no U.S. election charts.
 }
+
+\code{"categorical_light"} holds the pale tint the charts pair with each
+\code{"categorical"} color. It sits at roughly 1.2--2.2 contrast against the
+ivory field, so it is a fill for forecasts, stack segments and context bars,
+not a color for thin lines or text. \code{"categorical_dark"} is not measured: it
+darkens each color in CIE Lab to 6:1 contrast against the ivory field, for
+lines and small marks that must stand out.
+}
+\section{Deprecated palettes}{
+
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+The pre-8.0.0 palettes \code{"rgby"}, \code{"red_green"}, \code{"black_green"},
+\code{"dem_rep"} and \code{"colors6"} still resolve, with a deprecation warning, to
+the colors they always returned, so existing plots are unchanged. Only
+\code{"dem_rep"} has an exact replacement: \code{"party"} holds the same three
+colors. The others have no like-for-like successor -- \code{"direction"} and
+\code{"categorical"} serve the same roles as \code{"red_green"} and \code{"colors6"} but
+with different colors -- so switching to them will change a plot.
 }
 
 \examples{
 wsj_pal()(6)
 
-scales::show_col(wsj_pal("rgby")(4))
+scales::show_col(wsj_pal("blues")(3))
 }
 \seealso{
 Other color wsj:
+\code{\link[=scale_colour_gradient2_wsj]{scale_colour_gradient2_wsj()}},
+\code{\link[=scale_colour_gradient_wsj]{scale_colour_gradient_wsj()}},
 \code{\link[=scale_colour_wsj]{scale_colour_wsj()}}
 }
 \concept{color wsj}

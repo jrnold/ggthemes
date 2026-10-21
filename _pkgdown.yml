@@ -28,6 +28,14 @@ reference:
   contents:
   - starts_with("geom_")
   - starts_with("stat_")
+- title: Wall Street Journal helpers
+  desc: Axis labels and annotation layers for charts in the style of `theme_wsj()`.
+  contents:
+  - wsj_label
+  - wsj_year_label
+  - wsj_bands
+  - wsj_callout
+  - wsj_direction_bar
 - title: Other functions
   contents:
   - bank_slopes

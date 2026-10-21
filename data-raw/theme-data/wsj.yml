@@ -1,2 +1,148 @@
-bg: [{name: gray, value: '#efefef'}, {name: green, value: '#e9f3ea'}, {name: blue, value: '#d4dee7'}, {name: brown, value: '#f8f2e4'}]
-palettes: {rgby: [{name: yellow, value: '#d3ba68'}, {name: red, value: '#d5695d'}, {name: blue, value: '#5d8ca8'}, {name: green, value: '#65a479'}], red_green: [{name: green, value: '#088158'}, {name: red, value: '#ba2f2a'}], black_green: [{name: black, value: '#000000'}, {name: gray, value: '#595959'}, {name: ltgreen, value: '#59a77f'}, {name: green, value: '#008856'}], dem_rep: [{name: blue, value: '#006a8e'}, {name: red, value: '#b1283a'}, {name: gray, value: '#a8a6a7'}], colors6: [{name: red, value: '#c72e29'}, {name: blue, value: '#016392'}, {name: gold, value: '#be9c2e'}, {name: green, value: '#098154'}, {name: orange, value: '#fb832d'}, {name: black, value: '#000000'}]}
+# Plot field. `paper` is the current API; `bg` is retained for the deprecated
+# `theme_wsj(color=)` argument and is not part of the current design.
+paper:
+  - {name: ivory, value: '#f8f2e4'}
+  - {name: gray, value: '#efefef'}
+# Alternating bands drawn between reference levels instead of dotted rules
+# (`wsj_bands()`), measured on each field.
+bands:
+  - {name: ivory, value: '#efe4c9'}
+  - {name: gray, value: '#dddddd'}
+# Ink of the subtitle, axis labels, notes and source on each field. From July
+# 2013 these are a dark gray; titles stay black. The glyph cores of the larger
+# graphics measure 60 to 70 levels, against 0 for the black of earlier charts.
+ink:
+  - {name: ivory, value: '#000000'}
+  - {name: gray, value: '#444444'}
+# Fills of number callouts (`wsj_callout()`), measured on published charts.
+callout:
+  - {name: black, value: '#000000'}
+  - {name: yellow, value: '#ffe03d'}
+bg:
+  - {name: gray, value: '#efefef'}
+  - {name: green, value: '#e9f3ea'}
+  - {name: blue, value: '#d4dee7'}
+  - {name: brown, value: '#f8f2e4'}
+palettes:
+  # Colors measured on 386 WSJ Asia and Asia-markets web graphics, Nov 2010 to
+  # Jul 2014 (see vignettes/articles/wsj-styleguide.Rmd). Each is the modal
+  # color of flat areas across the charts that use it.
+  comparison:
+    # A highlighted bar is a darker shade of the same hue, not a color set
+    # against gray.
+    - {name: primary, value: '#016392'}
+    - {name: context, value: '#5d8ca8'}
+  actual_forecast:
+    - {name: actual, value: '#5d8ca8'}
+    - {name: forecast, value: '#abbdcb'}
+  direction:
+    - {name: positive, value: '#65a479'}
+    - {name: negative, value: '#c72e29'}
+  party:
+    - {name: democrat, value: '#006a8e'}
+    - {name: republican, value: '#b1283a'}
+    - {name: other, value: '#a8a6a7'}
+  categorical:
+    - {name: red, value: '#c72e29'}
+    - {name: steel, value: '#5d8ca8'}
+    - {name: green, value: '#65a479'}
+    - {name: black, value: '#000000'}
+    - {name: gold, value: '#be9c2e'}
+    - {name: orange, value: '#fb832d'}
+  # The pale tints the charts print beside each hue: forecasts, the lighter
+  # segments of a stack, the context bars of a ranking.
+  categorical_light:
+    - {name: red, value: '#ebb3a4'}
+    - {name: steel, value: '#abbdcb'}
+    - {name: green, value: '#afccae'}
+    # The charts' grays are neutral tints of black; this one, about 26% black,
+    # sits at the lightness of the other pale shades (measured on one chart).
+    - {name: black, value: '#bdbdbd'}
+    - {name: gold, value: '#e8dbaf'}
+    - {name: orange, value: '#fcac67'}
+  # Not measured: each `categorical` color darkened in CIE Lab, holding a and
+  # b, until it reaches 6:1 contrast against the ivory field.
+  categorical_dark:
+    - {name: red, value: '#b4171c'}
+    - {name: steel, value: '#30617b'}
+    - {name: green, value: '#286740'}
+    - {name: black, value: '#000000'}
+    - {name: gold, value: '#715800'}
+    - {name: orange, value: '#a13900'}
+  # Shades of one hue, darkest first: stacked segments and highlighted bars.
+  blues:
+    - {name: dark, value: '#016392'}
+    - {name: mid, value: '#5d8ca8'}
+    - {name: light, value: '#abbdcb'}
+  greens:
+    - {name: dark, value: '#098154'}
+    - {name: mid, value: '#65a479'}
+    - {name: light, value: '#afccae'}
+  reds:
+    - {name: dark, value: '#c72e29'}
+    - {name: mid, value: '#d5695d'}
+    - {name: light, value: '#ebb3a4'}
+  golds:
+    - {name: dark, value: '#be9c2e'}
+    - {name: mid, value: '#d3ba68'}
+    - {name: light, value: '#e8dbaf'}
+  oranges:
+    - {name: dark, value: '#fb832d'}
+    - {name: mid, value: '#fcac67'}
+    # Not measured: the light step of the other families fits a 55% RGB tint
+    # (mixed toward white) of their mid step, a round value a designer would
+    # set, so this is a 55% tint of #fcac67.
+    - {name: light, value: '#fdd1ab'}
+  # Deprecated in 8.0.0. Retained with their original colors so that existing
+  # plots keep rendering as they did; `wsj_pal()` warns when they are used.
+  rgby:
+    - {name: yellow, value: '#d3ba68'}
+    - {name: red, value: '#d5695d'}
+    - {name: blue, value: '#5d8ca8'}
+    - {name: green, value: '#65a479'}
+  red_green:
+    - {name: green, value: '#088158'}
+    - {name: red, value: '#ba2f2a'}
+  black_green:
+    - {name: black, value: '#000000'}
+    - {name: gray, value: '#595959'}
+    - {name: ltgreen, value: '#59a77f'}
+    - {name: green, value: '#008856'}
+  dem_rep:
+    - {name: blue, value: '#006a8e'}
+    - {name: red, value: '#b1283a'}
+    - {name: gray, value: '#a8a6a7'}
+  colors6:
+    - {name: red, value: '#c72e29'}
+    - {name: blue, value: '#016392'}
+    - {name: gold, value: '#be9c2e'}
+    - {name: green, value: '#098154'}
+    - {name: orange, value: '#fb832d'}
+    - {name: black, value: '#000000'}
+sequential:
+  # Measured on the 2010-2014 charts, every step a tint of the steel blue or
+  # the navy itself: the pale blue field (9% steel), its bands (24%), the pale
+  # steel (55%), the steel and the navy.
+  steel:
+    - {name: steel_1, value: '#eff4f9'}
+    - {name: steel_2, value: '#d7e4ee'}
+    - {name: steel_3, value: '#abbdcb'}
+    - {name: steel_4, value: '#5d8ca8'}
+    - {name: steel_5, value: '#016392'}
+  # From the WSJ's open-source squaire maps (2015 or later), outside the period
+  # of the corpus.
+  blue:
+    - {name: blue_1, value: '#e6eff9'}
+    - {name: blue_2, value: '#c9e2f5'}
+    - {name: blue_3, value: '#95cbee'}
+    - {name: blue_4, value: '#0098db'}
+    - {name: blue_5, value: '#0079ae'}
+diverging:
+  blue_orange:
+    - {name: negative, value: '#fb832d'}
+    - {name: midpoint, value: '#f8f2e4'}
+    - {name: positive, value: '#016392'}
+  green_red:
+    - {name: negative, value: '#c72e29'}
+    - {name: midpoint, value: '#f8f2e4'}
+    - {name: positive, value: '#098154'}

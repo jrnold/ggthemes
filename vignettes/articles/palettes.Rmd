@@ -73,9 +73,10 @@ families <- list(
     lapply(tableau$`ordered-sequential`, `[[`, "value"),
     calls('tableau_seq_gradient_pal("%s")', names(tableau$`ordered-sequential`))
   ),
+  # The current palettes only: the pre-8.0.0 ones are deprecated and warn.
   wsj = setNames(
-    lapply(names(ggthemes_data$wsj$palettes), function(p) wsj_pal(p)(nrow(ggthemes_data$wsj$palettes[[p]]))),
-    calls('wsj_pal("%s")', names(ggthemes_data$wsj$palettes))
+    lapply(ggthemes:::wsj_current_palettes(), function(p) wsj_pal(p)(nrow(ggthemes_data$wsj$palettes[[p]]))),
+    calls('wsj_pal("%s")', ggthemes:::wsj_current_palettes())
   )
 )
 ```
