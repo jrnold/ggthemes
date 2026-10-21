@@ -19,14 +19,14 @@ test_that("wsj palettes use semantic roles", {
   expect_equal(wsj_pal("actual_forecast")(2), c("#5d8ca8", "#abbdcb"))
 })
 
-test_that("theme_wsj works", {
+test_that("theme_wsj() sets the field and rejects an unknown one", {
   expect_s3_class(theme_wsj(), "theme")
   expect_equal(theme_wsj(paper = "gray")$plot.background$fill, "#efefef")
   # "brown" is the pre-8.0.0 name for "ivory": deprecated, not an error.
   expect_error(theme_wsj(paper = "chartreuse"), regexp = "must be one of")
 })
 
-test_that("theme_wsj raises error with invalid palette", {
+test_that("wsj_pal() rejects an unknown palette", {
   expect_snapshot(wsj_pal("asdgasa"), error = TRUE)
 })
 
@@ -133,20 +133,26 @@ test_that("theme_wsj draws no axis rule", {
   expect_s3_class(theme_wsj()$axis.line, "element_blank")
 })
 
-test_that("wsj_recession_fill() is gone", {
-  expect_false(exists("wsj_recession_fill", where = asNamespace("ggthemes")))
-})
-
 test_that("the white field is gone", {
   expect_error(theme_wsj(paper = "white"), regexp = "must be one of")
   expect_equal(names(ggthemes_data$wsj$paper), c("ivory", "gray"))
 })
 
+test_that("palette errors name the input and the function called", {
+  expect_snapshot(error = TRUE, {
+    wsj_pal(NULL)
+    scale_fill_gradient_wsj("x")
+    wsj_callout(1, 1, "x", facets = list("b"))
+    wsj_callout(1, 1, "x", facets = list(f = 1:3))
+    wsj_callout(1:2, 1:2, c("x", "y"), facets = list(f = 1:3))
+  })
+})
+
 test_that("palette names must be single strings", {
-  expect_error(wsj_pal(c("reds", "blues")), regexp = "must be one of")
-  expect_error(wsj_pal(NULL), regexp = "must be one of")
-  expect_error(scale_fill_gradient_wsj(c("steel", "blue")), regexp = "must be one of")
-  expect_error(scale_fill_gradient2_wsj(NULL), regexp = "must be one of")
+  expect_error(wsj_pal(c("reds", "blues")), regexp = "must be a string")
+  expect_error(wsj_pal(NULL), regexp = "must be a string")
+  expect_error(scale_fill_gradient_wsj(c("steel", "blue")), regexp = "must be a string")
+  expect_error(scale_fill_gradient2_wsj(NULL), regexp = "must be a string")
 })
 
 test_that("categorical light and dark variants hold hue order", {

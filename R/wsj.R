@@ -35,7 +35,7 @@
 #' @example inst/examples/ex-theme_wsj.R
 #' @export
 #' @importFrom ggplot2 element_blank element_line element_rect element_text rel
-#' @importFrom lifecycle deprecated is_present deprecate_warn
+#' @importFrom lifecycle deprecated is_present deprecate_soft
 theme_wsj <- function(
   base_size = 12,
   paper = c("ivory", "gray"),
@@ -45,7 +45,7 @@ theme_wsj <- function(
 ) {
   via_color <- is_present(color)
   if (via_color) {
-    deprecate_warn("8.0.0", "theme_wsj(color)", "theme_wsj(paper)")
+    deprecate_soft("8.0.0", "theme_wsj(color)", "theme_wsj(paper)")
     paper <- color
   }
   # `color` has already warned; don't warn twice for a single call.
@@ -144,7 +144,7 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
   if (paper %in% names(bg)) {
     if (warn) {
       replacement <- if (paper == "brown") "\"ivory\"" else NULL
-      deprecate_warn(
+      deprecate_soft(
         when = "8.0.0",
         what = I(sprintf(
           "The %s plot field of `theme_wsj()`",
@@ -213,14 +213,10 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-wsj_pal.R
-#' @importFrom lifecycle deprecate_warn
+#' @importFrom lifecycle deprecate_soft
 wsj_pal <- function(palette = "categorical") {
   palettes <- ggthemes::ggthemes_data$wsj$palettes
-  if (!rlang::is_string(palette) || !palette %in% names(palettes)) {
-    cli::cli_abort(
-      "{.arg palette} must be one of {.val {wsj_current_palettes()}}, not {.val {palette}}."
-    )
-  }
+  check_wsj_palette_name(palette, wsj_current_palettes(), names(palettes))
   warn_deprecated_wsj_palette(palette)
 
   colors <- palettes[[palette]]$value
@@ -251,7 +247,7 @@ warn_deprecated_wsj_palette <- function(palette) {
     return(invisible())
   }
   with <- wsj_deprecated_palettes[[palette]]
-  deprecate_warn(
+  deprecate_soft(
     when = "8.0.0",
     what = I(sprintf("The %s palette of `wsj_pal()`", encodeString(palette, quote = "\""))),
     with = if (!is.na(with)) I(sprintf("the %s palette", encodeString(with, quote = "\""))),
@@ -297,12 +293,22 @@ scale_fill_wsj <- function(palette = "categorical", ...) {
   discrete_scale("fill", palette = wsj_pal(palette), ...)
 }
 
-wsj_gradient_pal <- function(palette, type) {
+wsj_gradient_pal <- function(palette, type, call = rlang::caller_env()) {
   palettes <- ggthemes::ggthemes_data$wsj[[type]]
-  if (!rlang::is_string(palette) || !palette %in% names(palettes)) {
-    cli::cli_abort("{.arg palette} must be one of {.val {names(palettes)}}, not {.val {palette}}.")
-  }
+  check_wsj_palette_name(palette, names(palettes), call = call)
   scales::gradient_n_pal(palettes[[palette]]$value)
+}
+
+# Checks that `palette` is one string naming a palette in `accepted`; the error lists only `listed`, so deprecated
+# palettes still resolve without being advertised.
+check_wsj_palette_name <- function(palette, listed, accepted = listed, call = rlang::caller_env()) {
+  if (!rlang::is_string(palette)) {
+    cli::cli_abort("{.arg palette} must be a string, not {.obj_type_friendly {palette}}.", call = call)
+  }
+  if (!palette %in% accepted) {
+    cli::cli_abort("{.arg palette} must be one of {.val {listed}}, not {.val {palette}}.", call = call)
+  }
+  invisible()
 }
 
 #' Wall Street Journal sequential color scales
@@ -327,7 +333,7 @@ scale_colour_gradient_wsj <- function(
 ) {
   continuous_scale(
     "colour",
-    palette = wsj_gradient_pal(palette, "sequential"),
+    palette = wsj_gradient_pal(palette, "sequential", call = rlang::current_env()),
     na.value = na.value,
     guide = guide,
     ...
@@ -356,7 +362,7 @@ scale_fill_gradient_wsj <- function(
 ) {
   continuous_scale(
     "fill",
-    palette = wsj_gradient_pal(palette, "sequential"),
+    palette = wsj_gradient_pal(palette, "sequential", call = rlang::current_env()),
     na.value = na.value,
     guide = guide,
     ...
@@ -389,7 +395,7 @@ scale_colour_gradient2_wsj <- function(
 ) {
   continuous_scale(
     "colour",
-    palette = wsj_gradient_pal(palette, "diverging"),
+    palette = wsj_gradient_pal(palette, "diverging", call = rlang::current_env()),
     na.value = na.value,
     guide = guide,
     rescaler = mid_rescaler(midpoint),
@@ -412,7 +418,7 @@ scale_fill_gradient2_wsj <- function(
 ) {
   continuous_scale(
     "fill",
-    palette = wsj_gradient_pal(palette, "diverging"),
+    palette = wsj_gradient_pal(palette, "diverging", call = rlang::current_env()),
     na.value = na.value,
     guide = guide,
     rescaler = mid_rescaler(midpoint),
@@ -1053,19 +1059,23 @@ GeomWsjDirectionBar <- ggplot2::ggproto(
 
 # Adds the values of faceting variables, passed as a named list, to an annotation layer's data, so that ggplot2
 # draws the layer in the matching panel only.
-wsj_facet_data <- function(data, facets = NULL) {
+wsj_facet_data <- function(data, facets = NULL, call = rlang::caller_env()) {
   if (!length(facets)) {
     return(data)
   }
   if (!is.list(facets) || !rlang::is_named(facets)) {
     cli::cli_abort(
-      "{.arg facets} must be a list named by faceting variable, as in {.code facets = list(panel = \"A\")}."
+      "{.arg facets} must be a list named by faceting variable, as in {.code facets = list(panel = \"A\")}.",
+      call = call
     )
   }
   for (name in names(facets)) {
     value <- facets[[name]]
     if (!length(value) %in% c(1L, nrow(data))) {
-      cli::cli_abort("{.code facets${name}} must have length 1 or {nrow(data)}, not {length(value)}.")
+      if (nrow(data) == 1L) {
+        cli::cli_abort("{.code facets${name}} must have length 1, not {length(value)}.", call = call)
+      }
+      cli::cli_abort("{.code facets${name}} must have length 1 or {nrow(data)}, not {length(value)}.", call = call)
     }
     data[[name]] <- value
   }

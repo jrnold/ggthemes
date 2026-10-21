@@ -1,4 +1,4 @@
-# theme_wsj raises error with invalid palette
+# wsj_pal() rejects an unknown palette
 
     Code
       wsj_pal("asdgasa")
@@ -63,4 +63,32 @@
       Warning:
       The `color` argument of `theme_wsj()` is deprecated as of ggthemes 8.0.0.
       i Please use the `paper` argument instead.
+
+# palette errors name the input and the function called
+
+    Code
+      wsj_pal(NULL)
+    Condition
+      Error in `wsj_pal()`:
+      ! `palette` must be a string, not NULL.
+    Code
+      scale_fill_gradient_wsj("x")
+    Condition
+      Error in `scale_fill_gradient_wsj()`:
+      ! `palette` must be one of "steel" and "blue", not "x".
+    Code
+      wsj_callout(1, 1, "x", facets = list("b"))
+    Condition
+      Error in `wsj_callout()`:
+      ! `facets` must be a list named by faceting variable, as in `facets = list(panel = "A")`.
+    Code
+      wsj_callout(1, 1, "x", facets = list(f = 1:3))
+    Condition
+      Error in `wsj_callout()`:
+      ! `facets$f` must have length 1, not 3.
+    Code
+      wsj_callout(1:2, 1:2, c("x", "y"), facets = list(f = 1:3))
+    Condition
+      Error in `wsj_callout()`:
+      ! `facets$f` must have length 1 or 2, not 3.
 
