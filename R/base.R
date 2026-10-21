@@ -3,7 +3,7 @@
 #' Theme similar to the default settings of the "base" R graphics.
 #'
 #' @inheritParams ggplot2::theme_bw
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @example inst/examples/ex-theme_base.R
@@ -383,7 +383,7 @@ theme_base <- function(base_size = 16, base_family = "") {
 #' most notably in the spacing of the margins.
 #'
 #' @inheritParams ggplot2::theme_bw
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @example inst/examples/ex-theme_par.R

@@ -17,7 +17,7 @@
 #' @param pc Panel background color, as a name or hex code.
 #' @param lp Legend position.
 #' @param axis Axis label angle, as defined by `par("las")`.
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes pander
 #' @example inst/examples/ex-theme_pander.R
@@ -261,7 +261,7 @@ theme_pander <- function(
 #' @param n Number of colors. This palette supports up to eight colors.
 #' @param random_order Whether to shuffle the palette randomly before
 #'   rendering each plot.
-#' @return A character vector of `n` hex colors, recycled if `n` exceeds the number of colors available.
+#' @returns A character vector of `n` hex colors, recycled if `n` exceeds the number of colors available.
 #'   Unlike the other `*_pal()` functions, this is itself the palette function.
 #' @export
 #' @family color pander
@@ -304,7 +304,7 @@ palette_pander <- function(n, random_order = FALSE) {
 #' @family color pander
 #' @rdname scale_pander
 #' @seealso [theme_pander()]
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_pander.R
 scale_color_pander <- function(...) {

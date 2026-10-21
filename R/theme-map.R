@@ -5,7 +5,7 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @example inst/examples/ex-theme_map.R
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @importFrom ggplot2 %+replace%

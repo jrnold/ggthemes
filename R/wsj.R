@@ -16,7 +16,7 @@
 #' @param title_family A string, the font family of the plot title.
 #' @family themes wsj
 #' @example inst/examples/ex-theme_wsj.R
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @importFrom ggplot2 element_line element_rect element_text element_blank rel
 theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", title_family = "mono") {
@@ -80,7 +80,7 @@ theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", tit
 #'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$wsj$palettes))`.
 #'
 #' @family color wsj
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-wsj_pal.R
@@ -106,7 +106,7 @@ wsj_pal <- function(palette = "colors6") {
 #' @inheritParams wsj_pal
 #' @family color wsj
 #' @rdname scale_wsj
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_wsj.R
 scale_colour_wsj <- function(palette = "colors6", ...) {

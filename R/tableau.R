@@ -33,7 +33,7 @@ tableau_resolve_palette <- function(palette) {
 #' - `"ordered-diverging"`: `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))`.
 #' - `"ordered-sequential"`: `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))`.
 #'
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @param palette A string, the palette name. See Details for available
@@ -106,7 +106,7 @@ tableau_colour_pal <- tableau_color_pal
 #' @param ... Other arguments passed on to [ggplot2::discrete_scale()].
 #' @family color tableau
 #' @rdname scale_color_tableau
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @seealso [tableau_color_pal()] for references.
 #' @example inst/examples/ex-scale_color_tableau.R
@@ -151,7 +151,7 @@ scale_color_tableau <- scale_colour_tableau
 #' or `fill` instead, or use `unicode = TRUE` with a font covering
 #' Geometric Shapes, such as DejaVu Sans.
 #'
-#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#' @returns A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
 #' @export
@@ -169,7 +169,7 @@ tableau_shape_pal <- function(palette = c("default", "filled", "proportions"), u
 #'
 #' See [tableau_shape_pal()] for details.
 #'
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @inheritParams tableau_shape_pal
 #' @inheritParams ggplot2::scale_x_discrete
@@ -199,7 +199,7 @@ scale_shape_tableau <- function(palette = "default", ..., unicode = FALSE) {
 #' @param ... Arguments passed to `tableau_gradient_pal`.
 #' @family color tableau
 #'
-#' @return A palette function. It takes a numeric vector `x` of values between 0 and 1 and returns a character
+#' @returns A palette function. It takes a numeric vector `x` of values between 0 and 1 and returns a character
 #'   vector of hex colors interpolated along the palette, for use as the `palette` argument of
 #'   [ggplot2::continuous_scale()].
 #' @export
@@ -236,7 +236,7 @@ tableau_div_gradient_pal <- function(palette = "Orange-Blue Diverging", ...) {
 #' and [scale_colour_gradient2_tableau()] for diverging color
 #' scales.
 #'
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @inheritParams tableau_seq_gradient_pal
 #' @inheritParams ggplot2::scale_colour_hue
@@ -294,7 +294,7 @@ scale_fill_continuous_tableau <- scale_fill_gradient_tableau
 #' @param midpoint The data value that corresponds to the middle color of the
 #'   diverging palette.
 #' @family color tableau
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @rdname scale_colour_gradient2_tableau
 #' @example inst/examples/ex-scale_colour_gradient2_tableau.R

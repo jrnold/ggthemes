@@ -7,7 +7,7 @@
 #' @param light If `TRUE` (the default), use the light theme; otherwise, use
 #'   the dark theme.
 #' @keywords internal
-#' @return A named character vector of eight hex colors, named `rebase03` to `rebase3`.
+#' @returns A named character vector of eight hex colors, named `rebase03` to `rebase3`.
 solarized_rebase <- function(light = TRUE) {
   basecolors <- deframe(ggthemes::ggthemes_data$solarized$Base)
   rebase <- if (light) {
@@ -36,7 +36,7 @@ solarized_accent_list <- function() {
 #' total Euclidean distance between colors in L*a*b space.
 #'
 #' @param accent A string, the name of the starting color.
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @family color solarized
@@ -70,7 +70,7 @@ solarized_pal <- function(accent = "blue") {
 #' @inheritParams solarized_pal
 #' @rdname scale_solarized
 #' @family color solarized
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_solarized.R
 scale_fill_solarized <- function(accent = "blue", ...) {
@@ -102,7 +102,7 @@ scale_color_solarized <- scale_colour_solarized
 #' @inheritParams ggplot2::theme_grey
 #' @param light If `TRUE` (the default), use the light theme; otherwise, use
 #'   the dark theme.
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes solarized
 #' @example inst/examples/ex-theme_solarized.R

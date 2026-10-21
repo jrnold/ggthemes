@@ -11,7 +11,7 @@
 #'
 #' <https://jfly.iam.u-tokyo.ac.jp/color/>
 #'
-#' @return `colorblind_pal()` and `colourblind_pal()` return a palette function that takes the number of
+#' @returns `colorblind_pal()` and `colourblind_pal()` return a palette function that takes the number of
 #'   colors `n` and returns a character vector of `n` hex colors. The `scale_*()` functions
 #'   return a ggplot2 scale object.
 #' @export

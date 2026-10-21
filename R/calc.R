@@ -3,7 +3,7 @@
 #' Theme similar to the default settings of LibreOffice Calc charts.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes calc
 #' @example inst/examples/ex-theme_calc.R
@@ -35,7 +35,7 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
 #' This palette has 12 values.
 #'
 #' @family color calc
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-calc_pal.R
@@ -54,7 +54,7 @@ calc_pal <- function() {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family color calc
 #' @rdname scale_calc
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @seealso See [theme_calc()] for examples.
 #' @example inst/examples/ex-scale_calc.R
@@ -89,7 +89,7 @@ scale_color_calc <- scale_colour_calc
 #' Mathematical Symbols-B; Noto Sans Symbols 2 is effectively the only free
 #' font with the last of these.
 #'
-#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#' @returns A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
 #' @export
@@ -106,7 +106,7 @@ calc_shape_pal <- function(unicode = FALSE) {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams calc_shape_pal
 #' @family shapes calc
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @seealso [theme_calc()] for examples.
 #' @example inst/examples/ex-scale_shape_calc.R
