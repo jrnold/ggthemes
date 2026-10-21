@@ -39,6 +39,7 @@
 #' @references
 #' *The Economist visual styleguide*, v1.2, 4 May 2017 (internal;
 #' Matt McLean), p.25.
+#' <https://archive.org/details/chartstyleguide-20170505>
 #'
 #' @family economist 2017
 #' @importFrom ggplot2 layer

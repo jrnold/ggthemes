@@ -68,6 +68,7 @@ ggsave(path, economist_2017_chart(p), width = size[["width"]], height = size[["h
 \references{
 \emph{The Economist visual styleguide}, v1.2, 4 May 2017 (internal;
 Matt McLean), pp.4, 8-9.
+\url{https://archive.org/details/chartstyleguide-20170505}
 }
 \seealso{
 Other economist 2017:

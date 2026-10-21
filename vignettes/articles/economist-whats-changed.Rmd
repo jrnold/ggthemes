@@ -14,7 +14,7 @@ local({
 })
 ```
 
-Page 3 of [The Economist visual styleguide](https://sa.ipaa.org.au/wp-content/uploads/2026/02/Economist-CHARTstyleguide_20170505.pdf) (Version 1.2, 4 May 2017) is headed "What's changed: Web charts". It sets one chart, "The real deal", in the old design beside the same chart in the new, and labels eight changes. This article redraws both charts with ggthemes: the old one in the classic style, with `theme_economist()`, and the new one in the 2017 style, with `theme_economist_2017()`, `guide_axis_economist_2017()` and `economist_2017_chart()`. The old chart is the harder of the two, because ggthemes has no web variant of the classic style: most of it is drawn by hand, and the notes say which parts.
+Page 3 of [The Economist visual styleguide](https://archive.org/details/chartstyleguide-20170505) (Version 1.2, 4 May 2017) is headed "What's changed: Web charts". It sets one chart, "The real deal", in the old design beside the same chart in the new, and labels eight changes. This article redraws both charts with ggthemes: the old one in the classic style, with `theme_economist()`, and the new one in the 2017 style, with `theme_economist_2017()`, `guide_axis_economist_2017()` and `economist_2017_chart()`. The old chart is the harder of the two, because ggthemes has no web variant of the classic style: most of it is drawn by hand, and the notes say which parts.
 
 Both charts are the guide's two-column size, 332pt wide. The old chart's red tab measures 5pt by 15pt on the page and the new chart's 15pt by 5pt, which fixes the scale: one pixel of the old chart in the guide's PDF, rendered at 300 dpi, is 0.16pt.
 
