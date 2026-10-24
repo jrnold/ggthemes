@@ -5,10 +5,11 @@
 #' not included in these palettes; *The Economist* reserves it to
 #' mark important data.
 #'
-#' @param fill Use the fill palette. The fill palette (the default) and the
-#'   line palette choose and order the colors differently.
+#' @param fill If `TRUE` (the default), use the fill palette; otherwise, use
+#'   the line palette. The two palettes choose and order the colors
+#'   differently.
 #' @family color economist
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-economist_pal.R
@@ -116,7 +117,7 @@ economist_pal <- function(fill = TRUE) {
 #' @family color economist
 #' @rdname scale_economist
 #' @seealso [theme_economist()] for examples.
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_economist.R
 scale_colour_economist <- function(...) {
@@ -145,12 +146,12 @@ scale_fill_economist <- function(...) {
 #' discrete ordered data. `economist_gradient_pal()` interpolates
 #' between them, for continuous data.
 #'
-#' @param hue `character`. One of `"blue"`, `"cyan"`,
-#'   `"green"`, `"yellow"`, `"olive"`, `"purple"`,
+#' @param hue A string, the hue of the color scale. One of `"blue"` (the
+#'   default), `"cyan"`, `"green"`, `"yellow"`, `"olive"`, `"purple"`,
 #'   `"gold"`, `"gray"`, or `"red"`.
 #' @family color economist
 #' @rdname economist_seq_pal
-#' @return `economist_seq_pal()` returns a palette function that takes the number of colors `n` and
+#' @returns `economist_seq_pal()` returns a palette function that takes the number of colors `n` and
 #'   returns the first `n` of the six hex colors for `hue`, for use with
 #'   [ggplot2::discrete_scale()]. `economist_gradient_pal()` returns a palette function that
 #'   takes a numeric vector `x` of values between 0 and 1 and returns hex colors interpolated between
@@ -195,15 +196,15 @@ economist_scale_colors <- function(hue) {
 #'
 #' @inheritParams ggplot2::scale_colour_hue
 #' @inheritParams economist_seq_pal
-#' @param guide Type of legend. Use `"colourbar"` for continuous
-#'   color bars, or `"legend"` for discrete color legends.
+#' @inheritParams ggplot2::continuous_scale
 #' @param ... Other arguments passed on to the underlying scale.
 #' @family color economist
 #' @rdname scale_economist_seq
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_economist_seq.R
-scale_colour_economist_c <- function(hue = "blue", guide = "colourbar", ...) {
+scale_colour_economist_c <- function(hue = "blue", ..., guide = "colourbar") {
+  check_dots_named(...)
   continuous_scale(
     "colour",
     palette = economist_gradient_pal(hue),
@@ -218,7 +219,8 @@ scale_color_economist_c <- scale_colour_economist_c
 
 #' @rdname scale_economist_seq
 #' @export
-scale_fill_economist_c <- function(hue = "blue", guide = "colourbar", ...) {
+scale_fill_economist_c <- function(hue = "blue", ..., guide = "colourbar") {
+  check_dots_named(...)
   continuous_scale(
     "fill",
     palette = economist_gradient_pal(hue),
@@ -247,11 +249,11 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 #'
 #' A theme that approximates the style of *The Economist*.
 #'
-#' `theme_economist` implements the standard bluish-gray
+#' [theme_economist()] implements the standard bluish-gray
 #' background theme in the print *The Economist* and
 #' [economist.com](https://www.economist.com/).
 #'
-#' `theme_economist_white` implements a variant with a white
+#' [theme_economist_white()] implements a variant with a white
 #' panel and light gray (or white) background often used by *The Economist*
 #' blog [Graphic Detail](https://www.economist.com/topics/graphic-detail).
 #'
@@ -263,12 +265,13 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 #' extrafont package. "Verdana" is a good substitute.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal `logical` Horizontal axis lines?
-#' @param dkpanel `logical` Darker background for panel region?
-#' @param gray_bg `logical` If `TRUE`, use gray background, else
-#'   use white background.
+#' @param horizontal If `TRUE` (the default), draw horizontal grid lines.
+#' @param dkpanel If `TRUE`, use a darker background for the panel region. The
+#'   default is `FALSE`.
+#' @param gray_bg If `TRUE` (the default), use a gray background; otherwise,
+#'   use a white background.
 #'
-#' @return An object of class [ggplot2::theme()].
+#' @returns An object of class [ggplot2::theme()].
 #'
 #' @export
 #' @family themes economist

@@ -1,4 +1,4 @@
-#' Theme Base
+#' Base R graphics theme
 #'
 #' Theme similar to the default settings of the "base" R graphics.
 #'
@@ -8,7 +8,7 @@
 #' @param base_size Base font size, in points. The default, 12, is the
 #'   default text size of base graphics devices.
 #' @inheritParams ggplot2::theme_bw
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @example inst/examples/ex-theme_base.R
@@ -416,7 +416,7 @@ theme_base <- function(base_size = 12, base_family = "") {
 #' @param base_size Base font size, in points. Defaults to the base graphics
 #'   text size, `par("ps") * par("cex")`.
 #' @param base_family Base font family. Defaults to `par("family")`.
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @example inst/examples/ex-theme_par.R

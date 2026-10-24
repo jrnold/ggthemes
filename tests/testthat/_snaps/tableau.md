@@ -20,7 +20,8 @@
       pal <- tableau_color_pal("Red-Blue-Brown")
     Condition
       Warning:
-      Tableau palette "Red-Blue-Brown" is deprecated; use "Blue-Red-Brown" instead.
+      The Tableau palette name "Red-Blue-Brown" was deprecated in ggthemes 7.0.0.
+      i Please use the name "Blue-Red-Brown" instead.
 
 # tableau_gradient_pal accepts a deprecated palette name with a warning
 
@@ -28,5 +29,60 @@
       pal <- tableau_gradient_pal("Classic Area-Brown", type = "ordered-sequential")
     Condition
       Warning:
-      Tableau palette "Classic Area-Brown" is deprecated; use "Classic Area Brown" instead.
+      The Tableau palette name "Classic Area-Brown" was deprecated in ggthemes 7.0.0.
+      i Please use the name "Classic Area Brown" instead.
+
+# tableau_gradient_pal() rejects an unknown palette
+
+    Code
+      tableau_gradient_pal("Chartreuse")
+    Condition
+      Error in `tableau_gradient_pal()`:
+      ! `palette` must be one of "Blue-Green Sequential", "Blue Light", "Orange Light", "Blue", "Orange", "Green", "Red", "Purple", "Brown", "Gray", "Gray Warm", "Blue-Teal", "Orange-Gold", "Green-Gold", "Red-Gold", "Classic Green", "Classic Gray", "Classic Blue", ..., "Classic Area Green", and "Classic Area Brown", not "Chartreuse".
+
+---
+
+    Code
+      tableau_seq_gradient_pal("Chartreuse")
+    Condition
+      Error in `tableau_gradient_pal()`:
+      ! `palette` must be one of "Blue-Green Sequential", "Blue Light", "Orange Light", "Blue", "Orange", "Green", "Red", "Purple", "Brown", "Gray", "Gray Warm", "Blue-Teal", "Orange-Gold", "Green-Gold", "Red-Gold", "Classic Green", "Classic Gray", "Classic Blue", ..., "Classic Area Green", and "Classic Area Brown", not "Chartreuse".
+
+# tableau gradient palette helpers reject extra arguments
+
+    Code
+      tableau_seq_gradient_pal("Blue", extra = 1)
+    Condition
+      Error in `tableau_seq_gradient_pal()`:
+      ! `...` must be empty.
+      x Problematic argument:
+      * extra = 1
+
+---
+
+    Code
+      tableau_div_gradient_pal(extra = 1)
+    Condition
+      Error in `tableau_div_gradient_pal()`:
+      ! `...` must be empty.
+      x Problematic argument:
+      * extra = 1
+
+# scale_colour_tableau() takes type and direction by name only
+
+    Code
+      scale_colour_tableau("Tableau 20", "regular")
+    Condition
+      Error in `scale_colour_tableau()`:
+      ! Arguments in `...` must be named.
+      x Unnamed argument in position 1.
+
+---
+
+    Code
+      scale_fill_tableau("Tableau 20", "regular")
+    Condition
+      Error in `scale_fill_tableau()`:
+      ! Arguments in `...` must be named.
+      x Unnamed argument in position 1.
 

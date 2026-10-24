@@ -64,8 +64,8 @@
 #' Then, the minimum and maximum labels are moved to the minimum and maximum of the data
 #' range.
 #'
-#' `extended_range_breaks_` implements the algorithm and returns the break values.
-#' `extended_range_breaks` uses the conventions of the scales package, and returns a function.
+#' `extended_range_breaks_()` implements the algorithm and returns the break values.
+#' `extended_range_breaks()` uses the conventions of the scales package, and returns a function.
 #'
 #' Note that ggplot2 hands a `breaks` function the expanded scale limits, not the data
 #' range. Passing `extended_range_breaks()` directly to `breaks` therefore places the
@@ -79,7 +79,7 @@
 #' @param Q Set of nice numbers.
 #' @param w Weights applied to the four optimization components (simplicity,
 #'   coverage, density, and legibility).
-#' @return For `extended_range_breaks_`, the vector of axis label locations.
+#' @returns For `extended_range_breaks_`, the vector of axis label locations.
 #' For `extended_range_breaks`, a function which takes a single argument, a vector of data, and returns
 #'   the vector of axis label locations.
 #' @references
@@ -244,7 +244,7 @@ precision <- function(x) {
 #' @references Josh O'Brien,
 #'   <https://stackoverflow.com/questions/23169938/select-accuracy-to-display-additional-axis-breaks/23171858#23171858>.
 #' @author Josh O'Brien, Baptiste Auguie, Jeffrey B. Arnold
-#' @return A character vector.
+#' @returns A character vector.
 #' `smart_digits_format()` returns a function with a single argument
 #' `x`, a numeric vector, that returns a character vector.
 #'

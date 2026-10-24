@@ -12,5 +12,6 @@
       x <- theme_hc(bgcolor = "darkunica")
     Condition
       Warning:
-      `bgcolor` is deprecated. Use `style` instead.
+      The `bgcolor` argument of `theme_hc()` is deprecated as of ggthemes 4.2.0.
+      i Please use the `style` argument instead.
 

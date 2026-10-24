@@ -47,13 +47,12 @@ stata_default_scheme <- function(scheme, what) {
 #' set of Economist-styled colors that Stata ships in
 #' `scheme-economist.scheme`.
 #'
-#' @param scheme `character`. One of `"s2color"`,
-#' `"s1rcolor"`, `"s1color"`, `"mono"`, `"stcolor"`, or
-#' `"economist"`. If `NULL`, the default, `"s2color"` is used
-#' and a deprecation message is issued; this default becomes `"stcolor"`
-#' in ggthemes 8.0.0.
+#' @param scheme A string, the Stata scheme. One of: `"s2color"`,
+#'   `"s1rcolor"`, `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`.
+#'   If `NULL`, the default, `"s2color"` is used and a deprecation message is
+#'   issued; this default becomes `"stcolor"` in ggthemes 8.0.0.
 #'
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @family color stata
@@ -78,7 +77,7 @@ stata_pal <- function(scheme = NULL) {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family color stata
 #' @rdname scale_stata
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_stata.R
 scale_colour_stata <- function(scheme = NULL, ...) {
@@ -388,13 +387,14 @@ theme_stata_colors <- function(scheme = "s2color") {
 
 #' Themes based on Stata graph schemes
 #'
-#' @param scheme One of "stcolor", "stcolor_alt", "stmono1", "stmono2",
-#'   "stsj", "s2color", "s2mono", "s1color", "s1rcolor", "s1mono",
-#'   "s2manual", "s1manual", or "sj". If `NULL`, the default,
-#'   "s2color" is used and a deprecation message is issued; this default
-#'   becomes "stcolor" in ggthemes 8.0.0.
+#' @param scheme A string, the Stata scheme. One of: `"stcolor"`,
+#'   `"stcolor_alt"`, `"stmono1"`, `"stmono2"`, `"stsj"`, `"s2color"`,
+#'   `"s2mono"`, `"s1color"`, `"s1rcolor"`, `"s1mono"`, `"s2manual"`,
+#'   `"s1manual"`, or `"sj"`. If `NULL`, the default, `"s2color"` is used and a
+#'   deprecation message is issued; this default becomes `"stcolor"` in
+#'   ggthemes 8.0.0.
 #' @inheritParams ggplot2::theme_grey
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes stata
 #'
@@ -473,7 +473,7 @@ stata_shape_rows <- function(statadata, shapes) {
 #' solid and hollow circle, diamond, square and triangle, plus the X and the
 #' plus sign.
 #'
-#' @return A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
+#' @returns A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
 #' @export
@@ -497,7 +497,7 @@ stata_shape_pal <- function(unicode = FALSE) {
 #' @inheritParams ggplot2::scale_x_discrete
 #' @inheritParams stata_shape_pal
 #' @family shapes stata
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_shape_stata.R
 #' @importFrom ggplot2 discrete_scale
@@ -511,7 +511,7 @@ scale_shape_stata <- function(..., unicode = FALSE) {
 #' This palette supports up to 15 values.
 #'
 #' @family linetype stata
-#' @return A palette function. It takes the number of linetypes `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of linetypes `n` and returns a character vector of `n`
 #'   linetype specifications, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
 #' @export
@@ -519,10 +519,12 @@ scale_shape_stata <- function(..., unicode = FALSE) {
 #' @example inst/examples/ex-stata_linetype_pal.R
 stata_linetype_pal <- function() {
   values <- ggthemes::ggthemes_data[["stata"]][["linetypes"]]
+  max_n <- length(values)
   f <- function(n) {
+    check_pal_n(n, max_n)
     values[seq_len(n)]
   }
-  attr(f, "max_n") <- length(values)
+  attr(f, "max_n") <- max_n
   f
 }
 
@@ -532,7 +534,7 @@ stata_linetype_pal <- function() {
 #'
 #' @inheritParams ggplot2::scale_x_discrete
 #' @family linetype stata
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_linetype_stata.R
 scale_linetype_stata <- function(...) {
@@ -582,7 +584,7 @@ stata_linewidths <-
     thick = 0.8,
     thin = 0.2,
     vthick = 1.4,
-    thin = 0.15,
+    vthin = 0.15,
     vvthick = 2.6,
     vvthin = 0.01,
     vvvthick = 4.2,

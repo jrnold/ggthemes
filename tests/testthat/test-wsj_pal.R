@@ -28,3 +28,7 @@ test_that("scale_fill_wsj works", {
 test_that("theme_wsj draws correctly", {
   expect_doppelganger("theme_wsj", theme_test_plot() + theme_wsj())
 })
+
+test_that("theme_wsj() rejects an unknown color", {
+  expect_snapshot(theme_wsj(color = "purple"), error = TRUE)
+})

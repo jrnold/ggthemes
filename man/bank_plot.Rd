@@ -7,7 +7,7 @@
 bank_plot(
   plot,
   method = c("ms", "as", "ao", "was"),
-  cull = FALSE,
+  cull = TRUE,
   layer = 1,
   ...
 )

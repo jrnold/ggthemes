@@ -9,11 +9,11 @@
 \alias{scale_fill_economist_ordinal}
 \title{Economist sequential color scales}
 \usage{
-scale_colour_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_colour_economist_c(hue = "blue", ..., guide = "colourbar")
 
-scale_color_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_color_economist_c(hue = "blue", ..., guide = "colourbar")
 
-scale_fill_economist_c(hue = "blue", guide = "colourbar", ...)
+scale_fill_economist_c(hue = "blue", ..., guide = "colourbar")
 
 scale_colour_economist_ordinal(hue = "blue", ...)
 
@@ -22,14 +22,14 @@ scale_color_economist_ordinal(hue = "blue", ...)
 scale_fill_economist_ordinal(hue = "blue", ...)
 }
 \arguments{
-\item{hue}{\code{character}. One of \code{"blue"}, \code{"cyan"},
-\code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
+\item{hue}{A string, the hue of the color scale. One of \code{"blue"} (the
+default), \code{"cyan"}, \code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
 \code{"gold"}, \code{"gray"}, or \code{"red"}.}
 
-\item{guide}{Type of legend. Use \code{"colourbar"} for continuous
-color bars, or \code{"legend"} for discrete color legends.}
-
 \item{...}{Other arguments passed on to the underlying scale.}
+
+\item{guide}{A function used to create a guide or its name. See
+\code{\link[ggplot2:guides]{guides()}} for more information.}
 }
 \value{
 A ggplot2 scale object.

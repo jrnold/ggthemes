@@ -17,18 +17,15 @@ A ggplot2 theme object (class \code{theme}).
 \description{
 Theme with white panel and gray background.
 }
-\section{Details}{
-
-
-This theme inverts the colors in the \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}}, a
+\details{
+This theme inverts the colors of \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}}, with a
 white panel and a light gray area around it. This keeps a white
-background for the color scales like \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}. But
+background for the color scales, like \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}. But
 by using a gray background, the plot is closer to the
 typographical color of the document, which is the motivation for
 using a gray panel in \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}}. This is
 similar to the style of plots in Stata and Tableau.
 }
-
 \examples{
 library("ggplot2")
 
@@ -45,6 +42,7 @@ Other themes:
 \code{\link[=theme_base]{theme_base()}},
 \code{\link[=theme_clean]{theme_clean()}},
 \code{\link[=theme_foundation]{theme_foundation()}},
+\code{\link[=theme_map]{theme_map()}},
 \code{\link[=theme_par]{theme_par()}},
 \code{\link[=theme_solid]{theme_solid()}}
 }

@@ -37,18 +37,19 @@
 #' @param outlier.shape Shape of outlying points.
 #' @param outlier.size Size of outlying points.
 #' @param outlier.stroke Stroke width of outlying points.
-#' @param median.type If `'point'`, then the median is represented by a
-#'   point, and the interquartile range by a gap in the line. If
-#'   `median.type='line'`, then the interquartile range is represented by
-#'   a line, possibly offset, and the median by a gap in the line.
-#' @param whisker.type If `'line'`, then whiskers are represented by lines.
-#'    If `'point'`, then whiskers are represented by points at
-#'    `ymin` and `ymax`.
+#' @param median.type How to represent the median, one of:
+#'   * `"point"`, the default: the median is a point, and the interquartile
+#'     range is a gap in the line.
+#'   * `"line"`: the interquartile range is a line, possibly offset, and the
+#'     median is a gap in the line.
+#' @param whisker.type How to represent the whiskers, one of:
+#'   * `"line"`, the default: whiskers are lines.
+#'   * `"point"`: whiskers are points at `ymin` and `ymax`.
 #' @param voffset Controls the size of the gap in the line representing the
-#'    median when `median.type = 'line'`. This is a fraction of the range
+#'    median when `median.type = "line"`. This is a fraction of the range
 #'    of `y`.
 #' @param hoffset Controls how much the interquartile line is offset from the
-#'    whiskers when `median.type = 'line'`. This is a fraction of the
+#'    whiskers when `median.type = "line"`. This is a fraction of the
 #'    range of `x`.
 #' @param  stat The statistical transformation to use on the data for this
 #'    layer, as a string. The default (`stat = 'fivenumber'`) calls
@@ -59,7 +60,7 @@
 #'    away from the hinges (i.e., the first and third quartiles).
 #' @family geom tufte
 #' @family tufte
-#' @return A ggplot2 layer.
+#' @returns A ggplot2 layer.
 #' @export
 #'
 #' @example inst/examples/ex-geom_tufteboxplot.R
@@ -136,7 +137,9 @@ GeomTufteboxplot <- # nolint: object_name_linter
       varwidth = FALSE,
       median.type = c("point", "line"), # nolint: object_name_linter
       whisker.type = c("line", "point"), # nolint: object_name_linter
-      hoffset = 0.01,
+      # Not read here: setup_data() scales them into `data`. They are formals so
+      # ggplot2 treats them as geom parameters, so keep the constructor's defaults.
+      hoffset = 0.005,
       voffset = 0.01
     ) {
       median.type <- match.arg(median.type) # nolint: object_name_linter
@@ -206,7 +209,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
         )
       }
 
-      if (!is.null(data$outliers) && length(data$outliers[[1]] >= 1)) {
+      if (!is.null(data$outliers) && length(data$outliers[[1]]) >= 1) {
         outliers <- data.frame(
           y = data$outliers[[1]],
           x = data$x[1],

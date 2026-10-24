@@ -5,8 +5,9 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @example inst/examples/ex-theme_map.R
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
+#' @family themes
 #' @importFrom ggplot2 %+replace%
 theme_map <- function(base_size = 9, base_family = "") {
   theme_bw(base_size = base_size, base_family = base_family) %+replace%

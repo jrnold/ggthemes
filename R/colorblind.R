@@ -11,7 +11,7 @@
 #'
 #' <https://jfly.iam.u-tokyo.ac.jp/color/>
 #'
-#' @return `colorblind_pal()` and `colourblind_pal()` return a palette function that takes the number of
+#' @returns `colorblind_pal()` and `colourblind_pal()` return a palette function that takes the number of
 #'   colors `n` and returns a character vector of `n` hex colors. The `scale_*()` functions
 #'   return a ggplot2 scale object.
 #' @export
@@ -43,9 +43,9 @@ scale_colour_colourblind <- function(black = TRUE, ...) {
 
 #' @rdname colorblind
 #' @description
-#' `r lifecycle::badge("deprecated")` `scale_colour_colorblind()` mixes British
-#' and American spelling; use `scale_colour_colourblind()` or
-#' `scale_color_colorblind()` instead.
+#' `r lifecycle::badge("deprecated")` `scale_colour_colorblind()` is
+#' deprecated in favor of `scale_colour_colourblind()` and
+#' `scale_color_colorblind()`.
 #'
 #' @export
 #' @importFrom lifecycle deprecate_soft

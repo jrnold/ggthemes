@@ -1,84 +1,133 @@
 # ggthemes (development version)
 
-- With ggplot2 4.0.0 or later, `theme_par()` also sets the defaults for
-  geoms from `par()`: colour from `col`, background from `bg`, line width and
-  type from `lwd` and `lty`, point shape from `pch`, and point and text size
-  from `cex` and `ps`. Lines join with `par("ljoin")`. Discrete scales use the
-  current `palette()`, recycled as base graphics does, and continuous scales
-  use `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of `image()`.
+## Breaking changes
 
 - `theme_base()` now defaults to `base_size = 12`, the default text size of
-  base graphics, instead of 16, and draws tick labels, strip text, legend
-  text and captions at full size, as base graphics draws axis labels. Pass
-  `base_size = 16` for text close to the old size. Its example no longer
-  implies that the theme follows `par()`.
+  base graphics, instead of 16, and draws tick labels, strip text, legend text
+  and captions at full size, as base graphics draws axis labels. Use
+  `base_size = 16` for text close to the previous size (#280).
 
-- `theme_par()` follows base graphics more closely:
+- `theme_economist()`, `theme_economist_white()`, `economist_pal()`,
+  `scale_colour_economist()` and `scale_fill_economist()` draw the classic
+  Economist style again, as they did before 7.0.0, so code written for them
+  looks as it always did. 7.0.0 had replaced that style with the paper's 2017
+  design, so plots made with these functions changed when you updated. In
+  detail:
 
-  - `par("las")` rotates the tick labels, as in base graphics, instead of the
-    axis titles, which now stay parallel to their axis.
-  - `par("adj")` sets only the horizontal justification of titles; it no
-    longer moves all text vertically or justifies the tick labels.
-  - The panel box uses `par("fg")` rather than the plotting colour
-    `par("col")`.
-  - `par("font") = 5` (the symbol font) warns and uses a plain face instead of
-    failing.
-  - `par()` is read once per call instead of once per element.
-  - Newly supported parameters: `cex` (the default `base_size` is now
-    `par("ps") * par("cex")`), `lwd`, `bty`, `ann`, `mgp`, `mex` and `oma`.
-    Margins are now sized the way base graphics sizes them, so they are no
-    longer far wider than in a base plot.
-  - A `tck` of 0.5 or more draws grid lines, and smaller values are converted
-    to tick lengths using the plot region size.
-  - The `sub` parameters also style `plot.subtitle` and `plot.caption`.
+  - `theme_economist_white()`, the `dkpanel` argument of `theme_economist()`
+    and the `fill` argument of `economist_pal()` work again, without the
+    deprecation warnings 7.0.0 added.
+  - `ggthemes_data$economist` has its classic `fg` and `bg` tables back, and
+    the `main` and `text` tables added in 7.0.0 are removed, so code that
+    reads those two tables must change.
+  - `economist_seq_pal()`, `economist_gradient_pal()` and the
+    `scale_*_economist_c()` and `scale_*_economist_ordinal()` scales, new in
+    7.0.0, are unchanged (#266).
+
+- `bank_slopes()` and `bank_plot()` now default to `cull = TRUE`, matching
+  `bank_slopes_multiscale()` and `bank_plot_multiscale()`, so segments with a
+  slope of 0 or `Inf` no longer count toward the aspect ratio. Results change
+  for data that has such segments; use `cull = FALSE` for the previous ones
+  (#274).
+
+- `scale_colour_tableau()`, `scale_fill_tableau()`,
+  `scale_colour_economist_c()`, `scale_fill_economist_c()` and
+  `scale_shape_tremmel()` now take `...` right after their first argument, as
+  ggplot2's scales do. `type`, `direction`, `guide` and `alt` must be named,
+  and passing them by position is an error that says so (#275).
+
+## New features
+
+- With ggplot2 4.0.0 or later, `theme_par()` also sets the defaults for geoms
+  from `par()`: colour from `col`, background from `bg`, line width and type
+  from `lwd` and `lty`, point shape from `pch`, and point and text size from
+  `cex` and `ps`. Lines join with `par("ljoin")`. Discrete scales use the
+  current `palette()`, recycled as base graphics does, and continuous scales use
+  `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of `image()`
+  (#281).
 
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so
-  every exported `color` function now also has a `colour` spelling.
+  every exported `color` function now also has a `colour` spelling (#269).
+
+- New "Package data" article on the package website draws every color, shape
+  and linetype in `ggthemes_data`, each labeled with the expression that
+  returns it, and the `ggthemes_data` help page gains examples of reading it
+  (#265).
+
+## Minor improvements and fixes
+
+- `theme_par()` now follows base graphics more closely (#280):
+
+  - `par("las")` rotates the tick labels instead of the axis titles, which stay
+    parallel to their axis.
+  - `par("adj")` sets only the horizontal justification of titles; it no
+    longer moves all text vertically.
+  - The panel box uses `par("fg")` instead of the plotting colour `par("col")`.
+  - The symbol font, `font = 5`, warns and uses a plain face instead of failing.
+  - It now uses `cex` (the default `base_size` is `par("ps") * par("cex")`),
+    `lwd`, `bty`, `ann`, `mgp`, `mex` and `oma`, and sizes margins as base
+    graphics does, so they are no longer far wider than in a base plot.
+  - A `tck` of 0.5 or more draws grid lines, and smaller values set the tick
+    length from the plot region size.
+  - The `sub` parameters also style `plot.subtitle` and `plot.caption`.
+
+- The deprecation warnings from `theme_hc(bgcolor)`, `theme_pander(ff)`,
+  `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"` and
+  `"Classic Area-Brown"` now come from lifecycle, so they name the release
+  that deprecated them (#273).
+
+- `bank_plot()` and `bank_plot_multiscale()` now report a `plot` that is not a
+  ggplot object, and a `layer` that is not a whole number within range, with
+  errors that name the argument (#274).
+
+- `economist_pal(n = 0)` no longer fails with "object 'i' not found"; it now
+  returns `character(0)` (#266).
+
+- `few_pal()`'s `palette` argument now lists its options in the help page, and
+  the deprecation badges in `?circlefill_shape_pal`, `?colorblind` and
+  `?scale_shape_circlefill` now render instead of showing raw
+  `` `r lifecycle::badge()` `` text (#268).
 
 - `scale_fill_colorblind()` and `scale_fill_colourblind()` are no longer
   deprecated. Only `scale_colour_colorblind()`, which mixes spellings, remains
   deprecated, and its warning now points to `scale_colour_colourblind()`
-  instead of wrongly naming `scale_color_colorblind()` as deprecated.
+  instead of wrongly naming `scale_color_colorblind()` as deprecated (#269).
 
-- Documentation is now written in roxygen markdown. This fixes deprecation
-  badges that showed as raw `` `r lifecycle::badge()` `` text in
-  `?circlefill_shape_pal`, `?colorblind` and `?scale_shape_circlefill`, and
-  `few_pal()`'s `palette` argument now lists its options, which were missing.
-
-- Fix `scale_linetype_stata()` and `stata_linetype_pal()` failing with
+- `scale_linetype_stata()` and `stata_linetype_pal()` no longer fail with
   "invalid line type" on plots with 11 or more linetypes. The eleventh,
   Stata's longdash_shortdash, was stored as `"F434343"`, which is not a valid
-  R linetype; it is now `"F434"`.
+  R linetype; it is now `"F434"` (#263).
+
+- `solarized_pal()` and `theme_wsj()` now give an error that lists the valid
+  values when `accent` or `color` is unknown. Before, `solarized_pal()` returned
+  a palette with no colors and `theme_wsj()` a theme with no background fill
+  (#272).
+
+- `stata_linetype_pal()` now warns when asked for more than its 11 linetypes
+  and errors for a negative `n`, as the other palettes do (#272).
+
+- `tableau_gradient_pal()` now gives an error that lists the valid palettes
+  when `palette` is unknown, instead of "subscript out of bounds".
+  `tableau_seq_gradient_pal()` and `tableau_div_gradient_pal()` now say so when
+  given arguments they ignore (#272).
 
 - The Tableau "Arrows" and "Thin Arrows" shape palettes in
-  `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters, so
-  they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
+  `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters,
+  so they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
   U+27A1) and "Thin Arrows" line arrows (U+2190 to U+2199) in the same eight
   directions. Three other Tableau shapes now carry the variation selector their
   `unicode` field records: the kpi check mark and multiplication sign gain the
-  text-style selector, and the weather snowman loses a stray one.
+  text-style selector, and the weather snowman loses a stray one (#264).
 
-- New "Package data" article on the package website draws every color,
-  shape and linetype in `ggthemes_data`, each labeled with the expression that
-  returns it, and the `ggthemes_data` help page gains examples of reading it.
+- `theme_economist()` now gives the panel and strips the blue-gray fill the
+  theme intends. It asked for a color the data never defined, so their fill was
+  `NA` and the plot background showed through (#266).
 
-- BREAKING CHANGE: `theme_economist()`, `theme_economist_white()`,
-  `economist_pal()`, `scale_colour_economist()` and `scale_fill_economist()`
-  draw the classic Economist style again, as they did before 7.0.0, so code
-  written for them looks as it always did. 7.0.0 had replaced that style with
-  the paper's 2017 design. `theme_economist_white()`, the `dkpanel` argument
-  of `theme_economist()` and the `fill` argument of `economist_pal()` work
-  again, without the deprecation warnings 7.0.0 added. `ggthemes_data$economist` has its classic `fg` and
-  `bg` tables back; the `main` and `text` tables added in 7.0.0 are removed.
-  `economist_seq_pal()`, `economist_gradient_pal()` and the
-  `scale_*_economist_c()` and `scale_*_economist_ordinal()` scales, new in
-  7.0.0, are unchanged.
-- Fix `economist_pal()` failing with "object 'i' not found" for `n = 0`; it
-  now returns `character(0)`.
-- `theme_economist()` fills the panel and strips with its blue-gray ground.
-  It asked for a color the data never defined, so their fill was `NA`; the
-  plot background showing through drew the same color. It also now leaves a
-  margin between the title and subtitle, which ran together.
+- `theme_economist()` now leaves a margin between the title and subtitle, which
+  ran together (#266).
+
+- `theme_solarized_2()` now colors its axis lines. A typo in the color name left
+  them unset (#272).
 
 # ggthemes 7.0.0
 

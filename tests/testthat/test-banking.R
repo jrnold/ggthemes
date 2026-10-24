@@ -152,3 +152,19 @@ test_that("bank_plot errors when the layer has no x/y columns", {
     error = TRUE
   )
 })
+
+test_that("bank_slopes() and bank_plot() cull slopeless segments by default", {
+  x <- c(1, 2, 3, 4, 5)
+  y <- c(1, 1, 1, 2, 4)
+  expect_equal(bank_slopes(x, y), bank_slopes(x, y, cull = TRUE))
+  expect_false(isTRUE(all.equal(bank_slopes(x, y), bank_slopes(x, y, cull = FALSE))))
+
+  p <- ggplot2::ggplot(data.frame(x = x, y = y), ggplot2::aes(x, y)) + ggplot2::geom_line()
+  expect_equal(bank_plot(p)$coordinates$ratio, bank_slopes(x, y, cull = TRUE))
+})
+
+test_that("bank_plot() requires a ggplot and a whole-number layer", {
+  p <- ggplot2::ggplot(data.frame(x = 1:3, y = c(1, 3, 2)), ggplot2::aes(x, y)) + ggplot2::geom_line()
+  expect_snapshot(bank_plot("not a plot"), error = TRUE)
+  expect_snapshot(bank_plot(p, layer = 1.5), error = TRUE)
+})

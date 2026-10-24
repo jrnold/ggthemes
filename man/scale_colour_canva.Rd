@@ -32,3 +32,8 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +
   scale_colour_canva()
 }
+\seealso{
+Other color canva:
+\code{\link[=canva_pal]{canva_pal()}}
+}
+\concept{color canva}
