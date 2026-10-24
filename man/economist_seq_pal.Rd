@@ -10,8 +10,8 @@ economist_seq_pal(hue = "blue")
 economist_gradient_pal(hue = "blue")
 }
 \arguments{
-\item{hue}{\code{character}. One of \code{"blue"}, \code{"cyan"},
-\code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
+\item{hue}{A string, the hue of the color scale. One of \code{"blue"} (the
+default), \code{"cyan"}, \code{"green"}, \code{"yellow"}, \code{"olive"}, \code{"purple"},
 \code{"gold"}, \code{"gray"}, or \code{"red"}.}
 }
 \value{

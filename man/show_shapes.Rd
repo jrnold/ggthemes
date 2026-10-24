@@ -10,11 +10,12 @@ show_shapes(shapes, labels = TRUE)
 \item{shapes}{A numeric or character vector of shapes. See
 \code{\link[graphics:par]{graphics::par()}}.}
 
-\item{labels}{Include the plotting character value of the symbol.}
+\item{labels}{If \code{TRUE} (the default), label each symbol with its plotting
+character value.}
 }
 \value{
-This function called for the side effect of creating a plot.
-It returns \code{shapes}.
+Called for its side effect of creating a plot; returns \code{shapes}
+invisibly.
 }
 \description{
 A quick and dirty way to show shapes.

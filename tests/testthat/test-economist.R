@@ -202,3 +202,9 @@ test_that("theme_economist_white(gray_bg = FALSE) draws correctly", {
     theme_test_plot() + theme_economist_white(gray_bg = FALSE)
   )
 })
+
+test_that("scale_*_economist_c() takes guide by name only", {
+  expect_s3_class(scale_colour_economist_c("blue", guide = "none"), "ScaleContinuous")
+  expect_snapshot(scale_colour_economist_c("blue", "none"), error = TRUE)
+  expect_snapshot(scale_fill_economist_c("blue", "none"), error = TRUE)
+})

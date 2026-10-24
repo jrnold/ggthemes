@@ -30,3 +30,13 @@ if (requireNamespace("maps", quietly = TRUE) && requireNamespace("mapproj", quie
   gg
 }
 }
+\seealso{
+Other themes:
+\code{\link[=theme_base]{theme_base()}},
+\code{\link[=theme_clean]{theme_clean()}},
+\code{\link[=theme_foundation]{theme_foundation()}},
+\code{\link[=theme_igray]{theme_igray()}},
+\code{\link[=theme_par]{theme_par()}},
+\code{\link[=theme_solid]{theme_solid()}}
+}
+\concept{themes}

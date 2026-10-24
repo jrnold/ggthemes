@@ -7,7 +7,7 @@
 #'    a warning.  If `TRUE` silently removes missing values.
 #' @param probs Quantiles to use for the five number summary.
 #' @inheritParams ggplot2::stat_identity
-#' @return A data frame with additional columns:
+#' @returns A data frame with additional columns:
 #'   - `width`: width of the box plot.
 #'   - `min`: minimum.
 #'   - `lower`: lower hinge, the 25% quantile.

@@ -7,16 +7,15 @@
 solarized_rebase(light = TRUE)
 }
 \arguments{
-\item{light}{\code{logical} Light theme?
-
-Creates the base colors for a light or dark solarized theme. See
-\url{https://ethanschoonover.com/solarized/}. This function is a port
-of the CSS style example.}
+\item{light}{If \code{TRUE} (the default), use the light theme; otherwise, use
+the dark theme.}
 }
 \value{
 A named character vector of eight hex colors, named \code{rebase03} to \code{rebase3}.
 }
 \description{
-Base colors for Solarized light and dark themes
+Creates the base colors for a light or dark solarized theme. See
+\url{https://ethanschoonover.com/solarized/}. This function is a port
+of the CSS style example.
 }
 \keyword{internal}

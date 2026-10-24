@@ -1,4 +1,4 @@
-#' Foundation Theme
+#' Foundation theme
 #'
 #' This theme is designed to be a foundation from which to build new
 #' themes, and not meant to be used directly. `theme_foundation()`
@@ -22,7 +22,7 @@
 #' @inheritParams ggplot2::theme_grey
 #'
 #' @family themes
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @importFrom ggplot2 theme_grey
 #' @example inst/examples/ex-theme_foundation.R

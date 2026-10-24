@@ -18,12 +18,18 @@ tableau_colour_pal(
 )
 }
 \arguments{
-\item{palette}{Palette name. See Details for available palettes.}
+\item{palette}{A string, the palette name. See Details for available
+palettes.}
 
-\item{type}{Type of palette. One of \code{"regular"}, \code{"ordered-diverging"}, or \code{"ordered-sequential"}.}
+\item{type}{The type of palette, one of:
+\itemize{
+\item \code{"regular"}, the default: discrete, qualitative palettes.
+\item \code{"ordered-sequential"}: sequential palettes.
+\item \code{"ordered-diverging"}: diverging palettes.
+}}
 
-\item{direction}{If 1, the default, then use the original order of
-colors. If -1, then reverse the order.}
+\item{direction}{If \code{1} (the default), use the original order of
+colors. If \code{-1}, reverse the order.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}

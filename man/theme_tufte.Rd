@@ -11,7 +11,7 @@ theme_tufte(base_size = 11, base_family = "serif", ticks = TRUE)
 
 \item{base_family}{base font family}
 
-\item{ticks}{\code{logical} Show axis ticks?}
+\item{ticks}{If \code{TRUE} (the default), show axis ticks.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
@@ -29,7 +29,7 @@ for labels in 'The Visual Display of Quantitative Information'.
 The serif font used by Tufte in his books is a variant of Bembo,
 while the sans serif font is Gill Sans. If these fonts are
 installed on your system, then you can use them with the package
-\strong{extrafont}.
+extrafont.
 }
 \examples{
 library("ggplot2")

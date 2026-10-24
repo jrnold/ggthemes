@@ -60,7 +60,7 @@ hc_theme_styles <- list(
   )
 )
 
-#' Highcharts Theme
+#' Highcharts theme
 #'
 #' Themes based on [Highcharts](https://www.highcharts.com/) plots.
 #'
@@ -84,19 +84,19 @@ hc_theme_styles <- list(
 #' @inheritParams ggplot2::theme_bw
 #' @param style The Highcharts theme to use. One of
 #'   `r ggthemes:::md_optlist(names(ggthemes:::hc_theme_styles))`.
-#' @param bgcolor Deprecated.
+#' @param bgcolor `r lifecycle::badge("deprecated")` Use `style` instead.
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 theme_hc <- function(
   base_size = 12,
   base_family = "sans",
   style = c("default", "default_dark", "darkunica", "grid_light", "sand_signika"),
-  bgcolor = NULL
+  bgcolor = lifecycle::deprecated()
 ) {
-  if (!is.null(bgcolor)) {
-    cli::cli_warn("{.arg bgcolor} is deprecated. Use {.arg style} instead.")
+  if (lifecycle::is_present(bgcolor)) {
+    lifecycle::deprecate_warn("4.2.0", "theme_hc(bgcolor)", "theme_hc(style)")
     style <- bgcolor
   }
   style <- match.arg(style)
@@ -163,11 +163,11 @@ theme_hc <- function(
 #'
 #' Note that `"avocado"` and `"sunset"` have only four colors.
 #'
-#' @param palette `character` The name of the Highcharts palette to use.
+#' @param palette A string, the name of the Highcharts palette to use.
 #'   One of `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$hc))`.
 #'
 #' @family color hc
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-hc_pal.R
@@ -196,7 +196,7 @@ hc_pal <- function(palette = "default") {
 #' @inheritParams hc_pal
 #' @family color hc
 #' @rdname scale_hc
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_hc.R
 scale_colour_hc <- function(palette = "default", ...) {

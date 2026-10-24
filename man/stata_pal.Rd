@@ -7,11 +7,10 @@
 stata_pal(scheme = NULL)
 }
 \arguments{
-\item{scheme}{\code{character}. One of \code{"s2color"},
-\code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or
-\code{"economist"}. If \code{NULL}, the default, \code{"s2color"} is used
-and a deprecation message is issued; this default becomes \code{"stcolor"}
-in ggthemes 8.0.0.}
+\item{scheme}{A string, the Stata scheme. One of: \code{"s2color"},
+\code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or \code{"economist"}.
+If \code{NULL}, the default, \code{"s2color"} is used and a deprecation message is
+issued; this default becomes \code{"stcolor"} in ggthemes 8.0.0.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}

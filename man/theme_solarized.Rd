@@ -14,7 +14,8 @@ theme_solarized_2(base_size = 12, base_family = "", light = TRUE)
 
 \item{base_family}{base font family}
 
-\item{light}{\code{logical}. Light or dark theme?}
+\item{light}{If \code{TRUE} (the default), use the light theme; otherwise, use
+the dark theme.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
@@ -27,7 +28,7 @@ description of the Solarized palette.
 Plots made with this theme integrate seamlessly with the Solarized
 Beamer color theme.
 \url{https://github.com/jrnold/beamercolorthemesolarized}.
-There are two variations: \code{theme_solarized} is similar to
+There are two variations: \code{\link[=theme_solarized]{theme_solarized()}} is similar
 to \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}, while \code{theme_solarized_2()} is
 similar to \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}}.
 }

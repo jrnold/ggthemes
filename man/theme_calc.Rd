@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc.R
 \name{theme_calc}
 \alias{theme_calc}
-\title{Theme Calc}
+\title{LibreOffice Calc theme}
 \usage{
 theme_calc(base_size = 10, base_family = "sans")
 }

@@ -278,3 +278,7 @@ test_that("bank_plot_multiscale errors for an out-of-range layer index", {
   expect_error(bank_plot_multiscale(p, layer = 2), regexp = "layer")
   expect_error(bank_plot_multiscale(p, layer = 0), regexp = "layer")
 })
+
+test_that("bank_plot_multiscale() requires a ggplot", {
+  expect_snapshot(bank_plot_multiscale("not a plot"), error = TRUE)
+})

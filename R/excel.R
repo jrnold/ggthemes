@@ -7,7 +7,7 @@
 #' @param line If `TRUE`, use the palette for lines and points. Otherwise,
 #'    use the palette for area.
 #' @family color excel
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @example inst/examples/ex-excel_pal.R
@@ -51,7 +51,7 @@ excel_resolve_theme <- function(theme) {
 #'   `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$excel$themes))`.
 #' @family color excel
 #' @example inst/examples/ex-excel_new_pal.R
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 excel_new_pal <- function(theme = "Office") {
@@ -74,7 +74,7 @@ excel_new_pal <- function(theme = "Office") {
 #' @inheritParams ggplot2::scale_colour_hue
 #' @family color excel
 #' @rdname scale_excel
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-theme_excel.R
 scale_fill_excel <- function(...) {
@@ -100,7 +100,7 @@ scale_color_excel <- scale_colour_excel
 #' @family color excel
 #' @rdname scale_excel_new
 #' @example inst/examples/ex-theme_excel_new.R
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 scale_colour_excel_new <- function(theme = "Office", ...) {
   discrete_scale("colour", palette = excel_new_pal(theme), ...)
@@ -124,8 +124,8 @@ scale_fill_excel_new <- function(theme = "Office", ...) {
 #' color scale.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @param horizontal `logical`. Horizontal axis lines?
-#' @return An object of class [ggplot2::theme()].
+#' @param horizontal If `TRUE` (the default), draw horizontal grid lines.
+#' @returns An object of class [ggplot2::theme()].
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel.R
@@ -173,7 +173,7 @@ theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
 #' do have it.
 #'
 #' @inheritParams ggplot2::theme_grey
-#' @return An object of class [ggplot2::theme()].
+#' @returns An object of class [ggplot2::theme()].
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel_new.R

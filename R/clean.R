@@ -1,15 +1,13 @@
-#' @title Clean ggplot theme
+#' Clean ggplot theme
 #'
-#' @description Clean ggplot theme with no panel background, black axis lines
-#'   and gray fill color for chart elements.
+#' Clean ggplot theme with no panel background, black axis lines
+#' and gray fill color for chart elements.
 #'
 #' @author Konrad Zdeb <name.surname@@me.com>
 #'
-#' @param base_size Base font size.
-#' @param base_family Base font family.
-#'
+#' @inheritParams ggplot2::theme_grey
 #' @family themes
-#' @return A ggplot2 theme object (class `theme`).
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #'
 #' @example inst/examples/ex-theme_clean.R

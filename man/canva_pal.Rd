@@ -51,3 +51,8 @@ if (require("purrr") && require("scales") && require("dplyr")) {
   show_col(canva_pal("Modern and crisp")(4))
 }
 }
+\seealso{
+Other color canva:
+\code{\link[=scale_colour_canva]{scale_colour_canva()}}
+}
+\concept{color canva}

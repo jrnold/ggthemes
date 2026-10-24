@@ -13,7 +13,7 @@
       bank_plot(p, layer = 2)
     Condition
       Error in `bank_plot()`:
-      ! `plot` only has 1 layer(s), but `layer` = 2.
+      ! `layer` must be at most 1, the number of layers in `plot`, not 2.
 
 # bank_plot errors for a non-positive layer index
 
@@ -21,7 +21,7 @@
       bank_plot(p, layer = 0)
     Condition
       Error in `bank_plot()`:
-      ! `plot` only has 1 layer(s), but `layer` = 0.
+      ! `layer` must be a whole number larger than or equal to 1, not the number 0.
 
 ---
 
@@ -29,7 +29,7 @@
       bank_plot(p, layer = -1)
     Condition
       Error in `bank_plot()`:
-      ! `plot` only has 1 layer(s), but `layer` = -1.
+      ! `layer` must be a whole number larger than or equal to 1, not the number -1.
 
 # bank_plot errors when the layer has no x/y columns
 
@@ -39,4 +39,20 @@
       Error in `check_bank_plot_data()`:
       ! The layer data is missing required column(s): x and y.
       i `bank_plot()` needs both x and y.
+
+# bank_plot() requires a ggplot and a whole-number layer
+
+    Code
+      bank_plot("not a plot")
+    Condition
+      Error in `bank_plot()`:
+      ! `plot` must be a ggplot object, not a string.
+
+---
+
+    Code
+      bank_plot(p, layer = 1.5)
+    Condition
+      Error in `bank_plot()`:
+      ! `layer` must be a whole number, not the number 1.5.
 

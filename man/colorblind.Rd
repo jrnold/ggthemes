@@ -95,9 +95,9 @@ return a ggplot2 scale object.
 \description{
 An eight-color colorblind safe qualitative discrete palette.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{scale_colour_colorblind()} mixes British
-and American spelling; use \code{scale_colour_colourblind()} or
-\code{scale_color_colorblind()} instead.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{scale_colour_colorblind()} is
+deprecated in favor of \code{scale_colour_colourblind()} and
+\code{scale_color_colorblind()}.
 }
 \examples{
 library("ggplot2")

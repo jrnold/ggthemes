@@ -58,6 +58,42 @@ check_pal_n_negative <- function(n, call = rlang::caller_env()) {
   }
 }
 
+check_ggplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::caller_env()) {
+  if (!ggplot2::is_ggplot(plot)) {
+    cli::cli_abort("{.arg {arg}} must be a ggplot object, not {.obj_type_friendly {plot}}.", call = call)
+  }
+}
+
+# `layer` indexes the built layer data, so it must be a single whole number
+# within range.
+check_layer <- function(layer, n_layers, call = rlang::caller_env()) {
+  rlang::check_number_whole(layer, min = 1, call = call)
+  if (layer > n_layers) {
+    cli::cli_abort(
+      "{.arg layer} must be at most {n_layers}, the number of layers in {.arg plot}, not {layer}.",
+      call = call
+    )
+  }
+}
+
+# Arguments after `...` used to be positional. Now that `...` comes first, an
+# old positional call would silently pass its values on as scale options (e.g.
+# `name`), so reject unnamed arguments instead.
+check_dots_named <- function(..., call = rlang::caller_env()) {
+  nms <- rlang::names2(rlang::enexprs(...))
+  if (all(nzchar(nms))) {
+    return(invisible())
+  }
+  position <- which(!nzchar(nms)) # nolint: object_usage_linter (used in the message below)
+  cli::cli_abort(
+    c(
+      "Arguments in {.arg ...} must be named.",
+      "x" = "Unnamed {cli::qty(position)}argument{?s} in position{?s} {position}."
+    ),
+    call = call
+  )
+}
+
 check_pal_n <- function(n, max_n) {
   check_pal_n_negative(n, call = rlang::caller_env())
   if (n > max_n) {

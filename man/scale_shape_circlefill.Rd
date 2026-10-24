@@ -2,7 +2,7 @@
 % Please edit documentation in R/shapes.R
 \name{scale_shape_circlefill}
 \alias{scale_shape_circlefill}
-\title{Filled Circle Shape palette (discrete)}
+\title{Filled circle shape scale (deprecated)}
 \usage{
 scale_shape_circlefill(...)
 }
@@ -72,6 +72,10 @@ A ggplot2 scale object.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This scale has no direct replacement. For circles that vary by amount of
+fill, use \code{scale_shape_tableau(palette = "proportions", unicode = TRUE)};
+see \code{\link[=scale_shape_tableau]{scale_shape_tableau()}}.
 }
 \examples{
 # Deprecated. The palette grades circles by how much of each is filled, which

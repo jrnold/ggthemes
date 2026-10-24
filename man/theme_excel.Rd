@@ -11,7 +11,7 @@ theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 
 \item{base_family}{base font family}
 
-\item{horizontal}{\code{logical}. Horizontal axis lines?}
+\item{horizontal}{If \code{TRUE} (the default), draw horizontal grid lines.}
 }
 \value{
 An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.

@@ -1,13 +1,13 @@
 #' Base colors for Solarized light and dark themes
 #'
-#' @param light `logical` Light theme?
-#'
 #' Creates the base colors for a light or dark solarized theme. See
 #' <https://ethanschoonover.com/solarized/>. This function is a port
 #' of the CSS style example.
 #'
+#' @param light If `TRUE` (the default), use the light theme; otherwise, use
+#'   the dark theme.
 #' @keywords internal
-#' @return A named character vector of eight hex colors, named `rebase03` to `rebase3`.
+#' @returns A named character vector of eight hex colors, named `rebase03` to `rebase3`.
 solarized_rebase <- function(light = TRUE) {
   basecolors <- deframe(ggthemes::ggthemes_data$solarized$Base)
   rebase <- if (light) {
@@ -25,7 +25,7 @@ solarized_accent_list <- function() {
 
 #' Solarized color palette (discrete)
 #'
-#' Qualitative color palate based on the Ethan Schoonover's Solarized
+#' Qualitative color palette based on Ethan Schoonover's Solarized
 #' palette, <https://ethanschoonover.com/solarized/>. This palette supports
 #' up to seven values.
 #'
@@ -35,13 +35,17 @@ solarized_accent_list <- function() {
 #' the other colors are the combination of colors that maximizes the
 #' total Euclidean distance between colors in L*a*b space.
 #'
-#' @param accent `character` Starting color.
-#' @return A palette function. It takes the number of colors `n` and returns a character vector of `n`
+#' @param accent A string, the name of the starting color.
+#' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @family color solarized
 #' @example inst/examples/ex-solarized_pal.R
 solarized_pal <- function(accent = "blue") {
+  accents <- names(ggthemes::ggthemes_data[["solarized"]][["palettes"]])
+  if (!is.character(accent) || length(accent) != 1L || !accent %in% accents) {
+    cli::cli_abort("{.arg accent} must be one of {.val {accents}}, not {.val {accent}}.")
+  }
   palettes <- ggthemes::ggthemes_data[["solarized"]][["palettes"]][[accent]]
   max_n <- length(palettes)
   f <- function(n) {
@@ -66,7 +70,7 @@ solarized_pal <- function(accent = "blue") {
 #' @inheritParams solarized_pal
 #' @rdname scale_solarized
 #' @family color solarized
-#' @return A ggplot2 scale object.
+#' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_solarized.R
 scale_fill_solarized <- function(accent = "blue", ...) {
@@ -90,14 +94,15 @@ scale_color_solarized <- scale_colour_solarized
 #' Plots made with this theme integrate seamlessly with the Solarized
 #' Beamer color theme.
 #' <https://github.com/jrnold/beamercolorthemesolarized>.
-#' There are two variations: `theme_solarized` is similar to
+#' There are two variations: [theme_solarized()] is similar
 #' to [ggplot2::theme_bw()], while `theme_solarized_2()` is
 #' similar to [ggplot2::theme_gray()].
 #'
 #' @rdname theme_solarized
 #' @inheritParams ggplot2::theme_grey
-#' @param light `logical`. Light or dark theme?
-#' @return A ggplot2 theme object (class `theme`).
+#' @param light If `TRUE` (the default), use the light theme; otherwise, use
+#'   the dark theme.
+#' @returns A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes solarized
 #' @example inst/examples/ex-theme_solarized.R
@@ -151,7 +156,7 @@ theme_solarized_2 <- function(base_size = 12, base_family = "", light = TRUE) {
       ),
       axis.ticks = element_line(color = rebase["rebase01"]),
       axis.line = element_line(
-        color = rebase["reabase01"],
+        color = rebase["rebase01"],
         linetype = 1
       ),
       axis.title.y = element_text(angle = 90),
