@@ -2,12 +2,17 @@
 #'
 #' Theme similar to the default settings of the "base" R graphics.
 #'
+#' The theme is fixed: it does not change with [graphics::par()]. Use
+#' [theme_par()] for a theme that follows the current `par()` values.
+#'
+#' @param base_size Base font size, in points. The default, 12, is the
+#'   default text size of base graphics devices.
 #' @inheritParams ggplot2::theme_bw
 #' @return A ggplot2 theme object (class `theme`).
 #' @export
 #' @family themes
 #' @example inst/examples/ex-theme_base.R
-theme_base <- function(base_size = 16, base_family = "") {
+theme_base <- function(base_size = 12, base_family = "") {
   theme_foundation() +
     theme(
       line = element_line(
@@ -34,7 +39,12 @@ theme_base <- function(base_size = 16, base_family = "") {
       legend.key = element_rect(colour = NA),
       title = element_text(size = rel(1)),
       plot.title = element_text(size = rel(1.2), face = "bold"),
-      strip.text = element_text(),
+      # Base graphics draws axis labels and other text at full size
+      # (`cex.axis = 1`), where ggplot2 shrinks them to 0.8.
+      strip.text = element_text(size = rel(1)),
+      axis.text = element_text(size = rel(1)),
+      legend.text = element_text(size = rel(1)),
+      plot.caption = element_text(size = rel(1)),
       axis.ticks.length = unit(0.5, "lines")
     )
   # TODO: get margins right

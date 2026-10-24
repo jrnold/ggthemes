@@ -4,10 +4,11 @@
 \alias{theme_base}
 \title{Theme Base}
 \usage{
-theme_base(base_size = 16, base_family = "")
+theme_base(base_size = 12, base_family = "")
 }
 \arguments{
-\item{base_size}{base font size, given in pts.}
+\item{base_size}{Base font size, in points. The default, 12, is the
+default text size of base graphics devices.}
 
 \item{base_family}{base font family}
 }
@@ -16,6 +17,10 @@ A ggplot2 theme object (class \code{theme}).
 }
 \description{
 Theme similar to the default settings of the "base" R graphics.
+}
+\details{
+The theme is fixed: it does not change with \code{\link[graphics:par]{graphics::par()}}. Use
+\code{\link[=theme_par]{theme_par()}} for a theme that follows the current \code{par()} values.
 }
 \examples{
 library("ggplot2")
@@ -28,9 +33,9 @@ p <- ggplot(mtcars) +
   )) +
   facet_wrap(~am)
 p + theme_base()
-# Change values of par
+# theme_base() is fixed; use theme_par() to follow the current par() values
 old_par <- par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
-p + theme_base()
+p + theme_par()
 par(old_par)
 }
 \seealso{

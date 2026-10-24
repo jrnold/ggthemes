@@ -8,7 +8,7 @@ p <- ggplot(mtcars) +
   )) +
   facet_wrap(~am)
 p + theme_base()
-# Change values of par
+# theme_base() is fixed; use theme_par() to follow the current par() values
 old_par <- par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
-p + theme_base()
+p + theme_par()
 par(old_par)
