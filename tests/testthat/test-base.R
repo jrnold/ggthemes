@@ -114,6 +114,42 @@ test_that("theme_par converts tck and tcl to tick lengths", {
   })
 })
 
+test_that("theme_par sets geom defaults from par", {
+  skip_if_not_installed("ggplot2", "4.0.0")
+  skip_if_not_installed("withr")
+  withr::with_par(list(col = "red", bg = "gray90", lwd = 2, lty = "dashed", pch = 19, ljoin = "mitre"), {
+    thm <- theme_par()
+    expect_equal(thm$geom@ink, "red")
+    expect_equal(thm$geom@paper, "gray90")
+    expect_equal(thm$geom@linewidth, 2 / ggplot2::.pt)
+    expect_equal(thm$geom@linetype, "dashed")
+    expect_equal(thm$geom@pointshape, 19)
+    expect_equal(thm$line$linejoin, "mitre")
+  })
+})
+
+test_that("theme_par uses palette() for discrete scales, recycled", {
+  skip_if_not_installed("ggplot2", "4.0.0")
+  skip_if_not_installed("withr")
+  old <- grDevices::palette("Okabe-Ito")
+  withr::defer(grDevices::palette(old))
+  pal <- theme_par()$palette.colour.discrete
+  cols <- grDevices::palette()
+  expect_equal(pal(3), cols[1:3])
+  expect_equal(pal(length(cols) + 1), c(cols, cols[1]))
+
+  d <- data.frame(x = 1:3, y = 1:3, g = c("a", "b", "c"))
+  p <- ggplot2::ggplot(d, ggplot2::aes(x, y, colour = g)) + ggplot2::geom_point() + theme_par()
+  expect_equal(ggplot2::ggplot_build(p)$data[[1]]$colour, cols[1:3])
+})
+
+test_that("theme_par uses the image() colours for continuous scales", {
+  skip_if_not_installed("ggplot2", "4.0.0")
+  thm <- theme_par()
+  expect_equal(thm$palette.fill.continuous, grDevices::hcl.colors(12, "YlOrRd", rev = TRUE))
+  expect_equal(thm$palette.colour.continuous, thm$palette.fill.continuous)
+})
+
 test_that("theme_par recognizes xaxt", {
   skip_if_not_installed("withr")
   withr::with_par(list(xaxt = "n"), {

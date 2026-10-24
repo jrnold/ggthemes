@@ -28,7 +28,8 @@ Currently this theme uses the values of the parameters:
 \code{"col.main"}, \code{"col.sub"}, \code{"family"}, \code{"fg"}, \code{"font"}, \code{"font.axis"},
 \code{"font.lab"}, \code{"font.main"}, \code{"font.sub"}, \code{"las"}, \code{"lend"}, \code{"lheight"},
 \code{"lty"}, \code{"lwd"}, \code{"mar"}, \code{"mex"}, \code{"mgp"}, \code{"oma"}, \code{"pin"}, \code{"ps"},
-\code{"tck"}, \code{"tcl"}, \code{"xaxt"}, \code{"yaxt"}.
+\code{"tck"}, \code{"tcl"}, \code{"xaxt"}, \code{"yaxt"}, and with ggplot2 4.0.0 or later also
+\code{"col"}, \code{"ljoin"} and \code{"pch"}.
 
 The \code{"sub"} parameters style \code{plot.subtitle}, \code{plot.caption} and
 \code{strip.text}. Box types (\code{"bty"}) other than \code{"o"}, \code{"l"} and \code{"n"} are
@@ -41,6 +42,14 @@ smaller \code{tck} is converted using the current plot region size, \code{"pin"}
 This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.
+
+With ggplot2 4.0.0 or later, the theme also sets the defaults for geoms,
+from \code{"bg"}, \code{"cex"}, \code{"cin"}, \code{"col"}, \code{"lty"}, \code{"lwd"}, \code{"pch"} and \code{"ps"}, joins
+lines with \code{"ljoin"}, and sets the default palettes. Discrete scales use the
+current \code{\link[grDevices:palette]{grDevices::palette()}}, recycled as base graphics does when there
+are more groups than colours. Continuous scales use
+\code{hcl.colors(12, "YlOrRd", rev = TRUE)}, the default colours of
+\code{\link[graphics:image]{graphics::image()}} and \code{\link[graphics:filled.contour]{graphics::filled.contour()}}.
 
 Like \code{\link[graphics:par]{graphics::par()}} itself, \code{theme_par()} opens a graphics device if
 none is open, because the parameter values belong to a device.

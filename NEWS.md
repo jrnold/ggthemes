@@ -1,5 +1,12 @@
 # ggthemes (development version)
 
+- With ggplot2 4.0.0 or later, `theme_par()` also sets the defaults for
+  geoms from `par()`: colour from `col`, background from `bg`, line width and
+  type from `lwd` and `lty`, point shape from `pch`, and point and text size
+  from `cex` and `ps`. Lines join with `par("ljoin")`. Discrete scales use the
+  current `palette()`, recycled as base graphics does, and continuous scales
+  use `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of `image()`.
+
 - `theme_par()` follows base graphics more closely:
 
   - `par("las")` rotates the tick labels, as in base graphics, instead of the
