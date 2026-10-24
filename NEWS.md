@@ -7,6 +7,12 @@
   current `palette()`, recycled as base graphics does, and continuous scales
   use `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of `image()`.
 
+- `theme_base()` now defaults to `base_size = 12`, the default text size of
+  base graphics, instead of 16, and draws tick labels, strip text, legend
+  text and captions at full size, as base graphics draws axis labels. Pass
+  `base_size = 16` for text close to the old size. Its example no longer
+  implies that the theme follows `par()`.
+
 - `theme_par()` follows base graphics more closely:
 
   - `par("las")` rotates the tick labels, as in base graphics, instead of the

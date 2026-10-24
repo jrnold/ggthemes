@@ -2,6 +2,12 @@ test_that("theme_base runs", {
   expect_s3_class(theme_base(), "theme")
 })
 
+test_that("theme_base uses the base graphics default text size", {
+  thm <- theme_base()
+  expect_equal(thm$text$size, 12)
+  expect_equal(ggplot2::calc_element("axis.text.x.bottom", thm)$size, 12)
+})
+
 test_that("theme_par runs", {
   expect_s3_class(theme_par(), "theme")
 })
