@@ -7,29 +7,110 @@ test_that("theme_par runs", {
 })
 
 
-test_that("theme_par recognizes las", {
+test_that("theme_par applies las to tick labels, not axis titles", {
   skip_if_not_installed("withr")
-  withr::with_par(list(las = 1), {
+  angles <- function(thm) {
+    c(
+      text_x = thm$axis.text.x$angle %||% 0,
+      text_y = thm$axis.text.y$angle %||% 0,
+      title_x = thm$axis.title.x$angle %||% 0,
+      title_y = thm$axis.title.y$angle
+    )
+  }
+  expected <- list(
+    `0` = c(text_x = 0, text_y = 90, title_x = 0, title_y = 90),
+    `1` = c(text_x = 0, text_y = 0, title_x = 0, title_y = 90),
+    `2` = c(text_x = 90, text_y = 0, title_x = 0, title_y = 90),
+    `3` = c(text_x = 90, text_y = 90, title_x = 0, title_y = 90)
+  )
+  for (las in names(expected)) {
+    withr::with_par(list(las = as.integer(las)), {
+      expect_equal(angles(theme_par()), expected[[las]], info = las)
+    })
+  }
+})
+
+test_that("theme_par uses adj for horizontal justification only", {
+  skip_if_not_installed("withr")
+  withr::with_par(list(adj = 0), {
     thm <- theme_par()
-    expect_equal(thm$axis.title.x$angle, 0)
-    expect_equal(thm$axis.title.y$angle, 0)
-  })
-  withr::with_par(list(las = 2), {
-    thm <- theme_par()
-    expect_equal(thm$axis.title.x$angle, 90)
-    expect_equal(thm$axis.title.y$angle, 0)
-  })
-  withr::with_par(list(las = 3), {
-    thm <- theme_par()
-    expect_equal(thm$axis.title.x$angle, 90)
-    expect_equal(thm$axis.title.y$angle, 90)
+    expect_equal(thm$text$vjust, 0.5)
+    expect_equal(thm$text$hjust, 0.5)
+    expect_equal(thm$plot.title$hjust, 0)
+    expect_equal(thm$axis.title$hjust, 0)
   })
 })
 
-test_that("theme_par recognizes tck", {
+test_that("theme_par draws the panel box in fg, not col", {
+  skip_if_not_installed("withr")
+  withr::with_par(list(col = "red", fg = "blue"), {
+    thm <- theme_par()
+    expect_equal(thm$panel.border$colour, "blue")
+    expect_true(is.na(thm$panel.background$colour))
+  })
+})
+
+test_that("theme_par maps bty to the panel border or axis lines", {
+  skip_if_not_installed("withr")
+  for (bty in c("l", "n")) {
+    withr::with_par(list(bty = bty), {
+      thm <- theme_par()
+      expect_s3_class(thm$panel.border, "element_blank")
+      expect_s3_class(thm$axis.line, "element_line")
+    })
+  }
+  withr::with_par(list(bty = "o"), {
+    expect_s3_class(theme_par()$panel.border, "element_rect")
+  })
+})
+
+test_that("theme_par warns for the symbol font", {
+  skip_if_not_installed("withr")
+  # expect_snapshot() draws on its own graphics device, so set par() inside it.
+  expect_snapshot(thm <- withr::with_par(list(font.main = 5), theme_par()))
+  expect_equal(thm$plot.title$face, "plain")
+})
+
+test_that("theme_par scales text by cex and lines by lwd", {
+  skip_if_not_installed("withr")
+  withr::with_par(list(ps = 10, cex = 2, lwd = 3), {
+    thm <- theme_par()
+    expect_equal(thm$text$size, 20)
+    expect_equal(thm$line$linewidth, 3 / ggplot2::.pt)
+  })
+})
+
+test_that("theme_par styles subtitles and captions from the sub parameters", {
+  skip_if_not_installed("withr")
+  withr::with_par(list(col.sub = "red", font.sub = 3), {
+    thm <- theme_par()
+    expect_equal(thm$plot.subtitle$colour, "red")
+    expect_equal(thm$plot.caption$face, "italic")
+  })
+})
+
+test_that("theme_par drops annotation when ann is FALSE", {
+  skip_if_not_installed("withr")
+  withr::with_par(list(ann = FALSE), {
+    thm <- theme_par()
+    for (i in c("plot.title", "plot.subtitle", "plot.caption", "axis.title")) {
+      expect_s3_class(thm[[i]], "element_blank")
+    }
+  })
+})
+
+test_that("theme_par converts tck and tcl to tick lengths", {
   skip_if_not_installed("withr")
   withr::with_par(list(tck = 1), {
-    expect_equal(theme_par()$axis.ticks.length, grid::unit(-1, "snpc"))
+    thm <- theme_par()
+    expect_equal(thm$axis.ticks.length, grid::unit(0, "pt"))
+    expect_s3_class(thm$panel.grid.major, "element_line")
+  })
+  withr::with_par(list(tcl = 0.5), {
+    expect_lt(as.numeric(theme_par()$axis.ticks.length), 0)
+  })
+  withr::with_par(list(tck = -0.02), {
+    expect_gt(as.numeric(theme_par()$axis.ticks.length), 0)
   })
 })
 

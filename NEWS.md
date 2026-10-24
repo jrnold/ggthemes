@@ -1,5 +1,24 @@
 # ggthemes (development version)
 
+- `theme_par()` follows base graphics more closely:
+
+  - `par("las")` rotates the tick labels, as in base graphics, instead of the
+    axis titles, which now stay parallel to their axis.
+  - `par("adj")` sets only the horizontal justification of titles; it no
+    longer moves all text vertically or justifies the tick labels.
+  - The panel box uses `par("fg")` rather than the plotting colour
+    `par("col")`.
+  - `par("font") = 5` (the symbol font) warns and uses a plain face instead of
+    failing.
+  - `par()` is read once per call instead of once per element.
+  - Newly supported parameters: `cex` (the default `base_size` is now
+    `par("ps") * par("cex")`), `lwd`, `bty`, `ann`, `mgp`, `mex` and `oma`.
+    Margins are now sized the way base graphics sizes them, so they are no
+    longer far wider than in a base plot.
+  - A `tck` of 0.5 or more draws grid lines, and smaller values are converted
+    to tick lengths using the plot region size.
+  - The `sub` parameters also style `plot.subtitle` and `plot.caption`.
+
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so
   every exported `color` function now also has a `colour` spelling.
 
