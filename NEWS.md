@@ -2,6 +2,11 @@
 
 ## Breaking changes
 
+- `theme_base()` now defaults to `base_size = 12`, the default text size of
+  base graphics, instead of 16, and draws tick labels, strip text, legend text
+  and captions at full size, as base graphics draws axis labels. Use
+  `base_size = 16` for text close to the previous size (#280).
+
 - `theme_economist()`, `theme_economist_white()`, `economist_pal()`,
   `scale_colour_economist()` and `scale_fill_economist()` draw the classic
   Economist style again, as they did before 7.0.0, so code written for them
@@ -42,6 +47,21 @@
   (#265).
 
 ## Minor improvements and fixes
+
+- `theme_par()` now follows base graphics more closely (#280):
+
+  - `par("las")` rotates the tick labels instead of the axis titles, which stay
+    parallel to their axis.
+  - `par("adj")` sets only the horizontal justification of titles; it no
+    longer moves all text vertically.
+  - The panel box uses `par("fg")` instead of the plotting colour `par("col")`.
+  - The symbol font, `font = 5`, warns and uses a plain face instead of failing.
+  - It now uses `cex` (the default `base_size` is `par("ps") * par("cex")`),
+    `lwd`, `bty`, `ann`, `mgp`, `mex` and `oma`, and sizes margins as base
+    graphics does, so they are no longer far wider than in a base plot.
+  - A `tck` of 0.5 or more draws grid lines, and smaller values set the tick
+    length from the plot region size.
+  - The `sub` parameters also style `plot.subtitle` and `plot.caption`.
 
 - The deprecation warnings from `theme_hc(bgcolor)`, `theme_pander(ff)`,
   `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"` and

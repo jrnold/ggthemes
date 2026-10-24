@@ -4,12 +4,13 @@
 \alias{theme_par}
 \title{Theme based on base graphics parameters}
 \usage{
-theme_par(base_size = par()$ps, base_family = par()$family)
+theme_par(base_size = par("ps") * par("cex"), base_family = par("family"))
 }
 \arguments{
-\item{base_size}{base font size, given in pts.}
+\item{base_size}{Base font size, in points. Defaults to the base graphics
+text size, \code{par("ps") * par("cex")}.}
 
-\item{base_family}{base font family}
+\item{base_family}{Base font family. Defaults to \code{par("family")}.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
@@ -22,15 +23,27 @@ ggplot2 themes.
 }
 \details{
 Currently this theme uses the values of the parameters:
-\code{"ps"}, \code{"family"}, \code{"fg"}, \code{"bg"}, \code{"col"}, \code{"adj"}, \code{"font"},
-\code{"cex.axis"}, \code{"cex.lab"}, \code{"cex.main"}, \code{"cex.sub"}, \code{"col.axis"},
-\code{"col.lab"}, \code{"col.main"}, \code{"col.sub"}, \code{"font.axis"}, \code{"font.lab"},
-\code{"font.main"}, \code{"font.sub"}, \code{"las"}, \code{"lend"}, \code{"lheight"}, \code{"lty"},
-\code{"mar"}, \code{"tcl"}, \code{"tck"}, \code{"xaxt"}, \code{"yaxt"}.
+\code{"adj"}, \code{"ann"}, \code{"bg"}, \code{"bty"}, \code{"cex"}, \code{"cex.axis"}, \code{"cex.lab"},
+\code{"cex.main"}, \code{"cex.sub"}, \code{"cin"}, \code{"col.axis"}, \code{"col.lab"},
+\code{"col.main"}, \code{"col.sub"}, \code{"family"}, \code{"fg"}, \code{"font"}, \code{"font.axis"},
+\code{"font.lab"}, \code{"font.main"}, \code{"font.sub"}, \code{"las"}, \code{"lend"}, \code{"lheight"},
+\code{"lty"}, \code{"lwd"}, \code{"mar"}, \code{"mex"}, \code{"mgp"}, \code{"oma"}, \code{"pin"}, \code{"ps"},
+\code{"tck"}, \code{"tcl"}, \code{"xaxt"}, \code{"yaxt"}.
+
+The \code{"sub"} parameters style \code{plot.subtitle}, \code{plot.caption} and
+\code{strip.text}. Box types (\code{"bty"}) other than \code{"o"}, \code{"l"} and \code{"n"} are
+drawn as a full box, since a theme can only draw axis lines on the sides
+that have an axis. As in base graphics, \code{bty = "n"} still draws the axis
+lines; \code{guide_axis(cap = "both")} ends them at the outermost ticks the way
+\code{\link[graphics:axis]{graphics::axis()}} does. A \code{tck} of 0.5 or more draws grid lines, and a
+smaller \code{tck} is converted using the current plot region size, \code{"pin"}.
 
 This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.
+
+Like \code{\link[graphics:par]{graphics::par()}} itself, \code{theme_par()} opens a graphics device if
+none is open, because the parameter values belong to a device.
 }
 \examples{
 library("ggplot2")
