@@ -135,6 +135,7 @@ examples <- list(
   theme_numbers = "p1 + theme_numbers() +\n  scale_colour_numbers()",
   theme_pander = "p1 + theme_pander() +\n  scale_colour_pander()",
   theme_par = "p1 + theme_par() +\n  scale_colour_colourblind()",
+  theme_selenized = "p1 + theme_selenized() +\n  scale_colour_selenized()",
   theme_solarized = "p1 + theme_solarized() +\n  scale_colour_solarized()",
   theme_solarized_2 = "p1 + theme_solarized_2() +\n  scale_colour_solarized()",
   theme_solid = "p_solid +\n  theme_solid(fill = \"#202124\") +\n  scale_colour_tableau()",

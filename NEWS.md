@@ -38,6 +38,12 @@
 
 ## New features
 
+- New `theme_selenized()`, `selenized_pal()`, `scale_colour_selenized()` and
+  `scale_fill_selenized()` use Jan Warchoł's Selenized color scheme, a
+  successor to Solarized with higher contrast. `variant` chooses its
+  `"light"`, `"dark"`, `"black"` or `"white"` version; each has its own accent
+  colors, and `ggthemes_data$selenized` holds them all.
+
 - With ggplot2 4.0.0 or later, `theme_par()` also sets the defaults for geoms
   from `par()`: colour from `col`, background from `bg`, line width and type
   from `lwd` and `lty`, point shape from `pch`, and point and text size from

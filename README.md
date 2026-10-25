@@ -305,6 +305,17 @@ p1 + theme_par() +
 
 <td valign="top" width="50%">
 
+<a href="https://jrnold.github.io/ggthemes/reference/theme_selenized.html"><img src="man/figures/README-theme_selenized-1.png" width="100%" alt="Example plot drawn with theme_selenized()"></a>
+
+``` r
+p1 + theme_selenized() +
+  scale_colour_selenized()
+```
+
+</td>
+
+<td valign="top" width="50%">
+
 <a href="https://jrnold.github.io/ggthemes/reference/theme_solarized.html"><img src="man/figures/README-theme_solarized-1.png" width="100%" alt="Example plot drawn with theme_solarized()"></a>
 
 ``` r
@@ -313,6 +324,10 @@ p1 + theme_solarized() +
 ```
 
 </td>
+
+</tr>
+
+<tr>
 
 <td valign="top" width="50%">
 
@@ -324,10 +339,6 @@ p1 + theme_solarized_2() +
 ```
 
 </td>
-
-</tr>
-
-<tr>
 
 <td valign="top" width="50%">
 
@@ -341,6 +352,10 @@ p_solid +
 
 </td>
 
+</tr>
+
+<tr>
+
 <td valign="top" width="50%">
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_stata.html"><img src="man/figures/README-theme_stata-1.png" width="100%" alt="Example plot drawn with theme_stata()"></a>
@@ -352,10 +367,6 @@ p1 + theme_stata() +
 
 </td>
 
-</tr>
-
-<tr>
-
 <td valign="top" width="50%">
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_tufte.html"><img src="man/figures/README-theme_tufte-1.png" width="100%" alt="Example plot drawn with theme_tufte()"></a>
@@ -366,6 +377,10 @@ p1 + theme_tufte() +
 ```
 
 </td>
+
+</tr>
+
+<tr>
 
 <td valign="top" width="50%">
 

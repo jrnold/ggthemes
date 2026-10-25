@@ -1,0 +1,107 @@
+# Selenized, by Jan Warchoł: https://github.com/jan-warchol/selenized (MIT License).
+# sRGB values from the-values.md. The CIE L*a*b* values there are canonical; the
+# sRGB values are converted from them.
+light:
+  base:
+  - {name: bg_0, value: '#fbf3db'}
+  - {name: bg_1, value: '#ece3cc'}
+  - {name: bg_2, value: '#d5cdb6'}
+  - {name: dim_0, value: '#909995'}
+  - {name: fg_0, value: '#53676d'}
+  - {name: fg_1, value: '#3a4d53'}
+  accents:
+  - {name: red, value: '#d2212d'}
+  - {name: green, value: '#489100'}
+  - {name: yellow, value: '#ad8900'}
+  - {name: blue, value: '#0072d4'}
+  - {name: magenta, value: '#ca4898'}
+  - {name: cyan, value: '#009c8f'}
+  - {name: orange, value: '#c25d1e'}
+  - {name: violet, value: '#8762c6'}
+  bright:
+  - {name: red, value: '#cc1729'}
+  - {name: green, value: '#428b00'}
+  - {name: yellow, value: '#a78300'}
+  - {name: blue, value: '#006dce'}
+  - {name: magenta, value: '#c44392'}
+  - {name: cyan, value: '#00978a'}
+  - {name: orange, value: '#bc5819'}
+  - {name: violet, value: '#825dc0'}
+dark:
+  base:
+  - {name: bg_0, value: '#103c48'}
+  - {name: bg_1, value: '#184956'}
+  - {name: bg_2, value: '#2d5b69'}
+  - {name: dim_0, value: '#72898f'}
+  - {name: fg_0, value: '#adbcbc'}
+  - {name: fg_1, value: '#cad8d9'}
+  accents:
+  - {name: red, value: '#fa5750'}
+  - {name: green, value: '#75b938'}
+  - {name: yellow, value: '#dbb32d'}
+  - {name: blue, value: '#4695f7'}
+  - {name: magenta, value: '#f275be'}
+  - {name: cyan, value: '#41c7b9'}
+  - {name: orange, value: '#ed8649'}
+  - {name: violet, value: '#af88eb'}
+  bright:
+  - {name: red, value: '#ff665c'}
+  - {name: green, value: '#84c747'}
+  - {name: yellow, value: '#ebc13d'}
+  - {name: blue, value: '#58a3ff'}
+  - {name: magenta, value: '#ff84cd'}
+  - {name: cyan, value: '#53d6c7'}
+  - {name: orange, value: '#fd9456'}
+  - {name: violet, value: '#bd96fa'}
+black:
+  base:
+  - {name: bg_0, value: '#181818'}
+  - {name: bg_1, value: '#252525'}
+  - {name: bg_2, value: '#3b3b3b'}
+  - {name: dim_0, value: '#777777'}
+  - {name: fg_0, value: '#b9b9b9'}
+  - {name: fg_1, value: '#dedede'}
+  accents:
+  - {name: red, value: '#ed4a46'}
+  - {name: green, value: '#70b433'}
+  - {name: yellow, value: '#dbb32d'}
+  - {name: blue, value: '#368aeb'}
+  - {name: magenta, value: '#eb6eb7'}
+  - {name: cyan, value: '#3fc5b7'}
+  - {name: orange, value: '#e67f43'}
+  - {name: violet, value: '#a580e2'}
+  bright:
+  - {name: red, value: '#ff5e56'}
+  - {name: green, value: '#83c746'}
+  - {name: yellow, value: '#efc541'}
+  - {name: blue, value: '#4f9cfe'}
+  - {name: magenta, value: '#ff81ca'}
+  - {name: cyan, value: '#56d8c9'}
+  - {name: orange, value: '#fa9153'}
+  - {name: violet, value: '#b891f5'}
+white:
+  base:
+  - {name: bg_0, value: '#ffffff'}
+  - {name: bg_1, value: '#ebebeb'}
+  - {name: bg_2, value: '#cdcdcd'}
+  - {name: dim_0, value: '#878787'}
+  - {name: fg_0, value: '#474747'}
+  - {name: fg_1, value: '#282828'}
+  accents:
+  - {name: red, value: '#d6000c'}
+  - {name: green, value: '#1d9700'}
+  - {name: yellow, value: '#c49700'}
+  - {name: blue, value: '#0064e4'}
+  - {name: magenta, value: '#dd0f9d'}
+  - {name: cyan, value: '#00ad9c'}
+  - {name: orange, value: '#d04a00'}
+  - {name: violet, value: '#7f51d6'}
+  bright:
+  - {name: red, value: '#bf0000'}
+  - {name: green, value: '#008400'}
+  - {name: yellow, value: '#af8500'}
+  - {name: blue, value: '#0054cf'}
+  - {name: magenta, value: '#c7008b'}
+  - {name: cyan, value: '#009a8a'}
+  - {name: orange, value: '#ba3700'}
+  - {name: violet, value: '#6b40c3'}

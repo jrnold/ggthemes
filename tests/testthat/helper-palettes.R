@@ -61,6 +61,7 @@ discrete_palette_specs <- function() {
     hc = list(hc_pal(), 10L),
     numbers = list(numbers_pal(), 6L),
     ptol = list(ptol_pal(), 12L),
+    selenized = list(selenized_pal(), 8L),
     solarized = list(solarized_pal(), 8L),
     # `scheme` is passed explicitly: its default changes in 7.0.0, and a
     # baseline should move only when someone means to move it.
