@@ -52,6 +52,11 @@ palettes.](palettes_files/figure-html/hc-1.png)
 ![Swatches of the Apple Numbers
 palettes.](palettes_files/figure-html/numbers-1.png)
 
+## Selenized
+
+![Swatches of the Selenized palettes, one per
+variant.](palettes_files/figure-html/selenized-1.png)
+
 ## Solarized
 
 ![Swatches of the Solarized palettes, one per accent

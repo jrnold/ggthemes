@@ -177,6 +177,8 @@ for the whiskers.](reference/figures/README-geoms-2.png)
   : A ggplot theme originated from the pander package
 - [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
   : Theme based on base graphics parameters
+- [`theme_selenized()`](https://jrnold.github.io/ggthemes/reference/theme_selenized.md)
+  : Theme based on the Selenized color scheme
 - [`theme_solarized()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
   [`theme_solarized_2()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
   : ggplot color themes based on the Solarized palette
@@ -273,6 +275,10 @@ properties.
   [`scale_color_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
   [`scale_fill_ptol()`](https://jrnold.github.io/ggthemes/reference/scale_ptol.md)
   **\[deprecated\]** : Color scales from Paul Tol's "Colour Schemes"
+- [`scale_colour_selenized()`](https://jrnold.github.io/ggthemes/reference/scale_selenized.md)
+  [`scale_color_selenized()`](https://jrnold.github.io/ggthemes/reference/scale_selenized.md)
+  [`scale_fill_selenized()`](https://jrnold.github.io/ggthemes/reference/scale_selenized.md)
+  : Selenized color scales
 - [`scale_fill_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
   [`scale_colour_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
   [`scale_color_solarized()`](https://jrnold.github.io/ggthemes/reference/scale_solarized.md)
@@ -359,6 +365,8 @@ Color, shape, and linetype palettes.
   : Apple Numbers color palettes (discrete)
 - [`ptol_pal()`](https://jrnold.github.io/ggthemes/reference/ptol_pal.md)
   **\[deprecated\]** : Color palettes from Paul Tol's "Colour Schemes"
+- [`selenized_pal()`](https://jrnold.github.io/ggthemes/reference/selenized_pal.md)
+  : Selenized color palette (discrete)
 - [`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
   : Solarized color palette (discrete)
 - [`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)

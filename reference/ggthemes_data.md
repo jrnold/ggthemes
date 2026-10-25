@@ -35,8 +35,9 @@ library("scales")
 names(ggthemes_data)
 #>  [1] "solarized"       "ptol"            "calc"            "numbers"        
 #>  [5] "tableau"         "few"             "manyeyes"        "gdocs"          
-#>  [9] "excel"           "wsj"             "colorblind"      "shapes"         
-#> [13] "stata"           "hc"              "fivethirtyeight" "economist"      
+#>  [9] "excel"           "selenized"       "wsj"             "colorblind"     
+#> [13] "shapes"          "stata"           "hc"              "fivethirtyeight"
+#> [17] "economist"      
 
 ## Colors are stored as tables of names and hex values ...
 ggthemes_data$fivethirtyeight

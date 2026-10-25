@@ -700,25 +700,259 @@ through their `base_family` argument.
 
 ![](data_files/figure-html/figure-118-1.png)
 
+## `ggthemes_data$selenized`
+
+### `$light`
+
+`ggthemes_data$selenized$light`
+
+![](data_files/figure-html/figure-119-1.png)
+
+#### `$palettes`
+
+`ggthemes_data$selenized$light$palettes`
+
+#### `$red`
+
+`ggthemes_data$selenized$light$palettes$red`
+
+![](data_files/figure-html/figure-120-1.png)
+
+#### `$green`
+
+`ggthemes_data$selenized$light$palettes$green`
+
+![](data_files/figure-html/figure-121-1.png)
+
+#### `$yellow`
+
+`ggthemes_data$selenized$light$palettes$yellow`
+
+![](data_files/figure-html/figure-122-1.png)
+
+#### `$blue`
+
+`ggthemes_data$selenized$light$palettes$blue`
+
+![](data_files/figure-html/figure-123-1.png)
+
+#### `$magenta`
+
+`ggthemes_data$selenized$light$palettes$magenta`
+
+![](data_files/figure-html/figure-124-1.png)
+
+#### `$cyan`
+
+`ggthemes_data$selenized$light$palettes$cyan`
+
+![](data_files/figure-html/figure-125-1.png)
+
+#### `$orange`
+
+`ggthemes_data$selenized$light$palettes$orange`
+
+![](data_files/figure-html/figure-126-1.png)
+
+#### `$violet`
+
+`ggthemes_data$selenized$light$palettes$violet`
+
+![](data_files/figure-html/figure-127-1.png)
+
+### `$dark`
+
+`ggthemes_data$selenized$dark`
+
+![](data_files/figure-html/figure-128-1.png)
+
+#### `$palettes`
+
+`ggthemes_data$selenized$dark$palettes`
+
+#### `$red`
+
+`ggthemes_data$selenized$dark$palettes$red`
+
+![](data_files/figure-html/figure-129-1.png)
+
+#### `$green`
+
+`ggthemes_data$selenized$dark$palettes$green`
+
+![](data_files/figure-html/figure-130-1.png)
+
+#### `$yellow`
+
+`ggthemes_data$selenized$dark$palettes$yellow`
+
+![](data_files/figure-html/figure-131-1.png)
+
+#### `$blue`
+
+`ggthemes_data$selenized$dark$palettes$blue`
+
+![](data_files/figure-html/figure-132-1.png)
+
+#### `$magenta`
+
+`ggthemes_data$selenized$dark$palettes$magenta`
+
+![](data_files/figure-html/figure-133-1.png)
+
+#### `$cyan`
+
+`ggthemes_data$selenized$dark$palettes$cyan`
+
+![](data_files/figure-html/figure-134-1.png)
+
+#### `$orange`
+
+`ggthemes_data$selenized$dark$palettes$orange`
+
+![](data_files/figure-html/figure-135-1.png)
+
+#### `$violet`
+
+`ggthemes_data$selenized$dark$palettes$violet`
+
+![](data_files/figure-html/figure-136-1.png)
+
+### `$black`
+
+`ggthemes_data$selenized$black`
+
+![](data_files/figure-html/figure-137-1.png)
+
+#### `$palettes`
+
+`ggthemes_data$selenized$black$palettes`
+
+#### `$red`
+
+`ggthemes_data$selenized$black$palettes$red`
+
+![](data_files/figure-html/figure-138-1.png)
+
+#### `$green`
+
+`ggthemes_data$selenized$black$palettes$green`
+
+![](data_files/figure-html/figure-139-1.png)
+
+#### `$yellow`
+
+`ggthemes_data$selenized$black$palettes$yellow`
+
+![](data_files/figure-html/figure-140-1.png)
+
+#### `$blue`
+
+`ggthemes_data$selenized$black$palettes$blue`
+
+![](data_files/figure-html/figure-141-1.png)
+
+#### `$magenta`
+
+`ggthemes_data$selenized$black$palettes$magenta`
+
+![](data_files/figure-html/figure-142-1.png)
+
+#### `$cyan`
+
+`ggthemes_data$selenized$black$palettes$cyan`
+
+![](data_files/figure-html/figure-143-1.png)
+
+#### `$orange`
+
+`ggthemes_data$selenized$black$palettes$orange`
+
+![](data_files/figure-html/figure-144-1.png)
+
+#### `$violet`
+
+`ggthemes_data$selenized$black$palettes$violet`
+
+![](data_files/figure-html/figure-145-1.png)
+
+### `$white`
+
+`ggthemes_data$selenized$white`
+
+![](data_files/figure-html/figure-146-1.png)
+
+#### `$palettes`
+
+`ggthemes_data$selenized$white$palettes`
+
+#### `$red`
+
+`ggthemes_data$selenized$white$palettes$red`
+
+![](data_files/figure-html/figure-147-1.png)
+
+#### `$green`
+
+`ggthemes_data$selenized$white$palettes$green`
+
+![](data_files/figure-html/figure-148-1.png)
+
+#### `$yellow`
+
+`ggthemes_data$selenized$white$palettes$yellow`
+
+![](data_files/figure-html/figure-149-1.png)
+
+#### `$blue`
+
+`ggthemes_data$selenized$white$palettes$blue`
+
+![](data_files/figure-html/figure-150-1.png)
+
+#### `$magenta`
+
+`ggthemes_data$selenized$white$palettes$magenta`
+
+![](data_files/figure-html/figure-151-1.png)
+
+#### `$cyan`
+
+`ggthemes_data$selenized$white$palettes$cyan`
+
+![](data_files/figure-html/figure-152-1.png)
+
+#### `$orange`
+
+`ggthemes_data$selenized$white$palettes$orange`
+
+![](data_files/figure-html/figure-153-1.png)
+
+#### `$violet`
+
+`ggthemes_data$selenized$white$palettes$violet`
+
+![](data_files/figure-html/figure-154-1.png)
+
 ## `ggthemes_data$shapes`
 
 ### `$cleveland`
 
 `ggthemes_data$shapes$cleveland`
 
-![](data_files/figure-html/figure-119-1.png)
+![](data_files/figure-html/figure-155-1.png)
 
-![](data_files/figure-html/figure-120-1.png)
+![](data_files/figure-html/figure-156-1.png)
 
 ### `$tremmel`
 
 `ggthemes_data$shapes$tremmel`
 
-![](data_files/figure-html/figure-121-1.png)
+![](data_files/figure-html/figure-157-1.png)
 
 ## `ggthemes_data$solarized`
 
-![](data_files/figure-html/figure-122-1.png)
+![](data_files/figure-html/figure-158-1.png)
 
 ### `$palettes`
 
@@ -728,49 +962,49 @@ through their `base_family` argument.
 
 `ggthemes_data$solarized$palettes$yellow`
 
-![](data_files/figure-html/figure-123-1.png)
+![](data_files/figure-html/figure-159-1.png)
 
 #### `$orange`
 
 `ggthemes_data$solarized$palettes$orange`
 
-![](data_files/figure-html/figure-124-1.png)
+![](data_files/figure-html/figure-160-1.png)
 
 #### `$red`
 
 `ggthemes_data$solarized$palettes$red`
 
-![](data_files/figure-html/figure-125-1.png)
+![](data_files/figure-html/figure-161-1.png)
 
 #### `$magenta`
 
 `ggthemes_data$solarized$palettes$magenta`
 
-![](data_files/figure-html/figure-126-1.png)
+![](data_files/figure-html/figure-162-1.png)
 
 #### `$violet`
 
 `ggthemes_data$solarized$palettes$violet`
 
-![](data_files/figure-html/figure-127-1.png)
+![](data_files/figure-html/figure-163-1.png)
 
 #### `$blue`
 
 `ggthemes_data$solarized$palettes$blue`
 
-![](data_files/figure-html/figure-128-1.png)
+![](data_files/figure-html/figure-164-1.png)
 
 #### `$cyan`
 
 `ggthemes_data$solarized$palettes$cyan`
 
-![](data_files/figure-html/figure-129-1.png)
+![](data_files/figure-html/figure-165-1.png)
 
 #### `$green`
 
 `ggthemes_data$solarized$palettes$green`
 
-![](data_files/figure-html/figure-130-1.png)
+![](data_files/figure-html/figure-166-1.png)
 
 ## `ggthemes_data$stata`
 
@@ -778,17 +1012,17 @@ through their `base_family` argument.
 
 `ggthemes_data$stata$colors`
 
-![](data_files/figure-html/figure-131-1.png)
+![](data_files/figure-html/figure-167-1.png)
 
 #### `$schemes`
 
 `ggthemes_data$stata$colors$schemes`
 
-![](data_files/figure-html/figure-132-1.png)
+![](data_files/figure-html/figure-168-1.png)
 
-![](data_files/figure-html/figure-133-1.png)
+![](data_files/figure-html/figure-169-1.png)
 
-![](data_files/figure-html/figure-134-1.png)
+![](data_files/figure-html/figure-170-1.png)
 
 ## `ggthemes_data$tableau`
 
@@ -796,7 +1030,7 @@ through their `base_family` argument.
 
 `` ggthemes_data$tableau$`shape-palettes` ``
 
-![](data_files/figure-html/figure-135-1.png)
+![](data_files/figure-html/figure-171-1.png)
 
 ### `` $`color-palettes` ``
 
@@ -806,26 +1040,26 @@ through their `base_family` argument.
 
 `` ggthemes_data$tableau$`color-palettes`$regular ``
 
-![](data_files/figure-html/figure-136-1.png)
+![](data_files/figure-html/figure-172-1.png)
 
 #### `` $`ordered-diverging` ``
 
 `` ggthemes_data$tableau$`color-palettes`$`ordered-diverging` ``
 
-![](data_files/figure-html/figure-137-1.png)
+![](data_files/figure-html/figure-173-1.png)
 
 #### `` $`ordered-sequential` ``
 
 `` ggthemes_data$tableau$`color-palettes`$`ordered-sequential` ``
 
-![](data_files/figure-html/figure-138-1.png)
+![](data_files/figure-html/figure-174-1.png)
 
 ## `ggthemes_data$wsj`
 
-![](data_files/figure-html/figure-139-1.png)
+![](data_files/figure-html/figure-175-1.png)
 
 ### `$palettes`
 
 `ggthemes_data$wsj$palettes`
 
-![](data_files/figure-html/figure-140-1.png)
+![](data_files/figure-html/figure-176-1.png)

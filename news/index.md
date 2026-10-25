@@ -62,6 +62,17 @@
 
 ### New features
 
+- New
+  [`theme_selenized()`](https://jrnold.github.io/ggthemes/reference/theme_selenized.md),
+  [`selenized_pal()`](https://jrnold.github.io/ggthemes/reference/selenized_pal.md),
+  [`scale_colour_selenized()`](https://jrnold.github.io/ggthemes/reference/scale_selenized.md)
+  and
+  [`scale_fill_selenized()`](https://jrnold.github.io/ggthemes/reference/scale_selenized.md)
+  use Jan Warchoł’s Selenized color scheme, a successor to Solarized
+  with higher contrast. `variant` chooses its `"light"`, `"dark"`,
+  `"black"` or `"white"` version; each has its own accent colors, and
+  `ggthemes_data$selenized` holds them all.
+
 - With ggplot2 4.0.0 or later,
   [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
   also sets the defaults for geoms from
