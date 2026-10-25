@@ -62,6 +62,19 @@
 
 ### New features
 
+- With ggplot2 4.0.0 or later,
+  [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
+  also sets the defaults for geoms from
+  [`par()`](https://rdrr.io/r/graphics/par.html): colour from `col`,
+  background from `bg`, line width and type from `lwd` and `lty`, point
+  shape from `pch`, and point and text size from `cex` and `ps`. Lines
+  join with `par("ljoin")`. Discrete scales use the current
+  [`palette()`](https://rdrr.io/r/grDevices/palette.html), recycled as
+  base graphics does, and continuous scales use
+  `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of
+  [`image()`](https://rdrr.io/r/graphics/image.html)
+  ([\#281](https://github.com/jrnold/ggthemes/issues/281)).
+
 - New
   [`scale_colour_continuous_tableau()`](https://jrnold.github.io/ggthemes/reference/scale_colour_gradient_tableau.md)
   and

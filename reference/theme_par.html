@@ -80,7 +80,8 @@ text size, <code>par("ps") * par("cex")</code>.</p></dd>
 <code>"col.main"</code>, <code>"col.sub"</code>, <code>"family"</code>, <code>"fg"</code>, <code>"font"</code>, <code>"font.axis"</code>,
 <code>"font.lab"</code>, <code>"font.main"</code>, <code>"font.sub"</code>, <code>"las"</code>, <code>"lend"</code>, <code>"lheight"</code>,
 <code>"lty"</code>, <code>"lwd"</code>, <code>"mar"</code>, <code>"mex"</code>, <code>"mgp"</code>, <code>"oma"</code>, <code>"pin"</code>, <code>"ps"</code>,
-<code>"tck"</code>, <code>"tcl"</code>, <code>"xaxt"</code>, <code>"yaxt"</code>.</p>
+<code>"tck"</code>, <code>"tcl"</code>, <code>"xaxt"</code>, <code>"yaxt"</code>, and with ggplot2 4.0.0 or later also
+<code>"col"</code>, <code>"ljoin"</code> and <code>"pch"</code>.</p>
 <p>The <code>"sub"</code> parameters style <code>plot.subtitle</code>, <code>plot.caption</code> and
 <code>strip.text</code>. Box types (<code>"bty"</code>) other than <code>"o"</code>, <code>"l"</code> and <code>"n"</code> are
 drawn as a full box, since a theme can only draw axis lines on the sides
@@ -91,6 +92,13 @@ smaller <code>tck</code> is converted using the current plot region size, <code>
 <p>This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.</p>
+<p>With ggplot2 4.0.0 or later, the theme also sets the defaults for geoms,
+from <code>"bg"</code>, <code>"cex"</code>, <code>"cin"</code>, <code>"col"</code>, <code>"lty"</code>, <code>"lwd"</code>, <code>"pch"</code> and <code>"ps"</code>, joins
+lines with <code>"ljoin"</code>, and sets the default palettes. Discrete scales use the
+current <code><a href="https://rdrr.io/r/grDevices/palette.html" class="external-link">grDevices::palette()</a></code>, recycled as base graphics does when there
+are more groups than colours. Continuous scales use
+<code>hcl.colors(12, "YlOrRd", rev = TRUE)</code>, the default colours of
+<code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">graphics::image()</a></code> and <code><a href="https://rdrr.io/r/graphics/filled.contour.html" class="external-link">graphics::filled.contour()</a></code>.</p>
 <p>Like <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code> itself, <code>theme_par()</code> opens a graphics device if
 none is open, because the parameter values belong to a device.</p>
     </div>

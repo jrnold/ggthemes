@@ -34,7 +34,8 @@ Currently this theme uses the values of the parameters: `"adj"`,
 `"col.main"`, `"col.sub"`, `"family"`, `"fg"`, `"font"`, `"font.axis"`,
 `"font.lab"`, `"font.main"`, `"font.sub"`, `"las"`, `"lend"`,
 `"lheight"`, `"lty"`, `"lwd"`, `"mar"`, `"mex"`, `"mgp"`, `"oma"`,
-`"pin"`, `"ps"`, `"tck"`, `"tcl"`, `"xaxt"`, `"yaxt"`.
+`"pin"`, `"ps"`, `"tck"`, `"tcl"`, `"xaxt"`, `"yaxt"`, and with ggplot2
+4.0.0 or later also `"col"`, `"ljoin"` and `"pch"`.
 
 The `"sub"` parameters style `plot.subtitle`, `plot.caption` and
 `strip.text`. Box types (`"bty"`) other than `"o"`, `"l"` and `"n"` are
@@ -48,6 +49,17 @@ using the current plot region size, `"pin"`.
 This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.
+
+With ggplot2 4.0.0 or later, the theme also sets the defaults for geoms,
+from `"bg"`, `"cex"`, `"cin"`, `"col"`, `"lty"`, `"lwd"`, `"pch"` and
+`"ps"`, joins lines with `"ljoin"`, and sets the default palettes.
+Discrete scales use the current
+[`grDevices::palette()`](https://rdrr.io/r/grDevices/palette.html),
+recycled as base graphics does when there are more groups than colours.
+Continuous scales use `hcl.colors(12, "YlOrRd", rev = TRUE)`, the
+default colours of
+[`graphics::image()`](https://rdrr.io/r/graphics/image.html) and
+[`graphics::filled.contour()`](https://rdrr.io/r/graphics/filled.contour.html).
 
 Like [`graphics::par()`](https://rdrr.io/r/graphics/par.html) itself,
 `theme_par()` opens a graphics device if none is open, because the
