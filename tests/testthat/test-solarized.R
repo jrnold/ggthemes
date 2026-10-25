@@ -63,3 +63,11 @@ test_that("theme_solarized_2() colors its axis lines", {
 test_that("solarized_pal() rejects an unknown accent", {
   expect_snapshot(solarized_pal("chartreuse"), error = TRUE)
 })
+
+test_that("every accent in ggthemes_data starts a solarized palette", {
+  accents <- ggthemes::ggthemes_data$solarized$Accents
+  expect_setequal(accents$name, names(ggthemes::ggthemes_data$solarized$palettes))
+  for (i in seq_len(nrow(accents))) {
+    expect_equal(solarized_pal(accents$name[[i]])(1), accents$value[[i]])
+  }
+})

@@ -62,6 +62,10 @@
 
 ## Minor improvements and fixes
 
+- The `theme_solarized()` example draws a plot for each accent color again; it
+  looked the accents up under the wrong name and drew none. `?solarized_pal`
+  now lists the accent names and says the palette has eight colors, not seven.
+
 - `theme_par()` now follows base graphics more closely (#280):
 
   - `par("las")` rotates the tick labels instead of the axis titles, which stay

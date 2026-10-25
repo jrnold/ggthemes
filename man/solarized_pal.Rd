@@ -7,7 +7,9 @@
 solarized_pal(accent = "blue")
 }
 \arguments{
-\item{accent}{A string, the name of the starting color.}
+\item{accent}{A string, the name of the starting color: one of \code{"yellow"},
+\code{"orange"}, \code{"red"}, \code{"magenta"}, \code{"violet"}, \code{"blue"}, \code{"cyan"} or
+\code{"green"}.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}
@@ -16,7 +18,7 @@ hex colors, and can be used as the \code{palette} argument of \code{\link[ggplot
 \description{
 Qualitative color palette based on Ethan Schoonover's Solarized
 palette, \url{https://ethanschoonover.com/solarized/}. This palette supports
-up to seven values.
+up to eight values.
 }
 \note{
 For a given starting color and number of colors in the palette,

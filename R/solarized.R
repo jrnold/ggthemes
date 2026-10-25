@@ -19,15 +19,11 @@ solarized_rebase <- function(light = TRUE) {
   rebase
 }
 
-solarized_accent_list <- function() {
-  paste0("\\code{\"", names(ggthemes::ggthemes_data$solarized$Accents), "\"}", collapse = ",")
-}
-
 #' Solarized color palette (discrete)
 #'
 #' Qualitative color palette based on Ethan Schoonover's Solarized
 #' palette, <https://ethanschoonover.com/solarized/>. This palette supports
-#' up to seven values.
+#' up to eight values.
 #'
 #' @note
 #'
@@ -35,7 +31,9 @@ solarized_accent_list <- function() {
 #' the other colors are the combination of colors that maximizes the
 #' total Euclidean distance between colors in L*a*b space.
 #'
-#' @param accent A string, the name of the starting color.
+#' @param accent A string, the name of the starting color: one of `"yellow"`,
+#'   `"orange"`, `"red"`, `"magenta"`, `"violet"`, `"blue"`, `"cyan"` or
+#'   `"green"`.
 #' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export

@@ -39,7 +39,7 @@ p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear)))
 
 # Light version with different main accent colors
-for (accent in names(ggthemes::ggthemes_data[["solarized"]][["accents"]])) {
+for (accent in ggthemes::ggthemes_data[["solarized"]][["Accents"]][["name"]]) {
   print(p + theme_solarized() + scale_colour_solarized(accent))
 }
 
