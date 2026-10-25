@@ -271,6 +271,20 @@ load_solarized <- function(x) {
 }
 ggthemes_data$solarized <- load_solarized()
 
+load_selenized <- function() {
+  raw <- yaml.load_file(here::here("data-raw", "theme-data", "selenized.yml"))
+  map(raw, function(variant) {
+    out <- map(variant, ~ map_dfr(., as_tibble))
+    colors <- deframe(out[["accents"]])
+    out$palettes <- list()
+    for (accent in names(colors)) {
+      out$palettes[[accent]] <- map(seq_along(colors), ~ best_colors(colors, accent, .))
+    }
+    out
+  })
+}
+ggthemes_data$selenized <- load_selenized()
+
 load_excel <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "excel.yml"))
   out$shapes <- shape_table(out$shapes, "excel.yml:shapes")

@@ -53,6 +53,10 @@ families <- list(
     lapply(names(ggthemes_data$numbers), function(p) numbers_pal(p)(6)),
     calls('numbers_pal("%s")', names(ggthemes_data$numbers))
   ),
+  selenized = setNames(
+    lapply(names(ggthemes_data$selenized), function(v) selenized_pal(variant = v)(8)),
+    calls('selenized_pal(variant = "%s")', names(ggthemes_data$selenized))
+  ),
   solarized = setNames(
     lapply(names(ggthemes_data$solarized$palettes), function(p) solarized_pal(p)(8)),
     calls('solarized_pal("%s")', names(ggthemes_data$solarized$palettes))
@@ -124,6 +128,12 @@ swatch_plot(families$hc)
 
 ```{r numbers, fig.width = swatch_width(families$numbers), fig.height = swatch_height(families$numbers), fig.alt = "Swatches of the Apple Numbers palettes."}
 swatch_plot(families$numbers)
+```
+
+## Selenized
+
+```{r selenized, fig.width = swatch_width(families$selenized), fig.height = swatch_height(families$selenized), fig.alt = "Swatches of the Selenized palettes, one per variant."}
+swatch_plot(families$selenized)
 ```
 
 ## Solarized
