@@ -101,6 +101,14 @@
 
 ### Minor improvements and fixes
 
+- The
+  [`theme_solarized()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
+  example draws a plot for each accent color again; it looked the
+  accents up under the wrong name and drew none.
+  [`?solarized_pal`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
+  now lists the accent names and says the palette has eight colors, not
+  seven.
+
 - [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
   now follows base graphics more closely
   ([\#280](https://github.com/jrnold/ggthemes/issues/280)):

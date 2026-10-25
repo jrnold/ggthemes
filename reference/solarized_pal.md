@@ -2,7 +2,7 @@
 
 Qualitative color palette based on Ethan Schoonover's Solarized palette,
 <https://ethanschoonover.com/solarized/>. This palette supports up to
-seven values.
+eight values.
 
 ## Usage
 
@@ -14,7 +14,9 @@ solarized_pal(accent = "blue")
 
 - accent:
 
-  A string, the name of the starting color.
+  A string, the name of the starting color: one of `"yellow"`,
+  `"orange"`, `"red"`, `"magenta"`, `"violet"`, `"blue"`, `"cyan"` or
+  `"green"`.
 
 ## Value
 

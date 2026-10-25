@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   articles/data: data.html
   articles/palettes: palettes.html
-last_built: 2026-10-25T01:59Z
+last_built: 2026-10-25T02:15Z
 urls:
   reference: https://jrnold.github.io/ggthemes/reference
   article: https://jrnold.github.io/ggthemes/articles

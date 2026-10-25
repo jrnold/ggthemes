@@ -18,7 +18,9 @@ scale_color_solarized(accent = "blue", ...)
 
 - accent:
 
-  A string, the name of the starting color.
+  A string, the name of the starting color: one of `"yellow"`,
+  `"orange"`, `"red"`, `"magenta"`, `"violet"`, `"blue"`, `"cyan"` or
+  `"green"`.
 
 - ...:
 
