@@ -8,18 +8,19 @@ and not all are relevant to ggplot2 themes.
 ## Usage
 
 ``` r
-theme_par(base_size = par()$ps, base_family = par()$family)
+theme_par(base_size = par("ps") * par("cex"), base_family = par("family"))
 ```
 
 ## Arguments
 
 - base_size:
 
-  base font size, given in pts.
+  Base font size, in points. Defaults to the base graphics text size,
+  `par("ps") * par("cex")`.
 
 - base_family:
 
-  base font family
+  Base font family. Defaults to `par("family")`.
 
 ## Value
 
@@ -27,16 +28,30 @@ A ggplot2 theme object (class `theme`).
 
 ## Details
 
-Currently this theme uses the values of the parameters: `"ps"`,
-`"family"`, `"fg"`, `"bg"`, `"col"`, `"adj"`, `"font"`, `"cex.axis"`,
-`"cex.lab"`, `"cex.main"`, `"cex.sub"`, `"col.axis"`, `"col.lab"`,
-`"col.main"`, `"col.sub"`, `"font.axis"`, `"font.lab"`, `"font.main"`,
-`"font.sub"`, `"las"`, `"lend"`, `"lheight"`, `"lty"`, `"mar"`, `"tcl"`,
-`"tck"`, `"xaxt"`, `"yaxt"`.
+Currently this theme uses the values of the parameters: `"adj"`,
+`"ann"`, `"bg"`, `"bty"`, `"cex"`, `"cex.axis"`, `"cex.lab"`,
+`"cex.main"`, `"cex.sub"`, `"cin"`, `"col.axis"`, `"col.lab"`,
+`"col.main"`, `"col.sub"`, `"family"`, `"fg"`, `"font"`, `"font.axis"`,
+`"font.lab"`, `"font.main"`, `"font.sub"`, `"las"`, `"lend"`,
+`"lheight"`, `"lty"`, `"lwd"`, `"mar"`, `"mex"`, `"mgp"`, `"oma"`,
+`"pin"`, `"ps"`, `"tck"`, `"tcl"`, `"xaxt"`, `"yaxt"`.
+
+The `"sub"` parameters style `plot.subtitle`, `plot.caption` and
+`strip.text`. Box types (`"bty"`) other than `"o"`, `"l"` and `"n"` are
+drawn as a full box, since a theme can only draw axis lines on the sides
+that have an axis. As in base graphics, `bty = "n"` still draws the axis
+lines; `guide_axis(cap = "both")` ends them at the outermost ticks the
+way [`graphics::axis()`](https://rdrr.io/r/graphics/axis.html) does. A
+`tck` of 0.5 or more draws grid lines, and a smaller `tck` is converted
+using the current plot region size, `"pin"`.
 
 This theme does not translate the base graphics perfectly, so the graphs
 produced by it will not be identical to those produced by base graphics,
 most notably in the spacing of the margins.
+
+Like [`graphics::par()`](https://rdrr.io/r/graphics/par.html) itself,
+`theme_par()` opens a graphics device if none is open, because the
+parameter values belong to a device.
 
 ## See also
 

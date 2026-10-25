@@ -5,14 +5,15 @@ Theme similar to the default settings of the "base" R graphics.
 ## Usage
 
 ``` r
-theme_base(base_size = 16, base_family = "")
+theme_base(base_size = 12, base_family = "")
 ```
 
 ## Arguments
 
 - base_size:
 
-  base font size, given in pts.
+  Base font size, in points. The default, 12, is the default text size
+  of base graphics devices.
 
 - base_family:
 
@@ -21,6 +22,14 @@ theme_base(base_size = 16, base_family = "")
 ## Value
 
 A ggplot2 theme object (class `theme`).
+
+## Details
+
+The theme is fixed: it does not change with
+[`graphics::par()`](https://rdrr.io/r/graphics/par.html). Use
+[`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
+for a theme that follows the current
+[`par()`](https://rdrr.io/r/graphics/par.html) values.
 
 ## See also
 
@@ -46,9 +55,9 @@ p <- ggplot(mtcars) +
   facet_wrap(~am)
 p + theme_base()
 
-# Change values of par
+# theme_base() is fixed; use theme_par() to follow the current par() values
 old_par <- par(fg = "blue", bg = "gray", col.lab = "red", font.lab = 3)
-p + theme_base()
+p + theme_par()
 
 par(old_par)
 ```

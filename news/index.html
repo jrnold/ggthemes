@@ -40,7 +40,8 @@
 <h2 class="pkg-version" data-toc-text="development version" id="ggthemes-development-version">ggthemes (development version)<a class="anchor" aria-label="anchor" href="#ggthemes-development-version"></a></h2>
 <div class="section level3">
 <h3 id="breaking-changes-development-version">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
-<ul><li>
+<ul><li><p><code><a href="../reference/theme_base.html">theme_base()</a></code> now defaults to <code>base_size = 12</code>, the default text size of base graphics, instead of 16, and draws tick labels, strip text, legend text and captions at full size, as base graphics draws axis labels. Use <code>base_size = 16</code> for text close to the previous size (<a href="https://github.com/jrnold/ggthemes/issues/280" class="external-link">#280</a>).</p></li>
+<li>
 <p><code><a href="../reference/theme_economist.html">theme_economist()</a></code>, <code><a href="../reference/theme_economist.html">theme_economist_white()</a></code>, <code><a href="../reference/economist_pal.html">economist_pal()</a></code>, <code><a href="../reference/scale_economist.html">scale_colour_economist()</a></code> and <code><a href="../reference/scale_economist.html">scale_fill_economist()</a></code> draw the classic Economist style again, as they did before 7.0.0, so code written for them looks as it always did. 7.0.0 had replaced that style with the paper’s 2017 design, so plots made with these functions changed when you updated. In detail:</p>
 <ul><li>
 <code><a href="../reference/theme_economist.html">theme_economist_white()</a></code>, the <code>dkpanel</code> argument of <code><a href="../reference/theme_economist.html">theme_economist()</a></code> and the <code>fill</code> argument of <code><a href="../reference/economist_pal.html">economist_pal()</a></code> work again, without the deprecation warnings 7.0.0 added.</li>
@@ -59,7 +60,19 @@
 </ul></div>
 <div class="section level3">
 <h3 id="minor-improvements-and-fixes-development-version">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-development-version"></a></h3>
-<ul><li><p>The deprecation warnings from <code>theme_hc(bgcolor)</code>, <code>theme_pander(ff)</code>, <code>theme_pander(fs)</code> and the renamed Tableau palettes <code>"Red-Blue-Brown"</code> and <code>"Classic Area-Brown"</code> now come from lifecycle, so they name the release that deprecated them (<a href="https://github.com/jrnold/ggthemes/issues/273" class="external-link">#273</a>).</p></li>
+<ul><li>
+<p><code><a href="../reference/theme_par.html">theme_par()</a></code> now follows base graphics more closely (<a href="https://github.com/jrnold/ggthemes/issues/280" class="external-link">#280</a>):</p>
+<ul><li>
+<code>par("las")</code> rotates the tick labels instead of the axis titles, which stay parallel to their axis.</li>
+<li>
+<code>par("adj")</code> sets only the horizontal justification of titles; it no longer moves all text vertically.</li>
+<li>The panel box uses <code>par("fg")</code> instead of the plotting colour <code>par("col")</code>.</li>
+<li>The symbol font, <code>font = 5</code>, warns and uses a plain face instead of failing.</li>
+<li>It now uses <code>cex</code> (the default <code>base_size</code> is <code>par("ps") * par("cex")</code>), <code>lwd</code>, <code>bty</code>, <code>ann</code>, <code>mgp</code>, <code>mex</code> and <code>oma</code>, and sizes margins as base graphics does, so they are no longer far wider than in a base plot.</li>
+<li>A <code>tck</code> of 0.5 or more draws grid lines, and smaller values set the tick length from the plot region size.</li>
+<li>The <code>sub</code> parameters also style <code>plot.subtitle</code> and <code>plot.caption</code>.</li>
+</ul></li>
+<li><p>The deprecation warnings from <code>theme_hc(bgcolor)</code>, <code>theme_pander(ff)</code>, <code>theme_pander(fs)</code> and the renamed Tableau palettes <code>"Red-Blue-Brown"</code> and <code>"Classic Area-Brown"</code> now come from lifecycle, so they name the release that deprecated them (<a href="https://github.com/jrnold/ggthemes/issues/273" class="external-link">#273</a>).</p></li>
 <li><p><code><a href="../reference/bank_plot.html">bank_plot()</a></code> and <code><a href="../reference/bank_plot_multiscale.html">bank_plot_multiscale()</a></code> now report a <code>plot</code> that is not a ggplot object, and a <code>layer</code> that is not a whole number within range, with errors that name the argument (<a href="https://github.com/jrnold/ggthemes/issues/274" class="external-link">#274</a>).</p></li>
 <li><p><code>economist_pal(n = 0)</code> no longer fails with “object ‘i’ not found”; it now returns <code>character(0)</code> (<a href="https://github.com/jrnold/ggthemes/issues/266" class="external-link">#266</a>).</p></li>
 <li><p><code><a href="../reference/few_pal.html">few_pal()</a></code>’s <code>palette</code> argument now lists its options in the help page, and the deprecation badges in <code><a href="../reference/circlefill_shape_pal.html">?circlefill_shape_pal</a></code>, <code>?colorblind</code> and <code><a href="../reference/scale_shape_circlefill.html">?scale_shape_circlefill</a></code> now render instead of showing raw <code>`r lifecycle::badge()`</code> text (<a href="https://github.com/jrnold/ggthemes/issues/268" class="external-link">#268</a>).</p></li>
