@@ -1,0 +1,4 @@
+# Lint baseline: every optional check, and follow `source` to files in the repo.
+enable=all
+external-sources=true
+source-path=SCRIPTDIR
