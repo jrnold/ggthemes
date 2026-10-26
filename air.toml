@@ -1,20 +1,15 @@
+# Lint baseline: air formats R; lintr's line length matches.
+# ggthemes: 120-character lines, wider than the baseline's 100.
 [format]
 line-width = 120
 indent-width = 2
 indent-style = "space"
-line-ending = "auto"
+line-ending = "lf"
 persistent-line-breaks = true
+# These examples wrap code in \dontrun{}, which is Rd, not R, so air can't parse them.
 exclude = [
-  "inst/exampels/ex-few_shape_pal.R",
   "inst/examples/ex-calc_shape_pal.R",
-  "inst/examples/ex-cleveland_shape_pal.R",
-  "inst/examples/ex-few_shape_pal.R",
-  "inst/examples/ex-palette_pander.R",
-  "inst/examples/ex-scale_shape_stata.R",
-  "inst/examples/ex-scale_shape_tableau.R",
   "inst/examples/ex-tableau_shape_pal.R",
-  "inst/examples/ex-tableau_shape_pal.R",
-  "inst/examples/ex-theme_calc.R",
   "inst/examples/ex-theme_economist.R"
 ]
 default-exclude = true

@@ -131,3 +131,18 @@ repos:
         language: python
         additional_dependencies: [panache-cli==3.17.0]
         files: \.(qmd|Rmd|md)$
+
+  - repo: https://github.com/posit-dev/air-pre-commit
+    rev: 0.12.0
+    hooks:
+      - id: air-format
+
+  - repo: local
+    hooks:
+      - id: lintr
+        name: lintr
+        entry: >-
+          Rscript -e 'l <- lapply(commandArgs(trailingOnly = TRUE), lintr::lint);
+          for (x in l) print(x); quit(status = any(lengths(l) > 0))'
+        language: system
+        types: [r]
