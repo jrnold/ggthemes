@@ -4,12 +4,13 @@
 \alias{wsj_bands}
 \title{Wall Street Journal alternating bands}
 \usage{
-wsj_bands(paper = c("ivory", "gray"), fill = NULL)
+wsj_bands(paper = c("ivory", "gray", "pale_blue"), fill = NULL)
 }
 \arguments{
 \item{paper}{A string, the field the bands sit on, which sets the band
-color: \code{"ivory"} (\verb{#efe4c9}), the default, or \code{"gray"} (\verb{#dddddd}), both
-measured on published charts.}
+color: \code{"ivory"} (\verb{#efe4c9}), the default, \code{"gray"} (\verb{#dddddd}) or
+\code{"pale_blue"} (\verb{#d7e4ee}), all measured on published charts. No bands
+were measured on the pale green or white fields; set \code{fill} for those.}
 
 \item{fill}{A color for the bands. If \code{NULL}, the default, \code{paper} sets it.}
 }
@@ -20,7 +21,7 @@ A ggplot2 layer.
 Shades every other interval between the y-axis breaks, starting from the
 lowest, as Wall Street Journal charts of 2011 and 2012 did in place of
 dotted reference rules. Add it before the data layers so it draws behind
-them, and drop the rules with \code{theme(panel.grid.major.y = element_blank())}.
+them, and drop the rules with \code{theme_wsj(rules = "none")}.
 }
 \details{
 The bands follow the breaks of the y scale, so set the breaks on the scale
@@ -28,8 +29,7 @@ rather than on the layer. Only Cartesian coordinates are supported.
 
 The charts shade a recession or another period behind the data in the same
 tint. Draw such a band with \code{annotate("rect", ...)} and
-\code{fill = ggthemes_data$wsj$bands[["ivory"]]}, or \verb{[["gray"]]} on the gray
-field.
+\code{fill = ggthemes_data$wsj$bands[["ivory"]]}, or the band of another field.
 }
 \examples{
 library("ggplot2")
@@ -37,8 +37,7 @@ ggplot(economics, aes(date, psavert)) +
   wsj_bands() +
   geom_line(colour = wsj_pal()(1)) +
   scale_y_continuous(labels = wsj_label(suffix = "\%")) +
-  theme_wsj() +
-  theme(panel.grid.major.y = element_blank())
+  theme_wsj(rules = "none")
 }
 \seealso{
 Other wsj:

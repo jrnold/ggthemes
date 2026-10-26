@@ -12,7 +12,7 @@
       theme_wsj(paper = "purple")
     Condition
       Error in `theme_wsj()`:
-      ! `paper` must be one of "ivory" and "gray", not "purple".
+      ! `paper` must be one of "ivory", "gray", "pale_blue", "pale_green", and "white", not "purple".
 
 # pre-8.0.0 palette names are deprecated
 

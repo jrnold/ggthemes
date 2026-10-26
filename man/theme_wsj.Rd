@@ -6,22 +6,29 @@
 \usage{
 theme_wsj(
   base_size = 12,
-  paper = c("ivory", "gray"),
+  paper = c("ivory", "gray", "pale_blue", "pale_green", "white"),
   base_family = "sans",
   title_family = "serif",
+  ink = NULL,
+  subtitle_face = c("plain", "bold"),
+  rules = c("dotted", "solid", "none"),
   color = deprecated()
 )
 }
 \arguments{
 \item{base_size}{base font size, given in pts.}
 
-\item{paper}{A string, the plot field. One of:
+\item{paper}{A string, the plot field. Each is the median field of its
+charts, measured on the corpus:
 \itemize{
 \item \code{"ivory"} (\verb{#f8f2e4}), the default: the field from October 2011 to July
 2013.
-\item \code{"gray"} (\verb{#efefef}): the field from August 2013. It also sets the
-subtitle, axis labels, legend and caption in the dark gray (\verb{#444444}) of
-the charts from mid-2013; the title stays black.
+\item \code{"gray"} (\verb{#efefef}): the field from August 2013.
+\item \code{"pale_blue"} (\verb{#eff4f9}): a field before the October 2011 redesign, kept
+after it for some US-desk charts.
+\item \code{"pale_green"} (\verb{#f2f9f2}): the field of the China PMI charts on the Asia
+desks, and of an occasional US-desk chart.
+\item \code{"white"} (\verb{#ffffff}): the other field before the redesign.
 }
 
 The pre-8.0.0 values \code{"brown"}, \code{"green"} and \code{"blue"} are accepted with a
@@ -30,6 +37,19 @@ deprecation warning; \code{"brown"} is the former name of \code{"ivory"}.}
 \item{base_family}{base font family}
 
 \item{title_family}{A string, the font family of the plot title.}
+
+\item{ink}{A string, the color of all the type but the title, which is
+always black: \code{"black"} or \code{"gray"} (\verb{#444444}), the ink of the charts from
+July 2013. If \code{NULL}, the default, it is \code{"gray"} on the gray field and
+\code{"black"} on the others.}
+
+\item{subtitle_face}{A string, the weight of the subtitle: \code{"plain"}, the
+default, as from July 2012, or \code{"bold"}, as before.}
+
+\item{rules}{A string, the horizontal reference rules: \code{"dotted"}, the
+default; \code{"solid"}, the thin solid rules of some US-desk charts, such as
+page one's "Vitals", drawn in the gray of the dotted rules; or \code{"none"},
+for charts that mark the scale with \code{\link[=wsj_bands]{wsj_bands()}} instead.}
 
 \item{color}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{paper} instead.}
 }
@@ -58,6 +78,17 @@ The charts set titles in a heavy Ionic slab serif and everything else in a
 narrow sans. Free faces close to them are Bitter, in its heaviest weight, for
 \code{title_family}, and Source Sans 3 for \code{base_family}; see the article for how
 to fetch and register them with the systemfonts package.
+
+The defaults draw the charts of July 2012 to July 2013. The other periods
+are a few arguments away:
+\itemize{
+\item October 2011 to June 2012: \code{subtitle_face = "bold"}, and \code{rules = "none"}
+with \code{\link[=wsj_bands]{wsj_bands()}}.
+\item From August 2013: \code{paper = "gray"}, which also sets the gray ink.
+\item To September 2011: \code{paper = "pale_blue"} or \code{"white"}, a sans-serif
+\code{title_family} and \code{subtitle_face = "bold"}, with the title in a plain
+weight: \code{theme(plot.title = element_text(face = "plain"))}.
+}
 }
 \examples{
 library("ggplot2")
@@ -79,6 +110,15 @@ p +
   scale_colour_wsj("categorical") +
   scale_y_continuous(labels = wsj_label(suffix = " mpg")) +
   theme_wsj()
+# The charts of 2011 and 2012: a bold subtitle, and bands in place of the rules
+p$layers <- c(wsj_bands(), p$layers)
+p +
+  scale_colour_wsj("categorical") +
+  theme_wsj(subtitle_face = "bold", rules = "none")
+# Before the October 2011 redesign: a pale blue field and the bright colors
+p +
+  scale_colour_wsj("bright") +
+  theme_wsj(paper = "pale_blue", title_family = "sans", subtitle_face = "bold")
 }
 \seealso{
 Other wsj:

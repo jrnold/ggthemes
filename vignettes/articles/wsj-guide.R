@@ -206,18 +206,11 @@ wsj_text_semibold <- if (wsj_text_font == "sans") {
 }
 
 # ---- Fields ---------------------------------------------------------------------------------------------------------
-# The median field color of each kind of chart, measured on the corpus. theme_wsj() offers the first two; on_field()
-# puts a theme_wsj() chart on any of them.
-fields <- c(ivory = "#f8f2e4", gray = "#efefef", `pale blue` = "#eff4f9", `pale green` = "#f2f9f2", white = "#ffffff")
-on_field <- function(field, ...) {
-  theme_wsj(..., base_family = wsj_text_font, title_family = wsj_title_font) +
-    theme(
-      plot.background = element_rect(fill = field, colour = NA),
-      panel.background = element_rect(fill = field, colour = NA),
-      legend.background = element_rect(fill = field, colour = NA),
-      legend.key = element_rect(fill = field, colour = NA),
-      strip.background = element_rect(fill = field, colour = NA)
-    )
+# The median field color of each kind of chart, measured on the corpus: the `paper` values of theme_wsj().
+fields <- ggthemes::ggthemes_data$wsj$paper
+field_name <- function(paper) sub("_", " ", paper)
+on_field <- function(paper, ...) {
+  theme_wsj(..., paper = paper, base_family = wsj_text_font, title_family = wsj_title_font)
 }
 
 # ---- The four periods -----------------------------------------------------------------------------------------------
@@ -226,17 +219,17 @@ period_theme <- function(period, base_size = 11) {
   thm <- switch(
     period,
     ## White or pale blue field, sans titles over bold subtitles, blue bands.
-    A = theme_wsj(base_size, base_family = wsj_text_font, title_family = wsj_text_semibold) +
-      theme(
-        plot.background = element_rect(fill = fields[["pale blue"]], colour = NA),
-        panel.background = element_rect(fill = fields[["pale blue"]], colour = NA),
-        plot.title = element_text(face = "plain"),
-        plot.subtitle = element_text(family = wsj_text_semibold),
-        panel.grid.major.y = element_blank()
-      ),
+    A = theme_wsj(
+      base_size,
+      paper = "pale_blue",
+      base_family = wsj_text_font,
+      title_family = wsj_text_semibold,
+      rules = "none"
+    ) +
+      theme(plot.title = element_text(face = "plain"), plot.subtitle = element_text(family = wsj_text_semibold)),
     ## Ivory, slab title, bold subtitle, bands.
-    B = theme_wsj(base_size, base_family = wsj_text_font, title_family = wsj_title_font) +
-      theme(plot.subtitle = element_text(family = wsj_text_semibold), panel.grid.major.y = element_blank()),
+    B = theme_wsj(base_size, base_family = wsj_text_font, title_family = wsj_title_font, rules = "none") +
+      theme(plot.subtitle = element_text(family = wsj_text_semibold)),
     ## Ivory, regular subtitle, dotted rules.
     C = theme_wsj(base_size, base_family = wsj_text_font, title_family = wsj_title_font),
     ## Gray.
@@ -246,8 +239,8 @@ period_theme <- function(period, base_size = 11) {
 }
 period_plot <- function(p, period) {
   if (period %in% c("A", "B")) {
-    fill <- if (period == "A") "#d7e4ee" else NULL
-    p$layers <- c(wsj_bands(fill = fill), p$layers)
+    paper <- if (period == "A") "pale_blue" else "ivory"
+    p$layers <- c(wsj_bands(paper), p$layers)
   }
   p + period_theme(period)
 }

@@ -1,18 +1,27 @@
 # Plot field. `paper` is the current API; `bg` is retained for the deprecated
 # `theme_wsj(color=)` argument and is not part of the current design.
+# The median field of each kind of chart, measured on the corpus: ivory from
+# October 2011, gray from August 2013, pale blue and white before the redesign
+# (and pale blue on some US charts after it), and pale green for the China PMI
+# charts and now and then on the US desks.
 paper:
   - {name: ivory, value: '#f8f2e4'}
   - {name: gray, value: '#efefef'}
+  - {name: pale_blue, value: '#eff4f9'}
+  - {name: pale_green, value: '#f2f9f2'}
+  - {name: white, value: '#ffffff'}
 # Alternating bands drawn between reference levels instead of dotted rules
-# (`wsj_bands()`), measured on each field.
+# (`wsj_bands()`), measured on each field. No bands were measured on the pale
+# green or white fields.
 bands:
   - {name: ivory, value: '#efe4c9'}
   - {name: gray, value: '#dddddd'}
-# Ink of the subtitle, axis labels, notes and source on each field. From July
-# 2013 these are a dark gray; titles stay black. The glyph cores of the larger
-# graphics measure 60 to 70 levels, against 0 for the black of earlier charts.
+  - {name: pale_blue, value: '#d7e4ee'}
+# Ink of the subtitle, axis labels, notes and source. From July 2013 these are
+# a dark gray; titles stay black. The glyph cores of the larger graphics
+# measure 60 to 70 levels, against 0 for the black of earlier charts.
 ink:
-  - {name: ivory, value: '#000000'}
+  - {name: black, value: '#000000'}
   - {name: gray, value: '#444444'}
 # Fills of number callouts (`wsj_callout()`), measured on published charts.
 callout:

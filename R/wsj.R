@@ -21,17 +21,41 @@
 #' `title_family`, and Source Sans 3 for `base_family`; see the article for how
 #' to fetch and register them with the systemfonts package.
 #'
+#' The defaults draw the charts of July 2012 to July 2013. The other periods
+#' are a few arguments away:
+#'
+#' * October 2011 to June 2012: `subtitle_face = "bold"`, and `rules = "none"`
+#'   with [wsj_bands()].
+#' * From August 2013: `paper = "gray"`, which also sets the gray ink.
+#' * To September 2011: `paper = "pale_blue"` or `"white"`, a sans-serif
+#'   `title_family` and `subtitle_face = "bold"`, with the title in a plain
+#'   weight: `theme(plot.title = element_text(face = "plain"))`.
+#'
 #' @inheritParams ggplot2::theme_grey
-#' @param paper A string, the plot field. One of:
+#' @param paper A string, the plot field. Each is the median field of its
+#'   charts, measured on the corpus:
 #'   * `"ivory"` (`#f8f2e4`), the default: the field from October 2011 to July
 #'     2013.
-#'   * `"gray"` (`#efefef`): the field from August 2013. It also sets the
-#'     subtitle, axis labels, legend and caption in the dark gray (`#444444`) of
-#'     the charts from mid-2013; the title stays black.
+#'   * `"gray"` (`#efefef`): the field from August 2013.
+#'   * `"pale_blue"` (`#eff4f9`): a field before the October 2011 redesign, kept
+#'     after it for some US-desk charts.
+#'   * `"pale_green"` (`#f2f9f2`): the field of the China PMI charts on the Asia
+#'     desks, and of an occasional US-desk chart.
+#'   * `"white"` (`#ffffff`): the other field before the redesign.
 #'
 #'   The pre-8.0.0 values `"brown"`, `"green"` and `"blue"` are accepted with a
 #'   deprecation warning; `"brown"` is the former name of `"ivory"`.
 #' @param title_family A string, the font family of the plot title.
+#' @param ink A string, the color of all the type but the title, which is
+#'   always black: `"black"` or `"gray"` (`#444444`), the ink of the charts from
+#'   July 2013. If `NULL`, the default, it is `"gray"` on the gray field and
+#'   `"black"` on the others.
+#' @param subtitle_face A string, the weight of the subtitle: `"plain"`, the
+#'   default, as from July 2012, or `"bold"`, as before.
+#' @param rules A string, the horizontal reference rules: `"dotted"`, the
+#'   default; `"solid"`, the thin solid rules of some US-desk charts, such as
+#'   page one's "Vitals", drawn in the gray of the dotted rules; or `"none"`,
+#'   for charts that mark the scale with [wsj_bands()] instead.
 #' @param color `r lifecycle::badge("deprecated")` Use `paper` instead.
 #' @family wsj
 #' @returns A ggplot2 theme object (class `theme`).
@@ -41,9 +65,12 @@
 #' @importFrom lifecycle deprecated is_present deprecate_soft
 theme_wsj <- function(
   base_size = 12,
-  paper = c("ivory", "gray"),
+  paper = c("ivory", "gray", "pale_blue", "pale_green", "white"),
   base_family = "sans",
   title_family = "serif",
+  ink = NULL,
+  subtitle_face = c("plain", "bold"),
+  rules = c("dotted", "solid", "none"),
   color = deprecated()
 ) {
   via_color <- is_present(color)
@@ -53,10 +80,21 @@ theme_wsj <- function(
   }
   # `color` has already warned; don't warn twice for a single call.
   paper_colour <- wsj_paper_colour(paper, warn = !via_color)
+  subtitle_face <- rlang::arg_match(subtitle_face)
+  rules <- rlang::arg_match(rules)
   # Black type until mid-2013; then dark gray everywhere but the title, which
   # arrived with the gray field.
   inks <- ggthemes::ggthemes_data$wsj$ink
-  ink <- if (identical(paper_colour, ggthemes::ggthemes_data$wsj$paper[["gray"]])) inks[["gray"]] else inks[["ivory"]]
+  if (is.null(ink)) {
+    ink <- if (identical(paper_colour, ggthemes::ggthemes_data$wsj$paper[["gray"]])) "gray" else "black"
+  }
+  ink <- inks[[rlang::arg_match(ink, names(inks))]]
+  rule <- switch(
+    rules,
+    dotted = element_line(colour = "#8a8a8a", linewidth = 0.25, linetype = "dotted"),
+    solid = element_line(colour = "#8a8a8a", linewidth = 0.25, linetype = "solid"),
+    none = element_blank()
+  )
 
   theme_foundation(base_size = base_size, base_family = base_family) +
     theme(
@@ -73,8 +111,8 @@ theme_wsj <- function(
         hjust = 0,
         margin = margin(b = base_size / 3)
       ),
-      # Regular weight from July 2012; bold before.
       plot.subtitle = element_text(
+        face = subtitle_face,
         size = rel(0.95),
         hjust = 0,
         margin = margin(b = base_size / 2)
@@ -100,11 +138,7 @@ theme_wsj <- function(
       # belonging to the plot, not an axis line belonging to the theme.
       axis.line = element_blank(),
       panel.grid.major.x = element_blank(),
-      panel.grid.major.y = element_line(
-        colour = "#8a8a8a",
-        linewidth = 0.25,
-        linetype = "dotted"
-      ),
+      panel.grid.major.y = rule,
       panel.grid.minor = element_blank(),
       legend.position = "top",
       legend.direction = "horizontal",
@@ -127,7 +161,7 @@ theme_wsj <- function(
     )
 }
 
-# Resolves a plot field to a hex color. `paper` holds the current three
+# Resolves a plot field to a hex color. `paper` holds the current
 # fields; `bg` holds the pre-8.0.0 set, whose names reached here either through
 # the deprecated `color` argument or positionally as `theme_wsj(12, "brown")`.
 wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2), call = rlang::caller_env()) {
@@ -155,7 +189,7 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
         )),
         with = if (!is.null(replacement)) I(replacement),
         details = if (is.null(replacement)) {
-          "The current fields are \"ivory\" and \"gray\"."
+          cli::format_inline("The current fields are {.val {names(papers)}}.")
         },
         user_env = user_env
       )
@@ -560,19 +594,19 @@ wsj_year_label <- function() {
 #' Shades every other interval between the y-axis breaks, starting from the
 #' lowest, as Wall Street Journal charts of 2011 and 2012 did in place of
 #' dotted reference rules. Add it before the data layers so it draws behind
-#' them, and drop the rules with `theme(panel.grid.major.y = element_blank())`.
+#' them, and drop the rules with `theme_wsj(rules = "none")`.
 #'
 #' The bands follow the breaks of the y scale, so set the breaks on the scale
 #' rather than on the layer. Only Cartesian coordinates are supported.
 #'
 #' The charts shade a recession or another period behind the data in the same
 #' tint. Draw such a band with `annotate("rect", ...)` and
-#' `fill = ggthemes_data$wsj$bands[["ivory"]]`, or `[["gray"]]` on the gray
-#' field.
+#' `fill = ggthemes_data$wsj$bands[["ivory"]]`, or the band of another field.
 #'
 #' @param paper A string, the field the bands sit on, which sets the band
-#'   color: `"ivory"` (`#efe4c9`), the default, or `"gray"` (`#dddddd`), both
-#'   measured on published charts.
+#'   color: `"ivory"` (`#efe4c9`), the default, `"gray"` (`#dddddd`) or
+#'   `"pale_blue"` (`#d7e4ee`), all measured on published charts. No bands
+#'   were measured on the pale green or white fields; set `fill` for those.
 #' @param fill A color for the bands. If `NULL`, the default, `paper` sets it.
 #' @returns A ggplot2 layer.
 #' @family wsj
@@ -582,10 +616,9 @@ wsj_year_label <- function() {
 #'   wsj_bands() +
 #'   geom_line(colour = wsj_pal()(1)) +
 #'   scale_y_continuous(labels = wsj_label(suffix = "%")) +
-#'   theme_wsj() +
-#'   theme(panel.grid.major.y = element_blank())
+#'   theme_wsj(rules = "none")
 #' @export
-wsj_bands <- function(paper = c("ivory", "gray"), fill = NULL) {
+wsj_bands <- function(paper = c("ivory", "gray", "pale_blue"), fill = NULL) {
   if (is.null(fill)) {
     paper <- rlang::arg_match(paper)
     fill <- ggthemes::ggthemes_data$wsj$bands[[paper]]

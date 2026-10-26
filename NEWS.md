@@ -109,8 +109,8 @@
 
 - New `wsj_bands()` shades every other interval between the y breaks, the
   alternating bands WSJ charts of 2011 and 2012 drew in place of dotted rules,
-  in the band color measured on the ivory (`#efe4c9`) or gray (`#dddddd`)
-  field. The charts shade recessions and other periods in the same tint; the
+  in the band color measured on the ivory (`#efe4c9`), gray (`#dddddd`) or
+  pale blue (`#d7e4ee`) field. The charts shade recessions and other periods in the same tint; the
   colors are in `ggthemes_data$wsj$bands` for `annotate("rect", ...)`.
 
 - New `wsj_callout()` draws the number callouts of WSJ charts: the latest
@@ -207,11 +207,17 @@
   them unset (#272).
 
 - The `color` argument of `theme_wsj()` is renamed to `paper` and deprecated.
-  The fields are renamed and reduced to `"ivory"` and `"gray"`: `"brown"` is
-  the former name of `"ivory"` and resolves to the same color, and `"green"`
-  and `"blue"` are deprecated. All three still work, by name or by position,
+  The fields are the five measured on the charts: `"ivory"`, `"gray"`,
+  `"pale_blue"`, `"pale_green"` and `"white"`. `"brown"` is the former name of
+  `"ivory"` and resolves to the same color, and `"green"` and `"blue"`, whose
+  colors were not measured, are deprecated. All three still work, by name or by position,
   so `theme_wsj(12, "brown")` returns the same field as before, with a
   deprecation warning.
+
+- `theme_wsj()` gains `ink` (black or gray type on any field),
+  `subtitle_face` (the bold subtitles of 2011 and 2012) and `rules` (dotted,
+  solid, or none for use with `wsj_bands()`), so each period of the charts
+  is a set of arguments.
 
 - `theme_wsj(paper = "gray")` sets the subtitle, axis labels, legend, facet
   headings and caption in dark gray (`#444444`), as WSJ charts did from

@@ -17,3 +17,12 @@ p +
   scale_colour_wsj("categorical") +
   scale_y_continuous(labels = wsj_label(suffix = " mpg")) +
   theme_wsj()
+# The charts of 2011 and 2012: a bold subtitle, and bands in place of the rules
+p$layers <- c(wsj_bands(), p$layers)
+p +
+  scale_colour_wsj("categorical") +
+  theme_wsj(subtitle_face = "bold", rules = "none")
+# Before the October 2011 redesign: a pale blue field and the bright colors
+p +
+  scale_colour_wsj("bright") +
+  theme_wsj(paper = "pale_blue", title_family = "sans", subtitle_face = "bold")

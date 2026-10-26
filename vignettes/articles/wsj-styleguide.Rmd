@@ -80,7 +80,7 @@ knitr::kable(
 - **C, July 2012 to July 2013.** As B, but the subtitle is set in regular weight, and bands fade out after 2012. On the U.S. desks the gray field of period D comes in early, still with black type: `r share(charts$period == "C" & charts$desks == "US" & charts$field == "gray", charts$period == "C" & charts$desks == "US")`, against `r pct(asia$period == "C" & asia$field == "gray", asia$period == "C")` on the Asia desks. Examples: `r cite(c("AI-BU349_SPAIN_NS_20120719113903.jpg", "AI-BW723_JECON_NS_20121030003018.jpg", "AI-BY469_CINVES_NS_20130116122703.jpg"))`; on gray, `r cite(c("NA-BS871_CHEAPD_NS_20121007170903.jpg", "MK-CD521_SELFIN_NS_20130527183303.jpg"))`.
 - **D, from August 2013.** The field turns pale gray, and the subtitle, axis labels, notes and source turn dark gray, `#444444`; the title stays black. The gray type comes in in July 2013 and is on most charts from September. Examples: `r cite(c("AI-CC842A_APURS_NS_20130813000004.jpg", "AI-CC875_ARATES_NS_20130814225706.jpg", "AI-CF534_BITCOI_NS_20131218055104.jpg", "MK-CH389_APPLE_NS_20131028180311.jpg"))`.
 
-`theme_wsj()` draws period C by default and period D, gray type included, with `paper = "gray"`. Period B differs only in its bold subtitle and its bands, both one line away; period A takes a few more overrides.
+`theme_wsj()` draws period C by default and period D, gray type included, with `paper = "gray"`. Period B is `subtitle_face = "bold"` and `rules = "none"`, with `wsj_bands()`; period A adds `paper = "pale_blue"` or `"white"`, a sans title and a plain title weight.
 The same made-up chart in each period's style, left to right A to D:
 
 ```{r period-examples, fig.width = 10, fig.height = 4.4}
@@ -136,7 +136,7 @@ p + theme_wsj(base_family = "Source Sans 3", title_family = "Bitter Heavy")
 The figures in this guide use these faces when they can be fetched, and the generic serif and sans when they cannot.
 
 **Ink.** Until mid-2013 all the type is black. From July 2013 everything but the title is a dark gray, about `#444444`: the cores of the letters measure 60 to 70 levels on the larger graphics, where black type measures 0. The subtitle, the axis labels, the notes and source and the credit line all change; the title does not. Of the charts from September 2013 on, `r by_desk(charts[charts$date >= "2013-09-01", ], gray_text == "True")` have gray type; the measurement counts all of them, read or not. Compare the black type of `r cite("AI-CB568_AUSJOB_NS_20130613041804.jpg")` with `r cite(c("AI-CC875_ARATES_NS_20130814225706.jpg", "AI-CG344_INDIAR_NS_20140128030303.jpg"))`. The U.S. charts make the same change, `r cite(c("MK-CH389_APPLE_NS_20131028180311.jpg", "MK-CJ995_TWITTE_NS_20140210182103.jpg"))`; their gray type measures darker than the Asia charts', though by eye it is the same gray.
-`theme_wsj(paper = "gray")` sets the gray type with the gray field. On another field, set it with `theme(text = element_text(colour = "#444444"), axis.text = element_text(colour = "#444444"), plot.title = element_text(colour = "#000000"))`.
+`theme_wsj(paper = "gray")` sets the gray type with the gray field. On another field, set it with `ink = "gray"`, and keep black type on gray with `ink = "black"`, as the U.S. desks did in period C.
 
 ```{r periods, fig.width = 5.2, fig.height = 4}
 ## Shares of the charts by half-year: the fields of all charts, the bands of the charts read, and the subtitle weight
@@ -244,9 +244,9 @@ Its colors were measured on every chart:
 - white or a pale blue, `#eff4f9`, in period A. The U.S. desks kept the pale blue for some charts after the redesign, `r share(charts$desks == "US" & charts$field == "blue" & charts$period %in% c("B", "C"), charts$desks == "US" & charts$period %in% c("B", "C"))` in periods B and C: `r cite(c("MK-BX810_SODA_NS_20121008174503.jpg", "MK-CB777B_TIFFA_NS_20130320203604.jpg"))`;
 - a pale green, `#f2f9f2`, on the Asia desks kept for one recurring chart, the HSBC purchasing managers' index for China, with its "Expanding" and "Contracting" scale bar: `r cite(c("AI-BP465_CHINAP_NS_20111215010903.jpg", "AI-BV767_CECON_NS_20120919230902.jpg"))`. The U.S. desks used it now and then for any chart: `r cite(c("NA-BT565_CASINO_NS_20121109182411.jpg", "P1-BK111_ECONOM_NS_20130130175403.jpg"))`.
 
-The measured field colors are the same on both groups of desks.
+The measured field colors are the same on both groups of desks. Each is a `paper` of `theme_wsj()`: `"ivory"`, `"gray"`, `"pale_blue"`, `"white"` and `"pale_green"`.
 
-**The scale** is marked by thin horizontal dotted rules (`r share(read$rules == "dotted", n_read, "charts read")`) or, mostly in 2011 and 2012, by alternating bands of a darker tint of the field (in periods A to C, `r by_desk(read[read$period != "D", ], rules == "bands")`; `r sum(read$rules == "bands" & read$period == "D")` charts after). Some U.S. charts use thin solid rules instead (`r sum(us_read$rules == "solid")` read), among them the page-one "Vitals" charts: `r cite(c("P1-BC563_VITALS_NS_20110919123602.jpg", "P1-BI200_VITALS_NS_20120920162703.jpg"))`. The band on ivory measures `#efe4c9`; on gray, `#dddddd`. Shading starts with the interval above the lowest break and alternates up.
+**The scale** is marked by thin horizontal dotted rules (`r share(read$rules == "dotted", n_read, "charts read")`) or, mostly in 2011 and 2012, by alternating bands of a darker tint of the field (in periods A to C, `r by_desk(read[read$period != "D", ], rules == "bands")`; `r sum(read$rules == "bands" & read$period == "D")` charts after). Some U.S. charts use thin solid rules instead (`r sum(us_read$rules == "solid")` read), among them the page-one "Vitals" charts: `r cite(c("P1-BC563_VITALS_NS_20110919123602.jpg", "P1-BI200_VITALS_NS_20120920162703.jpg"))`. `theme_wsj()` draws dotted rules, solid rules with `rules = "solid"`, and none with `rules = "none"`, for bands. The band on ivory measures `#efe4c9`; on gray, `#dddddd`; on pale blue, `#d7e4ee`. `wsj_bands()` takes the field and draws them. Shading starts with the interval above the lowest break and alternates up.
 There are no vertical rules.
 Bands: `r cite(c("AI-BN971_JECON_NS_20111010233303.jpg", "AI-BR349_JECON_NS_20120311232103.jpg", "AI-BS569_INDIIR_NS_20120502083603.jpg"))`. Dotted rules: `r cite(c("AI-BQ436_SKECON_NS_20120201013603.jpg", "AI-BT650_JECON_NS_20120620002102.jpg", "AI-CC875_ARATES_NS_20130814225706.jpg"))`.
 
@@ -270,12 +270,8 @@ p <- ggplot(d, aes(date, value)) +
 p_bands <- p
 p_bands$layers <- c(wsj_bands(), p$layers)
 p_bands +
-  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font) +
-  theme(
-    panel.grid.major.y = element_blank(),
-    plot.subtitle = element_text(face = "bold"),
-    axis.text.x = element_text(hjust = 0)
-  )
+  theme_wsj(base_family = wsj_text_font, title_family = wsj_title_font, subtitle_face = "bold", rules = "none") +
+  theme(axis.text.x = element_text(hjust = 0))
 ```
 
 ```{r field-gray}
@@ -390,7 +386,7 @@ ggplot(trade, aes(country, value, fill = flow)) +
                      limits = c(0, 50), expand = expansion(0)) +
   labs(title = "Three Partners", subtitle = "U.S. trade by country, 2010",
        caption = "Source: U.S. International Trade Commission") +
-  on_field(fields[["white"]]) +
+  on_field("white") +
   theme(plot.title = element_text(family = wsj_text_semibold, face = "plain"),
         plot.subtitle = element_text(family = wsj_text_semibold),
         legend.position = "top", legend.justification = "left", axis.ticks.x = element_blank())
@@ -429,7 +425,7 @@ So the desk worked from a few base swatches and made the rest as RGB tints. That
 
 ### On each field
 
-The palettes were measured on the ivory field, but the charts used them on every field. The swatches of each `wsj_pal()` palette, then the same chart, on the five fields of the corpus: ivory and gray (`theme_wsj()`'s `"ivory"` and `"gray"`), the pale blue `#eff4f9` and white of period A, and the pale green `#f2f9f2` of the PMI charts. The pale tints lose most against gray and pale blue; keep them for fills.
+The palettes were measured on the ivory field, but the charts used them on every field. The swatches of each `wsj_pal()` palette, then the same chart, on the five fields of the corpus, each a `paper` of `theme_wsj()`: ivory and gray, the pale blue `#eff4f9` and white of period A, and the pale green `#f2f9f2` of the PMI charts. The pale tints lose most against gray and pale blue; keep them for fills.
 
 ```{r palettes-fields, fig.width = 10, fig.height = 4.8}
 palettes <- c("categorical", "categorical_light", "categorical_dark", "direction", "comparison", "actual_forecast",
@@ -439,16 +435,16 @@ sw <- do.call(rbind, lapply(palettes, function(p) {
   data.frame(palette = p, i = seq_along(cols), hex = cols)
 }))
 sw$palette <- factor(sw$palette, levels = rev(palettes))
-swatches <- function(field, name) {
+swatches <- function(paper) {
   ggplot(sw, aes(i, palette, fill = hex)) +
     geom_tile(width = 0.85, height = 0.7) +
     scale_fill_identity() +
     scale_x_continuous(breaks = NULL) +
-    labs(title = name, subtitle = fields[[name]]) +
-    on_field(field, base_size = 9) +
+    labs(title = field_name(paper), subtitle = fields[[paper]]) +
+    on_field(paper, base_size = 9) +
     theme(panel.grid = element_blank(), axis.text.y = element_text(size = rel(0.9)))
 }
-side_by_side(Map(swatches, fields, names(fields)))
+side_by_side(lapply(names(fields), swatches))
 ```
 
 ```{r palettes-fields-chart, fig.width = 10, fig.height = 3.8}
@@ -456,18 +452,18 @@ side_by_side(Map(swatches, fields, names(fields)))
 stack <- expand.grid(year = 2008:2013, part = c("Completed", "Under way", "Planned"))
 stack$part <- factor(stack$part, levels = c("Planned", "Under way", "Completed"))
 stack$value <- c(3.4, 3.9, 4.4, 5.6, 6.5, 7.6, 1.0, 1.6, 2.2, 2.4, 2.9, 3.2, 0.6, 0.8, 1.4, 1.5, 2.0, 2.6)
-chart <- function(field, name) {
+chart <- function(paper) {
   ggplot(stack, aes(year, value)) +
     geom_col(aes(fill = part), width = 0.8) +
     geom_hline(yintercept = 0) +
     scale_fill_manual(values = setNames(wsj_pal("greens")(3), c("Completed", "Under way", "Planned"))) +
     scale_x_continuous(breaks = c(2008, 2010, 2012), labels = c("2008", "'10", "'12")) +
     scale_y_continuous(breaks = seq(0, 14, 4), limits = c(0, 14), expand = expansion(0)) +
-    labs(title = name, fill = NULL) +
-    on_field(field, base_size = 9) +
+    labs(title = field_name(paper), fill = NULL) +
+    on_field(paper, base_size = 9) +
     theme(legend.text = element_text(size = rel(0.75)), legend.key.size = unit(8, "pt"))
 }
-side_by_side(Map(chart, fields, names(fields)))
+side_by_side(lapply(names(fields), chart))
 ```
 
 ### One series, two series, more
@@ -922,14 +918,15 @@ ggplot(data, aes(date, value)) +
     subtitle = "What is measured, in what unit",
     caption = "Source: Who\nThe Wall Street Journal"
   ) +
-  theme_wsj() +                                   # paper = "gray", with gray type, from August 2013
-  theme(
-    axis.text.x = element_text(hjust = 0),        # labels just after the tick
-    panel.grid.major.y = element_blank()          # with wsj_bands() only
-  )
+  theme_wsj(
+    paper = "ivory",                              # "gray", with gray type, from August 2013
+    subtitle_face = "plain",                      # "bold" until June 2012
+    rules = "dotted"                              # "none" with wsj_bands()
+  ) +
+  theme(axis.text.x = element_text(hjust = 0))    # labels just after the tick
 ```
 
-Number callouts are `wsj_callout()`. What the package does not do: the title and text faces (see [Type](#type)), leader-line labels, the pale green field of the PMI charts, and the pointer labels, rings, direction arrows and event markers, which the figure above draws with `annotate()`.
+Number callouts are `wsj_callout()`. What the package does not do: the title and text faces (see [Type](#type)), leader-line labels, and the pointer labels, rings, direction arrows and event markers, which the figure above draws with `annotate()`.
 
 ## How this guide was made
 

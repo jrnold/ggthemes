@@ -127,7 +127,7 @@ test_that("pre-8.0.0 field names still work positionally", {
 
 test_that("current paper values do not warn", {
   withr::local_options(lifecycle_verbosity = "warning")
-  for (pp in c("ivory", "gray")) {
+  for (pp in names(ggthemes_data$wsj$paper)) {
     expect_no_warning(theme_wsj(paper = pp))
   }
   expect_no_warning(theme_wsj())
@@ -147,9 +147,43 @@ test_that("theme_wsj draws no axis rule", {
   expect_s3_class(theme_wsj()$axis.line, "element_blank")
 })
 
-test_that("the white field is gone", {
-  expect_error(theme_wsj(paper = "white"), regexp = "must be one of")
-  expect_equal(names(ggthemes_data$wsj$paper), c("ivory", "gray"))
+test_that("theme_wsj() offers the five measured fields", {
+  expect_equal(
+    ggthemes_data$wsj$paper,
+    c(ivory = "#f8f2e4", gray = "#efefef", pale_blue = "#eff4f9", pale_green = "#f2f9f2", white = "#ffffff")
+  )
+  for (pp in names(ggthemes_data$wsj$paper)) {
+    thm <- theme_wsj(paper = pp)
+    expect_equal(thm$plot.background$fill, ggthemes_data$wsj$paper[[pp]], info = pp)
+    expect_equal(thm$legend.key$fill, ggthemes_data$wsj$paper[[pp]], info = pp)
+  }
+})
+
+test_that("theme_wsj() inks the type gray on the gray field unless told otherwise", {
+  type_colours <- function(thm) c(thm$text$colour, thm$axis.text$colour, thm$strip.text$colour)
+  expect_equal(type_colours(theme_wsj()), rep("#000000", 3))
+  expect_equal(type_colours(theme_wsj(paper = "gray")), rep("#444444", 3))
+  expect_equal(type_colours(theme_wsj(paper = "pale_blue")), rep("#000000", 3))
+  expect_equal(type_colours(theme_wsj(ink = "gray")), rep("#444444", 3))
+  expect_equal(type_colours(theme_wsj(paper = "gray", ink = "black")), rep("#000000", 3))
+  # The title stays black whatever the ink.
+  expect_equal(theme_wsj(ink = "gray")$plot.title$colour, "#000000")
+  expect_error(theme_wsj(ink = "blue"), regexp = "must be one of")
+})
+
+test_that("theme_wsj() sets the subtitle weight", {
+  expect_equal(theme_wsj()$plot.subtitle$face, "plain")
+  expect_equal(theme_wsj(subtitle_face = "bold")$plot.subtitle$face, "bold")
+  expect_error(theme_wsj(subtitle_face = "heavy"), regexp = "must be one of")
+})
+
+test_that("theme_wsj() draws dotted, solid or no rules", {
+  expect_equal(theme_wsj()$panel.grid.major.y$linetype, "dotted")
+  expect_equal(theme_wsj(rules = "solid")$panel.grid.major.y$linetype, "solid")
+  expect_s3_class(theme_wsj(rules = "none")$panel.grid.major.y, "element_blank")
+  # There are never vertical rules.
+  expect_s3_class(theme_wsj(rules = "solid")$panel.grid.major.x, "element_blank")
+  expect_error(theme_wsj(rules = "dashed"), regexp = "must be one of")
 })
 
 test_that("palette errors name the input and the function called", {
@@ -243,7 +277,7 @@ test_that("theme_wsj prints black type and no axis titles", {
   expect_equal(thm$text$colour, "#000000")
   expect_s3_class(thm$axis.title, "element_blank")
   # Regular-weight subtitles, as from July 2012.
-  expect_null(thm$plot.subtitle$face)
+  expect_equal(thm$plot.subtitle$face, "plain")
 })
 
 test_that("shade palettes run darkest first", {
@@ -287,6 +321,10 @@ test_that("wsj_bands takes its fill from the paper", {
   expect_s3_class(wsj_bands(), "LayerInstance")
   expect_equal(wsj_bands()$geom_params$fill, "#efe4c9")
   expect_equal(wsj_bands("gray")$geom_params$fill, "#dddddd")
+  expect_equal(wsj_bands("pale_blue")$geom_params$fill, "#d7e4ee")
+  # No band was measured on white; a color must be given.
+  expect_error(wsj_bands("white"), regexp = "must be one of")
+  expect_equal(wsj_bands("white", fill = "#eeeeee")$geom_params$fill, "#eeeeee")
   expect_equal(wsj_bands(fill = "red")$geom_params$fill, "red")
   expect_error(wsj_bands("chartreuse"), regexp = "must be one of")
 })
