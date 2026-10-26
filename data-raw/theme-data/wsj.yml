@@ -25,7 +25,7 @@ ink:
   - {name: gray, value: '#444444'}
 # Horizontal reference rules (`theme_wsj(rules = )`). The solid rule is the
 # median of 21 rules that fall on a single pixel row in 15 page-one "Vitals"
-# charts of 2011-2013 (rule_ink.py in the corpus's guide/). The dotted rule's
+# charts of 2011-2013 (rule_ink.py in the wsj-styleguide-data repository). The dotted rule's
 # gray is the one theme_wsj() has used; it is not measured.
 rules:
   - {name: dotted, value: '#8a8a8a'}

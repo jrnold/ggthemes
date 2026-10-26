@@ -6,7 +6,7 @@ library(ggplot2)
 
 # ---- The evidence ---------------------------------------------------------------------------------------------------
 # One row per chart: what the readings of each image recorded and what the pixel measurements found
-# (`guide/export.py` of the WSJ graphics corpus writes these files). Every chart was measured. The Asia-desk charts
+# (`export.py` of the wsj-styleguide-data repository writes these files). Every chart was measured. The Asia-desk charts
 # were all read, twice; the US-desk charts were read once, in a stratified sample, and `read` marks the charts with a
 # reading.
 # `inks.csv` counts the charts in each period and on each desk that use each measured color.
@@ -21,7 +21,7 @@ us_read <- read[read$desks == "US", ]
 # The number callouts of the charts that have them, read from the images.
 callouts <- read.csv("wsj-2010-2014/callouts.csv", stringsAsFactors = FALSE)
 # The color of each directly labeled series' label against its line, by hue, in the charts whose labels are colored
-# text (`guide/label_colors.py` of the corpus): the mean of the darkest third of the glyph pixels and of the line
+# text (`label_colors.py` of the wsj-styleguide-data repository): the mean of the darkest third of the glyph pixels and of the line
 # pixels.
 label_colors <- read.csv("wsj-2010-2014/label-colors.csv", stringsAsFactors = FALSE)
 label_colors$desks <- charts$desks[match(label_colors$file, charts$file)]
