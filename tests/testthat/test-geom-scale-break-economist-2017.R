@@ -49,6 +49,14 @@ test_that("geom_scale_break_economist_2017 sits between the baseline and the low
   expect_lt(centre, lowest)
 })
 
+test_that("geom_scale_break_economist_2017 rests on the baseline when the lowest break is on it", {
+  # With no expansion the lowest break, 30, is the baseline, so there is no
+  # gap below it; the symbol sits on the baseline, not between 30 and 40.
+  p <- truncated_plot() + ggplot2::coord_cartesian(expand = FALSE)
+  built <- ggplot2::layer_grob(p, i = 2)[[1]]
+  expect_equal(as.numeric(grid::convertY(built$y[1], "pt")), 4 / 2)
+})
+
 test_that("geom_scale_break_economist_2017 draws at the requested side", {
   right <- ggplot2::layer_grob(truncated_plot(side = "right"), i = 2)[[1]]
   left <- ggplot2::layer_grob(truncated_plot(side = "left"), i = 2)[[1]]

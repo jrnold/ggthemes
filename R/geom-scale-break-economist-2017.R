@@ -107,11 +107,19 @@ GeomScaleBreakEconomist2017 <- ggproto(
       cli::cli_abort("{.fn geom_scale_break_economist_2017} needs a Cartesian coord, such as {.fn coord_cartesian}.")
     }
     breaks <- panel_params$y$break_positions()
-    breaks <- breaks[is.finite(breaks) & breaks > 0 & breaks <= 1]
+    # A break on the baseline itself counts, with some slack for rounding.
+    breaks <- breaks[is.finite(breaks) & breaks >= -1e-8 & breaks <= 1]
     if (!length(breaks)) {
       return(zeroGrob())
     }
-    centre <- min(breaks) / 2
+    # When the lowest tick is the baseline there is no gap to sit in, so the
+    # symbol rests on the baseline, inset by half its height as it is inset
+    # from the side below.
+    centre <- if (min(breaks) <= 1e-8) {
+      unit(height / 2, "pt")
+    } else {
+      unit(min(breaks) / 2, "npc")
+    }
 
     # A flat run, one up-down zigzag, then a flat run, drawn symmetrically
     # about the panel edge.
@@ -129,7 +137,7 @@ GeomScaleBreakEconomist2017 <- ggproto(
 
     polylineGrob(
       x = anchor + unit(dx, "pt"),
-      y = unit(centre, "npc") + unit(dy, "pt"),
+      y = centre + unit(dy, "pt"),
       # grid draws lwd 1 as 1/96in = 0.75pt, so a stroke given in points
       # converts by dividing by 0.75.
       gp = gpar(col = colour, lwd = stroke / 0.75, lineend = "butt")
