@@ -72,3 +72,31 @@ repos:
     hooks:
       - id: typos
         args: [--force-exclude]  # report only; `typos -w` fixes
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.14.1-1
+    hooks:
+      - id: shfmt  # reads indent and style from .editorconfig
+
+  - repo: local
+    hooks:
+      - id: zsh-syntax
+        name: zsh -n
+        entry: zsh -n
+        language: system
+        types: [zsh]
+      - id: fish-syntax
+        name: fish --no-execute
+        entry: fish --no-execute
+        language: system
+        types: [fish]
+      - id: fish-indent
+        name: fish_indent
+        entry: fish_indent --check
+        language: system
+        types: [fish]
