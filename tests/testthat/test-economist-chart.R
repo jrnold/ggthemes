@@ -16,6 +16,7 @@ test_that("economist_chart returns a drawable grob and checks its arguments", {
   expect_error(economist_chart(1), "ggplot")
   expect_error(economist_chart(chart_plot(), number = 1:2), "single value")
   expect_error(economist_chart(chart_plot(), tab = 5), "two non-negative")
+  expect_error(economist_chart(chart_plot(), tab = c(NA, 1)), "two non-negative")
 })
 
 test_that("economist_chart draws a 5pt by 15pt tab in Economist red at the top left", {

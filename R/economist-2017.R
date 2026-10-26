@@ -480,7 +480,7 @@ economist_2017_chart <- function(
   tab = c(15, 5)
 ) {
   media <- rlang::arg_match(media)
-  if (!is.numeric(tab) || length(tab) != 2 || any(tab < 0)) {
+  if (!is.numeric(tab) || length(tab) != 2 || anyNA(tab) || any(tab < 0)) {
     cli::cli_abort("{.arg tab} must be two non-negative numbers: a width and a height in points.")
   }
   new_economist_chart(plot, media, footnote, number, tab, era = "2017")

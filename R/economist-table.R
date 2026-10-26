@@ -188,7 +188,8 @@ gt_theme_economist_2017 <- function(
 #' @param media For `style = "2017"`, `"print"` or `"web"`.
 #' @param width The width of the chart, in points: 160 is one column of the
 #'   print edition.
-#' @param ... Passed to the theme, as `stripe` or `font`.
+#' @param ... Passed to the theme: `font` for [gt_theme_economist()], and
+#'   `stripe` or `font` for [gt_theme_economist_2017()].
 #'
 #' @return An HTML fragment, of class `html`, which prints in the viewer and
 #'   knits into HTML documents.
@@ -229,10 +230,24 @@ economist_table <- function(
   }
   data <- gt::tab_options(data, table.width = "100%", table.background.color = "transparent")
   # The finer CSS is scoped to this frame, since the table may have no id; the scope is a hash of the content, so it is
-  # the same each time.
+  # the same each time. The gt object itself holds closures, which hash differently in each session, so only its data
+  # and column labels are hashed.
   scope <- paste0(
     "ggthemes-economist-table-",
-    substr(rlang::hash(list(data, title, subtitle, source, footnote)), 1, 12)
+    substr(
+      rlang::hash(list(
+        as.data.frame(data[["_data"]]),
+        as.character(unlist(data[["_boxhead"]][["column_label"]])),
+        style,
+        media,
+        title,
+        subtitle,
+        source,
+        footnote
+      )),
+      1,
+      12
+    )
   )
   # gt draws a random id for a table without one, so the user's random-number state is put back afterwards.
   table_html <- with_preserved_seed(gt::as_raw_html(data, inline_css = TRUE))

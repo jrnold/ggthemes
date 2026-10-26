@@ -48,7 +48,7 @@ the panel. Leave room for it, as \code{\link[=theme_economist_2017]{theme_econom
 
 Only vertical axes are drawn this way. On an x axis the guide falls back
 to \code{\link[ggplot2:guide_axis]{ggplot2::guide_axis()}}, dropping any label that would overprint its
-neighbour, as when a horizontal bar chart's value axis runs along the top.
+neighbor, as when a horizontal bar chart's value axis runs along the top.
 }
 \examples{
 library("ggplot2")

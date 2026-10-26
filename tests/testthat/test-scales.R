@@ -95,6 +95,10 @@ test_that("extended_range_breaks_() is deprecated in favour of extended_range_br
 ## keeping the first label and every century boundary in full (guide pp.6, 7,
 ## 13, 15, 16, 23).
 
+test_that("economist_2017_year refuses dates and points to the date scale", {
+  expect_error(economist_2017_year(as.Date("2016-01-01")), "scale_x_date_economist")
+})
+
 test_that("economist_2017_year reproduces the styleguide's own axes", {
   # p.7, "National anthem monopolies": 1948 through 2016 every four years.
   expect_equal(

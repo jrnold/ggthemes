@@ -21,7 +21,8 @@ the plot.}
 \item{data}{A data frame for the layers, or \code{NULL} to use the plot's.}
 
 \item{...}{Other arguments passed to the ribbon layer, such as a fixed
-\code{fill}. A fixed \code{fill} also sets the color of the edges.}
+\code{fill}. A fixed \code{fill} also sets the color of the edges; a fixed \code{colour}
+sets the color of the edges only, since the ribbon has no outline.}
 
 \item{alpha}{Opacity of the ribbon's fill.}
 
@@ -60,7 +61,8 @@ polls <- do.call(
   rbind,
   lapply(c("Conservative", "Liberal"), function(party) {
     x <- seq(2021, 2025, length.out = 60)
-    y <- (if (party == "Liberal") 33 - 3 * (x - 2021) else 30 + 3 * (x - 2021)) + cumsum(rnorm(60, 0, 0.3))
+    trend <- if (party == "Liberal") 33 - 3 * (x - 2021) else 30 + 3 * (x - 2021)
+    y <- trend + cumsum(rnorm(60, 0, 0.3))
     data.frame(party = party, x = x, y = y, lo = y - 4, hi = y + 4)
   })
 )

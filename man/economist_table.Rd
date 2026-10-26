@@ -30,7 +30,8 @@ none. Line breaks (\code{"\\n"}) are kept. Text is escaped; wrap it in
 \item{width}{The width of the chart, in points: 160 is one column of the
 print edition.}
 
-\item{...}{Passed to the theme, as \code{stripe} or \code{font}.}
+\item{...}{Passed to the theme: \code{font} for \code{\link[=gt_theme_economist]{gt_theme_economist()}}, and
+\code{stripe} or \code{font} for \code{\link[=gt_theme_economist_2017]{gt_theme_economist_2017()}}.}
 }
 \value{
 An HTML fragment, of class \code{html}, which prints in the viewer and

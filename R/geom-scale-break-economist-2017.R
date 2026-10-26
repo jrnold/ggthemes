@@ -45,7 +45,8 @@
 #' @importFrom ggplot2 layer
 #' @export
 #' @example inst/examples/ex-geom_scale_break_economist_2017.R
-geom_scale_break_economist_2017 <- function( # nolint: object_length_linter. Era-specific name.
+geom_scale_break_economist_2017 <- function(
+  # nolint: object_length_linter. Era-specific name.
   side = c("right", "left"),
   width = 6,
   height = 4,
@@ -56,8 +57,10 @@ geom_scale_break_economist_2017 <- function( # nolint: object_length_linter. Era
   side <- match.arg(side)
   layer(
     # The symbol is positioned from the panel's own breaks rather than from
-    # data, so the layer supplies a single dummy row and maps nothing.
-    data = data.frame(x = 0),
+    # data, so the layer supplies a single dummy row and maps nothing. Its
+    # column is named so that no facet variable matches it, which would draw
+    # the symbol in one panel only.
+    data = data.frame(.ggthemes_dummy = 0),
     mapping = NULL,
     stat = "identity",
     geom = GeomScaleBreakEconomist2017,
@@ -100,6 +103,9 @@ GeomScaleBreakEconomist2017 <- ggproto(
     # Break positions come back in npc, with out-of-range breaks as NA. The
     # lowest one that is actually inside the panel is the "first y-axis tick"
     # the guide measures against; the baseline is the panel bottom, at 0.
+    if (!is.function(panel_params$y$break_positions)) {
+      cli::cli_abort("{.fn geom_scale_break_economist_2017} needs a Cartesian coord, such as {.fn coord_cartesian}.")
+    }
     breaks <- panel_params$y$break_positions()
     breaks <- breaks[is.finite(breaks) & breaks > 0 & breaks <= 1]
     if (!length(breaks)) {

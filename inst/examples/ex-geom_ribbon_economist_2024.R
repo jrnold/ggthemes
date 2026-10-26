@@ -6,7 +6,8 @@ polls <- do.call(
   rbind,
   lapply(c("Conservative", "Liberal"), function(party) {
     x <- seq(2021, 2025, length.out = 60)
-    y <- (if (party == "Liberal") 33 - 3 * (x - 2021) else 30 + 3 * (x - 2021)) + cumsum(rnorm(60, 0, 0.3))
+    trend <- if (party == "Liberal") 33 - 3 * (x - 2021) else 30 + 3 * (x - 2021)
+    y <- trend + cumsum(rnorm(60, 0, 0.3))
     data.frame(party = party, x = x, y = y, lo = y - 4, hi = y + 4)
   })
 )

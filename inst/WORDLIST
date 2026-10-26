@@ -19,6 +19,7 @@ Colour
 ColrSpace
 DejaVu
 Dosis
+ECB
 Excel's
 FOGRA
 Fira
@@ -53,6 +54,7 @@ Okabe
 Penumbral
 Pinterest
 PolicyViz
+QE
 README
 README's
 RStudio
@@ -62,6 +64,7 @@ STIX
 SWOP
 Salud
 SandyMuspratt
+Sans's
 Schoonover's
 Schwabish
 Selenized
@@ -93,11 +96,13 @@ artboard
 artboards
 behaviour
 bkgd
+bn
 borderless
 bowerth
 bowtie
 bugfix
 calc
+callout
 canva
 catalogue
 categorising
@@ -105,6 +110,7 @@ centre
 centred
 codepoint
 codepoints
+colorbar
 colorimetric
 colour
 continous
@@ -113,8 +119,10 @@ coord
 counterfactuals
 daroczig
 devtools
+dichromat
 distributable
 dplyr
+edu
 erroring
 et
 extrafont
@@ -137,7 +145,10 @@ iWork
 idealised
 impactful
 jbkunst
+jtalbot
 khroma
+knitr
+kpi
 labelled
 labelling
 letterforms
@@ -148,6 +159,7 @@ linetypes
 linewidth
 linter
 lintr's
+longdash
 lty
 luminance
 magrittr
@@ -170,15 +182,20 @@ ptol
 pts
 purrr
 px
+ragg
 rcolor
 recognises
 reflow
+reorderings
 rlang
+roxygen
 rstudio
 sRGB
+shortdash
 sj
 slopeless
 solarized
+stanford
 stata
 stcolor
 stmono
@@ -190,7 +207,9 @@ styleguide's
 styleguide’s
 stylesheet
 summarise
+svglite
 symbolstyles
+systemfonts
 th
 tibble
 tidyverse

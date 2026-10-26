@@ -64,3 +64,17 @@ test_that("geom_scale_break_economist_2017 draws correctly", {
     truncated_plot() + theme_economist_2017(base_family = "sans", base_size = 7)
   )
 })
+
+test_that("geom_scale_break_economist_2017 draws in every panel when a facet variable is named x", {
+  d <- data.frame(x = rep(1:4, each = 2), y = c(30, 80))
+  p <- ggplot2::ggplot(d, ggplot2::aes(x, y)) +
+    ggplot2::geom_point() +
+    geom_scale_break_economist_2017() +
+    ggplot2::facet_wrap(~x)
+  expect_equal(as.vector(table(ggplot2::layer_data(p, 2)$PANEL)), rep(1, 4))
+})
+
+test_that("geom_scale_break_economist_2017 asks for a Cartesian coord", {
+  p <- truncated_plot() + ggplot2::coord_polar()
+  expect_error(ggplot2::ggplotGrob(p), "Cartesian")
+})

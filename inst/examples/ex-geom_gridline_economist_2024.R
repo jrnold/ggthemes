@@ -9,7 +9,12 @@ ggplot(wages, aes(year, index)) +
   geom_gridline_economist_2024(seq(10, 50, 10), xmin = 2000, xmax = 2020, gaps = gaps) +
   geom_line(colour = economist_2024_pal()(1), linewidth = 0.8) +
   annotate("text", x = 2002, y = 40, label = "Real wages", hjust = 0) +
-  scale_y_continuous(position = "right", limits = c(0, 51), breaks = seq(0, 50, 10), expand = c(0, 0)) +
+  scale_y_continuous(
+    position = "right",
+    limits = c(0, 51),
+    breaks = seq(0, 50, 10),
+    expand = c(0, 0)
+  ) +
   scale_x_continuous(expand = c(0, 0)) +
   labs(title = "Pay check", subtitle = "Index, 2000=10", x = NULL, y = NULL) +
   theme_economist_2024() +

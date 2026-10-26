@@ -28,7 +28,8 @@
 #'   the plot.
 #' @param data A data frame for the layers, or `NULL` to use the plot's.
 #' @param ... Other arguments passed to the ribbon layer, such as a fixed
-#'   `fill`. A fixed `fill` also sets the color of the edges.
+#'   `fill`. A fixed `fill` also sets the color of the edges; a fixed `colour`
+#'   sets the color of the edges only, since the ribbon has no outline.
 #' @param alpha Opacity of the ribbon's fill.
 #' @param edge_alpha Opacity of the two edge lines.
 #' @param edge_linewidth Width of the edge lines, in points.
@@ -49,6 +50,9 @@ geom_ribbon_economist_2024 <- function(
     cli::cli_abort("{.arg mapping} must map {.field ymin} and {.field ymax}.")
   }
   dots <- list(...)
+  # A fixed colour is for the edges: the ribbon itself has no outline.
+  edge_colour <- dots[["colour"]] %||% dots[["color"]] %||% dots[["fill"]]
+  ribbon_dots <- dots[setdiff(names(dots), c("colour", "color"))]
   # Each edge is the ribbon's own x, with y the ribbon's ymin or ymax, and the
   # series' fill as its colour.
   edge_mapping <- function(limit) {
@@ -69,13 +73,13 @@ geom_ribbon_economist_2024 <- function(
       alpha = edge_alpha,
       linewidth = edge_linewidth / 0.75 / ggplot2::.pt
     )
-    if (!is.null(dots$fill)) {
-      args$colour <- dots$fill
+    if (!is.null(edge_colour)) {
+      args$colour <- edge_colour
     }
     do.call(ggplot2::geom_line, args)
   }
   list(
-    ggplot2::geom_ribbon(mapping = mapping, data = data, colour = NA, alpha = alpha, ...),
+    do.call(ggplot2::geom_ribbon, c(list(mapping = mapping, data = data, colour = NA, alpha = alpha), ribbon_dots)),
     edge("ymin"),
     edge("ymax")
   )
@@ -127,10 +131,23 @@ geom_gridline_economist_2024 <- function(
     rbind,
     lapply(breaks, function(b) {
       g <- gaps[gaps$y == b, , drop = FALSE]
-      g <- g[order(g$from), , drop = FALSE]
-      data.frame(y = b, x = c(xmin, g$to), xend = c(g$from, xmax))
+      # Gaps are clipped to the line and merged where they overlap, so no
+      # segment runs backwards across one.
+      from <- pmax(pmin(g$from, g$to), xmin)
+      to <- pmin(pmax(g$from, g$to), xmax)
+      keep <- from < to
+      from <- from[keep]
+      to <- to[keep]
+      o <- order(from)
+      from <- from[o]
+      to <- cummax(to[o])
+      starts <- c(xmin, to)
+      ends <- c(from, xmax)
+      seg <- data.frame(y = rep(b, length(starts)), x = starts, xend = ends)
+      seg[seg$x < seg$xend, , drop = FALSE]
     })
   )
+  segments <- segments %||% data.frame(y = numeric(), x = numeric(), xend = numeric())
   spec <- ggthemes::ggthemes_data[["economist_2024"]][[media]]
   ggplot2::geom_segment(
     data = segments,

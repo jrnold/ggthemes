@@ -18,4 +18,4 @@ economist_chart(p)
 economist_chart(p, number = 2)
 
 ## A value axis that does not start at zero, marked as broken
-economist_chart(p + scale_y_continuous(position = "right", limits = c(2, 18)), scale_break = "right")
+economist_chart(p + coord_cartesian(ylim = c(2, 18)), scale_break = "right")

@@ -59,3 +59,16 @@ test_that("the year band labels years the guide's way", {
 test_that("timeline layers draw correctly", {
   expect_doppelganger("geom_timeline_economist_2017", timeline_plot())
 })
+
+test_that("a year band of one year draws, and draws in every facet", {
+  d <- data.frame(x = c(2004, 2006, 2008), y = 1)
+  p <- ggplot2::ggplot(d, ggplot2::aes(x, y)) +
+    ggplot2::geom_point() +
+    geom_year_band_economist_2017(2005, 2005)
+  expect_no_error(ggplot2::ggplotGrob(p))
+  faceted <- ggplot2::ggplot(d, ggplot2::aes(x, y)) +
+    ggplot2::geom_point() +
+    geom_year_band_economist_2017(2004, 2008) +
+    ggplot2::facet_wrap(~x)
+  expect_equal(as.vector(table(ggplot2::layer_data(faceted, 2)$PANEL)), rep(1, 3))
+})

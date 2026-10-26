@@ -476,7 +476,7 @@ economist_2024_chart <- function(
 ) {
   media <- rlang::arg_match(media)
   tab <- tab %||% economist_2024_tab[[media]]
-  if (!is.numeric(tab) || length(tab) != 2 || any(tab < 0)) {
+  if (!is.numeric(tab) || length(tab) != 2 || anyNA(tab) || any(tab < 0)) {
     cli::cli_abort("{.arg tab} must be two non-negative numbers: a width and a height.")
   }
   # The layout code measures in the 2017 guide's points.

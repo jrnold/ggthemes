@@ -16,6 +16,7 @@ choose_test_device <- function() {
     function(...) ragg::agg_png(filename = tempfile(fileext = ".png"), ...)
   )
   for (open in candidates) {
+    before <- grDevices::dev.list()
     works <- tryCatch(
       {
         withCallingHandlers(
@@ -25,7 +26,13 @@ choose_test_device <- function() {
         grDevices::dev.off()
         TRUE
       },
-      error = function(e) FALSE
+      error = function(e) {
+        # A device that opened and then warned is closed again.
+        for (d in setdiff(grDevices::dev.list(), before)) {
+          grDevices::dev.off(d)
+        }
+        FALSE
+      }
     )
     if (works) {
       return(open)

@@ -350,6 +350,12 @@ format_smart_digits <- function(x, ...) {
 #' @rdname economist_2017_year
 #' @export
 economist_2017_year <- function(x, ...) {
+  if (inherits(x, c("Date", "POSIXt"))) {
+    cli::cli_abort(c(
+      "{.arg x} must be numeric years, not a {.cls {class(x)[[1]]}}.",
+      i = "For a date axis, use {.fn scale_x_date_economist}."
+    ))
+  }
   if (length(x) == 0) {
     return(character())
   }

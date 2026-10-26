@@ -49,7 +49,7 @@ economist_chart <- function(plot, number = NULL, tab = c(5, 15), scale_break = c
   if (!is.null(number) && length(number) != 1) {
     cli::cli_abort("{.arg number} must be a single value or {.code NULL}.")
   }
-  if (!is.null(tab) && (!is.numeric(tab) || length(tab) != 2 || any(tab < 0))) {
+  if (!is.null(tab) && (!is.numeric(tab) || length(tab) != 2 || anyNA(tab) || any(tab < 0))) {
     cli::cli_abort("{.arg tab} must be two non-negative numbers, a width and a height in points, or {.code NULL}.")
   }
   # Built at draw time, in makeContent(), as economist_2017_chart() is.

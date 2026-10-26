@@ -16,7 +16,7 @@
 #'
 #' Only vertical axes are drawn this way. On an x axis the guide falls back
 #' to [ggplot2::guide_axis()], dropping any label that would overprint its
-#' neighbour, as when a horizontal bar chart's value axis runs along the top.
+#' neighbor, as when a horizontal bar chart's value axis runs along the top.
 #'
 #' @param title A character string or expression for the axis title. The
 #'   default, [ggplot2::waiver()], takes the title from the scale.

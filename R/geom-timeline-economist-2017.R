@@ -350,8 +350,9 @@ geom_year_band_economist_2017 <- function(
 ) {
   stopifnot(is.numeric(from), is.numeric(to), from <= to)
   layer(
-    # The band is drawn from its parameters, not from data.
-    data = data.frame(x = from),
+    # The band is drawn from its parameters, not from data. The dummy column is
+    # named so that no facet variable matches it.
+    data = data.frame(.ggthemes_dummy = from),
     mapping = NULL,
     stat = "identity",
     geom = GeomYearBandEconomist2017,
@@ -399,11 +400,16 @@ GeomYearBandEconomist2017 <- ggproto(
       gp = grid::gpar(col = NA, fill = ifelse(years %% 5 == 0, fills[2], fills[1]))
     )
     # A thin rule between each pair of years, in the chart's background color.
-    dividers <- grid::segmentsGrob(
-      x0 = right[-length(right)], y0 = grid::unit(top, "npc"),
-      x1 = right[-length(right)], y1 = grid::unit(top, "npc") - timeline_pt(height),
-      gp = grid::gpar(col = "white", lwd = 0.5 / 0.75, alpha = 0.6)
-    )
+    # A band of one year has none.
+    dividers <- if (length(years) > 1) {
+      grid::segmentsGrob(
+        x0 = right[-length(right)], y0 = grid::unit(top, "npc"),
+        x1 = right[-length(right)], y1 = grid::unit(top, "npc") - timeline_pt(height),
+        gp = grid::gpar(col = "white", lwd = 0.5 / 0.75, alpha = 0.6)
+      )
+    } else {
+      grid::nullGrob()
+    }
     labelled <- years %% label_every == 0 | years == from
     text <- grid::textGrob(
       economist_2017_year(years[labelled]),

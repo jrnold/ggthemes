@@ -86,3 +86,25 @@ test_that("both helpers build in a plot", {
   expect_no_error(ggplot2::ggplot_build(p))
   expect_no_error(ggplot2::ggplot_build(ribbon_plot()))
 })
+
+test_that("geom_gridline_economist_2024 clips and merges gaps, so no segment runs backwards", {
+  layer_segments <- function(gaps, breaks = 1) {
+    p <- ggplot2::ggplot() + geom_gridline_economist_2024(breaks, xmin = 0, xmax = 10, gaps = gaps)
+    ggplot2::layer_data(p)
+  }
+  d <- layer_segments(data.frame(y = 1, from = c(2, 3), to = c(5, 4)))
+  expect_equal(d$x, c(0, 5))
+  expect_equal(d$xend, c(2, 10))
+  d <- layer_segments(data.frame(y = 1, from = 9, to = 12))
+  expect_equal(d$x, 0)
+  expect_equal(d$xend, 9)
+  expect_no_error(layer_segments(NULL, breaks = numeric()))
+})
+
+test_that("a fixed colour in geom_ribbon_economist_2024 colours the edges, not the ribbon", {
+  d <- data.frame(x = 1:3, lo = 1:3, hi = 2:4)
+  layers <- geom_ribbon_economist_2024(ggplot2::aes(x, ymin = lo, ymax = hi), data = d, colour = "red")
+  expect_no_warning(p <- ggplot2::ggplot() + layers)
+  expect_true(is.na(ggplot2::layer_data(p, 1)$colour[[1]]))
+  expect_equal(ggplot2::layer_data(p, 2)$colour[[1]], "red")
+})
