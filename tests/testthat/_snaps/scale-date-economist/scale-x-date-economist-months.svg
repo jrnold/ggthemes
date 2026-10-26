@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' data-engine-version='2.0' width='720.00pt' height='576.00pt' viewBox='0 0 720.00 576.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.07; stroke: none; fill: #CBDDE6;' />
+</g>
+<defs>
+  <clipPath id='cpMTIuMzB8NjkyLjYxfDE5LjQ1fDU0Ny4xOA=='>
+    <rect x='12.30' y='19.45' width='680.31' height='527.73' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMTIuMzB8NjkyLjYxfDE5LjQ1fDU0Ny4xOA==)'>
+<rect x='12.30' y='19.45' width='680.31' height='527.73' style='stroke-width: 1.07; stroke: none; fill: #CBDDE6;' />
+<polyline points='12.30,523.20 692.61,523.20 ' style='stroke-width: 0.52; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='12.30,403.26 692.61,403.26 ' style='stroke-width: 0.52; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='12.30,283.32 692.61,283.32 ' style='stroke-width: 0.52; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='12.30,163.38 692.61,163.38 ' style='stroke-width: 0.52; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='12.30,43.44 692.61,43.44 ' style='stroke-width: 0.52; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='43.23,271.33 45.14,259.37 47.04,247.47 48.95,235.66 50.86,223.97 52.77,212.43 54.68,201.06 56.59,189.90 58.50,178.98 60.41,168.31 62.32,157.94 64.22,147.87 66.13,138.15 68.04,128.78 69.95,119.81 71.86,111.24 73.77,103.10 75.68,95.41 77.59,88.20 79.49,81.47 81.40,75.24 83.31,69.53 85.22,64.36 87.13,59.74 89.04,55.68 90.95,52.18 92.86,49.26 94.77,46.93 96.67,45.19 98.58,44.04 100.49,43.49 102.40,43.54 104.31,44.19 106.22,45.44 108.13,47.28 110.04,49.71 111.94,52.73 113.85,56.32 115.76,60.48 117.67,65.20 119.58,70.46 121.49,76.25 123.40,82.56 125.31,89.38 127.22,96.67 129.12,104.44 131.03,112.65 132.94,121.29 134.85,130.33 136.76,139.76 138.67,149.54 140.58,159.66 142.49,170.09 144.39,180.80 146.30,191.76 148.21,202.96 150.12,214.36 152.03,225.93 153.94,237.64 155.85,249.47 157.76,261.38 159.67,273.34 161.57,285.33 163.48,297.32 165.39,309.27 167.30,321.16 169.21,332.95 171.12,344.62 173.03,356.13 174.94,367.46 176.84,378.59 178.75,389.47 180.66,400.09 182.57,410.41 184.48,420.42 186.39,430.09 188.30,439.39 190.21,448.30 192.12,456.80 194.02,464.86 195.93,472.47 197.84,479.61 199.75,486.25 201.66,492.39 203.57,498.01 205.48,503.09 207.39,507.62 209.29,511.59 211.20,514.99 213.11,517.81 215.02,520.04 216.93,521.68 218.84,522.73 220.75,523.18 222.66,523.03 224.57,522.28 226.47,520.93 228.38,518.99 230.29,516.46 232.20,513.34 234.11,509.66 236.02,505.40 237.93,500.59 239.84,495.24 241.74,489.36 243.65,482.96 245.56,476.07 247.47,468.69 249.38,460.85 251.29,452.56 253.20,443.85 255.11,434.75 257.02,425.26 258.92,415.42 260.83,405.24 262.74,394.77 264.65,384.01 266.56,373.00 268.47,361.77 270.38,350.34 272.29,338.75 274.19,327.01 276.10,315.17 278.01,303.25 279.92,291.28 281.83,279.28 283.74,267.30 285.65,255.36 287.56,243.49 289.47,231.71 291.37,220.07 293.28,208.59 295.19,197.29 297.10,186.20 299.01,175.36 300.92,164.79 302.83,154.51 304.74,144.56 306.65,134.96 308.55,125.72 310.46,116.88 312.37,108.45 314.28,100.46 316.19,92.93 318.10,85.88 320.01,79.31 321.92,73.26 323.82,67.74 325.73,62.75 327.64,58.31 329.55,54.44 331.46,51.13 333.37,48.41 335.28,46.28 337.19,44.73 339.10,43.79 341.00,43.44 342.91,43.69 344.82,44.54 346.73,45.99 348.64,48.03 350.55,50.66 352.46,53.87 354.37,57.66 356.27,62.00 358.18,66.90 360.09,72.35 362.00,78.32 363.91,84.80 365.82,91.78 367.73,99.23 369.64,107.15 371.55,115.51 373.45,124.28 375.36,133.46 377.27,143.01 379.18,152.91 381.09,163.13 383.00,173.66 384.91,184.46 386.82,195.51 388.72,206.77 390.63,218.23 392.54,229.85 394.45,241.60 396.36,253.46 398.27,265.40 400.18,277.37 402.09,289.37 404.00,301.34 405.90,313.28 407.81,325.14 409.72,336.89 411.63,348.51 413.54,359.96 415.45,371.23 417.36,382.27 419.27,393.07 421.17,403.59 423.08,413.82 424.99,423.71 426.90,433.26 428.81,442.43 430.72,451.20 432.63,459.56 434.54,467.47 436.45,474.92 438.35,481.90 440.26,488.37 442.17,494.34 444.08,499.78 445.99,504.67 447.90,509.02 449.81,512.80 451.72,516.00 453.62,518.62 455.53,520.66 457.44,522.10 459.35,522.95 461.26,523.20 463.17,522.84 465.08,521.89 466.99,520.34 468.90,518.20 470.80,515.48 472.71,512.17 474.62,508.29 476.53,503.85 478.44,498.85 480.35,493.32 482.26,487.26 484.17,480.70 486.07,473.64 487.98,466.10 489.89,458.11 491.80,449.68 493.71,440.84 495.62,431.60 497.53,421.99 499.44,412.03 501.35,401.75 503.25,391.18 505.16,380.34 507.07,369.25 508.98,357.95 510.89,346.46 512.80,334.82 514.71,323.04 516.62,311.17 518.52,299.23 520.43,287.24 522.34,275.25 524.25,263.28 526.16,251.36 528.07,239.52 529.98,227.78 531.89,216.19 533.80,204.76 535.70,193.53 537.61,182.53 539.52,171.77 541.43,161.30 543.34,151.13 545.25,141.29 547.16,131.81 549.07,122.70 550.97,114.00 552.88,105.72 554.79,97.88 556.70,90.51 558.61,83.61 560.52,77.22 562.43,71.34 564.34,66.00 566.25,61.19 568.15,56.94 570.06,53.26 571.97,50.15 573.88,47.63 575.79,45.69 577.70,44.35 579.61,43.60 581.52,43.46 583.42,43.91 585.33,44.96 587.24,46.61 589.15,48.85 591.06,51.68 592.97,55.08 594.88,59.05 596.79,63.59 598.70,68.68 600.60,74.30 602.51,80.44 604.42,87.09 606.33,94.23 608.24,101.85 610.15,109.91 612.06,118.41 613.97,127.33 615.88,136.63 617.78,146.30 619.69,156.31 621.60,166.64 623.51,177.26 625.42,188.15 627.33,199.27 629.24,210.61 631.15,222.12 633.05,233.79 634.96,245.58 636.87,257.47 638.78,269.42 640.69,281.41 642.60,293.40 644.51,305.36 646.42,317.27 648.33,329.10 650.23,340.81 652.14,352.38 654.05,363.77 655.96,374.97 657.87,385.93 659.78,396.64 661.69,407.07 ' style='stroke-width: 1.07; stroke: #00526D; stroke-linecap: butt;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<text x='707.70' y='525.43' text-anchor='end' style='font-size: 6.50px; font-family: sans;' textLength='11.20px' lengthAdjust='spacingAndGlyphs'>-1.0</text>
+<text x='707.70' y='405.49' text-anchor='end' style='font-size: 6.50px; font-family: sans;' textLength='11.20px' lengthAdjust='spacingAndGlyphs'>-0.5</text>
+<text x='707.70' y='285.55' text-anchor='end' style='font-size: 6.50px; font-family: sans;' textLength='9.04px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='707.70' y='165.61' text-anchor='end' style='font-size: 6.50px; font-family: sans;' textLength='9.04px' lengthAdjust='spacingAndGlyphs'>0.5</text>
+<text x='707.70' y='45.67' text-anchor='end' style='font-size: 6.50px; font-family: sans;' textLength='9.04px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<polyline points='12.30,547.18 692.61,547.18 ' style='stroke-width: 0.30; stroke-linecap: butt;' />
+<polyline points='43.23,547.18 43.23,542.56 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='102.40,547.18 102.40,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='157.76,547.18 157.76,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='216.93,547.18 216.93,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='274.19,547.18 274.19,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='333.37,547.18 333.37,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='390.63,547.18 390.63,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='449.81,547.18 449.81,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='508.98,547.18 508.98,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='566.25,547.18 566.25,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<polyline points='625.42,547.18 625.42,544.87 ' style='stroke-width: 0.37; stroke-linecap: butt;' />
+<text x='72.81' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='23.13px' lengthAdjust='spacingAndGlyphs'>January</text>
+<text x='130.08' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='26.01px' lengthAdjust='spacingAndGlyphs'>February</text>
+<text x='187.34' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='18.06px' lengthAdjust='spacingAndGlyphs'>March</text>
+<text x='245.56' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='13.00px' lengthAdjust='spacingAndGlyphs'>April</text>
+<text x='303.78' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='12.28px' lengthAdjust='spacingAndGlyphs'>May</text>
+<text x='362.00' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='14.10px' lengthAdjust='spacingAndGlyphs'>June</text>
+<text x='420.22' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='11.56px' lengthAdjust='spacingAndGlyphs'>July</text>
+<text x='479.39' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='20.24px' lengthAdjust='spacingAndGlyphs'>August</text>
+<text x='537.61' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='31.80px' lengthAdjust='spacingAndGlyphs'>September</text>
+<text x='595.83' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='23.13px' lengthAdjust='spacingAndGlyphs'>October</text>
+<text x='643.55' y='553.51' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='29.99px' lengthAdjust='spacingAndGlyphs'>November</text>
+<text x='352.46' y='560.79' text-anchor='middle' style='font-size: 6.50px; font-family: sans;' textLength='14.46px' lengthAdjust='spacingAndGlyphs'>2016</text>
+<text x='12.30' y='15.24' style='font-size: 9.42px; font-weight: bold; font-family: sans;' textLength='137.82px' lengthAdjust='spacingAndGlyphs'>scale_x_date_economist-months</text>
+</g>
+</svg>

@@ -12,6 +12,7 @@ reference:
   - scale_colour_economist
   - economist_chart
   - economist_plus_minus
+  - scale_x_date_economist
   - gt_theme_economist
   - economist_table
 - title: The Economist, 2017

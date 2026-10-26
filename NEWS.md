@@ -138,6 +138,16 @@
   optional number box at the top right and, with `scale_break`, the classic
   zigzag that marks a value axis not starting at zero.
 
+- New `scale_x_date_economist()` and `guide_axis_economist_date()` label a
+  date axis as *The Economist*'s classic print charts did, by the span of the
+  data, as measured on about 200 of the paper's charts of 2012 to 2016: day
+  numbers within one month ("1 4 7 ... 28", "August 2013"), month names
+  centered under each month with the year beneath ("J F M ... 2016"), each year
+  centered under its span ("2015 2016"), or years on the ticks every one, two
+  or five years ("1996 2000 05 10 15"). The guide
+  measures the axis when the plot is drawn and shortens the labels to fit:
+  "September", "Sep" or "S"; "2016" or "16".
+
 - New `gt_theme_economist()` and `gt_theme_economist_2017()` style a gt table
   as a classic (2012-16) or a 2017 Economist table, and `economist_table()`
   sets one in the frame of a chart, with the red tab, title, subtitle,
