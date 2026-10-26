@@ -31,6 +31,31 @@ The rules come from the public [Economist Design System](https://design-system.e
 source("economist-2024-guide.R")
 ```
 
+## About this guide
+
+**What it is for.** It lets you draw a chart in the paper's current style with the tools in ggthemes.
+It describes what the paper does; where it gives advice of its own, it says so.
+
+**What it covers.** Print and web charts from the March 2024 redesign on; maps get only a short note.
+
+**What charts cannot tell.** The charts show the conventions the paper follows, not why it follows them, who enforces them, or when it allows an exception.
+The guide draws on no interviews with the paper's staff; where it gives a reason, the reason is an inference.
+
+## How to read the rules
+
+Each rule rests on one of four kinds of evidence, and the text says which:
+
+| Evidence | How the text shows it | How firm |
+|:--|:--|:--|
+| Documented | A link to the [Economist Design System](https://design-system.economist.com/) or the [Marber color foundations](https://marber.economist.com/8e1dcf0b8/p/543b0f-colour/b/37fc5e) | The paper's own published values |
+| Observed | A chart code, such as `20240406_BRC149`, or a chart title | Seen on the cited charts; how often it holds is not counted |
+| Carried over | A quotation from the 2017 guide | A 2017 rule the 2024 charts still follow, or one applied where no 2024 example was found |
+| Advice | A note in italics at the head of the section | ggthemes' own advice, not a convention of the paper |
+
+Unlike the [classic guide](economist-classic-styleguide.html#how-to-read-the-rules), this guide gives shares only for the words on the charts ([Titles, subtitles and units](#titles-subtitles-and-units)); the rest of the 2024 charts have not been read chart by chart (see [Method and limitations](#method-and-limitations)).
+Read an observed rule as the paper's usual practice on the charts cited, not as a measured rule.
+Reconstructions, such as the sequential ramps, are marked where they appear.
+
 ## What changed in 2024
 
 The redesign replaced the cool blue print ground and blue-first palettes with a warm gray print ground and red-first palettes.
@@ -434,6 +459,9 @@ g24_chart(
 )
 ```
 
+```{r g24-words, child = "_2024-guide-words.Rmd"}
+```
+
 ## Color
 
 Color is semantic: red for focus, salmon for related or less emphatic categories, blue and light blue for the main contrast, grays for context.
@@ -703,6 +731,8 @@ p <- ggplot(data, aes(date, value)) +
 economist_2024_chart(p, "print")
 ```
 
+*The checklist is ggthemes' advice, not a convention of the paper.*
+
 Before export, check:
 
 - Does the headline name what matters?
@@ -724,3 +754,19 @@ The web sample is larger.
 It establishes the ground, qualitative order and recurring grammar, but not every rare layout.
 The later examples (ribbons, rank charts, highlighted scatters, log scales, dotted forecasts, boxed tables) were found outside the main survey.
 Where a 2017 chart type is absent from the corpus, its 2024 version applies the general rules.
+
+**The words.** The counts in [Titles, subtitles and units](#titles-subtitles-and-units) come from every print chart in the corpus from the issue of 30 March 2024, the first with the warm-gray ground, to August 2026: `r g24_words$of[g24_words$measure == "title.words_le4"]` charts, after dropping web daily charts, the white-ground charts of the special reports, Technology Quarterly and World in Brief, Graphic Detail (`WO` codes), and second copies of the same chart filed under another code.
+248 are from April to August 2024, after which the archive holds few print images; 55 are from 2025 and 33 from 2026, most of those from one issue (29 August 2026).
+Each chart's title, subtitle, notes, source, number box, panel headings, value and date labels were transcribed from its image by Claude; eight charts were checked against their images by hand, with no errors in these fields.
+Each title's kind was then classified by Claude from the title and its subtitle, one by one; the line between an idiom, a pun and a verdict is soft, so treat those shares as approximate.
+`economist-2024/words.csv` holds the counts only.
+
+**What was measured and what was read.** Colors, type families, weights, sizes and artboard widths were measured from the files.
+Everything else (chart types, axes, keys, labels, annotations) was read from the cited charts.
+The readings were not coded twice, and outside the words no conventions were counted, so the rest of the guide gives no shares and no agreement scores.
+
+**What was not done.**
+No rule was checked on charts held out from the ones it was drawn from.
+No chart was redrawn from the guide alone by someone who had not seen the original.
+
+**How to make it firmer.** Read a stratified sample of 2024 charts chart by chart, by the classic guide's method (see [How this guide was made](economist-classic-styleguide.html#how-this-guide-was-made)), and replace each observed rule with a share and its count.

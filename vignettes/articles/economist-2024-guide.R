@@ -107,3 +107,18 @@ g24_no_axes <- function() {
     panel.grid = element_blank()
   )
 }
+
+## Counts on the words of the print charts since the redesign (titles, subtitles, notes, sources, number and date
+## formats), transcribed from the chart images; aggregates only. The kinds of title were classified by Claude.
+g24_words <- read.csv("economist-2024/words.csv", stringsAsFactors = FALSE)
+## A count from `g24_words`, as "53% (341 of 644 titles)".
+g24_word_share <- function(measure, unit = "charts", paren = TRUE) {
+  r <- g24_words[g24_words$measure == measure, ]
+  if (nrow(r) != 1) {
+    stop("no words measure ", measure)
+  }
+  # Inside the prose's own parentheses, `paren = FALSE` gives "53%, 12 of 23 axes".
+  sprintf(if (paren) "%s%% (%s of %s %s)" else "%s%%, %s of %s %s", round(100 * r$n / r$of), r$n, r$of, unit)
+}
+## Just the count: "9".
+g24_word_n <- function(measure) g24_words$n[g24_words$measure == measure]

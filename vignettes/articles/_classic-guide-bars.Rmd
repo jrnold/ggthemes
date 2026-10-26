@@ -22,24 +22,23 @@ cgb_share <- function(id, unit = NULL) paste0(pct(id), ", ", cgb_of(id, unit))
 cgb_multi <- claim("type.bar_column_side_by_side")$n - claim("bar_column_side_by_side.series_key.single_series")$n
 ```
 
-Side-by-side bars are `r pct("type.bar_column_side_by_side")` of the sample's panels
-(`r cgb_of("type.bar_column_side_by_side")`).
-Most are horizontal bars (`r share("bar_column_side_by_side.orientation.horizontal")`), with the value axis along the
-top (`r share("bar_column_side_by_side.value_axis_side.top")`) and vertical gridlines
-(`r share("bar_column_side_by_side.gridlines.vertical")`); columns put the axis on the right
-(`r share("bar_column_side_by_side.value_axis_side.right")`) under horizontal gridlines.
-In the cited charts neither has ticks, and category labels are ranged left:
+Side-by-side bars are `r pct("type.bar_column_side_by_side")` of panels (`r cgb_of("type.bar_column_side_by_side")`).
+Most are horizontal (`r share("bar_column_side_by_side.orientation.horizontal")`), with the value axis on top
+(`r share("bar_column_side_by_side.value_axis_side.top")`) and vertical gridlines
+(`r share("bar_column_side_by_side.gridlines.vertical")`).
+Columns put the axis on the right (`r share("bar_column_side_by_side.value_axis_side.right")`), over horizontal
+gridlines.
+The cited charts have no ticks and range category labels left:
 `r cite_codes(c("20140301_WWC435", "20131102_FNC687", "20140614_CNC156"))`.
-Values are rarely printed on the bars: `r cgb_of("bar_column_side_by_side.value_labels.some")` print some.
+Few print values on the bars (`r cgb_of("bar_column_side_by_side.value_labels.some")`).
 
 ### One trace
 
-One series is the commonest bar chart (`r share("bar_column_side_by_side.series_key.single_series")`), and one series is
-dark blue (`r share("colour.n1.set.dark blue")`).
-Truncated years, as on line charts, appear in
-`r cgb_of("bar_column_side_by_side.truncated_years", "side-by-side panels")`; in the cited columns over time they sit
-under a black baseline:
-`r cite("bar_column_side_by_side.truncated_years")`.
+The commonest bar chart has one series (`r share("bar_column_side_by_side.series_key.single_series")`).
+A single series is dark blue (`r cgb_share("colour.n1.set.dark blue", "one-series panels of all types")`).
+Years are truncated as on line charts
+(`r cgb_of("bar_column_side_by_side.truncated_years", "side-by-side panels")`), under a black baseline in the cited
+columns: `r cite("bar_column_side_by_side.truncated_years")`.
 
 ```{r cg-bars-african-lion, econ_height = 165}
 cgb_lion <- data.frame(
@@ -67,17 +66,16 @@ cgb_p <- ggplot(cgb_lion, aes(year, growth)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: the columns are dark blue, not the 2017 mid-blue, and there are no ticks under them; the baseline is the
-theme's black rule. ([2017 version](economist-2017-styleguide.html#one-trace))
+Against 2017: dark blue, not mid-blue; no ticks; and a black baseline.
+([2017 version](economist-2017-styleguide.html#one-trace))
 
 ### One trace with highlight
 
-Horizontal bars run from a black rule at zero, under the top axis, as in
-`r cite_codes(c("20140301_WWC435", "20150718_USC083"))`.
-The sample has no count of highlighted bars. A classic chart that singles out one category sets its label in bold and
-leaves the bar in the series color, as China is in `r cite_codes("20140405_CNC682")`.
-The bar charts the readings mark as highlighted do not recolor a bar either: they draw a dashed red reference line
-named in red italic capitals, as in "Taxing wages" (April 2014) and `r cite_codes("20150718_USC083")`.
+Horizontal bars start from a black rule at zero: `r cite_codes(c("20140301_WWC435", "20150718_USC083"))`.
+To single out a category, bold its label and leave the bar in the series color, as China is in
+`r cite_codes("20140405_CNC682")`.
+Highlights were not counted. In the highlighted bar charts examined, none recolors a bar; they draw a dashed red
+reference line named in red italic capitals, as in "Taxing wages" (April 2014) and `r cite_codes("20150718_USC083")`.
 
 ```{r cg-bars-salud, econ_height = 165}
 cgb_doctors <- data.frame(
@@ -103,19 +101,17 @@ cgb_p <- ggplot(cgb_doctors, aes(country, visits)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: the value axis is on top rather than at the bottom, the bars start from a black rule at zero, and Spain
-is marked by its bold label alone, where 2017 also draws its bar in a second blue. ([2017
-version](economist-2017-styleguide.html#one-trace-with-highlight))
+Against 2017: the axis on top, a black rule at zero, and Spain marked only by its bold label, where 2017 also colors
+its bar a second blue. ([2017 version](economist-2017-styleguide.html#one-trace-with-highlight))
 
 ### Two traces
 
-Of the `r cgb_multi` side-by-side panels with more than one series,
-`r claim("bar_column_side_by_side.series_key.legend")$n`
-are keyed by a legend, which sits under the subtitle in `r claim("bar_column_side_by_side.legend.under_subtitle")$n`
-panels.
-Two series are most often blue and dark blue (`r cgb_share("colour.n2.set.blue+dark blue", "two-series panels")`), the
-blue first (`r cgb_share("colour.bar.n2.first.blue", "two-series bar panels")`).
-In the cited charts the bars of a pair touch, the first series on top:
+Two series are most often blue and dark blue
+(`r cgb_share("colour.n2.set.blue+dark blue", "two-series panels of all types")`), blue first
+(`r cgb_share("colour.bar.n2.first.blue", "two-series bar panels")`).
+Of the `r cgb_multi` multi-series side-by-side panels, `r claim("bar_column_side_by_side.series_key.legend")$n` have
+a legend, `r claim("bar_column_side_by_side.legend.under_subtitle")$n` under the subtitle.
+In the cited charts the bars of a pair touch, first series on top:
 `r cite_codes(c("20120317_LDC770", "20140405_CNC682", "20131102_FNC687"))`.
 
 ```{r cg-bars-defenders, econ_height = 235}
@@ -153,13 +149,13 @@ cgb_p <- ggplot(cgb_elections, aes(country, pct, fill = income)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: blue and dark blue in place of 2017's two blues, the axis on top, and no gap between the bars of a pair.
+Against 2017: blue and dark blue, not two blues; the axis on top; and no gap within a pair.
 ([2017 version](economist-2017-styleguide.html#two-traces))
 
 ### Two traces with sub-categories
 
-The sample has no count of bars grouped into sub-categories. This redraw makes each country a panel, named at its top
-left, with the two years as the bars' own labels and the forecasts keyed by the legend under the subtitle.
+Grouped bars were not counted. Here each country is a panel named at its top left; the years label the bars, and a
+legend under the subtitle keys the forecasts.
 
 ```{r cg-bars-autumn-fall, econ_height = 185}
 cgb_forecasts <- data.frame(
@@ -199,15 +195,13 @@ cgb_p <- ggplot(cgb_forecasts, aes(vintage, gdp, fill = made_in)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: the two forecasts are blue and dark blue, and the countries are separated by space rather than rules.
+Against 2017: blue and dark blue forecasts, and space between countries rather than rules.
 ([2017 version](economist-2017-styleguide.html#two-traces-with-sub-categories))
 
-Four series take the palette's blue-gray, dark blue, blue and gray
-(`r cgb_share("colour.n4.set.blue+blue-gray+dark blue+gray", "four-series panels")`), and the commonest first color of a
-four-series bar chart is blue-gray
+Four series take blue-gray, dark blue, blue and gray
+(`r cgb_share("colour.n4.set.blue+blue-gray+dark blue+gray", "four-series panels")`), most often blue-gray first
 (`r share("colour.bar.n4.first.blue-gray")`): `r cite("colour.n4.set.blue+blue-gray+dark blue+gray", k = 2)`.
-"Other" is usually gray, but gray is not reserved for it: most gray series are ordinary categories
-(`r share("colour.gray.equal")`).
+"Other" is usually gray, but most gray series are ordinary categories (`r share("colour.gray.equal")`).
 
 ```{r cg-bars-mighty-jungle, econ_height = 155}
 cgb_returns <- data.frame(
@@ -235,16 +229,16 @@ cgb_p <- ggplot(cgb_returns, aes(horizon, pct, fill = asset)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: the classic four-color set, with gray as the fourth series, in place of 2017's blues and cyans; the
-columns stand on the black baseline. ([2017 version](economist-2017-styleguide.html#two-traces-with-sub-categories))
+Against 2017: the classic four colors, gray last, instead of blues and cyans; and a black baseline.
+([2017 version](economist-2017-styleguide.html#two-traces-with-sub-categories))
 
 ### One trace with a +/- axis
 
-Bars with negative values label the axis without minus signs and mark zero with "– 0 +" in
-`r cgb_of("bar_column_side_by_side.negative_labels.plus_minus_at_zero")`; a red zero line is on
-`r cgb_of("bar_column_side_by_side.red_zero_line", "side-by-side panels")`:
+Bars with negative values use an unsigned axis with "– 0 +" at zero
+(`r cgb_of("bar_column_side_by_side.negative_labels.plus_minus_at_zero")`):
 `r cite("bar_column_side_by_side.negative_labels.plus_minus_at_zero")`.
-A summary row is set in bold, as "Global" is in `r cite_codes("20140222_INC395")`.
+A red zero line is on `r cgb_of("bar_column_side_by_side.red_zero_line", "side-by-side panels")`.
+A summary row is bold, as "Global" is in `r cite_codes("20140222_INC395")`.
 
 ```{r cg-bars-dotcom, econ_height = 195}
 cgb_capex <- data.frame(
@@ -279,10 +273,10 @@ economist_chart(cgb_p)
 Against 2017: the axis reads "60 40 20 – 0 + 20 40 60" across the top, where 2017 signs the negative labels along the
 bottom. ([2017 version](economist-2017-styleguide.html#one-trace-with-a---axis))
 
-Columns use the vertical form, a "+" above the zero and a "–" below it, in the cited charts
-(`r cgb_share("bar_column_side_by_side.plus_minus_axis", "side-by-side panels")` have a +/- axis).
-In the cited charts the columns are one color on both sides of zero:
+In the cited charts, columns put "+" above zero and "–" below, and keep one color on both sides:
 `r cite_codes(c("20130223_ASC106", "20151031_WWC338"))`.
+A +/- axis is on `r cgb_of("bar_column_side_by_side.plus_minus_axis", "side-by-side panels")`
+(`r pct("bar_column_side_by_side.plus_minus_axis")`), a few with no negative values.
 
 ```{r cg-bars-money-drain, econ_height = 155}
 ## 2005 is missing from the 2017 guide's chart.
@@ -316,13 +310,13 @@ cgb_p <- ggplot(cgb_capital, aes(year, flow)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: inflows and outflows share the dark blue, where 2017 colors them apart; the axis is unsigned with "+ 0 –"
-at zero. ([2017 version](economist-2017-styleguide.html#one-trace-with-a---axis))
+Against 2017: inflows and outflows share dark blue, where 2017 colors them apart; the axis is unsigned, "+ 0 –" at
+zero. ([2017 version](economist-2017-styleguide.html#one-trace-with-a---axis))
 
-Where the sign does mean two things, as exports and imports do, the two series can take the contrasting pair, blue and
-dark red (`r cgb_share("colour.n2.set.blue+dark red", "two-series panels")`). The cited charts with that pair are
-double-scale charts, named by axis titles in the series' colors, as `r cite_codes("20130427_WBC404")` is; this redraw
-has one scale, so it keys the pair by the legend under the subtitle.
+When the sign means two things, as with exports and imports, the series can take blue and dark red
+(`r cgb_share("colour.n2.set.blue+dark red", "two-series panels")`).
+The cited charts with this pair have double scales, with axis titles in the series' colors, as in
+`r cite_codes("20130427_WBC404")`. This redraw has one scale, so a legend under the subtitle keys the pair.
 
 ```{r cg-bars-trader-woes, econ_height = 215}
 cgb_trade <- data.frame(
@@ -377,13 +371,13 @@ economist_chart(cgb_p)
 ```
 
 Against 2017: blue and dark red keyed by a legend under the subtitle, where 2017 names the series in the first panel in
-the colors of their bars. ([2017 version](economist-2017-styleguide.html#one-trace-with-a---axis))
+their bar colors. ([2017 version](economist-2017-styleguide.html#one-trace-with-a---axis))
 
 ### Color overrides
 
-The sample has no count of light-to-dark ramps for categories in time order. In the cited chart, three quarters take
-the three-series set in the palette's order, blue-gray, dark blue, then blue; blue-gray is the commonest first color of
-a three-series bar chart (`r share("colour.bar.n3.first.blue-gray")`): `r cite_codes("20140222_INC395")`.
+In the cited chart, three quarters in time order take blue-gray, dark blue, then blue, the palette's order:
+`r cite_codes("20140222_INC395")`. Blue-gray is the commonest first color of a three-series bar chart
+(`r share("colour.bar.n3.first.blue-gray")`). Light-to-dark ramps were not counted.
 
 ```{r cg-bars-growth-asia, econ_height = 225}
 cgb_asia <- data.frame(
@@ -415,11 +409,11 @@ cgb_p <- ggplot(cgb_asia, aes(country, growth, fill = period)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: blue-gray, dark blue and blue in the palette's order, not a light-to-dark ramp, and a +/- axis on top.
+Against 2017: blue-gray, dark blue and blue in palette order, not a light-to-dark ramp; and a +/- axis on top.
 ([2017 version](economist-2017-styleguide.html#color-overrides))
 
-Groups of series take a family each, blues for one and reds for the other, a set the sample has in
-`r cgb_of("colour.n4.set.blue+dark blue+dark red+pink", "four-series panels")`:
+Groups of series take a color family each, blues for one and reds for the other
+(`r cgb_of("colour.n4.set.blue+dark blue+dark red+pink", "four-series panels")`):
 `r cite("colour.n4.set.blue+dark blue+dark red+pink", k = 2)`.
 
 ```{r cg-bars-dont-fence, econ_height = 235}
@@ -446,7 +440,7 @@ cgb_p <- ggplot(cgb_segregation, aes(group, change, fill = area)) +
     position = "right", limits = c(-20, 5), breaks = seq(-20, 5, 5), expand = expansion(0),
     labels = economist_plus_minus_format("horizontal")
   ) +
-  ## Dark and light blue for London, dark red and pink for the other cities.
+  ## Dark blue and blue for London, dark red and pink for the other cities.
   scale_fill_manual(values = unname(fg[c("dark blue", "blue", "dark red", "pink")])) +
   labs(
     title = "Don’t fence me in",
@@ -466,21 +460,19 @@ Against 2017: the classic blues and reds in place of 2017's, and the +/- axis on
 
 ## Bar / column, stacked
 
-Stacked bars and columns are `r pct("type.bar_column_stacked")` of panels (`r cgb_of("type.bar_column_stacked")`), a
-little more often columns
-(`r share("bar_column_stacked.orientation.vertical")`).
-They are keyed by a legend under the subtitle (`r share("bar_column_stacked.legend.under_subtitle")`):
+Stacked bars are `r pct("type.bar_column_stacked")` of panels (`r cgb_of("type.bar_column_stacked")`), slightly
+more often columns (`r share("bar_column_stacked.orientation.vertical")`).
+A legend under the subtitle keys them (`r share("bar_column_stacked.legend.under_subtitle")`):
 `r cite("bar_column_stacked.legend.under_subtitle")`.
-In the cited charts the segments meet with no white rule between them:
+It was the commonest key every year, though less so after 2012 (`r by_year("bar_column_stacked.legend")`).
+In the cited charts, segments meet with no white rule:
 `r cite_codes(c("20151003_LDC072", "20130629_INC873", "20120811_LDC772"))`.
-The legend was most common in every year, though less so after 2012 (`r by_year("bar_column_stacked.legend")`).
-Two-series stacks are most often blue and dark blue, either way round (`r cgb_of("colour.n2.stack.blue>dark blue")`
-start
-with blue, `r claim("colour.n2.stack.dark blue>blue")$n` with dark blue).
+Two-series stacks are most often blue and dark blue, in either order (`r cgb_of("colour.n2.stack.blue>dark blue")`
+start with blue, `r claim("colour.n2.stack.dark blue>blue")$n` with dark blue).
 
-Values are printed in every segment in `r cgb_of("bar_column_stacked.value_labels.all", "stacked panels")`, in white,
-centered; those charts
-drop the value axis (`r share("bar_column_stacked.value_axis_side.none")`) and name each bar above it:
+In `r cgb_of("bar_column_stacked.value_labels.all", "stacked panels")`, every segment carries its value, centered, in
+white (black on the palest).
+These charts drop the value axis (`r share("bar_column_stacked.value_axis_side.none")`) and name each bar above it:
 `r cite("bar_column_stacked.value_labels.all", k = 2)`.
 
 ```{r cg-bars-fed-nuptials, econ_height = 149}
@@ -529,16 +521,17 @@ cgb_p <- ggplot(cgb_carriers, aes(band, width, fill = carrier)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: the segment values are centered, not set at the left edge, and the key is in stack order, "other" last,
-not alphabetical. ([2017 version](economist-2017-styleguide.html#bar-column-stacked))
+Against 2017: centered values, not at the left edge, and the key in stack order with "other" last, not alphabetical.
+([2017 version](economist-2017-styleguide.html#bar-column-stacked))
+As in the 2017 guide, the segments follow its drawn widths, not the printed shares (the smartphone shares sum to
+105.1).
 
-Labeled value lines are on `r cgb_of("bar_column_side_by_side.value_lines.labelled", "side-by-side panels")`; in the
+Wide segments are named in place and the rest keyed by the legend:
+`r cgb_of("bar_column_stacked.series_key.mixed", "stacked panels")` use this mixed key.
+Labeled value lines are on `r cgb_of("bar_column_side_by_side.value_lines.labelled", "side-by-side panels")`. In the
 cited chart the line is dashed red and named in red italic capitals: `r cite_codes("20150718_USC083")`.
-Segments wide enough are named in place and the rest keyed by the legend, a mixed key
-(`r share("bar_column_stacked.series_key.mixed")`), and a gray "Others" comes last
-(`r cgb_share("colour.other.position.last", 'panels with an "other" category')`).
-The party colors are this redraw's choice from the classic palette: greens and light blue for the regional parties,
-reds and blues for the national ones, gray for the others.
+The party colors are this redraw's choice: greens and light blue for regional parties, reds and blues for national
+ones, gray for the rest.
 
 ```{r cg-bars-no-winner, econ_height = 129}
 cgb_seats <- data.frame(
@@ -593,20 +586,20 @@ cgb_p <- ggplot(cgb_seats, aes(1, n, fill = party)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: no value axis, the majority marked by a dashed red line rather than a tick on a hand-drawn axis, the small
-parties keyed by the legend in place of leader lines, and "Others" moved to the end of the bar.
+Against 2017: no value axis; a dashed red majority line, not a tick on a hand-drawn axis; a legend for the small
+parties instead of leader lines; and "Others" at the end of the bar.
 ([2017 version](economist-2017-styleguide.html#bar-column-stacked))
 
-The sample has no count of stacked bars with different totals. This redraw gives each bar a panel of its own, named by
-a heading, with its own scale under the heading.
-Segments too narrow to carry a name are named beside the bar with leader lines
+Stacked bars with different totals were not counted. Here each bar gets a panel and heading. Spending is drawn to
+Deir al-Zor's scale, shown only under the Deir al-Zor heading; the much larger overall revenue has its own.
+Segments too narrow for a name are labeled above and below the bar on leader lines
 (`r cgb_of("bar_column_stacked.leader_lines", "stacked panels")` have them):
 `r cite("bar_column_stacked.leader_lines", k = 2)`.
 
 ```{r cg-bars-looting, econ_height = 189}
 cgb_streams <- c("Oil & gas", "Confiscation", "Tax", "Electricity")
 cgb_spend <- c("Fighters' salary", "Military camps", "Social services", "Islamic police", "Treasury", "Media")
-cgb_panels <- c("Overall, monthly revenue $79.8m", "Deir al-Zor governorate, $8.7m", "Monthly spending, $5.8m")
+cgb_panels <- c("Overall, monthly revenue $79.8m", "Deir al-Zor governorate, monthly revenue $8.7m", "Monthly spending, $5.8m")
 cgb_loot <- data.frame(
   panel = factor(rep(cgb_panels, c(4, 4, 6)), levels = cgb_panels),
   stream = factor(c(cgb_streams, cgb_streams, cgb_spend), levels = c(cgb_streams, cgb_spend)),
@@ -618,12 +611,30 @@ cgb_spending <- subset(cgb_loot, panel == cgb_panels[3])
 cgb_spending$mid <- cumsum(cgb_spending$value) - cgb_spending$value / 2
 cgb_spending$y <- c(1, 1.62, 0.38, -0.2, 1.62, 2.2)
 cgb_leaders <- cgb_spending[-1, ]
-## The panels' heights follow their y ranges: the spending panel has room under its bar for the names.
+## Deir al-Zor and spending share one scale, so their bars compare; spending is read against Deir al-Zor's axis and
+## has neither labels nor gridlines. facet_wrap() draws an axis on every free panel or on none, so the labels and
+## gridlines are drawn as data, above the first two bars.
+cgb_shared <- max(tapply(cgb_loot$value, cgb_loot$panel, sum)[cgb_panels[2:3]])
+cgb_axis <- data.frame(
+  panel = factor(rep(cgb_panels[1:2], c(6, 5)), levels = cgb_panels),
+  value = c(seq(0, 50, 10), seq(0, 8, 2))
+)
+## The panels' heights follow their y ranges: the first two have room above their bars for the labels, the spending
+## panel room under its bar for the names.
 cgb_room <- data.frame(
-  panel = factor(cgb_panels, levels = cgb_panels), value = 0, y = c(0.68, 0.68, -0.45), y2 = c(1.32, 1.32, 2.45)
+  panel = factor(cgb_panels, levels = cgb_panels), value = c(0, 0, cgb_shared), y = c(0.68, 0.68, -0.45),
+  y2 = c(1.75, 1.75, 2.45)
 )
 
 cgb_p <- ggplot(cgb_loot, aes(value, 1, fill = stream)) +
+  geom_segment(
+    data = cgb_axis, aes(x = value, xend = value, y = 0.68, yend = 1.4), inherit.aes = FALSE, colour = "white",
+    linewidth = 0.244
+  ) +
+  geom_text(
+    data = cgb_axis, aes(x = value, y = 1.45, label = value), inherit.aes = FALSE, vjust = 0,
+    size = classic_size / .pt
+  ) +
   geom_col(width = 0.6, orientation = "y", position = position_stack(reverse = TRUE)) +
   geom_blank(data = cgb_room, aes(value, y), inherit.aes = FALSE) +
   geom_blank(data = cgb_room, aes(value, y2), inherit.aes = FALSE) +
@@ -665,7 +676,8 @@ cgb_p <- ggplot(cgb_loot, aes(value, 1, fill = stream)) +
   classic_no_ticks() +
   classic_no_axis_line() +
   theme(
-    axis.text.y = element_blank(),
+    axis.text = element_blank(),
+    panel.grid.major.x = element_blank(),
     ## The heading above the panel's own axis.
     strip.placement = "outside",
     strip.text = element_text(size = rel(1), face = "bold", margin = margin(b = classic_size * 0.3, unit = "pt")),
@@ -676,18 +688,18 @@ cgb_p <- ggplot(cgb_loot, aes(value, 1, fill = stream)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: every bar has its own axis under its heading and the revenue key is a legend under the subtitle; 2017
-draws one axis,
-for the middle bar, and prints the values of the first. ([2017
+Against 2017: axes under the overall and Deir al-Zor headings, the spending bar on Deir al-Zor's scale, and the
+revenue key under the subtitle. 2017 draws one axis, for the middle bar, and prints the first bar's values. ([2017
 version](economist-2017-styleguide.html#bar-column-stacked))
+As in the 2017 guide, the segments fall short of the heading totals ($50.4m of $79.8m, $8.4m of $8.7m).
 
-Of the `r claim("type.bar_column_stacked")$n` stacked panels, `r claim("bar_column_stacked.value_axis_side.right")$n`
-have the value axis on the right and `r claim("bar_column_stacked.truncated_years")$n` truncate the years.
 A forecast is a neutral band, the ground darkened, named in italic capitals at its top
 (`r share("bar_column_stacked.highlight_regions.labelled neutral")`):
 `r cite("bar_column_stacked.highlight_regions.labelled neutral", k = 2)`.
 The commonest order of a three-series stack, from the baseline, is blue-gray, dark blue, blue
 (`r share("colour.n3.stack.blue-gray>dark blue>blue")`).
+Of the `r claim("type.bar_column_stacked")$n` stacked panels, `r claim("bar_column_stacked.value_axis_side.right")$n`
+put the value axis on the right and `r claim("bar_column_stacked.truncated_years")$n` truncate the years.
 
 ```{r cg-bars-getting-sociable, econ_height = 178}
 cgb_adspend <- data.frame(
@@ -723,13 +735,12 @@ cgb_p <- ggplot(cgb_adspend, aes(year, bn, fill = format)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: the forecast band runs the full height of the panel with its name inside, with no rule over it, and the
-key
-sits under the subtitle rather than in the panel. ([2017 version](economist-2017-styleguide.html#bar-column-stacked))
+Against 2017: a full-height forecast band named inside, with no rule over it, and the key under the subtitle, not in
+the panel. ([2017 version](economist-2017-styleguide.html#bar-column-stacked))
 
-Stacks below zero are rare: `r claim("bar_column_stacked.negative_labels.plus_minus_at_zero")$of` panels in the
-sample. Of those, `r claim("bar_column_stacked.negative_labels.plus_minus_at_zero")$n` use the +/- axis; a red zero line
-is on `r cgb_of("bar_column_stacked.red_zero_line", "stacked panels")`:
+Stacks below zero are rare (`r claim("bar_column_stacked.negative_labels.plus_minus_at_zero")$of` panels), and
+`r claim("bar_column_stacked.negative_labels.plus_minus_at_zero")$n` of them use the +/- axis.
+A red zero line is on `r cgb_of("bar_column_stacked.red_zero_line", "stacked panels")`, not all with negative values:
 `r cite("bar_column_stacked.red_zero_line", k = 1)`.
 
 ```{r cg-bars-more-in-out, econ_height = 179}
@@ -779,12 +790,11 @@ Against 2017: an unsigned axis with "+ 0 –" at zero in place of signed labels,
 
 ### Color overrides
 
-Beyond four series the palette adds light blue, then greens; the commonest six-series set is blue, blue-gray, dark
+Beyond four series the palette adds light blue, then greens. The commonest six-series set is blue, blue-gray, dark
 blue, gray, light blue and light green
 (`r share("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")`).
-This chart needs seven colors, six origins and "other", so it takes `economist_pal()(7)`, which adds dark green and
-keeps gray for "other".
-"Other" is gray in `r cgb_of("colour.other.gray", '"other" series')` and comes last in
+This chart needs seven colors, so it takes `economist_pal()(7)`, which adds dark green and keeps gray for "other".
+"Other" is gray in `r cgb_of("colour.other.gray", '"other" series')` and last in
 `r cgb_of("colour.other.position.last", 'panels with one')`: `r cite("bar_column_stacked.grey_other", k = 2)`.
 
 ```{r cg-bars-movers-shakers, econ_height = 179}
@@ -825,15 +835,13 @@ cgb_p <- ggplot(cgb_migrants, aes(destination, pct, fill = origin)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: the classic palette's seven colors with "Other" in the key, last, where 2017 names it in the panel, and
-gridlines behind the bars, showing in the gaps between them, where 2017 has none. ([2017
-version](economist-2017-styleguide.html#color-overrides-1))
+Against 2017: seven classic colors with "Other" last in the key, not named in the panel; and gridlines in the gaps
+between bars, where 2017 has none. ([2017 version](economist-2017-styleguide.html#color-overrides-1))
 
-This redraw gives the answers a color family each, blues for one side and reds for the other, with gray for "not
-sure", as the four-series blue-and-red set does above.
-A second measure for each bar goes in a column of boxes beside the bars, named by a label in a box at the foot of the
-column, in the blob heads of
-`r cgb_of("bar_column_stacked.blob_shape.box", "stacked panels")` (see [Blob heads](#blob-heads)):
+Here each side of the answers takes a color family, blues and reds, with gray for "not sure", like the blue-and-red
+set above.
+A second measure goes in a column of boxes beside the bars, labeled by a box at its foot. Box blob heads like these
+are on `r cgb_of("bar_column_stacked.blob_shape.box", "stacked panels")` (see [Blob heads](#blob-heads)):
 `r cite("bar_column_stacked.blob_shape.box", k = 2)`.
 
 ```{r cg-bars-trumps-troops, econ_height = 249}
@@ -893,5 +901,5 @@ cgb_p <- ggplot(cgb_feel, aes(name, pct, fill = answer)) +
 economist_chart(cgb_p)
 ```
 
-Against 2017: outlined white boxes for the second measure where 2017 draws gray squares sized by value, the row names
-in one weight, and the key under the subtitle. ([2017 version](economist-2017-styleguide.html#color-overrides-1))
+Against 2017: outlined white boxes, not gray squares sized by value; row names in one weight; and the key under the
+subtitle. ([2017 version](economist-2017-styleguide.html#color-overrides-1))

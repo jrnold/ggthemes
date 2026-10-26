@@ -1,17 +1,15 @@
 ## Lines, side by side
 
-Line charts are the commonest type in the classic sample: `r share("type.lines")`.
-Their layout barely varies.
-The value axis is on the right (`r share("lines.value_axis_side.right")`), with white horizontal gridlines (`r share("lines.gridlines.horizontal")`) and a black baseline whose ticks point up into the panel.
-Years after the first are cut to two digits, "2004, 06, 08" (`r share("lines.truncated_years")`).
-The habit grew over the four years: `r by_year("lines.truncated_years")`.
-Values are almost never printed on the lines (`r pct("lines.value_labels.some")` of panels print any).
+Line charts are the commonest type (`r share("type.lines")`), and their layout barely varies.
+The value axis is on the right (`r share("lines.value_axis_side.right")`), with white horizontal gridlines and a black baseline whose ticks point up.
+Years after the first are cut to two digits, "2004, 06, 08" (`r share("lines.truncated_years")`), a habit that grew year by year: `r by_year("lines.truncated_years")`.
+Values are almost never printed on the lines (`r pct("lines.value_labels.some")` of panels).
 
-The series are named by labels set beside the lines (`r share("lines.series_key.labels_next_to_data")`) rather than by a legend (`r share("lines.series_key.legend")`); the rest have a single line and no key.
+Series are named by labels beside the lines (`r share("lines.series_key.labels_next_to_data")`), not by a legend (`r share("lines.series_key.legend")`); most of the rest have one line and no key.
 By year, the share keyed by labels was `r by_year("lines.labels_next_to_data")`.
-Where there is a legend, it sits under the subtitle: `r claim("lines.legend.under_subtitle")$n` of the `r claim("lines.series_key.legend")$n` line panels keyed by a legend.
+A legend sits under the subtitle (`r claim("lines.legend.under_subtitle")$n` of the `r claim("lines.series_key.legend")$n` line panels with one).
 In the cited charts it is flush left, with a short thick line for each series: `r cite("lines.legend.under_subtitle", k = 2)`.
-Charts with negative values label them on a +/- axis and draw a red rule at zero; those belong to [Miscellaneous styling](#miscellaneous-styling).
+Negative values get a +/- axis and a red rule at zero; see [Miscellaneous styling](#miscellaneous-styling).
 
 ```{r cg-lines-setup}
 ## The line weight and in-panel label size of a one-column classic line chart.
@@ -27,8 +25,8 @@ cgl_year_ticks <- theme(axis.minor.ticks.length.x.bottom = rel(1))
 
 ### One line
 
-A single series is dark blue (one-series panels of all types: `r share("colour.n1.set.dark blue")`) and has no key.
-Single-series panels are `r pct("lines.series_key.single_series")` of line panels (`r claim("lines.series_key.single_series")$n` of `r claim("lines.series_key.single_series")$of`).
+A single series is dark blue (`r share("colour.n1.set.dark blue")` of one-series panels of all types) and has no key.
+One line is the case in `r pct("lines.series_key.single_series")` of line panels.
 The footnote goes above the source line.
 `r cite("lines.series_key.single_series")`.
 
@@ -69,13 +67,14 @@ p <- ggplot(cgl_shadow, aes(year, units)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) labels each year between two ticks and sets the footnote at the right of the source line; the classic chart labels the tick at the start of each year, puts the footnote over the source, and draws the line in dark blue on the blue-gray ground, with no separate panel color.
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) labels each year between two ticks and sets the footnote right of the source line.
+The classic chart labels the tick at the start of each year and has no separate panel color.
 
 ### Two lines
 
-Two lines are blue and dark blue, the pair `economist_pal()` returns (two-series panels of all types: `r share("colour.n2.set.blue+dark blue")`).
-Here the series are keyed by a legend under the subtitle, the style of `r pct("lines.series_key.legend")` of line panels.
-An axis that is not a time axis gets an italic title.
+Two lines are blue and dark blue, the pair `economist_pal()` returns (`r share("colour.n2.set.blue+dark blue")` of two-series panels of all types).
+Here a legend under the subtitle keys them, as in `r pct("lines.series_key.legend")` of line panels.
+A non-time axis gets an italic title.
 `r cite("lines.legend.under_subtitle")`.
 
 ```{r cg-lines-tokyo-two, econ_height = 165}
@@ -126,13 +125,14 @@ p <- ggplot(cgl_bonds, aes(year, yield, colour = period)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) draws the lines in blue and a pale cyan; the classic pair is blue and dark blue, and its legend keys are short thick strokes under a bold lead-in.
-The classic axis title is italic.
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) draws the lines in blue and a pale cyan.
+The classic legend keys are short thick strokes under a bold lead-in.
 
 ### Four lines, labeled beside them
 
-Labels beside the lines are the classic key: plain black type, set in a clear space next to the line they name, without a leader line in most charts (`r pct("lines.leader_lines")` have one).
-Four series of equal emphasis take blue-gray, dark blue, blue and gray, the palette's four.
+Labels beside the lines are the classic key: plain black type in clear space next to the line.
+Leader lines are rare (`r pct("lines.leader_lines")` of panels).
+Four equal series take the palette's four: blue-gray, dark blue, blue and gray.
 An index chart marks its base value with a thin red rule (see [Index charts](#index-charts)).
 `r cite("lines.series_key.labels_next_to_data")`.
 
@@ -183,13 +183,15 @@ p <- ggplot(cgl_london, aes(year, index, colour = mode)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) marks the base year with a black dot and draws four hues; the classic chart keeps to its blues and grays, so the four lines differ mostly in lightness, and the labels are all black.
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) marks the base year with a black dot and draws four hues.
+The classic lines stay in blues and grays, so they differ mostly in lightness.
 
 ### Seven lines
 
-Charts with many lines still label them beside the lines when there is room.
-Past four series the palette adds light blue, then greens. The commonest six-series set, blue-gray, dark blue, blue, light blue, gray and light green, is in only `r claim("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")$n` of `r claim("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")$of` six-series panels of all types.
-No set was measured for line charts with more than four series (`r claim("colour.line.n4.first.dark blue")$of` line panels have exactly four), so the seven colors here are `economist_pal()`'s, not a measured set.
+Even many lines are labeled in place when there is room.
+Past four series the palette adds light blue, then greens.
+Large sets are not settled: the commonest six-series set is in only `r claim("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")$n` of `r claim("colour.n6.set.blue+blue-gray+dark blue+gray+light blue+light green")$of` six-series panels of all types.
+No set was measured for line charts with more than four series, so the seven colors here are `economist_pal()`'s.
 
 ```{r cg-lines-coming-down, econ_height = 165}
 cgl_rates <- list(
@@ -279,16 +281,20 @@ p <- ggplot(cgl_suicides, aes(year, rate, colour = country)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) sets Japan's label in bold to pick it out and gives each country its own hue; the classic chart has seven colors from one blue-and-green family, and its labels do the identifying.
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-side-by-side) gives each country its own hue and sets Japan's label in bold.
+The classic colors come from one blue-and-green family, and the labels do the identifying.
 
 ### Standard color order
 
-The classic sample has no fixed line order: which color comes first changes with the number of lines, and even then the charts split.
-With two lines, the first series is dark blue (`r share("colour.line.n2.first.dark blue")`) or blue (`r share("colour.line.n2.first.blue")`).
-With three, dark blue leads (`r share("colour.line.n3.first.dark blue")`) or blue (`r share("colour.line.n3.first.blue")`).
-With four, dark blue (`r share("colour.line.n4.first.dark blue")`) or blue-gray (`r share("colour.line.n4.first.blue-gray")`).
-What is commonest is the set of colors: blue and dark blue for two, blue-gray, dark blue and blue for three (`r share("colour.n3.set.blue+blue-gray+dark blue")`), with gray added for four (`r share("colour.n4.set.blue+blue-gray+dark blue+gray")`).
-`economist_pal()` returns those sets, in the order the bars and stacks use: blue, then dark blue; blue-gray, dark blue, blue; then gray, light blue and light green.
+Classic line charts have no fixed color order.
+The first series' color changes with the number of lines, and even then the charts split:
+
+- Two lines: dark blue (`r share("colour.line.n2.first.dark blue")`) or blue (`r share("colour.line.n2.first.blue")`).
+- Three: dark blue (`r share("colour.line.n3.first.dark blue")`) or blue (`r share("colour.line.n3.first.blue")`).
+- Four: dark blue (`r share("colour.line.n4.first.dark blue")`) or blue-gray (`r share("colour.line.n4.first.blue-gray")`).
+
+What holds is the set: blue and dark blue for two; blue-gray, dark blue and blue for three (`r share("colour.n3.set.blue+blue-gray+dark blue")`); gray added for four (`r share("colour.n4.set.blue+blue-gray+dark blue+gray")`).
+`economist_pal()` returns those sets, in the order bars and stacks use: blue, dark blue; blue-gray, dark blue, blue; then gray, light blue and light green.
 `r cite("colour.line.n2.first.dark blue", k = 2)`; `r cite("colour.line.n2.first.blue", k = 2)`.
 
 ```{r cg-lines-line-order, econ_size = "three_column", econ_height = 300}
@@ -354,19 +360,21 @@ p <- ggplot(cgl_order, aes(x, y, colour = colour, group = series)) +
   scale_x_continuous(limits = c(-0.8, 25.6), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-0.76, 4.69), breaks = 0:4, expand = c(0, 0)) +
   scale_colour_identity() +
-  labs(title = "Standard colour order", subtitle = "economist_pal(), one to six series", x = NULL, y = NULL) +
+  labs(title = "Standard color order", subtitle = "economist_pal(), one to six series", x = NULL, y = NULL) +
   theme_economist(base_size = classic_size * 1.4) +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank())
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order) fixes one run of colors, so a series keeps its color when another is added, and the lines differ in hue; the classic palette picks a set for each count, so a line's color changes as lines are added, and the colors differ mostly in lightness.
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order) fixes one run of hues, so a series keeps its color when another is added.
+The classic palette picks a set for each count, so a line's color can change as lines are added, and the colors differ mostly in lightness.
 
 ### High-contrast alternatives
 
-The classic charts had no separate high-contrast palette.
-For contrast they brought dark red, and then pink, in among the blues: blue and dark red is the second commonest pair (`r share("colour.n2.set.blue+dark red")`), and blue, dark blue, dark red and pink a four-series set (`r share("colour.n4.set.blue+dark blue+dark red+pink")`).
-This redraw gives the two Gulf states, where the share is rising, the dark red and pink, and the rest blues and grays; that assignment is ours.
+There was no separate high-contrast palette.
+For contrast the charts put dark red, then pink, among the blues.
+Blue and dark red is the second commonest pair (`r share("colour.n2.set.blue+dark red")`); blue, dark blue, dark red and pink is a four-series set (`r share("colour.n4.set.blue+dark blue+dark red+pink")`).
+Here dark red and pink go to the two Gulf states, where the share is rising; that choice is ours.
 `r cite("colour.n2.set.blue+dark red")`.
 
 ```{r cg-lines-exodus, econ_height = 185}
@@ -410,18 +418,18 @@ p <- ggplot(cgl_mideast, aes(date, pct, colour = country)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#high-contrast-alternatives) draws seven distinct hues from its bright set and stacks its key at the left of the panel; the classic chart contrasts a red pair against blues and grays, with the key under the subtitle.
+Against 2017: the [2017 version](economist-2017-styleguide.html#high-contrast-alternatives) draws seven distinct hues and stacks its key at the left of the panel.
+The classic chart sets a red pair against blues and grays, with the key under the subtitle.
 
 ### Step lines
 
-Step lines are few: seven panels in the sample read chart by chart, where they are counted with the line charts, and twelve once the charts gathered later are added.
-Seven of the twelve are interest rates set by central banks, which hold still between decisions and then jump.
-They are drawn as the other line charts are: square corners, risers as thick as the treads, the same blues and weights, the value axis on the right, and the series named beside the lines or by a legend of short thick strokes under the subtitle.
-A step line can share a panel with an ordinary one: in *From noise to signal* a blue step for China's benchmark lending rate runs over a dark blue daily repo rate, named by a label whose leader line ends in a small dot.
-The other five step through annual or survey data: growth in GDP per person, foreign holdings of government bonds, favourable opinion of Hillary Clinton, and two medical series, a survival curve and a cumulative count (`r cite_codes(c("20150606_STC514", "20150725_STC182"))`, the second in dark blue, blue and dark red).
-The policy-rate charts cited here are `r cite_codes(c("20140823_FNC565", "20151031_FNC318", "20140329_FNC628"))`.
+Step lines are drawn like other line charts (same blues, weights, right-hand axis and keys), with square corners and risers as thick as the treads.
+They are few: seven panels in the sample, twelve with the charts gathered later.
+Seven of the twelve are central-bank interest rates, which hold still between decisions and then jump: `r cite_codes(c("20140823_FNC565", "20151031_FNC318", "20140329_FNC628"))`.
+A step line can share a panel with an ordinary one: in *From noise to signal* a blue step for China's lending rate runs over a dark blue daily repo rate, named by a label whose leader line ends in a small dot.
+The other five step through annual or survey data, including a survival curve and a cumulative count (`r cite_codes(c("20150606_STC514", "20150725_STC182"))`, the second in dark blue, blue and dark red).
 
-The 2017 guide has no step chart, so this redraws the first of those, *No more yo-yo*.
+The 2017 guide has no step chart, so this redraws the first policy-rate chart, *No more yo-yo*.
 
 ```{r cg-lines-yo-yo, econ_height = 160}
 ## Each bank's rate after every change, from the banks' published histories: the Fed funds target, Bank Rate, the
@@ -502,7 +510,7 @@ p <- ggplot(cgl_policy, aes(year, rate, colour = bank)) +
   scale_colour_manual(values = cgl_policy_cols) +
   labs(title = "No more yo-yo", subtitle = "Policy interest rates, %", x = NULL, y = NULL) +
   cgl_theme +
-  classic_footnote("*Japan changed to a\nmonetary-base target\nin April 2013", "Source: Haver Analytics")
+  classic_footnote("*Japan changed to\na monetary-base\ntarget, April 2013", "Source: Haver Analytics")
 economist_chart(p, number = 1)
 ```
 
@@ -510,16 +518,16 @@ Against 2017: the 2017 guide has no step chart, so there is no version to set be
 
 ## Lines, stacked
 
-Stacked areas are uncommon: `r share("type.lines_stacked_area")`.
-They follow the line charts: value axis on the right (`r share("lines_stacked_area.value_axis_side.right")`), truncated years (`r share("lines_stacked_area.truncated_years")`).
+Stacked areas are uncommon (`r share("type.lines_stacked_area")`).
+They follow the line charts: value axis on the right (`r share("lines_stacked_area.value_axis_side.right")`), truncated years.
+In the cited charts thin white rules part the bands, a thin black line runs along the top, and gridlines run behind.
+Bands are named inside or beside the stack (`r share("lines_stacked_area.series_key.labels_next_to_data")`), or by a legend under the subtitle (`r share("lines_stacked_area.series_key.legend")`).
+A gray "other" band appears in `r claim("lines_stacked_area.grey_other")$n` of `r claim("lines_stacked_area.grey_other")$of` panels.
 This redraw stacks the bands from the baseline up in `economist_pal()` order.
-In the cited charts the bands are parted by thin white rules, a thin black line runs along the top of the stack, and the gridlines run behind the bands.
-Bands are named inside themselves or beside the stack (`r share("lines_stacked_area.series_key.labels_next_to_data")`), or by a legend under the subtitle (`r share("lines_stacked_area.series_key.legend")`).
-`r claim("lines_stacked_area.grey_other")$n` of the `r claim("lines_stacked_area.grey_other")$of` stacked-area panels have a gray "other" band.
 
 ### Two bands
 
-With two bands, the bottom one is dark blue in `r claim("colour.area.n2.first.dark blue")$n` of the `r claim("colour.area.n2.first.dark blue")$of` two-band panels.
+The bottom band is dark blue in `r claim("colour.area.n2.first.dark blue")$n` of the `r claim("colour.area.n2.first.dark blue")$of` two-band panels.
 In the cited charts the names go inside the bands, in white, where they fit.
 `r cite("lines_stacked_area.series_key.labels_next_to_data")`.
 
@@ -567,13 +575,14 @@ p <- ggplot(cgl_reserves, aes(year, trn, fill = region)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#lines-stacked) stacks a blue under a cyan and leaves the top of the stack unmarked; the classic stack has dark blue under blue, the black line over the total, and a tick and label for every year.
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-stacked) stacks blue under cyan and leaves the top unmarked.
+The classic stack has dark blue under blue, a black line over the total, and a label for every year.
 
 ### Six bands, with a legend
 
-Where the bands are too thin to name inside, the key is a legend under the subtitle.
-In `r cite_codes("20130209_USC043")` the legend runs in rows, left to right, from the top band of the stack down, and the bottom band, the largest, is named inside itself instead.
-This chart follows it: the five upper bands are in the legend and the Netherlands is named in its band.
+When bands are too thin to name inside, a legend under the subtitle keys them.
+In `r cite_codes("20130209_USC043")` the legend runs in rows from the top band down, and the largest, bottom band is named inside itself.
+This chart does the same.
 More examples: `r cite("lines_stacked_area.legend.under_subtitle")`.
 
 ```{r cg-lines-big-shift, econ_height = 178}
@@ -644,13 +653,15 @@ p <- ggplot(cgl_shift, aes(year, pct, fill = haven)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#lines-stacked) runs its key down into the panel, beside the stack, in six hues; the classic legend sits above the panel, in the order of the stack from the top, and the six bands take the palette's blue-gray, dark blue, light blue, blue, gray and light green.
+Against 2017: the [2017 version](economist-2017-styleguide.html#lines-stacked) runs its key down beside the stack, in six hues.
+The classic legend sits above the panel, in stack order from the top, and the bands take the palette's blue-gray,
+dark blue, light blue, blue, gray and light green.
 
 ### Color overrides
 
-The 2017 guide adds an alternative order for chronological categories.
-No such alternative turned up in the classic sample, and its stack orders are not settled: the commonest three-band order, blue-gray, dark blue and blue from the baseline, is in only `r claim("colour.n3.stack.blue-gray>dark blue>blue")$n` of `r claim("colour.n3.stack.blue-gray>dark blue>blue")$of` three-band stacks.
-This chart is drawn in the standard palette, keyed by a legend.
+The classic charts have no alternative order for chronological categories, and their stack orders are not settled.
+The commonest three-band order (blue-gray, dark blue, blue from the baseline) is in only `r claim("colour.n3.stack.blue-gray>dark blue>blue")$n` of `r claim("colour.n3.stack.blue-gray>dark blue>blue")$of` three-band stacks.
+This chart uses the standard palette and a legend.
 `r cite("lines_stacked_area.series_key.legend")`.
 
 ```{r cg-lines-in-limbo, econ_height = 185}
@@ -713,7 +724,8 @@ Against 2017: the [2017 version](economist-2017-styleguide.html#color-overrides-
 
 ### Five bands, named in place
 
-A wide two-column stack names its bands inside them, in white on the dark bands and black on the light ones; the top band is too thin, so its name sits just above the stack.
+A wide stack names its bands inside them, white on dark bands and black on light ones.
+Here the top band is too thin, so its name sits just above the stack.
 Footnote symbols run \*, †, ‡ and are explained above the source.
 `r cite("lines_stacked_area.series_key.labels_next_to_data", k = 2)`.
 
@@ -791,14 +803,19 @@ p <- ggplot(cgl_emerging, aes(year, bn, fill = class)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#color-overrides-2) draws the five classes in its alternative order and sets the names in bold with the ranges under them; the classic chart uses the standard set from the baseline up, so the dark bands alternate with light ones, and sets names and ranges in plain type.
+Against 2017: the [2017 version](economist-2017-styleguide.html#color-overrides-2) draws the five classes in its alternative order, with bold names.
+The classic chart uses the standard set from the baseline up (blue-gray, dark blue, light blue, blue, gray), so dark
+bands alternate with light ones, and sets names and ranges in plain type.
 
 ## Thermometer
 
-Thermometers are rare in the classic sample: `r claim("type.thermometer")$n` panels, and `r claim("type.thermometer.examples")$n` in all once the examples outside it are counted, too few for shares.
-The checked examples agree on a form: each category is a hollow track, white inside a thin dark outline, running the full width of the scale, with a dot for each series; the value axis is on top, with white vertical gridlines and a black rule at zero; the category names are ranged left; and a legend of dots sits under the subtitle.
-Dots are drawn with a dark outline, and the checked examples carry two or three series.
-The figures here use the classic dot looks of the article's helpers in their order; the colors of the cited charts vary.
+Thermometers are rare: `r claim("type.thermometer")$n` panels in the sample, `r claim("type.thermometer.examples")$n` with outside examples.
+Up to 2014 the checked examples agree on a form: each category is a hollow track, white inside a thin dark outline, across the full scale, with a dark-outlined dot for each series.
+The value axis is on top, with white vertical gridlines and a black rule at zero.
+Category names are ranged left, and a legend of dots sits under the subtitle.
+The examples carry two or three series.
+From 2015 a thin line from zero replaces the track; see [From 2015](#thermometer-from-2015).
+The figures here use the classic dot looks in order; the cited charts' colors vary.
 `r cite("type.thermometer.examples", k = 4)`.
 
 ```{r cg-lines-thermometer-data}
@@ -884,13 +901,14 @@ cgl_thermo <- function(key) {
 ### Two series
 
 Two series take the first two classic dot looks: white with a dark red outline, and light blue with a dark blue outline.
-The first cited chart, `r cite("type.thermometer.examples", k = 1)`, pairs light blue with a dark blue outline and coral with a dark red one.
+The first cited chart, `r cite("type.thermometer.examples", k = 1)`, pairs light blue outlined in dark blue with coral outlined in dark red.
 
 ```{r cg-lines-thermometer-2, econ_height = 185}
 economist_chart(cgl_thermo("2"))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order-1) marks each value with a short colored rule and joins them with a gray line from zero; the classic thermometer puts outlined dots on a track that runs the whole scale, whatever the values.
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order-1) marks each value with a short colored rule, joined by a gray line from zero.
+The classic track runs the whole scale, whatever the values.
 
 ### Three series
 
@@ -905,24 +923,25 @@ Against 2017: as with two series, the [2017 version](economist-2017-styleguide.h
 ### Four series
 
 A fourth look, pink with a dark red outline, picks out a highlighted series.
-No checked example has four series of equal emphasis, so this chart uses it as a fourth color, as `classic_dot_scales(4)` does.
+No checked example has four equal series, so this chart uses it as a fourth color, as `classic_dot_scales(4)` does.
 
 ```{r cg-lines-thermometer-4, econ_height = 185}
 economist_chart(cgl_thermo("4"))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order-1) gives four rules four hues; the classic dots pair two fills with two outlines, so the series are told apart by fill and outline together.
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order-1) gives four rules four hues; the classic dots are told apart by fill and outline together.
 
 ### Six series
 
-No classic thermometer in the examples shows more than three series, and the classic dots come in four looks only, so the six-series example has no classic counterpart and no figure.
+No classic example has more than three series, and the dots have only four looks, so there is no six-series figure.
 The [2017 version](economist-2017-styleguide.html#standard-color-order-1) itself warns that more than four is "probably too many".
 
 ### Dot terminals
 
-Dots are the classic default, not an alternative.
-The one classic example with rules for terminals is a column chart run upright, `r cite_codes("20150124_FBC772")`: short thick rules in coral and dark blue, joined by a light blue bar.
-This redraws the 2017 dot example in that form, turned on its side to fit ten categories, with blue added for the third series.
+In the classic charts dots are the default terminal.
+The first classic example with rule terminals is a column chart run upright, `r cite_codes("20150124_FBC772")`: short thick rules in coral and dark blue, joined by a light blue bar.
+Later rule terminals sit on the thin line of the later form, as in `r cite_codes(c("20150307_IRC397", "20160723_MAC816"))`.
+This redraws the 2017 example in the upright chart's form, turned on its side to fit ten categories, with blue for the third series.
 
 ```{r cg-lines-thermometer-dots, econ_height = 185}
 cgl_thermo_dot <- cgl_thermo_data("dot")
@@ -963,21 +982,80 @@ p <- ggplot(cgl_thermo_dot, aes(value, field)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#dot-terminals) offers small solid dots as the alternative to its rules; in the classic charts the dot is the rule, and the one chart with rule terminals joins them with a thick light blue bar rather than a thin gray line.
+Against 2017: the [2017 version](economist-2017-styleguide.html#dot-terminals) offers small solid dots as an alternative to its rules.
+Up to 2014 the classic dot is standard, and the upright chart joins its rules with a thick light blue bar, not a thin gray line.
+
+### From 2015 {#thermometer-from-2015}
+
+From 2015 the hollow track is gone; each category runs along a thin line.
+In `r cite_codes("20150815_USC415")` the line is pale, solid and runs the full width of the scale, and the dots keep their outlines.
+In `r cite_codes("20160723_MAC816")` a pale line runs from zero to the farther value and a wider pale band joins the two values.
+Its terminals are short rules, blue for the earlier year and dark blue for the later, keyed by a legend under the subtitle.
+`r cite_codes("20150307_IRC397")` is built the same way, with a gray line to the nearer value and a coral bar between the rules.
+This redraws the two-series example in the form of *The smoke is spreading*.
+
+```{r cg-lines-thermometer-2015, econ_height = 185}
+cgl_thermo_late <- cgl_thermo_data("2")
+cgl_thermo_band <- do.call(
+  rbind,
+  lapply(split(cgl_thermo_late, cgl_thermo_late$field), function(d) {
+    data.frame(field = d$field[1], lo = min(d$value), hi = max(d$value))
+  })
+)
+## The pale blue-gray of the line and band, a shade darker than the panel, matched by eye to 20160723_MAC816.
+cgl_thermo_pale <- "#a4c2d2"
+p <- ggplot(cgl_thermo_late, aes(value, field)) +
+  ## A thin line from zero to the farther value, and a wider band between the two values.
+  geom_segment(
+    data = cgl_thermo_band, aes(x = 0, xend = hi, y = field, yend = field), inherit.aes = FALSE,
+    colour = cgl_thermo_pale, linewidth = lw(1)
+  ) +
+  geom_segment(
+    data = cgl_thermo_band, aes(x = lo, xend = hi, y = field, yend = field), inherit.aes = FALSE,
+    colour = cgl_thermo_pale, linewidth = lw(5)
+  ) +
+  geom_vline(xintercept = 0, linewidth = lw(0.4)) +
+  ## The terminals are rules across the band, drawn as narrow tiles.
+  geom_tile(aes(fill = series), width = 6, height = 0.6) +
+  scale_fill_manual(values = unname(fg[c("blue", "dark blue")])) +
+  scale_x_continuous(position = "top", limits = c(0, 465), breaks = seq(0, 400, 100), expand = c(0, 0)) +
+  labs(
+    title = "The horrible science",
+    subtitle = paste0(
+      "Use of specific \u201cadjective\u201d per million\n",
+      "words in student reviews on\nRateMyProfessors.com*"
+    ),
+    caption = "Source: Ben Schmidt, Northeastern University",
+    x = NULL,
+    y = NULL,
+    fill = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line() +
+  theme(legend.key.width = unit(classic_size * 0.5, "pt"), legend.key.height = unit(classic_size, "pt"))
+economist_chart(p)
+```
+
+Against the earlier classic form: a thin line and a pale band replace the hollow track, and rules replace the outlined dots.
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-color-order-1) also joins its rules to zero with a thin line, gray rather than pale, but has no band between the values.
 
 ## Scatter plot
 
-Scatter plots are rare too (`r share("type.scatter")`), so their shares rest on few panels.
-The value axis is on the left (`r share("scatter.value_axis_side.left")`) or on the right (`r share("scatter.value_axis_side.right")`); the rest have no value axis.
-The value axis has a title (`r share("scatter.value_axis_title")`); in the cited charts the axis titles are italic.
-Gridlines are horizontal only (`r share("scatter.gridlines.horizontal")`).
-Labels for named points often have leader lines (`r share("scatter.leader_lines")`).
+Scatter plots are rare (`r share("type.scatter")`), so these shares rest on few panels.
+The value axis is on the left (`r share("scatter.value_axis_side.left")`) or the right (`r pct("scatter.value_axis_side.right")`) and has a title (`r pct("scatter.value_axis_title")`); in the cited charts axis titles are italic.
+Gridlines are horizontal only (`r pct("scatter.gridlines.horizontal")`).
+Named points often have leader lines (`r pct("scatter.leader_lines")`).
 `r cite("type.scatter", k = 4)`.
 
 ### Chart elements
 
-The classic charts had no published specification for dots; these are the ones measured on the charts and kept in the article's helpers.
-A dot is a filled circle with a dark outline; categories pair a lighter fill with a darker outline of the same hue; a highlighted point is pink with a dark red outline, or light blue among white dots; dense clouds of many points drop the outline; trend lines are solid and thick, in the color of their series or dark red.
+These dot looks are measured from the charts; there was no published specification.
+A dot is a filled circle with a dark outline.
+Category dots pair a lighter fill with a darker outline of the same hue.
+A highlighted point is pink with a dark red outline, or light blue among white dots.
+Dense clouds drop the outline.
+Trend lines are solid and thick, in the series' color or dark red.
 
 ```{r cg-lines-scatter-elements, econ_height = 150}
 cgl_looks <- classic_scatter_looks()
@@ -1042,12 +1120,13 @@ p <- ggplot(cgl_spec, aes(x, y)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#chart-elements) specifies translucent dots, 50% opacity, and dashed trend lines; the classic dots are opaque and outlined, and the trend lines solid.
+Against 2017: the [2017 version](economist-2017-styleguide.html#chart-elements) specifies translucent dots (50% opacity) and dashed trend lines; the classic ones are opaque and solid.
 
 ### Standard scatter
 
-A two-group scatter with many points, as in `r cite("scatter.series_key.legend", k = 1)`: solid dots without outlines, one solid trend line per group in its own color, a red rule at zero, and the +/- axis on the right; the +/- axis is on both scatters with negatives in the sample (`r claim("scatter.negative_labels.plus_minus_at_zero")$n` panels).
-The groups are keyed by a legend of dots under the subtitle, after a bold lead-in.
+A two-group scatter with many points has solid dots without outlines, a solid trend line per group in its own color, a red rule at zero, and the +/- axis on the right: `r cite("scatter.series_key.legend", k = 1)`.
+Both scatters with negative values in the sample use the +/- axis (`r claim("scatter.negative_labels.plus_minus_at_zero")$n` panels).
+A legend of dots under the subtitle, after a bold lead-in, keys the groups.
 
 ```{r cg-lines-divergent, econ_height = 195}
 set.seed(2017)
@@ -1104,12 +1183,13 @@ p <- ggplot(cgl_metro, aes(employment, house_prices, colour = period)) +
 grid::grid.draw(classic_chart(p, axis_titles = list(right = list(label = "House prices", colour = "black"))))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#standard-scatter) draws translucent dots with dashed black trend lines over colored ones and plain signed labels; the classic chart has opaque dots, solid trend lines in the series' colors, and the +/- axis.
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-scatter) draws translucent dots, dashed black trend lines over colored ones, and plain signed labels; the classic chart has opaque dots, solid trend lines and the +/- axis.
 
 ### Labeled scatter
 
-A single-series scatter with named points, as in `r cite("scatter.leader_lines", k = 2)`: white dots outlined in dark blue, the left-hand axis, italic axis titles, and black names with short leader lines.
-The first cited chart also picks out one point in light blue and sets its name in bold; the 2017 chart picks out no single country, so here all eight named countries are light blue and no name is bold.
+A single-series scatter with named points has white dots outlined in dark blue, the axis on the left, italic axis titles, and black names with short leader lines: `r cite("scatter.leader_lines", k = 2)`.
+The first of these also picks out one point in light blue, with its name in bold.
+The 2017 chart picks out no single country, so here all eight named countries are light blue and none is bold.
 
 ```{r cg-lines-disinfectant, econ_height = 166}
 set.seed(11)
@@ -1157,14 +1237,14 @@ p <- ggplot(cgl_corruption, aes(open, score)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#standard-scatter) puts the scale on the right, draws blue dots with the named ones red, and sets the names in gray; the classic chart has its scale on the left here, outlined dots, and black names.
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-scatter) puts the scale on the right, draws blue dots with the named ones red, and sets the names in gray; the classic chart has outlined dots and black names, with the scale on the left.
 
 ### Connected scatter
 
 Connected scatters are rarer still: `r claim("type.connected_scatter.examples")$n` panels, `r cite("type.connected_scatter.examples")`.
-That example joins each series' points with a thick line in its color, marks the start with a black dot and the end with an outlined dot, and keys the series with a short line ending in a dot under the subtitle.
-Here each country runs from a white dot (2003) to a light blue one (2013), joined by a blue-gray line; the other OECD countries are small blue-gray dots without outlines, and the 2013 averages thin dashed black rules.
-
+That example joins each series' points with a thick line in its color, marks the start with a black dot and the end with an outlined dot, and keys each series under the subtitle with a short line ending in a dot.
+Here each country runs from a white dot (2003) to a light blue one (2013) along a blue-gray line.
+Other OECD countries are small blue-gray dots without outlines; the 2013 averages are thin dashed black rules.
 Slope charts, which join two dates rather than two measures, are a close relative; see [Slope charts](#slope-charts).
 
 ```{r cg-lines-right-nation, econ_size = "two_column", econ_height = 234}
@@ -1235,21 +1315,23 @@ p <- ggplot(cgl_oecd, aes(spend, life)) +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#connected-scatter) breaks its gridlines around the data, puts the scale on the right and draws a connected key above the panel; the classic redraw keeps whole gridlines, an axis on the left with italic titles, and a legend of outlined dots.
+Against 2017: the [2017 version](economist-2017-styleguide.html#connected-scatter) breaks its gridlines around the data, puts the scale on the right and draws a connected key above the panel.
+The classic redraw keeps whole gridlines and uses a legend of outlined dots.
 
 ### Slope charts
 
-Slope charts, a value at two or three dates joined by straight lines, are a 2014-15 form: `r claim("type.slope")$n` panels in the sample, too few for shares, and `r claim("type.slope.examples")$n` panels, in eight charts, once the charts gathered later are added; every one is from 2014 or 2015.
-The examples agree on a frame.
-Each date is an upright rule from the baseline to the top of the scale, gray or blue-gray, or a hollow tube, white inside a thin dark outline, like the thermometer's track.
-Each series is a dot at every date joined by a straight line in its color; the dots are solid, or outlined in a darker shade, or white inside a colored outline.
-The series are named at the left of the first date, in their own colors (*Religion in the US*) or in black (*The rich get fitter*, *Carnage*), or by a key of colored dots and names at the left of the panel (*Bound and gagged*).
-The value axis is on the right, with white horizontal gridlines that run from the first date to the axis, and is marked as broken when it does not start at zero.
-The dates are axis labels at the foot, or set in bold at the top of the rules.
-The colors stray from the line palette: a coral or red line for the series the article is about, dark green, and orange in one chart.
+Slope charts join a value at two or three dates with straight lines.
+They are a 2014-15 form: `r claim("type.slope")$n` panels in the sample, `r claim("type.slope.examples")$n` panels in eight charts with those gathered later, all from 2014 or 2015.
+Each date is an upright rule from the baseline to the top of the scale, gray or blue-gray, or a hollow tube like the thermometer's track.
+Each series is a dot at every date, joined by a straight line in its color; the dots are solid, outlined in a darker shade, or white inside a colored outline.
+Series are named left of the first date, in their own colors (*Religion in the US*) or black (*The rich get fitter*, *Carnage*), or by a key at the left of the panel (*Bound and gagged*).
+The value axis is on the right, marked as broken when it does not start at zero; gridlines run from the first date to the axis.
+Dates are axis labels at the foot, or bold at the top of the rules.
+Colors stray from the line palette: coral or red for the series the article is about, dark green, and orange in one chart.
 `r cite_codes(c("20150516_WWC282", "20150404_AMC713", "20150801_USC213", "20140125_IRC184"))`.
 
-The 2017 guide has no slope chart, so this redraws *Religion in the US* from Pew's published shares. The printed chart has the 2007 dots of the unaffiliated and the mainline Protestants the wrong way round (18.1 and 16.1 where Pew has 16.1 and 18.1); the redraw follows Pew, so the unaffiliated start below the mainline Protestants here.
+The 2017 guide has no slope chart, so this redraws *Religion in the US* from Pew's published shares.
+The printed chart swaps the 2007 dots of the unaffiliated and the mainline Protestants; the redraw follows Pew, so the unaffiliated start below the mainline Protestants.
 
 ```{r cg-lines-religion, econ_height = 160}
 ## Pew Research Center's Religious Landscape Study, 2007 and 2014. The printed chart swaps the 2007 dots of the
@@ -1285,9 +1367,10 @@ Against 2017: the 2017 guide has no slope chart, so there is no version to set b
 
 ### Bubble chart
 
-Bubble charts are the rarest type here: `r claim("type.bubble")$n` panel in the sample and `r claim("type.bubble.examples")$n` panels in all, `r cite("type.bubble.examples")`.
-That example draws opaque blue-gray bubbles with dark blue outlines, picks one out in pink with a dark red outline, keys the bubble size with two nested circles at the top right, and has italic axis titles with the scale on the left.
-For the four regions here, the bubbles take the four category looks of the classic dots.
+Bubble charts are the rarest type: `r claim("type.bubble")$n` panel in the sample and `r claim("type.bubble.examples")$n` panels in all, `r cite("type.bubble.examples")`.
+It draws opaque blue-gray bubbles with dark blue outlines and picks one out in pink with a dark red outline.
+Two nested circles at the top right key the size; the scale is on the left, with italic axis titles.
+Here the four regions take the four category looks of the classic dots.
 
 ```{r cg-lines-vitality-data}
 set.seed(4)
@@ -1377,9 +1460,10 @@ p <- ggplot(cgl_counties, aes(health, swing)) +
 economist_chart(cgl_vitality(p))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#bubble-chart) draws translucent bubbles so the clouds show through one another, keys region and size inside the panel, and labels the ends of its axes with arrows; the classic bubbles are opaque and outlined, the region key is a legend under the subtitle, and the axis titles are italic.
+Against 2017: the [2017 version](economist-2017-styleguide.html#bubble-chart) draws translucent bubbles, keys region and size inside the panel, and labels the ends of its axes with arrows.
+The classic region key is a legend under the subtitle.
 
-The 2017 guide's answer to a crowded scatter, highlighting one group, is also the classic one: the example's single highlighted bubble is pink with a dark red outline among blue-gray ones.
+Highlighting one group, the 2017 guide's answer to a crowded scatter, is also classic: the example's highlighted bubble is pink with a dark red outline among blue-gray ones.
 
 ```{r cg-lines-vitality-highlight, econ_size = "two_column", econ_height = 275}
 cgl_counties$focus <- factor(
@@ -1411,4 +1495,4 @@ p <- ggplot(cgl_counties, aes(health, swing)) +
 economist_chart(cgl_vitality(p))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#bubble-chart) names the Midwest inside its cloud and fades the rest to a pale cyan; the classic highlight is pink against blue-gray, both outlined, with the key under the subtitle.
+Against 2017: the [2017 version](economist-2017-styleguide.html#bubble-chart) names the Midwest inside its cloud and fades the rest to a pale cyan; the classic highlight keeps both groups outlined, with the key under the subtitle.

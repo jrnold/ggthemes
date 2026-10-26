@@ -192,11 +192,12 @@ cgt_points <- function(size) coord_fixed(xlim = c(0, size[[1]]), ylim = c(0, siz
 ## Tables
 
 Tables are `r share("type.table")`.
-The classic table sits on the chart's blue-gray ground, under the red tab, the title and the subtitle of a chart, with a rule between every row (`r share("table.table_rules.between_rows")`).
-The rules between the rows are dotted (`r share("table.table_row_rules.dotted")`) or, less often, solid (`r share("table.table_row_rules.solid")`).
-In the cited tables the column heads are bold over a solid black rule, a solid rule closes the table, and the type is black; the row names are often bold.
+A table sits on the blue-gray ground under a chart's red tab, title and subtitle.
+A rule separates every row (`r share("table.table_rules.between_rows")`), usually dotted (`r share("table.table_row_rules.dotted")`), sometimes solid (`r share("table.table_row_rules.solid")`).
+In the cited tables, column heads are bold over a solid black rule and a solid rule closes the table.
+All type is black; row names are often bold.
 
-The tables here are [gt](https://gt.rstudio.com/) tables styled with ggthemes: `gt_theme_economist()` sets the classic table style, and `economist_table()` sets the table in the frame of a chart, with the red tab, title, subtitle, footnote and source.
+The tables here are [gt](https://gt.rstudio.com/) tables: `gt_theme_economist()` styles them and `economist_table()` adds the chart's frame.
 
 ```{r cg-tables-table-style}
 ## The classic table, drawn with ggthemes' `economist_table()`: the ground, the red tab, the title block and the
@@ -217,8 +218,8 @@ cgt_table <- function(tbl, id, title, subtitle = NULL, source = NULL, footnote =
 
 ### Standard table
 
-The classic table separates its rows with rules, where the 2017 guide fills every second row: alternate fills are in `r share("table.table_shading.alternating")`, and most tables have no shading at all (`r share("table.table_shading.none")`).
-The cited tables have no 75% black for explanatory text: the descriptions are in the same black as the rest, the names in bold above them.
+Separate rows with rules, not shading: most tables have none (`r share("table.table_shading.none")`), and alternate fills are in only `r share("table.table_shading.alternating")`.
+Descriptions are black, like everything else, under bold names.
 `r cite("table.table_row_rules.dotted")`.
 
 ```{r cg-tables-greatest-hits}
@@ -248,7 +249,7 @@ gt::gt(cgt_startups, id = "cg-greatest-hits") |>
   )
 ```
 
-Groups of rows are headed by their name in bold over a solid rule, as "Giveaways" and "Clawbacks" are in `r cite_codes("20120324_BRC797")`.
+Head a group of rows with its name in bold over a solid rule, as "Giveaways" and "Clawbacks" are in `r cite_codes("20120324_BRC797")`.
 
 ```{r cg-tables-divided-by-a-dozen}
 cgt_questions <- data.frame(
@@ -278,12 +279,12 @@ gt::gt(cgt_questions, groupname_col = "group", id = "cg-divided") |>
   cgt_table("cg-divided", "Divided by a dozen", "Policy choices in our political proximity model")
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#standard-table) sets the descriptions in 75% black, fills every second row and draws no rules between the rows; the classic tables draw a dotted rule under every row, fill none and set all the type in black, with the names in bold.
-The classic tables sit on the chart's ground with the chart's tab, where the 2017 tab is turned on its side above the title.
+Against 2017: the [2017 version](economist-2017-styleguide.html#standard-table) sets descriptions in 75% black, fills every second row, draws no row rules and turns its tab on its side above the title.
 
 ### With color highlight
 
-The classic tables pick rows out with bold type (`r share("table.table_highlight.bold")`) and, for a total or a result, a band across the row a shade darker than the ground (`r share("table.table_shading.highlight_rows")`); the type stays black.
+Pick out rows with bold type (`r share("table.table_highlight.bold")`).
+A total or result also gets a band a shade darker than the ground (`r share("table.table_shading.highlight_rows")`); the type stays black.
 `r cite("table.table_shading.highlight_rows")`.
 
 ```{r cg-tables-jobs-bill}
@@ -317,13 +318,15 @@ gt::gt(cgt_bill, id = "cg-jobs-bill") |>
   )
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#with-color-highlight) fills the totals with a strong blue and turns their type white; the classic table sets them in bold on a band of the darker blue-gray, between solid rules, as in the cited charts.
+Against 2017: the [2017 version](economist-2017-styleguide.html#with-color-highlight) fills totals with strong blue and white type; the classic table sets them in bold on a darker blue-gray band between solid rules.
 
 ### Table with integrated charts
 
-Most classic tables are type and rules, but a few draw the data in their cells: 3 of the `r claim("type.table")$n` sampled tables.
-`r cite_codes("20140607_FBC127")` has a bar for each row with its figure in white inside it, and a small pie in the share column with the figure in italics beside it; `r cite_codes("20150314_ASC999")` sets two bars a row, the figures after them; `r cite_codes("20140104_FBC098")` counts seats with rows of blue dots.
-The classic "What to expect" draws its data the same ways: bars with their figures after them for the applications and the decisions, a small pie for the share accepted, and a row of dots, one for every €10, for the benefits.
+A few tables draw data in their cells: 3 of the `r claim("type.table")$n` sampled tables.
+`r cite_codes("20140607_FBC127")` has a bar per row with its figure in white inside, and small pies with the figure in italics beside them.
+`r cite_codes("20150314_ASC999")` sets two bars a row, figures after them.
+`r cite_codes("20140104_FBC098")` counts seats with rows of blue dots.
+"What to expect" uses all three: bars with their figures after them for the applications and decisions, a small pie for the share accepted, and a row of dots, one per €10, for the benefits.
 
 ```{r cg-tables-what-to-expect}
 ## Small SVG charts for the cells, in points.
@@ -433,30 +436,30 @@ gt::gt(cgt_asylum, id = "cg-what-to-expect") |>
   )
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#table-with-integrated-charts) draws thin bars with the figures above them, doughnuts for the share accepted and dashes for the wait, in its own cyans and navy; the classic table draws heavier bars with the figures after them, small pies, and dots in the classic blue, between dotted rules, and prints the wait and the origins as text, as in the cited tables.
+Against 2017: the [2017 version](economist-2017-styleguide.html#table-with-integrated-charts) draws thin bars with figures above them, doughnuts, and dashes for the wait, in cyans and navy.
+The classic table uses heavier bars with figures after them, small pies and blue dots, and prints the wait and origins as text.
 
 ### Indicator tables
 
-The weekly "Economic and financial indicators" pages at the back of the paper are tables of their own kind, not charts with a table inside them.
-The pages here are "Output, prices and jobs" (`INT103`), the trade, exchange-rate, budget and interest-rate table (`INT104`), "Markets" (`INT200`) and *The Economist* commodity-price index (`INT400`), from five issues: 15 September 2012, 9 November 2013, 21 June 2014, 2 July 2016 and 6 October 2018.
-The format outlived the 2017 chart redesign: the issue of 6 October 2018 still has it, and the next sampled issue, 20 October 2018, has the [2017 indicator tables](economist-2017-styleguide.html#indicator-tables).
+The weekly "Economic and financial indicators" pages at the back of the paper are a format of their own, not charts.
+The examples are four pages (`INT103`, `INT104`, `INT200`, `INT400`) from five issues, 2012-2018.
+The format outlived the 2017 chart redesign: the issue of 6 October 2018 still has it; the next sampled issue, 20 October 2018, has the [2017 indicator tables](economist-2017-styleguide.html#indicator-tables).
 
-They differ from the classic chart tables on every point:
+They differ from the chart tables on every point:
 
-- **No chart ground and no tab.** The page is white, with the title in bold and the unit under it ("% change on year ago").
-- **Bands, not rules.** Every second row is filled, starting with the first, and there are no rules between rows.
-  The band is the classic blue-gray at half strength, a print tint of the chart ground: the pages measure `#EBF2F3` in 2012-14 (about 40%) and `#E4EEF2` in 2016-18 (about 50%).
-- **Dashed rules between regions.** A dashed black rule runs across the page under the last country of each group: the five largest economies (the United States, China, Japan, Britain and Canada); the euro area; the rest of Europe; Asia; Latin America; the Middle East and Africa; and a tail of smaller economies.
-- **Column groups centered.** Each group of columns has its name in bold, centered, over a thin black rule, with the columns' own labels below it in roman.
-- **Signed figures.** Every change carries its sign, `+1.6` as well as `-0.6`. "nil" stands for zero and "na" for missing.
-  The period of a latest figure is set small after it, in the same cell ("+1.6 Q2").
-- **Bold country names**, and the source and footnotes set small under the table, with no closing rule.
+- **No chart ground and no tab.** The page is white; the title is bold, with the unit under it ("% change on year ago").
+- **Bands, not rules.** Every second row is filled, starting with the first, with no rules between rows.
+  The band is a print tint of the chart's blue-gray ground: `#EBF2F3` (about 40%) in 2012-14 and `#E4EEF2` (about 50%) in 2016-18.
+- **Dashed rules between regions.** A dashed black rule ends each group: the five largest economies (the United States, China, Japan, Britain and Canada); the euro area; the rest of Europe; Asia; Latin America; the Middle East and Africa; and smaller economies.
+- **Column groups centered.** Each column group's name is bold and centered over a thin black rule, with the column labels below in roman.
+- **Signed figures.** Every change carries its sign, `+1.6` as well as `-0.6`; "nil" means zero and "na" missing.
+  A latest figure's period is set small after it ("+1.6 Q2").
+- **Bold country names**; small source and footnotes under the table, with no closing rule.
 
-The commodity index (`INT400`) heads each index (Dollar, Sterling, Euro, Gold, oil) with its name in bold on the band. A solid rule separates the indices, dashed rules separate the rows of the dollar index, and dotted rules separate its indented industrial sub-indices.
+The commodity index (`INT400`) heads each index (Dollar, Sterling, Euro, Gold, oil) in bold on the band. Solid rules separate the indices, dashed rules the rows of the dollar index, and dotted rules its indented industrial sub-indices.
 
-The table below is a real page in full: "Economic data, 1 of 2" of 20 October 2018, the first issue of the new format, set as the classic page set it two weeks before.
-The [2017](economist-2017-styleguide.html#indicator-tables) and [2024](economist-2024-styleguide.html#indicator-tables) guides set the same figures in their own styles.
-The table is built by `indicator_table()` in `vignettes/articles/economist-indicators.R`, which all three guides share; every color in it is one the package already has, or a print tint of one.
+Below is a full page, "Economic data, 1 of 2" of 20 October 2018, the first issue in the new format, set in the classic style of two weeks before.
+The [2017](economist-2017-styleguide.html#indicator-tables) and [2024](economist-2024-styleguide.html#indicator-tables) guides set the same figures, all three with `indicator_table()`.
 
 ```{r cg-tables-indicators}
 source("economist-indicators.R")
@@ -465,19 +468,23 @@ source("economist-indicators.R")
 indicator_table("classic")
 ```
 
-Against 2017: the [2017 indicator tables](economist-2017-styleguide.html#indicator-tables) drop the signs and the dashed rules, set the regions apart with solid rules, put each group's name flush left after a vertical rule, and fill the latest figures with blue, or salmon where they are negative.
+Against 2017: the [2017 indicator tables](economist-2017-styleguide.html#indicator-tables) drop the signs and dashed rules, separate regions with solid rules, put group names flush left after a vertical rule, and fill the latest figures blue, or salmon when negative.
 
 ## Pie / doughnut
 
-Pies and doughnuts are rare: `r claim("type.pie_doughnut")$n` of the `r claim("type.pie_doughnut")$of` panels in the sample, too few to measure conventions.
-They were rare even before the 2017 guide advised against them, and nearly gone after 2012, with `r cgt_pie_years <- years[years$measure == "type.pie_doughnut", ]; paste0(cgt_pie_years$n, " in ", cgt_pie_years$year, collapse = ", ")` panels, of about 200 sampled charts a year.
+The classic pie is a doughnut, with the total or a year in bold in the hole.
+Each segment is named around the ring, its value in italics under or beside the name, joined to it by a thin black leader line.
+There is no legend.
 Examples: `r cite("type.pie_doughnut.examples", k = 4)`.
-In those charts the classic pie is a doughnut, with the total or a year in bold in the hole; each segment is named around the ring, the value in italics stacked under the name or beside it on one line, joined to its segment by a thin black leader line, and there is no legend.
+
+Pies are rare, `r claim("type.pie_doughnut")$n` of `r claim("type.pie_doughnut")$of` panels, so these rules come from the examples.
+They were nearly gone after 2012, before the 2017 guide advised against them (pie panels: `r cgt_pie_years <- years[years$measure == "type.pie_doughnut", ]; paste0(cgt_pie_years$n, " in ", cgt_pie_years$year, collapse = ", ")`, of about 200 charts a year).
 
 ### The standard color order, one to six segments
 
-In most of the cited doughnuts the first segment, at 12 o'clock, is dark blue, and the segments run clockwise through the blues before the greens and reds: the order of the classic line palette, `economist_pal(fill = FALSE)`, not the fill palette's blue-gray first.
-A residual "other" is the classic gray.
+Start at 12 o'clock with dark blue and run clockwise through the blues, then greens and reds, as most cited doughnuts do.
+That is the line palette's order, `economist_pal(fill = FALSE)`, not the fill palette's.
+A residual "other" is gray.
 
 ```{r cg-tables-pie-order, econ_size = "two_column", econ_height = 100}
 cgt_pie_shares <- list(
@@ -488,7 +495,7 @@ cgt_pie_shares <- list(
   c(`1` = 22.2, `2` = 20.3, `5` = 7.4, `4` = 5.7, `3` = 44.4),
   c(`1` = 15.6, `2` = 13.3, `5` = 10.2, `3` = 11.2, `4` = 5.3, `6` = 44.4)
 )
-p <- ggplot() + cgt_blank() + labs(title = "Standard colour order", subtitle = "Number of segments")
+p <- ggplot() + cgt_blank() + labs(title = "Standard color order", subtitle = "Number of segments")
 cgt_size <- cgt_panel(p)
 cgt_slot <- cgt_size[[1]] / 6
 cgt_r <- min(cgt_slot * 0.42, (cgt_size[[2]] - 16) / 2)
@@ -506,9 +513,8 @@ for (i in seq_along(cgt_pie_shares)) {
 economist_chart(p + cgt_points(cgt_size))
 ```
 
-"Naan bigger" names each segment around the ring.
-Four small segments lie together at the foot of the ring: the labels of three are stacked at the left, the fourth, TGB, goes to the right, and each leader line runs from its segment to its label without crossing another, as in `r cite_codes("20120526_BRC288")`.
-The residual "Others" keeps its place in the order and takes the gray.
+In "Naan bigger", three labels for the small segments at the foot of the ring stack at the left and the fourth, TGB, goes right, so no leader lines cross, as in `r cite_codes("20120526_BRC288")`.
+"Others" keeps its place in the order and takes the gray.
 
 ```{r cg-tables-naan, econ_height = 155}
 cgt_workforce <- c(
@@ -536,9 +542,9 @@ p <- p +
 economist_chart(p + cgt_points(cgt_size))
 ```
 
-"The scramble in Africa" puts two doughnuts side by side, each under a bold heading with its units on the next line, as `r cite_codes("20121222_IRC929")` does.
-The cited doughnuts name every segment with a leader line, however many there are; none has a key of color blocks.
-The trade doughnut has eleven segments, so after the blues, greens and reds its last two named segments take the classic brown and coral, and "Rest of world" the gray.
+"The scramble in Africa" sets two doughnuts side by side, each under a bold heading with its units below, as `r cite_codes("20121222_IRC929")` does.
+Every segment gets a leader line, however many there are; no cited doughnut has a key.
+The trade doughnut's last two named segments take brown and coral, and "Rest of world" gray.
 
 ```{r cg-tables-scramble, econ_size = "two_column", econ_height = 178}
 cgt_trade <- c(
@@ -584,24 +590,20 @@ p <- p +
 economist_chart(p + cgt_points(cgt_size))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#the-standard-color-order-one-to-six-segments) runs one fixed order of colors that charts with fewer segments cut short, and keys crowded segments with small color blocks.
-Most of the cited doughnuts open with dark blue and run through the blues before other colors, and each names every segment on a leader line, the value in italics.
-The 2017 guide also shows solid pies; among the classic examples, the only pies without a hole are the special cases of `r cite_codes("20121110_USC974")`, pies sized by the share of each group.
+Against 2017: the [2017 version](economist-2017-styleguide.html#the-standard-color-order-one-to-six-segments) runs one fixed color order, cut short for fewer segments, and keys crowded segments with color blocks.
+It also shows solid pies; the only classic pies without a hole are the special cases of `r cite_codes("20121110_USC974")`, sized by each group's share.
 
 ## Double-scale charts
 
-In the sample, charts with two value scales are `r share("type.double_scale")` (`r by_year("type.double_scale")`), where the 2017 guide warns that they "can also be confusing/misleading".
-They are columns with a line (`r share("double_scale.marks.columns + line")`) or two lines (`r share("double_scale.marks.lines only")`), with labelled axes at both sides (`r share("double_scale.value_axis_side.both")`).
-The first series, usually the columns or the series on the left, is blue (`r pct("colour.double_scale.n2.first.blue")` of two-series double-scale panels, `r claim("colour.double_scale.n2.first.blue")$n` of `r claim("colour.double_scale.n2.first.blue")$of`), and in the cited charts the second is dark red.
-Each axis is named by an italic title above it in the color of its series (`r share("double_scale.series_key.axis_titles")`), and in the cited charts its labels are set in that color too.
+Double-scale charts are `r share("type.double_scale")` (`r by_year("type.double_scale")`), though the 2017 guide warns that they "can also be confusing/misleading".
+They are columns with a line (`r share("double_scale.marks.columns + line")`) or two lines (`r share("double_scale.marks.lines only")`), with labeled axes on both sides (`r share("double_scale.value_axis_side.both")`).
+The first series, usually the columns or the left-hand one, is blue (`r pct("colour.double_scale.n2.first.blue")`, `r claim("colour.double_scale.n2.first.blue")$n` of `r claim("colour.double_scale.n2.first.blue")$of` two-series panels); in the cited charts the second is dark red.
+Each axis has an italic title above it in its series' color (`r share("double_scale.series_key.axis_titles")`), the key in every year (`r by_year("double_scale.axis_titles")`); in the cited charts the axis labels take that color too.
 `r cite("double_scale.series_key.axis_titles")`.
-
-The colored titles are the key in every year of the sample, `r by_year("double_scale.axis_titles")` of double-scale panels; the 2012 charts checked by eye have them as the 2015 ones do, so the charts below are drawn one way.
 
 ### One line on each axis
 
-The track, on the left, is the first series and takes blue; the passengers, on the right, dark red.
-An event line is a thin red dashed rule, labelled in red italic capitals beside it (to its right in the cited chart; here to its left, where the label has room), as in `r cite_codes("20120609_USC369")` (`r share("double_scale.event_lines.labelled")`).
+An event line is a thin red dashed rule labeled in red italic capitals beside it (`r share("double_scale.event_lines.labelled")`), as in `r cite_codes("20120609_USC369")`, which sets the label to its right; this redraw puts it to the left, where it has room.
 
 ```{r cg-tables-out-of-steam, econ_height = 175}
 cgt_px_year <- function(x) 1955 + (x - 115) / 8
@@ -649,12 +651,12 @@ grid::grid.draw(classic_chart(p, axis_titles = list(
 )))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#one-line-on-each-axis) also colors each axis and its title by its series, but in maroon and cyan, with upright titles and its own tick marks; the classic titles are italic, the colors the classic blue and dark red, and the event line is red, not gray.
+Against 2017: the [2017 version](economist-2017-styleguide.html#one-line-on-each-axis) also colors each axis by its series, but in maroon and cyan, with upright titles, its own tick marks and a gray event line.
 
 ### Three lines on the left-hand axis
 
-When an axis carries more than one series, the classic chart keys them under that axis's title with a short line of each color, as in `r cite("double_scale.series_key.mixed", k = 2)` (`r share("double_scale.series_key.mixed")`).
-The series of one axis share a family of colors: here dark blue, blue and blue-gray on the left and the dark red on the right.
+When an axis carries several series, key them under its title with a short line of each color (`r share("double_scale.series_key.mixed")`), as in `r cite("double_scale.series_key.mixed", k = 2)`.
+Series on one axis share a color family: here dark blue, blue and blue-gray on the left, dark red on the right.
 
 ```{r cg-tables-golden-triangle, econ_height = 165}
 cgt_px_year <- function(x) 1994 + (x - 132) / 20.5
@@ -711,12 +713,11 @@ grid::grid.draw(classic_chart(p, axis_titles = list(
 )))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#three-lines-on-the-left-hand-axis) names the three lines with labels beside them and needs no key; the classic chart keys them under the left axis's title, which adds three lines of type above the panel.
+Against 2017: the [2017 version](economist-2017-styleguide.html#three-lines-on-the-left-hand-axis) labels the lines directly, with no key; the classic key adds three lines of type above the panel.
 
 ### Line and column
 
-The columns are blue and on the left, the line dark red and on the right.
-Both scales have negative values, so both use the +/- labels, as every double-scale panel with negatives does (`r share("double_scale.negative_labels.plus_minus_at_zero")`), and zero is a red rule (`r share("double_scale.red_zero_line")`).
+Every scale that goes negative takes the +/- labels (`r share("double_scale.negative_labels.plus_minus_at_zero")`). A red rule at zero is on `r share("double_scale.red_zero_line")`.
 `r cite("double_scale.plus_minus_axis")`.
 
 ```{r cg-tables-chavismo, econ_height = 175}
@@ -752,13 +753,12 @@ grid::grid.draw(classic_chart(p, axis_titles = list(
 )))
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#line-and-column) has cyan columns and a maroon line, with signed axis labels; the classic chart has blue columns and a dark red line, unsigned labels with "+ 0 –" at zero on both axes, and colored italic titles.
+Against 2017: the [2017 version](economist-2017-styleguide.html#line-and-column) has cyan columns, a maroon line and signed labels; the classic chart puts "+ 0 –" at zero on both axes.
 
 ### What to avoid
 
-The 2017 guide's list of what to avoid describes what the classic charts did.
-They inverted a scale when the two series moved in opposite directions, saying so in the axis title (see [inverted scales](#inverted-scales)), and started one scale away from zero (`r share("double_scale.scale_break.baseline_not_zero")`; `r cite("double_scale.scale_break.baseline_not_zero", k = 2)`).
-The three examples below are drawn as the classic charts would have drawn them.
+The classic charts did what the 2017 guide says to avoid.
+They inverted a scale when the series moved in opposite directions, saying so in the axis title (see [inverted scales](#inverted-scales)), and started one scale away from zero (`r share("double_scale.scale_break.baseline_not_zero")`; `r cite("double_scale.scale_break.baseline_not_zero", k = 2)`).
 
 ```{r cg-tables-double-scale-avoid, econ_height = 155}
 cgt_px_euro <- function(y) 1 + (473 - y) / 660
@@ -882,24 +882,25 @@ grid::grid.draw(classic_chart(p, axis_titles = list(
 )))
 ```
 
-Against 2017: the [2017 versions](economist-2017-styleguide.html#what-to-avoid) are shown as warnings; the classic charts drew the same arrangements as a matter of course, in blue and dark red with colored italic titles, the +/- labels where a scale crosses zero and red rules at zero and at the index's base.
+Against 2017: the [2017 versions](economist-2017-styleguide.html#what-to-avoid) are warnings; the classic charts drew these as a matter of course.
 
 ## Blob heads
 
-Blob heads are `r share("type.blob_heads")`, nearly all on horizontal bars (`r share("blob_heads.orientation.horizontal")`), with the value axis at the top (`r share("blob_heads.value_axis_side.top")`).
-The blob shows a second measure, not the bar's own value (`r share("blob_heads.blob_content.second_variable")`).
-It is a box, not a bubble (`r share("blob_heads.blob_shape.box")`); in the cited charts it is a white box with a thin dark outline, the same size on every row, with the figure ranged right inside it.
-The boxes stand in a column at the right of the chart, lined up whatever the length of the bars (`r share("blob_heads.blob_position.aligned_column")`), and in the cited charts a callout, a white box with a small pointer, names the column.
+Blob heads are `r share("type.blob_heads")`, nearly all on horizontal bars (`r share("blob_heads.orientation.horizontal")`) with the value axis at the top (`r share("blob_heads.value_axis_side.top")`).
+The blob shows a second measure, not the bar's value (`r share("blob_heads.blob_content.second_variable")`).
+It is a box, not a bubble (`r share("blob_heads.blob_shape.box")`), and the boxes form a column at the right, whatever the bar lengths (`r share("blob_heads.blob_position.aligned_column")`).
+In the cited charts each box is white with a thin dark outline, one size on every row, the figure ranged right; a callout names the column.
 `r cite("blob_heads.blob_shape.box")`.
-The same column of boxes is drawn beside side-by-side bars (`r share("bar_column_side_by_side.blob_position.aligned_column")`) and stacked bars (`r share("bar_column_stacked.blob_shape.box")`).
+Side-by-side bars get the same column (`r share("bar_column_side_by_side.blob_position.aligned_column")`), and stacked bars the same boxes (`r share("bar_column_stacked.blob_shape.box")`).
 
-Bubbles sized by value, the 2017 guide's first choice, are rare (`r share("blob_heads.blob_shape.circle")`), and both cited examples are from 2015: `r cite("blob_heads.blob_shape.circle", k = 2)`.
-In those the bubbles and the callout are pale blue, with the figures in dark blue.
+Bubbles sized by value, the 2017 guide's first choice, are rare (`r share("blob_heads.blob_shape.circle")`): `r cite("blob_heads.blob_shape.circle", k = 2)`, both 2015.
+Bubbles and callout are pale blue, figures dark blue; the bubbles keep a blue outline whatever the bar colors, as in `r cite_codes("20160730_WBC197")`.
 
 ### Numbers inside the bubbles
 
-The Big Mac index compares two years, so the classic chart draws two bars a country, the earlier year in dark blue, as `r cite_codes("20151024_INC258")` does (its blobs are pale-blue bubbles), keyed by a legend under the subtitle (`r share("blob_heads.legend.under_subtitle")`), with the +/- axis (`r share("blob_heads.negative_labels.plus_minus_at_zero")`) and a red zero line, which `r claim("blob_heads.red_zero_line")$n` blob-head panels have.
-The prices go in a column of white boxes, named by a callout above them, as in `r cite_codes("20130518_FNC630")`.
+For two years, draw two bars a country, the earlier in dark blue, as `r cite_codes("20151024_INC258")` does (though its blobs are bubbles), keyed by a legend under the subtitle (`r share("blob_heads.legend.under_subtitle")`).
+The axis has +/- labels (`r share("blob_heads.negative_labels.plus_minus_at_zero")`) and a red zero line, which `r claim("blob_heads.red_zero_line")$n` blob-head panels have.
+A callout names the column of price boxes, as in `r cite_codes("20130518_FNC630")`.
 
 ```{r cg-tables-big-mac, econ_height = 335}
 cgt_bigmac <- data.frame(
@@ -970,12 +971,12 @@ p <- p +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#numbers-inside-the-bubbles) draws each country as a dot for each year on a line back to zero, with the price in a pale bubble sized by price; the classic chart draws two bars a country and the price in white boxes of one size, keyed by a callout rather than a line of the subtitle.
+Against 2017: the [2017 version](economist-2017-styleguide.html#numbers-inside-the-bubbles) draws dots on lines back to zero and the price in a bubble sized by price, keyed in the subtitle.
 
 ### Bubbles and numbers outside the bar
 
-The classic chart does not need this rule: its boxes are wide enough for the figures, so they stay inside them.
-"Up in the air" is drawn as `r cite_codes("20150214_INC133")` is: one series of dark blue bars, the +/- axis, the red zero line over the bars, and a callout at the foot of the column pointing at the last box.
+Classic boxes always fit their figures, so this rule is not needed.
+"Up in the air" follows `r cite_codes("20150214_INC133")`: dark blue bars, the +/- axis, a red zero line, and a callout at the foot of the column.
 
 ```{r cg-tables-up-in-air, econ_height = 254}
 cgt_travel <- data.frame(
@@ -1022,13 +1023,12 @@ p <- p +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#bubbles-and-numbers-outside-the-bar) colors the negative bars differently, sizes its bubbles by spending and sets the figures to their right; the classic chart keeps all the bars dark blue, puts the figures in boxes of one size and names the column with a callout.
+Against 2017: the [2017 version](economist-2017-styleguide.html#bubbles-and-numbers-outside-the-bar) colors negative bars differently, sizes bubbles by spending and sets figures to their right.
 
 ### Equal-sized number blocks
 
-In the classic style every blob is an equal-sized box, so this rule is the default rather than a fallback.
-On stacked bars the boxes stand in a column beside the bars, as on side-by-side bars: `r cite("bar_column_stacked.blob_position.aligned_column", k = 2)`.
-As in the cited charts, the stack runs from the baseline outwards in the palette's order, blue then dark blue, keyed by a legend under the subtitle.
+Every classic blob is an equal-sized box, so this is the default.
+On stacked bars the boxes form a column beside the bars, and the stack runs out from the baseline in palette order, blue then dark blue, keyed under the subtitle: `r cite("bar_column_stacked.blob_position.aligned_column", k = 2)`.
 
 ```{r cg-tables-starting-small, econ_height = 175}
 cgt_exchanges <- data.frame(
@@ -1076,12 +1076,12 @@ p <- p +
 economist_chart(p)
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#equal-sized-number-blocks) fills its blocks pale blue-gray with no outline and colors the stack in two blues of its own palette; the classic boxes are white with a dark outline, and the callout sits beside the last box.
+Against 2017: the [2017 version](economist-2017-styleguide.html#equal-sized-number-blocks) fills its blocks pale blue-gray with no outline; the classic boxes are white and outlined, the callout beside the last box.
 
 ### Text blocks
 
-The classic callout is the text block of the classic charts: black type in a white box with a thin dark outline and a small pointer, which can be on any side and anywhere along it.
-In the sample it names a column of blob heads (`r cite("blob_heads.blob_shape.box", k = 2)`) or names a boxed figure at the end of a line, as in `r cite_codes("20140524_BRC024")`; the box is as large as its text needs, not of a set height.
+The classic text block is the callout: black type in a white, thinly outlined box sized to its text, with a small pointer anywhere on any side.
+It names a column of blob heads (`r cite("blob_heads.blob_shape.box", k = 2)`) or a boxed figure at the end of a line, as in `r cite_codes("20140524_BRC024")`.
 
 ```{r cg-tables-text-blocks, econ_size = "two_column", econ_height = 95}
 ## A specimen of the callouts, not a chart, so it has no red tab or title.
@@ -1107,4 +1107,4 @@ p <- p +
 p
 ```
 
-Against 2017: the [2017 version](economist-2017-styleguide.html#text-blocks) fills its blocks pale blue-gray, without an outline, in boxes of a set height with the pointer centred or kept 6pt from the corners; the classic callout is white with a thin dark outline and sized to its text.
+Against 2017: the [2017 version](economist-2017-styleguide.html#text-blocks) fills its blocks pale blue-gray with no outline, at a set height, with the pointer centered or 6pt from the corners.

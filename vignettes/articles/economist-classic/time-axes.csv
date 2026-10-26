@@ -1,0 +1,207 @@
+code,sample,width_px,data_freq,span,unit_shown,label_position,month_form,year_form,year_row,first_last_labeled,step,label_text
+20120421_WBC036,sample,290,annual,2000-2010,year,on,none,first full then 2-digit,no,yes,1,2000 01 02 03 04* 05 06 07 08 09 10
+20120310_WWC728,sample,229,daily,Dec 2011-Mar 2012,month,on,abbr3,all full (year row),yes,na,na,Dec Jan Feb Mar|2011 2012
+20120317_WWC771,sample,229,monthly,Jan 2011-Feb 2012,month,between,initial,all full (year row),yes,na,na,J F M A M J J A S O N D J F|2011 2012
+20120512_BRC184,sample,595,monthly,left 2007-2012; right 1978-2012,year,left between / right on,none,"left first full then 2-digit; right first full then 2-digit, 2000 full",no,yes,"left 1; right 5 (1978 first, then 85 90 95 2000 05 10 12)",2007 08 09 10 11 12|1978 85 90 95 2000 05 10 12
+20120714_WWC603,sample,229,monthly,c. late 2009-mid 2012,year,on,none,first full then 2-digit,no,no,1,2010 11 12
+20121124_WBC513,sample,290,daily,mid 2009-Nov 2012,year,on,none,first full then 2-digit,no,no,1,2010 11 12
+20120714_CNC571,sample,595,annual,2000-2011 (both panels),year,on,none,first full then 2-digit,no,yes,2 (plus last year),2000 02 04 06 08 10 11|2000 02 04 06 08 10 11
+20121110_LDC427,sample,229,annual,2007-2016 (forecast),year,on,none,first full then 2-digit,no,yes,2 (plus last year),2007 09 11 13 15 16
+20120714_ASC574,sample,290,annual,2003-2011,year,on,none,first full then 2-digit,no,yes,2,2003 05 07 09 11
+20121208_FNC595,sample,290,annual,1999-2012,year,on,none,1999 then 2001 full then 2-digit,no,yes,2 (plus last year),1999 2001 03 05 07 09 11 12
+20121117_WWC468,sample,229,daily,Jul-Nov 2012,month,between,abbr3,year row 2012 full,yes,na,na,Aug Sep Oct Nov|2012
+20120630_WWC504,sample,229,daily,Jan-Jun 2012,month,between,abbr3,year row 2012 full,yes,na,na,Jan Feb Mar Apr May Jun|2012
+20121124_BRC515,sample,290,weekly,c. mid 2009-mid 2012,year,on,none,first full then 2-digit,no,no,1,2010 11 12
+20120707_ASC546,sample,290,annual,2013-2025,year,on,none,first full then 2-digit,no,yes,2,2013 15 17 19 21 23 25
+20120811_EUC787,sample,290,annual,2000-2009,year,on,none,first full then 2-digit,no,yes,1,2000 01 02 03 04 05 06 07 08 09
+20120728_WBC658,sample,290,quarterly,Q2 2010-Q3 2012,quarter,on,other (Q1..Q4),year row 2010 then 2-digit,yes,na,na,Q2 Q3 Q4 Q1 Q2 Q3 Q4 Q1 Q2 Q3|2010 11 12
+20120811_LDC772,sample,229,annual,2007-2011,year,on,none,first full then 2-digit,no,yes,1,2007 08 09 10 11
+20120331_ASC856,sample,290,annual,2005-2012,year,on,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12
+20120804_BRC737,sample,290,monthly,Jan 2005-2012,year,between,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12
+20121013_USC256,sample,290,monthly,2007-2012,year,between,none,first full then 2-digit,no,yes,1,2007 08 09 10 11 12
+20120630_FBC506,sample,595,monthly,1791-2012,year,on,none,"1791, 1810 full, then 2-digit, 1900 and 2000 full, 2012 full",no,yes,10,1791 1810 20 30 40 50 60 70 80 90 1900 10 20 30 40 50 60 70 80 90 2000 2012
+20120728_EUC696,sample,290,annual,1990-2010,year,on,none,first full then 2-digit,no,yes,5,1990 95 2000 05 10
+20121124_WWC523,sample,229,mixed (annual bars + daily line),2008-2012,year,on (bar centers),none,first full then 2-digit,no,yes,1,2008 09 10 11 12
+20121027_WWC346,sample,229,daily,Jul-Oct 2012,month,between,abbr3,year row 2012 full,yes,na,na,Aug Sep Oct|2012
+20120721_LDC642,sample,229,annual,2005-2012,year,on,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12*
+20120310_BRC723,sample,290,quarterly,2001-2011,year,on,none,first full then 2-digit,no,yes,2,2001 03 05 07 09 11
+20121110_FBC413,sample,290,annual,1973-2011,year,on,none,first full then 2-digit,no,yes,5 (plus last year),1973 80 85 90 95 2000 05 11
+20121006_LDC220,sample,229,annual,2005-2012,year,on,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12*
+20120324_FNC798,sample,290,annual,2009-2012,year,on,none,first full then 2-digit,no,yes,1,2009 10 11 12*
+20121020_BBC275,sample,290,annual,1992-2012,year,on,none,first full then 2-digit,no,yes,5 (first 1992 then 95),1992 95 2000 05 10 12*
+20120609_LDC368,sample,229,annual,1980-2012,year,on,none,first full then 2-digit,no,yes,5,1980 85 90 95 2000 05 12
+20120728_MAC707,sample,800,annual,2000-2012,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12*
+20120310_SRC648,sample,1000,annual,2000-2010,year,on,none,first full then 2-digit,no,yes,1,2000 01 02 03 04 05 06 07 08 09 10
+20121020_EUC302,sample,290,annual,2008-2013,year,on,none,first full then 2-digit,no,yes,1,2008 09 10 11 12 13
+20120804_BRC725,sample,290,monthly,2005-2012,year,between,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12
+20120324_INC814,sample,290,daily,2009-2012,year,between,none,first full then 2-digit,no,yes,1,2009 10 11 12
+20120811_WBC778,sample,290,annual,1998-2012,year,on,none,"1998, 2000 full then 2-digit",no,yes,2,1998 2000 02 04 06 08 10 12†
+20120324_USC801,sample,290,annual,1961-2010,year,on,none,"1961, 2000 full then 2-digit",no,yes,5 (first 1961 then 70),1961 70 75 80 85 90 95 2000 05 10
+20121208_WWC601,sample,229,quarterly,Q1 2011-Q3 2012,quarter,on,other (Q1..Q4),year row 2011 2012 full,yes,na,na,Q1 Q2 Q3 Q4 Q1 Q2 Q3|2011 2012
+20120421_EUC073,sample,290,annual,2011-2013 (forecast),year,on (bar group center),none,first full then 2-digit,no,yes,1,2011 12 13
+20120421_AMC042,sample,290,annual,2000-2011,year,on,none,first full then 2-digit,no,yes,2 (plus last year),2000 02 04 06 08 10 11
+20120623_AMC454,sample,290,annual,2001-2011,year,on,none,first full then 2-digit,no,yes,2,2001 03 05 07 09 11
+20120721_AMC624,sample,290,annual,1990-2012,year,on,none,first full then 2-digit,no,yes,5 (plus last year),1990 95 2000 05 10 12*
+20120519_EUC239,sample,290,weekly/daily,Jun 2011-May 2012,month,between,initial,all full (year row),yes,na,na,J J A S O N D J F M A M|2011 2012
+20121201_USC537,sample,290,irregular,"1976, 1999, 2009",year,on (bar centers),none,all full,no,na,na,1976 1999 2009
+20140920_WWC728,sample,600,annual,2002-2013,year,on,none,first full then 2-digit,no,yes,2,2002 04 06 08 10 12 13
+20140906_FBC634,sample,640,irregular (event timeline),2000-2012,year,between,none,first full then 2-digit ('2000' then 01..12),no,yes,1,2000 01 02 03 04 05 06 07 08 09 10 11 12
+20141108_EUC910_p1,sample,1190,annual,1991-2013,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1991 95 2000 05 10 13
+20141108_EUC910_p2,sample,1190,annual,1991-2013,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1991 95 2000 05 10 13
+20141108_EUC910_p3,sample,1190,annual (bars),1989-2012,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1989 95 2000 05 12
+20140215_ASC344,sample,580,annual,1995-2014,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1995 2000 05 10 14†
+20140215_INC350,sample,1190,quarterly,2000-2013,year,between,none,first full then 2-digit ('2000' then 01..13),no,yes,1,2000 01 02 03 04 05 06 07 08 09 10 11 12 13
+20140531_BRC079,sample,580,quarterly,2005-2013,year,between,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12 13
+20140927_MAC752,sample,580,annual,1990-2014,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1990 95 2000 05 10 14
+20141122_GDC314,sample,1190,annual (history plus projection),1960-2050,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,10,1960 70 80 90 2000 10 20 30 40 50
+20140118_FBC169,sample,580,annual,1948-2011,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,10,1948 60 70 80 90 2000 11
+20140823_MAC567,sample,580,annual (history plus projection),1950-2100,year,on,none,first full then 2-digit; 2000s year shown as 2010 and 2100 in full,no,yes,20,1950 70 90 2010 30 50 70 2100
+20140208_WBC291,sample,580,daily,Apr 2010-mid 2014,year,between,none,first full then 2-digit ('2010' then 11..14),no,yes,1,2010 11 12 13 14
+20140426_USC771_L,sample,1190,monthly,1964-2013,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1964 70 75 80 85 90 95 2000 05 10 13
+20140426_USC771_R,sample,1190,monthly,2001-2014,year,on,none,first full then 2-digit,no,yes,2,2001 03 05 07 09 11 13 14
+20141025_BRC105,sample,1190,monthly (poll),1987-2014,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1987 90 95 2000 05 10 14
+20140628_AMC012,sample,640,irregular (World Cups),1930-2014,year,on,none,first full then 2-digit; 2002 spelled out; 14 bold,no,yes,1 (every tournament),1930 34 38 50 54 58 62 66 70 74 78 82 86 90 94 98 2002 06 10 14‡
+20140222_SRC222_L,sample,1190,annual,1981-2011,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1981 85 90 95 2000 05 11
+20140222_SRC222_R,sample,1190,annual,2004-2012,year,on,none,first full then 2-digit,no,yes,1,2004 05 06 07 08 09 10 11 12
+20140614_CNC156,sample,580,irregular (survey years),1980-2010,year,on,none,first full then 2-digit; 2001 spelled out,no,yes,irregular,1980 89 94 96 2001 07 10
+20141122_FNC296,sample,580,weekly/daily,2013-mid 2014 (~18 mo),year,between,none (only years),all full,no,na,na,2013 2014
+20140628_EUC228,sample,1000,quarterly,2002-2014,year,on,none,first full then 2-digit; 2002 first,no,yes,2,2002 04 06 08 10 12 14
+20140308_AMC473,sample,580,annual,2010-2013,year,on,none,first full then 2-digit,no,yes,1,2010 11 12 13
+20140510_CNC854,sample,580,annual,2005-2014 (14 = Q1),year,on,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12 13 14*
+20141122_EUC284,sample,580,quarterly,2011-2014,year,between,none,first full then 2-digit ('2011' then 12..14),no,yes,1,2011 12 13 14
+20140405_WBC681,sample,580,annual (bars),2011-2018,year,on,none,first full then 2-digit,no,yes,1,2011 12 13 14* 18†
+20140531_INC088,sample,1190,daily,1992-2014,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,2,1992 94 96 98 2000 02 04 06 08 10 12 14
+20140531_ASC071,sample,580,annual (history plus projection),2000-2050,year,on,none,first full then 2-digit; 2000 first,no,yes,10,2000 10 20 30 40 50
+20140419_LDC753,sample,458,daily/weekly,2009-mid 2014,year,between,none,first full then 2-digit,no,yes,1,2009 10 11 12 13 14
+20140301_AMC428,sample,580,annual,2000-2012,year,on,none,first full then 2-digit; 2000 first,no,yes,2,2000 02 04 06 08 10 12
+20140510_SRC719_L,sample,1190,quarterly,2008-2013,year,between,none,first full then 2-digit ('2008' then 09..13),no,yes,1,2008 09 10 11 12 13
+20140510_SRC719_M,sample,1190,quarterly,2008-2013,year,between,none,first full then 2-digit,no,yes,1,2008 09 10 11 12 13
+20140510_SRC719_R,sample,1190,annual,2002-2012,year,on,none,first full then 2-digit,no,yes,2,2002 04 06 08 10 12
+20140412_BRC702_L,sample,1190,quarterly,2006-2013,year,between,none,first full then 2-digit,no,yes,1,2006 07 08 09 10 11 12 13
+20140412_BRC702_R,sample,1190,monthly,Dec 2012-Mar 2014,month,between,initial,first full ('2012') then 2-digit,yes,na,na,D J F M A M J J A S O N D J F M | 2012 13 14
+20141018_LDC005,sample,458,quarterly,2003-2014,year,on,none,first full then 2-digit,no,yes,irregular (7 then 4),2003 10 14
+20140920_USC541,sample,580,annual,1960-2012,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,10,1960 70 80 90 2000 12
+20140906_CNC629,sample,580,irregular (4 years),1984-2013,year,on,none,all full,no,yes,irregular,1984 1997 2003 2013
+20140201_USC259,sample,580,"annual (cohorts, with projection)",1971-1986,year,on,none,first full then 2-digit,no,yes,2,1971 73 75 77 79 81 83 86
+20140802_FNC444,sample,580,weekly,2007-mid 2014,year,between,none,first full then 2-digit,no,yes,1,2007 08 09 10 11 12 13 14
+20141108_MAC202,sample,580,irregular (survey years),1976-2013,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,"irregular (about 4-10, then 5, 5, 3)",1976 80 90 2000 05 10 13
+20140913_SRC544_L,sample,1190,annual (with forecast),1980-2016,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,10,1980 90 2000 10 16
+20140913_SRC544_M,sample,1190,annual (bars),2010-2014,year,on,none,first full then 2-digit,no,yes,1,2010 11 12 13 14†
+20140913_SRC544_R,sample,1190,annual (with forecast),2007-2016,year,on,none,first full then 2-digit,no,yes,2,2007 09 11 13 15 16
+20140712_SRC148_L,sample,1190,annual,2009-2014,year,on,none,"first full then 2-digit (2009*, 14†)",no,yes,1,2009* 10 11 12 13 14†
+20140712_SRC148_R,sample,1190,annual (bars),2009-2014,year,on,none,first full then 2-digit,no,yes,1,2009 10 11 12 13 14
+20140111_WOC143,sample,1280,annual (bars),2010-2013,year,on,none,first full then 2-digit,no,yes,1,2010 11 12 13*
+20141004_FBC817,sample,1190,quarterly,Q1 2010-2014,year,between,none,first full then 2-digit,no,yes,1,2010 11 12 13 14
+20140802_WBC403,sample,580,annual,1998-2014,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,2,1998 2000 02 04 06 08 10 12 14
+20140913_FNC679_L,sample,1190,quarterly,2000-2014,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12 14
+20140913_FNC679_R,sample,1190,mixed (annual/monthly),2000-2014,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12 14
+20140503_MAC818,sample,580,annual (bars),2005-2013,year,on,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12 13
+20140405_FNC661,sample,580,monthly,Mar 2009-mid 2014,year,between,none,first full then 2-digit,no,yes,1,2009 10 11 12 13 14
+20140329_USC622,sample,580,annual,1978-2013,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1978 85 90 95 2000 05 10 13
+20140419_IRC733,sample,580,annual,1995-2013,year,on,none,first full then 2-digit; 2000 spelled out,no,yes,5,1995 2000 05 10 13
+20140201_USC252,sample,580,quarterly,2009-2013,year,between,none,first full then 2-digit,no,yes,1,2009 10 11 12 13
+20150221_LDC217,sample,458,monthly,2010-2015,year,between,none,first full then 2-digit,no,yes,1,2010 11 12 13 14 15
+20150214_GDC778,sample,1190,annual,2008-2014 (two points per panel),year,on,none,all full,no,yes,na,2008 2014 | 2008 2013 | 2008 2014 | 2010 2014 | 2008 2013 | 2008 2014 | 2008 2013 | 2008 2014
+20150509_MAC099,sample,1608,annual,1980-2014 (oil); 1990-2015 (bars),year,on,none,first full then 2-digit,no,yes,5,1980 85 90 95 2000 05 10 14 | 1990 95 2000 05 10 15
+20150919_FNC795,sample,600,annual,1995-2014,year,on,none,first full then 2-digit,no,yes,5,1995 2000 05 10 14
+20150620_ASC643,sample,907,annual,1990-2015 (two panels); 2014-2040 (forecast panel),year,on,none,first full then 2-digit,no,yes,10,1990 2000 10 15† | 1990 2000 10 15† | 2014 20 30 40
+20150314_SRC233,sample,580,annual,1980-2012 (US elections every 4 years),year,on,none,first full then 2-digit,no,yes,4,1980 84 88 92 96 2000 04 08 12
+20150103_CNC598,sample,580,monthly,Jan 2005-late 2014,year,between,none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12 13 14
+20150725_WOC987,sample,1190,annual,1920-2015 timeline,year,on,none,first full then 2-digit,no,yes,10,1920 1930 1940 1950 1960 1970 1980 1990 2000 2010 15
+20151003_IRC185,sample,1190,annual,1980-2014 (CO2); 1880-2014 (temperature),year,on,none,first full then 2-digit,no,yes,10 (left); 25 (right),1980 90 2000 10 14 | 1880 1900 25 50 75 2000 14
+20150314_FNC494,sample,580,annual,2012-2015,year,on,none,first full then 2-digit,no,yes,1,2012 13 14 15*
+20150228_LDC295,sample,458,annual,2010-2019 (financial years),year,on,none,first full then 2-digit,no,yes,2,2010 12 14 16 18 19
+20150228_USC277,sample,1190,annual,1945-2015,year,on,none,first full then 2-digit,no,yes,10,1945 50 60 70 80 90 2000 10 15
+20150815_USC387,sample,580,monthly,"Jan-Dec (2013, 2014, Jan-Aug 2015)",month,on,abbr3,none (years identified in legend),no,na,na,Jan Jul Dec | Jan Jul Dec
+20150808_LDC001,sample,458,annual,2010-2014,year,on,none,first full then 2-digit,no,yes,1,2010 11 12 13 14
+20150221_INC209,sample,580,daily,Jan 2013-Feb 2015,year,between,none,first full then 2-digit,no,yes,1,2013 14 15
+20150627_FNC720,sample,800,annual,1961-2010,year,on,none,first full then 2-digit,no,yes,10,1961 70 80 90 2000 10
+20150822_FBC953,sample,600,annual,2011-mid 2015,year,between,none,all full,no,yes,1,2011 2012 2013 2014 2015 | (to mid-August)
+20150606_IRC522,sample,580,annual,2003-2018,year,on,none,first full then 2-digit,no,yes,2,2003 05 07 09 11 13 * 15 18
+20150627_USC738,sample,1190,annual,2000-2014 (survey years); 1977-2014; 1999-2014,year,on,none,first full then 2-digit,no,partly,irregular,2000 04 06 14 | 2000 04 06 14 | 1977 90 2000 14 | 1999 05 10 14
+20150411_STC759,sample,580,annual,1990-2014,year,on,none,first full then 2-digit,no,yes,5,1990 95 2000 05 10 14*
+20150307_GDC348,sample,600,annual,2004-2015 (six panels),year,on,none,first full then 2-digit,no,yes,2,2004 06 08 10 12 14 | 2006 08 10 12 14 | 2004 06 08 10 12 15 | 2004 06 08 10 12 13 | 2004 06 08 10 12 14 | 2004 06 08 10 12 14*
+20151010_USC037,sample,1280,annual,1940-2014,year,on,none,first full then 2-digit,no,yes,10,1940 50 60 70 80 90 2000 14
+20150620_SRC508,sample,458,annual,2003-2015 (elections),year,on,none,first full then 2-digit,no,yes,4,2003 07 11 15
+20150214_AMC093,sample,580,annual,2012-2015,year,on,none,first full then 2-digit,no,yes,1,2012 13 14* 15† | 2012 13 14* 15† | 2012 13 14* 15† | 2012 13 14* 15†
+20151017_SRC721,sample,1190,annual,1957-2015,year,on,none,first full then 2-digit,no,yes,5,1957 60 65 70 75 80 85 90 95 2000 05 10 15
+20150718_BRC001,sample,580,monthly,1998-2015,year,on,none,"first full, 2002 spelled out, then 2-digit",no,yes,2,1998 2002 04 06 08 10 12 15
+20150829_LDC563,sample,458,monthly,Jan 2012-mid 2015,year,between,none,first full then 2-digit,no,yes,1,2012 13 14 15
+20150314_BBC042,sample,1190,annual,1990-2013 (left); 1990-2015 (right),year,on,none,first full then 2-digit,no,yes,5,1990 95 2000 05 10 13 | 1990 95 2000 05 10 15*
+20150214_GDC913,sample,1190,annual,1990-2025 (timeline),year,on,none,all full,no,yes,5,1990 1995 2000 2005 2010 2015 2020 2025
+20150314_SRC991,sample,580,annual,1990-2014,year,on,none,first full then 2-digit,no,yes,5,1990 95 2000 05 10 13 | 1990 95 2000 05 10 15*
+20150704_ASC838,sample,580,annual,1990-2014,year,on,none,first full then 2-digit,no,yes,10,1990 2000 14 | 1990 2000 14
+20151003_BRC029,sample,640,annual,1830-2013,year,on,none,"first full, 1900 full, 2-digit, last full",no,yes,irregular,1830 50 1900 50 * 2013
+20150606_FNC528,sample,580,daily,Jan 2011-mid 2015,year,between,none,first full then 2-digit,no,yes,1,2011 12 13 14 15
+20150124_LDC786,sample,580,annual,2008-2014,year,on,none,first full then 2-digit,no,yes,1,2008 09 10 11 12 13 14
+20150822_BRC423,sample,1190,monthly,1974-2015,year,on,none,first full then 2-digit,no,yes,2,1974 76 78 80 82 84 86 88 90 92 94 96 98 2000 02 04 06 08 10 12 15
+20150523_LDC348,sample,458,annual,1990-2013,year,on,none,first full then 2-digit,no,yes,5,1990 95 2000 05 10 13
+20150509_FNC186,sample,1280,annual,1960-2013,year,on,none,first full then 2-digit,no,yes,10,1960 70 80 90 2000 13
+20150718_FNC074,sample,580,annual,2000-2014,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12 14
+20150815_ASC274,sample,1190,annual,2010-2100 (projection; two bar panels without time),year,on,none,first full then 2-digit,no,yes,10,2010 20 30 40 50 60 70 80 90 2100
+20150411_USC156,sample,595,irregular,1992-2015 (poll series),year,on,none,first full then 2-digit,no,yes,2,1992 94 96 98 2000 02 04 06 08 10 12 14 15
+20150606_CNC499,sample,580,monthly,2003-2015,year,on,none,first full then 2-digit,no,yes,2,2003 05 07 09 11 13 15
+20150808_WOC249,sample,600,annual,2000-2014,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12 14
+20151017_USC163,sample,580,annual,2000-2014,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12 14 | 2000 02 04 06 08 10 12 14
+20150704_AMC797,sample,1280,weekly,Jan 2011-Jun 2015,year,between,none,first full then 2-digit,no,yes,1,2011 12 13 14 15*
+20160430_WWC226,sample,458,quarterly,2011-2016,year,between,none,first full then 2-digit,no,yes,1,2011 12 13 14 15 16
+20160116_LDC081,sample,458,monthly,2012-2015,year,between,none,first full then 2-digit,no,yes,1,2012 13 14 15
+20161203_BRC365,sample,580,annual,1982-2016,year,on,none,first full then 2-digit,no,yes,10 (1990 off-step),1982 90 2000 10 16
+20160507_IRC279,sample,580,annual,2000-2016,year,on,none,first full then 2-digit,no,yes,5,2000 05 10 16
+20160305_BRC589,sample,580,annual,1990-2015,year,on,none,first full then 2-digit,no,yes,5,1990 95 2000 05 10 15
+20161105_FBC948,sample,580,irregular (decadal),1940-2010,year,on,none,first full then 2-digit,no,yes,10,1940 50 60 70 80 90 2000 10
+20160507_LDC300,sample,458,annual,2008-2015,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2008 09 10 11 12 13 14 15
+20161022_WBC887,sample,580,annual,2010-2016,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2010 11 12 13 14 15 16
+20161001_USC691,sample,580,annual,2001-2014,year,on,none,first full then 2-digit,no,yes,2,2001 03 05 07 09 11 13 14
+20160514_ASC360,sample,580,irregular (every ~3 years),1985-2012,year,on,none,first full then 2-digit,no,yes,5,1985 90 95 2000 05 10 12
+20161015_AMC831,sample,580,annual,1993-2015,year,on,none,first full then 2-digit,no,yes,5,1993 2000 05 10 15
+20160820_ASC355,sample,580,irregular (5-yearly),1995-2015,year,on,none,first full then 2-digit,no,yes,5,1995 2000 05 10 15
+20160206_WWC349,sample,458,daily,Jan 2013-Feb 2016,year,between,none,first full then 2-digit,no,yes,1,2013 14 15 16
+20160723_ASC056,sample,580,monthly,Jan 2014-early 2016,year,between,none,first full then 2-digit,no,yes,1,2014 15 16
+20160924_BRC658,sample,580,annual,2010-2016,year,on,none,first full then 2-digit,no,yes,1,2010 11 12 13 14 15 16
+20160430_FBC231,sample,580,monthly + annual,2005-2016,year,on,none,first full then 2-digit,no,yes,2,2005 07 09 11 13 15 16
+20161210_CNC419,sample,580,annual,2000-2015,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12 15
+20160702_FNC805,sample,580,daily,Jun 1-29 2016,day,on,"other (month name only in second row, full: June)",n/a (2016 on second row),yes,yes,"irregular (1, 6, 13, 20, 27, 29)",1 6 13 20 27 29 | June 2016
+20161119_EUC226,sample,580,weekly/monthly,Jan 2014-Oct 2016,year,between,none,all full,no,yes,1,2014 2015 2016
+20161105_STC117,sample,1190,annual,2006-2014,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2006 07 08 09 10 11 12 13 14†
+20160409_AMC028,sample,580,annual,2002-2015,year,on (bars and line points),none,first full then 2-digit,no,yes,2,2002 04 06 08 10 12 14 15
+20160709_USC884,sample,580,annual,2004-2016,year,on,none,first full then 2-digit,no,yes,2,2004 06 08 10 12 14 16*
+20160423_LDC000,sample,458,annual,2008-2015,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2008 09 10 11 12 13 14 15
+20161015_FBC920,sample,580,weekly,Jul-Oct 2016,month,between,abbr3,first full then 2-digit (2016 only),yes,na,na,Jul Aug Sep Oct | 2016
+20160220_BRC450,sample,580,annual,1985-2016,year,on,none,first full then 2-digit,no,yes,5,1985 90 95 2000 05 10 16‡
+20160423_WBC122,sample,1190,annual,1970-2014,year,on,none,first full then 2-digit,no,yes,10,1970 80 90 2000 10 14
+20160507_FBC320,sample,1190,daily,Feb-early May 2016,month,between (centered in band),full,none (2016 only in subtitle),no,na,na,February March April May
+20160604_LDC584,sample,458,annual,1980-2012,year,on,none,first full then 2-digit,no,yes,10,1980 90 2000 12
+20160326_CNC832,sample,580,annual,2008-2014,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2008 09 10 11 12 13 14
+20160220_INC481,sample,1190,weekly,Aug 2012-2016,year,between,none,first full then 2-digit,no,yes,1,2012 13 14 15 16
+20160220_EUC489,sample,580,annual,2012-2016,year,on (centered under bar groups),none,first full then 2-digit,no,yes,1,2012 13 14 15 16
+20161203_CNC351,sample,580,annual,2008-2015,year,on,none,first full then 2-digit,no,yes,1,2008 09 10 11 12 13 14 15
+20160116_EUC060,sample,580,monthly,mid-2013-late 2015,year,between,none,all full,no,na,1,2014 2015
+20161210_ASC409,sample,800,annual,2006-2015,year,on,none,first full then 2-digit,no,yes,1,2006 07 08 09 10 11 12 13 14 15
+20161126_IRC311,sample,580,annual,2000-2016,year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12 14 16*
+20160514_EUC383,sample,580,monthly,2010-2017 (with forecast),year,between,none,first full then 2-digit,no,yes,1,2010 11 12 13 14 15 16 17
+20161126_CNC319,sample,580,annual,2005-2015,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2005 06 07 08 09 10 11 12 13 14 15
+20160402_WBC880,sample,580,annual,2010-2020,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2010 11 12 13 14 15 16 17 18 19 20
+20160827_BRC407,sample,580,annual,2001-2016,year,on,none,first full then 2-digit,no,yes,5,2001 05 10 16
+20161126_IRC234,sample,580,annual,1880-2016,year,on,none,1880 1900 20 40 60 80 2000 16*,no,yes,20,1880 1900 20 40 60 80 2000 16*
+20160220_FBC464,sample,1190,monthly/quarterly,2007-2015,year,between,none,first full then 2-digit,no,yes,2,2007 09 11 13 15 (repeated in each of three panels)
+20160416_WBC075,sample,580,annual,2013-2018,year,on,none,first full then 2-digit,no,yes,1,2013 14 15 16 17 18
+20160402_CNC868,sample,580,annual,2013-2016,year,on (centered on bars),none,first full then 2-digit,no,yes,1,2013 14 15 16
+20161112_EUC187,sample,580,annual,2012-2016,year,on,none,all 2-digit,no,no,1,12 13 14 15 16
+20160130_MAC278,sample,580,annual,2009-2018,year,on (centered on bars),none,first full then 2-digit,no,yes,2,2009 11 13 15 17 18
+20150711_WOC038,daily,1190,weekly,30 Jun-29 Dec 2014,month (week days),mixed,abbr3,all full (single year),yes,na,na,30 7 14 21 28 4 11 18 25 1 8 15 22 29 6 13 20 27 3 10 17 24 1 8 15 22 29|Jun Jul Aug Sep Oct Nov Dec|2014
+20130831_WWC302,daily,229,daily,1-28 Aug 2013,day,on,full,all full,no (year on same line as month),na,na,1 4 7 10 13 16 19 22 25 28|August 2013
+20121110_AMC396,daily,290,annual,1995-2009,year,on,none,first full then 2-digit,no,yes,2,1995 97 99 01 03 05 07 09
+20141213_LDC495,daily,458,daily,20 Nov-~31 Dec 2014,month,between,full,all full (single year),yes,na,na,November December|2014
+20140201_LDC256,daily,458,daily,1-29 Jan 2014,day,on,full,all full,no (year on same line as month),na,na,1 6 13 20 27 29|January 2014
+20121013_CNC192,daily,290,daily,Dec 1990-2012 (shown 2000-2012),year,on,none,first full then 2-digit,no,yes,2,2000 02 04 06 08 10 12
+20140628_FBC213,daily,1190,annual,2009-2014 (insets),year,on,none,first full then 2-digit,no,yes,na,2009 14
+20130518_WWC628,daily,229,daily,1 Jan-~15 May 2013,month,between,abbr3,all full (single year),yes,na,na,Jan Feb Mar Apr May|2013
+20150221_ASC192,daily,1190,daily,"31 Dec 2013-~Feb 2015 (two panels, same axis)",month,between,initial,first full then 2-digit,yes,na,na,D J F M A M J J A S O N D J F|2013 14 15
+20121006_FBC211,daily,290,daily,1 Oct 2008-~Nov 2012,year,between,none,first full then 2-digit,no,yes,1,2008 09 10 11 12
+20151017_FNC182,daily,580,daily,1 Oct 2010-~Aug 2015,year,between,none,first full then 2-digit,no,yes,1,2010 11 12 13 14 15
+20160123_WWC181,daily,800,daily,1-~22 Jan 2016,day,between,abbr3,all full,no (year on same line),na,na,Jan 2016
+20160109_BRC016,daily,580,annual,2003-2013,year,on,none,first full then 2-digit,no,yes,2,2003 05 07 09 11 13
+20160312_AMC670,daily,580,daily,1 Jan 2015-~mid Mar 2016,month,between,initial,all full,yes,na,na,J F M A M J J A S O N D J F M|2015 2016
+20160723_USC144,daily,580,annual,1973-2002,year,on,none,"first full then 2-digit, century ""2000""",no,yes,5,1973 80 85 90 95 2002
+20161001_INC706,daily,1000,annual,2007-2016 (bars),year,on,none,first full then 2-digit,no,yes,1,2007 08 09 10 11 12 13 14 15 16†

@@ -1,0 +1,124 @@
+## Titles, subtitles and units
+
+```{r g24-words-setup, include = FALSE}
+g24w_n <- g24_words$of[g24_words$measure == "title.words_le4"]
+```
+
+Unlike the rest of this guide, this section counts.
+Its shares come from the words of `r g24w_n` print charts on the warm-gray ground, from the issue of 30 March 2024 to August 2026, transcribed from the chart images (see [Method and limitations](#method-and-limitations)).
+Read them by the [classic guide's strengths](economist-classic-styleguide.html#how-to-read-the-rules): a rule at 90% or more, a default from 60%, an option from 15%.
+
+### Titles
+
+A title is short: the median is `r g24_word_n("title.words_median")` words, and `r g24_word_share("title.words_le4", "titles")` have four words or fewer.
+Use sentence case and no full stop (none of `r g24w_n` has one).
+Questions are rare: `r g24_word_share("title.question", "titles")`, such as "How AI will it go?" (`20240622_FBC131`).
+
+What the title says depends on where the chart runs.
+On the data pages (The world this week) and in Leaders, the title labels the data: `r g24_word_share("title.pages.plain", "titles")` are plain labels, such as "Turkey" (`20240330_WWC126`) and "Ten-year government-bond yield" (`20240420_LDC380`).
+A leader chart's title names the measure, in red, with no tab (see [Leader block](#leader-block)), and carries no number box.
+In the rest of the paper, the stories, the title is a headline: `r g24_word_share("title.stories.wordplay", "titles")` play on words and `r g24_word_share("title.stories.statement", "titles")` are short verdicts on the story.
+Only `r g24_word_share("title.stories.plain", "titles")` are plain labels.
+
+```{r g24-words-kinds, econ_height = 150}
+## The kinds of title, from g24_words, as a 2024 stacked bar: the data pages against the stories.
+g24w_kinds <- c(statement = "Verdict", pun = "Pun", idiom = "Idiom", allusion = "Allusion", plain = "Plain label")
+g24w_groups <- c(pages = "Data pages\nand Leaders", stories = "Stories")
+g24w_counts <- do.call(rbind, lapply(names(g24w_groups), function(key) {
+  r <- g24_words[g24_words$measure %in% paste0("title.", key, ".", names(g24w_kinds)), ]
+  data.frame(
+    group = g24w_groups[[key]],
+    kind = factor(unname(g24w_kinds[sub(".*\\.", "", r$measure)]), levels = unname(g24w_kinds)),
+    share = 100 * r$n / r$of
+  )
+}))
+g24w_counts$group <- factor(g24w_counts$group, levels = rev(g24w_groups))
+## Stacks run from the baseline in the palette's order, with the residual plain labels last in light gray.
+g24w_fill <- setNames(unname(p24[c("red", "salmon", "blue", "light blue", "light gray")]), g24w_kinds)
+
+g24w_p <- ggplot(g24w_counts, aes(group, share, fill = kind)) +
+  geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
+  ## The stories' wider segments are named inside them: white on red and blue, black on the paler colors.
+  geom_text(
+    data = g24w_counts[g24w_counts$group == "Stories", ],
+    aes(label = ifelse(share >= 10, round(share), ""), colour = kind %in% c("Verdict", "Idiom"), group = kind),
+    position = position_stack(vjust = 0.5, reverse = TRUE),
+    show.legend = FALSE,
+    size = g24_text
+  ) +
+  scale_colour_manual(values = c(`FALSE` = econ$print$text, `TRUE` = "white")) +
+  geom_hline(yintercept = 0, colour = econ$print$text, linewidth = 0.1 * g24_size / ggplot2::.pt) +
+  coord_flip() +
+  g24_value_axis(breaks = seq(0, 100, 25), expand = expansion(0)) +
+  scale_fill_manual(values = g24w_fill, breaks = unname(g24w_kinds), name = NULL) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+  labs(
+    title = "Pun intended",
+    subtitle = "Titles of print charts by kind,\n2024-26, % of total",
+    x = NULL, y = NULL, caption = "Source: ggthemes chart corpus"
+  ) +
+  g24_theme(horizontal = FALSE) +
+  theme(axis.ticks.y = element_blank(), axis.line.y = element_blank(), axis.text.y.right = element_blank())
+
+g24_chart(g24w_p)
+```
+
+The chart's own title is an idiom used straight, and true of the data.
+
+| Kind | Example | Subtitle | How it works |
+|:--|:--|:--|:--|
+| Double meaning | "Steel, canned" (`20240504_BRC032`) | Crude steel production, tonnes, m | steel canned, and production cut |
+| Homophone | "Fire in the whole" (`20240413_FBC236`) | Global number of natural catastrophes | fire in the hole |
+| Coinage | "Claude-ophobia" (`20260321_WBC772`) | India, stockmarket indices, January 1st 2026=100 | a fear named for an AI model, as IT shares fall |
+| Idiom used straight | "Rising tide" (`20240413_BRC244`) | Britain, average annual domestic water bill\*, £ / 2023 prices | literally true of water bills |
+| Altered idiom | "Godliness is next to Trumpiness" (`20240413_EPC256`) | US presidential election, voting intention for Donald Trump\*, … | cleanliness is next to godliness |
+| Allusion | "Hey big debtor" (`20240330_ASC111`) | Pakistan, general government gross debt, % of GDP | "Hey Big Spender" |
+| | "The crimes they are a-changing" (`20250726_EPC369`) | England and Wales, estimated incidents of selected crimes | "The Times They Are a-Changin'" |
+| Verdict | "Too high for comfort" (`20250927_BRC540`) | Ten-year government-bond yields, % | no wordplay: the story in four words |
+
+To write a title:
+
+- On the data pages and in Leaders, use a plain label: "Brent crude oil price".
+- Elsewhere, write a headline of one to four words. A verdict is house style as much as a pun: "This should not be happening" (`20250412_EPC019`).
+- Aim the play at the finding, keep its literal sense true of the data, and keep units and dates out of the title.
+
+Against the classic guide: the rules are the same, and so is the balance: wordplay in `r g24_word_share("title.stories.wordplay", "titles")` of the stories' titles, against [53% in 2012-15](economist-classic-styleguide.html#titles). The two were classified separately, so treat the comparison as approximate.
+
+### Subtitles and units
+
+The subtitle says what is measured, where and when, and ends with the unit: "France, budget deficit, % of GDP" (`20250927_EUC526`), "Britain, consumer prices, % increase on a year earlier" (`20240406_BRC148`).
+
+- **Place first.** A place leads `r g24_word_share("subtitle.place_first", "subtitles")`: a country, a region or a group such as "Selected countries".
+- **Unit last.** The last term after a comma is a unit in `r g24_word_share("subtitle.unit_last", "subtitles")`, and a unit appears somewhere in `r g24_word_share("subtitle.has_unit", "subtitles")`.
+- **Period.** A year or date appears in `r g24_word_share("subtitle.year", "subtitles")`, before or after the unit.
+- **Missing.** Only `r g24_word_share("subtitle.empty", "charts")` have no subtitle; `r g24_word_n("subtitle.empty_panels")` of them are panel charts whose headings do its job.
+
+Write units short, in a fixed form:
+
+| Form | In subtitles | Notes |
+|:--|:--|:--|
+| `%` | `r g24_word_share("subtitle.percent", "subtitles")` | alone, after a comma; "% of GDP" in `r g24_word_n("subtitle.pct_gdp")` |
+| `% change on a year earlier` | `r g24_word_share("subtitle.on_year_earlier", "subtitles")` | or "% increase on a year earlier" (`r g24_word_n("subtitle.increase_year_earlier")`) |
+| `bn`, `m`, `trn`, `’000` | `r paste(g24_words$n[match(c("subtitle.bn", "subtitle.m", "subtitle.trn", "subtitle.thousand"), g24_words$measure)], collapse = ", ")` subtitles | after a currency symbol with no space: $bn, £bn, €bn; after a currency in words with one: yuan bn; alone for counts |
+| `January 1st 2026=100` | `r g24_word_share("subtitle.index", "subtitles")` | the base date written as dates are (below), no spaces round "=" |
+| percentage points | `r g24_word_n("subtitle.percentage_points")` subtitles | spelled out, or "% points" |
+| log scale, inverted scale | `r g24_word_n("subtitle.log")` and `r g24_word_n("subtitle.inverted")` subtitles | as the last term: "Yen per $, inverted scale" (`20240720_FNC473`) |
+
+Mark a term that needs defining with an asterisk, then †, ‡, and define it in a note: `r g24_word_share("subtitle.footnote", "subtitles")` carry a mark.
+
+### Notes and sources
+
+- **Notes.** `r g24_word_share("notes.any", "charts")` have a note. Notes are marked \*, †, ‡, § in that order on `r g24_word_share("notes.order", "charts with notes")`. A single note usually sits on the source line, ranged right ("\*Estimate", `20260829_WBC084`), as in `r g24_word_share("notes.one.same_line", "charts with one note")`; several sit above the source (`20240629_FNC215`), as in `r g24_word_share("notes.many.above", "charts with several")`.
+- **Sources.** Every story chart has a source line, `r g24_word_n("source.present.stories")` of `r g24_words$of[g24_words$measure == "source.present.stories"]`; leader charts may go without (`r g24_word_n("source.present.leaders")` of 20 have one). Write "Source:" for one source and "Sources:" for several, separated by semicolons, as `r g24_word_share("source.plural_semicolon", "lines with several")` do: "Sources: Eurostat; national statistics" (`20240727_FNC490`). No line ends with a full stop. *The Economist*, as a source, comes last, in `r g24_word_share("source.economist_last", "lines that name it")`.
+- **Number boxes.** `r g24_word_share("number_box", "charts")` other than leaders carry one; no leader chart does.
+
+### Numbers and dates
+
+- **Value labels** carry no unit (`r g24_word_n("numbers.unit_on_labels")` of `r g24_words$of[g24_words$measure == "numbers.unit_on_labels"]` axes); the unit is in the subtitle.
+- **Thousands** take a comma: `r g24_word_share("numbers.thousands_comma", "axes")` with a label of 1,000 or more.
+- **Negatives** take a minus sign: `r g24_word_share("numbers.minus", "axes")` with negative values (`20250927_EUC526`).
+- **Decimals.** Every label but zero has the same number of decimals, on `r g24_word_share("numbers.same_decimals", "axes with decimals")`; zero is a plain "0", on `r g24_word_share("numbers.zero_plain", "axes")` that show it (`20240629_FNC215`).
+- **Years** are truncated, "2017, 18, 19" (`r g24_word_share("dates.truncated_years", "axes", paren = FALSE)` with three or more year labels), with each new century in full, "2000, 03, 06" (`r g24_word_share("dates.century_full", "axes", paren = FALSE)` that cross 2000; `20240713_LDC367`).
+- **Months** on an axis are three letters (`r g24_word_share("dates.months.abbr", "month axes", paren = FALSE)`; `20260321_WBC772`), single letters where eight or more are labeled (`r g24_word_n("dates.months.letter")`; `20240420_FNC298`), or in full (`r g24_word_n("dates.months.full")`), only where two to four are labeled and there is room ("January, February, March", `20250315_FNC140`).
+- **Dates** with a day are ordinal, all `r g24_words$of[g24_words$measure == "dates.day_ordinal"]` of them, usually with the month in full, as in `r g24_word_share("dates.day_full_month", "dates")`: "January 1st 2026=100", "April 7th 2025". None is written "January 1".
+- **Year ranges** are shortened within a century, "2019-23" (`r g24_word_n("dates.range_short_same_century")` of `r g24_words$of[g24_words$measure == "dates.range_short_same_century"]`), and written in full across one, "1985-2021" (`r g24_word_n("dates.range_full_across")` of `r g24_words$of[g24_words$measure == "dates.range_full_across"]`).

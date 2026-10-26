@@ -1145,6 +1145,8 @@ g24_chart(g24m_malaise_plot("print", crises = FALSE))
 
 ### Editorial emphasis
 
+*This section is ggthemes' advice, not a convention observed in the paper's charts.*
+
 Every strong treatment should answer a question.
 Use emphasis in this order: position and ordering, a direct label, weight, then red.
 Red is a signal, not background decoration.
@@ -1160,6 +1162,8 @@ Red is a signal, not background decoration.
 
 ### Keys and direct labels
 
+*Drawn from the examples above; the limit of four lines is this guide's choice, not a measured share.*
+
 Label two to four lines, and highlighted scatter points, directly.
 Use a key when endpoints are crowded or the encoding needs explaining.
 Put keys above the plot, in reading order, and drop the key's title if the subtitle already names the grouping.
@@ -1167,12 +1171,16 @@ Key repeated events, such as the coup attempts above, rather than labelling each
 
 ### Maps
 
+*This guide cites no map; this section is ggthemes' advice for applying the palettes to maps.*
+
 Use sequential red or gray for ordered magnitude, and the red-gray diverging scale only around a meaningful midpoint.
 Keep water, boundaries and missing areas quiet.
 Label few breaks in the key.
 Do not use color alone for a binary editorial claim when a label or outline can carry it.
 
 ### Accessibility
+
+*This section is ggthemes' advice, not a convention observed in the paper's charts.*
 
 - Do not distinguish important series by hue alone.
 - Combine color with labels, line style, ordering or shape.

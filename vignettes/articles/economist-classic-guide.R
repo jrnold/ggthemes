@@ -27,6 +27,28 @@ years <- read.csv("economist-classic/years.csv", stringsAsFactors = FALSE)
 # Counts on the titles and subtitles of the print charts, as the corpus read them; the kinds of title were classified
 # by Claude from each title and its subtitle.
 words <- read.csv("economist-classic/words.csv", stringsAsFactors = FALSE)
+# The time axes of 190 sampled charts and 16 daily-data charts, read from their images, and how the end years of
+# the axes with labels on the ticks were handled.
+time_axes <- read.csv("economist-classic/time-axes.csv", stringsAsFactors = FALSE)
+time_axes_ends <- read.csv("economist-classic/time-axes-ends.csv", stringsAsFactors = FALSE)
+# The marks given on the review page to the charts the reading put under each claim, counted by section: "good" and
+# "ok" charts show the claim, "poor" ones show it but not cleanly, "wrong" ones do not. Charts of claims since dropped
+# from the guide are counted together.
+verification <- read.csv("economist-classic/verification.csv", stringsAsFactors = FALSE)
+
+# The strength of a convention from its share: a rule at 90% or more, a default from 60%, an option from 15%, and
+# rare below that or when it could apply to fewer than 15 panels or charts.
+strength_cuts <- c(rule = 0.9, default = 0.6, option = 0.15, cases = 15)
+strength_of <- function(n, of) {
+  s <- n / of
+  out <- ifelse(
+    s >= strength_cuts[["rule"]],
+    "Rule",
+    ifelse(s >= strength_cuts[["default"]], "Default", ifelse(s >= strength_cuts[["option"]], "Option", "Rare"))
+  )
+  out[of < strength_cuts[["cases"]]] <- "Rare"
+  out
+}
 
 claim <- function(id, medium = "print") {
   r <- ev[ev$claim_id == id & ev$medium == medium, ]
@@ -44,6 +66,52 @@ share <- function(id, medium = "print") {
 pct <- function(id, medium = "print") {
   r <- claim(id, medium)
   paste0(round(100 * r$n / r$of), "%")
+}
+# The guide's names for the sections of the evidence.
+section_names <- c(
+  Scope = "Scope",
+  `Chart sizes` = "Chart sizes",
+  Anatomy = "Anatomy",
+  Layout = "Layout",
+  `Chart types` = "Chart types",
+  `Colour: ground` = "Color: ground",
+  `Colour: palette` = "Color: palette",
+  `Colour: order` = "Color: sets and order",
+  bar_column_side_by_side = "Bar / column, side by side",
+  bar_column_stacked = "Bar / column, stacked",
+  lines = "Lines, side by side",
+  lines_stacked_area = "Lines, stacked",
+  thermometer = "Thermometer",
+  scatter = "Scatter plot",
+  connected_scatter = "Connected scatter",
+  bubble = "Bubble chart",
+  slope = "Slope charts",
+  table = "Tables",
+  pie_doughnut = "Pie / doughnut",
+  double_scale = "Double-scale charts",
+  blob_heads = "Blob heads",
+  timeline = "Timelines",
+  fan_forecast = "Fan charts",
+  pictogram = "Pictograms",
+  waterfall = "Waterfalls"
+)
+# Every claim of the evidence as a table for the appendix, by section of the guide. Sections that count how common
+# something is (chart types, sizes, series colors, layouts) are prevalence, not conventions, and get no strength.
+conventions_table <- function() {
+  prevalence <- c("Scope", "Chart sizes", "Layout", "Chart types", "Colour: palette")
+  d <- ev[ev$medium == "print", ]
+  d <- d[order(match(d$section, names(section_names)), -d$n / d$of), ]
+  ## "lines: gridlines = horizontal" reads as "gridlines: horizontal" under its section's heading.
+  what <- sub("^[a-z_]+: ", "", d$statement)
+  what <- sub(" = ", ": ", what, fixed = TRUE)
+  data.frame(
+    Section = unname(section_names[d$section]),
+    Convention = what,
+    Share = sprintf("%s%%", round(100 * d$n / d$of)),
+    Count = sprintf("%s of %s %s", d$n, d$of, d$unit),
+    Strength = ifelse(d$section %in% prevalence, "", strength_of(d$n, d$of)),
+    check.names = FALSE
+  )
 }
 # Links to charts by code: the title links to the archived image, "article" to the article it ran with.
 cite_codes <- function(codes) {
@@ -76,11 +144,14 @@ cite <- function(id, medium = "print", k = 3) {
   codes <- strsplit(claim(id, medium)$cite, ";")[[1]]
   cite_codes(head(codes, k))
 }
-# A count from `words.csv`, as "53%, 341 of 644 titles".
-word_share <- function(measure, unit = "charts") {
+# A count from `words.csv`, as "53% (341 of 644 titles)".
+word_share <- function(measure, unit = "charts", paren = TRUE) {
   r <- words[words$measure == measure, ]
-  if (nrow(r) != 1) stop("no words measure ", measure)
-  sprintf("%s%%, %s of %s %s", round(100 * r$n / r$of), r$n, r$of, unit)
+  if (nrow(r) != 1) {
+    stop("no words measure ", measure)
+  }
+  # Inside the prose's own parentheses, `paren = FALSE` gives "53%, 12 of 23 axes".
+  sprintf(if (paren) "%s%% (%s of %s %s)" else "%s%%, %s of %s %s", round(100 * r$n / r$of), r$n, r$of, unit)
 }
 # A share by year from `years.csv`: "62% in 2012, 55% in 2013, ...".
 by_year <- function(measure) {
@@ -144,7 +215,10 @@ classic_footnote <- function(text, source) {
     theme(
       plot.tag.position = c(1, 0),
       plot.tag = element_text(
-        size = rel(0.95), hjust = 1, vjust = 0, face = "plain",
+        size = rel(0.95),
+        hjust = 1,
+        vjust = 0,
+        face = "plain",
         margin = margin(r = classic_size * 1.9)
       )
     )
