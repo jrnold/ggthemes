@@ -145,8 +145,6 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
       axis.title = element_text(size = rel(relsz["medsmall"])),
       axis.title.x = element_text(),
       axis.title.y = element_text(angle = 90, vjust = 0),
-      # axis.ticks.length = stata_gsize$tiny,
-      # axis.ticks.margin = stata_gsize$half_tiny,
       axis.ticks.length = unit(4 / 11, "lines"),
       legend.background = element_rect(
         linetype = 1,
@@ -267,7 +265,6 @@ theme_stata_colors <- function(scheme = "s2color") {
     color_bg <- "white"
     color_fg <- "black"
     color_grid <- stata_colors["ltbluishgray"]
-    # color_grid_major <- stata_colors["ltbluishgray"]
     fill_strip <- stata_colors["bluishgray"]
     color_strip <- NA
     color_title <- stata_colors["dknavy"]
@@ -278,7 +275,6 @@ theme_stata_colors <- function(scheme = "s2color") {
     color_bg <- "white"
     color_fg <- "black"
     color_grid <- stata_colors["dimgray"]
-    # color_grid_major <- stata_colors["dimgray"]
     fill_strip <- stata_colors["gs13"]
     color_strip <- NA
     color_title <- "black"

@@ -1,5 +1,5 @@
-# Swatch figures for palette galleries, shared by README.Rmd and
-# vignettes/articles/palettes.Rmd.
+# Swatch figures for palette galleries, shared by README.Rmd and the palettes
+# article (vignettes/articles/palettes.Rmd).
 
 # Columns are referenced through the `.data` pronoun; the local binding lets
 # lintr's object_usage_linter see where that name comes from.
