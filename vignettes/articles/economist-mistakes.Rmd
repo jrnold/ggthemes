@@ -566,6 +566,8 @@ bremorse_long <- rbind(
 bremorse_x <- function(guide, upper = 2018.6) {
   scale_x_continuous(
     limits = c(2015.75, upper),
+    ## Keep the classic break mark, which sits beside the right axis, outside the limits.
+    oob = scales::oob_keep,
     expand = c(0, 0),
     breaks = c(2016.3, 2017.3, 2018.3),
     labels = c("2016", "17", "18"),
@@ -573,9 +575,8 @@ bremorse_x <- function(guide, upper = 2018.6) {
     guide = guide
   )
 }
-bremorse_sub <- "“In hindsight, do you think Britain was right or wrong\nto vote to leave the EU?”\n% responding"
-## The classic subtitle is wrapped a word earlier: in the substitute font its first line runs past the chart's edge.
-bremorse_sub_classic <- "“In hindsight, do you think Britain was right\nor wrong to vote to leave the EU?”\n% responding"
+## Wrapped a word earlier than the original: in the substitute font its first line runs past the chart's edge.
+bremorse_sub <- "“In hindsight, do you think Britain was right\nor wrong to vote to leave the EU?”\n% responding"
 
 ## Classic: the polls joined as they came, in the two classic colors nearest to the originals'.
 bremorse_classic <- ggplot(bremorse_long, aes(t, pct, colour = answer)) +
@@ -611,7 +612,7 @@ bremorse_classic <- ggplot(bremorse_long, aes(t, pct, colour = answer)) +
   bremorse_x(guide_axis(minor.ticks = TRUE)) +
   labs(
     title = "Bremorse",
-    subtitle = bremorse_sub_classic,
+    subtitle = bremorse_sub,
     x = NULL,
     y = NULL,
     caption = "Source: NatCen Social Research"

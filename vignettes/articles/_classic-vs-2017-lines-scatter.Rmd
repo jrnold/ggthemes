@@ -1236,7 +1236,7 @@ classic <- lines_classic(
     classic_scatter_scales(2) +
     guides(
       fill = guide_legend(nrow = 2, override.aes = list(size = 2.2, alpha = 1)),
-      colour = guide_legend(nrow = 2, override.aes = list(size = 2.2, alpha = 1))
+      colour = guide_legend(nrow = 2)
     ) +
     labs(
       title = "Divergent",

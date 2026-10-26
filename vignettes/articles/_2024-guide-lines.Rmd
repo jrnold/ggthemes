@@ -1504,7 +1504,7 @@ g24l_ev_plot <- ggplot(g24l_ev, aes(y = country)) +
   geom_label(
     data = data.frame(x = c(128, 187), y = "Britain", label = c("2022", "2018")),
     aes(x = .data$x, y = .data$y, label = .data$label), inherit.aes = FALSE,
-    size = g24_text, colour = g24l_ink, fill = g24l_ground, label.size = 0, label.padding = unit(1, "pt")
+    size = g24_text, colour = g24l_ink, fill = g24l_ground, linewidth = 0, label.padding = unit(1, "pt")
   ) +
   scale_x_continuous(position = "top", limits = c(70, 205), breaks = seq(75, 200, 25), expand = c(0, 0)) +
   labs(

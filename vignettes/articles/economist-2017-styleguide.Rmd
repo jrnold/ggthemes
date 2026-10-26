@@ -580,7 +580,7 @@ ggplot(swatch_data, aes(col, -row)) +
     size = 6 / ggplot2::.pt, fontface = "bold", hjust = 0, inherit.aes = FALSE
   ) +
   scale_fill_identity() +
-  scale_x_continuous(limits = c(-1.5, 9.5), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(-1.5, 10.5), expand = c(0, 0)) +
   labs(title = "Chart palette, print and web", x = NULL, y = NULL) +
   theme_economist_2017("web", base_size = 7) +
   theme(
