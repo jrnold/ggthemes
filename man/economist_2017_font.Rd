@@ -29,7 +29,10 @@ same width class, then Roboto Condensed.
 A font counts as installed if 'systemfonts', which the 'ragg' and
 'svglite' devices use to find fonts, lists it among the system fonts or
 the fonts registered with \code{\link[systemfonts:register_font]{systemfonts::register_font()}}. Without
-'systemfonts', the result is always \code{fallback}.
+'systemfonts', the result is always \code{fallback}. So is it when the open
+graphics device is base R's \code{\link[grDevices:pdf]{grDevices::pdf()}} or
+\code{\link[grDevices:postscript]{grDevices::postscript()}}, which know only their own font database and
+fail on any other family.
 }
 \examples{
 economist_2017_font()

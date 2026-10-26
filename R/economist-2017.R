@@ -234,8 +234,11 @@ scale_fill_economist_2017_c <- function(
 #' @param base_family Base font family. The default, [economist_2017_font()],
 #'   is Fira Sans Condensed or Roboto Condensed if either is installed, and
 #'   otherwise `"sans"`. Base R's `pdf()` and `postscript()` devices know only
-#'   their own font database; with them, use [grDevices::cairo_pdf()] or a
-#'   'ragg' device, or pass `base_family = "sans"`.
+#'   their own font database. The default is `"sans"` while one of them is
+#'   the open device, but a theme built before one opens, as with
+#'   `ggsave("plot.pdf")`, still names the installed font: draw it with
+#'   [grDevices::cairo_pdf()] or a 'ragg' device, or pass
+#'   `base_family = "sans"`.
 #' @param horizontal Draw horizontal gridlines, the guide's convention?
 #'   Use `FALSE` for vertical gridlines on a horizontal bar chart.
 #'
@@ -861,7 +864,10 @@ print.ggthemes_economist_chart <- function(x, newpage = TRUE, ...) {
 #' A font counts as installed if 'systemfonts', which the 'ragg' and
 #' 'svglite' devices use to find fonts, lists it among the system fonts or
 #' the fonts registered with [systemfonts::register_font()]. Without
-#' 'systemfonts', the result is always `fallback`.
+#' 'systemfonts', the result is always `fallback`. So is it when the open
+#' graphics device is base R's [grDevices::pdf()] or
+#' [grDevices::postscript()], which know only their own font database and
+#' fail on any other family.
 #'
 #' @param families Font families to try, in order of preference.
 #' @param fallback The family to use if none of `families` is installed.
@@ -886,6 +892,9 @@ economist_2017_font <- function(
     cli::cli_abort("{.arg fallback} must be a single string.")
   }
   if (!length(families) || !rlang::is_installed("systemfonts")) {
+    return(fallback)
+  }
+  if (names(grDevices::dev.cur()) %in% c("pdf", "postscript")) {
     return(fallback)
   }
   installed <- c(systemfonts::system_fonts()[["family"]], systemfonts::registry_fonts()[["family"]])

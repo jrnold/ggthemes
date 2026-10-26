@@ -711,6 +711,15 @@ test_that("economist_2017_font picks the first installed family", {
   expect_true(rlang::is_string(economist_2017_font()))
 })
 
+test_that("economist_2017_font falls back on base pdf() and postscript() devices", {
+  skip_if_not_installed("systemfonts")
+  installed <- systemfonts::system_fonts()[["family"]][1]
+  withr::local_pdf(NULL)
+  expect_equal(economist_2017_font(installed), "sans")
+  withr::local_postscript(withr::local_tempfile(fileext = ".ps"))
+  expect_equal(economist_2017_font(installed, fallback = "serif"), "serif")
+})
+
 test_that("theme_economist_2017 defaults to economist_2017_font()", {
   expect_equal(theme_economist_2017(base_size = 7)$text$family, economist_2017_font())
 })

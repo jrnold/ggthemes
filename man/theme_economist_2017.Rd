@@ -21,8 +21,11 @@ Every size in the theme is relative to it. The guide's own sizes are at
 \item{base_family}{Base font family. The default, \code{\link[=economist_2017_font]{economist_2017_font()}},
 is Fira Sans Condensed or Roboto Condensed if either is installed, and
 otherwise \code{"sans"}. Base R's \code{pdf()} and \code{postscript()} devices know only
-their own font database; with them, use \code{\link[grDevices:cairo_pdf]{grDevices::cairo_pdf()}} or a
-'ragg' device, or pass \code{base_family = "sans"}.}
+their own font database. The default is \code{"sans"} while one of them is
+the open device, but a theme built before one opens, as with
+\code{ggsave("plot.pdf")}, still names the installed font: draw it with
+\code{\link[grDevices:cairo_pdf]{grDevices::cairo_pdf()}} or a 'ragg' device, or pass
+\code{base_family = "sans"}.}
 
 \item{horizontal}{Draw horizontal gridlines, the guide's convention?
 Use \code{FALSE} for vertical gridlines on a horizontal bar chart.}

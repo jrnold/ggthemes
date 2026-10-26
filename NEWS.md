@@ -335,7 +335,9 @@
   own at the default `base_size = 10`. The default font is
   `economist_2017_font()`: the first installed of Fira Sans Condensed and
   Roboto Condensed, the closest open substitutes for the guide's Econ Sans
-  Condensed, and otherwise `"sans"`.
+  Condensed, and otherwise `"sans"`. It also returns `"sans"` when the open
+  device is base R's `pdf()` or `postscript()`, which cannot draw other
+  families.
 
 - New `geom_label_economist_2017()` draws the 2017 styleguide's text blocks: a label in
   a shaded box with a pointer on one side, sized in points to the guide's
