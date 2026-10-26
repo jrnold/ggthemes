@@ -388,7 +388,7 @@ ggplot(trade, aes(country, value, fill = flow)) +
        caption = "Source: U.S. International Trade Commission") +
   on_field("white") +
   theme(plot.title = element_text(family = wsj_text_semibold, face = "plain"),
-        plot.subtitle = element_text(family = wsj_text_semibold),
+        plot.subtitle = element_text(family = wsj_text_semibold, face = subtitle_face_ab),
         legend.position = "top", legend.justification = "left", axis.ticks.x = element_blank())
 ```
 

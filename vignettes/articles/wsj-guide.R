@@ -214,6 +214,8 @@ on_field <- function(paper, ...) {
 }
 
 # ---- The four periods -----------------------------------------------------------------------------------------------
+# The bold subtitles of periods A and B: the semibold face where it could be fetched, the generic bold otherwise.
+subtitle_face_ab <- if (wsj_text_semibold == "sans") "bold" else "plain"
 # theme_wsj() with the overrides that turn it into each period's look; the bands are a layer, added by period_plot().
 period_theme <- function(period, base_size = 11) {
   thm <- switch(
@@ -224,11 +226,18 @@ period_theme <- function(period, base_size = 11) {
       paper = "pale_blue",
       base_family = wsj_text_font,
       title_family = wsj_text_semibold,
+      subtitle_face = subtitle_face_ab,
       rules = "none"
     ) +
       theme(plot.title = element_text(face = "plain"), plot.subtitle = element_text(family = wsj_text_semibold)),
     ## Ivory, slab title, bold subtitle, bands.
-    B = theme_wsj(base_size, base_family = wsj_text_font, title_family = wsj_title_font, rules = "none") +
+    B = theme_wsj(
+      base_size,
+      base_family = wsj_text_font,
+      title_family = wsj_title_font,
+      subtitle_face = subtitle_face_ab,
+      rules = "none"
+    ) +
       theme(plot.subtitle = element_text(family = wsj_text_semibold)),
     ## Ivory, regular subtitle, dotted rules.
     C = theme_wsj(base_size, base_family = wsj_text_font, title_family = wsj_title_font),

@@ -40,6 +40,14 @@ test_that("theme_wsj() sets the field and rejects an unknown one", {
   expect_error(theme_wsj(paper = "chartreuse"), regexp = "must be one of")
 })
 
+test_that("theme_wsj() takes one field, and names the argument that was used", {
+  expect_error(theme_wsj(paper = c("white", "gray")), regexp = "single string")
+  expect_error(theme_wsj(paper = 1), regexp = "single string")
+  withr::local_options(lifecycle_verbosity = "quiet")
+  expect_error(theme_wsj(color = "purple"), regexp = "`color` must be one of")
+  expect_equal(theme_wsj(color = "brown")$plot.background$fill, "#f8f2e4")
+})
+
 test_that("wsj_pal() rejects an unknown palette", {
   expect_snapshot(wsj_pal("asdgasa"), error = TRUE)
 })
@@ -91,6 +99,29 @@ test_that("pre-8.0.0 palette names are deprecated", {
     x <- wsj_pal("dem_rep")(2)
     x <- wsj_pal("colors6")(2)
   })
+})
+
+test_that("the scales attribute a palette's deprecation to the user's call", {
+  # lifecycle only warns about calls from the user's code, so the scales must pass the user's frame, not their own.
+  user_env <- NULL
+  local_mocked_bindings(deprecate_soft = function(..., user_env) user_env <<- user_env)
+  caller <- environment()
+  scale_colour_wsj("colors6")
+  expect_identical(user_env, caller)
+  user_env <- NULL
+  scale_fill_wsj("rgby")
+  expect_identical(user_env, caller)
+  user_env <- NULL
+  wsj_pal("dem_rep")
+  expect_identical(user_env, caller)
+})
+
+test_that("scale errors name the scale that was called", {
+  expect_error(scale_fill_wsj("nope"), class = "rlang_error", regexp = "palette")
+  expect_identical(
+    tryCatch(scale_fill_wsj("nope"), error = function(e) deparse(conditionCall(e)[[1]])),
+    "scale_fill_wsj"
+  )
 })
 
 test_that("current palettes are not deprecated", {
@@ -228,13 +259,13 @@ test_that("categorical light and dark variants hold hue order", {
 
 test_that("wsj_label prints the unit on the topmost break only", {
   expect_equal(wsj_label(suffix = "%", hang = FALSE)(c(-5, 0, 5, 10)), c("-5", "0", "5", "10%"))
-  expect_equal(wsj_label(prefix = "$")(c(0, 100, 200)), c("0", "100", "$200"))
+  expect_equal(wsj_label(prefix = "$", hang = FALSE)(c(0, 100, 200)), c("0", "100", "$200"))
 })
 
 test_that("wsj_label formats the topmost break like the others", {
   # a plain paste() would render 200000 as "$2e+05"
   expect_equal(
-    wsj_label(prefix = "$")(c(0, 100000, 200000)),
+    wsj_label(prefix = "$", hang = FALSE)(c(0, 100000, 200000)),
     c("0", "100,000", "$200,000")
   )
 })
@@ -261,9 +292,17 @@ test_that("wsj_label hangs the suffix past the other labels", {
   expect_type(labels, "expression")
   expect_equal(labels[[4]], "10%")
   expect_equal(labels[[1]], quote("-5" * phantom("%")))
-  # A prefix hangs by right alignment alone, so the labels stay text.
-  expect_equal(wsj_label(prefix = "$")(c(0, 100, 200)), c("0", "100", "$200"))
-  expect_type(wsj_label()(c(0, 5)), "character")
+  # A prefix hangs by right alignment alone, so it needs no phantom; the labels are still an expression, since the
+  # type follows `hang` alone.
+  expect_equal(wsj_label(prefix = "$")(c(0, 100, 200)), as.expression(list("0", "100", "$200")))
+  expect_type(wsj_label()(c(0, 5)), "expression")
+  expect_type(wsj_label(hang = FALSE)(c(0, 5)), "character")
+})
+
+test_that("wsj_label rejects arguments label_comma() does not take", {
+  expect_error(wsj_label(sufix = "%"), regexp = "Unknown")
+  expect_error(wsj_label("%"), regexp = "must be named")
+  expect_equal(wsj_label(accuracy = 0.1, hang = FALSE)(c(0, 0.5)), c("0.0", "0.5"))
 })
 
 test_that("theme_wsj sets the late gray type on the gray field, the title in black", {
@@ -426,12 +465,20 @@ test_that("geom_wsj_threshold draws one fill above and one below", {
   expect_error(geom_wsj_threshold(fill = "red"), regexp = "two colors")
 })
 
+# The arrows are laid out at draw time, so lay the bar out in a panel of a known height.
+lay_out_bar <- function(grob, height = 300) {
+  grDevices::pdf(NULL)
+  withr::defer(grDevices::dev.off())
+  grid::pushViewport(grid::viewport(width = grid::unit(200, "pt"), height = grid::unit(height, "pt")))
+  grid::makeContent(grob)
+}
+
 test_that("wsj_direction_bar draws two arrows and an optional title", {
   p <- ggplot2::ggplot(data.frame(x = 1:2, y = c(-1, 1)), ggplot2::aes(x, y)) + ggplot2::geom_blank()
-  plain <- ggplot2::layer_grob(p + wsj_direction_bar(0), 2)[[1]]
+  plain <- lay_out_bar(ggplot2::layer_grob(p + wsj_direction_bar(0), 2)[[1]])
   # Two arrows, each a body and a label.
   expect_length(plain$children, 4L)
-  titled <- ggplot2::layer_grob(p + wsj_direction_bar(0, title = "SENTIMENT"), 2)[[1]]
+  titled <- lay_out_bar(ggplot2::layer_grob(p + wsj_direction_bar(0, title = "SENTIMENT"), 2)[[1]])
   expect_length(titled$children, 5L)
   expect_equal(titled$children[[5]]$label, "SENTIMENT")
   expect_error(wsj_direction_bar(labels = "Up"), regexp = "two values")
@@ -480,9 +527,49 @@ test_that("facet values must be named and fit the data", {
   expect_error(wsj_callout(1:2, 1:2, c("x", "y"), facets = list(f = c("a", "b", "c"))), regexp = "length 1 or 2")
 })
 
+test_that("wsj_direction_bar cuts back an arrow with no room for a body rather than folding it", {
+  # With no expansion, 98.5 sits 4.5 pt below the top of a 300 pt panel: room for the upper arrow's tip but not its
+  # body or its label.
+  p <- ggplot2::ggplot(data.frame(x = 1:2, y = c(0, 100)), ggplot2::aes(x, y)) +
+    ggplot2::geom_blank() +
+    ggplot2::scale_y_continuous(expand = ggplot2::expansion(0))
+  bar <- lay_out_bar(ggplot2::layer_grob(p + wsj_direction_bar(98.5), 2)[[1]])
+  polys <- Filter(function(g) inherits(g, "polygon"), bar$children)
+  expect_length(polys, 2L)
+  # Laid out in points: from the start (y[1]) to the tip's base (y[3]) to the tip (y[4]).
+  upper <- as.numeric(polys[[1]]$y)
+  expect_equal(upper[[1]], upper[[3]])
+  expect_gt(upper[[4]], upper[[3]])
+  labels <- vapply(Filter(function(g) inherits(g, "text"), bar$children), function(g) g$label, character(1))
+  expect_equal(unname(labels), "Contracting")
+})
+
+test_that("wsj_direction_bar leaves out an arrow with no room at all", {
+  # The title's gap reaches past the top of the panel.
+  p <- ggplot2::ggplot(data.frame(x = 1:2, y = c(0, 100)), ggplot2::aes(x, y)) + ggplot2::geom_blank()
+  bar <- lay_out_bar(ggplot2::layer_grob(p + wsj_direction_bar(98, title = "SENTIMENT"), 2)[[1]])
+  polys <- Filter(function(g) inherits(g, "polygon"), bar$children)
+  expect_length(polys, 1L)
+  expect_equal(polys[[1]]$gp$fill, "#d5695d")
+})
+
 test_that("misspelled arguments are errors, not facet values", {
   expect_error(wsj_callout(1, 1, "x", nudgex = 5), regexp = "unused argument")
   expect_error(wsj_direction_bar(0, lables = c("a", "b")), regexp = "unused argument")
+})
+
+test_that("geom_wsj_threshold transforms the threshold with the y scale", {
+  d <- data.frame(x = 1:20, y = exp(seq(log(10), log(200), length.out = 20)))
+  p <- ggplot2::ggplot(d, ggplot2::aes(x, y)) + geom_wsj_threshold(threshold = 50)
+  expect_equal(ggplot2::layer_data(p + ggplot2::scale_y_log10())$threshold[[1]], log10(50))
+  expect_equal(ggplot2::layer_data(p + ggplot2::scale_y_reverse())$threshold[[1]], -50)
+})
+
+test_that("geom_wsj_threshold widens the y scale to take in the threshold", {
+  d <- data.frame(x = 1:5, y = c(52, 55, 58, 53, 56))
+  p <- ggplot2::ggplot(d, ggplot2::aes(x, y)) + geom_wsj_threshold(threshold = 50)
+  range <- ggplot2::ggplot_build(p)$layout$panel_params[[1]]$y.range
+  expect_lt(range[[1]], 50)
 })
 
 test_that("geom_wsj_threshold breaks its fills at missing values", {

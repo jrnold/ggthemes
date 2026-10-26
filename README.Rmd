@@ -191,7 +191,7 @@ palette_sample <- list(
   "solarized_pal()" = solarized_pal()(8),
   'stata_pal("s2color")' = stata_pal("s2color")(15),
   'tableau_color_pal("Tableau 10")' = tableau_color_pal("Tableau 10")(10),
-  'wsj_pal("colors6")' = wsj_pal("colors6")(6)
+  "wsj_pal()" = wsj_pal()(6)
 )
 ```
 

@@ -4,9 +4,13 @@
 \alias{wsj_label}
 \title{Wall Street Journal axis labels}
 \usage{
-wsj_label(prefix = "", suffix = "", drop_lowest = FALSE, hang = TRUE, ...)
+wsj_label(..., prefix = "", suffix = "", drop_lowest = FALSE, hang = TRUE)
 }
 \arguments{
+\item{...}{Passed to \code{\link[scales:label_comma]{scales::label_comma()}}, for example \code{accuracy}. They
+must be named, and an argument that \code{label_comma()} does not take is an
+error.}
+
 \item{prefix}{A string, the symbol placed before the topmost label, such as
 \code{"$"}.}
 
@@ -20,13 +24,11 @@ it where the axis meets the panel edge; most print it, so the default is
 \item{hang}{If \code{TRUE} (the default), hangs the suffix past the right edge of
 the other labels. The labels are then returned as plotmath expressions, so
 use \code{hang = FALSE} for text that is not an axis label, or on an x axis.}
-
-\item{...}{Passed to \code{\link[scales:label_comma]{scales::label_comma()}}, for example \code{accuracy}.}
 }
 \value{
-A function suitable for a scale's \code{labels} argument. It returns a
-character vector, or an expression vector when \code{hang} is \code{TRUE} and there
-is a \code{suffix}.
+A function suitable for a scale's \code{labels} argument. It returns an
+expression vector when \code{hang} is \code{TRUE} and a character vector when it is
+\code{FALSE}.
 }
 \description{
 Labels a continuous axis the way published Wall Street Journal charts do:

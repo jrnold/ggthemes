@@ -79,7 +79,7 @@ theme_wsj <- function(
     paper <- color
   }
   # `color` has already warned; don't warn twice for a single call.
-  paper_colour <- wsj_paper_colour(paper, warn = !via_color)
+  paper_colour <- wsj_paper_colour(paper, warn = !via_color, arg = if (via_color) "color" else "paper")
   subtitle_face <- rlang::arg_match(subtitle_face)
   rules <- rlang::arg_match(rules)
   # Black type until mid-2013; then dark gray everywhere but the title, which
@@ -163,15 +163,22 @@ theme_wsj <- function(
 # Resolves a plot field to a hex color. `paper` holds the current
 # fields; `bg` holds the pre-8.0.0 set, whose names reached here either through
 # the deprecated `color` argument or positionally as `theme_wsj(12, "brown")`.
-wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2), call = rlang::caller_env()) {
+wsj_paper_colour <- function(
+  paper,
+  warn = TRUE,
+  arg = "paper",
+  user_env = rlang::caller_env(2),
+  call = rlang::caller_env()
+) {
   papers <- ggthemes::ggthemes_data$wsj$paper
   bg <- ggthemes::ggthemes_data$wsj$bg
 
-  if (length(paper) > 1L) {
+  # The default of `paper` lists the fields; any other vector is an error.
+  if (identical(paper, names(papers))) {
     paper <- paper[[1L]]
   }
-  if (length(paper) != 1L || !is.character(paper)) {
-    cli::cli_abort("{.arg paper} must be a single string.", call = call)
+  if (!rlang::is_string(paper)) {
+    cli::cli_abort("{.arg {arg}} must be a single string, not {.obj_type_friendly {paper}}.", call = call)
   }
 
   if (paper %in% names(papers)) {
@@ -197,7 +204,7 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
   }
 
   cli::cli_abort(
-    "{.arg paper} must be one of {.val {names(papers)}}, not {.val {paper}}.",
+    "{.arg {arg}} must be one of {.val {names(papers)}}, not {.val {paper}}.",
     call = call
   )
 }
@@ -259,9 +266,15 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
 #' @example inst/examples/ex-wsj_pal.R
 #' @importFrom lifecycle deprecate_soft
 wsj_pal <- function(palette = "categorical") {
+  wsj_discrete_pal(palette)
+}
+
+# The scales call this rather than wsj_pal(), so that a deprecation warning is attributed to the user's call of the
+# scale, not to the package: lifecycle stays quiet about calls that come from inside a package.
+wsj_discrete_pal <- function(palette, user_env = rlang::caller_env(2), call = rlang::caller_env()) {
   palettes <- ggthemes::ggthemes_data$wsj$palettes
-  check_wsj_palette_name(palette, wsj_current_palettes(), names(palettes))
-  warn_deprecated_wsj_palette(palette)
+  check_wsj_palette_name(palette, wsj_current_palettes(), names(palettes), call = call)
+  warn_deprecated_wsj_palette(palette, user_env = user_env)
 
   colors <- palettes[[palette]]$value
   f <- manual_pal_checked(unname(colors))
@@ -286,7 +299,7 @@ wsj_current_palettes <- function() {
   )
 }
 
-warn_deprecated_wsj_palette <- function(palette) {
+warn_deprecated_wsj_palette <- function(palette, user_env) {
   if (!palette %in% names(wsj_deprecated_palettes)) {
     return(invisible())
   }
@@ -306,7 +319,7 @@ warn_deprecated_wsj_palette <- function(palette) {
         i = "They use different colors, so switching will change the plot."
       )
     },
-    user_env = rlang::caller_env(2)
+    user_env = user_env
   )
   invisible()
 }
@@ -324,7 +337,7 @@ warn_deprecated_wsj_palette <- function(palette) {
 #' @export
 #' @example inst/examples/ex-scale_wsj.R
 scale_colour_wsj <- function(palette = "categorical", ...) {
-  discrete_scale("colour", palette = wsj_pal(palette), ...)
+  discrete_scale("colour", palette = wsj_discrete_pal(palette, rlang::caller_env(), rlang::current_env()), ...)
 }
 
 #' @rdname scale_wsj
@@ -334,7 +347,7 @@ scale_color_wsj <- scale_colour_wsj
 #' @rdname scale_wsj
 #' @export
 scale_fill_wsj <- function(palette = "categorical", ...) {
-  discrete_scale("fill", palette = wsj_pal(palette), ...)
+  discrete_scale("fill", palette = wsj_discrete_pal(palette, rlang::caller_env(), rlang::current_env()), ...)
 }
 
 wsj_gradient_pal <- function(palette, type, call = rlang::caller_env()) {
@@ -502,10 +515,12 @@ scale_fill_gradient2_wsj <- function(
 #' @param hang If `TRUE` (the default), hangs the suffix past the right edge of
 #'   the other labels. The labels are then returned as plotmath expressions, so
 #'   use `hang = FALSE` for text that is not an axis label, or on an x axis.
-#' @param ... Passed to [scales::label_comma()], for example `accuracy`.
-#' @returns A function suitable for a scale's `labels` argument. It returns a
-#'   character vector, or an expression vector when `hang` is `TRUE` and there
-#'   is a `suffix`.
+#' @param ... Passed to [scales::label_comma()], for example `accuracy`. They
+#'   must be named, and an argument that `label_comma()` does not take is an
+#'   error.
+#' @returns A function suitable for a scale's `labels` argument. It returns an
+#'   expression vector when `hang` is `TRUE` and a character vector when it is
+#'   `FALSE`.
 #' @family wsj
 #' @examples
 #' library("ggplot2")
@@ -514,7 +529,8 @@ scale_fill_gradient2_wsj <- function(
 #'   theme_wsj()
 #' p + scale_y_continuous(labels = wsj_label(suffix = "%"))
 #' @export
-wsj_label <- function(prefix = "", suffix = "", drop_lowest = FALSE, hang = TRUE, ...) {
+wsj_label <- function(..., prefix = "", suffix = "", drop_lowest = FALSE, hang = TRUE) {
+  check_wsj_label_dots(...)
   force(prefix)
   force(suffix)
   force(drop_lowest)
@@ -535,14 +551,43 @@ wsj_label <- function(prefix = "", suffix = "", drop_lowest = FALSE, hang = TRUE
         labels[bottom] <- ""
       }
     }
-    if (!hang || !nzchar(suffix)) {
+    if (!hang) {
       return(labels)
     }
-    # phantom() takes the suffix's width without drawing it.
+    # Always an expression when hanging, suffix or not, so the type depends on `hang` alone. phantom() takes the
+    # suffix's width without drawing it.
     as.expression(lapply(seq_along(labels), function(i) {
-      if (is.na(labels[i]) || i == top) labels[i] else bquote(.(labels[i]) * phantom(.(suffix)))
+      if (is.na(labels[i]) || i == top || !nzchar(suffix)) labels[i] else bquote(.(labels[i]) * phantom(.(suffix)))
     }))
   }
+}
+
+# label_comma() hands unknown arguments on to format(), which ignores them, so a misspelled `sufix` would leave the
+# axis without its unit and no error. `wsj_label()` takes `prefix` and `suffix` itself.
+check_wsj_label_dots <- function(..., call = rlang::caller_env()) {
+  dots <- list(...)
+  if (!length(dots)) {
+    return(invisible())
+  }
+  accepted <- setdiff(
+    union(names(formals(scales::label_comma)), names(formals(scales::number))),
+    c("x", "prefix", "suffix", "...")
+  )
+  given <- names(dots) %||% rep("", length(dots))
+  if (any(!nzchar(given))) {
+    cli::cli_abort("Arguments in {.arg ...} must be named.", call = call)
+  }
+  unknown <- setdiff(given, accepted)
+  if (length(unknown)) {
+    cli::cli_abort(
+      c(
+        "Arguments in {.arg ...} must be arguments of {.fn scales::label_comma}.",
+        x = "Unknown: {.arg {unknown}}."
+      ),
+      call = call
+    )
+  }
+  invisible()
 }
 
 #' Wall Street Journal year labels
@@ -927,7 +972,7 @@ geom_wsj_threshold <- function(
   ggplot2::layer(
     data = data,
     mapping = mapping,
-    stat = ggplot2::StatIdentity,
+    stat = StatWsjThreshold,
     geom = GeomWsjThreshold,
     position = ggplot2::PositionIdentity,
     show.legend = show.legend,
@@ -935,6 +980,21 @@ geom_wsj_threshold <- function(
     params = list(threshold = threshold, fill = fill, alpha = alpha, na.rm = na.rm)
   )
 }
+
+# Puts the threshold on the y scale, as geom_hline() does its intercept: transformed with the data, so the fills are
+# right on a log or reversed scale, and in the `ymin` and `ymax` the scale trains on, so the panel takes it in.
+StatWsjThreshold <- ggplot2::ggproto(
+  "StatWsjThreshold",
+  ggplot2::Stat,
+  # No required aesthetics, so the stat keeps missing values for the geom to break its fills at.
+  compute_panel = function(data, scales, threshold = 0) {
+    threshold <- scales$y$transform(threshold)
+    data$threshold <- threshold
+    data$ymin <- pmin(data$y, threshold)
+    data$ymax <- pmax(data$y, threshold)
+    data
+  }
+)
 
 GeomWsjThreshold <- ggplot2::ggproto(
   "GeomWsjThreshold",
@@ -945,7 +1005,8 @@ GeomWsjThreshold <- ggplot2::ggproto(
   handle_na = function(self, data, params) {
     data
   },
-  draw_group = function(data, panel_params, coord, threshold = 0, fill = c("#65a479", "#d5695d"), alpha = 1) {
+  draw_group = function(data, panel_params, coord, fill = c("#65a479", "#d5695d"), alpha = 1) {
+    threshold <- data$threshold[[1L]]
     data <- data[order(data$x), , drop = FALSE]
     data <- data[is.finite(data$x), , drop = FALSE]
     # Each run of observations between missing values is filled on its own, not joined across the gap.
@@ -1085,48 +1146,72 @@ GeomWsjDirectionBar <- ggplot2::ggproto(
     family = ""
   ) {
     y0 <- coord$transform(data.frame(x = NA_real_, y = data$y[1]), panel_params)$y
-    y0 <- min(max(y0, 0), 1)
-    pt <- function(v) grid::unit(v, "pt")
-    npc <- function(v) grid::unit(v, "npc")
-    # The bar's left edge, in points from the panel edge.
-    x0 <- if (side == "left") npc(0) - pt(offset + width) else npc(1) + pt(offset)
-    x1 <- x0 + pt(width)
-    xc <- x0 + pt(width / 2)
-    tip <- width / 2
-    fontsize <- size * ggplot2::.pt
-    text_gp <- function(col) grid::gpar(col = col, fontsize = fontsize, fontface = "bold", fontfamily = family)
-    # Half the gap at the threshold: the title's length, or a hairline.
-    half_gap <- if (is.null(title)) {
-      pt(1)
-    } else {
-      0.5 * grid::grobWidth(grid::textGrob(title, gp = text_gp("black"))) + pt(3)
-    }
-    arrow <- function(from, to, up, colour, label) {
-      tip_base <- if (up) to - pt(tip) else to + pt(tip)
-      body <- grid::polygonGrob(
-        x = grid::unit.c(x0, x1, x1, xc, x0),
-        y = grid::unit.c(from, from, tip_base, to, tip_base),
-        gp = grid::gpar(fill = colour, col = NA)
-      )
-      text <- grid::textGrob(
-        label,
-        x = xc,
-        y = 0.5 * (from + tip_base),
-        rot = 90,
-        gp = text_gp("#ffffff")
-      )
-      grid::gList(body, text)
-    }
-    grobs <- grid::gList(
-      arrow(npc(y0) + half_gap, npc(1), TRUE, fill[[1]], labels[[1]]),
-      arrow(npc(y0) - half_gap, npc(0), FALSE, fill[[2]], labels[[2]])
+    grid::gTree(
+      y0 = min(max(y0, 0), 1),
+      labels = labels,
+      title = title,
+      side = side,
+      fill = fill,
+      width = width,
+      offset = offset,
+      fontsize = size * ggplot2::.pt,
+      family = family,
+      cl = "wsj_direction_bar"
     )
-    if (!is.null(title)) {
-      grobs <- grid::gList(grobs, grid::textGrob(title, x = xc, y = npc(y0), rot = 90, gp = text_gp("#000000")))
-    }
-    grid::gTree(children = grobs)
   }
 )
+
+# The arrows are laid out at draw time, when the panel's height in points is known: an arrow whose body would run
+# past its tip is cut back to the tip alone, one with no room at all is left out, and so is a label longer than its
+# arrow.
+#' @exportS3Method grid::makeContent
+makeContent.wsj_direction_bar <- function(x) {
+  pt <- function(v) grid::unit(v, "pt")
+  npc <- function(v) grid::unit(v, "npc")
+  height <- grid::convertHeight(npc(1), "pt", valueOnly = TRUE)
+  width_pt <- function(grob) grid::convertWidth(grid::grobWidth(grob), "pt", valueOnly = TRUE)
+  text_gp <- function(col) grid::gpar(col = col, fontsize = x$fontsize, fontface = "bold", fontfamily = x$family)
+  # The bar's left edge, in points from the panel edge.
+  x0 <- if (x$side == "left") npc(0) - pt(x$offset + x$width) else npc(1) + pt(x$offset)
+  x1 <- x0 + pt(x$width)
+  xc <- x0 + pt(x$width / 2)
+  tip <- x$width / 2
+  y0 <- x$y0 * height
+  # Half the gap at the threshold: the title's length, or a hairline.
+  half_gap <- if (is.null(x$title)) 1 else 0.5 * width_pt(grid::textGrob(x$title, gp = text_gp("black"))) + 3
+
+  arrow <- function(from, to, up, colour, label) {
+    direction <- if (up) 1 else -1
+    if ((to - from) * direction <= 0) {
+      return(NULL)
+    }
+    tip_base <- to - direction * tip
+    # Too little room for a body: draw the tip from where the arrow starts.
+    if ((tip_base - from) * direction < 0) {
+      tip_base <- from
+    }
+    body <- grid::polygonGrob(
+      x = grid::unit.c(x0, x1, x1, xc, x0),
+      y = pt(c(from, from, tip_base, to, tip_base)),
+      gp = grid::gpar(fill = colour, col = NA)
+    )
+    # Measured unrotated: a rotated grob's width is the text's height.
+    if (width_pt(grid::textGrob(label, gp = text_gp("#ffffff"))) + 4 > abs(tip_base - from)) {
+      return(grid::gList(body))
+    }
+    text <- grid::textGrob(label, x = xc, y = pt(0.5 * (from + tip_base)), rot = 90, gp = text_gp("#ffffff"))
+    grid::gList(body, text)
+  }
+
+  grobs <- c(
+    arrow(y0 + half_gap, height, TRUE, x$fill[[1]], x$labels[[1]]),
+    arrow(y0 - half_gap, 0, FALSE, x$fill[[2]], x$labels[[2]])
+  )
+  if (!is.null(x$title)) {
+    grobs <- c(grobs, list(grid::textGrob(x$title, x = xc, y = pt(y0), rot = 90, gp = text_gp("#000000"))))
+  }
+  grid::setChildren(x, do.call(grid::gList, grobs))
+}
 
 # Adds the values of faceting variables, passed as a named list, to an annotation layer's data, so that ggplot2
 # draws the layer in the matching panel only.
