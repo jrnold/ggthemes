@@ -522,45 +522,12 @@ Two reds are used, rarely together:
 
 `economist_2024_pal()` returns the single-series red when asked for one color; two or more start with the emphasis red.
 
-### Evidence for separate web and print values
+### Print and web values
 
-Print and web values are distinct in the exported assets, not only in the backgrounds: web graphics contain the six web values and none of the print ones, and the reverse (for example `20260829_FNC090`).
-The two sets are not conversions of each other (see below).
-The web set is secure; the print set is less so beyond red and salmon, and its blues vary from chart to chart.
-
-### Print values are CMYK builds
-
-The print colors are not the web colors converted for press: any common press profile (SWOP, FOGRA39, GRACoL and others) misses the print color by a median CIEDE2000 of 5.2 to 5.8, no closer than the web colors themselves, and warm web grays cannot become neutral print grays.
-Each print color is instead a simple CMYK build rendered through U.S. Web Coated (SWOP) v2, the profile used for the classic charts since 2015.
-The red is 0/100/100/0, the brand guide's print spec for Economist Red (screen value `#E3120B`), which SWOP renders as `#ED1C24`.
-The single-series red and salmon are tints of the same build, and the grays are black ink alone.
-The web colors were chosen in RGB, from design system tokens; the two sets share roles and order, not values.
-
-```{r g24-print-cmyk, echo = FALSE}
-knitr::kable(
-  econ$print$palette[c("name", "cmyk", "hex", "observed", "delta_e", "confidence")],
-  col.names = c("Color", "CMYK", "SWOP rendering", "Observed", "CIEDE2000", "Confidence"),
-  align = "llllrl"
-)
-```
-
-The specs are inferences: the simplest build that reproduces each observed color.
-Blue is less certain, and no build reproduces the text color.
-The table is `ggthemes_data$economist_2024$print$palette`; `data-raw/economist_2024_swop.R` reproduces it.
-
-Only part of the palette is an exact token in the [Economist foundation palette](https://design-system.economist.com/foundations/colour/palettes):
-
-| Role | Web chart value | Print chart value | Relation to foundation colors |
-|---|---:|---:|---|
-| Red | `#E3120B` | `#ED1C24` | web is exactly Economist Red; print is its CMYK build |
-| Salmon | `#FBA493` | `#F8AB90` | neither is an exact foundation token |
-| Blue | `#3A4DAC` | `#28479D` | related to Chicago blue, but not an exact token |
-| Light blue | `#7892C5` | `#659BD2` | related to Chicago blue, but not an exact token |
-| Dark gray | `#6A6654` | `#636466` | the web gray is warm; the print gray is black ink alone |
-| Light gray | `#BEBCAB` | `#C6C8CA` | the web gray is warm; the print gray is black ink alone |
-| Ground | `#FFFFFF` | `#ECEBE0` | web is London 100; print is close to, but not, Los Angeles 90 `#EBE9E0` |
-
-The web grays include exact London tokens (`#F2F2F2`, `#D9D9D9`, `#B3B3B3`, `#0D0D0D`); the blues are only related to Chicago blue.
+Print and web use different values of each color, and the two sets are not conversions of each other.
+The print values are the colors observed in published charts.
+Most could not be matched exactly to print swatches: the simplest CMYK build matches the red and dark gray exactly but only comes close to the others, and none reproduces the text color.
+The package draws the observed values; [Appendix: how the colors were found](#appendix-how-the-colors-were-found) gives the method.
 
 ### Party colors
 
@@ -748,7 +715,7 @@ Before export, check:
 ## Method and limitations
 
 The corpus holds print PNGs from 2012--2026 and web graphics from 2024--2026.
-Exact colors were counted from indexed PNG color tables; `ai2html` files supplied type families, weights, sizes and artboard widths.
+Exact colors were counted from indexed PNG color tables (see [Appendix: how the colors were found](#appendix-how-the-colors-were-found)); `ai2html` files supplied type families, weights, sizes and artboard widths.
 The print sample is uneven and thin after April 2024, when print images leave the web archive and charts were collected one by one.
 The web sample is larger.
 It establishes the ground, qualitative order and recurring grammar, but not every rare layout.
@@ -756,7 +723,7 @@ The later examples (ribbons, rank charts, highlighted scatters, log scales, dott
 Where a 2017 chart type is absent from the corpus, its 2024 version applies the general rules.
 
 **The words.** The counts in [Titles, subtitles and units](#titles-subtitles-and-units) come from every print chart in the corpus from the issue of 30 March 2024, the first with the warm-gray ground, to August 2026: `r g24_words$of[g24_words$measure == "title.words_le4"]` charts, after dropping web daily charts, the white-ground charts of the special reports, Technology Quarterly and World in Brief, Graphic Detail (`WO` codes), and second copies of the same chart filed under another code.
-248 are from April to August 2024, after which the archive holds few print images; 55 are from 2025 and 33 from 2026, most of those from one issue (29 August 2026).
+Most are from April to August 2024, after which the archive holds few print images.
 Each chart's title, subtitle, notes, source, number box, panel headings, value and date labels were transcribed from its image by Claude; eight charts were checked against their images by hand, with no errors in these fields.
 Each title's kind was then classified by Claude from the title and its subtitle, one by one; the line between an idiom, a pun and a verdict is soft, so treat those shares as approximate.
 `economist-2024/words.csv` holds the counts only.
@@ -770,3 +737,48 @@ No rule was checked on charts held out from the ones it was drawn from.
 No chart was redrawn from the guide alone by someone who had not seen the original.
 
 **How to make it firmer.** Read a stratified sample of 2024 charts chart by chart, by the classic guide's method (see [How this guide was made](economist-classic-styleguide.html#how-this-guide-was-made)), and replace each observed rule with a share and its count.
+
+## Appendix: how the colors were found
+
+Exact colors were counted from the indexed color tables of the corpus's PNGs, print and web separately.
+
+### Web and print values are separate
+
+Print and web values are distinct in the exported assets, not only in the backgrounds: web graphics contain the six web values and none of the print ones, and the reverse (for example `20260829_FNC090`).
+The two sets are not conversions of each other (see the next section).
+The web set is secure; the print set is less so beyond red and salmon, and its blues vary from chart to chart.
+
+### Print values are close to CMYK builds
+
+The print colors are not the web colors converted for press: any common press profile (SWOP, FOGRA39, GRACoL and others) misses the print color by a median CIEDE2000 of 5.2 to 5.8, no closer than the web colors themselves, and warm web grays cannot become neutral print grays.
+Each print color is instead close to a simple CMYK build rendered through U.S. Web Coated (SWOP) v2, the profile used for the classic charts since 2015.
+The red is 0/100/100/0, the brand guide's print spec for Economist Red (screen value `#E3120B`), which SWOP renders as `#ED1C24`.
+The single-series red and salmon are tints of the same build, and the grays are black ink alone.
+The web colors were chosen in RGB, from design system tokens; the two sets share roles and order, not values.
+
+```{r g24-print-cmyk, echo = FALSE}
+knitr::kable(
+  econ$print$palette[c("name", "cmyk", "hex", "observed", "delta_e", "confidence")],
+  col.names = c("Color", "CMYK", "SWOP rendering", "Observed", "CIEDE2000", "Confidence"),
+  align = "llllrl"
+)
+```
+
+The specs are inferences: the simplest build that comes closest to each observed color.
+Only the red and dark gray are reproduced exactly: the CIEDE2000 column gives the remaining difference, blue is less certain, and no build comes near the text color.
+So the palettes and scales draw the observed colors, not the SWOP renderings.
+The table is `ggthemes_data$economist_2024$print$palette`; `data-raw/economist_2024_swop.R` reproduces it.
+
+Only part of the palette is an exact token in the [Economist foundation palette](https://design-system.economist.com/foundations/colour/palettes):
+
+| Role | Web chart value | Print chart value | Relation to foundation colors |
+|---|---:|---:|---|
+| Red | `#E3120B` | `#ED1C24` | web is exactly Economist Red; print is its CMYK build |
+| Salmon | `#FBA493` | `#F8AB90` | neither is an exact foundation token |
+| Blue | `#3A4DAC` | `#28479D` | related to Chicago blue, but not an exact token |
+| Light blue | `#7892C5` | `#659BD2` | related to Chicago blue, but not an exact token |
+| Dark gray | `#6A6654` | `#636466` | the web gray is warm; the print gray is black ink alone |
+| Light gray | `#BEBCAB` | `#C6C8CA` | the web gray is warm; the print gray is black ink alone |
+| Ground | `#FFFFFF` | `#ECEBE0` | web is London 100; print is close to, but not, Los Angeles 90 `#EBE9E0` |
+
+The web grays include exact London tokens (`#F2F2F2`, `#D9D9D9`, `#B3B3B3`, `#0D0D0D`); the blues are only related to Chicago blue.

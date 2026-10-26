@@ -620,7 +620,7 @@ when there is room, "2015 2016" (`r cite_codes(c("20161126_MAC315", "20161126_FN
 **Years on the ticks are thinned to a step**, every one, two, five, ten or twenty years.
 The first and last years are almost always labeled (`r sum(cgm_on$first_last_labeled == "yes")` of the `r nrow(cgm_on)`
 axes). A one-column chart carries up to about nine labels and a two-column chart ten or eleven, and the step is the
-smallest that stays within that, a rule that gives the step of about four in five of the sampled axes. When the first or last year is off the step, the step year beside it is dropped if it
+smallest that stays within that, a rule that gives the step of most of the sampled axes. When the first or last year is off the step, the step year beside it is dropped if it
 is only one or two years away (`r cgm_end("1-2", "dropped")` of `r cgm_end("1-2", "dropped") + cgm_end("1-2", "kept")`
 such ends) and kept if it is three or more (`r cgm_end("3+", "kept")` of
 `r cgm_end("3+", "kept") + cgm_end("3+", "dropped")`): "1973 80 85 90 95 2002" drops 1975 and 2000
@@ -688,7 +688,7 @@ mark on index scales, which the classic charts marked.
 #### Bars with a torn base
 
 When a bar chart's scale starts above zero, cut each bar's base into a saw edge of three notches in the ground color,
-and draw no rule at the base. This is rare: 3 of 244 side-by-side bar and column panels, all horizontal bars from 2013
+and draw no rule at the base. This is rare: a few side-by-side bar panels in the sample, all horizontal bars from 2013
 and 2014, as in `r cite_codes(c("20140222_MAC376", "20141101_INC124"))`. Outside the sample, columns were torn the
 same way, at the foot (`r cite_codes(c("20130323_FNC299", "20151107_CNC399"))`). The 2017 guide has no such chart, so
 the figures redraw two of these.
@@ -811,7 +811,7 @@ column chart in either way, and draws such data as a [thermometer](#thermometer)
 ### Log scales
 
 Log scales were rare. Scatters used one now and then (scatters: `r share("scatter.log_scale")`;
-`r cite("scatter.log_scale")`). Line charts almost never did: 3 of 325 line panels
+`r cite("scatter.log_scale")`). Line charts almost never did
 (`r cite_codes(c("20140426_EBC776", "20140104_STC094", "20140111_USC135"))`), the last a facsimile of a 1964 chart. The
 figures below redraw the other two and the two scatters.
 

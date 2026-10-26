@@ -62,11 +62,15 @@ observed chart palettes in \code{ggthemes_data$economist_2024}.
 
 \code{ggthemes_data$economist_2024$print$palette} gives the 2024 print colors as
 print specs: the CMYK build of each, inferred as the simplest one whose
-rendering through U.S. Web Coated (SWOP) v2 reproduces the color in
+rendering through U.S. Web Coated (SWOP) v2 comes closest to the color in
 published charts, with that rendering (\code{hex}), the observed color
 (\code{observed}), the CIEDE2000 difference between them (\code{delta_e}) and a
-confidence. The print colors are renderings of their own CMYK builds, not
-ICC conversions of the web colors.
+confidence. The print colors are close to renderings of their own CMYK
+builds, not ICC conversions of the web colors. Only the red and dark gray
+builds match their observed colors exactly; the others are off by a
+\code{delta_e} of up to 0.6 and the text color by 1.8, so the palettes and
+scales use the observed colors
+(\code{ggthemes_data$economist_2024$print$qualitative}), not \code{hex}.
 }
 \examples{
 library(scales)

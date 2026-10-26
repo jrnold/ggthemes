@@ -77,33 +77,35 @@
   sizes, as the examples and articles now do.
 
 - `theme_economist()` now matches the classic Economist charts as measured in a
-  corpus of the print charts of 2012 to 2018. Title, subtitle and source line
-  are flush left with the chart and not with the panel, the source line is left
-  aligned, the legend sits flush left under the subtitle with legend text the
-  size of the axis text, and panel headings are flush left. Sizes are in base
-  sizes throughout: the margins, which were fixed at 12pt and 10pt, and the
-  legend keys, which were sized in lines, now scale with `base_size`, and the
-  white gridlines are thinner: 0.8pt at the default `base_size` of 10, where
-  they were 1.9pt at every size. Ticks and the margins around axis titles now
-  have the sizes of the 2017 style guide, in base sizes: ticks 0.7 base sizes
-  long (still pointing into the panel) and 0.06 wide, where they were 0.5 long
-  with ggplot2's default weight, and axis titles sit 0.07 base sizes from an x
-  axis and 0.43 from a y axis. Charts drawn with the default `base_size` look
-  different: larger side margins, a larger subtitle and source line, thinner
-  gridlines and ticks.
+  corpus of the print charts of 2012 to 2018. Every size is now in base sizes,
+  so a chart keeps its proportions at any `base_size`. Charts drawn with the
+  default `base_size` look different:
+
+  - Title, subtitle and source line are flush left with the chart, not with
+    the panel. The title is 1.45 base sizes (was 1.5), the subtitle 1.15 (was
+    1) and the source line 0.95 (was 0.8), and the source line is left aligned.
+  - The margins are 1.2 base sizes at the top and bottom and 1.9 at the sides,
+    where they were fixed at 12pt and 10pt.
+  - The labels of a right-hand value axis are ranged right, flush with the
+    chart's edge, and set 0.6 base sizes off the panel. They were ranged left,
+    against the panel.
+  - Ticks have the sizes of the 2017 style guide: 0.7 base sizes long, still
+    pointing into the panel, and 0.06 wide, where they were 0.5 long with
+    ggplot2's default weight. Axis titles sit 0.07 base sizes from an x axis
+    and 0.43 from a y axis.
+  - The black axis rule is 0.046 base sizes wide, 0.46pt at the default
+    `base_size` of 10, where it was about 1.1pt at every size. The white
+    gridlines are 0.08 base sizes, 0.8pt at the default, where they were 1.9pt.
+  - The key sits flush left under the subtitle and above the panel, with no
+    margin around it and its entries a base size apart. Its text is the size of
+    the axis text (was 1.25 base sizes) and its keys are sized in base sizes,
+    not in lines, so they shrink with `base_size`.
+  - Panel headings are flush left and 1.15 base sizes (was 1.25).
 
 - `economist_pal()` gives five and six series the colours the paper's print
   charts of 2012 to 2015 used most: gray is now the fifth colour and light
   green the sixth, where they were light green and dark green. Charts with five
   or six filled series look different.
-
-- `theme_economist()` ranges the labels of a right-hand value axis right, flush
-  with the chart's edge, and sets them 0.6 base sizes off the panel, as the
-  paper's charts do. They were ranged left, against the panel.
-
-- `theme_economist()` sets the key close under the subtitle and above the
-  panel, with no margin around it and its entries a base size apart, as the
-  paper's charts do. It kept ggplot2's wider legend margins and spacing.
 
 - The classic Economist colours used by `theme_economist()` and
   `economist_pal()` change to the paper's print specs, inferred as CMYK and

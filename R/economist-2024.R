@@ -25,6 +25,13 @@ economist_2024_tab <- list(print = c(3.4, 0.45), web = c(2.67, 0.27))
 #' both in one chart. Reversing the palette does not change this: one color
 #' is that red in either direction.
 #'
+#' The colors are those observed in published charts. Most of the print colors
+#' could not be matched exactly to print swatches: the simplest CMYK build for
+#' each, rendered through U.S. Web Coated (SWOP) v2, matches the red and dark
+#' gray exactly but only comes close to the others, and no build reproduces
+#' the text color. The builds are in
+#' `ggthemes_data$economist_2024$print$palette` (see [ggthemes_data]).
+#'
 #' The palettes are provisional and will be updated when a better corpus of
 #' examples is available.
 #'
