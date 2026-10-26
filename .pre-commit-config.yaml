@@ -113,3 +113,21 @@ repos:
     hooks:
       - id: zizmor
         args: [--persona=pedantic]
+
+  - repo: local
+    hooks:
+      - id: panache-format
+        name: panache format (Quarto, R Markdown, Markdown)
+        entry: panache format
+        language: python
+        additional_dependencies: [panache-cli==3.17.0]
+        files: \.(qmd|Rmd|md)$
+        # ggthemes: R Markdown keeps knitr's chunk headers (```{r label, fig.width = 7}); panache
+        # would rewrite every one as Quarto #| options. panache-lint still checks .Rmd.
+        exclude: \.Rmd$
+      - id: panache-lint
+        name: panache lint
+        entry: panache lint
+        language: python
+        additional_dependencies: [panache-cli==3.17.0]
+        files: \.(qmd|Rmd|md)$
