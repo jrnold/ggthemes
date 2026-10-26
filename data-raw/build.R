@@ -172,6 +172,7 @@ load_wsj <- function() {
   out$paper <- set_names(map_chr(out$paper, "value"), map_chr(out$paper, "name"))
   out$bands <- set_names(map_chr(out$bands, "value"), map_chr(out$bands, "name"))
   out$ink <- set_names(map_chr(out$ink, "value"), map_chr(out$ink, "name"))
+  out$rules <- set_names(map_chr(out$rules, "value"), map_chr(out$rules, "name"))
   out$callout <- set_names(map_chr(out$callout, "value"), map_chr(out$callout, "name"))
   # Retained for the deprecated `theme_wsj(color=)` argument.
   out$bg <- set_names(map_chr(out$bg, "value"), map_chr(out$bg, "name"))

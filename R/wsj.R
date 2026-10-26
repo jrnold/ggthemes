@@ -54,8 +54,8 @@
 #'   default, as from July 2012, or `"bold"`, as before.
 #' @param rules A string, the horizontal reference rules: `"dotted"`, the
 #'   default; `"solid"`, the thin solid rules of some US-desk charts, such as
-#'   page one's "Vitals", drawn in the gray of the dotted rules; or `"none"`,
-#'   for charts that mark the scale with [wsj_bands()] instead.
+#'   page one's "Vitals", in the darker gray (`#6d6d6d`) measured on them; or
+#'   `"none"`, for charts that mark the scale with [wsj_bands()] instead.
 #' @param color `r lifecycle::badge("deprecated")` Use `paper` instead.
 #' @family wsj
 #' @returns A ggplot2 theme object (class `theme`).
@@ -89,12 +89,11 @@ theme_wsj <- function(
     ink <- if (identical(paper_colour, ggthemes::ggthemes_data$wsj$paper[["gray"]])) "gray" else "black"
   }
   ink <- inks[[rlang::arg_match(ink, names(inks))]]
-  rule <- switch(
-    rules,
-    dotted = element_line(colour = "#8a8a8a", linewidth = 0.25, linetype = "dotted"),
-    solid = element_line(colour = "#8a8a8a", linewidth = 0.25, linetype = "solid"),
-    none = element_blank()
-  )
+  rule <- if (rules == "none") {
+    element_blank()
+  } else {
+    element_line(colour = ggthemes::ggthemes_data$wsj$rules[[rules]], linewidth = 0.25, linetype = rules)
+  }
 
   theme_foundation(base_size = base_size, base_family = base_family) +
     theme(
@@ -605,8 +604,7 @@ wsj_year_label <- function() {
 #'
 #' @param paper A string, the field the bands sit on, which sets the band
 #'   color: `"ivory"` (`#efe4c9`), the default, `"gray"` (`#dddddd`) or
-#'   `"pale_blue"` (`#d7e4ee`), all measured on published charts. No bands
-#'   were measured on the pale green or white fields; set `fill` for those.
+#'   `"pale_blue"` (`#d7e4ee`), all measured on published charts.
 #' @param fill A color for the bands. If `NULL`, the default, `paper` sets it.
 #' @returns A ggplot2 layer.
 #' @family wsj

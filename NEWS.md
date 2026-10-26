@@ -215,9 +215,10 @@
   deprecation warning.
 
 - `theme_wsj()` gains `ink` (black or gray type on any field),
-  `subtitle_face` (the bold subtitles of 2011 and 2012) and `rules` (dotted,
-  solid, or none for use with `wsj_bands()`), so each period of the charts
-  is a set of arguments.
+  `subtitle_face` (the bold subtitles of 2011 and 2012) and `rules` (dotted;
+  solid, in the `#6d6d6d` measured on the page-one "Vitals" charts; or none,
+  for use with `wsj_bands()`), so each period of the charts is a set of
+  arguments.
 
 - `theme_wsj(paper = "gray")` sets the subtitle, axis labels, legend, facet
   headings and caption in dark gray (`#444444`), as WSJ charts did from

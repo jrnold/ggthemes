@@ -180,6 +180,9 @@ test_that("theme_wsj() sets the subtitle weight", {
 test_that("theme_wsj() draws dotted, solid or no rules", {
   expect_equal(theme_wsj()$panel.grid.major.y$linetype, "dotted")
   expect_equal(theme_wsj(rules = "solid")$panel.grid.major.y$linetype, "solid")
+  # Measured on the page-one "Vitals" charts, darker than the dotted rules.
+  expect_equal(theme_wsj(rules = "solid")$panel.grid.major.y$colour, "#6d6d6d")
+  expect_equal(theme_wsj()$panel.grid.major.y$colour, "#8a8a8a")
   expect_s3_class(theme_wsj(rules = "none")$panel.grid.major.y, "element_blank")
   # There are never vertical rules.
   expect_s3_class(theme_wsj(rules = "solid")$panel.grid.major.x, "element_blank")
@@ -322,9 +325,9 @@ test_that("wsj_bands takes its fill from the paper", {
   expect_equal(wsj_bands()$geom_params$fill, "#efe4c9")
   expect_equal(wsj_bands("gray")$geom_params$fill, "#dddddd")
   expect_equal(wsj_bands("pale_blue")$geom_params$fill, "#d7e4ee")
-  # No band was measured on white; a color must be given.
+  # No band was measured on the pale green or white fields, so none is offered.
   expect_error(wsj_bands("white"), regexp = "must be one of")
-  expect_equal(wsj_bands("white", fill = "#eeeeee")$geom_params$fill, "#eeeeee")
+  expect_error(wsj_bands("pale_green"), regexp = "must be one of")
   expect_equal(wsj_bands(fill = "red")$geom_params$fill, "red")
   expect_error(wsj_bands("chartreuse"), regexp = "must be one of")
 })

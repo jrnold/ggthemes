@@ -9,8 +9,7 @@ wsj_bands(paper = c("ivory", "gray", "pale_blue"), fill = NULL)
 \arguments{
 \item{paper}{A string, the field the bands sit on, which sets the band
 color: \code{"ivory"} (\verb{#efe4c9}), the default, \code{"gray"} (\verb{#dddddd}) or
-\code{"pale_blue"} (\verb{#d7e4ee}), all measured on published charts. No bands
-were measured on the pale green or white fields; set \code{fill} for those.}
+\code{"pale_blue"} (\verb{#d7e4ee}), all measured on published charts.}
 
 \item{fill}{A color for the bands. If \code{NULL}, the default, \code{paper} sets it.}
 }

@@ -48,8 +48,8 @@ default, as from July 2012, or \code{"bold"}, as before.}
 
 \item{rules}{A string, the horizontal reference rules: \code{"dotted"}, the
 default; \code{"solid"}, the thin solid rules of some US-desk charts, such as
-page one's "Vitals", drawn in the gray of the dotted rules; or \code{"none"},
-for charts that mark the scale with \code{\link[=wsj_bands]{wsj_bands()}} instead.}
+page one's "Vitals", in the darker gray (\verb{#6d6d6d}) measured on them; or
+\code{"none"}, for charts that mark the scale with \code{\link[=wsj_bands]{wsj_bands()}} instead.}
 
 \item{color}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{paper} instead.}
 }

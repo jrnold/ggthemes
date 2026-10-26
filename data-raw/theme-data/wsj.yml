@@ -23,6 +23,13 @@ bands:
 ink:
   - {name: black, value: '#000000'}
   - {name: gray, value: '#444444'}
+# Horizontal reference rules (`theme_wsj(rules = )`). The solid rule is the
+# median of 21 rules that fall on a single pixel row in 15 page-one "Vitals"
+# charts of 2011-2013 (rule_ink.py in the corpus's guide/). The dotted rule's
+# gray is the one theme_wsj() has used; it is not measured.
+rules:
+  - {name: dotted, value: '#8a8a8a'}
+  - {name: solid, value: '#6d6d6d'}
 # Fills of number callouts (`wsj_callout()`), measured on published charts.
 callout:
   - {name: black, value: '#000000'}
