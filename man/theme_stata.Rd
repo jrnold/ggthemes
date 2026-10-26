@@ -52,7 +52,7 @@ of legend columns (set by \code{\link[ggplot2:guide_legend]{ggplot2::guide_legen
 the theme) and Stata's small default marker size (a geom default).
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

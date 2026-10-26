@@ -79,7 +79,7 @@ it assumes observations are evenly spaced in \code{x}; the banking of each
 trend curve uses \code{x = seq_along(y)}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 # Sunspot activity, the classic example from Cleveland and from Heer and
 # Agrawala's Section 3.2.1. Spectral analysis identifies scales at frequency

@@ -83,7 +83,7 @@ A ggplot2 scale object.
 Discrete color scales using the chart palettes from Apple Numbers.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

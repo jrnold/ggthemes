@@ -31,7 +31,7 @@ colors are the combination of colors that maximizes the total Euclidean
 distance between colors in L\emph{a}b space, as in \code{\link[=solarized_pal]{solarized_pal()}}.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(selenized_pal()(3))
 show_col(selenized_pal("red")(4))

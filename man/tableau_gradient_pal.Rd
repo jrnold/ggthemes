@@ -38,8 +38,6 @@ palettes in Tableau. See \code{\link[=tableau_color_pal]{tableau_color_pal()}} f
 palettes.
 }
 \examples{
-library("scales")
-
 x <- seq(0, 1, length = 25)
 r <- sqrt(outer(x^2, x^2, "+"))
 palettes <-

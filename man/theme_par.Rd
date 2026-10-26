@@ -55,7 +55,7 @@ Like \code{\link[graphics:par]{graphics::par()}} itself, \code{theme_par()} open
 none is open, because the parameter values belong to a device.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

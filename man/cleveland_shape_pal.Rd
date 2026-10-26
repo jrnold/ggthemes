@@ -50,7 +50,7 @@ slowest pair and the one producing the most errors. The three shapes that
 survive are the better-separating subset.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +

@@ -62,8 +62,8 @@ enabled via \code{panderOptions}, which is now also available outside of pander 
 \code{eval.msgs} or \code{Pandoc.brew}.
 }
 \examples{
-require("ggplot2")
-if (require("pander")) {
+require(ggplot2)
+if (require(pander)) {
   p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
     geom_point()
   p + theme_pander()

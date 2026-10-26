@@ -1,5 +1,3 @@
-library("scales")
-
 x <- seq(0, 1, length = 25)
 r <- sqrt(outer(x^2, x^2, "+"))
 palettes <-

@@ -1,7 +1,7 @@
 suppressPackageStartupMessages({
-  library("tibble")
-  library("xml2")
-  library("stringr")
+  library(tibble)
+  library(xml2)
+  library(stringr)
 })
 
 # https://www.openoffice.org/xml/xml_specification.pdf
@@ -30,8 +30,7 @@ read_soc <- function(path) {
   map_dfr(xml_find_all(read_xml(path), "draw:color"), soc_process_color)
 }
 
-palettes <-
-  c("chart-palettes")
+palettes <- "chart-palettes"
 # "freecolour-hlc",
 # "html",
 # "libreoffice",

@@ -49,7 +49,7 @@ Tableau provides three types of color palettes:
 }
 }
 \examples{
-library("scales")
+library(scales)
 
 palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
 for (palname in names(palettes)) {

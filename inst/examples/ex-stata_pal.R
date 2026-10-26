@@ -1,4 +1,4 @@
-library("scales")
+library(scales)
 
 # Stata 18 and later (the current factory default)
 show_col(stata_pal("stcolor")(15))

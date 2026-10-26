@@ -22,7 +22,7 @@ the six series colors that Numbers assigns to a chart's data series,
 in order.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(numbers_pal()(6))
 show_col(numbers_pal("Spectrum")(6))

@@ -140,7 +140,7 @@ separate "secondary" range for \code{geom_rangeframe()} to draw against.
 }
 
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +

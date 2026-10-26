@@ -1,4 +1,4 @@
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars, aes(x = mpg, y = hp, shape = factor(cyl))) +
   geom_point()

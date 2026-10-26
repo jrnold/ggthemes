@@ -35,8 +35,8 @@ graphics advocated by Edward Tufte and Stephen Few:
   to choose a plot's aspect ratio.
 
 ```{r hero, echo = FALSE, message = FALSE, fig.width = 10, fig.height = 6.2, out.width = "100%", fig.alt = "The same scatter plot of fuel economy against car weight drawn four ways: with theme_economist(), theme_fivethirtyeight(), theme_wsj() and theme_solarized(), each with its matching color scale."}
-library("ggplot2")
-library("ggthemes")
+library(ggplot2)
+library(ggthemes)
 
 hero_data <- within(mtcars, gear <- factor(gear))
 hero_base <- ggplot(hero_data, aes(wt, mpg, colour = gear)) +
@@ -79,8 +79,8 @@ Each figure links to the theme's reference page.
 <summary>Data and base plots used in the examples</summary>
 
 ```{r setup-examples}
-library("ggplot2")
-library("ggthemes")
+library(ggplot2)
+library(ggthemes)
 
 mtcars2 <- within(mtcars, {
   vs <- factor(vs, labels = c("V-shaped", "Straight"))

@@ -74,8 +74,8 @@ A ggplot2 scale object.
 See \code{\link[=stata_linetype_pal]{stata_linetype_pal()}} for details.
 }
 \examples{
-require("ggplot2")
-if (require("tidyr") && require("dplyr")) {
+require(ggplot2)
+if (require(tidyr) && require(dplyr)) {
   rescale01 <- function(x) {
     (x - min(x)) / diff(range(x))
   }

@@ -26,7 +26,7 @@ test_that("solarized_pal works", {
   n <- 5L
   values <- pal(n)
   expect_type(values, "character")
-  expect_equal(length(values), n)
+  expect_length(values, n)
 })
 
 test_that("solarized_pal stores max_n as an integer", {

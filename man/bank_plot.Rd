@@ -44,7 +44,7 @@ every panel, so faceted plots are banked using the combined data from
 all panels rather than a ratio tailored to each one individually.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
 p <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +

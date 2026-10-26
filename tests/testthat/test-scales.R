@@ -35,11 +35,11 @@ test_that("extended_range_breaks returns a breaks function", {
 })
 
 test_that("zero_range detects degenerate ranges", {
-  expect_identical(zero_range(1), TRUE)
-  expect_identical(zero_range(c(1, 1)), TRUE)
-  expect_identical(zero_range(c(1, 2)), FALSE)
+  expect_true(zero_range(1))
+  expect_true(zero_range(c(1, 1)))
+  expect_false(zero_range(c(1, 2)))
   expect_identical(zero_range(c(NA, 1)), NA)
-  expect_identical(zero_range(c(-Inf, Inf)), FALSE)
+  expect_false(zero_range(c(-Inf, Inf)))
 })
 
 test_that("zero_range errors for vectors of the wrong length", {

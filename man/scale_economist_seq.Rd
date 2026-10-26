@@ -43,7 +43,7 @@ discrete, for ordered factors. See \code{\link[=scale_colour_economist]{scale_co
 for the unordered categorical scales.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 # Continuous scale
 ggplot(mtcars, aes(x = wt, y = mpg, colour = disp)) +

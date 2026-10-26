@@ -4,7 +4,7 @@ test_that("hc_pal works", {
   n <- 5
   values <- pal(n)
   expect_type(values, "character")
-  expect_equal(length(values), n)
+  expect_length(values, n)
 })
 
 test_that("hc_pal raises error with invalid palette", {

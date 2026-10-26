@@ -18,7 +18,7 @@ A ggplot2 theme object (class \code{theme}).
 Theme similar to the default look of charts in Google Docs.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

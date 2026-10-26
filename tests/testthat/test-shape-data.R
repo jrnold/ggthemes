@@ -8,7 +8,7 @@ test_that("every shape row carries a canonical shape name", {
   for (nm in names(shape_tables())) {
     tbl <- shape_tables()[[nm]]
     expect_true("shape" %in% names(tbl), label = paste0(nm, " has a `shape` column"))
-    expect_false(any(is.na(tbl$shape)), label = paste0(nm, " has no missing shape name"))
+    expect_false(anyNA(tbl$shape), label = paste0(nm, " has no missing shape name"))
   }
 })
 

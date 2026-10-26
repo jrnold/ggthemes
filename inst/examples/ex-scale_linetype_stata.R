@@ -1,5 +1,5 @@
-require("ggplot2")
-if (require("tidyr") && require("dplyr")) {
+require(ggplot2)
+if (require(tidyr) && require(dplyr)) {
   rescale01 <- function(x) {
     (x - min(x)) / diff(range(x))
   }

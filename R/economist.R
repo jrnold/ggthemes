@@ -75,7 +75,6 @@ economist_pal <- function(fill = TRUE) {
         # 20120901_FBC897
         i <- c("dark blue", "blue", "light blue")
       } else if (n %in% 4:5) {
-        # i <- c("dark blue", "blue", "light blue", "red", "gray")
         i <- c("dark blue", "blue", "light blue", "blue-gray", "gray")
       } else if (n == 6) {
         # 20120825_IRC829
@@ -322,13 +321,11 @@ theme_economist <- function(base_size = 10, base_family = "sans", horizontal = T
         )
       ),
       ## I cannot figure out how to get ggplot to do 2 levels of ticks
-      ## axis.ticks.margin = unit(3 / 72, "in"),
       axis.ticks = element_line(),
       axis.ticks.y = element_blank(),
       axis.title = element_text(size = rel(1)),
       axis.title.x = element_text(),
       axis.title.y = element_text(angle = 90),
-      # axis.ticks.length = unit( -1/32, "in"),
       axis.ticks.length = unit(-base_size * 0.5, "points"),
       legend.background = element_rect(linetype = 0),
       legend.spacing = unit(base_size * 1.5, "points"),
@@ -376,7 +373,7 @@ theme_economist <- function(base_size = 10, base_family = "sans", horizontal = T
   } else {
     ret <- ret + theme(panel.grid.major.y = element_blank())
   }
-  if (dkpanel == TRUE) {
+  if (dkpanel) {
     ret <- ret +
       theme(
         panel.background = element_rect(

@@ -78,7 +78,7 @@ A ggplot2 scale object.
 The classic "ugly" color scales from Excel 97.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 # Line and scatter plot colors
 p <- ggplot(mtcars) +

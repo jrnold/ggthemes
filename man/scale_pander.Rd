@@ -79,7 +79,7 @@ The pander package ships with a default colorblind and printer-friendly color
 palette borrowed from \url{https://jfly.iam.u-tokyo.ac.jp/color/}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +

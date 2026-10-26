@@ -114,9 +114,9 @@ geom_tufteboxplot <-
 #' @importFrom scales alpha
 #' @importFrom grid grobTree
 GeomTufteboxplot <- # nolint: object_name_linter
-  ggplot2::ggproto(
+  ggproto(
     "GeomTufteboxplot",
-    ggplot2::GeomBoxplot,
+    GeomBoxplot,
     setup_data = function(self, data, params) {
       data <- ggproto_parent(GeomBoxplot, self)$setup_data(data, params)
       x_range <- diff(range(data$x))
@@ -239,8 +239,8 @@ GeomTufteboxplot <- # nolint: object_name_linter
         )
       )
     },
-    draw_legend = ggplot2::draw_key_pointrange,
-    default_aes = ggplot2::aes(
+    draw_legend = draw_key_pointrange,
+    default_aes = aes(
       weight = 1,
       colour = "black",
       fill = "grey20",

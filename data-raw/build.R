@@ -1,10 +1,10 @@
 suppressPackageStartupMessages({
-  library("dplyr")
-  library("purrr")
-  library("tibble")
-  library("rlang")
-  library("yaml")
-  library("xml2")
+  library(dplyr)
+  library(purrr)
+  library(tibble)
+  library(rlang)
+  library(yaml)
+  library(xml2)
 })
 
 # Shape tables ---------------------------------------------------------------
@@ -100,7 +100,7 @@ check_shape_duplicates <- function(shapes, label) {
         "  pch ",
         dup,
         " <- ",
-        map_chr(dup, ~ paste(shapes[["shape"]][which(shapes[["pch"]] == .x)], collapse = ", ")),
+        map_chr(dup, ~ toString(shapes[["shape"]][which(shapes[["pch"]] == .x)])),
         collapse = "\n"
       )
     ))
@@ -153,7 +153,7 @@ load_economist <- function() {
   # the other entries are already name/value pairs.
   out$scales <- map(out$scales, ~ tibble(step = seq_along(.x), value = .x))
   out[names(out) != "scales"] <-
-    map(out[names(out) != "scales"], ~ map_dfr(., as_tibble))
+    map(out[names(out) != "scales"], map_dfr, as_tibble)
   out
 }
 
@@ -161,7 +161,7 @@ ggthemes_data$economist <- load_economist()
 
 load_few <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "few.yml"))
-  out$colors <- map(out$colors, ~ map_dfr(., as_tibble))
+  out$colors <- map(out$colors, map_dfr, as_tibble)
   out$shapes <- shape_table(out$shapes, "few.yml:shapes")
   out
 }
@@ -170,7 +170,7 @@ ggthemes_data$few <- load_few()
 load_wsj <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "wsj.yml"))
   out$bg <- set_names(map_chr(out$bg, "value"), map_chr(out$bg, "name"))
-  out$palettes <- map(out$palettes, ~ map_dfr(., as_tibble))
+  out$palettes <- map(out$palettes, map_dfr, as_tibble)
   out
 }
 ggthemes_data$wsj <- load_wsj()
@@ -218,12 +218,7 @@ tableau_classic <- function() {
 
 load_tableau <- function() {
   tableau <- yaml.load_file(here::here("data-raw", "theme-data", "tableau.yml"))
-  tableau[["color-palettes"]] <- map(
-    tableau[["color-palettes"]],
-    function(x) {
-      map(x, ~ map_dfr(., as_tibble))
-    }
-  )
+  tableau[["color-palettes"]] <- map(tableau[["color-palettes"]], map, map_dfr, as_tibble)
   tableau[["shape-palettes"]] <- imap(
     tableau[["shape-palettes"]],
     ~ shape_table(.x, paste0("tableau.yml:shape-palettes/", .y))
@@ -274,7 +269,7 @@ ggthemes_data$solarized <- load_solarized()
 load_selenized <- function() {
   raw <- yaml.load_file(here::here("data-raw", "theme-data", "selenized.yml"))
   map(raw, function(variant) {
-    out <- map(variant, ~ map_dfr(., as_tibble))
+    out <- map(variant, map_dfr, as_tibble)
     colors <- deframe(out[["accents"]])
     out$palettes <- list()
     for (accent in names(colors)) {
@@ -296,7 +291,7 @@ ggthemes_data$excel <- load_excel()
 
 load_calc <- function() {
   raw <- yaml.load_file(here::here("data-raw", "theme-data", "libreoffice.yml"))
-  out <- map(raw, ~ map_dfr(., as_tibble))
+  out <- map(raw, map_dfr, as_tibble)
   out$shapes <- shape_table(raw$shapes, "libreoffice.yml:shapes")
   out
 }
@@ -304,7 +299,7 @@ ggthemes_data$calc <- load_calc()
 
 load_gdocs <- function() {
   raw <- yaml.load_file(here::here("data-raw", "theme-data", "gdocs.yml"))
-  out <- map(raw, ~ map_dfr(., as_tibble))
+  out <- map(raw, map_dfr, as_tibble)
   out$shapes <- shape_table(raw$shapes, "gdocs.yml:shapes")
   out
 }
@@ -329,7 +324,7 @@ ggthemes_data$hc <- load_hc()
 # bundle; see data-raw/reference/numbers/SOURCES.md.
 load_numbers <- function() {
   yaml.load_file(here::here("data-raw", "theme-data", "numbers.yml")) |>
-    map(~ map_dfr(., as_tibble))
+    map(map_dfr, as_tibble)
 }
 ggthemes_data$numbers <- load_numbers()
 

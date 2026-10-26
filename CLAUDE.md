@@ -60,7 +60,7 @@ README.md is auto-generated from README.Rmd and must never be edited directly
 (the first line of README.md says so).
 
 ```bash
-# Install first: the Rmd calls library("ggthemes"), and knitr::knit() alone
+# Install first: the Rmd calls library(ggthemes), and knitr::knit() alone
 # skips the github_document step and silently writes the error into README.md.
 Rscript -e 'devtools::install(quick = TRUE, upgrade = FALSE)'
 Rscript -e 'rmarkdown::render("README.Rmd", output_file = "README.md")'

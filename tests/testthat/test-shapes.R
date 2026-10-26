@@ -15,7 +15,7 @@ test_that("circlefill_pal works", {
     n <- 4L
     values <- pal(n)
     expect_type(values, "integer")
-    expect_equal(length(values), n)
+    expect_length(values, n)
   })
 })
 
@@ -39,14 +39,14 @@ test_that("tremmel_shape_pal works", {
   n <- 3L
   values <- pal(n)
   expect_type(values, "integer")
-  expect_equal(length(values), n)
+  expect_length(values, n)
 })
 
 test_that("tremmel_shape_pal works for all values", {
   for (i in 1:3L) {
-    expect_equal(length(tremmel_shape_pal()(i)), i)
-    expect_equal(length(tremmel_shape_pal(alt = TRUE)(i)), i)
-    expect_equal(length(tremmel_shape_pal(overlap = TRUE)(i)), i)
+    expect_length(tremmel_shape_pal()(i), i)
+    expect_length(tremmel_shape_pal(alt = TRUE)(i), i)
+    expect_length(tremmel_shape_pal(overlap = TRUE)(i), i)
   }
 })
 
@@ -60,7 +60,7 @@ test_that("cleveland_shape_pal works", {
   expect_equal(attr(pal, "max_n"), 4)
   n <- 3
   vals <- pal(n)
-  expect_equal(length(vals), n)
+  expect_length(vals, n)
 })
 
 
@@ -72,7 +72,7 @@ test_that("cleveland_shape_pal works with overlap = FALSE", {
   expect_equal(attr(pal, "max_n"), 3)
   n <- 3
   vals <- pal(n)
-  expect_equal(length(vals), n)
+  expect_length(vals, n)
   expect_type(vals, "integer")
   expect_contains(c(0:25, 32:127), vals)
 })

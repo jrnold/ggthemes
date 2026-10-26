@@ -1,4 +1,4 @@
-library("scales")
+library(scales)
 
 ## One element per theme
 names(ggthemes_data)

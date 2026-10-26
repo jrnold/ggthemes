@@ -82,7 +82,7 @@ A ggplot2 scale object.
 See \code{\link[=solarized_pal]{solarized_pal()}} for details.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

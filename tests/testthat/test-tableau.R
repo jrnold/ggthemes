@@ -5,7 +5,7 @@ test_that("tableau_color_pal works", {
   n <- 3
   vals <- pal(n)
   expect_type(vals, "character")
-  expect_equal(length(vals), n)
+  expect_length(vals, n)
 })
 
 test_that("tableau_color_pal direction = -1 works", {
@@ -17,7 +17,7 @@ test_that("tableau_color_pal works with diverging palette", {
   n <- 3L
   pal <- tableau_color_pal("Orange-Blue Diverging", type = "ordered-diverging")(n)
   expect_type(pal, "character")
-  expect_equal(length(pal), n)
+  expect_length(pal, n)
 })
 
 test_that("tableau_color_pal raises error with invalid palette", {
@@ -35,7 +35,7 @@ test_that("tableau_shape_pal works", {
   expect_type(attr(tableau_shape_pal(), "max_n"), "integer")
   # Base pch by default; the glyph branch is covered in test-shape-pal.R.
   expect_contains(c(0:25, 32:127), pal)
-  expect_equal(length(pal), n)
+  expect_length(pal, n)
 })
 
 test_that("scale_shape_tableau works", {
@@ -165,14 +165,14 @@ test_that("scale_fill_gradient2_tableau midpoint argument changes the color mapp
   sc5 <- scale_fill_gradient2_tableau(midpoint = 5)
   values <- c(-2, 0, 5, 8)
 
-  map <- function(sc) {
+  map_values <- function(sc) {
     sc$train(values)
     sc$map(values)
   }
 
-  expect_gt(sum(map(sc0) != map(sc5)), 0L)
+  expect_gt(sum(map_values(sc0) != map_values(sc5)), 0L)
   # at midpoint, the value should map to the middle of the palette
-  expect_equal(map(sc0)[2], map(sc5)[3])
+  expect_equal(map_values(sc0)[2], map_values(sc5)[3])
 })
 
 test_that("classic colors are in the correct order", {
@@ -194,7 +194,7 @@ test_that("Gray Warm sequential palette has no off-hue color", {
 test_that("Red-Gold sequential palette has 20 distinct colors", {
   # Regression: "#fa9d4f" appeared twice, giving 21 colours.
   values <- ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]][["Red-Gold"]][["value"]]
-  expect_equal(length(values), 20L)
+  expect_length(values, 20L)
   expect_equal(anyDuplicated(values), 0L)
 })
 

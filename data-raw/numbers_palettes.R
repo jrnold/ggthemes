@@ -4,9 +4,9 @@
 # Stage 2 of 2. Run fetch.sh first; this script reads only the persisted
 # files under data-raw/reference/numbers, never /Applications.
 suppressPackageStartupMessages({
-  library("purrr")
-  library("jsonlite")
-  library("yaml")
+  library(purrr)
+  library(jsonlite)
+  library(yaml)
 })
 
 ref_dir <- here::here("data-raw", "reference", "numbers")
@@ -17,7 +17,8 @@ if (!dir.exists(plist_dir)) {
     "No extracted palettes found at ",
     plist_dir,
     ".\n",
-    "Run data-raw/reference/numbers/fetch.sh first (needs macOS with Numbers installed)."
+    "Run data-raw/reference/numbers/fetch.sh first (needs macOS with Numbers installed).",
+    call. = FALSE
   )
 }
 
@@ -48,7 +49,7 @@ cmyk_to_srgb <- function(cmyk) {
   input <- map_chr(cmyk, ~ paste(format(.x, digits = 17), collapse = " "))
   out <- system2("swift", shQuote(script), input = input, stdout = TRUE)
   if (length(out) != length(cmyk)) {
-    stop("cmyk-to-srgb.swift returned ", length(out), " colors for ", length(cmyk), " inputs.")
+    stop("cmyk-to-srgb.swift returned ", length(out), " colors for ", length(cmyk), " inputs.", call. = FALSE)
   }
   out
 }
@@ -77,13 +78,13 @@ read_series <- function(fills) {
         series$k %||% 0
       )
     } else {
-      stop("Unhandled color-type: ", type)
+      stop("Unhandled color-type: ", type, call. = FALSE)
     }
   }
   list(colors = colors, pending = pending)
 }
 
-`%||%` <- function(a, b) if (!is.null(a)) a else b
+`%||%` <- function(a, b) if (!is.null(a)) a else b # nolint: coalesce_linter. Defines %||% for R < 4.4.
 
 #' Guard the assumption that lets us keep one vector per palette
 check_variants_agree <- function(fills, palette) {
@@ -95,7 +96,8 @@ check_variants_agree <- function(fills, palette) {
         "Palette '",
         palette,
         "' has different series colors across 2D chart types; ",
-        "the one-vector-per-palette assumption no longer holds."
+        "the one-vector-per-palette assumption no longer holds.",
+        call. = FALSE
       )
     }
   }
@@ -125,7 +127,7 @@ palettes <- imap(parsed, function(p, palette) {
     colors[[as.integer(idx)]] <- converted[[cursor]]
   }
   if (anyNA(colors)) {
-    stop("Palette '", palette, "' has unresolved colors.")
+    stop("Palette '", palette, "' has unresolved colors.", call. = FALSE)
   }
   map(seq_along(colors), ~ list(name = paste0("Series ", .x), value = colors[[.x]]))
 })

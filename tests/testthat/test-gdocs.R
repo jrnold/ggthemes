@@ -4,7 +4,7 @@ test_that("gdocs_pal works", {
   n <- 3
   vals <- pal(n)
   expect_type(vals, "character")
-  expect_equal(length(vals), n)
+  expect_length(vals, n)
 })
 
 test_that("scale_fill_gdocs works", {

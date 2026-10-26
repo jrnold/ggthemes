@@ -23,7 +23,7 @@ This theme should be combined with the \code{\link[=scale_colour_excel]{scale_co
 color scale.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 # Line and scatter plot colors
 p <- ggplot(mtcars) +

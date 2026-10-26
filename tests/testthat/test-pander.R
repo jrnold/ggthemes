@@ -70,7 +70,7 @@ test_that("theme_pander rotates axis text for axis = 3", {
 test_that("palette_pander recycles colors when n exceeds the palette size", {
   colors <- palette_pander(10)
   expect_hexcolor(colors)
-  expect_equal(length(colors), 10)
+  expect_length(colors, 10)
 })
 
 test_that("theme_pander draws correctly", {

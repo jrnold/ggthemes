@@ -27,7 +27,7 @@ using a gray panel in \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}}. T
 similar to the style of plots in Stata and Tableau.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

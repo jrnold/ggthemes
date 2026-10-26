@@ -1,4 +1,4 @@
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars, aes(factor(cyl), mpg))
 # with a point for the median and lines for whiskers

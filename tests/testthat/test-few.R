@@ -1,14 +1,12 @@
-library("ggplot2")
-
 test_that("few_shape_pal works", {
   out <- few_shape_pal()
   expect_type(out, "closure")
   expect_type(attr(out, "max_n"), "integer")
 
   pal0 <- out(0)
-  expect_identical(length(pal0), 0L)
+  expect_length(pal0, 0L)
   pal3 <- out(3)
-  expect_identical(length(pal3), 3L)
+  expect_length(pal3, 3L)
   expect_snapshot(x <- out(10))
 })
 
@@ -23,7 +21,7 @@ test_that("few_pal runs", {
   expect_type(attr(p, "max_n"), "integer")
   out <- p(5)
   expect_type(out, "character")
-  expect_equal(length(out), 5L)
+  expect_length(out, 5L)
   # should use the first accent color
   expect_equal(
     out[[1]],

@@ -1,4 +1,4 @@
-library("ggplot2")
+library(ggplot2)
 
 test_that("numbers_pal works", {
   pal <- numbers_pal()
@@ -6,7 +6,7 @@ test_that("numbers_pal works", {
   n <- 3L
   vals <- pal(n)
   expect_type(vals, "character")
-  expect_equal(length(vals), n)
+  expect_length(vals, n)
 })
 
 test_that("numbers_pal defaults to the Classic palette", {

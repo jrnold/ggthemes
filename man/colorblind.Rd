@@ -100,8 +100,8 @@ deprecated in favor of \code{scale_colour_colourblind()} and
 \code{scale_color_colorblind()}.
 }
 \examples{
-library("ggplot2")
-library("scales")
+library(ggplot2)
+library(scales)
 
 show_col(colorblind_pal()(8))
 show_col(colorblind_pal(black = FALSE)(7))

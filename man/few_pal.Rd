@@ -28,7 +28,7 @@ Use the dark palette for highlighting specific points
 or for small and thin lines and points.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(few_pal()(7))
 show_col(few_pal("Dark")(7))

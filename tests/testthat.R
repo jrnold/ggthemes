@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(ggthemes)
+library(ggthemes) # nolint: unused_import_linter. The standard testthat.R attaches the package.
 
 test_check("ggthemes")

@@ -3,8 +3,8 @@
 #' #' The color list is from http://makeadifferencewithdata.com/2017/01/150-paletas-colores-tableau/,
 #' #' and referenced here: https://policyviz.com/2017/01/12/150-color-palettes-for-excel/.
 #' #'
-#' library("xml2")
-#' library("purrr")
+#' library(xml2)
+#' library(purrr)
 #'
 #' #' THIS URL IS NO longer valid
 #' color_palettes_url <- "http://makeadifferencewithdata.com/wp-content/uploads/2016/12/color-palettes.txt"

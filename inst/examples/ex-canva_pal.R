@@ -1,6 +1,6 @@
-require("ggplot2")
-require("tibble")
-if (require("purrr") && require("scales") && require("dplyr")) {
+require(ggplot2)
+require(tibble)
+if (require(purrr) && require(scales) && require(dplyr)) {
   canva_df <- map2_df(
     canva_palettes,
     names(canva_palettes),

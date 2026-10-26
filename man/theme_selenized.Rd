@@ -33,7 +33,7 @@ background colors, so that they show on the dark variants. Use
 \code{\link[=scale_colour_selenized]{scale_colour_selenized()}} with the same \code{variant} for matching data colors.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

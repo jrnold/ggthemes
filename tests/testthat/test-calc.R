@@ -7,7 +7,7 @@ test_that("calc_shape_pal works", {
   expect_type(shapes, "integer")
   # Base pch by default; the glyph branch is covered in test-shape-pal.R.
   expect_contains(c(0:25, 32:127), shapes)
-  expect_equal(length(shapes), n)
+  expect_length(shapes, n)
 })
 
 test_that("calc_pal works", {

@@ -32,7 +32,7 @@ installed on your system, then you can use them with the package
 extrafont.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +

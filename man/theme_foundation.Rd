@@ -44,7 +44,7 @@ visual style, so they do not expose \code{ink}/\code{paper}/\code{accent}
 arguments.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +

@@ -78,7 +78,7 @@ A ggplot2 scale object.
 Color scales using the colors in the FiveThirtyEight graphics.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +
