@@ -8,7 +8,7 @@ wsj_pal(palette = "categorical")
 }
 \arguments{
 \item{palette}{A string, the palette to use. One of
-\code{"comparison"}, \code{"actual_forecast"}, \code{"direction"}, \code{"party"}, \code{"categorical"}, \code{"categorical_light"}, \code{"categorical_dark"}, \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"}, \code{"oranges"}.}
+\code{"comparison"}, \code{"actual_forecast"}, \code{"direction"}, \code{"bright"}, \code{"bright_light"}, \code{"party"}, \code{"categorical"}, \code{"categorical_us"}, \code{"categorical_light"}, \code{"categorical_dark"}, \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"}, \code{"oranges"}.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a
@@ -24,7 +24,9 @@ named for the jobs they do in a chart.
 \item \code{"categorical"} (the default): red, steel blue, green, black, gold and
 orange. Red is the usual color of a single series and the first of two;
 steel blue is the second. Black and gold follow, the order of the
-charts with three or more lines.
+Asia desks' charts with three or more lines.
+\item \code{"categorical_us"}: red, navy, dark green, black, orange and gold, the
+order of the US desks' charts with three or more lines.
 \item \code{"direction"}: green for gains and red for losses.
 \item \code{"comparison"}: a highlighted bar and the rest. WSJ highlights with a
 darker shade of the same hue and a bold label, not by graying out the
@@ -34,8 +36,13 @@ others. Use \code{"greens"}, \code{"reds"} or \code{"golds"} to highlight in ano
 of one hue, darkest first, for stacks and highlights. The lightest orange
 is not measured: it is a 55\% tint of the mid orange, the tint that makes
 the light step of every other family.
-\item \code{"party"}: Democratic blue, Republican red and gray. It is not from the
-corpus, which has no U.S. election charts.
+\item \code{"bright"}: royal blue, red, green, black and yellow, the saturated
+colors of the US desks' charts before the October 2011 redesign.
+\code{"bright_light"} holds the pale shades of its first three colors.
+\item \code{"party"}: Democratic blue, Republican red and gray. It is not measured:
+the election charts of 2011--2013 use the navy or steel blue of
+\code{"comparison"} for Democrats and the red of \code{"categorical"} for
+Republicans.
 }
 
 \code{"categorical_light"} holds the pale tint the charts pair with each

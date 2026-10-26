@@ -14,7 +14,7 @@ scale_fill_wsj(palette = "categorical", ...)
 }
 \arguments{
 \item{palette}{A string, the palette to use. One of
-\code{"comparison"}, \code{"actual_forecast"}, \code{"direction"}, \code{"party"}, \code{"categorical"}, \code{"categorical_light"}, \code{"categorical_dark"}, \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"}, \code{"oranges"}.}
+\code{"comparison"}, \code{"actual_forecast"}, \code{"direction"}, \code{"bright"}, \code{"bright_light"}, \code{"party"}, \code{"categorical"}, \code{"categorical_us"}, \code{"categorical_light"}, \code{"categorical_dark"}, \code{"blues"}, \code{"greens"}, \code{"reds"}, \code{"golds"}, \code{"oranges"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}

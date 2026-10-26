@@ -4,7 +4,7 @@
       wsj_pal("asdgasa")
     Condition
       Error in `wsj_pal()`:
-      ! `palette` must be one of "comparison", "actual_forecast", "direction", "party", "categorical", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", and "oranges", not "asdgasa".
+      ! `palette` must be one of "comparison", "actual_forecast", "direction", "bright", "bright_light", "party", "categorical", "categorical_us", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", and "oranges", not "asdgasa".
 
 # theme_wsj() rejects an unknown paper
 
@@ -22,7 +22,7 @@
       Warning:
       The "rgby" palette of `wsj_pal()` was deprecated in ggthemes 8.0.0.
       This palette has no like-for-like replacement.
-      i The current palettes are "comparison", "actual_forecast", "direction", "party", "categorical", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
+      i The current palettes are "comparison", "actual_forecast", "direction", "bright", "bright_light", "party", "categorical", "categorical_us", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
       i They use different colors, so switching will change the plot.
     Code
       x <- wsj_pal("red_green")(2)
@@ -30,7 +30,7 @@
       Warning:
       The "red_green" palette of `wsj_pal()` was deprecated in ggthemes 8.0.0.
       This palette has no like-for-like replacement.
-      i The current palettes are "comparison", "actual_forecast", "direction", "party", "categorical", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
+      i The current palettes are "comparison", "actual_forecast", "direction", "bright", "bright_light", "party", "categorical", "categorical_us", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
       i They use different colors, so switching will change the plot.
     Code
       x <- wsj_pal("black_green")(2)
@@ -38,7 +38,7 @@
       Warning:
       The "black_green" palette of `wsj_pal()` was deprecated in ggthemes 8.0.0.
       This palette has no like-for-like replacement.
-      i The current palettes are "comparison", "actual_forecast", "direction", "party", "categorical", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
+      i The current palettes are "comparison", "actual_forecast", "direction", "bright", "bright_light", "party", "categorical", "categorical_us", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
       i They use different colors, so switching will change the plot.
     Code
       x <- wsj_pal("dem_rep")(2)
@@ -52,7 +52,7 @@
       Warning:
       The "colors6" palette of `wsj_pal()` was deprecated in ggthemes 8.0.0.
       This palette has no like-for-like replacement.
-      i The current palettes are "comparison", "actual_forecast", "direction", "party", "categorical", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
+      i The current palettes are "comparison", "actual_forecast", "direction", "bright", "bright_light", "party", "categorical", "categorical_us", "categorical_light", "categorical_dark", "blues", "greens", "reds", "golds", "oranges".
       i They use different colors, so switching will change the plot.
 
 # theme_wsj(color=) warns once, not twice

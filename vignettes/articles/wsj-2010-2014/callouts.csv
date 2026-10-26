@@ -1,85 +1,185 @@
-file,period,n_callouts,fill,text_color,shape,tail,tail_target,position,lines,text,bold,marks_latest,point_marker
-AI-BR167_CGDP_NS_20120304224503.jpg,B,2,other:red,white,rectangle,triangle,point_marker,above,2,Actual / 9.2%,True,True,True
-AI-BR213_PHILIM_NS_20120306013602.jpg,B,1,yellow,black,rectangle,triangle,line_end,below,1,February 2.7%,True,True,False
-AI-BR214_AUSRAT_NS_20120306013004.jpg,B,1,yellow,black,circle,triangle,line_end,above,1,4.25%,True,True,False
-AI-BR298_JECON__NS_20120308030003.jpg,B,1,black,white,rectangle,triangle,bar,below,2,Revised / -0.7%,True,True,False
-AI-BR414_SKECON_NS_20120314033304.jpg,B,1,black,white,rectangle,triangle,line_end,above_left,1,February 3.7%,True,True,False
-AI-BR628_CECON_NS_20120321233603.jpg,B,1,black,white,rectangle,triangle,line_end,below,1,Preliminary: 48.1,True,True,False
-AI-BR643_YUAN_NS_20120323043004.jpg,B,1,black,white,circle,triangle,point_marker,below_left,2,Friday: / 6.2891,True,True,True
-AI-BS003_CTRADE_NS_20120410003602.jpg,B,1,yellow,black,rectangle,triangle,bar,above_left,1,March $5.35,True,True,False
-AI-BS026_JECON_NS_20120410232103.jpg,B,1,black,white,circle,triangle,bar,above_left,2,February / 4.8%,True,True,False
-AI-BS091_SKECON_NS_20120412023302.jpg,B,1,yellow,black,circle,triangle,point_marker,above,2,March / 3.4%,True,True,True
-AI-BS155_SKECON_NS_20120416015702.jpg,B,1,black,white,circle,triangle,bar,above,2,Revised / 3.5%,True,True,False
-AI-BS167_INDIAE_NS_20120416123302.jpg,B,1,black,white,rectangle,triangle,line_end,above,1,8.5%,True,True,False
-AI-BS263_AUSRAT_NS_20120418234203.jpg,B,1,yellow,black,circle,triangle,line_end,above,1,4.25%,True,True,False
-AI-BS325_CECON_NS_20120422230603.jpg,B,1,black,white,rectangle,triangle,line_end,below,1,Preliminary: 49.1,True,True,False
-AI-BS333_SINGEC_NS_20120423041504.jpg,B,1,black,white,rectangle,triangle,line_end,below,1,March: 5.2%,True,True,False
-AI-BS511_TWECON_NS_20120430072405.jpg,B,1,black,white,rectangle,triangle,bar,above,2,1Q 2012: / 0.26%,True,True,False
-AI-BS814_INDIAW_NS_20120514062404.jpg,B,1,black,white,rectangle,triangle,line_end,below,1,April: 7.23%,True,True,False
-AI-BT004_JECON_NS_20120522233903.jpg,B,1,yellow,black,circle,triangle,bar,above_left,2,April / -¥520.3,True,True,False
-AI-BT019_SINGEC_NS_20120523023302.jpg,B,1,black,white,rectangle,triangle,line_end,above_left,1,April: 5.4%,True,True,False
-AI-BT058_CECON_NS_20120524001803.jpg,B,1,black,white,rectangle,triangle,line_end,below,1,Preliminary: 48.7,True,True,False
-AI-BT228_INDIAG_NS_20120531050903.jpg,B,1,black,white,rectangle,triangle,bar,above_left,1,Fiscal 4Q: 5.3%,True,True,False
-AI-BT294_AUSECO_NS_20120605011803.jpg,B,1,yellow,black,circle,triangle,line_end,below_left,1,3.50%,True,True,False
-AI-BT650_JECON_NS_20120620002102.jpg,B,1,yellow,black,circle,triangle,bar,above_left,2,May / -¥907.3,True,True,False
-AI-BT685_CECON_NS_20120621003304.jpg,B,1,black,white,rectangle,triangle,line_end,below,1,June preliminary: 48.1,True,True,False
-AI-BU504A_SKECO_NS_20120726152403.jpg,C,1,yellow,black,rectangle,triangle,bar,above_left,1,2Q 0.4%,True,True,False
-AI-BU844_CECON_NS_20120809011203.jpg,C,1,yellow,black,rectangle,triangle,line_end,below_left,1,July 1.8%,True,True,False
-AI-BU904_JECON_NS_20120813000004.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,1.4%,True,True,False
-AI-BV055_THAIEC_NS_20120820053604.jpg,C,1,black,white,circle,triangle,bar,below,1,3.3%,True,True,False
-AI-BV090_JTRADE_NS_20120821230304.jpg,C,1,black,white,circle,triangle,bar,above_left,2,July / -¥517.4,True,True,False
-AI-BV277_PHILGD_NS_20120830032707.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,5.9%,True,True,False
-AI-BV492_JECON_NS_20120909223903.jpg,C,1,black,white,circle,triangle,bar,above,2,2Q: / 0.7%,True,True,False
-AI-BV542_PHILEC_NS_20120911023002.jpg,C,1,yellow,black,rectangle,triangle,line_end,below,1,July 7.8%,True,True,False
-AI-BV546_JECON_NS_20120911064506.jpg,C,1,black,white,rectangle,triangle,line_end,above_left,1,3Q: 2.2,True,True,False
-AI-BV557_JECON_NS_20120911225702.jpg,C,1,yellow,black,rectangle,triangle,line_end,above_left,1,July 4.6%,True,True,False
-AI-BV612_SKRATE_NS_20120913002402.jpg,C,1,yellow,black,circle,triangle,line_end,below_left,1,3.0%,True,True,False
-AI-BV662_SINGEC_NS_20120916233303.jpg,C,1,black,white,circle,triangle,bar,below_left,2,August / -10.6%,True,True,False
-AI-BW283_SKRATE_NS_20121010224803.jpg,C,1,other:blue-gray,white,circle,triangle,line_end,below,1,2.75%,True,True,False
-AI-BW309_JECON_NS_20121011021203.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,August -3.3%,True,True,False
-AI-BW381_CECON2_NS_20121015110602.jpg,C,1,black,white,rectangle,triangle,line_end,above_left,1,Sept. 1.9%,True,True,False
-AI-BW607_CECON_NS_20121024055703.jpg,C,1,yellow,black,rectangle,triangle,line_end,below,1,October*: 49.1,True,True,False
-AI-BW611_AUSECO_NS_20121024040904.jpg,C,1,yellow,black,circle,triangle,line_end,above,2,3Q: / 2.0%,True,True,False
-AI-BW670_SKECON_NS_20121025230602.jpg,C,1,yellow,black,circle,triangle,bar,above,2,3Q: / +0.2%,True,True,False
-AI-BW723_JECON_NS_20121030003018.jpg,C,1,black,white,circle,triangle,bar,below_left,2,Sept. / -4.1%,True,True,False
-AI-BW775_PANASO_NS_20121031082704.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,2Q: -¥697.98,True,True,False
-AI-BW820_JTECH2_NS_20121101060039.jpg,C,2,yellow,black,rectangle,triangle,bar,above_left,1,¥20 billion,True,True,False
-AI-BX235_THAIEC_NS_20121119024505.jpg,C,1,black,white,circle,triangle,bar,above,2,3Q: / 1.2%,True,True,False
-AI-BX302_JECON_NS_20121121005703.jpg,C,1,yellow,black,rectangle,triangle,bar,above_left,1,October -¥549 billion,True,True,False
-AI-BX307_CIRAN_NS_20121121095704.jpg,C,1,black,white,circle,triangle,bar,below_left,1,-23%,True,True,False
-AI-BX880_SINGEC_NS_20121217033605.jpg,C,1,black,white,rectangle,triangle,bar,below,1,November -2.5%,True,True,False
-AI-BY469_CINVES_NS_20130116122703.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,2012 $111.7 billion,True,True,False
-AI-BY508_AUSJOB_NS_20130117010903.jpg,C,1,yellow,black,circle,triangle,line_end,above,2,Dec: / 5.4%,True,True,False
-AI-BY640_AUSECO_NS_20130123013902.jpg,C,1,yellow,black,circle,triangle,line_end,above,2,4Q'12 / 2.2%,True,True,False
-AI-BY659_SKECON_NS_20130124000303.jpg,C,1,yellow,black,circle,triangle,bar,above,2,4Q / 0.4%,True,True,False
-AI-BY764_IECON_NS_20130129031805.jpg,C,2,other:light green,black,rectangle,triangle,line_end,below,1,7.75%,True,True,False
-AI-BY972_JECON_NS_20130207023903.jpg,C,1,black,white,circle,triangle,bar,below,2,DECEMBER / 2.8%,True,True,False
-AI-BY982_AUSECO_NS_20130207030904.jpg,C,1,yellow,black,circle,triangle,line_end,above,2,Jan.: / 5.4%,True,True,False
-AI-BZ278_CECON_NS_20130224225403.jpg,C,1,black,white,rectangle,triangle,point_marker,below,1,February 50.4*,True,True,True
-AI-BZ863_CECON_NS_20130321044203.jpg,C,1,black,white,rectangle,triangle,point_marker,above_left,1,March 51.7*,True,True,True
-AI-BZ868_BANGEC_NS_20130321124504.jpg,C,1,black,white,circle,triangle,bar,left,1,$19.9,True,True,False
-AI-CA052_ASIAEC_NS_20130401074807.jpg,C,1,black,white,circle,triangle,line_end,above_left,2,March / 50.9,True,True,False
-AI-CA201_CECON_NS_20130409002403.jpg,C,1,black,white,rectangle,triangle,line_end,below,1,March 2.1%,True,True,False
-AI-CA316_CECON_NS_20130414230304.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,1Q 7.7%,True,True,False
-AI-CA484_AMONEY_NS_20130422223603.jpg,C,1,black,white,circle,triangle,bar,above,2,$31 / MILLION,True,True,False
-AI-CA499_CECON_NS_20130423024814.jpg,C,1,yellow,black,rectangle,triangle,point_marker,above_left,1,April 50.5*,True,True,True
-AI-CA680_CECON_NS_20130501020303.jpg,C,1,black,white,rectangle,triangle,line_end,above_left,1,April 50.6,True,True,False
-AI-CA803_AUSRAT_NS_20130507031504.jpg,C,1,yellow,black,rectangle,triangle,line_end,below_left,1,Effective May 8: 2.75%,True,True,False
-AI-CA928_CECON_NS_20130513065706.jpg,C,1,black,white,circle,triangle,line_end,above_left,2,April / 9.3%,True,True,False
-AI-CA936_JCAPEX_NS_20130513143903.jpg,C,1,other:dark blue,white,circle,triangle,line_end,above_left,2,Feb. / 86.6,True,True,False
-AI-CB163_JSTOCK_NS_20130523041204.jpg,C,1,black,white,rectangle,triangle,line_end,below,1,"14483.98, down 7.3%",True,True,False
-AI-CB568_AUSJOB_NS_20130613041804.jpg,C,1,yellow,black,rectangle,triangle,line_end,above_left,1,May 5.5%,True,True,False
-AI-CB622_SKWOME_NS_20130617053905.jpg,C,3,other:blue-gray,white,circle,triangle,bar,above,1,55%,True,False,False
-AI-CB688_CECON_NS_20130619225402.jpg,C,1,black,white,rectangle,triangle,line_end,below,1,June 48.3,True,True,False
-AI-CE420_AVOTE_NS_20131024043004.jpg,D,1,black,white,rectangle,triangle,bar,above_left,1,2.31 (Budgeted),True,True,False
-AI-CF534_BITCOI_NS_20131218055104.jpg,D,1,other:blue-gray,white,rectangle,triangle,line_end,below_left,2,0900 GMT / $550.02,True,True,False
-AI-CF617A_ASIAS_NS_20131223122404.jpg,D,2,other:green,white,rectangle,none,,right,2,HSCEI / 0.45%,True,True,False
-AI-CJ103_ALIBAB_NS_20140611042705.jpg,D,1,black,white,rectangle,triangle,bar,left,1,"6.2%, $71.2 billion",True,True,False
-AM-AS311_CHINAH_NS_20120409020603.jpg,B,1,yellow,black,circle,triangle,line_end,below_left,2,March / 3.6%,True,True,False
-AM-AU336_ASX_NS_20120816022403.jpg,C,1,yellow,black,rectangle,triangle,bar,above_left,1,FY'12 A$339.2 mil.,True,True,False
-AM-AU935_ASIADE_NS_20120924130903.jpg,C,1,black,white,circle,triangle,bar,left,2,$106 / billion,True,True,False
-AM-AV340_MSEARN_NS_20121018121206.jpg,C,1,yellow,black,circle,triangle,bar,below_left,2,-$1.02 / billion,True,True,False
-AM-AV495_HONDA_NS_20121029001203.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,2Q: ¥82.23 billion,True,True,False
-AM-AW912_SAMSUN_NS_20130124231503.jpg,C,1,yellow,black,rectangle,triangle,bar,above_left,1,7.04 trillion,True,True,False
-AM-AX719_CTELEC_NS_20130320033904.jpg,C,1,black,white,rectangle,triangle,bar,above_left,1,14.93,True,True,False
-AM-AX972_HUAWEI_NS_20130408031205.jpg,C,1,black,white,circle,triangle,bar,above,1,220.2,True,True,False
+file,period,desks,n_callouts,fill,text_color,shape,tail,tail_target,position,lines,text,bold,marks_latest,point_marker
+AI-BR167_CGDP_NS_20120304224503.jpg,B,Asia,2,other:red,white,rectangle,triangle,point_marker,above,2,Actual / 9.2%,True,True,True
+AI-BR213_PHILIM_NS_20120306013602.jpg,B,Asia,1,yellow,black,rectangle,triangle,line_end,below,1,February 2.7%,True,True,False
+AI-BR214_AUSRAT_NS_20120306013004.jpg,B,Asia,1,yellow,black,circle,triangle,line_end,above,1,4.25%,True,True,False
+AI-BR298_JECON__NS_20120308030003.jpg,B,Asia,1,black,white,rectangle,triangle,bar,below,2,Revised / -0.7%,True,True,False
+AI-BR414_SKECON_NS_20120314033304.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,above_left,1,February 3.7%,True,True,False
+AI-BR628_CECON_NS_20120321233603.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,below,1,Preliminary: 48.1,True,True,False
+AI-BR643_YUAN_NS_20120323043004.jpg,B,Asia,1,black,white,circle,triangle,point_marker,below_left,2,Friday: / 6.2891,True,True,True
+AI-BS003_CTRADE_NS_20120410003602.jpg,B,Asia,1,yellow,black,rectangle,triangle,bar,above_left,1,March $5.35,True,True,False
+AI-BS026_JECON_NS_20120410232103.jpg,B,Asia,1,black,white,circle,triangle,bar,above_left,2,February / 4.8%,True,True,False
+AI-BS091_SKECON_NS_20120412023302.jpg,B,Asia,1,yellow,black,circle,triangle,point_marker,above,2,March / 3.4%,True,True,True
+AI-BS155_SKECON_NS_20120416015702.jpg,B,Asia,1,black,white,circle,triangle,bar,above,2,Revised / 3.5%,True,True,False
+AI-BS167_INDIAE_NS_20120416123302.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,above,1,8.5%,True,True,False
+AI-BS263_AUSRAT_NS_20120418234203.jpg,B,Asia,1,yellow,black,circle,triangle,line_end,above,1,4.25%,True,True,False
+AI-BS325_CECON_NS_20120422230603.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,below,1,Preliminary: 49.1,True,True,False
+AI-BS333_SINGEC_NS_20120423041504.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,below,1,March: 5.2%,True,True,False
+AI-BS511_TWECON_NS_20120430072405.jpg,B,Asia,1,black,white,rectangle,triangle,bar,above,2,1Q 2012: / 0.26%,True,True,False
+AI-BS814_INDIAW_NS_20120514062404.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,below,1,April: 7.23%,True,True,False
+AI-BT004_JECON_NS_20120522233903.jpg,B,Asia,1,yellow,black,circle,triangle,bar,above_left,2,April / -¥520.3,True,True,False
+AI-BT019_SINGEC_NS_20120523023302.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,above_left,1,April: 5.4%,True,True,False
+AI-BT058_CECON_NS_20120524001803.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,below,1,Preliminary: 48.7,True,True,False
+AI-BT228_INDIAG_NS_20120531050903.jpg,B,Asia,1,black,white,rectangle,triangle,bar,above_left,1,Fiscal 4Q: 5.3%,True,True,False
+AI-BT294_AUSECO_NS_20120605011803.jpg,B,Asia,1,yellow,black,circle,triangle,line_end,below_left,1,3.50%,True,True,False
+AI-BT650_JECON_NS_20120620002102.jpg,B,Asia,1,yellow,black,circle,triangle,bar,above_left,2,May / -¥907.3,True,True,False
+AI-BT685_CECON_NS_20120621003304.jpg,B,Asia,1,black,white,rectangle,triangle,line_end,below,1,June preliminary: 48.1,True,True,False
+AI-BU504A_SKECO_NS_20120726152403.jpg,C,Asia,1,yellow,black,rectangle,triangle,bar,above_left,1,2Q 0.4%,True,True,False
+AI-BU844_CECON_NS_20120809011203.jpg,C,Asia,1,yellow,black,rectangle,triangle,line_end,below_left,1,July 1.8%,True,True,False
+AI-BU904_JECON_NS_20120813000004.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,1.4%,True,True,False
+AI-BV055_THAIEC_NS_20120820053604.jpg,C,Asia,1,black,white,circle,triangle,bar,below,1,3.3%,True,True,False
+AI-BV090_JTRADE_NS_20120821230304.jpg,C,Asia,1,black,white,circle,triangle,bar,above_left,2,July / -¥517.4,True,True,False
+AI-BV277_PHILGD_NS_20120830032707.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,5.9%,True,True,False
+AI-BV492_JECON_NS_20120909223903.jpg,C,Asia,1,black,white,circle,triangle,bar,above,2,2Q: / 0.7%,True,True,False
+AI-BV542_PHILEC_NS_20120911023002.jpg,C,Asia,1,yellow,black,rectangle,triangle,line_end,below,1,July 7.8%,True,True,False
+AI-BV546_JECON_NS_20120911064506.jpg,C,Asia,1,black,white,rectangle,triangle,line_end,above_left,1,3Q: 2.2,True,True,False
+AI-BV557_JECON_NS_20120911225702.jpg,C,Asia,1,yellow,black,rectangle,triangle,line_end,above_left,1,July 4.6%,True,True,False
+AI-BV612_SKRATE_NS_20120913002402.jpg,C,Asia,1,yellow,black,circle,triangle,line_end,below_left,1,3.0%,True,True,False
+AI-BV662_SINGEC_NS_20120916233303.jpg,C,Asia,1,black,white,circle,triangle,bar,below_left,2,August / -10.6%,True,True,False
+AI-BW283_SKRATE_NS_20121010224803.jpg,C,Asia,1,other:blue-gray,white,circle,triangle,line_end,below,1,2.75%,True,True,False
+AI-BW309_JECON_NS_20121011021203.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,August -3.3%,True,True,False
+AI-BW381_CECON2_NS_20121015110602.jpg,C,Asia,1,black,white,rectangle,triangle,line_end,above_left,1,Sept. 1.9%,True,True,False
+AI-BW607_CECON_NS_20121024055703.jpg,C,Asia,1,yellow,black,rectangle,triangle,line_end,below,1,October*: 49.1,True,True,False
+AI-BW611_AUSECO_NS_20121024040904.jpg,C,Asia,1,yellow,black,circle,triangle,line_end,above,2,3Q: / 2.0%,True,True,False
+AI-BW670_SKECON_NS_20121025230602.jpg,C,Asia,1,yellow,black,circle,triangle,bar,above,2,3Q: / +0.2%,True,True,False
+AI-BW723_JECON_NS_20121030003018.jpg,C,Asia,1,black,white,circle,triangle,bar,below_left,2,Sept. / -4.1%,True,True,False
+AI-BW775_PANASO_NS_20121031082704.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,2Q: -¥697.98,True,True,False
+AI-BW820_JTECH2_NS_20121101060039.jpg,C,Asia,2,yellow,black,rectangle,triangle,bar,above_left,1,¥20 billion,True,True,False
+AI-BX235_THAIEC_NS_20121119024505.jpg,C,Asia,1,black,white,circle,triangle,bar,above,2,3Q: / 1.2%,True,True,False
+AI-BX302_JECON_NS_20121121005703.jpg,C,Asia,1,yellow,black,rectangle,triangle,bar,above_left,1,October -¥549 billion,True,True,False
+AI-BX307_CIRAN_NS_20121121095704.jpg,C,Asia,1,black,white,circle,triangle,bar,below_left,1,-23%,True,True,False
+AI-BX880_SINGEC_NS_20121217033605.jpg,C,Asia,1,black,white,rectangle,triangle,bar,below,1,November -2.5%,True,True,False
+AI-BY469_CINVES_NS_20130116122703.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,2012 $111.7 billion,True,True,False
+AI-BY508_AUSJOB_NS_20130117010903.jpg,C,Asia,1,yellow,black,circle,triangle,line_end,above,2,Dec: / 5.4%,True,True,False
+AI-BY640_AUSECO_NS_20130123013902.jpg,C,Asia,1,yellow,black,circle,triangle,line_end,above,2,4Q'12 / 2.2%,True,True,False
+AI-BY659_SKECON_NS_20130124000303.jpg,C,Asia,1,yellow,black,circle,triangle,bar,above,2,4Q / 0.4%,True,True,False
+AI-BY764_IECON_NS_20130129031805.jpg,C,Asia,2,other:light green,black,rectangle,triangle,line_end,below,1,7.75%,True,True,False
+AI-BY972_JECON_NS_20130207023903.jpg,C,Asia,1,black,white,circle,triangle,bar,below,2,DECEMBER / 2.8%,True,True,False
+AI-BY982_AUSECO_NS_20130207030904.jpg,C,Asia,1,yellow,black,circle,triangle,line_end,above,2,Jan.: / 5.4%,True,True,False
+AI-BZ278_CECON_NS_20130224225403.jpg,C,Asia,1,black,white,rectangle,triangle,point_marker,below,1,February 50.4*,True,True,True
+AI-BZ863_CECON_NS_20130321044203.jpg,C,Asia,1,black,white,rectangle,triangle,point_marker,above_left,1,March 51.7*,True,True,True
+AI-BZ868_BANGEC_NS_20130321124504.jpg,C,Asia,1,black,white,circle,triangle,bar,left,1,$19.9,True,True,False
+AI-CA052_ASIAEC_NS_20130401074807.jpg,C,Asia,1,black,white,circle,triangle,line_end,above_left,2,March / 50.9,True,True,False
+AI-CA201_CECON_NS_20130409002403.jpg,C,Asia,1,black,white,rectangle,triangle,line_end,below,1,March 2.1%,True,True,False
+AI-CA316_CECON_NS_20130414230304.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,1Q 7.7%,True,True,False
+AI-CA484_AMONEY_NS_20130422223603.jpg,C,Asia,1,black,white,circle,triangle,bar,above,2,$31 / MILLION,True,True,False
+AI-CA499_CECON_NS_20130423024814.jpg,C,Asia,1,yellow,black,rectangle,triangle,point_marker,above_left,1,April 50.5*,True,True,True
+AI-CA680_CECON_NS_20130501020303.jpg,C,Asia,1,black,white,rectangle,triangle,line_end,above_left,1,April 50.6,True,True,False
+AI-CA803_AUSRAT_NS_20130507031504.jpg,C,Asia,1,yellow,black,rectangle,triangle,line_end,below_left,1,Effective May 8: 2.75%,True,True,False
+AI-CA928_CECON_NS_20130513065706.jpg,C,Asia,1,black,white,circle,triangle,line_end,above_left,2,April / 9.3%,True,True,False
+AI-CA936_JCAPEX_NS_20130513143903.jpg,C,Asia,1,other:dark blue,white,circle,triangle,line_end,above_left,2,Feb. / 86.6,True,True,False
+AI-CB163_JSTOCK_NS_20130523041204.jpg,C,Asia,1,black,white,rectangle,triangle,line_end,below,1,"14483.98, down 7.3%",True,True,False
+AI-CB568_AUSJOB_NS_20130613041804.jpg,C,Asia,1,yellow,black,rectangle,triangle,line_end,above_left,1,May 5.5%,True,True,False
+AI-CB622_SKWOME_NS_20130617053905.jpg,C,Asia,3,other:blue-gray,white,circle,triangle,bar,above,1,55%,True,False,False
+AI-CB688_CECON_NS_20130619225402.jpg,C,Asia,1,black,white,rectangle,triangle,line_end,below,1,June 48.3,True,True,False
+AI-CE420_AVOTE_NS_20131024043004.jpg,D,Asia,1,black,white,rectangle,triangle,bar,above_left,1,2.31 (Budgeted),True,True,False
+AI-CF534_BITCOI_NS_20131218055104.jpg,D,Asia,1,other:blue-gray,white,rectangle,triangle,line_end,below_left,2,0900 GMT / $550.02,True,True,False
+AI-CF617A_ASIAS_NS_20131223122404.jpg,D,Asia,2,other:green,white,rectangle,none,,right,2,HSCEI / 0.45%,True,True,False
+AI-CJ103_ALIBAB_NS_20140611042705.jpg,D,Asia,1,black,white,rectangle,triangle,bar,left,1,"6.2%, $71.2 billion",True,True,False
+AM-AS311_CHINAH_NS_20120409020603.jpg,B,Asia,1,yellow,black,circle,triangle,line_end,below_left,2,March / 3.6%,True,True,False
+AM-AU336_ASX_NS_20120816022403.jpg,C,Asia,1,yellow,black,rectangle,triangle,bar,above_left,1,FY'12 A$339.2 mil.,True,True,False
+AM-AU935_ASIADE_NS_20120924130903.jpg,C,Asia,1,black,white,circle,triangle,bar,left,2,$106 / billion,True,True,False
+AM-AV340_MSEARN_NS_20121018121206.jpg,C,Asia,1,yellow,black,circle,triangle,bar,below_left,2,-$1.02 / billion,True,True,False
+AM-AV495_HONDA_NS_20121029001203.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,2Q: ¥82.23 billion,True,True,False
+AM-AW912_SAMSUN_NS_20130124231503.jpg,C,Asia,1,yellow,black,rectangle,triangle,bar,above_left,1,7.04 trillion,True,True,False
+AM-AX719_CTELEC_NS_20130320033904.jpg,C,Asia,1,black,white,rectangle,triangle,bar,above_left,1,14.93,True,True,False
+AM-AX972_HUAWEI_NS_20130408031205.jpg,C,Asia,1,black,white,circle,triangle,bar,above,1,220.2,True,True,False
+MK-BP000A_BESTB_NS_20110913200616.jpg,A,US,2,other:royal_blue,white,rectangle,triangle,line_end,left,1,$34.29,False,False,False
+MK-BQ742_AMRPIL_NS_20111130180304.jpg,B,US,2,other:light_blue,black,rectangle,triangle,point_marker,left,3,UNITED / FILES FOR / BANKRUPTCY,True,False,False
+MK-BQ778_BARNES_NS_20111201182703.jpg,B,US,1,yellow,black,rectangle,triangle,bar,above,2,Loss of / $6.6 million,True,True,False
+MK-BR658_ZYGNA_NS_20120116190005.jpg,B,US,1,black,white,rectangle,triangle,,right,1,IPO price,True,False,False
+MK-BR882A_NETFL_NS_20120125183903.jpg,B,US,1,yellow,black,circle,triangle,bar,below_left,3,4th quarter / 24.4 / million,True,True,False
+MK-BS169A_GROUP_NS_20120208183609.jpg,B,US,1,other:green,white,rectangle,triangle,point_marker,above,1,$ -37 million,True,True,True
+MK-BS563A_APPLE_NS_20120228180904.jpg,B,US,1,yellow,black,rectangle,triangle,bar,left,2,15.4 / million,True,True,False
+MK-BT034_ORACLE_NS_20120320175403.jpg,B,US,1,black,white,circle,triangle,bar,above,2,3Q / Up 7%,True,True,False
+MK-BT552_EBOOKS_NS_20120412173602.jpg,B,US,2,yellow,black,circle,triangle,point_marker,below_left,2,Total: / $5B,True,True,True
+MK-BT660A_TREND_NS_20120417194503.jpg,B,US,1,yellow,black,circle,triangle,line_end,below_left,2,2011 / 40.7%,True,True,False
+MK-BU358_HOMEDE_NS_20120515135703.jpg,B,US,1,other:orange,white,rectangle,triangle,bar,above,2,1ST QTR / $1 BILLION,True,True,False
+MK-BU488_OZCOAL_NS_20120521181203.jpg,B,US,1,yellow,black,circle,triangle,bar,below_left,4,2012 / forecast / $71.5 / a ton,True,True,False
+MK-BV281_BESTBU_NS_20120626173303.jpg,B,US,1,black,white,rectangle,triangle,line_end,above_left,1,$19.37,True,True,False
+MK-BV957_UPS_NS_20120724173912.jpg,C,US,1,black,white,circle,triangle,bar,left,2,$1.1 / BILLION,True,True,False
+MK-BW709_LIQUOR_NS_20120823175703.jpg,C,US,2,black,white,circle,triangle,point_marker,below_left,2,922 / MILLION,True,True,True
+MK-BX304_CISCO_NS_20120918184203.jpg,C,US,1,black,white,circle,triangle,bar,above,2,$977 / million,True,True,False
+MK-BY214_FACEBO_NS_20121023183903.jpg,C,US,1,black,white,circle,triangle,bar,left,2,604 / MILLION,True,True,False
+MK-BY239_4PROFI_NS_20121024181510.jpg,C,US,1,black,white,circle,triangle,bar,above,2,2011 / ▼3%,True,True,False
+MK-BY491_SAFETY_NS_20121104183304.jpg,C,US,1,yellow,black,rectangle,triangle,bar,above_left,1,July - Dec. 2011: 34%,True,True,False
+MK-BY513_TOYOTA_NS_20121105180309.jpg,C,US,1,black,white,rectangle,triangle,bar,above,2,¥258B / ($3.2B),True,True,False
+MK-BY774_GAP_NS_20121115180304.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,2,$308 / MILLION,True,True,False
+MK-BY934_anglo_NS_20121122175403.jpg,C,US,1,black,white,rectangle,triangle,line_end,above_left,1,£ 17.05,True,True,False
+MK-BZ293A_STEEL_NS_20121206175102.jpg,C,US,1,black,white,rectangle,triangle,line_end,above_left,2,THURSDAY / $644,True,True,False
+MK-BZ369A_IRONO_NS_20121210170306.jpg,C,US,1,black,white,circle,triangle,point_marker,above,2,MONDAY / $123.40,True,True,True
+MK-BZ696_HDTV_NS_20121223182403.jpg,C,US,1,black,white,rectangle,triangle,line_end,above_left,1,Nov.: 15.1%,True,True,False
+MK-CA095_NOKIA_NS_20130110174203.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,2,4Q 2012: / 6.6 million,True,True,False
+MK-CA578_LAWSCH_NS_20130131180044.jpg,C,US,1,black,white,rectangle,triangle,bar,left,3,"2012-13* / 44,518 / down 8.6%",True,True,False
+MK-CB007_McKINS_NS_20130219181505.jpg,C,US,1,black,white,rectangle,triangle,line_end,above_left,1,2011: 70.6%,True,True,False
+MK-CB149_VOICE_NS_20130225182408.jpg,C,US,2,black,white,rectangle,triangle,bar,above,2,$83.8 / BILLION,True,True,False
+MK-CB337_UKRETA_NS_20130304183607.jpg,C,US,1,other:dark_blue,white,rectangle,triangle,line_end,above_left,1,Jan: Unchanged,True,True,False
+MK-CB522_LSCHOO_NS_20130311180603.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,2,"2013*: / 310,113",True,True,False
+MK-CB549_CSTEEL_NS_20130312165703.jpg,C,US,1,black,white,circle,triangle,bar,left,2,Feb. / 61.8,True,True,False
+MK-CB612_VIDEO__NS_20130314181828.jpg,C,US,2,black,white,rectangle,triangle,bar,above_left,1,TV: $66.4 billion,True,True,False
+MK-CB777B_TIFFA_NS_20130320203604.jpg,C,US,2,other:light_yellow,black,rectangle,triangle,bar,right,4,"$410 mil / Company / estimate, / fiscal 2012",True,True,False
+MK-CC317_PCSALE_NS_20130410191805.jpg,C,US,1,other:dark_blue,white,rectangle,triangle,line_end,left,2,1ST QTR / -14%,True,True,False
+MK-CC627_NETFLI_NS_20130422175403.jpg,C,US,1,black,white,rectangle,triangle,bar,above,2,1Q 2013 / $1.02B,True,True,False
+MK-CD094A_TOYOT_NS_20130508212703.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,2,FY '13: / ¥962 billion,True,True,False
+MK-CD272_CISCO_NS_20130515180316.jpg,C,US,1,black,white,rectangle,triangle,bar,left,3,3Q 2013 / $2.5 / BILLION,True,True,False
+MK-CE307_COAL_NS_20130626183603.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,1,4Q '12: 249.6M,True,True,False
+MK-CE341_PEUGEO_NS_20130627181811.jpg,C,US,1,black,white,rectangle,triangle,line_end,above_left,2,Thursday / €6.50,True,True,False
+MK-CE637_EUCIG_NS_20130710183010.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,2,593 / billion,True,True,False
+MK-CF102_EUTELC_NS_20130728184803.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,1,2013: $72.27 billion,True,True,False
+MK-CF574_CISCO_NS_20130814184507.jpg,D,US,1,black,white,rectangle,triangle,bar,left,3,Q4 2013 / $2.3 / BILLION,True,True,False
+MK-CF965_BTW_RE_NS_20130902184206.jpg,D,US,1,black,white,rectangle,triangle,point_marker,below_left,1,$634.78,True,True,True
+MK-CH389_APPLE_NS_20131028180311.jpg,D,US,1,black,white,circle,triangle,point_marker,below_left,2,4Q / 37%,True,True,True
+MK-CH474_EXXON_NS_20131031191203.jpg,D,US,1,black,white,circle,triangle,bar,above_left,2,3Q / $7.9B,True,True,False
+MK-CI701_FORD_NS_20131218184503.jpg,D,US,1,black,white,rectangle,triangle,bar,above,2,2013* / 6.2%,True,True,False
+MK-CJ099_ATTDAT_NS_20140106171803.jpg,D,US,1,black,white,rectangle,triangle,bar,left,2,3Q 2013 / $5.5B,True,True,False
+MK-CJ995_TWITTE_NS_20140210182103.jpg,D,US,2,other:dark_blue,white,rectangle,triangle,line_end,above_left,2,4Q 2013: / Twitter 4%,True,True,False
+MK-CM628_CFOVEN_NS_20140526184203.jpg,D,US,4,other:light_gray,black,rectangle,none,,right,2,Black market / 70.9,False,True,False
+NA-BM288A_Numbe_NS_20110708112402.jpg,A,US,1,yellow,black,rectangle,triangle,point_marker,above,1,28.5%,True,True,True
+NA-BQ674_FANNIE_NS_20120509201803.jpg,B,US,1,black,white,rectangle,triangle,bar,above_left,1,$2.7 billion,True,True,False
+NA-BQ742_ECONOM_NS_20120515172403.jpg,B,US,1,yellow,black,circle,triangle,line_end,below_left,2,April / 2.3%,True,True,False
+NA-BQ947_STUDEN_NS_20120531123606.jpg,B,US,2,other:red,white,rectangle,triangle,line_end,above_left,2,1Q 2012: / $904 billion,True,True,False
+NA-BR974_POSTAL_NS_20120809173007.jpg,C,US,1,other:red,white,rectangle,triangle,bar,below_left,2,As of Q3 2012 / -$11.6 billion,True,True,False
+NA-BS871_CHEAPD_NS_20121007170903.jpg,C,US,2,other:light_orange,white,rectangle,triangle,bar,above,1,U.S.,True,False,False
+NA-BT565_CASINO_NS_20121109182411.jpg,C,US,2,other:steel_blue,white,rectangle,triangle,bar,above_left,1,Washington,True,False,False
+NA-BT923A_WOMEN_NS_20121204192706.jpg,C,US,2,other:orange,white,rectangle,triangle,point_marker,above_left,1,Lawyers* 33%,True,True,True
+NA-BU204_ECONOM_NS_20121221180904.jpg,C,US,2,yellow,black,rectangle,triangle,line_end,above_left,1,Nov. 2.1%,True,True,False
+NA-BV744_EXTRAD_NS_20130401185405.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,1,115,True,True,False
+NA-BW671_MEDSPA_NS_20130604162403.jpg,C,US,1,black,white,rectangle,triangle,bar,above,1,"1,750",True,True,False
+NA-BW765_STLOUI_NS_20130611163308.jpg,C,US,1,black,white,rectangle,triangle,line_end,below_left,1,33%,True,True,False
+NA-BZ518_BLIGHT_NS_20140103174203.jpg,D,US,1,black,white,circle,triangle,bar,above_left,2,"2012: / 621,342",True,True,False
+NA-BZ939_REMODE_NS_20140203185103.jpg,D,US,2,black,white,rectangle,triangle,bar,left,1,2013: $129.9B,True,True,False
+P1-AZ069_LENDIN_NS_20110114175103.jpg,A,US,1,other:royal_blue,white,rectangle,triangle,bar,above_left,2,3Q: 36.43 / million,True,True,False
+P1-BC645C_MARKE_NS_20110923193902.jpg,A,US,2,yellow,black,rectangle,none,,above,2,FRIDAY / DOWN 5.85%,False,True,False
+P1-BC680_BERKSH_NS_20110926182415.jpg,A,US,1,other:red,white,rectangle,triangle,line_end,above_left,3,"$108,449, / down 10% / year to date",True,True,False
+P1-BD605_AMRa1_NS_20111129182707.jpg,B,US,1,other:red,white,circle,none,point_marker,left,2,TUESDAY: / $0.26,True,True,True
+P1-BE916_BROBIZ_NS_20120217164802.jpg,B,US,1,yellow,black,circle,triangle,bar,above,2,$440.1 / million,True,True,False
+P1-BF301_STRESS_NS_20120313183004.jpg,B,US,1,other:green,white,rectangle,triangle,line_end,above_left,2,Tuesday / +1.68%,True,True,False
+P1-BF348_GASOLI_NS_20120316181211.jpg,B,US,1,other:dark_blue,white,rectangle,triangle,bar,above_left,1,"350,000",True,True,False
+P1-BF811A_CITIP_NS_20120417183911.jpg,B,US,1,yellow,black,circle,triangle,line_end,below_left,3,TUESDAY / $35.08 / UP $1.08,True,True,False
+P1-BF969_DEWEY_NS_20120427174202.jpg,B,US,1,black,white,rectangle,triangle,bar,above_left,1,$782 million*,True,True,False
+P1-BG094_REFI_p_NS_20120508181503.jpg,B,US,1,black,white,rectangle,triangle,line_end,above_left,2,April 27 / 4.05%,True,True,False
+P1-BG126A_CPEAK_NS_20120510171804.jpg,B,US,1,black,white,rectangle,triangle,line_end,above_left,1,$17.18,False,True,False
+P1-BG336_BANKIA_NS_20120525180607.jpg,B,US,1,yellow,black,rectangle,triangle,line_end,above_left,2,Friday / 6.333%,True,True,False
+P1-BG562_OLDGM__NS_20120611182708.jpg,B,US,1,yellow,black,rectangle,triangle,bar,above_left,1,1Q '12 $1.0B,True,True,False
+P1-BG663_FBIPO_NS_20120617180904.jpg,B,US,2,other:gray,white,rectangle,triangle,point_marker,below,2,May 18: / $38.23,True,False,True
+P1-BH681A_Apple_NS_20120820203153.jpg,C,US,6,yellow,black,rectangle,triangle,point_marker,above,3,3/13/86: / Microsoft / stock goes public,True,False,True
+P1-BH742A_econp_NS_20120823192402.jpg,C,US,1,black,white,rectangle,triangle,point_marker,below,2,Thursday: / -0.88%,True,True,True
+P1-BI660_HOUSIN_NS_20121017222703.jpg,C,US,1,black,white,rectangle,triangle,bar,above_left,1,"Sept.: 872,000",True,True,False
+P1-BJ218_HP_NS_20121120183615.jpg,C,US,1,black,white,rectangle,triangle,bar,left,2,-$6.9 / BILLION,True,True,False
+P1-BJ546_PAINDO_NS_20121214181503.jpg,C,US,1,black,white,rectangle,triangle,bar,above,1,7.1 kg,True,True,False
+P1-BJ676_CPOWER_NS_20121226174807.jpg,C,US,2,red,white,rectangle,triangle,point_marker,above_left,1,+81%,True,True,True
+P1-BJ947_DELL_NS_20130114183609.jpg,C,US,1,other:light_blue,black,rectangle,triangle,line_end,above_left,2,Wed.: / $12.29,True,True,False
+P1-BK111_ECONOM_NS_20130130175403.jpg,C,US,1,black,white,circle,triangle,bar,above,1,-0.1%,True,True,False
+P1-BK753A_AFBEE_NS_20130319173603.jpg,C,US,1,black,white,rectangle,triangle,bar,left,1,$7.1 billion,True,True,False
+P1-BL377_HOLLAN_NS_20130502181805.jpg,C,US,2,red,white,rectangle,triangle,point_marker,above_left,1,Unsatisfied 74%,True,True,True
+P1-BL465_ARMY_p_NS_20130509184806.jpg,C,US,1,black,white,rectangle,triangle,line_end,above_left,1,2021 10.8%,True,True,False
+P1-BL638_POKERS_NS_20130522180603.jpg,C,US,1,black,white,rectangle,triangle,point_marker,above_left,1,2013* 54%,True,True,True
+P1-BL869_INDICA_NS_20130612183829.jpg,C,US,1,other:red,white,rectangle,none,,right,5,"Short-sales / volume at / 9:54:58 a.m., / the moment of / early access",True,False,False
+P1-BL964_GOPCRI_NS_20130620184511.jpg,C,US,1,black,white,rectangle,triangle,bar,left,3,"2011: 1.4 million, / down 1.54% / from 2010",True,True,False
+P1-BM081_ERDOGA_NS_20130626185406.jpg,C,US,1,other:dark_blue,white,rectangle,triangle,bar,above_left,1,2012: $794.5,True,True,False
+P1-BM802_SHORT_NS_20130820191204.jpg,D,US,2,other:orange,white,rectangle,triangle,bar,above_left,1,Shorted 33.8%,False,True,False
+P1-BN383_USBOOM_NS_20131002182407.jpg,D,US,2,other:dark_green,white,rectangle,none,,right,2,U.S. / 22.2*,True,True,False
+P1-BN566_APPLE_NS_20131015174504.jpg,D,US,2,black,white,rectangle,triangle,bar,left,1,365 stores,True,True,False
+P1-BO684_SHORTT_NS_20140107173608.jpg,D,US,1,black,white,rectangle,triangle,bar,above_left,1,3Q 2013: $284.5B,True,True,False
+P1-BP245B_YUAN__NS_20140224184204.jpg,D,US,1,black,white,rectangle,triangle,line_end,left,2,Monday / 6.097 yuan,True,True,False
+P1-BP263_JNATIO_NS_20140226182704.jpg,D,US,2,other:red,white,rectangle,triangle,line_end,above_left,1,China: 81%,True,True,False
+P1-BQ610_IRANEC_NS_20140701165714.jpg,D,US,1,black,white,rectangle,triangle,line_end,above_left,1,2015: 22%,True,True,False

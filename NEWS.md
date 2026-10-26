@@ -36,7 +36,7 @@
   ggplot2's scales do. `type`, `direction`, `guide` and `alt` must be named,
   and passing them by position is an error that says so (#275).
 
-- `theme_wsj()` is redesigned after 386 Wall Street Journal web graphics of
+- `theme_wsj()` is redesigned after 2,271 Wall Street Journal web graphics of
   2010--2014, read and measured for a new article, "The Wall Street Journal
   chart style, 2010--2014": black type, a heavy serif title over a
   regular-weight subtitle, dotted horizontal reference rules, a short tick on
@@ -79,8 +79,10 @@
   measured on the published charts: `"categorical"` (red, steel blue, green,
   black, gold, orange), `"direction"` (green gains, red losses),
   `"comparison"` (a highlighted bar in navy against steel blue: WSJ highlights
-  with a darker shade of the same hue, not against gray), `"actual_forecast"`
-  and `"party"`. The `"blues"`, `"greens"`, `"reds"`, `"golds"` and
+  with a darker shade of the same hue, not against gray), `"actual_forecast"`,
+  `"categorical_us"` (the US desks' order: red, navy, dark green, black,
+  orange, gold), `"bright"` and `"bright_light"` (the US desks' saturated
+  colors before the October 2011 redesign) and `"party"`. The `"blues"`, `"greens"`, `"reds"`, `"golds"` and
   `"oranges"` palettes hold the three shades of each hue the charts use for
   stacks and highlights, darkest first; the lightest orange is not measured
   but is a 55% tint of the mid orange, as the light step of every other family

@@ -5,16 +5,27 @@ library(ggthemes)
 library(ggplot2)
 
 # ---- The evidence ---------------------------------------------------------------------------------------------------
-# One row per chart: what two readings of each image recorded and what the pixel measurements found
-# (data-raw/wsj-corpus/export.py writes these files). `inks.csv` counts the charts in each period that use each
-# measured color.
-charts <- read.csv("wsj-2010-2014/charts.csv", stringsAsFactors = FALSE)
+# One row per chart: what the readings of each image recorded and what the pixel measurements found
+# (`guide/export.py` of the WSJ graphics corpus writes these files). Every chart was measured. The Asia-desk charts
+# were all read, twice; the US-desk charts were read once, in a stratified sample, and `read` marks the charts with a
+# reading.
+# `inks.csv` counts the charts in each period and on each desk that use each measured color.
+# "NA" is a desk, the U.S. news pages, so it must not be read as missing; empty numbers still are.
+charts <- read.csv("wsj-2010-2014/charts.csv", stringsAsFactors = FALSE, na.strings = character(0))
 inks <- read.csv("wsj-2010-2014/inks.csv", stringsAsFactors = FALSE)
+# Shares of what the readings recorded are of the charts read. They pool the two desks only where the desks agree;
+# the Asia desks have 388 charts read against 405 of 1,883 for the US desks, so a pooled share leans toward Asia.
+read <- charts[charts$read == "True", ]
+asia <- charts[charts$desks == "Asia", ]
+us_read <- read[read$desks == "US", ]
 # The number callouts of the charts that have them, read from the images.
 callouts <- read.csv("wsj-2010-2014/callouts.csv", stringsAsFactors = FALSE)
 # The color of each directly labeled series' label against its line, by hue, in the charts whose labels are colored
-# text (data-raw/wsj-corpus/label_colors.py): the mean of the darkest third of the glyph pixels and of the line pixels.
+# text (`guide/label_colors.py` of the corpus): the mean of the darkest third of the glyph pixels and of the line
+# pixels.
 label_colors <- read.csv("wsj-2010-2014/label-colors.csv", stringsAsFactors = FALSE)
+label_colors$desks <- charts$desks[match(label_colors$file, charts$file)]
+stopifnot(!anyNA(label_colors$desks))
 # The alignment of the y labels of 48 charts, 16 from each of periods B to D, read by eye at three times the size.
 ylabel_check <- read.csv("wsj-2010-2014/ylabel-check.csv", stringsAsFactors = FALSE)
 # The hue family of each measured color, to tell shades of one hue from different hues.
@@ -35,7 +46,14 @@ ink_family <- c(
   tan = "gold",
   `pale gold` = "gold",
   yellow = "yellow",
-  black = "black"
+  black = "black",
+  `bright red` = "red",
+  `pale bright red` = "red",
+  `royal blue` = "blue",
+  `pale royal blue` = "blue",
+  `bright green` = "green",
+  `pale bright green` = "green",
+  `bright yellow` = "yellow"
 )
 
 periods <- data.frame(
@@ -49,15 +67,32 @@ has <- function(x, value) vapply(strsplit(x, ";"), function(v) value %in% v, log
 share <- function(n, of, unit = "charts") {
   n <- sum(n)
   of <- sum(of)
-  sprintf("%s%%, %s of %s %s", round(100 * n / of), n, of, unit)
+  trimws(sprintf("%s%%, %s of %s %s", round(100 * n / of), n, of, unit))
 }
 pct <- function(n, of) paste0(round(100 * sum(n) / sum(of)), "%")
+# A share on each desk, Asia first: share(n, of) of the rows of `d` for which `cond` and `denom` hold, both evaluated
+# within `d`, as "62%, 140 of 226 charts on the Asia desks and 40%, 30 of 75 on the U.S. desks". `d` says whether the
+# counts are of all charts or of the charts read.
+by_desk <- function(d, cond, denom = TRUE, unit = "charts") {
+  cond <- eval(substitute(cond), d, parent.frame())
+  denom <- eval(substitute(denom), d, parent.frame())
+  denom <- rep_len(denom, nrow(d))
+  # A missing value would print as "NA%" without failing the knit.
+  stopifnot(!anyNA(cond), !anyNA(denom))
+  a <- d$desks == "Asia"
+  sprintf(
+    "%s on the Asia desks and %s on the U.S. desks",
+    share(cond[a] & denom[a], denom[a], unit),
+    share(cond[!a] & denom[!a], denom[!a], unit = "")
+  )
+}
 
-# Links to charts by file name: the title links to the archived image. Every chart cited was checked by eye.
+# Links to charts by file name: the title links to the archived image. Every chart cited was checked by eye. Only read
+# charts have a title on record, so only they can be cited.
 cite <- function(files) {
-  ch <- charts[match(files, charts$file), ]
+  ch <- read[match(files, read$file), ]
   if (anyNA(ch$file)) {
-    stop("no chart record for ", paste(files[is.na(ch$file)], collapse = ", "))
+    stop("no reading of ", paste(files[is.na(ch$file)], collapse = ", "))
   }
   title <- gsub("([][*_])", "\\\\\\1", ch$title)
   paste0("[*", title, "*](", ch$image, "), ", format(as.Date(ch$date), "%b %Y"), collapse = "; ")
@@ -67,9 +102,9 @@ cite <- function(files) {
 # Charts of three or more series, after period A and leaving out gains-and-losses charts. Lines are too thin for the
 # ink measurements, so their colors are the readings'; bars and pies use the measured inks.
 has_colour <- function(d, colour) has(d$series_colors, colour)
-many <- charts[
-  lengths(strsplit(charts$series_colors, ";")) >= 3 & charts$period != "A" & charts$direction_colors == "False",
-]
+# Charts read with one series, from the redesign on: period A drew with its own bright set.
+single <- read[lengths(strsplit(read$series_colors, ";")) == 1 & read$period != "A", ]
+many <- read[lengths(strsplit(read$series_colors, ";")) >= 3 & read$period != "A" & read$direction_colors == "False", ]
 many_lines <- many[many$chart_types == "line", ]
 many_parts <- many[many$chart_types != "line", ]
 many_parts$shades <- vapply(strsplit(many_parts$inks, ";"), function(k) any(table(ink_family[k]) >= 2), logical(1))

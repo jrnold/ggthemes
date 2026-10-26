@@ -24,9 +24,9 @@ bg:
   - {name: blue, value: '#d4dee7'}
   - {name: brown, value: '#f8f2e4'}
 palettes:
-  # Colors measured on 386 WSJ Asia and Asia-markets web graphics, Nov 2010 to
-  # Jul 2014 (see vignettes/articles/wsj-styleguide.Rmd). Each is the modal
-  # color of flat areas across the charts that use it.
+  # Colors measured on 2,271 WSJ web graphics, Nov 2010 to Jul 2014, from the
+  # Asia and US desks (see vignettes/articles/wsj-styleguide.Rmd). Each is the
+  # modal color of flat areas across the charts that use it.
   comparison:
     # A highlighted bar is a darker shade of the same hue, not a color set
     # against gray.
@@ -38,6 +38,20 @@ palettes:
   direction:
     - {name: positive, value: '#65a479'}
     - {name: negative, value: '#c72e29'}
+  # The bright set of the US desks before the October 2011 redesign, in the
+  # order of their charts with several series: royal blue usually leads.
+  bright:
+    - {name: royal_blue, value: '#005ccb'}
+    - {name: red, value: '#fe0e11'}
+    - {name: green, value: '#5ac422'}
+    - {name: black, value: '#000000'}
+    - {name: yellow, value: '#ffff0f'}
+  bright_light:
+    - {name: royal_blue, value: '#89aadf'}
+    - {name: red, value: '#ff9587'}
+    - {name: green, value: '#bbee87'}
+  # Not measured: the corpus's election charts use the house navy or steel for
+  # Democrats and red #c72e29 for Republicans.
   party:
     - {name: democrat, value: '#006a8e'}
     - {name: republican, value: '#b1283a'}
@@ -49,6 +63,15 @@ palettes:
     - {name: black, value: '#000000'}
     - {name: gold, value: '#be9c2e'}
     - {name: orange, value: '#fb832d'}
+  # The order of the US desks' charts with three or more lines, which lead
+  # with navy and dark green where the Asia desks use steel and green.
+  categorical_us:
+    - {name: red, value: '#c72e29'}
+    - {name: navy, value: '#016392'}
+    - {name: dark_green, value: '#098154'}
+    - {name: black, value: '#000000'}
+    - {name: orange, value: '#fb832d'}
+    - {name: gold, value: '#be9c2e'}
   # The pale tints the charts print beside each hue: forecasts, the lighter
   # segments of a stack, the context bars of a ranking.
   categorical_light:

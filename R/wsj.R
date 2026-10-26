@@ -177,7 +177,9 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
 #' * `"categorical"` (the default): red, steel blue, green, black, gold and
 #'   orange. Red is the usual color of a single series and the first of two;
 #'   steel blue is the second. Black and gold follow, the order of the
-#'   charts with three or more lines.
+#'   Asia desks' charts with three or more lines.
+#' * `"categorical_us"`: red, navy, dark green, black, orange and gold, the
+#'   order of the US desks' charts with three or more lines.
 #' * `"direction"`: green for gains and red for losses.
 #' * `"comparison"`: a highlighted bar and the rest. WSJ highlights with a
 #'   darker shade of the same hue and a bold label, not by graying out the
@@ -187,8 +189,13 @@ wsj_paper_colour <- function(paper, warn = TRUE, user_env = rlang::caller_env(2)
 #'   of one hue, darkest first, for stacks and highlights. The lightest orange
 #'   is not measured: it is a 55% tint of the mid orange, the tint that makes
 #'   the light step of every other family.
-#' * `"party"`: Democratic blue, Republican red and gray. It is not from the
-#'   corpus, which has no U.S. election charts.
+#' * `"bright"`: royal blue, red, green, black and yellow, the saturated
+#'   colors of the US desks' charts before the October 2011 redesign.
+#'   `"bright_light"` holds the pale shades of its first three colors.
+#' * `"party"`: Democratic blue, Republican red and gray. It is not measured:
+#'   the election charts of 2011--2013 use the navy or steel blue of
+#'   `"comparison"` for Democrats and the red of `"categorical"` for
+#'   Republicans.
 #'
 #' `"categorical_light"` holds the pale tint the charts pair with each
 #' `"categorical"` color. It sits at roughly 1.2--2.2 contrast against the

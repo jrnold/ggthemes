@@ -19,6 +19,20 @@ test_that("wsj palettes use semantic roles", {
   expect_equal(wsj_pal("actual_forecast")(2), c("#5d8ca8", "#abbdcb"))
 })
 
+test_that("categorical_us follows the US desks' line order, navy and dark green second", {
+  expect_equal(
+    wsj_pal("categorical_us")(6),
+    c("#c72e29", "#016392", "#098154", "#000000", "#fb832d", "#be9c2e")
+  )
+})
+
+test_that("bright palettes hold the 2011 colors, royal blue first", {
+  expect_equal(wsj_pal("bright")(5), c("#005ccb", "#fe0e11", "#5ac422", "#000000", "#ffff0f"))
+  # Each pale shade is lighter than the bright color of the same hue.
+  lightness <- function(x) farver::decode_colour(x, to = "lab")[, "l"]
+  expect_true(all(lightness(wsj_pal("bright_light")(3)) > lightness(wsj_pal("bright")(3))))
+})
+
 test_that("theme_wsj() sets the field and rejects an unknown one", {
   expect_s3_class(theme_wsj(), "theme")
   expect_equal(theme_wsj(paper = "gray")$plot.background$fill, "#efefef")

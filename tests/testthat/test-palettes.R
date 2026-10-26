@@ -103,6 +103,33 @@ test_that("grey ramps stay neutral and monotone in every channel", {
   }
 })
 
+# The WSJ palettes are hand-entered from measurements, so they get the same
+# family checks as the Tableau ones.
+wsj_palette_colours <- function() {
+  lapply(ggthemes::ggthemes_data$wsj$palettes, function(x) x$value)
+}
+
+test_that("every wsj palette is valid hex", {
+  pals <- wsj_palette_colours()
+  bad <- names(pals)[
+    !vapply(pals, function(x) all(grepl("^#[0-9A-Fa-f]{6}$", x)), logical(1))
+  ]
+  expect_equal(bad, character(0))
+})
+
+test_that("no wsj palette repeats a colour", {
+  pals <- wsj_palette_colours()
+  bad <- names(pals)[
+    vapply(pals, function(x) anyDuplicated(tolower(x)) > 0L, logical(1))
+  ]
+  expect_equal(bad, character(0))
+})
+
+test_that("wsj palette lengths are stable", {
+  wsj <- vapply(wsj_palette_colours(), length, integer(1))
+  expect_snapshot(wsj)
+})
+
 test_that("tableau ordered-sequential palettes draw correctly", {
   expect_doppelganger(
     "palettes-tableau-ordered-sequential",

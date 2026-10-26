@@ -54,3 +54,19 @@
         Classic Red-White-Green Light         Classic Red-Green Light 
                                    11                              11 
 
+# wsj palette lengths are stable
+
+    Code
+      wsj
+    Output
+             comparison   actual_forecast         direction            bright 
+                      2                 2                 2                 5 
+           bright_light             party       categorical    categorical_us 
+                      3                 3                 6                 6 
+      categorical_light  categorical_dark             blues            greens 
+                      6                 6                 3                 3 
+                   reds             golds           oranges              rgby 
+                      3                 3                 3                 4 
+              red_green       black_green           dem_rep           colors6 
+                      2                 4                 3                 6 
+
