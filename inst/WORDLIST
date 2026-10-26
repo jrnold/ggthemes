@@ -7,9 +7,11 @@ Banff
 Beamer
 Bembo
 Bugfix
+CIE
 CMD
 Calc
 Calc's
+Callouts
 Canva
 Codecov
 Colour
@@ -20,7 +22,10 @@ Excel's
 Fira
 FiveThirtyEight
 Fivethirtyeight
+Frere
 Geoms
+HSB
+HSL
 Hanrahan
 Heer
 Highcharts
@@ -39,6 +44,7 @@ Maneesh
 McGill
 Noto
 Officina
+PMI
 Pinterest
 PolicyViz
 README
@@ -59,6 +65,7 @@ Stribley
 Tabaleau
 Tableu
 Tidyverse
+Tobias
 Tol
 Tol's
 Tremmel
@@ -69,6 +76,7 @@ Unica
 Verdana
 WS
 WSJ
+WSJ's
 Warchoł
 Zdeb
 al
@@ -79,6 +87,9 @@ bowerth
 bowtie
 bugfix
 calc
+callout
+callout's
+callouts
 canva
 codepoint
 codepoints
@@ -88,7 +99,9 @@ convolving
 coord
 daroczig
 devtools
+dichromat
 dplyr
+edu
 erroring
 et
 extrafont
@@ -108,7 +121,9 @@ https
 iWork
 impactful
 jbkunst
+jtalbot
 khroma
+kpi
 lifecycle
 linepattern
 linetype
@@ -116,6 +131,7 @@ linetypes
 linewidth
 linter
 lintr's
+longdash
 lty
 luminance
 magrittr
@@ -134,9 +150,12 @@ pts
 rcolor
 rlang
 rstudio
+semibold
+shortdash
 sj
 slopeless
 solarized
+stanford
 stata
 stcolor
 stmono
@@ -146,7 +165,10 @@ styleguide
 styleguide's
 styleguide’s
 stylesheet
+subagent
+subagents
 symbolstyles
+systemfonts
 tibble
 tidyverse
 tufte
@@ -156,3 +178,4 @@ vdiffr
 weitzner
 withr
 wsj
+ΔE

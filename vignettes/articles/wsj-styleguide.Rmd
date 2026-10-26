@@ -28,7 +28,7 @@ stopifnot(length(unique(credit_from)) == 1)
 after_credit <- read[read$date >= credit_from[[1]], ]
 ```
 
-The *Wall Street Journal* published a book on its chart style in 2010, Dona Wong's *The Wall Street Journal Guide to Information Graphics*, but the book teaches judgement. It gives no colors and no measurements.
+The *Wall Street Journal* published a book on its chart style in 2010, Dona Wong's *The Wall Street Journal Guide to Information Graphics*, but the book teaches judgment. It gives no colors and no measurements.
 This article describes the charts themselves, as they ran on the paper's website from late 2010 to mid-2014, and shows how to draw them with `theme_wsj()` and the other WSJ tools in ggthemes.
 
 It is based on `r format(n_all, big.mark = ",")` charts, the "native size" graphics that ran beside articles on the paper's website, dated `r format(min(as.Date(charts$date)), "%B %Y")` to `r format(max(as.Date(charts$date)), "%B %Y")`.
@@ -69,7 +69,8 @@ knitr::kable(
   row.names = FALSE,
   caption = paste(
     "The field and the gray type were measured on every chart; the title, the bands and the credit line are from the",
-    "charts read, and the subtitle weight from the Asia charts only (see [How this guide was made](#how-this-guide-was-made))."
+    "charts read, and the subtitle weight from the Asia charts only",
+    "(see [How this guide was made](#how-this-guide-was-made))."
   )
 )
 ```
@@ -279,16 +280,18 @@ p_bands +
 
 ```{r field-gray}
 ## Period D: the gray field and dotted rules.
-p + theme_wsj(paper = "gray", base_family = wsj_text_font, title_family = wsj_title_font) + theme(axis.text.x = element_text(hjust = 0))
+p +
+  theme_wsj(paper = "gray", base_family = wsj_text_font, title_family = wsj_title_font) +
+  theme(axis.text.x = element_text(hjust = 0))
 ```
 
 ## Axes
 
-- **Values on the left, aligned right.** The y labels sit on the left (`r share(axis_charts$y_axis_side %in% c("left", "both"), nrow(axis_charts), "charts read with a value axis")`), centred on their rule, with no tick. They are set flush right on their numbers, and the unit on the top label hangs outside the column: in "20%" over "15", the "20" sits above the "15" and the "%" sticks out toward the plot; in "\$120" over "100" the "\$" sticks out to the left. Of `r nrow(ylabel_check)` charts checked by eye, `r sum(ylabel_check$align == "right")` are aligned right, `r sum(ylabel_check$align == "undecided")` have labels all of one width and cannot tell, `r sum(ylabel_check$align == "other")` is irregular, and none is aligned left: `r cite(c("AI-CA928_CECON_NS_20130513065706.jpg", "AI-BY469_CINVES_NS_20130116122703.jpg", "AI-CF943_CEXPOR_NS_20140109221206.jpg"))`. `theme_wsj()` aligns them right, and `wsj_label()` hangs the suffix. On the Asia desks a right-hand axis appears only as the second axis of a two-scale chart (`r sum(read$y_axis_side == "both")` charts): `r cite(c("AI-BS851_CECON_NS_20120515142403.jpg", "AM-BA672_CHINAH_NS_20131014054803.jpg"))`, or on the right-hand panel of a pair: `r cite("AI-BW445A_SPAIN_NS_20121017130604.jpg")`. A few U.S. charts put their only axis on the right (`r sum(us_read$y_axis_side == "right")` read): `r cite(c("MK-BS563A_APPLE_NS_20120228180904.jpg", "MK-BY239_4PROFI_NS_20121024181510.jpg"))`.
+- **Values on the left, aligned right.** The y labels sit on the left (`r share(axis_charts$y_axis_side %in% c("left", "both"), nrow(axis_charts), "charts read with a value axis")`), centered on their rule, with no tick. They are set flush right on their numbers, and the unit on the top label hangs outside the column: in "20%" over "15", the "20" sits above the "15" and the "%" sticks out toward the plot; in "\$120" over "100" the "\$" sticks out to the left. Of `r nrow(ylabel_check)` charts checked by eye, `r sum(ylabel_check$align == "right")` are aligned right, `r sum(ylabel_check$align == "undecided")` have labels all of one width and cannot tell, `r sum(ylabel_check$align == "other")` is irregular, and none is aligned left: `r cite(c("AI-CA928_CECON_NS_20130513065706.jpg", "AI-BY469_CINVES_NS_20130116122703.jpg", "AI-CF943_CEXPOR_NS_20140109221206.jpg"))`. `theme_wsj()` aligns them right, and `wsj_label()` hangs the suffix. On the Asia desks a right-hand axis appears only as the second axis of a two-scale chart (`r sum(read$y_axis_side == "both")` charts): `r cite(c("AI-BS851_CECON_NS_20120515142403.jpg", "AM-BA672_CHINAH_NS_20131014054803.jpg"))`, or on the right-hand panel of a pair: `r cite("AI-BW445A_SPAIN_NS_20121017130604.jpg")`. A few U.S. charts put their only axis on the right (`r sum(us_read$y_axis_side == "right")` read): `r cite(c("MK-BS563A_APPLE_NS_20120228180904.jpg", "MK-BY239_4PROFI_NS_20121024181510.jpg"))`.
 - **The unit on the top label only.** "8%", then 6, 4, 2; "$250 billion", then 225, 200. Of the charts read whose axis carries a unit symbol, `r share(read$y_unit_top_only == "True", sum(read$y_unit_top_only %in% c("True", "False")))` put it on the top label alone: `r cite(c("AI-BU349_SPAIN_NS_20120719113903.jpg", "AI-BU867_Econom_NS_20120809135703.jpg", "AM-BB585_CHINAH_NS_20131223060011.jpg"))`. Use `wsj_label()`. A worded unit hangs like a symbol: "$250 billion" over "225".
 - **Ticks under the x axis**, hanging down from the baseline (`r share(read$x_ticks == "below", sum(read$x_ticks != "none"), "charts read with x ticks")`): `r cite(c("AI-BQ436_SKECON_NS_20120201013603.jpg", "MK-BT730_MSOFT_NS_20120419183018.jpg"))`. Smaller ticks between them mark months or quarters, on `r by_desk(read, minor_ticks == "True")`: `r cite(c("AI-BW723_JECON_NS_20121030003018.jpg", "MK-CH389_APPLE_NS_20131028180311.jpg"))`.
-- **Years abbreviated.** The first year in full and the rest with an apostrophe, "2011 '12 '13", on `r share(read$year_labels %in% c("mixed", "abbreviated"), sum(read$year_labels %in% c("mixed", "abbreviated", "full")), "charts read labelled by year")`: `r cite(c("AI-BR349_JECON_NS_20120311232103.jpg", "MK-BW709_LIQUOR_NS_20120823175703.jpg"))`. Fiscal years start "FY2011": `r cite("MK-CH389_APPLE_NS_20131028180311.jpg")`. Use `wsj_year_label()`.
-- **Labels after the tick, or on the point.** Where the data are monthly or daily, the tick marks the start of the year and the label is set just to its right, so "'12" reads as the year that begins there: `r cite(c("AI-BQ436_SKECON_NS_20120201013603.jpg", "AI-BR349_JECON_NS_20120311232103.jpg", "MK-CH389_APPLE_NS_20131028180311.jpg"))`. Use `theme(axis.text.x = element_text(hjust = 0))`. Where there is one value a year, the tick is on the value and the label is centred under it: `r cite(c("MK-BT552_EBOOKS_NS_20120412173602.jpg", "MK-BW709_LIQUOR_NS_20120823175703.jpg", "MK-BU489A_AMC_NS_20120521183610.jpg"))`. The label after the tick is the commoner on the Asia desks, the centred label on the U.S. desks: after the tick on `r by_desk(read, x_label_position == "right_of_tick", x_label_position != "", "charts with x labels")`. Bars of categories, such as quarters, are labelled centred under each bar.
+- **Years abbreviated.** The first year in full and the rest with an apostrophe, "2011 '12 '13", on `r share(read$year_labels %in% c("mixed", "abbreviated"), sum(read$year_labels %in% c("mixed", "abbreviated", "full")), "charts read labeled by year")`: `r cite(c("AI-BR349_JECON_NS_20120311232103.jpg", "MK-BW709_LIQUOR_NS_20120823175703.jpg"))`. Fiscal years start "FY2011": `r cite("MK-CH389_APPLE_NS_20131028180311.jpg")`. Use `wsj_year_label()`.
+- **Labels after the tick, or on the point.** Where the data are monthly or daily, the tick marks the start of the year and the label is set just to its right, so "'12" reads as the year that begins there: `r cite(c("AI-BQ436_SKECON_NS_20120201013603.jpg", "AI-BR349_JECON_NS_20120311232103.jpg", "MK-CH389_APPLE_NS_20131028180311.jpg"))`. Use `theme(axis.text.x = element_text(hjust = 0))`. Where there is one value a year, the tick is on the value and the label is centered under it: `r cite(c("MK-BT552_EBOOKS_NS_20120412173602.jpg", "MK-BW709_LIQUOR_NS_20120823175703.jpg", "MK-BU489A_AMC_NS_20120521183610.jpg"))`. The label after the tick is the commoner on the Asia desks, the centered label on the U.S. desks: after the tick on `r by_desk(read, x_label_position == "right_of_tick", x_label_position != "", "charts with x labels")`. Bars of categories, such as quarters, are labeled centered under each bar.
 - **Inverted scales** are allowed and flagged. A currency chart may turn its axis over so that down means weaker, with a footnote saying so: `r cite("AM-AZ574_AMONEY_NS_20130724132404.jpg")`.
 
 ```{r axes}
@@ -604,7 +607,10 @@ p1 <- ggplot(pmi, aes(month, index)) +
   scale_x_date(breaks = as.Date(c("2011-01-01", "2012-01-01")), labels = wsj_year_label()) +
   scale_y_continuous(breaks = seq(46, 54, 2), limits = c(46, 55)) +
   coord_cartesian(clip = "off") +
-  labs(title = "HSBC\u2019s China PMI", caption = "Source: Markit Economics     *Preliminary\nThe Wall Street Journal") +
+  labs(
+    title = "HSBC\u2019s China PMI",
+    caption = "Source: Markit Economics     *Preliminary\nThe Wall Street Journal"
+  ) +
   theme_wsj(base_size = 10, base_family = wsj_text_font, title_family = wsj_title_font) +
   theme(axis.text.x = element_text(hjust = 0), plot.margin = margin(10, 10, 10, 34))
 sentiment <- data.frame(
@@ -635,7 +641,7 @@ To pick out one bar, WSJ charts darken it within its own hue and set its label i
 A steel-blue ranking highlights in navy, a green one in dark green, a salmon one in red: `r cite(c("AI-CD614_VIETWE_NS_20130918063008.jpg", "AI-BU730_PHILBA_NS_20120806050005.jpg", "AM-BD893_CDEBT_NS_20140616115704.jpg", "AI-CF229_BANGWA_NS_20131203125403.jpg"))`.
 `wsj_pal("comparison")` gives the blue pair; the `"greens"`, `"reds"` and `"golds"` palettes give the others, darkest first.
 
-Ranked horizontal bars drop the value axis: the category is labelled on the left, the value at the end of each bar, and rows are separated by dotted rules or bands.
+Ranked horizontal bars drop the value axis: the category is labeled on the left, the value at the end of each bar, and rows are separated by dotted rules or bands.
 
 ```{r highlight, fig.height = 4.4, warning = FALSE}
 d <- data.frame(
@@ -646,7 +652,8 @@ d$country <- factor(d$country, levels = rev(d$country))
 d$focal <- d$country == "Vietnam"
 ggplot(d, aes(growth, country)) +
   geom_col(aes(fill = focal), width = 0.7) +
-  geom_text(aes(label = paste0(growth, ifelse(country == "Colombia", "%", "")), fontface = ifelse(focal, "bold", "plain")),
+  geom_text(aes(label = paste0(growth, ifelse(country == "Colombia", "%", "")),
+                fontface = ifelse(focal, "bold", "plain")),
             hjust = -0.2, size = 3) +
   scale_fill_manual(values = c(`TRUE` = wsj_pal("comparison")(2)[1], `FALSE` = wsj_pal("comparison")(2)[2]),
                     guide = "none") +
@@ -667,7 +674,7 @@ ggplot(d, aes(growth, country)) +
 
 ### Shades of one hue
 
-Stacked bars and pies fill their segments with the shades of one or two hues, labelled at the side with short leader lines rather than a legend: `r cite(c("AI-CC842A_APURS_NS_20130813000004.jpg", "AI-CC605_JSMART_NS_20130731070306.jpg", "AI-BU352_SINGBE_NS_20120720041503.jpg"))`.
+Stacked bars and pies fill their segments with the shades of one or two hues, labeled at the side with short leader lines rather than a legend: `r cite(c("AI-CC842A_APURS_NS_20130813000004.jpg", "AI-CC605_JSMART_NS_20130731070306.jpg", "AI-BU352_SINGBE_NS_20120720041503.jpg"))`.
 Forecasts and estimates take the pale shade of the actual values' hue: `r cite(c("AI-BQ213_SINGHc_NS_20120119073303.jpg", "AI-CE420_AVOTE_NS_20131024043004.jpg", "AI-BS155_SKECON_NS_20120416015702.jpg"))`. `wsj_pal("actual_forecast")` is the steel-blue pair, and `wsj_pal("categorical_light")` has the pale shade of every hue.
 
 ```{r forecast}
@@ -691,7 +698,7 @@ ggplot(d, aes(year, value, fill = kind)) +
 ## Labels and callouts
 
 - **Direct labels first.** Series are named beside the data, in the series' own color, on `r by_desk(read, has(labelling, "direct_series_labels"), lengths(strsplit(series_colors, ";")) >= 2, "charts with two or more series")`: `r cite(c("AI-BG392_QE2REA_NS_20101104140201.jpg", "MK-BW709_LIQUOR_NS_20120823175703.jpg", "MK-BU489A_AMC_NS_20120521183610.jpg"))`. A legend at the top appears on `r sum(has(read$labelling, "legend_top"))` charts read, usually where lines cross too often to label or bars are grouped: `r cite(c("AI-BU867_Econom_NS_20120809135703.jpg", "AI-CC875_ARATES_NS_20130814225706.jpg", "P1-BB372A_TRADE_NS_20110628174503.jpg"))`.
-- **Labels take the line's own color**, usually in bold, not a lighter or darker shade of it. Measured on `r nrow(label_colors)` label and line pairs in `r length(unique(label_colors$file))` charts, `r by_desk(label_colors, abs(dL) <= 4, TRUE, "pairs")` match within 4 units of lightness (L\*). Most of the rest are artefacts of the measurement, a pale fill or band taken for the line, which makes the label read darker than its line, not lighter. A black series gets a black label. Examples: `r cite(c("AI-BG392_QE2REA_NS_20101104140201.jpg", "AI-BV752_CPANET_NS_20120919115707.jpg", "AM-BA985_CMATTE_NS_20131107123008.jpg"))`. Map the label's color to the same variable as the line's, as in `geom_text(aes(colour = series))`, and the scale gives both the same color.
+- **Labels take the line's own color**, usually in bold, not a lighter or darker shade of it. Measured on `r nrow(label_colors)` label and line pairs in `r length(unique(label_colors$file))` charts, `r by_desk(label_colors, abs(dL) <= 4, TRUE, "pairs")` match within 4 units of lightness (L\*). Most of the rest are artifacts of the measurement, a pale fill or band taken for the line, which makes the label read darker than its line, not lighter. A black series gets a black label. Examples: `r cite(c("AI-BG392_QE2REA_NS_20101104140201.jpg", "AI-BV752_CPANET_NS_20120919115707.jpg", "AM-BA985_CMATTE_NS_20131107123008.jpg"))`. Map the label's color to the same variable as the line's, as in `geom_text(aes(colour = series))`, and the scale gives both the same color.
 - **Callouts mark the latest value.** A number callout holds the value, often after its date ("July 4.6%", "2Q: 0.7%"), in bold type inside a filled box or circle, with a triangular tail pointing at the bar or the end of the line. Of the `r nrow(callouts)` charts with one, `r share(callouts$tail == "triangle", nrow(callouts), "callouts")` have the tail and `r share(callouts$marks_latest == "True", nrow(callouts), "callouts")` mark the latest value. They are black with white type (`r sum(callouts$fill == "black")`) or yellow `#ffe03d` with black type (`r sum(callouts$fill == "yellow")`). The other `r sum(!callouts$fill %in% c("black", "yellow"))` take a color of the chart: the color of the series they mark, with white type, as in `r cite(c("AI-BR167_CGDP_NS_20120304224503.jpg", "AI-CF617A_ASIAS_NS_20131223122404.jpg", "NA-BQ947_STUDEN_NS_20120531123606.jpg", "MK-CJ995_TWITTE_NS_20140210182103.jpg"))`, or on the Asia desks another shade, mostly the mid steel blue `#5d8ca8` with white type, as in `r cite(c("AI-CF534_BITCOI_NS_20131218055104.jpg", "AI-BW283_SKRATE_NS_20121010224803.jpg"))`, and once the pale shades with black type, `r cite("AI-BY764_IECON_NS_20130129031805.jpg")`. A chart with two marked series gives each callout its series' color. Most are boxes; the U.S. desks also drew large black circles with a tail, `r cite(c("MK-BW709_LIQUOR_NS_20120823175703.jpg", "MK-BV957_UPS_NS_20120724173912.jpg"))`. Most sit above the point, often to its left (`r share(grepl("above", callouts$position), nrow(callouts), "callouts")`), and below it when the value is low. On the Asia desks they belong to periods B and C: only `r sum(callouts$period == "D" & callouts$desks == "Asia")` of the `r sum(asia$period == "D")` Asia charts of period D have one, and the rest mark the latest value with a pointer label (see [below](#pointers-rings-arrows-and-markers)) or plain text, if at all. The U.S. desks kept them, on `r share(callouts$period == "D" & callouts$desks == "US", us_read$period == "D", "U.S. charts read")` of period D: `r cite(c("MK-CH389_APPLE_NS_20131028180311.jpg", "MK-CI701_FORD_NS_20131218184503.jpg"))`. Black: `r cite(c("AI-BV492_JECON_NS_20120909223903.jpg", "AI-BS026_JECON_NS_20120410232103.jpg"))`. Yellow: `r cite(c("AI-BV612_SKRATE_NS_20120913002402.jpg", "AI-BV557_JECON_NS_20120911225702.jpg", "MK-BT552_EBOOKS_NS_20120412173602.jpg"))`. Draw them with `wsj_callout()`.
 
 ```{r callout, fig.width = 7.5, fig.height = 3.8}
@@ -772,8 +779,8 @@ Four more marks are rarer than the callouts, but recur. The lists of examples be
 
 - **Pointer labels.** After the gray field arrives, the boxed callout gives way to plain type: the date in regular weight and the value in bold, "3Q: **+3.5%**", with a small black wedge pointing at the point or bar. All `r length(annotated$pointer)` Asia charts found with one are from period D: `r cite(annotated$pointer[c(5, 8, 4, 2)])`.
 - **Rings.** The latest point of a line can be ringed: an open black circle, filled with the field, usually beside a pointer label or plain text (`r length(annotated$ring)` charts): `r cite(annotated$ring[c(2, 5, 6)])`. Draw it with `geom_point(shape = 21)`. In late 2011 and early 2012 a few red lines carried a dot on every observation instead: `r cite(c("AI-BP106_JECON_NS_20111130010303.jpg", "AI-BP835_CPROP_NS_20120104011203.jpg"))`.
-- **Direction arrows.** A currency chart says which way is which with a broad pale arrow beside the line, labelled with what the direction means, "Weaker yuan" or "Stronger yen" (`r length(annotated$arrow)` charts): `r cite(annotated$arrow)`. An inverted scale is flagged in a note instead (see [Axes](#axes)).
-- **Event markers.** A thin gray vertical rule marks the moment of an event, labelled beside it, or a shaded span marks the time after it (`r length(annotated$event)` charts): `r cite(annotated$event)`.
+- **Direction arrows.** A currency chart says which way is which with a broad pale arrow beside the line, labeled with what the direction means, "Weaker yuan" or "Stronger yen" (`r length(annotated$arrow)` charts): `r cite(annotated$arrow)`. An inverted scale is flagged in a note instead (see [Axes](#axes)).
+- **Event markers.** A thin gray vertical rule marks the moment of an event, labeled beside it, or a shaded span marks the time after it (`r length(annotated$event)` charts): `r cite(annotated$event)`.
 
 ```{r annotations, fig.width = 10, fig.height = 4.2}
 ## After "Target the Line", "A New Day" and "Shifting Currency", with made-up data.
@@ -815,13 +822,13 @@ p2 <- ggplot(prices, aes(year, change)) +
 set.seed(7)
 yuan <- walk(40, 6.6, 0.012, -0.007, from = "2010-06-01")
 p3 <- ggplot(yuan, aes(date, value)) +
-  ## The event: a gray rule, labelled beside it with a wedge.
+  ## The event: a gray rule, labeled beside it with a wedge.
   geom_vline(xintercept = as.Date("2010-06-19"), colour = "#a6a6a6", linewidth = 0.4) +
   annotate("text", x = as.Date("2010-08-20"), y = 6.73, label = "Peg ends", hjust = 0, size = 2.8,
            family = wsj_text_font) +
   wedge(as.Date("2010-06-25"), 6.73, "left", w = 45, h = 0.02) +
   geom_line(colour = wsj_col("red"), linewidth = 0.8) +
-  ## The direction arrow, pale, above the line with its label below: up is a weaker yuan. The head is centred on
+  ## The direction arrow, pale, above the line with its label below: up is a weaker yuan. The head is centered on
   ## the shaft.
   annotate("polygon", x = as.Date("2013-04-01") + c(-25, -25, -55, 0, 55, 25, 25),
            y = c(6.66, 6.72, 6.72, 6.78, 6.72, 6.72, 6.66), fill = "#bdbdbd") +
@@ -926,12 +933,12 @@ Number callouts are `wsj_callout()`. What the package does not do: the title and
 
 ## How this guide was made
 
-**The charts.** The corpus is the set of "native size" graphics (`_NS_` in the file name) that the Internet Archive captured from the *Journal*'s image servers, `si.wsj.net` and `s.wsj.net`, kept if they were flat data graphics in English and checked by hand, `r format(n_all, big.mark = ",")` in all. The Asia charts were found first, by a cut on color entropy that kept flat graphics; the U.S. charts later, from the page-one (`P1-`), U.S. news (`NA-`) and Marketplace (`MK-`) file names of 2011 to 2014, each labelled by hand as a chart, a map, a table or another kind of graphic. Maps and tables are left out. Most Asia charts are 225 pixels wide; the U.S. charts are often larger.
+**The charts.** The corpus is the set of "native size" graphics (`_NS_` in the file name) that the Internet Archive captured from the *Journal*'s image servers, `si.wsj.net` and `s.wsj.net`, kept if they were flat data graphics in English and checked by hand, `r format(n_all, big.mark = ",")` in all. The Asia charts were found first, by a cut on color entropy that kept flat graphics; the U.S. charts later, from the page-one (`P1-`), U.S. news (`NA-`) and Marketplace (`MK-`) file names of 2011 to 2014, each labeled by hand as a chart, a map, a table or another kind of graphic. Maps and tables are left out. Most Asia charts are 225 pixels wide; the U.S. charts are often larger.
 
 **Readings.** Each Asia chart was read by a Claude subagent, which recorded its text (title, subtitle, notes, source), chart type, labels, callouts and colors, then read again at twice the size for the rules, ticks, label positions, typefaces and weights. Where the two readings overlapped they mostly agreed, except on bands: the first reading reported bands on 52 charts that the second saw as dotted rules. A pixel measurement of the band tint decided it for the second reading, and the shares here use it. Two Asia charts that the first pass missed were added later and read once, by eye, at twice the size, with the fields of both readings: `r cite(c("AI-BW445A_SPAIN_NS_20121017130604.jpg", "AI-CI160_AUSTOU_NS_20140424054805.jpg"))`.
 The U.S. charts were read once, at twice the size, with the fields of both readings, by eight subagents. They read a sample of `r nrow(us_read)`: every combination of desk and half-year in proportion to its size, at least four charts from each, drawn at random. Each subagent also read three Asia charts that had been read before, 24 in all, so the two sets of readings can be compared. They agreed on the credit line, the axis side, the unit on the top label, the title face and the line weight of all 24, and on 19 to 23 of 24 for the rules, ticks, label positions and years. They agreed least on the subtitle weight, 17 of 24, and the new readers called regular subtitles bold: on the larger U.S. charts a regular subtitle looks heavy. A check by eye found the "bold" U.S. subtitles of period C set in the same weight as the regular Asia ones, so the subtitle weights here are the Asia charts' alone, and so, for the same reason, are the line weights.
 
-**Pixel measurements.** Every chart was measured. The field is the modal color of each chart's border. The palette comes from the flat areas of each chart (pixels whose 3-by-3 neighbourhood varies by no more than 12 levels, which drops anti-aliased edges and text), binned in CIE Lab and clustered across charts; a chart uses a color if at least 30 of its pixels fall within ΔE 6 of it. Lines are often too thin for this, so a chart's measured colors can miss its lines. The bands are the share of each chart in a tint 2.5 to 12 L* darker than its field.
+**Pixel measurements.** Every chart was measured. The field is the modal color of each chart's border. The palette comes from the flat areas of each chart (pixels whose 3-by-3 neighborhood varies by no more than 12 levels, which drops anti-aliased edges and text), binned in CIE Lab and clustered across charts; a chart uses a color if at least 30 of its pixels fall within ΔE 6 of it. Lines are often too thin for this, so a chart's measured colors can miss its lines. The bands are the share of each chart in a tint 2.5 to 12 L* darker than its field.
 
 **Type and labels.** The darkness of the type was measured in each chart's subtitle and source lines, as the darkest 5% of its neutral pixels: black type measures 0 to 10 there and the later gray 25 to 70. The second reading's call of the y-label alignment was dropped: on axes whose labels are all one width it took the unit hanging off the top label for left alignment. A by-eye check of 48 Asia charts replaces it.
 
