@@ -206,7 +206,7 @@ theme_base <- function(base_size = 12, base_family = "") {
 # $font.sub
 # [1] 1
 #
-# # default number of tick-marks in x and y, and label lenghth.
+# # default number of tick-marks in x and y, and label length.
 # Not sure how that can be used
 # $lab
 # [1] 5 5 7
@@ -301,7 +301,7 @@ theme_base <- function(base_size = 12, base_family = "") {
 # $page
 # [1] TRUE
 #
-# # dfault plotting symbol. not in themes.
+# # default plotting symbol. not in themes.
 # $pch
 # [1] 1
 #
@@ -341,7 +341,7 @@ theme_base <- function(base_size = 12, base_family = "") {
 # $tcl
 # [1] -0.5
 #
-# # extremes of user coord of plotting regsion
+# # extremes of user coord of plotting region
 # $usr
 # [1] -0.0381697  0.9924122  0.2730712  1.0279588
 #
