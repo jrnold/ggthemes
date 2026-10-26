@@ -141,7 +141,7 @@ lines.negative_labels.other,lines,print,lines: negative_labels = other,other,3,4
 lines.negative_labels.plus_minus_at_zero,lines,print,lines: negative_labels = plus_minus_at_zero,plus_minus_at_zero,42,46,panels with negatives,0.913,20131123_BRC831;20120609_EUC363;20150808_FNC294;20130112_BRC750
 lines.scale_break.baseline_not_zero,lines,print,lines: scale_break = baseline_not_zero,baseline_not_zero,56,325,panels,0.172,20120317_WBC761;20131116_FNC698;20150509_EUC189;20121103_INC383
 lines.event_lines.labelled,lines,print,lines: labelled event lines (marking a date),labelled,27,325,panels,0.083,20121124_WBC513;20150207_MAC004;20131102_USC675;20140208_WBC291
-lines.value_lines.labelled,lines,print,lines: labelled value lines (marking a reference level),labelled,8,325,panels,0.025,20141025_STC029;20131130_BRC864;20150328_LDC667;20130302_EUC141
+lines.value_lines.labelled,lines,print,lines: labelled value lines (marking a reference level),labelled,8,325,panels,0.025,20131130_BRC864;20150328_LDC667;20130302_EUC141
 lines.value_lines.unlabelled,lines,print,lines: unlabelled value lines (marking a reference level),unlabelled,6,325,panels,0.018,20140208_WBC291;20120804_BRC737;20150228_LDC295;20120331_EUC844
 lines.highlight_regions.labelled coloured,lines,print,"lines: labelled coloured shaded regions (pale pink, sometimes with pale blue; events and periods)",labelled coloured,3,325,panels,0.009,20141101_MAC130;20150328_FNC672
 lines.highlight_regions.labelled neutral,lines,print,lines: labelled neutral shaded regions (the ground darkened; mostly forecast periods),labelled neutral,24,325,panels,0.074,20130504_WBC491;20140315_BRC497;20120428_WWC112;20150214_STC131

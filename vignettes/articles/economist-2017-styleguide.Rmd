@@ -134,7 +134,7 @@ knitr::kable(
 ```
 
 
-Economist charts often use footnotes, identified by an ordered set of stymbols.
+Economist charts often use footnotes, identified by an ordered set of symbols.
 
 ```{r footnote-symbols}
 economist_2017_footnote(1:8)
