@@ -143,12 +143,14 @@
 
 - Fix `palette_pander()` returning a color for `n = 0`; it now returns
   `character(0)`.
+
 - The README is reorganized: an overview of what the package provides, a
   two-column theme gallery linked to the reference pages, a geoms section and
   current installation instructions. The full color palette gallery moves to
   a new "Color palettes" article on the package website, drawn as images; the
   README's HTML swatches rendered as empty cells on GitHub, which strips their
   colors.
+
 - Fix `theme_foundation()` on ggplot2 >= 4.0.0. It is meant to clear every
   color and fill inherited from `theme_grey()`, but ggplot2 4.0.0's S7 theme
   elements hid them from the check, so `theme_grey()`'s gray panel, gray strips
@@ -159,50 +161,64 @@
   and `theme_wsj()` back to their intended look, which ggplot2 3.5.x users
   already saw. In particular, `theme_solid(fill = )` now fills the panel
   rather than only the area around it.
+
 - Expand the README theme gallery to cover every non-deprecated exported
   theme, pairing each with its matching palette where available.
+
 - `theme_map()` places its legend with `legend.position = "inside"` and
   `legend.position.inside`, instead of the numeric `legend.position`
   deprecated in ggplot2 3.5.0. The legend is drawn in the same place.
+
 - `geom_tufteboxplot()` gains a `linewidth` aesthetic for its lines, as in
   `ggplot2::geom_pointrange()`; `size` now sets only point sizes. This removes
   the ggplot2 deprecation warnings it emitted on every plot. Setting `size`
   without `linewidth` still widens the lines too, so existing code draws the
   same, and plots drawn with the defaults are unchanged.
+
 - `stat_fivenumber()` declares the aesthetics it drops, so it no longer
   warns that `y` was dropped during the statistical transformation.
+
 - Fix `solarized_pal()` storing the palette function instead of the palette
   size in its `max_n` attribute. Requesting more than eight colors now pads
   with `NA` after the usual warning instead of failing with "subscript out of
   bounds", and `n = 0` returns `character(0)`.
+
 - Fix `few_pal()` returning two colors for `n = 0`; it now returns
   `character(0)`.
+
 - Require ggplot2 >= 3.5.2. `bank_plot()` and `bank_plot_multiscale()`
   already called `ggplot2::is_ggplot()`, so older versions failed at run time.
+
 - Correct the documented values of `type` in `scale_colour_tableau()` and
   `scale_fill_tableau()`: they are `"regular"`, `"ordered-sequential"` and
   `"ordered-diverging"`, not `"sequential"` and `"diverging"`.
+
 - BREAKING CHANGE: `theme_excel_new()` now matches the chart chrome Excel
   actually draws, decoded from the chart XML that Excel writes. Major
   gridlines are `#D9D9D9` rather than `#BFBFBF`; axis lines are drawn in
   `#BFBFBF`, where previously there were none; and axis titles are one point
   larger than axis labels, as in Excel. Existing plots will change appearance.
+
 - `theme_excel_new()` documents that Excel's font has been Aptos since 2023.
   `base_family` still defaults to `"sans"`, since Aptos is rarely installed
   outside Office; pass `base_family = "Aptos Narrow"` for a closer match.
+
 - Add the current Microsoft Office theme, which Microsoft made the default in
   2023, as the `"Office"` Excel theme:
   `#156082`, `#E97132`, `#196B24`, `#0F9ED5`, `#A02B93`, `#4EA72E`.
   `ggthemes_data$excel$themes` now has 51 themes.
+
 - BREAKING CHANGE: `excel_new_pal()`, `scale_colour_excel_new()` and
   `scale_fill_excel_new()` now default to `theme = "Office"` instead of
   `"Office Theme"`, so they again match a default chart in current Excel.
   Plots that relied on the default will change appearance. Pass
   `theme = "Office 2013"` to keep the previous colors.
+
 - The Excel themes `"Office Theme"` and `"Office 2007-2010"` have been renamed
   `"Office 2013"` and `"Office 2007"`, following Microsoft's own renaming of
   the built-in themes. The old names still work and select the same colors as
   before.
+
 - Add `bank_slopes_multiscale()` and `bank_plot_multiscale()`, implementing
   multi-scale banking to 45 degrees (Heer and Agrawala 2006, section 3).
   Single-scale banking considers all of the data at once, so it accentuates
@@ -232,6 +248,7 @@
   base `pdf()`/`postscript()`. Pass `unicode = TRUE` to restore the previous
   values. `scale_shape_stata()`, `scale_shape_calc()`, `scale_shape_tableau()`
   and `scale_shape_cleveland()` gain the same argument.
+
 - BREAKING CHANGE: `max_n` is reduced on the default branch for the palettes
   whose source symbols have no font-independent equivalent: `calc` 13 to 7,
   `tableau_shape_pal("filled")` 10 to 6, `tableau_shape_pal("default")` 10 to
@@ -239,31 +256,38 @@
   `tableau_shape_pal("proportions")` 5 to 2. Those shapes are dropped rather
   than approximated by a different shape. `stata_shape_pal()` and
   `few_shape_pal()` are unaffected — their symbol sets map exactly.
+
 - BREAKING CHANGE: the `pch` column of the shape tables in `ggthemes_data` now
   holds the font-independent base pch, `NA` where there is none. The previous
   Unicode-derived values move to a new `pch_unicode` column, and a new `shape`
   column carries the canonical shape name both are derived from.
+
 - BREAKING CHANGE: `tremmel_shape_pal()` returned symbol sets that did not
   match Tremmel (1995). `n = 2` now returns a solid circle and a plus sign (was
   two circles), `overlap = TRUE` returns an empty circle and a plus sign (was a
   square and a plus sign), and `alt = TRUE` returns a solid circle, plus sign
   and empty triangle (was identical to `alt = FALSE`, making the argument a
   no-op).
+
 - Fix `scale_shape_tremmel()` defaulting to `alt = TRUE` while
   `tremmel_shape_pal()` defaulted to `alt = FALSE`, so a palette and its own
   scale disagreed at `n = 3`. Both now default to `FALSE`, the variant
   Tremmel's Experiment 1 measured.
+
 - Fix `cleveland_shape_pal(overlap = TRUE)` drawing a `W` where an `S` was
   intended; the stored row paired the name `LATIN CAPITAL LETTER S` with
   pch 87.
+
 - Fix mislabelled and corrupted shape data: LibreOffice's `BLACK
   DOWN-POINTING CHARACTER` (now `TRIANGLE`), Google Docs' star named
   `MULTIPLICATION X`, Excel's em dash declared as `U+2013`, and Tableau's
   `CLOUD WITH RAIN`, stored as a mojibake sequence rather than `U+1F327`.
+
 - The shape tables are now validated as they are built: a shape name outside
   the vocabulary, a `character` that disagrees with its own `unicode`, or two
   shapes in one palette sharing a pch all fail the build, and the same checks
   run as tests against the built data.
+
 - `warn_unicode_pch()`'s locale guess is joined by a real font-coverage check
   using `systemfonts::glyph_info()` when `systemfonts` is installed, naming the
   glyphs the device font cannot draw. `systemfonts` is used in `Suggests`. The
@@ -272,6 +296,7 @@
   coverage still fails with `mbcsToSbcs` on a non-UTF-8 session. Note that R
   exposes no way to read back a device's `family=`, so the probe measures the
   default font and the warning names the font it actually measured.
+
 - Discrete color palettes now reject a negative `n` with an error naming the
   argument and the palette that was called. Palettes built on
   `scales::manual_pal()` --- including `calc_pal()`, `canva_pal()`,
@@ -281,10 +306,12 @@
   `argument must be coercible to non-negative integer` from `seq_len()`.
   This raises the minimum version of scales to 1.4.0, which is where
   `scales::new_discrete_palette()` was introduced.
+
 - `bank_slopes()` and `bank_plot()` report an invalid `method`, and
   `tableau_shape_pal()` an invalid `palette`, with a message naming the
   argument and the value supplied instead of `match.arg()`'s
   `'arg' should be one of ...`. Misspellings now get a "Did you mean" hint.
+
 - Deprecate `ptol_pal()`, `scale_colour_ptol()`, `scale_color_ptol()` and
   `scale_fill_ptol()`. Use the
   [khroma](https://CRAN.R-project.org/package=khroma) package instead, which
@@ -293,32 +320,40 @@
   has not followed the revisions on his current site,
   <https://sronpersonalpages.nl/~pault/>; the closest successor is
   `khroma::colour("muted")`. The functions still work, but warn.
+
 - BREAKING CHANGE: The Tableau palette `"Red-Blue-Brown"` has been renamed to
   `"Blue-Red-Brown"`, matching both the name Tableau uses and the palette's
   actual color order (blue, red, brown). The old name still works but warns.
+
 - BREAKING CHANGE: The Tableau palette `"Classic Area-Brown"` has been renamed
   to `"Classic Area Brown"`, for consistency with its siblings
   `"Classic Area Red"` and `"Classic Area Green"`. The old name still works but
   warns.
+
 - Fix two corrupted colors in the `"Gray Warm"` ordered-sequential Tableau
   palette. Position 7 was `#b047a4` (a magenta, in a warm-gray ramp) and is now
   `#b0a8a4`; position 18 was `#665c51`, which broke the ramp's monotonic blue
   channel, and is now `#665c5a`. Plots using
   `scale_colour_gradient_tableau("Gray Warm")` will change appearance.
+
 - Fix a duplicated color (`#fa9d4f`) in the `"Red-Gold"` ordered-sequential
   Tableau palette, which gave it 21 colors where every other 20-step Tableau
   sequential palette has 20. Plots using `"Red-Gold"` will change appearance.
+
 - Remove `data-raw/theme-data/tableau-new.yml`, an unused duplicate of
   `tableau.yml`.
+
 - The test suite no longer requires suggested packages to be installed.
   `expect_hexcolor()` used **stringr** and **glue** on every palette test,
   and stringr had moved from `Imports` to `Suggests`; it now uses base
   equivalents. The tests that genuinely need **withr** or **farver** skip
   when those are absent instead of erroring.
+
 - `geom_rangeframe()` now errors on a `sides` value that names no side, rather
   than silently drawing nothing. `sides` packs side letters into one string, so
   a typo such as `sides = "xy"` previously produced an empty layer with no
   message. Valid values are strings made up of `"t"`, `"r"`, `"b"` and `"l"`.
+
 - Fix the `?extended_range_breaks` help page, which described a function
   `scales_extended_range_breaks()` that does not exist and attributed the
   wrong return value to each function. `extended_range_breaks_()` returns the
@@ -326,11 +361,13 @@
   now also warns that ggplot2 passes a `breaks` function the expanded scale
   limits, so `breaks = extended_range_breaks()` labels the panel edges rather
   than the data extremes; apply the function to the data to label the extremes.
+
 - Fix `theme_economist_white()` failing on installations without **dplyr**.
   The internal `get_colors()` helper called `dplyr::filter()`, but dplyr is a
   suggested package, not an import; it now uses base subsetting. The test
   suite no longer uses dplyr either, so `R CMD check` passes with only the
   hard dependencies installed.
+
 - Fix the `@family` tags that split related help pages apart. Word-order and
   singular/plural inconsistencies (`stata colour`, `solarized colour`,
   `shape stata`, `shape tableau`) each put one page in a family of its own, so
@@ -338,6 +375,7 @@
   unreachable from `theme_tufte()`, `geom_rangeframe()` and
   `geom_tufteboxplot()`, which it is meant to be used with; those four now
   cross-reference each other.
+
 - Add vdiffr visual regression baselines for every exported theme, and swatch
   baselines plus property assertions (valid hex, no duplicate colors, stable
   lengths, monotone lightness, no out-of-family color, monotone gray ramps)
@@ -352,24 +390,30 @@
   schemes. `stgcolor` and `stgcolor_alt` are not included: they differ from
   `stcolor` only in physical graph dimensions, which a ggplot2 theme does not
   carry.
+
 - The 19 named colors Stata 18 added (`stc1`--`stc15` plus the `stblue`,
   `stred`, `stgreen` and `styellow` aliases) are now in
   `ggthemes_data$stata$colors$names`.
+
 - Omitting `scheme` in `stata_pal()`, `scale_colour_stata()`,
   `scale_fill_stata()` and `theme_stata()` is now soft-deprecated. It still
   resolves to `"s2color"`, but the default will change to `"stcolor"` in
   ggthemes 8.0.0, following Stata. Pass `scheme` explicitly to keep the
   current appearance.
+
 - BEHAVIOR CHANGE: `stata_pal("mono")` returned the wrong colors at
   positions 6 and 12 (`gs14` and `gs15` instead of `gs12` and `gs5`). It now
   matches Stata's `s1mono`/`s2mono` exactly, including the fact that Stata
   repeats `gs12` and `gs5` at positions 14 and 15. Plots using `"mono"` with
   six or more levels will change.
+
 - Fix `stata_pal("economist")`, which returned `NA` as its first color
   because the scheme referred to a non-existent color `dkblue`. It is now
   `edkblue`, matching Stata's `scheme-economist.scheme`.
+
 - Fix `attr(stata_pal(scheme), "max_n")`, which reported `2` rather than `15`
   because it measured the columns of the palette table instead of its rows.
+
 - Add Apple Numbers support: `numbers_pal()`, `scale_colour_numbers()`,
   `scale_color_numbers()`, `scale_fill_numbers()`, and `theme_numbers()`.
   All 12 Numbers chart palettes are available by their Numbers names
@@ -377,6 +421,7 @@
   series colors. `theme_numbers()` follows the chart style defaults that
   ship inside Numbers: no panel fill, gridlines in the value direction
   only, a bottom chart border, and no tick marks.
+
 - The palettes are generated from Apple Numbers 14.5 by
   `data-raw/reference/numbers/fetch.sh` and `data-raw/numbers_palettes.R`;
   see `data-raw/reference/numbers/SOURCES.md`. This replaces
@@ -390,6 +435,7 @@
   `#c9e4e7` and is now `#b5e5e8`. This changes the output of `gdocs_pal()`,
   `scale_colour_gdocs()`, and `scale_fill_gdocs()` for more than 11 colors.
   The other 22 colors were already correct.
+
 - `theme_gdocs()` now matches the text colors Google Sheets uses. Sheets
   applies a graded hierarchy rather than one gray: axis tick labels are black,
   legend labels `#1a1a1a`, and axis titles and the x-axis line `#333333`. The
@@ -401,12 +447,14 @@
   which Highcharts replaced in April 2023. Plots using `scale_colour_hc()` or
   `scale_fill_hc()` without an explicit `palette` will change appearance. The
   old palette is still available as `hc_pal("classic")`.
+
 - BEHAVIOR CHANGE: two colors in that older palette were wrong, and are
   corrected in `"classic"`. Position 8 was `#8085e8` (a near-duplicate of
   `#8085e9` at position 5, differing by one hex digit) and is now `#2b908f`;
   position 9 was `#8d4653` and is now `#f45b5b`. The old values match
   Highcharts 4.x; every Highcharts release from v5.0.0 to v10.x shipped the
   corrected pair.
+
 - `hc_pal()` and `scale_colour_hc()`/`scale_fill_hc()` gain the palettes
   bundled with Highcharts 13: `"default_dark"` (the dark-mode form of the
   default, which Highcharts selects via CSS `light-dark()`),
@@ -414,29 +462,37 @@
   tested for color blindness and tailored to 3:1 contrast), `"grid_light"`,
   `"sand_signika"`, `"avocado"` and `"sunset"`. Note that `"avocado"` and
   `"sunset"` have only four colors.
+
 - `hc_pal()` now reports a `max_n` attribute and warns when asked for more
   colors than the palette holds, matching the other ggthemes palettes.
+
 - `theme_hc()`'s horizontal grid lines are now `#e6e6e6`, matching Highcharts'
   `--highcharts-neutral-color-10`, rather than `#D8D8D8`.
+
 - `theme_hc()` gains the `"default_dark"`, `"grid_light"` and `"sand_signika"`
   styles. `"grid_light"` is the one Highcharts theme that draws vertical grid
   lines. The `"high_contrast"`, `"avocado"` and `"sunset"` themes are not
   included as styles: upstream they change nothing but the series colors, so
   they are available through `hc_pal()` and are meant to be combined with
   `theme_hc("default")` or `theme_hc("default_dark")`.
+
 - BEHAVIOR CHANGE: `theme_hc("darkunica")` drew all text in `#A0A0A3` and
   titles in `#FFFFFF`. Highcharts uses `#E0E0E3` for axis labels, titles and
   axis titles in this theme, so text is now `#E0E0E3` throughout. The grid
   color `#707073` was already correct and is unchanged.
+
 - Fix unreadable axis labels in `theme_hc("darkunica")`. `theme_hc()` is a
   partial theme, and it never set `axis.text`, so the axis labels kept
   `theme_grey()`'s `"grey30"` and were drawn in dark gray on the near-black
   background. They now use the same color as the rest of the theme's text.
+
 - Remove `data-raw/theme-data/highcharts.yml`, an unused duplicate of `hc.yml`
   that still held the palettes from before v11.
+
 - `theme_hc()`'s examples now pass `style` rather than the deprecated
   `bgcolor`, and the last example uses `scale_colour_hc()` instead of
   `scale_fill_hc()`, which had no effect on its color-mapped lines.
+
 - BREAKING CHANGE: `theme_economist()` and `economist_pal()` now follow the
   chart design *The Economist* introduced in 2017 and still publishes,
   replacing the pre-2017 style ggthemes had shipped since 2013. Existing
@@ -448,21 +504,26 @@
   `#d1b07c`, `#758d99`, `#db444b`) in place of the old blues and greens.
   Colors and geometry are transcribed from *The Economist visual
   styleguide* v1.2 (4 May 2017); see `data-raw/reference/economist/`.
+
 - `ggthemes_data$economist` is restructured to match: `main` (the nine
   series colors plus "Econ red"), `scales` (the styleguide's
   "equal lightness colour scales", six ordered steps for each of the nine
   hues), `bg`, and `text`. The former `fg` and `bg` entries are gone; their
   values are recorded in a comment in `data-raw/theme-data/economist.yml`.
+
 - Add `economist_seq_pal()` and `economist_gradient_pal()`, plus
   `scale_colour_economist_c()`/`scale_fill_economist_c()` for continuous
   data and `scale_colour_economist_ordinal()`/`scale_fill_economist_ordinal()`
   for ordered factors, built from the equal-lightness scales.
+
 - Deprecate `theme_economist_white()` (`lifecycle::deprecate_warn()`); the
   current design already draws a white panel, so it no longer differs from
   `theme_economist()`, to which it now forwards.
+
 - Deprecate the `dkpanel` argument of `theme_economist()` and the `fill`
   argument of `economist_pal()`. Both were features of the pre-2017 design
   and are now ignored.
+
 - Fix: `theme_economist()` previously looked up a background color named
   `"ebg"`, which `economist.yml` did not define, so `rect` and
   `strip.background` silently received a fill of `NA`. The rewritten theme
