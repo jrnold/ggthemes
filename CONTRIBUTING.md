@@ -7,4 +7,3 @@ To Contribute a new theme to ggthemes:
 5. update the README to include a sample image of your theme
 6. push updates
 7. create pull request to include new theme
-
