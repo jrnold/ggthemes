@@ -1,18 +1,47 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
-on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
-
+# Lint baseline: run every prek hook on every push and pull request, and lintr, which needs R
+# and the package's dependencies, in a job of its own.
 name: lint
 
-permissions: read-all
+on:
+  push:
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  lint:
+  prek:
+    name: prek
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      # Hooks whose tools CI doesn't install (R, Lean, Lua, macOS, OpenTofu, shells, Node
+      # projects); they run locally. lintr runs in the job below.
+      SKIP: no-commit-to-branch,lintr,lake-build,luacheck,plutil,claude-plugin-validate,zsh-syntax,fish-syntax,fish-indent,typstyle,tofu-fmt,tflint,trivy-config,tsc,eslint-astro
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e  # v10.3.2
+        with:
+          enable-cache: false
+      - uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d  # v3.1.0
+        with:
+          extra-args: --all-files
+      - uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d  # v3.1.0
+        with:
+          extra-args: --all-files --hook-stage pre-push
+
+  # Derived from https://github.com/r-lib/actions/tree/v2/examples
+  lintr:
+    name: lintr
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:

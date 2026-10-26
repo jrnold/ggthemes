@@ -33,7 +33,10 @@ since several targets chain steps (`build` regenerates docs, site, and data).
 make build   # Full build: docs, site, and data
 make test    # devtools::check()
 make docs    # devtools::document()
-make lint    # lintr
+make setup   # prek install: git hooks for .pre-commit-config.yaml
+make lint    # every prek hook (lint baseline), lintr included
+make fix     # formatters and typos fixes
+make hook HOOK=lintr  # one hook on every file
 make style   # ./scripts/format (air)
 make data    # Rebuild package data (see below)
 make site    # pkgdown::build_site()
