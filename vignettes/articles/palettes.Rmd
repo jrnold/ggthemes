@@ -7,8 +7,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, dev = "png
 ```
 
 ```{r setup}
-library("ggplot2")
-library("ggthemes")
+library(ggthemes)
 ```
 
 Every color palette shipped with ggthemes is shown below. Each row is one

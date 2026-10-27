@@ -126,7 +126,7 @@ each one separately; see \code{\link[=bank_slopes_multiscale]{bank_slopes_multis
 }
 
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 # Use the classic sunspot data from Cleveland's original paper
 x <- seq_along(sunspot.year)

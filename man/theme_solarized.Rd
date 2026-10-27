@@ -33,7 +33,7 @@ to \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}, while \code{theme_solari
 similar to \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear)))

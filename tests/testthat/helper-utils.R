@@ -1,4 +1,4 @@
-library("testthat")
+library(testthat)
 
 is_hexcolor <- function(x) {
   # `grepl()` returns FALSE for NA, which is the behaviour the callers want.

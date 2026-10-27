@@ -14,11 +14,15 @@ on:
   # as a situation that should be safe (because we aren't actually running the untrusted
   # code, we are just treating it as passive data).
   # https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/
-  pull_request_target:
+  pull_request_target:  # zizmor: ignore[dangerous-triggers] PR code is only formatted, never run; see above
 
 name: format-suggest
 
-permissions: read-all
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   format-suggest:
@@ -26,22 +30,22 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      # Required to push suggestion comments to the PR
-      pull-requests: write
+      pull-requests: write  # push suggestion comments to the PR
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
 
       - name: Install
-        uses: posit-dev/setup-air@v1
+        uses: posit-dev/setup-air@cf390573ff4fe0f198f35df3a642b1409328d859  # v1.0.1
 
       - name: Format
         run: air format .
 
       - name: Suggest
-        uses: reviewdog/action-suggester@v1
+        uses: reviewdog/action-suggester@ac5ce6d94e35c00530447dc63c271e38e4fd36c6  # v1.26.3
         with:
           level: error
           fail_level: error

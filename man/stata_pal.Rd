@@ -44,7 +44,7 @@ set of Economist-styled colors that Stata ships in
 \code{scheme-economist.scheme}.
 }
 \examples{
-library("scales")
+library(scales)
 
 # Stata 18 and later (the current factory default)
 show_col(stata_pal("stcolor")(15))

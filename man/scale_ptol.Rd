@@ -89,7 +89,7 @@ are at \url{https://sronpersonalpages.nl/~pault/}; the closest successor is
 See \code{\link[=ptol_pal]{ptol_pal()}}. These palettes support up to 12 values.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p2 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point() +

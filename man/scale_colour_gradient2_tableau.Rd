@@ -56,7 +56,7 @@ See \code{\link[=scale_colour_tableau]{scale_colour_tableau()}} for Tableau disc
 and \code{\link[=scale_colour_gradient_tableau]{scale_colour_gradient_tableau()}} for sequential color scales.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 df <- data.frame(
   x = runif(100),

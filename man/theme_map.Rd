@@ -19,7 +19,7 @@ A clean theme that is good for displaying maps from
 \code{\link[ggplot2:geom_map]{ggplot2::geom_map()}}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 if (requireNamespace("maps", quietly = TRUE) && requireNamespace("mapproj", quietly = TRUE)) {
   us <- map_data("state")

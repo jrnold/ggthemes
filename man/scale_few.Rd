@@ -80,7 +80,7 @@ A ggplot2 scale object.
 See \code{\link[=few_pal]{few_pal()}}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +

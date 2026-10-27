@@ -79,7 +79,7 @@ A ggplot2 scale object.
 See \code{\link[=calc_shape_pal]{calc_shape_pal()}} for details.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
   geom_point(size = 3) +

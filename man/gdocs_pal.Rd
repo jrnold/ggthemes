@@ -15,7 +15,7 @@ Color palettes from Google Docs.
 This palette includes 20 colors.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(gdocs_pal()(24))
 }

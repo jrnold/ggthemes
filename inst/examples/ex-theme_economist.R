@@ -1,4 +1,4 @@
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
      geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +
@@ -26,7 +26,7 @@ p + theme_economist_white(gray_bg = FALSE) +
 \dontrun{
 
 ## The Economist uses ITC Officina Sans
-library("extrafont")
+library(extrafont)
 p + theme_economist(base_family="ITC Officina Sans") +
     scale_colour_economist()
 

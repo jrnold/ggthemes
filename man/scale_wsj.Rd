@@ -82,7 +82,7 @@ Color and fill scales which use the palettes in \code{\link[=wsj_pal]{wsj_pal()}
 These scales should be used with \code{\link[=theme_wsj]{theme_wsj()}}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +

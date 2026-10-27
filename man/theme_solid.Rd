@@ -22,7 +22,7 @@ only the geometric objects are desired. The \code{base_family} argument is
 ignored; it is kept for consistency with \code{\link[ggplot2:theme_grey]{ggplot2::theme_grey()}}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +

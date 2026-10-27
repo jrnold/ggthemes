@@ -15,7 +15,7 @@ The standard three-color FiveThirtyEight palette for line plots comprises
 blue, red, and green.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(fivethirtyeight_pal()(3))
 }

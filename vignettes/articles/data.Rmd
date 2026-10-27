@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, dev = "rag
 ```
 
 ```{r setup}
-library("ggplot2")
-library("ggthemes")
+library(ggplot2)
+library(ggthemes)
 ```
 
 `ggthemes_data` holds the raw values behind the package's themes, palettes
@@ -70,6 +70,7 @@ expression_for <- function(keys) {
 # vectors and tables with a hex `value` column, and a list whose i-th element
 # is the palette of i colors is shown at its largest. Shapes are tables with a
 # `pch` column, and linetypes are vectors stored under a `linetypes` name.
+# nolint next: cyclocomp_linter. A flat run of guard clauses, one per kind of set.
 classify <- function(x, keys) {
   if (is_hex(x)) {
     return(list(kind = "colors", keys = keys, value = x))

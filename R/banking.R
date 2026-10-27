@@ -181,7 +181,7 @@ bank_slopes <- function(x, y, cull = TRUE, weight = NULL, method = c("ms", "as",
 #' @seealso [bank_slopes()]
 #' @export
 #' @examples
-#' library("ggplot2")
+#' library(ggplot2)
 #' x <- seq_along(sunspot.year)
 #' y <- as.numeric(sunspot.year)
 #' p <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +
@@ -225,7 +225,7 @@ bank_slopes_funs <- list()
 
 bank_slopes_funs[["ms"]] <-
   function(slopes, ...) {
-    stats::median(abs(slopes$s)) * slopes$Rx / slopes$Ry
+    median(abs(slopes$s)) * slopes$Rx / slopes$Ry
   }
 
 bank_slopes_funs[["as"]] <-
@@ -240,11 +240,11 @@ bank_slopes_funs[["ao"]] <-
       return(NaN)
     }
     f <- function(alpha) mean(abs(atan(s / alpha))) - FORTY_FIVE
-    pivot <- stats::median(abs(s))
+    pivot <- median(abs(s))
     if (pivot == 0) {
       pivot <- 1
     }
-    stats::uniroot(f, interval = c(pivot / 1e6, pivot * 1e6))$root
+    uniroot(f, interval = c(pivot / 1e6, pivot * 1e6))$root
   }
 
 bank_slopes_funs[["was"]] <-
@@ -256,7 +256,7 @@ bank_slopes_funs[["was"]] <-
     if (all(s == 0)) {
       return(NaN)
     }
-    pivot <- stats::median(abs(s))
+    pivot <- median(abs(s))
     if (pivot == 0) {
       pivot <- 1
     }
@@ -265,7 +265,7 @@ bank_slopes_funs[["was"]] <-
       length <- slopes$dx * sqrt(1 + (s / alpha)^2)
       sum(orientation * length) / sum(length) - FORTY_FIVE
     }
-    stats::uniroot(
+    uniroot(
       f,
       interval = c(pivot / 1e6, pivot * 1e6),
       tol = sqrt(.Machine$double.eps)

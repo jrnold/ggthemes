@@ -40,7 +40,7 @@ Highcharts pairs several of these themes with a web font
 font may not be installed; pass \code{base_family} to use one.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(

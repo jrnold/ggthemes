@@ -2,7 +2,7 @@ test_that("bank_slopes runs", {
   x <- 1:5
   y <- runif(length(x))
   out <- bank_slopes(x, y)
-  expect_equal(length(out), 1L)
+  expect_length(out, 1L)
   expect_type(out, "double")
 })
 
@@ -10,7 +10,7 @@ test_that("bank_slopes with method=\"as\" runs", {
   x <- 1:5
   y <- runif(length(x))
   out <- bank_slopes(x, y, method = "as")
-  expect_equal(length(out), 1L)
+  expect_length(out, 1L)
   expect_type(out, "double")
 })
 
@@ -22,7 +22,7 @@ test_that("bank_slopes works with cull = TRUE", {
   x <- c(1, 1, 2)
   y <- runif(length(x))
   out <- bank_slopes(x, y, cull = TRUE)
-  expect_equal(length(out), 1L)
+  expect_length(out, 1L)
   expect_type(out, "double")
 })
 
@@ -30,7 +30,7 @@ test_that("bank_slopes with method=\"ao\" runs", {
   x <- 1:5
   y <- runif(length(x))
   out <- bank_slopes(x, y, method = "ao")
-  expect_equal(length(out), 1L)
+  expect_length(out, 1L)
   expect_type(out, "double")
 })
 
@@ -57,7 +57,7 @@ test_that("bank_slopes with method=\"was\" runs", {
   x <- 1:5
   y <- runif(length(x))
   out <- bank_slopes(x, y, method = "was")
-  expect_equal(length(out), 1L)
+  expect_length(out, 1L)
   expect_type(out, "double")
 })
 
@@ -89,7 +89,7 @@ test_that("bank_slopes with method=\"was\" returns NaN for a flat line", {
 
 test_that("bank_slopes with method=\"was\" handles mostly flat segments", {
   out <- bank_slopes(0:3, c(0, 0, 0, 1), method = "was")
-  expect_identical(is.finite(out), TRUE)
+  expect_true(is.finite(out))
 })
 
 test_that("bank_plot runs and returns a ggplot with a numeric coord_fixed ratio", {

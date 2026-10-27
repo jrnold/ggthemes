@@ -20,7 +20,7 @@ Use this for that classic ugly look and feel. For ironic purposes only.
 3D bars and pies not included. Please never use this color palette.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(excel_pal()(7))
 show_col(excel_pal(line = FALSE)(7))

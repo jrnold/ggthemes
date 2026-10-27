@@ -28,7 +28,7 @@ test_that("the safe branch returns only font-independent pch", {
   for (nm in names(safe_palettes())) {
     p <- safe_palettes()[[nm]]
     values <- p$pal()(p$max_n)
-    expect_false(any(is.na(values)), label = paste0(nm, " has no NA below max_n"))
+    expect_false(anyNA(values), label = paste0(nm, " has no NA below max_n"))
     expect_true(all(values %in% c(0:25, 32:127)), label = paste0(nm, " safe pch"))
   }
 })
@@ -57,7 +57,7 @@ test_that("the unicode branch returns the negative glyph pch", {
 test_that("asking for more values than a palette has warns and pads with NA", {
   pal <- tableau_shape_pal("proportions")
   expect_warning(values <- pal(4), "maximum of 2 values")
-  expect_equal(length(values), 4L)
+  expect_length(values, 4L)
   expect_equal(sum(is.na(values)), 2L)
 })
 

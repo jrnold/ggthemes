@@ -1,17 +1,17 @@
-test_that("excel_clasic_pal works", {
+test_that("excel_pal works", {
   pal <- excel_pal()
   n <- 5L
   values <- pal(n)
   expect_type(values, "character")
-  expect_equal(length(values), n)
+  expect_length(values, n)
 })
 
-test_that("excel_clasic_pal with line = TRUE works", {
+test_that("excel_pal with line = TRUE works", {
   pal <- excel_pal(line = TRUE)
   n <- 5L
   values <- pal(n)
   expect_type(values, "character")
-  expect_equal(length(values), n)
+  expect_length(values, n)
 })
 
 test_that("calc_shape_pal raises warning for large n", {
@@ -23,7 +23,7 @@ test_that("excel_new_pal works", {
   n <- 5L
   vals <- pal(n)
   expect_type(vals, "character")
-  expect_equal(length(vals), n)
+  expect_length(vals, n)
 })
 
 test_that("excel_new_pal raises error for bad n", {

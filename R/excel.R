@@ -248,6 +248,6 @@ theme_excel_new <- function(base_size = 9, base_family = "sans") {
         size = base_size,
         colour = colorlist$label
       ),
-      legend.title = element_blank(),
+      legend.title = element_blank()
     )
 }

@@ -21,7 +21,7 @@ invisibly.
 A quick and dirty way to show shapes.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_shapes(shape_pal()(5))
 show_shapes(shape_pal()(3), labels = TRUE)

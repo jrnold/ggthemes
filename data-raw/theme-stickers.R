@@ -28,7 +28,7 @@ scatter_x <- sort(runif(16, 0.85, 5.05))
 points <- data.frame(
   x = scatter_x,
   y = pmax(0.9, pmin(5.2, 1 + 0.7 * scatter_x + rnorm(16, sd = 0.8))),
-  group = sample(rep(c(1, 2, 3), length.out = 16))
+  group = sample(rep_len(c(1, 2, 3), 16))
 )
 
 default_trend_colour <- "#404040"

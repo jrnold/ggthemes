@@ -30,3 +30,7 @@
 ^\.vscode$
 ^Rplots\.pdf$
 ^vignettes/articles$
+^\.editorconfig$
+^\.shellcheckrc$
+^_typos\.toml$
+^panache\.toml$

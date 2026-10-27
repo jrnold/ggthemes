@@ -1,4 +1,4 @@
-library("ggplot2")
+library(ggplot2)
 
 if (requireNamespace("maps", quietly = TRUE) && requireNamespace("mapproj", quietly = TRUE)) {
   us <- map_data("state")

@@ -26,7 +26,7 @@ Color scale for canva.com color palettes described in
 \link{canva_palettes}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +

@@ -1,7 +1,7 @@
 test_that("every exported *color* object has a *colour* version", {
   exports <- getNamespaceExports("ggthemes")
-  color <- grep("color", exports, value = TRUE)
-  colour <- gsub("color", "colour", color)
+  color <- grep("color", exports, value = TRUE, fixed = TRUE)
+  colour <- gsub("color", "colour", color, fixed = TRUE)
   expect_equal(sort(setdiff(colour, exports)), character())
 })
 

@@ -31,7 +31,7 @@ Theme based on the plots in \emph{The Wall Street Journal}.
 This theme should be used with \code{\link[=scale_color_wsj]{scale_color_wsj()}}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

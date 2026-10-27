@@ -22,7 +22,7 @@ not included in these palettes; \emph{The Economist} reserves it to
 mark important data.
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(economist_pal()(6))
 ## fill palette

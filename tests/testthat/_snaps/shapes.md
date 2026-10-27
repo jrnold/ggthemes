@@ -11,7 +11,7 @@
       n <- 4L
       values <- pal(n)
       expect_type(values, "integer")
-      expect_equal(length(values), n)
+      expect_length(values, n)
 
 # warn_unicode_pch warns only for unicode pch on non-UTF-8 locales
 

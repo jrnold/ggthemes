@@ -96,7 +96,7 @@ theme_hc <- function(
   bgcolor = lifecycle::deprecated()
 ) {
   if (lifecycle::is_present(bgcolor)) {
-    lifecycle::deprecate_warn("4.2.0", "theme_hc(bgcolor)", "theme_hc(style)")
+    deprecate_warn("4.2.0", "theme_hc(bgcolor)", "theme_hc(style)")
     style <- bgcolor
   }
   style <- match.arg(style)

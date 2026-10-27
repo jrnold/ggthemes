@@ -19,7 +19,7 @@ Clean ggplot theme with no panel background, black axis lines
 and gray fill color for chart elements.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point() +
   facet_wrap(~am) +

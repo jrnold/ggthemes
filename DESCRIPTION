@@ -2,7 +2,7 @@ Package: ggthemes
 Version: 7.0.0.9000
 Title: Extra Themes, Scales and Geoms for 'ggplot2'
 Authors@R: c(person("Jeffrey B.", "Arnold", role = c("aut", "cre", "cph"),
-    email = "jeffrey.arnold@gmail.com", 
+    email = "jeffrey.arnold@gmail.com",
     comment = "<https://orcid.org/0000-0001-9953-3904>"),
     person("Gergely", "Daroczi", role = "ctb"),
     person("Bo", "Werth", role = "ctb"),
@@ -58,7 +58,7 @@ Encoding: UTF-8
 Config/testthat/edition: 3
 Config/Needs/coverage: covr
 Config/Needs/data: stringr
-Config/Needs/lint: lintr
+Config/Needs/lint: lintr, cyclocomp
 Config/Needs/readme: knitr, rmarkdown
 Config/Needs/website: pkgdown
 Config/roxygen2/version: 8.1.0

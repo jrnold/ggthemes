@@ -97,8 +97,8 @@ scale_fill_selenized <- function(..., accent = "blue", variant = "light") {
 #' @example inst/examples/ex-theme_selenized.R
 theme_selenized <- function(base_size = 12, base_family = "", variant = "light") {
   data <- selenized_data(variant)
-  base <- tibble::deframe(data[["base"]])
-  accents <- tibble::deframe(data[["accents"]])
+  base <- deframe(data[["base"]])
+  accents <- deframe(data[["accents"]])
   theme_foundation(
     base_size = base_size,
     base_family = base_family,

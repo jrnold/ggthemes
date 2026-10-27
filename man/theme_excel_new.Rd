@@ -31,7 +31,7 @@ Office. Pass \code{base_family = "Aptos Narrow"} for a closer match if you
 do have it.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

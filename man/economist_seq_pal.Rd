@@ -34,7 +34,7 @@ discrete ordered data. \code{economist_gradient_pal()} interpolates
 between them, for continuous data.
 }
 \examples{
-library("scales")
+library(scales)
 
 # the six steps of one hue, darkest first
 show_col(economist_seq_pal("blue")(6))

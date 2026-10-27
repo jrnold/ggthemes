@@ -18,7 +18,7 @@ A ggplot2 theme object (class \code{theme}).
 Theme similar to the default settings of LibreOffice Calc charts.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

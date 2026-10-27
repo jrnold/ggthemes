@@ -1,19 +1,37 @@
-linters: linters_with_defaults(
-    line_length_linter(120),
-    commented_code_linter = NULL,
-    indentation_linter = NULL
+# Lint baseline: lintr's defaults plus its best-practice, correctness, robustness and efficiency
+# linters, minus indentation (air does it) and those that misfire on analysis code.
+# ggthemes: 120-character lines, as air.toml sets.
+linters: linters_with_tags(
+    tags = c("default", "best_practices", "correctness", "robustness", "efficiency"),
+    line_length_linter = line_length_linter(120L),
+    # testthat captures a value while checking its condition or output, e.g.
+    # expect_warning(out <- f(), "msg"); the expectation always evaluates its argument.
+    # cli bullet vectors repeat names: c("x" = ..., "i" = ..., "i" = ...)
+    duplicate_argument_linter = duplicate_argument_linter(except = c("mutate", "transmute", "c")),
+    # Slash-joined labels and list keys ("shapes/tremmel/") aren't file paths
+    paste_linter = paste_linter(allow_file_path = "always"),
+    # R >= 4.1 (DESCRIPTION), where stringsAsFactors already defaults to FALSE
+    strings_as_factors_linter = NULL,
+    implicit_assignment_linter = implicit_assignment_linter(
+      except = c(
+        "bquote", "expression", "expr", "quo", "quos", "quote",
+        "expect_error", "expect_message", "expect_no_warning", "expect_silent",
+        "expect_snapshot", "expect_warning"
+      )
+    ),
+    indentation_linter = NULL,
+    implicit_integer_linter = NULL,
+    nonportable_path_linter = NULL,
+    object_overwrite_linter = NULL,
+    print_linter = NULL,
+    undesirable_function_linter = NULL,
+    undesirable_operator_linter = NULL,
+    unnecessary_nesting_linter = NULL
   )
 encoding: "UTF-8"
+# ggthemes: these examples wrap code in \dontrun{}, which is Rd, not R, so they don't parse.
 exclusions: list(
-    "./inst/examples/ex-few_shape_pal.R",
-    "./inst/examples/ex-calc_shape_pal.R",
-    "./inst/examples/ex-cleveland_shape_pal.R",
-    "./inst/examples/ex-few_shape_pal.R",
-    "./inst/examples/ex-palette_pander.R",
-    "./inst/examples/ex-scale_shape_stata.R",
-    "./inst/examples/ex-scale_shape_tableau.R",
-    "./inst/examples/ex-tableau_shape_pal.R",
-    "./inst/examples/ex-tableau_shape_pal.R",
-    "./inst/examples/ex-theme_calc.R",
-    "./inst/examples/ex-theme_economist.R"
+    "inst/examples/ex-calc_shape_pal.R",
+    "inst/examples/ex-tableau_shape_pal.R",
+    "inst/examples/ex-theme_economist.R"
   )

@@ -118,7 +118,7 @@ test_that("without systemfonts the locale heuristic is used instead", {
   local_mocked_bindings(is_installed = function(...) FALSE, .package = "rlang")
   local_mocked_bindings(l10n_info = function() list(`UTF-8` = FALSE), .package = "base")
   local_mocked_bindings(missing_glyphs = function(...) {
-    stop("systemfonts must not be probed when it is not installed")
+    stop("systemfonts must not be probed when it is not installed", call. = FALSE)
   })
   expect_warning(warn_shape_font(glyph_table("○")), "locale is not UTF-8")
 })
@@ -133,7 +133,7 @@ test_that("glyph coverage of ASCII is reported for the default font", {
 test_that("the safe branch never probes the font", {
   clear_font_cache()
   local_mocked_bindings(missing_glyphs = function(...) {
-    stop("the safe branch does not depend on the font")
+    stop("the safe branch does not depend on the font", call. = FALSE)
   })
   expect_no_warning(calc_shape_pal()(7))
   expect_no_warning(tableau_shape_pal("filled")(6))

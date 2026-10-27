@@ -45,16 +45,8 @@ test_that("no tableau palette repeats a colour", {
 test_that("ordered palette lengths are stable", {
   # A palette that gains or loses a colour changes this snapshot. Red-Gold
   # shipped with 21 colours where every other 20-step ramp has 20 (#217).
-  sequential <- vapply(
-    tableau_palette_colours("ordered-sequential"),
-    length,
-    integer(1)
-  )
-  diverging <- vapply(
-    tableau_palette_colours("ordered-diverging"),
-    length,
-    integer(1)
-  )
+  sequential <- lengths(tableau_palette_colours("ordered-sequential"))
+  diverging <- lengths(tableau_palette_colours("ordered-diverging"))
   expect_snapshot(sequential)
   expect_snapshot(diverging)
 })
@@ -156,7 +148,7 @@ test_that("every discrete palette rejects a negative n by naming the argument", 
     character(1)
   )
   uninformative <- names(messages)[
-    !grepl("must be a non-negative integer", messages)
+    !grepl("must be a non-negative integer", messages, fixed = TRUE)
   ]
   expect_equal(uninformative, character(0))
 })

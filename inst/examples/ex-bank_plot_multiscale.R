@@ -1,4 +1,4 @@
-library("ggplot2")
+library(ggplot2)
 
 y <- as.numeric(sunspot.year)
 p <- ggplot(data.frame(x = seq_along(y), y = y), aes(x = x, y = y)) +

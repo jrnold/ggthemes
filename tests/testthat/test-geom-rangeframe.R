@@ -46,8 +46,8 @@ test_that("geom_rangeframe draws the full range of non-missing values when NAs a
     numeric(4)
   )
 
-  expect_identical(anyNA(coords), FALSE)
-  expect_equal(range(coords[3:4, grep("range_y", names(grob$children))]), c(10, 50))
+  expect_false(anyNA(coords))
+  expect_equal(range(coords[3:4, grep("range_y", names(grob$children), fixed = TRUE)]), c(10, 50))
 })
 
 test_that("geom_rangeframe sides = 'trbl' is correctly positioned with a secondary axis", {

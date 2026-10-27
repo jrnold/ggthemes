@@ -50,7 +50,7 @@ check_multiscale_y <- function(y, arg = rlang::caller_arg(y), call = rlang::call
 #' @noRd
 power_spectrum <- function(y) {
   nyquist <- length(y) %/% 2
-  Mod(stats::fft(y)[seq_len(nyquist) + 1])^2
+  Mod(fft(y)[seq_len(nyquist) + 1])^2
 }
 
 #' Drop aspect ratios too similar to the one kept before them
@@ -140,7 +140,7 @@ select_scales <- function(z, threshold) {
 #' @noRd
 smooth_spectrum <- function(p, window, sd) {
   offsets <- seq_len(window) - (window %/% 2) - 1
-  kernel <- stats::dnorm(offsets, mean = 0, sd = sd)
+  kernel <- dnorm(offsets, mean = 0, sd = sd)
   n <- length(p)
   vapply(
     seq_len(n),
@@ -171,9 +171,9 @@ lowpass <- function(y, cutoff) {
   # Frequency of each coefficient, folding the redundant conjugate half back
   # onto its positive-frequency twin.
   freq <- pmin(k - 1, n - k + 1)
-  coefs <- stats::fft(y)
+  coefs <- fft(y)
   coefs[freq > cutoff] <- 0 + 0i
-  Re(stats::fft(coefs, inverse = TRUE)) / n
+  Re(fft(coefs, inverse = TRUE)) / n
 }
 
 #' Multi-scale banking to 45 degrees

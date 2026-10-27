@@ -24,7 +24,7 @@ gridlines in the value direction only, a border along the bottom of the
 chart but not the other three sides, and no tick marks.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, colour = factor(gear))) +

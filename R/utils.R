@@ -3,17 +3,17 @@
 PT_TO_MM <- 0.352778 # nolint: object_name_linter
 
 charopts <- function(x) {
-  paste(sprintf("\\code{\"%s\"}", x), collapse = ", ")
+  toString(sprintf("\\code{\"%s\"}", x))
 }
 
 # copied from ggplot2
 "%||%" <- function(a, b) {
-  if (!is.null(a)) a else b
+  if (!is.null(a)) a else b # nolint: coalesce_linter. This defines %||% (base R has it from 4.4.0).
 }
 
 # copied from ggplot2
 ggname <- function(prefix, grob) {
-  grob$name <- grid::grobName(grob, prefix)
+  grob$name <- grobName(grob, prefix)
   grob
 }
 

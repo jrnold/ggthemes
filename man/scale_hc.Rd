@@ -83,7 +83,7 @@ Color and fill scales which use the palettes in
 \code{\link[=theme_hc]{theme_hc()}}.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point(size = 3) +

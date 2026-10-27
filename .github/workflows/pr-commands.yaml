@@ -1,12 +1,17 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
-  issue_comment:
+  # Each job runs only on a PR comment by a repository member or owner (see `if:`).
+  issue_comment:  # zizmor: ignore[dangerous-triggers] gated to members and owners
     types: [created]
 
 name: Commands
 
-permissions: read-all
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number }}
+  cancel-in-progress: false
 
 jobs:
   document:
@@ -16,19 +21,20 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
-      contents: write
+      contents: write  # commit the result back to the PR branch
     steps:
-      - uses: actions/checkout@v6
+      # pr-push pushes with the credentials checkout persists.
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0  # zizmor: ignore[artipacked]
 
-      - uses: r-lib/actions/pr-fetch@v2
+      - uses: r-lib/actions/pr-fetch@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05  # v2.14.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05  # v2.14.0
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
+      - uses: r-lib/actions/setup-r-dependencies@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05  # v2.14.0
         with:
           extra-packages: any::roxygen2
           needs: pr-document
@@ -44,7 +50,7 @@ jobs:
           git add man/\* NAMESPACE
           git commit -m 'Document'
 
-      - uses: r-lib/actions/pr-push@v2
+      - uses: r-lib/actions/pr-push@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05  # v2.14.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -55,15 +61,16 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
-      contents: write
+      contents: write  # commit the result back to the PR branch
     steps:
-      - uses: actions/checkout@v6
+      # pr-push pushes with the credentials checkout persists.
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0  # zizmor: ignore[artipacked]
 
-      - uses: r-lib/actions/pr-fetch@v2
+      - uses: r-lib/actions/pr-fetch@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05  # v2.14.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05  # v2.14.0
 
       - name: Install dependencies
         run: install.packages("air")
@@ -80,6 +87,6 @@ jobs:
           git add \*.R
           git commit -m 'Style'
 
-      - uses: r-lib/actions/pr-push@v2
+      - uses: r-lib/actions/pr-push@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05  # v2.14.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

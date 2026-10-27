@@ -23,7 +23,7 @@ The theme is fixed: it does not change with \code{\link[graphics:par]{graphics::
 \code{\link[=theme_par]{theme_par()}} for a theme that follows the current \code{par()} values.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(

@@ -30,7 +30,7 @@ Incorporation of the palette into an R package was originally inspired by
 Peter Carl's \href{https://tradeblotter.wordpress.com/2013/02/28/the-paul-tol-21-color-salute/}{Paul Tol 21 Gun Salute}
 }
 \examples{
-library("scales")
+library(scales)
 
 show_col(ptol_pal()(6))
 show_col(ptol_pal()(4))

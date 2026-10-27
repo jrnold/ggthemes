@@ -28,7 +28,7 @@ until 2022. The former ggthemes names \code{"Office Theme"} and
 \code{"Office 2007"} respectively.
 }
 \examples{
-library("scales")
+library(scales)
 
 for (i in names(ggthemes::ggthemes_data$excel$themes)) {
   show_col(excel_new_pal(theme = i)(6))

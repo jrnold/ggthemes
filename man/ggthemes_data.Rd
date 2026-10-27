@@ -27,7 +27,7 @@ article on the package website draws every one of them. \code{ggthemes_data}
 contains no fonts: themes set their typefaces in code.
 }
 \examples{
-library("scales")
+library(scales)
 
 ## One element per theme
 names(ggthemes_data)

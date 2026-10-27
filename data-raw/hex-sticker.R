@@ -27,7 +27,7 @@ scatter_x <- sort(runif(16, 0.85, 5.05))
 points <- data.frame(
   x = scatter_x,
   y = pmax(0.9, pmin(5.2, 1 + 0.7 * scatter_x + rnorm(16, sd = 0.8))),
-  colour = sample(rep(c("cyan", "blue", "orange"), length.out = 16))
+  colour = sample(rep_len(c("cyan", "blue", "orange"), 16))
 )
 
 scatter_plot <- function(light = TRUE, transparent = FALSE) {

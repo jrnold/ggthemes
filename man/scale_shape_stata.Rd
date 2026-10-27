@@ -79,7 +79,7 @@ A ggplot2 scale object.
 See \code{\link[=stata_shape_pal]{stata_shape_pal()}} for details.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +

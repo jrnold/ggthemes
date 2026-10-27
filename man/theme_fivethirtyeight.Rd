@@ -18,7 +18,7 @@ A ggplot2 theme object (class \code{theme}).
 Theme inspired by the plots from FiveThirtyEight.com.
 }
 \examples{
-library("ggplot2")
+library(ggplot2)
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point() +
   facet_wrap(~am) +

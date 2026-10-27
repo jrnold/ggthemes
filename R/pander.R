@@ -21,8 +21,9 @@
 #' @export
 #' @family themes pander
 #' @example inst/examples/ex-theme_pander.R
+# nolint next: cyclocomp_linter. Each argument falls back to its panderOptions() value.
 theme_pander <- function(
-  base_size = 12, # nolint: cyclocomp_linter
+  base_size = 12,
   base_family = "sans",
   nomargin = TRUE,
   ff = NULL,
@@ -40,11 +41,11 @@ theme_pander <- function(
 ) {
   if (hasArg(ff)) {
     base_family <- ff
-    lifecycle::deprecate_warn("2.0.0", "theme_pander(ff)", "theme_pander(base_family)")
+    deprecate_warn("2.0.0", "theme_pander(ff)", "theme_pander(base_family)")
   }
   if (hasArg(fs)) {
     base_size <- fs
-    lifecycle::deprecate_warn("2.0.0", "theme_pander(fs)", "theme_pander(base_size)")
+    deprecate_warn("2.0.0", "theme_pander(fs)", "theme_pander(base_size)")
   }
 
   if (requireNamespace("pander", quietly = TRUE)) {
@@ -288,7 +289,7 @@ palette_pander <- function(n, random_order = FALSE) {
   }
 
   if (length(cols) < n) {
-    cols <- rep(cols, length.out = n)
+    cols <- rep_len(cols, n)
   }
 
   cols[seq_len(n)]

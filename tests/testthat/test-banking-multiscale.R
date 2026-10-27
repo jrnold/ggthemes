@@ -8,7 +8,7 @@ test_that("power_spectrum peaks at the frequency present in the signal", {
 test_that("power_spectrum returns only the non-redundant half of the spectrum", {
   n <- 64
   y <- sin(2 * pi * 3 * seq_len(n) / n)
-  expect_equal(length(power_spectrum(y)), n %/% 2)
+  expect_length(power_spectrum(y), n %/% 2)
 })
 
 test_that("power_spectrum drops the DC term so a constant offset does not change it", {
@@ -55,7 +55,7 @@ test_that("smooth_spectrum leaves a constant series untouched, including at the 
 
 test_that("smooth_spectrum preserves length", {
   p <- c(1, 8, 2, 9, 3)
-  expect_equal(length(smooth_spectrum(p, window = 3, sd = 1)), 5L)
+  expect_length(smooth_spectrum(p, window = 3, sd = 1), 5L)
 })
 
 test_that("smooth_spectrum spreads an isolated spike into its neighbours", {
@@ -94,7 +94,7 @@ test_that("select_scales returns the entire-data scale when nothing exceeds the 
 })
 
 test_that("cull_ratios always keeps the first ratio", {
-  expect_equal(cull_ratios(c(4.23), scale_factor = 1.25), 4.23)
+  expect_equal(cull_ratios(4.23, scale_factor = 1.25), 4.23)
 })
 
 test_that("cull_ratios drops a ratio too close to the one before it", {
@@ -241,7 +241,7 @@ test_that("bank_plot_multiscale returns one ggplot per scale", {
   p <- ggplot2::ggplot(two_scale_df, ggplot2::aes(x, y)) + ggplot2::geom_line()
   out <- bank_plot_multiscale(p)
   expect_type(out, "list")
-  expect_equal(length(out), nrow(bank_slopes_multiscale(two_scale_signal())))
+  expect_length(out, nrow(bank_slopes_multiscale(two_scale_signal())))
   expect_true(all(vapply(out, ggplot2::is_ggplot, logical(1))))
 })
 
@@ -256,7 +256,7 @@ test_that("bank_plot_multiscale names each element by its frequency", {
   p <- ggplot2::ggplot(two_scale_df, ggplot2::aes(x, y)) + ggplot2::geom_line()
   expected <- bank_slopes_multiscale(two_scale_signal())
   out <- bank_plot_multiscale(p)
-  expect_equal(names(out), as.character(expected$frequency))
+  expect_named(out, as.character(expected$frequency))
 })
 
 test_that("bank_plot_multiscale rejects unevenly spaced x", {

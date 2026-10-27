@@ -22,13 +22,15 @@
 # "Office Theme" and "Office 2007-2010"; ggthemes now uses Microsoft's current
 # names, "Office 2013" and "Office 2007". Reconcile both before overwriting the
 # YAML, and note that excel_theme_aliases in R/excel.R maps the old names.
+# The script is kept commented out, for reference, until then.
 
+# nolint start: commented_code_linter.
 # suppressPackageStartupMessages({
-#   library("xml2")
-#   library("purrr")
-#   library("here")
-#   library("yaml")
-#   library("stringr")
+#   library(xml2)
+#   library(purrr)
+#   library(here)
+#   library(yaml)
+#   library(stringr)
 # })
 
 # theme_dir <- "/Applications/Microsoft Excel.app/Contents/Resources/Office Themes"
@@ -91,3 +93,4 @@
 # cat(as.yaml(themes),
 #   file = here("data-raw", "theme-data", "excel-themes.yml")
 # )
+# nolint end
