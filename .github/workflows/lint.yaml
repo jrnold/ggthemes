@@ -59,7 +59,9 @@ jobs:
           needs: lint
 
       - name: Lint
-        run: lintr::lint_package()
+        # data-raw/ scripts load packages (here, usethis, devtools, gifski) that only the data
+        # build needs; the lintr hook still lints them locally.
+        run: lintr::lint_package(exclusions = list("data-raw"))
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true
