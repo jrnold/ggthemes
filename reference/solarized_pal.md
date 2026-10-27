@@ -39,7 +39,7 @@ Other color solarized:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_col(solarized_pal()(2))
 

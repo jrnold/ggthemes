@@ -51,7 +51,7 @@ Other color economist:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 # the six steps of one hue, darkest first
 show_col(economist_seq_pal("blue")(6))

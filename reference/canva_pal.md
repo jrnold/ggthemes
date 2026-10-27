@@ -29,10 +29,10 @@ Other color canva:
 ## Examples
 
 ``` r
-require("ggplot2")
-require("tibble")
+require(ggplot2)
+require(tibble)
 #> Loading required package: tibble
-if (require("purrr") && require("scales") && require("dplyr")) {
+if (require(purrr) && require(scales) && require(dplyr)) {
   canva_df <- map2_df(
     canva_palettes,
     names(canva_palettes),

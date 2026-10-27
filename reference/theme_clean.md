@@ -40,7 +40,7 @@ Konrad Zdeb <name.surname@me.com>
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +
   geom_point() +
   facet_wrap(~am) +

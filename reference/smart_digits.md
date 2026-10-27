@@ -45,7 +45,7 @@ smart_digits(c(1234.5678, 2000, 10000))
 #> [1] " 1000" " 2000" "10000"
 
 # A labelling function for use in a scale
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +

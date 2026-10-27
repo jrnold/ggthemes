@@ -47,7 +47,7 @@ Other color selenized:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_col(selenized_pal()(3))
 

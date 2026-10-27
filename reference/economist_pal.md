@@ -35,7 +35,7 @@ Other color economist:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_col(economist_pal()(6))
 

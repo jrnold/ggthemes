@@ -66,7 +66,7 @@ one individually.
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 x <- seq_along(sunspot.year)
 y <- as.numeric(sunspot.year)
 p <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +

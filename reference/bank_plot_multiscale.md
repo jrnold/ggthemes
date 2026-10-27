@@ -64,7 +64,7 @@ IEEE Transactions On Visualization And Computer Graphics 12(5).
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 y <- as.numeric(sunspot.year)
 p <- ggplot(data.frame(x = seq_along(y), y = y), aes(x = x, y = y)) +

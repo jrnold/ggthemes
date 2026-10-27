@@ -56,7 +56,7 @@ Other color economist:
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 # Continuous scale
 ggplot(mtcars, aes(x = wt, y = mpg, colour = disp)) +

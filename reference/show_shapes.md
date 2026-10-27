@@ -33,7 +33,7 @@ invisibly.
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_shapes(shape_pal()(5))
 

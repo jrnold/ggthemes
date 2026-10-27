@@ -58,7 +58,7 @@ Those are not requested here, since the font may not be installed; pass
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(

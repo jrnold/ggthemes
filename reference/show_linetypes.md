@@ -33,7 +33,7 @@ invisibly.
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_linetypes(linetype_pal()(3))
 

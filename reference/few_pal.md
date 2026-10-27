@@ -47,7 +47,7 @@ Other color few:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_col(few_pal()(7))
 

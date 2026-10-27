@@ -34,7 +34,7 @@ Other color numbers:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_col(numbers_pal()(6))
 

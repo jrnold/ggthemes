@@ -138,7 +138,7 @@ Other shapes stata:
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 p <- ggplot(mtcars) +
   geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +

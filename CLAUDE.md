@@ -43,7 +43,10 @@ site, and data).
 make build   # Full build: docs, site, and data
 make test    # devtools::check()
 make docs    # devtools::document()
-make lint    # lintr
+make setup   # prek install: git hooks for .pre-commit-config.yaml
+make lint    # every prek hook (lint baseline), lintr included
+make fix     # formatters and typos fixes
+make hook HOOK=lintr  # one hook on every file
 make style   # ./scripts/format (air)
 make data    # Rebuild package data (see below)
 make site    # pkgdown::build_site()
@@ -68,7 +71,7 @@ README.md is auto-generated from README.Rmd and must never be edited
 directly (the first line of README.md says so).
 
 ``` bash
-# Install first: the Rmd calls library("ggthemes"), and knitr::knit() alone
+# Install first: the Rmd calls library(ggthemes), and knitr::knit() alone
 # skips the github_document step and silently writes the error into README.md.
 Rscript -e 'devtools::install(quick = TRUE, upgrade = FALSE)'
 Rscript -e 'rmarkdown::render("README.Rmd", output_file = "README.md")'
@@ -141,32 +144,38 @@ in `R/shapes.R`).
 
 ### Code Organization
 
-**R/**: Main source files organized by theme/functionality - Each major
-theme has its own file (e.g., `economist.R`, `tufte.R`,
-`fivethirtyeight.R`) - Each file typically contains: - Color palette
-function (e.g.,
-[`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)) -
-Scale functions for both color/fill (e.g.,
-[`scale_color_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md),
-[`scale_fill_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md)) -
-Theme function (e.g.,
-[`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md)) -
-`utils.R`: Shared utilities including `check_pal_n()`, `get_colors()`,
-and the `%||%` operator - `geom-*.R`: Custom geoms like
-[`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
-and
-[`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md) -
-`stat-*.R`: Custom stats like
-[`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md) -
-`base.R`: Contains
-[`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
-the base theme that many other themes build upon
+**R/**: Main source files organized by theme/functionality
 
-**data-raw/**: Data generation and theme definitions - `build.R`: Master
-script that loads all theme data from YAML/XML files and builds the
-`ggthemes_data` object - `theme-data/`: YAML and XML files defining
-colors, shapes, and palettes for each theme - The build process converts
-these into tibbles stored in `ggthemes_data`
+- Each major theme has its own file (e.g., `economist.R`, `tufte.R`,
+  `fivethirtyeight.R`)
+- Each file typically contains:
+  - Color palette function (e.g.,
+    [`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md))
+  - Scale functions for both color/fill (e.g.,
+    [`scale_color_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md),
+    [`scale_fill_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md))
+  - Theme function (e.g.,
+    [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md))
+- `utils.R`: Shared utilities including `check_pal_n()`, `get_colors()`,
+  and the `%||%` operator
+- `geom-*.R`: Custom geoms like
+  [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+  and
+  [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
+- `stat-*.R`: Custom stats like
+  [`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
+- `base.R`: Contains
+  [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md),
+  the base theme that many other themes build upon
+
+**data-raw/**: Data generation and theme definitions
+
+- `build.R`: Master script that loads all theme data from YAML/XML files
+  and builds the `ggthemes_data` object
+- `theme-data/`: YAML and XML files defining colors, shapes, and
+  palettes for each theme
+- The build process converts these into tibbles stored in
+  `ggthemes_data`
 
 **ggthemes_data Structure**: A named list containing theme-specific data
 (colors, palettes, shapes) accessed throughout the package. Each theme
@@ -193,12 +202,15 @@ Most themes follow this structure:
 
 ### Data Loading System
 
-The `data-raw/build.R` script: 1. Creates a new environment
-`ggthemes_data` 2. For each theme, defines a `load_*()` function that: -
-Reads YAML/XML from `data-raw/theme-data/` - Converts to tibbles using
-`map_dfr()` and `as_tibble()` - For shapes, converts UTF-8 characters to
-pch codes 3. Saves the final list using
-`usethis::use_data(ggthemes_data, overwrite = TRUE)`
+The `data-raw/build.R` script:
+
+1.  Creates a new environment `ggthemes_data`
+2.  For each theme, defines a `load_*()` function that:
+    - Reads YAML/XML from `data-raw/theme-data/`
+    - Converts to tibbles using `map_dfr()` and `as_tibble()`
+    - For shapes, converts UTF-8 characters to pch codes
+3.  Saves the final list using
+    `usethis::use_data(ggthemes_data, overwrite = TRUE)`
 
 ### Testing Strategy
 
@@ -361,9 +373,12 @@ Rscript -e 'spelling::update_wordlist()'
 ```
 
 The custom wordlist is stored in `inst/WORDLIST` and contains
-project-specific terms like: - Package names (ggplot, vdiffr, pkgdown) -
-Theme names (fivethirtyeight, solarized, stata) - Author names and
-proper nouns - Technical terms specific to this project
+project-specific terms like:
+
+- Package names (ggplot, vdiffr, pkgdown)
+- Theme names (fivethirtyeight, solarized, stata)
+- Author names and proper nouns
+- Technical terms specific to this project
 
 When spell check finds new valid words, add them to `inst/WORDLIST`
 using

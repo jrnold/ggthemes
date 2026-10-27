@@ -1380,12 +1380,12 @@ CRAN release: 2013-10-20
   [`theme_solarized_2()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
 - [`theme_solarized()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md):
   adjusted the colors
-- added LibreOffic Calc themes and palettes:
+- added LibreOffice Calc themes and palettes:
   [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md),
   [`calc_pal()`](https://jrnold.github.io/ggthemes/reference/calc_pal.md),
   [`scale_fill_calc()`](https://jrnold.github.io/ggthemes/reference/scale_calc.md),
   [`scale_colour_calc()`](https://jrnold.github.io/ggthemes/reference/scale_calc.md),
-  `cacl_shape_pal()`,
+  [`calc_shape_pal()`](https://jrnold.github.io/ggthemes/reference/calc_shape_pal.md),
   [`scale_shape_calc()`](https://jrnold.github.io/ggthemes/reference/scale_shape_calc.md)
 - added Google Docs themes and palettes:
   [`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md),

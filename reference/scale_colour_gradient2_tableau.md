@@ -97,7 +97,7 @@ Other color tableau:
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 df <- data.frame(
   x = runif(100),

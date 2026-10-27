@@ -29,7 +29,7 @@ contains no fonts: themes set their typefaces in code.
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 ## One element per theme
 names(ggthemes_data)

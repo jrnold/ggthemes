@@ -39,7 +39,7 @@ Other themes excel:
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 # Line and scatter plot colors
 p <- ggplot(mtcars) +

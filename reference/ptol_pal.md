@@ -47,7 +47,7 @@ Other color ptol:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_col(ptol_pal()(6))
 #> Warning: `ptol_pal()` was deprecated in ggthemes 7.0.0.

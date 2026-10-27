@@ -158,8 +158,8 @@ for other colorblind palettes.
 ## Examples
 
 ``` r
-library("ggplot2")
-library("scales")
+library(ggplot2)
+library(scales)
 
 show_col(colorblind_pal()(8))
 

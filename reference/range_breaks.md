@@ -95,7 +95,7 @@ extended_range_breaks_(min(mtcars$wt), max(mtcars$wt))
 extended_range_breaks()(mtcars$wt)
 #> [1] 1.513 3.000 4.000 5.424
 
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +

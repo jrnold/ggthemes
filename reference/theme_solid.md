@@ -42,7 +42,7 @@ Other themes:
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +

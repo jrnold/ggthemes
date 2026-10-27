@@ -112,7 +112,7 @@ Other color tableau:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 palettes <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]]
 for (palname in names(palettes)) {

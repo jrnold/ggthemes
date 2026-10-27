@@ -96,8 +96,8 @@ A ggplot2 theme object (class `theme`).
 ## Examples
 
 ``` r
-require("ggplot2")
-if (require("pander")) {
+require(ggplot2)
+if (require(pander)) {
   p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
     geom_point()
   p + theme_pander()

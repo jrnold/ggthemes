@@ -56,8 +56,8 @@ Data and base plots used in the examples
 
 ``` r
 
-library("ggplot2")
-library("ggthemes")
+library(ggplot2)
+library(ggthemes)
 
 mtcars2 <- within(mtcars, {
   vs <- factor(vs, labels = c("V-shaped", "Straight"))

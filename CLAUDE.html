@@ -63,10 +63,13 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">make</span> build   <span class="co"># Full build: docs, site, and data</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">make</span> test    <span class="co"># devtools::check()</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">make</span> docs    <span class="co"># devtools::document()</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">make</span> lint    <span class="co"># lintr</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> style   <span class="co"># ./scripts/format (air)</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> data    <span class="co"># Rebuild package data (see below)</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> site    <span class="co"># pkgdown::build_site()</span></span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">make</span> setup   <span class="co"># prek install: git hooks for .pre-commit-config.yaml</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> lint    <span class="co"># every prek hook (lint baseline), lintr included</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> fix     <span class="co"># formatters and typos fixes</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> hook HOOK=lintr  <span class="co"># one hook on every file</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">make</span> style   <span class="co"># ./scripts/format (air)</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">make</span> data    <span class="co"># Rebuild package data (see below)</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">make</span> site    <span class="co"># pkgdown::build_site()</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="building-package-data">Building Package Data<a class="anchor" aria-label="anchor" href="#building-package-data"></a></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Rebuild package data from YAML/XML theme definitions</span></span>
@@ -78,7 +81,7 @@
 <div class="section level3">
 <h3 id="readme">README<a class="anchor" aria-label="anchor" href="#readme"></a></h3>
 <p>README.md is auto-generated from README.Rmd and must never be edited directly (the first line of README.md says so).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Install first: the Rmd calls library("ggthemes"), and knitr::knit() alone</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Install first: the Rmd calls library(ggthemes), and knitr::knit() alone</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># skips the github_document step and silently writes the error into README.md.</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::install(quick = TRUE, upgrade = FALSE)'</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'rmarkdown::render("README.Rmd", output_file = "README.md")'</span></span></code></pre></div>
@@ -138,9 +141,31 @@ chore: update pkgdown configuration</code></pre>
 <h2 id="architecture">Architecture<a class="anchor" aria-label="anchor" href="#architecture"></a></h2>
 <div class="section level3">
 <h3 id="code-organization">Code Organization<a class="anchor" aria-label="anchor" href="#code-organization"></a></h3>
-<p><strong>R/</strong>: Main source files organized by theme/functionality - Each major theme has its own file (e.g., <code>economist.R</code>, <code>tufte.R</code>, <code>fivethirtyeight.R</code>) - Each file typically contains: - Color palette function (e.g., <code><a href="reference/economist_pal.html">economist_pal()</a></code>) - Scale functions for both color/fill (e.g., <code><a href="reference/scale_economist.html">scale_color_economist()</a></code>, <code><a href="reference/scale_economist.html">scale_fill_economist()</a></code>) - Theme function (e.g., <code><a href="reference/theme_economist.html">theme_economist()</a></code>) - <code>utils.R</code>: Shared utilities including <code>check_pal_n()</code>, <code>get_colors()</code>, and the <code>%||%</code> operator - <code>geom-*.R</code>: Custom geoms like <code><a href="reference/geom_rangeframe.html">geom_rangeframe()</a></code> and <code><a href="reference/geom_tufteboxplot.html">geom_tufteboxplot()</a></code> - <code>stat-*.R</code>: Custom stats like <code><a href="reference/stat_fivenumber.html">stat_fivenumber()</a></code> - <code>base.R</code>: Contains <code><a href="reference/theme_foundation.html">theme_foundation()</a></code>, the base theme that many other themes build upon</p>
-<p><strong>data-raw/</strong>: Data generation and theme definitions - <code>build.R</code>: Master script that loads all theme data from YAML/XML files and builds the <code>ggthemes_data</code> object - <code>theme-data/</code>: YAML and XML files defining colors, shapes, and palettes for each theme - The build process converts these into tibbles stored in <code>ggthemes_data</code></p>
-<p><strong>ggthemes_data Structure</strong>: A named list containing theme-specific data (colors, palettes, shapes) accessed throughout the package. Each theme has its own nested structure within this object.</p>
+<p><strong>R/</strong>: Main source files organized by theme/functionality</p>
+<ul><li>Each major theme has its own file (e.g., <code>economist.R</code>, <code>tufte.R</code>, <code>fivethirtyeight.R</code>)</li>
+<li>Each file typically contains:
+<ul><li>Color palette function (e.g., <code><a href="reference/economist_pal.html">economist_pal()</a></code>)</li>
+<li>Scale functions for both color/fill (e.g., <code><a href="reference/scale_economist.html">scale_color_economist()</a></code>, <code><a href="reference/scale_economist.html">scale_fill_economist()</a></code>)</li>
+<li>Theme function (e.g., <code><a href="reference/theme_economist.html">theme_economist()</a></code>)</li>
+</ul></li>
+<li>
+<code>utils.R</code>: Shared utilities including <code>check_pal_n()</code>, <code>get_colors()</code>, and the <code>%||%</code> operator</li>
+<li>
+<code>geom-*.R</code>: Custom geoms like <code><a href="reference/geom_rangeframe.html">geom_rangeframe()</a></code> and <code><a href="reference/geom_tufteboxplot.html">geom_tufteboxplot()</a></code>
+</li>
+<li>
+<code>stat-*.R</code>: Custom stats like <code><a href="reference/stat_fivenumber.html">stat_fivenumber()</a></code>
+</li>
+<li>
+<code>base.R</code>: Contains <code><a href="reference/theme_foundation.html">theme_foundation()</a></code>, the base theme that many other themes build upon</li>
+</ul><p><strong>data-raw/</strong>: Data generation and theme definitions</p>
+<ul><li>
+<code>build.R</code>: Master script that loads all theme data from YAML/XML files and builds the <code>ggthemes_data</code> object</li>
+<li>
+<code>theme-data/</code>: YAML and XML files defining colors, shapes, and palettes for each theme</li>
+<li>The build process converts these into tibbles stored in <code>ggthemes_data</code>
+</li>
+</ul><p><strong>ggthemes_data Structure</strong>: A named list containing theme-specific data (colors, palettes, shapes) accessed throughout the package. Each theme has its own nested structure within this object.</p>
 </div>
 <div class="section level3">
 <h3 id="theme-implementation-pattern">Theme Implementation Pattern<a class="anchor" aria-label="anchor" href="#theme-implementation-pattern"></a></h3>
@@ -165,8 +190,19 @@ chore: update pkgdown configuration</code></pre>
 </ol></div>
 <div class="section level3">
 <h3 id="data-loading-system">Data Loading System<a class="anchor" aria-label="anchor" href="#data-loading-system"></a></h3>
-<p>The <code>data-raw/build.R</code> script: 1. Creates a new environment <code>ggthemes_data</code> 2. For each theme, defines a <code>load_*()</code> function that: - Reads YAML/XML from <code>data-raw/theme-data/</code> - Converts to tibbles using <code>map_dfr()</code> and <code>as_tibble()</code> - For shapes, converts UTF-8 characters to pch codes 3. Saves the final list using <code>usethis::use_data(ggthemes_data, overwrite = TRUE)</code></p>
-</div>
+<p>The <code>data-raw/build.R</code> script:</p>
+<ol style="list-style-type: decimal"><li>Creates a new environment <code>ggthemes_data</code>
+</li>
+<li>For each theme, defines a <code>load_*()</code> function that:
+<ul><li>Reads YAML/XML from <code>data-raw/theme-data/</code>
+</li>
+<li>Converts to tibbles using <code>map_dfr()</code> and <code>as_tibble()</code>
+</li>
+<li>For shapes, converts UTF-8 characters to pch codes</li>
+</ul></li>
+<li>Saves the final list using <code>usethis::use_data(ggthemes_data, overwrite = TRUE)</code>
+</li>
+</ol></div>
 <div class="section level3">
 <h3 id="testing-strategy">Testing Strategy<a class="anchor" aria-label="anchor" href="#testing-strategy"></a></h3>
 <p>Test files are organized <strong>per theme</strong>, not strictly per <code>R/</code> source file, so a single <code>test-tableau.R</code> covers the palettes, scales, and theme together.</p>
@@ -237,8 +273,12 @@ chore: update pkgdown configuration</code></pre>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Update wordlist interactively (adds new words found in documentation)</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'spelling::update_wordlist()'</span></span></code></pre></div>
-<p>The custom wordlist is stored in <code>inst/WORDLIST</code> and contains project-specific terms like: - Package names (ggplot, vdiffr, pkgdown) - Theme names (fivethirtyeight, solarized, stata) - Author names and proper nouns - Technical terms specific to this project</p>
-<p>When spell check finds new valid words, add them to <code>inst/WORDLIST</code> using <code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code>.</p>
+<p>The custom wordlist is stored in <code>inst/WORDLIST</code> and contains project-specific terms like:</p>
+<ul><li>Package names (ggplot, vdiffr, pkgdown)</li>
+<li>Theme names (fivethirtyeight, solarized, stata)</li>
+<li>Author names and proper nouns</li>
+<li>Technical terms specific to this project</li>
+</ul><p>When spell check finds new valid words, add them to <code>inst/WORDLIST</code> using <code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code>.</p>
 <p><code><a href="https://docs.ropensci.org/spelling//reference/wordlist.html" class="external-link">spelling::update_wordlist()</a></code> rewrites <code>inst/WORDLIST</code> in R’s locale order; the file is C-locale sorted, so re-sort with <code>sort(method = "radix")</code> to keep the diff minimal.</p>
 </div>
 </div>

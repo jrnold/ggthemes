@@ -2,7 +2,7 @@
 
 To Contribute a new theme to ggthemes:
 
-1.  fork the respository
+1.  fork the repository
 2.  clone onto your personal machine
 3.  add the .R file containing functions for creating your theme to
     ggthemes/tree/main/R

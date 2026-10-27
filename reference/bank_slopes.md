@@ -142,7 +142,7 @@ to bank each frequency scale in the data separately.
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 # Use the classic sunspot data from Cleveland's original paper
 x <- seq_along(sunspot.year)

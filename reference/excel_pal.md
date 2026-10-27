@@ -34,7 +34,7 @@ Other color excel:
 ## Examples
 
 ``` r
-library("scales")
+library(scales)
 
 show_col(excel_pal()(7))
 

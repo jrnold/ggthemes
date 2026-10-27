@@ -119,7 +119,7 @@ to bank a `ggplot` at every scale.
 ## Examples
 
 ``` r
-library("ggplot2")
+library(ggplot2)
 
 # Sunspot activity, the classic example from Cleveland and from Heer and
 # Agrawala's Section 3.2.1. Spectral analysis identifies scales at frequency
