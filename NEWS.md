@@ -62,6 +62,15 @@
 
 ## Minor improvements and fixes
 
+- `geom_tufteboxplot()` and `stat_fivenumber()` draw horizontal box plots. A
+  discrete `y` with a continuous `x` now summarises `x`, as in
+  `geom_boxplot()`; before, it summarised the factor codes of `y` and drew
+  nonsense without a warning. A new `orientation` argument sets the direction
+  when it can't be inferred.
+
+- `geom_tufteboxplot()` legend keys are point ranges, as intended; they were
+  drawn as boxes.
+
 - `geom_rangeframe()` now sets line width with the `linewidth` aesthetic, as
   ggplot2's line geoms have since 3.4.0; `linewidth` was ignored before.
   `size` still works, with a deprecation warning.

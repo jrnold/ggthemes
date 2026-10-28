@@ -47,10 +47,11 @@
 #'   * `"point"`: whiskers are points at `ymin` and `ymax`.
 #' @param voffset Controls the size of the gap in the line representing the
 #'    median when `median.type = "line"`. This is a fraction of the range
-#'    of `y`.
+#'    of the summarised axis (`y`, or `x` for a horizontal box plot).
 #' @param hoffset Controls how much the interquartile line is offset from the
 #'    whiskers when `median.type = "line"`. This is a fraction of the
-#'    range of `x`.
+#'    range of the grouping axis (`x`, or `y` for a horizontal box plot).
+#' @inheritParams stat_fivenumber
 #' @param  stat The statistical transformation to use on the data for this
 #'    layer, as a string. The default (`stat = 'fivenumber'`) calls
 #'    [stat_fivenumber()] and produces whiskers that extend
@@ -81,7 +82,8 @@ geom_tufteboxplot <-
     inherit.aes = TRUE, # nolint: object_name_linter
     median.type = "point", # nolint: object_name_linter
     whisker.type = "line", # nolint: object_name_linter
-    ...
+    ...,
+    orientation = NA
   ) {
     layer(
       data = data,
@@ -101,6 +103,7 @@ geom_tufteboxplot <-
         median.type = median.type,
         whisker.type = whisker.type,
         na.rm = na.rm,
+        orientation = orientation,
         ...
       )
     )
@@ -110,7 +113,7 @@ geom_tufteboxplot <-
 #' @usage NULL
 #' @format NULL
 #' @export
-#' @importFrom ggplot2 draw_key_pointrange ggproto_parent GeomBoxplot GeomSegment GeomPoint
+#' @importFrom ggplot2 draw_key_pointrange ggproto_parent GeomBoxplot GeomSegment GeomPoint flip_data
 #' @importFrom scales alpha
 #' @importFrom grid grobTree
 GeomTufteboxplot <- # nolint: object_name_linter
@@ -119,17 +122,17 @@ GeomTufteboxplot <- # nolint: object_name_linter
     GeomBoxplot,
     setup_data = function(self, data, params) {
       data <- ggproto_parent(GeomBoxplot, self)$setup_data(data, params)
+      data <- flip_data(data, params$flipped_aes)
       x_range <- diff(range(data$x))
       y_range <- max(data$ymax) - min(data$ymin)
       data$hoffset <- params$hoffset * x_range
       data$voffset <- params$voffset * y_range
-      data
+      flip_data(data, params$flipped_aes)
     },
     draw_group = function(
       data,
       panel_scales,
       coord,
-      fatten = 2,
       outlier.colour = "black", # nolint: object_name_linter
       outlier.shape = 19, # nolint: object_name_linter
       outlier.size = 1.5, # nolint: object_name_linter
@@ -140,10 +143,16 @@ GeomTufteboxplot <- # nolint: object_name_linter
       # Not read here: setup_data() scales them into `data`. They are formals so
       # ggplot2 treats them as geom parameters, so keep the constructor's defaults.
       hoffset = 0.005,
-      voffset = 0.01
+      voffset = 0.01,
+      flipped_aes = FALSE
     ) {
       median.type <- match.arg(median.type) # nolint: object_name_linter
       whisker.type <- match.arg(whisker.type) # nolint: object_name_linter
+      # Build every piece as a vertical box plot, then flip each one back.
+      data <- flip_data(data, flipped_aes)
+      draw <- function(geom, pieces) {
+        geom$draw_panel(flip_data(pieces, flipped_aes), panel_scales, coord)
+      }
 
       common <- data.frame(
         colour = data$colour,
@@ -166,8 +175,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
           common,
           stringsAsFactors = FALSE
         )
-        whiskers_grob <-
-          GeomSegment$draw_panel(whiskers, panel_scales, coord)
+        whiskers_grob <- draw(GeomSegment, whiskers)
       } else if (whisker.type == "point") {
         whiskers <- data.frame(
           x = data$x,
@@ -177,8 +185,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
           common,
           stringsAsFactors = FALSE
         )
-        whiskers_grob <-
-          GeomPoint$draw_panel(whiskers, panel_scales, coord)
+        whiskers_grob <- draw(GeomPoint, whiskers)
       }
 
       if (median.type == "point") {
@@ -190,7 +197,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
           common,
           stringsAsFactors = FALSE
         )
-        middle_grob <- GeomPoint$draw_panel(middata, panel_scales, coord)
+        middle_grob <- draw(GeomPoint, middata)
       } else if (median.type == "line") {
         middata <- data.frame(
           y = c(data$upper, data$middle) + c(0, -data$voffset / 2),
@@ -202,11 +209,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
           common,
           stringsAsFactors = FALSE
         )
-        middle_grob <- GeomSegment$draw_panel(
-          middata,
-          panel_scales,
-          coord
-        )
+        middle_grob <- draw(GeomSegment, middata)
       }
 
       if (!is.null(data$outliers) && length(data$outliers[[1]]) >= 1) {
@@ -221,11 +224,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
           alpha = NA,
           stringsAsFactors = FALSE
         )
-        outliers_grob <- GeomPoint$draw_panel(
-          outliers,
-          panel_scales,
-          coord
-        )
+        outliers_grob <- draw(GeomPoint, outliers)
       } else {
         outliers_grob <- NULL
       }
@@ -239,7 +238,7 @@ GeomTufteboxplot <- # nolint: object_name_linter
         )
       )
     },
-    draw_legend = draw_key_pointrange,
+    draw_key = draw_key_pointrange,
     default_aes = aes(
       weight = 1,
       colour = "black",
