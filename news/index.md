@@ -101,6 +101,18 @@
 
 ### Minor improvements and fixes
 
+- Deprecate
+  [`smart_digits()`](https://jrnold.github.io/ggthemes/reference/smart_digits.md)
+  and
+  [`smart_digits_format()`](https://jrnold.github.io/ggthemes/reference/smart_digits.md).
+  Use
+  [`scales::label_number()`](https://scales.r-lib.org/reference/label_number.html)
+  instead. Until they are removed, they round to the smallest gap
+  between values rather than to the range, so evenly spaced breaks stay
+  distinct: `smart_digits(c(0, 25, 50, 75, 100))` returns
+  `"0" "25" "50" "75" "100"`, not `"0" "0" "0" "100" "100"`, and
+  `smart_digits(0)` returns `"0"`, not `NaN`.
+
 - The
   [`theme_solarized()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md)
   example draws a plot for each accent color again; it looked the

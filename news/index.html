@@ -62,7 +62,8 @@
 </ul></div>
 <div class="section level3">
 <h3 id="minor-improvements-and-fixes-development-version">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-development-version"></a></h3>
-<ul><li><p>The <code><a href="../reference/theme_solarized.html">theme_solarized()</a></code> example draws a plot for each accent color again; it looked the accents up under the wrong name and drew none. <code><a href="../reference/solarized_pal.html">?solarized_pal</a></code> now lists the accent names and says the palette has eight colors, not seven.</p></li>
+<ul><li><p>Deprecate <code><a href="../reference/smart_digits.html">smart_digits()</a></code> and <code><a href="../reference/smart_digits.html">smart_digits_format()</a></code>. Use <code><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">scales::label_number()</a></code> instead. Until they are removed, they round to the smallest gap between values rather than to the range, so evenly spaced breaks stay distinct: <code>smart_digits(c(0, 25, 50, 75, 100))</code> returns <code>"0" "25" "50" "75" "100"</code>, not <code>"0" "0" "0" "100" "100"</code>, and <code>smart_digits(0)</code> returns <code>"0"</code>, not <code>NaN</code>.</p></li>
+<li><p>The <code><a href="../reference/theme_solarized.html">theme_solarized()</a></code> example draws a plot for each accent color again; it looked the accents up under the wrong name and drew none. <code><a href="../reference/solarized_pal.html">?solarized_pal</a></code> now lists the accent names and says the palette has eight colors, not seven.</p></li>
 <li>
 <p><code><a href="../reference/theme_par.html">theme_par()</a></code> now follows base graphics more closely (<a href="https://github.com/jrnold/ggthemes/issues/280" class="external-link">#280</a>):</p>
 <ul><li>

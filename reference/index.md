@@ -279,7 +279,8 @@ ggplot2 geom and stat layers.
   : Show shapes
 - [`smart_digits()`](https://jrnold.github.io/ggthemes/reference/smart_digits.md)
   [`smart_digits_format()`](https://jrnold.github.io/ggthemes/reference/smart_digits.md)
-  : Format numbers with automatic number of digits
+  **\[deprecated\]** : Format numbers with automatic number of digits
+  (deprecated)
 
 ## Data
 
