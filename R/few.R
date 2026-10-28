@@ -92,6 +92,11 @@ scale_fill_few <- function(palette = "Light", ...) {
 #' @inheritParams ggplot2::theme_bw
 #' @family themes few
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [few_pal()] for discrete colour and fill and [few_shape_pal()]
+#' for shape as the default palettes, so a plot draws in the theme's colours
+#' without a matching scale. A `scale_*()` added to the plot still takes
+#' precedence.
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family = "") {
@@ -108,7 +113,8 @@ theme_few <- function(base_size = 12, base_family = "") {
       panel.border = element_rect(colour = gray),
       panel.grid = element_blank(),
       strip.background = element_rect(fill = "white", colour = NA)
-    )
+    ) +
+    theme_palettes(few_pal(), shape = few_shape_pal())
 }
 
 #' Shape palette from "Show Me the Numbers" (discrete)

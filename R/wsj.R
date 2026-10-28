@@ -17,6 +17,10 @@
 #' @family themes wsj
 #' @example inst/examples/ex-theme_wsj.R
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [wsj_pal()] for discrete colour and fill as the default
+#' palettes, so a plot draws in the theme's colours without a matching scale. A
+#' `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @importFrom ggplot2 element_line element_rect element_text element_blank rel
 theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", title_family = "mono") {
@@ -54,7 +58,8 @@ theme_wsj <- function(base_size = 12, color = "brown", base_family = "sans", tit
       plot.title = element_text(hjust = 0, face = "bold"),
       plot.margin = unit(c(1, 1, 1, 1), "lines"),
       strip.background = element_rect()
-    )
+    ) +
+    theme_palettes(wsj_pal())
 }
 
 #' Wall Street Journal color palette (discrete)

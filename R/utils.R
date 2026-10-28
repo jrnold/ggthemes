@@ -129,3 +129,38 @@ get_colors <- function(path, colors) {
   x <- ggthemes::ggthemes_data[[path]]
   unname(x[["value"]][x[["name"]] %in% colors])
 }
+
+# Make a theme's own palettes the defaults for discrete scales, so that
+# `p + theme_x()` draws in the theme's colours without `scale_*_x()`. Explicit
+# scales still take precedence. NULL leaves that aesthetic's palette unset.
+theme_palettes <- function(colour, fill = colour, shape = NULL, linetype = NULL) {
+  theme(
+    palette.colour.discrete = theme_pal_fallback(colour, scales::pal_hue()),
+    palette.fill.discrete = theme_pal_fallback(fill, scales::pal_hue()),
+    palette.shape.discrete = theme_pal_fallback(shape, scales::pal_shape()),
+    palette.linetype.discrete = theme_pal_fallback(linetype, scales::pal_linetype())
+  )
+}
+
+# A theme palette is applied implicitly, so running out of values must not
+# drop data the way an explicit scale_*() does. With more levels than the
+# palette has, use ggplot2's default palette for that aesthetic instead.
+theme_pal_fallback <- function(pal, fallback) {
+  if (is.null(pal)) {
+    return(NULL)
+  }
+  max_n <- attr(pal, "max_n") %||% scales::palette_nlevels(pal)
+  if (is.na(max_n)) {
+    return(pal)
+  }
+  function(n) {
+    if (n <= max_n) {
+      return(pal(n))
+    }
+    cli::cli_warn(c(
+      "The theme's palette has {max_n} value{?s}, but {n} are needed.",
+      "i" = "Using ggplot2's default palette instead. Add a {.code scale_*()} to choose another."
+    ))
+    fallback(n)
+  }
+}

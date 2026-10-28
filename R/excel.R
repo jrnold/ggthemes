@@ -126,6 +126,11 @@ scale_fill_excel_new <- function(theme = "Office", ...) {
 #' @inheritParams ggplot2::theme_grey
 #' @param horizontal If `TRUE` (the default), draw horizontal grid lines.
 #' @returns An object of class [ggplot2::theme()].
+#' @section Palettes:
+#' The theme sets [excel_pal()] for discrete colour (`line = TRUE`) and fill
+#' (`line = FALSE`) as the default palettes, so a plot draws in the theme's
+#' colours without a matching scale. A `scale_*()` added to the plot still takes
+#' precedence.
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel.R
@@ -153,7 +158,8 @@ theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
   } else {
     ret <- ret + theme(panel.grid.major.y = element_blank())
   }
-  ret
+  ret +
+    theme_palettes(excel_pal(line = TRUE), fill = excel_pal(line = FALSE))
 }
 
 #' ggplot theme similar to current Excel plot defaults
@@ -174,6 +180,10 @@ theme_excel <- function(base_size = 12, base_family = "", horizontal = TRUE) {
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @returns An object of class [ggplot2::theme()].
+#' @section Palettes:
+#' The theme sets [excel_new_pal()] for discrete colour and fill as the default
+#' palettes, so a plot draws in the theme's colours without a matching scale. A
+#' `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @family themes excel
 #' @example inst/examples/ex-theme_excel_new.R
@@ -249,5 +259,6 @@ theme_excel_new <- function(base_size = 9, base_family = "sans") {
         colour = colorlist$label
       ),
       legend.title = element_blank()
-    )
+    ) +
+    theme_palettes(excel_new_pal())
 }

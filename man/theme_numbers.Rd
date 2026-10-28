@@ -23,6 +23,13 @@ the theme stylesheet that ships inside Numbers: no chart background fill,
 gridlines in the value direction only, a border along the bottom of the
 chart but not the other three sides, and no tick marks.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=numbers_pal]{numbers_pal()}} for discrete colour and fill as the default
+palettes, so a plot draws in the theme's colours without a matching scale. A
+\verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 

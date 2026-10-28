@@ -22,6 +22,14 @@ gray-background Excel chart. Please never use this.
 This theme should be combined with the \code{\link[=scale_colour_excel]{scale_colour_excel()}}
 color scale.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=excel_pal]{excel_pal()}} for discrete colour (\code{line = TRUE}) and fill
+(\code{line = FALSE}) as the default palettes, so a plot draws in the theme's
+colours without a matching scale. A \verb{scale_*()} added to the plot still takes
+precedence.
+}
+
 \examples{
 library(ggplot2)
 

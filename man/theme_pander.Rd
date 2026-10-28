@@ -61,6 +61,13 @@ The pander package ships with a default theme when the 'unify plots' option is
 enabled via \code{panderOptions}, which is now also available outside of pander internals, like \code{evals},
 \code{eval.msgs} or \code{Pandoc.brew}.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=palette_pander]{palette_pander()}} for discrete colour and fill as the default
+palettes, so a plot draws in the theme's colours without a matching scale. A
+\verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 require(ggplot2)
 if (require(pander)) {

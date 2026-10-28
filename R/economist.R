@@ -272,6 +272,10 @@ scale_fill_economist_ordinal <- function(hue = "blue", ...) {
 #'
 #' @returns An object of class [ggplot2::theme()].
 #'
+#' @section Palettes:
+#' The theme sets [economist_pal()] for discrete colour and fill as the default
+#' palettes, so a plot draws in the theme's colours without a matching scale. A
+#' `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @family themes economist
 #'
@@ -384,7 +388,8 @@ theme_economist <- function(base_size = 10, base_family = "sans", horizontal = T
         )
       )
   }
-  ret
+  ret +
+    theme_palettes(economist_pal())
 }
 
 #' @rdname theme_economist

@@ -32,6 +32,13 @@ There are two variations: \code{\link[=theme_solarized]{theme_solarized()}} is s
 to \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}, while \code{theme_solarized_2()} is
 similar to \code{\link[ggplot2:theme_gray]{ggplot2::theme_gray()}}.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=solarized_pal]{solarized_pal()}} for discrete colour and fill as the default
+palettes, so a plot draws in the theme's colours without a matching scale. A
+\verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 

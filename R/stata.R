@@ -156,7 +156,6 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
       legend.key.height = NULL,
       legend.key.width = NULL,
       legend.text = element_text(size = rel(relsz["medsmall"])),
-      legend.text.align = NULL,
       ## See textboxstyle leg_title
       legend.title = element_text(size = rel(relsz["large"]), hjust = 0.5),
       legend.position = "bottom",
@@ -238,6 +237,20 @@ theme_stata_layout <- function(scheme = "s2color") {
 }
 
 #' @importFrom tibble deframe
+# The stata_pal() scheme whose colours a theme_stata() scheme draws with. The
+# monochrome schemes all use Stata's grey ramp.
+stata_palette_scheme <- function(scheme) {
+  switch(
+    scheme,
+    s2color = ,
+    s1color = ,
+    s1rcolor = scheme,
+    stcolor = ,
+    stcolor_alt = "stcolor",
+    "mono"
+  )
+}
+
 theme_stata_colors <- function(scheme = "s2color") {
   stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
   stata_colors <- deframe(stata_colors[, c("name", "value")])
@@ -352,6 +365,9 @@ theme_stata_colors <- function(scheme = "s2color") {
   }
 
   theme(
+    # Unmapped geoms draw in the foreground colour, so they stay visible on
+    # s1rcolor's black background.
+    geom = ggplot2::element_geom(ink = color_fg, paper = color_bg),
     line = element_line(colour = color_fg, linetype = 1),
     rect = element_rect(fill = color_bg, colour = color_fg, linetype = 1),
     text = element_text(colour = color_fg),
@@ -391,6 +407,12 @@ theme_stata_colors <- function(scheme = "s2color") {
 #'   ggthemes 8.0.0.
 #' @inheritParams ggplot2::theme_grey
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [stata_pal()] for discrete colour and fill, with the palette
+#' of `scheme` (`"mono"` for the monochrome schemes), [stata_shape_pal()] for
+#' shape and [stata_linetype_pal()] for linetype as the default palettes, so a
+#' plot draws in the theme's colours without a matching scale. A `scale_*()`
+#' added to the plot still takes precedence.
 #' @export
 #' @family themes stata
 #'
@@ -427,7 +449,12 @@ theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
   scheme <- stata_default_scheme(scheme, "theme_stata()")
   theme_stata_base(base_size = base_size, base_family = base_family) +
     theme_stata_layout(scheme = scheme) +
-    theme_stata_colors(scheme = scheme)
+    theme_stata_colors(scheme = scheme) +
+    theme_palettes(
+      stata_pal(stata_palette_scheme(scheme)),
+      shape = stata_shape_pal(),
+      linetype = stata_linetype_pal()
+    )
 }
 
 #' Select shape rows by symbolstyle, in the order asked for

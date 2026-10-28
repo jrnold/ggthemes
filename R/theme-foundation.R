@@ -26,15 +26,25 @@
 #' @export
 #' @importFrom ggplot2 theme_grey
 #' @example inst/examples/ex-theme_foundation.R
-theme_foundation <- function(base_size = 12, base_family = "", ink = "black", paper = "white", accent = "#3366FF") {
-  if (all(c("ink", "paper", "accent") %in% names(formals(theme_grey)))) {
-    thm <- theme_grey(base_size = base_size, base_family = base_family, ink = ink, paper = paper, accent = accent)
-  } else {
-    thm <- theme_grey(base_size = base_size, base_family = base_family)
-  }
+theme_foundation <- function(
+  base_size = 12,
+  base_family = "",
+  ink = "black",
+  paper = "white",
+  accent = "#3366FF",
+  header_family = NULL
+) {
+  thm <- theme_grey(
+    base_size = base_size,
+    base_family = base_family,
+    header_family = header_family,
+    ink = ink,
+    paper = paper,
+    accent = accent
+  )
   # Clear every element's colour and fill so they inherit from `line`, `rect`
-  # and `text` below. Test with `$` rather than names(): ggplot2 >= 4.0.0
-  # elements are S7 objects, whose names() is empty.
+  # and `text` below. Test with `$` rather than names(): ggplot2's elements
+  # are S7 objects, whose names() is empty.
   for (i in names(thm)) {
     if (!inherits(thm[[i]], "element")) {
       next

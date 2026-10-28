@@ -28,10 +28,18 @@ ones.
 \details{
 Text uses the scheme's foreground, \code{fg_0}, and titles its bold foreground,
 \code{fg_1}. Grid lines use \code{bg_1}, and axis lines and ticks the dim foreground,
-\code{dim_0}. With ggplot2 4.0.0 or later, geoms default to the foreground and
+\code{dim_0}. Geoms default to the foreground and
 background colors, so that they show on the dark variants. Use
 \code{\link[=scale_colour_selenized]{scale_colour_selenized()}} with the same \code{variant} for matching data colors.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=selenized_pal]{selenized_pal()}}, for the same \code{variant}, for discrete colour
+and fill as the default palettes, so a plot draws in the theme's colours
+without a matching scale. A \verb{scale_*()} added to the plot still takes
+precedence.
+}
+
 \examples{
 library(ggplot2)
 

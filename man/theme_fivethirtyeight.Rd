@@ -17,6 +17,13 @@ A ggplot2 theme object (class \code{theme}).
 \description{
 Theme inspired by the plots from FiveThirtyEight.com.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=fivethirtyeight_pal]{fivethirtyeight_pal()}} for discrete colour and fill as the
+default palettes, so a plot draws in the theme's colours without a matching
+scale. A \verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(gear))) +

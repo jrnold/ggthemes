@@ -14,7 +14,6 @@ test_that("theme_selenized uses the variant's background and foreground", {
 })
 
 test_that("theme_selenized sets geom colours for dark variants", {
-  skip_if_not_installed("ggplot2", "4.0.0")
   base <- tibble::deframe(ggthemes::ggthemes_data$selenized$black$base)
   thm <- theme_selenized(variant = "black")
   expect_equal(thm$geom@ink, base[["fg_0"]])

@@ -51,6 +51,15 @@ Two further differences are not expressible in a ggplot2 theme: the number
 of legend columns (set by \code{\link[ggplot2:guide_legend]{ggplot2::guide_legend()}} rather than
 the theme) and Stata's small default marker size (a geom default).
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=stata_pal]{stata_pal()}} for discrete colour and fill, with the palette
+of \code{scheme} (\code{"mono"} for the monochrome schemes), \code{\link[=stata_shape_pal]{stata_shape_pal()}} for
+shape and \code{\link[=stata_linetype_pal]{stata_linetype_pal()}} for linetype as the default palettes, so a
+plot draws in the theme's colours without a matching scale. A \verb{scale_*()}
+added to the plot still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 

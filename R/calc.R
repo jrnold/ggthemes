@@ -4,6 +4,11 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [calc_pal()] for discrete colour and fill and
+#' [calc_shape_pal()] for shape as the default palettes, so a plot draws in the
+#' theme's colours without a matching scale. A `scale_*()` added to the plot
+#' still takes precedence.
 #' @export
 #' @family themes calc
 #' @example inst/examples/ex-theme_calc.R
@@ -26,7 +31,8 @@ theme_calc <- function(base_size = 10, base_family = "sans") {
       legend.direction = "vertical",
       legend.background = element_rect(colour = NA),
       legend.key = element_rect(colour = NA)
-    ))
+    )) +
+    theme_palettes(calc_pal(), shape = calc_shape_pal())
 }
 
 #' Calc color palette (discrete)

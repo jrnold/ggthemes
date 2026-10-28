@@ -18,6 +18,10 @@
 #' @param lp Legend position.
 #' @param axis Axis label angle, as defined by `par("las")`.
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [palette_pander()] for discrete colour and fill as the default
+#' palettes, so a plot draws in the theme's colours without a matching scale. A
+#' `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @family themes pander
 #' @example inst/examples/ex-theme_pander.R
@@ -251,7 +255,8 @@ theme_pander <- function(
       )
   }
 
-  res
+  res +
+    theme_palettes(palette_pander)
 }
 
 

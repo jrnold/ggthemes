@@ -2,6 +2,21 @@
 
 ## Breaking changes
 
+- ggthemes now requires ggplot2 4.0.0 or later.
+
+- Themes now set their own palettes as the defaults for discrete scales, so
+  `p + theme_economist()` draws in the Economist's colours without
+  `scale_colour_economist()`. This changes the colours of plots that used one
+  of these themes without a matching scale. `theme_calc()`, `theme_economist()`,
+  `theme_economist_white()`, `theme_excel()`, `theme_excel_new()`,
+  `theme_few()`, `theme_fivethirtyeight()`, `theme_gdocs()`, `theme_hc()`,
+  `theme_numbers()`, `theme_pander()`, `theme_selenized()`,
+  `theme_solarized()`, `theme_solarized_2()`, `theme_stata()` and
+  `theme_wsj()` set colour and fill; `theme_calc()`, `theme_few()` and
+  `theme_stata()` also set shape, and `theme_stata()` sets linetype. A scale
+  added to the plot still wins. When a plot has more groups than the theme's
+  palette has values, the theme warns and uses ggplot2's default palette.
+
 - `theme_base()` now defaults to `base_size = 12`, the default text size of
   base graphics, instead of 16, and draws tick labels, strip text, legend text
   and captions at full size, as base graphics draws axis labels. Use
@@ -38,13 +53,21 @@
 
 ## New features
 
+- The dark variants of `theme_solarized()`, `theme_solarized_2()`,
+  `theme_hc()` (`"darkunica"` and `"default_dark"`) and `theme_stata()`
+  (`"s1rcolor"`) draw unmapped geoms in their foreground colour, so a plain
+  `geom_point()` is no longer black on a dark background.
+
+- `theme_foundation()` gains `header_family`, passed to `theme_grey()`, to set
+  the font of titles separately from `base_family`.
+
 - New `theme_selenized()`, `selenized_pal()`, `scale_colour_selenized()` and
   `scale_fill_selenized()` use Jan Warchoł's Selenized color scheme, a
   successor to Solarized with higher contrast. `variant` chooses its
   `"light"`, `"dark"`, `"black"` or `"white"` version; each has its own accent
   colors, and `ggthemes_data$selenized` holds them all.
 
-- With ggplot2 4.0.0 or later, `theme_par()` also sets the defaults for geoms
+- `theme_par()` also sets the defaults for geoms
   from `par()`: colour from `col`, background from `bg`, line width and type
   from `lwd` and `lty`, point shape from `pch`, and point and text size from
   `cex` and `ps`. Lines join with `par("ljoin")`. Discrete scales use the

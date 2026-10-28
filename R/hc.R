@@ -24,6 +24,9 @@ hc_theme_styles <- list(
     bg = "#141414",
     grid = "#2c2c2c",
     text = "#d0d0d0",
+    # Default colour of unmapped geoms, which would be black on the dark
+    # background.
+    ink = "#d0d0d0",
     title = "#d0d0d0",
     axis_title = "#a1a1a1",
     legend_bg = NULL,
@@ -33,6 +36,7 @@ hc_theme_styles <- list(
     bg = "#2a2a2b",
     grid = "#707073",
     text = "#E0E0E3",
+    ink = "#E0E0E3",
     title = "#E0E0E3",
     axis_title = "#E0E0E3",
     legend_bg = NULL,
@@ -88,6 +92,11 @@ hc_theme_styles <- list(
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [hc_pal()], with the palette named by `style`, for discrete
+#' colour and fill as the default palettes, so a plot draws in the theme's
+#' colours without a matching scale. A `scale_*()` added to the plot still takes
+#' precedence.
 #' @export
 theme_hc <- function(
   base_size = 12,
@@ -145,10 +154,14 @@ theme_hc <- function(
         axis.title.y = element_text(colour = spec$axis_title)
       )
   }
+  if (!is.null(spec$ink)) {
+    ret <- ret + theme(geom = ggplot2::element_geom(ink = spec$ink, paper = spec$bg))
+  }
   if (!is.null(spec$legend_bg)) {
     ret <- ret + theme(legend.background = element_rect(fill = spec$legend_bg))
   }
-  ret
+  ret +
+    theme_palettes(hc_pal(style))
 }
 
 

@@ -4,6 +4,10 @@
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [gdocs_pal()] for discrete colour and fill as the default
+#' palettes, so a plot draws in the theme's colours without a matching scale. A
+#' `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @family themes gdocs
 #' @example inst/examples/ex-theme_gdocs.R
@@ -91,7 +95,8 @@ theme_gdocs <- function(base_size = 12, base_family = "sans") {
       legend.key = element_rect(colour = NA),
       legend.position = "right",
       legend.direction = "vertical"
-    )
+    ) +
+    theme_palettes(gdocs_pal())
 }
 
 #' Google Docs color palette (discrete)

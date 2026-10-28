@@ -35,3 +35,9 @@ test_that("theme_foundation elements inherit ink and paper rather than theme_gre
 test_that("theme_foundation draws correctly", {
   expect_doppelganger("theme_foundation", theme_test_plot() + theme_foundation())
 })
+
+test_that("theme_foundation passes header_family to the titles", {
+  thm <- theme_foundation(base_family = "sans", header_family = "serif")
+  expect_equal(ggplot2::calc_element("plot.title", thm)$family, "serif")
+  expect_equal(ggplot2::calc_element("axis.text.x.bottom", thm)$family, "sans")
+})

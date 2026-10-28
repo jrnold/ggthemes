@@ -5,6 +5,10 @@
 #' @inheritParams ggplot2::theme_grey
 #' @family themes fivethirtyeight
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [fivethirtyeight_pal()] for discrete colour and fill as the
+#' default palettes, so a plot draws in the theme's colours without a matching
+#' scale. A `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @example inst/examples/ex-theme_fivethirtyeight.R
 #' @importFrom grid unit
@@ -34,7 +38,8 @@ theme_fivethirtyeight <- function(base_size = 12, base_family = "sans") {
       plot.title = element_text(hjust = 0, size = rel(1.5), face = "bold"),
       plot.margin = unit(c(1, 1, 1, 1), "lines"),
       strip.background = element_rect()
-    ))
+    )) +
+    theme_palettes(fivethirtyeight_pal())
 }
 
 #' FiveThirtyEight color palette
