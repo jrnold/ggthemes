@@ -157,8 +157,8 @@ test_that("theme_hc keeps title justification when a style sets title colour", {
   expect_equal(dark$text$colour, "#E0E0E3")
 })
 
-test_that("bgcolor raises warning", {
-  expect_snapshot(x <- theme_hc(bgcolor = "darkunica"))
+test_that("theme_hc bgcolor is defunct", {
+  expect_snapshot(theme_hc(bgcolor = "darkunica"), error = TRUE)
 })
 
 test_that("theme_hc draws correctly", {

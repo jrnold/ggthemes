@@ -171,7 +171,7 @@ Other geom tufte:
 \code{\link[=geom_tufteboxplot]{geom_tufteboxplot()}}
 
 Other tufte:
-\code{\link[=extended_range_breaks_]{extended_range_breaks_()}},
+\code{\link[=extended_range_breaks]{extended_range_breaks()}},
 \code{\link[=geom_tufteboxplot]{geom_tufteboxplot()}},
 \code{\link[=theme_tufte]{theme_tufte()}}
 }

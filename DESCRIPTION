@@ -24,8 +24,6 @@ Imports:
     grDevices,
     grid,
     lifecycle,
-    methods,
-    purrr,
     rlang,
     scales (>= 1.4.0),
     stats,
@@ -37,6 +35,7 @@ Suggests:
     maps,
     mapproj,
     pander,
+    purrr,
     quantreg,
     spelling,
     systemfonts,
@@ -57,7 +56,7 @@ Language: en-US
 Encoding: UTF-8
 Config/testthat/edition: 3
 Config/Needs/coverage: covr
-Config/Needs/data: stringr
+Config/Needs/data: purrr, stringr
 Config/Needs/lint: lintr, cyclocomp
 Config/Needs/readme: knitr, rmarkdown
 Config/Needs/website: pkgdown

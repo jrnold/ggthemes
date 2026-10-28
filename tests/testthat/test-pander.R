@@ -27,12 +27,9 @@ test_that("theme_pander works with gm = FALSE", {
 })
 
 
-test_that("theme_pander warns about ff argument", {
-  expect_snapshot(x <- theme_pander(ff = ""))
-})
-
-test_that("theme_pander warns about fs argument", {
-  expect_snapshot(x <- theme_pander(fs = 1))
+test_that("theme_pander ff and fs are defunct", {
+  expect_snapshot(theme_pander(ff = ""), error = TRUE)
+  expect_snapshot(theme_pander(fs = 1), error = TRUE)
 })
 
 test_that("theme_pander works with gm = FALSE", {

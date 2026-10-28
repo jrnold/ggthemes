@@ -502,8 +502,6 @@ stata_shape_rows <- function(statadata, shapes) {
 #' @export
 #' @family shapes stata
 #' @seealso See [scale_shape_stata()] for examples.
-#' @importFrom purrr map_dfr map
-#' @importFrom tibble as_tibble
 #' @example inst/examples/ex-stata_shape_pal.R
 stata_shape_pal <- function(unicode = FALSE) {
   statadata <- ggthemes::ggthemes_data[["stata"]][["shapes"]]

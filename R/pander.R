@@ -5,9 +5,9 @@
 #' `eval.msgs` or `Pandoc.brew`.
 #' @inheritParams ggplot2::theme_bw
 #' @param nomargin Whether to suppress the white space around the plot.
-#' @param ff Font family, like `"sans"`. `r lifecycle::badge("deprecated")` Use `base_family` instead.
+#' @param ff `r lifecycle::badge("defunct")` Use `base_family` instead.
 #' @param fc Font color, as a name or hex code.
-#' @param fs Font size (integer). `r lifecycle::badge("deprecated")` Use `base_size` instead.
+#' @param fs `r lifecycle::badge("defunct")` Use `base_size` instead.
 #' @param gM Whether to draw the major grid.
 #' @param gm Whether to draw the minor grid.
 #' @param gc Grid color, as a name or hex code.
@@ -30,9 +30,9 @@ theme_pander <- function(
   base_size = 12,
   base_family = "sans",
   nomargin = TRUE,
-  ff = NULL,
+  ff = lifecycle::deprecated(),
   fc = "black",
-  fs = NULL,
+  fs = lifecycle::deprecated(),
   gM = TRUE, # nolint: object_name_linter
   gm = TRUE,
   gc = "grey",
@@ -43,13 +43,11 @@ theme_pander <- function(
   lp = "right",
   axis = 1
 ) {
-  if (hasArg(ff)) {
-    base_family <- ff
-    deprecate_warn("2.0.0", "theme_pander(ff)", "theme_pander(base_family)")
+  if (lifecycle::is_present(ff)) {
+    lifecycle::deprecate_stop("2.0.0", "theme_pander(ff)", "theme_pander(base_family)")
   }
-  if (hasArg(fs)) {
-    base_size <- fs
-    deprecate_warn("2.0.0", "theme_pander(fs)", "theme_pander(base_size)")
+  if (lifecycle::is_present(fs)) {
+    lifecycle::deprecate_stop("2.0.0", "theme_pander(fs)", "theme_pander(base_size)")
   }
 
   if (requireNamespace("pander", quietly = TRUE)) {

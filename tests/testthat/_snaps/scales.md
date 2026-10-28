@@ -21,3 +21,13 @@
       `smart_digits_format()` was deprecated in ggthemes 8.0.0.
       i Please use `scales::label_number()` instead.
 
+# extended_range_breaks_() is deprecated in favour of extended_range_breaks()
+
+    Code
+      breaks <- extended_range_breaks_(1, 99, n = 5)
+    Condition
+      Warning:
+      `extended_range_breaks_()` was deprecated in ggthemes 8.0.0.
+      i Please use `extended_range_breaks()` instead.
+      i `extended_range_breaks_(dmin, dmax, n)` is `extended_range_breaks(n)(c(dmin, dmax))`.
+

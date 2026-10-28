@@ -88,7 +88,7 @@ hc_theme_styles <- list(
 #' @inheritParams ggplot2::theme_bw
 #' @param style The Highcharts theme to use. One of
 #'   `r ggthemes:::md_optlist(names(ggthemes:::hc_theme_styles))`.
-#' @param bgcolor `r lifecycle::badge("deprecated")` Use `style` instead.
+#' @param bgcolor `r lifecycle::badge("defunct")` Use `style` instead.
 #' @example inst/examples/ex-theme_hc.R
 #' @family themes hc
 #' @returns A ggplot2 theme object (class `theme`).
@@ -105,8 +105,7 @@ theme_hc <- function(
   bgcolor = lifecycle::deprecated()
 ) {
   if (lifecycle::is_present(bgcolor)) {
-    deprecate_warn("4.2.0", "theme_hc(bgcolor)", "theme_hc(style)")
-    style <- bgcolor
+    lifecycle::deprecate_stop("4.2.0", "theme_hc(bgcolor)", "theme_hc(style)")
   }
   style <- match.arg(style)
   spec <- hc_theme_styles[[style]]

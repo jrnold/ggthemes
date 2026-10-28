@@ -202,14 +202,6 @@ importFrom(lifecycle,
   deprecate_soft,
   deprecate_warn
 )
-importFrom(methods,
-  as,
-  hasArg
-)
-importFrom(purrr,
-  map,
-  map_dfr
-)
 importFrom(rlang,check_installed)
 importFrom(scales,
   alpha,
@@ -223,7 +215,4 @@ importFrom(stats,
   median,
   uniroot
 )
-importFrom(tibble,
-  as_tibble,
-  deframe
-)
+importFrom(tibble,deframe)

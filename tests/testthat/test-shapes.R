@@ -1,35 +1,6 @@
-# `circlefill_shape_pal()` is glyph-only, so it probes the device font. What
-# this machine's font happens to cover must not reach the snapshot, or CI
-# records one build machine's font coverage as the expected output.
-#
-# Forcing `lifecycle_verbosity` keeps this test's own deprecation warning in
-# the record whatever ran before it.
-test_that("circlefill_pal works", {
-  skip_if_not_installed("withr")
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
-  withr::local_options(lifecycle_verbosity = "warning")
-  expect_snapshot({
-    pal <- circlefill_shape_pal()
-    expect_type(pal, "closure")
-    expect_equal(attr(pal, "max_n"), 5L)
-    n <- 4L
-    values <- pal(n)
-    expect_type(values, "integer")
-    expect_length(values, n)
-  })
-})
-
-# Asserted rather than snapshotted. This call raises two deprecation warnings:
-# its own, and an *indirect* one from the `circlefill_shape_pal()` it delegates
-# to. lifecycle emits that second one only once per session and
-# `lifecycle_verbosity` does not override it, so a snapshot of this code records
-# one warning or two depending on what ran earlier in the session.
-test_that("scale_shape_circlefill works", {
-  skip_if_not_installed("withr")
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
-  lifecycle::expect_deprecated(scale_shape_circlefill())
-  withr::local_options(lifecycle_verbosity = "quiet")
-  expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
+test_that("circlefill_shape_pal and scale_shape_circlefill are defunct", {
+  expect_snapshot(circlefill_shape_pal(), error = TRUE)
+  expect_snapshot(scale_shape_circlefill(), error = TRUE)
 })
 
 test_that("tremmel_shape_pal works", {

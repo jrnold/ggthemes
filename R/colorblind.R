@@ -48,9 +48,8 @@ scale_colour_colourblind <- function(black = TRUE, ...) {
 #' `scale_color_colorblind()`.
 #'
 #' @export
-#' @importFrom lifecycle deprecate_soft
 scale_colour_colorblind <- function(black = TRUE, ...) {
-  deprecate_soft("5.2.0", "scale_colour_colorblind()", "scale_colour_colourblind()")
+  deprecate_warn("5.2.0", "scale_colour_colorblind()", "scale_colour_colourblind()")
   scale_colour_colourblind(black = black, ...)
 }
 

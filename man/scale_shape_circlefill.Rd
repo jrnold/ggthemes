@@ -71,25 +71,14 @@ notation.
 A ggplot2 scale object.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 
-This scale has no direct replacement. For circles that vary by amount of
+This scale was deprecated in ggthemes 5.0.0 and is now defunct. It has no
+direct replacement. For circles that vary by amount of
 fill, use \code{scale_shape_tableau(palette = "proportions", unicode = TRUE)};
 see \code{\link[=scale_shape_tableau]{scale_shape_tableau()}}.
 }
-\examples{
-# Deprecated. The palette grades circles by how much of each is filled, which
-# needs Unicode glyphs from the device font, so this example does not draw it.
-scale_shape_circlefill()
-}
 \seealso{
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}} for a description of the palette.
-
-Other shapes:
-\code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},
-\code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
-\code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
-\code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},
-\code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }
-\concept{shapes}
+\keyword{internal}

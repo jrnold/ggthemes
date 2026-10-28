@@ -51,6 +51,21 @@
   ggplot2's scales do. `type`, `direction`, `guide` and `alt` must be named,
   and passing them by position is an error that says so (#275).
 
+## Lifecycle changes
+
+- These deprecated arguments and functions are now defunct and error:
+  `theme_pander(ff, fs)` (deprecated in 2.0.0), `theme_hc(bgcolor)` (4.2.0),
+  and `circlefill_shape_pal()` and `scale_shape_circlefill()` (5.0.0).
+
+- `scale_colour_colorblind()` now always warns that it is deprecated; use
+  `scale_colour_colourblind()`.
+
+- `extended_range_breaks_()` is deprecated. Use `extended_range_breaks()`:
+  `extended_range_breaks_(dmin, dmax, n)` is
+  `extended_range_breaks(n)(c(dmin, dmax))`.
+
+- ggthemes no longer imports purrr or methods.
+
 ## New features
 
 - The dark variants of `theme_solarized()`, `theme_solarized_2()`,
