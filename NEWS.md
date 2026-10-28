@@ -62,6 +62,11 @@
 
 ## Minor improvements and fixes
 
+- `smart_digits()` and `smart_digits_format()` round to the smallest gap between
+  values rather than to the range, so evenly spaced breaks stay distinct:
+  `smart_digits(c(0, 25, 50, 75, 100))` returns `"0" "25" "50" "75" "100"`, not
+  `"0" "0" "0" "100" "100"`. `smart_digits(0)` returns `"0"`, not `NaN`.
+
 - The `theme_solarized()` example draws a plot for each accent color again; it
   looked the accents up under the wrong name and drew none. `?solarized_pal`
   now lists the accent names and says the palette has eight colors, not seven.
