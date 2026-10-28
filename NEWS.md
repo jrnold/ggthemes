@@ -100,6 +100,13 @@
 
 ## Minor improvements and fixes
 
+- `theme_solid()` passes `base_size` and `base_family` on, so they set the
+  default size and font of text geoms; both were ignored, and `base_size` was
+  misused as an invisible border width.
+
+- `?colorblind` and `?tableau_color_pal` say that their default palettes match
+  base R's `palette.colors()` `"Okabe-Ito"` and `"Tableau 10"`.
+
 - `theme_hc()` and `theme_pander()` are now complete themes built on
   `theme_grey()`, like the package's other themes, so the active theme
   (`theme_set()`) no longer leaks into them. Their spacing now scales with

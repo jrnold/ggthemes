@@ -2,6 +2,10 @@
 #'
 #' An eight-color colorblind safe qualitative discrete palette.
 #'
+#' These are the Okabe-Ito colors, the same as base R's
+#' `palette.colors(palette = "Okabe-Ito")`. The scales are a convenience for
+#' using them in ggplot2.
+#'
 #' @rdname colorblind
 #' @param black If `FALSE`, drop black from the palette. Black is often
 #'   used elsewhere in a figure (e.g. text, axes), so including it as a data

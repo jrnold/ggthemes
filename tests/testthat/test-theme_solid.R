@@ -14,3 +14,9 @@ test_that("theme_solid fills the panel, not just the plot background", {
 test_that("theme_solid draws correctly", {
   expect_doppelganger("theme_solid", theme_test_plot() + theme_solid())
 })
+
+test_that("theme_solid passes base_size and base_family to text geoms", {
+  thm <- theme_solid(base_size = 20, base_family = "serif")
+  expect_equal(thm$geom@fontsize, 20 / ggplot2::.pt)
+  expect_equal(thm$geom@family, "serif")
+})

@@ -18,8 +18,9 @@ A ggplot2 theme object (class \code{theme}).
 }
 \description{
 Theme that removes all non-geom elements (lines, text, etc.). Use it when
-only the geometric objects are desired. The \code{base_family} argument is
-ignored; it is kept for consistency with \code{\link[ggplot2:theme_grey]{ggplot2::theme_grey()}}.
+only the geometric objects are desired. \code{base_size} and \code{base_family} set
+only the default size and font of text geoms, such as \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}},
+since the theme draws no text of its own.
 }
 \examples{
 library(ggplot2)
