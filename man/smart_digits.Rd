@@ -3,7 +3,7 @@
 \name{smart_digits}
 \alias{smart_digits}
 \alias{smart_digits_format}
-\title{Format numbers with automatic number of digits}
+\title{Format numbers with automatic number of digits (deprecated)}
 \usage{
 smart_digits(x, ...)
 
@@ -20,19 +20,21 @@ A character vector.
 \code{x}, a numeric vector, that returns a character vector.
 }
 \description{
-Format numbers with automatic number of digits
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+\code{smart_digits()} and \code{smart_digits_format()} are deprecated. Use
+\code{\link[scales:label_number]{scales::label_number()}}, which also picks the accuracy from the smallest
+gap between values.
 }
 \examples{
-smart_digits(c(0.1234, 0.5, 1.25))
+# Use scales::label_number() instead
+scales::label_number()(c(0.1234, 0.5, 1.25))
 
-smart_digits(c(1234.5678, 2000, 10000))
-
-# A labelling function for use in a scale
 library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
-  scale_y_continuous(labels = smart_digits_format())
+  scale_y_continuous(labels = scales::label_number())
 }
 \references{
 Josh O'Brien,

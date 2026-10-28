@@ -224,19 +224,39 @@ zero_range <- function(x, tol = 1000 * .Machine$double.eps) {
   abs((x[1] - x[2]) / m) < tol
 }
 
-# from scales package
+# Adapted from scales:::precision() in scales 1.4.0: the accuracy is set by
+# the smallest gap between distinct values (for axis breaks, the step), as in
+# Josh O'Brien's Stack Overflow answer, plus one digit that is dropped when
+# every value ends in zero. Unlike scales, integers may round to tens, etc.,
+# and ties are judged relative to the values, so tiny values keep their digits.
 precision <- function(x) {
-  rng <- range(x, na.rm = TRUE)
-  span <- if (zero_range(rng)) {
-    abs(rng[1])
-  } else {
-    diff(rng)
+  x <- unique(x[is.finite(x)])
+  if (length(x) == 0) {
+    return(1)
   }
-  10^floor(log10(span))
+  if (length(x) == 1) {
+    return(if (x == 0) 1 else 10^floor(log10(abs(x))))
+  }
+  smallest_diff <- min(diff(sort(x)))
+  if (smallest_diff < sqrt(.Machine$double.eps) * max(abs(x))) {
+    return(1)
+  }
+  accuracy <- 10^(floor(log10(smallest_diff)) - 1)
+  if (all(round(x / accuracy) %% 10 == 0)) {
+    accuracy <- accuracy * 10
+  }
+  accuracy
 }
 
 # nolint start
-#' Format numbers with automatic number of digits
+#' Format numbers with automatic number of digits (deprecated)
+#'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' `smart_digits()` and `smart_digits_format()` are deprecated. Use
+#' [scales::label_number()], which also picks the accuracy from the smallest
+#' gap between values.
 #'
 #' @param x A numeric vector to format.
 #' @param ... Parameters passed to [base::format()].
@@ -250,21 +270,30 @@ precision <- function(x) {
 #'
 #' @example inst/examples/ex-smart_digits.R
 #' @rdname smart_digits
+#' @importFrom lifecycle deprecate_warn
 #' @export
 # nolint end
 smart_digits <- function(x, ...) {
+  deprecate_warn("8.0.0", "smart_digits()", "scales::label_number()")
+  format_smart_digits(x, ...)
+}
+
+#' @rdname smart_digits
+#' @export
+smart_digits_format <- function(x, ...) {
+  deprecate_warn("8.0.0", "smart_digits_format()", "scales::label_number()")
+  function(x) format_smart_digits(x, ...)
+}
+
+# Kept apart from smart_digits() so the labeller made by smart_digits_format()
+# does not raise a second, indirect deprecation warning each time it is drawn.
+format_smart_digits <- function(x, ...) {
   if (length(x) == 0) {
     return(character())
   }
   accuracy <- precision(x)
   x <- round(x / accuracy) * accuracy
   format(x, ...)
-}
-
-#' @rdname smart_digits
-#' @export
-smart_digits_format <- function(x, ...) {
-  function(x) smart_digits(x, ...)
 }
 
 # nolint end: object_name_linter
