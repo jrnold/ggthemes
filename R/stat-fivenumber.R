@@ -8,7 +8,7 @@
 #' @param probs Quantiles to use for the five number summary.
 #' @param orientation The orientation of the layer. The default (`NA`)
 #'   infers it from the aesthetics: a discrete `y` with a continuous `x`
-#'   summarises `x` for each level of `y`. Set it to `"x"` or `"y"` when
+#'   summarizes `x` for each level of `y`. Set it to `"x"` or `"y"` when
 #'   inference fails.
 #' @inheritParams ggplot2::stat_identity
 #' @returns A data frame with additional columns:

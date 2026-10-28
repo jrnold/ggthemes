@@ -47,7 +47,7 @@
 #'   * `"point"`: whiskers are points at `ymin` and `ymax`.
 #' @param voffset Controls the size of the gap in the line representing the
 #'    median when `median.type = "line"`. This is a fraction of the range
-#'    of the summarised axis (`y`, or `x` for a horizontal box plot).
+#'    of the summarized axis (`y`, or `x` for a horizontal box plot).
 #' @param hoffset Controls how much the interquartile line is offset from the
 #'    whiskers when `median.type = "line"`. This is a fraction of the
 #'    range of the grouping axis (`x`, or `y` for a horizontal box plot).

@@ -113,7 +113,7 @@ lists which parameters it can accept.
 
 \item{orientation}{The orientation of the layer. The default (\code{NA})
 infers it from the aesthetics: a discrete \code{y} with a continuous \code{x}
-summarises \code{x} for each level of \code{y}. Set it to \code{"x"} or \code{"y"} when
+summarizes \code{x} for each level of \code{y}. Set it to \code{"x"} or \code{"y"} when
 inference fails.}
 }
 \value{

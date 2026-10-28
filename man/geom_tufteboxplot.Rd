@@ -77,7 +77,7 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 
 \item{voffset}{Controls the size of the gap in the line representing the
 median when \code{median.type = "line"}. This is a fraction of the range
-of the summarised axis (\code{y}, or \code{x} for a horizontal box plot).}
+of the summarized axis (\code{y}, or \code{x} for a horizontal box plot).}
 
 \item{hoffset}{Controls how much the interquartile line is offset from the
 whiskers when \code{median.type = "line"}. This is a fraction of the
@@ -143,7 +143,7 @@ lists which parameters it can accept.
 
 \item{orientation}{The orientation of the layer. The default (\code{NA})
 infers it from the aesthetics: a discrete \code{y} with a continuous \code{x}
-summarises \code{x} for each level of \code{y}. Set it to \code{"x"} or \code{"y"} when
+summarizes \code{x} for each level of \code{y}. Set it to \code{"x"} or \code{"y"} when
 inference fails.}
 }
 \value{

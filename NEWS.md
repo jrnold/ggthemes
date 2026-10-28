@@ -118,8 +118,8 @@
   `base_size`.
 
 - `geom_tufteboxplot()` and `stat_fivenumber()` draw horizontal box plots. A
-  discrete `y` with a continuous `x` now summarises `x`, as in
-  `geom_boxplot()`; before, it summarised the factor codes of `y` and drew
+  discrete `y` with a continuous `x` now summarizes `x`, as in
+  `geom_boxplot()`; before, it summarized the factor codes of `y` and drew
   nonsense without a warning. A new `orientation` argument sets the direction
   when it can't be inferred.
 
