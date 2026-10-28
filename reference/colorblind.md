@@ -140,6 +140,12 @@ scale_fill_colorblind(black = TRUE, ...)
 that takes the number of colors `n` and returns a character vector of
 `n` hex colors. The `scale_*()` functions return a ggplot2 scale object.
 
+## Details
+
+These are the Okabe-Ito colors, the same as base R's
+`palette.colors(palette = "Okabe-Ito")`. The scales are a convenience
+for using them in ggplot2.
+
 ## References
 
 Chang, W. "[Cookbook for

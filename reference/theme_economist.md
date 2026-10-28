@@ -67,6 +67,14 @@ with this theme. The y axis should be displayed on the right hand side.
 have access to this font, you can use it with the extrafont package.
 "Verdana" is a good substitute.
 
+## Palettes
+
+The theme sets
+[`economist_pal()`](https://jrnold.github.io/ggthemes/reference/economist_pal.md)
+for discrete color and fill scales as the default palettes, so a plot
+draws in the theme's colors without a matching scale. A `scale_*()`
+added to the plot still takes precedence.
+
 ## References
 
 - [The Economist](https://www.economist.com/)

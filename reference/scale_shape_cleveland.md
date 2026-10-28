@@ -143,9 +143,7 @@ Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 for a description of the palette.
 
 Other shapes:
-[`circlefill_shape_pal()`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md),
 [`cleveland_shape_pal()`](https://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md),
-[`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
 [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md),
 [`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)
 

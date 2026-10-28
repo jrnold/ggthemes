@@ -22,6 +22,16 @@ theme_calc(base_size = 10, base_family = "sans")
 
 A ggplot2 theme object (class `theme`).
 
+## Palettes
+
+The theme sets
+[`calc_pal()`](https://jrnold.github.io/ggthemes/reference/calc_pal.md)
+for discrete color and fill scales and
+[`calc_shape_pal()`](https://jrnold.github.io/ggthemes/reference/calc_shape_pal.md)
+for shape as the default palettes, so a plot draws in the theme's colors
+without a matching scale. A `scale_*()` added to the plot still takes
+precedence.
+
 ## Examples
 
 ``` r

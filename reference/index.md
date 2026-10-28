@@ -157,8 +157,6 @@ details of how data values are translated to visual properties.
 
 - [`scale_shape_calc()`](https://jrnold.github.io/ggthemes/reference/scale_shape_calc.md)
   : Calc shape scale
-- [`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md)
-  **\[deprecated\]** : Filled circle shape scale (deprecated)
 - [`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md)
   : Shape scales from Cleveland "Elements of Graphing Data"
 - [`scale_shape_few()`](https://jrnold.github.io/ggthemes/reference/scale_shape_few.md)
@@ -188,8 +186,6 @@ Color, shape, and linetype palettes.
   : Calc shape palette (discrete)
 - [`canva_pal()`](https://jrnold.github.io/ggthemes/reference/canva_pal.md)
   : Canva.com color palettes
-- [`circlefill_shape_pal()`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md)
-  **\[deprecated\]** : Filled Circle Shape palette (discrete)
 - [`cleveland_shape_pal()`](https://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md)
   : Shape palette from Cleveland's "Elements of Graphing Data"
 - [`colorblind_pal()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
@@ -270,8 +266,7 @@ ggplot2 geom and stat layers.
   : Multi-scale banking to 45 degrees
 - [`bank_plot_multiscale()`](https://jrnold.github.io/ggthemes/reference/bank_plot_multiscale.md)
   : Bank a plot's own data at every scale
-- [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
-  [`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
+- [`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
   : Pretty axis breaks inclusive of extreme values
 - [`show_linetypes()`](https://jrnold.github.io/ggthemes/reference/show_linetypes.md)
   : Show linetypes

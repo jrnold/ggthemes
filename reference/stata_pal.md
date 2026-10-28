@@ -6,7 +6,7 @@ schemes, <https://www.stata.com/help.cgi?schemes>.
 ## Usage
 
 ``` r
-stata_pal(scheme = NULL)
+stata_pal(scheme = "stcolor")
 ```
 
 ## Arguments
@@ -14,9 +14,9 @@ stata_pal(scheme = NULL)
 - scheme:
 
   A string, the Stata scheme. One of: `"s2color"`, `"s1rcolor"`,
-  `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`. If `NULL`, the
-  default, `"s2color"` is used and a deprecation message is issued; this
-  default becomes `"stcolor"` in ggthemes 8.0.0.
+  `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`. The default,
+  `"stcolor"`, is Stata's factory default since Stata 18. `NULL` is the
+  same as the default.
 
 ## Value
 

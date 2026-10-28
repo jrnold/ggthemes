@@ -1,9 +1,11 @@
 # Filled Circle Shape palette (discrete)
 
-**\[deprecated\]**
+**\[defunct\]**
 
-This function was deprecated because unicode glyphs used for the circles
-vary in size, making them unusable for plotting.
+This function was deprecated in ggthemes 5.0.0 and is now defunct,
+because the unicode glyphs used for the circles vary in size, making
+them unusable for plotting. For circles that vary by amount of fill, use
+`tableau_shape_pal("proportions", unicode = TRUE)`.
 
 Shape palette with circles varying by amount of fill. This uses the set
 of 3 circle fill values in Lewandowsky and Spence (1989): solid, hollow,
@@ -30,20 +32,3 @@ integer vector of `n` shape (`pch`) codes, and can be used as the
 Lewandowsky, Stephan and Ian Spence (1989) "Discriminating Strata in
 Scatterplots", Journal of the American Statistical Association,
 <https://www.jstor.org/stable/2289649>
-
-## See also
-
-Other shapes:
-[`cleveland_shape_pal()`](https://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md),
-[`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md),
-[`scale_shape_cleveland()`](https://jrnold.github.io/ggthemes/reference/scale_shape_cleveland.md),
-[`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md),
-[`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)
-
-## Examples
-
-``` r
-circlefill_shape_pal()(3)
-#> Warning: `circlefill_shape_pal()` was deprecated in ggthemes 5.0.0.
-#> [1] -9675 -9679 -9683
-```

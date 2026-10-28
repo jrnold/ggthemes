@@ -9,55 +9,35 @@ minimum and maximum of the data range.
 ## Usage
 
 ``` r
-extended_range_breaks_(
-  dmin,
-  dmax,
-  n = 5,
-  Q = c(1, 5, 2, 2.5, 4, 3),
-  w = c(0.25, 0.2, 0.5, 0.05)
-)
-
 extended_range_breaks(n = 5, ...)
 ```
 
 ## Arguments
 
-- dmin:
-
-  Minimum of the data range.
-
-- dmax:
-
-  Maximum of the data range.
-
 - n:
 
   Desired number of breaks.
 
-- Q:
-
-  Set of nice numbers.
-
-- w:
-
-  Weights applied to the four optimization components (simplicity,
-  coverage, density, and legibility).
-
 - ...:
 
-  Other arguments passed to `extended_range_breaks_()`.
+  Other arguments passed to the algorithm:
+
+  - `Q`: set of nice numbers, by default `c(1, 5, 2, 2.5, 4, 3)`.
+
+  - `w`: weights applied to the four optimization components
+    (simplicity, coverage, density, and legibility), by default
+    `c(0.25, 0.2, 0.5, 0.05)`.
 
 ## Value
 
-For `extended_range_breaks_`, the vector of axis label locations. For
-`extended_range_breaks`, a function which takes a single argument, a
-vector of data, and returns the vector of axis label locations.
+A function which takes a single argument, a vector of data, and returns
+the vector of axis label locations.
 
 ## Details
 
-`extended_range_breaks_()` implements the algorithm and returns the
-break values. `extended_range_breaks()` uses the conventions of the
-scales package, and returns a function.
+`extended_range_breaks()` follows the conventions of the scales package:
+it returns a function that takes a vector of data and returns the
+breaks.
 
 Note that ggplot2 hands a `breaks` function the expanded scale limits,
 not the data range. Passing `extended_range_breaks()` directly to
@@ -88,10 +68,6 @@ Justin Talbot <jtalbot@stanford.edu>, Jeffrey B. Arnold, Baptiste Auguie
 
 ``` r
 # Pretty breaks that always include the extremes of the data
-extended_range_breaks_(min(mtcars$wt), max(mtcars$wt))
-#> [1] 1.513 3.000 4.000 5.424
-
-# A function, in the style of the scales package
 extended_range_breaks()(mtcars$wt)
 #> [1] 1.513 3.000 4.000 5.424
 

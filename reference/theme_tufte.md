@@ -48,7 +48,7 @@ Chapter 6.
 ## See also
 
 Other tufte:
-[`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
+[`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
 [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
 [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
 

@@ -37,11 +37,18 @@ A ggplot2 theme object (class `theme`).
 
 Text uses the scheme's foreground, `fg_0`, and titles its bold
 foreground, `fg_1`. Grid lines use `bg_1`, and axis lines and ticks the
-dim foreground, `dim_0`. With ggplot2 4.0.0 or later, geoms default to
-the foreground and background colors, so that they show on the dark
-variants. Use
+dim foreground, `dim_0`. Geoms default to the foreground and background
+colors, so that they show on the dark variants. Use
 [`scale_colour_selenized()`](https://jrnold.github.io/ggthemes/reference/scale_selenized.md)
 with the same `variant` for matching data colors.
+
+## Palettes
+
+The theme sets
+[`selenized_pal()`](https://jrnold.github.io/ggthemes/reference/selenized_pal.md),
+for the same `variant`, for discrete color and fill as the default
+palettes, so a plot draws in the theme's colors without a matching
+scale. A `scale_*()` added to the plot still takes precedence.
 
 ## Examples
 

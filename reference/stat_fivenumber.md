@@ -15,7 +15,8 @@ stat_fivenumber(
   position = "identity",
   show.legend = NA,
   inherit.aes = TRUE,
-  ...
+  ...,
+  orientation = NA
 )
 ```
 
@@ -151,13 +152,19 @@ stat_fivenumber(
     glyphs](https://ggplot2.tidyverse.org/reference/draw_key.html), to
     change the display of the layer in the legend.
 
+- orientation:
+
+  The orientation of the layer. The default (`NA`) infers it from the
+  aesthetics: a discrete `y` with a continuous `x` summarizes `x` for
+  each level of `y`. Set it to `"x"` or `"y"` when inference fails.
+
 ## Value
 
 A data frame with additional columns:
 
 - `width`: width of the box plot.
 
-- `min`: minimum.
+- `ymin`: minimum.
 
 - `lower`: lower hinge, the 25% quantile.
 
@@ -165,7 +172,10 @@ A data frame with additional columns:
 
 - `upper`: upper hinge, the 75% quantile.
 
-- `max`: maximum.
+- `ymax`: maximum.
+
+- `flipped_aes`: whether the summary is of `x` rather than `y`; if so,
+  `ymin` and `ymax` are named `xmin` and `xmax`.
 
 ## See also
 

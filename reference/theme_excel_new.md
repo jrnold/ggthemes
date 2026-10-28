@@ -38,6 +38,14 @@ defaults to `"sans"` because Aptos is rarely installed outside of
 Office. Pass `base_family = "Aptos Narrow"` for a closer match if you do
 have it.
 
+## Palettes
+
+The theme sets
+[`excel_new_pal()`](https://jrnold.github.io/ggthemes/reference/excel_new_pal.md)
+for discrete color and fill scales as the default palettes, so a plot
+draws in the theme's colors without a matching scale. A `scale_*()`
+added to the plot still takes precedence.
+
 ## See also
 
 Other themes excel:

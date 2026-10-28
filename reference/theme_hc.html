@@ -69,7 +69,7 @@
 
 
 <dt id="arg-bgcolor">bgcolor<a class="anchor" aria-label="anchor" href="#arg-bgcolor"></a></dt>
-<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Use <code>style</code> instead.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#defunct" class="external-link"><img src="figures/lifecycle-defunct.svg" alt="[Defunct]"></a> Use <code>style</code> instead.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -87,6 +87,15 @@ they are available through <code><a href="hc_pal.html">hc_pal()</a></code> alone
 (<code>darkunica</code> with Unica One, <code>grid_light</code> with Dosis,
 <code>sand_signika</code> with Signika). Those are not requested here, since the
 font may not be installed; pass <code>base_family</code> to use one.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="palettes">Palettes<a class="anchor" aria-label="anchor" href="#palettes"></a></h2>
+
+
+<p>The theme sets <code><a href="hc_pal.html">hc_pal()</a></code>, with the palette named by <code>style</code>, for discrete
+color and fill as the default palettes, so a plot draws in the theme's colors
+without a matching scale. A <code>scale_*()</code> added to the plot still takes
+precedence.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

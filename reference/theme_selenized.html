@@ -86,9 +86,18 @@ ones.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Text uses the scheme's foreground, <code>fg_0</code>, and titles its bold foreground,
 <code>fg_1</code>. Grid lines use <code>bg_1</code>, and axis lines and ticks the dim foreground,
-<code>dim_0</code>. With ggplot2 4.0.0 or later, geoms default to the foreground and
+<code>dim_0</code>. Geoms default to the foreground and
 background colors, so that they show on the dark variants. Use
 <code><a href="scale_selenized.html">scale_colour_selenized()</a></code> with the same <code>variant</code> for matching data colors.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="palettes">Palettes<a class="anchor" aria-label="anchor" href="#palettes"></a></h2>
+
+
+<p>The theme sets <code><a href="selenized_pal.html">selenized_pal()</a></code>, for the same <code>variant</code>, for discrete color
+and fill as the default palettes, so a plot draws in the theme's colors
+without a matching scale. A <code>scale_*()</code> added to the plot still takes
+precedence.</p>
     </div>
 
     <div class="section level2">

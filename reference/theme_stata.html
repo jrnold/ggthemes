@@ -43,7 +43,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">theme_stata</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">11</span>, base_family <span class="op">=</span> <span class="st">"sans"</span>, scheme <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">theme_stata</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">11</span>, base_family <span class="op">=</span> <span class="st">"sans"</span>, scheme <span class="op">=</span> <span class="st">"stcolor"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -62,9 +62,8 @@
 <dd><p>A string, the Stata scheme. One of: <code>"stcolor"</code>,
 <code>"stcolor_alt"</code>, <code>"stmono1"</code>, <code>"stmono2"</code>, <code>"stsj"</code>, <code>"s2color"</code>,
 <code>"s2mono"</code>, <code>"s1color"</code>, <code>"s1rcolor"</code>, <code>"s1mono"</code>, <code>"s2manual"</code>,
-<code>"s1manual"</code>, or <code>"sj"</code>. If <code>NULL</code>, the default, <code>"s2color"</code> is used and a
-deprecation message is issued; this default becomes <code>"stcolor"</code> in
-ggthemes 8.0.0.</p></dd>
+<code>"s1manual"</code>, or <code>"sj"</code>. The default, <code>"stcolor"</code>, is Stata's factory
+default since Stata 18. <code>NULL</code> is the same as the default.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -96,6 +95,20 @@ reproduces Stata's absolute sizes at its default 7.5 by 4.5 inch graph.
 Two further differences are not expressible in a ggplot2 theme: the number
 of legend columns (set by <code><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">ggplot2::guide_legend()</a></code> rather than
 the theme) and Stata's small default marker size (a geom default).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="palettes">Palettes<a class="anchor" aria-label="anchor" href="#palettes"></a></h2>
+
+
+<p>The theme sets <code><a href="stata_pal.html">stata_pal()</a></code> for discrete color and fill scales,
+<code><a href="stata_shape_pal.html">stata_shape_pal()</a></code> for shape and <code><a href="stata_linetype_pal.html">stata_linetype_pal()</a></code> for linetype as the
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A <code>scale_*()</code> added to the plot still takes precedence. The color
+palette is the <code><a href="stata_pal.html">stata_pal()</a></code> scheme of the same name for <code>"s2color"</code>,
+<code>"s1color"</code> and <code>"s1rcolor"</code>; <code>"stcolor"</code> for <code>"stcolor"</code> and
+<code>"stcolor_alt"</code>; and <code>"mono"</code>, Stata's gray ramp, for every other scheme
+(<code>"s2mono"</code>, <code>"s1mono"</code>, <code>"s2manual"</code>, <code>"s1manual"</code>, <code>"sj"</code>, <code>"stmono1"</code>,
+<code>"stmono2"</code> and <code>"stsj"</code>).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

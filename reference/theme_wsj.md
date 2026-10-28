@@ -41,6 +41,14 @@ A ggplot2 theme object (class `theme`).
 This theme should be used with
 [`scale_color_wsj()`](https://jrnold.github.io/ggthemes/reference/scale_wsj.md).
 
+## Palettes
+
+The theme sets
+[`wsj_pal()`](https://jrnold.github.io/ggthemes/reference/wsj_pal.md)
+for discrete color and fill scales as the default palettes, so a plot
+draws in the theme's colors without a matching scale. A `scale_*()`
+added to the plot still takes precedence.
+
 ## References
 
 <https://x.com/WSJGraphics>

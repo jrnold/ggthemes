@@ -30,7 +30,7 @@ theme_hc(
 
 - bgcolor:
 
-  **\[deprecated\]** Use `style` instead.
+  **\[defunct\]** Use `style` instead.
 
 ## Value
 
@@ -50,6 +50,14 @@ Highcharts pairs several of these themes with a web font (`darkunica`
 with Unica One, `grid_light` with Dosis, `sand_signika` with Signika).
 Those are not requested here, since the font may not be installed; pass
 `base_family` to use one.
+
+## Palettes
+
+The theme sets
+[`hc_pal()`](https://jrnold.github.io/ggthemes/reference/hc_pal.md),
+with the palette named by `style`, for discrete color and fill as the
+default palettes, so a plot draws in the theme's colors without a
+matching scale. A `scale_*()` added to the plot still takes precedence.
 
 ## References
 

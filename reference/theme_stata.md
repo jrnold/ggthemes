@@ -5,7 +5,7 @@ Themes based on Stata graph schemes
 ## Usage
 
 ``` r
-theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
+theme_stata(base_size = 11, base_family = "sans", scheme = "stcolor")
 ```
 
 ## Arguments
@@ -23,8 +23,8 @@ theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
   A string, the Stata scheme. One of: `"stcolor"`, `"stcolor_alt"`,
   `"stmono1"`, `"stmono2"`, `"stsj"`, `"s2color"`, `"s2mono"`,
   `"s1color"`, `"s1rcolor"`, `"s1mono"`, `"s2manual"`, `"s1manual"`, or
-  `"sj"`. If `NULL`, the default, `"s2color"` is used and a deprecation
-  message is issued; this default becomes `"stcolor"` in ggthemes 8.0.0.
+  `"sj"`. The default, `"stcolor"`, is Stata's factory default since
+  Stata 18. `NULL` is the same as the default.
 
 ## Value
 
@@ -57,6 +57,23 @@ ggplot2 theme: the number of legend columns (set by
 [`ggplot2::guide_legend()`](https://ggplot2.tidyverse.org/reference/guide_legend.html)
 rather than the theme) and Stata's small default marker size (a geom
 default).
+
+## Palettes
+
+The theme sets
+[`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md)
+for discrete color and fill scales,
+[`stata_shape_pal()`](https://jrnold.github.io/ggthemes/reference/stata_shape_pal.md)
+for shape and
+[`stata_linetype_pal()`](https://jrnold.github.io/ggthemes/reference/stata_linetype_pal.md)
+for linetype as the default palettes, so a plot draws in the theme's
+colors without a matching scale. A `scale_*()` added to the plot still
+takes precedence. The color palette is the
+[`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md)
+scheme of the same name for `"s2color"`, `"s1color"` and `"s1rcolor"`;
+`"stcolor"` for `"stcolor"` and `"stcolor_alt"`; and `"mono"`, Stata's
+gray ramp, for every other scheme (`"s2mono"`, `"s1mono"`, `"s2manual"`,
+`"s1manual"`, `"sj"`, `"stmono1"`, `"stmono2"` and `"stsj"`).
 
 ## References
 

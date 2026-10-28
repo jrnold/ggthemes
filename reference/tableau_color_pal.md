@@ -52,6 +52,9 @@ Tableau provides three types of color palettes: `"regular"` (discrete,
 qualitative categories), `"ordered-sequential"`, and
 `"ordered-diverging"`.
 
+The default palette, `"Tableau 10"`, has the same colors as base R's
+`palette.colors(palette = "Tableau 10")`.
+
 - `"regular"`: `"Tableau 10"`, `"Tableau 20"`, `"Color Blind"`,
   `"Seattle Grays"`, `"Traffic"`, `"Miller Stone"`,
   `"Superfishel Stone"`, `"Nuriel Stone"`, `"Jewel Bright"`, `"Summer"`,

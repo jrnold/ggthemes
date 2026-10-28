@@ -23,6 +23,16 @@ theme_few(base_size = 12, base_family = "")
 
 A ggplot2 theme object (class `theme`).
 
+## Palettes
+
+The theme sets
+[`few_pal()`](https://jrnold.github.io/ggthemes/reference/few_pal.md)
+for discrete color and fill scales and
+[`few_shape_pal()`](https://jrnold.github.io/ggthemes/reference/few_shape_pal.md)
+for shape as the default palettes, so a plot draws in the theme's colors
+without a matching scale. A `scale_*()` added to the plot still takes
+precedence.
+
 ## References
 
 Few, S. (2012) *Show Me the Numbers: Designing Tables and Graphs to

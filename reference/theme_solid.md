@@ -1,9 +1,10 @@
 # Theme with nothing other than a background color
 
 Theme that removes all non-geom elements (lines, text, etc.). Use it
-when only the geometric objects are desired. The `base_family` argument
-is ignored; it is kept for consistency with
-[`ggplot2::theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+when only the geometric objects are desired. `base_size` and
+`base_family` set only the default size and font of text geoms, such as
+[`ggplot2::geom_text()`](https://ggplot2.tidyverse.org/reference/geom_text.html),
+since the theme draws no text of its own.
 
 ## Usage
 

@@ -17,7 +17,8 @@ theme_foundation(
   base_family = "",
   ink = "black",
   paper = "white",
-  accent = "#3366FF"
+  accent = "#3366FF",
+  header_family = NULL
 )
 ```
 
@@ -34,6 +35,12 @@ theme_foundation(
 - ink, paper, accent:
 
   colour for foreground, background, and accented elements respectively.
+
+- header_family:
+
+  font family for titles and headers. The default, `NULL`, uses theme
+  inheritance to set the font. This setting affects axis titles, legend
+  titles, the plot title and tag text.
 
 ## Value
 

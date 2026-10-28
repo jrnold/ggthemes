@@ -4,6 +4,72 @@
 
 ### Breaking changes
 
+- ggthemes now requires ggplot2 4.0.0 or later, for its theme palettes
+  and geom defaults
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- Themes now set their own palettes as the defaults for discrete scales,
+  so `p + theme_economist()` draws in the Economist’s colors without
+  [`scale_colour_economist()`](https://jrnold.github.io/ggthemes/reference/scale_economist.md).
+  This changes the colors of plots that used one of these themes without
+  a matching scale.
+  [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md),
+  [`theme_economist()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
+  [`theme_economist_white()`](https://jrnold.github.io/ggthemes/reference/theme_economist.md),
+  [`theme_excel()`](https://jrnold.github.io/ggthemes/reference/theme_excel.md),
+  [`theme_excel_new()`](https://jrnold.github.io/ggthemes/reference/theme_excel_new.md),
+  [`theme_few()`](https://jrnold.github.io/ggthemes/reference/theme_few.md),
+  [`theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.md),
+  [`theme_gdocs()`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.md),
+  [`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md),
+  [`theme_numbers()`](https://jrnold.github.io/ggthemes/reference/theme_numbers.md),
+  [`theme_pander()`](https://jrnold.github.io/ggthemes/reference/theme_pander.md),
+  [`theme_selenized()`](https://jrnold.github.io/ggthemes/reference/theme_selenized.md),
+  [`theme_solarized()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md),
+  [`theme_solarized_2()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md),
+  [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md)
+  and
+  [`theme_wsj()`](https://jrnold.github.io/ggthemes/reference/theme_wsj.md)
+  set color and fill;
+  [`theme_calc()`](https://jrnold.github.io/ggthemes/reference/theme_calc.md),
+  [`theme_few()`](https://jrnold.github.io/ggthemes/reference/theme_few.md)
+  and
+  [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md)
+  also set shape, and
+  [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md)
+  sets linetype. A scale added to the plot still wins, so add
+  [`scale_colour_discrete()`](https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html)
+  and
+  [`scale_fill_discrete()`](https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html)
+  for ggplot2’s default colors. When a plot has more groups than the
+  theme’s palette has values, the theme warns and uses ggplot2’s default
+  palette ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md),
+  [`stata_pal()`](https://jrnold.github.io/ggthemes/reference/stata_pal.md),
+  [`scale_colour_stata()`](https://jrnold.github.io/ggthemes/reference/scale_stata.md)
+  and
+  [`scale_fill_stata()`](https://jrnold.github.io/ggthemes/reference/scale_stata.md)
+  now default to `scheme = "stcolor"`, Stata’s factory default since
+  Stata 18, instead of `"s2color"`, as announced in 7.0.0. Use
+  `scheme = "s2color"` for the previous look. `scheme = NULL`, the
+  previous default, now also means `"stcolor"`
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- These deprecated arguments and functions are now defunct and error
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)):
+
+  - `theme_pander(ff)` and `theme_pander(fs)`. Deprecated in 2.0.0; use
+    `base_family` and `base_size` instead.
+  - `theme_hc(bgcolor)`. Deprecated in 4.2.0; use `style` instead.
+  - [`circlefill_shape_pal()`](https://jrnold.github.io/ggthemes/reference/circlefill_shape_pal.md)
+    and
+    [`scale_shape_circlefill()`](https://jrnold.github.io/ggthemes/reference/scale_shape_circlefill.md).
+    Deprecated in 5.0.0; use
+    `tableau_shape_pal("proportions", unicode = TRUE)` and
+    `scale_shape_tableau(palette = "proportions", unicode = TRUE)`
+    instead.
+
 - [`theme_base()`](https://jrnold.github.io/ggthemes/reference/theme_base.md)
   now defaults to `base_size = 12`, the default text size of base
   graphics, instead of 16, and draws tick labels, strip text, legend
@@ -62,6 +128,23 @@
 
 ### New features
 
+- The dark variants of
+  [`theme_solarized()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md),
+  [`theme_solarized_2()`](https://jrnold.github.io/ggthemes/reference/theme_solarized.md),
+  [`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md)
+  (`"darkunica"` and `"default_dark"`) and
+  [`theme_stata()`](https://jrnold.github.io/ggthemes/reference/theme_stata.md)
+  (`"s1rcolor"`) now draw unmapped geoms in their foreground color, so a
+  plain
+  [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
+  is no longer black on a dark background
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`theme_foundation()`](https://jrnold.github.io/ggthemes/reference/theme_foundation.md)
+  gains a `header_family` argument to set the font of titles separately
+  from `base_family`
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
 - New
   [`theme_selenized()`](https://jrnold.github.io/ggthemes/reference/theme_selenized.md),
   [`selenized_pal()`](https://jrnold.github.io/ggthemes/reference/selenized_pal.md),
@@ -73,16 +156,15 @@
   `"black"` or `"white"` version; each has its own accent colors, and
   `ggthemes_data$selenized` holds them all.
 
-- With ggplot2 4.0.0 or later,
-  [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
+- [`theme_par()`](https://jrnold.github.io/ggthemes/reference/theme_par.md)
   also sets the defaults for geoms from
-  [`par()`](https://rdrr.io/r/graphics/par.html): colour from `col`,
+  [`par()`](https://rdrr.io/r/graphics/par.html): color from `col`,
   background from `bg`, line width and type from `lwd` and `lty`, point
   shape from `pch`, and point and text size from `cex` and `ps`. Lines
   join with `par("ljoin")`. Discrete scales use the current
   [`palette()`](https://rdrr.io/r/grDevices/palette.html), recycled as
   base graphics does, and continuous scales use
-  `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of
+  `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colors of
   [`image()`](https://rdrr.io/r/graphics/image.html)
   ([\#281](https://github.com/jrnold/ggthemes/issues/281)).
 
@@ -100,6 +182,54 @@
   ([\#265](https://github.com/jrnold/ggthemes/issues/265)).
 
 ### Minor improvements and fixes
+
+- [`scale_colour_colorblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
+  now always warns that it is deprecated; use
+  [`scale_colour_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/extended_range_breaks_.md)
+  is deprecated. Use
+  [`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md):
+  `extended_range_breaks_(dmin, dmax, n)` is
+  `extended_range_breaks(n)(c(dmin, dmax))`
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`theme_solid()`](https://jrnold.github.io/ggthemes/reference/theme_solid.md)’s
+  `base_size` and `base_family` now set the default size and font of
+  text geoms; they were ignored
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`theme_hc()`](https://jrnold.github.io/ggthemes/reference/theme_hc.md)
+  and
+  [`theme_pander()`](https://jrnold.github.io/ggthemes/reference/theme_pander.md)
+  are now complete themes built on
+  [`theme_grey()`](https://ggplot2.tidyverse.org/reference/ggtheme.html),
+  like the package’s other themes, so the active theme
+  ([`theme_set()`](https://ggplot2.tidyverse.org/reference/get_theme.html))
+  no longer leaks into them. Their spacing now scales with `base_size`
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
+  and
+  [`stat_fivenumber()`](https://jrnold.github.io/ggthemes/reference/stat_fivenumber.md)
+  now draw horizontal box plots. A discrete `y` with a continuous `x`
+  now summarizes `x`, as in
+  [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html);
+  before, it summarized the factor codes of `y` and drew the plot
+  wrongly without a warning. A new `orientation` argument sets the
+  direction when it can’t be inferred
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
+  legend keys are now point ranges, as intended; they were drawn as
+  boxes ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
+
+- [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
+  now sets line width with the `linewidth` aesthetic, as ggplot2’s line
+  geoms have since 3.4.0; `linewidth` was ignored before. `size` still
+  works, with a deprecation warning
+  ([\#287](https://github.com/jrnold/ggthemes/issues/287)).
 
 - Deprecate
   [`smart_digits()`](https://jrnold.github.io/ggthemes/reference/smart_digits.md)
@@ -141,10 +271,9 @@
     tick length from the plot region size.
   - The `sub` parameters also style `plot.subtitle` and `plot.caption`.
 
-- The deprecation warnings from `theme_hc(bgcolor)`, `theme_pander(ff)`,
-  `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"`
-  and `"Classic Area-Brown"` now come from lifecycle, so they name the
-  release that deprecated them
+- The deprecation warnings for the renamed Tableau palettes
+  `"Red-Blue-Brown"` and `"Classic Area-Brown"` now come from lifecycle,
+  so they name the release that deprecated them
   ([\#273](https://github.com/jrnold/ggthemes/issues/273)).
 
 - [`bank_plot()`](https://jrnold.github.io/ggthemes/reference/bank_plot.md)
@@ -556,7 +685,7 @@ CRAN release: 2026-10-03
   help page, which described a function `scales_extended_range_breaks()`
   that does not exist and attributed the wrong return value to each
   function.
-  [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
+  [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/extended_range_breaks_.md)
   returns the break values;
   [`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
   returns a breaks function. The page now also warns that ggplot2 passes
@@ -861,7 +990,7 @@ CRAN release: 2026-08-30
   example so it actually generates output
   ([\#199](https://github.com/jrnold/ggthemes/issues/199))
 - Bugfix:
-  [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md)
+  [`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/extended_range_breaks_.md)
   now respects the `n` argument instead of silently ignoring it
   ([\#139](https://github.com/jrnold/ggthemes/issues/139))
 - Add `black` argument to

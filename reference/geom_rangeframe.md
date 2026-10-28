@@ -175,7 +175,7 @@ secondary axis – there is no separate "secondary" range for
 
 - `colour`
 
-- `size`
+- `linewidth`
 
 - `linetype`
 
@@ -192,7 +192,7 @@ Other geom tufte:
 [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
 
 Other tufte:
-[`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
+[`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
 [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md),
 [`theme_tufte()`](https://jrnold.github.io/ggthemes/reference/theme_tufte.md)
 

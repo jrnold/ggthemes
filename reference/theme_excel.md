@@ -31,6 +31,14 @@ theme_excel(base_size = 12, base_family = "", horizontal = TRUE)
 An object of class
 [`ggplot2::theme()`](https://ggplot2.tidyverse.org/reference/theme.html).
 
+## Palettes
+
+The theme sets
+[`excel_pal()`](https://jrnold.github.io/ggthemes/reference/excel_pal.md)
+for discrete color (`line = TRUE`) and fill (`line = FALSE`) as the
+default palettes, so a plot draws in the theme's colors without a
+matching scale. A `scale_*()` added to the plot still takes precedence.
+
 ## See also
 
 Other themes excel:

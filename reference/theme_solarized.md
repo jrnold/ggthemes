@@ -40,6 +40,14 @@ variations: `theme_solarized()` is similar to
 while `theme_solarized_2()` is similar to
 [`ggplot2::theme_gray()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
+## Palettes
+
+The theme sets
+[`solarized_pal()`](https://jrnold.github.io/ggthemes/reference/solarized_pal.md)
+for discrete color and fill scales as the default palettes, so a plot
+draws in the theme's colors without a matching scale. A `scale_*()`
+added to the plot still takes precedence.
+
 ## Examples
 
 ``` r

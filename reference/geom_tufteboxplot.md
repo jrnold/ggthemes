@@ -35,7 +35,8 @@ geom_tufteboxplot(
   inherit.aes = TRUE,
   median.type = "point",
   whisker.type = "line",
-  ...
+  ...,
+  orientation = NA
 )
 ```
 
@@ -119,12 +120,14 @@ geom_tufteboxplot(
 - voffset:
 
   Controls the size of the gap in the line representing the median when
-  `median.type = "line"`. This is a fraction of the range of `y`.
+  `median.type = "line"`. This is a fraction of the range of the
+  summarized axis (`y`, or `x` for a horizontal box plot).
 
 - hoffset:
 
   Controls how much the interquartile line is offset from the whiskers
-  when `median.type = "line"`. This is a fraction of the range of `x`.
+  when `median.type = "line"`. This is a fraction of the range of the
+  grouping axis (`x`, or `y` for a horizontal box plot).
 
 - na.rm:
 
@@ -204,6 +207,12 @@ geom_tufteboxplot(
     glyphs](https://ggplot2.tidyverse.org/reference/draw_key.html), to
     change the display of the layer in the legend.
 
+- orientation:
+
+  The orientation of the layer. The default (`NA`) infers it from the
+  aesthetics: a discrete `y` with a continuous `x` summarizes `x` for
+  each level of `y`. Set it to `"x"` or `"y"` when inference fails.
+
 ## Value
 
 A ggplot2 layer.
@@ -244,7 +253,7 @@ Other geom tufte:
 [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
 
 Other tufte:
-[`extended_range_breaks_()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
+[`extended_range_breaks()`](https://jrnold.github.io/ggthemes/reference/range_breaks.md),
 [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md),
 [`theme_tufte()`](https://jrnold.github.io/ggthemes/reference/theme_tufte.md)
 

@@ -7,11 +7,11 @@ for details.
 ## Usage
 
 ``` r
-scale_colour_stata(scheme = NULL, ...)
+scale_colour_stata(scheme = "stcolor", ...)
 
-scale_fill_stata(scheme = NULL, ...)
+scale_fill_stata(scheme = "stcolor", ...)
 
-scale_color_stata(scheme = NULL, ...)
+scale_color_stata(scheme = "stcolor", ...)
 ```
 
 ## Arguments
@@ -19,9 +19,9 @@ scale_color_stata(scheme = NULL, ...)
 - scheme:
 
   A string, the Stata scheme. One of: `"s2color"`, `"s1rcolor"`,
-  `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`. If `NULL`, the
-  default, `"s2color"` is used and a deprecation message is issued; this
-  default becomes `"stcolor"` in ggthemes 8.0.0.
+  `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`. The default,
+  `"stcolor"`, is Stata's factory default since Stata 18. `NULL` is the
+  same as the default.
 
 - ...:
 

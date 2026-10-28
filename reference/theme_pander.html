@@ -53,9 +53,9 @@ enabled via <code>panderOptions</code>, which is now also available outside of p
 <span>  base_size <span class="op">=</span> <span class="fl">12</span>,</span>
 <span>  base_family <span class="op">=</span> <span class="st">"sans"</span>,</span>
 <span>  nomargin <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  ff <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ff <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  fc <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span>  fs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fs <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  gM <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  gm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  gc <span class="op">=</span> <span class="st">"grey"</span>,</span>
@@ -85,7 +85,7 @@ enabled via <code>panderOptions</code>, which is now also available outside of p
 
 
 <dt id="arg-ff">ff<a class="anchor" aria-label="anchor" href="#arg-ff"></a></dt>
-<dd><p>Font family, like <code>"sans"</code>. <a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Use <code>base_family</code> instead.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#defunct" class="external-link"><img src="figures/lifecycle-defunct.svg" alt="[Defunct]"></a> Use <code>base_family</code> instead.</p></dd>
 
 
 <dt id="arg-fc">fc<a class="anchor" aria-label="anchor" href="#arg-fc"></a></dt>
@@ -93,7 +93,7 @@ enabled via <code>panderOptions</code>, which is now also available outside of p
 
 
 <dt id="arg-fs">fs<a class="anchor" aria-label="anchor" href="#arg-fs"></a></dt>
-<dd><p>Font size (integer). <a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Use <code>base_size</code> instead.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#defunct" class="external-link"><img src="figures/lifecycle-defunct.svg" alt="[Defunct]"></a> Use <code>base_size</code> instead.</p></dd>
 
 
 <dt id="arg-gm">gM<a class="anchor" aria-label="anchor" href="#arg-gm"></a></dt>
@@ -135,6 +135,14 @@ enabled via <code>panderOptions</code>, which is now also available outside of p
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A ggplot2 theme object (class <code>theme</code>).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="palettes">Palettes<a class="anchor" aria-label="anchor" href="#palettes"></a></h2>
+
+
+<p>The theme sets <code><a href="palette_pander.html">palette_pander()</a></code> for discrete color and fill scales as the
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A <code>scale_*()</code> added to the plot still takes precedence.</p>
     </div>
 
     <div class="section level2">

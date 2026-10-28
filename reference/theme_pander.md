@@ -11,9 +11,9 @@ theme_pander(
   base_size = 12,
   base_family = "sans",
   nomargin = TRUE,
-  ff = NULL,
+  ff = lifecycle::deprecated(),
   fc = "black",
-  fs = NULL,
+  fs = lifecycle::deprecated(),
   gM = TRUE,
   gm = TRUE,
   gc = "grey",
@@ -42,8 +42,7 @@ theme_pander(
 
 - ff:
 
-  Font family, like `"sans"`. **\[deprecated\]** Use `base_family`
-  instead.
+  **\[defunct\]** Use `base_family` instead.
 
 - fc:
 
@@ -51,7 +50,7 @@ theme_pander(
 
 - fs:
 
-  Font size (integer). **\[deprecated\]** Use `base_size` instead.
+  **\[defunct\]** Use `base_size` instead.
 
 - gM:
 
@@ -92,6 +91,14 @@ theme_pander(
 ## Value
 
 A ggplot2 theme object (class `theme`).
+
+## Palettes
+
+The theme sets
+[`palette_pander()`](https://jrnold.github.io/ggthemes/reference/palette_pander.md)
+for discrete color and fill scales as the default palettes, so a plot
+draws in the theme's colors without a matching scale. A `scale_*()`
+added to the plot still takes precedence.
 
 ## Examples
 
