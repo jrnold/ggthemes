@@ -20,7 +20,8 @@
 - `theme_stata()`, `stata_pal()`, `scale_colour_stata()` and
   `scale_fill_stata()` now default to `scheme = "stcolor"`, Stata's factory
   default since Stata 18, instead of `"s2color"`, as announced in 7.0.0. Use
-  `scheme = "s2color"` for the previous look.
+  `scheme = "s2color"` for the previous look. `scheme = NULL`, the previous
+  default, now also means `"stcolor"`.
 
 - These deprecated arguments and functions are now defunct and error:
   `theme_pander(ff, fs)` (deprecated in 2.0.0), `theme_hc(bgcolor)` (4.2.0),

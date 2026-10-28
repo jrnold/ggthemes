@@ -220,3 +220,9 @@ test_that("stata_linetype_pal() checks n like the other palettes", {
   expect_snapshot(pal(-1), error = TRUE)
   expect_warning(pal(attr(pal, "max_n") + 1), "maximum of")
 })
+
+test_that("scheme = NULL, the default before 8.0.0, still means stcolor", {
+  expect_equal(stata_pal(NULL)(15), stata_pal("stcolor")(15))
+  expect_equal(theme_stata(scheme = NULL), theme_stata(scheme = "stcolor"))
+  expect_equal_scale(scale_colour_stata(NULL), scale_colour_stata("stcolor"))
+})

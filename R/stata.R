@@ -28,6 +28,7 @@
 #' @param scheme A string, the Stata scheme. One of: `"s2color"`,
 #'   `"s1rcolor"`, `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`.
 #'   The default, `"stcolor"`, is Stata's factory default since Stata 18.
+#'   `NULL` is the same as the default.
 #'
 #' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
@@ -35,6 +36,8 @@
 #' @family color stata
 #' @example inst/examples/ex-stata_pal.R
 stata_pal <- function(scheme = "stcolor") {
+  # NULL was the documented default before 8.0.0; keep accepting it.
+  scheme <- scheme %||% "stcolor"
   schemes <- ggthemes::ggthemes_data[["stata"]][["colors"]][["schemes"]]
   if (!scheme %in% names(schemes)) {
     cli::cli_abort("{.arg scheme} must be one of {.val {sort(names(schemes))}}, not {.val {scheme}}.")
@@ -377,15 +380,19 @@ theme_stata_colors <- function(scheme = "stcolor") {
 #'   `"stcolor_alt"`, `"stmono1"`, `"stmono2"`, `"stsj"`, `"s2color"`,
 #'   `"s2mono"`, `"s1color"`, `"s1rcolor"`, `"s1mono"`, `"s2manual"`,
 #'   `"s1manual"`, or `"sj"`. The default, `"stcolor"`, is Stata's factory
-#'   default since Stata 18.
+#'   default since Stata 18. `NULL` is the same as the default.
 #' @inheritParams ggplot2::theme_grey
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
-#' The theme sets [stata_pal()] for discrete colour and fill, with the palette
-#' of `scheme` (`"mono"` for the monochrome schemes), [stata_shape_pal()] for
-#' shape and [stata_linetype_pal()] for linetype as the default palettes, so a
-#' plot draws in the theme's colours without a matching scale. A `scale_*()`
-#' added to the plot still takes precedence.
+#' The theme sets [stata_pal()] for discrete colour and fill,
+#' [stata_shape_pal()] for shape and [stata_linetype_pal()] for linetype as the
+#' default palettes, so a plot draws in the theme's colours without a matching
+#' scale. A `scale_*()` added to the plot still takes precedence. The colour
+#' palette is the `stata_pal()` scheme of the same name for `"s2color"`,
+#' `"s1color"` and `"s1rcolor"`; `"stcolor"` for `"stcolor"` and
+#' `"stcolor_alt"`; and `"mono"`, Stata's grey ramp, for every other scheme
+#' (`"s2mono"`, `"s1mono"`, `"s2manual"`, `"s1manual"`, `"sj"`, `"stmono1"`,
+#' `"stmono2"` and `"stsj"`).
 #' @export
 #' @family themes stata
 #'
@@ -419,6 +426,8 @@ theme_stata_colors <- function(scheme = "stcolor") {
 #'
 #' @example inst/examples/ex-theme_stata.R
 theme_stata <- function(base_size = 11, base_family = "sans", scheme = "stcolor") {
+  # NULL was the documented default before 8.0.0; keep accepting it.
+  scheme <- scheme %||% "stcolor"
   theme_stata_base(base_size = base_size, base_family = base_family) +
     theme_stata_layout(scheme = scheme) +
     theme_stata_colors(scheme = scheme) +

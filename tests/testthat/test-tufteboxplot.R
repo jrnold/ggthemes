@@ -48,3 +48,16 @@ test_that("geom_tufteboxplot draws horizontal box plots correctly", {
     horizontal(median.type = "line", whisker.type = "point")
   )
 })
+
+test_that("geom_tufteboxplot draws horizontal outliers and point whiskers on the value axis", {
+  points_xy <- function(p) {
+    grobs <- ggplot2::layer_grob(p)[[1]]$children
+    grobs <- unlist(lapply(grobs, function(g) c(list(g), g$children)), recursive = FALSE)
+    pts <- Filter(function(g) inherits(g, "points"), grobs)
+    do.call(rbind, lapply(pts, function(g) cbind(as.numeric(g$x), as.numeric(g$y))))
+  }
+  df <- data.frame(g = rep(c("a", "b"), each = 20), v = c(1:19, 60, 1:19, -40))
+  vertical <- ggplot(df, aes(.data$g, .data$v)) + geom_tufteboxplot(stat = "boxplot", whisker.type = "point")
+  horizontal <- ggplot(df, aes(.data$v, .data$g)) + geom_tufteboxplot(stat = "boxplot", whisker.type = "point")
+  expect_equal(points_xy(horizontal), points_xy(vertical)[, 2:1])
+})

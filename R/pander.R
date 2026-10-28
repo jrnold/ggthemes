@@ -254,7 +254,9 @@ theme_pander <- function(
   }
 
   res +
-    theme_palettes(palette_pander)
+    # palette_pander() recycles its colors; give the theme its true size so that
+    # too many groups fall back to ggplot2's palette instead of repeating colors.
+    theme_palettes(structure(palette_pander, max_n = length(pander_colours())))
 }
 
 
@@ -272,7 +274,22 @@ theme_pander <- function(
 #' @family color pander
 #' @example inst/examples/ex-palette_pander.R
 palette_pander <- function(n, random_order = FALSE) {
-  ## default (colorblind and printer-friendly) colors
+  cols <- pander_colours()
+
+  if (isTRUE(random_order)) {
+    cols <- sample(cols)
+  }
+
+  if (length(cols) < n) {
+    cols <- rep_len(cols, n)
+  }
+
+  cols[seq_len(n)]
+}
+
+# The colors palette_pander() draws from: panderOptions("graph.colors") when
+# pander is installed, otherwise its colorblind and printer-friendly default.
+pander_colours <- function() {
   cols <- c(
     "#56B4E9",
     "#009E73",
@@ -287,16 +304,7 @@ palette_pander <- function(n, random_order = FALSE) {
   if (requireNamespace("pander", quietly = TRUE)) {
     cols <- pander::panderOptions("graph.colors")
   }
-
-  if (isTRUE(random_order)) {
-    cols <- sample(cols)
-  }
-
-  if (length(cols) < n) {
-    cols <- rep_len(cols, n)
-  }
-
-  cols[seq_len(n)]
+  cols
 }
 
 

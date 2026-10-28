@@ -9,7 +9,8 @@ stata_pal(scheme = "stcolor")
 \arguments{
 \item{scheme}{A string, the Stata scheme. One of: \code{"s2color"},
 \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or \code{"economist"}.
-The default, \code{"stcolor"}, is Stata's factory default since Stata 18.}
+The default, \code{"stcolor"}, is Stata's factory default since Stata 18.
+\code{NULL} is the same as the default.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}

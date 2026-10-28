@@ -86,3 +86,11 @@ test_that("a theme palette within its size draws without a warning", {
   p <- ggplot2::ggplot(d, ggplot2::aes(x, y, colour = g)) + ggplot2::geom_point() + theme_fivethirtyeight()
   expect_no_warning(ggplot2::layer_data(p))
 })
+
+test_that("theme_pander falls back instead of repeating its colours", {
+  n <- length(pander_colours()) + 1
+  d <- data.frame(x = seq_len(n), y = seq_len(n), g = factor(seq_len(n)))
+  p <- ggplot2::ggplot(d, ggplot2::aes(x, y, colour = g)) + ggplot2::geom_point() + theme_pander()
+  expect_warning(drawn <- ggplot2::layer_data(p), "palette has")
+  expect_equal(drawn$colour, scales::pal_hue()(n))
+})
