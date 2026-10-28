@@ -188,20 +188,25 @@ test_that("stcolor matches the reference graph's key colors", {
   expect_equal(th[["legend.position"]], "right")
 })
 
-test_that("omitting scheme is soft-deprecated", {
-  lifecycle::expect_deprecated(stata_pal())
-  lifecycle::expect_deprecated(theme_stata())
-  lifecycle::expect_deprecated(scale_colour_stata())
-  lifecycle::expect_deprecated(scale_fill_stata())
+test_that("scheme defaults to stcolor, Stata 18's factory default", {
+  expect_no_warning(pal <- stata_pal())
+  expect_equal(pal(15), stata_pal("stcolor")(15))
+  expect_equal(theme_stata(), theme_stata(scheme = "stcolor"))
+  expect_equal_scale(scale_colour_stata(), scale_colour_stata("stcolor"))
+  expect_equal_scale(scale_fill_stata(), scale_fill_stata("stcolor"))
 })
 
 test_that("theme_stata draws correctly", {
-  # `scheme` is passed explicitly: its default changes in 7.0.0, and a baseline
-  # should move only when someone means to move it.
+  # `scheme` is passed explicitly so that a change of default doesn't move
+  # this baseline.
   expect_doppelganger(
     "theme_stata",
     theme_test_plot() + theme_stata(scheme = "s2color")
   )
+})
+
+test_that("theme_stata draws its stcolor default correctly", {
+  expect_doppelganger("theme_stata-stcolor", theme_test_plot() + theme_stata())
 })
 
 test_that("stata_linewidths has one value per style name", {

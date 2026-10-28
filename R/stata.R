@@ -1,25 +1,3 @@
-# Stata's factory default scheme changed from s2color to stcolor in Stata 18.
-# ggthemes will follow in 8.0.0; until then an omitted `scheme` keeps the
-# historical default and says so.
-#' @importFrom lifecycle deprecate_soft
-stata_default_scheme <- function(scheme, what) {
-  if (!is.null(scheme)) {
-    return(scheme)
-  }
-  deprecate_soft(
-    "7.0.0",
-    I(paste0("Omitting `scheme` in ", what)),
-    details = c(
-      i = paste0(
-        "The default will change from \"s2color\" to \"stcolor\" in ggthemes 8.0.0, ",
-        "following Stata 18's change of factory default."
-      ),
-      i = "Set `scheme` explicitly to keep the current appearance."
-    )
-  )
-  "s2color"
-}
-
 #' Stata color palettes (discrete)
 #'
 #' Stata color palettes. See Stata documentation for a description of
@@ -49,16 +27,14 @@ stata_default_scheme <- function(scheme, what) {
 #'
 #' @param scheme A string, the Stata scheme. One of: `"s2color"`,
 #'   `"s1rcolor"`, `"s1color"`, `"mono"`, `"stcolor"`, or `"economist"`.
-#'   If `NULL`, the default, `"s2color"` is used and a deprecation message is
-#'   issued; this default becomes `"stcolor"` in ggthemes 8.0.0.
+#'   The default, `"stcolor"`, is Stata's factory default since Stata 18.
 #'
 #' @returns A palette function. It takes the number of colors `n` and returns a character vector of `n`
 #'   hex colors, and can be used as the `palette` argument of [ggplot2::discrete_scale()].
 #' @export
 #' @family color stata
 #' @example inst/examples/ex-stata_pal.R
-stata_pal <- function(scheme = NULL) {
-  scheme <- stata_default_scheme(scheme, "stata_pal()")
+stata_pal <- function(scheme = "stcolor") {
   schemes <- ggthemes::ggthemes_data[["stata"]][["colors"]][["schemes"]]
   if (!scheme %in% names(schemes)) {
     cli::cli_abort("{.arg scheme} must be one of {.val {sort(names(schemes))}}, not {.val {scheme}}.")
@@ -80,15 +56,13 @@ stata_pal <- function(scheme = NULL) {
 #' @returns A ggplot2 scale object.
 #' @export
 #' @example inst/examples/ex-scale_stata.R
-scale_colour_stata <- function(scheme = NULL, ...) {
-  scheme <- stata_default_scheme(scheme, "scale_colour_stata()")
+scale_colour_stata <- function(scheme = "stcolor", ...) {
   discrete_scale("colour", palette = stata_pal(scheme), ...)
 }
 
 #' @export
 #' @rdname scale_stata
-scale_fill_stata <- function(scheme = NULL, ...) {
-  scheme <- stata_default_scheme(scheme, "scale_fill_stata()")
+scale_fill_stata <- function(scheme = "stcolor", ...) {
   discrete_scale("fill", palette = stata_pal(scheme), ...)
 }
 
@@ -202,7 +176,7 @@ theme_stata_base <- function(base_size = 11, base_family = "sans") {
 # Measured from Stata 18-generated reference graphs; see
 # `data-raw/reference/stata/SOURCES.md`. The legacy schemes get an empty
 # theme, so nothing about their appearance changes.
-theme_stata_layout <- function(scheme = "s2color") {
+theme_stata_layout <- function(scheme = "stcolor") {
   relsz <- stata_relsize()
   # stsj is sj with a white background and horizontal y-axis labels; it does
   # not take the rest of the st family's layout.
@@ -251,7 +225,7 @@ stata_palette_scheme <- function(scheme) {
   )
 }
 
-theme_stata_colors <- function(scheme = "s2color") {
+theme_stata_colors <- function(scheme = "stcolor") {
   stata_colors <- ggthemes::ggthemes_data[["stata"]][["colors"]][["names"]]
   stata_colors <- deframe(stata_colors[, c("name", "value")])
   # schemes is used inside the cli_abort() glue string below, which
@@ -402,9 +376,8 @@ theme_stata_colors <- function(scheme = "s2color") {
 #' @param scheme A string, the Stata scheme. One of: `"stcolor"`,
 #'   `"stcolor_alt"`, `"stmono1"`, `"stmono2"`, `"stsj"`, `"s2color"`,
 #'   `"s2mono"`, `"s1color"`, `"s1rcolor"`, `"s1mono"`, `"s2manual"`,
-#'   `"s1manual"`, or `"sj"`. If `NULL`, the default, `"s2color"` is used and a
-#'   deprecation message is issued; this default becomes `"stcolor"` in
-#'   ggthemes 8.0.0.
+#'   `"s1manual"`, or `"sj"`. The default, `"stcolor"`, is Stata's factory
+#'   default since Stata 18.
 #' @inheritParams ggplot2::theme_grey
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
@@ -445,8 +418,7 @@ theme_stata_colors <- function(scheme = "s2color") {
 #' @references <https://www.stata.com/help.cgi?schemes>
 #'
 #' @example inst/examples/ex-theme_stata.R
-theme_stata <- function(base_size = 11, base_family = "sans", scheme = NULL) {
-  scheme <- stata_default_scheme(scheme, "theme_stata()")
+theme_stata <- function(base_size = 11, base_family = "sans", scheme = "stcolor") {
   theme_stata_base(base_size = base_size, base_family = base_family) +
     theme_stata_layout(scheme = scheme) +
     theme_stata_colors(scheme = scheme) +

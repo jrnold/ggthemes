@@ -2,6 +2,11 @@
 
 ## Breaking changes
 
+- `theme_stata()`, `stata_pal()`, `scale_colour_stata()` and
+  `scale_fill_stata()` now default to `scheme = "stcolor"`, Stata's factory
+  default since Stata 18, instead of `"s2color"`, as announced in 7.0.0. Use
+  `scheme = "s2color"` for the previous look.
+
 - ggthemes now requires ggplot2 4.0.0 or later.
 
 - Themes now set their own palettes as the defaults for discrete scales, so

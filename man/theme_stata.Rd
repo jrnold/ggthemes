@@ -4,7 +4,7 @@
 \alias{theme_stata}
 \title{Themes based on Stata graph schemes}
 \usage{
-theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
+theme_stata(base_size = 11, base_family = "sans", scheme = "stcolor")
 }
 \arguments{
 \item{base_size}{base font size, given in pts.}
@@ -14,9 +14,8 @@ theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
 \item{scheme}{A string, the Stata scheme. One of: \code{"stcolor"},
 \code{"stcolor_alt"}, \code{"stmono1"}, \code{"stmono2"}, \code{"stsj"}, \code{"s2color"},
 \code{"s2mono"}, \code{"s1color"}, \code{"s1rcolor"}, \code{"s1mono"}, \code{"s2manual"},
-\code{"s1manual"}, or \code{"sj"}. If \code{NULL}, the default, \code{"s2color"} is used and a
-deprecation message is issued; this default becomes \code{"stcolor"} in
-ggthemes 8.0.0.}
+\code{"s1manual"}, or \code{"sj"}. The default, \code{"stcolor"}, is Stata's factory
+default since Stata 18.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
