@@ -62,6 +62,10 @@
 
 ## Minor improvements and fixes
 
+- `geom_rangeframe()` now sets line width with the `linewidth` aesthetic, as
+  ggplot2's line geoms have since 3.4.0; `linewidth` was ignored before.
+  `size` still works, with a deprecation warning.
+
 - Deprecate `smart_digits()` and `smart_digits_format()`. Use
   `scales::label_number()` instead. Until they are removed, they round to the
   smallest gap between values rather than to the range, so evenly spaced breaks

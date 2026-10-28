@@ -133,7 +133,7 @@ separate "secondary" range for \code{geom_rangeframe()} to draw against.
 
 \itemize{
 \item \code{colour}
-\item \code{size}
+\item \code{linewidth}
 \item \code{linetype}
 \item \code{alpha}
 }

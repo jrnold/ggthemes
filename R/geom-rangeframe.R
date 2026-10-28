@@ -4,7 +4,7 @@
 #'
 #' @section Aesthetics:
 #' - `colour`
-#' - `size`
+#' - `linewidth`
 #' - `linetype`
 #' - `alpha`
 #'
@@ -97,7 +97,7 @@ GeomRangeFrame <- ggplot2::ggproto(
     gp <- gpar(
       col = alpha(data[["colour"]], data[["alpha"]]),
       lty = data[["linetype"]],
-      lwd = data[["size"]] * ggplot2::.pt
+      lwd = data[["linewidth"]] * ggplot2::.pt
     )
     if (!is.null(data[["x"]])) {
       if (grepl("b", sides)) {
@@ -158,10 +158,13 @@ GeomRangeFrame <- ggplot2::ggproto(
   },
   default_aes = ggplot2::aes(
     colour = "black",
-    size = 0.5,
+    linewidth = 0.5,
     linetype = 1,
     alpha = NA
   ),
+  # Accept the pre-ggplot2 3.4.0 `size` with a deprecation message, as
+  # ggplot2's own line geoms do.
+  rename_size = TRUE,
   draw_key = ggplot2::draw_key_path
 )
 # nolint end: object_name_linter
