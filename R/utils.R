@@ -159,7 +159,8 @@ theme_pal_fallback <- function(pal, fallback) {
     }
     cli::cli_warn(c(
       "The theme's palette has {max_n} value{?s}, but {n} are needed.",
-      "i" = "Using ggplot2's default palette instead. Add a {.code scale_*()} to choose another."
+      "i" = "Using ggplot2's default palette instead.",
+      "i" = "Add a {.code scale_*()} to choose another palette."
     ))
     fallback(n)
   }

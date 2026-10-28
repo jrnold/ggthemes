@@ -113,7 +113,6 @@ extended_range_breaks <- function(n = 5, ...) {
 #' @keywords internal
 #' @export
 extended_range_breaks_ <- function(dmin, dmax, n = 5, Q = c(1, 5, 2, 2.5, 4, 3), w = c(0.25, 0.2, 0.5, 0.05)) {
-  # nolint: object_name_linter
   deprecate_warn(
     "8.0.0",
     "extended_range_breaks_()",
