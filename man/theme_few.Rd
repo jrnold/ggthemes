@@ -20,10 +20,10 @@ Theme based on the rules and examples from Stephen Few's
 }
 \section{Palettes}{
 
-The theme sets \code{\link[=few_pal]{few_pal()}} for discrete colour and fill and \code{\link[=few_shape_pal]{few_shape_pal()}}
-for shape as the default palettes, so a plot draws in the theme's colours
-without a matching scale. A \verb{scale_*()} added to the plot still takes
-precedence.
+The theme sets \code{\link[=few_pal]{few_pal()}} for discrete color and fill scales and
+\code{\link[=few_shape_pal]{few_shape_pal()}} for shape as the default palettes, so a plot draws in the
+theme's colors without a matching scale. A \verb{scale_*()} added to the plot
+still takes precedence.
 }
 
 \examples{

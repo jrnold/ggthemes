@@ -25,9 +25,9 @@ chart but not the other three sides, and no tick marks.
 }
 \section{Palettes}{
 
-The theme sets \code{\link[=numbers_pal]{numbers_pal()}} for discrete colour and fill as the default
-palettes, so a plot draws in the theme's colours without a matching scale. A
-\verb{scale_*()} added to the plot still takes precedence.
+The theme sets \code{\link[=numbers_pal]{numbers_pal()}} for discrete color and fill scales as the
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A \verb{scale_*()} added to the plot still takes precedence.
 }
 
 \examples{

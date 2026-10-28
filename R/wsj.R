@@ -18,8 +18,8 @@
 #' @example inst/examples/ex-theme_wsj.R
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
-#' The theme sets [wsj_pal()] for discrete colour and fill as the default
-#' palettes, so a plot draws in the theme's colours without a matching scale. A
+#' The theme sets [wsj_pal()] for discrete color and fill scales as the default
+#' palettes, so a plot draws in the theme's colors without a matching scale. A
 #' `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @importFrom ggplot2 element_line element_rect element_text element_blank rel

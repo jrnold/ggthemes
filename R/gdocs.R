@@ -5,9 +5,9 @@
 #' @inheritParams ggplot2::theme_grey
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
-#' The theme sets [gdocs_pal()] for discrete colour and fill as the default
-#' palettes, so a plot draws in the theme's colours without a matching scale. A
-#' `scale_*()` added to the plot still takes precedence.
+#' The theme sets [gdocs_pal()] for discrete color and fill scales as the
+#' default palettes, so a plot draws in the theme's colors without a matching
+#' scale. A `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @family themes gdocs
 #' @example inst/examples/ex-theme_gdocs.R

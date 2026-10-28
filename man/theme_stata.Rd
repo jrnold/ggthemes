@@ -52,13 +52,13 @@ the theme) and Stata's small default marker size (a geom default).
 }
 \section{Palettes}{
 
-The theme sets \code{\link[=stata_pal]{stata_pal()}} for discrete colour and fill,
+The theme sets \code{\link[=stata_pal]{stata_pal()}} for discrete color and fill scales,
 \code{\link[=stata_shape_pal]{stata_shape_pal()}} for shape and \code{\link[=stata_linetype_pal]{stata_linetype_pal()}} for linetype as the
-default palettes, so a plot draws in the theme's colours without a matching
-scale. A \verb{scale_*()} added to the plot still takes precedence. The colour
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A \verb{scale_*()} added to the plot still takes precedence. The color
 palette is the \code{stata_pal()} scheme of the same name for \code{"s2color"},
 \code{"s1color"} and \code{"s1rcolor"}; \code{"stcolor"} for \code{"stcolor"} and
-\code{"stcolor_alt"}; and \code{"mono"}, Stata's grey ramp, for every other scheme
+\code{"stcolor_alt"}; and \code{"mono"}, Stata's gray ramp, for every other scheme
 (\code{"s2mono"}, \code{"s1mono"}, \code{"s2manual"}, \code{"s1manual"}, \code{"sj"}, \code{"stmono1"},
 \code{"stmono2"} and \code{"stsj"}).
 }

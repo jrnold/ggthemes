@@ -6,9 +6,9 @@
 #' @family themes fivethirtyeight
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
-#' The theme sets [fivethirtyeight_pal()] for discrete colour and fill as the
-#' default palettes, so a plot draws in the theme's colours without a matching
-#' scale. A `scale_*()` added to the plot still takes precedence.
+#' The theme sets [fivethirtyeight_pal()] for discrete color and fill scales as
+#' the default palettes, so a plot draws in the theme's colors without a
+#' matching scale. A `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @example inst/examples/ex-theme_fivethirtyeight.R
 #' @importFrom grid unit

@@ -34,8 +34,8 @@ background colors, so that they show on the dark variants. Use
 }
 \section{Palettes}{
 
-The theme sets \code{\link[=selenized_pal]{selenized_pal()}}, for the same \code{variant}, for discrete colour
-and fill as the default palettes, so a plot draws in the theme's colours
+The theme sets \code{\link[=selenized_pal]{selenized_pal()}}, for the same \code{variant}, for discrete color
+and fill as the default palettes, so a plot draws in the theme's colors
 without a matching scale. A \verb{scale_*()} added to the plot still takes
 precedence.
 }

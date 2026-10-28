@@ -93,10 +93,10 @@ scale_fill_few <- function(palette = "Light", ...) {
 #' @family themes few
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
-#' The theme sets [few_pal()] for discrete colour and fill and [few_shape_pal()]
-#' for shape as the default palettes, so a plot draws in the theme's colours
-#' without a matching scale. A `scale_*()` added to the plot still takes
-#' precedence.
+#' The theme sets [few_pal()] for discrete color and fill scales and
+#' [few_shape_pal()] for shape as the default palettes, so a plot draws in the
+#' theme's colors without a matching scale. A `scale_*()` added to the plot
+#' still takes precedence.
 #' @export
 #' @example inst/examples/ex-theme_few.R
 theme_few <- function(base_size = 12, base_family = "") {

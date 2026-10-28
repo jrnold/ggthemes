@@ -93,8 +93,8 @@ scale_fill_selenized <- function(..., accent = "blue", variant = "light") {
 #' @inheritParams selenized_pal
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
-#' The theme sets [selenized_pal()], for the same `variant`, for discrete colour
-#' and fill as the default palettes, so a plot draws in the theme's colours
+#' The theme sets [selenized_pal()], for the same `variant`, for discrete color
+#' and fill as the default palettes, so a plot draws in the theme's colors
 #' without a matching scale. A `scale_*()` added to the plot still takes
 #' precedence.
 #' @export

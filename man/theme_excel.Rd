@@ -24,9 +24,9 @@ color scale.
 }
 \section{Palettes}{
 
-The theme sets \code{\link[=excel_pal]{excel_pal()}} for discrete colour (\code{line = TRUE}) and fill
+The theme sets \code{\link[=excel_pal]{excel_pal()}} for discrete color (\code{line = TRUE}) and fill
 (\code{line = FALSE}) as the default palettes, so a plot draws in the theme's
-colours without a matching scale. A \verb{scale_*()} added to the plot still takes
+colors without a matching scale. A \verb{scale_*()} added to the plot still takes
 precedence.
 }
 

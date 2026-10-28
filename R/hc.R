@@ -94,8 +94,8 @@ hc_theme_styles <- list(
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
 #' The theme sets [hc_pal()], with the palette named by `style`, for discrete
-#' colour and fill as the default palettes, so a plot draws in the theme's
-#' colours without a matching scale. A `scale_*()` added to the plot still takes
+#' color and fill as the default palettes, so a plot draws in the theme's colors
+#' without a matching scale. A `scale_*()` added to the plot still takes
 #' precedence.
 #' @export
 theme_hc <- function(

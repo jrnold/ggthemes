@@ -384,13 +384,13 @@ theme_stata_colors <- function(scheme = "stcolor") {
 #' @inheritParams ggplot2::theme_grey
 #' @returns A ggplot2 theme object (class `theme`).
 #' @section Palettes:
-#' The theme sets [stata_pal()] for discrete colour and fill,
+#' The theme sets [stata_pal()] for discrete color and fill scales,
 #' [stata_shape_pal()] for shape and [stata_linetype_pal()] for linetype as the
-#' default palettes, so a plot draws in the theme's colours without a matching
-#' scale. A `scale_*()` added to the plot still takes precedence. The colour
+#' default palettes, so a plot draws in the theme's colors without a matching
+#' scale. A `scale_*()` added to the plot still takes precedence. The color
 #' palette is the `stata_pal()` scheme of the same name for `"s2color"`,
 #' `"s1color"` and `"s1rcolor"`; `"stcolor"` for `"stcolor"` and
-#' `"stcolor_alt"`; and `"mono"`, Stata's grey ramp, for every other scheme
+#' `"stcolor_alt"`; and `"mono"`, Stata's gray ramp, for every other scheme
 #' (`"s2mono"`, `"s1mono"`, `"s2manual"`, `"s1manual"`, `"sj"`, `"stmono1"`,
 #' `"stmono2"` and `"stsj"`).
 #' @export

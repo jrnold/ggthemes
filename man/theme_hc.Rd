@@ -42,8 +42,8 @@ font may not be installed; pass \code{base_family} to use one.
 \section{Palettes}{
 
 The theme sets \code{\link[=hc_pal]{hc_pal()}}, with the palette named by \code{style}, for discrete
-colour and fill as the default palettes, so a plot draws in the theme's
-colours without a matching scale. A \verb{scale_*()} added to the plot still takes
+color and fill as the default palettes, so a plot draws in the theme's colors
+without a matching scale. A \verb{scale_*()} added to the plot still takes
 precedence.
 }
 

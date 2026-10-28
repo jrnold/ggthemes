@@ -5,14 +5,14 @@
 - ggthemes now requires ggplot2 4.0.0 or later.
 
 - Themes now set their own palettes as the defaults for discrete scales, so
-  `p + theme_economist()` draws in the Economist's colours without
-  `scale_colour_economist()`. This changes the colours of plots that used one
+  `p + theme_economist()` draws in the Economist's colors without
+  `scale_colour_economist()`. This changes the colors of plots that used one
   of these themes without a matching scale. `theme_calc()`, `theme_economist()`,
   `theme_economist_white()`, `theme_excel()`, `theme_excel_new()`,
   `theme_few()`, `theme_fivethirtyeight()`, `theme_gdocs()`, `theme_hc()`,
   `theme_numbers()`, `theme_pander()`, `theme_selenized()`,
   `theme_solarized()`, `theme_solarized_2()`, `theme_stata()` and
-  `theme_wsj()` set colour and fill; `theme_calc()`, `theme_few()` and
+  `theme_wsj()` set color and fill; `theme_calc()`, `theme_few()` and
   `theme_stata()` also set shape, and `theme_stata()` sets linetype. A scale
   added to the plot still wins. When a plot has more groups than the theme's
   palette has values, the theme warns and uses ggplot2's default palette.
@@ -74,7 +74,7 @@
 
 - The dark variants of `theme_solarized()`, `theme_solarized_2()`,
   `theme_hc()` (`"darkunica"` and `"default_dark"`) and `theme_stata()`
-  (`"s1rcolor"`) draw unmapped geoms in their foreground colour, so a plain
+  (`"s1rcolor"`) draw unmapped geoms in their foreground color, so a plain
   `geom_point()` is no longer black on a dark background.
 
 - `theme_foundation()` gains `header_family`, passed to `theme_grey()`, to set
