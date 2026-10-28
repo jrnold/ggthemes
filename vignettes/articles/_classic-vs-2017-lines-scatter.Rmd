@@ -1704,4 +1704,3 @@ Classic has no highlight scheme, so Midwest is a pink dot with a dark red outlin
 | Connected scatter | partly | No broken gridlines or connected key |
 | Bubble chart, four categories | partly | No specified category-dot stroke, arrows or in-panel key |
 | Highlighting instead of categorizing | partly | No highlight scheme; dark red against gray |
-

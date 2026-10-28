@@ -18,7 +18,7 @@ This article reproduces the charts of [The Economist visual styleguide](https://
 
 Block quotes are the guide's own words, with its spelling and typos.
 
-The 2017 style guide was an update of the "classic" economist chart style. 
+The 2017 style guide was an update of the "classic" economist chart style.
 ["Mistakes, "we've drawn a few"](https://www.reddit.com/r/dataisbeautiful/comments/b6g2v8/economist_mistakes_weve_drawn_a_few/) describes the thinking behind the changes.
 
 ```{r setup, message = FALSE}
@@ -98,7 +98,7 @@ knitr::kable(
 )
 ```
 
-`economist_2017_size()` returns a chart size as `c(width =, height =)`, in inches by default or in points. 
+`economist_2017_size()` returns a chart size as `c(width =, height =)`, in inches by default or in points.
 Figures are shown at actual size: a one-column chart, 160pt, is 213px wide.
 
 ```{r size-example}
@@ -110,7 +110,7 @@ economist_2017_size("leader", units = "pt")
 
 ## Typefaces
 
-Economist charts in this era use the proprietary Econ Sans and its condensed cut, Econ Sans Cnd. 
+Economist charts in this era use the proprietary Econ Sans and its condensed cut, Econ Sans Cnd.
 Since Econ Sans is not public, `economist_2017_font()` picks the closest installed substitute as the `base_family`: Fira Sans Condensed, then Roboto Condensed, then `"sans"`.
 
 The data element `ggthemes_data$economist_2017$typefaces` records what each is for and how ggthemes draws it.
@@ -811,7 +811,7 @@ economist_2017_chart(
 )
 ```
 
-### One trace with a +/- axis 
+### One trace with a +/- axis
 
 ```{r dotcom, econ_height = 195}
 capex <- data.frame(
@@ -1057,7 +1057,7 @@ economist_2017_chart(
 
 ## Bar / column, stacked
 
-Stacked bars use the `stacked` order. 
+Stacked bars use the `stacked` order.
 
 > For stacked bars with few categories or labelling issues, consider
 > removing tick marks and labelling each segment value.
@@ -2193,7 +2193,7 @@ economist_2017_chart(
 
 ## Thermometer
 
-A range between values per category, with short vertical terminals.  
+A range between values per category, with short vertical terminals.
 
 ### Standard color order
 
@@ -3359,7 +3359,7 @@ economist_2017_chart(
 
 ## Double-scale charts
 
-> Double scales can be good at showing correlations and are economical with space. **But they can also be confusing/misleading.** 
+> Double scales can be good at showing correlations and are economical with space. **But they can also be confusing/misleading.**
 
 Axis labels are colored to match their series: cyan and teal for axis 1, maroon and mauve for axis 2.
 `sec_axis()` rescales the second series onto the first axis.
@@ -3553,11 +3553,11 @@ economist_2017_chart(
 > Double scales can be good at showing correlations and are economical with space.
 > **But they can also be confusing/misleading.**
 > Here are some things to avoid when considering a double scale
-> 
+>
 > **If you cannot conform to the above rules try splitting the chart into panels or indexing the variables.**
 
 > :cross: Avoid breaking the scales without good reason
-> 
+>
 > Broken scale distorts data
 
 ```{r double-scale-avoid, econ_height = 155}
@@ -4300,7 +4300,7 @@ economist_2017_chart(putin)
 
 ### Mobile versions
 
-> With often-lengthly [sic] text labels in fixed positions on the chart,
+> With often-lengthly \[sic\] text labels in fixed positions on the chart,
 > timelines present a unique challenge for condensing to mobile.
 
 The guide's example

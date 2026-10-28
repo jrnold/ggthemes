@@ -51,7 +51,7 @@ classic <- ggplot(doctors, aes(country, visits, fill = highlight)) +
     caption = "Source: OECD",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line()
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -101,7 +101,7 @@ classic <- ggplot(ethiopia, aes(year, growth)) +
     caption = "Source: IMF\n*Estimate",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size) + classic_no_ticks() 
+  theme_economist(base_size = classic_size) + classic_no_ticks()
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -166,7 +166,7 @@ classic <- ggplot(elections, aes(country, pct, fill = income)) +
     caption = "Source: Pew Global Attitudes Survey",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line()
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -343,7 +343,7 @@ classic <- ggplot(capex, aes(sector, change)) +
     caption = "Source: Goldman Sachs\n*In dollar terms",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line()
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -398,7 +398,7 @@ classic <- ggplot(capital, aes(year, flow, fill = flow > 0)) +
     caption = "Source: Central Bank of Russia\n*To June 30th",
     x = NULL, y = NULL
   ) +
-  theme_economist(base_size = classic_size) + classic_no_ticks() 
+  theme_economist(base_size = classic_size) + classic_no_ticks()
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -508,7 +508,7 @@ classic <- ggplot(trade, aes(year, pct, fill = flow)) +
     caption = "Sources: Census Bureau; IMF\n*Jan-Nov annualised",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) + classic_no_ticks() 
+  theme_economist(base_size = classic_size) + classic_no_ticks()
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -566,7 +566,7 @@ classic <- ggplot(asia, aes(country, growth, fill = period)) +
     caption = "Source: OECD\n*Annual average",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line() 
+  theme_economist(base_size = classic_size, horizontal = FALSE) + classic_no_ticks() + classic_no_axis_line()
 
 chart_pair(classic_chart(classic), modern)
 ```
@@ -1136,7 +1136,7 @@ classic <- ggplot(deficit, aes(year, pct, fill = region)) +
     caption = "Sources: US Census Bureau;\nUS Bureau of Economic Analysis\n*January-September",
     x = NULL, y = NULL, fill = NULL
   ) +
-  theme_economist(base_size = classic_size) + classic_no_ticks() 
+  theme_economist(base_size = classic_size) + classic_no_ticks()
 
 chart_pair(classic_chart(classic), modern)
 ```
