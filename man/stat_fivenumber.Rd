@@ -14,7 +14,8 @@ stat_fivenumber(
   position = "identity",
   show.legend = NA,
   inherit.aes = TRUE,
-  ...
+  ...,
+  orientation = NA
 )
 }
 \arguments{
@@ -109,16 +110,23 @@ lists which parameters it can accept.
 \code{...}. This can be one of the functions described as
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
+
+\item{orientation}{The orientation of the layer. The default (\code{NA})
+infers it from the aesthetics: a discrete \code{y} with a continuous \code{x}
+summarizes \code{x} for each level of \code{y}. Set it to \code{"x"} or \code{"y"} when
+inference fails.}
 }
 \value{
 A data frame with additional columns:
 \itemize{
 \item \code{width}: width of the box plot.
-\item \code{min}: minimum.
+\item \code{ymin}: minimum.
 \item \code{lower}: lower hinge, the 25\% quantile.
 \item \code{middle}: median, the 50\% quantile.
 \item \code{upper}: upper hinge, the 75\% quantile.
-\item \code{max}: maximum.
+\item \code{ymax}: maximum.
+\item \code{flipped_aes}: whether the summary is of \code{x} rather than \code{y}; if so,
+\code{ymin} and \code{ymax} are named \code{xmin} and \code{xmax}.
 }
 }
 \description{

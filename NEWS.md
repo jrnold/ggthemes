@@ -2,6 +2,38 @@
 
 ## Breaking changes
 
+- ggthemes now requires ggplot2 4.0.0 or later, for its theme palettes and geom
+  defaults (#287).
+
+- Themes now set their own palettes as the defaults for discrete scales, so
+  `p + theme_economist()` draws in the Economist's colors without
+  `scale_colour_economist()`. This changes the colors of plots that used one
+  of these themes without a matching scale. `theme_calc()`, `theme_economist()`,
+  `theme_economist_white()`, `theme_excel()`, `theme_excel_new()`,
+  `theme_few()`, `theme_fivethirtyeight()`, `theme_gdocs()`, `theme_hc()`,
+  `theme_numbers()`, `theme_pander()`, `theme_selenized()`,
+  `theme_solarized()`, `theme_solarized_2()`, `theme_stata()` and
+  `theme_wsj()` set color and fill; `theme_calc()`, `theme_few()` and
+  `theme_stata()` also set shape, and `theme_stata()` sets linetype. A scale
+  added to the plot still wins, so add `scale_colour_discrete()` and
+  `scale_fill_discrete()` for ggplot2's default colors. When a plot has more
+  groups than the theme's palette has values, the theme warns and uses
+  ggplot2's default palette (#287).
+
+- `theme_stata()`, `stata_pal()`, `scale_colour_stata()` and
+  `scale_fill_stata()` now default to `scheme = "stcolor"`, Stata's factory
+  default since Stata 18, instead of `"s2color"`, as announced in 7.0.0. Use
+  `scheme = "s2color"` for the previous look. `scheme = NULL`, the previous
+  default, now also means `"stcolor"` (#287).
+
+- These deprecated arguments and functions are now defunct and error (#287):
+  - `theme_pander(ff)` and `theme_pander(fs)`. Deprecated in 2.0.0; use
+    `base_family` and `base_size` instead.
+  - `theme_hc(bgcolor)`. Deprecated in 4.2.0; use `style` instead.
+  - `circlefill_shape_pal()` and `scale_shape_circlefill()`. Deprecated in
+    5.0.0; use `tableau_shape_pal("proportions", unicode = TRUE)` and
+    `scale_shape_tableau(palette = "proportions", unicode = TRUE)` instead.
+
 - `theme_base()` now defaults to `base_size = 12`, the default text size of
   base graphics, instead of 16, and draws tick labels, strip text, legend text
   and captions at full size, as base graphics draws axis labels. Use
@@ -38,18 +70,26 @@
 
 ## New features
 
+- The dark variants of `theme_solarized()`, `theme_solarized_2()`,
+  `theme_hc()` (`"darkunica"` and `"default_dark"`) and `theme_stata()`
+  (`"s1rcolor"`) now draw unmapped geoms in their foreground color, so a plain
+  `geom_point()` is no longer black on a dark background (#287).
+
+- `theme_foundation()` gains a `header_family` argument to set the font of
+  titles separately from `base_family` (#287).
+
 - New `theme_selenized()`, `selenized_pal()`, `scale_colour_selenized()` and
   `scale_fill_selenized()` use Jan Warchoł's Selenized color scheme, a
   successor to Solarized with higher contrast. `variant` chooses its
   `"light"`, `"dark"`, `"black"` or `"white"` version; each has its own accent
   colors, and `ggthemes_data$selenized` holds them all.
 
-- With ggplot2 4.0.0 or later, `theme_par()` also sets the defaults for geoms
-  from `par()`: colour from `col`, background from `bg`, line width and type
+- `theme_par()` also sets the defaults for geoms
+  from `par()`: color from `col`, background from `bg`, line width and type
   from `lwd` and `lty`, point shape from `pch`, and point and text size from
   `cex` and `ps`. Lines join with `par("ljoin")`. Discrete scales use the
   current `palette()`, recycled as base graphics does, and continuous scales use
-  `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of `image()`
+  `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colors of `image()`
   (#281).
 
 - New `scale_colour_continuous_tableau()` and `tableau_colour_pal()` aliases, so
@@ -61,6 +101,34 @@
   (#265).
 
 ## Minor improvements and fixes
+
+- `scale_colour_colorblind()` now always warns that it is deprecated; use
+  `scale_colour_colourblind()` (#287).
+
+- `extended_range_breaks_()` is deprecated. Use `extended_range_breaks()`:
+  `extended_range_breaks_(dmin, dmax, n)` is
+  `extended_range_breaks(n)(c(dmin, dmax))` (#287).
+
+- `theme_solid()`'s `base_size` and `base_family` now set the default size and
+  font of text geoms; they were ignored (#287).
+
+- `theme_hc()` and `theme_pander()` are now complete themes built on
+  `theme_grey()`, like the package's other themes, so the active theme
+  (`theme_set()`) no longer leaks into them. Their spacing now scales with
+  `base_size` (#287).
+
+- `geom_tufteboxplot()` and `stat_fivenumber()` now draw horizontal box plots.
+  A discrete `y` with a continuous `x` now summarizes `x`, as in
+  `geom_boxplot()`; before, it summarized the factor codes of `y` and drew the
+  plot wrongly without a warning. A new `orientation` argument sets the
+  direction when it can't be inferred (#287).
+
+- `geom_tufteboxplot()` legend keys are now point ranges, as intended; they
+  were drawn as boxes (#287).
+
+- `geom_rangeframe()` now sets line width with the `linewidth` aesthetic, as
+  ggplot2's line geoms have since 3.4.0; `linewidth` was ignored before.
+  `size` still works, with a deprecation warning (#287).
 
 - Deprecate `smart_digits()` and `smart_digits_format()`. Use
   `scales::label_number()` instead. Until they are removed, they round to the
@@ -88,9 +156,8 @@
     length from the plot region size.
   - The `sub` parameters also style `plot.subtitle` and `plot.caption`.
 
-- The deprecation warnings from `theme_hc(bgcolor)`, `theme_pander(ff)`,
-  `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"` and
-  `"Classic Area-Brown"` now come from lifecycle, so they name the release
+- The deprecation warnings for the renamed Tableau palettes `"Red-Blue-Brown"`
+  and `"Classic Area-Brown"` now come from lifecycle, so they name the release
   that deprecated them (#273).
 
 - `bank_plot()` and `bank_plot_multiscale()` now report a `plot` that is not a

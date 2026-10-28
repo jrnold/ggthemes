@@ -4,7 +4,7 @@
 \alias{theme_stata}
 \title{Themes based on Stata graph schemes}
 \usage{
-theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
+theme_stata(base_size = 11, base_family = "sans", scheme = "stcolor")
 }
 \arguments{
 \item{base_size}{base font size, given in pts.}
@@ -14,9 +14,8 @@ theme_stata(base_size = 11, base_family = "sans", scheme = NULL)
 \item{scheme}{A string, the Stata scheme. One of: \code{"stcolor"},
 \code{"stcolor_alt"}, \code{"stmono1"}, \code{"stmono2"}, \code{"stsj"}, \code{"s2color"},
 \code{"s2mono"}, \code{"s1color"}, \code{"s1rcolor"}, \code{"s1mono"}, \code{"s2manual"},
-\code{"s1manual"}, or \code{"sj"}. If \code{NULL}, the default, \code{"s2color"} is used and a
-deprecation message is issued; this default becomes \code{"stcolor"} in
-ggthemes 8.0.0.}
+\code{"s1manual"}, or \code{"sj"}. The default, \code{"stcolor"}, is Stata's factory
+default since Stata 18. \code{NULL} is the same as the default.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
@@ -51,6 +50,19 @@ Two further differences are not expressible in a ggplot2 theme: the number
 of legend columns (set by \code{\link[ggplot2:guide_legend]{ggplot2::guide_legend()}} rather than
 the theme) and Stata's small default marker size (a geom default).
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=stata_pal]{stata_pal()}} for discrete color and fill scales,
+\code{\link[=stata_shape_pal]{stata_shape_pal()}} for shape and \code{\link[=stata_linetype_pal]{stata_linetype_pal()}} for linetype as the
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A \verb{scale_*()} added to the plot still takes precedence. The color
+palette is the \code{stata_pal()} scheme of the same name for \code{"s2color"},
+\code{"s1color"} and \code{"s1rcolor"}; \code{"stcolor"} for \code{"stcolor"} and
+\code{"stcolor_alt"}; and \code{"mono"}, Stata's gray ramp, for every other scheme
+(\code{"s2mono"}, \code{"s1mono"}, \code{"s2manual"}, \code{"s1manual"}, \code{"sj"}, \code{"stmono1"},
+\code{"stmono2"} and \code{"stsj"}).
+}
+
 \examples{
 library(ggplot2)
 

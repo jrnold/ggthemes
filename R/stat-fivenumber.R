@@ -6,14 +6,20 @@
 #' @param na.rm If `FALSE` (the default), removes missing values with
 #'    a warning.  If `TRUE` silently removes missing values.
 #' @param probs Quantiles to use for the five number summary.
+#' @param orientation The orientation of the layer. The default (`NA`)
+#'   infers it from the aesthetics: a discrete `y` with a continuous `x`
+#'   summarizes `x` for each level of `y`. Set it to `"x"` or `"y"` when
+#'   inference fails.
 #' @inheritParams ggplot2::stat_identity
 #' @returns A data frame with additional columns:
 #'   - `width`: width of the box plot.
-#'   - `min`: minimum.
+#'   - `ymin`: minimum.
 #'   - `lower`: lower hinge, the 25% quantile.
 #'   - `middle`: median, the 50% quantile.
 #'   - `upper`: upper hinge, the 75% quantile.
-#'   - `max`: maximum.
+#'   - `ymax`: maximum.
+#'   - `flipped_aes`: whether the summary is of `x` rather than `y`; if so,
+#'     `ymin` and `ymax` are named `xmin` and `xmax`.
 #' @seealso [ggplot2::stat_boxplot()]
 #' @export
 #' @example inst/examples/ex-stat_fivenumber.R
@@ -26,7 +32,8 @@ stat_fivenumber <- function(
   position = "identity",
   show.legend = NA, # nolint: object_name_linter
   inherit.aes = TRUE, # nolint: object_name_linter
-  ...
+  ...,
+  orientation = NA
 ) {
   layer(
     data = data,
@@ -39,6 +46,7 @@ stat_fivenumber <- function(
     params = list(
       probs = probs,
       na.rm = na.rm,
+      orientation = orientation,
       ...
     )
   )
@@ -63,10 +71,34 @@ StatFivenumber <- ggplot2::ggproto(
   # nolint
   "StatFivenumber",
   ggplot2::Stat, # nolint: object_name_linter
-  required_aes = "y",
+  required_aes = "y|x",
   non_missing_aes = "weight",
-  dropped_aes = c("y", "weight"),
+  dropped_aes = c("x", "y", "weight"),
+  extra_params = c("na.rm", "orientation"),
+  # Orientation follows ggplot2::StatBoxplot: summarise the continuous axis
+  # within each value of the other.
+  setup_params = function(data, params) {
+    params$flipped_aes <- ggplot2::has_flipped_aes(
+      data,
+      params,
+      main_is_orthogonal = TRUE,
+      group_has_equal = TRUE,
+      main_is_optional = TRUE
+    )
+    data <- ggplot2::flip_data(data, params$flipped_aes)
+    params$width <- params$width %||% (resolution(data$x %||% 0, discrete = TRUE) * 0.75)
+
+    if (!inherits(data$x, "mapped_discrete") && is.double(data$x) && !has_groups(data) && any(data$x != data$x[1L])) {
+      cli::cli_warn(c(
+        "Continuous {.field {if (params$flipped_aes) 'y' else 'x'}} aesthetic.",
+        "i" = "Did you forget {.code aes(group = ...)}?"
+      ))
+    }
+
+    params
+  },
   setup_data = function(data, params) {
+    data <- ggplot2::flip_data(data, params$flipped_aes)
     data$x <- data$x %||% 0
     data <- remove_missing(
       data,
@@ -74,24 +106,17 @@ StatFivenumber <- ggplot2::ggproto(
       vars = "x",
       name = "stat_fivenumber"
     )
-    data
-  },
-  setup_params = function(data, params) {
-    params$width <- params$width %||% (resolution(data$x %||% 0) * 0.75)
-
-    if (is.double(data$x) && !has_groups(data) && any(data$x != data$x[1L])) {
-      cli::cli_warn("Continuous {.field x} aesthetic -- did you forget {.code aes(group = ...)}?")
-    }
-
-    params
+    ggplot2::flip_data(data, params$flipped_aes)
   },
   compute_group = function(
     data,
     scales,
     width = NULL,
     na.rm = FALSE, # nolint: object_name_linter
-    probs = c(0, 0.25, 0.5, 0.75, 1)
+    probs = c(0, 0.25, 0.5, 0.75, 1),
+    flipped_aes = FALSE
   ) {
+    data <- ggplot2::flip_data(data, flipped_aes)
     if (length(probs) != 5) {
       cli::cli_abort("{.arg probs} must contain 5 quantiles, not {length(probs)}.")
     }
@@ -116,7 +141,8 @@ StatFivenumber <- ggplot2::ggproto(
     df$x <- if (is.factor(data$x)) data$x[1] else mean(range(data$x))
     df$width <- width
     df$relvarwidth <- sqrt(n)
-    df
+    df$flipped_aes <- flipped_aes
+    ggplot2::flip_data(df, flipped_aes)
   }
 )
 # nolint end: object_name_linter

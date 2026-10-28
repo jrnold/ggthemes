@@ -6,12 +6,12 @@
       Error in `hc_pal()`:
       ! `palette` must be one of "default", "default_dark", "classic", "darkunica", "grid_light", "sand_signika", "high_contrast_light", "high_contrast_dark", "avocado", and "sunset", not "asdgasdgasdgas".
 
-# bgcolor raises warning
+# theme_hc bgcolor is defunct
 
     Code
-      x <- theme_hc(bgcolor = "darkunica")
+      theme_hc(bgcolor = "darkunica")
     Condition
-      Warning:
-      The `bgcolor` argument of `theme_hc()` is deprecated as of ggthemes 4.2.0.
+      Error:
+      ! The `bgcolor` argument of `theme_hc()` was deprecated in ggthemes 4.2.0 and is now defunct.
       i Please use the `style` argument instead.
 

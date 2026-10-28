@@ -19,7 +19,7 @@ theme_hc(
 \item{style}{The Highcharts theme to use. One of
 \code{"default"}, \code{"default_dark"}, \code{"darkunica"}, \code{"grid_light"}, \code{"sand_signika"}.}
 
-\item{bgcolor}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{style} instead.}
+\item{bgcolor}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}} Use \code{style} instead.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).
@@ -39,6 +39,14 @@ Highcharts pairs several of these themes with a web font
 \code{sand_signika} with Signika). Those are not requested here, since the
 font may not be installed; pass \code{base_family} to use one.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=hc_pal]{hc_pal()}}, with the palette named by \code{style}, for discrete
+color and fill as the default palettes, so a plot draws in the theme's colors
+without a matching scale. A \verb{scale_*()} added to the plot still takes
+precedence.
+}
+
 \examples{
 library(ggplot2)
 

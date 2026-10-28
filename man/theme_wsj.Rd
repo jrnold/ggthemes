@@ -30,6 +30,13 @@ Theme based on the plots in \emph{The Wall Street Journal}.
 \details{
 This theme should be used with \code{\link[=scale_color_wsj]{scale_color_wsj()}}.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=wsj_pal]{wsj_pal()}} for discrete color and fill scales as the default
+palettes, so a plot draws in the theme's colors without a matching scale. A
+\verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 

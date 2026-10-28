@@ -31,16 +31,16 @@
 <polyline points='36.89,373.32 371.67,373.32 ' style='stroke-width: 1.87; stroke: #C9C9C9; stroke-linecap: butt;' />
 <polyline points='36.89,245.76 371.67,245.76 ' style='stroke-width: 1.87; stroke: #C9C9C9; stroke-linecap: butt;' />
 <polyline points='36.89,118.20 371.67,118.20 ' style='stroke-width: 1.87; stroke: #C9C9C9; stroke-linecap: butt;' />
-<circle cx='52.11' cy='500.88' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='204.28' cy='437.10' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='356.45' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='128.19' cy='437.10' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='280.36' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='52.11' cy='437.10' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='204.28' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='356.45' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='128.19' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='280.36' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
+<circle cx='52.11' cy='500.88' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='204.28' cy='437.10' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='356.45' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='128.19' cy='437.10' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='280.36' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='52.11' cy='437.10' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='204.28' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='356.45' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='128.19' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='280.36' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
@@ -55,16 +55,16 @@
 <polyline points='375.27,373.32 710.04,373.32 ' style='stroke-width: 1.87; stroke: #C9C9C9; stroke-linecap: butt;' />
 <polyline points='375.27,245.76 710.04,245.76 ' style='stroke-width: 1.87; stroke: #C9C9C9; stroke-linecap: butt;' />
 <polyline points='375.27,118.20 710.04,118.20 ' style='stroke-width: 1.87; stroke: #C9C9C9; stroke-linecap: butt;' />
-<circle cx='466.57' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='618.74' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='390.48' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='542.65' cy='245.76' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='694.82' cy='181.98' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
-<circle cx='466.57' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='618.74' cy='245.76' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='390.48' cy='245.76' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='542.65' cy='181.98' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
-<circle cx='694.82' cy='118.20' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
+<circle cx='466.57' cy='373.32' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='618.74' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='390.48' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='542.65' cy='245.76' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='694.82' cy='181.98' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
+<circle cx='466.57' cy='309.54' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='618.74' cy='245.76' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='390.48' cy='245.76' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='542.65' cy='181.98' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
+<circle cx='694.82' cy='118.20' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
@@ -120,9 +120,9 @@
 <rect x='316.81' y='47.55' width='113.31' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <text x='322.29' y='65.45' style='font-size: 11.00px; font-family: sans;' textLength='30.58px' lengthAdjust='spacingAndGlyphs'>Group</text>
 <rect x='358.35' y='53.03' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='366.99' cy='61.67' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
+<circle cx='366.99' cy='61.67' r='1.95' style='stroke-width: 0.71; stroke: #01A2D9; fill: #01A2D9;' />
 <rect x='394.23' y='53.03' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='402.87' cy='61.67' r='1.95' style='stroke-width: 0.71; stroke: #00BFC4; fill: #00BFC4;' />
+<circle cx='402.87' cy='61.67' r='1.95' style='stroke-width: 0.71; stroke: #014D64; fill: #014D64;' />
 <text x='381.11' y='66.40' style='font-size: 13.75px; font-family: sans;' textLength='7.65px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='416.99' y='66.40' style='font-size: 13.75px; font-family: sans;' textLength='7.65px' lengthAdjust='spacingAndGlyphs'>b</text>
 <text x='36.89' y='39.79' style='font-size: 11.00px; font-family: sans;' textLength='36.69px' lengthAdjust='spacingAndGlyphs'>Subtitle</text>

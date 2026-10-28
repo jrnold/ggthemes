@@ -1,17 +1,20 @@
-# circlefill_pal works
+# circlefill_shape_pal and scale_shape_circlefill are defunct
 
     Code
-      pal <- circlefill_shape_pal()
+      circlefill_shape_pal()
     Condition
-      Warning:
-      `circlefill_shape_pal()` was deprecated in ggthemes 5.0.0.
+      Error:
+      ! `circlefill_shape_pal()` was deprecated in ggthemes 5.0.0 and is now defunct.
+      i Please use `tableau_shape_pal("proportions", unicode = TRUE)` instead.
+
+---
+
     Code
-      expect_type(pal, "closure")
-      expect_equal(attr(pal, "max_n"), 5L)
-      n <- 4L
-      values <- pal(n)
-      expect_type(values, "integer")
-      expect_length(values, n)
+      scale_shape_circlefill()
+    Condition
+      Error:
+      ! `scale_shape_circlefill()` was deprecated in ggthemes 5.0.0 and is now defunct.
+      i Please use `scale_shape_tableau(palette = "proportions", unicode = TRUE)` instead.
 
 # warn_unicode_pch warns only for unicode pch on non-UTF-8 locales
 

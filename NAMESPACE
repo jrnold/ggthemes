@@ -167,6 +167,7 @@ importFrom(ggplot2,
   element_line,
   element_rect,
   element_text,
+  flip_data,
   ggplot,
   ggproto,
   ggproto_parent,
@@ -197,18 +198,7 @@ importFrom(grid,
   segmentsGrob,
   unit
 )
-importFrom(lifecycle,
-  deprecate_soft,
-  deprecate_warn
-)
-importFrom(methods,
-  as,
-  hasArg
-)
-importFrom(purrr,
-  map,
-  map_dfr
-)
+importFrom(lifecycle,deprecate_warn)
 importFrom(rlang,check_installed)
 importFrom(scales,
   alpha,
@@ -222,7 +212,4 @@ importFrom(stats,
   median,
   uniroot
 )
-importFrom(tibble,
-  as_tibble,
-  deframe
-)
+importFrom(tibble,deframe)

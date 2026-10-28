@@ -17,6 +17,13 @@ A ggplot2 theme object (class \code{theme}).
 \description{
 Theme similar to the default look of charts in Google Docs.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=gdocs_pal]{gdocs_pal()}} for discrete color and fill scales as the
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A \verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 

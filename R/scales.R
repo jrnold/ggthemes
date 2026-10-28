@@ -64,8 +64,8 @@
 #' Then, the minimum and maximum labels are moved to the minimum and maximum of the data
 #' range.
 #'
-#' `extended_range_breaks_()` implements the algorithm and returns the break values.
-#' `extended_range_breaks()` uses the conventions of the scales package, and returns a function.
+#' `extended_range_breaks()` follows the conventions of the scales package: it
+#' returns a function that takes a vector of data and returns the breaks.
 #'
 #' Note that ggplot2 hands a `breaks` function the expanded scale limits, not the data
 #' range. Passing `extended_range_breaks()` directly to `breaks` therefore places the
@@ -73,15 +73,13 @@
 #' which is what pairs with [geom_rangeframe()], apply the function to the data
 #' instead: `scale_x_continuous(breaks = extended_range_breaks()(mtcars$wt))`.
 #'
-#' @param dmin Minimum of the data range.
-#' @param dmax Maximum of the data range.
 #' @param n Desired number of breaks.
-#' @param Q Set of nice numbers.
-#' @param w Weights applied to the four optimization components (simplicity,
-#'   coverage, density, and legibility).
-#' @returns For `extended_range_breaks_`, the vector of axis label locations.
-#' For `extended_range_breaks`, a function which takes a single argument, a vector of data, and returns
-#'   the vector of axis label locations.
+#' @param ... Other arguments passed to the algorithm:
+#'   - `Q`: set of nice numbers, by default `c(1, 5, 2, 2.5, 4, 3)`.
+#'   - `w`: weights applied to the four optimization components (simplicity,
+#'     coverage, density, and legibility), by default `c(0.25, 0.2, 0.5, 0.05)`.
+#' @returns A function which takes a single argument, a vector of data, and
+#'   returns the vector of axis label locations.
 #' @references
 #' Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
 #'   for Positioning Tick Labels on Axes, InfoVis 2010.
@@ -90,7 +88,43 @@
 #' @rdname range_breaks
 #' @export
 #' @example inst/examples/ex-range_breaks.R
-extended_range_breaks_ <- function(
+extended_range_breaks <- function(n = 5, ...) {
+  function(x) {
+    extended_range_breaks_impl(min(x), max(x), n, ...)
+  }
+}
+
+#' Pretty axis breaks inclusive of extreme values, from a range
+#'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' `extended_range_breaks_()` was deprecated in ggthemes 8.0.0. Use
+#' [extended_range_breaks()] instead: `extended_range_breaks_(dmin, dmax, n)`
+#' is `extended_range_breaks(n)(c(dmin, dmax))`.
+#'
+#' @param dmin Minimum of the data range.
+#' @param dmax Maximum of the data range.
+#' @param n Desired number of breaks.
+#' @param Q Set of nice numbers.
+#' @param w Weights applied to the four optimization components (simplicity,
+#'   coverage, density, and legibility).
+#' @returns The vector of axis label locations.
+#' @keywords internal
+#' @export
+extended_range_breaks_ <- function(dmin, dmax, n = 5, Q = c(1, 5, 2, 2.5, 4, 3), w = c(0.25, 0.2, 0.5, 0.05)) {
+  deprecate_warn(
+    "8.0.0",
+    "extended_range_breaks_()",
+    "extended_range_breaks()",
+    details = "`extended_range_breaks_(dmin, dmax, n)` is `extended_range_breaks(n)(c(dmin, dmax))`."
+  )
+  extended_range_breaks_impl(dmin, dmax, n = n, Q = Q, w = w)
+}
+
+# The extended Wilkinson algorithm, constrained to breaks inside
+# [dmin, dmax], with the end breaks then moved onto dmin and dmax.
+extended_range_breaks_impl <- function(
   dmin,
   dmax,
   n = 5, # nolint: cyclocomp_linter
@@ -189,15 +223,6 @@ extended_range_breaks_ <- function(
     breaks[length(breaks)] <- dmax
   }
   breaks
-}
-
-#' @rdname range_breaks
-#' @param ... Other arguments passed to `extended_range_breaks_()`.
-#' @export
-extended_range_breaks <- function(n = 5, ...) {
-  function(x) {
-    extended_range_breaks_(min(x), max(x), n, ...)
-  }
 }
 
 # from scales package

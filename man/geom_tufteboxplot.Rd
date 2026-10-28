@@ -21,7 +21,8 @@ geom_tufteboxplot(
   inherit.aes = TRUE,
   median.type = "point",
   whisker.type = "line",
-  ...
+  ...,
+  orientation = NA
 )
 }
 \arguments{
@@ -76,11 +77,11 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 
 \item{voffset}{Controls the size of the gap in the line representing the
 median when \code{median.type = "line"}. This is a fraction of the range
-of \code{y}.}
+of the summarized axis (\code{y}, or \code{x} for a horizontal box plot).}
 
 \item{hoffset}{Controls how much the interquartile line is offset from the
 whiskers when \code{median.type = "line"}. This is a fraction of the
-range of \code{x}.}
+range of the grouping axis (\code{x}, or \code{y} for a horizontal box plot).}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
@@ -139,6 +140,11 @@ lists which parameters it can accept.
 \code{...}. This can be one of the functions described as
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
+
+\item{orientation}{The orientation of the layer. The default (\code{NA})
+infers it from the aesthetics: a discrete \code{y} with a continuous \code{x}
+summarizes \code{x} for each level of \code{y}. Set it to \code{"x"} or \code{"y"} when
+inference fails.}
 }
 \value{
 A ggplot2 layer.
@@ -208,7 +214,7 @@ Other geom tufte:
 \code{\link[=geom_rangeframe]{geom_rangeframe()}}
 
 Other tufte:
-\code{\link[=extended_range_breaks_]{extended_range_breaks_()}},
+\code{\link[=extended_range_breaks]{extended_range_breaks()}},
 \code{\link[=geom_rangeframe]{geom_rangeframe()}},
 \code{\link[=theme_tufte]{theme_tufte()}}
 }

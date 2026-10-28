@@ -54,6 +54,13 @@ The y axis should be displayed on the right hand side.
 you have access to this font, you can use it with the
 extrafont package. "Verdana" is a good substitute.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=economist_pal]{economist_pal()}} for discrete color and fill scales as the
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A \verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 

@@ -92,15 +92,6 @@ test_that("few's palette is unchanged by the safe mapping", {
   expect_error(few_shape_pal(unicode = TRUE), "unused argument")
 })
 
-test_that("deprecated circlefill still returns its glyph pch", {
-  skip_if_not_installed("withr")
-  withr::local_options(lifecycle_verbosity = "quiet")
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
-  values <- circlefill_shape_pal()(5)
-  expect_equal(attr(circlefill_shape_pal(), "max_n"), 5L)
-  expect_true(all(values < 0))
-})
-
 test_that("scale functions pass unicode through to their palette", {
   local_mocked_bindings(missing_glyphs = function(...) character(0))
   expect_s3_class(scale_shape_calc(unicode = TRUE), "ScaleDiscrete")

@@ -5,9 +5,9 @@
 #' `eval.msgs` or `Pandoc.brew`.
 #' @inheritParams ggplot2::theme_bw
 #' @param nomargin Whether to suppress the white space around the plot.
-#' @param ff Font family, like `"sans"`. `r lifecycle::badge("deprecated")` Use `base_family` instead.
+#' @param ff `r lifecycle::badge("defunct")` Use `base_family` instead.
 #' @param fc Font color, as a name or hex code.
-#' @param fs Font size (integer). `r lifecycle::badge("deprecated")` Use `base_size` instead.
+#' @param fs `r lifecycle::badge("defunct")` Use `base_size` instead.
 #' @param gM Whether to draw the major grid.
 #' @param gm Whether to draw the minor grid.
 #' @param gc Grid color, as a name or hex code.
@@ -18,6 +18,10 @@
 #' @param lp Legend position.
 #' @param axis Axis label angle, as defined by `par("las")`.
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [palette_pander()] for discrete color and fill scales as the
+#' default palettes, so a plot draws in the theme's colors without a matching
+#' scale. A `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @family themes pander
 #' @example inst/examples/ex-theme_pander.R
@@ -26,9 +30,9 @@ theme_pander <- function(
   base_size = 12,
   base_family = "sans",
   nomargin = TRUE,
-  ff = NULL,
+  ff = lifecycle::deprecated(),
   fc = "black",
-  fs = NULL,
+  fs = lifecycle::deprecated(),
   gM = TRUE, # nolint: object_name_linter
   gm = TRUE,
   gc = "grey",
@@ -39,13 +43,11 @@ theme_pander <- function(
   lp = "right",
   axis = 1
 ) {
-  if (hasArg(ff)) {
-    base_family <- ff
-    deprecate_warn("2.0.0", "theme_pander(ff)", "theme_pander(base_family)")
+  if (lifecycle::is_present(ff)) {
+    lifecycle::deprecate_stop("2.0.0", "theme_pander(ff)", "theme_pander(base_family)")
   }
-  if (hasArg(fs)) {
-    base_size <- fs
-    deprecate_warn("2.0.0", "theme_pander(fs)", "theme_pander(base_size)")
+  if (lifecycle::is_present(fs)) {
+    lifecycle::deprecate_stop("2.0.0", "theme_pander(fs)", "theme_pander(base_size)")
   }
 
   if (requireNamespace("pander", quietly = TRUE)) {
@@ -94,70 +96,71 @@ theme_pander <- function(
   tc <- ifelse(pc == "transparent", bc, pc) # 'transparent' color
 
   ## default colors, font and legend position
-  res <- theme(
-    text = element_text(family = base_family),
-    plot.background = element_rect(fill = bc, colour = NA),
-    panel.grid = element_line(
-      colour = gc,
-      linewidth = 0.2,
-      linetype = gl
-    ),
-    panel.grid.minor = element_line(linewidth = 0.1),
-    axis.ticks = element_line(
-      colour = gc,
-      linewidth = 0.2
-    ),
-    plot.title = element_text(
-      colour = fc,
-      face = "bold",
-      size = base_size * 1.2
-    ),
-    axis.text = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size * 0.8
-    ),
-    legend.text = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size * 0.8
-    ),
-    legend.title = element_text(
-      colour = fc,
-      face = "italic",
-      size = base_size
-    ),
-    axis.title.x = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size
-    ),
-    strip.text.x = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size
-    ),
-    axis.title.y = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size,
-      angle = 90
-    ),
-    strip.text.y = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size,
-      angle = -90
-    ),
-    legend.key = element_rect(colour = gc, fill = "transparent"),
-    strip.background = element_rect(
-      colour = gc,
-      fill = "transparent"
-    ),
-    panel.border = element_rect(fill = NA, colour = gc),
-    panel.background = element_rect(fill = pc, colour = gc),
-    legend.position = lp
-  )
+  res <- theme_grey(base_size = base_size, base_family = base_family) +
+    theme(
+      text = element_text(family = base_family),
+      plot.background = element_rect(fill = bc, colour = NA),
+      panel.grid = element_line(
+        colour = gc,
+        linewidth = 0.2,
+        linetype = gl
+      ),
+      panel.grid.minor = element_line(linewidth = 0.1),
+      axis.ticks = element_line(
+        colour = gc,
+        linewidth = 0.2
+      ),
+      plot.title = element_text(
+        colour = fc,
+        face = "bold",
+        size = base_size * 1.2
+      ),
+      axis.text = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size * 0.8
+      ),
+      legend.text = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size * 0.8
+      ),
+      legend.title = element_text(
+        colour = fc,
+        face = "italic",
+        size = base_size
+      ),
+      axis.title.x = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size
+      ),
+      strip.text.x = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size
+      ),
+      axis.title.y = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size,
+        angle = 90
+      ),
+      strip.text.y = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size,
+        angle = -90
+      ),
+      legend.key = element_rect(colour = gc, fill = "transparent"),
+      strip.background = element_rect(
+        colour = gc,
+        fill = "transparent"
+      ),
+      panel.border = element_rect(fill = NA, colour = gc),
+      panel.background = element_rect(fill = pc, colour = gc),
+      legend.position = lp
+    )
 
   ## disable box(es) around the plot
   if (!isTRUE(boxes)) {
@@ -250,7 +253,10 @@ theme_pander <- function(
       )
   }
 
-  res
+  res +
+    # palette_pander() recycles its colors; give the theme its true size so that
+    # too many groups fall back to ggplot2's palette instead of repeating colors.
+    theme_palettes(structure(palette_pander, max_n = length(pander_colours())))
 }
 
 
@@ -268,7 +274,22 @@ theme_pander <- function(
 #' @family color pander
 #' @example inst/examples/ex-palette_pander.R
 palette_pander <- function(n, random_order = FALSE) {
-  ## default (colorblind and printer-friendly) colors
+  cols <- pander_colours()
+
+  if (isTRUE(random_order)) {
+    cols <- sample(cols)
+  }
+
+  if (length(cols) < n) {
+    cols <- rep_len(cols, n)
+  }
+
+  cols[seq_len(n)]
+}
+
+# The colors palette_pander() draws from: panderOptions("graph.colors") when
+# pander is installed, otherwise its colorblind and printer-friendly default.
+pander_colours <- function() {
   cols <- c(
     "#56B4E9",
     "#009E73",
@@ -283,16 +304,7 @@ palette_pander <- function(n, random_order = FALSE) {
   if (requireNamespace("pander", quietly = TRUE)) {
     cols <- pander::panderOptions("graph.colors")
   }
-
-  if (isTRUE(random_order)) {
-    cols <- sample(cols)
-  }
-
-  if (length(cols) < n) {
-    cols <- rep_len(cols, n)
-  }
-
-  cols[seq_len(n)]
+  cols
 }
 
 

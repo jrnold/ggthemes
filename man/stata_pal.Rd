@@ -4,13 +4,13 @@
 \alias{stata_pal}
 \title{Stata color palettes (discrete)}
 \usage{
-stata_pal(scheme = NULL)
+stata_pal(scheme = "stcolor")
 }
 \arguments{
 \item{scheme}{A string, the Stata scheme. One of: \code{"s2color"},
 \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or \code{"economist"}.
-If \code{NULL}, the default, \code{"s2color"} is used and a deprecation message is
-issued; this default becomes \code{"stcolor"} in ggthemes 8.0.0.}
+The default, \code{"stcolor"}, is Stata's factory default since Stata 18.
+\code{NULL} is the same as the default.}
 }
 \value{
 A palette function. It takes the number of colors \code{n} and returns a character vector of \code{n}

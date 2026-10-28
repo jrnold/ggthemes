@@ -121,7 +121,6 @@ test_that("theme_par converts tck and tcl to tick lengths", {
 })
 
 test_that("theme_par sets geom defaults from par", {
-  skip_if_not_installed("ggplot2", "4.0.0")
   skip_if_not_installed("withr")
   withr::with_par(list(col = "red", bg = "gray90", lwd = 2, lty = "dashed", pch = 19, ljoin = "mitre"), {
     thm <- theme_par()
@@ -135,7 +134,6 @@ test_that("theme_par sets geom defaults from par", {
 })
 
 test_that("theme_par uses palette() for discrete scales, recycled", {
-  skip_if_not_installed("ggplot2", "4.0.0")
   skip_if_not_installed("withr")
   old <- grDevices::palette("Okabe-Ito")
   withr::defer(grDevices::palette(old))
@@ -150,7 +148,6 @@ test_that("theme_par uses palette() for discrete scales, recycled", {
 })
 
 test_that("theme_par uses the image() colours for continuous scales", {
-  skip_if_not_installed("ggplot2", "4.0.0")
   thm <- theme_par()
   expect_equal(thm$palette.fill.continuous, grDevices::hcl.colors(12, "YlOrRd", rev = TRUE))
   expect_equal(thm$palette.colour.continuous, thm$palette.fill.continuous)

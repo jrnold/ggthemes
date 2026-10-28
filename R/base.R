@@ -63,8 +63,7 @@ theme_base <- function(base_size = 12, base_family = "") {
 #' `"col.main"`, `"col.sub"`, `"family"`, `"fg"`, `"font"`, `"font.axis"`,
 #' `"font.lab"`, `"font.main"`, `"font.sub"`, `"las"`, `"lend"`, `"lheight"`,
 #' `"lty"`, `"lwd"`, `"mar"`, `"mex"`, `"mgp"`, `"oma"`, `"pin"`, `"ps"`,
-#' `"tck"`, `"tcl"`, `"xaxt"`, `"yaxt"`, and with ggplot2 4.0.0 or later also
-#' `"col"`, `"ljoin"` and `"pch"`.
+#' `"tck"`, `"tcl"`, `"xaxt"`, `"yaxt"`, `"col"`, `"ljoin"` and `"pch"`.
 #'
 #' The `"sub"` parameters style `plot.subtitle`, `plot.caption` and
 #' `strip.text`. Box types (`"bty"`) other than `"o"`, `"l"` and `"n"` are
@@ -78,12 +77,12 @@ theme_base <- function(base_size = 12, base_family = "") {
 #' produced by it will not be identical to those produced by base graphics,
 #' most notably in the spacing of the margins.
 #'
-#' With ggplot2 4.0.0 or later, the theme also sets the defaults for geoms,
+#' The theme also sets the defaults for geoms,
 #' from `"bg"`, `"cex"`, `"cin"`, `"col"`, `"lty"`, `"lwd"`, `"pch"` and `"ps"`, joins
 #' lines with `"ljoin"`, and sets the default palettes. Discrete scales use the
 #' current [grDevices::palette()], recycled as base graphics does when there
-#' are more groups than colours. Continuous scales use
-#' `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of
+#' are more groups than colors. Continuous scales use
+#' `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colors of
 #' [graphics::image()] and [graphics::filled.contour()].
 #'
 #' Like [graphics::par()] itself, `theme_par()` opens a graphics device if
@@ -252,10 +251,7 @@ theme_par <- function(base_size = par("ps") * par("cex"), base_family = par("fam
 
   thm <- thm + par_bty(p$bty, p$fg)
 
-  # ggplot2 >= 4.0.0 also takes geom defaults and palettes from the theme.
-  if (rlang::is_installed("ggplot2", version = "4.0.0")) {
-    thm <- thm + par_geom_theme(p, base_size, base_family)
-  }
+  thm <- thm + par_geom_theme(p, base_size, base_family)
 
   if (!p$ann) {
     thm <- thm +
@@ -288,8 +284,7 @@ theme_par <- function(base_size = par("ps") * par("cex"), base_family = par("fam
   thm
 }
 
-# Geom defaults, line joins and palettes from `par()` and `palette()`, using
-# theme settings added in ggplot2 4.0.0.
+# Geom defaults, line joins and palettes from `par()` and `palette()`.
 par_geom_theme <- function(p, base_size, base_family) {
   # Base graphics sizes symbols at half the device's character height times
   # `cex`. ggplot2 sizes points in mm, excluding their default stroke.

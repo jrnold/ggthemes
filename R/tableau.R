@@ -29,6 +29,9 @@ tableau_resolve_palette <- function(palette) {
 #' `"regular"` (discrete, qualitative categories),
 #' `"ordered-sequential"`, and `"ordered-diverging"`.
 #'
+#' The default palette, `"Tableau 10"`, has the same colors as base R's
+#' `palette.colors(palette = "Tableau 10")`.
+#'
 #' - `"regular"`: `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["regular"]]))`.
 #' - `"ordered-diverging"`: `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-diverging"]]))`.
 #' - `"ordered-sequential"`: `r ggthemes:::md_optlist(names(ggthemes::ggthemes_data$tableau[["color-palettes"]][["ordered-sequential"]]))`.
