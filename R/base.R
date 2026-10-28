@@ -81,8 +81,8 @@ theme_base <- function(base_size = 12, base_family = "") {
 #' from `"bg"`, `"cex"`, `"cin"`, `"col"`, `"lty"`, `"lwd"`, `"pch"` and `"ps"`, joins
 #' lines with `"ljoin"`, and sets the default palettes. Discrete scales use the
 #' current [grDevices::palette()], recycled as base graphics does when there
-#' are more groups than colours. Continuous scales use
-#' `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colours of
+#' are more groups than colors. Continuous scales use
+#' `hcl.colors(12, "YlOrRd", rev = TRUE)`, the default colors of
 #' [graphics::image()] and [graphics::filled.contour()].
 #'
 #' Like [graphics::par()] itself, `theme_par()` opens a graphics device if

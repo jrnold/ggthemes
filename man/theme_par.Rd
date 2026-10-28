@@ -46,8 +46,8 @@ The theme also sets the defaults for geoms,
 from \code{"bg"}, \code{"cex"}, \code{"cin"}, \code{"col"}, \code{"lty"}, \code{"lwd"}, \code{"pch"} and \code{"ps"}, joins
 lines with \code{"ljoin"}, and sets the default palettes. Discrete scales use the
 current \code{\link[grDevices:palette]{grDevices::palette()}}, recycled as base graphics does when there
-are more groups than colours. Continuous scales use
-\code{hcl.colors(12, "YlOrRd", rev = TRUE)}, the default colours of
+are more groups than colors. Continuous scales use
+\code{hcl.colors(12, "YlOrRd", rev = TRUE)}, the default colors of
 \code{\link[graphics:image]{graphics::image()}} and \code{\link[graphics:filled.contour]{graphics::filled.contour()}}.
 
 Like \code{\link[graphics:par]{graphics::par()}} itself, \code{theme_par()} opens a graphics device if
