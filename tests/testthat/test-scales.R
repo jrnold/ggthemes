@@ -55,22 +55,32 @@ test_that("precision returns a power of ten based on the smallest gap", {
   expect_equal(precision(0), 1)
 })
 
-test_that("smart_digits rounds to an appropriate number of digits", {
-  out <- smart_digits(c(1.234, 5.678))
-  expect_type(out, "character")
-  expect_equal(smart_digits(numeric()), character())
+test_that("smart_digits and smart_digits_format are deprecated", {
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_snapshot({
+    out <- smart_digits(c(1.234, 5.678))
+    fmt <- smart_digits_format()
+  })
 })
 
-test_that("smart_digits keeps evenly spaced breaks distinct", {
-  expect_equal(trimws(smart_digits(c(0, 25, 50, 75, 100))), c("0", "25", "50", "75", "100"))
-  expect_equal(trimws(smart_digits(c(0, 0.25, 0.5, 0.75, 1))), c("0.00", "0.25", "0.50", "0.75", "1.00"))
-  expect_equal(trimws(smart_digits(c(0, 2.5, 5, 7.5, 10))), c("0.0", "2.5", "5.0", "7.5", "10.0"))
-  expect_equal(trimws(smart_digits(0)), "0")
-  expect_equal(trimws(smart_digits(c(1e-9, 2e-9, 3e-9))), c("1e-09", "2e-09", "3e-09"))
+test_that("format_smart_digits rounds to an appropriate number of digits", {
+  expect_type(format_smart_digits(c(1.234, 5.678)), "character")
+  expect_equal(format_smart_digits(numeric()), character())
 })
 
-test_that("smart_digits_format returns a formatting function", {
+test_that("format_smart_digits keeps evenly spaced breaks distinct", {
+  expect_equal(trimws(format_smart_digits(c(0, 25, 50, 75, 100))), c("0", "25", "50", "75", "100"))
+  expect_equal(trimws(format_smart_digits(c(0, 0.25, 0.5, 0.75, 1))), c("0.00", "0.25", "0.50", "0.75", "1.00"))
+  expect_equal(trimws(format_smart_digits(c(0, 2.5, 5, 7.5, 10))), c("0.0", "2.5", "5.0", "7.5", "10.0"))
+  expect_equal(trimws(format_smart_digits(0)), "0")
+  expect_equal(trimws(format_smart_digits(c(1e-9, 2e-9, 3e-9))), c("1e-09", "2e-09", "3e-09"))
+})
+
+test_that("smart_digits_format returns a labeller that does not warn when drawn", {
+  withr::local_options(lifecycle_verbosity = "quiet")
   fmt <- smart_digits_format()
   expect_type(fmt, "closure")
-  expect_equal(fmt(c(1.234, 5.678)), smart_digits(c(1.234, 5.678)))
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_no_warning(out <- fmt(c(1.234, 5.678)))
+  expect_equal(out, format_smart_digits(c(1.234, 5.678)))
 })

@@ -249,7 +249,14 @@ precision <- function(x) {
 }
 
 # nolint start
-#' Format numbers with automatic number of digits
+#' Format numbers with automatic number of digits (deprecated)
+#'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' `smart_digits()` and `smart_digits_format()` are deprecated. Use
+#' [scales::label_number()], which also picks the accuracy from the smallest
+#' gap between values.
 #'
 #' @param x A numeric vector to format.
 #' @param ... Parameters passed to [base::format()].
@@ -263,21 +270,30 @@ precision <- function(x) {
 #'
 #' @example inst/examples/ex-smart_digits.R
 #' @rdname smart_digits
+#' @importFrom lifecycle deprecate_warn
 #' @export
 # nolint end
 smart_digits <- function(x, ...) {
+  deprecate_warn("8.0.0", "smart_digits()", "scales::label_number()")
+  format_smart_digits(x, ...)
+}
+
+#' @rdname smart_digits
+#' @export
+smart_digits_format <- function(x, ...) {
+  deprecate_warn("8.0.0", "smart_digits_format()", "scales::label_number()")
+  function(x) format_smart_digits(x, ...)
+}
+
+# Kept apart from smart_digits() so the labeller made by smart_digits_format()
+# does not raise a second, indirect deprecation warning each time it is drawn.
+format_smart_digits <- function(x, ...) {
   if (length(x) == 0) {
     return(character())
   }
   accuracy <- precision(x)
   x <- round(x / accuracy) * accuracy
   format(x, ...)
-}
-
-#' @rdname smart_digits
-#' @export
-smart_digits_format <- function(x, ...) {
-  function(x) smart_digits(x, ...)
 }
 
 # nolint end: object_name_linter
