@@ -102,21 +102,24 @@ theme_hc <- function(
   style <- match.arg(style)
   spec <- hc_theme_styles[[style]]
 
-  ret <- theme(
-    rect = element_rect(fill = spec$bg, linetype = 0, colour = NA),
-    text = element_text(size = base_size, family = base_family),
-    title = element_text(hjust = 0.5),
-    axis.title.x = element_text(hjust = 0.5),
-    axis.title.y = element_text(hjust = 0.5),
-    panel.grid.major.y = element_line(colour = spec$grid),
-    panel.grid.minor.y = element_blank(),
-    panel.grid.major.x = if (spec$x_grid) element_line(colour = spec$grid) else element_blank(),
-    panel.grid.minor.x = element_blank(),
-    panel.border = element_blank(),
-    panel.background = element_blank(),
-    legend.position = "bottom",
-    legend.key = element_rect(fill = "#FFFFFF00")
-  )
+  # Start from theme_grey(), which is what this partial theme was added to
+  # before it became complete.
+  ret <- theme_grey(base_size = base_size, base_family = base_family) +
+    theme(
+      rect = element_rect(fill = spec$bg, linetype = 0, colour = NA),
+      text = element_text(size = base_size, family = base_family),
+      title = element_text(hjust = 0.5),
+      axis.title.x = element_text(hjust = 0.5),
+      axis.title.y = element_text(hjust = 0.5),
+      panel.grid.major.y = element_line(colour = spec$grid),
+      panel.grid.minor.y = element_blank(),
+      panel.grid.major.x = if (spec$x_grid) element_line(colour = spec$grid) else element_blank(),
+      panel.grid.minor.x = element_blank(),
+      panel.border = element_blank(),
+      panel.background = element_blank(),
+      legend.position = "bottom",
+      legend.key = element_rect(fill = "#FFFFFF00")
+    )
 
   # `theme() + theme()` copies over only the non-NULL properties of the new
   # elements, so these keep the sizes and justifications set above.
@@ -124,10 +127,10 @@ theme_hc <- function(
     ret <- ret +
       theme(
         text = element_text(colour = spec$text),
-        # `axis.text` must be set explicitly: `theme_hc()` is a partial theme,
-        # and the `theme_grey()` it is added to sets `axis.text` to "grey30",
-        # which would otherwise beat the inherited `text` colour and leave the
-        # axis labels near-invisible on the dark backgrounds.
+        # `axis.text` must be set explicitly: the `theme_grey()` this builds on
+        # sets `axis.text` to "grey30", which would otherwise beat the
+        # inherited `text` colour and leave the axis labels near-invisible on
+        # the dark backgrounds.
         axis.text = element_text(colour = spec$text),
         legend.title = element_text(colour = spec$text)
       )

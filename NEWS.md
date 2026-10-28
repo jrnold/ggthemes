@@ -62,6 +62,11 @@
 
 ## Minor improvements and fixes
 
+- `theme_hc()` and `theme_pander()` are now complete themes built on
+  `theme_grey()`, like the package's other themes, so the active theme
+  (`theme_set()`) no longer leaks into them. Their spacing now scales with
+  `base_size`.
+
 - `geom_tufteboxplot()` and `stat_fivenumber()` draw horizontal box plots. A
   discrete `y` with a continuous `x` now summarises `x`, as in
   `geom_boxplot()`; before, it summarised the factor codes of `y` and drew

@@ -94,70 +94,71 @@ theme_pander <- function(
   tc <- ifelse(pc == "transparent", bc, pc) # 'transparent' color
 
   ## default colors, font and legend position
-  res <- theme(
-    text = element_text(family = base_family),
-    plot.background = element_rect(fill = bc, colour = NA),
-    panel.grid = element_line(
-      colour = gc,
-      linewidth = 0.2,
-      linetype = gl
-    ),
-    panel.grid.minor = element_line(linewidth = 0.1),
-    axis.ticks = element_line(
-      colour = gc,
-      linewidth = 0.2
-    ),
-    plot.title = element_text(
-      colour = fc,
-      face = "bold",
-      size = base_size * 1.2
-    ),
-    axis.text = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size * 0.8
-    ),
-    legend.text = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size * 0.8
-    ),
-    legend.title = element_text(
-      colour = fc,
-      face = "italic",
-      size = base_size
-    ),
-    axis.title.x = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size
-    ),
-    strip.text.x = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size
-    ),
-    axis.title.y = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size,
-      angle = 90
-    ),
-    strip.text.y = element_text(
-      colour = fc,
-      face = "plain",
-      size = base_size,
-      angle = -90
-    ),
-    legend.key = element_rect(colour = gc, fill = "transparent"),
-    strip.background = element_rect(
-      colour = gc,
-      fill = "transparent"
-    ),
-    panel.border = element_rect(fill = NA, colour = gc),
-    panel.background = element_rect(fill = pc, colour = gc),
-    legend.position = lp
-  )
+  res <- theme_grey(base_size = base_size, base_family = base_family) +
+    theme(
+      text = element_text(family = base_family),
+      plot.background = element_rect(fill = bc, colour = NA),
+      panel.grid = element_line(
+        colour = gc,
+        linewidth = 0.2,
+        linetype = gl
+      ),
+      panel.grid.minor = element_line(linewidth = 0.1),
+      axis.ticks = element_line(
+        colour = gc,
+        linewidth = 0.2
+      ),
+      plot.title = element_text(
+        colour = fc,
+        face = "bold",
+        size = base_size * 1.2
+      ),
+      axis.text = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size * 0.8
+      ),
+      legend.text = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size * 0.8
+      ),
+      legend.title = element_text(
+        colour = fc,
+        face = "italic",
+        size = base_size
+      ),
+      axis.title.x = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size
+      ),
+      strip.text.x = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size
+      ),
+      axis.title.y = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size,
+        angle = 90
+      ),
+      strip.text.y = element_text(
+        colour = fc,
+        face = "plain",
+        size = base_size,
+        angle = -90
+      ),
+      legend.key = element_rect(colour = gc, fill = "transparent"),
+      strip.background = element_rect(
+        colour = gc,
+        fill = "transparent"
+      ),
+      panel.border = element_rect(fill = NA, colour = gc),
+      panel.background = element_rect(fill = pc, colour = gc),
+      legend.position = lp
+    )
 
   ## disable box(es) around the plot
   if (!isTRUE(boxes)) {
