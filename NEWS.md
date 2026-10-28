@@ -2,11 +2,6 @@
 
 ## Breaking changes
 
-- `theme_stata()`, `stata_pal()`, `scale_colour_stata()` and
-  `scale_fill_stata()` now default to `scheme = "stcolor"`, Stata's factory
-  default since Stata 18, instead of `"s2color"`, as announced in 7.0.0. Use
-  `scheme = "s2color"` for the previous look.
-
 - ggthemes now requires ggplot2 4.0.0 or later.
 
 - Themes now set their own palettes as the defaults for discrete scales, so
@@ -21,6 +16,15 @@
   `theme_stata()` also set shape, and `theme_stata()` sets linetype. A scale
   added to the plot still wins. When a plot has more groups than the theme's
   palette has values, the theme warns and uses ggplot2's default palette.
+
+- `theme_stata()`, `stata_pal()`, `scale_colour_stata()` and
+  `scale_fill_stata()` now default to `scheme = "stcolor"`, Stata's factory
+  default since Stata 18, instead of `"s2color"`, as announced in 7.0.0. Use
+  `scheme = "s2color"` for the previous look.
+
+- These deprecated arguments and functions are now defunct and error:
+  `theme_pander(ff, fs)` (deprecated in 2.0.0), `theme_hc(bgcolor)` (4.2.0),
+  and `circlefill_shape_pal()` and `scale_shape_circlefill()` (5.0.0).
 
 - `theme_base()` now defaults to `base_size = 12`, the default text size of
   base graphics, instead of 16, and draws tick labels, strip text, legend text
@@ -58,18 +62,12 @@
 
 ## Lifecycle changes
 
-- These deprecated arguments and functions are now defunct and error:
-  `theme_pander(ff, fs)` (deprecated in 2.0.0), `theme_hc(bgcolor)` (4.2.0),
-  and `circlefill_shape_pal()` and `scale_shape_circlefill()` (5.0.0).
-
 - `scale_colour_colorblind()` now always warns that it is deprecated; use
   `scale_colour_colourblind()`.
 
 - `extended_range_breaks_()` is deprecated. Use `extended_range_breaks()`:
   `extended_range_breaks_(dmin, dmax, n)` is
   `extended_range_breaks(n)(c(dmin, dmax))`.
-
-- ggthemes no longer imports purrr or methods.
 
 ## New features
 
@@ -104,6 +102,8 @@
   (#265).
 
 ## Minor improvements and fixes
+
+- ggthemes no longer imports purrr or methods.
 
 - `theme_solid()` passes `base_size` and `base_family` on, so they set the
   default size and font of text geoms; both were ignored, and `base_size` was
@@ -156,9 +156,8 @@
     length from the plot region size.
   - The `sub` parameters also style `plot.subtitle` and `plot.caption`.
 
-- The deprecation warnings from `theme_hc(bgcolor)`, `theme_pander(ff)`,
-  `theme_pander(fs)` and the renamed Tableau palettes `"Red-Blue-Brown"` and
-  `"Classic Area-Brown"` now come from lifecycle, so they name the release
+- The deprecation warnings for the renamed Tableau palettes `"Red-Blue-Brown"`
+  and `"Classic Area-Brown"` now come from lifecycle, so they name the release
   that deprecated them (#273).
 
 - `bank_plot()` and `bank_plot_multiscale()` now report a `plot` that is not a
