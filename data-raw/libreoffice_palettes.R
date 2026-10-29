@@ -27,7 +27,7 @@ soc_process_color <- function(x) {
 }
 
 read_soc <- function(path) {
-  map_dfr(xml_find_all(read_xml(path), "draw:color"), soc_process_color)
+  purrr::map_dfr(xml_find_all(read_xml(path), "draw:color"), soc_process_color)
 }
 
 palettes <-
