@@ -7,11 +7,11 @@ derive `theme_numbers()`.
 Extracted from **Numbers 14.5**, at
 `/Applications/Numbers.app/Contents/Resources/`.
 
-| file | source | contents |
-|------|--------|----------|
-| `plists/*.json` | `*.sfccolor.plist` | the 12 chart palettes, 6 series each |
-| `chart-style.xml` | `SDBGDefaultThemeStyleSheet.xml.gz` | chart style defaults |
-| `VERSION` | `Info.plist` | `CFBundleShortVersionString` |
+  | file              | source                              | contents                             |
+  | ----------------- | ----------------------------------- | ------------------------------------ |
+  | `plists/*.json`   | `*.sfccolor.plist`                  | the 12 chart palettes, 6 series each |
+  | `chart-style.xml` | `SDBGDefaultThemeStyleSheet.xml.gz` | chart style defaults                 |
+  | `VERSION`         | `Info.plist`                        | `CFBundleShortVersionString`         |
 
 ## Pipeline
 
@@ -42,18 +42,18 @@ through ColorSync and `#5EA3FF` naively.
 `chart-style.xml` holds a `chart-style-default` property map that
 `theme_numbers()` is derived from. The properties that matter:
 
-| property | value |
-|---|---|
-| `SFC2DChartBackgroundFillProperty` | null (no panel fill) |
-| `SFC2DShowValueDirectionGridLinesProperty` | 1 |
-| `SFC2DValueDirectionGridLineStrokeProperty` | `#AAAAAA`, width 1, solid |
-| `SFC2DShowCategoryDirectionGridLinesProperty` | 0 |
-| `SFC2DShowBottomBorderProperty` | 1 (black, width 1) |
-| `SFC2DShowLeftBorderProperty`, right, top | 0 |
-| `SFCCategoryAxisShowMajorTickMarksProperty` | 0 |
-| `SFCValueAxisShowMajorTickMarksProperty` | 0 |
-| `SFCLegendFillProperty` | null |
-| `SFCLegendStrokeProperty` | pattern `empty` (no border) |
+  | property                                      | value                       |
+  | --------------------------------------------- | --------------------------- |
+  | `SFC2DChartBackgroundFillProperty`            | null (no panel fill)        |
+  | `SFC2DShowValueDirectionGridLinesProperty`    | 1                           |
+  | `SFC2DValueDirectionGridLineStrokeProperty`   | `#AAAAAA`, width 1, solid   |
+  | `SFC2DShowCategoryDirectionGridLinesProperty` | 0                           |
+  | `SFC2DShowBottomBorderProperty`               | 1 (black, width 1)          |
+  | `SFC2DShowLeftBorderProperty`, right, top     | 0                           |
+  | `SFCCategoryAxisShowMajorTickMarksProperty`   | 0                           |
+  | `SFCValueAxisShowMajorTickMarksProperty`      | 0                           |
+  | `SFCLegendFillProperty`                       | null                        |
+  | `SFCLegendStrokeProperty`                     | pattern `empty` (no border) |
 
 ## Redistribution
 

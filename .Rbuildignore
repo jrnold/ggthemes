@@ -33,3 +33,4 @@
 ^_typos\.toml$
 ^\.editorconfig$
 ^\.shellcheckrc$
+^panache\.toml$

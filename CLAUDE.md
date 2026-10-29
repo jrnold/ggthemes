@@ -76,6 +76,7 @@ makes it.
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
 
 ### Format
+
 ```
 <type>[optional scope]: <description>
 
@@ -85,6 +86,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/en/
 ```
 
 ### Types
+
 - **feat**: A new feature
 - **fix**: A bug fix
 - **docs**: Documentation only changes
@@ -94,6 +96,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/en/
 - **chore**: Changes to build process or auxiliary tools
 
 ### Examples
+
 ```
 feat: add solarized dark theme variant
 fix: correct color palette for economist theme
@@ -126,6 +129,7 @@ that breaks reverse dependencies at `R CMD check`. Deprecate and forward instead
 ### Code Organization
 
 **R/**: Main source files organized by theme/functionality
+
 - Each major theme has its own file (e.g., `economist.R`, `tufte.R`, `fivethirtyeight.R`)
 - Each file typically contains:
   - Color palette function (e.g., `economist_pal()`)
@@ -137,6 +141,7 @@ that breaks reverse dependencies at `R CMD check`. Deprecate and forward instead
 - `base.R`: Contains `theme_foundation()`, the base theme that many other themes build upon
 
 **data-raw/**: Data generation and theme definitions
+
 - `build.R`: Master script that loads all theme data from YAML/XML files and builds the `ggthemes_data` object
 - `theme-data/`: YAML and XML files defining colors, shapes, and palettes for each theme
 - The build process converts these into tibbles stored in `ggthemes_data`
@@ -162,6 +167,7 @@ Most themes follow this structure:
 ### Data Loading System
 
 The `data-raw/build.R` script:
+
 1. Creates a new environment `ggthemes_data`
 2. For each theme, defines a `load_*()` function that:
    - Reads YAML/XML from `data-raw/theme-data/`
@@ -297,6 +303,7 @@ Rscript -e 'spelling::update_wordlist()'
 ```
 
 The custom wordlist is stored in `inst/WORDLIST` and contains project-specific terms like:
+
 - Package names (ggplot, vdiffr, pkgdown)
 - Theme names (fivethirtyeight, solarized, stata)
 - Author names and proper nouns

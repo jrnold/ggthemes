@@ -2,11 +2,13 @@
 title: "Package data"
 ---
 
-```{r, include = FALSE}
+```{r}
+#| include: false
+
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, dev = "ragg_png", dpi = 96)
 ```
 
-```{css, echo = FALSE}
+```{css, echo=FALSE}
 .data-level {
   margin: 0.25rem 0 0.75rem 0.4rem;
   padding-left: 1rem;
@@ -16,7 +18,9 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, dev = "rag
 .data-level small code { color: var(--bs-secondary-color, #6c757d); }
 ```
 
-```{r setup}
+```{r}
+#| label: setup
+
 library("ggplot2")
 library("ggthemes")
 ```
@@ -39,7 +43,9 @@ built on this data, see the [color palettes](palettes.html) gallery.
 `ggthemes_data` contains no fonts: themes set their typefaces in code, through
 their `base_family` argument.
 
-```{r helpers}
+````{r}
+#| label: helpers
+
 source("swatches.R")
 
 # Columns are referenced through the `.data` pronoun, as in swatches.R.
@@ -287,9 +293,12 @@ render_block <- function(block) {
   }
   c(out, knitr::knit_child(text = chunk, envir = environment(), quiet = TRUE), "")
 }
-```
+````
 
-```{r sections, results = "asis"}
+```{r}
+#| label: sections
+#| results: "asis"
+
 for (theme in sort(names(ggthemes_data))) {
   sets <- find_sets(ggthemes_data[[theme]], list(theme))
   for (block in group_sets(sets)) {

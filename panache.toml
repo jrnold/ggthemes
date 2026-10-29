@@ -1,0 +1,29 @@
+# Lint baseline: panache lints and formats Quarto, R Markdown and Markdown, and runs ruff on
+# the Python chunks so .qmd code is checked without rendering.
+
+# .qmd and .Rmd are Quarto/R Markdown by extension; plain Markdown is read on GitHub.
+[flavors]
+gfm = ["*.md", "**/*.md"]
+
+[lint]
+# Chunk labels only matter when something cross-references a chunk
+ignore = ["missing-chunk-labels"]
+
+[linters]
+python = "ruff"
+
+[linters.ruff]
+# A bare final expression is how Quarto displays a value
+append-args = ["--extend-ignore", "B018,D100,INP001,T201"]
+
+[format]
+line-width = 120
+# Reflowing prose churns diffs; keep the author's line breaks
+wrap = "preserve"
+
+[extensions]
+# Keep typed punctuation (– — ’) instead of rewriting it as -- and ---
+smart = false
+
+[formatters]
+python = "ruff"

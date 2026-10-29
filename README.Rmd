@@ -4,7 +4,9 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r}
+#| echo: false
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -34,7 +36,15 @@ graphics advocated by Edward Tufte and Stephen Few:
   [banking to 45°](https://jrnold.github.io/ggthemes/reference/bank_slopes.html)
   to choose a plot's aspect ratio.
 
-```{r hero, echo = FALSE, message = FALSE, fig.width = 10, fig.height = 6.2, out.width = "100%", fig.alt = "The same scatter plot of fuel economy against car weight drawn four ways: with theme_economist(), theme_fivethirtyeight(), theme_wsj() and theme_solarized(), each with its matching color scale."}
+```{r}
+#| label: hero
+#| echo: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 6.2
+#| out-width: "100%"
+#| fig-alt: "The same scatter plot of fuel economy against car weight drawn four ways: with theme_economist(), theme_fivethirtyeight(), theme_wsj() and theme_solarized(), each with its matching color scale."
+
 library("ggplot2")
 library("ggthemes")
 
@@ -113,7 +123,13 @@ p_solid <- ggplot(mtcars2) +
 
 </details>
 
-```{r examples, echo = FALSE, results = "asis", message = FALSE, warning = FALSE}
+````{r}
+#| label: examples
+#| echo: false
+#| results: "asis"
+#| message: false
+#| warning: false
+
 # One cell per exported theme, alphabetically. Each entry is the literal code
 # shown under the figure *and* the code evaluated to draw it, so the two
 # cannot drift apart. Themes that ship their own palette are paired with it;
@@ -171,7 +187,7 @@ for (pair in split(names(examples), ceiling(seq_along(examples) / 2))) {
   cat("<tr>\n", vapply(pair, cell, character(1)), "</tr>\n", sep = "")
 }
 cat("</table>\n")
-```
+````
 
 ## Color palettes
 
@@ -179,7 +195,10 @@ A sample of the color palettes is shown below. The
 [palette gallery](https://jrnold.github.io/ggthemes/articles/palettes.html)
 shows every palette in the package.
 
-```{r palette-sample, include = FALSE}
+```{r}
+#| label: palette-sample
+#| include: false
+
 # Defined in its own chunk: the figure size below is computed from it, and
 # knitr evaluates chunk options before the chunk's code.
 source("vignettes/articles/swatches.R")
@@ -195,7 +214,12 @@ palette_sample <- list(
 )
 ```
 
-```{r palettes, echo = FALSE, dpi = 144, fig.width = swatch_width(palette_sample), fig.height = swatch_height(palette_sample), fig.alt = "Swatches of eight palettes: colorblind, Economist, FiveThirtyEight, Few, Solarized, Stata, Tableau 10 and Wall Street Journal."}
+```{r, fig.width=swatch_width(palette_sample), fig.height=swatch_height(palette_sample)}
+#| label: palettes
+#| echo: false
+#| dpi: 144
+#| fig-alt: "Swatches of eight palettes: colorblind, Economist, FiveThirtyEight, Few, Solarized, Stata, Tableau 10 and Wall Street Journal."
+
 swatch_plot(palette_sample)
 ```
 
@@ -204,7 +228,13 @@ swatch_plot(palette_sample)
 `geom_rangeframe()` draws Tufte's range frame, axis lines that span only the
 range of the data. `geom_tufteboxplot()` draws his minimal box plot.
 
-```{r geoms, fig.width = 5, fig.height = 3.5, out.width = "49%", fig.show = "hold", fig.alt = c("Scatter plot of fuel economy against weight with theme_tufte(), whose axis lines span only the range of the data.", "Tufte-style box plots of fuel economy by number of cylinders: a point for the median and lines for the whiskers.")}
+```{r, fig.alt=c("Scatter plot of fuel economy against weight with theme_tufte(), whose axis lines span only the range of the data.", "Tufte-style box plots of fuel economy by number of cylinders: a point for the median and lines for the whiskers.")}
+#| label: geoms
+#| fig-width: 5
+#| fig-height: 3.5
+#| out-width: "49%"
+#| fig-show: "hold"
+
 ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +
   geom_rangeframe() +
