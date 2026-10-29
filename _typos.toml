@@ -1,0 +1,30 @@
+# Lint baseline: typos. Add project words under [default.extend-words] with a comment.
+[files]
+extend-exclude = [
+  "*.bib",
+  "*.html",
+  "*.lock",
+  "_freeze/",
+  "_site/",
+  "data/",
+  "data-raw/",
+  # The spelling package's allowlist; it holds fragments such as "nd" (from "2nd")
+  "inst/WORDLIST",
+]
+
+[default]
+extend-ignore-re = [
+  # Hex strings and hashes
+  "\\b[0-9a-f]{7,40}\\b",
+  # A line ending in a `spellchecker:disable-line` comment
+  "(?Rm)^.*(#|//|--)\\s*spellchecker:disable-line$",
+]
+
+[default.extend-words]
+# ggthemes: the conventional name for a theme object in the tests
+thm = "thm"
+# The Canva palettes (canva_pal(), theme data "canva")
+canva = "canva"
+Canva = "Canva"
+# Stata's "vlarge" text and marker size
+vlarge = "vlarge"

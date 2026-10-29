@@ -30,3 +30,5 @@
 ^\.vscode$
 ^Rplots\.pdf$
 ^vignettes/articles$
+^_typos\.toml$
+^\.editorconfig$

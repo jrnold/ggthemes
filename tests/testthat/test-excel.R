@@ -1,4 +1,4 @@
-test_that("excel_clasic_pal works", {
+test_that("excel_pal() returns n colours", {
   pal <- excel_pal()
   n <- 5L
   values <- pal(n)
@@ -6,7 +6,7 @@ test_that("excel_clasic_pal works", {
   expect_equal(length(values), n)
 })
 
-test_that("excel_clasic_pal with line = TRUE works", {
+test_that("excel_pal(line = TRUE) returns n colours", {
   pal <- excel_pal(line = TRUE)
   n <- 5L
   values <- pal(n)
