@@ -17,6 +17,7 @@ python = "ruff"
 append-args = ["--extend-ignore", "B018,D100,INP001,T201"]
 
 [format]
+# ggthemes: 120 columns, matching air.toml and .lintr
 line-width = 120
 # Reflowing prose churns diffs; keep the author's line breaks
 wrap = "preserve"
