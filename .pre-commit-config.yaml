@@ -133,3 +133,14 @@ repos:
         language: python
         additional_dependencies: [panache-cli==3.17.0]
         files: \.(qmd|Rmd|md)$
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.31.1
+    hooks:
+      - id: zizmor
+        args: [--persona=pedantic]
