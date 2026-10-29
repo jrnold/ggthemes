@@ -5,6 +5,9 @@
 # rhub::rhub_setup()
 #
 # It is unlikely that you need to modify this file manually.
+#
+# ggthemes: modified for zizmor (pinned actions, least-privilege permissions, concurrency, job
+# names). Re-apply these after regenerating it with rhub::rhub_setup().
 
 name: R-hub
 run-name: "${{ github.event.inputs.id }}: ${{ github.event.inputs.name || format('Manually run by {0}', github.triggering_actor) }}"
@@ -23,17 +26,26 @@ on:
         description: 'Unique ID. You can leave this empty now.'
         type: string
 
+permissions: {}
+
+concurrency:
+  # One run per R-hub check ID; resubmitting the same ID replaces the earlier run
+  group: ${{ github.workflow }}-${{ github.event.inputs.id }}
+  cancel-in-progress: true
+
 jobs:
 
   setup:
+    name: setup
     runs-on: ubuntu-latest
+    permissions: {}
     outputs:
       containers: ${{ steps.rhub-setup.outputs.containers }}
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
     # NO NEED TO CHECKOUT HERE
-    - uses: r-hub/actions/setup@v1
+    - uses: r-hub/actions/setup@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
       with:
         config: ${{ github.event.inputs.config }}
       id: rhub-setup
@@ -43,6 +55,8 @@ jobs:
     if: ${{ needs.setup.outputs.containers != '[]' }}
     runs-on: ubuntu-latest
     name: ${{ matrix.config.label }}
+    permissions:
+      contents: read  # check out the repository
     strategy:
       fail-fast: false
       matrix:
@@ -51,16 +65,16 @@ jobs:
       image: ${{ matrix.config.container }}
 
     steps:
-      - uses: r-hub/actions/checkout@v1
-      - uses: r-hub/actions/platform-info@v1
+      - uses: r-hub/actions/checkout@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
+      - uses: r-hub/actions/platform-info@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - uses: r-hub/actions/setup-deps@v1
+      - uses: r-hub/actions/setup-deps@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - uses: r-hub/actions/run-check@v1
+      - uses: r-hub/actions/run-check@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
@@ -70,26 +84,28 @@ jobs:
     if: ${{ needs.setup.outputs.platforms != '[]' }}
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.label }}
+    permissions:
+      contents: read  # check out the repository
     strategy:
       fail-fast: false
       matrix:
         config: ${{ fromJson(needs.setup.outputs.platforms) }}
 
     steps:
-      - uses: r-hub/actions/checkout@v1
-      - uses: r-hub/actions/setup-r@v1
+      - uses: r-hub/actions/checkout@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
+      - uses: r-hub/actions/setup-r@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
-      - uses: r-hub/actions/platform-info@v1
+      - uses: r-hub/actions/platform-info@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - uses: r-hub/actions/setup-deps@v1
+      - uses: r-hub/actions/setup-deps@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
-      - uses: r-hub/actions/run-check@v1
+      - uses: r-hub/actions/run-check@02be5ffbeae2b0d553da66acded089da11a1fb8f  # v1.8.1
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
