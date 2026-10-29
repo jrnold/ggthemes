@@ -88,3 +88,33 @@ repos:
           for (x in l) print(x); quit(status = any(lengths(l) > 0))'
         language: system
         types: [r]
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+        exclude_types: [zsh]  # shellcheck only supports sh/bash/dash/ksh
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.14.1-1
+    hooks:
+      - id: shfmt  # reads indent and style from .editorconfig
+        exclude_types: [zsh]  # parses zsh as bash and fights zsh style
+
+  - repo: local
+    hooks:
+      - id: zsh-syntax
+        name: zsh -n
+        entry: zsh -n
+        language: system
+        types: [zsh]
+      - id: fish-syntax
+        name: fish --no-execute
+        entry: fish --no-execute
+        language: system
+        types: [fish]
+      - id: fish-indent
+        name: fish_indent
+        entry: fish_indent --check
+        language: system
+        types: [fish]
