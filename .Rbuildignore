@@ -32,3 +32,4 @@
 ^vignettes/articles$
 ^_typos\.toml$
 ^\.editorconfig$
+^\.shellcheckrc$
