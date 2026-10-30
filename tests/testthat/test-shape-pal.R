@@ -317,19 +317,19 @@ test_that("the default cleveland palette checks the device font", {
   expect_no_warning(cleveland_shape_pal(unicode = FALSE))
 })
 
-test_that("a registered shapes font that covers the palette silences the warning", {
+test_that("once the shapes font is in use, palettes it covers do not warn", {
   local_utf8_locale()
   # The default font lacks every shape; the shapes font lacks none.
   local_missing_glyphs(
     function(characters, family) if (family == "ggthemes shapes") character(0) else characters,
-    registered = TRUE
+    in_use = TRUE
   )
   expect_no_warning(cleveland_shape_pal())
   expect_no_warning(tableau_shape_pal(unicode = TRUE))
 })
 
-test_that("shapes the registered font lacks are still checked in the device font", {
+test_that("shapes the font lacks are still checked in the device font", {
   local_utf8_locale()
-  local_missing_glyphs(function(characters, family) "\u2614", registered = TRUE)
+  local_missing_glyphs(function(characters, family) "\u2614", in_use = TRUE)
   expect_warning(warn_shape_font(glyph_table("\u2614")), "default device font")
 })

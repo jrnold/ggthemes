@@ -8,7 +8,9 @@ shapes_font()
 }
 \value{
 The font family name, \code{"ggthemes shapes"}, to pass as a \code{fontfamily}.
-The font is registered with \pkg{systemfonts} as a side effect.
+As side effects, the font is registered with \pkg{systemfonts} again, in
+case the registry was cleared, and the palettes stop warning about shapes
+the font has.
 }
 \description{
 The shape palettes made with \code{unicode = TRUE} draw each shape by asking the
@@ -41,10 +43,14 @@ device font. Palettes with no \code{unicode} argument, such as
 }
 
 \section{Using the font}{
-The font must be set on the device font family, because \code{geom_point()} does
-not take a \code{family}. With a graphics device that reads fonts through
-\pkg{systemfonts}, such as \pkg{ragg} or \pkg{svglite}, set the family on a
-grid viewport around the plot:
+The simplest way is \code{\link[=geom_point_glyph]{geom_point_glyph()}} in place of
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}. It reads the font file itself, needs no font family
+set anywhere, and works with \code{ggsave()}.
+
+With \code{geom_point()}, the font must be set on the device font family, because
+\code{geom_point()} does not take a \code{family}. With a graphics device that reads
+fonts through \pkg{systemfonts}, such as \pkg{ragg} or \pkg{svglite}, set
+the family on a grid viewport around the plot:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{family <- shapes_font()
 p <- ggplot(mtcars, aes(mpg, hp, shape = factor(cyl))) +
@@ -55,8 +61,13 @@ print(p, vp = grid::viewport(gp = grid::gpar(fontfamily = family)))
 
 Call \code{shapes_font()} before building the scale. A palette made with
 \code{unicode = TRUE} warns when the device's default font lacks its shapes, and
-it cannot see a family set on a viewport later. Once the font is registered,
-it warns only about shapes this font does not have.
+it cannot see a family set on a viewport later. Once \code{shapes_font()} or
+\code{geom_point_glyph()} has been called in the session, it warns only about
+shapes this font does not have.
+
+ggthemes registers the font with \pkg{systemfonts} when it loads, if
+\pkg{systemfonts} is installed, so the family name \code{"ggthemes shapes"} works
+even before \code{shapes_font()} is called.
 
 \code{ggsave()} draws the plot without that viewport, so the font does not apply
 through it; draw the plot to the device yourself, as above.
@@ -90,6 +101,8 @@ with \code{unicode = TRUE}.
 Other shapes:
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},
 \code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
+\code{\link[=embed_shapes_font]{embed_shapes_font()}},
+\code{\link[=geom_point_glyph]{geom_point_glyph()}},
 \code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
 \code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
 \code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},

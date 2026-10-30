@@ -88,13 +88,22 @@
   same lowercase ids (they were `"Arrows"`, `"Thin Arrows"`, `"Gender"` and
   `"Bug Tracking"`).
 
+- New `geom_point_glyph()` draws the shapes of the `unicode = TRUE` palettes
+  from the font of `shapes_font()`, reading the font file through R's glyph
+  API on devices that support it (R 4.3 or later), so no font family has to
+  be set and the plot works with `ggsave()`. Other devices draw the shapes as
+  ordinary points in the registered font family. `pdf()` files refer to the
+  font without embedding it; new `embed_shapes_font()` embeds it.
+
 - New `shapes_font()` registers a font that ships with ggthemes and draws the
   shapes of the `unicode = TRUE` palettes (`calc_shape_pal()`,
   `cleveland_shape_pal()`, `stata_shape_pal()` and `tableau_shape_pal()`) at a
   common size. In the best system font tested, the shapes of one palette
   differed in area by up to a factor of six, and several fonts lacked some of
-  them. The missing-glyph warning now points to it, and once the font is
-  registered it no longer warns about shapes the font has.
+  them. ggthemes registers the font when it loads, if systemfonts is
+  installed. The missing-glyph warning now points to it, and once
+  `shapes_font()` or `geom_point_glyph()` has been called it no longer warns
+  about shapes the font has.
 
 ## Minor improvements and fixes
 

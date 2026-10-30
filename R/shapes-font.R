@@ -31,10 +31,14 @@
 #'
 #' # Using the font
 #'
-#' The font must be set on the device font family, because `geom_point()` does
-#' not take a `family`. With a graphics device that reads fonts through
-#' \pkg{systemfonts}, such as \pkg{ragg} or \pkg{svglite}, set the family on a
-#' grid viewport around the plot:
+#' The simplest way is [geom_point_glyph()] in place of
+#' [ggplot2::geom_point()]. It reads the font file itself, needs no font family
+#' set anywhere, and works with `ggsave()`.
+#'
+#' With `geom_point()`, the font must be set on the device font family, because
+#' `geom_point()` does not take a `family`. With a graphics device that reads
+#' fonts through \pkg{systemfonts}, such as \pkg{ragg} or \pkg{svglite}, set
+#' the family on a grid viewport around the plot:
 #'
 #' ```r
 #' family <- shapes_font()
@@ -46,8 +50,13 @@
 #'
 #' Call `shapes_font()` before building the scale. A palette made with
 #' `unicode = TRUE` warns when the device's default font lacks its shapes, and
-#' it cannot see a family set on a viewport later. Once the font is registered,
-#' it warns only about shapes this font does not have.
+#' it cannot see a family set on a viewport later. Once `shapes_font()` or
+#' `geom_point_glyph()` has been called in the session, it warns only about
+#' shapes this font does not have.
+#'
+#' ggthemes registers the font with \pkg{systemfonts} when it loads, if
+#' \pkg{systemfonts} is installed, so the family name `"ggthemes shapes"` works
+#' even before `shapes_font()` is called.
 #'
 #' `ggsave()` draws the plot without that viewport, so the font does not apply
 #' through it; draw the plot to the device yourself, as above.
@@ -61,7 +70,9 @@
 #' It is built by `data-raw/shapes-font/build.py`.
 #'
 #' @return The font family name, `"ggthemes shapes"`, to pass as a `fontfamily`.
-#'   The font is registered with \pkg{systemfonts} as a side effect.
+#'   As side effects, the font is registered with \pkg{systemfonts} again, in
+#'   case the registry was cleared, and the palettes stop warning about shapes
+#'   the font has.
 #' @family shapes
 #' @seealso [tableau_shape_pal()] and [cleveland_shape_pal()] for palettes made
 #'   with `unicode = TRUE`.
@@ -87,7 +98,65 @@ shapes_font <- function() {
   }
   check_installed("systemfonts", reason = "to register the shapes font.")
   systemfonts::register_font(name = shapes_font_family, plain = path)
+  use_shapes_font()
   shapes_font_family
+}
+
+#' Embed the shapes font in a PDF file
+#'
+#' [grDevices::pdf()] draws the glyphs of [geom_point_glyph()] by referring to
+#' the shapes font without embedding it, so the file shows the shapes only on a
+#' system where the font is installed. `embed_shapes_font()` embeds the shapes
+#' it uses, with Ghostscript through [grDevices::embedGlyphs()].
+#'
+#' Requires R 4.3 or later and Ghostscript (see [tools::find_gs_cmd()]). Only
+#' files written by `pdf()` need it: \pkg{ragg} and the other raster devices
+#' draw the glyphs into the image.
+#'
+#' @param file Path to a PDF file written by [grDevices::pdf()].
+#' @param outfile Path to write the PDF with the font embedded. The default
+#'   overwrites `file`.
+#' @returns `file`, invisibly.
+#' @family shapes
+#' @seealso [shapes_font()] for the font itself.
+#' @export
+#' @examplesIf rlang::is_installed("systemfonts") && getRversion() >= "4.3.0" && nzchar(tools::find_gs_cmd())
+#' library("ggplot2")
+#' p <- ggplot(mtcars, aes(wt, mpg, shape = factor(gear))) +
+#'   geom_point_glyph(size = 3) +
+#'   scale_shape_cleveland()
+#' path <- tempfile(fileext = ".pdf")
+#' ggsave(path, p, device = pdf, width = 5, height = 4)
+#' embed_shapes_font(path)
+embed_shapes_font <- function(file, outfile = file) {
+  if (!rlang::is_string(file) || !file.exists(file)) {
+    cli::cli_abort("{.arg file} must be the path to an existing PDF file.")
+  }
+  api <- glyph_api()
+  embed <- get0("embedGlyphs", envir = asNamespace("grDevices"), inherits = FALSE)
+  if (is.null(api) || is.null(embed)) {
+    cli::cli_abort(c(
+      "Can't embed glyphs in this version of R.",
+      "i" = "Embedding glyphs needs R 4.3.0 or later; this is R {getRversion()}."
+    ))
+  }
+  # Ghostscript embeds every font that the glyph information names, so one
+  # glyph of the shapes font is enough to embed whatever the file uses.
+  font <- api$font(shapes_font_path(), 0L, shapes_font_family, 400, "normal")
+  glyphs <- api$info(
+    id = 1L,
+    x = 0,
+    y = 0,
+    font = 1L,
+    size = 12,
+    fontList = api$font_list(font),
+    width = 0,
+    height = 0,
+    hAnchor = api$anchor(0, "left"),
+    vAnchor = api$anchor(0, "bottom")
+  )
+  embed(file, glyphs, outfile = outfile)
+  invisible(file)
 }
 
 shapes_font_family <- "ggthemes shapes"
@@ -98,4 +167,37 @@ shapes_font_path <- function() {
 
 shapes_font_registered <- function() {
   shapes_font_family %in% systemfonts::registry_fonts()[["family"]]
+}
+
+# Registering at load makes the family name resolvable without a call to
+# `shapes_font()`, but must never stop the package from loading: the font is
+# an optional extra and systemfonts is only suggested.
+register_shapes_font <- function() {
+  path <- shapes_font_path()
+  if (!nzchar(path) || !requireNamespace("systemfonts", quietly = TRUE)) {
+    return(invisible(FALSE))
+  }
+  registered <- tryCatch(
+    {
+      systemfonts::register_font(name = shapes_font_family, plain = path)
+      TRUE
+    },
+    error = function(e) FALSE
+  )
+  invisible(registered)
+}
+
+# Whether the user has asked for the font, by calling `shapes_font()` or
+# `geom_point_glyph()`. Registration at load can't stand in for this:
+# `warn_shape_font()` uses it to skip the warning, and a font that is merely
+# available says nothing about the font the plot will be drawn with.
+shapes_font_state <- new.env(parent = emptyenv())
+
+use_shapes_font <- function() {
+  shapes_font_state[["in_use"]] <- TRUE
+  invisible(TRUE)
+}
+
+shapes_font_in_use <- function() {
+  isTRUE(shapes_font_state[["in_use"]])
 }

@@ -42,13 +42,41 @@ size_spread <- function(codepoints, path) {
   sqrt(max(area) / min(area))
 }
 
-test_that("shapes_font() registers the font and returns its family name", {
+# Registration and the in-use flag outlive a test, so each test that changes
+# them restores the state the package had after loading.
+local_shapes_font_state <- function(env = parent.frame()) {
+  withr::defer(
+    {
+      shapes_font_state[["in_use"]] <- NULL
+      register_shapes_font()
+    },
+    envir = env
+  )
+}
+
+test_that("the font is registered when ggthemes loads", {
   skip_if_not_installed("systemfonts")
-  # Registration outlives the test and silences `warn_shape_font()`.
-  withr::defer(systemfonts::clear_registry())
-  expect_false(shapes_font_registered())
+  expect_true(shapes_font_registered())
+  # Registered, but not in use: availability says nothing about the font a plot
+  # is drawn with, so it must not silence the missing-glyph warning.
+  local_shapes_font_state()
+  shapes_font_state[["in_use"]] <- NULL
+  expect_false(shapes_font_in_use())
+})
+
+test_that("load-time registration never fails", {
+  local_mocked_bindings(shapes_font_path = function() "")
+  expect_false(register_shapes_font())
+})
+
+test_that("shapes_font() registers the font, marks it in use and returns its family name", {
+  skip_if_not_installed("systemfonts")
+  local_shapes_font_state()
+  systemfonts::clear_registry()
+  shapes_font_state[["in_use"]] <- NULL
   expect_equal(shapes_font(), "ggthemes shapes")
   expect_true(shapes_font_registered())
+  expect_true(shapes_font_in_use())
 })
 
 test_that("shapes_font() errors when the font file is missing", {
@@ -99,4 +127,34 @@ test_that("the shapes the font leaves to the device font are not in it", {
   weather <- ggthemes_data$tableau[["shape-palettes"]][["weather"]]
   codepoints <- strtoi(sub("U+", "", sub(" .*", "", weather$unicode), fixed = TRUE), 16L)
   expect_true(all(is.na(vapply(codepoints, glyph_hull_area, numeric(1), path = path))))
+})
+
+test_that("embed_shapes_font() errors for a file that does not exist", {
+  expect_snapshot(embed_shapes_font("no-such-file.pdf"), error = TRUE)
+})
+
+test_that("embed_shapes_font() embeds the font a pdf() file only refers to", {
+  skip_if_not_installed("systemfonts")
+  skip_if(is.null(glyph_api()), "R before 4.3 has no glyph API")
+  skip_if_not(nzchar(tools::find_gs_cmd()), "Ghostscript is not installed")
+  # Ghostscript writes the embedded font into a compressed object stream, so
+  # the file has to be read by a PDF parser rather than searched for bytes.
+  pdffonts <- Sys.which("pdffonts")
+  skip_if_not(nzchar(pdffonts), "pdffonts (poppler) is not installed")
+  local_shapes_font_state()
+  # The `emb` column of the shapes font's row in pdffonts' table.
+  embeds_truetype <- function(path) {
+    rows <- grep("ggthemes-shapes", system2(pdffonts, path, stdout = TRUE), value = TRUE, fixed = TRUE)
+    length(rows) == 1 && grepl("Identity-H\\s+yes", rows)
+  }
+  path <- withr::local_tempfile(fileext = ".pdf")
+  p <- ggplot2::ggplot(data.frame(x = 1:3, y = 1, g = factor(1:3)), ggplot2::aes(.data$x, .data$y, shape = .data$g)) +
+    geom_point_glyph(size = 5) +
+    scale_shape_cleveland()
+  grDevices::pdf(path)
+  print(p)
+  grDevices::dev.off()
+  expect_false(embeds_truetype(path))
+  expect_invisible(embed_shapes_font(path))
+  expect_true(embeds_truetype(path))
 })

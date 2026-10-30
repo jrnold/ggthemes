@@ -78,9 +78,10 @@ warn_shape_font <- function(shapes) {
   }
   characters <- shapes[["character"]]
   # Points take their font from the device or a viewport, and a palette is
-  # built before either is in place, so it cannot see `shapes_font()` being
-  # used. Registering that font is the one signal available that it will be.
-  if (shapes_font_registered() && !length(cached_missing_glyphs(characters, shapes_font_family))) {
+  # built before either is in place, so it cannot see the font the plot will
+  # be drawn with. Calling `shapes_font()` or `geom_point_glyph()` is the one
+  # signal available that it will be the shapes font.
+  if (shapes_font_in_use() && !length(cached_missing_glyphs(characters, shapes_font_family))) {
     return(invisible(NULL))
   }
   family <- current_font_family()
@@ -113,8 +114,8 @@ warn_shape_font <- function(shapes) {
       "{.code cairo_pdf(family = \"DejaVu Sans\")}."
     ),
     "i" = paste0(
-      "Or call {.fn shapes_font} before building the plot and draw with the font that ships with ggthemes, ",
-      "which has most of these shapes at a common size: see {.code ?shapes_font}."
+      "Or draw the points with {.fn geom_point_glyph}, which uses the font that ships with ggthemes ",
+      "and has most of these shapes at a common size: see {.code ?shapes_font}."
     ),
     "i" = "Or use {.code unicode = FALSE} for font-independent base pch shapes."
   ))

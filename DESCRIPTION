@@ -38,6 +38,7 @@ Suggests:
     mapproj,
     pander,
     quantreg,
+    ragg,
     spelling,
     systemfonts,
     testthat (>= 3.2.0),

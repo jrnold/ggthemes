@@ -123,15 +123,15 @@ clear_font_cache <- function() {
 # from `shape_font_cache` when an earlier test already probed the same family
 # and characters, so the mock is never reached and the result depends on test
 # order and on the fonts of the machine. The cache is cleared on both sides.
-# The shapes font is reported unregistered unless `registered = TRUE`, since
+# The shapes font is reported unused unless `in_use = TRUE`, since
 # registering it silences the warning and registration outlives a test.
-local_missing_glyphs <- function(missing = character(0), registered = FALSE, env = parent.frame()) {
+local_missing_glyphs <- function(missing = character(0), in_use = FALSE, env = parent.frame()) {
   mock <- if (is.function(missing)) missing else function(...) missing
   clear_font_cache()
   withr::defer(clear_font_cache(), envir = env)
   testthat::local_mocked_bindings(
     missing_glyphs = mock,
-    shapes_font_registered = function() registered,
+    shapes_font_in_use = function() in_use,
     .env = env
   )
 }
