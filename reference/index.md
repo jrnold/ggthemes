@@ -187,7 +187,7 @@ Color, shape, and linetype palettes.
 - [`canva_pal()`](https://jrnold.github.io/ggthemes/reference/canva_pal.md)
   : Canva.com color palettes
 - [`cleveland_shape_pal()`](https://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md)
-  : Shape palette from Cleveland's "Elements of Graphing Data"
+  : Shape palettes from Cleveland's "Elements of Graphing Data"
 - [`colorblind_pal()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`colourblind_pal()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
   [`scale_colour_colourblind()`](https://jrnold.github.io/ggthemes/reference/colorblind.md)
@@ -249,6 +249,8 @@ Color, shape, and linetype palettes.
 
 ggplot2 geom and stat layers.
 
+- [`geom_point_glyph()`](https://jrnold.github.io/ggthemes/reference/geom_point_glyph.md)
+  : Points drawn from the shapes font
 - [`geom_rangeframe()`](https://jrnold.github.io/ggthemes/reference/geom_rangeframe.md)
   : Range frames
 - [`geom_tufteboxplot()`](https://jrnold.github.io/ggthemes/reference/geom_tufteboxplot.md)
@@ -270,6 +272,10 @@ ggplot2 geom and stat layers.
   : Pretty axis breaks inclusive of extreme values
 - [`show_linetypes()`](https://jrnold.github.io/ggthemes/reference/show_linetypes.md)
   : Show linetypes
+- [`register_shapes_font()`](https://jrnold.github.io/ggthemes/reference/register_shapes_font.md)
+  : Register a font that draws the shapes at a common size
+- [`embed_shapes_font()`](https://jrnold.github.io/ggthemes/reference/embed_shapes_font.md)
+  : Embed the shapes font in a PDF file
 - [`show_shapes()`](https://jrnold.github.io/ggthemes/reference/show_shapes.md)
   : Show shapes
 - [`smart_digits()`](https://jrnold.github.io/ggthemes/reference/smart_digits.md)

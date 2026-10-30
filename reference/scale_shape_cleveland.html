@@ -43,7 +43,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scale_shape_cleveland</span><span class="op">(</span>overlap <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span>, unicode <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scale_shape_cleveland</span><span class="op">(</span></span>
+<span>  overlap <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  unicode <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  edition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1985"</span>, <span class="st">"1994"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -51,7 +56,11 @@
 
 
 <dl><dt id="arg-overlap">overlap<a class="anchor" aria-label="anchor" href="#arg-overlap"></a></dt>
-<dd><p><code>logical</code> Use the scale for overlapping points?</p></dd>
+<dd><p>If <code>TRUE</code> (the default), use the symbols for data where
+overlap causes problems: an open circle, a plus sign, an S, a triangle and a U.
+If <code>FALSE</code>, use the symbols for data with little overlap: a solid circle,
+an open circle, a circle with a vertical line, a heavy ring, and a circled
+dot.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -127,10 +136,19 @@ notation.</p></li>
 
 
 <dt id="arg-unicode">unicode<a class="anchor" aria-label="anchor" href="#arg-unicode"></a></dt>
-<dd><p>If <code>TRUE</code>, return pch codes derived from Unicode
-glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
-by the device font, so they render as blank boxes in a font without
-coverage; the default returns base pch codes, which every font can draw.</p></dd>
+<dd><p>If <code>TRUE</code>, return pch codes derived from Unicode glyphs, which
+exist for every shape of the palette. They are drawn by the device font, so
+they render as blank boxes in a font without coverage and at unrelated sizes
+in most fonts; the font from <code><a href="register_shapes_font.html">register_shapes_font()</a></code> has the shapes of
+this palette at a common size. If <code>FALSE</code>, return base pch codes, which every font can
+draw but which exist only for some shapes. The default depends on the
+palette.</p></dd>
+
+
+<dt id="arg-edition">edition<a class="anchor" aria-label="anchor" href="#arg-edition"></a></dt>
+<dd><p>Which edition of the book to take the symbols from. One of:</p><ul><li><p><code>"1985"</code> (the default): the first edition, Figure 3.70.</p></li>
+<li><p><code>"1994"</code>: the revised (second) edition.</p></li>
+</ul></dd>
 
 </dl></div>
     <div class="section level2">
@@ -147,6 +165,9 @@ Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.</p>
     <div class="dont-index"><p><code><a href="cleveland_shape_pal.html">cleveland_shape_pal()</a></code> for a description of the palette.</p>
 <p>Other shapes:
 <code><a href="cleveland_shape_pal.html">cleveland_shape_pal()</a></code>,
+<code><a href="embed_shapes_font.html">embed_shapes_font()</a></code>,
+<code><a href="geom_point_glyph.html">geom_point_glyph()</a></code>,
+<code><a href="register_shapes_font.html">register_shapes_font()</a></code>,
 <code><a href="scale_shape_tremmel.html">scale_shape_tremmel()</a></code>,
 <code><a href="tremmel_shape_pal.html">tremmel_shape_pal()</a></code></p></div>
     </div>
@@ -157,7 +178,7 @@ Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span>, shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu">scale_shape_cleveland</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">scale_shape_cleveland</span><span class="op">(</span>unicode <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="scale_shape_cleveland-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

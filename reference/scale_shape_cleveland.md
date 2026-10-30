@@ -5,14 +5,23 @@ Shape scales from Cleveland "Elements of Graphing Data"
 ## Usage
 
 ``` r
-scale_shape_cleveland(overlap = TRUE, ..., unicode = FALSE)
+scale_shape_cleveland(
+  overlap = TRUE,
+  ...,
+  unicode = NULL,
+  edition = c("1985", "1994")
+)
 ```
 
 ## Arguments
 
 - overlap:
 
-  `logical` Use the scale for overlapping points?
+  If `TRUE` (the default), use the symbols for data where overlap causes
+  problems: an open circle, a plus sign, an S, a triangle and a U. If
+  `FALSE`, use the symbols for data with little overlap: a solid circle,
+  an open circle, a circle with a vertical line, a heavy ring, and a
+  circled dot.
 
 - ...:
 
@@ -123,10 +132,22 @@ scale_shape_cleveland(overlap = TRUE, ..., unicode = FALSE)
 
 - unicode:
 
-  If `TRUE`, return pch codes derived from Unicode glyphs, as this
-  palette did before ggthemes 6.1.0. Glyph shapes are drawn by the
-  device font, so they render as blank boxes in a font without coverage;
-  the default returns base pch codes, which every font can draw.
+  If `TRUE`, return pch codes derived from Unicode glyphs, which exist
+  for every shape of the palette. They are drawn by the device font, so
+  they render as blank boxes in a font without coverage and at unrelated
+  sizes in most fonts; the font from
+  [`register_shapes_font()`](https://jrnold.github.io/ggthemes/reference/register_shapes_font.md)
+  has the shapes of this palette at a common size. If `FALSE`, return
+  base pch codes, which every font can draw but which exist only for
+  some shapes. The default depends on the palette.
+
+- edition:
+
+  Which edition of the book to take the symbols from. One of:
+
+  - `"1985"` (the default): the first edition, Figure 3.70.
+
+  - `"1994"`: the revised (second) edition.
 
 ## Value
 
@@ -144,6 +165,9 @@ for a description of the palette.
 
 Other shapes:
 [`cleveland_shape_pal()`](https://jrnold.github.io/ggthemes/reference/cleveland_shape_pal.md),
+[`embed_shapes_font()`](https://jrnold.github.io/ggthemes/reference/embed_shapes_font.md),
+[`geom_point_glyph()`](https://jrnold.github.io/ggthemes/reference/geom_point_glyph.md),
+[`register_shapes_font()`](https://jrnold.github.io/ggthemes/reference/register_shapes_font.md),
 [`scale_shape_tremmel()`](https://jrnold.github.io/ggthemes/reference/scale_shape_tremmel.md),
 [`tremmel_shape_pal()`](https://jrnold.github.io/ggthemes/reference/tremmel_shape_pal.md)
 
@@ -154,5 +178,5 @@ library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
   geom_point(size = 3) +
-  scale_shape_cleveland()
+  scale_shape_cleveland(unicode = FALSE)
 ```

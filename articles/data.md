@@ -942,17 +942,23 @@ through their `base_family` argument.
 
 ![](data_files/figure-html/figure-155-1.png)
 
+### `$cleveland_1994`
+
+`ggthemes_data$shapes$cleveland_1994`
+
 ![](data_files/figure-html/figure-156-1.png)
+
+![](data_files/figure-html/figure-157-1.png)
 
 ### `$tremmel`
 
 `ggthemes_data$shapes$tremmel`
 
-![](data_files/figure-html/figure-157-1.png)
+![](data_files/figure-html/figure-158-1.png)
 
 ## `ggthemes_data$solarized`
 
-![](data_files/figure-html/figure-158-1.png)
+![](data_files/figure-html/figure-159-1.png)
 
 ### `$palettes`
 
@@ -962,49 +968,49 @@ through their `base_family` argument.
 
 `ggthemes_data$solarized$palettes$yellow`
 
-![](data_files/figure-html/figure-159-1.png)
+![](data_files/figure-html/figure-160-1.png)
 
 #### `$orange`
 
 `ggthemes_data$solarized$palettes$orange`
 
-![](data_files/figure-html/figure-160-1.png)
+![](data_files/figure-html/figure-161-1.png)
 
 #### `$red`
 
 `ggthemes_data$solarized$palettes$red`
 
-![](data_files/figure-html/figure-161-1.png)
+![](data_files/figure-html/figure-162-1.png)
 
 #### `$magenta`
 
 `ggthemes_data$solarized$palettes$magenta`
 
-![](data_files/figure-html/figure-162-1.png)
+![](data_files/figure-html/figure-163-1.png)
 
 #### `$violet`
 
 `ggthemes_data$solarized$palettes$violet`
 
-![](data_files/figure-html/figure-163-1.png)
+![](data_files/figure-html/figure-164-1.png)
 
 #### `$blue`
 
 `ggthemes_data$solarized$palettes$blue`
 
-![](data_files/figure-html/figure-164-1.png)
+![](data_files/figure-html/figure-165-1.png)
 
 #### `$cyan`
 
 `ggthemes_data$solarized$palettes$cyan`
 
-![](data_files/figure-html/figure-165-1.png)
+![](data_files/figure-html/figure-166-1.png)
 
 #### `$green`
 
 `ggthemes_data$solarized$palettes$green`
 
-![](data_files/figure-html/figure-166-1.png)
+![](data_files/figure-html/figure-167-1.png)
 
 ## `ggthemes_data$stata`
 
@@ -1012,17 +1018,17 @@ through their `base_family` argument.
 
 `ggthemes_data$stata$colors`
 
-![](data_files/figure-html/figure-167-1.png)
+![](data_files/figure-html/figure-168-1.png)
 
 #### `$schemes`
 
 `ggthemes_data$stata$colors$schemes`
 
-![](data_files/figure-html/figure-168-1.png)
-
 ![](data_files/figure-html/figure-169-1.png)
 
 ![](data_files/figure-html/figure-170-1.png)
+
+![](data_files/figure-html/figure-171-1.png)
 
 ## `ggthemes_data$tableau`
 
@@ -1030,7 +1036,7 @@ through their `base_family` argument.
 
 `` ggthemes_data$tableau$`shape-palettes` ``
 
-![](data_files/figure-html/figure-171-1.png)
+![](data_files/figure-html/figure-172-1.png)
 
 ### `` $`color-palettes` ``
 
@@ -1040,26 +1046,26 @@ through their `base_family` argument.
 
 `` ggthemes_data$tableau$`color-palettes`$regular ``
 
-![](data_files/figure-html/figure-172-1.png)
+![](data_files/figure-html/figure-173-1.png)
 
 #### `` $`ordered-diverging` ``
 
 `` ggthemes_data$tableau$`color-palettes`$`ordered-diverging` ``
 
-![](data_files/figure-html/figure-173-1.png)
+![](data_files/figure-html/figure-174-1.png)
 
 #### `` $`ordered-sequential` ``
 
 `` ggthemes_data$tableau$`color-palettes`$`ordered-sequential` ``
 
-![](data_files/figure-html/figure-174-1.png)
+![](data_files/figure-html/figure-175-1.png)
 
 ## `ggthemes_data$wsj`
 
-![](data_files/figure-html/figure-175-1.png)
+![](data_files/figure-html/figure-176-1.png)
 
 ### `$palettes`
 
 `ggthemes_data$wsj$palettes`
 
-![](data_files/figure-html/figure-176-1.png)
+![](data_files/figure-html/figure-177-1.png)
