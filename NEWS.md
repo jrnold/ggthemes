@@ -30,6 +30,18 @@
   for data that has such segments; use `cull = FALSE` for the previous ones
   (#274).
 
+- `cleveland_shape_pal()` and `scale_shape_cleveland()` now use the two
+  symbol sets of Figure 3.70 in Cleveland's *The Elements of Graphing Data*
+  (1985, p. 196). `overlap = TRUE`, for data where overlap causes problems,
+  draws an open circle, plus sign, S, triangle and U (five values; it was an
+  open circle, plus sign, `<` and S). `overlap = FALSE`, for little overlap,
+  draws a solid circle, open circle, circle with a vertical line, heavy ring
+  and circled dot (it was an open circle, solid circle, circled plus, circled
+  dot and circled ring). `unicode` now defaults to `TRUE`, so every shape,
+  circles included, is a Unicode glyph drawn by the device font. With
+  `unicode = FALSE`, only the solid and open circle have a base pch, so
+  `overlap = FALSE` supports two values.
+
 - `scale_colour_tableau()`, `scale_fill_tableau()`,
   `scale_colour_economist_c()`, `scale_fill_economist_c()` and
   `scale_shape_tremmel()` now take `...` right after their first argument, as
@@ -59,6 +71,13 @@
   and linetype in `ggthemes_data`, each labeled with the expression that
   returns it, and the `ggthemes_data` help page gains examples of reading it
   (#265).
+
+- `cleveland_shape_pal()` and `scale_shape_cleveland()` gain an `edition`
+  argument. `edition = "1994"` draws the symbol sets of the revised (second)
+  edition of Cleveland's *The Elements of Graphing Data*: an open circle, plus
+  sign, `<`, S and W for overlapping data, and an open circle, solid circle,
+  heavy ring, circle with a vertical line and circled dot for little overlap.
+  The default, `"1985"`, keeps the first edition's sets.
 
 ## Minor improvements and fixes
 

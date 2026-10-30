@@ -6,8 +6,18 @@ safe_palettes <- function() {
   list(
     "stata" = list(pal = stata_shape_pal, max_n = 10L),
     "calc" = list(pal = calc_shape_pal, max_n = 7L),
-    "cleveland overlap" = list(pal = function(...) cleveland_shape_pal(TRUE, ...), max_n = 4L),
-    "cleveland default" = list(pal = function(...) cleveland_shape_pal(FALSE, ...), max_n = 3L),
+    # `unicode` defaults to TRUE for the Cleveland palettes, unlike the others,
+    # so these wrappers restore the base-pch default the helpers below expect.
+    "cleveland overlap" = list(pal = function(unicode = FALSE) cleveland_shape_pal(TRUE, unicode), max_n = 5L),
+    "cleveland default" = list(pal = function(unicode = FALSE) cleveland_shape_pal(FALSE, unicode), max_n = 2L),
+    "cleveland 1994 overlap" = list(
+      pal = function(unicode = FALSE) cleveland_shape_pal(TRUE, unicode, "1994"),
+      max_n = 5L
+    ),
+    "cleveland 1994 default" = list(
+      pal = function(unicode = FALSE) cleveland_shape_pal(FALSE, unicode, "1994"),
+      max_n = 2L
+    ),
     "tableau default" = list(pal = function(...) tableau_shape_pal("default", ...), max_n = 8L),
     "tableau filled" = list(pal = function(...) tableau_shape_pal("filled", ...), max_n = 6L),
     "tableau proportions" = list(pal = function(...) tableau_shape_pal("proportions", ...), max_n = 2L)
@@ -37,8 +47,10 @@ test_that("the unicode branch returns the negative glyph pch", {
   unicode_max_n <- c(
     "stata" = 10L,
     "calc" = 13L,
-    "cleveland overlap" = 4L,
+    "cleveland overlap" = 5L,
     "cleveland default" = 5L,
+    "cleveland 1994 overlap" = 5L,
+    "cleveland 1994 default" = 5L,
     "tableau default" = 10L,
     "tableau filled" = 10L,
     "tableau proportions" = 5L
@@ -74,15 +86,74 @@ test_that("stata's safe palette reproduces its symbol set exactly", {
   )
 })
 
-test_that("cleveland's non-overlapping palette keeps the three separable circles", {
-  # Empty circle, solid circle, circled plus. The two dropped shapes are the
-  # fill-graded circles that Tremmel (1995) Experiment 2 measured as the worst
-  # performers in exactly this five-symbol set.
-  expect_equal(cleveland_shape_pal(overlap = FALSE)(3), c(1L, 16L, 10L))
+# Figure 3.70 of Cleveland (1985), p. 196. The top row is for little overlap
+# (`overlap = FALSE`) and the bottom row for overlap that causes problems
+# (`overlap = TRUE`); each is used from the left.
+test_that("cleveland's little-overlap set keeps the solid and open circle without a font", {
+  expect_equal(cleveland_shape_pal(overlap = FALSE, unicode = FALSE)(2), c(16L, 1L))
+  expect_equal(attr(cleveland_shape_pal(overlap = FALSE, unicode = FALSE), "max_n"), 2L)
 })
 
-test_that("cleveland's overlapping palette draws an S, not a W", {
-  expect_equal(cleveland_shape_pal(overlap = TRUE)(4), c(1L, 3L, 60L, 83L))
+test_that("cleveland's little-overlap set is Figure 3.70's top row with unicode = TRUE", {
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  # Solid circle, open circle, circle with a vertical line, heavy ring, circled dot.
+  expect_equal(
+    cleveland_shape_pal(overlap = FALSE, unicode = TRUE)(5),
+    -c(0x25CF, 0x25CB, 0x233D, 0x2B58, 0x2299)
+  )
+})
+
+test_that("cleveland's overlap set is Figure 3.70's bottom row", {
+  # Open circle, plus, S, triangle, U: all have a base pch, the letters as ASCII.
+  expect_equal(cleveland_shape_pal(overlap = TRUE, unicode = FALSE)(5), c(1L, 3L, 83L, 2L, 85L))
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  expect_equal(
+    cleveland_shape_pal(overlap = TRUE, unicode = TRUE)(5),
+    -c(0x25CB, 0x2B, 0x53, 0x25B3, 0x55)
+  )
+})
+
+# The revised (second) edition of *The Elements of Graphing Data* draws the
+# same two rows differently from the first edition's Figure 3.70.
+test_that("cleveland's 1994 overlap set is an open circle, plus, <, S and W", {
+  expect_equal(cleveland_shape_pal(overlap = TRUE, unicode = FALSE, edition = "1994")(5), c(1L, 3L, 60L, 83L, 87L))
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  expect_equal(
+    cleveland_shape_pal(overlap = TRUE, unicode = TRUE, edition = "1994")(5),
+    -c(0x25CB, 0x2B, 0x3C, 0x53, 0x57)
+  )
+})
+
+test_that("cleveland's 1994 little-overlap set is ordered open circle first", {
+  expect_equal(cleveland_shape_pal(overlap = FALSE, unicode = FALSE, edition = "1994")(2), c(1L, 16L))
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  # Open circle, solid circle, heavy ring, circle with a vertical line, circled dot.
+  expect_equal(
+    cleveland_shape_pal(overlap = FALSE, unicode = TRUE, edition = "1994")(5),
+    -c(0x25CB, 0x25CF, 0x2B58, 0x233D, 0x2299)
+  )
+})
+
+test_that("cleveland's palettes draw Unicode glyphs by default, so circles come from the font", {
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  expect_equal(cleveland_shape_pal()(5), -c(0x25CB, 0x2B, 0x53, 0x25B3, 0x55))
+  expect_equal(cleveland_shape_pal(overlap = FALSE)(5), -c(0x25CF, 0x25CB, 0x233D, 0x2B58, 0x2299))
+  expect_equal(cleveland_shape_pal(edition = "1994")(5), -c(0x25CB, 0x2B, 0x3C, 0x53, 0x57))
+  expect_equal(attr(cleveland_shape_pal(overlap = FALSE), "max_n"), 5L)
+  # The scale takes the same default.
+  expect_equal(scale_shape_cleveland(overlap = FALSE)$palette(5), cleveland_shape_pal(overlap = FALSE)(5))
+})
+
+test_that("cleveland's edition is 1985 unless asked otherwise", {
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  expect_equal(cleveland_shape_pal(), cleveland_shape_pal(edition = "1985"))
+  expect_equal(cleveland_shape_pal(unicode = FALSE)(5), c(1L, 3L, 83L, 2L, 85L))
+  expect_snapshot(cleveland_shape_pal(edition = "1994 revised"), error = TRUE)
+  expect_snapshot(scale_shape_cleveland(edition = "second"), error = TRUE)
+  expect_equal(
+    scale_shape_cleveland(edition = "1994")$palette(5),
+    cleveland_shape_pal(edition = "1994")(5)
+  )
 })
 
 test_that("few's palette is unchanged by the safe mapping", {

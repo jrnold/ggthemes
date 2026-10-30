@@ -2,17 +2,33 @@
 % Please edit documentation in R/shapes.R
 \name{cleveland_shape_pal}
 \alias{cleveland_shape_pal}
-\title{Shape palette from Cleveland's "Elements of Graphing Data"}
+\title{Shape palettes from Cleveland's "Elements of Graphing Data"}
 \usage{
-cleveland_shape_pal(overlap = TRUE, unicode = FALSE)
+cleveland_shape_pal(
+  overlap = TRUE,
+  unicode = TRUE,
+  edition = c("1985", "1994")
+)
 }
 \arguments{
-\item{overlap}{\code{logical} Use the scale for overlapping points?}
+\item{overlap}{If \code{TRUE} (the default), use the symbols for data where
+overlap causes problems: an open circle, a plus sign, an S, a triangle and a U.
+If \code{FALSE}, use the symbols for data with little overlap: a solid circle,
+an open circle, a circle with a vertical line, a heavy ring, and a circled
+dot.}
 
-\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
-glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
-by the device font, so they render as blank boxes in a font without
-coverage; the default returns base pch codes, which every font can draw.}
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
+exist for every shape of the palette. They are drawn by the device font, so
+they render as blank boxes in a font without coverage and at unrelated sizes
+in most fonts. If \code{FALSE}, return base pch codes, which every font can
+draw but which exist only for some shapes. The default depends on the
+palette.}
+
+\item{edition}{Which edition of the book to take the symbols from. One of:
+\itemize{
+\item \code{"1985"} (the default): the first edition, Figure 3.70.
+\item \code{"1994"}: the revised (second) edition.
+}}
 }
 \value{
 A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}
@@ -20,52 +36,68 @@ shape (\code{pch}) codes, and can be used as the \code{palette} argument of
 \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
-Shape palettes for overlapping and non-overlapping points.
+Two sets of five plotting symbols from Figure 3.70 of Cleveland (1985): one
+for data with little overlap and one for data where overlap causes problems.
+Use each set from the left: the first two symbols for two categories, the
+first three for three, and so on.
 }
-\note{
-In the \emph{Elements of Graphing Data}, W.S. Cleveland suggests
-two shape palettes for scatter plots: one for overlapping data and
-another for non-overlapping data. The symbols for overlapping data
-rely on pattern discrimination, while the symbols for
-non-overlapping data vary the amount of fill.
+\details{
+The symbols for overlapping data are curves and lines with no solid parts, so
+that points drawn on top of each other keep their identity. All five have a
+base pch code (the letters are drawn as characters), so with
+\code{unicode = FALSE} they need no special font.
 
-Following Tremmel (1995), the circle with a vertical line is replaced by
-an encircled plus sign.
+The two editions draw the sets differently. \code{edition = "1985"} has, for
+overlapping data, an open circle, plus sign, S, triangle and U, and, for
+little overlap, a solid circle, open circle, circle with a vertical line,
+heavy ring and circled dot. \code{edition = "1994"} has an open circle, plus
+sign, \code{<}, S and W for overlapping data, and an open circle, solid circle,
+heavy ring, circle with a vertical line and circled dot for little overlap.
 
-\code{cleveland_shape_pal(overlap = TRUE)} supports four values on either
-branch.
-
-\code{cleveland_shape_pal(overlap = FALSE)} supports three values by
-default and five with \code{unicode = TRUE}. Its five source symbols encode
-\emph{fill fraction}, which base pch cannot express, so the two
-partially filled circles are dropped rather than approximated by a
-different shape. To encode a proportion, map \code{alpha} or \code{fill}
-instead; to restore the five glyphs, use \code{unicode = TRUE} with a font
-that covers Mathematical Operators, such as STIX Two Text.
-
-The truncation is arguably an improvement. Tremmel (1995) Experiment 2
-tested exactly this five-symbol set and found the fill-graded circles the
-worst performers measured, with the encircled plus and encircled dot the
-slowest pair and the one producing the most errors. The three shapes that
-survive are the better-separating subset.
+The symbols for little overlap vary how much of the circle is filled in.
+Only the solid and the open circle have a base pch code, so with
+\code{unicode = FALSE}, \code{cleveland_shape_pal(overlap = FALSE)} supports two
+values. Unlike the other shape palettes, these default to \code{unicode = TRUE},
+which draws all five. The circle with a
+vertical line (U+233D), the heavy ring (U+2B58) and the circled dot (U+2299)
+are missing from many fonts and drawn at unrelated sizes in the rest, and
+even the plain circles are drawn larger or smaller than base pch circles
+depending on the font.
 }
 \examples{
 library(ggplot2)
 
-p <- ggplot(mtcars) +
-  geom_point(aes(x = wt, y = mpg, shape = factor(gear))) +
-  facet_wrap(~am) +
-  theme_bw()
-# overlapping symbol palette
-p + scale_shape_cleveland()
-# non-overlapping symbol palette
-p + scale_shape_cleveland(overlap = FALSE)
+# Base pch symbols, which every font can draw: five for data where overlap
+# causes problems, and two (a solid and an open circle) for little overlap.
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_cleveland(unicode = FALSE)
+
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(am))) +
+  geom_point(size = 3) +
+  scale_shape_cleveland(overlap = FALSE, unicode = FALSE)
+
+# The default, unicode = TRUE, draws all five symbols of either set with the
+# device font, which must cover them.
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_cleveland(overlap = FALSE)
+
+# The symbols of the revised (second) edition
+ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
+  geom_point(size = 3) +
+  scale_shape_cleveland(edition = "1994")
 }
 \references{
-Cleveland WS. \emph{The Elements of Graphing Data}. Revised Edition. Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
+Cleveland WS (1985). \emph{The Elements of Graphing Data}. Wadsworth Advanced
+Books and Software, Monterey, CA. Figure 3.70, p. 196.
 
-Tremmel, Lothar, (1995) "The Visual Separability of Plotting Symbols in Scatterplots", \emph{Journal of Computational and Graphical Statistics},
-\url{https://www.jstor.org/stable/1390760}
+Cleveland WS (1994). \emph{The Elements of Graphing Data}. Revised Edition. Hobart
+Press, Summit, NJ, pp. 154-164, 234-239.
+
+Cleveland WS, McGill R (1984). "The Many Faces of a Scatterplot." \emph{Journal
+of the American Statistical Association} 79: 807-822. The book cites this
+paper for the evidence on discriminating circles by fill.
 }
 \seealso{
 Other shapes:

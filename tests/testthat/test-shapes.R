@@ -55,9 +55,9 @@ test_that("scale_shape_tremmel works", {
 })
 
 test_that("cleveland_shape_pal works", {
-  pal <- cleveland_shape_pal()
+  pal <- cleveland_shape_pal(unicode = FALSE)
   expect_type(pal, "closure")
-  expect_equal(attr(pal, "max_n"), 4)
+  expect_equal(attr(pal, "max_n"), 5)
   n <- 3
   vals <- pal(n)
   expect_length(vals, n)
@@ -65,12 +65,12 @@ test_that("cleveland_shape_pal works", {
 
 
 test_that("cleveland_shape_pal works with overlap = FALSE", {
-  pal <- cleveland_shape_pal(overlap = FALSE)
+  pal <- cleveland_shape_pal(overlap = FALSE, unicode = FALSE)
   expect_type(pal, "closure")
-  # Three, not five: the two fill-graded circles have no base pch equivalent.
-  # See test-shape-pal.R for both branches.
-  expect_equal(attr(pal, "max_n"), 3)
-  n <- 3
+  # Two, not five: only the solid and the open circle have a base pch. See
+  # test-shape-pal.R for both branches.
+  expect_equal(attr(pal, "max_n"), 2)
+  n <- 2
   vals <- pal(n)
   expect_length(vals, n)
   expect_type(vals, "integer")
@@ -78,7 +78,10 @@ test_that("cleveland_shape_pal works with overlap = FALSE", {
 })
 
 test_that("scale_shape_cleveland works", {
+  local_mocked_bindings(missing_glyphs = function(...) character(0))
   expect_s3_class(scale_shape_cleveland(), "ScaleDiscrete")
+  expect_s3_class(scale_shape_cleveland(unicode = FALSE), "ScaleDiscrete")
+  expect_s3_class(scale_shape_cleveland(edition = "1994"), "ScaleDiscrete")
 })
 
 test_that("warn_unicode_pch warns only for unicode pch on non-UTF-8 locales", {

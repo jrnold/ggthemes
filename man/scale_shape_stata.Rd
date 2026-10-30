@@ -67,10 +67,12 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 
-\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
-glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
-by the device font, so they render as blank boxes in a font without
-coverage; the default returns base pch codes, which every font can draw.}
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
+exist for every shape of the palette. They are drawn by the device font, so
+they render as blank boxes in a font without coverage and at unrelated sizes
+in most fonts. If \code{FALSE}, return base pch codes, which every font can
+draw but which exist only for some shapes. The default depends on the
+palette.}
 }
 \value{
 A ggplot2 scale object.

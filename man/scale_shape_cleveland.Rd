@@ -4,10 +4,19 @@
 \alias{scale_shape_cleveland}
 \title{Shape scales from Cleveland "Elements of Graphing Data"}
 \usage{
-scale_shape_cleveland(overlap = TRUE, ..., unicode = FALSE)
+scale_shape_cleveland(
+  overlap = TRUE,
+  ...,
+  unicode = TRUE,
+  edition = c("1985", "1994")
+)
 }
 \arguments{
-\item{overlap}{\code{logical} Use the scale for overlapping points?}
+\item{overlap}{If \code{TRUE} (the default), use the symbols for data where
+overlap causes problems: an open circle, a plus sign, an S, a triangle and a U.
+If \code{FALSE}, use the symbols for data with little overlap: a solid circle,
+an open circle, a circle with a vertical line, a heavy ring, and a circled
+dot.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -69,10 +78,18 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 
-\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
-glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
-by the device font, so they render as blank boxes in a font without
-coverage; the default returns base pch codes, which every font can draw.}
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
+exist for every shape of the palette. They are drawn by the device font, so
+they render as blank boxes in a font without coverage and at unrelated sizes
+in most fonts. If \code{FALSE}, return base pch codes, which every font can
+draw but which exist only for some shapes. The default depends on the
+palette.}
+
+\item{edition}{Which edition of the book to take the symbols from. One of:
+\itemize{
+\item \code{"1985"} (the default): the first edition, Figure 3.70.
+\item \code{"1994"}: the revised (second) edition.
+}}
 }
 \value{
 A ggplot2 scale object.
@@ -85,7 +102,7 @@ library(ggplot2)
 
 ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
   geom_point(size = 3) +
-  scale_shape_cleveland()
+  scale_shape_cleveland(unicode = FALSE)
 }
 \references{
 Cleveland WS. The Elements of Graphing Data. Revised Edition.
