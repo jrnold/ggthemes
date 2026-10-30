@@ -5,12 +5,15 @@
 \title{Tableau shape palettes (discrete)}
 \usage{
 tableau_shape_pal(
-  palette = c("default", "filled", "proportions"),
+  palette = c("default", "filled", "proportions", "kpi", "arrows", "thin-arrows",
+    "gender", "weather", "bug-tracking"),
   unicode = FALSE
 )
 }
 \arguments{
-\item{palette}{Palette name.}
+\item{palette}{Palette name. One of \code{"default"}, \code{"filled"},
+\code{"proportions"}, \code{"kpi"}, \code{"arrows"}, \code{"thin-arrows"}, \code{"gender"},
+\code{"weather"} or \code{"bug-tracking"}.}
 
 \item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
 exist for every shape of the palette. They are drawn by the device font, so
@@ -30,24 +33,44 @@ Shape palettes used by
 \href{https://www.tableau.com/}{Tableau}.
 }
 \details{
-Not all shape palettes in Tableau are supported, and these palettes are not
-exact.
-
-Shape palettes in Tableau are used to expose images for use as markers in
-charts, and thus are sometimes groupings of closely related symbols.
+Not all of Tableau's shape palettes are included, and these are not exact.
+Shape palettes in Tableau expose images for
+use as markers, so some are groups of related symbols rather than shapes
+chosen to be told apart.
 }
 \note{
-Supported values by palette: \code{"default"} eight (ten with
-\code{unicode = TRUE}), \code{"filled"} six (ten), \code{"proportions"}
-two (five). Shapes with no base pch equivalent -- the sideways triangles,
-the solid star, and the partially filled circles -- are dropped rather than
-approximated by a different shape.
+Supported values by palette, with the default \code{unicode = FALSE} and with
+\code{unicode = TRUE}:\tabular{lrr}{
+   \code{palette} \tab \code{FALSE} \tab \code{TRUE} \cr
+   \code{"default"} \tab 8 \tab 10 \cr
+   \code{"filled"} \tab 6 \tab 10 \cr
+   \code{"proportions"} \tab 2 \tab 5 \cr
+   \code{"kpi"} \tab 5 \tab 6 \cr
+   \code{"arrows"} \tab - \tab 8 \cr
+   \code{"thin-arrows"} \tab - \tab 8 \cr
+   \code{"gender"} \tab - \tab 9 \cr
+   \code{"weather"} \tab - \tab 6 \cr
+   \code{"bug-tracking"} \tab - \tab 4 \cr
+}
+
+
+Shapes with no base pch equivalent -- the sideways triangles, the solid
+star, the partially filled circles, the check mark, arrows, signs and
+pictographs -- are dropped rather than approximated by a different shape.
+The palettes marked \code{-} keep fewer than two shapes that way, so they need
+\code{unicode = TRUE}.
 
 \code{"proportions"} encodes \emph{fill fraction}, which base pch cannot
 express at all, so only its empty and full circles survive; they remain
 meaningful as a two-value scale. To encode a proportion, map \code{alpha}
-or \code{fill} instead, or use \code{unicode = TRUE} with a font covering
-Geometric Shapes, such as DejaVu Sans.
+or \code{fill} instead, or use \code{unicode = TRUE}.
+
+With \code{unicode = TRUE}, the font from \code{\link[=shapes_font]{shapes_font()}} draws every shape of
+\code{"default"}, \code{"filled"}, \code{"proportions"}, \code{"kpi"}, \code{"arrows"} and
+\code{"thin-arrows"}, and the sign shapes of \code{"gender"}, at a common size. The
+pictographs -- \code{"weather"}, \code{"bug-tracking"} and the restroom signs of
+\code{"gender"} -- come from the device font, which may draw them as colour
+emoji.
 }
 \examples{
 # The eight shapes with a font-independent equivalent.
@@ -57,6 +80,23 @@ show_shapes(tableau_shape_pal()(8))
   # All ten, drawn from the device font. Needs a font covering Geometric
   # Shapes, such as DejaVu Sans.
   show_shapes(tableau_shape_pal(unicode = TRUE)(10))
+}
+
+# Arrows, signs and pictographs have no base pch, so those palettes need
+# `unicode = TRUE`. The font from `shapes_font()` draws the arrows at a common
+# size; register it before building the scale.
+if (rlang::is_installed(c("systemfonts", "ragg")) && interactive()) {
+  library("ggplot2")
+  family <- shapes_font()
+  directions <- data.frame(x = 1:8, y = 1, direction = factor(1:8))
+  p <- ggplot(directions, aes(x, y, shape = direction)) +
+    geom_point(size = 8) +
+    scale_shape_tableau("arrows", unicode = TRUE) +
+    theme_void() +
+    theme(legend.position = "none")
+  ragg::agg_png(tempfile(fileext = ".png"), width = 640, height = 160)
+  print(p, vp = grid::viewport(gp = grid::gpar(fontfamily = family)))
+  dev.off()
 }
 }
 \seealso{

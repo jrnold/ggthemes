@@ -32,10 +32,10 @@ the em box, so it is drawn smaller.
 The font covers every shape the \code{unicode = TRUE} palettes draw, so they need
 no other font: \code{\link[=calc_shape_pal]{calc_shape_pal()}}, \code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
 \code{\link[=stata_shape_pal]{stata_shape_pal()}} and \code{\link[=tableau_shape_pal]{tableau_shape_pal()}}. It also covers the Tableau
-\code{"kpi"}, \code{"Arrows"} and \code{"Thin Arrows"} shapes and the sign shapes of
-\code{"Gender"} in \code{ggthemes_data$tableau[["shape-palettes"]]}. It does not cover
-the pictograph shapes: the Tableau \code{"weather"} and \code{"Bug Tracking"} palettes
-and the restroom signs of \code{"Gender"}. Those characters still come from the
+\code{"kpi"}, \code{"arrows"} and \code{"thin-arrows"} palettes and the sign shapes of
+\code{"gender"} (see \code{\link[=tableau_shape_pal]{tableau_shape_pal()}}). It does not cover the pictograph
+shapes: the Tableau \code{"weather"} and \code{"bug-tracking"} palettes and the
+restroom signs of \code{"gender"}. Those characters still come from the
 device font. Palettes with no \code{unicode} argument, such as
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}, use base \code{pch} symbols and need no font.
 }

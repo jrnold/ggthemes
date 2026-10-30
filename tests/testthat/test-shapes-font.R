@@ -83,12 +83,12 @@ test_that("the Tableau arrow, kpi and gender sign shapes are covered and compara
   path <- font_path()
   shapes <- ggthemes_data$tableau[["shape-palettes"]]
   codepoint <- function(x) strtoi(sub("U+", "", sub(" .*", "", x), fixed = TRUE), 16L)
-  for (nm in c("Arrows", "Thin Arrows")) {
+  for (nm in c("arrows", "thin-arrows")) {
     expect_lt(size_spread(codepoint(shapes[[nm]]$unicode), path), 1.1)
   }
   # The exclamation mark is too narrow to reach the common area, so "kpi" is looser.
   expect_lt(size_spread(codepoint(shapes[["kpi"]]$unicode), path), 1.25)
-  gender <- shapes[["Gender"]]
+  gender <- shapes[["gender"]]
   signs <- codepoint(gender$unicode)[!codepoint(gender$unicode) %in% 0x1F6B9:0x1F6BB]
   expect_lt(size_spread(signs, path), 1.1)
 })

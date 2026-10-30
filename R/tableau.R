@@ -131,37 +131,81 @@ scale_color_tableau <- scale_colour_tableau
 #' Shape palettes used by
 #' [Tableau](https://www.tableau.com/).
 #'
-#' Not all shape palettes in Tableau are supported, and these palettes are not
-#' exact.
-#'
-#' Shape palettes in Tableau are used to expose images for use as markers in
-#' charts, and thus are sometimes groupings of closely related symbols.
+#' Not all of Tableau's shape palettes are included, and these are not exact.
+#' Shape palettes in Tableau expose images for
+#' use as markers, so some are groups of related symbols rather than shapes
+#' chosen to be told apart.
 #'
 #' @note
 #'
-#' Supported values by palette: `"default"` eight (ten with
-#' `unicode = TRUE`), `"filled"` six (ten), `"proportions"`
-#' two (five). Shapes with no base pch equivalent -- the sideways triangles,
-#' the solid star, and the partially filled circles -- are dropped rather than
-#' approximated by a different shape.
+#' Supported values by palette, with the default `unicode = FALSE` and with
+#' `unicode = TRUE`:
+#'
+#' | `palette`        | `FALSE` | `TRUE` |
+#' |------------------|--------:|-------:|
+#' | `"default"`      |       8 |     10 |
+#' | `"filled"`       |       6 |     10 |
+#' | `"proportions"`  |       2 |      5 |
+#' | `"kpi"`          |       5 |      6 |
+#' | `"arrows"`       |       - |      8 |
+#' | `"thin-arrows"`  |       - |      8 |
+#' | `"gender"`       |       - |      9 |
+#' | `"weather"`      |       - |      6 |
+#' | `"bug-tracking"` |       - |      4 |
+#'
+#' Shapes with no base pch equivalent -- the sideways triangles, the solid
+#' star, the partially filled circles, the check mark, arrows, signs and
+#' pictographs -- are dropped rather than approximated by a different shape.
+#' The palettes marked `-` keep fewer than two shapes that way, so they need
+#' `unicode = TRUE`.
 #'
 #' `"proportions"` encodes *fill fraction*, which base pch cannot
 #' express at all, so only its empty and full circles survive; they remain
 #' meaningful as a two-value scale. To encode a proportion, map `alpha`
-#' or `fill` instead, or use `unicode = TRUE` with a font covering
-#' Geometric Shapes, such as DejaVu Sans.
+#' or `fill` instead, or use `unicode = TRUE`.
+#'
+#' With `unicode = TRUE`, the font from [shapes_font()] draws every shape of
+#' `"default"`, `"filled"`, `"proportions"`, `"kpi"`, `"arrows"` and
+#' `"thin-arrows"`, and the sign shapes of `"gender"`, at a common size. The
+#' pictographs -- `"weather"`, `"bug-tracking"` and the restroom signs of
+#' `"gender"` -- come from the device font, which may draw them as colour
+#' emoji.
 #'
 #' @returns A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
 #' @export
-#' @param palette Palette name.
+#' @param palette Palette name. One of `"default"`, `"filled"`,
+#'   `"proportions"`, `"kpi"`, `"arrows"`, `"thin-arrows"`, `"gender"`,
+#'   `"weather"` or `"bug-tracking"`.
 #' @inheritParams cleveland_shape_pal
 #' @family shapes tableau
 #' @example inst/examples/ex-tableau_shape_pal.R
-tableau_shape_pal <- function(palette = c("default", "filled", "proportions"), unicode = FALSE) {
+tableau_shape_pal <- function(
+  palette = c(
+    "default",
+    "filled",
+    "proportions",
+    "kpi",
+    "arrows",
+    "thin-arrows",
+    "gender",
+    "weather",
+    "bug-tracking"
+  ),
+  unicode = FALSE
+) {
   palette <- rlang::arg_match(palette)
   shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
+  safe_n <- sum(!is.na(shapes[["pch"]]))
+  # A one-shape palette is no palette, and an empty one fails only later, as
+  # a warning about `n`, far from the argument that caused it.
+  if (!unicode && safe_n < 2L) {
+    cli::cli_abort(c(
+      "{.arg unicode} must be {.code TRUE} for Tableau shape palette {.val {palette}}.",
+      "i" = "{safe_n} of its {nrow(shapes)} shapes {cli::qty(safe_n)}ha{?s/ve} a font-independent pch."
+    ))
+  }
   new_shape_pal(shapes, unicode = unicode)
 }
 

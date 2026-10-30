@@ -7,7 +7,9 @@
 scale_shape_tableau(palette = "default", ..., unicode = FALSE)
 }
 \arguments{
-\item{palette}{Palette name.}
+\item{palette}{Palette name. One of \code{"default"}, \code{"filled"},
+\code{"proportions"}, \code{"kpi"}, \code{"arrows"}, \code{"thin-arrows"}, \code{"gender"},
+\code{"weather"} or \code{"bug-tracking"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}

@@ -80,6 +80,14 @@
   heavy ring, circle with a vertical line and circled dot for little overlap.
   The default, `"1985"`, keeps the first edition's sets.
 
+- `tableau_shape_pal()` and `scale_shape_tableau()` gain Tableau's `"kpi"`,
+  `"arrows"`, `"thin-arrows"`, `"gender"`, `"weather"` and `"bug-tracking"`
+  shape palettes. All but `"kpi"` have fewer than two shapes with a base pch,
+  so they need `unicode = TRUE` and give an error saying so without it. In
+  `` ggthemes_data$tableau$`shape-palettes` `` these sets are renamed to the
+  same lowercase ids (they were `"Arrows"`, `"Thin Arrows"`, `"Gender"` and
+  `"Bug Tracking"`).
+
 - New `shapes_font()` registers a font that ships with ggthemes and draws the
   shapes of the `unicode = TRUE` palettes (`calc_shape_pal()`,
   `cleveland_shape_pal()`, `stata_shape_pal()` and `tableau_shape_pal()`) at a
@@ -156,10 +164,10 @@
   `tableau_seq_gradient_pal()` and `tableau_div_gradient_pal()` now say so when
   given arguments they ignore (#272).
 
-- The Tableau "Arrows" and "Thin Arrows" shape palettes in
+- The Tableau `"arrows"` and `"thin-arrows"` shape palettes in
   `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters,
-  so they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
-  U+27A1) and "Thin Arrows" line arrows (U+2190 to U+2199) in the same eight
+  so they drew identically. `"arrows"` now uses solid arrows (U+2B05 to U+2B0B and
+  U+27A1) and `"thin-arrows"` line arrows (U+2190 to U+2199) in the same eight
   directions. Three other Tableau shapes now carry the variation selector their
   `unicode` field records: the kpi check mark and multiplication sign gain the
   text-style selector, and the weather snowman loses a stray one (#264).

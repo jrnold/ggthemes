@@ -22,10 +22,10 @@
 #' The font covers every shape the `unicode = TRUE` palettes draw, so they need
 #' no other font: [calc_shape_pal()], [cleveland_shape_pal()],
 #' [stata_shape_pal()] and [tableau_shape_pal()]. It also covers the Tableau
-#' `"kpi"`, `"Arrows"` and `"Thin Arrows"` shapes and the sign shapes of
-#' `"Gender"` in `ggthemes_data$tableau[["shape-palettes"]]`. It does not cover
-#' the pictograph shapes: the Tableau `"weather"` and `"Bug Tracking"` palettes
-#' and the restroom signs of `"Gender"`. Those characters still come from the
+#' `"kpi"`, `"arrows"` and `"thin-arrows"` palettes and the sign shapes of
+#' `"gender"` (see [tableau_shape_pal()]). It does not cover the pictograph
+#' shapes: the Tableau `"weather"` and `"bug-tracking"` palettes and the
+#' restroom signs of `"gender"`. Those characters still come from the
 #' device font. Palettes with no `unicode` argument, such as
 #' [tremmel_shape_pal()], use base `pch` symbols and need no font.
 #'
