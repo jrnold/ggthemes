@@ -37,11 +37,11 @@
   open circle, plus sign, `<` and S). `overlap = FALSE`, for little overlap,
   draws a solid circle, open circle, circle with a vertical line, heavy ring
   and circled dot (it was an open circle, solid circle, circled plus, circled
-  dot and circled ring). `unicode` now defaults to `TRUE`, so every shape,
-  circles included, is a Unicode glyph drawn by the device font; they look
-  best with the font from `shapes_font()`. With `unicode = FALSE`, only the
-  solid and open circle have a base pch, so `overlap = FALSE` supports two
-  values. The rows of `ggthemes_data$shapes$cleveland` change to match.
+  dot and circled ring). With `unicode = FALSE`, only the solid and open
+  circle have a base pch, so `overlap = FALSE` supports two values (it was
+  three); `unicode = TRUE` draws all five, best with the font from
+  `register_shapes_font()`. The rows of `ggthemes_data$shapes$cleveland`
+  change to match.
 
 - `scale_colour_tableau()`, `scale_fill_tableau()`,
   `scale_colour_economist_c()`, `scale_fill_economist_c()` and
@@ -89,23 +89,33 @@
   `"Bug Tracking"`).
 
 - New `geom_point_glyph()` draws the shapes of the `unicode = TRUE` palettes
-  from the font of `shapes_font()`, reading the font file through R's glyph
-  API on devices that support it (R 4.3 or later), so no font family has to
-  be set and the plot works with `ggsave()`. Other devices draw the shapes as
+  from the font of `register_shapes_font()`, reading the font file through
+  R's glyph API on devices that support it (R 4.3 or later), so no font
+  family has to be set and the plot works with `ggsave()`. Other devices draw the shapes as
   ordinary points in the registered font family. `pdf()` files refer to the
   font without embedding it; new `embed_shapes_font()` embeds it.
 
-- New `shapes_font()` registers a font that ships with ggthemes and draws the
-  shapes of the `unicode = TRUE` palettes (`calc_shape_pal()`,
-  `cleveland_shape_pal()`, `stata_shape_pal()` and `tableau_shape_pal()`) at a
-  common size. In the best system font tested, the shapes of one palette
+- New `register_shapes_font()` registers a font that ships with ggthemes and
+  draws the shapes of the `unicode = TRUE` palettes (`calc_shape_pal()`,
+  `cleveland_shape_pal()`, `stata_shape_pal()` and `tableau_shape_pal()`) at
+  a common size. In the best system font tested, the shapes of one palette
   differed in area by up to a factor of six, and several fonts lacked some of
   them. ggthemes registers the font when it loads, if systemfonts is
   installed. The missing-glyph warning now points to it, and once
-  `shapes_font()` or `geom_point_glyph()` has been called it no longer warns
-  about shapes the font has.
+  `register_shapes_font()` or `geom_point_glyph()` has been called it no
+  longer warns about shapes the font has.
+
+- The shape palettes made with `unicode = TRUE` now check the device font
+  when the plot is built rather than when the scale is created, so
+  `geom_point_glyph()` silences the missing-glyph warning wherever it appears
+  in the plot's code.
 
 ## Minor improvements and fixes
+
+- Calling `cleveland_shape_pal()` or `scale_shape_cleveland()` without
+  `unicode` is deprecated. `unicode` still defaults to `FALSE`, and will
+  default to `TRUE` in ggthemes 9.0.0, so that both symbol sets draw all five
+  shapes.
 
 - Deprecate `smart_digits()` and `smart_digits_format()`. Use
   `scales::label_number()` instead. Until they are removed, they round to the

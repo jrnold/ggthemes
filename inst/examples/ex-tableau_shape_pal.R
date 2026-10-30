@@ -8,11 +8,11 @@ show_shapes(tableau_shape_pal()(8))
 }
 
 # Arrows, signs and pictographs have no base pch, so those palettes need
-# `unicode = TRUE`. The font from `shapes_font()` draws the arrows at a common
-# size; register it before building the scale.
+# `unicode = TRUE`. The font from `register_shapes_font()` draws the arrows at
+# a common size.
 if (rlang::is_installed(c("systemfonts", "ragg")) && interactive()) {
   library("ggplot2")
-  family <- shapes_font()
+  family <- register_shapes_font()
   directions <- data.frame(x = 1:8, y = 1, direction = factor(1:8))
   p <- ggplot(directions, aes(x, y, shape = direction)) +
     geom_point(size = 8) +

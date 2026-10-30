@@ -1,6 +1,6 @@
 # ggthemes shapes
 
-`ggthemes-shapes.ttf` is the font behind `shapes_font()`. It holds 63 glyphs
+`ggthemes-shapes.ttf` is the font behind `register_shapes_font()`. It holds 63 glyphs
 (circles and partial fills, squares, diamonds, triangles, a star, plus and cross
 marks, arrows, gender signs and a check mark) at the Unicode characters the
 ggthemes shape palettes use, each scaled to the same convex-hull area.

@@ -113,9 +113,9 @@ A ggplot2 layer.
 \description{
 \code{geom_point_glyph()} is \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for the shape palettes made
 with \code{unicode = TRUE}. It draws their shapes from the font that ships with
-ggthemes (see \code{\link[=shapes_font]{shapes_font()}}), reading the font file itself, so the shapes
-come out at a common size without setting a font family on the device or a
-viewport, and the plot can be saved with \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}.
+ggthemes (see \code{\link[=register_shapes_font]{register_shapes_font()}}), reading the font file itself, so
+the shapes come out at a common size without setting a font family on the
+device or a viewport, and the plot can be saved with \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}.
 }
 \section{Devices}{
 A device that can draw glyphs from a font file draws the shapes that way.
@@ -133,6 +133,12 @@ shapes only where the font is installed. \code{\link[=embed_shapes_font]{embed_s
 Shapes the font does not have, such as the pictographs of
 \code{tableau_shape_pal("weather", unicode = TRUE)}, and base \code{pch} shapes are
 drawn as \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} draws them.
+
+Calling \code{geom_point_glyph()} tells the \code{unicode = TRUE} palettes that the
+shapes font is in use, so they stop warning about shapes it has, for every
+plot in the session, including plots drawn with \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}. That
+lasts until ggthemes is unloaded, for example by restarting R or with
+\code{unloadNamespace("ggthemes")}.
 }
 
 \section{Aesthetics}{
@@ -152,7 +158,7 @@ if (rlang::is_installed("systemfonts")) {
   diamonds_sample <- head(diamonds, 200)
   ggplot(diamonds_sample, aes(x = carat, y = price, shape = cut)) +
     geom_point_glyph(size = 3) +
-    scale_shape_cleveland(overlap = FALSE)
+    scale_shape_cleveland(overlap = FALSE, unicode = TRUE)
 
   # Arrows have no base pch, so they need `unicode = TRUE`.
   directions <- data.frame(x = 1:8, y = 1, direction = factor(1:8))
@@ -168,10 +174,10 @@ Other shapes:
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},
 \code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
 \code{\link[=embed_shapes_font]{embed_shapes_font()}},
+\code{\link[=register_shapes_font]{register_shapes_font()}},
 \code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
 \code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
 \code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},
-\code{\link[=shapes_font]{shapes_font()}},
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }
 \concept{shapes}

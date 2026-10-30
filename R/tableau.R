@@ -164,8 +164,8 @@ scale_color_tableau <- scale_colour_tableau
 #' meaningful as a two-value scale. To encode a proportion, map `alpha`
 #' or `fill` instead, or use `unicode = TRUE`.
 #'
-#' With `unicode = TRUE`, the font from [shapes_font()] draws every shape of
-#' `"default"`, `"filled"`, `"proportions"`, `"kpi"`, `"arrows"` and
+#' With `unicode = TRUE`, the font from [register_shapes_font()] draws every
+#' shape of `"default"`, `"filled"`, `"proportions"`, `"kpi"`, `"arrows"` and
 #' `"thin-arrows"`, and the sign shapes of `"gender"`, at a common size. The
 #' pictographs -- `"weather"`, `"bug-tracking"` and the restroom signs of
 #' `"gender"` -- come from the device font, which may draw them as colour
@@ -196,6 +196,7 @@ tableau_shape_pal <- function(
   unicode = FALSE
 ) {
   palette <- rlang::arg_match(palette)
+  check_unicode(unicode)
   shapes <- ggthemes::ggthemes_data$tableau[["shape-palettes"]][[palette]]
   safe_n <- sum(!is.na(shapes[["pch"]]))
   # A one-shape palette is no palette, and an empty one fails only later, as

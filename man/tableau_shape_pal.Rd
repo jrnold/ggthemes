@@ -18,8 +18,8 @@ tableau_shape_pal(
 \item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
 exist for every shape of the palette. They are drawn by the device font, so
 they render as blank boxes in a font without coverage and at unrelated sizes
-in most fonts; the font from \code{\link[=shapes_font]{shapes_font()}} has the shapes of this palette
-at a common size. If \code{FALSE}, return base pch codes, which every font can
+in most fonts; the font from \code{\link[=register_shapes_font]{register_shapes_font()}} has the shapes of
+this palette at a common size. If \code{FALSE}, return base pch codes, which every font can
 draw but which exist only for some shapes. The default depends on the
 palette.}
 }
@@ -65,8 +65,8 @@ express at all, so only its empty and full circles survive; they remain
 meaningful as a two-value scale. To encode a proportion, map \code{alpha}
 or \code{fill} instead, or use \code{unicode = TRUE}.
 
-With \code{unicode = TRUE}, the font from \code{\link[=shapes_font]{shapes_font()}} draws every shape of
-\code{"default"}, \code{"filled"}, \code{"proportions"}, \code{"kpi"}, \code{"arrows"} and
+With \code{unicode = TRUE}, the font from \code{\link[=register_shapes_font]{register_shapes_font()}} draws every
+shape of \code{"default"}, \code{"filled"}, \code{"proportions"}, \code{"kpi"}, \code{"arrows"} and
 \code{"thin-arrows"}, and the sign shapes of \code{"gender"}, at a common size. The
 pictographs -- \code{"weather"}, \code{"bug-tracking"} and the restroom signs of
 \code{"gender"} -- come from the device font, which may draw them as colour
@@ -83,11 +83,11 @@ show_shapes(tableau_shape_pal()(8))
 }
 
 # Arrows, signs and pictographs have no base pch, so those palettes need
-# `unicode = TRUE`. The font from `shapes_font()` draws the arrows at a common
-# size; register it before building the scale.
+# `unicode = TRUE`. The font from `register_shapes_font()` draws the arrows at
+# a common size.
 if (rlang::is_installed(c("systemfonts", "ragg")) && interactive()) {
   library("ggplot2")
-  family <- shapes_font()
+  family <- register_shapes_font()
   directions <- data.frame(x = 1:8, y = 1, direction = factor(1:8))
   p <- ggplot(directions, aes(x, y, shape = direction)) +
     geom_point(size = 8) +

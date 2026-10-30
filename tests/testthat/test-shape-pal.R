@@ -6,8 +6,8 @@ safe_palettes <- function() {
   list(
     "stata" = list(pal = stata_shape_pal, max_n = 10L),
     "calc" = list(pal = calc_shape_pal, max_n = 7L),
-    # `unicode` defaults to TRUE for the Cleveland palettes, unlike the others,
-    # so these wrappers restore the base-pch default the helpers below expect.
+    # Leaving `unicode` unset is deprecated for the Cleveland palettes, so these
+    # wrappers pass the base-pch default the helpers below expect.
     "cleveland overlap" = list(pal = function(unicode = FALSE) cleveland_shape_pal(TRUE, unicode), max_n = 5L),
     "cleveland default" = list(pal = function(unicode = FALSE) cleveland_shape_pal(FALSE, unicode), max_n = 2L),
     "cleveland 1994 overlap" = list(
@@ -134,26 +134,43 @@ test_that("cleveland's 1994 little-overlap set is ordered open circle first", {
   )
 })
 
-test_that("cleveland's palettes draw Unicode glyphs by default, so circles come from the font", {
+test_that("cleveland's palettes still default to base pch, and say the default will change", {
+  skip_if_not_installed("withr")
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_snapshot({
+    values <- cleveland_shape_pal()(5)
+    scale <- scale_shape_cleveland(overlap = FALSE)
+  })
+  expect_equal(values, c(1L, 3L, 83L, 2L, 85L))
+  expect_equal(scale$palette(2), c(16L, 1L))
+})
+
+test_that("cleveland's palettes don't warn about the default when `unicode` is set", {
   local_missing_glyphs(function(...) character(0))
-  expect_equal(cleveland_shape_pal()(5), -c(0x25CB, 0x2B, 0x53, 0x25B3, 0x55))
-  expect_equal(cleveland_shape_pal(overlap = FALSE)(5), -c(0x25CF, 0x25CB, 0x233D, 0x2B58, 0x2299))
-  expect_equal(cleveland_shape_pal(edition = "1994")(5), -c(0x25CB, 0x2B, 0x3C, 0x53, 0x57))
-  expect_equal(attr(cleveland_shape_pal(overlap = FALSE), "max_n"), 5L)
-  # The scale takes the same default.
-  expect_equal(scale_shape_cleveland(overlap = FALSE)$palette(5), cleveland_shape_pal(overlap = FALSE)(5))
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_no_warning(cleveland_shape_pal(unicode = FALSE))
+  expect_no_warning(cleveland_shape_pal(unicode = TRUE)(5))
+  expect_no_warning(scale_shape_cleveland(unicode = FALSE))
+  # The scale resolves the default once; the palette it calls doesn't warn too.
+  expect_length(capture_warnings(scale_shape_cleveland()), 1)
 })
 
 test_that("cleveland's edition is 1985 unless asked otherwise", {
   local_missing_glyphs(function(...) character(0))
-  expect_equal(cleveland_shape_pal(), cleveland_shape_pal(edition = "1985"))
+  expect_equal(cleveland_shape_pal(unicode = TRUE), cleveland_shape_pal(unicode = TRUE, edition = "1985"))
   expect_equal(cleveland_shape_pal(unicode = FALSE)(5), c(1L, 3L, 83L, 2L, 85L))
-  expect_snapshot(cleveland_shape_pal(edition = "1994 revised"), error = TRUE)
-  expect_snapshot(scale_shape_cleveland(edition = "second"), error = TRUE)
+  expect_snapshot(cleveland_shape_pal(unicode = FALSE, edition = "1994 revised"), error = TRUE)
+  expect_snapshot(scale_shape_cleveland(unicode = FALSE, edition = "second"), error = TRUE)
   expect_equal(
-    scale_shape_cleveland(edition = "1994")$palette(5),
-    cleveland_shape_pal(edition = "1994")(5)
+    scale_shape_cleveland(unicode = TRUE, edition = "1994")$palette(5),
+    cleveland_shape_pal(unicode = TRUE, edition = "1994")(5)
   )
+})
+
+test_that("`unicode` must be TRUE or FALSE", {
+  expect_snapshot(calc_shape_pal(unicode = NA), error = TRUE)
+  expect_snapshot(tableau_shape_pal("arrows", unicode = c(TRUE, FALSE)), error = TRUE)
+  expect_snapshot(cleveland_shape_pal(unicode = "yes"), error = TRUE)
 })
 
 test_that("few's palette is unchanged by the safe mapping", {
@@ -310,11 +327,13 @@ test_that("the safe branch never probes the font", {
   expect_no_warning(tableau_shape_pal("filled")(6))
 })
 
-test_that("the default cleveland palette checks the device font", {
+test_that("a unicode palette checks the device font when first called, not when made", {
   local_utf8_locale()
   local_missing_glyphs("\u25B3")
-  expect_warning(cleveland_shape_pal(), "lacks glyphs")
-  expect_no_warning(cleveland_shape_pal(unicode = FALSE))
+  expect_no_warning(pal <- cleveland_shape_pal(unicode = TRUE))
+  expect_warning(pal(5), "lacks glyphs")
+  expect_no_warning(pal(5))
+  expect_no_warning(cleveland_shape_pal(unicode = FALSE)(5))
 })
 
 test_that("once the shapes font is in use, palettes it covers do not warn", {
@@ -324,8 +343,8 @@ test_that("once the shapes font is in use, palettes it covers do not warn", {
     function(characters, family) if (family == "ggthemes shapes") character(0) else characters,
     in_use = TRUE
   )
-  expect_no_warning(cleveland_shape_pal())
-  expect_no_warning(tableau_shape_pal(unicode = TRUE))
+  expect_no_warning(cleveland_shape_pal(unicode = TRUE)(5))
+  expect_no_warning(tableau_shape_pal(unicode = TRUE)(10))
 })
 
 test_that("shapes the font lacks are still checked in the device font", {

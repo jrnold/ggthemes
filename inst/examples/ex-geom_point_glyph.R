@@ -7,7 +7,7 @@ if (rlang::is_installed("systemfonts")) {
   diamonds_sample <- head(diamonds, 200)
   ggplot(diamonds_sample, aes(x = carat, y = price, shape = cut)) +
     geom_point_glyph(size = 3) +
-    scale_shape_cleveland(overlap = FALSE)
+    scale_shape_cleveland(overlap = FALSE, unicode = TRUE)
 
   # Arrows have no base pch, so they need `unicode = TRUE`.
   directions <- data.frame(x = 1:8, y = 1, direction = factor(1:8))

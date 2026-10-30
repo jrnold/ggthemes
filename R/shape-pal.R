@@ -13,13 +13,19 @@
 #' @param unicode If `TRUE`, return the Unicode glyph pch instead of base pch.
 #' @noRd
 new_shape_pal <- function(shapes, unicode = FALSE) {
+  check_unicode(unicode, call = rlang::caller_env())
   values <- shapes[[if (unicode) "pch_unicode" else "pch"]]
   values <- unname(values[!is.na(values)])
   max_n <- length(values)
-  if (unicode) {
-    warn_shape_font(shapes)
-  }
+  # The font check waits for the first call, which ggplot2 makes when the plot
+  # is built, so that `register_shapes_font()` or `geom_point_glyph()` anywhere
+  # in the plot's code counts, not only when it comes before the scale.
+  font_checked <- !unicode
   f <- function(n) {
+    if (!font_checked) {
+      font_checked <<- TRUE
+      warn_shape_font(shapes)
+    }
     check_pal_n(n, max_n)
     values[seq_len(n)]
   }
@@ -35,7 +41,7 @@ shape_font_cache <- new.env(parent = emptyenv())
 #' The font family a negative pch will be looked up in
 #'
 #' `""` means the device default. It is also the answer when no device is open,
-#' which is common: a palette is usually constructed before anything is drawn.
+#' as when a palette is called outside a plot.
 #' Querying `grid` would open the default device as a side effect, so the null
 #' device is short-circuited instead.
 #'
@@ -61,9 +67,9 @@ current_font_family <- function() {
 #' font does not cover, which is a direct measurement rather than the locale
 #' guess it replaces.
 #'
-#' The check runs at palette construction, which usually precedes any device
-#' being opened. In that case it probes the default device family: the right
-#' guess, but a guess.
+#' The check runs the first time the palette is called, usually while the plot
+#' is built and before any viewport sets a font family. It probes the default
+#' device family: the right guess, but a guess.
 #' @noRd
 warn_shape_font <- function(shapes) {
   # Locale and glyph coverage are independent failure modes, so both are
@@ -78,9 +84,10 @@ warn_shape_font <- function(shapes) {
   }
   characters <- shapes[["character"]]
   # Points take their font from the device or a viewport, and a palette is
-  # built before either is in place, so it cannot see the font the plot will
-  # be drawn with. Calling `shapes_font()` or `geom_point_glyph()` is the one
-  # signal available that it will be the shapes font.
+  # called before a viewport is in place, so it cannot see the font the plot
+  # will be drawn with. Calling `register_shapes_font()` or
+  # `geom_point_glyph()` is the one signal available that it will be the
+  # shapes font.
   if (shapes_font_in_use() && !length(cached_missing_glyphs(characters, shapes_font_family))) {
     return(invisible(NULL))
   }
@@ -115,10 +122,20 @@ warn_shape_font <- function(shapes) {
     ),
     "i" = paste0(
       "Or draw the points with {.fn geom_point_glyph}, which uses the font that ships with ggthemes ",
-      "and has most of these shapes at a common size: see {.code ?shapes_font}."
+      "and has most of these shapes at a common size: see {.code ?register_shapes_font}."
     ),
     "i" = "Or use {.code unicode = FALSE} for font-independent base pch shapes."
   ))
+}
+
+check_unicode <- function(unicode, call = rlang::caller_env()) {
+  if (!rlang::is_bool(unicode)) {
+    cli::cli_abort(
+      "{.arg unicode} must be {.code TRUE} or {.code FALSE}, not {.obj_type_friendly {unicode}}.",
+      call = call
+    )
+  }
+  invisible(unicode)
 }
 
 cached_missing_glyphs <- function(characters, family) {

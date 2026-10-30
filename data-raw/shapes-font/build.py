@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["fonttools"]
 # ///
-"""Build inst/fonts/ggthemes-shapes.ttf, the font behind `shapes_font()`.
+"""Build inst/fonts/ggthemes-shapes.ttf, the font behind `register_shapes_font()`.
 
 Every glyph the ggthemes shape palettes use that can be drawn from geometry
 (circles, partial fills, squares, diamonds, triangles, a star, plus and cross

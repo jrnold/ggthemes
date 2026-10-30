@@ -79,9 +79,9 @@ test_that("cleveland_shape_pal works with overlap = FALSE", {
 
 test_that("scale_shape_cleveland works", {
   local_missing_glyphs(function(...) character(0))
-  expect_s3_class(scale_shape_cleveland(), "ScaleDiscrete")
+  expect_s3_class(scale_shape_cleveland(unicode = TRUE), "ScaleDiscrete")
   expect_s3_class(scale_shape_cleveland(unicode = FALSE), "ScaleDiscrete")
-  expect_s3_class(scale_shape_cleveland(edition = "1994"), "ScaleDiscrete")
+  expect_s3_class(scale_shape_cleveland(unicode = TRUE, edition = "1994"), "ScaleDiscrete")
 })
 
 test_that("warn_unicode_pch warns only for unicode pch on non-UTF-8 locales", {

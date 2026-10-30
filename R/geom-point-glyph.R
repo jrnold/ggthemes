@@ -2,9 +2,9 @@
 #'
 #' `geom_point_glyph()` is [ggplot2::geom_point()] for the shape palettes made
 #' with `unicode = TRUE`. It draws their shapes from the font that ships with
-#' ggthemes (see [shapes_font()]), reading the font file itself, so the shapes
-#' come out at a common size without setting a font family on the device or a
-#' viewport, and the plot can be saved with [ggplot2::ggsave()].
+#' ggthemes (see [register_shapes_font()]), reading the font file itself, so
+#' the shapes come out at a common size without setting a font family on the
+#' device or a viewport, and the plot can be saved with [ggplot2::ggsave()].
 #'
 #' # Devices
 #'
@@ -23,6 +23,12 @@
 #' Shapes the font does not have, such as the pictographs of
 #' `tableau_shape_pal("weather", unicode = TRUE)`, and base `pch` shapes are
 #' drawn as [ggplot2::geom_point()] draws them.
+#'
+#' Calling `geom_point_glyph()` tells the `unicode = TRUE` palettes that the
+#' shapes font is in use, so they stop warning about shapes it has, for every
+#' plot in the session, including plots drawn with [ggplot2::geom_point()]. That
+#' lasts until ggthemes is unloaded, for example by restarting R or with
+#' `unloadNamespace("ggthemes")`.
 #'
 #' @section Aesthetics:
 #' The aesthetics of [ggplot2::geom_point()]: `x`, `y`, `alpha`, `colour`,
@@ -45,6 +51,7 @@ geom_point_glyph <- function(
   inherit.aes = TRUE # nolint: object_name_linter
 ) {
   check_installed("systemfonts", reason = "to read the shapes font.")
+  check_shapes_font_path()
   use_shapes_font()
   layer(
     data = data,
@@ -88,7 +95,7 @@ GeomPointGlyph <- ggplot2::ggproto(
     if (!shape_in_font(data[["shape"]])) {
       return(ggplot2::draw_key_point(data, params, size))
     }
-    # The defaults `draw_key_point()` uses.
+    # The defaults `draw_key_point()` uses, as of ggplot2 3.5.2.
     data[["colour"]] <- data[["colour"]] %||% "black"
     data[["size"]] <- data[["size"]] %||% 1.5
     data[["stroke"]] <- data[["stroke"]] %||% 0.5
@@ -170,7 +177,8 @@ glyph_points_grob <- function(data) {
 #' @importFrom grid makeContent
 #' @export
 makeContent.ggthemes_glyph_points <- function(x) {
-  child <- if (device_draws_glyphs()) glyph_child(x) else glyph_fallback_child(x)
+  api <- glyph_api()
+  child <- if (device_draws_glyphs(api)) glyph_child(x, api) else glyph_fallback_child(x)
   grid::setChildren(x, gList(child))
 }
 
@@ -191,14 +199,13 @@ glyph_api <- function() {
   api
 }
 
-device_draws_glyphs <- function() {
-  !is.null(glyph_api()) && isTRUE(grDevices::dev.capabilities()[["glyphs"]])
+device_draws_glyphs <- function(api = glyph_api()) {
+  !is.null(api) && isTRUE(grDevices::dev.capabilities()[["glyphs"]])
 }
 
 # Glyph positions are absolute, in big points from the viewport's lower left
 # corner, so the block they form is anchored there with a zero size.
-glyph_child <- function(x) {
-  api <- glyph_api()
+glyph_child <- function(x, api = glyph_api()) {
   metrics <- shapes_font_metrics(x[["codepoint"]])
   fontsize <- rep_len(x[["fontsize"]], length(x[["codepoint"]]))
   xs <- grid::convertX(unit(x[["x"]], "native"), "bigpts", valueOnly = TRUE)

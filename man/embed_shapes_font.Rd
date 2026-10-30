@@ -13,7 +13,8 @@ embed_shapes_font(file, outfile = file)
 overwrites \code{file}.}
 }
 \value{
-\code{file}, invisibly.
+\code{outfile}, invisibly. It is \code{file} unless \code{outfile} is given, so the
+result is always the path of the PDF with the font embedded.
 }
 \description{
 \code{\link[grDevices:pdf]{grDevices::pdf()}} draws the glyphs of \code{\link[=geom_point_glyph]{geom_point_glyph()}} by referring to
@@ -31,23 +32,23 @@ draw the glyphs into the image.
 library("ggplot2")
 p <- ggplot(mtcars, aes(wt, mpg, shape = factor(gear))) +
   geom_point_glyph(size = 3) +
-  scale_shape_cleveland()
+  scale_shape_cleveland(unicode = TRUE)
 path <- tempfile(fileext = ".pdf")
 ggsave(path, p, device = pdf, width = 5, height = 4)
 embed_shapes_font(path)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=shapes_font]{shapes_font()}} for the font itself.
+\code{\link[=register_shapes_font]{register_shapes_font()}} for the font itself.
 
 Other shapes:
 \code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},
 \code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
 \code{\link[=geom_point_glyph]{geom_point_glyph()}},
+\code{\link[=register_shapes_font]{register_shapes_font()}},
 \code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
 \code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
 \code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},
-\code{\link[=shapes_font]{shapes_font()}},
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }
 \concept{shapes}

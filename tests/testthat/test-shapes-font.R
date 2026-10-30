@@ -21,8 +21,8 @@ glyph_hull_area <- function(codepoint, path) {
 
 # `new_shape_pal()` returns the glyph codepoints as negative pch values.
 unicode_palette_codepoints <- function(pal_fn) {
-  pal <- suppressWarnings(pal_fn(unicode = TRUE))
-  -pal(attr(pal, "max_n"))
+  pal <- pal_fn(unicode = TRUE)
+  -suppressWarnings(pal(attr(pal, "max_n")))
 }
 
 unicode_palette_functions <- function() {
@@ -42,18 +42,6 @@ size_spread <- function(codepoints, path) {
   sqrt(max(area) / min(area))
 }
 
-# Registration and the in-use flag outlive a test, so each test that changes
-# them restores the state the package had after loading.
-local_shapes_font_state <- function(env = parent.frame()) {
-  withr::defer(
-    {
-      shapes_font_state[["in_use"]] <- NULL
-      register_shapes_font()
-    },
-    envir = env
-  )
-}
-
 test_that("the font is registered when ggthemes loads", {
   skip_if_not_installed("systemfonts")
   expect_true(shapes_font_registered())
@@ -66,22 +54,38 @@ test_that("the font is registered when ggthemes loads", {
 
 test_that("load-time registration never fails", {
   local_mocked_bindings(shapes_font_path = function() "")
-  expect_false(register_shapes_font())
+  expect_false(try_register_shapes_font())
 })
 
-test_that("shapes_font() registers the font, marks it in use and returns its family name", {
+test_that("register_shapes_font() registers the font, marks it in use and returns its family name", {
   skip_if_not_installed("systemfonts")
   local_shapes_font_state()
   systemfonts::clear_registry()
   shapes_font_state[["in_use"]] <- NULL
-  expect_equal(shapes_font(), "ggthemes shapes")
+  expect_equal(register_shapes_font(), "ggthemes shapes")
   expect_true(shapes_font_registered())
   expect_true(shapes_font_in_use())
 })
 
-test_that("shapes_font() errors when the font file is missing", {
+# systemfonts refuses to register a family name an installed font has, and the
+# docs tell `pdf()` users to install the font.
+test_that("register_shapes_font() leaves a copy of the font installed on the system alone", {
+  skip_if_not_installed("systemfonts")
+  local_shapes_font_state()
+  shapes_font_state[["in_use"]] <- NULL
+  local_mocked_bindings(shapes_font_installed = function() TRUE)
+  local_mocked_bindings(
+    register_font = function(...) stop("A system font called `ggthemes shapes` already exists", call. = FALSE),
+    .package = "systemfonts"
+  )
+  expect_equal(register_shapes_font(), "ggthemes shapes")
+  expect_true(shapes_font_in_use())
+  expect_true(try_register_shapes_font())
+})
+
+test_that("register_shapes_font() errors when the font file is missing", {
   local_mocked_bindings(shapes_font_path = function() "")
-  expect_snapshot(shapes_font(), error = TRUE)
+  expect_snapshot(register_shapes_font(), error = TRUE)
 })
 
 test_that("the font covers every shape of the unicode palettes", {
@@ -133,6 +137,13 @@ test_that("embed_shapes_font() errors for a file that does not exist", {
   expect_snapshot(embed_shapes_font("no-such-file.pdf"), error = TRUE)
 })
 
+test_that("embed_shapes_font() errors for paths that are not single strings", {
+  path <- withr::local_tempfile(fileext = ".pdf")
+  writeLines("", path)
+  expect_snapshot(embed_shapes_font(c("a.pdf", "b.pdf")), error = TRUE)
+  expect_snapshot(embed_shapes_font(path, outfile = NULL), error = TRUE)
+})
+
 test_that("embed_shapes_font() embeds the font a pdf() file only refers to", {
   skip_if_not_installed("systemfonts")
   skip_if(is.null(glyph_api()), "R before 4.3 has no glyph API")
@@ -150,11 +161,16 @@ test_that("embed_shapes_font() embeds the font a pdf() file only refers to", {
   path <- withr::local_tempfile(fileext = ".pdf")
   p <- ggplot2::ggplot(data.frame(x = 1:3, y = 1, g = factor(1:3)), ggplot2::aes(.data$x, .data$y, shape = .data$g)) +
     geom_point_glyph(size = 5) +
-    scale_shape_cleveland()
+    scale_shape_cleveland(unicode = TRUE)
   grDevices::pdf(path)
   print(p)
   grDevices::dev.off()
   expect_false(embeds_truetype(path))
-  expect_invisible(embed_shapes_font(path))
+  outfile <- withr::local_tempfile(fileext = ".pdf")
+  expect_invisible(embed_shapes_font(path, outfile))
+  expect_equal(embed_shapes_font(path, outfile), outfile)
+  expect_false(embeds_truetype(path))
+  expect_true(embeds_truetype(outfile))
+  expect_equal(embed_shapes_font(path), path)
   expect_true(embeds_truetype(path))
 })

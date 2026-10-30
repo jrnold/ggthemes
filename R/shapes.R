@@ -14,8 +14,8 @@
 #' @param unicode If `TRUE`, return pch codes derived from Unicode glyphs, which
 #'   exist for every shape of the palette. They are drawn by the device font, so
 #'   they render as blank boxes in a font without coverage and at unrelated sizes
-#'   in most fonts; the font from [shapes_font()] has the shapes of this palette
-#'   at a common size. If `FALSE`, return base pch codes, which every font can
+#'   in most fonts; the font from [register_shapes_font()] has the shapes of
+#'   this palette at a common size. If `FALSE`, return base pch codes, which every font can
 #'   draw but which exist only for some shapes. The default depends on the
 #'   palette.
 #' @param edition Which edition of the book to take the symbols from. One of:
@@ -38,13 +38,20 @@
 #' The symbols for little overlap vary how much of the circle is filled in.
 #' Only the solid and the open circle have a base pch code, so with
 #' `unicode = FALSE`, `cleveland_shape_pal(overlap = FALSE)` supports two
-#' values. Unlike the other shape palettes, these default to `unicode = TRUE`,
-#' which draws all five. The circle with a
-#' vertical line (U+233D), the heavy ring (U+2B58) and the circled dot (U+2299)
-#' are missing from many fonts and drawn at unrelated sizes in the rest, and
-#' even the plain circles are drawn larger or smaller than base pch circles
-#' depending on the font. The font that ships with ggthemes has them all at a
-#' common size; see [shapes_font()] for how to use it.
+#' values; `unicode = TRUE` draws all five. The circle with a vertical line
+#' (U+233D), the heavy ring (U+2B58) and the circled dot (U+2299) are missing
+#' from many fonts and drawn at unrelated sizes in the rest, and even the plain
+#' circles are drawn larger or smaller than base pch circles depending on the
+#' font. The font that ships with ggthemes has them all at a common size; see
+#' [register_shapes_font()] for how to use it.
+#'
+#' @section Default of `unicode`:
+#' `r lifecycle::badge("deprecated")`
+#'
+#' `unicode` defaults to `FALSE`, as for the other shape palettes, but that
+#' default will change to `TRUE` in ggthemes 9.0.0, so that both sets draw all
+#' five symbols. Leaving `unicode` unset is deprecated; set it to keep the
+#' current behaviour or to adopt the new one.
 #'
 #' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references
@@ -64,8 +71,9 @@
 #'   [ggplot2::discrete_scale()].
 #' @export
 # nolint end
-cleveland_shape_pal <- function(overlap = TRUE, unicode = TRUE, edition = c("1985", "1994")) {
+cleveland_shape_pal <- function(overlap = TRUE, unicode = NULL, edition = c("1985", "1994")) {
   edition <- rlang::arg_match(edition)
+  unicode <- cleveland_unicode(unicode, "cleveland_shape_pal", user_env = rlang::caller_env())
   tables <- if (edition == "1985") {
     ggthemes::ggthemes_data$shapes$cleveland
   } else {
@@ -89,13 +97,33 @@ cleveland_shape_pal <- function(overlap = TRUE, unicode = TRUE, edition = c("198
 #' Hobart Press, Summit, NJ, 1994, pp. 154-164, 234-239.
 #'
 #' @example inst/examples/ex-scale_shape_cleveland.R
-scale_shape_cleveland <- function(overlap = TRUE, ..., unicode = TRUE, edition = c("1985", "1994")) {
+scale_shape_cleveland <- function(overlap = TRUE, ..., unicode = NULL, edition = c("1985", "1994")) {
   edition <- rlang::arg_match(edition)
+  unicode <- cleveland_unicode(unicode, "scale_shape_cleveland", user_env = rlang::caller_env())
   discrete_scale(
     "shape",
     palette = cleveland_shape_pal(overlap, unicode = unicode, edition = edition),
     ...
   )
+}
+
+# The default is resolved here, rather than in the palette alone, so that a
+# call to the scale warns as the scale: lifecycle only shows a soft
+# deprecation to the code that called the function directly.
+cleveland_unicode <- function(unicode, fn, user_env) {
+  if (!is.null(unicode)) {
+    return(unicode)
+  }
+  deprecate_soft(
+    "8.0.0",
+    I(sprintf("Calling `%s()` without `unicode`", fn)),
+    details = c(
+      "i" = "`unicode` defaults to `FALSE`, and will default to `TRUE` in ggthemes 9.0.0.",
+      "i" = "Set `unicode = FALSE` to keep base pch shapes, or `unicode = TRUE` to draw all five symbols."
+    ),
+    user_env = user_env
+  )
+  FALSE
 }
 
 #' Filled Circle Shape palette (discrete)
