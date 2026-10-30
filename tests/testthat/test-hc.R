@@ -157,10 +157,20 @@ test_that("theme_hc keeps title justification when a style sets title colour", {
   expect_equal(dark$text$colour, "#E0E0E3")
 })
 
-test_that("bgcolor raises warning", {
-  expect_snapshot(x <- theme_hc(bgcolor = "darkunica"))
+test_that("theme_hc bgcolor is defunct", {
+  expect_snapshot(theme_hc(bgcolor = "darkunica"), error = TRUE)
 })
 
 test_that("theme_hc draws correctly", {
   expect_doppelganger("theme_hc", theme_test_plot() + theme_hc())
+})
+
+test_that("theme_hc is a complete theme that ignores the active theme", {
+  expect_true(attr(theme_hc(), "complete"))
+  old <- ggplot2::theme_set(
+    ggplot2::theme_grey() + ggplot2::theme(plot.caption = ggplot2::element_text(colour = "red"))
+  )
+  withr::defer(ggplot2::theme_set(old))
+  caption <- ggplot2::calc_element("plot.caption", ggplot2::complete_theme(theme_hc()))
+  expect_false(identical(caption$colour, "red"))
 })

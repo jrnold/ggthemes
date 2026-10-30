@@ -27,7 +27,9 @@
 #' @export
 #' @importFrom ggplot2 theme_bw
 theme_tufte <- function(base_size = 11, base_family = "serif", ticks = TRUE) {
-  ## TODO: start with theme_minimal
+  # Not theme_minimal(): it differs from theme_bw() only in dropping the ticks
+  # and widening the axis text margins to make up for them, which this theme
+  # would have to undo.
   ret <- theme_bw(base_family = base_family, base_size = base_size) +
     theme(
       legend.background = element_blank(),

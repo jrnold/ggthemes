@@ -27,12 +27,9 @@ test_that("theme_pander works with gm = FALSE", {
 })
 
 
-test_that("theme_pander warns about ff argument", {
-  expect_snapshot(x <- theme_pander(ff = ""))
-})
-
-test_that("theme_pander warns about fs argument", {
-  expect_snapshot(x <- theme_pander(fs = 1))
+test_that("theme_pander ff and fs are defunct", {
+  expect_snapshot(theme_pander(ff = ""), error = TRUE)
+  expect_snapshot(theme_pander(fs = 1), error = TRUE)
 })
 
 test_that("theme_pander works with gm = FALSE", {
@@ -79,4 +76,14 @@ test_that("theme_pander draws correctly", {
 
 test_that("palette_pander returns no colors for n = 0", {
   expect_equal(palette_pander(0), character())
+})
+
+test_that("theme_pander is a complete theme that ignores the active theme", {
+  expect_true(attr(theme_pander(), "complete"))
+  old <- ggplot2::theme_set(
+    ggplot2::theme_grey() + ggplot2::theme(plot.caption = ggplot2::element_text(colour = "red"))
+  )
+  withr::defer(ggplot2::theme_set(old))
+  caption <- ggplot2::calc_element("plot.caption", ggplot2::complete_theme(theme_pander()))
+  expect_false(identical(caption$colour, "red"))
 })

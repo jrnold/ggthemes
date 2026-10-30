@@ -8,9 +8,9 @@ theme_pander(
   base_size = 12,
   base_family = "sans",
   nomargin = TRUE,
-  ff = NULL,
+  ff = lifecycle::deprecated(),
   fc = "black",
-  fs = NULL,
+  fs = lifecycle::deprecated(),
   gM = TRUE,
   gm = TRUE,
   gc = "grey",
@@ -29,11 +29,11 @@ theme_pander(
 
 \item{nomargin}{Whether to suppress the white space around the plot.}
 
-\item{ff}{Font family, like \code{"sans"}. \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{base_family} instead.}
+\item{ff}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}} Use \code{base_family} instead.}
 
 \item{fc}{Font color, as a name or hex code.}
 
-\item{fs}{Font size (integer). \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{base_size} instead.}
+\item{fs}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}} Use \code{base_size} instead.}
 
 \item{gM}{Whether to draw the major grid.}
 
@@ -61,6 +61,13 @@ The pander package ships with a default theme when the 'unify plots' option is
 enabled via \code{panderOptions}, which is now also available outside of pander internals, like \code{evals},
 \code{eval.msgs} or \code{Pandoc.brew}.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=palette_pander]{palette_pander()}} for discrete color and fill scales as the
+default palettes, so a plot draws in the theme's colors without a matching
+scale. A \verb{scale_*()} added to the plot still takes precedence.
+}
+
 \examples{
 require(ggplot2)
 if (require(pander)) {

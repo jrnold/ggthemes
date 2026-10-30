@@ -9,7 +9,8 @@ theme_foundation(
   base_family = "",
   ink = "black",
   paper = "white",
-  accent = "#3366FF"
+  accent = "#3366FF",
+  header_family = NULL
 )
 }
 \arguments{
@@ -18,6 +19,10 @@ theme_foundation(
 \item{base_family}{base font family}
 
 \item{ink, paper, accent}{colour for foreground, background, and accented elements respectively.}
+
+\item{header_family}{font family for titles and headers. The default, \code{NULL},
+uses theme inheritance to set the font. This setting affects axis titles,
+legend titles, the plot title and tag text.}
 }
 \value{
 A ggplot2 theme object (class \code{theme}).

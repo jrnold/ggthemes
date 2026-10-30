@@ -69,6 +69,7 @@
 #' @returns A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
+#' @importFrom lifecycle deprecate_soft
 #' @export
 # nolint end
 cleveland_shape_pal <- function(overlap = TRUE, unicode = NULL, edition = c("1985", "1994")) {
@@ -129,10 +130,12 @@ cleveland_unicode <- function(unicode, fn, user_env) {
 #' Filled Circle Shape palette (discrete)
 #'
 #' @description
-#' `r lifecycle::badge("deprecated")`
+#' `r lifecycle::badge("defunct")`
 #'
-#' This function was deprecated because unicode glyphs used for the circles
-#' vary in size, making them unusable for plotting.
+#' This function was deprecated in ggthemes 5.0.0 and is now defunct, because
+#' the unicode glyphs used for the circles vary in size, making them unusable
+#' for plotting. For circles that vary by amount of fill, use
+#' `tableau_shape_pal("proportions", unicode = TRUE)`.
 #'
 #' Shape palette with circles varying by amount of fill. This uses
 #' the set of 3 circle fill values in Lewandowsky and Spence (1989):
@@ -145,29 +148,26 @@ cleveland_unicode <- function(unicode, fn, user_env) {
 #' Lewandowsky, Stephan and Ian Spence (1989)
 #' "Discriminating Strata in Scatterplots", Journal of
 #' the American Statistical Association, <https://www.jstor.org/stable/2289649>
-#' @family shapes
-#' @importFrom lifecycle deprecate_warn
 #' @returns A palette function. It takes the number of shapes `n` and returns an integer vector of `n`
 #'   shape (`pch`) codes, and can be used as the `palette` argument of
 #'   [ggplot2::discrete_scale()].
+#' @keywords internal
 #' @export
-#' @example inst/examples/ex-circlefill_shape_pal.R
 circlefill_shape_pal <- function() {
-  deprecate_warn("5.0.0", "circlefill_shape_pal()")
-  # `pch_unicode`, not `pch`: this palette grades circles by fill fraction,
-  # which base pch cannot express at all, so it has no font-independent form.
-  new_shape_pal(
-    ggthemes::ggthemes_data[["shapes"]][["circlefill"]],
-    unicode = TRUE
+  lifecycle::deprecate_stop(
+    "5.0.0",
+    "circlefill_shape_pal()",
+    I("`tableau_shape_pal(\"proportions\", unicode = TRUE)`")
   )
 }
 
 #' Filled circle shape scale (deprecated)
 #'
 #' @description
-#' `r lifecycle::badge("deprecated")`
+#' `r lifecycle::badge("defunct")`
 #'
-#' This scale has no direct replacement. For circles that vary by amount of
+#' This scale was deprecated in ggthemes 5.0.0 and is now defunct. It has no
+#' direct replacement. For circles that vary by amount of
 #' fill, use `scale_shape_tableau(palette = "proportions", unicode = TRUE)`;
 #' see [scale_shape_tableau()].
 #'
@@ -175,14 +175,15 @@ circlefill_shape_pal <- function() {
 #' @export
 #'
 #' @inheritParams ggplot2::scale_x_discrete
-#' @family shapes
-#' @importFrom lifecycle deprecate_warn
 #' @seealso
 #' [circlefill_shape_pal()] for a description of the palette.
-#' @example inst/examples/ex-scale_shape_circlefill.R
+#' @keywords internal
 scale_shape_circlefill <- function(...) {
-  deprecate_warn("5.0.0", "scale_shape_circlefill()")
-  discrete_scale("shape", palette = circlefill_shape_pal(), ...)
+  lifecycle::deprecate_stop(
+    "5.0.0",
+    "scale_shape_circlefill()",
+    I("`scale_shape_tableau(palette = \"proportions\", unicode = TRUE)`")
+  )
 }
 
 #' Shape palette from Tremmel (1995) (discrete)

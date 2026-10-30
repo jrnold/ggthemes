@@ -97,12 +97,10 @@ p + scale_shape_tremmel(overlap = TRUE)
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}} for a description of the palette.
 
 Other shapes:
-\code{\link[=circlefill_shape_pal]{circlefill_shape_pal()}},
 \code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
 \code{\link[=embed_shapes_font]{embed_shapes_font()}},
 \code{\link[=geom_point_glyph]{geom_point_glyph()}},
 \code{\link[=register_shapes_font]{register_shapes_font()}},
-\code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
 \code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }

@@ -7,7 +7,7 @@ test_that("geom_rangeframe drops rows with NA x/y before drawing", {
     x = c(1, 2, 3, NA, 5),
     y = c(10, NA, 30, 40, 50),
     colour = "black",
-    size = 0.5,
+    linewidth = 0.5,
     linetype = 1,
     alpha = NA,
     PANEL = 1,
@@ -29,7 +29,7 @@ test_that("geom_rangeframe draws the full range of non-missing values when NAs a
     x = c(1, 2, 3, NA, 5),
     y = c(10, NA, 30, 40, 50),
     colour = "black",
-    size = 0.5,
+    linewidth = 0.5,
     linetype = 1,
     alpha = NA,
     PANEL = 1,
@@ -89,4 +89,17 @@ test_that("geom_rangeframe rejects a sides that is not a single string", {
 
 test_that("the sides error names the value it rejected", {
   expect_error(geom_rangeframe(sides = "xy"), "xy")
+})
+
+test_that("geom_rangeframe draws lines with the linewidth aesthetic", {
+  p <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) + geom_rangeframe(linewidth = 2)
+  expect_no_warning(grob <- ggplot2::layer_grob(p)[[1]])
+  expect_equal(unique(grob$children[[1]]$gp$lwd), 2 * ggplot2::.pt)
+})
+
+test_that("geom_rangeframe still accepts the deprecated size", {
+  withr::local_options(lifecycle_verbosity = "warning")
+  expect_warning(layer <- geom_rangeframe(size = 2), "linewidth")
+  grob <- ggplot2::layer_grob(ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) + layer)[[1]]
+  expect_equal(unique(grob$children[[1]]$gp$lwd), 2 * ggplot2::.pt)
 })

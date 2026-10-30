@@ -99,6 +99,11 @@ An eight-color colorblind safe qualitative discrete palette.
 deprecated in favor of \code{scale_colour_colourblind()} and
 \code{scale_color_colorblind()}.
 }
+\details{
+These are the Okabe-Ito colors, the same as base R's
+\code{palette.colors(palette = "Okabe-Ito")}. The scales are a convenience for
+using them in ggplot2.
+}
 \examples{
 library(ggplot2)
 library(scales)

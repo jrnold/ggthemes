@@ -17,6 +17,14 @@ A ggplot2 theme object (class \code{theme}).
 \description{
 Theme similar to the default settings of LibreOffice Calc charts.
 }
+\section{Palettes}{
+
+The theme sets \code{\link[=calc_pal]{calc_pal()}} for discrete color and fill scales and
+\code{\link[=calc_shape_pal]{calc_shape_pal()}} for shape as the default palettes, so a plot draws in the
+theme's colors without a matching scale. A \verb{scale_*()} added to the plot
+still takes precedence.
+}
+
 \examples{
 library(ggplot2)
 

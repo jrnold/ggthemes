@@ -6,17 +6,17 @@
 \alias{scale_color_stata}
 \title{Stata color scales}
 \usage{
-scale_colour_stata(scheme = NULL, ...)
+scale_colour_stata(scheme = "stcolor", ...)
 
-scale_fill_stata(scheme = NULL, ...)
+scale_fill_stata(scheme = "stcolor", ...)
 
-scale_color_stata(scheme = NULL, ...)
+scale_color_stata(scheme = "stcolor", ...)
 }
 \arguments{
 \item{scheme}{A string, the Stata scheme. One of: \code{"s2color"},
 \code{"s1rcolor"}, \code{"s1color"}, \code{"mono"}, \code{"stcolor"}, or \code{"economist"}.
-If \code{NULL}, the default, \code{"s2color"} is used and a deprecation message is
-issued; this default becomes \code{"stcolor"} in ggthemes 8.0.0.}
+The default, \code{"stcolor"}, is Stata's factory default since Stata 18.
+\code{NULL} is the same as the default.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}

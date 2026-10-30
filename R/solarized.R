@@ -101,6 +101,10 @@ scale_color_solarized <- scale_colour_solarized
 #' @param light If `TRUE` (the default), use the light theme; otherwise, use
 #'   the dark theme.
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [solarized_pal()] for discrete color and fill scales as the
+#' default palettes, so a plot draws in the theme's colors without a matching
+#' scale. A `scale_*()` added to the plot still takes precedence.
 #' @export
 #' @family themes solarized
 #' @example inst/examples/ex-theme_solarized.R
@@ -108,6 +112,9 @@ theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
   rebase <- solarized_rebase(light)
   ret <- (theme_bw(base_size = base_size, base_family = base_family) +
     theme(
+      # Unmapped geoms draw in the body text colour, so they stay visible on
+      # the dark variant's background.
+      geom = ggplot2::element_geom(ink = unname(rebase["rebase0"]), paper = unname(rebase["rebase03"])),
       text = element_text(colour = rebase["rebase01"]),
       title = element_text(color = rebase["rebase0"]),
       line = element_line(color = rebase["rebase01"]),
@@ -136,7 +143,8 @@ theme_solarized <- function(base_size = 12, base_family = "", light = TRUE) {
         linetype = 0
       )
     ))
-  ret
+  ret +
+    theme_palettes(solarized_pal())
 }
 
 #' @rdname theme_solarized
@@ -145,6 +153,9 @@ theme_solarized_2 <- function(base_size = 12, base_family = "", light = TRUE) {
   rebase <- solarized_rebase(light)
   ret <- (theme_foundation(base_size = base_size, base_family = base_family) +
     theme(
+      # Unmapped geoms draw in the body text colour, so they stay visible on
+      # the dark variant's background.
+      geom = ggplot2::element_geom(ink = unname(rebase["rebase0"]), paper = unname(rebase["rebase03"])),
       text = element_text(color = rebase["rebase01"]),
       title = element_text(color = rebase["rebase0"]),
       line = element_line(color = rebase["rebase01"]),
@@ -181,5 +192,6 @@ theme_solarized_2 <- function(base_size = 12, base_family = "", light = TRUE) {
         linetype = 0
       )
     ))
-  ret
+  ret +
+    theme_palettes(solarized_pal())
 }

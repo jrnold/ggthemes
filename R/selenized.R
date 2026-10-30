@@ -85,13 +85,18 @@ scale_fill_selenized <- function(..., accent = "blue", variant = "light") {
 #'
 #' Text uses the scheme's foreground, `fg_0`, and titles its bold foreground,
 #' `fg_1`. Grid lines use `bg_1`, and axis lines and ticks the dim foreground,
-#' `dim_0`. With ggplot2 4.0.0 or later, geoms default to the foreground and
+#' `dim_0`. Geoms default to the foreground and
 #' background colors, so that they show on the dark variants. Use
 #' [scale_colour_selenized()] with the same `variant` for matching data colors.
 #'
 #' @inheritParams ggplot2::theme_grey
 #' @inheritParams selenized_pal
 #' @returns A ggplot2 theme object (class `theme`).
+#' @section Palettes:
+#' The theme sets [selenized_pal()], for the same `variant`, for discrete color
+#' and fill as the default palettes, so a plot draws in the theme's colors
+#' without a matching scale. A `scale_*()` added to the plot still takes
+#' precedence.
 #' @export
 #' @family themes selenized
 #' @example inst/examples/ex-theme_selenized.R
@@ -123,5 +128,6 @@ theme_selenized <- function(base_size = 12, base_family = "", variant = "light")
       strip.background = element_rect(fill = base[["bg_1"]], colour = NA),
       strip.text = element_text(colour = base[["fg_1"]]),
       plot.background = element_rect(fill = base[["bg_0"]], colour = NA)
-    )
+    ) +
+    theme_palettes(selenized_pal(variant = variant))
 }

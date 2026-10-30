@@ -260,3 +260,7 @@ test_that("scale_colour_tableau() takes type and direction by name only", {
   expect_snapshot(scale_colour_tableau("Tableau 20", "regular"), error = TRUE)
   expect_snapshot(scale_fill_tableau("Tableau 20", "regular"), error = TRUE)
 })
+
+test_that("tableau_color_pal's Tableau 10 is base R's Tableau 10 palette", {
+  expect_equal(toupper(tableau_color_pal()(10)), toupper(unname(grDevices::palette.colors(10, "Tableau 10"))))
+})

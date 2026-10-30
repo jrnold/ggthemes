@@ -12,10 +12,12 @@ shape (\code{pch}) codes, and can be used as the \code{palette} argument of
 \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#defunct}{\figure{lifecycle-defunct.svg}{options: alt='[Defunct]'}}}{\strong{[Defunct]}}
 
-This function was deprecated because unicode glyphs used for the circles
-vary in size, making them unusable for plotting.
+This function was deprecated in ggthemes 5.0.0 and is now defunct, because
+the unicode glyphs used for the circles vary in size, making them unusable
+for plotting. For circles that vary by amount of fill, use
+\code{tableau_shape_pal("proportions", unicode = TRUE)}.
 
 Shape palette with circles varying by amount of fill. This uses
 the set of 3 circle fill values in Lewandowsky and Spence (1989):
@@ -24,23 +26,9 @@ three-quarters, and one-quarter.
 
 This palette supports up to five values.
 }
-\examples{
-circlefill_shape_pal()(3)
-}
 \references{
 Lewandowsky, Stephan and Ian Spence (1989)
 "Discriminating Strata in Scatterplots", Journal of
 the American Statistical Association, \url{https://www.jstor.org/stable/2289649}
 }
-\seealso{
-Other shapes:
-\code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
-\code{\link[=embed_shapes_font]{embed_shapes_font()}},
-\code{\link[=geom_point_glyph]{geom_point_glyph()}},
-\code{\link[=register_shapes_font]{register_shapes_font()}},
-\code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
-\code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
-\code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},
-\code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
-}
-\concept{shapes}
+\keyword{internal}

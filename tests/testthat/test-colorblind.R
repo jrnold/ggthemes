@@ -51,3 +51,7 @@ test_that("scale_fill_colorblind works", {
 test_that("scale_fill_colorblind(black = FALSE) works", {
   expect_s3_class(scale_fill_colorblind(black = FALSE), "ScaleDiscrete")
 })
+
+test_that("colorblind_pal is base R's Okabe-Ito palette", {
+  expect_equal(toupper(colorblind_pal()(8)), unname(grDevices::palette.colors(8, "Okabe-Ito")))
+})
