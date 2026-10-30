@@ -29,3 +29,15 @@ thm = "thm"
 canva = "canva"
 # Stata's "vlarge" size name
 vlarge = "vlarge"
+# "PNGs": typos splits it and reads "PN" as a typo for "ON"
+PN = "PN"
+# IHS Markit, a data source credited in the Economist articles
+IHS = "IHS"
+# "%.1fpt", a sprintf() format for font sizes in the Economist articles
+fpt = "fpt"
+# Noy and Zhang (2023), cited in the Economist 2024 article
+Noy = "Noy"
+# "The Times They Are a-Changin'", a song title quoted in the Economist 2024 article
+Changin = "Changin"
+# Quoted from the 2017 Economist style guide with [sic]
+lengthly = "lengthly"

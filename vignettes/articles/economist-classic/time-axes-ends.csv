@@ -1,0 +1,8 @@
+end,gap,neighbour,n
+first,1-2,dropped,26
+first,3+,dropped,3
+first,3+,kept,12
+last,1-2,dropped,23
+last,1-2,kept,9
+last,3+,dropped,5
+last,3+,kept,23

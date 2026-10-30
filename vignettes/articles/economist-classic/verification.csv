@@ -1,0 +1,27 @@
+section,checked,good,ok,poor,wrong
+(claims since dropped),508,259,77,16,156
+Anatomy,50,42,6,2,0
+Chart sizes,89,85,0,4,0
+Chart types,207,125,57,20,5
+Colour: ground,53,26,24,3,0
+Colour: order,186,172,0,3,11
+Colour: palette,83,78,0,3,2
+Layout,58,28,19,7,4
+Scope,18,18,0,0,0
+bar_column_side_by_side,163,147,4,11,1
+bar_column_stacked,192,159,4,25,4
+blob_heads,87,86,0,0,1
+bubble,4,1,0,3,0
+connected_scatter,1,1,0,0,0
+double_scale,105,100,0,4,1
+fan_forecast,3,3,0,0,0
+lines,153,141,0,5,7
+lines_stacked_area,112,54,51,1,6
+pictogram,3,1,0,1,1
+pie_doughnut,7,5,0,1,1
+scatter,66,65,0,1,0
+slope,6,6,0,0,0
+table,66,48,0,11,7
+thermometer,6,6,0,0,0
+timeline,7,5,0,2,0
+waterfall,2,2,0,0,0

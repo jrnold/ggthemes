@@ -64,8 +64,8 @@ test_that("the suggested device call names a real argument", {
   # `png()` takes `family` through `...`; `cairo_pdf()` declares it outright.
   # `ragg::agg_png()`, which the replaced advice named, accepts it in neither
   # form -- following that advice raised "unused argument (family = ...)".
-  # `ragg` is not a declared dependency, so that is asserted by absence above
-  # rather than by probing its formals here.
+  # That is asserted by absence above rather than by probing its formals here,
+  # since `ragg` is only suggested.
   expect_true("family" %in% names(formals(grDevices::cairo_pdf)))
 })
 

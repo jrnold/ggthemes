@@ -68,7 +68,111 @@
   ggplot2's scales do. `type`, `direction`, `guide` and `alt` must be named,
   and passing them by position is an error that says so (#275).
 
+- `theme_economist_2017()`'s `base_size` is now the size of the axis labels, as
+  in `theme_economist()`, so the default of 10 gives 10pt axis labels, like any
+  other ggplot2 theme's body text, where before it gave the guide's own sizes
+  (7pt axis labels, a 9.5pt title). Every other size is still the guide's size
+  relative to its 7pt axis labels. Charts drawn with the default `base_size` are
+  now larger by a factor of 10 / 7; use `base_size = 7` to draw the guide's own
+  sizes, as the examples and articles now do.
+
+- `theme_economist()` now matches the classic Economist charts as measured in a
+  corpus of the print charts of 2012 to 2018. Every size is now in base sizes,
+  so a chart keeps its proportions at any `base_size`. Charts drawn with the
+  default `base_size` look different:
+
+  - Title, subtitle and source line are flush left with the chart, not with
+    the panel. The title is 1.45 base sizes (was 1.5), the subtitle 1.15 (was
+    1) and the source line 0.95 (was 0.8), and the source line is left aligned.
+  - The margins are 1.2 base sizes at the top and bottom and 1.9 at the sides,
+    where they were fixed at 12pt and 10pt.
+  - The labels of a right-hand value axis are ranged right, flush with the
+    chart's edge, and set 0.6 base sizes off the panel. They were ranged left,
+    against the panel.
+  - Ticks have the sizes of the 2017 style guide: 0.7 base sizes long, still
+    pointing into the panel, and 0.06 wide, where they were 0.5 long with
+    ggplot2's default weight. Axis titles sit 0.07 base sizes from an x axis
+    and 0.43 from a y axis.
+  - The black axis rule is 0.046 base sizes wide, 0.46pt at the default
+    `base_size` of 10, where it was about 1.1pt at every size. The white
+    gridlines are 0.08 base sizes, 0.8pt at the default, where they were 1.9pt.
+  - The key sits flush left under the subtitle and above the panel, with no
+    margin around it and its entries a base size apart. Its text is the size of
+    the axis text (was 1.25 base sizes) and its keys are sized in base sizes,
+    not in lines, so they shrink with `base_size`.
+  - Panel headings are flush left and 1.15 base sizes (was 1.25).
+
+- `economist_pal()` gives five and six series the colours the paper's print
+  charts of 2012 to 2015 used most: gray is now the fifth colour and light
+  green the sixth, where they were light green and dark green. Charts with five
+  or six filled series look different.
+
+- The classic Economist colours used by `theme_economist()` and
+  `economist_pal()` change to the paper's print specs, inferred as CMYK and
+  rendered through US Web Coated SWOP, as the web images of the print charts
+  usually showed them; the old values were sampled from charts of 2012, which
+  went through a different export that shifted every colour. The changes are
+  small (the blues, grays, greens and the ground move by a few units of colour
+  difference), and the tab red is now Economist Red, `#e3120b`. The rows of
+  `ggthemes_data$economist$fg` and `$bg` keep their names and order.
+
 ## New features
+
+- New `theme_economist_2024()`, `economist_2024_pal()`,
+  `economist_2024_gradient_pal()`, `scale_colour_economist_2024()` and friends,
+  and `economist_2024_chart()` draw charts in the style *The Economist* has used
+  since its redesign of March 2024: a warm gray print or white web ground, red
+  first, a 20/17/15 type scale and a short red tab. The new article "The
+  Economist chart style guide: 2024 onward" describes the design. The colors
+  are provisional and will be updated when a better corpus of examples is
+  available. `guide_colourbar_economist_2024()`, the default guide of the
+  continuous 2024 scales, draws a long, thin colorbar with its labels above it.
+
+- New `geom_ribbon_economist_2024()` draws a band of uncertainty as *The
+  Economist* has since 2024: a translucent ribbon in the series' color with two
+  hairline edges. New `geom_gridline_economist_2024()` draws horizontal
+  gridlines that break where a name stands on them, in the colour and width of
+  `theme_economist_2024()`.
+
+- New `economist_chart()` finishes a `theme_economist()` plot as a classic
+  print chart of *The Economist*: it draws the red tab, 5pt by 15pt at the top
+  left, which is on 99% of the paper's print charts of 2012 to 2016, an
+  optional number box at the top right and, with `scale_break`, the classic
+  zigzag that marks a value axis not starting at zero.
+
+- New `scale_x_date_economist()` and `guide_axis_economist_date()` label a
+  date axis as *The Economist*'s classic print charts did, by the span of the
+  data, as measured on about 200 of the paper's charts of 2012 to 2016: day
+  numbers within one month ("1 4 7 ... 28", "August 2013"), month names
+  centered under each month with the year beneath ("J F M ... 2016"), each year
+  centered under its span ("2015 2016"), or years on the ticks every one, two
+  or five years ("1996 2000 05 10 15"). The guide
+  measures the axis when the plot is drawn and shortens the labels to fit:
+  "September", "Sep" or "S"; "2016" or "16".
+
+- New `gt_theme_economist()` and `gt_theme_economist_2017()` style a gt table
+  as a classic (2012-16) or a 2017 Economist table, and `economist_table()`
+  sets one in the frame of a chart, with the red tab, title, subtitle,
+  footnote and source (HTML output only). gt is a new suggested package.
+
+- New `economist_plus_minus()` and `economist_plus_minus_format()` label a value
+  axis as the classic charts did: negative values without minus signs, and a
+  "+" and "–" on either side of zero.
+
+- `ggthemes_data$economist` gains a `"coral"` series colour (`#f15a40`), used in
+  the print charts from 2015, `"economist red"` (`#e3120b`) and `"number box"`
+  (`#518fa6`) in `bg`, and `palette`, the classic palette's inferred CMYK specs
+  with their screen colours and a confidence for each.
+
+- New article, "The classic Economist chart style, 2012-2016": a style guide
+  for the paper's pre-2017 print charts, measured on a corpus of them, with the
+  2017 guide's example charts redrawn in the classic style.
+
+- `theme_economist()` gains `lightpanel`, which draws the panels paler than a
+  deeper blue-gray ground, as many Economist charts of 2015 to 2018 did.
+  `dkpanel`, which draws them darker than the ground as in 2012 to 2014, is now
+  documented in the same terms. The two cannot be combined. The new colors are
+  `"deep blue-gray"` and `"pale blue-gray"` in `ggthemes_data$economist$bg`.
 
 - The dark variants of `theme_solarized()`, `theme_solarized_2()`,
   `theme_hc()` (`"darkunica"` and `"default_dark"`) and `theme_stata()`
@@ -101,6 +205,10 @@
   (#265).
 
 ## Minor improvements and fixes
+
+- `economist_2017_year()` writes the first year of a new century in full when
+  no century boundary is labeled, so `c(1970, 1990, 2010)` gives "1970", "90",
+  "2010", where the last was "10".
 
 - `scale_colour_colorblind()` now always warns that it is deprecated; use
   `scale_colour_colourblind()` (#287).
@@ -212,6 +320,74 @@
 
 - `theme_solarized_2()` now colors its axis lines. A typo in the color name left
   them unset (#272).
+
+- New `theme_economist_2017()`, `economist_2017_pal()`,
+  `economist_2017_gradient_pal()`, `scale_colour_economist_2017()`,
+  `scale_fill_economist_2017()` and their continuous `_c` versions implement
+  *The Economist visual styleguide* (v1.2, 4 May 2017), the design the paper
+  used from 2017 until its 2024 redesign, for both print and web
+  (`media = c("print", "web")`). They sit alongside `theme_economist()` and
+  `economist_pal()`, which are unchanged. Print and web use the same
+  palettes, as the guide's own web charts do: the guide's five
+  per-chart-type color orders (`type`) and its two high-contrast supporting
+  sets (`set`); the continuous scales use the guide's equal-lightness ramps. Every size in the theme, including rule weights,
+  margins and panel spacing, is relative to `base_size`, and is the guide's
+  own at the default `base_size = 10`. The default font is
+  `economist_2017_font()`: the first installed of Fira Sans Condensed and
+  Roboto Condensed, the closest open substitutes for the guide's Econ Sans
+  Condensed, and otherwise `"sans"`. It also returns `"sans"` when the open
+  device is base R's `pdf()` or `postscript()`, which cannot draw other
+  families.
+
+- New `geom_label_economist_2017()` draws the 2017 styleguide's text blocks: a label in
+  a shaded box with a pointer on one side, sized in points to the guide's
+  specification. `annotate("label_economist_2017", ...)` adds a single one.
+
+- New timeline layers for the 2017 styleguide's timelines:
+  `geom_event_economist_2017()` (a dated event: a rule with an arrowhead to its
+  label), `geom_span_economist_2017()` (a shaded period in the panel),
+  `geom_period_economist_2017()` (thin alternating bars for successive periods,
+  such as terms of office) and `geom_year_band_economist_2017()` (the year band used as
+  a timeline's x-axis).
+
+- New `guide_axis_economist_2017()` draws value-axis labels the way *The
+  Economist* does: inside the panel, just above their gridlines and flush
+  with its edge.
+
+- New `economist_2017_chart()` finishes a plot as an Economist chart. It
+  draws what a theme cannot set: the red tab above the title, the red rule
+  across the top of a web chart and a red marker above each panel heading. It
+  also lays the plot out as the guide does: a web chart's key beside the
+  title, y-axis titles above the panel, and end-of-axis labels kept within
+  it. It takes a `footnote`, set ranged right on the source line, a `number`
+  for the guide's number box, and the `tab` size.
+
+- New `economist_2017_size()` returns the guide's chart sizes (1, 2 and 3
+  columns, leader, Free exchange, Espresso and the special-report grid) in
+  inches or points, for `ggsave()` or knitr, and `economist_2017_footnote()`
+  returns the guide's footnote symbols in order of use (`*`, `†`, `‡`, `§`,
+  `**`, ...).
+
+- New `geom_scale_break_economist_2017()` draws the styleguide's broken-scale mark (p.25), a
+  small zigzag on a y-axis that does not start at zero. It is decoration, not
+  a transformation: truncate the axis with the scale's `limits` and add the
+  layer to declare it.
+
+- New `economist_2017_year()` and `economist_2017_year_format()` label a dated axis as
+  *The Economist* does, with years shortened to two digits except the first
+  label and each century (`1948 52 56 ... 96 2000 04`).
+
+- New articles on the package website: "The Economist, 2017" covers the theme
+  at different chart sizes, and "Reproducing the 2017 Economist styleguide"
+  works through the guide's examples page by page.
+
+- `ggthemes_data` gains `economist_2017`, the colors of the 2017 styleguide
+  for print and web, with its chart sizes, typefaces and footnote symbols,
+  and every swatch of the print palette on p.11 with the CMYK it specifies
+  and its sRGB conversion through ISO Coated v2 (FOGRA39), the guide's own
+  color space, from which the print palettes and theme colors are drawn; and `economist_design_system`, the color tokens of
+  *The Economist*'s current Design System and of Marber, with derived
+  lightness ramps for nine color families.
 
 # ggthemes 7.0.0
 

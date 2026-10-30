@@ -14,6 +14,52 @@
 #' article on the package website draws every one of them. `ggthemes_data`
 #' contains no fonts: themes set their typefaces in code.
 #'
+#' `ggthemes_data$economist` contains the classic (pre-2017) colors used by
+#' [theme_economist()] and [economist_pal()]: `bg` (grounds, panels and the
+#' red) and `fg` (series colors). `ggthemes_data$economist$palette` gives the
+#' classic palette as print specs: the CMYK of each color, inferred from the
+#' web images of the print charts since no primary source has been found;
+#' `hex`, that CMYK rendered through US Web Coated SWOP, the profile the web
+#' images of print charts were exported with for most of 2010 to 2018, which
+#' is the value `bg` and `fg` use (Economist Red is the brand guide's screen
+#' value); and a `confidence` in the inference ("known", "high", "medium" or
+#' "low").
+#'
+#' `ggthemes_data$economist_2017` contains the colors of *The Economist
+#' visual styleguide* (v1.2, 4 May 2017), one complete set per medium
+#' (`print` and `web`): the ground, gridline, text, baseline, source and
+#' accent colors used by [theme_economist_2017()], the categorical palettes
+#' used by [economist_2017_pal()], and the equal-lightness ramps used by
+#' [economist_2017_gradient_pal()]. The palettes and ramps are the same for
+#' both media. `ggthemes_data$economist_2017$print$swatches` lists every
+#' swatch of the guide's print chart palette: its name and group as the guide
+#' gives them, the CMYK it specifies (`c`, `m`, `y`, `k`, in percent), and
+#' that CMYK converted to sRGB through ISO Coated v2 (FOGRA39), relative
+#' colorimetric with black-point compensation. The print colors are drawn
+#' from these swatches, except the black text and source text, which convert
+#' their K percentage directly. `ggthemes_data$economist_2017$web$swatches`
+#' lists the hex swatches of the guide's web palette page, for reference.
+#'
+#' `ggthemes_data$economist_design_system` contains the complete color
+#' tokens extracted from the current Economist Design System and Marber
+#' documentation. Numeric HSL is the canonical representation; the published
+#' HEX, RGB, HSL, and (where available) CMYK values are retained as documented
+#' source fields. The object also includes derived five-point HSL ramps for the
+#' main color families. These product tokens are kept separate from the
+#' observed chart palettes in `ggthemes_data$economist_2024`.
+#'
+#' `ggthemes_data$economist_2024$print$palette` gives the 2024 print colors as
+#' print specs: the CMYK build of each, inferred as the simplest one whose
+#' rendering through U.S. Web Coated (SWOP) v2 comes closest to the color in
+#' published charts, with that rendering (`hex`), the observed color
+#' (`observed`), the CIEDE2000 difference between them (`delta_e`) and a
+#' confidence. The print colors are close to renderings of their own CMYK
+#' builds, not ICC conversions of the web colors. Only the red and dark gray
+#' builds match their observed colors exactly; the others are off by a
+#' `delta_e` of up to 0.6 and the text color by 1.8, so the palettes and
+#' scales use the observed colors
+#' (`ggthemes_data$economist_2024$print$qualitative`), not `hex`.
+#'
 #' @format A `list` object.
 #' @example inst/examples/ex-ggthemes_data.R
 "ggthemes_data"

@@ -23,6 +23,7 @@ Imports:
     graphics,
     grDevices,
     grid,
+    gtable,
     lifecycle,
     rlang,
     scales (>= 1.4.0),
@@ -31,12 +32,15 @@ Imports:
 Suggests:
     dplyr,
     farver,
+    gt,
+    htmltools,
     lattice,
     maps,
     mapproj,
     pander,
     purrr,
     quantreg,
+    ragg,
     spelling,
     systemfonts,
     testthat (>= 3.2.0),
@@ -56,9 +60,9 @@ Language: en-US
 Encoding: UTF-8
 Config/testthat/edition: 3
 Config/Needs/coverage: covr
-Config/Needs/data: purrr, stringr
+Config/Needs/data: colorspace, dplyr, here, jsonlite, purrr, stringr, tibble, usethis, xml2, yaml
 Config/Needs/lint: lintr, cyclocomp
 Config/Needs/readme: knitr, rmarkdown
-Config/Needs/website: pkgdown
+Config/Needs/website: gt, pkgdown
 Config/roxygen2/version: 8.1.0
 Roxygen: list(markdown = TRUE)

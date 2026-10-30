@@ -9,7 +9,8 @@ theme_economist(
   base_size = 10,
   base_family = "sans",
   horizontal = TRUE,
-  dkpanel = FALSE
+  dkpanel = FALSE,
+  lightpanel = FALSE
 )
 
 theme_economist_white(
@@ -26,8 +27,16 @@ theme_economist_white(
 
 \item{horizontal}{If \code{TRUE} (the default), draw horizontal grid lines.}
 
-\item{dkpanel}{If \code{TRUE}, use a darker background for the panel region. The
-default is \code{FALSE}.}
+\item{dkpanel}{If \code{TRUE}, use a darker background for the panel region: the
+panels and strips are a darker blue-gray than the plot's ground, as in the
+charts with panels of 2012 to mid-2015. The default is \code{FALSE}.}
+
+\item{lightpanel}{If \code{TRUE}, use a lighter background for the panel region:
+the plot's ground is a deeper blue-gray and the panels are paler than it,
+as in the charts with panels from the second half of 2015, which replaced
+the darker panels of \code{dkpanel}: the same two colors, swapped. The panel
+headings (strips) stay on the ground. Use at most one of \code{dkpanel} and
+\code{lightpanel}. The default is \code{FALSE}.}
 
 \item{gray_bg}{If \code{TRUE} (the default), use a gray background; otherwise,
 use a white background.}
@@ -49,6 +58,17 @@ blog \href{https://www.economist.com/topics/graphic-detail}{Graphic Detail}.
 
 Use \code{\link[=scale_color_economist]{scale_color_economist()}} with this theme.
 The y axis should be displayed on the right hand side.
+
+Every size in the theme is in base sizes, so a chart keeps its proportions
+at any \code{base_size}. They were measured on the print charts of 2012 to 2018
+in a corpus of \emph{The Economist}'s charts, whose one-column charts are 160pt
+wide and set in a base size of about 6.5pt: the title is 1.45 base sizes, the
+subtitle 1.15 and the source line 0.95, all flush left with the chart; the
+margins at the sides are 1.9 base sizes; and the white gridlines are 0.08
+base sizes wide. Ticks and the margins around axis titles are those of the
+2017 style guide, in base sizes (see \code{\link[=theme_economist_2017]{theme_economist_2017()}}), but the ticks
+point into the panel. Use \code{base_size = 6.5} for a chart 160pt (2.2in) across
+and scale it up in proportion for a larger one.
 
 \emph{The Economist} uses "ITC Officina Sans" as its font for graphs. If
 you have access to this font, you can use it with the
@@ -79,6 +99,14 @@ p + theme_economist(horizontal = FALSE) +
     scale_colour_economist() +
     coord_flip()
 
+## Panels darker than the ground, as in the charts of 2012 to mid-2015
+p + theme_economist(dkpanel = TRUE) +
+    scale_colour_economist()
+
+## Panels lighter than the ground, as in the charts from mid-2015
+p + theme_economist(lightpanel = TRUE) +
+    scale_colour_economist()
+
 ## White panel/light gray background
 p + theme_economist_white() +
     scale_colour_economist()
@@ -105,5 +133,12 @@ p + theme_economist(base_family="Verdana") +
 \item \href{https://www.economist.com/}{The Economist}
 \item \href{https://spiekermann.com/en/itc-officina-display/}{Spiekerblog, "ITC Officina Display", January 1, 2007.}
 }
+}
+\seealso{
+Other themes economist:
+\code{\link[=economist_chart]{economist_chart()}},
+\code{\link[=economist_plus_minus]{economist_plus_minus()}},
+\code{\link[=economist_table]{economist_table()}},
+\code{\link[=gt_theme_economist]{gt_theme_economist()}}
 }
 \concept{themes economist}
