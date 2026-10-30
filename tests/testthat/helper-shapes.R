@@ -112,3 +112,37 @@ safe_shape_values <- function() {
     "tableau proportions" = full(tableau_shape_pal("proportions"))
   )
 }
+
+# Helpers for the font-coverage tests.
+
+clear_font_cache <- function() {
+  rm(list = ls(shape_font_cache), envir = shape_font_cache)
+}
+
+# Mocking `missing_glyphs()` alone is not enough: `warn_shape_font()` answers
+# from `shape_font_cache` when an earlier test already probed the same family
+# and characters, so the mock is never reached and the result depends on test
+# order and on the fonts of the machine. The cache is cleared on both sides.
+# The shapes font is reported unregistered unless `registered = TRUE`, since
+# registering it silences the warning and registration outlives a test.
+local_missing_glyphs <- function(missing = character(0), registered = FALSE, env = parent.frame()) {
+  mock <- if (is.function(missing)) missing else function(...) missing
+  clear_font_cache()
+  withr::defer(clear_font_cache(), envir = env)
+  testthat::local_mocked_bindings(
+    missing_glyphs = mock,
+    shapes_font_registered = function() registered,
+    .env = env
+  )
+}
+
+# `warn_shape_font()` checks the locale *and* glyph coverage. Tests about
+# coverage pin the locale to UTF-8 so the other check cannot fire and make the
+# result depend on the machine the suite runs on.
+local_utf8_locale <- function(env = parent.frame()) {
+  testthat::local_mocked_bindings(
+    l10n_info = function() list(`UTF-8` = TRUE),
+    .package = "base",
+    .env = env
+  )
+}

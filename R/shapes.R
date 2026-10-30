@@ -14,7 +14,8 @@
 #' @param unicode If `TRUE`, return pch codes derived from Unicode glyphs, which
 #'   exist for every shape of the palette. They are drawn by the device font, so
 #'   they render as blank boxes in a font without coverage and at unrelated sizes
-#'   in most fonts. If `FALSE`, return base pch codes, which every font can
+#'   in most fonts; the font from [shapes_font()] has the shapes of this palette
+#'   at a common size. If `FALSE`, return base pch codes, which every font can
 #'   draw but which exist only for some shapes. The default depends on the
 #'   palette.
 #' @param edition Which edition of the book to take the symbols from. One of:
@@ -42,7 +43,8 @@
 #' vertical line (U+233D), the heavy ring (U+2B58) and the circled dot (U+2299)
 #' are missing from many fonts and drawn at unrelated sizes in the rest, and
 #' even the plain circles are drawn larger or smaller than base pch circles
-#' depending on the font.
+#' depending on the font. The font that ships with ggthemes has them all at a
+#' common size; see [shapes_font()] for how to use it.
 #'
 #' @example inst/examples/ex-cleveland_shape_pal.R
 #' @references

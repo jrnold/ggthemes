@@ -90,6 +90,7 @@ Other shapes:
 \code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
 \code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
 \code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},
+\code{\link[=shapes_font]{shapes_font()}},
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }
 \concept{shapes}

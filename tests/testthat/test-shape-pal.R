@@ -58,7 +58,7 @@ test_that("the unicode branch returns the negative glyph pch", {
   # The font warning is `warn_shape_font()`'s business, tested in
   # test-shape-font.R; whether this machine's default font happens to cover a
   # palette's glyphs must not decide whether these assertions run.
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   for (nm in names(safe_palettes())) {
     pal <- safe_palettes()[[nm]]$pal(unicode = TRUE)
     expect_equal(attr(pal, "max_n"), unicode_max_n[[nm]], label = paste0(nm, " unicode max_n"))
@@ -95,7 +95,7 @@ test_that("cleveland's little-overlap set keeps the solid and open circle withou
 })
 
 test_that("cleveland's little-overlap set is Figure 3.70's top row with unicode = TRUE", {
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   # Solid circle, open circle, circle with a vertical line, heavy ring, circled dot.
   expect_equal(
     cleveland_shape_pal(overlap = FALSE, unicode = TRUE)(5),
@@ -106,7 +106,7 @@ test_that("cleveland's little-overlap set is Figure 3.70's top row with unicode 
 test_that("cleveland's overlap set is Figure 3.70's bottom row", {
   # Open circle, plus, S, triangle, U: all have a base pch, the letters as ASCII.
   expect_equal(cleveland_shape_pal(overlap = TRUE, unicode = FALSE)(5), c(1L, 3L, 83L, 2L, 85L))
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   expect_equal(
     cleveland_shape_pal(overlap = TRUE, unicode = TRUE)(5),
     -c(0x25CB, 0x2B, 0x53, 0x25B3, 0x55)
@@ -117,7 +117,7 @@ test_that("cleveland's overlap set is Figure 3.70's bottom row", {
 # same two rows differently from the first edition's Figure 3.70.
 test_that("cleveland's 1994 overlap set is an open circle, plus, <, S and W", {
   expect_equal(cleveland_shape_pal(overlap = TRUE, unicode = FALSE, edition = "1994")(5), c(1L, 3L, 60L, 83L, 87L))
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   expect_equal(
     cleveland_shape_pal(overlap = TRUE, unicode = TRUE, edition = "1994")(5),
     -c(0x25CB, 0x2B, 0x3C, 0x53, 0x57)
@@ -126,7 +126,7 @@ test_that("cleveland's 1994 overlap set is an open circle, plus, <, S and W", {
 
 test_that("cleveland's 1994 little-overlap set is ordered open circle first", {
   expect_equal(cleveland_shape_pal(overlap = FALSE, unicode = FALSE, edition = "1994")(2), c(1L, 16L))
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   # Open circle, solid circle, heavy ring, circle with a vertical line, circled dot.
   expect_equal(
     cleveland_shape_pal(overlap = FALSE, unicode = TRUE, edition = "1994")(5),
@@ -135,7 +135,7 @@ test_that("cleveland's 1994 little-overlap set is ordered open circle first", {
 })
 
 test_that("cleveland's palettes draw Unicode glyphs by default, so circles come from the font", {
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   expect_equal(cleveland_shape_pal()(5), -c(0x25CB, 0x2B, 0x53, 0x25B3, 0x55))
   expect_equal(cleveland_shape_pal(overlap = FALSE)(5), -c(0x25CF, 0x25CB, 0x233D, 0x2B58, 0x2299))
   expect_equal(cleveland_shape_pal(edition = "1994")(5), -c(0x25CB, 0x2B, 0x3C, 0x53, 0x57))
@@ -145,7 +145,7 @@ test_that("cleveland's palettes draw Unicode glyphs by default, so circles come 
 })
 
 test_that("cleveland's edition is 1985 unless asked otherwise", {
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   expect_equal(cleveland_shape_pal(), cleveland_shape_pal(edition = "1985"))
   expect_equal(cleveland_shape_pal(unicode = FALSE)(5), c(1L, 3L, 83L, 2L, 85L))
   expect_snapshot(cleveland_shape_pal(edition = "1994 revised"), error = TRUE)
@@ -166,14 +166,14 @@ test_that("few's palette is unchanged by the safe mapping", {
 test_that("deprecated circlefill still returns its glyph pch", {
   skip_if_not_installed("withr")
   withr::local_options(lifecycle_verbosity = "quiet")
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   values <- circlefill_shape_pal()(5)
   expect_equal(attr(circlefill_shape_pal(), "max_n"), 5L)
   expect_true(all(values < 0))
 })
 
 test_that("scale functions pass unicode through to their palette", {
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   expect_s3_class(scale_shape_calc(unicode = TRUE), "ScaleDiscrete")
   expect_s3_class(scale_shape_stata(unicode = TRUE), "ScaleDiscrete")
   expect_s3_class(scale_shape_tableau("filled", unicode = TRUE), "ScaleDiscrete")
@@ -191,4 +191,145 @@ test_that("scale_shape_tremmel defaults to the same variant as its palette", {
   # The scale defaulted to `alt = TRUE` while the palette defaulted to
   # `alt = FALSE`, so the two disagreed at n = 3.
   expect_equal(formals(scale_shape_tremmel)$alt, formals(tremmel_shape_pal)$alt)
+})
+
+# `warn_shape_font()` replaces a locale heuristic with a real measurement of
+# what the device font can draw. The locale guess stays silent on a UTF-8
+# session even when the font would render seven of eight glyphs as blank boxes,
+# which is the failure it was meant to catch.
+
+glyph_table <- function(characters) {
+  tibble::tibble(
+    character = characters,
+    pch_unicode = -vapply(characters, function(x) utf8ToInt(x)[[1]], integer(1))
+  )
+}
+
+test_that("a font covering every glyph produces no warning", {
+  local_utf8_locale()
+  local_missing_glyphs(function(...) character(0))
+  expect_no_warning(warn_shape_font(glyph_table(c("○", "●"))))
+})
+
+test_that("uncovered glyphs are named in the warning", {
+  local_utf8_locale()
+  local_missing_glyphs(function(...) c("⧓", "✦"))
+  expect_warning(
+    warn_shape_font(glyph_table(c("●", "⧓", "✦"))),
+    "lacks glyphs for 2 of 3 shapes"
+  )
+})
+
+test_that("the warning points at both ways out", {
+  local_utf8_locale()
+  local_missing_glyphs(function(...) "⧓")
+  w <- capture_warnings(warn_shape_font(glyph_table("⧓")))
+  expect_match(paste(w, collapse = " "), "DejaVu Sans")
+  expect_match(paste(w, collapse = " "), "unicode = FALSE")
+  expect_match(paste(w, collapse = " "), "shapes_font")
+})
+
+# `ragg::agg_png()` has no `family` argument, so the advice this replaced
+# errored when followed. The font has to be set on the device, and only on a
+# device that takes a `family`.
+test_that("the suggested device call names a real argument", {
+  local_utf8_locale()
+  local_missing_glyphs(function(...) "⧓")
+  w <- paste(capture_warnings(warn_shape_font(glyph_table("⧓"))), collapse = " ")
+  expect_no_match(w, "agg_png")
+  expect_match(w, "png\\(family = ")
+  # `png()` takes `family` through `...`; `cairo_pdf()` declares it outright.
+  # `ragg::agg_png()`, which the replaced advice named, accepts it in neither
+  # form -- following that advice raised "unused argument (family = ...)".
+  # `ragg` is not a declared dependency, so that is asserted by absence above
+  # rather than by probing its formals here.
+  expect_true("family" %in% names(formals(grDevices::cairo_pdf)))
+})
+
+# Fix: interpolating the empty family printed a bare `("")` at the reader.
+test_that("an unknown device family is described, not printed as empty", {
+  local_utf8_locale()
+  local_mocked_bindings(current_font_family = function() "")
+  local_missing_glyphs(function(...) "⧓")
+  w <- paste(capture_warnings(warn_shape_font(glyph_table("⧓"))), collapse = " ")
+  expect_match(w, "The default device font lacks glyphs")
+  expect_no_match(w, '\\(""\\)')
+})
+
+test_that("a known device family is named in the warning", {
+  local_utf8_locale()
+  local_mocked_bindings(current_font_family = function() "Times")
+  local_missing_glyphs(function(...) "⧓")
+  expect_warning(warn_shape_font(glyph_table("⧓")), "Times")
+})
+
+test_that("the font is probed once per family and character set", {
+  local_utf8_locale()
+  probes <- 0L
+  local_missing_glyphs(function(...) {
+    probes <<- probes + 1L
+    character(0)
+  })
+  shapes <- glyph_table(c("○", "●"))
+  warn_shape_font(shapes)
+  warn_shape_font(shapes)
+  expect_equal(probes, 1L)
+})
+
+# Regression: these were `if`/`else` alternatives, so installing `systemfonts`
+# -- which `ragg` depends on, making it the common case -- silently dropped the
+# locale check. A covered font on a non-UTF-8 session still fails at draw time.
+test_that("the locale is checked even when systemfonts measures full coverage", {
+  skip_if_not_installed("systemfonts")
+  local_mocked_bindings(l10n_info = function() list(`UTF-8` = FALSE), .package = "base")
+  local_missing_glyphs(function(...) character(0))
+  expect_warning(warn_shape_font(glyph_table("○")), "locale is not UTF-8")
+})
+
+test_that("without systemfonts the locale heuristic is used instead", {
+  local_mocked_bindings(is_installed = function(...) FALSE, .package = "rlang")
+  local_mocked_bindings(l10n_info = function() list(`UTF-8` = FALSE), .package = "base")
+  local_missing_glyphs(function(...) {
+    stop("systemfonts must not be probed when it is not installed", call. = FALSE)
+  })
+  expect_warning(warn_shape_font(glyph_table("○")), "locale is not UTF-8")
+})
+
+test_that("glyph coverage of ASCII is reported for the default font", {
+  skip_if_not_installed("systemfonts")
+  # Every real font covers ASCII, so this holds whatever font the machine
+  # running the tests resolves `""` to.
+  expect_equal(missing_glyphs(c("A", "+", "<"), ""), character(0))
+})
+
+test_that("the safe branch never probes the font", {
+  local_missing_glyphs(function(...) {
+    stop("the safe branch does not depend on the font", call. = FALSE)
+  })
+  expect_no_warning(calc_shape_pal()(7))
+  expect_no_warning(tableau_shape_pal("filled")(6))
+})
+
+test_that("the default cleveland palette checks the device font", {
+  local_utf8_locale()
+  local_missing_glyphs("\u25B3")
+  expect_warning(cleveland_shape_pal(), "lacks glyphs")
+  expect_no_warning(cleveland_shape_pal(unicode = FALSE))
+})
+
+test_that("a registered shapes font that covers the palette silences the warning", {
+  local_utf8_locale()
+  # The default font lacks every shape; the shapes font lacks none.
+  local_missing_glyphs(
+    function(characters, family) if (family == "ggthemes shapes") character(0) else characters,
+    registered = TRUE
+  )
+  expect_no_warning(cleveland_shape_pal())
+  expect_no_warning(tableau_shape_pal(unicode = TRUE))
+})
+
+test_that("shapes the registered font lacks are still checked in the device font", {
+  local_utf8_locale()
+  local_missing_glyphs(function(characters, family) "\u2614", registered = TRUE)
+  expect_warning(warn_shape_font(glyph_table("\u2614")), "default device font")
 })

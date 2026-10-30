@@ -6,7 +6,7 @@
 # the record whatever ran before it.
 test_that("circlefill_pal works", {
   skip_if_not_installed("withr")
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   withr::local_options(lifecycle_verbosity = "warning")
   expect_snapshot({
     pal <- circlefill_shape_pal()
@@ -26,7 +26,7 @@ test_that("circlefill_pal works", {
 # one warning or two depending on what ran earlier in the session.
 test_that("scale_shape_circlefill works", {
   skip_if_not_installed("withr")
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   lifecycle::expect_deprecated(scale_shape_circlefill())
   withr::local_options(lifecycle_verbosity = "quiet")
   expect_s3_class(scale_shape_circlefill(), "ScaleDiscrete")
@@ -78,7 +78,7 @@ test_that("cleveland_shape_pal works with overlap = FALSE", {
 })
 
 test_that("scale_shape_cleveland works", {
-  local_mocked_bindings(missing_glyphs = function(...) character(0))
+  local_missing_glyphs(function(...) character(0))
   expect_s3_class(scale_shape_cleveland(), "ScaleDiscrete")
   expect_s3_class(scale_shape_cleveland(unicode = FALSE), "ScaleDiscrete")
   expect_s3_class(scale_shape_cleveland(edition = "1994"), "ScaleDiscrete")

@@ -77,13 +77,14 @@ warn_shape_font <- function(shapes) {
     return(invisible(NULL))
   }
   characters <- shapes[["character"]]
-  family <- current_font_family()
-  key <- paste0(family, "\r", paste(characters, collapse = ""))
-  missing <- shape_font_cache[[key]]
-  if (is.null(missing)) {
-    missing <- missing_glyphs(characters, family)
-    shape_font_cache[[key]] <- missing
+  # Points take their font from the device or a viewport, and a palette is
+  # built before either is in place, so it cannot see `shapes_font()` being
+  # used. Registering that font is the one signal available that it will be.
+  if (shapes_font_registered() && !length(cached_missing_glyphs(characters, shapes_font_family))) {
+    return(invisible(NULL))
   }
+  family <- current_font_family()
+  missing <- cached_missing_glyphs(characters, family)
   if (!length(missing)) {
     return(invisible(NULL))
   }
@@ -111,8 +112,22 @@ warn_shape_font <- function(shapes) {
       "{.code png(family = \"DejaVu Sans\")} or ",
       "{.code cairo_pdf(family = \"DejaVu Sans\")}."
     ),
+    "i" = paste0(
+      "Or call {.fn shapes_font} before building the plot and draw with the font that ships with ggthemes, ",
+      "which has most of these shapes at a common size: see {.code ?shapes_font}."
+    ),
     "i" = "Or use {.code unicode = FALSE} for font-independent base pch shapes."
   ))
+}
+
+cached_missing_glyphs <- function(characters, family) {
+  key <- paste0(family, "\r", paste(characters, collapse = ""))
+  missing <- shape_font_cache[[key]]
+  if (is.null(missing)) {
+    missing <- missing_glyphs(characters, family)
+    shape_font_cache[[key]] <- missing
+  }
+  missing
 }
 
 #' Characters the font does not cover

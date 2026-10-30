@@ -81,7 +81,8 @@ notation.
 \item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
 exist for every shape of the palette. They are drawn by the device font, so
 they render as blank boxes in a font without coverage and at unrelated sizes
-in most fonts. If \code{FALSE}, return base pch codes, which every font can
+in most fonts; the font from \code{\link[=shapes_font]{shapes_font()}} has the shapes of this palette
+at a common size. If \code{FALSE}, return base pch codes, which every font can
 draw but which exist only for some shapes. The default depends on the
 palette.}
 
@@ -116,6 +117,7 @@ Other shapes:
 \code{\link[=cleveland_shape_pal]{cleveland_shape_pal()}},
 \code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
 \code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},
+\code{\link[=shapes_font]{shapes_font()}},
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }
 \concept{shapes}

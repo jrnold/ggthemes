@@ -20,7 +20,8 @@ dot.}
 \item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
 exist for every shape of the palette. They are drawn by the device font, so
 they render as blank boxes in a font without coverage and at unrelated sizes
-in most fonts. If \code{FALSE}, return base pch codes, which every font can
+in most fonts; the font from \code{\link[=shapes_font]{shapes_font()}} has the shapes of this palette
+at a common size. If \code{FALSE}, return base pch codes, which every font can
 draw but which exist only for some shapes. The default depends on the
 palette.}
 
@@ -62,7 +63,8 @@ which draws all five. The circle with a
 vertical line (U+233D), the heavy ring (U+2B58) and the circled dot (U+2299)
 are missing from many fonts and drawn at unrelated sizes in the rest, and
 even the plain circles are drawn larger or smaller than base pch circles
-depending on the font.
+depending on the font. The font that ships with ggthemes has them all at a
+common size; see \code{\link[=shapes_font]{shapes_font()}} for how to use it.
 }
 \examples{
 library(ggplot2)
@@ -78,15 +80,28 @@ ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(am))) +
   scale_shape_cleveland(overlap = FALSE, unicode = FALSE)
 
 # The default, unicode = TRUE, draws all five symbols of either set with the
-# device font, which must cover them.
-ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
-  geom_point(size = 3) +
-  scale_shape_cleveland(overlap = FALSE)
+# device font. The font that ships with ggthemes gives them a common size.
+# Register it before building the scale, and set its family on a grid
+# viewport, for devices that read fonts through the systemfonts package, such
+# as ragg. `cut` has five levels, one per symbol.
+if (rlang::is_installed(c("systemfonts", "ragg")) && interactive()) {
+  family <- shapes_font()
+  diamonds_sample <- head(diamonds, 200)
+  p <- ggplot(diamonds_sample, aes(x = carat, y = price, shape = cut)) +
+    geom_point(size = 3) +
+    scale_shape_cleveland(overlap = FALSE)
+  ragg::agg_png(tempfile(fileext = ".png"), width = 640, height = 480)
+  print(p, vp = grid::viewport(gp = grid::gpar(fontfamily = family)))
+  dev.off()
 
-# The symbols of the revised (second) edition
-ggplot(mtcars, aes(x = wt, y = mpg, shape = factor(gear))) +
-  geom_point(size = 3) +
-  scale_shape_cleveland(edition = "1994")
+  # The symbols of the revised (second) edition
+  p <- ggplot(diamonds_sample, aes(x = carat, y = price, shape = cut)) +
+    geom_point(size = 3) +
+    scale_shape_cleveland(edition = "1994")
+  ragg::agg_png(tempfile(fileext = ".png"), width = 640, height = 480)
+  print(p, vp = grid::viewport(gp = grid::gpar(fontfamily = family)))
+  dev.off()
+}
 }
 \references{
 Cleveland WS (1985). \emph{The Elements of Graphing Data}. Wadsworth Advanced
@@ -105,6 +120,7 @@ Other shapes:
 \code{\link[=scale_shape_circlefill]{scale_shape_circlefill()}},
 \code{\link[=scale_shape_cleveland]{scale_shape_cleveland()}},
 \code{\link[=scale_shape_tremmel]{scale_shape_tremmel()}},
+\code{\link[=shapes_font]{shapes_font()}},
 \code{\link[=tremmel_shape_pal]{tremmel_shape_pal()}}
 }
 \concept{shapes}

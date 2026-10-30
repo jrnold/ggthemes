@@ -38,9 +38,10 @@
   draws a solid circle, open circle, circle with a vertical line, heavy ring
   and circled dot (it was an open circle, solid circle, circled plus, circled
   dot and circled ring). `unicode` now defaults to `TRUE`, so every shape,
-  circles included, is a Unicode glyph drawn by the device font. With
-  `unicode = FALSE`, only the solid and open circle have a base pch, so
-  `overlap = FALSE` supports two values.
+  circles included, is a Unicode glyph drawn by the device font; they look
+  best with the font from `shapes_font()`. With `unicode = FALSE`, only the
+  solid and open circle have a base pch, so `overlap = FALSE` supports two
+  values. The rows of `ggthemes_data$shapes$cleveland` change to match.
 
 - `scale_colour_tableau()`, `scale_fill_tableau()`,
   `scale_colour_economist_c()`, `scale_fill_economist_c()` and
@@ -78,6 +79,14 @@
   sign, `<`, S and W for overlapping data, and an open circle, solid circle,
   heavy ring, circle with a vertical line and circled dot for little overlap.
   The default, `"1985"`, keeps the first edition's sets.
+
+- New `shapes_font()` registers a font that ships with ggthemes and draws the
+  shapes of the `unicode = TRUE` palettes (`calc_shape_pal()`,
+  `cleveland_shape_pal()`, `stata_shape_pal()` and `tableau_shape_pal()`) at a
+  common size. In the best system font tested, the shapes of one palette
+  differed in area by up to a factor of six, and several fonts lacked some of
+  them. The missing-glyph warning now points to it, and once the font is
+  registered it no longer warns about shapes the font has.
 
 ## Minor improvements and fixes
 
