@@ -37,6 +37,7 @@ Suggests:
     pander,
     purrr,
     quantreg,
+    ragg,
     spelling,
     systemfonts,
     testthat (>= 3.2.0),

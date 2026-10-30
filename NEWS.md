@@ -62,6 +62,19 @@
   for data that has such segments; use `cull = FALSE` for the previous ones
   (#274).
 
+- `cleveland_shape_pal()` and `scale_shape_cleveland()` now use the two
+  symbol sets of Figure 3.70 in Cleveland's *The Elements of Graphing Data*
+  (1985, p. 196). `overlap = TRUE`, for data where overlap causes problems,
+  draws an open circle, plus sign, S, triangle and U (five values; it was an
+  open circle, plus sign, `<` and S). `overlap = FALSE`, for little overlap,
+  draws a solid circle, open circle, circle with a vertical line, heavy ring
+  and circled dot (it was an open circle, solid circle, circled plus, circled
+  dot and circled ring). With `unicode = FALSE`, only the solid and open
+  circle have a base pch, so `overlap = FALSE` supports two values (it was
+  three); `unicode = TRUE` draws all five, best with the font from
+  `register_shapes_font()`. The rows of `ggthemes_data$shapes$cleveland`
+  change to match.
+
 - `scale_colour_tableau()`, `scale_fill_tableau()`,
   `scale_colour_economist_c()`, `scale_fill_economist_c()` and
   `scale_shape_tremmel()` now take `...` right after their first argument, as
@@ -100,7 +113,49 @@
   returns it, and the `ggthemes_data` help page gains examples of reading it
   (#265).
 
+- `cleveland_shape_pal()` and `scale_shape_cleveland()` gain an `edition`
+  argument. `edition = "1994"` draws the symbol sets of the revised (second)
+  edition of Cleveland's *The Elements of Graphing Data*: an open circle, plus
+  sign, `<`, S and W for overlapping data, and an open circle, solid circle,
+  heavy ring, circle with a vertical line and circled dot for little overlap.
+  The default, `"1985"`, keeps the first edition's sets.
+
+- `tableau_shape_pal()` and `scale_shape_tableau()` gain Tableau's `"kpi"`,
+  `"arrows"`, `"thin-arrows"`, `"gender"`, `"weather"` and `"bug-tracking"`
+  shape palettes. All but `"kpi"` have fewer than two shapes with a base pch,
+  so they need `unicode = TRUE` and give an error saying so without it. In
+  `` ggthemes_data$tableau$`shape-palettes` `` these sets are renamed to the
+  same lowercase ids (they were `"Arrows"`, `"Thin Arrows"`, `"Gender"` and
+  `"Bug Tracking"`).
+
+- New `geom_point_glyph()` draws the shapes of the `unicode = TRUE` palettes
+  from the font of `register_shapes_font()`, reading the font file through
+  R's glyph API on devices that support it (R 4.3 or later), so no font
+  family has to be set and the plot works with `ggsave()`. Other devices draw the shapes as
+  ordinary points in the registered font family. `pdf()` files refer to the
+  font without embedding it; new `embed_shapes_font()` embeds it.
+
+- New `register_shapes_font()` registers a font that ships with ggthemes and
+  draws the shapes of the `unicode = TRUE` palettes (`calc_shape_pal()`,
+  `cleveland_shape_pal()`, `stata_shape_pal()` and `tableau_shape_pal()`) at
+  a common size. In the best system font tested, the shapes of one palette
+  differed in area by up to a factor of six, and several fonts lacked some of
+  them. ggthemes registers the font when it loads, if systemfonts is
+  installed. The missing-glyph warning now points to it, and once
+  `register_shapes_font()` or `geom_point_glyph()` has been called it no
+  longer warns about shapes the font has.
+
+- The shape palettes made with `unicode = TRUE` now check the device font
+  when the plot is built rather than when the scale is created, so
+  `geom_point_glyph()` silences the missing-glyph warning wherever it appears
+  in the plot's code.
+
 ## Minor improvements and fixes
+
+- Calling `cleveland_shape_pal()` or `scale_shape_cleveland()` without
+  `unicode` is deprecated. `unicode` still defaults to `FALSE`, and will
+  default to `TRUE` in ggthemes 9.0.0, so that both symbol sets draw all five
+  shapes.
 
 - `scale_colour_colorblind()` now always warns that it is deprecated; use
   `scale_colour_colourblind()` (#287).
@@ -195,10 +250,10 @@
   `tableau_seq_gradient_pal()` and `tableau_div_gradient_pal()` now say so when
   given arguments they ignore (#272).
 
-- The Tableau "Arrows" and "Thin Arrows" shape palettes in
+- The Tableau `"arrows"` and `"thin-arrows"` shape palettes in
   `` ggthemes_data$tableau$`shape-palettes` `` held the same eight characters,
-  so they drew identically. "Arrows" now uses solid arrows (U+2B05 to U+2B0B and
-  U+27A1) and "Thin Arrows" line arrows (U+2190 to U+2199) in the same eight
+  so they drew identically. `"arrows"` now uses solid arrows (U+2B05 to U+2B0B and
+  U+27A1) and `"thin-arrows"` line arrows (U+2190 to U+2199) in the same eight
   directions. Three other Tableau shapes now carry the variation selector their
   `unicode` field records: the kpi check mark and multiplication sign gain the
   text-style selector, and the weather snowman loses a stray one (#264).

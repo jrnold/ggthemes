@@ -36,6 +36,8 @@ reference:
   - bank_plot_multiscale
   - extended_range_breaks
   - show_linetypes
+  - register_shapes_font
+  - embed_shapes_font
   - show_shapes
   - smart_digits
 - title: Data

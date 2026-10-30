@@ -25,7 +25,27 @@ test_that("tableau_color_pal raises error with invalid palette", {
 })
 
 test_that("tableau_shape_pal raises error with bad palette", {
-  expect_snapshot(tableau_shape_pal(palette = "gender"), error = TRUE)
+  # The stored name before the shape palettes were given lowercase ids.
+  expect_snapshot(tableau_shape_pal(palette = "Gender"), error = TRUE)
+})
+
+test_that("every Tableau shape set is a palette, with all its shapes under unicode = TRUE", {
+  local_missing_glyphs()
+  sets <- ggthemes_data$tableau[["shape-palettes"]]
+  for (nm in names(sets)) {
+    pal <- tableau_shape_pal(nm, unicode = TRUE)
+    expect_equal(attr(pal, "max_n"), nrow(sets[[nm]]), info = nm)
+    expect_equal(pal(nrow(sets[[nm]])), sets[[nm]]$pch_unicode, info = nm)
+  }
+})
+
+test_that("Tableau shape sets with fewer than two base shapes need unicode = TRUE", {
+  expect_snapshot(tableau_shape_pal("arrows"), error = TRUE)
+  expect_snapshot(tableau_shape_pal("gender"), error = TRUE)
+  for (nm in c("thin-arrows", "weather", "bug-tracking")) {
+    expect_error(tableau_shape_pal(nm), "must be `TRUE`", info = nm)
+  }
+  expect_equal(tableau_shape_pal("kpi")(5), c(4L, 33L, 16L, 17L, 18L))
 })
 
 test_that("tableau_shape_pal works", {
@@ -43,7 +63,7 @@ test_that("scale_shape_tableau works", {
 })
 
 test_that("no two tableau shape palettes draw the same characters", {
-  # Arrows and Thin Arrows once held the same eight characters.
+  # arrows and thin-arrows once held the same eight characters.
   shapes <- ggthemes_data$tableau$`shape-palettes`
   glyphs <- vapply(shapes, function(x) paste(x$character, collapse = " "), character(1))
   expect_equal(names(glyphs)[duplicated(glyphs)], character(0))
@@ -67,13 +87,13 @@ test_that("tableau shape characters match their code points", {
 
 test_that("tableau arrow palettes are solid and thin versions of one set", {
   shapes <- ggthemes_data$tableau$`shape-palettes`
-  expect_equal(shapes$Arrows$name, shapes$`Thin Arrows`$name)
+  expect_equal(shapes$arrows$name, shapes$`thin-arrows`$name)
   expect_equal(
-    shapes$Arrows$unicode,
+    shapes$arrows$unicode,
     c("U+2B06", "U+2B08", "U+27A1", "U+2B0A", "U+2B07", "U+2B0B", "U+2B05", "U+2B09")
   )
   expect_equal(
-    shapes$`Thin Arrows`$unicode,
+    shapes$`thin-arrows`$unicode,
     c("U+2191", "U+2197", "U+2192", "U+2198", "U+2193", "U+2199", "U+2190", "U+2196")
   )
 })

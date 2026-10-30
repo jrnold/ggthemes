@@ -7,10 +7,13 @@
 calc_shape_pal(unicode = FALSE)
 }
 \arguments{
-\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
-glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
-by the device font, so they render as blank boxes in a font without
-coverage; the default returns base pch codes, which every font can draw.}
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
+exist for every shape of the palette. They are drawn by the device font, so
+they render as blank boxes in a font without coverage and at unrelated sizes
+in most fonts; the font from \code{\link[=register_shapes_font]{register_shapes_font()}} has the shapes of
+this palette at a common size. If \code{FALSE}, return base pch codes, which every font can
+draw but which exist only for some shapes. The default depends on the
+palette.}
 }
 \value{
 A palette function. It takes the number of shapes \code{n} and returns an integer vector of \code{n}

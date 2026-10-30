@@ -9,10 +9,29 @@
 # tableau_shape_pal raises error with bad palette
 
     Code
-      tableau_shape_pal(palette = "gender")
+      tableau_shape_pal(palette = "Gender")
     Condition
       Error in `tableau_shape_pal()`:
-      ! `palette` must be one of "default", "filled", or "proportions", not "gender".
+      ! `palette` must be one of "default", "filled", "proportions", "kpi", "arrows", "thin-arrows", "gender", "weather", or "bug-tracking", not "Gender".
+      i Did you mean "gender"?
+
+# Tableau shape sets with fewer than two base shapes need unicode = TRUE
+
+    Code
+      tableau_shape_pal("arrows")
+    Condition
+      Error in `tableau_shape_pal()`:
+      ! `unicode` must be `TRUE` for Tableau shape palette "arrows".
+      i 0 of its 8 shapes have a font-independent pch.
+
+---
+
+    Code
+      tableau_shape_pal("gender")
+    Condition
+      Error in `tableau_shape_pal()`:
+      ! `unicode` must be `TRUE` for Tableau shape palette "gender".
+      i 1 of its 9 shapes has a font-independent pch.
 
 # tableau_color_pal accepts a deprecated palette name with a warning
 
