@@ -34,3 +34,4 @@
 ^\.shellcheckrc$
 ^_typos\.toml$
 ^panache\.toml$
+^LICENSE$
