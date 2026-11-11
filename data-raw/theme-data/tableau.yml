@@ -27,12 +27,12 @@
     - {shape: "triangle down", name: "BLACK DOWN-POINTING TRIANGLE", unicode: "U+25BC", character: "▼"}
     - {shape: "triangle left", name: "BLACK LEFT-POINTING TRIANGLE", unicode: "U+25C0", character: "◀"}
     - {shape: "triangle right", name: "BLACK RIGHT-POINTING TRIANGLE", unicode: "U+25B6", character: "▶"}
-  "Bug Tracking":
+  bug-tracking:
     - {shape: "pictograph", name: "LADY BEETLE", unicode: "U+1F41E", character: "🐞", emoji: true}
     - {shape: "pictograph", name: "ALARM CLOCK", unicode: "U+23F0", character: "⏰", emoji: true}
     - {shape: "pictograph", name: "Electric Light Bulb", unicode: "U+1F4A1", character: "💡", emoji: true}
     - {shape: "pictograph", name: "Envelope", unicode: "U+2709 U+FE0F", character: "✉️", emoji: true}
-  Gender:
+  gender:
     - {shape: "pictograph", name: "MEN'S ROOM", unicode: "U+1F6B9", character: "🚹", emoji: true}
     - {shape: "pictograph", name: "WOMEN'S ROOM", unicode: "U+1F6BA", character: "🚺", emoji: true}
     - {shape: "pictograph", name: "RESTROOM", unicode: "U+1F6BB", character: "🚻", emoji: true}
@@ -56,10 +56,10 @@
     - {shape: "pictograph", name: "UMBRELLA", unicode: "U+2602", character: "☂", emoji: true}
     - {shape: "pictograph", name: "UMBRELLA WITH RAINDROPS", unicode: "U+2614", character: "☔", emoji: true}
     - {shape: "pictograph", name: "SNOWMAN", unicode: "U+2603", character: "☃", emoji: true}
-  # Arrows are solid, Thin Arrows are line arrows, in the same eight
+  # arrows are solid, thin-arrows are line arrows, in the same eight
   # directions. These once held the same eight characters, so the two
   # palettes drew identically.
-  Arrows:
+  arrows:
     - {shape: "pictograph", name: "Up Arrow", unicode: "U+2B06", character: "⬆", emoji: true}
     - {shape: "pictograph", name: "Up Right Arrow", unicode: "U+2B08", character: "⬈", emoji: false}
     - {shape: "pictograph", name: "Right Arrow", unicode: "U+27A1", character: "➡", emoji: true}
@@ -68,7 +68,7 @@
     - {shape: "pictograph", name: "Down-Left Arrow", unicode: "U+2B0B", character: "⬋", emoji: false}
     - {shape: "pictograph", name: "Left Arrow", unicode: "U+2B05", character: "⬅", emoji: true}
     - {shape: "pictograph", name: "Up-Left Arrow", unicode: "U+2B09", character: "⬉", emoji: false}
-  "Thin Arrows":
+  thin-arrows:
     - {shape: "pictograph", name: "Up Arrow", unicode: "U+2191", character: "↑", emoji: false}
     - {shape: "pictograph", name: "Up Right Arrow", unicode: "U+2197", character: "↗", emoji: true}
     - {shape: "pictograph", name: "Right Arrow", unicode: "U+2192", character: "→", emoji: false}

@@ -18,6 +18,8 @@ shape_tables <- function() {
   out <- list(
     "shapes/cleveland/overlap" = data$shapes$cleveland$overlap,
     "shapes/cleveland/default" = data$shapes$cleveland$default,
+    "shapes/cleveland_1994/overlap" = data$shapes$cleveland_1994$overlap,
+    "shapes/cleveland_1994/default" = data$shapes$cleveland_1994$default,
     "shapes/circlefill" = data$shapes$circlefill,
     "few/shapes" = data$few$shapes,
     "calc/shapes" = data$calc$shapes,
@@ -100,11 +102,60 @@ safe_shape_values <- function() {
     "tremmel n=3" = tremmel_shape_pal()(3),
     "tremmel n=3 alt" = tremmel_shape_pal(alt = TRUE)(3),
     "tremmel n=2 overlap" = tremmel_shape_pal(overlap = TRUE)(2),
-    "cleveland overlap" = full(cleveland_shape_pal(overlap = TRUE)),
-    "cleveland default" = full(cleveland_shape_pal(overlap = FALSE)),
+    "cleveland overlap" = full(cleveland_shape_pal(overlap = TRUE, unicode = FALSE)),
+    "cleveland default" = full(cleveland_shape_pal(overlap = FALSE, unicode = FALSE)),
+    "cleveland 1994 overlap" = full(cleveland_shape_pal(overlap = TRUE, unicode = FALSE, edition = "1994")),
+    "cleveland 1994 default" = full(cleveland_shape_pal(overlap = FALSE, unicode = FALSE, edition = "1994")),
     "calc" = full(calc_shape_pal()),
     "tableau default" = full(tableau_shape_pal("default")),
     "tableau filled" = full(tableau_shape_pal("filled")),
     "tableau proportions" = full(tableau_shape_pal("proportions"))
+  )
+}
+
+# Helpers for the font-coverage tests.
+
+clear_font_cache <- function() {
+  rm(list = ls(shape_font_cache), envir = shape_font_cache)
+}
+
+# Mocking `missing_glyphs()` alone is not enough: `warn_shape_font()` answers
+# from `shape_font_cache` when an earlier test already probed the same family
+# and characters, so the mock is never reached and the result depends on test
+# order and on the fonts of the machine. The cache is cleared on both sides.
+# The shapes font is reported unused unless `in_use = TRUE`, since
+# registering it silences the warning and registration outlives a test.
+# `in_use = NULL` leaves the real flag in place, for tests of what sets it.
+local_missing_glyphs <- function(missing = character(0), in_use = FALSE, env = parent.frame()) {
+  mock <- if (is.function(missing)) missing else function(...) missing
+  clear_font_cache()
+  withr::defer(clear_font_cache(), envir = env)
+  bindings <- list(missing_glyphs = mock)
+  if (!is.null(in_use)) {
+    bindings[["shapes_font_in_use"]] <- function() in_use
+  }
+  do.call(testthat::local_mocked_bindings, c(bindings, list(.env = env)))
+}
+
+# `warn_shape_font()` checks the locale *and* glyph coverage. Tests about
+# coverage pin the locale to UTF-8 so the other check cannot fire and make the
+# result depend on the machine the suite runs on.
+local_utf8_locale <- function(env = parent.frame()) {
+  testthat::local_mocked_bindings(
+    l10n_info = function() list(`UTF-8` = TRUE),
+    .package = "base",
+    .env = env
+  )
+}
+
+# Registration and the in-use flag outlive a test, so each test that changes
+# them restores the state the package had after loading.
+local_shapes_font_state <- function(env = parent.frame()) {
+  withr::defer(
+    {
+      shapes_font_state[["in_use"]] <- NULL
+      try_register_shapes_font()
+    },
+    envir = env
   )
 }

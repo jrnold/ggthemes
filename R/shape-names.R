@@ -57,6 +57,8 @@ shape_pch <- c(
   "hyphen" = 45L,
   "less-than" = 60L,
   "letter S" = 83L,
+  "letter U" = 85L,
+  "letter W" = 87L,
 
   # No font-independent equivalent. R has no solid down/left/right triangle in
   # 0:20, no open left/right triangle, no partially filled circle, and nothing
@@ -71,6 +73,8 @@ shape_pch <- c(
   "circle three-quarter filled" = NA_integer_,
   "circle dot" = NA_integer_,
   "circle ring" = NA_integer_,
+  "circle stile" = NA_integer_,
+  "circle heavy" = NA_integer_,
   "bowtie" = NA_integer_,
   "hourglass" = NA_integer_,
   "four pointed star" = NA_integer_,

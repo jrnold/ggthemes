@@ -170,9 +170,9 @@ load_economist_media <- function(file) {
   out <- yaml.load_file(here::here("data-raw", "theme-data", file))
   map(out, function(media) {
     is_list_field <- map_lgl(media, ~ is.list(.x) && !is.null(names(.x[[1]])))
-    media[is_list_field] <- map(media[is_list_field], ~ map_dfr(., as_tibble))
+    media[is_list_field] <- map(media[is_list_field], map_dfr, as_tibble)
     if (!is.null(media[["orders"]])) {
-      media[["orders"]] <- map(media[["orders"]], ~ map_dfr(., as_tibble))
+      media[["orders"]] <- map(media[["orders"]], map_dfr, as_tibble)
     }
     media
   })
@@ -454,6 +454,7 @@ ggthemes_data$gdocs <- load_gdocs()
 load_shapes <- function() {
   out <- yaml.load_file(here::here("data-raw", "theme-data", "shapes.yml"))
   out$cleveland <- imap(out$cleveland, ~ shape_table(.x, paste0("shapes.yml:cleveland/", .y)))
+  out$cleveland_1994 <- imap(out$cleveland_1994, ~ shape_table(.x, paste0("shapes.yml:cleveland_1994/", .y)))
   out$tremmel <- imap(out$tremmel, ~ shape_table(.x, paste0("shapes.yml:tremmel/", .y)))
   out$circlefill <- shape_table(out$circlefill, "shapes.yml:circlefill")
   out

@@ -5,11 +5,13 @@ S3method(grid::makeContent,ggthemes_economist_chart)
 S3method(grid::makeContent,ggthemes_economist_classic_chart)
 S3method(grid::makeContent,ggthemes_edge_text)
 S3method(grid::makeContent,ggthemes_label_economist_2017)
+S3method(makeContent,ggthemes_glyph_points)
 S3method(print,ggthemes_economist_chart)
 S3method(print,ggthemes_economist_classic_chart)
 export(GeomEventEconomist2017)
 export(GeomLabelEconomist2017)
 export(GeomPeriodEconomist2017)
+export(GeomPointGlyph)
 export(GeomRangeFrame)
 export(GeomScaleBreakEconomist2017)
 export(GeomSpanEconomist2017)
@@ -49,6 +51,7 @@ export(economist_plus_minus)
 export(economist_plus_minus_format)
 export(economist_seq_pal)
 export(economist_table)
+export(embed_shapes_font)
 export(excel_new_pal)
 export(excel_pal)
 export(extended_range_breaks)
@@ -61,6 +64,7 @@ export(geom_event_economist_2017)
 export(geom_gridline_economist_2024)
 export(geom_label_economist_2017)
 export(geom_period_economist_2017)
+export(geom_point_glyph)
 export(geom_rangeframe)
 export(geom_ribbon_economist_2024)
 export(geom_scale_break_economist_2017)
@@ -77,6 +81,7 @@ export(hc_pal)
 export(numbers_pal)
 export(palette_pander)
 export(ptol_pal)
+export(register_shapes_font)
 export(scale_color_calc)
 export(scale_color_canva)
 export(scale_color_colorblind)
@@ -262,11 +267,15 @@ importFrom(grid,
   gpar,
   grobName,
   grobTree,
+  makeContent,
   polylineGrob,
   segmentsGrob,
   unit
 )
-importFrom(lifecycle,deprecate_warn)
+importFrom(lifecycle,
+  deprecate_soft,
+  deprecate_warn
+)
 importFrom(rlang,check_installed)
 importFrom(scales,
   alpha,

@@ -65,8 +65,10 @@ test_that("no palette selects the same safe pch twice", {
   # pch encodes symbol identity and delegates size to the `size` aesthetic.
   # `stata_shape_pal()` never selects both, so no palette is affected.
   palettes <- list(
-    "cleveland overlap" = cleveland_shape_pal(overlap = TRUE),
-    "cleveland default" = cleveland_shape_pal(overlap = FALSE),
+    "cleveland overlap" = cleveland_shape_pal(overlap = TRUE, unicode = FALSE),
+    "cleveland default" = cleveland_shape_pal(overlap = FALSE, unicode = FALSE),
+    "cleveland 1994 overlap" = cleveland_shape_pal(overlap = TRUE, unicode = FALSE, edition = "1994"),
+    "cleveland 1994 default" = cleveland_shape_pal(overlap = FALSE, unicode = FALSE, edition = "1994"),
     "few" = few_shape_pal(),
     "calc" = calc_shape_pal(),
     "stata" = stata_shape_pal(),
@@ -83,11 +85,28 @@ test_that("no palette selects the same safe pch twice", {
 # --- Data corrections -------------------------------------------------------
 
 test_that("cleveland's overlap palette uses S, not W", {
-  # The stored row read `{name: LATIN CAPITAL LETTER S, unicode: U+0053,
+  # A stored row once read `{name: LATIN CAPITAL LETTER S, unicode: U+0053,
   # pch: 87}`. pch 87 is the ASCII codepoint of `W`; `S` is 83.
   overlap <- ggthemes::ggthemes_data$shapes$cleveland$overlap
-  expect_equal(overlap$pch[[4]], 83L)
-  expect_equal(overlap$character[[4]], "S")
+  expect_equal(overlap$pch[[3]], 83L)
+  expect_equal(overlap$character[[3]], "S")
+})
+
+test_that("cleveland's tables are the two rows of Figure 3.70", {
+  cleveland <- ggthemes::ggthemes_data$shapes$cleveland
+  expect_equal(cleveland$overlap$character, c("\u25CB", "+", "S", "\u25B3", "U"))
+  expect_equal(cleveland$default$character, c("\u25CF", "\u25CB", "\u233D", "\u2B58", "\u2299"))
+  expect_equal(cleveland$overlap$pch, c(1L, 3L, 83L, 2L, 85L))
+  # Only the solid and the open circle can be drawn without a font.
+  expect_equal(cleveland$default$pch, c(16L, 1L, NA, NA, NA))
+})
+
+test_that("cleveland_1994's tables are the two rows of the revised edition", {
+  cleveland <- ggthemes::ggthemes_data$shapes$cleveland_1994
+  expect_equal(cleveland$overlap$character, c("\u25CB", "+", "<", "S", "W"))
+  expect_equal(cleveland$default$character, c("\u25CB", "\u25CF", "\u2B58", "\u233D", "\u2299"))
+  expect_equal(cleveland$overlap$pch, c(1L, 3L, 60L, 83L, 87L))
+  expect_equal(cleveland$default$pch, c(1L, 16L, NA, NA, NA))
 })
 
 test_that("LibreOffice's down-pointing triangle is named a triangle", {

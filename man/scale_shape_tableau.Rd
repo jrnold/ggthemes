@@ -7,7 +7,9 @@
 scale_shape_tableau(palette = "default", ..., unicode = FALSE)
 }
 \arguments{
-\item{palette}{Palette name.}
+\item{palette}{Palette name. One of \code{"default"}, \code{"filled"},
+\code{"proportions"}, \code{"kpi"}, \code{"arrows"}, \code{"thin-arrows"}, \code{"gender"},
+\code{"weather"} or \code{"bug-tracking"}.}
 
 \item{...}{
   Arguments passed on to \code{\link[ggplot2:discrete_scale]{discrete_scale}}
@@ -69,10 +71,13 @@ notation.
     \item{\code{super}}{The super class to use for the constructed scale}
   }}
 
-\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode
-glyphs, as this palette did before ggthemes 6.1.0. Glyph shapes are drawn
-by the device font, so they render as blank boxes in a font without
-coverage; the default returns base pch codes, which every font can draw.}
+\item{unicode}{If \code{TRUE}, return pch codes derived from Unicode glyphs, which
+exist for every shape of the palette. They are drawn by the device font, so
+they render as blank boxes in a font without coverage and at unrelated sizes
+in most fonts; the font from \code{\link[=register_shapes_font]{register_shapes_font()}} has the shapes of
+this palette at a common size. If \code{FALSE}, return base pch codes, which every font can
+draw but which exist only for some shapes. The default depends on the
+palette.}
 }
 \value{
 A ggplot2 scale object.

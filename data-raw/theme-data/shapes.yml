@@ -2,17 +2,39 @@
 # from it and from `character`, and aborts if they disagree. See
 # R/shape-names.R for the vocabulary.
 cleveland:
+  # Figure 3.70 of Cleveland (1985), *The Elements of Graphing Data*, p. 196.
+  # `overlap` is the bottom row ("when overlap causes problems") and `default`
+  # the top row ("when there is little overlap"). Each is meant to be used from
+  # the left: the first two symbols for two categories, three for three, ...
+  overlap:
+  - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
+  - {shape: "plus", name: "PLUS SIGN", unicode: "U+002B", character: "+"}
+  - {shape: "letter S", name: "LATIN CAPITAL LETTER S", unicode: "U+0053", character: "S"}
+  - {shape: "triangle open", name: "WHITE UP-POINTING TRIANGLE", unicode: "U+25B3", character: "△"}
+  - {shape: "letter U", name: "LATIN CAPITAL LETTER U", unicode: "U+0055", character: "U"}
+  default:
+  - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
+  - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
+  - {shape: "circle stile", name: "APL FUNCTIONAL SYMBOL CIRCLE STILE", unicode: "U+233D", character: "⌽"}
+  - {shape: "circle heavy", name: "HEAVY CIRCLE", unicode: "U+2B58", character: "⭘"}
+  - {shape: "circle dot", name: "CIRCLED DOT OPERATOR", unicode: "U+2299", character: "⊙"}
+# The same two sets as drawn in the revised (second) edition of *The Elements
+# of Graphing Data* (Hobart Press, 1994). Where the first edition's figure ends
+# the overlap set with a triangle and a U, this one has a less-than sign, an S
+# and a W, and the little-overlap set is ordered open circle first.
+cleveland_1994:
   overlap:
   - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
   - {shape: "plus", name: "PLUS SIGN", unicode: "U+002B", character: "+"}
   - {shape: "less-than", name: "LESS-THAN SIGN", unicode: "U+003C", character: "<"}
   - {shape: "letter S", name: "LATIN CAPITAL LETTER S", unicode: "U+0053", character: "S"}
+  - {shape: "letter W", name: "LATIN CAPITAL LETTER W", unicode: "U+0057", character: "W"}
   default:
   - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
   - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
-  - {shape: "circle plus", name: "CIRCLED PLUS", unicode: "U+2295", character: "⊕"}
+  - {shape: "circle heavy", name: "HEAVY CIRCLE", unicode: "U+2B58", character: "⭘"}
+  - {shape: "circle stile", name: "APL FUNCTIONAL SYMBOL CIRCLE STILE", unicode: "U+233D", character: "⌽"}
   - {shape: "circle dot", name: "CIRCLED DOT OPERATOR", unicode: "U+2299", character: "⊙"}
-  - {shape: "circle ring", name: "CIRCLED RING OPERATOR", unicode: "U+229A", character: "⊚"}
 circlefill:
   - {shape: "circle open", name: "WHITE CIRCLE", unicode: "U+25CB", character: "○"}
   - {shape: "circle small", name: "BLACK CIRCLE", unicode: "U+25CF", character: "●"}
