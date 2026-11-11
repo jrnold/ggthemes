@@ -1,0 +1,65 @@
+measure,n,of,note
+title.words_median,3,377,median words
+title.words_le4,339,377,
+title.question,11,377,
+title.full_stop,0,377,
+title.pages.plain,36,37,
+title.pages.statement,1,37,
+title.pages.pun,0,37,
+title.pages.idiom,0,37,
+title.pages.allusion,0,37,
+title.pages.wordplay,0,37,
+title.stories.plain,2,340,
+title.stories.statement,141,340,
+title.stories.pun,112,340,
+title.stories.idiom,63,340,
+title.stories.allusion,22,340,
+title.stories.wordplay,197,340,
+title.leaders.plain,19,20,
+subtitle.empty,15,377,
+subtitle.empty_panels,9,15,charts with no subtitle that have panel headings
+subtitle.place_first,190,362,
+subtitle.unit_last,257,362,the last comma-separated term of the subtitle is a unit
+subtitle.has_unit,295,362,
+subtitle.year,125,362,
+subtitle.percent,136,362,
+subtitle.pct_gdp,14,362,
+subtitle.on_year_earlier,22,362,
+subtitle.increase_year_earlier,8,362,
+subtitle.index,36,362,
+subtitle.bn,26,362,
+subtitle.m,22,362,
+subtitle.trn,5,362,
+subtitle.thousand,25,362,
+subtitle.percentage_points,9,362,
+subtitle.log,5,362,
+subtitle.inverted,6,362,
+subtitle.footnote,93,362,
+subtitle.dollar_terms,5,362,
+number_box,126,357,charts other than leaders
+number_box.leaders,0,20,
+notes.any,180,377,
+notes.order,179,180,symbols in the order * † ‡ §
+notes.one.same_line,77,126,
+notes.many.above,46,54,
+source.present.stories,340,340,
+source.present.leaders,17,20,
+source.singular,277,374,
+source.plural_semicolon,96,97,
+source.singular_one,277,277,
+source.full_stop,0,374,
+source.economist_last,37,41,
+numbers.thousands_comma,9,9,"value axes with a label of 1,000 or more"
+numbers.unit_on_labels,0,366,
+numbers.minus,54,54,value axes with negatives
+numbers.zero_plain,22,22,axes with decimals that show zero
+numbers.same_decimals,39,39,"axes with decimals, zero aside"
+dates.truncated_years,210,210,time axes with three or more year labels
+dates.century_full,54,54,axes crossing 2000 that write it in full
+dates.months.abbr,17,36,time axes labeled by month
+dates.months.letter,11,36,time axes labeled by month
+dates.months.full,8,36,time axes labeled by month
+dates.day_ordinal,75,75,dates with a day in subtitles and notes
+dates.day_full_month,67,75,
+dates.range_short_same_century,15,15,year ranges within a century
+dates.range_full_across,5,5,year ranges across a century

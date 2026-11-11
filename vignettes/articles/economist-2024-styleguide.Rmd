@@ -1,0 +1,784 @@
+---
+title: "The Economist chart style guide: 2024 onward"
+---
+
+```{r, include = FALSE}
+## Fold each chunk's code behind a "Code" toggle; output stays visible.
+local({
+  source_hook <- knitr::knit_hooks$get("source")
+  knitr::knit_hooks$set(source = function(x, options) {
+    paste0("\n\n<details><summary>Code</summary>\n\n", source_hook(x, options), "\n\n</details>\n\n")
+  })
+})
+```
+
+```{css, echo = FALSE}
+/* pkgdown gives every table Bootstrap's `table` class, whose cells are filled with --bs-table-bg (white); let the
+   gt tables show their own background instead. */
+table.gt_table { --bs-table-bg: transparent; }
+```
+
+*The Economist* redesigned its charts in March 2024, and has published no chart style guide since.
+This article is a reverse-engineered replacement for *The Economist visual styleguide* (v1.2, 4 May 2017), which [another article](economist-2017-styleguide.html) reproduces.
+It follows the sections of the 2017 guide and redraws its example charts in the new style.
+It is not an official Economist specification.
+
+The figures are *ggplot2* drawings made with `theme_economist_2024()`, `economist_2024_pal()` and the other 2024 tools in ggthemes.
+The rules come from the public [Economist Design System](https://design-system.economist.com/) and [Marber color foundations](https://marber.economist.com/8e1dcf0b8/p/543b0f-colour/b/37fc5e), from a local corpus of post-redesign print charts and web graphics (cited by code, such as `20240406_BRC149`), and from recurring conventions in [Graphic Detail](https://www.economist.com/topics/graphic-detail) and the [weekly edition](https://www.economist.com/weeklyedition).
+
+```{r setup, message = FALSE}
+## The 2024 palettes, the theme at the guide's size and the drawing helpers, shared with the child documents.
+source("economist-2024-guide.R")
+```
+
+## About this guide
+
+**What it is for.** It lets you draw a chart in the paper's current style with the tools in ggthemes.
+It describes what the paper does; where it gives advice of its own, it says so.
+
+**What it covers.** Print and web charts from the March 2024 redesign on; maps get only a short note.
+
+**What charts cannot tell.** The charts show the conventions the paper follows, not why it follows them, who enforces them, or when it allows an exception.
+The guide draws on no interviews with the paper's staff; where it gives a reason, the reason is an inference.
+
+## How to read the rules
+
+Each rule rests on one of four kinds of evidence, and the text says which:
+
+| Evidence | How the text shows it | How firm |
+|:--|:--|:--|
+| Documented | A link to the [Economist Design System](https://design-system.economist.com/) or the [Marber color foundations](https://marber.economist.com/8e1dcf0b8/p/543b0f-colour/b/37fc5e) | The paper's own published values |
+| Observed | A chart code, such as `20240406_BRC149`, or a chart title | Seen on the cited charts; how often it holds is not counted |
+| Carried over | A quotation from the 2017 guide | A 2017 rule the 2024 charts still follow, or one applied where no 2024 example was found |
+| Advice | A note in italics at the head of the section | ggthemes' own advice, not a convention of the paper |
+
+Unlike the [classic guide](economist-classic-styleguide.html#how-to-read-the-rules), this guide gives shares only for the words on the charts ([Titles, subtitles and units](#titles-subtitles-and-units)); the rest of the 2024 charts have not been read chart by chart (see [Method and limitations](#method-and-limitations)).
+Read an observed rule as the paper's usual practice on the charts cited, not as a measured rule.
+Reconstructions, such as the sequential ramps, are marked where they appear.
+
+## What changed in 2024
+
+The redesign replaced the cool blue print ground and blue-first palettes with a warm gray print ground and red-first palettes.
+Web charts remain white (see [A white ground with a short red tab](#a-white-ground-with-a-short-red-tab)).
+The typeface changed too: ["Why has *The Economist* changed its typeface?"](https://www.economist.com/the-economist-explains/2024/02/07/why-has-the-economist-changed-its-typeface) (7 February 2024).
+
+| Element | 2017 system | 2024 onward |
+|---|---|---|
+| Print ground | cool pale blue `#E7F0F5` | warm gray `#ECEBE0` |
+| Web ground | white | white |
+| First categorical color | blue | red |
+| Supporting categories | blue, cyan, gold, teal | salmon, blue, light blue, dark gray, light gray |
+| Text | black and blue-gray | near-black, with a gray source |
+| Type | Econ Sans Condensed, 9.5pt headline | Economist Sans, a larger headline and subtitle |
+| Top furniture | red tab; a full red rule on the web | a short red tab only |
+| Panel headings | a short red marker | a short black rule |
+| Number box | filled | outlined in black |
+| Pie / doughnut | included | no longer used |
+
+Print now also carries ribbons on lines, rank charts, highlighted scatters, forecast bands and dotted forecasts, log scales, a stacked area with a total line, lines with only event rules, ordered color ramps, and tables with boxed figures.
+
+Unchanged: the right-hand value axis with labels above the gridlines, the black baseline with ticks below it, truncated years, unboxed panels, and a left-aligned headline over a subtitle giving measure and unit.
+
+## Chart sizes
+
+Print and web are separate compositions:
+
+- **Print:** the whole graphic sits on warm gray `#ECEBE0`.
+- **Web:** the whole graphic is white; it is built at three widths (700px, 550px and mobile), with labels and panels reflowing.
+- **Alignment:** tab, headline, subtitle, plot and source share one left edge.
+
+The figures keep the 2017 sizes (`economist_2017_size()`) and 7pt axis labels (`base_size = 7`); `theme_economist_2024()` sets every other size as a multiple of `base_size`.
+
+## Typefaces
+
+Standard charts use Economist Sans, which is not public: `economist_2017_font()` picks the closest installed substitute (Fira Sans Condensed, then Roboto Condensed, then `"sans"`).
+Axis labels and source are light; pass a light family as `base_family` to match.
+
+Footnotes are marked in the 2017 order.
+
+```{r g24-footnote-symbols}
+economist_2017_footnote(1:8)
+```
+
+```{r g24-footnote-figure, econ_size = "two_column", econ_height = 75}
+## The label on the left over a rule, the eight symbols on the right, in the 2024 source gray.
+g24_symbols <- data.frame(x = 0.36 + 0.08 * (0:7), number = 1:8, symbol = economist_2017_footnote(1:8))
+g24_gray <- econ$print$source
+
+g24_footnotes <- ggplot(g24_symbols, aes(x, 0)) +
+  annotate("segment", x = 0, xend = 1, y = 1.15, yend = 1.15, colour = g24_gray, linewidth = 0.2) +
+  annotate("text", x = 0, y = 0.55, label = "Footnote symbols", hjust = 0, vjust = 1, fontface = "bold",
+           colour = g24_gray, size = g24_pt(7.5)) +
+  annotate("text", x = 0, y = 0.05, label = "order of use", hjust = 0, vjust = 1, colour = g24_gray,
+           size = g24_pt(7.5)) +
+  geom_text(aes(label = number), size = g24_pt(7), hjust = 1, vjust = 0, nudge_y = 0.05, colour = g24_gray) +
+  geom_text(aes(x = x + 0.006, label = symbol), size = g24_pt(14), hjust = 0, vjust = 0.5, nudge_y = -0.3) +
+  scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-1, 1.8), expand = c(0, 0)) +
+  labs(x = NULL, y = NULL) +
+  g24_theme() +
+  g24_no_axes()
+
+g24_chart(g24_footnotes)
+```
+
+## Anatomy of a chart
+
+A chart reads top to bottom:
+
+1. a short red tab on the top edge, inset with the chart in print and flush left on the web;
+2. a bold, sentence-case headline;
+3. a subtitle giving geography, measure, unit and period, bold in print and medium on the web;
+4. a key or panel heading, when needed;
+5. the plot;
+6. notes and source below the baseline.
+
+The value axis sits on the right with labels just above the gridlines (`scale_y_continuous(position = "right")` with `guide_axis_economist_2017()`).
+The baseline is black with ticks below it, the gridlines are pale, and there is no panel box.
+
+```{r g24-anatomy-bare, econ_height = 165}
+## Monthly yields, in years since the start: the 2017 guide's data.
+tokyo_x <- c(1, seq(1.25, 13.5, by = 0.25), 13.7)
+g24_bonds <- data.frame(
+  year = rep(tokyo_x, 2),
+  yield = c(
+    4.7, 5.0, 5.2, 5.1, 5.6, 6.6, 6.7, 7.9, 6.8, 6.5, 6.7, 6.2, 5.7, 5.5, 5.4, 4.9, 4.6, 4.2, 4.5, 4.0,
+    3.4, 3.9, 4.1, 4.5, 4.5, 3.9, 3.0, 3.0, 2.9, 3.2, 3.2, 2.9, 2.5, 2.5, 2.6, 2.1, 1.9, 1.8, 1.6, 1.1,
+    1.5, 1.8, 1.6, 1.8, 1.8, 1.8, 1.7, 1.9, 1.6, 1.2, 1.2, 1.25,
+    4.7, 5.2, 5.8, 5.9, 6.3, 6.2, 6.2, 5.8, 5.4, 5.0, 5.3, 4.7, 4.9, 5.2, 4.8, 4.0, 4.0, 3.8, 3.6, 4.3,
+    4.2, 4.2, 4.6, 4.1, 4.2, 4.4, 4.1, 4.3, 4.4, 4.8, 5.1, 4.7, 4.6, 4.6, 5.0, 4.5, 4.0, 3.6, 4.0, 3.7,
+    2.7, 2.8, 3.6, 3.4, 3.6, 3.7, 3.2, 2.6, 3.1, 3.4, 3.0, 2.3
+  ),
+  period = rep(c("January 1989 (Japan)", "January 1999 (US)"), each = length(tokyo_x))
+)
+
+g24_tokyo <- ggplot(g24_bonds, aes(year, yield, colour = period)) +
+  geom_line(linewidth = g24_lw(1.5)) +
+  g24_value_axis(limits = c(0, 8), breaks = seq(0, 8, 2), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(1, 13.7), breaks = 1:13, labels = ifelse(1:13 %in% c(1, 5, 10, 13), 1:13, ""), expand = c(0, 0)
+  ) +
+  scale_colour_economist_2024("print") +
+  labs(
+    title = "Where Tokyo leads",
+    subtitle = "Ten-year government-bond yields, %",
+    x = "Years since start", y = NULL, colour = "Period beginning:"
+  ) +
+  g24_theme()
+
+g24_tokyo
+```
+
+The theme sets the 2024 type and rules; three features are not theme elements:
+
+* the **red tab** on the top edge;
+* the **short black rule** over each panel heading;
+* the **number box**, a square outlined in black at the top right.
+
+`economist_2024_chart()` adds them to a finished plot and returns a grob.
+
+```{r g24-anatomy-chart, econ_height = 165}
+g24_chart(g24_tokyo + labs(caption = "Source: Thomson Reuters"))
+```
+
+## Source, footnote and number box
+
+Put a note on its own line above the source, or ranged right on it.
+A numbered box, a black-outlined square at the top right (filled in 2017), appears only in a numbered sequence.
+
+```{r g24-anatomy-print, econ_height = 165}
+fn <- economist_2017_footnote(1:2)
+
+g24_chart(
+  g24_tokyo +
+    labs(
+      subtitle = paste0("Ten-year government-bond yields", fn[1], ", %"),
+      ## The commoner 2024 layout: the note on its own line above the source.
+      caption = paste0(fn[1], "Annualised\nSource: Thomson Reuters")
+    ),
+  number = 1
+)
+```
+
+Web charts have no red rule; the short tab is the only red furniture.
+
+```{r g24-anatomy-web, econ_size = "two_column", econ_height = 190}
+## Olympic medal sweeps; the 1996 games had none.
+g24_sweeps <- data.frame(
+  year = c(1948, 1952, 1956, 1960, 1964, 1968, 1972, 1976, 1980, 1984, 1988, 1992, 2000, 2004, 2008, 2012, 2016),
+  us = c(5, 6, 6, 4, 4, 6, 2, 4, 0, 1, 2, 1, 0, 2, 3, 0, 1),
+  ussr = c(0, 4, 1, 4, 0, 0, 2, 3, 5, 0, 3, 1, 0, 0, 0, 0, 0),
+  eg = c(0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0),
+  other = c(2, 0, 3, 0, 0, 1, 4, 2, 0, 0, 3, 3, 2, 2, 4, 2, 0)
+)
+g24_sweeps <- data.frame(
+  year = rep(g24_sweeps$year, 4),
+  count = c(g24_sweeps$other, g24_sweeps$eg, g24_sweeps$ussr, g24_sweeps$us),
+  country = factor(
+    rep(c("Other", "East Germany", "Soviet Union", "United States"), each = nrow(g24_sweeps)),
+    levels = c("United States", "Soviet Union", "East Germany", "Other")
+  )
+)
+
+g24_anthem <- ggplot(g24_sweeps, aes(year, count, fill = country)) +
+  geom_col(width = 2.7, position = position_stack(reverse = TRUE)) +
+  annotate("text", x = 1992, y = 1.55, label = "*", colour = "white", size = g24_text) +
+  ## Red, salmon and blue for the three countries, light gray for "Other".
+  scale_fill_manual(
+    values = c(
+      "United States" = w24[["red"]], "Soviet Union" = w24[["salmon"]],
+      "East Germany" = w24[["blue"]], "Other" = w24[["light gray"]]
+    )
+  ) +
+  g24_value_axis(limits = c(0, 12), breaks = seq(0, 12, 2), expand = c(0, 0)) +
+  scale_x_continuous(breaks = seq(1948, 2016, 4), labels = economist_2017_year_format(), expand = c(0.01, 0)) +
+  guides(fill = guide_legend(nrow = 1)) +
+  labs(
+    title = "National anthem monopolies", subtitle = "Number of “medal sweeps” by country",
+    x = NULL, y = NULL, fill = NULL,
+    caption = "*Unified team of ex-Soviet republics\nSources: International Olympic Committee; Sports Reference; The Economist"
+  ) +
+  g24_theme("web")
+
+g24_chart(g24_anthem, "web")
+```
+
+## Type scale and margins
+
+`theme_economist_2024()` takes `base_size` as the axis-label size and sets the rest as multiples of it:
+
+| Role | Treatment | Multiple of axis-label size | At `base_size = 7` | Theme element |
+|---|---|---:|---:|---|
+| Headline | bold, black | 20/15 = 1.33 | 9.3pt | `plot.title` |
+| Subtitle | medium on the web, bold in print | 17/15 = 1.13 | 7.9pt | `plot.subtitle` |
+| Panel heading | bold, under a short black rule | 1.13 | 7.9pt | `strip.text` |
+| Axes, keys, annotation | light, black | 1 | 7pt | `axis.text`, `legend.text` |
+| Source and notes | light, gray | 1 | 7pt | `plot.caption` |
+
+- Axis labels are black, not gray, and the source is the same size.
+- Print charts have a small outer inset; web charts none.
+- Leave one line of clear space between subtitle or key and the marks.
+
+### Leader block
+
+Leader charts drop the tab and set the headline in red, as a single line naming the measure.
+
+```{r g24-leader, econ_size = "leader"}
+## Monthly, January 2011 to mid-2015.
+g24_leader_data <- data.frame(
+  year = c(2011.02, 2011 + (1:55) / 12),
+  change = c(
+    1.47, 1.56, 1.85, 2.19, 2.58, 2.69, 2.72, 2.81, 2.88, 2.84, 2.73, 2.61, 2.54, 2.54, 2.45, 2.19,
+    1.85, 1.62, 1.52, 1.49, 1.63, 1.82, 1.82, 1.67, 1.59, 1.61, 1.52, 1.25, 1.22, 1.42, 1.57, 1.51,
+    1.31, 1.12, 1.13, 1.3, 1.4, 1.25, 1.24, 1.51, 1.71, 1.73, 1.7, 1.64, 1.53, 1.45, 1.28, 0.98,
+    0.51, 0.21, 0.27, 0.22, 0.2, 0.29, 0.32, 0.33
+  )
+)
+g24_leader <- ggplot(g24_leader_data, aes(year, change)) +
+  geom_line(colour = single24[["print"]], linewidth = g24_lw(1.2)) +
+  geom_hline(yintercept = 2, colour = "black", linewidth = g24_lw(0.5)) +
+  annotate("text", x = 2015.95, y = 2.08, label = "Fed target  2", hjust = 1, vjust = 0, size = g24_pt(6)) +
+  g24_value_axis(limits = c(0, 3), breaks = c(0, 1, 3), expand = c(0, 0)) +
+  scale_x_continuous(
+    limits = c(2011, 2016), breaks = c(2011:2015, 2015.57), labels = c(economist_2017_year(2011:2015), ""),
+    expand = c(0, 0)
+  ) +
+  labs(title = "US consumer prices,\n% increase on a year earlier", x = NULL, y = NULL) +
+  g24_theme(base_size = 6) +
+  theme(plot.title = element_text(colour = accent24[["print"]]))
+
+g24_chart(g24_leader, tab = c(0, 0))
+```
+
+### Espresso lead image
+
+```{r g24-espresso, econ_size = "espresso"}
+g24_espresso_data <- data.frame(
+  year = 2007:2015,
+  change = c(4, 2, -5.7, 4.4, 6.8, 4.1, 2.9, 3, 0.9)
+)
+g24_espresso <- ggplot(g24_espresso_data, aes(year, change)) +
+  geom_col(fill = single24[["print"]], width = 0.67) +
+  geom_hline(yintercept = 0, colour = "black", linewidth = g24_lw(0.5)) +
+  g24_value_axis(limits = c(-8, 8), breaks = seq(-8, 8, 4), expand = c(0, 0)) +
+  scale_x_continuous(breaks = 2007:2015, labels = economist_2017_year_format()) +
+  labs(
+    title = "US retail sales",
+    subtitle = "Excluding motor vehicles and parts,\n% change on a year earlier",
+    x = NULL, y = NULL, caption = "Source: US Department of Commerce"
+  ) +
+  g24_theme(base_size = 6) +
+  ## 120pt of chart, then 40pt blank, as in 2017.
+  theme(plot.margin = margin(0, 6, 6 + 40, 6, "pt"))
+
+g24_chart(g24_espresso)
+```
+
+### Panel chart
+
+Panel headings are bold under a short black rule the length of the tab.
+
+```{r g24-panel, econ_size = "two_column", econ_height = 195}
+## The "Racy" chart: daily lines on the left, 12 points on the right.
+panel_names <- c(
+  "Donald Trump’s media dominance\nand polling surge",
+  "Support for Trump v racial resentment\nand authoritarianism†,\nRepublican primary voters"
+)
+tv_mentions <- c(
+  34, 29, 26, 35, 47, 56, 58, 55, 61, 64, 59, 55, 52, 52, 55, 58, 62, 61, 61, 58, 52, 50, 48, 53, 47, 41,
+  41, 43, 42, 43, 47, 47, 48, 45, 35, 27, 27, 27, 27, 28, 37, 48, 50, 49, 57, 67, 63, 53, 55, 58, 56, 56,
+  57, 57, 54, 54, 58, 57, 54, 45, 35, 35, 43, 48, 49, 53, 60, 64, 60, 60, 62, 69, 71, 69, 72, 70, 67, 69,
+  71, 71, 71, 68, 70
+)
+polling <- c(
+  3.8, 3.8, 4.1, 5.2, 6.2, 6.4, 9.3, 13, 16.7, 18.1, 19.3, 21.6, 23.6, 23.7, 22.5, 22.2, 22, 22.5, 24.4,
+  26.5, 27.6, 28.8, 29.9, 30.4, 28, 24.8, 23.4, 23, 23.1, 23.4, 23.4, 24.8, 26.7, 27, 26.9, 25.7, 24.8,
+  24.8, 24.5, 24.4, 26.1, 27.8, 28.6, 29.5, 29.8, 30.2, 31.6, 33.8, 34.5, 36, 35.5, 34.9, 34.6, 34.5,
+  34.5, 34.7, 34.7, 35.7, 35.6, 34, 30.8, 29.3, 31.1, 33.6, 33.4, 33.9, 35.3, 36.2, 36.2, 34.1, 34.8,
+  39.4, 42.9, 42.3, 41.4, 40.2, 39.3, 39.7, 40.4, 40.7, 42.2, 43.6, 45.3
+)
+days <- (6 * seq_along(tv_mentions) - 22) / 1.57
+g24_panel_data <- rbind(
+  data.frame(panel = panel_names[1], x = days, series = "TV mentions", value = tv_mentions),
+  ## The polling average has its own 0-50 axis, so it is drawn at twice its value.
+  data.frame(panel = panel_names[1], x = days, series = "Polling average", value = 2 * polling),
+  data.frame(
+    panel = panel_names[2], x = 1:12, series = "Authoritarianism",
+    value = c(43.5, 42.9, 42.6, 43.5, 44.4, 45.3, 46.4, 47.7, 48.9, 49.9, 50.4, 50.6)
+  ),
+  data.frame(
+    panel = panel_names[2], x = 1:12, series = "Racial resentment",
+    value = c(2, 9.5, 17.3, 24.9, 31.4, 35.3, 39.1, 43, 46.5, 50, 53.5, 56)
+  )
+)
+g24_panel_data$panel <- factor(g24_panel_data$panel, levels = panel_names)
+
+## The two lines of each panel: red and blue, so that each colored axis reads apart from the other.
+g24_first <- p24[["red"]]
+g24_second <- p24[["blue"]]
+g24_note <- econ$print$source
+g24_panel_plot <- function(panel_pt) {
+  up1 <- 100 / panel_pt # data units of the first panel per point
+  up2 <- 60 / panel_pt
+  txt <- function(data, size = g24_size) {
+    geom_text(
+      data = data, aes(.data$x, .data$y, label = .data$label, hjust = .data$hjust), colour = data$colour,
+      size = g24_pt(size), inherit.aes = FALSE
+    )
+  }
+  lab <- function(panel, x, y, label, hjust = 0.5, colour = "black") {
+    data.frame(panel = factor(panel_names[panel], levels = panel_names), x = x, y = y, label = label,
+               hjust = hjust, colour = colour)
+  }
+  axis_labels <- rbind(
+    lab(1, -49.6, seq(0, 100, 20) + 4 * up1, seq(0, 100, 20), hjust = 0, colour = g24_second),
+    lab(1, 342, seq(0, 100, 20) + 4 * up1, seq(0, 50, 10), hjust = 1, colour = g24_first),
+    lab(2, 13.7, seq(0, 60, 20) + 4 * up2, seq(0, 60, 20), hjust = 1)
+  )
+  unit_labels <- rbind(
+    lab(1, -49.6, 100 + 13 * up1, "TV mentions*, % of total", hjust = 0, colour = g24_second),
+    lab(1, 342, 100 + 13 * up1, "Polling average, %", hjust = 1, colour = g24_first),
+    lab(2, 13.7, 60 + 13 * up2, "Voter support, %", hjust = 1)
+  )
+  months <- lab(
+    1, c(-4.4, 15.3, 46, 76.3, 105.5, 135.4, 165, 195, 226, 255.5, 285, 307.6), -9.5 * up1,
+    c("J", "J", "A", "S", "O", "N", "D", "J", "F", "M", "A", "M")
+  )
+  years <- lab(1, c(86, 243), -19 * up1, c("2015", "2016"))
+  direct_labels <- lab(2, c(1.2, 6.8), c(50, 32.5), c("Authoritarianism", "Racial resentment"), hjust = 0)
+  scale_labels <- rbind(
+    lab(2, 0.33, -9 * up2, "LOWEST", hjust = 0, colour = g24_note),
+    lab(2, 12, -9 * up2, "HIGHEST", colour = g24_note)
+  )
+  scale_text <- lab(
+    2, 7, c(-4.5, -13.5) * up2, c("Degree of authoritarianism", "Level of resentment"), colour = g24_note
+  )
+  scale_arrow <- data.frame(
+    panel = factor(panel_names[2], levels = panel_names), x = 3.6, xend = 10.2, y = -9 * up2
+  )
+  ggplot(g24_panel_data, aes(.data$x, .data$value, colour = .data$series)) +
+    geom_line(linewidth = g24_lw(1.2), show.legend = FALSE) +
+    txt(axis_labels) +
+    txt(unit_labels) +
+    txt(months) +
+    txt(years) +
+    txt(direct_labels) +
+    txt(scale_labels, 6.5) +
+    txt(scale_text, 6.5) +
+    geom_segment(
+      data = scale_arrow, aes(x = .data$x, xend = .data$xend, y = .data$y, yend = .data$y), colour = g24_note,
+      linewidth = 0.3, arrow = grid::arrow(ends = "both", length = unit(3, "pt"), type = "closed"),
+      inherit.aes = FALSE
+    ) +
+    facet_wrap(~panel, nrow = 1, scales = "free") +
+    coord_cartesian(clip = "off", expand = FALSE) +
+    ## Set the panel ranges so the lettering outside the axes does not stretch them.
+    scale_x_continuous(
+      limits = function(limits) if (diff(limits) > 100) c(-49.6, 342) else c(0.326, 13.7), oob = scales::oob_keep,
+      breaks = function(limits) {
+        if (limits[2] > 100) c(-9, 0, 31, 62, 92, 123, 153, 184, 215, 244, 275, 305) else c(1, 12)
+      },
+      labels = function(breaks) rep("", length(breaks))
+    ) +
+    scale_y_continuous(
+      limits = function(limits) if (max(limits) > 80) c(0, 100) else c(0, 60), oob = scales::oob_keep,
+      position = "right",
+      breaks = function(limits) seq(0, limits[2], 20)
+    ) +
+    scale_colour_manual(values = c(
+      "TV mentions" = g24_second, "Polling average" = g24_first,
+      "Authoritarianism" = g24_second, "Racial resentment" = g24_first
+    )) +
+    labs(title = "Racy", subtitle = "United States", x = " ", y = NULL) +
+    g24_theme() +
+    theme(
+      axis.text.y = element_blank(), axis.text.y.right = element_blank(),
+      strip.text = element_text(margin = margin(3.5, 0, 18, 0))
+    )
+}
+
+g24_chart(
+  g24_panel_plot(60) +
+    labs(caption = paste0(
+      "*National news mentions of Trump compared with all Republican candidates\n",
+      "†Poll Jul 30th-Aug 6th 2016\nSources: GDELT; RCP; YouGov"
+    ))
+)
+```
+
+Portrait panel charts stack the panels in one column.
+
+```{r g24-panel-portrait, econ_height = 350}
+g24_chart(
+  g24_panel_plot(68) +
+    facet_wrap(~panel, ncol = 1, scales = "free", axes = "all") +
+    labs(caption = paste0(
+      "*National news mentions of\nTrump compared with all\nRepublican candidates\n",
+      "†Poll Jul 30th-Aug 6th 2016\nSources: GDELT;\nRCP; YouGov"
+    ))
+)
+```
+
+```{r g24-words, child = "_2024-guide-words.Rmd"}
+```
+
+## Color
+
+Color is semantic: red for focus, salmon for related or less emphatic categories, blue and light blue for the main contrast, grays for context.
+Use only as many as needed; ordered categories take a ramp (see [Ordered categories](#ordered-categories)).
+
+The palettes are provisional: the print set rests largely on one chart, and the ramps are reconstructions.
+
+```{r g24-swatches, econ_size = "two_column", econ_height = 230}
+## The palettes, grouped as the 2017 guide groups its swatches.
+g24_swatch_rows <- list(
+  list("PRINT", p24),
+  list("WEB", w24),
+  list("REDS", c(
+    "print emphasis" = accent24[["print"]], "print single" = single24[["print"]],
+    "web emphasis" = accent24[["web"]], "web single" = single24[["web"]]
+  )),
+  list("BACKGROUND", c(
+    "print ground" = econ$print$bg$value[1], "print panel alt" = econ$print$bg$value[2],
+    "web ground" = econ$web$bg$value[1]
+  )),
+  list("NEUTRAL", c(
+    "print grid" = econ$print$grid, "print text" = econ$print$text, "print source" = econ$print$source,
+    "web grid" = econ$web$grid, "web text" = econ$web$text, "web source" = econ$web$source
+  ))
+)
+g24_swatch_data <- do.call(rbind, lapply(seq_along(g24_swatch_rows), function(r) {
+  hex <- g24_swatch_rows[[r]][[2]]
+  data.frame(group = g24_swatch_rows[[r]][[1]], row = r, col = seq_along(hex), name = toupper(names(hex)), hex = hex)
+}))
+
+ggplot(g24_swatch_data, aes(col, -row)) +
+  geom_tile(aes(fill = hex), width = 0.94, height = 0.42, colour = econ$web$grid, linewidth = 0.1) +
+  geom_text(aes(y = -row + 0.36, label = name), size = g24_pt(4), vjust = 0) +
+  geom_text(aes(y = -row - 0.32, label = hex), size = g24_pt(4), vjust = 1) +
+  geom_text(
+    data = unique(g24_swatch_data[c("group", "row")]), aes(x = -1.2, y = -row, label = group),
+    size = g24_pt(6), fontface = "bold", hjust = 0, inherit.aes = FALSE
+  ) +
+  scale_fill_identity() +
+  scale_x_continuous(limits = c(-1.2, 6.6), expand = c(0, 0)) +
+  labs(title = "Chart palette, print and web", x = NULL, y = NULL) +
+  g24_theme("web") +
+  g24_no_axes()
+```
+
+### Qualitative palettes
+
+The six-color order is **red, salmon, blue, light blue, dark gray, light gray**.
+`economist_2024_pal(media)` returns it, and `scale_colour_economist_2024()` and `scale_fill_economist_2024()` use it.
+The print colors are `r paste(unname(p24), collapse = ", ")`; the web colors are `r paste(unname(w24), collapse = ", ")`.
+
+### Two reds: emphasis and single series
+
+Two reds are used, rarely together:
+
+- **emphasis red** (`#ED1C24` in print, `#E3120B` on the web): the first series of several, a highlighted bar, an interval, an annotation;
+- **single-series red** (`#F04F38` in print, `#F6423C` on the web): a plain one-color chart.
+
+`economist_2024_pal()` returns the single-series red when asked for one color; two or more start with the emphasis red.
+
+### Print and web values
+
+Print and web use different values of each color, and the two sets are not conversions of each other.
+The print values are the colors observed in published charts.
+Most could not be matched exactly to print swatches: the simplest CMYK build matches the red and dark gray exactly but only comes close to the others, and none reproduces the text color.
+The package draws the observed values; [Appendix: how the colors were found](#appendix-how-the-colors-were-found) gives the method.
+
+### Party colors
+
+Parties take the palette where they can:
+
+- the left takes red and the right blue, so America's Republicans are red;
+- second parties and earlier terms take the paler partner (salmon, light blue);
+- unaffiliated members and "others" take the grays;
+- third parties go off the palette: amber for the liberal center, orange for Britain's Liberal Democrats, green, cyan, and navy, dark red or dark green where a further party needs its own hue.
+
+The values below are print values.
+
+| Color | Value | Parties |
+|---|---|---|
+| Red | `#ED1C24` | Trump (second term), Canada's Liberals, the European Left, Basque Socialists, Britain's Labour (as a line among many) |
+| Single-series red | `#F04F38` | France's New Popular Front; Labour |
+| Salmon | `#F8AB90` | Trump (first term), Socialists & Democrats |
+| Blue | `#28479D` | Biden, Canada's Conservatives, National Rally, Britain's Conservatives, Spain's People's Party |
+| Light blue | `#659BD2` to `#8AAFDC` | Obama, Bloc Québécois, France's Republicans, European Conservatives & Reformists |
+| Dark gray | `#636466` | Unaffiliated (European Parliament) |
+| Light gray | `#C6C8CA` | Others |
+| Amber | `#FCB316` | Ensemble, Renew Europe, New Democrats, SNP (`#F9BE2A`) |
+| Orange | `#F57F20` | Liberal Democrats |
+| Green | `#71BF45` | Greens, EH Bildu; Plaid Cymru in a paler `#99CF87` |
+| Cyan | `#2FC0D3` | European People's Party, Reform UK |
+| Navy | `#222B76` | Identity & Democracy |
+| Dark red | `#B7131A` | People's Party of Canada |
+| Dark green | `#0A5115` | Basque Nationalist Party (PNV) |
+
+### Sequential and diverging red and gray
+
+Red is for a measure carrying the editorial focus, gray for neutral ordered context; both ramps run from light (low) to dark (high).
+Use the diverging ramp only when the center has meaning: zero, parity, a target or an average.
+
+The ramps are reconstructions, not sampled house ramps.
+
+```{r g24-gradients, econ_size = "two_column", econ_height = 150}
+## One row per ramp, low to high, in each medium.
+g24_ramps <- do.call(rbind, lapply(c("print", "web"), function(media) {
+  spec <- econ[[media]]
+  rbind(
+    data.frame(media = media, ramp = "Red", step = seq_len(nrow(spec$sequential_red)), hex = spec$sequential_red$value),
+    data.frame(media = media, ramp = "Gray", step = seq_len(nrow(spec$sequential_gray)), hex = spec$sequential_gray$value),
+    data.frame(media = media, ramp = "Red-gray", step = seq_len(nrow(spec$diverging)), hex = spec$diverging$value)
+  )
+}))
+g24_ramps$row <- paste(g24_ramps$media, tolower(g24_ramps$ramp))
+g24_ramps$row <- factor(g24_ramps$row, levels = rev(unique(g24_ramps$row)))
+
+ggplot(g24_ramps, aes(step, row, fill = hex)) +
+  geom_tile(width = 0.94, height = 0.7) +
+  geom_text(aes(label = hex), size = g24_pt(3.6), colour = ifelse(g24_ramps$step > 3, "white", "black")) +
+  scale_fill_identity() +
+  scale_x_continuous(expand = c(0.01, 0)) +
+  labs(title = "Sequential and diverging ramps", x = NULL, y = NULL) +
+  g24_theme("web") +
+  g24_no_value_axis() +
+  theme(axis.line = element_blank(), axis.text.y = element_text(hjust = 0))
+```
+
+`scale_fill_gradient_economist_2024("red")` and `"gray"` use the sequential ramps, and `scale_fill_gradient2_economist_2024()` the diverging one; `guide_colourbar_economist_2024()` draws their key as the published charts do.
+
+### Ordered categories
+
+Ordered categories take a ramp in the same order, with the focus in red at one end (`20240420_EPC345`), and are named beside their lines rather than keyed.
+
+```{r g24-ordered-setup}
+## Measured on `20240420_EPC345`, the print values: the red and salmon are the palette's; the deep salmon and the
+## four warm grays are not (the lightest is not the palette's light gray `#C6C8CA`, which this chart keeps for its
+## gridlines).
+g24_ordered <- c(
+  "Gen Z" = p24[["red"]], "Millennial" = "#E27A5E", "Gen X" = p24[["salmon"]], "Boomer" = "#C3C2B5",
+  "Silent" = "#A4A495", "Greatest" = "#8A897D", "Lost" = "#64625D"
+)
+```
+
+```{r g24-ordered-money, econ_height = 215}
+## Approximate values read to follow the chart: median income by age, one value a year from each cohort's first age.
+g24_cohort <- function(name, first, income) data.frame(cohort = name, age = first + seq_along(income) - 1, income = income)
+g24_incomes <- rbind(
+  g24_cohort("Gen Z", 15, c(36, 37.2, 38.2, 38.7, 38.5, 39, 39.3, 39.8, 40.1, 40.4, 41.1)),
+  g24_cohort("Millennial", 15, c(31.4, 32.1, 32.8, 32.4, 31.6, 31.5, 31.3, 31.7, 32.6, 34, 35.6, 37.1, 37.9, 38.1, 38.7,
+                                 39.1, 39.5, 40.1, 40.8, 41.6, 43, 43.3, 44.3, 45.1, 45, 44.5, 44.6)),
+  g24_cohort("Gen X", 15, c(25.3, 26.2, 27, 27.9, 28.4, 28.6, 28.4, 28.2, 28.5, 29.6, 30.5, 31.3, 32.2, 32.7, 33.3,
+                            33.6, 34.2, 34.6, 34.8, 35.3, 35.7, 36.2, 37, 37.7, 38.4, 39.2, 40, 40.7, 41.1, 42, 42.7,
+                            43.8, 44.7, 45.4, 46.5, 47.7, 48.9, 49.6, 50.4, 50.7, 51.2, 50.1, 46.9)),
+  g24_cohort("Boomer", 15, c(21.9, 22.6, 23.4, 24.2, 24.9, 25.4, 25.4, 25.2, 25.7, 26.4, 27, 27.3, 27.3, 27.2, 27.6,
+                             27.8, 27.8, 28, 28.3, 28.9, 29.9, 30.7, 31.6, 32.5, 33.5, 34.4, 35.3, 36.2, 36.9, 38,
+                             38.8, 39.6, 40.3, 41.1, 41.8, 42.3, 43, 43.3, 43.7, 44, 44.5, 44.9, 44.7, 44.2, 44,
+                             43.6, 43, 42.6, 42, 41.5, 41.8, 41.6, 41.6, 41.2, 41.6, 41.4, 41, 40.9, 41, 40.1, 37.5)),
+  g24_cohort("Silent", 18, c(17.1, 18, 18.7, 18.6, 18.8, 19.5, 19.6, 20.1, 20.5, 20.6, 20.9, 21, 21.4, 21.6, 21.9,
+                             22.2, 22.7, 23.2, 24, 24.8, 25.8, 26.7, 27.4, 28.4, 29.4, 30.3, 31.3, 32.2, 33, 33.8,
+                             34.2, 34.8, 35.3, 35.7, 35.9, 36.6, 36.7, 36.8, 36.9, 37.1, 36.7, 36.4, 35.9, 35.6,
+                             34.7, 34.8, 34.5, 34, 33.7, 34, 33.7, 33.2, 32.2, 32.4, 32, 32, 31.5, 31.4, 31.1, 30.8,
+                             30.7, 30.3, 29.3, 28.9, 28.6, 28.2, 28, 27.8)),
+  g24_cohort("Greatest", 37, c(18.4, 19.5, 20, 20.8, 21.8, 22.6, 23.4, 24.4, 25.3, 26.2, 26.6, 27.2, 27.9, 28.1, 28.5,
+                               29, 29.1, 29.1, 29, 28.9, 28.7, 28.4, 27.9, 27.3, 26.6, 26.1, 25.9, 25.5, 25, 24.5, 24,
+                               24, 23.7, 23.3, 23.4, 23.3, 23.3, 23.1, 23.1, 22.8, 22.9, 22.7, 22.8, 23.1, 21.9,
+                               21.2, 20.9, 21.1, 22.5, 21.4, 20.5, 20.5, 20)),
+  g24_cohort("Lost", 63, c(17.8, 17.3, 16.2, 15.6, 15.2, 14.8, 14.7, 14.6, 14.4, 14.6, 14.7, 14.6, 14.5, 14.5, 14.6,
+                           14.9, 14.9, 14.8, 15.2, 15.4, 15.7, 16.2, 16.5, 16.8, 17.4, 17.1, 17.9))
+)
+g24_incomes$cohort <- factor(g24_incomes$cohort, levels = names(g24_ordered))
+
+## The names, set left-aligned with the birth years under them; the focus in bold. `at` is where each begins.
+g24_cohort_names <- data.frame(
+  label = c("Gen Z (born\n1997-2012)", "Millennial\n(1981-96)", "Gen X\n(1965-80)", "Boomer\n(1946-64)",
+            "Silent\n(1928-45)", "Greatest\n(1901-27)", "Lost\n(1883-1900)"),
+  x = c(13.2, 32.2, 58.1, 73.4, 13.2, 36.1, 70.3), y = c(45.2, 52.6, 52.6, 44.3, 12, 12.6, 8.9),
+  face = c("bold", rep("plain", 6))
+)
+## Where a name stands on a gridline, the gridline stops.
+g24_cohort_gaps <- data.frame(
+  y = c(50, 50, 10, 10, 10), from = c(32, 54.6, 13.2, 35.8, 66.7), to = c(46.4, 67.4, 22.4, 50.2, 90)
+)
+
+g24_money <- ggplot(g24_incomes, aes(age, income, colour = cohort, group = cohort)) +
+  ## Gridlines that stop where a name stands on them; the theme's own are switched off below.
+  geom_gridline_economist_2024(seq(10, 50, 10), 13.1, 90, g24_cohort_gaps, base_size = g24_size) +
+  geom_line(linewidth = g24_lw(1.5)) +
+  ## Millennials' name has no room beside the end of their line: a leader runs down to it, ending in a dot.
+  annotate("segment", x = 38.2, xend = 38.2, y = 49.6, yend = 45.5, colour = "black", linewidth = 0.1 * g24_size / ggplot2::.pt) +
+  annotate("point", x = 38.2, y = 45.3, colour = "black", size = g24_pt(2.2)) +
+  geom_text(data = g24_cohort_names, aes(x, y, label = label, fontface = face), colour = "black", hjust = 0,
+            lineheight = 0.95, size = g24_text, inherit.aes = FALSE) +
+  scale_colour_manual(values = g24_ordered, guide = "none") +
+  g24_value_axis(limits = c(0, 55.8), breaks = seq(0, 50, 10), expand = c(0, 0), oob = scales::oob_keep) +
+  scale_x_continuous(limits = c(13.1, 90), expand = c(0, 0), breaks = c(15, seq(20, 80, 10), 89)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "He’s got money, but not too much",
+    subtitle = "United States, median income after\ntaxes and transfers*, $’000, 2019 prices",
+    x = "Age, years", y = NULL, caption = "Source: Federal Reserve\nworking paper"
+  ) +
+  g24_theme() +
+  theme(panel.grid.major.y = element_blank(), axis.title.x = element_text(hjust = 0.5))
+
+g24_chart(g24_money, footnote = "*Adjusted by\nhousehold size", number = 4)
+```
+
+```{r g24-bars, child = "_2024-guide-bars.Rmd"}
+```
+
+```{r g24-lines, child = "_2024-guide-lines.Rmd"}
+```
+
+```{r g24-tables, child = "_2024-guide-tables.Rmd"}
+```
+
+```{r g24-misc, child = "_2024-guide-misc.Rmd"}
+```
+
+## Production recipe
+
+```{r g24-production-recipe, eval = FALSE}
+p <- ggplot(data, aes(date, value)) +
+  geom_line(colour = economist_2024_pal("print")(1)) +
+  scale_y_continuous(guide = guide_axis_economist_2017(), position = "right") +
+  labs(
+    title = "A short headline",
+    subtitle = "Geography, measure, unit and period",
+    x = NULL,
+    y = NULL,
+    caption = "*Note, if any\nSource: Organisation or dataset"
+  ) +
+  theme_economist_2024(media = "print", base_family = "Economist Sans")
+
+economist_2024_chart(p, "print")
+```
+
+*The checklist is ggthemes' advice, not a convention of the paper.*
+
+Before export, check:
+
+- Does the headline name what matters?
+- Are geography, unit, period and denominator present?
+- Is this the simplest chart type that answers the question?
+- Does red identify the intended focus?
+- Are series labelled directly where practical?
+- Do bars start at zero?
+- Are uncertainty, forecasts and omitted periods explicit?
+- Do headline, plot and source share a left edge?
+- Has web output been checked at 700px, 550px and the mobile width?
+
+## Method and limitations
+
+The corpus holds print PNGs from 2012--2026 and web graphics from 2024--2026.
+Exact colors were counted from indexed PNG color tables (see [Appendix: how the colors were found](#appendix-how-the-colors-were-found)); `ai2html` files supplied type families, weights, sizes and artboard widths.
+The print sample is uneven and thin after April 2024, when print images leave the web archive and charts were collected one by one.
+The web sample is larger.
+It establishes the ground, qualitative order and recurring grammar, but not every rare layout.
+The later examples (ribbons, rank charts, highlighted scatters, log scales, dotted forecasts, boxed tables) were found outside the main survey.
+Where a 2017 chart type is absent from the corpus, its 2024 version applies the general rules.
+
+**The words.** The counts in [Titles, subtitles and units](#titles-subtitles-and-units) come from every print chart in the corpus from the issue of 30 March 2024, the first with the warm-gray ground, to August 2026: `r g24_words$of[g24_words$measure == "title.words_le4"]` charts, after dropping web daily charts, the white-ground charts of the special reports, Technology Quarterly and World in Brief, Graphic Detail (`WO` codes), and second copies of the same chart filed under another code.
+Most are from April to August 2024, after which the archive holds few print images.
+Each chart's title, subtitle, notes, source, number box, panel headings, value and date labels were transcribed from its image by Claude; eight charts were checked against their images by hand, with no errors in these fields.
+Each title's kind was then classified by Claude from the title and its subtitle, one by one; the line between an idiom, a pun and a verdict is soft, so treat those shares as approximate.
+`economist-2024/words.csv` holds the counts only.
+
+**What was measured and what was read.** Colors, type families, weights, sizes and artboard widths were measured from the files.
+Everything else (chart types, axes, keys, labels, annotations) was read from the cited charts.
+The readings were not coded twice, and outside the words no conventions were counted, so the rest of the guide gives no shares and no agreement scores.
+
+**What was not done.**
+No rule was checked on charts held out from the ones it was drawn from.
+No chart was redrawn from the guide alone by someone who had not seen the original.
+
+**How to make it firmer.** Read a stratified sample of 2024 charts chart by chart, by the classic guide's method (see [How this guide was made](economist-classic-styleguide.html#how-this-guide-was-made)), and replace each observed rule with a share and its count.
+
+## Appendix: how the colors were found
+
+Exact colors were counted from the indexed color tables of the corpus's PNGs, print and web separately.
+
+### Web and print values are separate
+
+Print and web values are distinct in the exported assets, not only in the backgrounds: web graphics contain the six web values and none of the print ones, and the reverse (for example `20260829_FNC090`).
+The two sets are not conversions of each other (see the next section).
+The web set is secure; the print set is less so beyond red and salmon, and its blues vary from chart to chart.
+
+### Print values are close to CMYK builds
+
+The print colors are not the web colors converted for press: any common press profile (SWOP, FOGRA39, GRACoL and others) misses the print color by a median CIEDE2000 of 5.2 to 5.8, no closer than the web colors themselves, and warm web grays cannot become neutral print grays.
+Each print color is instead close to a simple CMYK build rendered through U.S. Web Coated (SWOP) v2, the profile used for the classic charts since 2015.
+The red is 0/100/100/0, the brand guide's print spec for Economist Red (screen value `#E3120B`), which SWOP renders as `#ED1C24`.
+The single-series red and salmon are tints of the same build, and the grays are black ink alone.
+The web colors were chosen in RGB, from design system tokens; the two sets share roles and order, not values.
+
+```{r g24-print-cmyk, echo = FALSE}
+knitr::kable(
+  econ$print$palette[c("name", "cmyk", "hex", "observed", "delta_e", "confidence")],
+  col.names = c("Color", "CMYK", "SWOP rendering", "Observed", "CIEDE2000", "Confidence"),
+  align = "llllrl"
+)
+```
+
+The specs are inferences: the simplest build that comes closest to each observed color.
+Only the red and dark gray are reproduced exactly: the CIEDE2000 column gives the remaining difference, blue is less certain, and no build comes near the text color.
+So the palettes and scales draw the observed colors, not the SWOP renderings.
+The table is `ggthemes_data$economist_2024$print$palette`; `data-raw/economist_2024_swop.R` reproduces it.
+
+Only part of the palette is an exact token in the [Economist foundation palette](https://design-system.economist.com/foundations/colour/palettes):
+
+| Role | Web chart value | Print chart value | Relation to foundation colors |
+|---|---:|---:|---|
+| Red | `#E3120B` | `#ED1C24` | web is exactly Economist Red; print is its CMYK build |
+| Salmon | `#FBA493` | `#F8AB90` | neither is an exact foundation token |
+| Blue | `#3A4DAC` | `#28479D` | related to Chicago blue, but not an exact token |
+| Light blue | `#7892C5` | `#659BD2` | related to Chicago blue, but not an exact token |
+| Dark gray | `#6A6654` | `#636466` | the web gray is warm; the print gray is black ink alone |
+| Light gray | `#BEBCAB` | `#C6C8CA` | the web gray is warm; the print gray is black ink alone |
+| Ground | `#FFFFFF` | `#ECEBE0` | web is London 100; print is close to, but not, Los Angeles 90 `#EBE9E0` |
+
+The web grays include exact London tokens (`#F2F2F2`, `#D9D9D9`, `#B3B3B3`, `#0D0D0D`); the blues are only related to Chicago blue.

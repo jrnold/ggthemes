@@ -1,0 +1,868 @@
+## Bar / column, side by side
+
+```{r g24-bars-setup, include = FALSE}
+## The black rule at zero: as heavy as the baseline.
+g24b_zero_lw <- 0.1 * g24_size / ggplot2::.pt
+g24b_zero <- function() geom_hline(yintercept = 0, colour = econ$print$text, linewidth = g24b_zero_lw)
+## Horizontal bars: the value axis along the top, vertical gridlines, no ticks and no rule on the category axis.
+g24b_bars_theme <- function(media = "print") {
+  list(
+    g24_theme(media, horizontal = FALSE),
+    theme(axis.ticks.y = element_blank(), axis.line.y = element_blank(), axis.text.y.right = element_blank())
+  )
+}
+## Columns: the value axis on the right, and the left-hand copy the 2024 theme sets blanked.
+g24b_cols_theme <- function(media = "print") {
+  list(g24_theme(media), theme(axis.text.y = element_blank()))
+}
+## Labels of the light segments are black, of the dark ones white.
+g24b_ink <- function(fill) ifelse(fill %in% c(p24[["red"]], p24[["blue"]], p24[["dark gray"]]), "white", econ$print$text)
+```
+
+- A plain series is the brighter single-series red, and bars are about 0.7 of their spacing.
+- Horizontal bars: value axis along the top, vertical gridlines, no ticks, a black rule at zero (`20241005_EPC263`).
+- Columns: value axis on the right, a black baseline, ticks under the labelled categories only (`20240504_USC067`).
+
+### One trace
+
+Truncate the years and tick only the labelled ones.
+
+```{r g24-bars-african-lion, econ_height = 165}
+g24b_ethiopia <- data.frame(
+  year = 2004:2015,
+  growth = c(11.7, 12.7, 11.5, 11.8, 11.2, 10.0, 10.6, 11.4, 8.7, 9.8, 10.3, 8.7)
+)
+
+g24b_lion <- ggplot(g24b_ethiopia, aes(year, growth)) +
+  geom_col(fill = single24[["print"]], width = 0.7) +
+  g24_value_axis(limits = c(0, 14), breaks = seq(0, 14, 2), expand = expansion(0)) +
+  scale_x_continuous(
+    breaks = c(seq(2004, 2014, 2), 2015), labels = c("2004", "06", "08", "10", "12", "14", "15*"),
+    expand = expansion(add = c(0.5, 1))
+  ) +
+  labs(
+    title = "African lion",
+    subtitle = "Ethiopia’s GDP, % change on a year earlier",
+    x = NULL, y = NULL, caption = "Source: IMF"
+  ) +
+  g24b_cols_theme()
+
+g24_chart(g24b_lion, footnote = "*Estimate")
+```
+
+### One trace with highlight
+
+Set the highlighted label in bold (`20250524_STC394`); where the bars must stand out, the rest go salmon and the highlight deeper red.
+
+```{r g24-bars-salud, econ_height = 165}
+g24b_doctors <- data.frame(
+  country = c("Sweden", "Denmark", "Britain", "Portugal", "Luxembourg", "France", "Austria", "Spain", "Germany"),
+  visits = c(2.9, 4.6, 5.0, 5.7, 6.3, 6.9, 6.9, 7.5, 8.2)
+)
+g24b_doctors$country <- factor(g24b_doctors$country, levels = g24b_doctors$country)
+g24b_doctors$highlight <- g24b_doctors$country == "Spain"
+
+g24b_salud <- ggplot(g24b_doctors, aes(country, visits, fill = highlight)) +
+  geom_col(width = 0.7, show.legend = FALSE) +
+  g24b_zero() +
+  coord_flip() +
+  g24_value_axis(limits = c(0, 8.4), breaks = seq(0, 8, 2), expand = expansion(0)) +
+  scale_x_discrete(labels = g24_bold_label("Spain")) +
+  scale_fill_manual(values = c(`FALSE` = p24[["salmon"]], `TRUE` = accent24[["print"]])) +
+  labs(
+    title = "Salud",
+    subtitle = "Doctors’ consultations per person\nSelected countries, 2009",
+    x = NULL, y = NULL, caption = "Source: OECD"
+  ) +
+  g24b_bars_theme()
+
+g24_chart(g24b_salud)
+```
+
+### Two traces
+
+Two series take red and salmon, keyed above the plot with square swatches; the bars of a pair touch.
+
+```{r g24-bars-defenders, econ_height = 235}
+g24b_elections <- data.frame(
+  country = rep(
+    c("Chile", "Brazil", "Mexico", "Malaysia", "South Africa", "Poland", "India", "Egypt", "Russia"),
+    each = 2
+  ),
+  income = rep(c("Middle class", "Low income"), 9),
+  pct = c(80, 66, 69, 62, 64, 55, 61, 52, 59, 49, 54, 44, 53, 51, 51, 48, 51, 37)
+)
+g24b_elections$country <- factor(g24b_elections$country, levels = rev(unique(g24b_elections$country)))
+g24b_elections$income <- factor(g24b_elections$income, levels = c("Middle class", "Low income"))
+
+g24b_defenders <- ggplot(g24b_elections, aes(country, pct, fill = income)) +
+  geom_col(position = position_dodge(width = 0.8, reverse = TRUE), width = 0.8) +
+  g24b_zero() +
+  coord_flip() +
+  g24_value_axis(limits = c(0, 80), breaks = seq(0, 80, 20), expand = expansion(0)) +
+  scale_fill_economist_2024("print") +
+  labs(
+    title = "Defenders of democracy",
+    subtitle = paste(
+      "Respondents saying that honest elections",
+      "held regularly with a choice of at least two",
+      "political parties are very important,",
+      "2007, %",
+      sep = "\n"
+    ),
+    x = NULL, y = NULL, fill = NULL, caption = "Source: Pew Global Attitudes Survey"
+  ) +
+  g24b_bars_theme()
+
+g24_chart(g24b_defenders)
+```
+
+### Two traces with sub-categories
+
+Name each group at its top left.
+
+```{r g24-bars-autumn-fall, econ_height = 185}
+g24b_forecasts <- data.frame(
+  country = rep(c("Germany", "France", "Euro area", "Spain", "Italy"), each = 4),
+  vintage = rep(rep(c("2011", "2012"), each = 2), 5),
+  made_in = rep(c("June", "September"), 10),
+  gdp = c(3.2, 2.7, 2.0, 1.3, 2.1, 1.7, 1.9, 1.4, 2.0, 1.6, 1.7, 1.1, 0.8, 0.8, 1.6, 1.1, 1.0, 0.6, 1.3, 0.3)
+)
+g24b_forecasts$country <- factor(g24b_forecasts$country, levels = unique(g24b_forecasts$country))
+g24b_forecasts$vintage <- factor(g24b_forecasts$vintage, levels = c("2012", "2011"))
+g24b_forecasts$made_in <- factor(g24b_forecasts$made_in, levels = c("June", "September"))
+
+## A rule above every group but the first.
+g24b_autumn_rules <- data.frame(
+  country = factor(levels(g24b_forecasts$country)[-1], levels = levels(g24b_forecasts$country))
+)
+
+g24b_autumn <- ggplot(g24b_forecasts, aes(vintage, gdp, fill = made_in)) +
+  geom_col(position = position_dodge(width = 0.8, reverse = TRUE), width = 0.8) +
+  geom_vline(data = g24b_autumn_rules, aes(xintercept = 2.5), colour = econ$print$grid, linewidth = g24b_zero_lw) +
+  g24b_zero() +
+  coord_flip() +
+  facet_grid(rows = vars(.data$country), scales = "free_y", space = "free", switch = "y") +
+  scale_x_discrete(expand = expansion(add = 0.5)) +
+  g24_value_axis(limits = c(0, 3.3), breaks = 0:3, expand = expansion(0)) +
+  scale_fill_economist_2024("print") +
+  labs(
+    title = "Autumn fall",
+    subtitle = "GDP, % increase on previous year",
+    x = NULL, y = NULL, fill = "Forecasts made in:", caption = "Source: IMF"
+  ) +
+  g24b_bars_theme() +
+  theme(
+    strip.placement = "outside",
+    strip.text.y.left = element_text(
+      angle = 0, hjust = 0, vjust = 1, size = g24_size, face = "plain", margin = margin(0, 4, 0, 0)
+    ),
+    panel.spacing.y = unit(0, "pt")
+  ) +
+  guides(fill = guide_legend(title.position = "top"))
+
+g24_chart(g24b_autumn)
+```
+
+Four series take the first four colors in order; grouped columns touch, and have no ticks when the categories are not years.
+
+```{r g24-bars-mighty-jungle, econ_height = 155}
+g24b_returns <- data.frame(
+  horizon = rep(c("20 years", "10 years", "5 years"), each = 4),
+  asset = rep(c("Equities", "All property", "Rural property", "Forestry"), 3),
+  pct = c(7.1, 8.7, 12.5, 9.5, 6.7, 6.1, 11.8, 18.8, 7.7, 10.9, 11.3, 21.1)
+)
+g24b_returns$horizon <- factor(g24b_returns$horizon, levels = c("20 years", "10 years", "5 years"))
+g24b_returns$asset <- factor(
+  g24b_returns$asset,
+  levels = c("Equities", "All property", "Rural property", "Forestry")
+)
+
+g24b_jungle <- ggplot(g24b_returns, aes(horizon, pct, fill = asset)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.8) +
+  g24_value_axis(limits = c(0, 25), breaks = seq(0, 25, 5), expand = expansion(0)) +
+  scale_fill_economist_2024("print") +
+  labs(
+    title = "The mighty jungle",
+    subtitle = "Britain, annualised rate of return\non investment*, %",
+    x = NULL, y = NULL, fill = NULL, caption = "*To 2014\nSources: MSCI; JP Morgan"
+  ) +
+  g24b_cols_theme() +
+  theme(axis.ticks.x = element_blank()) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+g24_chart(g24b_jungle)
+```
+
+### One trace with a +/- axis
+
+Negatives carry a minus sign and positives none; zero is a black rule; one color on both sides; a summary row in bold.
+
+```{r g24-bars-dotcom, econ_height = 195}
+g24b_capex <- data.frame(
+  sector = c(
+    "Internet", "Software", "Tech hardware", "IT services", "Health care", "Total", "Leisure", "Chemicals",
+    "Oil, gas and fuels", "Metals and mining", "Property", "Energy equipment"
+  ),
+  change = c(52, 36, 26, 22, 9, -17, -19, -23, -32, -34, -35, -53)
+)
+g24b_capex$sector <- factor(g24b_capex$sector, levels = rev(g24b_capex$sector))
+
+g24b_dotcom <- ggplot(g24b_capex, aes(sector, change)) +
+  geom_col(fill = single24[["print"]], width = 0.7) +
+  g24b_zero() +
+  coord_flip() +
+  ## Every 30, so the signed labels do not run together.
+  g24_value_axis(limits = c(-60, 60), breaks = seq(-60, 60, 30), expand = expansion(0)) +
+  scale_x_discrete(labels = g24_bold_label("Total")) +
+  labs(
+    title = "Another dotcom boom",
+    subtitle = "Change in worldwide capital spending*, %\n2014-17 forecast",
+    x = NULL, y = NULL, caption = "*In dollar terms\nSource: Goldman Sachs"
+  ) +
+  g24b_bars_theme()
+
+g24_chart(g24b_dotcom)
+```
+
+> Differentiate positive/negative values by colour only where there is a
+> meaningful difference i.e. imports / exports
+
+```{r g24-bars-money-drain, econ_height = 155}
+## 2005 is missing from the 2017 guide's chart.
+g24b_capital <- data.frame(
+  year = c(1994:2004, 2006:2011),
+  flow = c(-14, -4, -24, -18.5, -22, -21, -25, -15, -8, -1.5, -8, 42, 82, -134, -57, -34, -31.5)
+)
+
+g24b_drain <- ggplot(g24b_capital, aes(year, flow)) +
+  geom_col(fill = single24[["print"]], width = 0.7) +
+  g24b_zero() +
+  g24_value_axis(limits = c(-150, 100), breaks = seq(-150, 100, 50), expand = expansion(0)) +
+  scale_x_continuous(
+    breaks = c(seq(1994, 2008, 2), 2011),
+    labels = c("1994", "96", "98", "2000", "02", "04", "06", "08", "11*"),
+    expand = expansion(add = c(0.5, 1.5))
+  ) +
+  labs(
+    title = "The money drain",
+    subtitle = "Net private capital inflows/outflows, $bn",
+    x = NULL, y = NULL, caption = "Source: Central Bank of Russia"
+  ) +
+  g24b_cols_theme()
+
+g24_chart(g24b_drain, footnote = "*To June 30th")
+```
+
+Where the sign means two things, as exports and imports do, use two series in red and salmon, named directly in the first panel, with panel headings under a short black rule (`20250118_FBC388`).
+
+```{r g24-bars-trader-woes, econ_height = 215}
+g24b_trade <- data.frame(
+  year = rep(1995:2016, 4),
+  country = rep(c("China, as % of GDP", "United States, as % of GDP"), each = 44),
+  flow = rep(rep(c("Exports", "Imports"), each = 22), 2),
+  pct = c(
+    6.2, 5.9, 6.5, 6.9, 7.5, 8.2, 7.6, 8.5, 9.1, 10.0, 10.5,
+    10.4, 9.0, 7.3, 5.8, 6.0, 5.3, 5.0, 4.7, 4.4, 4.3, 4.1,
+    -1.5, -1.4, -1.2, -1.3, -1.2, -1.3, -1.4, -1.5, -1.7, -1.8, -1.7,
+    -1.9, -1.8, -1.4, -1.4, -1.4, -1.3, -1.2, -1.2, -1.1, -0.95, -0.95,
+    0.1, 0.1, 0.1, 0.15, 0.15, 0.2, 0.2, 0.2, 0.25, 0.3, 0.35,
+    0.4, 0.5, 0.55, 0.5, 0.6, 0.7, 0.7, 0.75, 0.75, 0.7, 0.7,
+    -0.7, -0.75, -0.8, -0.9, -0.9, -1.1, -1.1, -1.2, -1.4,
+    -1.6, -1.9, -2.1, -2.2, -2.3, -2.1, -2.5, -2.7, -2.7,
+    -2.7, -2.75, -2.8, -2.6
+  )
+)
+g24b_trade$country <- factor(g24b_trade$country, levels = c("China, as % of GDP", "United States, as % of GDP"))
+g24b_trade$flow <- factor(g24b_trade$flow, levels = c("Exports", "Imports"))
+
+## Only the China panel names its two series, beside their bars.
+g24b_trade_labels <- data.frame(
+  year = 1999.6,
+  pct = c(9.9, -2.5),
+  flow = factor(c("Exports", "Imports"), levels = levels(g24b_trade$flow)),
+  country = factor(levels(g24b_trade$country)[1], levels = levels(g24b_trade$country))
+)
+g24b_trade_cols <- c(Exports = p24[["red"]], Imports = p24[["salmon"]])
+
+g24b_woes <- ggplot(g24b_trade, aes(year, pct, fill = flow)) +
+  geom_col(width = 0.7) +
+  g24b_zero() +
+  geom_blank(
+    data = data.frame(
+      year = 1995,
+      pct = c(-4, 12, -4, 4),
+      country = factor(rep(levels(g24b_trade$country), each = 2), levels = levels(g24b_trade$country))
+    ),
+    aes(x = year, y = pct), inherit.aes = FALSE
+  ) +
+  geom_text(
+    data = g24b_trade_labels, aes(x = year, y = pct, label = flow),
+    inherit.aes = FALSE, size = g24_text, colour = econ$print$text
+  ) +
+  facet_wrap(
+    ~country, ncol = 1, scales = "free_y", space = "free_y", axes = "all",
+    labeller = as_labeller(
+      c(
+        `China, as % of GDP` = 'bold("China,")~"as % of GDP"',
+        `United States, as % of GDP` = 'bold("United States,")~"as % of GDP"'
+      ),
+      label_parsed
+    )
+  ) +
+  g24_value_axis(breaks = seq(-4, 12, 4), expand = expansion(0)) +
+  scale_fill_manual(values = g24b_trade_cols, guide = "none") +
+  scale_x_continuous(
+    breaks = c(1995, 2000, 2005, 2010, 2016), labels = c("1995", "2000", "05", "10", "16*"),
+    expand = expansion(add = c(0.5, 2))
+  ) +
+  labs(
+    title = "Trader woes",
+    subtitle = "China-United States trade in goods",
+    x = NULL, y = NULL, caption = "Sources: Census Bureau;\nIMF"
+  ) +
+  g24b_cols_theme()
+
+g24_chart(g24b_woes, footnote = "*Jan-Nov annualised")
+```
+
+### A bar too long for the scale
+
+Do not break the scale: set it for the other bars and run the long bar off the edge, its value in white with an arrow (`20250809_EUC046`); give a bar too short to see its value in red.
+
+```{r g24-bars-golden-ratio, econ_height = 290}
+## Read from the chart `20250809_EUC046`.
+g24b_swiss <- data.frame(
+  good = c(
+    "Precious metals,\npearls & jewellery", "All exports", "Pharmaceutical\nproducts", "Coffee, tea & spices",
+    "Clocks & watches", "Optical & medical\ntechnology", "Electrical machinery", "Mechanical\nmachinery",
+    "Aircraft & parts", "Organic chemicals"
+  ),
+  change = c(672, 172, 41, 14, 14, 8, -1, -11, -18, -52)
+)
+g24b_swiss$good <- factor(g24b_swiss$good, levels = rev(g24b_swiss$good))
+## The panel ends a little past the last gridline; the long bar is clipped there, not squeezed in.
+g24b_swiss_lim <- c(-55, 228)
+
+g24b_golden <- ggplot(g24b_swiss, aes(good, change)) +
+  geom_col(fill = single24[["print"]], width = 0.7) +
+  g24b_zero() +
+  ## The off-scale value: white, ranged right inside the end of the bar, with an arrow.
+  annotate(
+    "text", x = "Precious metals,\npearls & jewellery", y = g24b_swiss_lim[2] - 4, label = "672 →",
+    hjust = 1, colour = "white", size = g24_text
+  ) +
+  ## The bar too short to see, labelled in red to the left of the zero rule.
+  annotate(
+    "text", x = "Electrical machinery", y = -3, label = "-1", hjust = 1, colour = accent24[["print"]], size = g24_text
+  ) +
+  coord_flip(ylim = g24b_swiss_lim, expand = FALSE) +
+  g24_value_axis(breaks = seq(-50, 200, 50)) +
+  scale_x_discrete(labels = g24_bold_label("All exports")) +
+  labs(
+    title = "Golden ratio",
+    subtitle = "Switzerland, % change in export value to US,\n2024-25*, forecast, selected goods",
+    x = NULL, y = NULL, caption = "Source: US Census\nBureau"
+  ) +
+  g24b_bars_theme()
+
+g24_chart(g24b_golden, footnote = "*Jan-May 2025 annualised")
+```
+
+### Color overrides
+
+> Where categories are chronological, use light-to-dark scale
+
+Chronological categories take the red ramp, light to dark.
+
+```{r g24-bars-growth-asia, econ_height = 225}
+g24b_asia <- data.frame(
+  country = rep(c("India", "Cambodia", "Laos", "China", "Malaysia", "Thailand", "Singapore", "Brunei"), each = 3),
+  period = rep(c("2015", "2016", "2016-20*"), 8),
+  growth = c(
+    7.2, 7.3, 7.3, 7.0, 7.1, 7.3, 6.9, 7.0, 7.3, 6.8, 6.5, 6.0,
+    4.6, 4.6, 5.0, 2.7, 3.1, 3.6, 2.1, 2.4, 2.6, -1.4, 0.5, 1.8
+  )
+)
+g24b_asia$country <- factor(g24b_asia$country, levels = rev(unique(g24b_asia$country)))
+g24b_asia$period <- factor(g24b_asia$period, levels = c("2015", "2016", "2016-20*"))
+
+## Light to dark along the print red ramp.
+g24b_chrono <- econ$print$sequential_red$value[c(2, 3, 5)]
+
+g24b_growth <- ggplot(g24b_asia, aes(country, growth, fill = period)) +
+  geom_col(position = position_dodge(width = 0.8, reverse = TRUE), width = 0.8) +
+  g24b_zero() +
+  coord_flip() +
+  g24_value_axis(limits = c(-2, 8), breaks = seq(-2, 8, 2), expand = expansion(0)) +
+  scale_fill_manual(values = g24b_chrono) +
+  labs(
+    title = "Growth in Asia",
+    subtitle = "GDP forecasts, % change on a year earlier",
+    x = NULL, y = NULL, fill = NULL, caption = "*Annual average\nSource: OECD"
+  ) +
+  g24b_bars_theme()
+
+g24_chart(g24b_growth)
+```
+
+> If categories form meaningful groups, use colour to reinforce that
+
+Each group takes a color family: red and salmon, blue and light blue (`20260117_WOC873`).
+
+```{r g24-bars-dont-fence, econ_height = 235}
+g24b_segregation <- data.frame(
+  group = rep(
+    c(
+      "White British", "Other White", "Mixed", "Bangladeshi", "Pakistani", "Indian", "Chinese", "African",
+      "Caribbean"
+    ),
+    each = 4
+  ),
+  area = rep(c("Inner London", "Outer London", "Metropolitan areas", "Other large cities"), 9),
+  change = c(
+    3.0, 1.7, 1.6, 0.4, -2.7, -0.7, -1.7, 0, -6.3, -8.3, -10.4, -9.3,
+    -0.1, -11.8, -3.7, -3.1, -1.0, -4.6, -3.0, -5.3, 0, -1.5, -5.3, -5.2,
+    -6.1, -11.5, -11.9, -10.2, 0.3, -3.8, -14.8, -19.9, 1.3, -4.8, -4.7, -7.1
+  )
+)
+g24b_segregation$group <- factor(g24b_segregation$group, levels = rev(unique(g24b_segregation$group)))
+g24b_segregation$area <- factor(
+  g24b_segregation$area,
+  levels = c("Inner London", "Outer London", "Metropolitan areas", "Other large cities")
+)
+
+g24b_fence <- ggplot(g24b_segregation, aes(group, change, fill = area)) +
+  geom_col(position = position_dodge(width = 0.8, reverse = TRUE), width = 0.8) +
+  g24b_zero() +
+  coord_flip() +
+  g24_value_axis(limits = c(-20, 5), breaks = seq(-20, 5, 5), expand = expansion(0)) +
+  ## Reds for the two London rows, blues for the two city rows.
+  scale_fill_manual(values = unname(p24[c("red", "salmon", "blue", "light blue")])) +
+  labs(
+    title = "Don’t fence me in",
+    subtitle = "Britain, % change in segregation index*\n2001-11",
+    x = NULL, y = NULL, fill = NULL,
+    caption = "* % that needs to move to\ncreate an even distribution\nSource: University of Manchester"
+  ) +
+  g24b_bars_theme() +
+  ## The key reads down its columns: London, then the cities.
+  guides(fill = guide_legend(nrow = 2, byrow = FALSE))
+
+g24_chart(g24b_fence)
+```
+
+## Bar / column, stacked
+
+- No rule between segments in print; web stacks often outline them thinly.
+- Colors run from the baseline: red, salmon, blue, light blue, the grays, with "other" last in light gray.
+- The key sits above the plot.
+- Wide segments carry names or values inside: white on red and blue, black on lighter colors (`20240427_SRC663`).
+
+```{r g24-bars-fed-nuptials, econ_height = 149}
+g24b_carriers <- data.frame(
+  band = rep(c("All mobiles", "Smartphones"), each = 5),
+  carrier = rep(c("AT&T", "T-Mobile", "Sprint Nextel", "Verizon", "Other"), 2),
+  share = c(30.4, 10.0, 31.4, 11.1, 16.8, 44.1, 9.6, 30.5, 12.9, 8.0),
+  ## Segment widths as drawn in the 2017 guide.
+  width = c(26.5, 10.1, 31.5, 11.0, 20.9, 35.1, 12.2, 29.6, 14.8, 8.3)
+)
+g24b_carriers$carrier <- factor(g24b_carriers$carrier, levels = unique(g24b_carriers$carrier))
+g24b_carriers$band <- factor(g24b_carriers$band, levels = c("Smartphones", "All mobiles"))
+g24b_carrier_fill <- setNames(unname(p24[c("red", "salmon", "blue", "light blue", "light gray")]), levels(g24b_carriers$carrier))
+g24b_carriers$ink <- g24b_ink(g24b_carrier_fill[as.character(g24b_carriers$carrier)])
+## Each bar is named above it, ranged left, in place of axis labels.
+g24b_bands <- data.frame(band = levels(g24b_carriers$band), row = 1:2)
+
+g24b_fed <- ggplot(g24b_carriers, aes(band, width, fill = carrier)) +
+  geom_col(width = 0.55, position = position_stack(reverse = TRUE)) +
+  geom_text(
+    aes(label = sprintf("%.1f", share), colour = ink, group = carrier),
+    position = position_stack(vjust = 0.5, reverse = TRUE), size = g24_text
+  ) +
+  geom_text(
+    data = g24b_bands, aes(x = row + 0.31, y = 0, label = band), inherit.aes = FALSE,
+    hjust = 0, vjust = 0, size = g24_text, colour = econ$print$text
+  ) +
+  coord_flip(clip = "off") +
+  scale_x_discrete(expand = expansion(add = c(0.3, 0.5))) +
+  scale_y_continuous(limits = c(0, 100), expand = expansion(0)) +
+  scale_fill_manual(values = g24b_carrier_fill) +
+  scale_colour_identity() +
+  labs(
+    title = "The Fed says no to nuptials",
+    subtitle = "Mobile operators' US market share\nJuly 2011, %",
+    x = NULL, y = NULL, fill = NULL, caption = "Source: comScore"
+  ) +
+  g24_theme(horizontal = FALSE) +
+  g24_no_axes() +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+g24_chart(g24b_fed)
+```
+
+Name small segments outside the bar on leader lines ending in a dot (`20250524_STC444`); mark a majority with a black rule through the bar.
+
+```{r g24-bars-no-winner, econ_height = 129}
+## Drawn in the 2017 guide's own units, so the leader lines can be placed.
+g24b_seats <- data.frame(
+  party = c("ERC", "DiL", "EAJ-PNV", "Others", "Podemos", "PSOE", "Ciudadanos", "PP"),
+  n = c(9, 8, 6, 5, 69, 90, 40, 123),
+  ## The regional parties dark gray, others light gray, the four national parties in the palette's first four colors.
+  fill = unname(p24[c("dark gray", "dark gray", "dark gray", "light gray", "salmon", "red", "light blue", "blue")])
+)
+g24b_seats$xmax <- cumsum(g24b_seats$n)
+g24b_seats$xmin <- g24b_seats$xmax - g24b_seats$n
+g24b_seats$mid <- (g24b_seats$xmin + g24b_seats$xmax) / 2
+g24b_sx <- function(px) (px - 40) / 591 * 350
+g24b_top <- 226
+g24b_bottom <- 321
+
+## The small parties and Ciudadanos are named beneath the bar, on leader lines that drop from their segments, turn
+## right at staggered heights so as not to cross, and drop again to the names.
+g24b_named <- data.frame(
+  party = c("ERC", "DiL", "EAJ-PNV", "Others", "Ciudadanos"),
+  label_x = c(0, 47, 92, 180, 250),
+  turn_y = c(392, 378, 363, 351, 351)
+)
+g24b_named$mid <- g24b_seats$mid[match(g24b_named$party, g24b_seats$party)]
+g24b_named$label <- paste(g24b_named$party, g24b_seats$n[match(g24b_named$party, g24b_seats$party)])
+g24b_paths <- do.call(rbind, lapply(seq_len(nrow(g24b_named)), function(i) {
+  d <- g24b_named[i, ]
+  data.frame(party = d$party, x = c(d$mid, d$mid, d$label_x + 2, d$label_x + 2), y = c(g24b_bottom - 6, d$turn_y, d$turn_y, 394))
+}))
+g24b_dots <- data.frame(x = g24b_named$mid, y = g24b_bottom - 6)
+g24b_names <- data.frame(x = g24b_named$label_x, y = 405, label = g24b_named$label)
+## Values inside the big segments: the name, the seats beneath.
+g24b_inside <- subset(g24b_seats, n >= 60)
+g24b_inside$ink <- g24b_ink(g24b_inside$fill)
+
+g24b_winner <- ggplot() +
+  geom_rect(
+    data = g24b_seats, aes(xmin = xmin, xmax = xmax, ymin = g24b_top, ymax = g24b_bottom, fill = fill),
+    ## The three dark gray segments are told apart by a hairline of the ground.
+    colour = econ$print$bg$value[1], linewidth = 0.15
+  ) +
+  geom_path(data = g24b_paths, aes(x, y, group = party), colour = econ$print$text, linewidth = 0.2) +
+  geom_point(data = g24b_dots, aes(x, y), size = 0.6, colour = econ$print$text) +
+  geom_text(data = g24b_names, aes(x, y, label = label), hjust = 0, size = g24_text, colour = econ$print$text) +
+  geom_text(data = g24b_inside, aes(mid, 258, label = party, colour = ink), size = g24_text) +
+  geom_text(data = g24b_inside, aes(mid, 292, label = n, colour = ink), size = g24_text) +
+  ## The majority: a black rule through the bar, named above it.
+  annotate("segment", x = 176, xend = 176, y = 205, yend = 340, colour = econ$print$text, linewidth = g24b_zero_lw * 1.5) +
+  annotate("text", x = 176, y = 196, label = "176 required for majority", size = g24_text, colour = econ$print$text,
+           vjust = 0) +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(limits = c(0, 350), expand = expansion(0)) +
+  scale_y_reverse(limits = c(425, 165), expand = expansion(0)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "No one's a winner",
+    subtitle = "Spanish general election 2015, Seats won",
+    x = NULL, y = NULL, caption = "Sources: Ministry of the Interior; El País"
+  ) +
+  g24_theme() +
+  g24_no_axes()
+
+g24_chart(g24b_winner)
+```
+
+Head each bar under a short black rule, lead-in bold; beyond four parts use the six colors in order.
+
+```{r g24-bars-looting, econ_height = 189}
+## Drawn in the 2017 guide's own units; each bar has its own scale.
+g24b_bars <- rbind(
+  data.frame(
+    row = 1, stream = c("Oil & gas", "Confiscation", "Tax", "Electricity"),
+    value = c(20.1, 14.3, 12.0, 4.0), scale = 617 / 50.4, x0 = 33, fill = unname(p24[1:4])
+  ),
+  data.frame(
+    row = 2, stream = c("Oil & gas", "Confiscation", "Tax", "Electricity"),
+    value = c(2.3, 3.8, 1.9, 0.4), scale = 61.2, x0 = 37, fill = unname(p24[1:4])
+  ),
+  data.frame(
+    row = 3, stream = c("Fighters' salary", "Military camps", "Social services", "Islamic police", "Treasury", "Media"),
+    value = c(2.5, 1.15, 1.0, 0.6, 0.35, 0.2), scale = 61.2, x0 = 37, fill = unname(p24[1:6])
+  )
+)
+g24b_bars$xmax <- unlist(lapply(split(g24b_bars, g24b_bars$row), function(d) d$x0 + cumsum(d$value) * d$scale))
+g24b_bars$xmin <- g24b_bars$xmax - g24b_bars$value * g24b_bars$scale
+g24b_bars$ymin <- c(258, 452, 592)[g24b_bars$row]
+g24b_bars$ymax <- c(312, 497, 632)[g24b_bars$row]
+g24b_bars$mid <- (g24b_bars$xmin + g24b_bars$xmax) / 2
+g24b_first <- subset(g24b_bars, row == 1)
+g24b_first$label <- c("20.1", "14.3", "12.0", "4")
+g24b_first$ink <- g24b_ink(g24b_first$fill)
+
+## Panel headings: a bold lead-in, then the rest, under a short black rule as long as the tab.
+g24b_headings <- data.frame(
+  y = c(188, 380, 548),
+  label = c(
+    'bold("Overall")~"Monthly revenue $79.8m"',
+    'bold("Deir al-Zor governorate")~"Monthly revenue $8.7m"',
+    'bold("Monthly spending")~"$5.8m"'
+  )
+)
+g24b_rules <- data.frame(y = c(163, 353, 523))
+## The first bar's key runs along its heading; the third bar's names have leader lines.
+g24b_keys <- data.frame(
+  x = c(38, 221, 428, 521, 40, 170, 640, 640, 640, 640),
+  y = c(237, 237, 237, 237, 655, 655, 571, 610, 646, 686),
+  label = c(
+    "Oil & gas", "Confiscation", "Tax", "Electricity", "Fighters'\nsalary", "Military\ncamps",
+    "Treasury", "Media", "Islamic police", "Social services"
+  ),
+  fill = c(unname(p24[1:4]), g24b_bars$fill[g24b_bars$row == 3][c(1, 2, 5, 6, 4, 3)])
+)
+g24b_keys$left <- g24b_keys$x < 600
+## Leader lines from the segments to the names on the right, as (x, y) corners.
+g24b_lead <- list(
+  Treasury = list(x = c(369, 369, 495), y = c(600, 571, 571)),
+  Media = list(x = c(386, 386, 525), y = c(612, 610, 610)),
+  Police = list(x = c(340, 340, 435), y = c(625, 646, 646)),
+  Social = list(x = c(291, 291, 415), y = c(625, 686, 686))
+)
+g24b_lead_paths <- do.call(rbind, lapply(names(g24b_lead), function(nm) {
+  data.frame(id = nm, x = g24b_lead[[nm]]$x, y = g24b_lead[[nm]]$y)
+}))
+## The middle bar's own 0--10 axis: labels above, rules through the bar.
+g24b_ticks <- data.frame(x = 37 + 61.2 * seq(0, 10, 2), label = seq(0, 10, 2))
+g24b_ticks$colour <- ifelse(g24b_ticks$x == 37, econ$print$text, econ$print$grid)
+
+g24b_looting <- ggplot() +
+  geom_segment(data = g24b_ticks, aes(x = x, xend = x, y = 437, yend = 510, colour = colour), linewidth = 0.25) +
+  geom_text(data = g24b_ticks, aes(x, 422, label = label), size = g24_text, colour = econ$print$text) +
+  geom_rect(data = g24b_bars, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = fill)) +
+  geom_text(data = g24b_first, aes(mid, 285, label = label, colour = ink), size = g24_text) +
+  geom_segment(
+    data = g24b_rules, aes(x = 33, xend = 33 + 100, y = y, yend = y), colour = econ$print$text, linewidth = 0.4
+  ) +
+  geom_text(
+    ## At the axis-label size, so the longest heading fits the width.
+    data = g24b_headings, aes(33, y, label = label), parse = TRUE, hjust = 0, size = g24_text,
+    colour = econ$print$text
+  ) +
+  geom_path(data = g24b_lead_paths, aes(x, y, group = id), colour = econ$print$text, linewidth = 0.2) +
+  geom_point(
+    data = data.frame(x = c(369, 386, 340, 291), y = c(600, 612, 625, 625)), aes(x, y), size = 0.6,
+    colour = econ$print$text
+  ) +
+  geom_rect(data = g24b_keys, aes(xmin = x, xmax = x + 10, ymin = y - 10, ymax = y + 10, fill = fill)) +
+  geom_text(
+    data = subset(g24b_keys, left), aes(x + 16, y + ifelse(y > 600, 16, 0), label = label), hjust = 0,
+    lineheight = 1.1, size = g24_text, colour = econ$print$text
+  ) +
+  geom_text(
+    data = subset(g24b_keys, !left), aes(x - 9, y, label = label), hjust = 1, size = g24_text,
+    colour = econ$print$text
+  ) +
+  scale_fill_identity() +
+  scale_colour_identity() +
+  scale_x_continuous(limits = c(32, 652), expand = expansion(0)) +
+  scale_y_reverse(limits = c(715, 150), expand = expansion(0)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Looting the Levant",
+    subtitle = "Islamic State's finances*, January 2015, $m",
+    x = NULL, y = NULL, caption = "*Estimates\nSource: IHS"
+  ) +
+  g24_theme() +
+  g24_no_axes()
+
+g24_chart(g24b_looting)
+```
+
+A forecast is a darker gray band the full height of the panel, named at its top in gray.
+
+```{r g24-bars-getting-sociable, econ_height = 178}
+g24b_adspend <- data.frame(
+  year = rep(2008:2017, each = 4),
+  format = rep(c("Paid search", "Display", "Classified", "Online video"), 10),
+  bn = c(
+    24, 15, 9, 4, 27, 16, 9, 4, 32, 19, 9, 6, 37, 19, 10, 10,
+    43, 21, 11, 15, 48, 25, 11, 20, 56, 27, 13, 27, 62, 31, 15, 36,
+    72, 33, 16, 44, 79, 35, 17, 54
+  )
+)
+g24b_adspend$format <- factor(g24b_adspend$format, levels = unique(g24b_adspend$format))
+
+g24b_sociable <- ggplot(g24b_adspend, aes(year, bn, fill = format)) +
+  ## The forecast years: a darker band, named at its top.
+  annotate("rect", xmin = 2014.5, xmax = 2017.5, ymin = 0, ymax = 228, fill = econ$print$sequential_gray$value[2]) +
+  annotate("text", x = 2016, y = 222, label = "Forecast", size = g24_text, colour = econ$print$source, vjust = 1) +
+  geom_col(width = 0.7, position = position_stack(reverse = TRUE)) +
+  g24_value_axis(limits = c(0, 228), breaks = seq(0, 200, 50), expand = expansion(0)) +
+  scale_x_continuous(
+    breaks = c(2008, 2010, 2012, 2014, 2016, 2017), labels = c("2008", "10", "12", "14", "16", "17"),
+    expand = expansion(add = c(0.5, 1.4))
+  ) +
+  scale_fill_economist_2024("print") +
+  labs(
+    title = "Getting sociable",
+    subtitle = "Global internet-advertising spending, $bn",
+    x = NULL, y = NULL, fill = NULL, caption = "Source: ZenithOptimedia"
+  ) +
+  g24b_cols_theme() +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+g24_chart(g24b_sociable)
+```
+
+A stack below zero hangs from the black zero rule.
+
+```{r g24-bars-more-in-out, econ_height = 179}
+## China's share, and the total.
+g24b_china <- c(
+  0.15, 0.18, 0.26, 0.29, 0.37, 0.40, 0.46, 0.55, 0.61, 0.68, 0.79, 0.75, 0.92, 1.05,
+  1.30, 1.52, 1.67, 1.76, 1.80, 1.54, 1.80, 1.87, 1.93, 1.89, 1.96, 2.02, 1.83
+)
+g24b_total <- c(
+  1.67, 1.05, 1.27, 1.65, 2.04, 2.06, 2.07, 2.07, 2.50, 3.38, 4.22, 3.85, 4.24, 4.61,
+  5.32, 5.89, 5.96, 5.58, 5.52, 3.47, 4.22, 4.66, 4.50, 4.11, 4.20, 4.11, 3.87
+)
+g24b_deficit <- data.frame(
+  year = rep(1990:2016, 2),
+  region = rep(c("China", "Rest of world"), each = 27),
+  pct = c(-g24b_china, -(g24b_total - g24b_china))
+)
+g24b_deficit$region <- factor(g24b_deficit$region, levels = c("China", "Rest of world"))
+
+g24b_more_in <- ggplot(g24b_deficit, aes(year, pct, fill = region)) +
+  geom_col(width = 0.7, position = position_stack(reverse = TRUE)) +
+  g24b_zero() +
+  g24_value_axis(limits = c(-6, 0), breaks = -6:0, expand = expansion(0)) +
+  scale_x_continuous(
+    breaks = c(1990, 1995, 2000, 2005, 2010, 2016), labels = c("1990", "95", "2000", "05", "10", "16*"),
+    expand = expansion(add = c(0.5, 2))
+  ) +
+  scale_fill_economist_2024("print") +
+  labs(
+    title = "More in than out",
+    subtitle = "United States, merchandise-trade deficit\n% of GDP",
+    x = NULL, y = NULL, fill = NULL, caption = "Sources: US Census Bureau;\nUS Bureau of Economic\nAnalysis"
+  ) +
+  g24b_cols_theme()
+
+g24_chart(g24b_more_in, footnote = "*January-September")
+```
+
+### Color overrides
+
+> You may need to swap in other colours for charts with more than 4 categories
+>
+> Use grey for ‘other’ / ‘dont know’ etc
+
+Six colors take six categories, "other" last in light gray; beyond six, add a pale red after salmon and steps of gray.
+Show no gridlines between the bars of a 100% stack.
+
+```{r g24-bars-movers-shakers, econ_height = 179}
+## Origins in stack order; a bar skips origins it lacks.
+g24b_origins <- c("Romania", "Poland", "Italy", "Portugal", "Germany", "Britain")
+g24b_shares <- rbind(
+  `EU-28` = c(20, 15, 9, 7.5, 5, 0),
+  Switzerland = c(0, 0, 20.5, 21, 24, 0),
+  Germany = c(5.5, 17.5, 18.5, 0, 0, 0),
+  Spain = c(46.5, 0, 9.5, 6, 0, 8),
+  France = c(0, 0, 7.5, 42, 0, 8),
+  Italy = c(76, 7.5, 0, 0, 0, 0),
+  Britain = c(5.5, 29.5, 0, 5.5, 0, 0)
+)
+g24b_migrants <- data.frame(
+  destination = rep(rownames(g24b_shares), times = ncol(g24b_shares) + 1),
+  origin = rep(c(g24b_origins, "Other"), each = nrow(g24b_shares)),
+  pct = c(g24b_shares, 100 - rowSums(g24b_shares))
+)
+g24b_migrants$origin <- factor(g24b_migrants$origin, levels = c(g24b_origins, "Other"))
+g24b_migrants$destination <- factor(g24b_migrants$destination, levels = rev(rownames(g24b_shares)))
+
+## Red, salmon, then the ramp's pale red; blue, light blue and dark gray; light gray for "other".
+g24b_movers_cols <- c(
+  p24[["red"]], p24[["salmon"]], econ$print$sequential_red$value[2], p24[["blue"]], p24[["light blue"]],
+  p24[["dark gray"]], p24[["light gray"]]
+)
+
+g24b_movers <- ggplot(g24b_migrants, aes(destination, pct, fill = origin)) +
+  geom_col(width = 0.7, position = position_stack(reverse = TRUE)) +
+  g24b_zero() +
+  coord_flip() +
+  g24_value_axis(limits = c(0, 100), breaks = seq(0, 100, 20), expand = expansion(0)) +
+  scale_x_discrete(labels = g24_bold_label("EU-28")) +
+  scale_fill_manual(values = setNames(g24b_movers_cols, c(g24b_origins, "Other"))) +
+  labs(
+    title = "Movers and shakers",
+    subtitle = "Intra-European* migrants living elsewhere\n2014, % of total by destination country",
+    x = NULL, y = NULL, fill = NULL, caption = "*Including EFTA\nSource: European Commission"
+  ) +
+  g24b_bars_theme() +
+  theme(panel.grid.major = element_blank()) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+
+g24_chart(g24b_movers)
+```
+
+> If categories form meaningful groups, use colour to reinforce that
+
+Answers on a scale take a color family each side and gray for the middle (`20250531_WBC482`).
+
+```{r g24-bars-trumps-troops, econ_height = 249}
+g24b_answers <- c("Enthusiastic", "Satisfied", "Dissatisfied", "Upset", "Not sure")
+## Rows top to bottom.
+g24b_troops <- data.frame(
+  name = c(
+    "White men\nno college", "White women\nno college", "White men\ncollege educated",
+    "Non-white men\ncollege educated", "White women\ncollege educated", "Non-white men\nno college",
+    "Non-white women\ncollege educated", "Non-white women\nno college"
+  ),
+  share = c(22, 24, 16, 3, 17, 6, 4, 7)
+)
+g24b_troops$row <- rev(seq_len(nrow(g24b_troops)))
+g24b_pct <- rbind(
+  c(29, 24, 14, 31, 2), c(25, 19, 13, 40, 3), c(18, 17, 17, 47, 1), c(18, 12, 11, 51, 8),
+  c(13, 15, 14, 57, 1), c(11, 12, 19, 52, 6), c(4, 9, 15, 70, 2), c(5, 7, 17, 67, 4)
+)
+g24b_feel <- data.frame(
+  row = rep(g24b_troops$row, times = length(g24b_answers)),
+  answer = factor(rep(g24b_answers, each = nrow(g24b_troops)), levels = g24b_answers),
+  pct = c(g24b_pct)
+)
+g24b_left <- -83
+
+g24b_trump <- ggplot(g24b_feel, aes(row, pct, fill = answer)) +
+  geom_col(width = 0.6, position = position_stack(reverse = TRUE)) +
+  g24b_zero() +
+  ## Each row is named in two lines, ranged left.
+  geom_text(
+    data = g24b_troops, aes(row, g24b_left, label = name), inherit.aes = FALSE, hjust = 0, lineheight = 0.8,
+    size = g24_pt(6.3), colour = econ$print$text
+  ) +
+  ## The second measure: gray circles sized by value, right of the 100% mark.
+  geom_point(data = g24b_troops, aes(row, 120, size = share), inherit.aes = FALSE, colour = p24[["light gray"]]) +
+  geom_text(
+    data = g24b_troops, aes(row, 120, label = share), inherit.aes = FALSE, size = g24_text,
+    colour = econ$print$text
+  ) +
+  annotate(
+    "label_economist_2017", x = 9.6, y = 120, label = "% of total voters\n2012", pointer = "bottom",
+    hjust = 0.82, padding = 2, fill = p24[["light gray"]], colour = econ$print$text, size = g24_text,
+    family = economist_2017_font()
+  ) +
+  coord_flip(xlim = c(0.55, 8.45), clip = "off") +
+  scale_x_continuous(breaks = NULL) +
+  scale_size_area(max_size = 6.5, guide = "none") +
+  g24_value_axis(limits = c(g24b_left, 134), breaks = seq(0, 100, 20), expand = expansion(0)) +
+  scale_fill_manual(
+    values = unname(c(p24[c("blue", "light blue", "salmon", "red", "light gray")]))
+  ) +
+  labs(
+    title = "Trump's troops",
+    subtitle = "How do you feel about Donald Trump as\nthe 2016 Republican nominee\nfor president?*",
+    x = NULL, y = NULL, fill = NULL,
+    caption = "*5,773 registered voters surveyed\nJune 4th to July 9th 2016\nSources: YouGov; CCES; The Economist"
+  ) +
+  g24b_bars_theme() +
+  theme(panel.grid.major = element_blank()) +
+  guides(fill = guide_legend(ncol = 2, byrow = FALSE))
+
+g24_chart(g24b_trump)
+```

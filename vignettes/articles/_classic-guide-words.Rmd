@@ -1,0 +1,155 @@
+## Titles, subtitles and units
+
+```{r cg-words-setup, include = FALSE}
+## The stories' share of wordplay by year: "59% in 2012, 47% in 2013, ...".
+cgw_by_year <- paste0(vapply(2012:2015, function(y) {
+  r <- words[words$measure == paste0("title.stories.wordplay.", y), ]
+  paste0(round(100 * r$n / r$of), "% in ", y)
+}, character(1)), collapse = ", ")
+```
+
+### Titles
+
+A classic title is short. The median is three words, and `r word_share("title.words_le4", "titles")` have four words
+or fewer. Use sentence case and no full stop. Question marks are rare: `r word_share("title.question", "titles")`.
+
+What the title says depends on where the chart runs. On the data pages (Economic and financial indicators and The world
+this week) and in Leaders, the title labels the data: `r word_share("title.pages.plain", "titles")` are plain labels,
+such as `r cite_codes(c("20150124_WWC794", "20120512_INC200"))`. In the rest of the paper, the stories, the title is a
+headline. There, `r word_share("title.stories.wordplay", "titles")` play on words and
+`r word_share("title.stories.statement", "titles")` are short verdicts on the story (approximate; see
+[How this guide was made](#how-this-guide-was-made)). Only
+`r word_share("title.stories.plain", "titles")` are plain labels. The share of wordplay varied by year with no trend:
+`r cgw_by_year`.
+
+```{r cg-words-kinds, econ_height = 150}
+## The kinds of title, from words.csv, as a classic stacked bar: the data pages against the stories.
+cgw_kinds <- c(plain = "Plain label", statement = "Verdict", idiom = "Idiom", pun = "Pun", allusion = "Allusion")
+cgw_counts <- do.call(rbind, lapply(c(pages = "Data pages\nand Leaders", stories = "Stories"), function(group) {
+  key <- names(which(c(pages = "Data pages\nand Leaders", stories = "Stories") == group))
+  r <- words[words$measure %in% paste0("title.", key, ".", names(cgw_kinds)), ]
+  data.frame(
+    group = group,
+    kind = factor(cgw_kinds[sub(".*\\.", "", r$measure)], levels = rev(cgw_kinds)),
+    share = 100 * r$n / r$of
+  )
+}))
+cgw_counts$group <- factor(cgw_counts$group, levels = rev(unique(cgw_counts$group)))
+
+cgw_p <- ggplot(cgw_counts, aes(share, group, fill = kind)) +
+  geom_col(width = 0.6) +
+  ## The stories' segments are named inside them, as the classic stacked bars name theirs when they fit.
+  geom_text(
+    data = cgw_counts[cgw_counts$group == "Stories", ],
+    ## White on the dark segments, black on the gray and the light blue.
+    aes(label = round(share), colour = kind %in% c("Plain label", "Idiom"), group = kind),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    size = classic_size * 0.9 / .pt
+  ) +
+  scale_colour_manual(values = c(`FALSE` = "white", `TRUE` = "black")) +
+  geom_vline(xintercept = 0, colour = "black", linewidth = lw(0.5)) +
+  scale_fill_manual(
+    values = setNames(c(fg[["gray"]], fg[["blue-gray"]], fg[["light blue"]], fg[["blue"]], fg[["dark blue"]]),
+                      cgw_kinds),
+    breaks = unname(cgw_kinds),
+    name = NULL
+  ) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+  scale_x_continuous(position = "top", breaks = seq(0, 100, 25), expand = expansion(0)) +
+  labs(
+    title = "Pun and games",
+    subtitle = "Titles of print charts by kind,\n2012-15, % of total",
+    caption = "Source: ggthemes chart corpus",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_economist(base_size = classic_size, horizontal = FALSE) +
+  classic_no_ticks() +
+  classic_no_axis_line() +
+  theme(legend.text = element_text(size = rel(0.9)))
+economist_chart(cgw_p)
+```
+
+The chart's own title is an altered idiom ("fun and games"), and true of the data.
+
+The table splits the chart's kinds more finely. The chart's "Pun" covers double meanings, altered idioms and homophones;
+its "Idiom" is an idiom used straight. A "/" marks the subtitle's second line.
+
+| Kind | Example | Subtitle | How it works |
+|:--|:--|:--|:--|
+| Double meaning | `r cite_codes("20140517_IRC893")` | Number of Catholic priests and nuns, m | a nun's habit, and a habit broken as numbers fall |
+| | `r cite_codes("20120317_WBC761")` | North American carbonated soft-drinks index / Sales volume, 2004=100 | fizz is the product and the vigor of its sales |
+| Idiom used straight | `r cite_codes("20150718_BRC001")` | Households in temporary homes, England, '000 | literally true of the people counted |
+| | `r cite_codes("20140222_MAC376")` | Food imports as % of consumption, 2010 | the Gulf states import most of the food their people eat |
+| Altered idiom | `r cite_codes("20150214_FNC114")` | Commercial property, average annual total returns to September 2014, % | safe as houses |
+| | `r cite_codes("20150207_WBC033")` | US oil exports, barrels per day, m | fools rush in |
+| | `r cite_codes("20130817_CNC214")` | China's debt as % of GDP | death-defying |
+| Homophone | `r cite_codes("20140104_STC094")` | Cost of determining 1m bases of a DNA sequence / Log scale, $ | sense and cents, as the cost falls to cents |
+| | `r cite_codes("20150418_WBC823")` | Number of transistors in CPU\* / Log scale | always more, and Moore's law |
+| | `r cite_codes("20150829_FNC538")` | Japan, % change on a year earlier | cor blimey, and core inflation |
+| Allusion | `r cite_codes("20130525_EUC676")` | Unemployment rate, % of labour force | *Sleepless in Seattle* |
+| | `r cite_codes("20130126_CNC824")` | China's working-age population\* / Change on previous year, m | *Love's Labour's Lost* |
+| | `r cite_codes("20120324_BRC797")` | Impact of main budget measures on the exchequer, £m | the Lord giveth (Job 1:21) |
+| Verdict | `r cite_codes("20121027_WBC329")` | World's biggest construction firms by revenue | no wordplay: the story in four words |
+
+The subtitle says literally what is plotted, so the title can say what it means. The pun lands only beside the
+subtitle: "Breaking the habit" makes sense next to "Number of Catholic priests and nuns". The play points at the
+finding, not just the topic: the habit is broken because the numbers fall, and the fizz is lost because sales do.
+
+To write a classic title:
+
+- On the data pages and in Leaders, use a plain label: "Brent crude oil price".
+- Elsewhere, write a headline of one to four words. If no wordplay comes that is true of the data, a short verdict is
+  just as much house style: "China's rise, Japan's fall".
+- Aim the play at the finding, and keep its literal sense true of the data.
+- Use phrases an international reader knows: idioms, proverbs, the Bible, Shakespeare, famous films, books and songs.
+  Allusions can run a little longer than other titles.
+- Use one play per title, and none on deaths, disasters or their victims.
+- Keep the units and the date out of the title. They belong in the subtitle.
+
+Against 2017: the 2017 guide gives no rule for titles, but its examples are classic titles: *Mutti's malaise*,
+*The horrible science* and `r cite_codes("20150502_FNC077")`, which the 2017 guide redraws.
+
+### Subtitles and units
+
+The subtitle says what is measured, where and when. It often ends with the unit after a comma: "Tourist arrivals in
+Egypt, m", "Revenue, 2013, $bn", "Japan, % change on a year earlier". The last term after a comma is a unit in
+`r word_share("subtitle.unit_last", "subtitles")`. A unit appears somewhere in
+`r word_share("subtitle.has_unit", "subtitles")`, and a year or period in `r word_share("subtitle.year", "subtitles")`.
+Only `r word_share("subtitle.empty", "charts")` have no subtitle; of those,
+`r words$n[words$measure == "subtitle.empty_panels"]` are panel charts whose panel headings do its job.
+
+Write units short, in a fixed form:
+
+| Form | In subtitles | Notes |
+|:--|:--|:--|
+| `%` | `r word_share("subtitle.percent", "subtitles")` | alone, after a comma |
+| `% of GDP` | `r word_share("subtitle.pct_gdp", "subtitles")` | also `% of total` |
+| `% change on a year earlier` | `r word_share("subtitle.on_year_earlier", "subtitles")` | or "on previous year"; "increase" when every value is positive |
+| `bn`, `m`, `trn`, `'000` | `r paste(words$n[match(c("subtitle.bn", "subtitle.m", "subtitle.trn", "subtitle.thousand"), words$measure)], collapse = ", ")` subtitles | after a currency symbol with no space: $bn, £m, ¥trn, €bn; alone for counts: "m" |
+| million, billion, thousand in words | `r words$n[words$measure == "subtitle.spelled_magnitude"]` subtitles | only before another unit word: "million b/d", "billion tonnes" |
+| `2005=100` | `r word_share("subtitle.index", "subtitles")` | no spaces; with the currency basis if it matters: "2005=100, $ terms" |
+| percentage points | `r words$n[words$measure == "subtitle.percentage_points"]` subtitles | spelled out |
+| log scale | see [log scales](#log-scales) | stated in the subtitle or over the axis |
+
+When the subtitle runs long, put the unit and index base on a shorter second line: "North American carbonated
+soft-drinks index" over "Sales volume, 2004=100" (`r cite_codes("20120317_WBC761")`). When panels have their own
+headings, end the subtitle with a colon and let the headings finish it ("India's:";
+`r word_share("subtitle.colon_end", "subtitles", paren = FALSE)`). Mark a term that needs defining with an asterisk, then †, ‡, and
+define it in a footnote. Double-scale charts and scatters have different units on each axis, so they put the units in
+colored or italic axis titles instead (see [double-scale charts](#double-scale-charts)).
+
+Against 2017: the [2017 guide](economist-2017-styleguide.html#standard-scatter) moves the units out of the subtitle:
+"sub title should summarise chart, save specific units for axis labels". The classic subtitle keeps them.
+
+### A prompt for classic titles
+
+The rules above, written as a prompt for a language model. Give it a chart and it returns a title, a subtitle, the kind
+of title and two alternatives. The prompt is in
+[`economist-classic/title-prompt.md`](https://github.com/jrnold/ggthemes/blob/main/vignettes/articles/economist-classic/title-prompt.md).
+How it was tested is in [How this guide was made](#how-this-guide-was-made).
+
+```{r cg-words-prompt, echo = FALSE, comment = ""}
+cat(readLines("economist-classic/title-prompt.md"), sep = "\n")
+```
