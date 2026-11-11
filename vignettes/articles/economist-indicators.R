@@ -238,7 +238,10 @@ indicator_table <- function(style = c("classic", "2017", "2024"), id = paste0("i
       # A vertical rule down the left of each column group's heads, ending at the rule under them.
       gt::tab_style(
         rule(col$rule, sides = "left", weight = "1pt"),
-        list(gt::cells_column_spanners(c("group-gdp", "group-cpi", "group-unemp")), gt::cells_column_labels(c(gdp, cpi, unemp)))
+        list(
+          gt::cells_column_spanners(c("group-gdp", "group-cpi", "group-unemp")),
+          gt::cells_column_labels(c(gdp, cpi, unemp))
+        )
       ) |>
       gt::tab_style(rule(col$rule), list(gt::cells_column_labels(), gt::cells_stubhead())) |>
       gt::tab_style(rule(col$rule), everywhere(indicator_group_ends)) |>

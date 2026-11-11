@@ -131,6 +131,9 @@ repos:
         language: python
         additional_dependencies: [panache-cli==3.17.0]
         files: \.(qmd|Rmd|md)$
+        # The Economist guides are _*.Rmd child documents knitted into one article, so their links
+        # point at headings in sibling files that panache cannot see when it lints one file.
+        exclude: ^vignettes/articles/(_[^/]*|economist-[^/]*-styleguide)\.Rmd$
 
   - repo: https://github.com/posit-dev/air-pre-commit
     rev: 0.12.0

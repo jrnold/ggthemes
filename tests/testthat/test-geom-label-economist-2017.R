@@ -21,7 +21,13 @@ test_that("the pointer is centred, or kept 6pt from the corners", {
 test_that("text blocks are 12pt tall for one line and 23pt for two", {
   draw_block <- function(label, pointer = "bottom", hjust = 0.5, padding = 6) {
     block <- grid::gTree(
-      x = 0.5, y = 0.5, label = label, pointer = pointer, padding = padding, hjust = hjust, vjust = 0.5,
+      x = 0.5,
+      y = 0.5,
+      label = label,
+      pointer = pointer,
+      padding = padding,
+      hjust = hjust,
+      vjust = 0.5,
       text_gp = grid::gpar(fontsize = 7.5, lineheight = 9.5 / 7.5),
       box_gp = grid::gpar(fill = "grey"),
       cl = "ggthemes_label_economist_2017"

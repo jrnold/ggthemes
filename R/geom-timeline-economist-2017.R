@@ -136,11 +136,18 @@ GeomEventEconomist2017 <- ggproto(
       tip <- ends$y[i]
       up <- tip >= row$y
       rule <- grid::segmentsGrob(
-        x0 = row$x, y0 = row$y, x1 = row$x, y1 = tip,
+        x0 = row$x,
+        y0 = row$y,
+        x1 = row$x,
+        y1 = tip,
         arrow = if (arrow) grid::arrow(angle = 25, length = timeline_pt(2.5), type = "closed"),
         gp = grid::gpar(
-          col = row$colour, fill = row$colour, lwd = row$linewidth * ggplot2::.pt,
-          lty = row$linetype, lineend = "butt", linejoin = "mitre"
+          col = row$colour,
+          fill = row$colour,
+          lwd = row$linewidth * ggplot2::.pt,
+          lty = row$linetype,
+          lineend = "butt",
+          linejoin = "mitre"
         )
       )
       fontsize <- row$size * ggplot2::.pt
@@ -159,10 +166,16 @@ GeomEventEconomist2017 <- ggproto(
         just <- c(if (side > 0) "left" else "right", if (hang) "top" else "bottom")
       }
       label <- grid::textGrob(
-        row$label, x = x, y = y, just = just,
+        row$label,
+        x = x,
+        y = y,
+        just = just,
         gp = grid::gpar(
-          col = row$text_colour, fontsize = fontsize, fontfamily = row$family,
-          fontface = row$fontface, lineheight = 8 / 6.5
+          col = row$text_colour,
+          fontsize = fontsize,
+          fontfamily = row$family,
+          fontface = row$fontface,
+          lineheight = 8 / 6.5
         )
       )
       grid::gList(rule, label)
@@ -225,25 +238,38 @@ GeomSpanEconomist2017 <- ggproto(
       bottom <- clamp(row$ymin)
       top <- clamp(row$ymax)
       shade <- grid::rectGrob(
-        x = row$xmin, y = bottom, width = row$xmax - row$xmin, height = top - bottom,
-        just = c("left", "bottom"), gp = grid::gpar(col = NA, fill = row$fill)
+        x = row$xmin,
+        y = bottom,
+        width = row$xmax - row$xmin,
+        height = top - bottom,
+        just = c("left", "bottom"),
+        gp = grid::gpar(col = NA, fill = row$fill)
       )
       rule <- grid::segmentsGrob(
-        row$xmin, top, row$xmax, top,
+        row$xmin,
+        top,
+        row$xmax,
+        top,
         gp = grid::gpar(col = row$colour, lwd = row$linewidth * ggplot2::.pt, lineend = "butt")
       )
       out <- grid::gList(shade, rule)
       if (!is.null(row$label) && !is.na(row$label)) {
-        out <- grid::gList(out, grid::textGrob(
-          row$label,
-          x = (row$xmin + row$xmax) / 2,
-          y = grid::unit(top, "npc") + timeline_pt(gap),
-          just = c("centre", "bottom"),
-          gp = grid::gpar(
-            col = row$text_colour, fontsize = row$size * ggplot2::.pt, fontfamily = row$family,
-            fontface = row$fontface, lineheight = 8 / 6.5
+        out <- grid::gList(
+          out,
+          grid::textGrob(
+            row$label,
+            x = (row$xmin + row$xmax) / 2,
+            y = grid::unit(top, "npc") + timeline_pt(gap),
+            just = c("centre", "bottom"),
+            gp = grid::gpar(
+              col = row$text_colour,
+              fontsize = row$size * ggplot2::.pt,
+              fontfamily = row$family,
+              fontface = row$fontface,
+              lineheight = 8 / 6.5
+            )
           )
-        ))
+        )
       }
       out
     })
@@ -313,22 +339,32 @@ GeomPeriodEconomist2017 <- ggproto(
     grobs <- lapply(seq_len(nrow(data)), function(i) {
       row <- data[i, ]
       bar <- grid::rectGrob(
-        x = row$xmin, y = row$y, width = row$xmax - row$xmin, height = timeline_pt(height),
-        just = c("left", "top"), gp = grid::gpar(col = NA, fill = row$fill)
+        x = row$xmin,
+        y = row$y,
+        width = row$xmax - row$xmin,
+        height = timeline_pt(height),
+        just = c("left", "top"),
+        gp = grid::gpar(col = NA, fill = row$fill)
       )
       if (is.null(row$label) || is.na(row$label)) {
         return(bar)
       }
-      grid::gList(bar, grid::textGrob(
-        row$label,
-        x = grid::unit(row$xmin, "npc") + timeline_pt(0.5),
-        y = grid::unit(row$y, "npc") - timeline_pt(height + gap),
-        just = c("left", "top"),
-        gp = grid::gpar(
-          col = row$colour, fontsize = row$size * ggplot2::.pt, fontfamily = row$family,
-          fontface = row$fontface, lineheight = 8 / 6.5
+      grid::gList(
+        bar,
+        grid::textGrob(
+          row$label,
+          x = grid::unit(row$xmin, "npc") + timeline_pt(0.5),
+          y = grid::unit(row$y, "npc") - timeline_pt(height + gap),
+          just = c("left", "top"),
+          gp = grid::gpar(
+            col = row$colour,
+            fontsize = row$size * ggplot2::.pt,
+            fontfamily = row$family,
+            fontface = row$fontface,
+            lineheight = 8 / 6.5
+          )
         )
-      ))
+      )
     })
     grid::gTree(children = do.call(grid::gList, grobs))
   }
@@ -360,8 +396,16 @@ geom_year_band_economist_2017 <- function(
     show.legend = FALSE,
     inherit.aes = FALSE,
     params = list(
-      from = from, to = to, y = y, height = height, label_every = label_every,
-      fills = fills, colour = colour, size = size, family = family, ...
+      from = from,
+      to = to,
+      y = y,
+      height = height,
+      label_every = label_every,
+      fills = fills,
+      colour = colour,
+      size = size,
+      family = family,
+      ...
     )
   )
 }
@@ -395,7 +439,10 @@ GeomYearBandEconomist2017 <- ggproto(
     right <- edges$x[-1]
     top <- edges$y[1]
     cells <- grid::rectGrob(
-      x = left, y = top, width = right - left, height = timeline_pt(height),
+      x = left,
+      y = top,
+      width = right - left,
+      height = timeline_pt(height),
       just = c("left", "top"),
       gp = grid::gpar(col = NA, fill = ifelse(years %% 5 == 0, fills[2], fills[1]))
     )
@@ -403,8 +450,10 @@ GeomYearBandEconomist2017 <- ggproto(
     # A band of one year has none.
     dividers <- if (length(years) > 1) {
       grid::segmentsGrob(
-        x0 = right[-length(right)], y0 = grid::unit(top, "npc"),
-        x1 = right[-length(right)], y1 = grid::unit(top, "npc") - timeline_pt(height),
+        x0 = right[-length(right)],
+        y0 = grid::unit(top, "npc"),
+        x1 = right[-length(right)],
+        y1 = grid::unit(top, "npc") - timeline_pt(height),
         gp = grid::gpar(col = "white", lwd = 0.5 / 0.75, alpha = 0.6)
       )
     } else {

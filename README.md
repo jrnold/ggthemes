@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # ggthemes <a href="https://jrnold.github.io/ggthemes/"><img src="man/figures/stickers/ggthemes-theme-stickers.gif" align="right" height="139" alt="Animated ggthemes hex stickers, cycling through stickers drawn in the package's themes" /></a>
@@ -34,13 +33,13 @@ Edward Tufte and Stephen Few:
 
 Install the released version from CRAN:
 
-``` r
+```r
 install.packages("ggthemes")
 ```
 
 Or the development version from GitHub:
 
-``` r
+```r
 # install.packages("pak")
 pak::pak("jrnold/ggthemes")
 ```
@@ -57,7 +56,7 @@ one. Each figure links to the theme’s reference page.
 Data and base plots used in the examples
 </summary>
 
-``` r
+```r
 library(ggplot2)
 library(ggthemes)
 
@@ -100,7 +99,7 @@ p_solid <- ggplot(mtcars2) +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_base.html"><img src="man/figures/README-theme_base-1.png" width="100%" alt="Example plot drawn with theme_base()"></a>
 
-``` r
+```r
 p1 + theme_base() +
   scale_colour_colourblind()
 ```
@@ -111,7 +110,7 @@ p1 + theme_base() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_calc.html"><img src="man/figures/README-theme_calc-1.png" width="100%" alt="Example plot drawn with theme_calc()"></a>
 
-``` r
+```r
 p1 + theme_calc() +
   scale_colour_calc()
 ```
@@ -126,7 +125,7 @@ p1 + theme_calc() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_clean.html"><img src="man/figures/README-theme_clean-1.png" width="100%" alt="Example plot drawn with theme_clean()"></a>
 
-``` r
+```r
 p1 + theme_clean() +
   scale_colour_tableau()
 ```
@@ -137,7 +136,7 @@ p1 + theme_clean() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_economist.html"><img src="man/figures/README-theme_economist-1.png" width="100%" alt="Example plot drawn with theme_economist()"></a>
 
-``` r
+```r
 p1 + theme_economist() +
   scale_colour_economist()
 ```
@@ -152,7 +151,7 @@ p1 + theme_economist() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_excel.html"><img src="man/figures/README-theme_excel-1.png" width="100%" alt="Example plot drawn with theme_excel()"></a>
 
-``` r
+```r
 p1 + theme_excel() +
   scale_colour_excel()
 ```
@@ -163,7 +162,7 @@ p1 + theme_excel() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_excel_new.html"><img src="man/figures/README-theme_excel_new-1.png" width="100%" alt="Example plot drawn with theme_excel_new()"></a>
 
-``` r
+```r
 p1 + theme_excel_new() +
   scale_colour_excel_new()
 ```
@@ -178,7 +177,7 @@ p1 + theme_excel_new() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_few.html"><img src="man/figures/README-theme_few-1.png" width="100%" alt="Example plot drawn with theme_few()"></a>
 
-``` r
+```r
 p1 + theme_few() +
   scale_colour_few()
 ```
@@ -189,7 +188,7 @@ p1 + theme_few() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.html"><img src="man/figures/README-theme_fivethirtyeight-1.png" width="100%" alt="Example plot drawn with theme_fivethirtyeight()"></a>
 
-``` r
+```r
 p1 + theme_fivethirtyeight() +
   scale_colour_fivethirtyeight()
 ```
@@ -204,7 +203,7 @@ p1 + theme_fivethirtyeight() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_foundation.html"><img src="man/figures/README-theme_foundation-1.png" width="100%" alt="Example plot drawn with theme_foundation()"></a>
 
-``` r
+```r
 p1 + theme_foundation() +
   scale_colour_colourblind()
 ```
@@ -215,7 +214,7 @@ p1 + theme_foundation() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_gdocs.html"><img src="man/figures/README-theme_gdocs-1.png" width="100%" alt="Example plot drawn with theme_gdocs()"></a>
 
-``` r
+```r
 p1 + theme_gdocs() +
   scale_colour_gdocs()
 ```
@@ -230,7 +229,7 @@ p1 + theme_gdocs() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_hc.html"><img src="man/figures/README-theme_hc-1.png" width="100%" alt="Example plot drawn with theme_hc()"></a>
 
-``` r
+```r
 p1 + theme_hc() +
   scale_colour_hc()
 ```
@@ -241,7 +240,7 @@ p1 + theme_hc() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_igray.html"><img src="man/figures/README-theme_igray-1.png" width="100%" alt="Example plot drawn with theme_igray()"></a>
 
-``` r
+```r
 p1 + theme_igray()
 ```
 
@@ -255,7 +254,7 @@ p1 + theme_igray()
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_map.html"><img src="man/figures/README-theme_map-1.png" width="100%" alt="Example plot drawn with theme_map()"></a>
 
-``` r
+```r
 p_map +
   theme_map()
 ```
@@ -266,7 +265,7 @@ p_map +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_numbers.html"><img src="man/figures/README-theme_numbers-1.png" width="100%" alt="Example plot drawn with theme_numbers()"></a>
 
-``` r
+```r
 p1 + theme_numbers() +
   scale_colour_numbers()
 ```
@@ -281,7 +280,7 @@ p1 + theme_numbers() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_pander.html"><img src="man/figures/README-theme_pander-1.png" width="100%" alt="Example plot drawn with theme_pander()"></a>
 
-``` r
+```r
 p1 + theme_pander() +
   scale_colour_pander()
 ```
@@ -292,7 +291,7 @@ p1 + theme_pander() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_par.html"><img src="man/figures/README-theme_par-1.png" width="100%" alt="Example plot drawn with theme_par()"></a>
 
-``` r
+```r
 p1 + theme_par() +
   scale_colour_colourblind()
 ```
@@ -307,7 +306,7 @@ p1 + theme_par() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_selenized.html"><img src="man/figures/README-theme_selenized-1.png" width="100%" alt="Example plot drawn with theme_selenized()"></a>
 
-``` r
+```r
 p1 + theme_selenized() +
   scale_colour_selenized()
 ```
@@ -318,7 +317,7 @@ p1 + theme_selenized() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_solarized.html"><img src="man/figures/README-theme_solarized-1.png" width="100%" alt="Example plot drawn with theme_solarized()"></a>
 
-``` r
+```r
 p1 + theme_solarized() +
   scale_colour_solarized()
 ```
@@ -333,7 +332,7 @@ p1 + theme_solarized() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_solarized.html"><img src="man/figures/README-theme_solarized_2-1.png" width="100%" alt="Example plot drawn with theme_solarized_2()"></a>
 
-``` r
+```r
 p1 + theme_solarized_2() +
   scale_colour_solarized()
 ```
@@ -344,7 +343,7 @@ p1 + theme_solarized_2() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_solid.html"><img src="man/figures/README-theme_solid-1.png" width="100%" alt="Example plot drawn with theme_solid()"></a>
 
-``` r
+```r
 p_solid +
   theme_solid(fill = "#202124") +
   scale_colour_tableau()
@@ -360,7 +359,7 @@ p_solid +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_stata.html"><img src="man/figures/README-theme_stata-1.png" width="100%" alt="Example plot drawn with theme_stata()"></a>
 
-``` r
+```r
 p1 + theme_stata() +
   scale_colour_stata()
 ```
@@ -371,7 +370,7 @@ p1 + theme_stata() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_tufte.html"><img src="man/figures/README-theme_tufte-1.png" width="100%" alt="Example plot drawn with theme_tufte()"></a>
 
-``` r
+```r
 p1 + theme_tufte() +
   scale_colour_few()
 ```
@@ -386,7 +385,7 @@ p1 + theme_tufte() +
 
 <a href="https://jrnold.github.io/ggthemes/reference/theme_wsj.html"><img src="man/figures/README-theme_wsj-1.png" width="100%" alt="Example plot drawn with theme_wsj()"></a>
 
-``` r
+```r
 p1 + theme_wsj(base_size = 8) +
   scale_colour_wsj()
 ```
@@ -410,7 +409,7 @@ every palette in the package.
 `geom_rangeframe()` draws Tufte’s range frame, axis lines that span only
 the range of the data. `geom_tufteboxplot()` draws his minimal box plot.
 
-``` r
+```r
 ggplot(mtcars, aes(wt, mpg)) +
   geom_point() +
   geom_rangeframe() +

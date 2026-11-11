@@ -146,13 +146,17 @@ test_that("economist_2017 FOGRA39 print colours reproduce the web palette", {
   web <- ggthemes_data$economist_2017$web
   web_main <- setNames(web$swatches$value, web$swatches$name)
   pairs <- c(
-    "econ red" = web$accent, "blue1" = web_main[["blue"]],
-    "blue2" = web_main[["cyan"]], "grey box" = web_main[["grey"]]
+    "econ red" = web$accent,
+    "blue1" = web_main[["blue"]],
+    "blue2" = web_main[["cyan"]],
+    "grey box" = web_main[["grey"]]
   )
   print_cols <- sw$value[match(names(pairs), sw$name)]
   de <- diag(farver::compare_colour(
-    farver::decode_colour(print_cols), farver::decode_colour(unname(pairs)),
-    from_space = "rgb", method = "cie2000"
+    farver::decode_colour(print_cols),
+    farver::decode_colour(unname(pairs)),
+    from_space = "rgb",
+    method = "cie2000"
   ))
   expect_true(all(de < 1.5), info = paste(names(pairs), round(de, 2), collapse = "; "))
 })
@@ -654,9 +658,16 @@ test_that("economist_2017_chart leaves axis labels that fit centred", {
 test_that("economist_2017_size returns the guide's widths", {
   # p.4
   widths <- c(
-    one_column = 160, two_column = 332, three_column = 504, leader = 117, free_exchange = 245,
-    espresso = 160, special_half_column = 117, special_two_thirds_column = 160,
-    special_one_column = 245, special_two_and_half_column = 332
+    one_column = 160,
+    two_column = 332,
+    three_column = 504,
+    leader = 117,
+    free_exchange = 245,
+    espresso = 160,
+    special_half_column = 117,
+    special_two_thirds_column = 160,
+    special_one_column = 245,
+    special_two_and_half_column = 332
   )
   for (nm in names(widths)) {
     expect_equal(economist_2017_size(nm, height = 100, units = "pt")[["width"]], widths[[nm]], info = nm)

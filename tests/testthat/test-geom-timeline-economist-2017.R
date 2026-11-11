@@ -36,7 +36,9 @@ test_that("unmapped period bars alternate through `fills` in time order", {
   built <- ggplot2::ggplot_build(timeline_plot())
   periods <- built$plot$layers[[4]]
   grob <- periods$geom$draw_panel(
-    built$data[[4]][3:1, ], built$layout$panel_params[[1]], built$layout$coord,
+    built$data[[4]][3:1, ],
+    built$layout$panel_params[[1]],
+    built$layout$coord,
     fills = c("red", "blue")
   )
   bars <- Filter(function(g) inherits(g, "rect"), grob$children)
@@ -47,8 +49,12 @@ test_that("the year band labels years the guide's way", {
   built <- ggplot2::ggplot_build(timeline_plot())
   band <- built$plot$layers[[3]]
   grob <- band$geom$draw_panel(
-    built$data[[3]], built$layout$panel_params[[1]], built$layout$coord,
-    from = 1990, to = 2015, label_every = 5
+    built$data[[3]],
+    built$layout$panel_params[[1]],
+    built$layout$coord,
+    from = 1990,
+    to = 2015,
+    label_every = 5
   )
   cells <- grob$children[[1]]
   expect_length(cells$x, 26)

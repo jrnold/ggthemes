@@ -171,14 +171,20 @@ p <- ggplot(economics, aes(date, unemploy / 1000)) +
 p +
   annotate(
     "label_economist_2017",
-    x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks"
+    x = as.Date("2009-10-01"),
+    y = 15.4,
+    label = "Unemployment peaks"
   )
 
 ## Two lines, pointing left, with the pointer off-centre
 p +
-  annotate("label_economist_2017",
-    x = as.Date("1983-01-01"), y = 12, label = "Volcker\nrecession",
-    pointer = "left", vjust = 0.25
+  annotate(
+    "label_economist_2017",
+    x = as.Date("1983-01-01"),
+    y = 12,
+    label = "Volcker\nrecession",
+    pointer = "left",
+    vjust = 0.25
   )
 
 ## The guide multiplies the box color over the print background
@@ -191,7 +197,10 @@ multiply <- grDevices::rgb(
 p +
   annotate(
     "label_economist_2017",
-    x = as.Date("2009-10-01"), y = 15.4, label = "Unemployment peaks", fill = multiply
+    x = as.Date("2009-10-01"),
+    y = 15.4,
+    label = "Unemployment peaks",
+    fill = multiply
   )
 }
 \references{
